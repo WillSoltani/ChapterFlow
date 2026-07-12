@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P11",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported narrative embellishment\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt.\",\"Claire underlines the break-up-or-not wording, then writes two missing questions in the margin\"],\"rationale\":\"The source plan only allows the handle claireabelle, a teen relationship, family interactions, and the whether-or-not break-up frame. The candidate adds concrete scene details and actions, including timing, location, props, and Claire physically annotating questions, none of which are supported by the source plan. These details are narrated in the same factual register as the verified case rather than clearly marked as hypothetical, so the candidate materially contaminates the sourced case with invented specifics.\"}"
+}

@@ -305,6 +305,15 @@ Commands:
                                      stats, precision-honest thresholds, machine-readable decision file.
                                      Never promotes, publishes, or touches canonical state; activation is
                                      IMP-13's separately authorized package.
+  migration-bakeoff <close-legacy-campaign|build-reader-corpus|build-source-corpus|build-quiz-corpus|retrospective|recovery-preflight|recovery-pilot-dryrun> [--write] [--json]
+                                     IMP-20 split-lane reviewer & §16-recovery subverbs. ALL no-model,
+                                     no-write by default (pass --write to persist committed artifacts):
+                                     verify the mechanical §16 closure freeze; build the hermetic
+                                     reader/source/quiz role corpora (fail-closed, never shrink); regenerate
+                                     the static Layer-N v2 retrospective; preflight the recovery spec/seal-prep
+                                     (fail-closed until a role-qualified reviewer set exists); and the no-model
+                                     recovery pilot dry run (ZERO model/API calls). Never spawns, never
+                                     promotes/publishes; live qualification + pilot need SEPARATE authorization.
   compile-source-packets <bookId>    v23 compiler: compile source-v2 sidecars into compact source packets.
   source-packet-gate <bookId>        v23 compiler: validate compiled source packets before blueprints.
   compile-book-design <bookId>       v23 compiler: derive the per-book variety pools artifact.

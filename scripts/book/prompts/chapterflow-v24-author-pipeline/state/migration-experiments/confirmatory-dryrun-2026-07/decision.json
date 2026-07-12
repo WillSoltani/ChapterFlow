@@ -1,0 +1,267 @@
+{
+  "schema": "sol-bakeoff-decision-v1",
+  "experimentId": "confirmatory-dryrun-2026-07",
+  "specSha256": "07cbb9ba3be9acac2511efafbeb1121c91382fe9af0f6651c96b22b2e86f3263",
+  "thresholdsSha256": "6a90acea1c94f124a5d14ba15d1dcab42ba0b8f64e9ef01df1cab7ca2dcc8c44",
+  "metricTablesSha256": "f03b8c0ae1f45623ad7bc51e15facd740283146f178a61a78002c747cac761b1",
+  "decidedAt": "2026-07-11T06:12:37.661Z",
+  "profiles": [
+    {
+      "cellId": "56S-H",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "verdicts": [
+        {
+          "id": "T1-state-safety",
+          "title": "State and execution safety",
+          "observed": "0",
+          "rule": "zero upheld",
+          "verdict": "pass",
+          "statisticallySupported": true
+        },
+        {
+          "id": "T2-severe-factual",
+          "title": "Observed severe factual safety",
+          "observed": "unavailable",
+          "rule": "zero upheld",
+          "verdict": "inconclusive",
+          "statisticallySupported": false,
+          "note": "evidence not produced yet"
+        },
+        {
+          "id": "T3-non-inferiority",
+          "title": "First-write non-inferiority",
+          "observed": "pooled 100.0% (CI lower 100.0%), baseline 100.0%",
+          "rule": "≥75% pooled, point ≥ baseline − 10pp, CI lower above the floor",
+          "verdict": "pass",
+          "statisticallySupported": true
+        },
+        {
+          "id": "T4a-framing-severe",
+          "title": "Source framing (upheld high-severity)",
+          "observed": "unavailable",
+          "rule": "zero upheld",
+          "verdict": "inconclusive",
+          "statisticallySupported": false,
+          "note": "evidence not produced yet"
+        },
+        {
+          "id": "T4b-framing-material",
+          "title": "Source framing (material rate)",
+          "observed": "0.00% vs baseline 0.00%",
+          "rule": "≤ baseline + 2pp",
+          "verdict": "pass",
+          "statisticallySupported": false
+        },
+        {
+          "id": "T5a-quiz-severe",
+          "title": "Quiz key/mechanism (upheld high-severity among accepted)",
+          "observed": "unavailable",
+          "rule": "zero upheld",
+          "verdict": "inconclusive",
+          "statisticallySupported": false,
+          "note": "evidence not produced yet"
+        },
+        {
+          "id": "T5b-quiz-ambiguity",
+          "title": "Quiz ambiguity (material rate)",
+          "observed": "0.00% vs baseline 0.00%",
+          "rule": "≤ baseline + 2pp",
+          "verdict": "pass",
+          "statisticallySupported": false
+        },
+        {
+          "id": "T6a-causal-severe",
+          "title": "Causal overreach (upheld high-severity)",
+          "observed": "unavailable",
+          "rule": "zero upheld",
+          "verdict": "inconclusive",
+          "statisticallySupported": false,
+          "note": "evidence not produced yet"
+        },
+        {
+          "id": "T6b-causal-material",
+          "title": "Causal (material rate)",
+          "observed": "0.00% vs baseline 0.00%",
+          "rule": "≤ baseline + 2pp",
+          "verdict": "pass",
+          "statisticallySupported": true
+        },
+        {
+          "id": "T7-repetition",
+          "title": "Repetition (exact prohibited leakage / adjudicated clone)",
+          "observed": "0",
+          "rule": "zero upheld",
+          "verdict": "pass",
+          "statisticallySupported": true
+        },
+        {
+          "id": "T8-reviewer-reliability",
+          "title": "Reviewer reliability",
+          "observed": "unavailable",
+          "rule": "raw ≥ 0.75, chance-corrected ≥ 0.5, material disagreement ≤ 10%, human review complete",
+          "verdict": "inconclusive",
+          "statisticallySupported": false
+        },
+        {
+          "id": "T9-repair-demand",
+          "title": "Repair demand",
+          "observed": "0.00 vs baseline 0.00 sessions/chapter (projection)",
+          "rule": "≤ baseline + 0.05/chapter (blocking); relative ≤ ×1.2 blocking only when baseline ≥ 0.1 (owner-frozen C4 rule)",
+          "verdict": "pass",
+          "statisticallySupported": false,
+          "note": "projection, not an observed production rate; relative comparison informational (baseline 0.00 < 0.1 floor) — relative clears ×1.20 and cannot independently fail this configuration"
+        },
+        {
+          "id": "T10-economics",
+          "title": "Economics and latency",
+          "observed": "p95 1s",
+          "rule": "no frozen bound declared",
+          "verdict": "pass",
+          "statisticallySupported": true,
+          "note": "owner declared no economic bound; latency reported informationally"
+        }
+      ],
+      "qualifies": false,
+      "blockedBy": [],
+      "inconclusiveOn": [
+        "T2-severe-factual",
+        "T4a-framing-severe",
+        "T5a-quiz-severe",
+        "T6a-causal-severe",
+        "T8-reviewer-reliability"
+      ]
+    },
+    {
+      "cellId": "56S-XH",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "verdicts": [
+        {
+          "id": "T1-state-safety",
+          "title": "State and execution safety",
+          "observed": "0",
+          "rule": "zero upheld",
+          "verdict": "pass",
+          "statisticallySupported": true
+        },
+        {
+          "id": "T2-severe-factual",
+          "title": "Observed severe factual safety",
+          "observed": "unavailable",
+          "rule": "zero upheld",
+          "verdict": "inconclusive",
+          "statisticallySupported": false,
+          "note": "evidence not produced yet"
+        },
+        {
+          "id": "T3-non-inferiority",
+          "title": "First-write non-inferiority",
+          "observed": "pooled 100.0% (CI lower 100.0%), baseline 100.0%",
+          "rule": "≥75% pooled, point ≥ baseline − 10pp, CI lower above the floor",
+          "verdict": "pass",
+          "statisticallySupported": true
+        },
+        {
+          "id": "T4a-framing-severe",
+          "title": "Source framing (upheld high-severity)",
+          "observed": "unavailable",
+          "rule": "zero upheld",
+          "verdict": "inconclusive",
+          "statisticallySupported": false,
+          "note": "evidence not produced yet"
+        },
+        {
+          "id": "T4b-framing-material",
+          "title": "Source framing (material rate)",
+          "observed": "0.00% vs baseline 0.00%",
+          "rule": "≤ baseline + 2pp",
+          "verdict": "pass",
+          "statisticallySupported": false
+        },
+        {
+          "id": "T5a-quiz-severe",
+          "title": "Quiz key/mechanism (upheld high-severity among accepted)",
+          "observed": "unavailable",
+          "rule": "zero upheld",
+          "verdict": "inconclusive",
+          "statisticallySupported": false,
+          "note": "evidence not produced yet"
+        },
+        {
+          "id": "T5b-quiz-ambiguity",
+          "title": "Quiz ambiguity (material rate)",
+          "observed": "0.00% vs baseline 0.00%",
+          "rule": "≤ baseline + 2pp",
+          "verdict": "pass",
+          "statisticallySupported": false
+        },
+        {
+          "id": "T6a-causal-severe",
+          "title": "Causal overreach (upheld high-severity)",
+          "observed": "unavailable",
+          "rule": "zero upheld",
+          "verdict": "inconclusive",
+          "statisticallySupported": false,
+          "note": "evidence not produced yet"
+        },
+        {
+          "id": "T6b-causal-material",
+          "title": "Causal (material rate)",
+          "observed": "0.00% vs baseline 0.00%",
+          "rule": "≤ baseline + 2pp",
+          "verdict": "pass",
+          "statisticallySupported": true
+        },
+        {
+          "id": "T7-repetition",
+          "title": "Repetition (exact prohibited leakage / adjudicated clone)",
+          "observed": "0",
+          "rule": "zero upheld",
+          "verdict": "pass",
+          "statisticallySupported": true
+        },
+        {
+          "id": "T8-reviewer-reliability",
+          "title": "Reviewer reliability",
+          "observed": "unavailable",
+          "rule": "raw ≥ 0.75, chance-corrected ≥ 0.5, material disagreement ≤ 10%, human review complete",
+          "verdict": "inconclusive",
+          "statisticallySupported": false
+        },
+        {
+          "id": "T9-repair-demand",
+          "title": "Repair demand",
+          "observed": "0.00 vs baseline 0.00 sessions/chapter (projection)",
+          "rule": "≤ baseline + 0.05/chapter (blocking); relative ≤ ×1.2 blocking only when baseline ≥ 0.1 (owner-frozen C4 rule)",
+          "verdict": "pass",
+          "statisticallySupported": false,
+          "note": "projection, not an observed production rate; relative comparison informational (baseline 0.00 < 0.1 floor) — relative clears ×1.20 and cannot independently fail this configuration"
+        },
+        {
+          "id": "T10-economics",
+          "title": "Economics and latency",
+          "observed": "p95 1s",
+          "rule": "no frozen bound declared",
+          "verdict": "pass",
+          "statisticallySupported": true,
+          "note": "owner declared no economic bound; latency reported informationally"
+        }
+      ],
+      "qualifies": false,
+      "blockedBy": [],
+      "inconclusiveOn": [
+        "T2-severe-factual",
+        "T4a-framing-severe",
+        "T5a-quiz-severe",
+        "T6a-causal-severe",
+        "T8-reviewer-reliability"
+      ]
+    }
+  ],
+  "result": "INCONCLUSIVE",
+  "qualifiedProfiles": [],
+  "effortRecommendation": "no SOL profile qualified — no effort recommendation",
+  "line": "SOL BAKEOFF RESULT: INCONCLUSIVE",
+  "activation": "NOT AUTHORIZED HERE — activation is IMP-13's separately authorized package"
+}

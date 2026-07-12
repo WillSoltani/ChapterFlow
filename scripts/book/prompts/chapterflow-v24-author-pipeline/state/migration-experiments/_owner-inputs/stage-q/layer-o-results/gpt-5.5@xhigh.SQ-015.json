@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-015",
+  "parsed": {
+    "caseId": "SQ-015",
+    "verdict": "DEFECT",
+    "defectClass": "unsupported invented factual detail",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Hard specifics allowed: Zappos, $1,000 offer, new hires, training"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The Zappos trainer closes the Zappos training binder, then stops before the usual applause."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "name tags curled at the corners"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "She gives the room a quiet minute before anyone signs the final form."
+      }
+    ],
+    "explanation": "The source plan permits only the basic Zappos offer facts, but the candidate presents invented scene mechanics and physical details as if they were verified history.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-015\",\"verdict\":\"DEFECT\",\"defectClass\":\"unsupported invented factual detail\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Hard specifics allowed: Zappos, $1,000 offer, new hires, training\"},{\"materialIndex\":1,\"quote\":\"The Zappos trainer closes the Zappos training binder, then stops before the usual applause.\"},{\"materialIndex\":1,\"quote\":\"name tags curled at the corners\"},{\"materialIndex\":1,\"quote\":\"She gives the room a quiet minute before anyone signs the final form.\"}],\"explanation\":\"The source plan permits only the basic Zappos offer facts, but the candidate presents invented scene mechanics and physical details as if they were verified history.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

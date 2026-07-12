@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-027",
+  "parsed": {
+    "caseId": "SQ-027",
+    "verdict": "DEFECT",
+    "defectClass": "TOPICALLY_MISMATCHED_GENERIC_SEARCH",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Fast neural events and slow social histories can both affect one response"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "https://pubmed.ncbi.nlm.nih.gov/?term=testosterone+challenge+hypothesis+Wingfield"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The locator is a generic PubMed search about testosterone and the challenge hypothesis, not claim-specific evidence for the asserted mechanism linking fast neural events and slow social histories to one response.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-027\",\"verdict\":\"DEFECT\",\"defectClass\":\"TOPICALLY_MISMATCHED_GENERIC_SEARCH\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Fast neural events and slow social histories can both affect one response\"},{\"materialIndex\":0,\"quote\":\"https://pubmed.ncbi.nlm.nih.gov/?term=testosterone+challenge+hypothesis+Wingfield\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The locator is a generic PubMed search about testosterone and the challenge hypothesis, not claim-specific evidence for the asserted mechanism linking fast neural events and slow social histories to one response.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

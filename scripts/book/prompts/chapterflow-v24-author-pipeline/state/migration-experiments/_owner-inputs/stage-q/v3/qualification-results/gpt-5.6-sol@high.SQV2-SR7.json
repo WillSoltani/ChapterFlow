@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR7",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"Picture a hypothetical review meeting.\",\"Nothing here happened; the scene exists only to make the choice between the two stances concrete for the reader.\"],\"rationale\":\"The passage clearly and explicitly frames the meeting as an invented illustration rather than a real event or sourced account. Its source-register is transparent to the reader, so there is no defect.\"}"
+}

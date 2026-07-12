@@ -1,0 +1,133 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-difficult-conversations-ch01",
+  "itemId": "LNV2-CLEAN-difficult-conversations-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "03c1136563a90916",
+  "renderedDocSha256": "313e9709c17fbe4c3f85b3c005a88e87e1afb920d51eda36d21898961078945d",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "1d63d23c67ec6de0b6d74a81023bc7cdc2f463f81e91d3948ad6013d87a45812",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-difficult-conversations-ch01-mrgovd9c-5",
+  "rawFinalMessageSha256": "5e7cc56fe21f7cf2cb27e497ccf260e515c231201539e269dfabbc5ee06ab9a0",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"a\", \"b\", \"c\", \"a\", \"b\", \"c\", \"c\", \"b\", \"a\"],\n    \"mechanisms\": [\n      \"The prose defines identity as questions about being competent, good, loyal, or worthy; her fear is about competence and authority.\",\n      \"The prose says to sort the what-happened promise, the feelings layer, and the identity question about family duty rather than treating it as logistics only.\",\n      \"The repair facts, residents' dismissed feeling, and board competence/reputation fear map directly to facts, feelings, and identity.\",\n      \"The chapter warns that accepting the visible label can trap the exchange in facts while feelings such as trust steer the room.\",\n      \"The reaction got larger because the missed dinner question seemed to judge what kind of friend she was, matching the identity layer.\",\n      \"The preparation separates facts, feelings, and identity so the student does not confuse belonging threat with only the authorship issue.\",\n      \"The prose says more facts can fail when the documented record has entered an identity question such as competence, goodness, or respect.\",\n      \"The chapter explicitly says to diagnose privately first because labeling someone else's identity layer can sound like an accusation or verdict.\",\n      \"The repeated move from dishes to respect shows two layers: visible chore facts and a respect/identity or feeling stake underneath.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"medium\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"The respect issue could be read as a feelings layer or an identity layer; option a is still best because it asks the diagnostic split rather than forcing one label.\"],\n    \"tells\": [\n      \"Correct answers are almost always the most nuanced and often the longest choice.\",\n      \"Many distractors are easy to reject without reading because they use absolute or obviously poor moves: 'only,' 'always,' 'never,' 'quickly,' or 'save feelings for the comment period.'\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 76,\n    \"transfer\": 86,\n    \"practical\": 88,\n    \"summaries\": 90,\n    \"tone\": 91,\n    \"limits\": 92,\n    \"insight\": 90,\n    \"density\": 87,\n    \"beginner\": 90\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The log is evidence. It is not the whole map.\",\n      \"why\": \"A crisp, memorable statement of the chapter's core move.\"\n    },\n    {\n      \"quote\": \"The three conversations are a diagnostic tool, not a script. They do not solve the exchange. They keep you from walking into the wrong one.\",\n      \"why\": \"Strong boundary-setting that prevents the framework from being oversold.\"\n    },\n    {\n      \"quote\": \"A person who already feels exposed will rarely thank you for diagnosing their identity layer.\",\n      \"why\": \"Concrete practical warning that turns the idea into usable behavior.\"\n    },\n    {\n      \"quote\": \"b) The frame works best first as private diagnosis; naming another person's layer can sound like a verdict.\",\n      \"why\": \"Representative quiz defect: the correct option is the most qualified and easy to spot.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz set\",\n      \"problem\": \"Correct choices are consistently the most nuanced and often the longest, while distractors are frequently implausible or absolute, making the key guessable without reading.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q8\",\n      \"problem\": \"The distractors are straw choices: 'never be considered in workplace settings' and 'only through written documentation' are too obviously wrong to teach much.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples\",\n      \"problem\": \"Several names recur across unrelated settings, which can slightly blur whether the scenarios are connected or just recycled.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong opening chapter: clear core model, memorable compression, practical boundaries, and examples that mostly show the before-and-after of diagnostic sorting. The main weakness is the quiz design; the questions are fair and derivable, but the answer pattern is too visible because the right option is usually the most careful, longest, least extreme choice. I would ship it, but I would revise the quiz distractors before calling the assessment layer professional-grade.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "difficult-conversations-ch01",
+    "chapterNumber": 1,
+    "contentHash": "03c1136563a90916",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-difficult-conversations-ch01-mrgovd9c-5",
+    "scores": {
+      "retention": 90,
+      "quizzes": 76,
+      "transfer": 86,
+      "practical": 88,
+      "summaries": 90,
+      "tone": 91,
+      "limits": 92,
+      "insight": 90,
+      "density": 87,
+      "beginner": 90
+    },
+    "composite": 87.7,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The log is evidence. It is not the whole map.",
+        "why": "A crisp, memorable statement of the chapter's core move.",
+        "verified": true
+      },
+      {
+        "quote": "The three conversations are a diagnostic tool, not a script. They do not solve the exchange. They keep you from walking into the wrong one.",
+        "why": "Strong boundary-setting that prevents the framework from being oversold.",
+        "verified": true
+      },
+      {
+        "quote": "A person who already feels exposed will rarely thank you for diagnosing their identity layer.",
+        "why": "Concrete practical warning that turns the idea into usable behavior.",
+        "verified": true
+      },
+      {
+        "quote": "b) The frame works best first as private diagnosis; naming another person's layer can sound like a verdict.",
+        "why": "Representative quiz defect: the correct option is the most qualified and easy to spot.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Correct answers are almost always the most nuanced and often the longest choice.",
+      "Many distractors are easy to reject without reading because they use absolute or obviously poor moves: 'only,' 'always,' 'never,' 'quickly,' or 'save feelings for the comment period.'"
+    ],
+    "complaints": [
+      {
+        "unit": "quiz set",
+        "problem": "Correct choices are consistently the most nuanced and often the longest, while distractors are frequently implausible or absolute, making the key guessable without reading.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q8",
+        "problem": "The distractors are straw choices: 'never be considered in workplace settings' and 'only through written documentation' are too obviously wrong to teach much.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples",
+        "problem": "Several names recur across unrelated settings, which can slightly blur whether the scenarios are connected or just recycled.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong opening chapter: clear core model, memorable compression, practical boundaries, and examples that mostly show the before-and-after of diagnostic sorting. The main weakness is the quiz design; the questions are fair and derivable, but the answer pattern is too visible because the right option is usually the most careful, longest, least extreme choice. I would ship it, but I would revise the quiz distractors before calling the assessment layer professional-grade.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "cdb78dfc223e314de921b0af2ee04d555b2771dd4f79493f9b8a625f328980bd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:20:16.852Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "1d63d23c67ec6de0b6d74a81023bc7cdc2f463f81e91d3948ad6013d87a45812",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:19:26.301Z",
+  "durationMs": 0
+}

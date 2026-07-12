@@ -1,0 +1,36 @@
+{
+  "caseId": "SQ-003",
+  "parsed": {
+    "caseId": "SQ-003",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Narrow framing makes a decision look like a yes-or-no question when the stronger move is to search for additional options."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Confirmation bias turns research into advocacy by collecting evidence that flatters the preferred answer."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Short-term emotion can make a temporary fear, attachment, or excitement feel like durable wisdom."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Overconfidence makes forecasts feel like facts even when the future contains a wider range of outcomes."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Narrow framing needs more live paths. Confirmation bias needs better evidence. Short-term emotion needs distance. Overconfidence needs a wider range of futures."
+      }
+    ],
+    "explanation": "The candidate correctly maps each WRAP move to the corresponding villain and phrases the relationships as process counterweights rather than unsupported causal claims.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-003\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Narrow framing makes a decision look like a yes-or-no question when the stronger move is to search for additional options.\"},{\"materialIndex\":0,\"quote\":\"Confirmation bias turns research into advocacy by collecting evidence that flatters the preferred answer.\"},{\"materialIndex\":0,\"quote\":\"Short-term emotion can make a temporary fear, attachment, or excitement feel like durable wisdom.\"},{\"materialIndex\":0,\"quote\":\"Overconfidence makes forecasts feel like facts even when the future contains a wider range of outcomes.\"},{\"materialIndex\":1,\"quote\":\"Narrow framing needs more live paths. Confirmation bias needs better evidence. Short-term emotion needs distance. Overconfidence needs a wider range of futures.\"}],\"explanation\":\"The candidate correctly maps each WRAP move to the corresponding villain and phrases the relationships as process counterweights rather than unsupported causal claims.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P20",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"generic or topically unrelated locator\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Claim record: Checked claim mechanism for ch01.fact.5: A single label such as aggression is too crude, because attack, defense, dominance, and protecti Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=Adverse+Childhood+Experiences+Study ; locator=ch01.fact.5\",\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim. A generic or topically unrelated search is not verification.\"],\"rationale\":\"The proposed locator is only a PubMed search for the Adverse Childhood Experiences Study, while the recorded mechanism concerns whether a single label such as aggression is too crude because it conflates attack, defense, dominance, and protection. The material does not show that the locator addresses the same entity, mechanism, relation, or certainty required by the verification contract, so it is not claim-specific evidence and should block verification.\"}"
+}

@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-051",
+  "parsed": {
+    "caseId": "SQ-051",
+    "verdict": "DEFECT",
+    "defectClass": "reused narrative machinery / structural template",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Ferne stops a red pen at Monday 11:06 p.m. in her yellow kitchen table in Trenton, tenant organizer"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Imani touches a broken brass drawer pull at Wednesday 7:09 a.m. in the preschool kitchen on Laurel Avenue, center director"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Ferne replays it and sees that she spent twenty minutes proving the math while Mrs. Abel was asking whether anyone respected her years in the building."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "She also knows the drawer sticks, the morning shift is short, and she delayed the repair request."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Ferne she writes the three conversations in the margin for next time."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Imani she must decide whether to blame the aide or map what let the break happen again."
+      }
+    ],
+    "explanation": "Both examples use the same machinery: named protagonist anchors a tactile object at an exact weekday/time/location/role, reflects on an immediate conflict, reframes an apparent surface problem into a deeper interpersonal/system cause, and ends with a next-step realization. The repeated malformed 'Name she' ending further signals template reuse.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-051\",\"verdict\":\"DEFECT\",\"defectClass\":\"reused narrative machinery / structural template\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Ferne stops a red pen at Monday 11:06 p.m. in her yellow kitchen table in Trenton, tenant organizer\"},{\"materialIndex\":1,\"quote\":\"Imani touches a broken brass drawer pull at Wednesday 7:09 a.m. in the preschool kitchen on Laurel Avenue, center director\"},{\"materialIndex\":0,\"quote\":\"Ferne replays it and sees that she spent twenty minutes proving the math while Mrs. Abel was asking whether anyone respected her years in the building.\"},{\"materialIndex\":1,\"quote\":\"She also knows the drawer sticks, the morning shift is short, and she delayed the repair request.\"},{\"materialIndex\":0,\"quote\":\"Ferne she writes the three conversations in the margin for next time.\"},{\"materialIndex\":1,\"quote\":\"Imani she must decide whether to blame the aide or map what let the break happen again.\"}],\"explanation\":\"Both examples use the same machinery: named protagonist anchors a tactile object at an exact weekday/time/location/role, reflects on an immediate conflict, reframes an apparent surface problem into a deeper interpersonal/system cause, and ends with a next-step realization. The repeated malformed 'Name she' ending further signals template reuse.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

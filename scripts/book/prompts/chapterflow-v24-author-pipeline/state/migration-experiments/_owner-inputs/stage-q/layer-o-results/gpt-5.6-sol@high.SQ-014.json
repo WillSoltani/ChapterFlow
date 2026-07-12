@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-014",
+  "parsed": {
+    "caseId": "SQ-014",
+    "verdict": "DEFECT",
+    "defectClass": "UNSUPPORTED_SCENE_AND_DIALOGUE",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "On the call, analyst the analyst taps a Coinstar spreadsheet beside his keyboard."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "\"The forecast is careful,\" he says."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The investment partner answers, \"Careful about which future?\""
+      }
+    ],
+    "explanation": "The candidate invents a call, physical actions, participants, and quoted dialogue not supported by the source plan, presenting them as concrete events within a real-world case.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-014\",\"verdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_SCENE_AND_DIALOGUE\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"On the call, analyst the analyst taps a Coinstar spreadsheet beside his keyboard.\"},{\"materialIndex\":1,\"quote\":\"\\\"The forecast is careful,\\\" he says.\"},{\"materialIndex\":1,\"quote\":\"The investment partner answers, \\\"Careful about which future?\\\"\"}],\"explanation\":\"The candidate invents a call, physical actions, participants, and quoted dialogue not supported by the source plan, presenting them as concrete events within a real-world case.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

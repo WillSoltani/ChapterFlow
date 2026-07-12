@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-031",
+  "parsed": {
+    "caseId": "SQ-031",
+    "verdict": "DEFECT",
+    "defectClass": "GENERIC_SEARCH_AND_MECHANISM_MISMATCH",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Human behavior resists simple nature-versus-nurture splits, because genes, experience, and cultu"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "https://pubmed.ncbi.nlm.nih.gov/?term=WEIRD+psychology+Henrich+Heine+Norenzayan+2010"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The locator is a PubMed search for WEIRD psychology, not claim-specific evidence establishing the recorded genes-experience-culture mechanism. It therefore fails the contract's mechanism-specificity requirement.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-031\",\"verdict\":\"DEFECT\",\"defectClass\":\"GENERIC_SEARCH_AND_MECHANISM_MISMATCH\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Human behavior resists simple nature-versus-nurture splits, because genes, experience, and cultu\"},{\"materialIndex\":0,\"quote\":\"https://pubmed.ncbi.nlm.nih.gov/?term=WEIRD+psychology+Henrich+Heine+Norenzayan+2010\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The locator is a PubMed search for WEIRD psychology, not claim-specific evidence establishing the recorded genes-experience-culture mechanism. It therefore fails the contract's mechanism-specificity requirement.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

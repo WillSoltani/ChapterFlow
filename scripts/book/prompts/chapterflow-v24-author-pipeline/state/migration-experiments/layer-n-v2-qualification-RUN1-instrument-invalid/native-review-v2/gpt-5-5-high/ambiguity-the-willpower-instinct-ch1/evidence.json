@@ -1,0 +1,296 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "ambiguity-the-willpower-instinct-ch1",
+  "itemId": "ambiguity-the-willpower-instinct-ch1",
+  "kind": "quiz-ambiguity",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "819266034f88c4e1",
+  "renderedDocSha256": "65c722ccc905d2eddeef13b038e16851803a6b2b745beddd34c2a8e6a9f04d81",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "0e05bc5eafbd311205b2598c16867692005430c92cd61cd87a225485a38c45cd",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-the-willpower-instinct-ch1-mrgpky9x-29",
+  "rawFinalMessageSha256": "12aa52c8c1788819e27e095ee029dc5187f03d0506ffb9e19a86edb0c0801fbf",
+  "rawFinalMessage": "```json\n{\n  \"schema\": \"quiz-adjudication-v1\",\n  \"derivationSha256\": \"4a07848a28a3af3a90d3bf92e5704597e1f0508cdbe394b007843545f8a24d0f\",\n  \"documentSha256\": \"\",\n  \"reviewerSessionId\": \"\",\n  \"items\": [\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q01\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c uniquely captures the three powers as start, stop, and remembered value.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q02\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a best fits prefrontal control keeping goals active to bias attention and responses.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q03\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a gives the supported Gage takeaway: preserved basic abilities alongside impaired regulation.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q04\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b uniquely targets noticing the cue or urge before the automatic sharp reply is sent.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q05\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b is supported by the social framing of willpower as commitment-keeping and cooperation.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q06\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": false,\n      \"keyCorrect\": \"ambiguous\",\n      \"rationale\": \"Choices a and b are both defensible: a states the salience lesson, while b states the practical implication at the choice point.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q07\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a correctly treats both motives as sincere and makes support, not authenticity, decisive.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q08\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c best matches the three-power method by using a concrete experiment with trigger and feedback.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q09\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c correctly describes prefrontal control as resolving conflict between routine action and current goal.\"\n    }\n  ]\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "ambiguity-the-willpower-instinct-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "819266034f88c4e1",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-the-willpower-instinct-ch1-mrgpky9x-29",
+    "scores": {
+      "retention": 90,
+      "quizzes": 72,
+      "transfer": 82,
+      "practical": 83,
+      "summaries": 84,
+      "tone": 86,
+      "limits": 86,
+      "insight": 88,
+      "density": 82,
+      "beginner": 88
+    },
+    "composite": 83.8,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "a",
+        "a",
+        "b",
+        "b",
+        "a",
+        "a",
+        "c",
+        "c"
+      ],
+      "matches": 8,
+      "of": 9,
+      "disagreements": [
+        "Q6: reader=a key=b"
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "Refusal is only one third of willpower.",
+        "why": "This is the chapter's cleanest memorable compression of the core move.",
+        "verified": true
+      },
+      {
+        "quote": "A goal must be present to have power.",
+        "why": "A strong mechanism line that explains why the three-power check matters.",
+        "verified": true
+      },
+      {
+        "quote": "Brooklyn values running, yet the snack cue wins when the run goal is only a vague thought. What should she infer?",
+        "why": "This quiz stem invites both the vividness answer and the attention-at-choice-point answer.",
+        "verified": true
+      },
+      {
+        "quote": "For the first half of this week, use your usual all-or-nothing rule.",
+        "why": "The weekly practice adds friction by asking readers to preserve a weaker strategy before trying the useful one.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Several correct answers are the longest or most explanatory option, especially Q1, Q2, Q3, Q6, and Q7.",
+      "Distractors often use giveaway absolutes or obviously wrong moral claims such as fixed character, fake goals, only, mainly, or avoid cooperation."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q6",
+        "problem": "Structurally invalid: choices a and b are both directly derivable from the prose, so the item has two defensible answers.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz",
+        "problem": "Several correct answers are longer and more qualified than the distractors, creating answer-pattern tells.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples",
+        "problem": "The example set overuses the pharmacy/family pickup thread, narrowing transfer variety across different willpower domains.",
+        "mustFix": false
+      },
+      {
+        "unit": "weekly practice",
+        "problem": "The comparison exercise asks readers to spend half a week using the weaker all-or-nothing rule, which feels more like product theater than a low-friction practice step.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a strong, memorable core: willpower is not just refusal but a three-part check that makes the larger want active before the easy choice runs. It is beginner-friendly, concrete, and mechanistic without becoming technical. I would not ship it yet because Q6 is under-keyed with two prose-supported answers, and the quiz pattern is a little too guessable, but the prose itself is close to professional quality.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "570732ff3ae770c6890f53327a9e4eb3668796a458d9736d1bac7b3be134baca",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:40:34.757Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "0e05bc5eafbd311205b2598c16867692005430c92cd61cd87a225485a38c45cd",
+    "quizAdjudication": {
+      "status": "adjudicated",
+      "derivationSha256": "4a07848a28a3af3a90d3bf92e5704597e1f0508cdbe394b007843545f8a24d0f",
+      "phase2DocSha256": "4c08e9a864d70db6139e96a6fdcb6e5eff32d7050377a9249d0fe6dd7acd28aa",
+      "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-the-willpower-instinct-ch1-mrgpmk06-30",
+      "items": [
+        {
+          "itemId": "the-willpower-instinct-ch01-q01",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c uniquely captures the three powers as start, stop, and remembered value."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q02",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a best fits prefrontal control keeping goals active to bias attention and responses."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q03",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a gives the supported Gage takeaway: preserved basic abilities alongside impaired regulation."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q04",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b uniquely targets noticing the cue or urge before the automatic sharp reply is sent."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q05",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is supported by the social framing of willpower as commitment-keeping and cooperation."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q06",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 0,
+          "agreement": false,
+          "keyCorrect": "ambiguous",
+          "rationale": "Choices a and b are both defensible: a states the salience lesson, while b states the practical implication at the choice point."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q07",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a correctly treats both motives as sincere and makes support, not authenticity, decisive."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q08",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c best matches the three-power method by using a concrete experiment with trigger and feedback."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q09",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c correctly describes prefrontal control as resolving conflict between routine action and current goal."
+        }
+      ],
+      "ambiguousCount": 1,
+      "keyWrongCount": 0
+    }
+  },
+  "phase2": {
+    "status": "adjudicated",
+    "derivationSha256": "4a07848a28a3af3a90d3bf92e5704597e1f0508cdbe394b007843545f8a24d0f",
+    "phase2DocSha256": "4c08e9a864d70db6139e96a6fdcb6e5eff32d7050377a9249d0fe6dd7acd28aa",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-the-willpower-instinct-ch1-mrgpmk06-30",
+    "items": [
+      {
+        "itemId": "the-willpower-instinct-ch01-q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c uniquely captures the three powers as start, stop, and remembered value."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a best fits prefrontal control keeping goals active to bias attention and responses."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a gives the supported Gage takeaway: preserved basic abilities alongside impaired regulation."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b uniquely targets noticing the cue or urge before the automatic sharp reply is sent."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is supported by the social framing of willpower as commitment-keeping and cooperation."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 0,
+        "agreement": false,
+        "keyCorrect": "ambiguous",
+        "rationale": "Choices a and b are both defensible: a states the salience lesson, while b states the practical implication at the choice point."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a correctly treats both motives as sincere and makes support, not authenticity, decisive."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q08",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c best matches the three-power method by using a concrete experiment with trigger and feedback."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c correctly describes prefrontal control as resolving conflict between routine action and current goal."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 0
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "phase-2 quizAdjudication.items[].keyCorrect==='ambiguous' (+ phase-1 tells)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:39:19.941Z",
+  "durationMs": 0
+}

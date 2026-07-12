@@ -1,0 +1,173 @@
+{
+  "schema": "migration-sealed-manifest-v1",
+  "experimentId": "diagnostic-stack-2026-07",
+  "specSha256": "5f27cc1e862b2921e51184d6c98c34a6430bbcbc2c23cf921502f6f18d560616",
+  "sealedAt": "2026-07-11T05:31:40.308Z",
+  "randomizationSeed": "s16-owner-pkg-96ff9e3da9e3-diag",
+  "scheduleSha256": "218a11d7fae8c84a073a8b00e7187d4982018fa5906eff5ca7fc6743fe3e9505",
+  "thresholdsSha256": "6a90acea1c94f124a5d14ba15d1dcab42ba0b8f64e9ef01df1cab7ca2dcc8c44",
+  "books": [
+    {
+      "bookId": "start-with-why",
+      "totalChapters": 14,
+      "frozen": {
+        "files": [
+          {
+            "relPath": "state/indexes/start-with-why.json",
+            "sha256": "21d343e2b15db214255e7f833abcc81c6499dcbbecadf09be6cc4c9f329a2266",
+            "bytes": 1705
+          },
+          {
+            "relPath": ".chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch04.source.json",
+            "sha256": "7fceb4e632ea618aa2ed4a8f0fea5f6f03a9f5a353f79dfdf67251528b715e2f",
+            "bytes": 9904
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/source-packets/ch04.source-packet.json",
+            "sha256": "31770c44daedbca9ad65e717f8c0f9454915b939f3f70bc1700d46f5e3f6d743",
+            "bytes": 25762
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch04.brief.json",
+            "sha256": "cfd8a6527647de4214af67ea00d37b3ec2c612643135d4e26fad2620c83dd394",
+            "bytes": 4685
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch04.brief.md",
+            "sha256": "0f32a9acbd4cdce45f1af31d4b817f56042760e0bcf9dba60cf0c0fb2d6297a8",
+            "bytes": 9713
+          },
+          {
+            "relPath": ".chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch03.source.json",
+            "sha256": "f927e4cb707c4ad454dcdc4a1be6b3a6b0b9c317de0e2a51609158b47a173e5f",
+            "bytes": 9180
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/source-packets/ch03.source-packet.json",
+            "sha256": "b9a307079c147b01884f3ac914601c6ec18d6c74c265437b0fe9c627b80a7f57",
+            "bytes": 25441
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch03.brief.json",
+            "sha256": "612b81693e48b09813181174102d2938b58eac76fca9262acbc79b82ea9185aa",
+            "bytes": 4333
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch03.brief.md",
+            "sha256": "06e6532f4cec8a8f2b636d17bb3c729cafd9b1a22365cf8984046aa9b41042d7",
+            "bytes": 9113
+          },
+          {
+            "relPath": ".chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch09.source.json",
+            "sha256": "f101ada20e67c5d7e6b7b92376706a0d4cdc3a34cc9a5cc7bc172aa28c3b305f",
+            "bytes": 9251
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/source-packets/ch09.source-packet.json",
+            "sha256": "9b5096136bc85bb024910dfd0a0d13a0e9f7ed00cf839fbd9a013a81349cafae",
+            "bytes": 24709
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch09.brief.json",
+            "sha256": "a14fcb86cdb9251bd35304a0a6fd9460b3c4cd160ac2c325278e4e175a9dbf99",
+            "bytes": 4315
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch09.brief.md",
+            "sha256": "5b6a49a50882b7eb3d56cb74f40b96c71a9154fbe6ea0bb2191e6a642e5c9344",
+            "bytes": 9229
+          },
+          {
+            "relPath": ".chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch07.source.json",
+            "sha256": "6d876a287d43694d16091fff2f8391fa148f51b479aafa09b8aa91c825c87485",
+            "bytes": 9876
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/source-packets/ch07.source-packet.json",
+            "sha256": "95f19897db078f19cb8fecc717d8b110bbaf11055c7f3fc66fcca480a296d2a4",
+            "bytes": 26194
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch07.brief.json",
+            "sha256": "7fad67cc78a089ac2a0289bf6eb25631cf16dae35510b3c928ab7685bc0c988b",
+            "bytes": 4646
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch07.brief.md",
+            "sha256": "25451aea722a1b9644d8f6afc1b26ad36efc0a8f5df33a5a1ae206fa0e3b6710",
+            "bytes": 9563
+          },
+          {
+            "relPath": "state/book-design/start-with-why.design.json",
+            "sha256": "bde687c3b1d08aa6c2581cb2e0bed3a78be541057bd034605993d122cbfc3edb",
+            "bytes": 12312
+          },
+          {
+            "relPath": "config/name-bank.json",
+            "sha256": "23d8ea9ff61c3e44ec3fb6543aab24110eea5cf50b2e1de93ff06a42b0d7ff5a",
+            "bytes": 7414
+          }
+        ],
+        "combinedSha256": "7f3b67690d09e2f587fbb23663a9c44ffdd8ce8baa7d956e7d933b6bc924a459"
+      }
+    }
+  ],
+  "stacks": [
+    {
+      "id": "legacy-v24",
+      "source": "snapshot",
+      "cardTemplateSha256": {
+        "start-with-why:ch04": "8dd5fc76d62418dec0186b5d272a7a6564c2547607debe9b3973bc7f5da60ed3",
+        "start-with-why:ch03": "8acc3ee22505270a432270ebf90fc211b8b9405b37a1998b56671bd4ab4e9b39",
+        "start-with-why:ch09": "883578cf52db88b26f878c7eb8fcf87d7ebb609645cc281ffe273cade988b57a",
+        "start-with-why:ch07": "8cb08e370d24a2f47590725734092f876836e3d3cc00d38818e3ec031147b961"
+      },
+      "combinedSha256": "0264aa00addabe4a8aed87d3988d3288859bc6b596cd7cd6be036efbeb7dcec0"
+    },
+    {
+      "id": "sol-native-current",
+      "source": "current-builders",
+      "cardTemplateSha256": {
+        "start-with-why:ch04": "d582c0144956dfcd106ff35e9c1ae0358e2657e740a6622ad54a6bfe3047d744",
+        "start-with-why:ch03": "e162e8f23cd7e0c4726f7dbca99ce5d0eb72cc92abc0f38a94f511e413a9d9f7",
+        "start-with-why:ch09": "055954348caaaf13b0de26527630abee6dc66943dd11cc7beaba4acf5ad74822",
+        "start-with-why:ch07": "6e0cd5d4d81bc805ef44078929112c77c6f5b387738a70487e2cf2ee232dfcaa"
+      },
+      "combinedSha256": "161972644f93584905d8b862536a24f385e20ada1122822b63bc7a2cc2027cce"
+    }
+  ],
+  "instruments": {
+    "readerRubricVersion": "reader-rubric-v3-phase1",
+    "reviewDocHashVersion": "v3",
+    "authorChapterBar": 80,
+    "routePolicyVersion": "route-policy-v1.0",
+    "contractManifestSha256": "43f1e2dbc847ca1db981361f367186ca69be6c93397cf7c577b436fa91549ac0",
+    "repairProjectionVersion": "repair-projection-v1"
+  },
+  "judgePanel": [
+    {
+      "model": "gpt-5.5",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.5",
+      "effort": "xhigh"
+    }
+  ],
+  "priceSnapshot": {
+    "gpt-5.5": null,
+    "gpt-5.6-sol": null
+  },
+  "expectedCells": [
+    "55-XH-L",
+    "55-XH-S",
+    "56S-H-L",
+    "56S-H-S",
+    "56S-XH-L",
+    "56S-XH-S"
+  ]
+}

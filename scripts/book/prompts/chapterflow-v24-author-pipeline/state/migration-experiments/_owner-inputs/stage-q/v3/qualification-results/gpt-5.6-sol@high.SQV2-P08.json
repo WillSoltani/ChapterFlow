@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P08",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"I am a strong analyst and this model may contain an error and I can use the review without becoming incompetent.\",\"I love my daughter and I sometimes have effects that hurt her and I can listen without making her comfort me.\",\"This relationship is in trouble tonight and I am still worthy of love.\"],\"rationale\":\"The candidate consistently uses an identity “and stance”: each example holds a positive or stable sense of self together with fallibility, harmful impact, or relational difficulty. It neither claims false certainty nor erases competence, love, or worth in response to adverse evidence.\"}"
+}

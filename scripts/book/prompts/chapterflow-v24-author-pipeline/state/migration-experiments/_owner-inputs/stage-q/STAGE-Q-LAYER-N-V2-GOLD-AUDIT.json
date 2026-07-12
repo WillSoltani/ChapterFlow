@@ -1,0 +1,30 @@
+{
+  "schema": "s16-layer-n-v2-gold-audit-v1",
+  "date": "2026-07-11",
+  "corpusId": "s16-layer-n-native-review-v2",
+  "corpusSha256": "7fa5bb3698e0df7b0a4edc3675eb2b372f4ed032c0a10d6adfe973d33056bd8d",
+  "corpusSource": "TOP-APPROVED 140-evaluation books (book-packages/*.v21.json, Content Design Score >= 87), deterministically schema-metadata normalized to current ChapterV21. Supersedes an earlier corpus built on the v21-gold corpus, which the owner identified as corrupt (e.g. rich-dad-poor-dad rank 138/140, the-5-am-club 137/140, outliers below the 80 bar).",
+  "auditedVariants": 20,
+  "auditedComposition": { "reader-visible-hard-blocker": 8, "quiz-key-mismatch": 4, "quiz-ambiguity": 4, "craft-nonblocker": 4 },
+  "method": "IMP-19 §4 adversarial gold audit: two INDEPENDENT verifiers (Claude subagents — NOT the codex judge panel; no holdout contamination; zero live model/codex/network calls). Verifier A adversarial (disprove each gold); Verifier B definitional (apply reserved mustFix categories strictly). Any dispute blocks the case.",
+  "verifierA_adversarial": { "result": "NO DISPUTES", "verdicts": "20/20 CONCEDE", "closestCalls": [
+    "ambiguity-peak-ch1 (Q1): STRONGEST dispute candidate — replaced [0] used a metronome (timing) vs the KEY's recording feedback; a strict reviewer could call [1] uniquely best. -> RECONCILED: [0] retightened to use the same blessed recording feedback + a distinct valid correction (hand motion vs fingering).",
+    "ambiguity-the-willpower-instinct-ch1 (Q6): [0] restates the premise vs inferring — conceded ([0] generalizes the instance; it is the explanation's own opening line). VERIFIED SOLID (diagnosis + prescription both in the explanation).",
+    "LNV2-CRAFT-difficult-conversations-ch01 / LNV2-CRAFT-the-checklist-manifesto-ch01: 'overcomplicating'/'not overthinking it' faintly tension the thesis but are too vague to be a VERIFIABLE contradiction — conceded; VERIFIED (bland filler referring back to the intact correct method)."
+  ] },
+  "verifierB_definitional": { "result": "ALL CONFIRMED", "verdicts": "20/20 GOLD_OK, 0 GOLD_WRONG", "notes": "8 hard-blockers cat 4 SOURCE-CONTRADICTORY (contradicted material verified in-doc); 4 key-mismatch explanations each derive a different index than the auto-flipped key (flips create genuine mismatches); 4 ambiguity replaced choices co-correct with the key while the third choice stays wrong; 4 craft appends are generic phrasing fitting no reserved category. Construction-integrity: peak-ch1 and willpower-ch2 prompts are reused across two DIFFERENT mutations each with no cross-contamination." },
+  "authorReconciliation": {
+    "peak-ch1-Q1-ambiguity": "TIGHTENED after the adversarial flag: replaced [0] from a metronome-based loop (borderline: a strict reviewer could call the KEY's recording uniquely best) to 'Slow the two-measure turn, record only that passage, and adjust the hand motion before the next attempt' — same recording feedback as the KEY, differing only in a valid alternative correction (hand motion vs fingering). Now unambiguously two defensible answers.",
+    "willpower-Q6 + decisive-Q4": "author-verified SOLID (both choices independently satisfy the explanation/keyTakeaway); kept as-is.",
+    "why": "ambiguity uses a 0.85 threshold over 4 items (all must pass), so a borderline ambiguity gold could unfairly penalize a well-calibrated judge — the U2 lesson from Stage-Q. The one borderline case was made unambiguous rather than accepted."
+  },
+  "outcome": "PASS — both independent verifiers 20/20 on the corrected top-approved corpus; the single borderline ambiguity item tightened; the other flags author-verified. Corpus gold accepted for the development bakeoff (owner-approved-development-fixture; independentHumanRater=false).",
+  "residualNote": "Ambiguity and craft remain the inherently softer capabilities; proposed thresholds reflect this (ambiguity/craft/calibration 0.85 vs 1.00 for hard-blocker and key-mismatch). Any future independent-human relabel supersedes this development-fixture status.",
+  "addendum_2026_07_11_surgicalReword": {
+    "note": "The 2-verifier audit above audited corpus 7fa5bb36 and CONCEDED LNV2-CRAFT-difficult-conversations-ch01's 'overcomplicating' as a closest-call ('too vague to be a VERIFIABLE contradiction'). In the RUN-1 live qualification a judge (gpt-5.5@high) nonetheless flagged it mustFix SOURCE-CONTRADICTORY against that chapter's 'don't oversimplify — sort the three conversations' thesis — the exact U2 pattern (a defensible reviewer landing on the wrong side of a borderline gold, failing the 4/4 craft bar).",
+    "action": "Owner-authorized surgical re-word (2026-07-11): the example-2 whyItMatters filler changed from '...doing the sensible thing here instead of overcomplicating it' to '...giving this the attention it deserves'. This ELIMINATES the flagged 'overcomplicating' tension while keeping the intended bland slot-filler weakness (scores transfer down, no reserved category). It only STRENGTHENS the VERIFIED verdict for this item.",
+    "thoroughReAudit": "All 28 items re-audited read-only (no live calls) for 'could a defensible reviewer land on the wrong side of this gold?': hard-blockers (8) all clear source-contradictions; key-mismatch (4) all unambiguously-wrong planted keys; ambiguity (4) all genuinely two-defensible-answer (flagging is correct); clean-pass (8) clean (peak Q6 a tolerated 0.75-bar false-block); craft (4) — only difficult-conversations collided (the other 3 share the template but their chapters lack the anti-oversimplification thesis). Exactly one item changed.",
+    "newCorpusSha256": "91c7de02f5be2b04513f009734536151aa5a9e15d54ccc1e2c935d98dc0fc82a",
+    "priorCorpusSha256_audited": "7fa5bb3698e0df7b0a4edc3675eb2b372f4ed032c0a10d6adfe973d33056bd8d"
+  }
+}

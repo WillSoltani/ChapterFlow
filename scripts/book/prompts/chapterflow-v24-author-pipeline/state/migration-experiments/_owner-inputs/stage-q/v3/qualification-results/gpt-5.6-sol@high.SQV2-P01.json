@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P01",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"It is not a polite way to say everyone is equally at fault.\",\"Your ten percent does not erase their ninety.\"],\"rationale\":\"The candidate explicitly rejects equal-fault framing, preserves the possibility of strongly asymmetric harm, power, and responsibility, and explains that naming a smaller contribution identifies a controllable lever without forgiving or obscuring the other person's larger share.\"}"
+}

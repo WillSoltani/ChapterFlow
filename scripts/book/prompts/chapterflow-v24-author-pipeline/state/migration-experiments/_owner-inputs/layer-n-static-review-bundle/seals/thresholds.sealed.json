@@ -1,0 +1,49 @@
+{
+  "schema": "migration-thresholds-v1",
+  "version": "owner-frozen-2026-07-11-max-plan-r2",
+  "nonInferiority": {
+    "minPooledAcceptancePct": 75,
+    "maxPointsBelowBaselinePct": 10,
+    "intervalRule": "ci-lower-above-floor"
+  },
+  "margins": {
+    "sourceFramingPct": 2,
+    "quizAmbiguityPct": 2,
+    "causalMaterialPct": 2
+  },
+  "reviewerReliability": {
+    "minRawAgreement": 0.75,
+    "minChanceCorrected": 0.5,
+    "maxMaterialDisagreementPct": 10
+  },
+  "repairDemand": {
+    "maxRelativeIncrease": 0.2,
+    "maxAbsoluteIncreasePerChapter": 0.05,
+    "relativeRuleAppliesWhenBaselineAtLeast": 0.1
+  },
+  "economics": {
+    "maxCostPerAcceptedChapterUsd": null,
+    "maxLatencyP95Ms": null
+  },
+  "highVsXhigh": {
+    "minQualityGainPts": 5
+  },
+  "_transcodeProvenance": {
+    "source": "S16_OWNER_INPUTS_COMPLETED_OWNER_DELEGATED_MAX_PLAN_2026-07-11.zip sha256 96ff9e3da9e3ee513aa59ad2f5c2add653f93236bc8d31fca0181847df5b273f",
+    "c4": "C4_THRESHOLDS/frozen-owner-thresholds.json sha256 f38d839e255e389edb23516385a34d1742552878cde6db33d65973704172e078",
+    "c5": "C5_ECONOMICS/frozen-economics-bounds.json sha256 ee4d0f429ef616d247564cbaff7c73501f605757ab5095ee28790938a7014287",
+    "notes": [
+      "economics nulls are C5 NOT_APPLICABLE (ChatGPT Max subscription; no metered API): the native evaluator PASSES as 'no bound declared' - never INCONCLUSIVE, satisfying C5.apiEconomics.missingApiTokenTelemetryOutcome and mustNotBlockQualification. Cost estimation from public API prices is forbidden and does not occur (priceSnapshot nulls; tokens honest-null).",
+      "C5 latency/wall-clock/invocation bounds are RELATIVE-to-55-XH multiples the native schema cannot express; they are enforced BLOCKING by the sealed owner-policy evaluator (owner-policy-evaluator.mts) - strictly additive to every native gate.",
+      "repairDemand transcodes C4.projectedRepairDemand EXACTLY (owner correction directive 2026-07-11, commit ec29c6825): relative 0.2, absolute 5.0pp = 0.05 repair-units/chapter, relativeRuleAppliesWhenBaselineAtLeast 0.1 \u2014 the relative comparison blocks only when the 55-XH baseline is >= 0.1 and is informational below it. The prior stricter-only deviation (relative unconditional) was NOT ratified and is removed; r2 supersedes owner-frozen-2026-07-11-max-plan.",
+      "reviewerReliability: C4 sets no T8 experiment-time numbers; plan-sanctioned operational defaults retained. C4.stageQJudgeQualification's stricter bounds apply at Stage Q via native qual thresholds + the owner-policy evaluator extension.",
+      "highVsXhigh: native minQualityGainPts=5 aligns the native coarse rule with C4's +5pp spirit; the AUTHORITATIVE preference logic (default 56S-H; xhigh wins only on C4's three enumerated conditions with no safety regression and C5 pass) is applied by the sealed owner-policy evaluator over the decision file."
+    ],
+    "correction": {
+      "directive": "owner message 2026-07-11 \u00a73 (recorded verbatim in owner-ratification.received.md)",
+      "commit": "ec29c6825",
+      "supersededVersion": "owner-frozen-2026-07-11-max-plan",
+      "supersededSha256": "b62459fa85bad6763f11206a3b7c1daa30b24971e6de7c6e626a76124aaced9f"
+    }
+  }
+}

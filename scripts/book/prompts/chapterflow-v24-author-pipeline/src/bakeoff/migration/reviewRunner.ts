@@ -13,8 +13,9 @@
  *    ids, stage vocabulary) — a leak is fail-closed, never a warning;
  *  - review outputs are IMMUTABLE: a sample with a persisted review is skipped
  *    on re-entry (an inconvenient judge is never re-rolled, §16 control 9);
- *  - the prespecified agreement subsample (sampleIndex 1, panel > 1) gets ONE
- *    second read by the next panel judge — the judge-agreement metric's input.
+ *  - the frozen balanced audit subset (panel > 1) gets ONE second read by the
+ *    FIXED backup judge — the judge-agreement metric's input; the subset is a
+ *    deterministic, output-independent selection (IMP-20 §G).
  */
 
 import { existsSync, readFileSync } from "fs";
@@ -35,6 +36,7 @@ import {
 } from "./experimentTypes.js";
 import { migrationForbiddenTokens, MigrationGuardError, rootedPath, rootedWrite, type MigrationRoots } from "./guards.js";
 import { assertJudgeQualified } from "./qualification.js";
+import { assignFixedRoles, isInFrozenAuditSubset } from "./reviewerRoleAssignment.js";
 import { sampleRecordPath } from "./sampleRunner.js";
 
 export type ReviewSampleOptions = {
@@ -57,14 +59,20 @@ function loadSampleChapter(record: MigrationSampleRecordV1): ChapterV21 {
   return JSON.parse(readFileSync(abs, "utf8")) as ChapterV21;
 }
 
-/** Deterministic panel assignment: primary judge rotates by execution order;
- *  the agreement read (sampleIndex 1, panel > 1) uses the NEXT panel judge. */
+/** Fixed panel assignment (IMP-20 §G): the primary is the SAME frozen reader
+ *  judge for every candidate cell — a pure function of the sealed judge panel
+ *  via assignFixedRoles, never a function of the execution order or the
+ *  candidate's authoring model. A backup (agreement / audit) read runs ONLY on
+ *  the frozen balanced audit subset (isInFrozenAuditSubset) and only when the
+ *  panel carries a distinct backup judge — an inconvenient sample is never
+ *  re-rolled onto a different primary. */
 export function panelAssignment(spec: ExperimentSpecV1, record: MigrationSampleRecordV1): { primary: JudgeSpec; agreement: JudgeSpec | null } {
-  const panel = spec.judgePanel;
-  const primary = panel[record.executionOrder % panel.length];
-  const agreement = panel.length > 1 && record.sampleIndex === 1
-    ? panel[(record.executionOrder + 1) % panel.length]
-    : null;
+  const assignment = assignFixedRoles(spec, record);
+  const primary: JudgeSpec = { model: assignment.readerPrimary.model, effort: assignment.readerPrimary.effort };
+  const agreement: JudgeSpec | null =
+    spec.judgePanel.length > 1 && isInFrozenAuditSubset(spec, record)
+      ? { model: assignment.readerBackup.model, effort: assignment.readerBackup.effort }
+      : null;
   return { primary, agreement };
 }
 

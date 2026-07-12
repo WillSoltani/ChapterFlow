@@ -1,0 +1,36 @@
+{
+  "caseId": "SQ-009",
+  "parsed": {
+    "caseId": "SQ-009",
+    "verdict": "DEFECT",
+    "defectClass": "UNSUPPORTED_NARRATIVE_DETAIL",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "stands after lunch in HopeLab's project room"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "one portable activity device sketch clipped beside three firm names"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "No one else speaks yet."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "His mind tries the easy sentence: pick the safest vendor and move."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "One firm could solve comfort, another could solve play"
+      }
+    ],
+    "explanation": "The candidate presents an invented setting, timing, props, silence, internal thoughts, an exact firm count, and firm-specific capabilities as factual scene details. The source plan supports only Steve Cole, HopeLab, a portable activity device, multiple design firms, and a parallel first phase.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-009\",\"verdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_NARRATIVE_DETAIL\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"stands after lunch in HopeLab's project room\"},{\"materialIndex\":1,\"quote\":\"one portable activity device sketch clipped beside three firm names\"},{\"materialIndex\":1,\"quote\":\"No one else speaks yet.\"},{\"materialIndex\":1,\"quote\":\"His mind tries the easy sentence: pick the safest vendor and move.\"},{\"materialIndex\":1,\"quote\":\"One firm could solve comfort, another could solve play\"}],\"explanation\":\"The candidate presents an invented setting, timing, props, silence, internal thoughts, an exact firm count, and firm-specific capabilities as factual scene details. The source plan supports only Steve Cole, HopeLab, a portable activity device, multiple design firms, and a parallel first phase.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

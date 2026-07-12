@@ -1,0 +1,135 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-difficult-conversations-ch1",
+  "itemId": "hardblocker-difficult-conversations-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "269e05256db11a6c",
+  "renderedDocSha256": "88304a8faad62727289858ebae3521df8addf959814b13af514ccd542c895a93",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "006f36e38f89014ddf40b3d96432e7291b1e45409d454634a8a9fca7386c84b8",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-difficult-conversations-ch1-mrgpfzhd-25",
+  "rawFinalMessageSha256": "5949998b217469e7e5909f8f0716b2e874576e3a0c61c083c0a8f7331846eb9c",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"a\", \"b\", \"c\", \"a\", \"b\", \"c\", \"c\", \"b\", \"a\"],\n    \"mechanisms\": [\n      \"The prose defines identity as questions about competence, goodness, loyalty, or respect; fear of seeming too junior is a competence/authority self-question.\",\n      \"The chapter says hard exchanges have facts, feelings, and identity layers; the promise, resentment, and responsible-child fear map to those three layers.\",\n      \"The diagnostic move is to separate documented facts from dismissed feelings and identity/reputation fears instead of adding more facts.\",\n      \"The prose warns that the visible facts layer can be less powerful while feelings like trust steer the room.\",\n      \"The chapter says reactions become larger than the visible issue when the identity layer asks what kind of person someone is.\",\n      \"Writing facts, feelings, and identity separately prevents the student from treating the poster dispute as only an authorship problem.\",\n      \"The chapter warns that more facts alone can fail when evidence has entered an identity conversation.\",\n      \"The prose explicitly says the frame works best as private diagnosis and can sound like an accusation when pasted onto someone else.\",\n      \"The best first diagnosis is to distinguish the visible topic from the respect/identity layer underneath it.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"All nine correct answers are the uniquely longest option.\",\n      \"Correct choices repeatedly reuse the chapter's exact triad language: facts/feelings/identity, competence, trust, diagnosis, and private labeling.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 66,\n    \"transfer\": 72,\n    \"practical\": 80,\n    \"summaries\": 92,\n    \"tone\": 88,\n    \"limits\": 93,\n    \"insight\": 91,\n    \"density\": 84,\n    \"beginner\": 88\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The log is evidence. It is not the whole map.\",\n      \"why\": \"Memorable compression of the chapter's core distinction.\"\n    },\n    {\n      \"quote\": \"A person who already feels exposed will rarely thank you for diagnosing their identity layer. They will hear a new accusation wearing thoughtful clothes.\",\n      \"why\": \"Strong mechanism and boundary for using the frame privately.\"\n    },\n    {\n      \"quote\": \"The three conversations are a diagnostic tool, not a script. They do not solve the exchange. They keep you from walking into the wrong one.\",\n      \"why\": \"Clear limit that prevents overselling the skill.\"\n    },\n    {\n      \"quote\": \"In truth, prepare only the deadline facts and skip the feelings and identity stakes, since sorting those extra layers just clouds a clean evidence-based review.\",\n      \"why\": \"This directly contradicts the chapter's central advice inside a What to do section.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The What to do section tells Sarah to prepare only deadline facts and skip feelings/identity stakes, which directly contradicts the chapter's core instruction and the example's own Why it matters.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Every correct answer is the uniquely longest option, often with the chapter's exact vocabulary, so a reader can guess the key without reading closely.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples\",\n      \"problem\": \"Names are reused across unrelated roles, especially Ingrid and Mathieu, which can make the scenario set feel unintentionally continuous or confusing.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter teaches a clear, useful diagnostic move with strong summaries, memorable lines, and practical transfer across work, family, community, and creative settings. It would be shippable on substance, but Example 1 contains a direct contradictory instruction in a What to do block, which is reader-harming because it tells the reader to do the opposite of the lesson. The quiz is also too guessable because the correct answer is always the longest and most chapter-shaped option.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-difficult-conversations-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "269e05256db11a6c",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-difficult-conversations-ch1-mrgpfzhd-25",
+    "scores": {
+      "retention": 90,
+      "quizzes": 66,
+      "transfer": 72,
+      "practical": 80,
+      "summaries": 92,
+      "tone": 88,
+      "limits": 93,
+      "insight": 91,
+      "density": 84,
+      "beginner": 88
+    },
+    "composite": 83.8,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The log is evidence. It is not the whole map.",
+        "why": "Memorable compression of the chapter's core distinction.",
+        "verified": true
+      },
+      {
+        "quote": "A person who already feels exposed will rarely thank you for diagnosing their identity layer. They will hear a new accusation wearing thoughtful clothes.",
+        "why": "Strong mechanism and boundary for using the frame privately.",
+        "verified": true
+      },
+      {
+        "quote": "The three conversations are a diagnostic tool, not a script. They do not solve the exchange. They keep you from walking into the wrong one.",
+        "why": "Clear limit that prevents overselling the skill.",
+        "verified": true
+      },
+      {
+        "quote": "In truth, prepare only the deadline facts and skip the feelings and identity stakes, since sorting those extra layers just clouds a clean evidence-based review.",
+        "why": "This directly contradicts the chapter's central advice inside a What to do section.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "All nine correct answers are the uniquely longest option.",
+      "Correct choices repeatedly reuse the chapter's exact triad language: facts/feelings/identity, competence, trust, diagnosis, and private labeling."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "The What to do section tells Sarah to prepare only deadline facts and skip feelings/identity stakes, which directly contradicts the chapter's core instruction and the example's own Why it matters.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz",
+        "problem": "Every correct answer is the uniquely longest option, often with the chapter's exact vocabulary, so a reader can guess the key without reading closely.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples",
+        "problem": "Names are reused across unrelated roles, especially Ingrid and Mathieu, which can make the scenario set feel unintentionally continuous or confusing.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter teaches a clear, useful diagnostic move with strong summaries, memorable lines, and practical transfer across work, family, community, and creative settings. It would be shippable on substance, but Example 1 contains a direct contradictory instruction in a What to do block, which is reader-harming because it tells the reader to do the opposite of the lesson. The quiz is also too guessable because the correct answer is always the longest and most chapter-shaped option.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "e8cfa8326755f78c048a3f1c224c6d1213c4e82cce6f3ae819c773bd5e69caad",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:36:58.553Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "006f36e38f89014ddf40b3d96432e7291b1e45409d454634a8a9fca7386c84b8",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "In truth, prepare only the deadline facts and skip the feelings and identity stakes, since sorting those extra layers just clouds a clean evidence-based review."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:35:28.224Z",
+  "durationMs": 0
+}

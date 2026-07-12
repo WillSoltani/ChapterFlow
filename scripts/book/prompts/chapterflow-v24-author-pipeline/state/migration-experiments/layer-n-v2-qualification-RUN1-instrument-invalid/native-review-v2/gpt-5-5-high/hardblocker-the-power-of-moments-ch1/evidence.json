@@ -1,0 +1,137 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-the-power-of-moments-ch1",
+  "itemId": "hardblocker-the-power-of-moments-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "e70bf662688410ec",
+  "renderedDocSha256": "cbc8ec485a82e82a0020207347839b48728985d738d6ca7647e33b313429f0b5",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "dd0ba045f7045c043b9d9b615ec1282fbc2955972c2b2a7fd376addd0d6a2658",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-the-power-of-moments-ch1-mrgpdic7-22",
+  "rawFinalMessageSha256": "52a1f50a528abfb09f2f44e49f06b878ba380b4fbbf3b920cb43157bc92b0b92",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"a\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The cold-water study says a longer trial with a milder final stretch was remembered as preferable, so the calm finish can reshape recall.\",\n      \"The Magic Castle example shows a modest setting can create a peak through a vivid object and tellable surprise.\",\n      \"YES Prep turns a private college step into public pride by having peers and adults witness the choice.\",\n      \"The full read names elevation, insight, pride, and connection as the four common ingredients.\",\n      \"The red phone lesson is that a concrete visible object can signal that the ordinary script has changed.\",\n      \"The prose says the delivery matters as much as the free item: request, phone, and tray turn a snack into an event.\",\n      \"The threshold should be marked before the next stage becomes private logistics.\",\n      \"The chapter explicitly says memory does not average each minute; peaks and endings carry special weight.\",\n      \"The mint is a quiet free item, not a designed, tellable event like the red phone and silver tray.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Q4 gives away c because it is the only option that lists four positive ingredients after the stem asks for four ingredients.\",\n      \"Q5 a closely echoes the prose phrase about a visible object changing the script.\",\n      \"Q7 c repeats the chapter's threshold/private-logistics language almost verbatim.\",\n      \"Q8's negative wording is fair but makes the true/false logic do more work than the scenario.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 82,\n    \"transfer\": 68,\n    \"practical\": 84,\n    \"summaries\": 90,\n    \"tone\": 88,\n    \"limits\": 86,\n    \"insight\": 84,\n    \"density\": 82,\n    \"beginner\": 90\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"A red phone by a pool can outshine a whole hotel stay when it gives guests a story.\",\n      \"why\": \"Strong hook: concrete, memorable, and it carries the core idea without abstraction.\"\n    },\n    {\n      \"quote\": \"The move is not to excuse a bad process with a pretty finish. It is to see that a finish has power, so it deserves design.\",\n      \"why\": \"Strong boundary: it prevents the peak-end lesson from becoming manipulative advice.\"\n    },\n    {\n      \"quote\": \"The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight.\",\n      \"why\": \"Worst defect: this directly contradicts the chapter's cold-water lesson.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"The What to do section says memory records total duration and final moments carry no special weight, which contradicts the chapter's central cold-water mechanism.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q4\",\n      \"problem\": \"The correct answer is guessable because it is the only option that maps cleanly onto four positive ingredients.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q7\",\n      \"problem\": \"The correct answer repeats the chapter's threshold/private-logistics phrasing too closely, making it easier to guess by phrase matching.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The named student is generic and the scene gives no concrete before-after consequence beyond restating the YES Prep lesson.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter is clear, memorable, and beginner-friendly, with a strong core image in the red pool phone and useful boundaries around not using a better ending to hide a broken experience. The quiz is mostly fair and derivable, though several answers are made easy by copied phrasing. The main blocker is Example 3: its What to do section states the opposite of the chapter's central peak-end lesson, which would actively misteach the reader. Fix that contradiction and the chapter is close to shippable above a professional bar.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-the-power-of-moments-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "e70bf662688410ec",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-the-power-of-moments-ch1-mrgpdic7-22",
+    "scores": {
+      "retention": 88,
+      "quizzes": 82,
+      "transfer": 68,
+      "practical": 84,
+      "summaries": 90,
+      "tone": 88,
+      "limits": 86,
+      "insight": 84,
+      "density": 82,
+      "beginner": 90
+    },
+    "composite": 84,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "a",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "A red phone by a pool can outshine a whole hotel stay when it gives guests a story.",
+        "why": "Strong hook: concrete, memorable, and it carries the core idea without abstraction.",
+        "verified": true
+      },
+      {
+        "quote": "The move is not to excuse a bad process with a pretty finish. It is to see that a finish has power, so it deserves design.",
+        "why": "Strong boundary: it prevents the peak-end lesson from becoming manipulative advice.",
+        "verified": true
+      },
+      {
+        "quote": "The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight.",
+        "why": "Worst defect: this directly contradicts the chapter's cold-water lesson.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q4 gives away c because it is the only option that lists four positive ingredients after the stem asks for four ingredients.",
+      "Q5 a closely echoes the prose phrase about a visible object changing the script.",
+      "Q7 c repeats the chapter's threshold/private-logistics language almost verbatim.",
+      "Q8's negative wording is fair but makes the true/false logic do more work than the scenario."
+    ],
+    "complaints": [
+      {
+        "unit": "example 3",
+        "problem": "The What to do section says memory records total duration and final moments carry no special weight, which contradicts the chapter's central cold-water mechanism.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q4",
+        "problem": "The correct answer is guessable because it is the only option that maps cleanly onto four positive ingredients.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q7",
+        "problem": "The correct answer repeats the chapter's threshold/private-logistics phrasing too closely, making it easier to guess by phrase matching.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The named student is generic and the scene gives no concrete before-after consequence beyond restating the YES Prep lesson.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter is clear, memorable, and beginner-friendly, with a strong core image in the red pool phone and useful boundaries around not using a better ending to hide a broken experience. The quiz is mostly fair and derivable, though several answers are made easy by copied phrasing. The main blocker is Example 3: its What to do section states the opposite of the chapter's central peak-end lesson, which would actively misteach the reader. Fix that contradiction and the chapter is close to shippable above a professional bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "30c6544b47e299bc1c021e42b9e0686a5a498242d9724d9b38110c44f307a0b0",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:34:11.333Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "dd0ba045f7045c043b9d9b615ec1282fbc2955972c2b2a7fd376addd0d6a2658",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:33:32.692Z",
+  "durationMs": 0
+}

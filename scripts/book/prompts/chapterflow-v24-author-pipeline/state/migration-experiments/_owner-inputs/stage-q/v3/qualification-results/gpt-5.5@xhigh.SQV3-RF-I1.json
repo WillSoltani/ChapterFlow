@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-I1",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"INSUFFICIENT_TO_DECIDE\",\"findingValidity\":\"INCONCLUSIVE\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Finding S-03-07: the passage MISQUOTES the source — the exact wording differs from the original. To decide, compare against the source passage.\",\"If a specifically required piece of evidence is absent from the supplied record, the finding is INCONCLUSIVE; otherwise decide it on the record.\",\"The source says, 'trust is built in the smallest moments.'\"],\"rationale\":\"The supplied record gives the candidate wording and the allegation that it misquotes the source, but it does not supply the original source passage needed for comparison. Because the finding itself requires comparing against the source passage, and the review contract directs INCONCLUSIVE when a required piece of evidence is absent, the record is insufficient to decide the finding.\"}"
+}

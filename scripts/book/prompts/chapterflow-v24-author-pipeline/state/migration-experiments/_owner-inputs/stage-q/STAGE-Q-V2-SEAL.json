@@ -1,0 +1,97 @@
+{
+  "schema": "s16-stage-q-v2-seal-v1",
+  "status": "SEALED_PRE_LIVE_V2",
+  "sealedContext": "owner directive 2026-07-11 (Stage-Q v1 = STAGE_Q_INSTRUMENT_INVALID; v2 rebuilt and authorized \u2264384 additional calls)",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "instrument": {
+    "scoringModule": {
+      "path": "src/bakeoff/migration/stageQv2.ts",
+      "sha256": "06432e9d1a5e5e3e16bccb472dafe2bf19a6b5294e0fb173b5868067258887e8",
+      "committed": "4a700857e"
+    },
+    "spec": {
+      "path": "state/migration-experiments/_owner-inputs/stage-q/STAGE-Q-V2-INSTRUMENT-SPEC.md",
+      "sha256": "6523bacdc4c1d48535f2e7c072f0577654c8b4d64b671eff2514390a2058b8e1"
+    },
+    "thresholds": {
+      "path": "state/migration-experiments/_owner-inputs/stage-q/STAGE-Q-V2-THRESHOLDS.json",
+      "sha256": "a2556a5310f6a6d840bd63e29e4ef32d6e5fa482a844d585465b4c667b82f0b9"
+    },
+    "postmortem": {
+      "path": "state/migration-experiments/_owner-inputs/stage-q/STAGE-Q-V1-POSTMORTEM.md",
+      "sha256": "fdf00e0e814d9c62614ca6a2cba2c720baffeb86dac199f232b904a911278818"
+    },
+    "labelDiff": {
+      "path": "state/migration-experiments/_owner-inputs/stage-q/STAGE-Q-V1-TO-V2-LABEL-DIFF.json",
+      "sha256": "196751324a25155f2c194e9e3b68c05a32693edd0602fd5436129a900b0e6665"
+    },
+    "corpusManifest": {
+      "path": "state/migration-experiments/_owner-inputs/stage-q/STAGE-Q-V2-CORPUS-MANIFEST.json",
+      "sha256": "5c129d8385fc0f33a63616ada61559642bf939ed2eed19a17dcc2bf91c466a80"
+    }
+  },
+  "corpus": {
+    "blindCases": {
+      "path": "state/migration-experiments/_owner-inputs/stage-q/v2/blind-cases.jsonl",
+      "sha256": "762b4ef4457983fbb76cb9fbc53d0bb9bb72613bda59b6fb9f76a2e387b07920"
+    },
+    "gold": {
+      "path": "state/migration-experiments/_owner-inputs/stage-q/v2/gold-labels.json",
+      "sha256": "f5b37b2eeba9bcc79a76d0c8856067a0d84c6796f8c1dd88aa3226304c027957"
+    },
+    "demandTokens": {
+      "path": "state/migration-experiments/_owner-inputs/stage-q/v2/demand-tokens.json",
+      "sha256": "6b54f6b35e1094abffcbb95f7eefc3ea850aa87f1c1fa1814925be037bb173a8"
+    },
+    "cases": 64,
+    "preserved": 40,
+    "freshHoldout": 24,
+    "seedOrder": "s16-stage-q-v2-2026-07-11",
+    "blindnessPrecheck": "PASS (fail-closed)"
+  },
+  "panel": [
+    {
+      "model": "gpt-5.5",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.5",
+      "effort": "xhigh"
+    }
+  ],
+  "executionPolicy": {
+    "route": "codex_exec_chatgpt_subscription only",
+    "maxParallel": 1,
+    "orderedBy": "seed-fixed deterministic",
+    "attemptCap": 2,
+    "infraReplay": "\u22641 per call, same case, infra-class only",
+    "contentRetries": 0,
+    "allAttemptsPreserved": true
+  },
+  "campaignCeilingRecompute": {
+    "note": "The prior 2,372 ceiling DOUBLE-COUNTED Stage-Q (Layer-O 384 + Layer-N 258 appeared inside BOTH per-experiment envelopes). Stage-Q qualifies the panel ONCE. This recompute counts each live operation once and is NOT a silent reuse of the old number.",
+    "components": {
+      "stageQ_v1_consumed_sunk": 192,
+      "stageQ_v2_owner_instrument_authorized": 384,
+      "native_layerN_qualify_panel_once": 258,
+      "diagnostic_candidate_work": 384,
+      "confirmatory_candidate_work": 704
+    },
+    "newAbsoluteCampaignCeiling": 1922,
+    "alreadyConsumed": 192,
+    "remainingAuthorizedMax": 1730,
+    "ownerAuthorizationMapping": "the owner's '\u2264384 additional for Stage-Q v2' == stageQ_v2_owner_instrument_authorized (384). native Layer-N (258) is the conductor's own qualify phase, run when proceeding into the already-sealed diagnostic sequence \u2014 not part of the 384.",
+    "vsOldCeiling": {
+      "old": 2372,
+      "new": 1922,
+      "lower_because": "old double-counted Stage-Q across both experiments"
+    }
+  },
+  "stoppingRule": "v2 judge-capability failure \u2192 stop+report; any fresh target/schema/gold ambiguity \u2192 classify invalid + stop (no repeated rewrite until judges pass).",
+  "downstreamOnPass": "proceed to the sealed diagnostic (native Layer-N qualify \u2192 generate \u2192 review \u2192 analyze) \u2192 C3 blind pause before unblind, under the standing authorization."
+}

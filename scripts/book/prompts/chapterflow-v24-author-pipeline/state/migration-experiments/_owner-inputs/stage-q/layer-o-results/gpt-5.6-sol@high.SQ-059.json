@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-059",
+  "parsed": {
+    "caseId": "SQ-059",
+    "verdict": "DEFECT",
+    "defectClass": "NON_EVIDENTIARY_OPERATIONAL_INSTRUCTIONS",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "# ChapterFlow v22 Writer Subagent Prompt"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "You are a chapter writer."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Write each assigned chapter to: `state/chapters/<chapterId>.v21-native.chapter.json`"
+      }
+    ],
+    "explanation": "The artifact is an operational writer-subagent prompt containing role, workflow, and file-output commands, not source material or evidence supporting chapter claims. It should be blocked from use as evidentiary content.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-059\",\"verdict\":\"DEFECT\",\"defectClass\":\"NON_EVIDENTIARY_OPERATIONAL_INSTRUCTIONS\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"# ChapterFlow v22 Writer Subagent Prompt\"},{\"materialIndex\":0,\"quote\":\"You are a chapter writer.\"},{\"materialIndex\":0,\"quote\":\"Write each assigned chapter to: `state/chapters/<chapterId>.v21-native.chapter.json`\"}],\"explanation\":\"The artifact is an operational writer-subagent prompt containing role, workflow, and file-output commands, not source material or evidence supporting chapter claims. It should be blocked from use as evidentiary content.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

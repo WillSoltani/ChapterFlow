@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P30",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"MECHANISM_RELABELING\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Chapter skill: Sort Out the Three Conversations\",\"Chapter skill: Begin from the Third Story\",\"Say what you heard in the player's story, then add your own view as one view, not the whole truth.\",\"The best choice keeps the conversation tied to three layers and creates room for new information.\",\"The best choice keeps the conversation tied to third story and creates room for new information.\"],\"rationale\":\"The two instances duplicate the scenario, choices, and correct answer, while changing only the skill label and a phrase in the explanation. The answer specifically concerns balancing the player's story with the coach's view, which can support a Third Story approach, but it does not require learners to distinguish or sort the What Happened, Feelings, and Identity conversations. Calling these unspecified “three layers” does not make the item assess that separate mechanism, so the duplication merely relabels one generic conversational response and should be blocked.\"}"
+}

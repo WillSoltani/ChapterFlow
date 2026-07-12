@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-055",
+  "parsed": {
+    "caseId": "SQ-055",
+    "verdict": "DEFECT",
+    "defectClass": "REUSED_NARRATIVE_MACHINERY",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Fenna touches a warm invoice sheet at Thursday 3:03 p.m. in the billing alcove at Northgate Dental, office manager, with toner dust on her thumb."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Jae stops a black ballpoint pen at Wednesday 2:08 p.m. in the patient relations desk at Hillcrest Clinic, patient advocate, with a complaint form with coffee on one corner."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "After the door closed, Fenna saw the older feeling under it"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Jae Jae must decide whether to defend the chart or ask what the morning felt like from his side."
+      }
+    ],
+    "explanation": "Both scenarios use the same conspicuous template: named worker handling a specific object, exact weekday and minute, institutional workplace and job role, a small tactile or visual detail, then a workplace conflict that pivots into an inward emotional or empathetic choice. The changed nouns do not disguise the shared narrative machinery.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-055\",\"verdict\":\"DEFECT\",\"defectClass\":\"REUSED_NARRATIVE_MACHINERY\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Fenna touches a warm invoice sheet at Thursday 3:03 p.m. in the billing alcove at Northgate Dental, office manager, with toner dust on her thumb.\"},{\"materialIndex\":1,\"quote\":\"Jae stops a black ballpoint pen at Wednesday 2:08 p.m. in the patient relations desk at Hillcrest Clinic, patient advocate, with a complaint form with coffee on one corner.\"},{\"materialIndex\":0,\"quote\":\"After the door closed, Fenna saw the older feeling under it\"},{\"materialIndex\":1,\"quote\":\"Jae Jae must decide whether to defend the chart or ask what the morning felt like from his side.\"}],\"explanation\":\"Both scenarios use the same conspicuous template: named worker handling a specific object, exact weekday and minute, institutional workplace and job role, a small tactile or visual detail, then a workplace conflict that pivots into an inward emotional or empathetic choice. The changed nouns do not disguise the shared narrative machinery.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

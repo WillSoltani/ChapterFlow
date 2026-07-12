@@ -1,0 +1,231 @@
+/**
+ * readerExperienceReview — the IMP-20 §A reader-experience lane RUNTIME
+ * (WP-B1). This is the NEW reader lane that sits BESIDE the frozen legacy
+ * `readerReview.ts` (which is demoted to a replay-only path, per R-8). It is
+ * ADDITIVE: it does not touch the live authoring gate, and it makes NO live
+ * model call — the reviewer output arrives through an INJECTED `reviewFn` seam
+ * (mirroring the repo's `quiz-two-phase`/`native-review-runner` fixtures), so
+ * the whole lane is exercisable model-free.
+ *
+ * What changes vs the legacy reader instrument (E-01 fix):
+ *   - The reader lane holds ONLY the reader-facing page (renderChapterReaderDocPhase1)
+ *     and therefore has NO authority to decide external factual truth. The
+ *     legacy `mustFix` mechanism and its source-truth reserved categories
+ *     (FABRICATED / FACTUALLY-WRONG / SOURCE-CONTRADICTORY external claims) are
+ *     REMOVED from this prompt. A passage that reads as factual but whose status
+ *     is unclear is surfaced as the ESCALATION signal `origin_ambiguous_to_reader`,
+ *     never a fabrication blocker.
+ *   - The model-owned `ship84` ship bit is REPLACED by an advisory
+ *     `recommendation` (SHIP|REVISE|BLOCK). The deterministic final status is
+ *     owned by the aggregator (WP-B4), not the model.
+ *
+ * The blocking categories, escalation categories, advisory categories, rubric
+ * version, the strict validator and the freshness predicate all come from the
+ * frozen WP-A1 contract (`src/contracts/readerExperienceReview.ts`); this module
+ * only builds the prompt, parses the reviewer's fenced JSON, and stamps the
+ * hash/version bindings to produce a validated `ReaderExperienceReviewV1`.
+ */
+
+import { createHash } from "crypto";
+
+import type { ChapterV21 } from "../types.js";
+import { ensureTrailingNewline } from "../lib/atomicWrite.js";
+import { renderChapterReaderDocPhase1 } from "./renderReaderDoc.js";
+import {
+  READER_ADVISORY_CATEGORIES,
+  READER_BLOCKING_CATEGORIES,
+  READER_ESCALATION_CATEGORIES,
+  READER_EXPERIENCE_RUBRIC_VERSION,
+  type ReaderExperienceReviewV1,
+  validateReaderExperienceReview,
+} from "../contracts/readerExperienceReview.js";
+
+export { READER_EXPERIENCE_RUBRIC_VERSION } from "../contracts/readerExperienceReview.js";
+
+// ── phase-1 reader-doc hash (the readerDocumentSha256 freshness anchor) ───────
+
+/** sha256 (full hex) over the EXACT phase-1 (key-free) reader-document bytes the
+ *  reader scores — the trailing-newline-terminated renderChapterReaderDocPhase1
+ *  output. This is the value the reader lane binds as `readerDocumentSha256`, so
+ *  a doc-render drift (even one leaving the chapter contentHash unchanged) stales
+ *  the review under `readerReviewIsFresh`. Reuses the same renderer + recipe as
+ *  the legacy `chapterReaderDocHash` so the two agree byte-for-byte. */
+export function readerExperienceDocHash(chapter: ChapterV21): string {
+  return createHash("sha256")
+    .update(ensureTrailingNewline(renderChapterReaderDocPhase1(chapter)))
+    .digest("hex");
+}
+
+// ── the reader-experience task (the on-page-only reviewer prompt) ─────────────
+
+const BLOCKING_ENUM = READER_BLOCKING_CATEGORIES.join("|");
+const ESCALATION_ENUM = READER_ESCALATION_CATEGORIES.join("|");
+const ADVISORY_ENUM = READER_ADVISORY_CATEGORIES.join("|");
+
+/** Build the reader-experience reviewer prompt for the phase-1 document at
+ *  `docRelPath` (relative to the reviewer session cwd). The prompt grants NO
+ *  external-fabrication / factual-truth blocking authority (E-01) and instructs
+ *  the reader to emit `origin_ambiguous_to_reader` when a passage reads as
+ *  factual but its status is unclear. There is no `mustFix` mechanism. */
+export function buildReaderExperienceTask(docRelPath: string): string {
+  return `READER-EXPERIENCE REVIEW — you are an independent reader. You do not know how this chapter was produced; judge only what is on the page.
+
+One chapter of a book-learning product is at: ${docRelPath}
+Read ONLY this file. Do not write any files.
+
+SOURCE-TRUTH AUTHORITY LIMIT (read first): You may not determine whether an external person/organization/event/quotation/date/number/study/source claim is factually real or source-supported. You have only the reader-facing page and no source material. When a passage reads as factual but its status is unclear, emit \`origin_ambiguous_to_reader\`. Do not call it fabricated or source-contradictory. Deciding external factual truth is the source lane's job, not yours.
+
+PROCESS (strict order):
+1. Read the chapter top to bottom. Answer its quiz YOURSELF from the prose. This document contains NO answer key — your derivation IS the review's key evidence, so for each question record: your answer (a|b|c), a one-line mechanism (what in the prose forces that choice), your confidence (low|medium|high), and any ambiguity (a second choice that is also defensible, or wording that under-determines the answer). Also record any tell that would let someone guess answers without reading (uniquely longest choice, hedging, giveaway phrasing).
+2. Score the chapter 0-100 on each factor: retention, quizzes, transfer, practical, summaries, tone, limits, insight, density, beginner.
+   - retention: will a reader remember the core move in a week (memorable lines, concrete images, echoes)
+   - quizzes: fair, derivable from prose, sound keys, no tells, distractors that teach
+   - transfer: applies beyond the book's own examples (if-then quality, challenge quality)
+   - practical: a real person would actually DO these actions (low-friction, concrete, not theater)
+   - summaries: fast/deep/full reads layered, accurate, each standalone
+   - tone: plain confident register; no corporate filler; no template/scaffold smell
+   - limits: honest about boundaries and failure modes; no overselling
+   - insight: explains WHY (mechanism), not just what
+   - density: ideas per paragraph; no padding or repetition
+   - beginner: approachable cold; jargon-free
+3. RECOMMENDATION (advisory, NOT a gate): SHIP | REVISE | BLOCK. This is your reader opinion only; a downstream conductor owns the final decision, so your recommendation never by itself ships or blocks the chapter.
+4. FINDINGS — record every concrete defect in exactly one of three buckets. There is NO must-fix severity flag and NO external-fabrication/factual-wrongness category anywhere; you cannot judge external truth (see the authority limit above).
+   - BLOCKING findings — reader-visible, ON-PAGE-DECIDABLE defects ONLY. Allowed category ∈ ${BLOCKING_ENUM}:
+     • unsafe — advice that could hurt a reader who follows it;
+     • internal_contradiction — the chapter contradicts its own material or a claim it makes elsewhere (decidable from THIS page alone);
+     • structurally_invalid — a missing/duplicated section, a broken quiz, or a section that fails its stand-alone promise;
+     • schema_or_app_breaking — content that would render or function incorrectly in the product;
+     • unusable — a reader genuinely could not learn or apply the chapter's core move from what is on the page.
+   - ESCALATION signals — a possible source concern you CANNOT adjudicate from the page. Allowed category ∈ ${ESCALATION_ENUM}. Use \`origin_ambiguous_to_reader\` when a passage reads as factual but its status is unclear; these are annotations for the source lane, never reader blockers.
+   - ADVISORY findings — non-blocking craft/learning weaknesses. Allowed category ∈ ${ADVISORY_ENUM}. Thin-but-usable examples, weak distractors, mild repetition, tone, pacing, density: register these here (and by scoring the relevant factor down), never as blockers.
+   Each finding: category (from its bucket's list), unit (where it lives, e.g. "quiz Q2", "deep read", "example 3"), problem (what is wrong), evidenceSpans (VERBATIM copy-paste substrings of the file, each <=200 chars — one altered character is a fabricated span).
+5. EVIDENCE: strongestEvidence / weakestEvidence = VERBATIM quotes (exact substrings of the file) of the best moment(s) and worst defect(s).
+
+FINAL MESSAGE: exactly one fenced json block, no prose outside it:
+\`\`\`json
+{
+  "schema": "reader-experience-review-v1",
+  "scores": {"retention": 0, "quizzes": 0, "transfer": 0, "practical": 0, "summaries": 0, "tone": 0, "limits": 0, "insight": 0, "density": 0, "beginner": 0},
+  "quizDerivation": {"answers": ["a|b|c"], "mechanisms": ["..."], "confidence": ["low|medium|high"], "ambiguities": [""], "tells": ["..."]},
+  "recommendation": "SHIP|REVISE|BLOCK",
+  "blockingFindings": [{"category": "${BLOCKING_ENUM}", "unit": "...", "problem": "...", "evidenceSpans": ["..."]}],
+  "escalationSignals": [{"category": "${ESCALATION_ENUM}", "unit": "...", "problem": "...", "evidenceSpans": ["..."]}],
+  "advisoryFindings": [{"category": "${ADVISORY_ENUM}", "unit": "...", "problem": "...", "evidenceSpans": ["..."]}],
+  "strongestEvidence": ["..."],
+  "weakestEvidence": ["..."],
+  "oneParagraphVerdict": "..."
+}
+\`\`\`
+(quizDerivation arrays are positional with the questions; use "" for a question with no ambiguity. Use empty arrays where there is nothing to report.)`;
+}
+
+// ── parsing (extract the reviewer's final fenced JSON block) ──────────────────
+
+/** Extract the LAST fenced JSON block from a reviewer session's output (readers
+ *  sometimes echo the file or think out loud before the final message), preferring
+ *  a `json`-labelled fence. Returns the parsed object (unvalidated) or null — the
+ *  strict validation happens in `assembleReaderExperienceReview` via the frozen
+ *  A1 validator so there is one source of truth for the schema. */
+export function parseReaderExperienceReview(stdout: string): Record<string, unknown> | null {
+  if (typeof stdout !== "string" || stdout.length === 0) return null;
+  const fenceRe = /```(json)?[^\n]*\n([\s\S]*?)```/g;
+  let lastJsonLabeled: string | null = null;
+  let lastAny: string | null = null;
+  let m: RegExpExecArray | null;
+  while ((m = fenceRe.exec(stdout)) !== null) {
+    lastAny = m[2];
+    if (m[1] === "json") lastJsonLabeled = m[2];
+  }
+  const body = lastJsonLabeled ?? lastAny;
+  if (!body) return null;
+  let raw: unknown;
+  try {
+    raw = JSON.parse(body);
+  } catch {
+    return null;
+  }
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) return null;
+  return raw as Record<string, unknown>;
+}
+
+// ── assembly (stamp the freshness bindings + strict-validate) ─────────────────
+
+/** The hash/version bindings the RUNTIME stamps onto the model's content output
+ *  to form a complete, freshness-bearing `ReaderExperienceReviewV1`. The model
+ *  never sees or supplies these — they are the exact bytes/instrument the review
+ *  is bound to. */
+export type ReaderReviewBindings = {
+  /** chapterContentHash (v2) of the reviewed chapter. */
+  chapterContentSha256: string;
+  /** sha256 of the exact phase-1 reader document the reviewer saw (readerExperienceDocHash). */
+  readerDocumentSha256: string;
+  /** sha256 of the bound JSON output-schema file (supplied by the wiring layer). */
+  schemaSha256: string;
+};
+
+export class ReaderExperienceReviewError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "ReaderExperienceReviewError";
+  }
+}
+
+/** Stamp the model's parsed content output with the reviewerRole + rubric version
+ *  + the caller's hash bindings, then strict-validate against the frozen A1
+ *  contract. Throws `ReaderExperienceReviewError` with the aggregated validator
+ *  errors when the assembled record is not schema-valid (a hallucinated/malformed
+ *  reviewer output cannot self-attest a pass). Returns the typed record. */
+export function assembleReaderExperienceReview(
+  output: Record<string, unknown>,
+  bindings: ReaderReviewBindings,
+): ReaderExperienceReviewV1 {
+  const candidate = {
+    ...output,
+    schema: "reader-experience-review-v1",
+    reviewerRole: "reader-experience",
+    rubricVersion: READER_EXPERIENCE_RUBRIC_VERSION,
+    chapterContentSha256: bindings.chapterContentSha256,
+    readerDocumentSha256: bindings.readerDocumentSha256,
+    schemaSha256: bindings.schemaSha256,
+  } as Record<string, unknown>;
+  const errors = validateReaderExperienceReview(candidate);
+  if (errors.length > 0) {
+    throw new ReaderExperienceReviewError(
+      `reader-experience review is not schema-valid:\n  ${errors.join("\n  ")}`,
+    );
+  }
+  return candidate as unknown as ReaderExperienceReviewV1;
+}
+
+// ── the model-free lane runner (injected reviewFn seam) ───────────────────────
+
+/** The injected reviewer seam. `reviewFn(task)` returns the raw reviewer session
+ *  output (stdout / final message). In production this is backed by a
+ *  ChatGPT-authenticated `codex exec` spawn behind the router choke; in tests it
+ *  returns a canned strict-schema-valid fenced-JSON reply. There is NO fallback
+ *  and NO direct model import in this module. */
+export type ReaderReviewDeps = { reviewFn: (task: string) => Promise<string> };
+
+/** Run the reader-experience lane over the phase-1 document at
+ *  `args.docRelPath`, binding the produced record to the exact chapter content /
+ *  reader-document / schema hashes. Builds the task, obtains the reviewer output
+ *  through the injected `reviewFn`, parses the fenced JSON, and assembles +
+ *  strict-validates the record. Makes zero model calls of its own. */
+export async function runReaderExperienceReview(
+  args: { docRelPath: string } & ReaderReviewBindings,
+  deps: ReaderReviewDeps,
+): Promise<ReaderExperienceReviewV1> {
+  const task = buildReaderExperienceTask(args.docRelPath);
+  const stdout = await deps.reviewFn(task);
+  const parsed = parseReaderExperienceReview(stdout);
+  if (parsed === null) {
+    throw new ReaderExperienceReviewError(
+      "reader-experience review: no parseable fenced JSON block in the reviewer output",
+    );
+  }
+  return assembleReaderExperienceReview(parsed, {
+    chapterContentSha256: args.chapterContentSha256,
+    readerDocumentSha256: args.readerDocumentSha256,
+    schemaSha256: args.schemaSha256,
+  });
+}

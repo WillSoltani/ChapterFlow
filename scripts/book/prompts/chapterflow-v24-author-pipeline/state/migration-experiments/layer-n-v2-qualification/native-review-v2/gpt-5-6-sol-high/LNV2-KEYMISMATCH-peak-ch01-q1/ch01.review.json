@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "LNV2-KEYMISMATCH-peak-ch01-q1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "ad36a7e6f63777e1",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-peak-ch01-q1-mrh8r5fg-49",
+  "scores": {
+    "retention": 94,
+    "quizzes": 76,
+    "transfer": 84,
+    "practical": 92,
+    "summaries": 88,
+    "tone": 90,
+    "limits": 94,
+    "insight": 91,
+    "density": 84,
+    "beginner": 94
+  },
+  "composite": 88.4,
+  "ship84": true,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "a",
+      "c",
+      "b",
+      "b",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=b key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "This compact image makes the chapter's core correction-loop idea memorable.",
+      "verified": true
+    },
+    {
+      "quote": "The rep has to press beyond comfort far enough to reveal the miss, but not so far that the feedback turns to noise.",
+      "why": "This gives the method a useful boundary instead of simply prescribing ever-harder practice.",
+      "verified": true
+    },
+    {
+      "quote": "   a) Enjoyable repetition may build comfort while leaving size differences untouched.\n   b) Uneven cuts can become fluent unless a visible size target guides the next cut.",
+      "why": "Both choices are supported diagnoses of the claim, preventing Q6 from having a clean single answer.",
+      "verified": true
+    },
+    {
+      "quote": "If Sarah shoots only the distance she already owns, if Camille steams only the pitcher size she can rescue, if Jonas keeps the transition in his notes without speaking it aloud, nothing has been asked to adapt.",
+      "why": "Sarah appears without introduction where the established archer is Megan, creating a small continuity distraction.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q1's correct choice is the uniquely longest and most operationally detailed option.",
+    "Q2, Q4, Q8, and Q9 reuse the chapter's signature isolate-check-adjust vocabulary, while their distractors are conspicuously passive, vague, or extreme.",
+    "Q3 and Q7 are near-verbatim completions of the chapter's central claim.",
+    "Across the quiz, the answer containing immediate feedback plus a changed next attempt is usually recognizable without reading the scenarios closely."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Choices a and b are both supported by the prose: repetition can build comfort while preserving the weakness, and a visible target is needed to guide correction. The question therefore lacks one uniquely derivable answer.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several correct choices echo the chapter's isolate-feedback-adjust language while distractors recommend obviously vague, passive, or extreme actions, making answers guessable from phrasing.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Sarah is introduced without context in the stretch paragraph even though Megan is the chapter's established archer, creating a minor name-continuity stumble.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scenario ends with a proposed correction and measurement but never shows the resulting arrow pattern, so it lacks a completed decision-to-consequence arc.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Thomas chooses a narrow drill, but the example never shows whether it produces a correctly stamped packet.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "Camille identifies and drills the texture fault, but no subsequent pitcher demonstrates the consequence of changing wand depth.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The example stops at Jonas's choice to rewrite and rehearse the transition without showing whether visitors remain engaged afterward.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "Lin is left before the rerun, so the example proposes the correction loop without showing what the focused edit reveals or changes.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, highly teachable chapter built around a memorable correction-loop model: isolate the miss, stretch slightly, obtain prompt feedback, and change the next attempt. It transfers convincingly across study, work, sport, performance, and programming; its challenge and implementation plan are concrete enough to use immediately; and its explicit discussion of noisy feedback, poor targets, symptoms, and the limits of purposeful practice adds unusual honesty. The main weakness is that most extended examples stop at the recommended intervention instead of showing a real before-to-after consequence, while the quiz often telegraphs its keys and Q6 is genuinely double-keyed. Fixing that question is necessary, but the chapter otherwise clears a professional 80-point shipping bar.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "b3b4beaefc9b929c60bd759336c9481b45aab3230b6ceb74d10b01cea6e780bd",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T03:37:16.305Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "2ff474ed10629f816feec646e47c68b3c17263a0baaf64fb5fa01af4ca4f9f40",
+    "phase2DocSha256": "dce96d6a25a143948c2cc447d09f371e452048edb105c48b514d75024bb900c7",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-peak-ch01-q1-mrh8sqvm-50",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice b is best supported because it isolates the recurring passage, supplies immediate feedback, and changes the next attempt; choice c merely avoids the fault."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a uniquely converts the repeated redox error into a focused check-and-correct loop."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c directly diagnoses that whole-demo repetition is allowing the same localized weakness to survive."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b uniquely targets the observed crossover with a cue, prompt video feedback, and immediate repetition."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b identifies the defining mechanism: each failure changes the strategy used in the next attempt."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "ambiguous",
+        "rationale": "Choices a and b are both defensible because each explains how repetition can leave uneven cuts unchanged, with b adding the need for a visible target."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c alone states the operative condition that feedback must alter the next attempt while the error remains traceable."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a is uniquely supported because Plan B provides feedback soon enough to correct the following small batch."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c uniquely replaces the vague goal with observable technique and outcome criteria over a defined number of turns."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 1
+  }
+}

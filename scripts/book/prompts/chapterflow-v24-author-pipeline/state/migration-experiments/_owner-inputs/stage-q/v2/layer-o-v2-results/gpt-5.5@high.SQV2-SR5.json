@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR5",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"Imagine a team lead — call her M — who inherits a project three weeks behind schedule.\",\"Suppose she opens her first review by asking what the team already knows is wrong, rather than presenting her own diagnosis.\",\"The point of this hypothetical is the ordering, not the person.\"],\"rationale\":\"The candidate passage is adequately framed to the reader as a hypothetical rather than as sourced factual or book-derived material. It uses visible cues including \\\"Imagine,\\\" \\\"Suppose,\\\" and \\\"The point of this hypothetical,\\\" making the invented/example register clear without relying on hidden provenance metadata. No misleading source-register defect is shown.\"}"
+}

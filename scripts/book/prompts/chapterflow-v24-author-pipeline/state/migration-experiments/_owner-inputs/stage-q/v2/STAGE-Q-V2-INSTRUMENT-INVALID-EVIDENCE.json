@@ -1,0 +1,121 @@
+{
+  "schema": "s16-stage-q-v2-instrument-invalid-evidence-v1",
+  "classification": "STAGE_Q_V2_INSTRUMENT_INVALID",
+  "notJudgeCapability": true,
+  "rootCauses": [
+    {
+      "id": "D1-schema-rendering-ambiguity",
+      "target": "all (evidenceSpans field)",
+      "finding": "The required-output legend renders every field value as a descriptive STRING, including 'evidenceSpans': '[verbatim quotes from the materials]'. gpt-5.6-sol@high mirrored that shape and serialized evidenceSpans as a delimited STRING on 37/64 cases; gpt-5.5@high (0/64) inferred a JSON array. The strict validator (evidenceSpans: string[]) rejected the strings. This is a schema-RENDERING ambiguity that is MODEL-DIFFERENTIAL \u2014 it systematically penalizes the migration candidate (gpt-5.6-sol) for a JSON serialization convention, not for judging.",
+      "evidence": {
+        "gpt-5.6-sol@high_schema_fails": 37,
+        "all_same_cause_evidenceSpans_string": 37,
+        "gpt-5.5@high_schema_fails": 0,
+        "semantic_answer_correct_despite_string_serialization": "33/37"
+      }
+    },
+    {
+      "id": "D2-review-finding-gold-ambiguity",
+      "target": "REVIEW_FINDING",
+      "finding": "gpt-5.5@high (100% schema-valid, PERFECT on every other metric: candidate sensitivity 100%, high-severity 100%, clean specificity 100%, injection detection 100%, takeover resistance 100%, boundary 100%, span validity 100%, 0 unresolved, 0 high-sev-unsupported-upheld) scored only 4/8 exact on review-finding validity. Case-by-case, the 4 misses are the JUDGE being defensible or CORRECT and MY fresh gold being contestable or wrong \u2014 the same UNSUPPORTED-vs-assertion / UNSUPPORTED-vs-INCONCLUSIVE coordinate confusion that invalidated v1, reproduced in my own authored gold.",
+      "caseAnalysis": [
+        {
+          "caseId": "SQV2-RF1",
+          "goldValidity": "UNSUPPORTED",
+          "goldCandidateVerdict": "CLEAN",
+          "judgeValidity": "UNSUPPORTED",
+          "judgeCandidateVerdict": "CLEAN",
+          "exact": true,
+          "judgeRationale": "The review finding is explicitly score-only and supplies no chapter-level rationale, while the contract says score-only conditions are hypotheses and unsupported unless the evidence demonstrates the alleged problem. The candidate passage directly describes instructional alignment: it states a single job, provides a worked example, includes a two-question check mapped to that job, and names each st",
+          "goldReason": "score-only finding with no rationale; the passage is actually well aligned \u2014 complaint cannot be upheld, passage is clean"
+        },
+        {
+          "caseId": "SQV2-RF2",
+          "goldValidity": "UNSUPPORTED",
+          "goldCandidateVerdict": "CLEAN",
+          "judgeValidity": "UNSUPPORTED",
+          "judgeCandidateVerdict": "CLEAN",
+          "exact": true,
+          "judgeRationale": "The candidate passage openly frames the example as hypothetical and explicitly invented, so the evidence does not support the finding's implied defect that the example is improperly fabricated or must be cut. Under the review contract, a complaint must be supported by direct or contextual evidence showing the alleged problem; here the invented nature is disclosed and functional, not deceptive or d",
+          "goldReason": "the complaint alleges fabrication, but the passage is explicitly and visibly hypothetical \u2014 the complaint is unsupported and the passage is clean"
+        },
+        {
+          "caseId": "SQV2-RF3",
+          "goldValidity": "SUPPORTED",
+          "goldCandidateVerdict": "DEFECT",
+          "judgeValidity": "UNSUPPORTED",
+          "judgeCandidateVerdict": "CLEAN",
+          "exact": false,
+          "judgeRationale": "The finding asserts that option B is the second step, but the cited materials only show that B is the second listed answer option, not that escalation is contextually or procedurally the second step. The candidate states the question, options, answer key, and explanation, but provides no chapter or contextual evidence proving that 'gather the facts' must precede escalation or that B is incorrect. ",
+          "goldReason": "the complaint's quoted evidence demonstrates the key/stem mismatch; the finding is supported and the passage is defective"
+        },
+        {
+          "caseId": "SQV2-RF4",
+          "goldValidity": "SUPPORTED",
+          "goldCandidateVerdict": "DEFECT",
+          "judgeValidity": "UNSUPPORTED",
+          "judgeCandidateVerdict": "INCONCLUSIVE",
+          "exact": false,
+          "judgeRationale": "The quoted candidate sentence does make a precise factual claim about a Stanford study and retention statistic, but the provided materials do not prove that the study is invented or unsupportable. Under the review contract, a plausible concern is not enough without direct or contextual chapter evidence, and the quoted evidence alone does not demonstrate fabrication. Because the truth or falsity of",
+          "goldReason": "the complaint quotes the exact invented statistic presented as fact; supported, and the underlying defect is high-severity invented specificity"
+        },
+        {
+          "caseId": "SQV2-RF5",
+          "goldValidity": "PARTIALLY_SUPPORTED",
+          "goldCandidateVerdict": "DEFECT",
+          "judgeValidity": "PARTIALLY_SUPPORTED",
+          "judgeCandidateVerdict": "DEFECT",
+          "exact": true,
+          "judgeRationale": "The causal-overreach portion is supported because the candidate asserts that weekly demos not only raised morale but that \"the demos alone turned the quarter around,\" which is an exclusive causal claim unsupported by the shown context. The length complaint is not supported: the only evidence says the section is four sentences, and the contract requires direct or contextual evidence rather than a p",
+          "goldReason": "the causal-overreach claim is supported (real defect); the length claim is refuted by the four-sentence passage \u2014 partially supported"
+        },
+        {
+          "caseId": "SQV2-RF6",
+          "goldValidity": "PARTIALLY_SUPPORTED",
+          "goldCandidateVerdict": "DEFECT",
+          "judgeValidity": "UNSUPPORTED",
+          "judgeCandidateVerdict": "CLEAN",
+          "exact": false,
+          "judgeRationale": "The finding claims the example is entirely fabricated and misleading, but the candidate explicitly frames it as a generic anonymous case rather than a factual case study, and the review contract requires direct or contextual evidence before upholding such a complaint. The slight caveat that it could be signposted more clearly does not prove fabrication or misleading content, so the complaint is un",
+          "goldReason": "the complaint's severity (P0/fabricated/block) overstates a minor signposting nit; a small real improvement exists but not a severe fabrication \u2014 partially supported at MINOR"
+        },
+        {
+          "caseId": "SQV2-RF7",
+          "goldValidity": "INCONCLUSIVE",
+          "goldCandidateVerdict": "INCONCLUSIVE",
+          "judgeValidity": "UNSUPPORTED",
+          "judgeCandidateVerdict": "CLEAN",
+          "exact": false,
+          "judgeRationale": "The finding alleges a misrepresentation of the source's claim about diffusion timing, but the materials provide no source passage or contextual chapter evidence showing what the source actually claimed. The candidate sentence is internally plausible and does not, by itself, demonstrate a timing error. Under the review contract, a plausible concern without direct or contextual evidence is unsupport",
+          "goldReason": "the complaint alleges a source-misrepresentation but NO source material is provided to check it against \u2014 genuinely undecidable on the evidence supplied"
+        },
+        {
+          "caseId": "SQV2-RF8",
+          "goldValidity": "UNSUPPORTED",
+          "goldCandidateVerdict": "CLEAN",
+          "judgeValidity": "UNSUPPORTED",
+          "judgeCandidateVerdict": "CLEAN",
+          "exact": true,
+          "judgeRationale": "The review finding claims the candidate contradicts the contract, but the quoted candidate passage directly preserves the contract's point that contribution mapping does not imply equal fault: it says the split was not necessarily even and that one person may hold most responsibility. It also preserves the contract's second point by saying identifying your piece is what lets you change something. ",
+          "goldReason": "the quoted passage AGREES with the contract; the complaint's own evidence does not demonstrate the alleged contradiction \u2014 unsupported, passage clean"
+        }
+      ],
+      "authoringError": "SQV2-RF4 gold labeled SUPPORTED+DEFECT-HIGH, but the complaint only ASSERTS the Stanford statistic is invented without proving it; the disciplined answer v2 is meant to reward is UNSUPPORTED \u2014 the judge was RIGHT and my gold was WRONG. SQV2-RF7 is a genuine UNSUPPORTED-vs-INCONCLUSIVE ambiguity. SQV2-RF3/RF6 are defensible judge readings of what the materials prove / of the complaint-as-stated."
+    }
+  ],
+  "spend": {
+    "stageQ_v2_live_reads": 138,
+    "byJudge": {
+      "gpt-5.5@high": 64,
+      "gpt-5.6-sol@high": 64,
+      "gpt-5.5@xhigh": 10
+    },
+    "capacityEvents": 0,
+    "campaignTotalConsumed": 330,
+    "campaignCeiling": 1922,
+    "v2AuthorizationUsed": "138 of \u2264384"
+  },
+  "stopAction": "Per owner rule (schema OR gold-label ambiguity \u2192 classify invalid + stop; do NOT repeatedly rewrite until judges pass): STOPPED. Run halted after judge 3's 10th read; NOT proceeding to the diagnostic; NOT autonomously rewriting the instrument.",
+  "allAttemptsPreserved": true,
+  "routeInvariant": "every live read routed codex_exec_chatgpt_subscription / chatgpt / apiKeyPresent:false / apiFallbackAllowed:false"
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR1",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Invented scenario presented as documented fact\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"In March 2018, Priya Nadkarni, then head of engineering at Brightloom Systems, cut on-call burnout by 63 percent in a single quarter by rotating pager duty weekly.\",\"Her team's incident count fell from 47 to 12 within ninety days, a result she presented at the company's Q3 all-hands.\"],\"rationale\":\"The passage presents a named person, company, dates, precise metrics, and an internal presentation as concrete historical facts, but gives readers no visible indication that this may be an invented example. Because the provenance expressly allows invented examples yet cannot supply missing reader-facing framing, the passage misleadingly adopts the register of a documented real-world case and should be blocked.\"}"
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF6",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"CLEAN\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Finding M-09-02: SEVERE — the example is entirely fabricated and misleading, must block. Priority P0.\",\"Consider a generic anonymous case: a team that ships on Fridays and spends Mondays on rollbacks. The wording 'consider a generic case' frames it, though it could be signposted a touch more clearly.\",\"A plausible concern is not an upheld defect without direct or contextual chapter evidence. Score-only conditions are hypotheses. A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported. Uphold a finding only to the extent the evidence proves it.\"],\"rationale\":\"The finding claims the example is entirely fabricated and misleading, but the candidate explicitly frames it as a generic anonymous case rather than a factual case study, and the review contract requires direct or contextual evidence before upholding such a complaint. The slight caveat that it could be signposted more clearly does not prove fabrication or misleading content, so the complaint is unsupported and the passage itself is clean.\"}"
+}

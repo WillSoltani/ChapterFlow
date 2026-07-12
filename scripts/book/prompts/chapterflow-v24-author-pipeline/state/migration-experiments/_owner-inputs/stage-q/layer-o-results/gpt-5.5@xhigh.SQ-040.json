@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-040",
+  "parsed": {
+    "caseId": "SQ-040",
+    "verdict": "DEFECT",
+    "defectClass": "DUPLICATE_GENERIC_RELABEL",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Speak for Yourself with Clarity and Power"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Question: A teacher has to tell a student the scholarship essay is weak. Which opening is most likely to help the student hear it?"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Question: A teacher has to tell a student the scholarship essay is weak. Which opening is most likely to help the student hear it?"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Start from a shared fact about the draft, name the concern, and invite revision rather than verdict."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Start from a shared fact about the draft, name the concern, and invite revision rather than verdict."
+      }
+    ],
+    "explanation": "The two instances use the same prompt, choices, and correct answer for different chapter skills. Only the explanation label shifts from the Three Conversations framing to clear self-speaking, so the item appears to relabel a generic constructive-feedback answer rather than assess both distinct mechanisms.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-040\",\"verdict\":\"DEFECT\",\"defectClass\":\"DUPLICATE_GENERIC_RELABEL\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Speak for Yourself with Clarity and Power\"},{\"materialIndex\":0,\"quote\":\"Question: A teacher has to tell a student the scholarship essay is weak. Which opening is most likely to help the student hear it?\"},{\"materialIndex\":1,\"quote\":\"Question: A teacher has to tell a student the scholarship essay is weak. Which opening is most likely to help the student hear it?\"},{\"materialIndex\":0,\"quote\":\"Start from a shared fact about the draft, name the concern, and invite revision rather than verdict.\"},{\"materialIndex\":1,\"quote\":\"Start from a shared fact about the draft, name the concern, and invite revision rather than verdict.\"}],\"explanation\":\"The two instances use the same prompt, choices, and correct answer for different chapter skills. Only the explanation label shifts from the Three Conversations framing to clear self-speaking, so the item appears to relabel a generic constructive-feedback answer rather than assess both distinct mechanisms.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

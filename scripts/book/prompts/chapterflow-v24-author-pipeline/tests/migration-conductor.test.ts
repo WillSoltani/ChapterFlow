@@ -26,6 +26,7 @@ import { rootedWrite, type MigrationRoots } from "../src/bakeoff/migration/guard
 import { qualificationPath } from "../src/bakeoff/migration/qualification.js";
 import { runMigrationExperiment, type MigrationStages, type HumanAdjudicationV1 } from "../src/bakeoff/migration/runExperiment.js";
 import { reviewOneSample } from "../src/bakeoff/migration/reviewRunner.js";
+import { isInFrozenAuditSubset } from "../src/bakeoff/migration/reviewerRoleAssignment.js";
 import { sampleRecordPath } from "../src/bakeoff/migration/sampleRunner.js";
 import { DEFAULT_QUAL_THRESHOLDS } from "../src/bakeoff/migration/qualification.js";
 import { mkQualCorpus, mkSealFixture, type SealFixture } from "./migration-helpers.js";
@@ -107,7 +108,7 @@ function fakeStages(): MigrationStages {
       const updated: MigrationSampleRecordV1 = {
         ...opts.record,
         review: syntheticReview(opts.record, judge),
-        ...(opts.spec.judgePanel.length > 1 && opts.record.sampleIndex === 1
+        ...(opts.spec.judgePanel.length > 1 && isInFrozenAuditSubset(opts.spec, opts.record)
           ? { agreementReview: syntheticReview(opts.record, opts.spec.judgePanel[1] as { model: string; effort: "high" | "xhigh" }) }
           : {}),
       };
@@ -292,7 +293,7 @@ test("a corpus chapter reappearing among candidates halts the analysis (red-team
   assert.ok(outcome.reason?.includes("overlap"), outcome.reason);
 });
 
-test("the real review runner: unqualified judges refuse, qualified panels rotate, agreement reads land on the prespecified subsample, reviews are immutable", async () => {
+test("the real review runner: unqualified judges refuse, the FIXED primary judge reads every sample, the backup read lands only on the frozen audit subset, reviews are immutable", async () => {
   const fx = mkSealFixture("cf-mig-cond7-", {
     experimentId: "exp-cond7",
     judgePanel: [{ model: "gpt-5.5", effort: "high" }, { model: "gpt-5.5", effort: "xhigh" }],
@@ -302,9 +303,12 @@ test("the real review runner: unqualified judges refuse, qualified panels rotate
   const chapter = fixtureChapter("zz-mig-book-a", 1);
   const chapterAbs = join(fx.tmp, "committed.chapter.json");
   writeFileSync(chapterAbs, JSON.stringify(chapter, null, 2) + "\n");
+  // executionOrder 1 would, under the OLD rotation, have picked panel[1] (xhigh)
+  // as primary and panel[0] (high) as the agreement judge. Fixed assignment (§G)
+  // must instead pin panel[0] (high) primary + panel[1] (xhigh) backup regardless.
   const entry: SampleScheduleEntryV1 = {
     blindSampleId: "abc123abc123", cellId: "56S-H", bookId: "zz-mig-book-a", chapterNumber: 1,
-    stratum: "research-heavy", sampleIndex: 1, executionOrder: 0, expansion: false,
+    stratum: "research-heavy", sampleIndex: 1, executionOrder: 1, expansion: false,
   };
   const record = syntheticRecord(entry, spec);
   record.artifact.chapterRelPath = (await import("../src/bakeoff/paths.js")).pipelineRel(chapterAbs);
@@ -339,13 +343,26 @@ test("the real review runner: unqualified judges refuse, qualified panels rotate
 
   const updated = await reviewOneSample({ record, spec, roots, deps: fakeAutopilotDeps() as AutopilotDeps, allowSyntheticQualification: true, log: () => {}, reviewFn: fakeReview });
   assert.ok(updated.review?.pass);
-  assert.ok(updated.agreementReview, "sampleIndex 1 + panel of 2 → the prespecified agreement read ran");
+  // FIXED assignment: the primary is panel[0] (high), NOT the execution-order-
+  // rotated panel[1]; the backup is the fixed panel[1] (xhigh).
+  assert.equal(updated.review?.judgeEffort, "high", "the fixed primary is panel[0] (high), never the rotated panel[executionOrder % len]");
+  assert.ok(updated.agreementReview, "sampleIndex 1 is in the frozen audit subset → the fixed backup read ran");
+  assert.equal(updated.agreementReview?.judgeEffort, "xhigh", "the audit-subset backup is the fixed panel[1] (xhigh) judge");
   assert.equal(reads.length, 2);
 
   // Immutable: a second invocation performs NO further reads.
   const again = await reviewOneSample({ record: updated, spec, roots, deps: fakeAutopilotDeps() as AutopilotDeps, allowSyntheticQualification: true, log: () => {}, reviewFn: fakeReview });
   assert.equal(reads.length, 2, "an existing review is never re-rolled");
   assert.deepEqual(again, updated);
+
+  // A sample OUTSIDE the frozen audit subset (sampleIndex 2) gets the fixed
+  // primary read but NO backup read — the backup is never output-selected.
+  const outOfSubset: MigrationSampleRecordV1 = { ...record, blindSampleId: "ghi789ghi789", sampleIndex: 2, review: null };
+  rootedWrite(roots, sampleRecordPath(roots, outOfSubset.blindSampleId), JSON.stringify(outOfSubset, null, 2));
+  const auditNone = await reviewOneSample({ record: outOfSubset, spec, roots, deps: fakeAutopilotDeps() as AutopilotDeps, allowSyntheticQualification: true, log: () => {}, reviewFn: fakeReview });
+  assert.equal(auditNone.review?.judgeEffort, "high", "every sample is read by the SAME fixed primary judge (high), regardless of order");
+  assert.equal(auditNone.agreementReview, undefined, "a sample outside the frozen audit subset gets no backup read");
+  assert.equal(reads.length, 3, "exactly one further primary read; no backup on the non-audit sample");
 
   // Dry-run qualifications refuse LIVE (non-synthetic) review runs.
   await assert.rejects(

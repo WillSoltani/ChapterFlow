@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-011",
+  "parsed": {
+    "caseId": "SQ-011",
+    "verdict": "DEFECT",
+    "defectClass": "UNSUPPORTED_FACTUAL_NARRATION",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Claire underlines the break-up-or-not wording, then writes two missing questions in the margin"
+      }
+    ],
+    "explanation": "The candidate presents invented identity, setting, props, timing, and actions as facts within a real case; none are supported by the source plan's allowed specifics.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-011\",\"verdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_FACTUAL_NARRATION\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt.\"},{\"materialIndex\":1,\"quote\":\"Claire underlines the break-up-or-not wording, then writes two missing questions in the margin\"}],\"explanation\":\"The candidate presents invented identity, setting, props, timing, and actions as facts within a real case; none are supported by the source plan's allowed specifics.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-S2",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"After the change, attrition was cut by more than half.\",\"Reported attrition fell from 20% to 15% over the year.\"],\"rationale\":\"The supplied record includes both the candidate passage and the cited source figure, so it is sufficient to decide the finding. A decrease from 20% to 15% is a 5 percentage-point drop, equal to a 25% relative reduction from the starting value, not a reduction of more than half. The proposed finding is therefore supported.\"}"
+}

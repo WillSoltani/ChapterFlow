@@ -1,0 +1,117 @@
+HEAD: 23c4ede4efe88722a658130ad536a2fcf34ef51d
+
+=== git status --short ===
+?? ../../../../.agents/skills/grill-me/
+?? ../../../../book-score-summary.json
+?? ../../../../docs/v24/CATALOG_QUALITY_AUDIT.md
+?? ../../../../docs/v24/V24_CF_J_COMMIT_AND_MODEL_MIGRATION_REPORT.md
+?? ../../../../docs/v24/V24_FRESH_SCENE_ORIGIN_GOLD_RUN_REPORT.md
+?? ../../../../docs/v24/V24_SCENE_SKELETON_FOLLOWUP_PROMPTS.md
+?? ../../../../docs/v24/catalog-corruption-census.json
+?? ../../../../docs/v24/catalog-quality-audit.json
+?? ../../../../docs/v25/IMP-14_BALANCED_READER_LEARNING_CONTRACT_AND_BOOK_LEVEL_AUDIT.md
+?? ../../../../docs/v25/IMP-15_TO_IMP-17_ADVANCED_AI_IMPLEMENTATION_PROMPT_PACK.md
+?? ../chapterflow-v21-authored/scratch/
+?? ../chapterflow-v21-authored/state/autopilot-locks/
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782418498706.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782486282584.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782486383673.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782486512275.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782494241711.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782502063927.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782503792558.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782507836559.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782508017274.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782508156427.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782508281466.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782508471790.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782509246555.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782511182285.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782511380589.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782511555057.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782528401416.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782528521987.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782529260919.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782535007314.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782535141978.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782568279522.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782573650097.report.json
+?? ../chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782579734978.report.json
+?? ../chapterflow-v21-authored/state/library-state.json.journal.jsonl
+?? ../chapterflow-v21-authored/state/name-plans/execution.name-plan.json
+?? ../chapterflow-v21-authored/state/provenance/
+?? ../chapterflow-v21-authored/state/qc-orchestrator/zz-fixture-grounded-numbers/
+?? ../chapterflow-v21-authored/state/qc/zz-fixture-converge-ch01.manual-keyjudge.json
+?? ../chapterflow-v21-authored/state/qc/zz-fixture-converge-ch02.manual-keyjudge.json
+?? .chapterflow/
+?? .github/
+?? FAILURE-MODES.md
+?? MASTER-PLAN.md
+?? PHASE1-HANDOFF.md
+?? PIPELINE-10of10-FIX-BACKLOG.md
+?? PIPELINE-FINDINGS-step2-qc-2026-06.md
+?? PIPELINE-HANDOFF.md
+?? PIPELINE-QC-FINDINGS.md
+?? archive/
+?? docs/v24/V24_FRESH_GOLD_VALIDATION_REPORT.md
+?? docs/v24/V24_FRESH_VALIDATION_FIX_PROMPTS.md
+?? docs/v24/V24_HIGH_OUTPUT_MANAGEMENT_COMPLETION_AND_PUBLISH_REPORT.md
+?? fw-scan.mts
+?? logs/
+?? scratch/calibrate-bp33.ts
+?? scratch/execution-ch03-ch05.json
+?? scratch/phase3-author-write.ts
+?? scratch/phase3-regen.ts
+?? scratch/phase4-oldbook-read.ts
+?? scratch/radical-candor-sample-ch02-ch06.package-preview.json
+?? scratch/repair-ch01-q1.ts
+?? scratch/repair-ch09-q1.ts
+?? scratch/review/
+?? scratch/run-panel3.ts
+?? scratch/run-panel4.ts
+?? scratch/stier-budget-check.ts
+?? scratch/stier-migrate-ledger.ts
+?? scratch/stier-render-sanity.ts
+?? scratch/surgical-repair-ch03-ch05.ts
+?? scratch/sweep-repair-all.ts
+?? scratch/tiebreak-ch07-reads/
+?? scratch/tiebreak-ch07.ts
+?? state/_quarantine/
+?? state/autopilot-logs/
+?? state/book-design/
+?? state/books/
+?? state/chapters/
+?? state/gate-attempts.json
+?? state/indexes/
+?? state/library-state.json.journal.jsonl
+?? state/metrics/
+?? state/migration-experiments/
+?? state/plans/
+?? state/provenance/
+?? state/qc-orchestrator/
+?? state/qc/
+?? state/repairs/
+?? state/reviews/
+?? zz-bakeoff-iso-ch01.v21-native.chapter.json
+?? zz-bakeoff-iso-ch02.v21-native.chapter.json
+?? zz-bakeoff-keep-ch01.v21-native.chapter.json
+?? zz-bakeoff-retry-ch01.v21-native.chapter.json
+?? zz-bakeoff-reuse-ch01.v21-native.chapter.json
+
+=== Layer-N implementation history (qualification/conductor/reader-review) ===
+f2079c1c3 feat(v25): IMP-11 — controlled prompt-stack diagnostic and GPT-5.5 vs SOL confirmatory bakeoff harness
+8653046c1 feat(v25): IMP-08 — physically blind review, two-phase quiz adjudication, causal stability
+1946b320b feat(v25): IMP-00 — hermetic Codex execution envelope + Phase-0 contract freeze
+7888c2b4b fix(v24): deal-consistency (lead vs content bans) + failed-write draft restore/removal
+62180db3a fix(v24): R1+R2+R4+R5 follow-ups — SC11 precedence, provenance restore on revert, calibration-scan verb, key-evidence stateRoot+lines
+78496d410 fix(v24): P3+P4+P6+P9 acceptance-lane safety, churn->content routing, gate truth, harm calibration
+d98fd859e feat(v24): live book-sameness repair driver + diversify-book verb
+4939fa576 feat(v24): carry-aware budget repair + QC reviewer calibration
+f9a113209 fix(v24): quote verification forgives formatting flakes (case/quotes/whitespace) — anti-fabrication intact
+d687375f1 feat(v24): near-bar converts on zero-mustFix (no-true-blocker) + stronger example-craft card
+00807aa70 feat(v24): chapter bar 84→80 + chapter-gate noise median + broadened BP33 + C29 example-craft
+b48ff3004 fix(v24-hardening): P7 red-team — fail closed when a quorum-met acceptance read can't persist
+2f5783145 feat(v24-hardening): batch 3 — W3 causal-attribution quiz rule (BP33 + reader criterion)
+7cc2d80a6 feat(v24-hardening): batch 2 — multi-read acceptance median + boundedness fixes F1-F7
+70b01776a fix(v24-hardening): batch 1 — card-vs-gate contradictions D1-D9 + honest GATED/SCORED tags
+

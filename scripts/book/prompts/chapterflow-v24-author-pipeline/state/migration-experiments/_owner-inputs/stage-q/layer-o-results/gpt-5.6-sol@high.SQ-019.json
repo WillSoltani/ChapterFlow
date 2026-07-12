@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-019",
+  "parsed": {
+    "caseId": "SQ-019",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "All examples and scenarios are invented fresh."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Title: Grace Deletes the First Defense Scenario:"
+      }
+    ],
+    "explanation": "The provenance explicitly identifies all scenarios as invented, and the candidate itself is labeled a “Scenario,” sufficiently marking the named narrative as constructed.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-019\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"All examples and scenarios are invented fresh.\"},{\"materialIndex\":1,\"quote\":\"Title: Grace Deletes the First Defense Scenario:\"}],\"explanation\":\"The provenance explicitly identifies all scenarios as invented, and the candidate itself is labeled a “Scenario,” sufficiently marking the named narrative as constructed.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

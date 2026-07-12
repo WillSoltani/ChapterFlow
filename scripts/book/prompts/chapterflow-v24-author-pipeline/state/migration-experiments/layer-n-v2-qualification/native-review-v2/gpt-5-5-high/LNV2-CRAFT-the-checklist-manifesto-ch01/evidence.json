@@ -1,0 +1,150 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-the-checklist-manifesto-ch01",
+  "itemId": "LNV2-CRAFT-the-checklist-manifesto-ch01",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "bcae6f82c79349f9",
+  "renderedDocSha256": "6ebe946c5be8ade4e2d69fd70b68f6d9bc98cbe890720fc17b911a113050bb58",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "027edd859f78a02a00a3f593db98d561de98ea08ee25627807651a4c6ab357bc",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CRAFT-the-checklist-manifesto-ch01-mrh7iu5d-18",
+  "rawFinalMessageSha256": "a755b291cc2fa445be8f9c7eddecb1926a7410621266b1b0fb0219c48e5045bd",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\", \"b\", \"c\"],\n    \"mechanisms\": [\n      \"The prose says expert systems fail where ownership blurs between people, not because knowledge is absent.\",\n      \"The lesson repeatedly says to map transitions by named owner before pressure arrives.\",\n      \"The Ingrid example shows the administrator-like move: rebuild the path across prescriber, insurer, cold storage, and courier before blaming the last touch.\",\n      \"The chapter says danger often lives in the small transition where one expert assumes another covered the next move.\",\n      \"The pharmacy/transplant example shows departments completing pieces while the failure lives in the crossings.\",\n      \"The Hadiya example explicitly assigns one named owner across plow, salt, police, and ambulance before peak load.\",\n      \"The museum crate example says a fragile object can be surrounded by experts while danger lives where separate readiness claims meet.\",\n      \"The core reasoning is that excellence does not make ownership visible across roles; handoff checks do that.\",\n      \"The chapter rejects leader-held memory as sufficient and asks which transition must be made visible in the system.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice b uses the chapter's exact giveaway vocabulary: handoff, seam, ownership thinned out.\",\n      \"Choice c is the only option with named owner and handoff; the others are caricatures of work harder or centralize.\",\n      \"Choice a is the only path-based answer and mirrors the Ingrid example closely.\",\n      \"Choice b is the only answer with explicit handoffs; the other choices blame expertise or warnings.\",\n      \"Choice c repeats across-department reliability language; the distractors are plainly contradicted by the chapter.\",\n      \"Choice a uses named owner and cross-department timing, both recurring signals.\",\n      \"Choice c is the only choice that names dependency between experts; the others overstate single-specialist control or hard-task danger.\",\n      \"Choice b is the only balanced answer; a and c contain absolutes that the chapter rejects.\",\n      \"Choice c uses the chapter's system-versus-memory contrast; a and b are obvious blame/training distractors.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 78,\n    \"transfer\": 84,\n    \"practical\": 90,\n    \"summaries\": 76,\n    \"tone\": 82,\n    \"limits\": 86,\n    \"insight\": 88,\n    \"density\": 82,\n    \"beginner\": 90\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Complexity changes the location of danger.\",\n      \"why\": \"This is the chapter's cleanest memorable mechanism.\"\n    },\n    {\n      \"quote\": \"The mistake hides in the word moves. Movement creates seams, and seams create assumptions.\",\n      \"why\": \"Strong transfer line that turns the lesson into a portable diagnostic.\"\n    },\n    {\n      \"quote\": \"In the end, this is the kind of move worth practicing until it feels routine.\",\n      \"why\": \"This is generic closing filler inside an otherwise concrete example.\"\n    },\n    {\n      \"quote\": \"The reveal shows that duplication is not the same as ownership.\",\n      \"why\": \"The metacommentary phrase feels scaffolded and less natural than the surrounding prose.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"fast read/deep read\",\n      \"problem\": \"The 'Austrian drowning rescue' is referenced without enough standalone setup in the file, so the summary layers briefly rely on an unexplained outside-feeling story.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"Correct answers are often telegraphed by repeated lesson terms like handoff, seam, ownership, named owner, and transition, while distractors lean on obvious blame, training, or central-command errors.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The final sentence turns generic and instructional instead of showing a specific consequence or before-after result.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The phrase 'The reveal shows' has a template/scaffold smell and weakens an otherwise usable transfer example.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples 1-6\",\n      \"problem\": \"The examples transfer across domains well, but most stop at naming the seam and assigning an owner rather than showing what changed afterward.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong opening chapter with a clear core move: stop judging the people first and inspect the seam where ownership thins out. The chapter is memorable, practical, beginner-friendly, and honest about the limits of expertise. Its main weakness is not correctness but craft: the quiz is too easy to guess from repeated vocabulary, one summary reference feels underintroduced, and several examples share the same shape without showing consequences. I would ship it, with quiz and example polish as the best next improvements.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-the-checklist-manifesto-ch01-chapter",
+    "chapterNumber": 1,
+    "contentHash": "bcae6f82c79349f9",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CRAFT-the-checklist-manifesto-ch01-mrh7iu5d-18",
+    "scores": {
+      "retention": 88,
+      "quizzes": 78,
+      "transfer": 84,
+      "practical": 90,
+      "summaries": 76,
+      "tone": 82,
+      "limits": 86,
+      "insight": 88,
+      "density": 82,
+      "beginner": 90
+    },
+    "composite": 84.1,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c",
+        "b",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Complexity changes the location of danger.",
+        "why": "This is the chapter's cleanest memorable mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "The mistake hides in the word moves. Movement creates seams, and seams create assumptions.",
+        "why": "Strong transfer line that turns the lesson into a portable diagnostic.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+        "why": "This is generic closing filler inside an otherwise concrete example.",
+        "verified": true
+      },
+      {
+        "quote": "The reveal shows that duplication is not the same as ownership.",
+        "why": "The metacommentary phrase feels scaffolded and less natural than the surrounding prose.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b uses the chapter's exact giveaway vocabulary: handoff, seam, ownership thinned out.",
+      "Choice c is the only option with named owner and handoff; the others are caricatures of work harder or centralize.",
+      "Choice a is the only path-based answer and mirrors the Ingrid example closely.",
+      "Choice b is the only answer with explicit handoffs; the other choices blame expertise or warnings.",
+      "Choice c repeats across-department reliability language; the distractors are plainly contradicted by the chapter.",
+      "Choice a uses named owner and cross-department timing, both recurring signals.",
+      "Choice c is the only choice that names dependency between experts; the others overstate single-specialist control or hard-task danger.",
+      "Choice b is the only balanced answer; a and c contain absolutes that the chapter rejects.",
+      "Choice c uses the chapter's system-versus-memory contrast; a and b are obvious blame/training distractors."
+    ],
+    "complaints": [
+      {
+        "unit": "fast read/deep read",
+        "problem": "The 'Austrian drowning rescue' is referenced without enough standalone setup in the file, so the summary layers briefly rely on an unexplained outside-feeling story.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz overall",
+        "problem": "Correct answers are often telegraphed by repeated lesson terms like handoff, seam, ownership, named owner, and transition, while distractors lean on obvious blame, training, or central-command errors.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The final sentence turns generic and instructional instead of showing a specific consequence or before-after result.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The phrase 'The reveal shows' has a template/scaffold smell and weakens an otherwise usable transfer example.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples 1-6",
+        "problem": "The examples transfer across domains well, but most stop at naming the seam and assigning an owner rather than showing what changed afterward.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong opening chapter with a clear core move: stop judging the people first and inspect the seam where ownership thins out. The chapter is memorable, practical, beginner-friendly, and honest about the limits of expertise. Its main weakness is not correctness but craft: the quiz is too easy to guess from repeated vocabulary, one summary reference feels underintroduced, and several examples share the same shape without showing consequences. I would ship it, with quiz and example polish as the best next improvements.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "1b57de6589d24048f32641e3dab358b67ec88eed749c16e18fe5cc2aa7644f68",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:02:50.380Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "027edd859f78a02a00a3f593db98d561de98ea08ee25627807651a4c6ab357bc",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:01:34.368Z",
+  "durationMs": 0
+}

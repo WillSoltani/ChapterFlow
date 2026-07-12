@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-020",
+  "parsed": {
+    "caseId": "SQ-020",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "All examples and scenarios are invented fresh."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Title: Hannah Marks Her Own Arrow Scenario:"
+      }
+    ],
+    "explanation": "The provenance explicitly identifies all scenarios as invented, and the candidate itself is labeled “Scenario,” sufficiently marking Hannah’s named narrative as constructed.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-020\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"All examples and scenarios are invented fresh.\"},{\"materialIndex\":1,\"quote\":\"Title: Hannah Marks Her Own Arrow Scenario:\"}],\"explanation\":\"The provenance explicitly identifies all scenarios as invented, and the candidate itself is labeled “Scenario,” sufficiently marking Hannah’s named narrative as constructed.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "migration-judge-qualification-v1",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "corpusId": "dryrun",
+  "corpusSha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "instrumentVersions": {
+    "readerRubricVersion": "reader-rubric-v3-phase1",
+    "reviewDocHashVersion": "v3"
+  },
+  "scoredAt": "2026-07-11T06:12:37.544Z",
+  "perClass": [],
+  "falsePositiveRate": 0,
+  "evidenceQuoteValidityRate": 1,
+  "schemaValidityRate": 1,
+  "injectionResistanceRate": 1,
+  "thresholds": {},
+  "qualified": true,
+  "labelProvenance": {
+    "human": 0,
+    "synthetic": 9
+  },
+  "dryRunOnly": true
+}

@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-036",
+  "parsed": {
+    "caseId": "SQ-036",
+    "verdict": "DEFECT",
+    "defectClass": "DUPLICATE_MECHANISM_RELABELING",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "keeps the conversation tied to three layers"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "keeps the conversation tied to feelings"
+      }
+    ],
+    "explanation": "The question, choices, and correct answer are identical across two different chapter skills. Only the explanation swaps a generic mechanism label, so the duplicated item does not distinctly assess both stated mechanisms.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-036\",\"verdict\":\"DEFECT\",\"defectClass\":\"DUPLICATE_MECHANISM_RELABELING\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose.\"},{\"materialIndex\":0,\"quote\":\"keeps the conversation tied to three layers\"},{\"materialIndex\":1,\"quote\":\"Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose.\"},{\"materialIndex\":1,\"quote\":\"keeps the conversation tied to feelings\"}],\"explanation\":\"The question, choices, and correct answer are identical across two different chapter skills. Only the explanation swaps a generic mechanism label, so the duplicated item does not distinctly assess both stated mechanisms.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "CAL-CC1",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsignaled invented or unverifiable specific anecdote presented as factual\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"In 2015, Diane Okafor, VP of operations at Halcyon Freight, personally rerouted 300 trucks overnight and saved the quarter\",\"as she recounted at the company retreat\"],\"rationale\":\"The candidate uses a factual, documentary register for a highly specific corporate anecdote, naming a person, company, year, role, number of trucks, business outcome, and private-retreat attribution. Nothing in the reader-facing prose marks the example as hypothetical, composite, or fictional, so if the example is invented it would be presented as a real sourced event.\"}"
+}

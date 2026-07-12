@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "LNV2-KEYMISMATCH-peak-ch01-q1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "ad36a7e6f63777e1",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-peak-ch01-q1-mrh5tj83-13",
+  "scores": {
+    "retention": 92,
+    "quizzes": 84,
+    "transfer": 88,
+    "practical": 91,
+    "summaries": 90,
+    "tone": 89,
+    "limits": 86,
+    "insight": 90,
+    "density": 87,
+    "beginner": 92
+  },
+  "composite": 88.9,
+  "ship84": true,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "a",
+      "c",
+      "b",
+      "b",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=b key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "A compact, memorable line that captures the chapter's central mechanism.",
+      "verified": true
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "This gives beginners a practical test for whether a practice goal is usable.",
+      "verified": true
+    },
+    {
+      "quote": "The limit is important. Purposeful practice is not the full gold standard of a mature field with expert coaches and proven training systems.",
+      "why": "The chapter honestly bounds the method instead of overselling it.",
+      "verified": true
+    },
+    {
+      "quote": "Which tells Lin more: the whole suite or the one red line?",
+      "why": "This quiz-like phrasing in an example is clear but slightly leading and less natural than the strongest scenes.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q1: correct choice b is the most detailed and echoes 'change ... before the next attempt.'",
+    "Q2: correct choice a is the only option with a narrow set, checking, and rewriting the failing step.",
+    "Q3: correct choice c closely restates the chapter's whole-task-versus-weak-point contrast.",
+    "Q4: correct choice b is visibly longer and contains the full loop: cue, check, repeat.",
+    "Q5: correct choice b uses the chapter's giveaway phrasing around misses redesigning the next attempt.",
+    "Q7: correct choice c directly echoes 'changes the next attempt' and 'traceable' from the prose/cards.",
+    "Q8: correct choice a explains the feedback timing in chapter language.",
+    "Q9: correct choice c is the only concrete measurable target, making it easy to spot without reading deeply."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Two answers are defensible: a matches the chapter's comfort/hidden-weak-spot claim, while b adds the stronger visible-target mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct choices are identifiable by chapter-echo phrasing such as 'change the next attempt,' 'feedback arrives soon enough,' and concrete measurable targets, weakening distractor balance.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The rowing example is usable but thinner than the others because it names no place, role context, or consequence beyond the immediate drill.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter. The core move is memorable, concrete, and repeated across enough domains that a beginner can transfer it: isolate the miss, run a narrow stretch rep, use fast feedback, and change the next attempt. The examples mostly show real before-to-after decisions rather than just restating the lesson, and the chapter is honest about limits. The main weakness is quiz construction: the right answers are fair and derivable, but several are easy to guess because they carry the chapter's exact correction-loop language while distractors are plainly naive.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "b3b4beaefc9b929c60bd759336c9481b45aab3230b6ceb74d10b01cea6e780bd",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T02:14:33.513Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "8495e42ffcacb07dcc58a8c473497c7976f97687a7bb6bce1a3fb9d69032ffcb",
+    "phase2DocSha256": "9b4718e82cbea59fe774d1ce4d8e200222a31293f47513cff42833137a3fcfd3",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-peak-ch01-q1-mrh5udka-14",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "The question and even the key explanation support b, isolating and recording the two-measure turn, while c avoids the weak spot."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "A redox-only set with step checking directly targets the repeated error and changes the next attempt."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The failure is repeating the whole demo while the same weak slide remains uncorrected."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The lane-line cue plus video check targets the visible crossover before adding distance."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The improvement comes from using each miss to redesign the next grouping attempt."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "B best identifies the flaw: repetition can entrench uneven cuts unless a visible target guides correction."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Feedback matters when it is close enough to change the next attempt while the mistake is identifiable."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Plan B gives timely comparison and adjustment before the same error repeats across many boxes."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The outside-pedal and chalk-line target is specific, visible, repeatable, and correctable."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  }
+}

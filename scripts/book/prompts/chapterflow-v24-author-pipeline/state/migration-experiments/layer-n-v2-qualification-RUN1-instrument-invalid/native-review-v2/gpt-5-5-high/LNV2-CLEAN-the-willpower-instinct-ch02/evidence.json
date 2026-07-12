@@ -1,0 +1,135 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-willpower-instinct-ch02",
+  "itemId": "LNV2-CLEAN-the-willpower-instinct-ch02",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "e87d5da1e9601d67",
+  "renderedDocSha256": "22ff85767028d6a0ccdf64056f8a1cdb01b4440ca19c5ae701b1ed4ddfa3a558",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "cf7b09ac3bcc41d64910549c09164796639f2bb485848d0244fbed692d52c6fc",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CLEAN-the-willpower-instinct-ch02-mrgoxjf9-7",
+  "rawFinalMessageSha256": "5eb519fddd841071f3b2cee5a1849ecdd6e1fa5d462e60c611d29b0e2b3c35d5",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"c\", \"a\", \"b\", \"b\", \"a\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines heart rate variability as beat-to-beat rhythm shifting and links higher variability to stronger self-regulation.\",\n      \"The prose says public speaking and arithmetic under evaluators create social judgment, and Example 2 adds low control as the stress driver.\",\n      \"The prose says stress makes fast relief feel like shelter and pushes the long goal into noise.\",\n      \"The prose says brief meditation can train attention and soften stress reactivity before an urge peaks.\",\n      \"The review card and deep read say slow breathing changes body state, keeping arousal and attention control online.\",\n      \"The chapter warns that extra arousal makes the choice room louder and can crowd out long-goal comparison.\",\n      \"The full read says poor sleep makes goal attention fade behind louder cues in the room.\",\n      \"The full read says physical activity can improve mood, stress regulation, and executive function, lowering the next choice load.\",\n      \"The prose says waiting until the craving peaks is unfair because the body needs runway before the hardest second.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice b is the only option using the chapter's technical mechanism, adaptive beat-to-beat control.\",\n      \"Choice c is the only option naming the chapter's actual stress mechanism; the other choices invent physical-danger or fatigue logic.\",\n      \"Choice c is the only option with the chapter's hedge and phrase pattern: stress may push quick relief before goals return.\",\n      \"Choice a is much more mechanism-rich than the distractors and repeats the chapter's training language.\",\n      \"Choice b is the only technical body-feedback answer; a and c are dismissive simplifications.\",\n      \"Choice b is the only answer with the chapter's room/goal-weighing metaphor.\",\n      \"Choice a is the only answer combining tired attention, remembered goals, and competing cues.\",\n      \"Choice a is the only answer listing the chapter's three supported benefits of movement.\",\n      \"Choice c gives away the key by reusing the chapter's distinctive phrase: runway before the craving peaked.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 91,\n    \"quizzes\": 84,\n    \"transfer\": 86,\n    \"practical\": 90,\n    \"summaries\": 88,\n    \"tone\": 89,\n    \"limits\": 92,\n    \"insight\": 88,\n    \"density\": 83,\n    \"beginner\": 88\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Panic is a poor coach. Calm gives the future a vote.\",\n      \"why\": \"This is the chapter's strongest compressed memory hook.\"\n    },\n    {\n      \"quote\": \"Use the opposite move when speed protects life, health, or trust.\",\n      \"why\": \"The limits section is unusually concrete and prevents overselling the technique.\"\n    },\n    {\n      \"quote\": \"How would three powers of willpower (Ch 1) change the way you handle a body-first craving?\",\n      \"why\": \"This is the weakest standalone review-card moment because it depends on prior-chapter vocabulary.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz set\",\n      \"problem\": \"Correct answers are often the most mechanism-rich and chapter-phrased option, while distractors lean on absolute words like only, mainly, proved, or separate; this creates testwise tells.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"review card 6\",\n      \"problem\": \"The card depends on 'three powers of willpower (Ch 1)' without reintroducing that framework in this chapter, so it is less standalone for a cold beginner.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The line connecting the pill-bottle placement to Yi-Yuan Tang's training feels like a forced research bridge; the example works better as an environmental-cue tactic than as meditation transfer.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is shippable. The chapter has a clear core move, memorable language, practical if-then actions, and a strong limits section that tells readers when not to pause. The quiz is fair and fully derivable, though the answer style is too easy to spot because the right choices repeatedly carry the chapter's exact mechanism language while distractors sound artificially wrong. The main craft weakness is not correctness but polish: one review card relies on prior-chapter vocabulary, and a few research-to-scenario bridges feel slightly stretched.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-willpower-instinct-ch02",
+    "chapterNumber": 2,
+    "contentHash": "e87d5da1e9601d67",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CLEAN-the-willpower-instinct-ch02-mrgoxjf9-7",
+    "scores": {
+      "retention": 91,
+      "quizzes": 84,
+      "transfer": 86,
+      "practical": 90,
+      "summaries": 88,
+      "tone": 89,
+      "limits": 92,
+      "insight": 88,
+      "density": 83,
+      "beginner": 88
+    },
+    "composite": 88,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "c",
+        "a",
+        "b",
+        "b",
+        "a",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Panic is a poor coach. Calm gives the future a vote.",
+        "why": "This is the chapter's strongest compressed memory hook.",
+        "verified": true
+      },
+      {
+        "quote": "Use the opposite move when speed protects life, health, or trust.",
+        "why": "The limits section is unusually concrete and prevents overselling the technique.",
+        "verified": true
+      },
+      {
+        "quote": "How would three powers of willpower (Ch 1) change the way you handle a body-first craving?",
+        "why": "This is the weakest standalone review-card moment because it depends on prior-chapter vocabulary.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b is the only option using the chapter's technical mechanism, adaptive beat-to-beat control.",
+      "Choice c is the only option naming the chapter's actual stress mechanism; the other choices invent physical-danger or fatigue logic.",
+      "Choice c is the only option with the chapter's hedge and phrase pattern: stress may push quick relief before goals return.",
+      "Choice a is much more mechanism-rich than the distractors and repeats the chapter's training language.",
+      "Choice b is the only technical body-feedback answer; a and c are dismissive simplifications.",
+      "Choice b is the only answer with the chapter's room/goal-weighing metaphor.",
+      "Choice a is the only answer combining tired attention, remembered goals, and competing cues.",
+      "Choice a is the only answer listing the chapter's three supported benefits of movement.",
+      "Choice c gives away the key by reusing the chapter's distinctive phrase: runway before the craving peaked."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz set",
+        "problem": "Correct answers are often the most mechanism-rich and chapter-phrased option, while distractors lean on absolute words like only, mainly, proved, or separate; this creates testwise tells.",
+        "mustFix": false
+      },
+      {
+        "unit": "review card 6",
+        "problem": "The card depends on 'three powers of willpower (Ch 1)' without reintroducing that framework in this chapter, so it is less standalone for a cold beginner.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The line connecting the pill-bottle placement to Yi-Yuan Tang's training feels like a forced research bridge; the example works better as an environmental-cue tactic than as meditation transfer.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is shippable. The chapter has a clear core move, memorable language, practical if-then actions, and a strong limits section that tells readers when not to pause. The quiz is fair and fully derivable, though the answer style is too easy to spot because the right choices repeatedly carry the chapter's exact mechanism language while distractors sound artificially wrong. The main craft weakness is not correctness but polish: one review card relies on prior-chapter vocabulary, and a few research-to-scenario bridges feel slightly stretched.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c1320c5b181a6623a6c868f57da9a3c04ee342748465aad71da4875b33539296",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:22:23.494Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "cf7b09ac3bcc41d64910549c09164796639f2bb485848d0244fbed692d52c6fc",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:21:07.604Z",
+  "durationMs": 0
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P11",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported fabricated scene details presented as fact in a real sourced case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":\"\\\"Hard specifics allowed: claireabelle, teen relationship, family interactions, whether-or-not frame\\\"; \\\"After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt.\\\"; \\\"The tiny cursor after the question is doing the narrowing work.\\\"; \\\"Claire underlines the break-up-or-not wording, then writes two missing questions in the margin\\\"\",\"rationale\":\"The candidate preserves the supported dilemma but invents a real name, time, physical setting, props, cursor detail, and subsequent writing actions that the source plan does not authorize. These details are narrated declaratively in the same factual register as the verified case, materially fictionalizing a real-world account.\"}"
+}

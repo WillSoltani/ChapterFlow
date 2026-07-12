@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P13",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Unsupported invented details presented as factual history\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":\"SOURCE_PLAN: \\\"Hard specifics allowed: Lexicon Branding, product naming, multiple teams, brand-name development\\\"; CANDIDATE: \\\"On the second morning in Lexicon Branding's naming studio, the naming lead first tapes one favorite product name at the center of the wall and hears the room argue taste.\\\"; CANDIDATE: \\\"Later the product naming wall holds three routes from multiple teams: one descriptive, one suggestive, one short and invented.\\\"\",\"rationale\":\"The candidate places a real company and its supported naming process inside a concrete historical-sounding scene, but the source plan does not support the timing, studio setting, naming lead, taped favorite, argument, wall, exact number and types of routes, or sequence of events. These invented particulars are narrated in the same factual register as the verified case rather than clearly labeled as hypothetical, so the content should be blocked.\"}"
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "CAL-RF-UNS",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"UNSUPPORTED\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Trust accumulates in small, repeated moments.\",\"Small moments build trust, repeated over time.\"],\"rationale\":\"The supplied source and candidate are sufficient to assess the alleged contradiction. The candidate faithfully paraphrases the source’s meaning that trust develops through small moments repeated over time, so the claimed contradiction is not supported.\"}"
+}

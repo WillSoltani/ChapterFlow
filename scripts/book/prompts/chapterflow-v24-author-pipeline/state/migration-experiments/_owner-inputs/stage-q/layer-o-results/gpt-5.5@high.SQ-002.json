@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-002",
+  "parsed": {
+    "caseId": "SQ-002",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Letting go is deliberate, acknowledged to the self, and routed elsewhere"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Letting go is not pretending; it is deciding where the grievance actually belongs."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Letting go means processing it somewhere real. Suppression means leaving it underground."
+      }
+    ],
+    "explanation": "The candidate preserves the source distinction: letting go is deliberate, acknowledged, and processed elsewhere rather than confrontation, while suppression is unprocessed/underground. No material defect is shown.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-002\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Letting go is deliberate, acknowledged to the self, and routed elsewhere\"},{\"materialIndex\":1,\"quote\":\"Letting go is not pretending; it is deciding where the grievance actually belongs.\"},{\"materialIndex\":1,\"quote\":\"Letting go means processing it somewhere real. Suppression means leaving it underground.\"}],\"explanation\":\"The candidate preserves the source distinction: letting go is deliberate, acknowledged, and processed elsewhere rather than confrontation, while suppression is unprocessed/underground. No material defect is shown.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

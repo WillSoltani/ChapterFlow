@@ -1,0 +1,73 @@
+# QUIZ KEY ADJUDICATION — The Four Villains of Decision Making
+
+Committed blind derivation sha256: 3198c33176cc87802f69d0661a5f036492602166f0eb81930756904f484f45b9
+Phase version: phase2-v1
+
+## Questions and choices
+Q1. In a product review, the HopeLab planner sees his team using WRAP as a loose reminder to slow down. Which reply best fits the model's structure?
+   a) The HopeLab planner should use WRAP as a general pause so the team talks more carefully.
+   b) The HopeLab planner should match Widen, Reality-test, Attain distance, and Prepare to the four choice stages.
+   c) The HopeLab planner should save WRAP for final review after the team has picked a path.
+
+Q2. The prototype planner hears a vendor choice framed as approve this firm or cancel the project. What should she question first?
+   a) The prototype planner should gather more vendor data before asking whether the vendor list is too small.
+   b) The prototype planner should add real alternatives before the yes-or-no frame hides better paths.
+   c) The prototype planner should keep the frame tight so the evidence review stays manageable.
+
+Q3. The product lead starts a research file after the team already likes one plan. Which move best guards against confirmation bias?
+   a) The product lead should collect a stronger file for the favorite plan before critics arrive.
+   b) The product lead should ask supporters to polish the case so objections are easier to answer.
+   c) The product lead should seek disconfirming evidence before the favorite plan sets the search.
+
+Q4. During a long-term budget call, you feel attached to an old service line that may no longer fit. Which response uses the emotion lesson well?
+   a) You should ignore the attachment and treat all emotion as noise in the budget call.
+   b) You should wait for the feeling to fade before any budget work can continue.
+   c) You should let the attachment speak, then ask what will still matter later.
+
+Q5. At the launch board, the Intel reviewer sees one neat forecast line and a confident owner. What would most directly counter overconfidence?
+   a) The Intel reviewer should map a wider range of plausible outcomes before trusting the forecast.
+   b) The Intel reviewer should treat the upbeat forecast as useful proof that the launch is sound.
+   c) The Intel reviewer should read confidence as optimism and adjust only if the mood turns negative.
+
+Q6. Before a prototype budget is spent, the launch planner is planning the first phase of a HopeLab-style design search. Which choice follows Steve Cole's logic?
+   a) The launch planner should wait until one firm looks safest, then buy a longer single-firm pitch.
+   b) The launch planner should cut the field early so the first design brief costs less to manage.
+   c) The launch planner should fund parallel first passes so comparison teaches before commitment.
+
+Q7. In a strategy memo, the team lead is stuck between a legacy product and a stronger new market. How should she use the outsider question?
+   a) The team lead should ask what a fresh leader would do without the old-product attachment.
+   b) The team lead should ask an outsider to decide because outside leaders know the technology better.
+   c) The team lead should protect the legacy product until the old attachment fades on its own.
+
+Q8. The decision lead proposes one final review to catch every decision flaw at once. Which response best fits the four-villain idea?
+   a) The decision lead should interrupt framing, evidence, emotion, and forecasting with different moves.
+   b) The decision lead should hold one careful final review after the whole choice is assembled.
+   c) The decision lead should treat the four villains as one caution about being more thoughtful.
+
+Q9. The product lead's team used WRAP and still got a rough outcome. What should she defend about the process?
+   a) The product lead should promise that a clean WRAP pass will make the next outcome right.
+   b) The product lead should defend the process as improving odds while uncertainty remains.
+   c) The product lead should drop the process when the result cannot be known ahead of time.
+
+## COMMITTED DERIVATION (produced blind, before any key access — immutable)
+Q1 [decisive-ch01-q01]: derived b — confidence high — mechanism: The prose defines WRAP as four named moves matched to four different dangers, not a loose pause or final check.
+   ambiguity: Choice b says 'four choice stages,' while the prose more often frames them as four dangers/repair moves; still clearly the best fit.
+Q2 [decisive-ch01-q02]: derived b — confidence high — mechanism: The chapter says a narrow yes-or-no frame should be repaired by widening live options before evidence decorates the cramped choice.
+Q3 [decisive-ch01-q03]: derived c — confidence high — mechanism: Reality-testing requires evidence that can surprise or weaken the favorite answer, not a stronger advocacy file.
+Q4 [decisive-ch01-q04]: derived c — confidence high — mechanism: The Intel/Grove section says emotion can carry information, but distance quiets short-term attachment so the long term can be judged.
+Q5 [decisive-ch01-q05]: derived a — confidence high — mechanism: The overconfidence repair is to name a wider range of futures rather than trust one neat forecast line.
+Q6 [decisive-ch01-q06]: derived c — confidence high — mechanism: Cole's HopeLab logic is parallel first passes so comparison teaches the team before commitment gets expensive.
+Q7 [decisive-ch01-q07]: derived a — confidence high — mechanism: Grove's outsider question asks what a fresh leader would do without attachment, and the prose explicitly says outsiders were not smarter.
+Q8 [decisive-ch01-q08]: derived a — confidence high — mechanism: The chapter says each villain bends a different part of the choice and each needs a different WRAP move.
+Q9 [decisive-ch01-q09]: derived b — confidence high — mechanism: The prose says good process raises the odds without promising the outcome because uncertainty remains.
+
+## ANSWER KEY (with explanations)
+Q1: c — WRAP is not one soft warning. Each move counters a different stage: frame, evidence, emotion, and forecast.
+Q2: b — Narrow framing happens before data review. More facts can still serve a cramped yes-or-no choice if the option set stays small.
+Q3: c — Confirmation bias can be sincere. The repair is to gather evidence that can challenge the favored plan, not just defend it.
+Q4: c — The target is short-term distortion, not emotion itself. Distance lets the feeling be heard without letting it own the long-term call.
+Q5: a — Overconfidence is misplaced certainty about prediction accuracy. A range of outcomes keeps one imagined future from posing as fact.
+Q6: c — Parallel exploration is not indecision. It buys comparison data before the team locks onto one design path.
+Q7: a — Grove's question worked by creating distance from attachment. It did not assume outsiders had better technical knowledge.
+Q8: a — The villains strike at different stages. A late review cannot restore options or evidence that never entered the choice.
+Q9: b — Good process does not guarantee a result. It improves the choice by widening evidence and preparing for variance.

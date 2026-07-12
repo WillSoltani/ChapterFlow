@@ -1,0 +1,140 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-willpower-instinct-ch01",
+  "itemId": "LNV2-CLEAN-the-willpower-instinct-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "4984962de1bbbc93",
+  "renderedDocSha256": "9fdcea43132a18b37f66e10a6e5f0f334bb83db7bab2c3be3afdbb0a54512823",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-willpower-instinct-ch01-mrgoqsl7-1",
+  "rawFinalMessageSha256": "ceb2e73b2a02ddc3c82558c51a8924779eb61107fcbd5bb4200427b125ea0b8e",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"a\", \"a\", \"b\", \"b\", \"b\", \"a\", \"c\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines willpower as I will, I won't, and I want, and says refusal alone is only one third.\",\n      \"The Miller/Cohen passage says prefrontal control keeps goals active and tilts attention and action toward them.\",\n      \"The Gage passage says speech survived but steadiness, planning, and social restraint changed after frontal damage.\",\n      \"The self-awareness section says change requires noticing the moment before the action hardens, not regretting after.\",\n      \"The social-cost section says self-control helps people wait, keep promises, share resources, soften anger, and repair conflict.\",\n      \"The chapter says a vivid urge can beat a quiet value unless the larger want becomes active at the choice point.\",\n      \"The prose says the short-term relief want and the long-term goal can both be real; support and attention decide which guides action.\",\n      \"The practical section says concrete will/won't/want sentences expose whether the cue, barrier, or value failed.\",\n      \"The desk routine example and control account say prefrontal control biases attention and response when routine conflicts with a goal.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Q1: c is the only option naming all three powers; a and b are visibly incomplete or punitive.\",\n      \"Q2: a echoes the technical wording in the stem; b and c use implausible absolutes.\",\n      \"Q3: a restates the stem with the chapter's core takeaway; b and c are extreme.\",\n      \"Q4: b contains the giveaway phrase 'just before,' matching the self-awareness lesson.\",\n      \"Q5: b is the only socially constructive answer; a and c are exaggerated.\",\n      \"Q6: b uses the chapter's repeated 'choice point' logic; a and c overstate with 'false' and 'only.'\",\n      \"Q7: a directly echoes 'both motives can be sincere'; b and c are cartoonish distractors.\",\n      \"Q8: c is the only option involving experiment and feedback; a and b reject the lesson.\",\n      \"Q9: c largely repeats Q2's correct mechanism, making the answer easy to infer.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 84,\n    \"transfer\": 82,\n    \"practical\": 88,\n    \"summaries\": 86,\n    \"tone\": 84,\n    \"limits\": 80,\n    \"insight\": 89,\n    \"density\": 83,\n    \"beginner\": 90\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Refusal is only one third of willpower. When a lapse repeats, ask which power went quiet before you call yourself weak.\",\n      \"why\": \"This is the chapter's strongest memorable compression of the core move.\"\n    },\n    {\n      \"quote\": \"A goal must be present to have power. The map will not make the snack, purchase, or angry reply disappear.\",\n      \"why\": \"This gives both mechanism and an honest limit without overpromising.\"\n    },\n    {\n      \"quote\": \"For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check\",\n      \"why\": \"The weekly practice is less practical than the rest because it asks readers to spend half a week using the weaker strategy.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q9\",\n      \"problem\": \"It tests nearly the same prefrontal-control mechanism as Q2, so it is less diagnostic than the rest of the quiz.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"Several distractors are easy to eliminate because they use absolutes or obviously punitive claims such as fake goals, fixed character, or avoiding cooperation.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"weekly practice\",\n      \"problem\": \"The first-half/second-half comparison is more cumbersome than the chapter's low-friction 24-hour practice and asks readers to continue a known weak rule for several days.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The setup compresses too many family roles and logistics into one sentence, making the scene harder to parse than the lesson requires.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable chapter. The core idea is clear, memorable, and usable: willpower is not harsher refusal but the sorting of a struggle into starting, stopping, and remembering the larger want. The prose gives beginners enough brain mechanism without jargon, and the examples mostly transfer the idea into concrete moments. The main weaknesses are quiz tells, repeated quiz coverage, and one practice prompt that feels less practical than the rest, but none of these block a professional release.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-willpower-instinct-ch01",
+    "chapterNumber": 1,
+    "contentHash": "4984962de1bbbc93",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-willpower-instinct-ch01-mrgoqsl7-1",
+    "scores": {
+      "retention": 88,
+      "quizzes": 84,
+      "transfer": 82,
+      "practical": 88,
+      "summaries": 86,
+      "tone": 84,
+      "limits": 80,
+      "insight": 89,
+      "density": 83,
+      "beginner": 90
+    },
+    "composite": 85.3,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "a",
+        "a",
+        "b",
+        "b",
+        "b",
+        "a",
+        "c",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Refusal is only one third of willpower. When a lapse repeats, ask which power went quiet before you call yourself weak.",
+        "why": "This is the chapter's strongest memorable compression of the core move.",
+        "verified": true
+      },
+      {
+        "quote": "A goal must be present to have power. The map will not make the snack, purchase, or angry reply disappear.",
+        "why": "This gives both mechanism and an honest limit without overpromising.",
+        "verified": true
+      },
+      {
+        "quote": "For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check",
+        "why": "The weekly practice is less practical than the rest because it asks readers to spend half a week using the weaker strategy.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q1: c is the only option naming all three powers; a and b are visibly incomplete or punitive.",
+      "Q2: a echoes the technical wording in the stem; b and c use implausible absolutes.",
+      "Q3: a restates the stem with the chapter's core takeaway; b and c are extreme.",
+      "Q4: b contains the giveaway phrase 'just before,' matching the self-awareness lesson.",
+      "Q5: b is the only socially constructive answer; a and c are exaggerated.",
+      "Q6: b uses the chapter's repeated 'choice point' logic; a and c overstate with 'false' and 'only.'",
+      "Q7: a directly echoes 'both motives can be sincere'; b and c are cartoonish distractors.",
+      "Q8: c is the only option involving experiment and feedback; a and b reject the lesson.",
+      "Q9: c largely repeats Q2's correct mechanism, making the answer easy to infer."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q9",
+        "problem": "It tests nearly the same prefrontal-control mechanism as Q2, so it is less diagnostic than the rest of the quiz.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz overall",
+        "problem": "Several distractors are easy to eliminate because they use absolutes or obviously punitive claims such as fake goals, fixed character, or avoiding cooperation.",
+        "mustFix": false
+      },
+      {
+        "unit": "weekly practice",
+        "problem": "The first-half/second-half comparison is more cumbersome than the chapter's low-friction 24-hour practice and asks readers to continue a known weak rule for several days.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The setup compresses too many family roles and logistics into one sentence, making the scene harder to parse than the lesson requires.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter. The core idea is clear, memorable, and usable: willpower is not harsher refusal but the sorting of a struggle into starting, stopping, and remembering the larger want. The prose gives beginners enough brain mechanism without jargon, and the examples mostly transfer the idea into concrete moments. The main weaknesses are quiz tells, repeated quiz coverage, and one practice prompt that feels less practical than the rest, but none of these block a professional release.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c412cf1d517372befed726feded2c9a6f655d199dca4e5736b7138dc087d359a",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:16:55.803Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:15:52.887Z",
+  "durationMs": 0
+}

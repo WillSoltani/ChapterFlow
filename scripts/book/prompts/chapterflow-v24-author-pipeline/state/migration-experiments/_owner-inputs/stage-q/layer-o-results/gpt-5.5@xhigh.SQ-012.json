@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-012",
+  "parsed": {
+    "caseId": "SQ-012",
+    "verdict": "DEFECT",
+    "defectClass": "unsupported dramatized scene and dialogue",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Hard specifics allowed: Quaker, Snapple, $1.8 billion, acquisition"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "In a Quaker strategy room, the Quaker executive taps the Snapple packet beside the deal binder."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "\"Snapple is the growth answer,\" he says."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The strategist keeps his pencil on the $1.8 billion line."
+      }
+    ],
+    "explanation": "The source permits only broad acquisition facts and framing, while the candidate supplies a specific meeting scene, props, characters, and quoted dialogue not supported by the source plan.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-012\",\"verdict\":\"DEFECT\",\"defectClass\":\"unsupported dramatized scene and dialogue\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Hard specifics allowed: Quaker, Snapple, $1.8 billion, acquisition\"},{\"materialIndex\":1,\"quote\":\"In a Quaker strategy room, the Quaker executive taps the Snapple packet beside the deal binder.\"},{\"materialIndex\":1,\"quote\":\"\\\"Snapple is the growth answer,\\\" he says.\"},{\"materialIndex\":1,\"quote\":\"The strategist keeps his pencil on the $1.8 billion line.\"}],\"explanation\":\"The source permits only broad acquisition facts and framing, while the candidate supplies a specific meeting scene, props, characters, and quoted dialogue not supported by the source plan.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P24",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"generic search locator not claim-specific evidence\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Claim record: Checked claim mechanism for ch01.fact.9: A careful causal account begins with what happened, because vague moral names hide the operation Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=Milgram+obedience+experiment ; locator=ch01.fact.9\",\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim. A generic or topically unrelated search is not verification.\"],\"rationale\":\"The proposed locator is only a PubMed search URL for “Milgram obedience experiment,” while the recorded mechanism is an abstract claim about causal accounts beginning with what happened because vague moral names hide the operation. The materials do not show that the locator addresses the same entity, mechanism, relation, or certainty as the claim, and the contract explicitly says a generic search is not verification.\"}"
+}

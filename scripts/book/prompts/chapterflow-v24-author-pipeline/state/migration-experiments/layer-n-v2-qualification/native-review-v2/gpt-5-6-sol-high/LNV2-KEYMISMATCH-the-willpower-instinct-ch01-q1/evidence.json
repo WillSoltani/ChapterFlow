@@ -1,0 +1,348 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1",
+  "itemId": "LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1",
+  "kind": "quiz-key-mismatch",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "43b23cfa0700b3e1",
+  "renderedDocSha256": "9fdcea43132a18b37f66e10a6e5f0f334bb83db7bab2c3be3afdbb0a54512823",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-mrh8m0a2-45",
+  "rawFinalMessageSha256": "8243bac0840e4839d7d2d1f6af2c046507d08f4a7540e1e18b13b05c8ba8d5cc",
+  "rawFinalMessage": "```json\n{\n  \"schema\": \"quiz-adjudication-v1\",\n  \"derivationSha256\": \"f4d3b3ae11373cd0280f0ed8d2984ea466496893c69cd67914f8c3cb3893a043\",\n  \"documentSha256\": \"\",\n  \"reviewerSessionId\": \"\",\n  \"items\": [\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q01\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": false,\n      \"keyCorrect\": \"wrong\",\n      \"rationale\": \"Choice c directly names the I will, I won't, and I want powers, while keyed choice a addresses refusal alone.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q02\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a uniquely explains how an active goal can bias attention and response when an alert competes for control.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q03\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a captures the supported lesson that frontal injury can impair planning and restraint despite survival and preserved basic abilities.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q04\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b identifies the cue and choice point that Amelia must notice before she can interrupt the automatic reply.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q05\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b is the only option supported by the failures of commitment, trust, and repair described in the social scenario.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q06\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b correctly distinguishes valuing the run from keeping that goal salient when the snack cue appears.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q07\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a correctly allows both motives to be sincere and explains action through their relative support at the choice point.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q08\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c uniquely uses the concrete behavior, observed trigger, and feedback as a small adjustable experiment.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q09\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c accurately describes prefrontal control as biasing attention and response when routine behavior conflicts with a current goal.\"\n    }\n  ]\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "43b23cfa0700b3e1",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-mrh8m0a2-45",
+    "scores": {
+      "retention": 92,
+      "quizzes": 77,
+      "transfer": 65,
+      "practical": 79,
+      "summaries": 76,
+      "tone": 78,
+      "limits": 83,
+      "insight": 88,
+      "density": 73,
+      "beginner": 91
+    },
+    "composite": 79.9,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "a",
+        "a",
+        "b",
+        "b",
+        "b",
+        "a",
+        "c",
+        "c"
+      ],
+      "matches": 8,
+      "of": 9,
+      "disagreements": [
+        "Q1: reader=c key=a"
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "Willpower is the skill of making the longer want visible while the shorter want is still talking. The loudest want is not always the deepest want.",
+        "why": "This is the chapter's clearest and most memorable statement of the underlying mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "A goal must be present to have power.",
+        "why": "A compact line that makes the attention mechanism easy to retain and reuse.",
+        "verified": true
+      },
+      {
+        "quote": "The clinic training room has a safe bet written on the whiteboard: a man who can talk after a rail accident can still steer himself.",
+        "why": "It mislabels Gage's blasting accident as a rail accident and embeds the historical case inside an unlabeled invented scene.",
+        "verified": true
+      },
+      {
+        "quote": "Weekly practice: For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check and compare which half made the next action clearer.",
+        "why": "The practice needlessly asks readers to continue a known-unhelpful rule for half a week.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Across the quiz, incorrect choices repeatedly use giveaway absolutes such as \"fixed,\" \"only,\" \"fully,\" \"must be fake,\" and \"whenever,\" while correct choices use the chapter's measured mechanism language.",
+      "Q2, Q3, and Q7 make the correct answer the most nuanced and substantially longest choice.",
+      "Q1 and Q8 nearly repeat the chapter's named method and vocabulary, making recognition possible without understanding the examples.",
+      "The answer letters are evenly distributed, so there is no useful position-pattern tell."
+    ],
+    "complaints": [
+      {
+        "unit": "hook",
+        "problem": "The compressed phrase \"your first habit is to call every lapse weak refusal\" is syntactically awkward and does not orient a cold reader as clearly as the fast read does.",
+        "mustFix": false
+      },
+      {
+        "unit": "full read",
+        "problem": "As a promised stand-alone layer, it repeatedly invokes the three powers without clearly defining the distinct jobs of I will, I won't, and I want.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 1",
+        "problem": "It calls the Phineas Gage event a \"rail accident,\" although the chapter itself describes a tamping-iron accident; railroad work was the setting, not the accident mechanism. This is FACTUALLY WRONG.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 1",
+        "problem": "Vivian, the training-room event, and the volunteers' expectations are presented as a concrete occurrence without being labeled hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 2",
+        "problem": "Warren's named domestic scene and quoted dialogue are presented without any indication that they are hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 3",
+        "problem": "Amelia's named clinic incident and dialogue are presented as an occurrence without being labeled hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 4",
+        "problem": "Brooklyn's detailed locker-room scene is presented as an occurrence without being labeled hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 5",
+        "problem": "Jeanne's named family call and quoted dialogue are presented without being labeled hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 6",
+        "problem": "Gemma's named pharmacy incident and quoted text are presented without being labeled hypothetical. This is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "examples 2-6",
+        "problem": "The repeated pharmacy, clinic, family-message, and impulse vignettes demonstrate essentially the same attention move, limiting transfer to genuinely different constraints or failure modes.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "Most distractors are implausible absolutes or direct denials of the chapter, so the quiz rewards test-wise tone recognition more than discrimination among credible mechanisms.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q5",
+        "problem": "The stem asks about willpower's \"roots,\" but the prose establishes a present social function rather than an evolutionary or historical origin.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan",
+        "problem": "The core-skill instructions say to add a barrier after identifying any missing power, although the chapter separately says failures may require a start cue, a barrier, or a made-present value. This is SOURCE-CONTRADICTORY guidance.",
+        "mustFix": true
+      },
+      {
+        "unit": "weekly practice",
+        "problem": "The comparison exercise requires readers to preserve their usual all-or-nothing rule for half the week, adding friction and avoidable failed repetitions when they could compare prospectively or against an existing baseline.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a strong, teachable core: divide willpower into starting, stopping, and remembering the larger value, then make that value active before an automatic response finishes. Its best lines are memorable, the brain mechanism is explained plainly, and the immediate check is accessible to beginners. It falls below the professional shipping bar because the full-read layer is not fully stand-alone, the quiz relies heavily on cartoonishly absolute distractors, the implementation plan collapses several distinct remedies into a barrier, and the example section presents numerous named, detailed incidents and quotations without marking them as hypothetical. Example 1 also contains the concrete factual error \"rail accident.\" Labeling constructed scenarios, correcting that error, aligning the plan with the chapter's cue/barrier/value distinctions, and making the quiz alternatives more plausible would materially improve it.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c412cf1d517372befed726feded2c9a6f655d199dca4e5736b7138dc087d359a",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:33:27.489Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+    "quizAdjudication": {
+      "status": "adjudicated",
+      "derivationSha256": "f4d3b3ae11373cd0280f0ed8d2984ea466496893c69cd67914f8c3cb3893a043",
+      "phase2DocSha256": "580aa2ac83fae06daf442088bf2a1760c4305a33613c6d4a46e217b19e520e8a",
+      "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-mrh8nubl-46",
+      "items": [
+        {
+          "itemId": "the-willpower-instinct-ch01-q01",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 2,
+          "agreement": false,
+          "keyCorrect": "wrong",
+          "rationale": "Choice c directly names the I will, I won't, and I want powers, while keyed choice a addresses refusal alone."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q02",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a uniquely explains how an active goal can bias attention and response when an alert competes for control."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q03",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a captures the supported lesson that frontal injury can impair planning and restraint despite survival and preserved basic abilities."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q04",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b identifies the cue and choice point that Amelia must notice before she can interrupt the automatic reply."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q05",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is the only option supported by the failures of commitment, trust, and repair described in the social scenario."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q06",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b correctly distinguishes valuing the run from keeping that goal salient when the snack cue appears."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q07",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a correctly allows both motives to be sincere and explains action through their relative support at the choice point."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q08",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c uniquely uses the concrete behavior, observed trigger, and feedback as a small adjustable experiment."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q09",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c accurately describes prefrontal control as biasing attention and response when routine behavior conflicts with a current goal."
+        }
+      ],
+      "ambiguousCount": 0,
+      "keyWrongCount": 1
+    }
+  },
+  "phase2": {
+    "status": "adjudicated",
+    "derivationSha256": "f4d3b3ae11373cd0280f0ed8d2984ea466496893c69cd67914f8c3cb3893a043",
+    "phase2DocSha256": "580aa2ac83fae06daf442088bf2a1760c4305a33613c6d4a46e217b19e520e8a",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-mrh8nubl-46",
+    "items": [
+      {
+        "itemId": "the-willpower-instinct-ch01-q01",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 2,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice c directly names the I will, I won't, and I want powers, while keyed choice a addresses refusal alone."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a uniquely explains how an active goal can bias attention and response when an alert competes for control."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a captures the supported lesson that frontal injury can impair planning and restraint despite survival and preserved basic abilities."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b identifies the cue and choice point that Amelia must notice before she can interrupt the automatic reply."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is the only option supported by the failures of commitment, trust, and repair described in the social scenario."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b correctly distinguishes valuing the run from keeping that goal salient when the snack cue appears."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a correctly allows both motives to be sincere and explains action through their relative support at the choice point."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q08",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c uniquely uses the concrete behavior, observed trigger, and feedback as a small adjustable experiment."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c accurately describes prefrontal control as biasing attention and response when routine behavior conflicts with a current goal."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "phase-1 keyCheck.disagreements + phase-2 quizAdjudication.items[].keyCorrect==='wrong'",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:32:01.897Z",
+  "durationMs": 0
+}

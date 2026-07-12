@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-030",
+  "parsed": {
+    "caseId": "SQ-030",
+    "verdict": "DEFECT",
+    "defectClass": "LOCATOR_MECHANISM_MISMATCH",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "The time-scale method is useful for prevention, since changing upstream context may be more effe"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "https://pubmed.ncbi.nlm.nih.gov/?term=MAOA+maltreatment+Caspi+2002"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The locator is a generic PubMed search about MAOA, maltreatment, and Caspi 2002; it does not specifically evidence the claimed prevention mechanism involving a time-scale method and changing upstream context.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-030\",\"verdict\":\"DEFECT\",\"defectClass\":\"LOCATOR_MECHANISM_MISMATCH\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"The time-scale method is useful for prevention, since changing upstream context may be more effe\"},{\"materialIndex\":0,\"quote\":\"https://pubmed.ncbi.nlm.nih.gov/?term=MAOA+maltreatment+Caspi+2002\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The locator is a generic PubMed search about MAOA, maltreatment, and Caspi 2002; it does not specifically evidence the claimed prevention mechanism involving a time-scale method and changing upstream context.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

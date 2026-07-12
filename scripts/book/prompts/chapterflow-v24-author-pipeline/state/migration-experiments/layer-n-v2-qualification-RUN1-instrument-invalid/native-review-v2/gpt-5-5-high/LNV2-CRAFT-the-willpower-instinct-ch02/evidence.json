@@ -1,0 +1,139 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-the-willpower-instinct-ch02",
+  "itemId": "LNV2-CRAFT-the-willpower-instinct-ch02",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "eb4a500e0431ce09",
+  "renderedDocSha256": "62c11a049e8c23fbc728aa144b57f1c18b7f2b0d45a03e1f49aa550d3cdbb7b9",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "b37cf9fb32593ae85d25ae2c57289b022ea40fd3a386be113d955670d1abd154",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CRAFT-the-willpower-instinct-ch02-mrgp96zy-19",
+  "rawFinalMessageSha256": "5e49e827c792c536129c731e01787bc35ecb4b2815977810417516da63cc5465",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"c\", \"a\", \"b\", \"b\", \"a\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines heart rate variability as beat-to-beat rhythm shifting and links higher variability with stronger self-regulation.\",\n      \"The Trier description says public speaking/arithmetic under evaluator judgment can trigger bodily stress without being chased or injured.\",\n      \"The chapter says stress narrows attention toward fast relief, making cookies, purchases, or sharp replies feel like shelter.\",\n      \"Tang's training is presented as brief practice that steadies attention and softens stress reactivity before an urge peaks.\",\n      \"The prose and review card say slow breathing changes body state, arousal, attention, and control rather than merely distracting.\",\n      \"Pause-and-plan questions extra arousal because a loud body state can crowd out future consequences and goal attention.\",\n      \"The sleep section says tired attention loses grip and loud cues can beat the goal meant to be remembered.\",\n      \"The movement paragraph says activity can improve mood, stress regulation, and executive function, lowering the next choice's load.\",\n      \"The chapter says waiting until the craving peaks is unfair because the body needs runway before the hardest moment.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Q2: the correct choice repeats the chapter/example phrase 'social judgment and low control' almost verbatim.\",\n      \"Q4, Q6, Q7, Q8, and Q9: the correct choices are often the most mechanistic and chapter-shaped, making them easier to spot by test-taking pattern.\",\n      \"Q9: 'runway before the craving peaked' is a direct giveaway phrase from the prose.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 89,\n    \"quizzes\": 86,\n    \"transfer\": 82,\n    \"practical\": 90,\n    \"summaries\": 87,\n    \"tone\": 82,\n    \"limits\": 93,\n    \"insight\": 89,\n    \"density\": 84,\n    \"beginner\": 91\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Panic is a poor coach. Calm gives the future a vote.\",\n      \"why\": \"Strongest compact expression of the chapter's core mechanism.\"\n    },\n    {\n      \"quote\": \"Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.\",\n      \"why\": \"Excellent boundary-setting that prevents the technique from becoming avoidance.\"\n    },\n    {\n      \"quote\": \"In the end, it really just comes down to applying this consistently and not overthinking it.\",\n      \"why\": \"Weakest tone moment: generic filler that undercuts an otherwise concrete example.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q2\",\n      \"problem\": \"The correct answer echoes 'social judgment and low control' from the prose/example closely enough to be guessable.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q9\",\n      \"problem\": \"The correct answer uses the chapter's distinctive 'runway before the craving peaked' language, creating a phrasing tell.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The final sentence is generic advice rather than example-specific mechanism, giving the example a template smell.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The line connecting Kelsey's object placement to Yi-Yuan Tang's attention training is compressed and a little forced.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"review card 6\",\n      \"problem\": \"It imports Ch 1 terminology without explanation, so it is less standalone for a cold reader than the other cards.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable chapter: the core move is memorable, bodily, and practical, with strong limits around when not to pause. The quiz is fair and fully derivable, though several correct answers reveal themselves through chapter-specific phrasing. The examples mostly transfer well because they show a small cost before the urge peaks, but a few lines feel generic or over-compressed. No must-fix reader-harming defect appears on the page.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-the-willpower-instinct-ch02-chapter",
+    "chapterNumber": 2,
+    "contentHash": "eb4a500e0431ce09",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CRAFT-the-willpower-instinct-ch02-mrgp96zy-19",
+    "scores": {
+      "retention": 89,
+      "quizzes": 86,
+      "transfer": 82,
+      "practical": 90,
+      "summaries": 87,
+      "tone": 82,
+      "limits": 93,
+      "insight": 89,
+      "density": 84,
+      "beginner": 91
+    },
+    "composite": 87.2,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "c",
+        "a",
+        "b",
+        "b",
+        "a",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Panic is a poor coach. Calm gives the future a vote.",
+        "why": "Strongest compact expression of the chapter's core mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.",
+        "why": "Excellent boundary-setting that prevents the technique from becoming avoidance.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, it really just comes down to applying this consistently and not overthinking it.",
+        "why": "Weakest tone moment: generic filler that undercuts an otherwise concrete example.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q2: the correct choice repeats the chapter/example phrase 'social judgment and low control' almost verbatim.",
+      "Q4, Q6, Q7, Q8, and Q9: the correct choices are often the most mechanistic and chapter-shaped, making them easier to spot by test-taking pattern.",
+      "Q9: 'runway before the craving peaked' is a direct giveaway phrase from the prose."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q2",
+        "problem": "The correct answer echoes 'social judgment and low control' from the prose/example closely enough to be guessable.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q9",
+        "problem": "The correct answer uses the chapter's distinctive 'runway before the craving peaked' language, creating a phrasing tell.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The final sentence is generic advice rather than example-specific mechanism, giving the example a template smell.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The line connecting Kelsey's object placement to Yi-Yuan Tang's attention training is compressed and a little forced.",
+        "mustFix": false
+      },
+      {
+        "unit": "review card 6",
+        "problem": "It imports Ch 1 terminology without explanation, so it is less standalone for a cold reader than the other cards.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter: the core move is memorable, bodily, and practical, with strong limits around when not to pause. The quiz is fair and fully derivable, though several correct answers reveal themselves through chapter-specific phrasing. The examples mostly transfer well because they show a small cost before the urge peaks, but a few lines feel generic or over-compressed. No must-fix reader-harming defect appears on the page.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "75b4e0e22b68e57b5c8ea05781f3fda57fb6a473eed5d042501f1315bf816208",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:31:12.760Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "b37cf9fb32593ae85d25ae2c57289b022ea40fd3a386be113d955670d1abd154",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:30:11.373Z",
+  "durationMs": 0
+}

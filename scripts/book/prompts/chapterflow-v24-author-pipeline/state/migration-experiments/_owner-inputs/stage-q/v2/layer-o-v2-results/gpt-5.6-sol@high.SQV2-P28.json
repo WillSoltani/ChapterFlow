@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P28",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"duplicated generic item with superficial chapter-skill relabeling\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":\"“Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose.”; “The best choice keeps the conversation tied to three layers and creates room for new information.”; “The best choice keeps the conversation tied to feelings and creates room for new information.”\",\"rationale\":\"Both quiz instances use the identical scenario, choices, and correct answer, while the explanations merely replace “three layers” with “feelings.” The correct action is broadly useful but does not require learners to distinguish or apply the specific mechanism of sorting the Three Conversations versus the mechanism of having and managing feelings, so the duplicate does not genuinely assess both stated chapter skills.\"}"
+}

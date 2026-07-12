@@ -37,7 +37,7 @@ import {
   type SampleScheduleV1,
   type SealedManifestV1,
 } from "./experimentTypes.js";
-import { migrationForbiddenTokens, MigrationGuardError, rootedPath, rootedWrite, withMigrationGuards, type MigrationRoots, migrationRoots } from "./guards.js";
+import { assertNotClosed, migrationForbiddenTokens, MigrationGuardError, rootedPath, rootedWrite, withMigrationGuards, type MigrationRoots, migrationRoots } from "./guards.js";
 import { aggregateMetricTables, type MetricTablesV1 } from "./metrics.js";
 import {
   DEFAULT_QUAL_THRESHOLDS,
@@ -185,6 +185,11 @@ export async function runMigrationExperiment(opts: RunMigrationOptions): Promise
   if (!experimentId) {
     return { status: "halt", experimentId: "", reason: "no experimentId — pass --experiment <spec.json> (seal) or --id <experimentId> (resume)" };
   }
+  // Mechanical resume freeze (IMP-20 §K): a CLOSED §16 experiment id can never
+  // resume — this is the exact choke the evidence flagged (completedPhases:['seal']
+  // → straight to qualify). Fires BEFORE the run root resolves, so no closed
+  // experiment dir is even touched. Fail-closed, exception-free.
+  assertNotClosed(experimentId);
   const roots = migrationRoots(experimentId, opts.stateRoot);
 
   let manifest = readManifest(roots) ?? {

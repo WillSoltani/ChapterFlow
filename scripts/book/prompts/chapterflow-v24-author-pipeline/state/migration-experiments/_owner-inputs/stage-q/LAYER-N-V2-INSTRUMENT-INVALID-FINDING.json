@@ -1,0 +1,59 @@
+{
+  "schema": "s16-layer-n-v2-outcome-v1",
+  "outcome": "LAYER_N_V2_INSTRUMENT_INVALID",
+  "date": "2026-07-11",
+  "stoppedBeforeDiagnostic": true,
+  "v3AutoBuilt": false,
+  "summary": "A material, outcome-determining SCORING defect was found in the hard-blocker detection channel while adjudicating judge-1's single hard-blocker 'miss'. The scorer gates detection on the score-based ship bit (!pass / ship84), which contradicts (a) the sealed channel definition, (b) real production ship semantics (a reserved-category mustFix IS the ship-blocker, not ship84), and (c) is redundant with the separate pairedDirectionalityRate metric. The reviewer actually CAUGHT and BLOCKED the planted defect via the mustFix channel the instrument itself designates as the ship-block signal.",
+  "howItSurfaced": "Judge-1 (gpt-5.5@high) scored NOT QUALIFIED on hardBlockerSensitivity 0.88 (7/8). Reading the one 'missed' item's preserved evidence (per §6 adjudication) revealed the reviewer had detected it correctly.",
+  "theMissedItem": {
+    "itemId": "hardblocker-the-checklist-manifesto-ch1",
+    "plantedDefect": "example 1 whatToDo appends a self-contradiction reversing the chapter's core teaching: 'On second thought, leave the warm-fluid setup unassigned and just trust the team's competence... naming an owner is needless friction.' (reserved category 4: SOURCE-CONTRADICTORY).",
+    "reviewerBehavior": {
+      "raisedMustFix": true,
+      "mustFixUnit": "example 1 (== the target unit)",
+      "mustFixProblem": "gives the correct action, then adds an opposite 'On second thought' instruction that contradicts the chapter's core lesson",
+      "verifiedQuoteOfMutation": true,
+      "oneParagraphVerdict": "The main blocking issue is Example 1's contradictory 'On second thought' sentence... Fix that, and the chapter clears a professional ship bar.",
+      "ship84": true,
+      "composite": 86.6
+    },
+    "whyScoredMiss": "scorer requires detected = (review.valid && !review.pass) && mustFixInUnit; here pass=true (composite 86.6 >= 84), so blocked=false -> detected=false, despite a correct mustFix on the target unit + verified evidence."
+  },
+  "allEightHardBlockersJudge1": {
+    "pattern": "reviewer raised the correct mustFix on the target unit in ALL 8. 7 had composite <84 (pass=false) -> scorer credited them; 1 (checklist-manifesto) had composite 86.6 (pass=true) -> scorer marked miss.",
+    "detected_by_scorer": 7,
+    "detected_by_mustFix_channel": 8
+  },
+  "theDefect": {
+    "location": "src/bakeoff/migration/nativeReviewQualification.ts, scoreNativeReviewCase, reader-visible-hard-blocker branch",
+    "code": "const blocked = review.valid && !review.pass; detected = blocked && inUnit;",
+    "contradiction1_sealedChannelDoc": "nativeReviewTypes.ts NATIVE_REVIEW_CHANNEL['reader-visible-hard-blocker'] = 'mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span' — NO ship84 requirement.",
+    "contradiction2_productionSemantics": "authorReview.ts:1156 'ANY mustFix on ANY read keeps the FAIL -> true blockers stay strict'; readerReview.ts:170 mustFix = 'whether you would block shipping on it'. A reserved-category mustFix IS the production ship-blocker; ship84 alone does not block.",
+    "contradiction3_redundancy": "the ship-direction is ALREADY measured separately by metrics.pairedDirectionalityRate (contrib.directionalityVariantBlocks = !review.pass). Folding !pass into detection double-counts the ship axis and conflates 'identified the defect' with 'the aggregate score dropped below bar'.",
+    "materiality": "OUTCOME-DETERMINING. Corrected to the documented/production channel (mustFix-in-target-unit + verified evidence), judge-1 detects 8/8 -> hardBlockerSensitivity 1.00 (was 0.88). This was the ONLY failing metric for judge-1."
+  },
+  "classification": "This is NOT a clean judge miss (which would be JUDGE_NOT_QUALIFIED). Per owner §6, a material SCORING/observability defect => LAYER_N_V2_INSTRUMENT_INVALID.",
+  "actionsTaken_per_§6": [
+    "Stopped before diagnostic generation (run paused after judge-1 + judge-2 partial).",
+    "Preserved all evidence (judge-1 28/28 + judge-2 1/28 evidence.json under the experiment root).",
+    "Did NOT auto-build or run Layer-N v3.",
+    "Did NOT modify the scorer/thresholds/corpus/seal, run any further live call, or re-run."
+  ],
+  "recommendedRemedy_owner_authorization_required": {
+    "fix": "align the hard-blocker DETECTION channel with its sealed doc + production semantics: detected = mustFixInTargetUnit && evidenceIntersectsMutation (drop the !pass gate); keep the ship-direction as the separate pairedDirectionalityRate metric (optionally add a distinct 'shipBlockRate' threshold if the owner wants to ALSO require ship-block).",
+    "then": "bump scorer version, reseal (new instrument-manifest hash), rerun the full sealed 3-judge qualification (~108 live calls).",
+    "note": "This is a material instrument change that flips judge-1's outcome, so it needs explicit owner authorization (not done on implementation authority). Re-running with the CURRENT scorer would reproduce the artifact."
+  },
+  "alternativeInterpretation": "If the owner INTENDED hard-blocker sensitivity to require the chapter to NOT ship via ship84 (i.e., a reviewer that raises a reserved-category mustFix but whose composite stays >=84 has 'failed'), then the scorer is as-intended and judge-1 = JUDGE_NOT_QUALIFIED. This contradicts the production ship semantics (mustFix is the blocker) and the sealed channel doc, so it is not recommended — but the owner reserves the material-instrument-semantics judgment.",
+  "ownerDecision_2026_07_11": "Fix + reseal + rerun. Scorer fixed (v2.2: detected = mustFix-in-target-unit + verified evidence; ship-direction stays the separate pairedDirectionalityRate). Validated by re-scoring the preserved judge-1 reviews: hardBlockerSensitivity 1.00 (8/8), no regression.",
+  "secondFinding_borderlineCraftGold": {
+    "discoveredDuring": "validation re-score of judge-1 with the fixed scorer — judge-1 STILL not-qualified, now solely on nonBlockerCalibrationRate 0.75 (threshold 0.85; the 4-item bar requires 4/4).",
+    "item": "LNV2-CRAFT-difficult-conversations-ch01",
+    "nature": "U2-class BORDERLINE GOLD. All 4 craft items append the same generic filler template 'In the end, it really just comes down to [X] instead of over-complicating/over-thinking it.' For 3 chapters this is unambiguously mild (judge-1 calibrated them). For difficult-conversations, whose thesis is 'Sort Out the Three Conversations — do not oversimplify', the phrase 'instead of overcomplicating it' is DEFENSIBLY source-contradictory, so judge-1 flagged it mustFix. A craft-nonblocker must be UNAMBIGUOUSLY mild to cleanly test false-escalation; this one is not.",
+    "deterministicValidatorGap": "validateNativeReviewCorpusV2 only checks ship-clean via runShipGate (deterministic); a SEMANTIC thesis-collision does not trip it, so the borderline item passed validation.",
+    "impact": "judge-1's ONLY remaining failing metric after the hard-blocker fix. A defensible reviewer read fails the judge on an ambiguous gold item (the exact U2 problem).",
+    "recommendedFix": "surgically re-word ONLY the difficult-conversations craft filler so it does not invoke 'overcomplicating/oversimplifying' (that chapter's core tension) — keep it an unambiguously-mild generic platitude. Re-audit that one item, reseal (new corpus sha), then rerun. Corpus change requires owner authorization (owner approved sha 7fa5bb36).",
+    "postFixProjection": "with both fixes, judge-1's other metrics all pass (keyMismatch 1.0, ambiguity 1.0, cleanPass 0.875, observable 1.0, protocol 1.0, quote 1.0, unresolved 0) — so judge-1 would qualify. Judges 2/3 unrun."
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF2",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"CLEAN\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Finding C-04-09: the opening example is fabricated and must be cut. Priority P1.\",\"Imagine, as a hypothetical, a manager who opens a review by asking what the team already knows is wrong.\",\"The scene is explicitly invented to isolate the ordering.\",\"A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported.\"],\"rationale\":\"The candidate passage openly frames the example as hypothetical and explicitly invented, so the evidence does not support the finding's implied defect that the example is improperly fabricated or must be cut. Under the review contract, a complaint must be supported by direct or contextual evidence showing the alleged problem; here the invented nature is disclosed and functional, not deceptive or defective.\"}"
+}

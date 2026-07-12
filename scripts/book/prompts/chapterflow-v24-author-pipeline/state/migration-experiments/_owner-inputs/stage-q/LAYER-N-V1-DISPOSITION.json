@@ -1,0 +1,29 @@
+{
+  "schema": "s16-layer-n-disposition-v1",
+  "date": "2026-07-11",
+  "layerNVersion": "v1",
+  "outcome": "INSTRUMENT_INVALID",
+  "judgeCapabilityVerdict": "NOT_ASSESSED",
+  "callsConsumed": 100,
+  "candidateGenerationEntered": false,
+  "statement": "Layer-N v1 is preserved as an invalid instrument. Its qualification corpus, schedules, seals, 100 completed/partial reads, per-spawn route sidecars, per-judge qualification records, reports, and the 640-call campaign ledger are retained unchanged. v1 is NOT a judge-capability verdict and must never be reinterpreted as qualified.",
+  "preservedArtifacts": {
+    "corpus": "stage-q/layer-n-corpus.owner-approved.v1.json (sha256 a127d8ce93a2473a8c0cf3a7388056e97ee7df85056aa23561db0576630b6498)",
+    "results": "diagnostic-stack-2026-07/qualification/*.qualification.json (2 completed judges NOT QUALIFIED) + gpt-5-5-xhigh partial item artifacts (14/43)",
+    "perSpawnRecords": "logs/exec/*.{manifest,result,route}.json (token-free)",
+    "driverLog": "scratchpad live-qualify-layer-n.2026-07-11.log",
+    "staticReviewBundle": "_owner-inputs/layer-n-static-review-bundle/ + .zip (sha256 7a20c455a5dc6e2917fa491f9855e7970b028568f2d16ea179f410c62c4ce296)",
+    "diagnosticSeal": "diagnostic-stack-2026-07/manifest.json completedPhases ['seal'] (unmodified; qualify never marked done)"
+  },
+  "codeLevelNonReinterpretation": {
+    "guarantee": "Layer-N v2 uses a DISTINCT schema (migration-native-review-qualification-v2) and a DISTINCT corpus schema (migration-native-review-corpus-v2). v2 candidate-review enforcement (assertNativeReviewQualified) requires the v2 schema + matching v2 corpus/instrument/threshold hashes, so a v1 record (migration-judge-qualification-v1) can NEVER satisfy v2 enforcement.",
+    "v1EnforcementUntouched": "the v1 assertJudgeQualified / QualCorpusV1 path is left intact for regression; v2 does not delete it."
+  },
+  "supersededBy": "Layer-N v2 (IMP-19) — native production-reviewer qualification; v1 scores are NEVER reused in v2",
+  "rootCauseRef": "layer-n-static-review-bundle/LAYER-N-GATE-FAILURE-REPORT.md + RESULT.json (AUTHOR_CHAPTER_BAR=80 ship bar applied to 248-2186B stub fixtures => FPR 1.0 + sensitivity ~0; validateQualCorpus never verified clean controls pass)",
+  "constraints": {
+    "noRewriteToPass": true,
+    "noReuseOfV1Scores": true,
+    "layerOStageQv3Untouched": true
+  }
+}

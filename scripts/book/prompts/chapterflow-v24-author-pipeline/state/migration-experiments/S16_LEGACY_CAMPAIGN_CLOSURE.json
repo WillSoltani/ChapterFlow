@@ -1,0 +1,106 @@
+{
+  "schema": "split-lane-closed-experiment-registry-v1",
+  "status": "ARCHIVED_INCONCLUSIVE_REVIEW_INSTRUMENT_MISMATCH",
+  "closedExperimentIds": [
+    "diagnostic-stack-2026-07",
+    "confirmatory-sol-2026-07",
+    "diagnostic-stack-dryrun-2026-07",
+    "confirmatory-dryrun-2026-07",
+    "layer-n-v2-qualification",
+    "s16-layer-n-native-review-v2",
+    "stage-q-layer-o-v1",
+    "stage-q-layer-o-v2",
+    "stage-q-layer-o-v3",
+    "layer-n-v1"
+  ],
+  "oldSeals": [
+    {
+      "experimentId": "diagnostic-stack-2026-07",
+      "sealId": "e8e5d4bb",
+      "sealSha256": "e8e5d4bb0e98c195c9207a7149cf0361a13ddbe357a3328ded9504fbe3234241"
+    },
+    {
+      "experimentId": "confirmatory-sol-2026-07",
+      "sealId": "45cf77c1",
+      "sealSha256": "45cf77c18f2e6e676a8513a22b087456dafc9976ec26b21c0eff5a2b696b8c79"
+    },
+    {
+      "experimentId": "s16-layer-n-native-review-v2",
+      "sealId": "layer-n-v2-2026-07-11",
+      "sealSha256": "3979b4bcc2a705a968a40a44bed1c42a0f83f7b42949ac5ab8dac9724d34a333"
+    },
+    {
+      "experimentId": "stage-q-layer-o-v2",
+      "sealId": "2c871917",
+      "sealSha256": "2c871917fc54188b45e2896ed57adbcaf40b8d74c70e422344cec7676beac9e4"
+    },
+    {
+      "experimentId": "stage-q-layer-o-v3",
+      "sealId": "ffba6d2c",
+      "sealSha256": "ffba6d2c66ae57cf192ae4ce8347a8b870e72dea2b749c0de74cdbb5b8a4d80d"
+    }
+  ],
+  "callLedger": {
+    "campaignTotalConsumed": 711,
+    "totalLiveCallsEverIncludingLayerNv1": 811,
+    "stageQLayerOCalls": 540,
+    "layerNv2Calls": 171,
+    "layerNv1Calls": 100,
+    "sealedHardMax": 2096,
+    "diagnosticCalls": 0,
+    "confirmatoryCalls": 0
+  },
+  "stageQHistory": [
+    "stage-q-layer-o-v1: STAGE_Q_INSTRUMENT_INVALID — 192 live calls (64 cases x 3 judges). Near-unanimous panel agreement (pairwise kappa 0.967-1.0) with two whole defect families at 0.0 sensitivity = task/label mismatch, NOT judge incapability (STAGE-Q-V1-POSTMORTEM.md).",
+    "stage-q-layer-o-v2: SEALED_PRE_LIVE_V2 (stageQv2.ts sha 06432e9d, commit 4a700857e) — 138 live calls; still INSTRUMENT_INVALID (37/64 schema failures, evidenceSpans-as-string).",
+    "stage-q-layer-o-v3: SEALED_PRE_LIVE_V3 (stageQv3.ts sha 49a65f65, commit 2657cec34) — schemas rewritten to the OpenAI strict --output-schema subset; 18 calibration + 192 qualification calls. RESULT = ALL_THREE_JUDGES_QUALIFIED, allThresholdsMet true, 0 schema failures. One systematic-but-non-material addendum SQV3-RF-U2 (UNSUPPORTED vs INCONCLUSIVE, 0.875 clears the 0.85 bar). Only PASSED gate in the campaign; U2 remains open. Owner directive 2026-07-11: no further Stage-Q authorized."
+  ],
+  "layerNHistory": [
+    "layer-n-v1 (qualification.ts v1 schema, 43-item corpus sha a127d8ce): 100 live calls inside diagnostic-stack-2026-07/qualification/ (gpt-5.5@high 43 + gpt-5.6-sol@high 43 + gpt-5.5@xhigh 14 partial). INSTRUMENT_INVALID — AUTHOR_CHAPTER_BAR=80 ship bar applied to 248-2186B stub fixtures gave FPR 1.0 / ~0 per-class sensitivity; validateQualCorpus never verified clean controls pass. These 100 calls are a SEPARATE line item, NOT folded into the 711 recomputed-campaign total (they are a pre-restructure sunk cost); total live calls ever = 811.",
+    "layer-n-v2 RUN1 (layer-n-v2-qualification-RUN1-instrument-invalid): 37 calls; a material hard-blocker scoring defect (blocked = review.valid && !review.pass) was found and fixed to scorer v2.2 (detection = mustFix-in-target-unit + verified evidence, ship84 dropped).",
+    "layer-n-v2 RUN2 (layer-n-v2-qualification-RUN2-craft-borderline): 38 calls; the gold was changed — after a run1 surgical re-word of the difficult-conversations craft filler, all 4 craft fillers were re-worded to neutral platitudes, then resealed and rerun once.",
+    "layer-n-v2 RUN3 (layer-n-v2-qualification, final): 96 calls (gpt-5.5@high 36 / gpt-5.6-sol@high 24 / gpt-5.5@xhigh 36). PANEL NOT QUALIFIED (1/3): gpt-5.5@high QUALIFIED (28/28, every capability met); gpt-5.6-sol@high NOT QUALIFIED (20/28 processed then halted, cleanPass 0.125 — systematically flagged the top-approved books' named illustrative examples as reserved-cat-7 'fabricated/misleading example' mustFixes with no source evidence to falsify them; 14-case sol-specific divergence); gpt-5.5@xhigh NOT QUALIFIED (28/28, quizAmbiguityDetectionRate 0.75 < 0.85, missed one genuine two-answer ambiguity). instrumentValidity = STRUCTURALLY_VALID_WITH_UNRESOLVED_CLEAN_CONTROL_ADJUDICATION (scorer mechanics correct, thresholds never changed, clean-control gold has an open 14-case question). Authoring-role implication NOT DETERMINED (reviewer-role qualification only)."
+  ],
+  "preservedArtifactHashes": {
+    "_owner-inputs/CALL-LEDGER-RECONFIRM.2026-07-11.json": "5f938e5e236f79d7401fbad65798ba500c206c75703cbc6fb514c6c585a5bcd9",
+    "_owner-inputs/execution-policy.frozen.json": "3ccacf93b23bd33c50c4a2b0640d4d863ab889cbba072bcabc102d8218be8ea1",
+    "_owner-inputs/thresholds.owner-frozen.v1.json": "6a90acea1c94f124a5d14ba15d1dcab42ba0b8f64e9ef01df1cab7ca2dcc8c44",
+    "_owner-inputs/native-review-thresholds.v2.json": "da3c113f1a0b59aa0edc5883b70d7657c1d0691623c8d7b8b80e7fa5bde0bec0",
+    "_owner-inputs/stage-q/LAYER_N_V2_FINAL_QUALIFICATION_RESULT.json": "320edc7959e9d7c046e566f1816bf2ede5f31d9f1f81b77870258ffc0563d227",
+    "_owner-inputs/stage-q/LAYER-N-V1-DISPOSITION.json": "1d67910c3a2af9a9254308c12faaa2d7cb8391480844b1d27da87460f0cd2b2f",
+    "_owner-inputs/stage-q/LAYER-N-V2-INSTRUMENT-INVALID-FINDING.json": "359253fa3d4ab038cf3251f62017048e6e76432418afdcddb5640de0740af964",
+    "_owner-inputs/stage-q/LAYER-N-V2-CRAFT-TEMPLATE-ROOT-CAUSE.json": "77077459d782be663097593163627a43b22e107f76f019bde7020c59038e8744",
+    "_owner-inputs/stage-q/LAYER-N-V2-FABRICATED-EXAMPLE-FINDING.json": "9c1e2cdc8fe817a916ce5e374310c98d49dde6b85c3f779bbaf6de988e7cc51e",
+    "_owner-inputs/stage-q/SOL_JUDGE_SOURCE_REGISTER_DIVERGENCE_PACKET.json": "41d7d32175a0dabc45a368562311907254a4da3d89893ab4409858018930675e",
+    "_owner-inputs/stage-q/STAGE-Q-LAYER-N-V2-SEAL.json": "3979b4bcc2a705a968a40a44bed1c42a0f83f7b42949ac5ab8dac9724d34a333",
+    "_owner-inputs/stage-q/STAGE-Q-LAYER-N-V2-INSTRUMENT-MANIFEST.json": "bd50c3a36cadc75220e5a8e7285d6e2cd9b3e4d607022b1f6a44e039dcb58aaa",
+    "_owner-inputs/stage-q/STAGE-Q-LAYER-N-V2-GOLD-AUDIT.json": "0e0e31604d0847f8da372eed6a1596c7e3d1a90466ffc3e8cc34f9fadb87e822",
+    "_owner-inputs/stage-q/STAGE-Q-V2-SEAL.json": "2c871917fc54188b45e2896ed57adbcaf40b8d74c70e422344cec7676beac9e4",
+    "_owner-inputs/stage-q/STAGE-Q-V3-SEAL.json": "ffba6d2c66ae57cf192ae4ce8347a8b870e72dea2b749c0de74cdbb5b8a4d80d",
+    "_owner-inputs/stage-q/STAGE-Q-V3-GOLD-AUDIT.json": "6ea2ef9b7e461587c04edc7854e6f87762678b83d70b437d0a224460593c4145",
+    "_owner-inputs/stage-q/STAGE-Q-V3-SCHEMA-MANIFEST.json": "d509c9b9a79ce447a52d4ab2d7b2873e5199f7018c48974029d8dd50561971ba",
+    "_owner-inputs/stage-q/STAGE-Q-V1-POSTMORTEM.md": "fdf00e0e814d9c62614ca6a2cba2c720baffeb86dac199f232b904a911278818",
+    "_owner-inputs/stage-q/layer-n-v2-corpus.json": "db61bee0e967b13f67cd7ed443e55103d595ff78098bcd75431e1412ab26d1af",
+    "_owner-inputs/stage-q/layer-n-corpus.owner-approved.v1.json": "a127d8ce93a2473a8c0cf3a7388056e97ee7df85056aa23561db0576630b6498",
+    "_owner-inputs/stage-q/v3/STAGE-Q-V3-QUALIFICATION-RESULT.json": "4d8f1c0e5a0cd32eeac3e94cea805bce91b63e733d144fd70a6284025c6f2318",
+    "_owner-inputs/stage-q/v3/STAGE-Q-V3-QUALIFICATION-ADDENDUM.json": "94ec82288ed26ae67cae439af84be904eac894d820be4f024d97d38e54d3e36d",
+    "diagnostic-stack-2026-07/sealed.json": "e8e5d4bb0e98c195c9207a7149cf0361a13ddbe357a3328ded9504fbe3234241",
+    "diagnostic-stack-2026-07/spec.sealed.json": "5f27cc1e862b2921e51184d6c98c34a6430bbcbc2c23cf921502f6f18d560616",
+    "diagnostic-stack-2026-07/manifest.json": "4e8fb5f577055d979815929fb0fcbfb3a2a0986d510019efeda595e45c82f173",
+    "confirmatory-sol-2026-07/sealed.json": "45cf77c18f2e6e676a8513a22b087456dafc9976ec26b21c0eff5a2b696b8c79",
+    "confirmatory-sol-2026-07/spec.sealed.json": "5fa7968d75a67836423bc687806564d7290010af05ebc1c8759c22310f6f6588",
+    "confirmatory-sol-2026-07/manifest.json": "ef4673235fd3a49fc04aaee45d12fae65722bcd4ce7aadf598779b08240253d3"
+  },
+  "authoringMigrationDecisionProduced": false,
+  "oldArtifactsImmutable": true,
+  "oldResultsAreDevelopmentEvidence": true,
+  "canResume": false,
+  "unresolvedRisks": [
+    "R-2b (un-mechanizable Stage-Q Layer-O raw-spawn residual): the immutable _owner-inputs/{layer-o-qualification-runner,layer-o-v2-runner,stage-q-v3-runner}.mts drivers call spawnCodexAgent directly, take blind cases + gold as freeform CLI args, and carry no stable corpus id. The stage-q-layer-o-v1/v2/v3 closed ids are therefore enforced only at the three gate-able src/ chokes (runMigrationExperiment, sealNativeReview, runNativeReviewQualification) and CANNOT be enforced at those raw-spawn drivers; gating the general spawnCodexAgent primitive would break production. Controls: (i) the drivers are immutable preserved evidence; (ii) the recorded owner directive 2026-07-11 'no further Stage-Q authorized'; (iii) a re-run cannot resume the sealed §16 diagnostic budget — it would only re-run an already-archived judge qualification against no sealed ceiling. Forward guidance: any FUTURE Stage-Q-style qualification MUST route through a gate-able src/ entry, never a raw-spawn .mts.",
+    "R-4 (14 disputed gpt-5.6-sol source-register cases): remain UNADJUDICATED (owner gate) — never labeled true/false. No judge is qualified from this old evidence; the new recovery corpora do not seed from the disputed clean controls; the recovery spec carries this open owner adjudication + the panel-design decision as pre-live gates.",
+    "R-3 (source-integrity recovery corpus needs evidence-complete units the v21 gold lacks): the source builder fails closed (excludes sourceSemanticsStatus:MISSING artifacts, HALTs on insufficient evidence-complete units) rather than inferring source semantics or shrinking the corpus. The evidence-complete source units are an explicit owner input.",
+    "Layer-N v2 authoring-role implication was NOT DETERMINED (reviewer-role qualification only; no gpt-5.6-sol authoring inference is permitted from this campaign).",
+    "independentHumanRater = false across the whole campaign: gold was labeled by GPT-5.6 Pro under explicit product-owner delegation. A model-generated audit is never independent-human evidence; recorded honestly, never as human ground truth."
+  ],
+  "closedAt": "2026-07-12T00:00:00.000Z"
+}

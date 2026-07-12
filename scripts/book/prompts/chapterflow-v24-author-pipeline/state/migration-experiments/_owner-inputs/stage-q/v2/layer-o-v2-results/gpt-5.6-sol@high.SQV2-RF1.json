@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF1",
+  "target": "REVIEW_FINDING",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"CLEAN\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":\"\\\"Evidence class: score-only. No chapter-level rationale supplied.\\\" \\\"The section states its one job in the first line, gives a worked example, then a two-question check that maps to that job. Each step names what it is doing.\\\" \\\"Score-only conditions are hypotheses.\\\"\",\"rationale\":\"The finding provides only a score and explicitly lacks chapter-level rationale, so it does not prove weak instructional alignment. The candidate instead describes a clear instructional goal, a worked example, an aligned knowledge check, and labeled steps, which supports instructional alignment rather than a defect.\"}"
+}

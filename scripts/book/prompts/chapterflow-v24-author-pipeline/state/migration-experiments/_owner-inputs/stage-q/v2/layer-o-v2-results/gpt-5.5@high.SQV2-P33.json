@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P33",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"narrative machinery reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Scenario: Ruxandra holds a chipped blue mug at Tuesday 6:42 p.m. in the Midtown design studio review room, creative director, with the first page of a performance memo.\",\"Scenario: Zanele steadies a dented clipboard at Thursday 5:11 a.m. in dock door 3 at the Albany bakery, shipping lead, with a stack of warm bread crates.\",\"The facts are right, but Ruxandra keeps deleting the opening line because she can already hear the shame in the room.\",\"Zanele can prove the timestamp, yet the driver's empty shelves are also real.\",\"Ruxandra she must decide whether to lead with dates or name the three layers before Derek arrives.\",\"Zanele she must decide whether to win the count or draw both paths on the back of the sheet.\"],\"rationale\":\"The two examples use the same underlying scene engine: named protagonist plus tactile object, exact timestamp and workplace location, role apposition, a concrete document or goods prop, competing factual claims, a pivot where the protagonist can prove one side but must account for a human/contextual reality, and a final binary decision phrased with the same unusual 'Name she must decide whether...' construction. The nouns and settings differ, but the progression and decision architecture are substantially reused.\"}"
+}

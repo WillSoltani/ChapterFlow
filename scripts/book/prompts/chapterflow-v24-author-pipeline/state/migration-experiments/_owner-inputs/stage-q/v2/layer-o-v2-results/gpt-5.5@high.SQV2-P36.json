@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P36",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"reused narrative machinery / template duplication\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Ludo turns a phone with a paused doorbell clip at Sunday 4:08 p.m. in the split-level living room in Parma, homeowner, with mud on the welcome mat.\",\"Odette touches a wet dish towel at Sunday 8:41 p.m. in the galley kitchen of apartment 4B, partner, with a pan soaking with rice stuck to the bottom.\",\"The video shows both: muddy shoes and a shaking terrier.\",\"The towel tightens in her hands because the real feeling is embarrassment, not scheduling.\",\"Ludo he has to choose between proving the shoe rule and asking what each of them was trying to handle.\",\"Odette she must decide whether to accuse him of not caring or say what feeling is already steering her.\"],\"rationale\":\"The examples use different domestic nouns and chapter topics, but they reuse the same underlying scene engine: named character plus concrete object, exact Sunday timestamp, specific home location and relationship role, a small domestic mess, a surface conflict framed as an argument, a clarifying physical/object detail that reveals the deeper issue, and a final binary decision between pursuing the surface accusation/proof and addressing the underlying need or feeling. This is not just thematic similarity; the narrative progression and decision architecture are materially duplicated.\"}"
+}

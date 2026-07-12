@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P20",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"TOPICALLY_UNRELATED_GENERIC_SEARCH LOCATOR\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":\"[\\\"A single label such as aggression is too crude, because attack, defense, dominance, and protecti\\\", \\\"https://pubmed.ncbi.nlm.nih.gov/?term=Adverse+Childhood+Experiences+Study\\\", \\\"A generic or topically unrelated search is not verification.\\\"]\",\"rationale\":\"The proposed locator is a generic PubMed search for the Adverse Childhood Experiences Study, which does not address the recorded mechanism distinguishing attack, defense, dominance, and protection under the overly broad label of aggression. It therefore fails the contract's claim-specificity requirement and should block verification.\"}"
+}

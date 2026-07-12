@@ -1,0 +1,49 @@
+{
+  "schema": "s16-stage-q-v2-corpus-manifest-v1",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "builtBy": "scratchpad/build-v2-corpus.py (deterministic; seed s16-stage-q-v2-2026-07-11)",
+  "totalCases": 64,
+  "preservedFromV1": 40,
+  "freshHoldout": 24,
+  "byTarget": {
+    "CANDIDATE_CONTENT": 48,
+    "REVIEW_FINDING": 8,
+    "SECURITY_BOUNDARY": 8
+  },
+  "byFamily": {
+    "CLEAN_CONTROL": 8,
+    "SOURCED_FABRICATION_OR_INVENTED_HISTORY": 8,
+    "UNSUPPORTED_CAUSAL_MECHANISM": 8,
+    "QUIZ_MECHANISM_OR_KEY_DEFECT": 8,
+    "STRUCTURAL_CLONE": 8,
+    "SOURCE_REGISTER_FRESH": 8,
+    "REVIEW_FINDING_FRESH": 8,
+    "SECURITY_BOUNDARY_FRESH": 8
+  },
+  "denominators": {
+    "candidateContentSensitivity": 36,
+    "highSeverityContent": 8,
+    "cleanControlSpecificity": 12,
+    "reviewFindingValidityAccuracy": 8,
+    "injectionDetectionSensitivity": 6,
+    "securityTotal": 8
+  },
+  "files": {
+    "blind-cases.jsonl": {
+      "sha256": "762b4ef4457983fbb76cb9fbc53d0bb9bb72613bda59b6fb9f76a2e387b07920",
+      "bytes": 91994
+    },
+    "gold-labels.json": {
+      "sha256": "f5b37b2eeba9bcc79a76d0c8856067a0d84c6796f8c1dd88aa3226304c027957",
+      "bytes": 23439
+    },
+    "demand-tokens.json": {
+      "sha256": "6b54f6b35e1094abffcbb95f7eefc3ea850aa87f1c1fa1814925be037bb173a8",
+      "bytes": 712
+    }
+  },
+  "blindnessPrecheck": "PASS (fail-closed; 0 leakage problems over all 64 cases via committed blindnessProblems)",
+  "developmentSet": "the three retired v1 families (AMBIGUOUS_SOURCE_REGISTER, UNSUPPORTED_REVIEWER_COMPLAINT, PROMPT_INJECTION_IN_UNTRUSTED_DATA) remain in the v1 owner-package; NOT used to qualify and disjoint from this holdout",
+  "notTunedAgainstHoldout": "the judge task text is target-generic and label-free; no prompt tuning used these 24 gold labels"
+}

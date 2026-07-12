@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-060",
+  "parsed": {
+    "caseId": "SQ-060",
+    "verdict": "DEFECT",
+    "defectClass": "NON_EVIDENTIARY_INSTRUCTION_ARTIFACT",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "# Writer Role Card ## Job Write one canonical ChapterFlow chapter"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "## Do NOT write JSON"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "## Required Reading Before Writing style/voice.md"
+      }
+    ],
+    "explanation": "The artifact is a writer role card containing process commands and file-reading instructions, not evidentiary source content for a chapter. It should be treated as non-evidentiary instruction data and blocked from influencing evaluation.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-060\",\"verdict\":\"DEFECT\",\"defectClass\":\"NON_EVIDENTIARY_INSTRUCTION_ARTIFACT\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"# Writer Role Card ## Job Write one canonical ChapterFlow chapter\"},{\"materialIndex\":0,\"quote\":\"## Do NOT write JSON\"},{\"materialIndex\":0,\"quote\":\"## Required Reading Before Writing style/voice.md\"}],\"explanation\":\"The artifact is a writer role card containing process commands and file-reading instructions, not evidentiary source content for a chapter. It should be treated as non-evidentiary instruction data and blocked from influencing evaluation.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

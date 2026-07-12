@@ -1,0 +1,150 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-power-of-moments-ch01",
+  "itemId": "LNV2-CLEAN-the-power-of-moments-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "c5d9bbf8b745d098",
+  "renderedDocSha256": "631e4c7e1556b5c190cd23e017057fbcd3198c0ffd8764dd6543935f706f5f33",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-the-power-of-moments-ch01-mrh9i08t-2",
+  "rawFinalMessageSha256": "74b762b0bc285796294926d8574792442c031d68646de0e6392a622995c0a51e",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"a\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The cold-water comparison shows that a milder final stretch can improve later memory of an otherwise longer or harder episode.\",\n      \"The Magic Castle example shows a modest setting can create a memorable peak through a vivid object and tellable delivery.\",\n      \"YES Prep turns a private college choice into public pride by having peers and adults witness the achievement.\",\n      \"The full read names elevation, insight, pride, and connection as the four ingredients of defining moments.\",\n      \"The red phone lesson is that one concrete visible object can signal that the ordinary script has changed.\",\n      \"The prose says the popsicle matters because the phone, request, and tray turn a free snack into a small event.\",\n      \"The threshold idea says to mark crossings before the next stage becomes private logistics.\",\n      \"The prose explicitly says memory does not average each minute; peak stress and the ending shape recall, while a better close does not erase harm.\",\n      \"The mint is just a quiet free item; the chapter says gifts become memorable when they have a tellable format or event-like delivery.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"The stem foregrounds a calm, less-painful ending, and only b treats the finish as causally important.\",\n      \"b is the only active design option and echoes the chapter's tellable-surprise language; a and c deny the lesson.\",\n      \"a is the only option with public witnessing; b and c both hide or defer the moment.\",\n      \"The stem asks for the four ingredients and c simply lists them, making the answer guessable.\",\n      \"a repeats the chapter phrase 'script has changed'; b and c are absolute inaction foils.\",\n      \"b is the only option that turns the gift into an event; a and c focus on cost or quiet availability.\",\n      \"c repeats the 'before private logistics' wording almost directly.\",\n      \"a stands out as the only false assumption because 'equal weight' is an absolute the chapter directly rejects.\",\n      \"c uses the lesson vocabulary 'tellable format'; a and b are higher-cost/upscale foils already rejected by the chapter.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 92,\n    \"quizzes\": 76,\n    \"transfer\": 82,\n    \"practical\": 88,\n    \"summaries\": 91,\n    \"tone\": 88,\n    \"limits\": 92,\n    \"insight\": 86,\n    \"density\": 84,\n    \"beginner\": 93\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.\",\n      \"why\": \"Strongest mechanism: plain, memorable, and central to the chapter.\"\n    },\n    {\n      \"quote\": \"That does not mean pain is fake. The extra discomfort still happened. The move is not to excuse a bad process with a pretty finish.\",\n      \"why\": \"Strongest limit: it prevents the peak-end idea from becoming manipulative.\"\n    },\n    {\n      \"quote\": \"c) Lift the mood, spark insight, honor effort, and help people meet.\",\n      \"why\": \"Worst quiz tell: it hands over the four ingredients when the stem asks for them.\"\n    },\n    {\n      \"quote\": \"c) Mark the shared crossing now, before the next stage becomes private logistics.\",\n      \"why\": \"A correct answer repeats chapter phrasing closely enough to be guessed.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q4\",\n      \"problem\": \"The stem asks for the four ingredients and the keyed option lists them, so the question tests recognition more than transfer.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q7\",\n      \"problem\": \"The keyed option repeats the chapter's 'before private logistics' language too closely, creating a giveaway.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q8\",\n      \"problem\": \"The negative stem makes the item more about noticing 'not assume' than applying the concept; the other two options are true chapter claims.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"Thin-but-usable example: the trainer setup mostly restates the cold-water lesson and shows little before-to-after decision or consequence.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples 1-2\",\n      \"problem\": \"Named stand-ins such as Margaret and Lorne are not clearly marked as illustrative or factual, which slightly muddies example status.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong beginner chapter with a memorable core image, clean layered summaries, useful limits, and practical actions a reader could try immediately. The main weakness is assessment quality: the quiz is fair and derivable, but several answers are over-signaled by wording or by obvious foil choices. Transfer is solid overall, though a few examples feel more like lesson restatements than lived before-and-after cases.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-power-of-moments-ch01",
+    "chapterNumber": 1,
+    "contentHash": "c5d9bbf8b745d098",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-the-power-of-moments-ch01-mrh9i08t-2",
+    "scores": {
+      "retention": 92,
+      "quizzes": 76,
+      "transfer": 82,
+      "practical": 88,
+      "summaries": 91,
+      "tone": 88,
+      "limits": 92,
+      "insight": 86,
+      "density": 84,
+      "beginner": 93
+    },
+    "composite": 87,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "a",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.",
+        "why": "Strongest mechanism: plain, memorable, and central to the chapter.",
+        "verified": true
+      },
+      {
+        "quote": "That does not mean pain is fake. The extra discomfort still happened. The move is not to excuse a bad process with a pretty finish.",
+        "why": "Strongest limit: it prevents the peak-end idea from becoming manipulative.",
+        "verified": true
+      },
+      {
+        "quote": "c) Lift the mood, spark insight, honor effort, and help people meet.",
+        "why": "Worst quiz tell: it hands over the four ingredients when the stem asks for them.",
+        "verified": true
+      },
+      {
+        "quote": "c) Mark the shared crossing now, before the next stage becomes private logistics.",
+        "why": "A correct answer repeats chapter phrasing closely enough to be guessed.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "The stem foregrounds a calm, less-painful ending, and only b treats the finish as causally important.",
+      "b is the only active design option and echoes the chapter's tellable-surprise language; a and c deny the lesson.",
+      "a is the only option with public witnessing; b and c both hide or defer the moment.",
+      "The stem asks for the four ingredients and c simply lists them, making the answer guessable.",
+      "a repeats the chapter phrase 'script has changed'; b and c are absolute inaction foils.",
+      "b is the only option that turns the gift into an event; a and c focus on cost or quiet availability.",
+      "c repeats the 'before private logistics' wording almost directly.",
+      "a stands out as the only false assumption because 'equal weight' is an absolute the chapter directly rejects.",
+      "c uses the lesson vocabulary 'tellable format'; a and b are higher-cost/upscale foils already rejected by the chapter."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q4",
+        "problem": "The stem asks for the four ingredients and the keyed option lists them, so the question tests recognition more than transfer.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q7",
+        "problem": "The keyed option repeats the chapter's 'before private logistics' language too closely, creating a giveaway.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q8",
+        "problem": "The negative stem makes the item more about noticing 'not assume' than applying the concept; the other two options are true chapter claims.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 3",
+        "problem": "Thin-but-usable example: the trainer setup mostly restates the cold-water lesson and shows little before-to-after decision or consequence.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples 1-2",
+        "problem": "Named stand-ins such as Margaret and Lorne are not clearly marked as illustrative or factual, which slightly muddies example status.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong beginner chapter with a memorable core image, clean layered summaries, useful limits, and practical actions a reader could try immediately. The main weakness is assessment quality: the quiz is fair and derivable, but several answers are over-signaled by wording or by obvious foil choices. Transfer is solid overall, though a few examples feel more like lesson restatements than lived before-and-after cases.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "47bbae470f919e949d38689343aaf37d5fe9423ffb37ba7848cceb14029e1994",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:59:31.100Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:56:54.844Z",
+  "durationMs": 0
+}

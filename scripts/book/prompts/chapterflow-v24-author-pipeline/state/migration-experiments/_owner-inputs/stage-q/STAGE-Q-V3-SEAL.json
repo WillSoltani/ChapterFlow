@@ -1,0 +1,91 @@
+{
+  "schema": "s16-stage-q-v3-seal-v1",
+  "status": "SEALED_PRE_LIVE_V3",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "sealedContext": "owner directive 2026-07-11 \u2014 final in-campaign Stage-Q correction (v1+v2 remain STAGE_Q_INSTRUMENT_INVALID). Schemas rewritten to the codex --output-schema strict subset after a pre-seal probe (see schema manifest).",
+  "instrument": {
+    "scoringModuleV3": {
+      "path": "src/bakeoff/migration/stageQv3.ts",
+      "sha256": "49a65f65e140a6fbc04d4b74d7f254b51144c80aaacd6cf2d6417374f4dd1a88",
+      "committed": "2657cec34"
+    },
+    "brokerSchemaMechanism": {
+      "executionEnvelope": "215d79f2b6443b84a2e20c8f21884eab3e3dcddbe8a27bc84d2cfaa39053af60",
+      "codexAgent": "6c6259394aeda215378766d330fa31235c2affa9c627d6da22bcf9d33e174aca"
+    },
+    "spec": "68ab20daef5a40ec251666a728ee1e4e598a020687b545286a7a7e855501dd27",
+    "thresholds": "70513d618dd535f73f6afe06eb1ec8da2b3b09bbab6314a2a5d8c8d3a3f07b18",
+    "schemaManifest": "d509c9b9a79ce447a52d4ab2d7b2873e5199f7018c48974029d8dd50561971ba",
+    "corpusManifest": "4a0b04e4e46842f6e0bff10f73439421ddadf55be0f127be8a071a72fc43397b",
+    "calibrationManifest": "3ca2207c1586f62a3a58272d7f00dfb6133dda73d7bd0b361d0aa9a2173d3aa5",
+    "goldAudit": "6ea2ef9b7e461587c04edc7854e6f87762678b83d70b437d0a224460593c4145",
+    "readjudication": "84518974ba594ae178d8f2a244cb182b1f0aeebc65900699634c20063fa3ba60",
+    "v2Postmortem": "6067e75b39f86f4fa304bcf565217e5572a506a18db22212627927b716c4d360"
+  },
+  "schemas": {
+    "candidate-content-result.schema.json": "0d8769d58a2c3c55e3c9c70aead2acfa7bf43cc913d8f8f08850d6afd17eccfe",
+    "review-finding-result.schema.json": "5fff8e7410fcd6eeb5792cb9304ddb6a20ec1bb92b60d92ae86e70e37ec6ade3",
+    "security-boundary-result.schema.json": "b6e923dcd4281777d23961863ad8586cbb64ec3f7cb2316de7fd617e663ef369"
+  },
+  "schemaFormatNote": "OpenAI strict structured-outputs subset (type on every property; all-required; no minLength). Non-empty evidenceSpans enforced at the code layer. Proven working via a live probe (schema-conforming array output).",
+  "corpus": {
+    "blindCases": "8742da899e3167319367dc1477d859419257ef167dbd3fe52f7c970c2875a5a6",
+    "gold": "3381ceb2c81a8aff078e0de6cb039dec5fdc99581de412f45d79cd18879a7596",
+    "demandTokens": "2ccae264ee0d7b87e32878d6e608930aa6107d55f200fa4a0100e8c9b2cd6b0c",
+    "cases": 64,
+    "kept": 56,
+    "fresh": 8
+  },
+  "calibration": {
+    "cases": "6353e2a08af40f1ba6f730006f0c1990c101f2657fe892e7411285c39188c0c0",
+    "gold": "fa05c53616bf30f63fd2f265f443b2a0e3b48d6b787230a5c8efcd1dffb18862",
+    "demand": "d8b1429c3bd507c28f7053a0c576cb4b1269eaab43ddd50c4b7f911f7be8634f",
+    "count": 6,
+    "expectedCalls": 18,
+    "excludedFromQualification": true
+  },
+  "panel": [
+    {
+      "model": "gpt-5.5",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.5",
+      "effort": "xhigh"
+    }
+  ],
+  "executionPolicy": {
+    "route": "codex_exec_chatgpt_subscription only",
+    "outputSchemaEnforced": true,
+    "maxParallel": 1,
+    "orderedBy": "seed-fixed",
+    "attemptCap": 2,
+    "infraReplay": "<=1 per call, infra-class only",
+    "contentRetries": 0,
+    "allAttemptsPreserved": true
+  },
+  "campaignCeilingRecompute": {
+    "note": "owner section 10 recompute, each op once",
+    "components": {
+      "stageQ_v1_consumed": 192,
+      "stageQ_v2_consumed": 138,
+      "stageQ_v3_calibration_max": 36,
+      "stageQ_v3_qualification_max": 384,
+      "native_layerN_qualify_max": 258,
+      "diagnostic_candidate_max": 384,
+      "confirmatory_candidate_max": 704
+    },
+    "newAbsoluteCampaignCeiling": 2096,
+    "consumed": 330,
+    "remainingAuthorizedMax": 1766,
+    "hardMaxNotTarget": true,
+    "preSealProbes": "2 live codex --output-schema probes (1 rejected the pre-fix schema, 1 confirmed the strict-subset schema) \u2014 mechanism-verification, logged; counted in campaign spend."
+  },
+  "stoppingRule": "FINAL correction. Calibration ambiguity -> stop. After v3: judge miss -> unqualified; panel can't meet conjunction -> stop; THIRD material ambiguity -> stop for offline redesign; NO v4.",
+  "downstreamOnPass": "calibration(18) gate -> qualification(<=384) gate -> sealed diagnostic (Layer-N qualify -> generate -> review -> analyze) -> C3 pause."
+}

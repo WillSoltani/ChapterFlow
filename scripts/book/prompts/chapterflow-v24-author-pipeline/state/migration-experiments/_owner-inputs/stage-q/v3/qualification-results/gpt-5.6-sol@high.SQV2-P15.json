@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P15",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_REAL_WORLD_NARRATIVE_DETAILS\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"The Zappos trainer closes the Zappos training binder, then stops before the usual applause.\",\"New hires are still in their seats, name tags curled at the corners.\",\"She gives the room a quiet minute before anyone signs the final form.\"],\"rationale\":\"The source plan supports only Zappos, new hires, training, and the $1,000 offer to leave. The candidate presents invented scene details—including a trainer’s gender and actions, a binder, usual applause, curled name tags, a quiet minute, and a final form—in the same factual register as the verified case, without marking them as hypothetical.\"}"
+}

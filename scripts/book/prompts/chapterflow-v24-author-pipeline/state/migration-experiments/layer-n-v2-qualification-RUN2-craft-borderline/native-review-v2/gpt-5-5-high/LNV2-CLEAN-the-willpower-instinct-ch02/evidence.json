@@ -1,0 +1,145 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-willpower-instinct-ch02",
+  "itemId": "LNV2-CLEAN-the-willpower-instinct-ch02",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "e87d5da1e9601d67",
+  "renderedDocSha256": "22ff85767028d6a0ccdf64056f8a1cdb01b4440ca19c5ae701b1ed4ddfa3a558",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "cf7b09ac3bcc41d64910549c09164796639f2bb485848d0244fbed692d52c6fc",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CLEAN-the-willpower-instinct-ch02-mrh5mnnw-7",
+  "rawFinalMessageSha256": "a2ad419d17d6cba52d63692bbccd8a48abfcf780e17dd044fa67289c1ce9940d",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"c\", \"a\", \"b\", \"b\", \"a\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines heart rate variability as beat-to-beat rhythm flexibility and links higher variability with stronger self-regulation.\",\n      \"The Trier setup works because public speaking and arithmetic under evaluators create social judgment without physical threat.\",\n      \"The chapter says stress makes fast comfort feel like shelter and pushes attention toward immediate relief.\",\n      \"Tang's brief meditation evidence is presented as training attention and softening stress reactivity before urges peak.\",\n      \"The prose treats slow breathing as a body-state change that keeps choice, attention, and control online.\",\n      \"Pause-and-plan questions extra arousal because the chapter says a braced body leaves less room for future-minded choice.\",\n      \"The sleep section says tired attention loses its grip, letting louder cues beat the intended goal.\",\n      \"The movement paragraph says physical activity can improve mood, stress regulation, and executive function.\",\n      \"The chapter says waiting until the craving peaks is unfair because the body needs calmer runway before the hardest moment.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice b is the only option using the chapter's adaptive-control framing; a and c are reductive.\",\n      \"Choice c repeats the chapter's social-judgment language; a and b are implausibly narrow.\",\n      \"Choice c is the only hedged diagnostic read; a and b overstate blame or separation.\",\n      \"Choice a uses the lesson phrase 'train attention'; b and c use giveaway extremes.\",\n      \"Choice b is the only mechanism-level answer; a and c sound dismissive.\",\n      \"Choice b is the only answer that directly names arousal crowding out goal weighing.\",\n      \"Choice a repeats 'tired attention'; b and c minimize sleep too obviously.\",\n      \"Choice a repeats the exact trio from the prose; b and c use 'only'/'mostly' tells.\",\n      \"Choice c repeats the chapter's 'before the craving peaked' language.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 92,\n    \"quizzes\": 82,\n    \"transfer\": 84,\n    \"practical\": 90,\n    \"summaries\": 90,\n    \"tone\": 88,\n    \"limits\": 92,\n    \"insight\": 90,\n    \"density\": 87,\n    \"beginner\": 89\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Panic is a poor coach. Calm gives the future a vote.\",\n      \"why\": \"The core move is memorable, concrete, and easy to retrieve later.\"\n    },\n    {\n      \"quote\": \"The body is the room where the choice happens.\",\n      \"why\": \"This gives the chapter a strong mechanism image rather than a slogan about discipline.\"\n    },\n    {\n      \"quote\": \"Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.\",\n      \"why\": \"The limits section prevents the advice from becoming avoidance.\"\n    },\n    {\n      \"quote\": \"Sierra frowns at the word training. Then she tries one quiet breath and sees the lesson is not bliss; it is staying present long enough to choose.\",\n      \"why\": \"This example is usable but thin; it mostly restates the lesson without a real before-to-after consequence.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz distractors\",\n      \"problem\": \"Several distractors are easy to eliminate because they use giveaway extremes such as 'only,' 'mainly,' or obviously dismiss the chapter's mechanism.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"The meditation example is thin-but-usable: it names a learner and setting, but the action has little consequence beyond recognizing the lesson.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The Kelsey example repeats the full-read scenario closely, so it adds less transfer range than the other examples.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"implementation plan\",\n      \"problem\": \"The core skill line repeats the title idea in nearly the same wording before introducing the named move, creating a small scaffold smell.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This chapter clears the professional bar. Its central move is memorable, bodily, and practical: calm the state before asking willpower to decide. The strongest material explains mechanism without jargon and includes an unusually useful limits section. The main weakness is quiz construction: the right answers are sound and derivable, but several distractors are too plainly wrong, so a test-wise reader could often guess the key. A couple of examples are repetitive or thin, but none are reader-harming or structurally invalid.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-willpower-instinct-ch02",
+    "chapterNumber": 2,
+    "contentHash": "e87d5da1e9601d67",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CLEAN-the-willpower-instinct-ch02-mrh5mnnw-7",
+    "scores": {
+      "retention": 92,
+      "quizzes": 82,
+      "transfer": 84,
+      "practical": 90,
+      "summaries": 90,
+      "tone": 88,
+      "limits": 92,
+      "insight": 90,
+      "density": 87,
+      "beginner": 89
+    },
+    "composite": 88.3,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "c",
+        "a",
+        "b",
+        "b",
+        "a",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Panic is a poor coach. Calm gives the future a vote.",
+        "why": "The core move is memorable, concrete, and easy to retrieve later.",
+        "verified": true
+      },
+      {
+        "quote": "The body is the room where the choice happens.",
+        "why": "This gives the chapter a strong mechanism image rather than a slogan about discipline.",
+        "verified": true
+      },
+      {
+        "quote": "Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.",
+        "why": "The limits section prevents the advice from becoming avoidance.",
+        "verified": true
+      },
+      {
+        "quote": "Sierra frowns at the word training. Then she tries one quiet breath and sees the lesson is not bliss; it is staying present long enough to choose.",
+        "why": "This example is usable but thin; it mostly restates the lesson without a real before-to-after consequence.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b is the only option using the chapter's adaptive-control framing; a and c are reductive.",
+      "Choice c repeats the chapter's social-judgment language; a and b are implausibly narrow.",
+      "Choice c is the only hedged diagnostic read; a and b overstate blame or separation.",
+      "Choice a uses the lesson phrase 'train attention'; b and c use giveaway extremes.",
+      "Choice b is the only mechanism-level answer; a and c sound dismissive.",
+      "Choice b is the only answer that directly names arousal crowding out goal weighing.",
+      "Choice a repeats 'tired attention'; b and c minimize sleep too obviously.",
+      "Choice a repeats the exact trio from the prose; b and c use 'only'/'mostly' tells.",
+      "Choice c repeats the chapter's 'before the craving peaked' language."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz distractors",
+        "problem": "Several distractors are easy to eliminate because they use giveaway extremes such as 'only,' 'mainly,' or obviously dismiss the chapter's mechanism.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 3",
+        "problem": "The meditation example is thin-but-usable: it names a learner and setting, but the action has little consequence beyond recognizing the lesson.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The Kelsey example repeats the full-read scenario closely, so it adds less transfer range than the other examples.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan",
+        "problem": "The core skill line repeats the title idea in nearly the same wording before introducing the named move, creating a small scaffold smell.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This chapter clears the professional bar. Its central move is memorable, bodily, and practical: calm the state before asking willpower to decide. The strongest material explains mechanism without jargon and includes an unusually useful limits section. The main weakness is quiz construction: the right answers are sound and derivable, but several distractors are too plainly wrong, so a test-wise reader could often guess the key. A couple of examples are repetitive or thin, but none are reader-harming or structurally invalid.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c1320c5b181a6623a6c868f57da9a3c04ee342748465aad71da4875b33539296",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:09:53.049Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "cf7b09ac3bcc41d64910549c09164796639f2bb485848d0244fbed692d52c6fc",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:08:33.356Z",
+  "durationMs": 0
+}

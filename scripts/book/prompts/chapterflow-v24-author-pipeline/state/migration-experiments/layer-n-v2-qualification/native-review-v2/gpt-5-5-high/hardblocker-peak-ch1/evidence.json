@@ -1,0 +1,137 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-peak-ch1",
+  "itemId": "hardblocker-peak-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "2c55668bf082f369",
+  "renderedDocSha256": "2ea82744aa15c20bd5642ff609327ca49ef596519126a5b1887c2df5a0068da5",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "1efdd070916344fb909bc0530df65e3b0c56cd998d78d0bc766a47fa333b9c32",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-peak-ch1-mrh7pfxk-23",
+  "rawFinalMessageSha256": "7e87fb3bce193211f5d9304f76dd9b4e1a4496bfb6a0c52f018a52f25ffbe631",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"a\", \"c\", \"b\", \"b\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose says purposeful practice isolates the fault, makes a short rep, gets feedback, and changes the next attempt.\",\n      \"The chapter’s if-then plan says to find the last error pattern and build a drill around only that pattern.\",\n      \"The repeated full demo lets the same weak point survive inside the whole performance.\",\n      \"The plateau/video case calls for a visible cue, short rep, feedback, and adjustment before adding volume.\",\n      \"Faloon improves because each miss tells the next attempt where to work, not because he repeats blindly.\",\n      \"The claim fails because the prose requires a visible target and immediate correction, not nightly volume.\",\n      \"The chapter defines useful feedback as a signal that changes the next attempt while the miss is still traceable.\",\n      \"Plan B gives feedback soon enough to adjust the next small batch.\",\n      \"The revised target is visible, countable, and correctable before the next attempt.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"medium\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"a is also defensible because the prose says comfort can leave the weak spot hidden; b is more exact because it adds the visible size target.\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"b is the longest and the only concrete correction loop.\",\n      \"a is the only option that names a narrow set, step checking, and a rewritten failing step.\",\n      \"c closely restates the chapter’s thesis about whole performance hiding one weak point.\",\n      \"b is the only option with cue, check, repeat, and narrowed scope.\",\n      \"b uses the chapter’s giveaway language: miss redesigns next attempt and feedback.\",\n      \"b is the most operationally specific; a is also plausible.\",\n      \"c is the only option with the chapter’s core phrase, changing the next attempt.\",\n      \"a is much more concrete than the distractors.\",\n      \"c is the only measurable target.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 91,\n    \"quizzes\": 76,\n    \"transfer\": 74,\n    \"practical\": 90,\n    \"summaries\": 88,\n    \"tone\": 88,\n    \"limits\": 90,\n    \"insight\": 89,\n    \"density\": 84,\n    \"beginner\": 90\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The miss is the map because it tells the next rep where to aim.\",\n      \"why\": \"Strong, memorable compression of the chapter’s core mechanism.\"\n    },\n    {\n      \"quote\": \"A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.\",\n      \"why\": \"Gives beginners a concrete test for whether a practice target is usable.\"\n    },\n    {\n      \"quote\": \"Actually, skip the taped strip and just shoot more full rounds, because a higher repetition count is what builds the skill and isolating one miss only slows you down.\",\n      \"why\": \"Directly contradicts the chapter inside a What to do field.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The What to do section first recommends the correct narrow drill, then says to skip it and shoot more full rounds, which contradicts the chapter’s central advice.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"Both a and b are supported by the prose; b is more precise, but a also fairly answers why nightly repetition may not fix the weak spot.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Several correct answers are guessable because they are the most concrete correction-loop option and often the longest or most chapter-keyword-heavy choice.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter teaches a clear, useful move: stop replaying the whole task, isolate the miss, get fast feedback, and change the next attempt. It is memorable, practical, beginner-friendly, and honest about limits. The main blocker is Example 1’s source-contradictory What to do sentence, which tells the reader to do the opposite of the lesson. The quiz is mostly fair, though Q6 is under-determined and the answer pattern is sometimes too easy to spot without reading.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-peak-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "2c55668bf082f369",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-peak-ch1-mrh7pfxk-23",
+    "scores": {
+      "retention": 91,
+      "quizzes": 76,
+      "transfer": 74,
+      "practical": 90,
+      "summaries": 88,
+      "tone": 88,
+      "limits": 90,
+      "insight": 89,
+      "density": 84,
+      "beginner": 90
+    },
+    "composite": 85.7,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "a",
+        "c",
+        "b",
+        "b",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The miss is the map because it tells the next rep where to aim.",
+        "why": "Strong, memorable compression of the chapter’s core mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+        "why": "Gives beginners a concrete test for whether a practice target is usable.",
+        "verified": true
+      },
+      {
+        "quote": "Actually, skip the taped strip and just shoot more full rounds, because a higher repetition count is what builds the skill and isolating one miss only slows you down.",
+        "why": "Directly contradicts the chapter inside a What to do field.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "b is the longest and the only concrete correction loop.",
+      "a is the only option that names a narrow set, step checking, and a rewritten failing step.",
+      "c closely restates the chapter’s thesis about whole performance hiding one weak point.",
+      "b is the only option with cue, check, repeat, and narrowed scope.",
+      "b uses the chapter’s giveaway language: miss redesigns next attempt and feedback.",
+      "b is the most operationally specific; a is also plausible.",
+      "c is the only option with the chapter’s core phrase, changing the next attempt.",
+      "a is much more concrete than the distractors.",
+      "c is the only measurable target."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "The What to do section first recommends the correct narrow drill, then says to skip it and shoot more full rounds, which contradicts the chapter’s central advice.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q6",
+        "problem": "Both a and b are supported by the prose; b is more precise, but a also fairly answers why nightly repetition may not fix the weak spot.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz",
+        "problem": "Several correct answers are guessable because they are the most concrete correction-loop option and often the longest or most chapter-keyword-heavy choice.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter teaches a clear, useful move: stop replaying the whole task, isolate the miss, get fast feedback, and change the next attempt. It is memorable, practical, beginner-friendly, and honest about limits. The main blocker is Example 1’s source-contradictory What to do sentence, which tells the reader to do the opposite of the lesson. The quiz is mostly fair, though Q6 is under-determined and the answer pattern is sometimes too easy to spot without reading.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "3d3404d3dc13a451e8ac2ba875b77777787a80ef3c130d7794a363e6074cbc1a",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:07:40.291Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "1efdd070916344fb909bc0530df65e3b0c56cd998d78d0bc766a47fa333b9c32",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "Actually, skip the taped strip and just shoot more full rounds, because a higher repetition count is what builds the skill and isolating one miss only slows you down."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:06:42.535Z",
+  "durationMs": 0
+}

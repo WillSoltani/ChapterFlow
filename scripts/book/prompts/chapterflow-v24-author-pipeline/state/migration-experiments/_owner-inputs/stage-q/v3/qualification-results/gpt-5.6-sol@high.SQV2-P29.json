@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P29",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"DUPLICATE_RELABELING_WITH_CHAPTER_MECHANISM_MISMATCH\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Write the purpose in one sentence and remove any line whose real aim is punishment.\",\"The best choice keeps the conversation tied to three layers and creates room for new information.\",\"The best choice keeps the conversation tied to purpose and creates room for new information.\"],\"rationale\":\"The duplicated item does not genuinely assess both mechanisms. Its correct choice explicitly tests clarifying purpose and avoiding punishment, which fits “What's Your Purpose?” but does not require sorting the facts, feelings, and identity dimensions associated with the Three Conversations. Instance A merely substitutes “three layers” into the explanation without changing the scenario, choices, correct answer, or reasoning demanded of the learner, so the relabeling leaves one stated chapter skill unassessed.\"}"
+}

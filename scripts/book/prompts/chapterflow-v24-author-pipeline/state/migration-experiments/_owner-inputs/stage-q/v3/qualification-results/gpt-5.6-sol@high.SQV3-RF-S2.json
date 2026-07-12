@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-S2",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Reported attrition fell from 20% to 15% over the year.\",\"After the change, attrition was cut by more than half.\"],\"rationale\":\"The record permits a direct comparison. A fall from 20% to 15% is a 5-percentage-point decline and a 25% relative reduction, not a reduction of more than half. The finding therefore correctly identifies a substantive numerical overstatement.\"}"
+}

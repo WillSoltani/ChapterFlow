@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-U1",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"UNSUPPORTED\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Deliver corrective feedback close in time to the behavior, while the specifics are still fresh.\",\"Give the correction close to the moment, while the details are still fresh enough to be useful.\"],\"rationale\":\"The supplied source contract and candidate passage are sufficient to decide the finding. The candidate preserves the source requirement to give corrective feedback close in time to the relevant behavior or moment, and it also preserves the freshness rationale by saying the details are still fresh enough to be useful. The quoted wording is a paraphrase, not a contradiction, so the finding is unsupported.\"}"
+}

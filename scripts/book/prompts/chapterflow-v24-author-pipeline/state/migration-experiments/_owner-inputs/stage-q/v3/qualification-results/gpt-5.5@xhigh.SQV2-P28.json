@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P28",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Duplicated item relabels the same generic answer across different chapter skills\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Chapter skill: Sort Out the Three Conversations Question: A nurse receives a cold email after a handoff error and feels the urge to forward it to a supervisor. Which action keeps the hard talk useful?\",\"Chapter skill: Have Your Feelings (Or They Will Have You) Question: A nurse receives a cold email after a handoff error and feels the urge to forward it to a supervisor. Which action keeps the hard talk useful?\",\"Choices: [\\\"Lead with the strongest proof so the other person cannot dodge the facts.\\\", \\\"Wait until the feeling fades, then avoid the topic unless it comes up again.\\\", \\\"Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose.\\\"] Correct index: 2\"],\"rationale\":\"The two quiz instances use the same scenario, question wording, choices, and correct index while only changing the stated chapter skill and lightly swapping the explanation label from three layers to feelings. The answer choice is broadly sensible for either chapter, but the item does not separately require the distinct mechanism of sorting the three conversations versus owning feelings; it merely relabels a generic hard-conversation response.\"}"
+}

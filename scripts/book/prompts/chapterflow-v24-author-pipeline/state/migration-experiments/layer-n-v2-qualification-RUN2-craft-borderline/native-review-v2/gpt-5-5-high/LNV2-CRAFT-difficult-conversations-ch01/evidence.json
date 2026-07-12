@@ -1,0 +1,139 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-difficult-conversations-ch01",
+  "itemId": "LNV2-CRAFT-difficult-conversations-ch01",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "e9b217b48c7457a6",
+  "renderedDocSha256": "7bbd456ce048ec93abf04622681c7ff612537ab90fdf9ec276e9fdf58b278443",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "742e47823716f94ba3f8c56a5a2cbb7cb75817750a34e699627b560ea919fa6d",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CRAFT-difficult-conversations-ch01-mrh5wvrw-17",
+  "rawFinalMessageSha256": "2b0016b779128f9b4be2820d74f2ecec234ef5b131dab4b365175577a5111e63",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"a\", \"b\", \"c\", \"a\", \"b\", \"c\", \"c\", \"b\", \"a\"],\n    \"mechanisms\": [\n      \"Her fear of seeming too junior is a competence/authority self-question, which the prose defines as identity.\",\n      \"The prose separates the promise/logistics, the resentment, and the family-duty identity fear.\",\n      \"Invoices are repair facts, while residents' dismissed feeling and the board's negligence fear are separate layers.\",\n      \"The chapter warns that the visible timeline can be real while trust feelings drive the exchange.\",\n      \"Hearing the question as 'You are a bad friend' makes it a question about what kind of person she is.\",\n      \"The three labels keep the belonging threat from being reduced to the authorship-order facts.\",\n      \"The attendance fact has become a parenting identity judgment, so repeating facts alone may increase defense.\",\n      \"The prose says the frame works first as private diagnosis and can sound accusatory when pasted onto someone else.\",\n      \"The first move is to sort the visible dishes issue from the respect layer driving the repeated fight.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"Mildly underdetermined: 'respect' could be a feeling of being dismissed or an identity question about worth, but option a correctly asks to sort the layers.\"],\n    \"tells\": [\n      \"Q1-Q8: the correct answer is consistently the longest or most fully qualified option.\",\n      \"Correct answers repeatedly reuse chapter vocabulary such as identity, layers, facts, feelings, and diagnosis.\",\n      \"Several distractors are exaggerated or evasive, such as 'only issue that matters,' 'save feelings,' and 'cannot offend.'\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 92,\n    \"quizzes\": 74,\n    \"transfer\": 84,\n    \"practical\": 88,\n    \"summaries\": 91,\n    \"tone\": 84,\n    \"limits\": 90,\n    \"insight\": 90,\n    \"density\": 84,\n    \"beginner\": 89\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The log is evidence. It is not the whole map.\",\n      \"why\": \"Memorable compression of the chapter's central distinction.\"\n    },\n    {\n      \"quote\": \"Diagnosis is not a cure.\",\n      \"why\": \"Strong boundary line that prevents overselling the frame.\"\n    },\n    {\n      \"quote\": \"The three conversations are a diagnostic tool, not a script.\",\n      \"why\": \"Clear standalone summary of both use and limit.\"\n    },\n    {\n      \"quote\": \"In the end, it really just comes down to giving this the attention it deserves.\",\n      \"why\": \"Generic filler that weakens an otherwise concrete example.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"The correct options are repeatedly the longest, most nuanced choices, so a test-wise reader could often guess without reading closely.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz distractors\",\n      \"problem\": \"Several wrong answers are cartoonishly extreme or evasive, which weakens the assessment value.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The final sentence is generic filler and does not add a concrete decision, consequence, or mechanism.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"The advice to name trust and judgment in the room slightly blurs the chapter's stronger caution to use the frame first as private diagnosis.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter teaches a useful diagnostic move with memorable lines, clear layering, honest limits, and practical prompts a beginner could use immediately. I would not ship it yet against a professional bar because the quiz design is too guessable: the right answers are consistently longer, more nuanced, and closer to the chapter's own vocabulary than the distractors. The prose itself is strong enough; the main pre-ship work is tightening the quiz and trimming the small amount of generic example language.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-difficult-conversations-ch01-chapter",
+    "chapterNumber": 1,
+    "contentHash": "e9b217b48c7457a6",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CRAFT-difficult-conversations-ch01-mrh5wvrw-17",
+    "scores": {
+      "retention": 92,
+      "quizzes": 74,
+      "transfer": 84,
+      "practical": 88,
+      "summaries": 91,
+      "tone": 84,
+      "limits": 90,
+      "insight": 90,
+      "density": 84,
+      "beginner": 89
+    },
+    "composite": 86.4,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The log is evidence. It is not the whole map.",
+        "why": "Memorable compression of the chapter's central distinction.",
+        "verified": true
+      },
+      {
+        "quote": "Diagnosis is not a cure.",
+        "why": "Strong boundary line that prevents overselling the frame.",
+        "verified": true
+      },
+      {
+        "quote": "The three conversations are a diagnostic tool, not a script.",
+        "why": "Clear standalone summary of both use and limit.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, it really just comes down to giving this the attention it deserves.",
+        "why": "Generic filler that weakens an otherwise concrete example.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q1-Q8: the correct answer is consistently the longest or most fully qualified option.",
+      "Correct answers repeatedly reuse chapter vocabulary such as identity, layers, facts, feelings, and diagnosis.",
+      "Several distractors are exaggerated or evasive, such as 'only issue that matters,' 'save feelings,' and 'cannot offend.'"
+    ],
+    "complaints": [
+      {
+        "unit": "quiz",
+        "problem": "The correct options are repeatedly the longest, most nuanced choices, so a test-wise reader could often guess without reading closely.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz distractors",
+        "problem": "Several wrong answers are cartoonishly extreme or evasive, which weakens the assessment value.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The final sentence is generic filler and does not add a concrete decision, consequence, or mechanism.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 3",
+        "problem": "The advice to name trust and judgment in the room slightly blurs the chapter's stronger caution to use the frame first as private diagnosis.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter teaches a useful diagnostic move with memorable lines, clear layering, honest limits, and practical prompts a beginner could use immediately. I would not ship it yet against a professional bar because the quiz design is too guessable: the right answers are consistently longer, more nuanced, and closer to the chapter's own vocabulary than the distractors. The prose itself is strong enough; the main pre-ship work is tightening the quiz and trimming the small amount of generic example language.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "5c20494d6b66654dcba0c79b732a21a54a8c272b172252c363f9d2a013253108",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:17:47.500Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "742e47823716f94ba3f8c56a5a2cbb7cb75817750a34e699627b560ea919fa6d",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:16:30.426Z",
+  "durationMs": 0
+}

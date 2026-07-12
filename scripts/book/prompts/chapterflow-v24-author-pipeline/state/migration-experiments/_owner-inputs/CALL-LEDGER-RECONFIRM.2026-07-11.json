@@ -1,0 +1,36 @@
+{
+  "schema": "s16-call-ledger-reconfirm-v1",
+  "date": "2026-07-11",
+  "reconfirmedBeforePhase": "native-layer-n-qualification (first live call after Stage-Q Layer-O)",
+  "sealedCeiling": 2096,
+  "ceilingIsHardMax": true,
+  "ceilingIsNotATarget": true,
+  "consumed": {
+    "total": 540,
+    "breakdown": [
+      { "phase": "stage-q-v1-layer-o", "calls": 192, "evidence": "stage-q/layer-o-results: 64 cases x 3 judges" },
+      { "phase": "stage-q-v2-layer-o", "calls": 138, "evidence": "stage-q/v2/layer-o-v2-results: 138 result files" },
+      { "phase": "stage-q-v3-calibration", "calls": 18, "evidence": "stage-q/v3/calibration-results: 18 (+summary)" },
+      { "phase": "stage-q-v3-qualification", "calls": 192, "evidence": "stage-q/v3/qualification-results: 192 (+summary); QUALIFICATION-RESULT.liveReads=192" }
+    ],
+    "allConsumedIsStageQLayerO": true
+  },
+  "stageQClosed": {
+    "furtherStageQAuthorized": false,
+    "reason": "owner directive 2026-07-11: no additional Stage-Q v3 calls authorized",
+    "actualStageQSpend": 540,
+    "ceilingAllocationForStageQ": 750,
+    "forfeitedAttemptCapHeadroom": 210
+  },
+  "remainingAuthorized": {
+    "components": [
+      { "phase": "native-layer-n-qualify", "expected": 129, "sealedMax": 258, "note": "43 items x 3 judges; persist=false phase-1 only => 1 spawn/item expected; x2 attempt cap = 258 max" },
+      { "phase": "diagnostic-candidate", "expected": 192, "sealedMax": 384, "note": "writers 48/96 + primaryReviews 96/192 + agreementReviews 48/96 (expected/sealedMax)" },
+      { "phase": "confirmatory-candidate", "expected": 352, "sealedMax": 704, "note": "writers 64/192 + primaryReviews 128/384 + agreementReviews 64/128 (expected/sealedMax)" }
+    ],
+    "remainingSealedMax": 1346
+  },
+  "reconciliation": "540 consumed + 1346 remaining sealed-max = 1886 <= 2096 hard ceiling. The 210 gap is unused Stage-Q attempt-cap headroom, now forfeit (no further Stage-Q). The call-envelope-calculator per-experiment maxima (diagnostic TOTAL 1026, confirmatory TOTAL 1346) EACH embed a full Layer-O (384) + Layer-N (258); counted ONCE campaign-wide and using only the candidate portions, the campaign ceiling is 750 (Stage-Q) + 258 (Layer-N) + 384 (diag candidate) + 704 (confirm candidate) = 2096. Envelopes verified live via call-envelope-calculator.mts on 2026-07-11.",
+  "nextLiveDraw": { "phase": "native-layer-n-qualify", "expectedCalls": 129, "sealedMaxCalls": 258 },
+  "routeInvariant": "every live call routes codex_exec_chatgpt_subscription / authMode chatgpt / apiKeyPresent false / apiFallbackAllowed false; driver refuses to start with any forbidden provider env var; CHAPTERFLOW_NO_API_CODEX_QC=1 required."
+}

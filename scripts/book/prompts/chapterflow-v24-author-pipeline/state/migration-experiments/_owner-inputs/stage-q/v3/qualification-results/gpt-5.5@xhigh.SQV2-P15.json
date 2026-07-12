@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P15",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Unsupported narrative embellishment in a real case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"The Zappos trainer closes the Zappos training binder, then stops before the usual applause.\",\"New hires are still in their seats, name tags curled at the corners.\",\"She gives the room a quiet minute before anyone signs the final form.\"],\"rationale\":\"The source plan allows only the real Zappos case basics: Zappos, a $1,000 offer, new hires, and training. The candidate presents extra scene details as if they are factual history, including a trainer closing a binder, expected applause, curled name tags, a quiet minute, and a final form. These details are not supported by the source plan and are narrated in the same factual register as the verified case, so the content should be blocked as a material defect.\"}"
+}

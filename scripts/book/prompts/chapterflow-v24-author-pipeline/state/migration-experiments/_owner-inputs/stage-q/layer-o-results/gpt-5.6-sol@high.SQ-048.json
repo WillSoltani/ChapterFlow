@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-048",
+  "parsed": {
+    "caseId": "SQ-048",
+    "verdict": "INCONCLUSIVE",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Evidence class: score-only"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "No chapter-level rationale was supplied for this subcriterion score."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Score-only conditions are navigation hypotheses and require fresh source review."
+      }
+    ],
+    "explanation": "The proposed finding is supported only by a score, with no direct or contextual chapter evidence; fresh source review is required before a defect can be upheld.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-048\",\"verdict\":\"INCONCLUSIVE\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Evidence class: score-only\"},{\"materialIndex\":0,\"quote\":\"No chapter-level rationale was supplied for this subcriterion score.\"},{\"materialIndex\":1,\"quote\":\"Score-only conditions are navigation hypotheses and require fresh source review.\"}],\"explanation\":\"The proposed finding is supported only by a score, with no direct or contextual chapter evidence; fresh source review is required before a defect can be upheld.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

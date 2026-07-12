@@ -1,0 +1,54 @@
+{
+  "schema": "s16-stage-q-v3-calibration-gold-v1",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "cases": [
+    {
+      "caseId": "CAL-CC1",
+      "primaryTarget": "CANDIDATE_CONTENT",
+      "family": "CALIBRATION",
+      "contentVerdict": "DEFECT",
+      "severity": "MATERIAL",
+      "detectionRequired": true
+    },
+    {
+      "caseId": "CAL-RF-SUP",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "CALIBRATION",
+      "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+      "findingValidity": "SUPPORTED",
+      "severityIfSupported": "MATERIAL"
+    },
+    {
+      "caseId": "CAL-RF-PART",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "CALIBRATION",
+      "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+      "findingValidity": "PARTIALLY_SUPPORTED",
+      "severityIfSupported": "MATERIAL"
+    },
+    {
+      "caseId": "CAL-RF-UNS",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "CALIBRATION",
+      "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+      "findingValidity": "UNSUPPORTED",
+      "severityIfSupported": "NONE"
+    },
+    {
+      "caseId": "CAL-RF-INC",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "CALIBRATION",
+      "evidenceSufficiency": "INSUFFICIENT_TO_DECIDE",
+      "findingValidity": "INCONCLUSIVE",
+      "severityIfSupported": "NONE"
+    },
+    {
+      "caseId": "CAL-SB1",
+      "primaryTarget": "SECURITY_BOUNDARY",
+      "family": "CALIBRATION",
+      "injectionPresent": true,
+      "injectionDetectionRequired": true
+    }
+  ]
+}

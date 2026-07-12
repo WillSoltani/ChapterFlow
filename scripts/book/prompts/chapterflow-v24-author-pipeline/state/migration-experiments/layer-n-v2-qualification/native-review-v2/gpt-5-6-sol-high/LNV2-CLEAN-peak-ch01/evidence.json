@@ -1,0 +1,150 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-peak-ch01",
+  "itemId": "LNV2-CLEAN-peak-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "7b893b35e30e2832",
+  "renderedDocSha256": "84ce1b4e707d10349924b9cc7d8855a7843eb2bf507e432526446e16d94d38a2",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-peak-ch01-mrh8ayll-39",
+  "rawFinalMessageSha256": "83450cd150e40546081c77b5e37af180c28a7c4a9f38ad767c019c8802838444",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"a\", \"c\", \"b\", \"b\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose requires isolating the recurring weak passage, obtaining immediate feedback, and changing the next attempt.\",\n      \"Purposeful practice begins by narrowing effort to the repeated error and correcting the first point of failure.\",\n      \"Repeating the whole performance lets the known weak point remain hidden and unchanged.\",\n      \"A cue, short attempt, immediate video feedback, and another adjusted attempt form the prescribed correction loop.\",\n      \"The improvement comes from using each miss to alter the strategy for the next recall attempt.\",\n      \"Repetition alone can preserve the defect; a visible size standard makes the result actionable before the next cut.\",\n      \"Feedback matters when its signal can change the next attempt while the error remains traceable.\",\n      \"Plan B supplies small batches, immediate comparison, and adjustment before further repetitions.\",\n      \"The pedal position, chalk line, and five-turn count make the target visible and testable.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"medium\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"Choice a is also defensible: the prose explicitly says comfort can leave a weak spot hidden, which is another valid explanation of why repetition may not fix the cuts.\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Choice b is the most detailed option and repeats the chapter's isolate-feedback-change sequence.\",\n      \"Choice a alone uses the chapter's narrow-set, step-checking, and immediate-rewrite pattern.\",\n      \"Choice c nearly restates the chapter's contrast between whole-task repetition and a surviving weak point.\",\n      \"Choice b alone contains a visible cue followed by feedback and repetition.\",\n      \"Choice b echoes the signature formulation that a miss changes the next attempt.\",\n      \"Choice b contains the giveaway terms “visible” and “next,” although choice a remains plausible.\",\n      \"Choice c closely reproduces the chapter's language about changing the next attempt while details remain traceable.\",\n      \"Choice a explicitly states the chapter's preferred timing mechanism: feedback soon enough to alter the next batch.\",\n      \"Choice c is uniquely measurable and concrete, while the distractors rely on feeling and bravery.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 95,\n    \"quizzes\": 78,\n    \"transfer\": 80,\n    \"practical\": 94,\n    \"summaries\": 91,\n    \"tone\": 90,\n    \"limits\": 94,\n    \"insight\": 91,\n    \"density\": 84,\n    \"beginner\": 96\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The miss is the map because it tells the next rep where to aim.\",\n      \"why\": \"A compact, memorable statement of the chapter's core feedback mechanism.\"\n    },\n    {\n      \"quote\": \"The rep has to press beyond comfort far enough to reveal the miss, but not so far that the feedback turns to noise.\",\n      \"why\": \"Clearly explains both the purpose and boundary of productive stretch.\"\n    },\n    {\n      \"quote\": \"At 8:10 p.m. Tuesday in the Halifax indoor range, recreational archer Megan lowers her bow at lane 6 while paper target faces hang under buzzing lights.\",\n      \"why\": \"The documentary-level time, place, and identity are presented without indicating whether this is a sourced event or an invented illustration.\"\n    },\n    {\n      \"quote\": \"b) Uneven cuts can become fluent unless a visible size target guides the next cut.\",\n      \"why\": \"This is likely the intended Q6 answer, but the neighboring comfort-based explanation is also supported by the prose.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"Examples 1-6\",\n      \"problem\": \"Named incidents, exact times and places, direct dialogue, and precise observations are written as documentary events without a hypothetical, composite, or source label. That makes invented illustrative detail indistinguishable from reported fact.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"Choices a and b both explain the failure using mechanisms explicitly taught in the chapter: comfort can preserve a weak spot, and repetition without a visible target cannot guide correction.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"Correct choices frequently reuse signature phrases such as visible targets, immediate feedback, and changing the next attempt, while distractors are broad appeals to volume, confidence, or difficulty; readers can often identify the key by phrasing alone.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"full read\",\n      \"problem\": \"The unintroduced archer name Sarah appears after the chapter has established Megan as its recurring archer, creating a small continuity distraction.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"Examples\",\n      \"problem\": \"Six examples repeat almost the same isolate-and-correct structure; the domain variety is useful, but few examples explore harder transfer cases such as delayed feedback, a misdiagnosed target, or feedback too noisy to guide the next attempt.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter teaches a strong, memorable correction loop through concrete sensory scenes, crisp mechanisms, realistic actions, layered summaries, and unusually honest limits. A beginner could apply the core move immediately, and the varied domains support transfer, though the examples mostly demonstrate the same easy case rather than testing the method's messier boundaries. The quiz is derivable but overly telegraphs its keys through signature wording, and Q6 has two defensible answers. Most importantly, the examples use factual-seeming names, timestamps, locations, quotations, and events without identifying them as hypothetical, composite, or sourced; that misleading presentation is a ship-blocking defect despite the chapter's otherwise professional quality.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "peak-ch01",
+    "chapterNumber": 1,
+    "contentHash": "7b893b35e30e2832",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-peak-ch01-mrh8ayll-39",
+    "scores": {
+      "retention": 95,
+      "quizzes": 78,
+      "transfer": 80,
+      "practical": 94,
+      "summaries": 91,
+      "tone": 90,
+      "limits": 94,
+      "insight": 91,
+      "density": 84,
+      "beginner": 96
+    },
+    "composite": 89,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "a",
+        "c",
+        "b",
+        "b",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The miss is the map because it tells the next rep where to aim.",
+        "why": "A compact, memorable statement of the chapter's core feedback mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "The rep has to press beyond comfort far enough to reveal the miss, but not so far that the feedback turns to noise.",
+        "why": "Clearly explains both the purpose and boundary of productive stretch.",
+        "verified": true
+      },
+      {
+        "quote": "At 8:10 p.m. Tuesday in the Halifax indoor range, recreational archer Megan lowers her bow at lane 6 while paper target faces hang under buzzing lights.",
+        "why": "The documentary-level time, place, and identity are presented without indicating whether this is a sourced event or an invented illustration.",
+        "verified": true
+      },
+      {
+        "quote": "b) Uneven cuts can become fluent unless a visible size target guides the next cut.",
+        "why": "This is likely the intended Q6 answer, but the neighboring comfort-based explanation is also supported by the prose.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b is the most detailed option and repeats the chapter's isolate-feedback-change sequence.",
+      "Choice a alone uses the chapter's narrow-set, step-checking, and immediate-rewrite pattern.",
+      "Choice c nearly restates the chapter's contrast between whole-task repetition and a surviving weak point.",
+      "Choice b alone contains a visible cue followed by feedback and repetition.",
+      "Choice b echoes the signature formulation that a miss changes the next attempt.",
+      "Choice b contains the giveaway terms “visible” and “next,” although choice a remains plausible.",
+      "Choice c closely reproduces the chapter's language about changing the next attempt while details remain traceable.",
+      "Choice a explicitly states the chapter's preferred timing mechanism: feedback soon enough to alter the next batch.",
+      "Choice c is uniquely measurable and concrete, while the distractors rely on feeling and bravery."
+    ],
+    "complaints": [
+      {
+        "unit": "Examples 1-6",
+        "problem": "Named incidents, exact times and places, direct dialogue, and precise observations are written as documentary events without a hypothetical, composite, or source label. That makes invented illustrative detail indistinguishable from reported fact.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q6",
+        "problem": "Choices a and b both explain the failure using mechanisms explicitly taught in the chapter: comfort can preserve a weak spot, and repetition without a visible target cannot guide correction.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "Correct choices frequently reuse signature phrases such as visible targets, immediate feedback, and changing the next attempt, while distractors are broad appeals to volume, confidence, or difficulty; readers can often identify the key by phrasing alone.",
+        "mustFix": false
+      },
+      {
+        "unit": "full read",
+        "problem": "The unintroduced archer name Sarah appears after the chapter has established Megan as its recurring archer, creating a small continuity distraction.",
+        "mustFix": false
+      },
+      {
+        "unit": "Examples",
+        "problem": "Six examples repeat almost the same isolate-and-correct structure; the domain variety is useful, but few examples explore harder transfer cases such as delayed feedback, a misdiagnosed target, or feedback too noisy to guide the next attempt.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter teaches a strong, memorable correction loop through concrete sensory scenes, crisp mechanisms, realistic actions, layered summaries, and unusually honest limits. A beginner could apply the core move immediately, and the varied domains support transfer, though the examples mostly demonstrate the same easy case rather than testing the method's messier boundaries. The quiz is derivable but overly telegraphs its keys through signature wording, and Q6 has two defensible answers. Most importantly, the examples use factual-seeming names, timestamps, locations, quotations, and events without identifying them as hypothetical, composite, or sourced; that misleading presentation is a ship-blocking defect despite the chapter's otherwise professional quality.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "b3b4beaefc9b929c60bd759336c9481b45aab3230b6ceb74d10b01cea6e780bd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:25:11.889Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:23:26.504Z",
+  "durationMs": 0
+}

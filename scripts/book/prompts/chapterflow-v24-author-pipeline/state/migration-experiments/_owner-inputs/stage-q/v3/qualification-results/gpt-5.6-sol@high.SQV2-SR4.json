@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR4",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNFRAMED_INVENTED_ANECDOTE_PRESENTED_AS HISTORICAL_FACT\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"When Meridian Regional Bank collapsed in the autumn of 2009\",\"its chief executive spent the final board meeting defending the quarterly dashboard\",\"the liquidity risk everyone in the room already knew about\"],\"rationale\":\"The passage presents a specifically named bank, a dated collapse, and purported details of a private board meeting as established historical facts, without any reader-visible framing that this may be a hypothetical or composite example. Because the provenance permits invented examples but does not establish these claims as factual, the candidate’s source-register is materially misleading and should be blocked pending explicit hypothetical framing or factual support.\"}"
+}

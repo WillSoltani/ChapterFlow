@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P15",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported narrative embellishment in real sourced case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"The Zappos trainer closes the Zappos training binder, then stops before the usual applause.\",\"New hires are still in their seats, name tags curled at the corners.\",\"She gives the room a quiet minute before anyone signs the final form.\"],\"rationale\":\"The source plan permits only the core verified facts: Zappos, a $1,000 offer, new hires, and training. The candidate presents invented scene mechanics and sensory specifics, including a trainer closing a binder, usual applause, curled name tags, a quiet minute, and a final form, in the same factual register as the sourced case. These details are not supported by the provided materials and materially change the case from a sourced summary into dramatized history.\"}"
+}

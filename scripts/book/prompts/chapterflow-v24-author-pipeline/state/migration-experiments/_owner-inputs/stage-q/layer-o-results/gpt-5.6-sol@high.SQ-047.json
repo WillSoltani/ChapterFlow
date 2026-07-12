@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-047",
+  "parsed": {
+    "caseId": "SQ-047",
+    "verdict": "INCONCLUSIVE",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Evidence class: score-only"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "No chapter-level rationale was supplied for this domain score."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Score-only conditions are navigation hypotheses and require fresh source review."
+      }
+    ],
+    "explanation": "The proposed finding supplies only a score and explicitly lacks chapter-level rationale. Under the review contract, fresh source evidence is required before the concern can be upheld as a defect.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-047\",\"verdict\":\"INCONCLUSIVE\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Evidence class: score-only\"},{\"materialIndex\":0,\"quote\":\"No chapter-level rationale was supplied for this domain score.\"},{\"materialIndex\":1,\"quote\":\"Score-only conditions are navigation hypotheses and require fresh source review.\"}],\"explanation\":\"The proposed finding supplies only a score and explicitly lacks chapter-level rationale. Under the review contract, fresh source evidence is required before the concern can be upheld as a defect.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P16",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported narrative specifics in real-world case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Hard specifics allowed: Paul C. Nutt, bargaining, decision outcomes, implementation Real-world case: True\",\"At a March project review in the back office, the facilitator watches a neat agenda end in a quick vote and three weeks of quiet resistance.\",\"At the June review, the same table holds Paul C. Nutt's process notes, a bargaining column, and an implementation map.\"],\"rationale\":\"The source plan permits only broad research-linked specifics about Paul C. Nutt, bargaining, decision outcomes, and implementation, while marking the case as real-world. The candidate adds concrete meeting chronology, location, participants, artifacts, and outcomes such as a March back-office review, a quick vote, three weeks of quiet resistance, and a June follow-up table with process notes. Those details are not supported by the source plan and are narrated in the same factual register as a sourced case, so this is a material defect.\"}"
+}

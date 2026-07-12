@@ -1,0 +1,73 @@
+# QUIZ KEY ADJUDICATION — Defining Moments
+
+Committed blind derivation sha256: cd0103f70ded8c5ee192c2db130c68c463d1693bff7897f991be2116e71142ec
+Phase version: phase2-v1
+
+## Questions and choices
+Q1. At a dental clinic, a routine cleaning runs longer than planned. The last few minutes are calm, clear, and less painful. Which memory lesson best fits this design choice?
+   a) The visit will be judged mostly by the total minutes in the chair.
+   b) The calmer finish can improve how the whole visit is remembered.
+   c) The staff should focus on shortening the visit and leave the finish alone.
+
+Q2. During move-in, an apartment building is plain but gives each family a bright welcome cart with cold drinks at the elevator. What lesson should the manager take?
+   a) Plan no guest moments until the building feels more upscale.
+   b) Build one vivid, tellable surprise that changes the ordinary arrival.
+   c) Set the drinks out quietly, since the free value carries the memory.
+
+Q3. New nurses finish a hard training course. The director can file their certificates or ask them to name their next unit before the team claps. Which choice fits the moment-design logic?
+   a) Make the achievement public so the group can witness the effort.
+   b) Mark the crossing into their next unit now, before the change turns into private logistics.
+   c) Wait until the new unit starts, since transitions gain meaning only later.
+
+Q4. A neighborhood library wants a Saturday event to be more than a sign-up table. Which plan uses the four ingredients of memorable experiences?
+   a) Pick one emotional route and use the same beat for every visitor.
+   b) Add more forms so the event feels more organized at the table.
+   c) Lift the mood, spark insight, honor effort, and help people meet.
+
+Q5. In a small repair shop, the owner cannot redo the whole space this month. What would most closely match the red-phone lesson?
+   a) Use one visible object to signal that the usual script has changed.
+   b) Delay all changes until the shop can afford a full redesign of the whole visit.
+   c) Rely on steady service alone so no single interaction stands out.
+
+Q6. At a bookstore launch, free cookies sit on a back table and no one mentions them. Which change would make the gift more like a moment?
+   a) Mention that the cookies are free, since the cost is the memorable part.
+   b) Turn the delivery into a small event, with a request and reveal.
+   c) Keep the cookies available in the back, so the gift stays casual.
+
+Q7. Before a basic training group splits into new assignments, the leader has one open hour. What use of that hour best reflects the threshold idea?
+   a) Save recognition for a later check-in after each person has settled into the role.
+   b) Use the hour for loose conversation, since the real change begins afterward.
+   c) Mark the shared crossing now, before the next stage becomes private logistics.
+
+Q8. Customer support fixes a frustrating account lock. The call has one sharp peak of stress, then a steady, clear close. What should the team not assume?
+   a) That callers will average each minute of the call with equal weight.
+   b) That the stressful peak and the ending can strongly affect later recall.
+   c) That a clearer close can help without erasing the earlier stress.
+
+Q9. At a busy cafe counter, a free mint sits by the receipt printer. Customers take one at checkout, but nobody talks about it later. The owner wonders why the gift vanishes. Which diagnosis fits best?
+   a) The mint needs a higher cost before customers treat it as worth retelling.
+   b) The cafe needs better fixtures before a small gift can become a guest story.
+   c) The mint lacks a tellable format, so guests treat it as a small free item.
+
+## COMMITTED DERIVATION (produced blind, before any key access — immutable)
+Q1 [q01]: derived b — confidence high — mechanism: The cold-water study says recall is shaped by the sharpest part and the ending, not by duration alone.
+Q2 [q02]: derived b — confidence high — mechanism: The Magic Castle phone shows a modest place can create one vivid, tellable peak through object, request, and delivery.
+Q3 [q03]: derived a — confidence medium — mechanism: YES Prep turns a private achievement into a public milestone where peers and adults witness effort.
+   ambiguity: b is also defensible: naming the next unit before team claps marks the threshold before the change becomes private logistics.
+Q4 [q04]: derived c — confidence high — mechanism: The prose names elevation, insight, pride, and connection as the four common ingredients.
+Q5 [q05]: derived a — confidence high — mechanism: The red phone is a concrete object that signals the ordinary script has changed.
+Q6 [q06]: derived b — confidence high — mechanism: The Popsicle Hotline is memorable because the request and tray make the free item into a small event.
+Q7 [q07]: derived c — confidence high — mechanism: The chapter says beginnings, endings, milestones, and rough spots are doorways to mark before logistics take over.
+Q8 [q08]: derived a — confidence high — mechanism: The prose explicitly says memory does not average each minute and is shaped by peak and ending.
+Q9 [q09]: derived c — confidence high — mechanism: The chapter distinguishes a tellable designed moment from a quiet free item whose value alone does not carry the story.
+
+## ANSWER KEY (with explanations)
+Q1: b — The cold-water finding separates duration from recall: a milder ending can change the remembered episode. A shorter clock is not the only path to a better memory.
+Q2: b — The Popsicle Hotline works through a vivid, tellable surprise, not luxury or price alone. The cart should make arrival feel like an event, not a quiet perk.
+Q3: a — Public recognition changes how an achievement feels. Filing the certificate treats meaning as automatic; waiting misses the threshold before the next stage begins.
+Q4: c — The four ingredients are elevation, insight, pride, and connection. One repeated beat or a smoother form table misses the distinct routes a short event can use.
+Q5: a — The red phone shows that one concrete object can change the script. The lesson is not to wait for a full redesign or let the whole visit stay evenly ordinary.
+Q6: b — The popsicles become memorable through the phone, request, and tray. The gift needs a tellable format; cost and quiet availability are weaker explanations.
+Q7: c — The threshold matters before the new stage becomes private logistics. Waiting until later treats the transition as meaningful only after it has already scattered.
+Q8: a — The false assumption is equal averaging. The cold-water comparison shows recall can overweight the end, while a clearer close still does not erase earlier stress.
+Q9: c — Free alone is not the lesson. The Popsicle Hotline works because the phone and tray make the gift narratable; the mint needs a format, not a higher price or better fixtures.

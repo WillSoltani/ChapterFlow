@@ -1,0 +1,171 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-decisive-ch1",
+  "itemId": "hardblocker-decisive-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "014b37f7d9443b91",
+  "renderedDocSha256": "8b8121496052b92a92964a0602a61c36f6a94a7158b0c24cf36ecb99a46033ee",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "caffd90cb670ab2f7c9df262666c638b353c991435a7e8162151fd383a218c8f",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-hardblocker-decisive-ch1-mrh95ypt-60",
+  "rawFinalMessageSha256": "5184e93c79c0702cd1be4a7211f52fbf997b8a9ad96a25c0aaa8f1760d129fc5",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"c\", \"c\", \"a\", \"c\", \"a\", \"a\", \"b\"],\n    \"mechanisms\": [\n      \"The prose defines WRAP as four distinct moves matched to narrow framing, confirmation bias, short-term emotion, and overconfidence.\",\n      \"The chapter says a yes-or-no frame excludes better paths before evidence is considered, so the option set must be widened first.\",\n      \"Reality-testing asks what could make the favored plan fail and actively seeks evidence capable of weakening it.\",\n      \"The prose treats emotion as information but recommends distance from its short-term surge and attention to what matters later.\",\n      \"Prepare to be wrong requires naming multiple plausible futures instead of treating one detailed forecast as certain.\",\n      \"HopeLab used parallel first passes to generate comparison data and learn before making an expensive commitment.\",\n      \"Grove's question creates distance by asking what a fresh leader would do without Intel's attachment to memory chips.\",\n      \"Each villain affects a different part of the decision and therefore requires its corresponding WRAP move.\",\n      \"The chapter explicitly says good process improves the odds without guaranteeing a good outcome.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"Choice b calls the four targets \\\"choice stages,\\\" while the prose describes them as dangers or repair jobs rather than formally defined stages; no competing choice is equally supported.\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Correct choices repeatedly echo signature prose terms such as \\\"disconfirming evidence,\\\" \\\"plausible outcomes,\\\" \\\"outsider question,\\\" and \\\"improving odds while uncertainty remains.\\\"\",\n      \"Many distractors are giveaway reversals or absolutes: gather only friendly evidence, let an outsider decide, trust confidence as proof, promise the next outcome will be right, or abandon the process.\",\n      \"Several correct choices are the most qualified and mechanism-rich option, while distractors use conspicuously simplistic reasoning.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 92,\n    \"quizzes\": 81,\n    \"transfer\": 58,\n    \"practical\": 82,\n    \"summaries\": 90,\n    \"tone\": 87,\n    \"limits\": 95,\n    \"insight\": 91,\n    \"density\": 82,\n    \"beginner\": 94\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"Evidence gets crooked when the favorite answer hires the researcher.\",\n      \"why\": \"A compact, memorable image explains the mechanism of confirmation bias.\"\n    },\n    {\n      \"quote\": \"Good process raises the odds without promising the outcome.\",\n      \"why\": \"This states the chapter's most important boundary plainly and memorably.\"\n    },\n    {\n      \"quote\": \"On reflection, gather only the evidence that supports the plan you already favor, because disconfirming views just add noise and slow the decision down.\",\n      \"why\": \"This directly reverses the chapter's reality-testing instruction inside the action step.\"\n    },\n    {\n      \"quote\": \"The team lead texts from the train platform before the decision meeting: \\\"WRAP check. Which of the four villains is loudest?\\\"\",\n      \"why\": \"The chapter presents a specific event and quotation without marking the scene as hypothetical or supplying any basis for it.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The example invents a specific after-lunch HopeLab project-room scene around a real organization without marking it as hypothetical, making the reconstruction misleading. Category: FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The example invents a Monday-morning HopeLab planning-room event and attributes internal budget reasoning to unnamed staff without identifying it as fiction. Category: FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"The example invents an Intel reviewer, a strategy review, and two pages of deliberation around a real historical decision without a hypothetical marker. Category: FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"Its action step first recommends disconfirming research and then explicitly instructs the reader to gather only supporting evidence, contradicting the chapter's central mechanism. Category: SOURCE-CONTRADICTORY.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The named person, forecast-board reveal, and three-range event are presented as facts without being marked as a hypothetical scenario. Category: FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"The train-platform exchange and quoted text messages are invented but presented as an occurring event rather than a hypothetical illustration. Category: FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"examples 1-2\",\n      \"problem\": \"Both examples reuse the HopeLab vendor-comparison case with minimal additional transfer; the second mostly restates the first through budget language.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"The keyed choice calls the four WRAP targets \\\"choice stages,\\\" terminology the prose never establishes and that slightly misstates its danger-to-repair mapping.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Many distractors are transparent reversals, absolutes, or obviously reckless positions, so readers can often identify the answer through test-taking cues rather than understanding.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"try this now\",\n      \"problem\": \"The instruction to touch a laptop lid is theatrical, while \\\"record the cue, shortcut, and likely villain\\\" introduces an unexplained shortcut field and does not directly require the matching WRAP action.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter teaches WRAP clearly through a strong causal structure, memorable lines, approachable prose, useful if-then practices, and unusually honest limits on what good process can guarantee. The quiz is fully derivable, though its distractors are often too easy and Q1 uses imprecise terminology. The chapter cannot ship as written because Example 4 reverses the central advice inside its own action step, and several examples present invented scenes involving real organizations as if they occurred. Once those examples are explicitly framed as hypothetical or replaced with supported cases—and the contradictory sentence is removed—the underlying chapter is close to a professional standard.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-decisive-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "014b37f7d9443b91",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-hardblocker-decisive-ch1-mrh95ypt-60",
+    "scores": {
+      "retention": 92,
+      "quizzes": 81,
+      "transfer": 58,
+      "practical": 82,
+      "summaries": 90,
+      "tone": 87,
+      "limits": 95,
+      "insight": 91,
+      "density": 82,
+      "beginner": 94
+    },
+    "composite": 84.7,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "c",
+        "c",
+        "a",
+        "c",
+        "a",
+        "a",
+        "b"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+        "why": "A compact, memorable image explains the mechanism of confirmation bias.",
+        "verified": true
+      },
+      {
+        "quote": "Good process raises the odds without promising the outcome.",
+        "why": "This states the chapter's most important boundary plainly and memorably.",
+        "verified": true
+      },
+      {
+        "quote": "On reflection, gather only the evidence that supports the plan you already favor, because disconfirming views just add noise and slow the decision down.",
+        "why": "This directly reverses the chapter's reality-testing instruction inside the action step.",
+        "verified": true
+      },
+      {
+        "quote": "The team lead texts from the train platform before the decision meeting: \"WRAP check. Which of the four villains is loudest?\"",
+        "why": "The chapter presents a specific event and quotation without marking the scene as hypothetical or supplying any basis for it.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Correct choices repeatedly echo signature prose terms such as \"disconfirming evidence,\" \"plausible outcomes,\" \"outsider question,\" and \"improving odds while uncertainty remains.\"",
+      "Many distractors are giveaway reversals or absolutes: gather only friendly evidence, let an outsider decide, trust confidence as proof, promise the next outcome will be right, or abandon the process.",
+      "Several correct choices are the most qualified and mechanism-rich option, while distractors use conspicuously simplistic reasoning."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "The example invents a specific after-lunch HopeLab project-room scene around a real organization without marking it as hypothetical, making the reconstruction misleading. Category: FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 2",
+        "problem": "The example invents a Monday-morning HopeLab planning-room event and attributes internal budget reasoning to unnamed staff without identifying it as fiction. Category: FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 3",
+        "problem": "The example invents an Intel reviewer, a strategy review, and two pages of deliberation around a real historical decision without a hypothetical marker. Category: FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 4",
+        "problem": "Its action step first recommends disconfirming research and then explicitly instructs the reader to gather only supporting evidence, contradicting the chapter's central mechanism. Category: SOURCE-CONTRADICTORY.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 5",
+        "problem": "The named person, forecast-board reveal, and three-range event are presented as facts without being marked as a hypothetical scenario. Category: FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 6",
+        "problem": "The train-platform exchange and quoted text messages are invented but presented as an occurring event rather than a hypothetical illustration. Category: FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "examples 1-2",
+        "problem": "Both examples reuse the HopeLab vendor-comparison case with minimal additional transfer; the second mostly restates the first through budget language.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1",
+        "problem": "The keyed choice calls the four WRAP targets \"choice stages,\" terminology the prose never establishes and that slightly misstates its danger-to-repair mapping.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz",
+        "problem": "Many distractors are transparent reversals, absolutes, or obviously reckless positions, so readers can often identify the answer through test-taking cues rather than understanding.",
+        "mustFix": false
+      },
+      {
+        "unit": "try this now",
+        "problem": "The instruction to touch a laptop lid is theatrical, while \"record the cue, shortcut, and likely villain\" introduces an unexplained shortcut field and does not directly require the matching WRAP action.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter teaches WRAP clearly through a strong causal structure, memorable lines, approachable prose, useful if-then practices, and unusually honest limits on what good process can guarantee. The quiz is fully derivable, though its distractors are often too easy and Q1 uses imprecise terminology. The chapter cannot ship as written because Example 4 reverses the central advice inside its own action step, and several examples present invented scenes involving real organizations as if they occurred. Once those examples are explicitly framed as hypothetical or replaced with supported cases—and the contradictory sentence is removed—the underlying chapter is close to a professional standard.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "20233580a3318bee3dc980f9d6690cbb8ae27bcdba0f5cb73967355ac5e222dd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:48:58.782Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "caffd90cb670ab2f7c9df262666c638b353c991435a7e8162151fd383a218c8f",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "On reflection, gather only the evidence that supports the plan you already favor, because disconfirming views just add noise and slow the decision down."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:47:32.992Z",
+  "durationMs": 0
+}

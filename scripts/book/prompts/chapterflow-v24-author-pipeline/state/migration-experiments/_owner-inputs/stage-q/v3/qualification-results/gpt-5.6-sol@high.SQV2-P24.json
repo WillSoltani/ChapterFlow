@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P24",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"GENERIC_NON_CLAIM_SPECIFIC_LOCATOR\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=Milgram+obedience+experiment\",\"A generic or topically unrelated search is not verification.\"],\"rationale\":\"The proposed locator is only a generic PubMed search for the Milgram obedience experiment. It does not identify evidence addressing the claim’s specific mechanism—that beginning with concrete events is necessary because vague moral labels conceal causal operations—so it fails the contract’s entity, mechanism, and relation requirements.\"}"
+}

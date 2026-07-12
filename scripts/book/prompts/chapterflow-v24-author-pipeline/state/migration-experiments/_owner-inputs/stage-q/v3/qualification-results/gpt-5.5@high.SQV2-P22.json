@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P22",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"proposed_locator_not_claim_specific\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"The time-scale method is useful for prevention, since changing upstream context may be more effe\",\"Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=MAOA+maltreatment+Caspi+2002 ; locator=ch01.fact.7\",\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim. A generic or topically unrelated search is not verification.\"],\"rationale\":\"The recorded claim concerns a time-scale method for prevention and the mechanism that changing upstream context may be more effective, but the proposed locator is only a PubMed search for MAOA, maltreatment, and Caspi 2002. The materials do not show that this locator addresses the same entity, mechanism, relation, or certainty as the claim, and the contract explicitly says generic or topically unrelated searches are not verification.\"}"
+}

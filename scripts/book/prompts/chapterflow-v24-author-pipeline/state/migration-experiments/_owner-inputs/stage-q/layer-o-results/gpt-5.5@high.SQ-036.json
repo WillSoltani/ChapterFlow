@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-036",
+  "parsed": {
+    "caseId": "SQ-036",
+    "verdict": "DEFECT",
+    "defectClass": "duplicated generic item relabeled across chapter skills",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Have Your Feelings (Or They Will Have You)"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "A nurse receives a cold email after a handoff error and feels the urge to forward it to a supervisor."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A nurse receives a cold email after a handoff error and feels the urge to forward it to a supervisor."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose."
+      }
+    ],
+    "explanation": "The two instances use different chapter-skill labels but the same scenario, choices, correct index, and generic best action. The only substantive relabel is the explanation swapping chapter framing, so the duplicate does not independently assess both mechanisms.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-036\",\"verdict\":\"DEFECT\",\"defectClass\":\"duplicated generic item relabeled across chapter skills\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Have Your Feelings (Or They Will Have You)\"},{\"materialIndex\":0,\"quote\":\"A nurse receives a cold email after a handoff error and feels the urge to forward it to a supervisor.\"},{\"materialIndex\":1,\"quote\":\"A nurse receives a cold email after a handoff error and feels the urge to forward it to a supervisor.\"},{\"materialIndex\":0,\"quote\":\"Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose.\"},{\"materialIndex\":1,\"quote\":\"Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose.\"}],\"explanation\":\"The two instances use different chapter-skill labels but the same scenario, choices, correct index, and generic best action. The only substantive relabel is the explanation swapping chapter framing, so the duplicate does not independently assess both mechanisms.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

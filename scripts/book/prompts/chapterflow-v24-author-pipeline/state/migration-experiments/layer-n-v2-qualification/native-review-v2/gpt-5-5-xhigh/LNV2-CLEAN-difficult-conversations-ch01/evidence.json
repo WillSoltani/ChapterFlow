@@ -1,0 +1,135 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-difficult-conversations-ch01",
+  "itemId": "LNV2-CLEAN-difficult-conversations-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "03c1136563a90916",
+  "renderedDocSha256": "313e9709c17fbe4c3f85b3c005a88e87e1afb920d51eda36d21898961078945d",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "1d63d23c67ec6de0b6d74a81023bc7cdc2f463f81e91d3948ad6013d87a45812",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-difficult-conversations-ch01-mrh9pkj8-5",
+  "rawFinalMessageSha256": "daa3446125939aabac883f089373d90207bbace76546dda5750d34dd6e375eed",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"a\", \"b\", \"c\", \"a\", \"b\", \"c\", \"c\", \"b\", \"a\"],\n    \"mechanisms\": [\n      \"The prose defines identity as questions about competence, goodness, loyalty, worth, or respect; fear of seeming too junior is an authority/competence question.\",\n      \"The prose says to sort what happened, feelings, and identity, so the promise, resentment, and responsible-child fear are the three active layers.\",\n      \"The heat invoices are facts, residents feeling ignored is the feelings layer, and the board's fear of negligence is an identity/reputation layer.\",\n      \"The prose warns that the visible label can hide feelings driving tone, so deadline language can mask trust as the active layer.\",\n      \"Hearing the question as 'You are a bad friend' makes the surface dinner fact into a judgment about what kind of friend she is.\",\n      \"Separating facts, feelings, and identity keeps the belonging threat from being collapsed into only the authorship-order dispute.\",\n      \"The chapter says adding more facts can fail when the other person is defending dignity or identity.\",\n      \"The prose explicitly says the frame should be used privately first because labeling someone else's layer can sound like a verdict.\",\n      \"The repeated respect statement shows the dishes fact has acquired a feelings/identity layer, so the first move is to sort those layers.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"b is superficially tempting because terror is a feeling, but the object of the terror is competence and authority.\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"a is the longest and contains the chapter's exact identity vocabulary.\",\n      \"b is much longer than the distractors and bundles all three layers.\",\n      \"c is the only option that names facts, feelings, and identity/reputation together.\",\n      \"a is the only option using the chapter's hidden-layer diagnosis rather than a generic fix.\",\n      \"b is the longest and repeats the stem's 'bad friend' identity cue.\",\n      \"c is the only option that mirrors the chapter's 'mistaking X for only Y' phrasing.\",\n      \"c is much more qualified and chapter-like than the other options.\",\n      \"b gives away the private-diagnosis warning almost verbatim.\",\n      \"a is the only option that asks a diagnostic layer question.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 82,\n    \"transfer\": 85,\n    \"practical\": 84,\n    \"summaries\": 90,\n    \"tone\": 88,\n    \"limits\": 92,\n    \"insight\": 90,\n    \"density\": 84,\n    \"beginner\": 88\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The log is evidence. It is not the whole map.\",\n      \"why\": \"This is the chapter's core move in a compact, memorable line.\"\n    },\n    {\n      \"quote\": \"Diagnosis is not a cure.\",\n      \"why\": \"It cleanly limits the tool and keeps the chapter from overselling.\"\n    },\n    {\n      \"quote\": \"The three conversations are a diagnostic tool, not a script.\",\n      \"why\": \"This accurately frames the skill's scope and supports practical use.\"\n    },\n    {\n      \"quote\": \"b) Which layers are active: the promise, the resentment, and the fear of being the only responsible child.\",\n      \"why\": \"This correct option is a quiz tell because it names the full framework while the distractors are thin.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"Correct answers repeatedly use the chapter's complete three-layer vocabulary and are often the longest, most qualified choices, making several items guessable without close reading.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"The quoted response is on-the-nose and mostly restates the lesson rather than showing a natural decision and consequence.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong opening chapter: the core diagnostic frame is clear, memorable, bounded, and easy for a beginner to try. The prose has real mechanism, not just advice, and the layered summaries stand alone well. The main weakness is quiz construction: the right answers often sound like the chapter while the distractors sound obviously incomplete. That lowers assessment quality but does not block shipment.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "difficult-conversations-ch01",
+    "chapterNumber": 1,
+    "contentHash": "03c1136563a90916",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-difficult-conversations-ch01-mrh9pkj8-5",
+    "scores": {
+      "retention": 88,
+      "quizzes": 82,
+      "transfer": 85,
+      "practical": 84,
+      "summaries": 90,
+      "tone": 88,
+      "limits": 92,
+      "insight": 90,
+      "density": 84,
+      "beginner": 88
+    },
+    "composite": 86.9,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The log is evidence. It is not the whole map.",
+        "why": "This is the chapter's core move in a compact, memorable line.",
+        "verified": true
+      },
+      {
+        "quote": "Diagnosis is not a cure.",
+        "why": "It cleanly limits the tool and keeps the chapter from overselling.",
+        "verified": true
+      },
+      {
+        "quote": "The three conversations are a diagnostic tool, not a script.",
+        "why": "This accurately frames the skill's scope and supports practical use.",
+        "verified": true
+      },
+      {
+        "quote": "b) Which layers are active: the promise, the resentment, and the fear of being the only responsible child.",
+        "why": "This correct option is a quiz tell because it names the full framework while the distractors are thin.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "a is the longest and contains the chapter's exact identity vocabulary.",
+      "b is much longer than the distractors and bundles all three layers.",
+      "c is the only option that names facts, feelings, and identity/reputation together.",
+      "a is the only option using the chapter's hidden-layer diagnosis rather than a generic fix.",
+      "b is the longest and repeats the stem's 'bad friend' identity cue.",
+      "c is the only option that mirrors the chapter's 'mistaking X for only Y' phrasing.",
+      "c is much more qualified and chapter-like than the other options.",
+      "b gives away the private-diagnosis warning almost verbatim.",
+      "a is the only option that asks a diagnostic layer question."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz overall",
+        "problem": "Correct answers repeatedly use the chapter's complete three-layer vocabulary and are often the longest, most qualified choices, making several items guessable without close reading.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 3",
+        "problem": "The quoted response is on-the-nose and mostly restates the lesson rather than showing a natural decision and consequence.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong opening chapter: the core diagnostic frame is clear, memorable, bounded, and easy for a beginner to try. The prose has real mechanism, not just advice, and the layered summaries stand alone well. The main weakness is quiz construction: the right answers often sound like the chapter while the distractors sound obviously incomplete. That lowers assessment quality but does not block shipment.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "cdb78dfc223e314de921b0af2ee04d555b2771dd4f79493f9b8a625f328980bd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:03:57.586Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "1d63d23c67ec6de0b6d74a81023bc7cdc2f463f81e91d3948ad6013d87a45812",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:02:47.731Z",
+  "durationMs": 0
+}

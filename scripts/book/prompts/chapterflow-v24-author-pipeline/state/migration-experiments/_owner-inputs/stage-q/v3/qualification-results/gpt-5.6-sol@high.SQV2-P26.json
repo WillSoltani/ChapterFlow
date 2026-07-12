@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P26",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"GENERIC_ANSWER_MECHANISM_RELABELING\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Chapter skill: Stop Arguing About Who's Right Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\",\"Chapter skill: Don't Assume They Meant It Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\",\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\",\"The best choice keeps the conversation tied to intent and impact and creates room for new information.\"],\"rationale\":\"The two instances use the same scenario, prompt, choices, and correct answer; only the chapter-skill label and explanatory wording change. The selected draft is broadly constructive but does not explicitly distinguish competing stories for “Stop Arguing About Who's Right” or separate observed impact from inferred intent for “Don't Assume They Meant It.” Because a learner can choose the same generic communication answer without demonstrating either distinct mechanism, the duplication is a material assessment defect and should be blocked.\"}"
+}

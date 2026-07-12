@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-034",
+  "parsed": {
+    "caseId": "SQ-034",
+    "verdict": "DEFECT",
+    "defectClass": "duplicated_generic_item_relabel",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Stop Arguing About Who's Right Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Don't Assume They Meant It Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Choices: [\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\", \"Lead with the strongest proof so the other person cannot dodge the facts.\", \"Wait until the feeling fades, then avoid the topic unless it comes up again.\"]"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Choices: [\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\", \"Lead with the strongest proof so the other person cannot dodge the facts.\", \"Wait until the feeling fades, then avoid the topic unless it comes up again.\"]"
+      }
+    ],
+    "explanation": "The two instances use the same scenario, question, choices, and correct answer. Only the chapter skill and a short explanation phrase change, so the duplicate appears to relabel one generic difficult-conversation item rather than separately assessing both mechanisms.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-034\",\"verdict\":\"DEFECT\",\"defectClass\":\"duplicated_generic_item_relabel\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Stop Arguing About Who's Right Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Don't Assume They Meant It Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\"},{\"materialIndex\":0,\"quote\":\"Choices: [\\\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\\\", \\\"Lead with the strongest proof so the other person cannot dodge the facts.\\\", \\\"Wait until the feeling fades, then avoid the topic unless it comes up again.\\\"]\"},{\"materialIndex\":1,\"quote\":\"Choices: [\\\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\\\", \\\"Lead with the strongest proof so the other person cannot dodge the facts.\\\", \\\"Wait until the feeling fades, then avoid the topic unless it comes up again.\\\"]\"}],\"explanation\":\"The two instances use the same scenario, question, choices, and correct answer. Only the chapter skill and a short explanation phrase change, so the duplicate appears to relabel one generic difficult-conversation item rather than separately assessing both mechanisms.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-051",
+  "parsed": {
+    "caseId": "SQ-051",
+    "verdict": "DEFECT",
+    "defectClass": "same narrative machinery / structural template reuse",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Ferne stops a red pen at Monday 11:06 p.m. in her yellow kitchen table in Trenton, tenant organizer, with the landlord's revised lease."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Imani touches a broken brass drawer pull at Wednesday 7:09 a.m. in the preschool kitchen on Laurel Avenue, center director, with sticky oatmeal bowls in the sink."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Ferne replays it and sees that she spent twenty minutes proving the math while Mrs. Abel was asking whether anyone respected her years in the building."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "She also knows the drawer sticks, the morning shift is short, and she delayed the repair request."
+      }
+    ],
+    "explanation": "Both examples use the same scene machine: named protagonist, exact timestamp, tactile object, kitchen/location, role/context, recent failure, then a reframing from a surface culprit/content issue to a deeper system or relational interpretation. The nouns differ, but the narrative construction is substantially reused.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-051\",\"verdict\":\"DEFECT\",\"defectClass\":\"same narrative machinery / structural template reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Ferne stops a red pen at Monday 11:06 p.m. in her yellow kitchen table in Trenton, tenant organizer, with the landlord's revised lease.\"},{\"materialIndex\":1,\"quote\":\"Imani touches a broken brass drawer pull at Wednesday 7:09 a.m. in the preschool kitchen on Laurel Avenue, center director, with sticky oatmeal bowls in the sink.\"},{\"materialIndex\":0,\"quote\":\"Ferne replays it and sees that she spent twenty minutes proving the math while Mrs. Abel was asking whether anyone respected her years in the building.\"},{\"materialIndex\":1,\"quote\":\"She also knows the drawer sticks, the morning shift is short, and she delayed the repair request.\"}],\"explanation\":\"Both examples use the same scene machine: named protagonist, exact timestamp, tactile object, kitchen/location, role/context, recent failure, then a reframing from a surface culprit/content issue to a deeper system or relational interpretation. The nouns differ, but the narrative construction is substantially reused.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

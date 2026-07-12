@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-025",
+  "parsed": {
+    "caseId": "SQ-025",
+    "verdict": "DEFECT",
+    "defectClass": "TOPICALLY_UNRELATED_GENERIC_SEARCH",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "The visible act is only the endpoint of a causal chain, because a motor output depends on prior"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "https://pubmed.ncbi.nlm.nih.gov/?term=dopamine+reward+prediction+error"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The claim concerns prior causes of motor output, while the locator is a generic PubMed search for dopamine reward prediction error. It does not provide claim-specific evidence addressing the same mechanism or relation.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-025\",\"verdict\":\"DEFECT\",\"defectClass\":\"TOPICALLY_UNRELATED_GENERIC_SEARCH\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"The visible act is only the endpoint of a causal chain, because a motor output depends on prior\"},{\"materialIndex\":0,\"quote\":\"https://pubmed.ncbi.nlm.nih.gov/?term=dopamine+reward+prediction+error\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The claim concerns prior causes of motor output, while the locator is a generic PubMed search for dopamine reward prediction error. It does not provide claim-specific evidence addressing the same mechanism or relation.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

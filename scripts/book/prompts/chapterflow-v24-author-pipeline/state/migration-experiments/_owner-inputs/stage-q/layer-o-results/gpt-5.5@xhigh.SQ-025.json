@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-025",
+  "parsed": {
+    "caseId": "SQ-025",
+    "verdict": "DEFECT",
+    "defectClass": "Generic search locator, not claim-specific evidence",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=dopamine+reward+prediction+error"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The locator is only a PubMed search URL, not a specific source demonstrating the recorded mechanism about a visible act as the endpoint of a causal chain and motor output depending on prior causes. The contract explicitly rejects generic searches as verification.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-025\",\"verdict\":\"DEFECT\",\"defectClass\":\"Generic search locator, not claim-specific evidence\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=dopamine+reward+prediction+error\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The locator is only a PubMed search URL, not a specific source demonstrating the recorded mechanism about a visible act as the endpoint of a causal chain and motor output depending on prior causes. The contract explicitly rejects generic searches as verification.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR7",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"Picture a hypothetical review meeting.\",\"Nothing here happened; the scene exists only to make the choice between the two stances concrete for the reader.\"],\"rationale\":\"The passage explicitly and unambiguously frames the meeting as invented: it calls the scene hypothetical, uses an unnamed manager, and directly states that nothing described happened. A reader therefore cannot reasonably mistake the illustrative scenario for a sourced historical event or real case.\"}"
+}

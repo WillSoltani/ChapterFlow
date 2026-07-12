@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-038",
+  "parsed": {
+    "caseId": "SQ-038",
+    "verdict": "DEFECT",
+    "defectClass": "DUPLICATED_GENERIC_RELABEL",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Begin from the Third Story"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "A coach hears a player reject feedback as favoritism. Which next sentence keeps the talk open?"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A coach hears a player reject feedback as favoritism. Which next sentence keeps the talk open?"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Say what you heard in the player's story, then add your own view as one view, not the whole truth."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Say what you heard in the player's story, then add your own view as one view, not the whole truth."
+      }
+    ],
+    "explanation": "The two instances use identical scenario, choices, and correct answer for different chapter skills. The selected answer specifically fits third-story framing, while the Three Conversations version only relabels the explanation as three layers without assessing feelings or identity mechanisms.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-038\",\"verdict\":\"DEFECT\",\"defectClass\":\"DUPLICATED_GENERIC_RELABEL\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Begin from the Third Story\"},{\"materialIndex\":0,\"quote\":\"A coach hears a player reject feedback as favoritism. Which next sentence keeps the talk open?\"},{\"materialIndex\":1,\"quote\":\"A coach hears a player reject feedback as favoritism. Which next sentence keeps the talk open?\"},{\"materialIndex\":0,\"quote\":\"Say what you heard in the player's story, then add your own view as one view, not the whole truth.\"},{\"materialIndex\":1,\"quote\":\"Say what you heard in the player's story, then add your own view as one view, not the whole truth.\"}],\"explanation\":\"The two instances use identical scenario, choices, and correct answer for different chapter skills. The selected answer specifically fits third-story framing, while the Three Conversations version only relabels the explanation as three layers without assessing feelings or identity mechanisms.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

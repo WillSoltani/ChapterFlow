@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P11",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Unsupported narrative embellishment in a real sourced case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt.\",\"Claire underlines the break-up-or-not wording, then writes two missing questions in the margin: what needs repair with the partner, and what boundary belongs with family.\"],\"rationale\":\"The source plan only permits the handle claireabelle, a teen relationship, family interactions, and a break-up-or-not framing. The candidate adds concrete scene and action details such as the time, bedroom floor, phone on a quilt, a personal name, and later underlining and writing in a margin. These are not supported by the provided source plan and are presented in the same factual narrative register as the real case, so the content is materially defective.\"}"
+}

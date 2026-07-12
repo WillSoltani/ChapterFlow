@@ -1,0 +1,27 @@
+{
+  "schema": "s16-stage-q-v3-development-calibration-manifest-v1",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "purpose": "Instrument-calibration set (owner \u00a75): SEPARATE from the 64-case holdout; 6 cases run through all 3 judges (18 live calls) BEFORE qualification. Calibration calls are excluded from qualification scoring. Passes only when schema validity 100%, evidenceSpans is a real JSON array in every result, the 3 targets are distinguished, the 4 review labels follow the sufficiency rule, no schema/prompt ambiguity, no API route.",
+  "cases": 6,
+  "composition": {
+    "CANDIDATE_CONTENT": 1,
+    "REVIEW_FINDING": 4,
+    "SECURITY_BOUNDARY": 1
+  },
+  "files": {
+    "calibration-cases.jsonl": {
+      "sha256": "6353e2a08af40f1ba6f730006f0c1990c101f2657fe892e7411285c39188c0c0"
+    },
+    "calibration-gold.json": {
+      "sha256": "fa05c53616bf30f63fd2f265f443b2a0e3b48d6b787230a5c8efcd1dffb18862"
+    },
+    "calibration-demand-tokens.json": {
+      "sha256": "d8b1429c3bd507c28f7053a0c576cb4b1269eaab43ddd50c4b7f911f7be8634f"
+    }
+  },
+  "excludedFromQualification": true,
+  "notPartOf64Holdout": true,
+  "boundedReplay": "\u22641 infrastructure replay per calibration call; no semantic replay",
+  "goldAudit": "same adversarial audit as the holdout; verifier B 14/14 MATCH (incl. all 6 calibration)"
+}

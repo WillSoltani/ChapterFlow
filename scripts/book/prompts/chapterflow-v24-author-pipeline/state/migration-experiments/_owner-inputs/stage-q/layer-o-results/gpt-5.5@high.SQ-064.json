@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-064",
+  "parsed": {
+    "caseId": "SQ-064",
+    "verdict": "DEFECT",
+    "defectClass": "REMEDIATION_PROMPT_OR_SCORE_RECORD_AS_ARTIFACT",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "# ChapterFlow remediation implementation prompt — The Willpower Instinct"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Remediate the ChapterFlow package identified below."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "this supplied score record alone is not a chapter-level diagnosis"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "## Domain score snapshot"
+      }
+    ],
+    "explanation": "The artifact is a remediation implementation prompt and score snapshot, not source chapter content or a chapter-level diagnostic artifact. It explicitly identifies itself as a supplied score record and says it is not a chapter-level diagnosis, so it should not be treated as valid content evidence.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-064\",\"verdict\":\"DEFECT\",\"defectClass\":\"REMEDIATION_PROMPT_OR_SCORE_RECORD_AS_ARTIFACT\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"# ChapterFlow remediation implementation prompt — The Willpower Instinct\"},{\"materialIndex\":0,\"quote\":\"Remediate the ChapterFlow package identified below.\"},{\"materialIndex\":0,\"quote\":\"this supplied score record alone is not a chapter-level diagnosis\"},{\"materialIndex\":0,\"quote\":\"## Domain score snapshot\"}],\"explanation\":\"The artifact is a remediation implementation prompt and score snapshot, not source chapter content or a chapter-level diagnostic artifact. It explicitly identifies itself as a supplied score record and says it is not a chapter-level diagnosis, so it should not be treated as valid content evidence.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

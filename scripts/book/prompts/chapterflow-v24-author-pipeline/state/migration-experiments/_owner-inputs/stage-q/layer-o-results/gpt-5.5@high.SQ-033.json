@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-033",
+  "parsed": {
+    "caseId": "SQ-033",
+    "verdict": "DEFECT",
+    "defectClass": "duplicated_generic_item_relabel",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Stop Arguing About Who's Right"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "State the impact, own the concern, and ask for a specific repair date or alternative plan."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "State the impact, own the concern, and ask for a specific repair date or alternative plan."
+      }
+    ],
+    "explanation": "The two instances use identical scenario, question, choices, and correct answer while only changing the chapter skill label and a small explanation phrase. The item does not separately assess the mechanisms of both chapters; it relabels one generic difficult-conversation answer.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-033\",\"verdict\":\"DEFECT\",\"defectClass\":\"duplicated_generic_item_relabel\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Stop Arguing About Who's Right\"},{\"materialIndex\":0,\"quote\":\"Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\"},{\"materialIndex\":1,\"quote\":\"Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\"},{\"materialIndex\":0,\"quote\":\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\"},{\"materialIndex\":1,\"quote\":\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\"}],\"explanation\":\"The two instances use identical scenario, question, choices, and correct answer while only changing the chapter skill label and a small explanation phrase. The item does not separately assess the mechanisms of both chapters; it relabels one generic difficult-conversation answer.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-055",
+  "parsed": {
+    "caseId": "SQ-055",
+    "verdict": "DEFECT",
+    "defectClass": "structural template reuse",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Fenna touches a warm invoice sheet at Thursday 3:03 p.m. in the billing alcove at Northgate Dental, office manager"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Jae stops a black ballpoint pen at Wednesday 2:08 p.m. in the patient relations desk at Hillcrest Clinic, patient advocate"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "After the door closed, Fenna saw the older feeling under it"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Jae Jae must decide whether to defend the chart or ask what the morning felt like from his side."
+      }
+    ],
+    "explanation": "Both examples use the same machinery: named worker, exact timestamp, workplace micro-location, role label, tactile object detail, then a professional conflict reframed into an internal emotional/listening choice. The nouns differ, but the scenario engine is materially reused.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-055\",\"verdict\":\"DEFECT\",\"defectClass\":\"structural template reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Fenna touches a warm invoice sheet at Thursday 3:03 p.m. in the billing alcove at Northgate Dental, office manager\"},{\"materialIndex\":1,\"quote\":\"Jae stops a black ballpoint pen at Wednesday 2:08 p.m. in the patient relations desk at Hillcrest Clinic, patient advocate\"},{\"materialIndex\":0,\"quote\":\"After the door closed, Fenna saw the older feeling under it\"},{\"materialIndex\":1,\"quote\":\"Jae Jae must decide whether to defend the chart or ask what the morning felt like from his side.\"}],\"explanation\":\"Both examples use the same machinery: named worker, exact timestamp, workplace micro-location, role label, tactile object detail, then a professional conflict reframed into an internal emotional/listening choice. The nouns differ, but the scenario engine is materially reused.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

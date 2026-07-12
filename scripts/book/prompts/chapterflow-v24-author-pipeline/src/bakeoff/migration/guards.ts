@@ -33,6 +33,48 @@ export class MigrationGuardError extends Error {
   }
 }
 
+// ── §16 legacy-campaign closure — mechanical resume freeze (IMP-20 §K) ─────────
+//
+// The §16 GPT-5.6-SOL reviewer-migration campaign is ARCHIVED
+// (ARCHIVED_INCONCLUSIVE_REVIEW_INSTRUMENT_MISMATCH): its sealed experiments,
+// corpora, and reviewer-qualification instruments are frozen and can never
+// resume a live run. This Set is the SINGLE source of truth for the freeze; the
+// machine-readable closure record (S16_LEGACY_CAMPAIGN_CLOSURE.json under
+// state/migration-experiments) mirrors it, and a Wave-C sync test makes editing
+// that JSON alone unable to un-freeze anything. Both experiment-id slugs AND
+// corpus/instrument ids are held, because the fail-closed check keys on whichever
+// identity reaches a gate-able src/ choke: runMigrationExperiment(experimentId),
+// sealNativeReview(corpus.corpusId), runNativeReviewQualification(corpus.corpusId).
+// A NEW identity (e.g. s16-reviewer-recovery-v1) is absent → it passes.
+export const CLOSED_EXPERIMENT_IDS: ReadonlySet<string> = new Set<string>([
+  "diagnostic-stack-2026-07",
+  "confirmatory-sol-2026-07",
+  "diagnostic-stack-dryrun-2026-07",
+  "confirmatory-dryrun-2026-07",
+  "layer-n-v2-qualification",
+  "s16-layer-n-native-review-v2",
+  "stage-q-layer-o-v1",
+  "stage-q-layer-o-v2",
+  "stage-q-layer-o-v3",
+  "layer-n-v1",
+]);
+
+/** Fail-closed resume freeze (IMP-20 §K): any CLOSED §16 identity — an
+ *  experiment-id slug or a corpus/instrument id — throws before any live work.
+ *  There is NO bypass flag; the freeze is exception-free by construction (a
+ *  live driver cannot accidentally set an escape hatch). A brand-new experiment
+ *  id passes untouched, so the go-forward recovery path is unaffected. */
+export function assertNotClosed(id: string): void {
+  if (CLOSED_EXPERIMENT_IDS.has(id)) {
+    throw new MigrationGuardError(
+      `"${id}" belongs to the CLOSED §16 reviewer-migration campaign ` +
+        `(ARCHIVED_INCONCLUSIVE_REVIEW_INSTRUMENT_MISMATCH) — it cannot resume. ` +
+        `The old seals/corpora/instruments are immutable; start a NEW experiment ` +
+        `id instead (see S16_LEGACY_CAMPAIGN_CLOSURE.json).`,
+    );
+  }
+}
+
 /** Identifiers the migration sources (all files EXCEPT this definition site)
  *  must never contain — the static guard test greps src/bakeoff/migration/*.ts
  *  for these, and additionally scans import lines for promotion/publish modules

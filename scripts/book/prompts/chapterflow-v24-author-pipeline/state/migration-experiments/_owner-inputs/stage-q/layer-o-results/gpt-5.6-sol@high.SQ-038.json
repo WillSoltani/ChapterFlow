@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-038",
+  "parsed": {
+    "caseId": "SQ-038",
+    "verdict": "DEFECT",
+    "defectClass": "DUPLICATE_MECHANISM_RELABELING",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Begin from the Third Story"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Say what you heard in the player's story, then add your own view as one view, not the whole truth."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Say what you heard in the player's story, then add your own view as one view, not the whole truth."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "keeps the conversation tied to three layers"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "keeps the conversation tied to third story"
+      }
+    ],
+    "explanation": "The prompt, choices, and keyed answer are identical; only the chapter-skill label and a phrase in the explanation change. The answer describes perspective-sharing but does not separately assess sorting the what-happened, feelings, and identity conversations, so the duplicated item merely relabels one generic response.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-038\",\"verdict\":\"DEFECT\",\"defectClass\":\"DUPLICATE_MECHANISM_RELABELING\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Begin from the Third Story\"},{\"materialIndex\":0,\"quote\":\"Say what you heard in the player's story, then add your own view as one view, not the whole truth.\"},{\"materialIndex\":1,\"quote\":\"Say what you heard in the player's story, then add your own view as one view, not the whole truth.\"},{\"materialIndex\":0,\"quote\":\"keeps the conversation tied to three layers\"},{\"materialIndex\":1,\"quote\":\"keeps the conversation tied to third story\"}],\"explanation\":\"The prompt, choices, and keyed answer are identical; only the chapter-skill label and a phrase in the explanation change. The answer describes perspective-sharing but does not separately assess sorting the what-happened, feelings, and identity conversations, so the duplicated item merely relabels one generic response.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

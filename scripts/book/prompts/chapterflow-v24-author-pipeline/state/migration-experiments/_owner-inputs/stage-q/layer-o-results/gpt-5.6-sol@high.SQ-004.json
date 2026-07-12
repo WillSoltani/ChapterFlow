@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-004",
+  "parsed": {
+    "caseId": "SQ-004",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "From far away, similar cases show the rough odds."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "From close up, people and small details show what the choice will ask of daily life."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The odds mattered. The lived detail mattered too."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The skill is making each lens do its own job."
+      }
+    ],
+    "explanation": "The candidate correctly uses the outside view for base rates and prediction while using close-up evidence for lived experience and practical texture, explicitly presenting the two lenses as complementary.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-004\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"From far away, similar cases show the rough odds.\"},{\"materialIndex\":1,\"quote\":\"From close up, people and small details show what the choice will ask of daily life.\"},{\"materialIndex\":1,\"quote\":\"The odds mattered. The lived detail mattered too.\"},{\"materialIndex\":1,\"quote\":\"The skill is making each lens do its own job.\"}],\"explanation\":\"The candidate correctly uses the outside view for base rates and prediction while using close-up evidence for lived experience and practical texture, explicitly presenting the two lenses as complementary.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P17",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"generic or topically mismatched locator\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Claim record: Checked claim mechanism for ch01.fact.2: The visible act is only the endpoint of a causal chain, because a motor output depends on prior Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=dopamine+reward+prediction+error ; locator=ch01.fact.2\",\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim. A generic or topically unrelated search is not verification.\"],\"rationale\":\"The proposed locator is only a PubMed search query for dopamine reward prediction error, while the recorded mechanism concerns a visible act as the endpoint of a causal chain in which motor output depends on prior causes. The material does not show that the locator addresses the same entity, mechanism, relation, or certainty; it is a generic search rather than claim-specific evidence, which violates the verification contract.\"}"
+}

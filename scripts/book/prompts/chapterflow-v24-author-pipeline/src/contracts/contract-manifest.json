@@ -3,6 +3,12 @@
   "frozenAtIso": "2026-07-10T09:52:47.272Z",
   "contracts": [
     {
+      "name": "aggregated-chapter-review",
+      "version": 1,
+      "ownerPrompt": "IMP-20",
+      "hash": "47643cc6450888304fff0c4d4ad7110a8d2b401c8a3b0dcd190d77425f658215"
+    },
+    {
       "name": "attempt-evidence-manifest",
       "version": 1,
       "ownerPrompt": "IMP-10",
@@ -27,6 +33,24 @@
       "hash": "aa9a95b242d686ca3ab146aaada810af66eb55cb17eba2727b3be0d398cd5963"
     },
     {
+      "name": "judge-capability-qualification",
+      "version": 1,
+      "ownerPrompt": "IMP-20",
+      "hash": "e05136e482673ccda68d939f1ebfa4fca0393c081c7e6c4c2be3629e18e9718b"
+    },
+    {
+      "name": "quiz-integrity-result",
+      "version": 1,
+      "ownerPrompt": "IMP-20",
+      "hash": "4d904135f0a101a24380fb840eb2ae67fd0e2d0025c74b57debc50649a3b62e2"
+    },
+    {
+      "name": "reader-experience-review",
+      "version": 1,
+      "ownerPrompt": "IMP-20",
+      "hash": "0fe113b60b7c323f993da1ba84759d3f3946749b1790df98448c31034900083b"
+    },
+    {
       "name": "repair",
       "version": 1,
       "ownerPrompt": "IMP-07",
@@ -43,6 +67,12 @@
       "version": 2,
       "ownerPrompt": "IMP-02",
       "hash": "bf7ffa7405ae0dbf3a54d6562e9e8089d62df2e00f247b5240de91ada6dca9fc"
+    },
+    {
+      "name": "source-integrity-review",
+      "version": 1,
+      "ownerPrompt": "IMP-20",
+      "hash": "cd0f720288b732877025cb7de68bda4e1af52318c879acc3cad6304e072981cc"
     },
     {
       "name": "source-use-plan",

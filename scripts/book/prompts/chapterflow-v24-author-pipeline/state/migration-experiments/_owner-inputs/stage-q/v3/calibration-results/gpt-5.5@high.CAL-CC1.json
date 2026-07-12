@@ -1,0 +1,7 @@
+{
+  "caseId": "CAL-CC1",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"invented or unverifiable example presented as factual\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"In 2015, Diane Okafor, VP of operations at Halcyon Freight, personally rerouted 300 trucks overnight and saved the quarter, as she recounted at the company retreat.\"],\"rationale\":\"The candidate presents a highly specific, factual-sounding corporate anecdote about a named person, company, date, operational action, and claimed business outcome, with attribution only to an internal retreat. From the reader-facing passage, there is no signal that this is hypothetical or illustrative, so it reads as a real sourced event despite the provenance warning that examples may be invented.\"}"
+}

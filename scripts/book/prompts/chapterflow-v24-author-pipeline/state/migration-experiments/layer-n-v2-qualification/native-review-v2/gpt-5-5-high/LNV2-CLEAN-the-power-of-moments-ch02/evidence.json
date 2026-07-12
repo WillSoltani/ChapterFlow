@@ -1,0 +1,145 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-power-of-moments-ch02",
+  "itemId": "LNV2-CLEAN-the-power-of-moments-ch02",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "5963208c5e349ab0",
+  "renderedDocSha256": "f4349dc00bfc8229868c69bbe6e7e617e7d71fe8d8b6b0b41971506165db33af",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "025f24b81c7bbc3f822f54bc1d38ec62e109ba5a196c070ad923e6c1cfc47fe9",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CLEAN-the-power-of-moments-ch02-mrh790ij-8",
+  "rawFinalMessageSha256": "f6b6b0d35864d46fd992236413fe7d8b924732902ed1332621e0b5f4460730cd",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"c\", \"b\", \"b\", \"a\", \"c\", \"b\", \"a\", \"a\"],\n    \"mechanisms\": [\n      \"The prose says to look first at transitions, milestones, and pits, which map to welcome, awards, and complaint calls.\",\n      \"The John Deere lesson is that purpose should arrive before forms and routine tasks define the first day.\",\n      \"Mary Kay's Cadillac works because it makes a sales milestone visible and public.\",\n      \"Joshie shows that returning the object is not enough; the repair needs proof of care and a changed ending.\",\n      \"The chapter explicitly says more forms do not make a better first day and purpose must come before procedure.\",\n      \"The Mary Kay section says progress needs a marker before it becomes a memory.\",\n      \"The pit lesson says a polished apology can miss the feeling; recovery needs a concrete care story.\",\n      \"Eric's mistake shows the busiest step is not always what people retell, so meaning/memory comes first.\",\n      \"The pit warning is that a practical fix may leave the low-point feeling intact unless the ending is changed.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"medium\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"Choice a is partly defensible if the dashboard is public and pictureable, but the prose favors a marker people can notice and name, not data visibility alone.\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Choice c mirrors the chapter's transition/milestone/pit triad almost directly.\",\n      \"Choice c repeats the chapter's 'customer purpose at the start' phrasing.\",\n      \"Choice b echoes 'visible' and 'notice' from the milestone section.\",\n      \"Choice b uses the giveaway phrase 'proof of care' from the Joshie discussion.\",\n      \"Choice a closely echoes 'purpose before the packet/forms.'\",\n      \"Choice c is the only option with the chapter's marker/image language.\",\n      \"Choice b is signaled by 'concrete care story,' a direct fit with the prose.\",\n      \"Choice a is the only option using the chapter's memory/relationship test.\",\n      \"Choice a repeats the warning that a low point can harden into the story.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 82,\n    \"transfer\": 84,\n    \"practical\": 88,\n    \"summaries\": 91,\n    \"tone\": 89,\n    \"limits\": 86,\n    \"insight\": 88,\n    \"density\": 87,\n    \"beginner\": 92\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Do not smooth every minute with equal care. Look first at transitions, milestones, and pits, since those points already have feeling in them.\",\n      \"why\": \"This is the chapter's core move in a memorable, usable form.\"\n    },\n    {\n      \"quote\": \"A pit is not done just because the item is found. The repair has to change the ending people carry away.\",\n      \"why\": \"Strong mechanism: it explains why practical repair and memory repair differ.\"\n    },\n    {\n      \"quote\": \"This method can go wrong when the signal is fake or too loud.\",\n      \"why\": \"The chapter names a real limit instead of overselling moment design.\"\n    },\n    {\n      \"quote\": \"Trust the dashboard because the team can see data there.\",\n      \"why\": \"This distractor partly overlaps with the visibility principle, creating mild Q6 ambiguity.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"The dashboard distractor is partly compatible with the milestone lesson because it is visible to the team; c is still best, but the contrast is not fully clean.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"The correct answer lists the chapter's three target moment types almost directly, so the item can be guessed from repeated phrasing.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"Mostly restates the Mary Kay case rather than transferring the move to a substantially new setting.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"Reuses John Deere onboarding again for the busy-step test, which teaches the point but narrows transfer.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable chapter. The central move is clear, memorable, and practical: do not improve the whole process evenly; scan for transitions, milestones, and pits, then match the intervention to the kind of charged moment. The quiz is mostly fair and derivable, though several correct answers are heavily signposted and Q6 has a mildly muddy distractor. Transfer is good enough, but the examples lean hard on the same anchor cases instead of showing the method in more varied domains.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-power-of-moments-ch02",
+    "chapterNumber": 2,
+    "contentHash": "5963208c5e349ab0",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CLEAN-the-power-of-moments-ch02-mrh790ij-8",
+    "scores": {
+      "retention": 90,
+      "quizzes": 82,
+      "transfer": 84,
+      "practical": 88,
+      "summaries": 91,
+      "tone": 89,
+      "limits": 86,
+      "insight": 88,
+      "density": 87,
+      "beginner": 92
+    },
+    "composite": 87.6,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "c",
+        "b",
+        "b",
+        "a",
+        "c",
+        "b",
+        "a",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Do not smooth every minute with equal care. Look first at transitions, milestones, and pits, since those points already have feeling in them.",
+        "why": "This is the chapter's core move in a memorable, usable form.",
+        "verified": true
+      },
+      {
+        "quote": "A pit is not done just because the item is found. The repair has to change the ending people carry away.",
+        "why": "Strong mechanism: it explains why practical repair and memory repair differ.",
+        "verified": true
+      },
+      {
+        "quote": "This method can go wrong when the signal is fake or too loud.",
+        "why": "The chapter names a real limit instead of overselling moment design.",
+        "verified": true
+      },
+      {
+        "quote": "Trust the dashboard because the team can see data there.",
+        "why": "This distractor partly overlaps with the visibility principle, creating mild Q6 ambiguity.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice c mirrors the chapter's transition/milestone/pit triad almost directly.",
+      "Choice c repeats the chapter's 'customer purpose at the start' phrasing.",
+      "Choice b echoes 'visible' and 'notice' from the milestone section.",
+      "Choice b uses the giveaway phrase 'proof of care' from the Joshie discussion.",
+      "Choice a closely echoes 'purpose before the packet/forms.'",
+      "Choice c is the only option with the chapter's marker/image language.",
+      "Choice b is signaled by 'concrete care story,' a direct fit with the prose.",
+      "Choice a is the only option using the chapter's memory/relationship test.",
+      "Choice a repeats the warning that a low point can harden into the story."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q6",
+        "problem": "The dashboard distractor is partly compatible with the milestone lesson because it is visible to the team; c is still best, but the contrast is not fully clean.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1",
+        "problem": "The correct answer lists the chapter's three target moment types almost directly, so the item can be guessed from repeated phrasing.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "Mostly restates the Mary Kay case rather than transferring the move to a substantially new setting.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "Reuses John Deere onboarding again for the busy-step test, which teaches the point but narrows transfer.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter. The central move is clear, memorable, and practical: do not improve the whole process evenly; scan for transitions, milestones, and pits, then match the intervention to the kind of charged moment. The quiz is mostly fair and derivable, though several correct answers are heavily signposted and Q6 has a mildly muddy distractor. Transfer is good enough, but the examples lean hard on the same anchor cases instead of showing the method in more varied domains.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c14c3f1db3e945b7224eb21579f7d65b2d9edd4a2cf4b4eba42d5cd820112c22",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:55:05.530Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "025f24b81c7bbc3f822f54bc1d38ec62e109ba5a196c070ad923e6c1cfc47fe9",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:53:56.058Z",
+  "durationMs": 0
+}

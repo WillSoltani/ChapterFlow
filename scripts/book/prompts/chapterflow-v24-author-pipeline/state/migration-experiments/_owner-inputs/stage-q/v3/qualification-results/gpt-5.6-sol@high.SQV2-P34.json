@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P34",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"NARRATIVE_MACHINERY_REUSE\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Osias touches a bent visitor badge at Friday 9:18 p.m. in outside room 512 at Mercy South, older brother, with a phone buzzing with his sister's texts.\",\"Yara touches a cold coffee cup at Monday 8:16 a.m. in the second-floor teachers' lounge, history teacher, with a group chat open on her laptop.\",\"Osias he has to say whether they are arguing about paperwork, fear, or being the good child.\",\"Yara she has to decide whether to answer the impact as intent or ask what he meant in private.\"],\"rationale\":\"The examples clearly reuse the same scene template: a named protagonist touches a symbolic object; an exact weekday, time, workplace-like location, role, and open communication channel are enumerated; an interpersonal remark triggers restrained retaliation; a sensory object detail reinforces the tension; and the scene ends with the same ungrammatical “[name] he/she has to” construction followed by a choice between interpretations or responses. Changing the hospital conflict to a teachers’ lounge conflict does not disguise this repeated narrative machinery.\"}"
+}

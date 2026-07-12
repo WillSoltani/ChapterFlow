@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-002",
+  "parsed": {
+    "caseId": "SQ-002",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "The grievance is acknowledged, processed somewhere it can be received, and consciously released from the confrontation slot."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "suppression is unprocessed and underground"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Letting go means processing it somewhere real."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Suppression means leaving it underground."
+      }
+    ],
+    "explanation": "The candidate accurately preserves the source distinction: deliberate letting go acknowledges and processes the grievance outside an unproductive confrontation, whereas suppression leaves it unprocessed and underground.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-002\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"The grievance is acknowledged, processed somewhere it can be received, and consciously released from the confrontation slot.\"},{\"materialIndex\":0,\"quote\":\"suppression is unprocessed and underground\"},{\"materialIndex\":1,\"quote\":\"Letting go means processing it somewhere real.\"},{\"materialIndex\":1,\"quote\":\"Suppression means leaving it underground.\"}],\"explanation\":\"The candidate accurately preserves the source distinction: deliberate letting go acknowledges and processes the grievance outside an unproductive confrontation, whereas suppression leaves it unprocessed and underground.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

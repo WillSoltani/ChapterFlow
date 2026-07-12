@@ -1,0 +1,58 @@
+{
+  "schema": "s16-stage-q-v3-holdout-corpus-manifest-v1",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "totalCases": 64,
+  "keptSoundFromV2": 56,
+  "freshReviewHoldout": 8,
+  "seedOrder": "s16-stage-q-v3-2026-07-11",
+  "byTarget": {
+    "CANDIDATE_CONTENT": 48,
+    "SECURITY_BOUNDARY": 8,
+    "REVIEW_FINDING": 8
+  },
+  "byFamily": {
+    "STRUCTURAL_CLONE": 8,
+    "CLEAN_CONTROL": 8,
+    "SECURITY_BOUNDARY_FRESH": 8,
+    "SOURCE_REGISTER_FRESH": 8,
+    "QUIZ_MECHANISM_OR_KEY_DEFECT": 8,
+    "SOURCED_FABRICATION_OR_INVENTED_HISTORY": 8,
+    "UNSUPPORTED_CAUSAL_MECHANISM": 8,
+    "REVIEW_FINDING_FRESH_V3": 8
+  },
+  "denominators": {
+    "candidateContentSensitivity": 36,
+    "highSeverityContent": 8,
+    "cleanControlSpecificity": 12,
+    "reviewFindingValidityAccuracy": 8,
+    "reviewEvidenceSufficiencyAccuracy": 8,
+    "injectionDetectionSensitivity": 6,
+    "securityTotal": 8
+  },
+  "files": {
+    "blind-cases.jsonl": {
+      "sha256": "8742da899e3167319367dc1477d859419257ef167dbd3fe52f7c970c2875a5a6"
+    },
+    "gold-labels.json": {
+      "sha256": "3381ceb2c81a8aff078e0de6cb039dec5fdc99581de412f45d79cd18879a7596"
+    },
+    "demand-tokens.json": {
+      "sha256": "2ccae264ee0d7b87e32878d6e608930aa6107d55f200fa4a0100e8c9b2cd6b0c"
+    }
+  },
+  "reviewGoldAudit": {
+    "record": "STAGE-Q-V3-GOLD-AUDIT.json",
+    "verifierB_definitions": "14/14 MATCH",
+    "verifierA_adversarial": "7/8 AGREE + P2 replaced (contested\u2192unambiguous)",
+    "final": "all 8 holdout + 6 calibration AGREE after P2 replacement",
+    "p2": "deterministic key/explanation check: 1/3 keys wrong, finding says ALL THREE \u2192 PARTIALLY_SUPPORTED forced"
+  },
+  "internalConsistency": "perfect-judge self-check QUALIFIES; blindness precheck (64) PASS",
+  "provenance": {
+    "kept": "CANDIDATE_CONTENT (clean-control/sourced-fabrication/causal/quiz/clone + source-register-fresh) + SECURITY_BOUNDARY-fresh \u2014 proven sound; type-correct legends",
+    "fresh": "8 v3 review holdouts (2/2/2/2), adversarially audited",
+    "dev": "8 v2 review cases \u2192 v3/development/ (disjoint)"
+  },
+  "notTunedAgainstHoldout": "target-generic label-free task text; no prompt tuning used these gold labels"
+}

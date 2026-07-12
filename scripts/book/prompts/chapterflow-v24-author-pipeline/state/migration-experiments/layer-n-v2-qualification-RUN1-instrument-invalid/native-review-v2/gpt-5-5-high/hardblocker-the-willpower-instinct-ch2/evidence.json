@@ -1,0 +1,137 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-the-willpower-instinct-ch2",
+  "itemId": "hardblocker-the-willpower-instinct-ch2",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "14995e4f0ad8e16b",
+  "renderedDocSha256": "afbe5c9e2f2436be0be2afb0a49ba4bca173accc2dabaad6ce535168d34267cc",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "fc4078aaeebfad8ac85a595394913c13858c0c18578e47695d902a3f1a4064a7",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-high-hardblocker-the-willpower-instinct-ch2-mrgpisbp-27",
+  "rawFinalMessageSha256": "ed041ac0a862df232ce38f3904108ecd4876f8815e8ba451acf491a3dc3971d8",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"c\", \"a\", \"b\", \"b\", \"a\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose says heart rate variability is the relevant marker because it shows the nervous system can adjust under demand.\",\n      \"The Trier setup is described as public speaking and arithmetic under social judgment, with evaluators enough to trigger stress.\",\n      \"The chapter says stress makes quick comforts feel like shelter before the long goal can speak through noise.\",\n      \"Tang's training is used to show brief practice steadies attention and softens stress reactivity before urges peak.\",\n      \"The prose frames slow breathing as a body-state change that keeps the choosing system online, not as mere delay.\",\n      \"Pause-and-plan questions extra arousal because stress narrows attention and leaves less room for future consequences.\",\n      \"The sleep section says tired attention loses its grip and cues can overpower the goal meant to be remembered.\",\n      \"The movement section says activity can improve mood, stress regulation, and executive function, lowering the next choice load.\",\n      \"The chapter repeatedly says waiting until the craving peaks is unfair because the body needs runway before the hardest moment.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice b repeats the stem's beat-to-beat cue and uses the chapter's technical phrase 'adaptive control under demand.'\",\n      \"Choice c mirrors the example wording 'social judgment and low control' and is the only answer without a forced false mechanism.\",\n      \"Choice c is the only option that contains the chapter's stress-to-quick-relief mechanism.\",\n      \"Choice a closely restates 'brief practice can train attention' while b and c use obvious overclaims.\",\n      \"Choice b is the only mechanism-rich option and contains the chapter's arousal-attention-control vocabulary.\",\n      \"Choice b echoes the chapter's room/goals language and is more nuanced than the surrounding distractors.\",\n      \"Choice a repeats the chapter's phrase 'tired attention' and maps directly to the pharmacy example.\",\n      \"Choice a repeats the exact triad 'mood, stress regulation, and executive function.'\",\n      \"Choice c repeats 'runway' and 'before the craving peaked,' making the answer highly guessable.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 78,\n    \"transfer\": 62,\n    \"practical\": 86,\n    \"summaries\": 90,\n    \"tone\": 84,\n    \"limits\": 88,\n    \"insight\": 84,\n    \"density\": 82,\n    \"beginner\": 87\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"Stress narrows the room. It makes the fastest comfort look wiser than it is.\",\n      \"why\": \"Strong compressed mechanism that makes the core lesson memorable.\"\n    },\n    {\n      \"quote\": \"Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.\",\n      \"why\": \"Strong boundary-setting that prevents the technique from becoming avoidance.\"\n    },\n    {\n      \"quote\": \"Actually, the stronger move is to pump himself up and chase that panic before speaking, because a spike of adrenaline right at the peak is what proves the body is ready.\",\n      \"why\": \"This directly contradicts the chapter's central pause-and-plan mechanism.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The What to do section tells Adam to calm down, then reverses itself and says the stronger move is to pump himself up and chase panic; this is source-contradictory against the chapter's repeated claim that extra arousal narrows choice.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz set\",\n      \"problem\": \"Several correct answers reuse distinctive chapter wording almost verbatim, especially Q8 and Q9, making some keys guessable without reading deeply.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The example usefully shows object placement, but it loosely ties that move to Tang's meditation evidence, which muddies the evidence-to-action bridge.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, readable chapter with a clear body-first willpower mechanism, memorable phrasing, useful limits, and practical actions a beginner could try. The quiz is mostly fair and derivable, though several answers are too signposted by recycled wording. The chapter should not ship as-is because example 2 contains a direct contradiction that teaches the opposite of the core move; fixing that would likely bring the piece back near the professional bar.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-the-willpower-instinct-ch2-chapter",
+    "chapterNumber": 2,
+    "contentHash": "14995e4f0ad8e16b",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-high-hardblocker-the-willpower-instinct-ch2-mrgpisbp-27",
+    "scores": {
+      "retention": 88,
+      "quizzes": 78,
+      "transfer": 62,
+      "practical": 86,
+      "summaries": 90,
+      "tone": 84,
+      "limits": 88,
+      "insight": 84,
+      "density": 82,
+      "beginner": 87
+    },
+    "composite": 82.7,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "c",
+        "a",
+        "b",
+        "b",
+        "a",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Stress narrows the room. It makes the fastest comfort look wiser than it is.",
+        "why": "Strong compressed mechanism that makes the core lesson memorable.",
+        "verified": true
+      },
+      {
+        "quote": "Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.",
+        "why": "Strong boundary-setting that prevents the technique from becoming avoidance.",
+        "verified": true
+      },
+      {
+        "quote": "Actually, the stronger move is to pump himself up and chase that panic before speaking, because a spike of adrenaline right at the peak is what proves the body is ready.",
+        "why": "This directly contradicts the chapter's central pause-and-plan mechanism.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b repeats the stem's beat-to-beat cue and uses the chapter's technical phrase 'adaptive control under demand.'",
+      "Choice c mirrors the example wording 'social judgment and low control' and is the only answer without a forced false mechanism.",
+      "Choice c is the only option that contains the chapter's stress-to-quick-relief mechanism.",
+      "Choice a closely restates 'brief practice can train attention' while b and c use obvious overclaims.",
+      "Choice b is the only mechanism-rich option and contains the chapter's arousal-attention-control vocabulary.",
+      "Choice b echoes the chapter's room/goals language and is more nuanced than the surrounding distractors.",
+      "Choice a repeats the chapter's phrase 'tired attention' and maps directly to the pharmacy example.",
+      "Choice a repeats the exact triad 'mood, stress regulation, and executive function.'",
+      "Choice c repeats 'runway' and 'before the craving peaked,' making the answer highly guessable."
+    ],
+    "complaints": [
+      {
+        "unit": "example 2",
+        "problem": "The What to do section tells Adam to calm down, then reverses itself and says the stronger move is to pump himself up and chase panic; this is source-contradictory against the chapter's repeated claim that extra arousal narrows choice.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz set",
+        "problem": "Several correct answers reuse distinctive chapter wording almost verbatim, especially Q8 and Q9, making some keys guessable without reading deeply.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The example usefully shows object placement, but it loosely ties that move to Tang's meditation evidence, which muddies the evidence-to-action bridge.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, readable chapter with a clear body-first willpower mechanism, memorable phrasing, useful limits, and practical actions a beginner could try. The quiz is mostly fair and derivable, though several answers are too signposted by recycled wording. The chapter should not ship as-is because example 2 contains a direct contradiction that teaches the opposite of the core move; fixing that would likely bring the piece back near the professional bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "9c3a31084426ff82c6d93185e875ad8435c470aa64855ad2acffc394cd9c9e9c",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:38:36.423Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "fc4078aaeebfad8ac85a595394913c13858c0c18578e47695d902a3f1a4064a7",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "Actually, the stronger move is to pump himself up and chase that panic before speaking, because a spike of adrenaline right at the peak is what proves the body is ready."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:37:38.916Z",
+  "durationMs": 0
+}

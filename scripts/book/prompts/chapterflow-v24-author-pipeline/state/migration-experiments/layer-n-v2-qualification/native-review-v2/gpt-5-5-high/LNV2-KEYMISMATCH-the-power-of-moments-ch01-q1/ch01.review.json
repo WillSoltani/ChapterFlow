@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "3583d15889cbc614",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrh7c323-11",
+  "scores": {
+    "retention": 87,
+    "quizzes": 78,
+    "transfer": 83,
+    "practical": 88,
+    "summaries": 89,
+    "tone": 84,
+    "limits": 91,
+    "insight": 85,
+    "density": 79,
+    "beginner": 92
+  },
+  "composite": 85.4,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "a",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=b key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "Strong, compact core claim that a reader is likely to remember.",
+      "verified": true
+    },
+    {
+      "quote": "The move is not to excuse a bad process with a pretty finish.",
+      "why": "This is the chapter's best boundary-setting line and prevents misuse of the peak-end idea.",
+      "verified": true
+    },
+    {
+      "quote": "The four common ingredients are elevation, insight, pride, and connection.",
+      "why": "Clear framework, but it also makes Q4 very easy to answer by surface matching.",
+      "verified": true
+    },
+    {
+      "quote": "the 90-second trial with milder ending can be remembered better than the 60-second painful trial",
+      "why": "The repeated cold-water phrasing starts to feel padded across later examples.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q1: 'calm, clear, and less painful' directly mirrors the cold-water ending example.",
+    "Q2: 'bright welcome cart' and 'plain' point obviously to the Magic Castle lesson.",
+    "Q3: 'before the team claps' gives away the public-recognition answer.",
+    "Q4: the correct choice is the only one that lists four ingredients matching the stem.",
+    "Q5: 'cannot redo the whole space' sets up the one-object answer.",
+    "Q6: 'more like a moment' appears only in the event-style answer.",
+    "Q7: 'threshold idea' and 'private logistics' are near-direct chapter phrases.",
+    "Q8: the negative stem is clear, but the wrong assumption is the only choice that contradicts the chapter.",
+    "Q9: 'talks about it later' points directly to the tellable-story answer."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "The stem asks for the four ingredients and the correct option simply lists four synonyms in order, making it answerable by pattern matching rather than application.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct answer repeats the chapter's phrase 'private logistics,' creating a giveaway tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "Thin-but-usable example: it repeats the cold-water contrast and restates the lesson, but the before-to-after consequence is modest.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "Thin-but-usable example: Leah's mentor scenario is clear but overlaps heavily with the full-read setup and cold-water lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples use the same template rhythm and explanatory phrasing, which lowers density and makes the section feel more mechanical than lived.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong introductory chapter: memorable hook, clear mechanism, practical action, and unusually good limits around not using a pleasant ending to cover real harm. The main weakness is not correctness but quiz craft and repetition. Several quiz items are too easy to solve from giveaway phrasing, and a couple of later examples restate the same cold-water lesson instead of broadening transfer. I would not ship it against a strict professional >=80 bar until the quiz tells and repeated examples are tightened, but no defect rises to must-fix severity under the reserved categories.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "47bbae470f919e949d38689343aaf37d5fe9423ffb37ba7848cceb14029e1994",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T02:57:10.709Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "a8ffa23f9e99aed7b15fad95fb5801bc295fb45fb02485df5a86f9fec2255fac",
+    "phase2DocSha256": "3bc13811ac0877ad3937567ebd3afecff7e36f802331c0be09d79d9ad3bc9197",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrh7d6ph-12",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice b is best supported because the calm, less painful ending can improve memory of the whole visit; keyed c contradicts that lesson."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b captures the vivid, tellable surprise that changes an otherwise ordinary arrival."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a fits moment-design logic by making achievement public and witnessed by the group."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c directly names elevation, insight, pride, and connection, the four ingredients of memorable experiences."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a matches the red-phone lesson that one visible object can signal a changed script."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b best turns a quiet free item into a memorable event through designed delivery."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c correctly marks the shared threshold before the next stage becomes private logistics."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a is the false assumption because recall is not a simple equal-weight average of every minute."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c best diagnoses that the mint is a quiet free item without a tellable format."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  }
+}

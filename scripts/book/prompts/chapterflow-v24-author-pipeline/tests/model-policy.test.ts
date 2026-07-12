@@ -198,6 +198,13 @@ test("static scan: no production source hardcodes the baseline model outside the
   const allow = new Set([
     "src/orchestrator/modelPolicy.ts",   // the owner
     "src/providers/openai-api.ts",       // pricing table keyed by model id (data, not a route)
+    // IMP-20 §16 migration/bakeoff DATA — the frozen candidate/judge identities
+    // UNDER comparison (not a production route). recoveryExperiment names the
+    // fixed recovery candidate-profile set; layerNRetrospective names the
+    // HISTORICAL Layer-N v2 judge families of a preserved run (a literal record
+    // that must never silently re-point if BASELINE_MODEL later changes).
+    "src/bakeoff/migration/recoveryExperiment.ts",
+    "src/bakeoff/migration/layerNRetrospective.ts",
   ]);
   const offenders: string[] = [];
   const walk = (dir: string): void => {

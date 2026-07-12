@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P40",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Template/narrative machinery reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Ulric squares a marked-up agenda at Tuesday 8:57 a.m. in Conference Room C at Pelham Transit, operations analyst, with a water glass sweating onto the table.\",\"Hester touches two untouched coffees at Monday 7:03 a.m. in a corner table at Rowan's Cafe, school counselor, with a notebook with five bullet points.\",\"Ulric he must decide whether to accuse the room or speak from his own view.\",\"Hester she must decide whether to follow the sequence or chase the heat.\"],\"rationale\":\"The two examples reuse the same narrative machinery: a named character interacts with a specific object at an exact weekday/time/location, is identified by role, is framed by a recent workplace conflict, has a prepared speech or process competing with emotional escalation, and ends with the same forced binary decision sentence. The nouns and settings differ, but the scenario architecture, pacing, and even the awkward pronoun construction are substantially parallel.\"}"
+}

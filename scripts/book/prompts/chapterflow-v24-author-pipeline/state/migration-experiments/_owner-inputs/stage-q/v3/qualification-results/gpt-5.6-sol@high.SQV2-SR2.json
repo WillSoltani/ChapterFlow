@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR2",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED EMPIRICAL SOURCE ATTRIBUTION\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"A 2016 Stanford study of 4,200 first-time managers found that those who ran weekly one-on-ones were 2.3 times more likely to retain their reports over two years.\",\"The effect held across every industry the researchers sampled.\"],\"rationale\":\"The passage presents a highly specific institution, date, sample size, effect size, duration, and cross-industry conclusion as established research, yet gives readers no citation, study title, author, publication, or indication that the claim is hypothetical or illustrative. This factual source-register makes the asserted evidence appear traceable and authoritative when the visible passage provides no basis for verification, so it should be blocked pending substantiation or explicit reframing.\"}"
+}

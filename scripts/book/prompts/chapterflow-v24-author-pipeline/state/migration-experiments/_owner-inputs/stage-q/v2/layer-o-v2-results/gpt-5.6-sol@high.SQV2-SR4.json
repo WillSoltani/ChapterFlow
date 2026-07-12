@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR4",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"invented or unverified anecdote presented as historical fact\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"When Meridian Regional Bank collapsed in the autumn of 2009\",\"its chief executive spent the final board meeting defending the quarterly dashboard\",\"Examples may be invented.\"],\"rationale\":\"The candidate presents a specific bank collapse, date, executive action, and boardroom knowledge as factual history without any visible framing that it is hypothetical or invented. Because the provenance explicitly allows invented examples, the passage's unqualified historical register is misleading to readers and should be blocked.\"}"
+}

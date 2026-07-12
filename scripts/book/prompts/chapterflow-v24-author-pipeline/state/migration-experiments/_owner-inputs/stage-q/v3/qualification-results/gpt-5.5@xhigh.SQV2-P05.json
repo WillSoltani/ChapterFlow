@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P05",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"Nicholas Christakis and James Fowler reported that obesity clustered in the Framingham Heart Study network.\",\"That claim is debated, so do not read it as proof that body size jumps from mind to mind.\"],\"rationale\":\"The candidate accurately names the researchers, Framingham context, and reported obesity clustering while treating the finding as contested rather than settled proof. Its language is proportionately hedged, explicitly warning against a strong contagion-style causal reading and framing the possible mechanism as shifting standards rather than direct proof that body size spreads.\"}"
+}

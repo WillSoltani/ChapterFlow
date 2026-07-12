@@ -17,6 +17,21 @@ and get integration approval — silent local variants are a merge blocker.
 | `route-result` | 1 | IMP-02 | IMP-10 evidence; IMP-11 cells; IMP-13 drift triggers |
 | `attempt-evidence-manifest` | 1 | IMP-10 | §15 audit; §16–§19 evidence; IMP-13 monitoring |
 | `worker-implementation-report` | 1 | IMP-00 | every IMP package; §15 integration audit |
+| `reader-experience-review` | 1 | IMP-20 | split-lane reader lane; aggregate-chapter-review; recovery instrument manifest |
+| `source-integrity-review` | 1 | IMP-20 | split-lane source lane (only external-truth authority); aggregate-chapter-review |
+| `quiz-integrity-result` | 1 | IMP-20 | split-lane quiz two-phase lane; aggregate-chapter-review |
+| `aggregated-chapter-review` | 1 | IMP-20 | conductor-owned final status over the three lanes + deterministic bundle |
+| `judge-capability-qualification` | 1 | IMP-20 | per-role judge registry; recovery role-set readiness; qualification freshness |
+
+## Additive change note (IMP-20, 2026-07-12)
+
+The five `IMP-20` rows above are ADDITIVE — the split-lane reviewer & §16
+recovery contracts. Registering them regenerated the manifest to **14 contracts**;
+no pre-existing descriptor was edited, so no existing `contractHash` moved (the
+freeze test recomputes every hash and confirms only the five new rows). Each
+descriptor exports its `V1` type, a strict unknown-key-rejecting `validateX`
+validator, and the `X_CONTRACT` descriptor; they are inert until this registration
+(Wave-C single owner) imports them into `ALL_CONTRACTS`.
 
 ## Change protocol
 

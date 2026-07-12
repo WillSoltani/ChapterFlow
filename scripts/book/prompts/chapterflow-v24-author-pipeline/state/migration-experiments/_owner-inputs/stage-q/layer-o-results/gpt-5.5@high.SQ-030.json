@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-030",
+  "parsed": {
+    "caseId": "SQ-030",
+    "verdict": "DEFECT",
+    "defectClass": "topically unrelated or non-claim-specific locator",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "The time-scale method is useful for prevention"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=MAOA+maltreatment+Caspi+2002"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A locator must address the same entity, mechanism, relation, and degree of certainty as the claim."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The claim concerns a time-scale prevention mechanism involving upstream context, while the proposed locator is only a PubMed search for MAOA, maltreatment, and Caspi 2002. The materials do not show that this locator addresses the same entity or mechanism, and the contract rejects generic or unrelated searches.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-030\",\"verdict\":\"DEFECT\",\"defectClass\":\"topically unrelated or non-claim-specific locator\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"The time-scale method is useful for prevention\"},{\"materialIndex\":0,\"quote\":\"Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=MAOA+maltreatment+Caspi+2002\"},{\"materialIndex\":1,\"quote\":\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim.\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The claim concerns a time-scale prevention mechanism involving upstream context, while the proposed locator is only a PubMed search for MAOA, maltreatment, and Caspi 2002. The materials do not show that this locator addresses the same entity or mechanism, and the contract rejects generic or unrelated searches.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -24,6 +24,14 @@ import { REVIEW_CONTRACT } from "./reviewContracts.js";
 import { ROUTE_CONTRACT } from "./routeContracts.js";
 import { ATTEMPT_EVIDENCE_CONTRACT } from "./attemptEvidence.js";
 import { WORKER_REPORT_CONTRACT } from "./workerReport.js";
+// IMP-20 — five additive split-lane reviewer / recovery contracts (Wave-C
+// registration; manifest 9 → 14). Descriptor files authored in Wave A; no
+// existing descriptor changes, so no existing contractHash moves.
+import { READER_EXPERIENCE_REVIEW_CONTRACT } from "./readerExperienceReview.js";
+import { SOURCE_INTEGRITY_REVIEW_CONTRACT } from "./sourceIntegrityReview.js";
+import { QUIZ_INTEGRITY_RESULT_CONTRACT } from "./quizIntegrityReview.js";
+import { AGGREGATED_CHAPTER_REVIEW_CONTRACT } from "./aggregateChapterReview.js";
+import { JUDGE_CAPABILITY_QUALIFICATION_CONTRACT } from "./judgeCapabilityQualification.js";
 
 export const ALL_CONTRACTS: readonly ContractDescriptor[] = [
   EXECUTION_PROFILE_CONTRACT,
@@ -35,6 +43,11 @@ export const ALL_CONTRACTS: readonly ContractDescriptor[] = [
   ROUTE_CONTRACT,
   ATTEMPT_EVIDENCE_CONTRACT,
   WORKER_REPORT_CONTRACT,
+  READER_EXPERIENCE_REVIEW_CONTRACT,
+  SOURCE_INTEGRITY_REVIEW_CONTRACT,
+  QUIZ_INTEGRITY_RESULT_CONTRACT,
+  AGGREGATED_CHAPTER_REVIEW_CONTRACT,
+  JUDGE_CAPABILITY_QUALIFICATION_CONTRACT,
 ];
 
 export type ContractManifest = {
@@ -94,3 +107,8 @@ export * from "./reviewContracts.js";
 export * from "./routeContracts.js";
 export * from "./attemptEvidence.js";
 export * from "./workerReport.js";
+export * from "./readerExperienceReview.js";
+export * from "./sourceIntegrityReview.js";
+export * from "./quizIntegrityReview.js";
+export * from "./aggregateChapterReview.js";
+export * from "./judgeCapabilityQualification.js";

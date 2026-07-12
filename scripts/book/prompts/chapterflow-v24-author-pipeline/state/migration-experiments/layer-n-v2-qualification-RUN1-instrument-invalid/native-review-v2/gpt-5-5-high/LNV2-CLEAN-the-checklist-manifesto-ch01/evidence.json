@@ -1,0 +1,150 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-checklist-manifesto-ch01",
+  "itemId": "LNV2-CLEAN-the-checklist-manifesto-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "7ee8b9480874ea98",
+  "renderedDocSha256": "86d2dbffae55cc57a2877b0a28682e90e9d44c9eae6325b209319a7303b1201d",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "c78a21db52973cb45cc2e674b31ca1886e0a85c2d8d2351be4dd30d7bc43c295",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-checklist-manifesto-ch01-mrgowg9k-6",
+  "rawFinalMessageSha256": "8b2b9e963dcaad794ddc8b20b1b723263495d730a2658f194b3e830a85053adb",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\", \"b\", \"c\"],\n    \"mechanisms\": [\n      \"The prose says danger lives in handoffs where ownership blurs, not in lack of talent.\",\n      \"The lesson is to make the final transition visible by naming an owner before pressure arrives.\",\n      \"The chapter repeatedly warns against blaming the last visible person before tracing the full crossing path.\",\n      \"Failures at cross-department cues match the chapter's seam/handoff mechanism.\",\n      \"The pharmacy example says completed departmental tasks can still fail at crossings.\",\n      \"The storm example explicitly calls for a named owner across plow, police, and ambulance access before peak load.\",\n      \"The museum example says the danger lives where specialists' separate readiness claims meet.\",\n      \"The core reasoning is that excellence does not make ownership visible across role boundaries.\",\n      \"The prose says dense work fails when memory and command carry transitions that the system should make visible.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice b echoes the chapter's exact language: handoff seam and ownership thinned out.\",\n      \"No strong length tell; c is slightly lesson-shaped but fair.\",\n      \"Choice a is the only option that uses the chapter's repeated trace-the-path framing.\",\n      \"Choice b is the only option containing the giveaway term handoffs.\",\n      \"Choice c is the longest and mirrors the department/across-departments phrasing.\",\n      \"Choice a is much more specific and mirrors the named-owner storm example.\",\n      \"Choice c is the longest and repeats the chapter's expert/dependency contrast.\",\n      \"Choice b repeats the visible ownership across roles wording.\",\n      \"Choice c is the longest and contains the chapter's memory/system contrast.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 91,\n    \"quizzes\": 86,\n    \"transfer\": 84,\n    \"practical\": 89,\n    \"summaries\": 82,\n    \"tone\": 86,\n    \"limits\": 88,\n    \"insight\": 90,\n    \"density\": 82,\n    \"beginner\": 91\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Complexity changes the location of danger.\",\n      \"why\": \"The chapter's core insight is compressed into a memorable, portable line.\"\n    },\n    {\n      \"quote\": \"The risk is not that the room lacks talent. The risk is that the task has more handoffs than memory can safely carry.\",\n      \"why\": \"This clearly separates the mechanism from the tempting blame story.\"\n    },\n    {\n      \"quote\": \"The save lives in the chain, not in one brilliant pair of hands.\",\n      \"why\": \"Strong idea, but the wording is grammatically awkward enough to snag attention.\"\n    },\n    {\n      \"quote\": \"The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.\",\n      \"why\": \"It invokes a concrete-sounding rescue without giving enough identifying detail to make the example feel grounded.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"fast read\",\n      \"problem\": \"The sentence 'The save lives in the chain' is awkward and momentarily unclear; likely intended meaning is that the rescue succeeds through the chain.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"deep read\",\n      \"problem\": \"The Austrian drowning rescue is referenced as if concrete, but the chapter gives no names, place, date, or event detail, so it functions more like a placeholder than evidence.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"The correct option repeats the chapter's exact vocabulary, making it somewhat guessable without fully understanding the example.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q7\",\n      \"problem\": \"The correct option is the longest and most conceptually polished, while the distractors are more absolute, making the answer easier to spot.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples\",\n      \"problem\": \"Several examples use the same pattern of named person, cross-role gap, named owner, which reinforces the lesson but reduces transfer challenge variety.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, shippable chapter. The core move is clear, memorable, and repeatedly translated across medicine, rail, pharmacy, events, museum work, and storm operations: stop blaming the person and inspect the unowned transition. The quizzes are fair and derivable, though some correct answers are made easier by repeated phrasing and more polished construction. The main craft weakness is that a few examples, especially the Austrian rescue reference, feel less grounded than the best scenes, but the chapter still teaches a usable diagnostic habit with honest limits and practical next actions.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-checklist-manifesto-ch01",
+    "chapterNumber": 1,
+    "contentHash": "7ee8b9480874ea98",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-checklist-manifesto-ch01-mrgowg9k-6",
+    "scores": {
+      "retention": 91,
+      "quizzes": 86,
+      "transfer": 84,
+      "practical": 89,
+      "summaries": 82,
+      "tone": 86,
+      "limits": 88,
+      "insight": 90,
+      "density": 82,
+      "beginner": 91
+    },
+    "composite": 86.9,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c",
+        "b",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Complexity changes the location of danger.",
+        "why": "The chapter's core insight is compressed into a memorable, portable line.",
+        "verified": true
+      },
+      {
+        "quote": "The risk is not that the room lacks talent. The risk is that the task has more handoffs than memory can safely carry.",
+        "why": "This clearly separates the mechanism from the tempting blame story.",
+        "verified": true
+      },
+      {
+        "quote": "The save lives in the chain, not in one brilliant pair of hands.",
+        "why": "Strong idea, but the wording is grammatically awkward enough to snag attention.",
+        "verified": true
+      },
+      {
+        "quote": "The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.",
+        "why": "It invokes a concrete-sounding rescue without giving enough identifying detail to make the example feel grounded.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b echoes the chapter's exact language: handoff seam and ownership thinned out.",
+      "No strong length tell; c is slightly lesson-shaped but fair.",
+      "Choice a is the only option that uses the chapter's repeated trace-the-path framing.",
+      "Choice b is the only option containing the giveaway term handoffs.",
+      "Choice c is the longest and mirrors the department/across-departments phrasing.",
+      "Choice a is much more specific and mirrors the named-owner storm example.",
+      "Choice c is the longest and repeats the chapter's expert/dependency contrast.",
+      "Choice b repeats the visible ownership across roles wording.",
+      "Choice c is the longest and contains the chapter's memory/system contrast."
+    ],
+    "complaints": [
+      {
+        "unit": "fast read",
+        "problem": "The sentence 'The save lives in the chain' is awkward and momentarily unclear; likely intended meaning is that the rescue succeeds through the chain.",
+        "mustFix": false
+      },
+      {
+        "unit": "deep read",
+        "problem": "The Austrian drowning rescue is referenced as if concrete, but the chapter gives no names, place, date, or event detail, so it functions more like a placeholder than evidence.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1",
+        "problem": "The correct option repeats the chapter's exact vocabulary, making it somewhat guessable without fully understanding the example.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q7",
+        "problem": "The correct option is the longest and most conceptually polished, while the distractors are more absolute, making the answer easier to spot.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples",
+        "problem": "Several examples use the same pattern of named person, cross-role gap, named owner, which reinforces the lesson but reduces transfer challenge variety.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, shippable chapter. The core move is clear, memorable, and repeatedly translated across medicine, rail, pharmacy, events, museum work, and storm operations: stop blaming the person and inspect the unowned transition. The quizzes are fair and derivable, though some correct answers are made easier by repeated phrasing and more polished construction. The main craft weakness is that a few examples, especially the Austrian rescue reference, feel less grounded than the best scenes, but the chapter still teaches a usable diagnostic habit with honest limits and practical next actions.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "ee4dd58b37427ffc6b81a9448407d3874938861dc90310d4e178e93bec10db57",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:21:07.602Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "c78a21db52973cb45cc2e674b31ca1886e0a85c2d8d2351be4dd30d7bc43c295",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:20:16.854Z",
+  "durationMs": 0
+}

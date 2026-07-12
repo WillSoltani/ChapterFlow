@@ -1,0 +1,163 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-difficult-conversations-ch01",
+  "itemId": "LNV2-CRAFT-difficult-conversations-ch01",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "0c13e56939e7dd87",
+  "renderedDocSha256": "8c4e9a886312eca012c60524c9b0542e9d918c6aef9f81e4ecc154387462d992",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "576ed96da88522b4a10710dfe9e42e86a2fd36bf0a1650fd30287eac1642685a",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CRAFT-difficult-conversations-ch01-mrh8vus9-53",
+  "rawFinalMessageSha256": "28db0d6024436ee8bb9400c9ca97a4e65a6a5a3f9da47ecf3a7f8192aa74e8bf",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"a\", \"b\", \"c\", \"a\", \"b\", \"c\", \"c\", \"b\", \"a\"],\n    \"mechanisms\": [\n      \"Her fear concerns what the meeting says about her competence and authority, which the prose defines as the identity layer.\",\n      \"The prose directs readers to diagnose the visible promise, the resentment underneath it, and the identity question about family responsibility.\",\n      \"The frame requires separating documented facts, feelings of dismissal, and the board's competence or reputation threat.\",\n      \"The prose warns that focusing only on a documented timeline can fail when an unspoken feeling such as distrust is steering the exchange.\",\n      \"Hearing the question as a judgment about what kind of friend she is makes this an identity conversation.\",\n      \"Sorting facts, feelings, and belonging prevents the visible authorship dispute from concealing its identity stake.\",\n      \"The prose says identity threats change how facts are received, so repeating the attendance evidence alone may increase defensiveness.\",\n      \"The frame is meant first for private preparation because diagnosing another person's identity layer can sound like a new accusation.\",\n      \"The first diagnostic task is to distinguish the visible chore dispute from the respect stake driving the repeated escalation.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Across all nine questions, the correct choice is also the longest or most elaborately qualified choice.\",\n      \"Correct choices consistently restate the chapter's three-layer vocabulary, while distractors use conspicuously absolute or dismissive phrasing such as \\\"only issue,\\\" \\\"save feelings,\\\" \\\"never,\\\" and \\\"only through.\\\"\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 94,\n    \"quizzes\": 70,\n    \"transfer\": 84,\n    \"practical\": 91,\n    \"summaries\": 90,\n    \"tone\": 86,\n    \"limits\": 96,\n    \"insight\": 92,\n    \"density\": 82,\n    \"beginner\": 95\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The log is evidence. It is not the whole map.\",\n      \"why\": \"A compact, memorable image captures the chapter's central distinction.\"\n    },\n    {\n      \"quote\": \"A person who already feels exposed will rarely thank you for diagnosing their identity layer. They will hear a new accusation wearing thoughtful clothes.\",\n      \"why\": \"This gives the framework an important practical boundary and explains the interpersonal mechanism.\"\n    },\n    {\n      \"quote\": \"The three conversations are a diagnostic tool, not a script. They do not solve the exchange. They keep you from walking into the wrong one.\",\n      \"why\": \"The chapter states its use and limitation with unusual clarity.\"\n    },\n    {\n      \"quote\": \"In the end, this is the kind of move worth practicing until it feels routine.\",\n      \"why\": \"This generic closing sentence adds no mechanism or consequence and has a noticeable template-like quality.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"Every correct answer is the longest or most detailed option, creating a reliable answer-length tell for readers who have not read the chapter.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"Many distractors advertise themselves through absolutes or plainly dismissive advice, so they test rejection of caricatures more than discrimination among plausible diagnoses.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The setup is concrete and usable, but it stops after Sarah prepares her notes and gives no resulting conversation or consequence.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"Mathieu decides to call, but the example never shows what he says or how sorting the layers changes the outcome; its final sentence is generic filler.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"Ingrid names that another conversation exists, but the example ends before showing whether this intervention helps, backfires, or respects the chapter's private-diagnosis boundary.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"Aanya sorts the notes before speaking, but no before-to-after consequence demonstrates how the sorting changes her response or the meeting.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The lab scenario identifies a belonging threat but does not show the next sentence or any consequence, so it mostly restates the lesson.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"David retrospectively identifies the three layers, but the example provides neither his actual reply nor its consequence.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples\",\n      \"problem\": \"Recurring names are reassigned across unrelated family, healthcare, vendor, and academic situations, which creates avoidable continuity confusion.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, shippable chapter with a memorable core distinction, clear layered summaries, unusually good limits, and a low-friction practice readers can use immediately. Its best material explains the mechanism: identity stakes alter the meaning and reception of otherwise accurate facts. The main weakness is assessment craft—every correct answer is visibly longer and more nuanced than its distractors—and the six examples rarely complete a decision-to-consequence arc, reducing demonstrated transfer despite their varied settings. Tightening the quiz options and showing two or three genuine before-and-after outcomes would raise it comfortably above its current professional level.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-difficult-conversations-ch01-chapter",
+    "chapterNumber": 1,
+    "contentHash": "0c13e56939e7dd87",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CRAFT-difficult-conversations-ch01-mrh8vus9-53",
+    "scores": {
+      "retention": 94,
+      "quizzes": 70,
+      "transfer": 84,
+      "practical": 91,
+      "summaries": 90,
+      "tone": 86,
+      "limits": 96,
+      "insight": 92,
+      "density": 82,
+      "beginner": 95
+    },
+    "composite": 87.6,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The log is evidence. It is not the whole map.",
+        "why": "A compact, memorable image captures the chapter's central distinction.",
+        "verified": true
+      },
+      {
+        "quote": "A person who already feels exposed will rarely thank you for diagnosing their identity layer. They will hear a new accusation wearing thoughtful clothes.",
+        "why": "This gives the framework an important practical boundary and explains the interpersonal mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "The three conversations are a diagnostic tool, not a script. They do not solve the exchange. They keep you from walking into the wrong one.",
+        "why": "The chapter states its use and limitation with unusual clarity.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+        "why": "This generic closing sentence adds no mechanism or consequence and has a noticeable template-like quality.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Across all nine questions, the correct choice is also the longest or most elaborately qualified choice.",
+      "Correct choices consistently restate the chapter's three-layer vocabulary, while distractors use conspicuously absolute or dismissive phrasing such as \"only issue,\" \"save feelings,\" \"never,\" and \"only through.\""
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "Every correct answer is the longest or most detailed option, creating a reliable answer-length tell for readers who have not read the chapter.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "Many distractors advertise themselves through absolutes or plainly dismissive advice, so they test rejection of caricatures more than discrimination among plausible diagnoses.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 1",
+        "problem": "The setup is concrete and usable, but it stops after Sarah prepares her notes and gives no resulting conversation or consequence.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "Mathieu decides to call, but the example never shows what he says or how sorting the layers changes the outcome; its final sentence is generic filler.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 3",
+        "problem": "Ingrid names that another conversation exists, but the example ends before showing whether this intervention helps, backfires, or respects the chapter's private-diagnosis boundary.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "Aanya sorts the notes before speaking, but no before-to-after consequence demonstrates how the sorting changes her response or the meeting.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The lab scenario identifies a belonging threat but does not show the next sentence or any consequence, so it mostly restates the lesson.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "David retrospectively identifies the three layers, but the example provides neither his actual reply nor its consequence.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples",
+        "problem": "Recurring names are reassigned across unrelated family, healthcare, vendor, and academic situations, which creates avoidable continuity confusion.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, shippable chapter with a memorable core distinction, clear layered summaries, unusually good limits, and a low-friction practice readers can use immediately. Its best material explains the mechanism: identity stakes alter the meaning and reception of otherwise accurate facts. The main weakness is assessment craft—every correct answer is visibly longer and more nuanced than its distractors—and the six examples rarely complete a decision-to-consequence arc, reducing demonstrated transfer despite their varied settings. Tightening the quiz options and showing two or three genuine before-and-after outcomes would raise it comfortably above its current professional level.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "7553eb2cb9f85dd63a64d8de290977244ae835a2279e324b7a1bb3f634798c01",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:40:48.483Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "576ed96da88522b4a10710dfe9e42e86a2fd36bf0a1650fd30287eac1642685a",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:39:41.336Z",
+  "durationMs": 0
+}

@@ -1,0 +1,76 @@
+{
+  "schema": "s16-layer-n-result-v1",
+  "date": "2026-07-11",
+  "result": "LAYER_N_INSTRUMENT_INVALID_PENDING_STATIC_REVIEW",
+  "isJudgeCapabilityVerdict": false,
+  "statement": "The native Layer-N judge-qualification gate was not met by any evaluated judge configuration. Per owner directive 2026-07-11 this is recorded as a Layer-N INSTRUMENT invalidity PENDING an offline static (no-live-call) code review, and explicitly NOT as a judge-capability verdict. The same three judge configurations passed the harder, adversarially-audited Layer-O (Stage-Q v3) instrument (all three QUALIFIED).",
+  "run": {
+    "experimentId": "diagnostic-stack-2026-07",
+    "phase": "qualify (native Layer-N)",
+    "corpus": "stage-q/layer-n-corpus.owner-approved.v1.json (corpusId s16-stage-q-layer-n-owner-approved-v1; sha256 a127d8ce93a2473a8c0cf3a7388056e97ee7df85056aa23561db0576630b6498; ownerApprovedForDevelopmentBakeoff:true; independentHumanRater:false)",
+    "stoppedBy": "owner directive (stop remaining Layer-N calls)",
+    "itemsResolvedTotal": 100,
+    "judges": [
+      { "judge": "gpt-5.5@high", "itemsRead": 43, "complete": true, "qualified": false },
+      { "judge": "gpt-5.6-sol@high", "itemsRead": 43, "complete": true, "qualified": false },
+      { "judge": "gpt-5.5@xhigh", "itemsRead": 14, "complete": false, "qualified": null, "note": "PARTIAL — run stopped mid-judge on owner directive; same trajectory (all 7 clean controls it reached were flagged, composites 15.0-38.6)" }
+    ],
+    "diagnosticGenerationEntered": false
+  },
+  "failureSignature": {
+    "falsePositiveRate": { "bothCompletedJudges": 1.000, "thresholdMax": 0.34, "meaning": "every one of the 9 clean-control items was flagged" },
+    "perClassSensitivity": { "observed": "0.000 on ~6/8 defect classes for both completed judges; NO class reached the 0.70 minimum", "thresholdMin": 0.70 },
+    "interpretation": "flag-everything (FPR 1.0) + detect-no-planted-defect (sensitivity ~0) is the signature of an instrument/corpus problem, not a capability gap. A capability failure would show low sensitivity WITH low FPR (misses defects and does not over-flag)."
+  },
+  "rootCause": {
+    "summary": "The Layer-N corpus fixtures are sub-shippable-quality stubs, and the gate uses the real reader-review SHIP bar as the flag signal; therefore every fixture (clean or defective) is flagged on general quality, making clean-control specificity impossible and anchored defect-detection unreachable.",
+    "mechanism": [
+      "The real phase-1 reader-review instrument (reviewOneChapter) ships a chapter only at composite >= AUTHOR_CHAPTER_BAR = 80.",
+      "The 43 Layer-N fixtures render to 248-2186 bytes (median 801) — thin stubs, not full chapters. A real reader-quality review scores them 12.7-47.9/100, all far below 80, so review.pass=false on EVERY item.",
+      "scoreJudgeQualification counts a clean control as a false positive when (valid && !pass). With pass=false on all clean controls, falsePositiveRate = 9/9 = 1.000.",
+      "Defect detection requires a complaint to anchor-match the planted mustQuote quote. Real complaints are about the chapter being an underdeveloped stub, not the specific planted defect, so anchorMatched=false and detected~=0 (sensitivity ~0).",
+      "validateQualCorpus checks only structural properties (mustQuote anchors are byte-substrings of the rendered doc, all 8 classes present, >=2 clean controls). It never verifies that clean controls actually PASS the real instrument, so the corpus is structurally valid but semantically un-passable by any real judge."
+    ],
+    "evidencePointers": [
+      "LAYER-N-FAILURE-EVIDENCE.json (per-judge metrics, clean-control composites, fixture sizes)",
+      "results/qualification/*.qualification.json (authoritative per-judge scores)",
+      "fixtures/rendered/*.phase1.txt (the exact docs each judge read)",
+      "code/qualification.ts (scoreJudgeQualification, anchorMatched, validateQualCorpus, DEFAULT_QUAL_THRESHOLDS)",
+      "review-code/readerReview.ts (AUTHOR_CHAPTER_BAR=80)"
+    ]
+  },
+  "preserved": [
+    "all completed and partial per-item reads (100)",
+    "per-spawn route sidecars + manifest/result records under logs/exec (token-free; verified)",
+    "two completed judge qualification.json + the partial third judge's per-item artifacts",
+    "sealed schedule, spec, thresholds copy, and run manifest",
+    "the driver stdout log"
+  ],
+  "notModified": [
+    "Layer-N corpus",
+    "thresholds",
+    "scoring",
+    "anchor matching",
+    "reader-review prompts",
+    "gate logic",
+    "experiment seals"
+  ],
+  "pendingStaticReview": {
+    "type": "offline, read-only, NO live model calls",
+    "mustDetermineIntendedPurposeOfLayerN": {
+      "A": "qualify FULL shippable-chapter review (then fixtures must be ~80+ quality chapters carrying planted defects)",
+      "B": "qualify TARGETED defect detection (then the gate must not use the ship/pass bar as the flag/detection signal)",
+      "C": "test a capability DISTINCT from Layer-O (then that capability must be defined and the instrument built to it)"
+    },
+    "noRemedyProposedOrImplementedUntilResolved": true,
+    "noFurtherLiveCallsAuthorized": true
+  },
+  "ledger": {
+    "consumedBeforeLayerN": 540,
+    "layerNPartialCalls": 100,
+    "totalConsumed": 640,
+    "ceiling": 2096,
+    "note": "ceiling is a hard maximum, not a target; no further live calls until the static review completes"
+  },
+  "relationToPriorInstrumentClassifications": "Distinct instrument from Stage-Q. Stage-Q v1/v2 were STAGE_Q_INSTRUMENT_INVALID (Layer-O). This is the FIRST Layer-N invalidity. The owner's Stage-Q §11 final-stop rule governed Layer-O v3 (final Stage-Q); it does not by itself decide Layer-N."
+}

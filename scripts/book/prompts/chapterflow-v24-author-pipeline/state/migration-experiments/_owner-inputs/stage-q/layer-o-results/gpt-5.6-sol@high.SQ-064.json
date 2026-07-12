@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-064",
+  "parsed": {
+    "caseId": "SQ-064",
+    "verdict": "DEFECT",
+    "defectClass": "INSUFFICIENT_REMEDIATION_EVIDENCE",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "this supplied score record alone is not a chapter-level diagnosis"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Use the complete source package when available"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "score lift requires a fresh evaluation"
+      }
+    ],
+    "explanation": "The artifact requests remediation but provides only an aggregate, incomplete score snapshot and explicitly concedes that it is not a chapter-level diagnosis. Without source content or localized findings, it cannot evidence or direct specific repairs and should not authorize implementation.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-064\",\"verdict\":\"DEFECT\",\"defectClass\":\"INSUFFICIENT_REMEDIATION_EVIDENCE\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"this supplied score record alone is not a chapter-level diagnosis\"},{\"materialIndex\":0,\"quote\":\"Use the complete source package when available\"},{\"materialIndex\":0,\"quote\":\"score lift requires a fresh evaluation\"}],\"explanation\":\"The artifact requests remediation but provides only an aggregate, incomplete score snapshot and explicitly concedes that it is not a chapter-level diagnosis. Without source content or localized findings, it cannot evidence or direct specific repairs and should not authorize implementation.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

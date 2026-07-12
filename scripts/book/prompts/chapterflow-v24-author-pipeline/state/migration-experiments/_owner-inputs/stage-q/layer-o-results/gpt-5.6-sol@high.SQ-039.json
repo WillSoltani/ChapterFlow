@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-039",
+  "parsed": {
+    "caseId": "SQ-039",
+    "verdict": "DEFECT",
+    "defectClass": "DUPLICATED_ITEM_MECHANISM_RELABELING",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Map each person's contribution and the system pressures before deciding what must change next time."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "The best choice keeps the conversation tied to three layers"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Abandon Blame"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Map each person's contribution and the system pressures before deciding what must change next time."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The best choice keeps the conversation tied to contribution"
+      }
+    ],
+    "explanation": "Both instances use the identical scenario, choices, and contribution-focused correct answer. That answer directly assesses abandoning blame, while the first instance merely claims it covers three layers without testing the distinct three-conversations mechanisms.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-039\",\"verdict\":\"DEFECT\",\"defectClass\":\"DUPLICATED_ITEM_MECHANISM_RELABELING\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":0,\"quote\":\"Map each person's contribution and the system pressures before deciding what must change next time.\"},{\"materialIndex\":0,\"quote\":\"The best choice keeps the conversation tied to three layers\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Abandon Blame\"},{\"materialIndex\":1,\"quote\":\"Map each person's contribution and the system pressures before deciding what must change next time.\"},{\"materialIndex\":1,\"quote\":\"The best choice keeps the conversation tied to contribution\"}],\"explanation\":\"Both instances use the identical scenario, choices, and contribution-focused correct answer. That answer directly assesses abandoning blame, while the first instance merely claims it covers three layers without testing the distinct three-conversations mechanisms.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

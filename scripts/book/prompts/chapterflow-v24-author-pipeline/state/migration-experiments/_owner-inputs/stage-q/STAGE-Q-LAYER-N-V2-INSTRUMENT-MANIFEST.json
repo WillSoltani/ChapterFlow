@@ -1,0 +1,16 @@
+{
+  "schema": "migration-native-review-instrument-manifest-v2",
+  "readerRubricVersion": "reader-rubric-v3-phase1",
+  "phase1DocVersion": "phase1-v1",
+  "reviewDocHashVersion": "v3",
+  "authorChapterBar": 80,
+  "readerTaskTemplateSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "parserAdjudicatorVersion": "reader-rubric-v3-phase1+v3",
+  "phase2TaskSchemaVersion": "chapterflow-review-v1",
+  "outputContractVersion": "chapterflow-review-v1",
+  "reviewerWorkspaceRoleContract": "chapter-reviewer",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "routePolicyVersion": "route-policy-v1.0",
+  "qualificationScorerVersion": "native-review-scorer-v2.2",
+  "thresholdsSha256": "d9625446098a100631c744224dd194c92e4f6d17fd9f2a5fb9ed915c26adf31e"
+}

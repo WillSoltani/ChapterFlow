@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-029",
+  "parsed": {
+    "caseId": "SQ-029",
+    "verdict": "DEFECT",
+    "defectClass": "generic_or_topically_unrelated_locator",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Good behavior and bad behavior can share substrates, because empathy, threat detection, bonding,"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=Dutch+Hunger+Winter+prenatal+exposure"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A locator must address the same entity, mechanism, relation, and degree of certainty as the claim."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The locator is a generic PubMed search about Dutch Hunger Winter prenatal exposure, while the claim concerns shared substrates for good and bad behavior involving empathy, threat detection, and bonding. It does not address the same mechanism or relation required by the contract.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-029\",\"verdict\":\"DEFECT\",\"defectClass\":\"generic_or_topically_unrelated_locator\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Good behavior and bad behavior can share substrates, because empathy, threat detection, bonding,\"},{\"materialIndex\":0,\"quote\":\"Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=Dutch+Hunger+Winter+prenatal+exposure\"},{\"materialIndex\":1,\"quote\":\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim.\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The locator is a generic PubMed search about Dutch Hunger Winter prenatal exposure, while the claim concerns shared substrates for good and bad behavior involving empathy, threat detection, and bonding. It does not address the same mechanism or relation required by the contract.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

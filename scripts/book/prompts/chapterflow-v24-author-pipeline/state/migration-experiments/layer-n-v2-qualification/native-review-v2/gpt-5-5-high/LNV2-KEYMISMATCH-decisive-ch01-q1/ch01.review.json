@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "LNV2-KEYMISMATCH-decisive-ch01-q1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "2ac9db15cf42069b",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-decisive-ch01-q1-mrh7g0xs-15",
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 89,
+    "tone": 90,
+    "limits": 86,
+    "insight": 87,
+    "density": 84,
+    "beginner": 90
+  },
+  "composite": 85.8,
+  "ship84": true,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "c",
+      "c",
+      "a",
+      "c",
+      "a",
+      "a",
+      "b"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=b key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strongest compact line: concrete, memorable, and central to the chapter's first move.",
+      "verified": true
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Explains confirmation bias with a vivid mechanism instead of a bland definition.",
+      "verified": true
+    },
+    {
+      "quote": "The team lead asks the group to name one villain first, then pick the matching WRAP move instead of trying to be broadly careful.",
+      "why": "This is the clearest transfer move from concept to repeatable action.",
+      "verified": true
+    },
+    {
+      "quote": "The team lead types four short lines: narrow frame, friendly evidence, hot feeling, single forecast.",
+      "why": "Useful compression, though the example is more illustrative than consequential.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Choice b is the only one that names all four WRAP moves, matching the stem's phrase about structure.",
+    "Choice b mirrors the chapter's repeated yes-or-no/narrow-frame language; a and c delay or preserve the known villain.",
+    "Choice c contains the giveaway term disconfirming evidence; a and b are plainly confirmation-bias behaviors.",
+    "Choices a and b are extreme; c is the only nuanced option and echoes the emotion lesson.",
+    "Choice a repeats the chapter's range-of-futures language; b and c openly trust confidence.",
+    "Choice c closely paraphrases the HopeLab example's comparison-before-commitment line.",
+    "Choice a restates the Grove outsider question almost verbatim.",
+    "Choice a is the only option that names all four decision stages and different moves.",
+    "Choice b paraphrases the memorable line about raising odds without promising outcomes; a and c are extreme."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q7",
+      "problem": "The keyed answer is too guessable because it restates the outsider question directly while the distractors are obviously wrong.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The correct answer is telegraphed by near-verbatim reuse of the chapter's memorable line, and the distractors are extreme.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "Thin-but-usable example: it restates the four villains as labels but has little before-to-after consequence beyond naming the process.",
+      "mustFix": false
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The laptop-lid cue is concrete but slightly arbitrary; the action would be stronger if tied to an actual pending decision.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. It teaches one clean move: diagnose which villain is distorting the decision, then apply the matching WRAP repair. The prose is plain, memorable, and mechanism-heavy, with good boundaries around uncertainty and emergencies. The main weakness is quiz craftsmanship: several answers are fair but too easy to guess from mirrored wording and extreme distractors. Transfer is solid, though one later example feels more like a label drill than a consequential scenario.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "ec94fcd42d5c882fb154d0aa8d15cc70cba15e977e49362d66095fe60aef9ac2",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T03:00:05.277Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "bb2eed9f7f969e21f97c4701f0ae0b311a75d1206683575c81d7f837c387b3a0",
+    "phase2DocSha256": "c0260fc4ed9899e40fe9105189c06a1b4282cefe6ce00caabfa0755e3797976a",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-decisive-ch01-q1-mrh7gxel-16",
+    "items": [
+      {
+        "itemId": "decisive-ch01-q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice b is best supported because WRAP maps distinct moves to the four decision stages; choice c incorrectly delays it until after commitment."
+      },
+      {
+        "itemId": "decisive-ch01-q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The yes-or-no vendor framing is narrow framing, so adding real alternatives before further evidence review is the supported move."
+      },
+      {
+        "itemId": "decisive-ch01-q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Seeking disconfirming evidence directly counters confirmation bias after the team has begun favoring one plan."
+      },
+      {
+        "itemId": "decisive-ch01-q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The emotion lesson is to hear the attachment while gaining distance to judge what will matter later."
+      },
+      {
+        "itemId": "decisive-ch01-q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Mapping a wider range of plausible outcomes directly counters overconfidence in one neat forecast."
+      },
+      {
+        "itemId": "decisive-ch01-q06",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Steve Cole's logic supports funding parallel first passes so comparison can teach before commitment."
+      },
+      {
+        "itemId": "decisive-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The outsider question creates distance from legacy attachment by asking what a fresh leader would do."
+      },
+      {
+        "itemId": "decisive-ch01-q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The four villains affect different stages, so different interruptions are needed rather than one final review."
+      },
+      {
+        "itemId": "decisive-ch01-q09",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "WRAP improves the odds of a good decision without guaranteeing a good outcome under uncertainty."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  }
+}

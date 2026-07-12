@@ -1,0 +1,180 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-power-of-moments-ch02",
+  "itemId": "LNV2-CLEAN-the-power-of-moments-ch02",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "5963208c5e349ab0",
+  "renderedDocSha256": "f4349dc00bfc8229868c69bbe6e7e617e7d71fe8d8b6b0b41971506165db33af",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "025f24b81c7bbc3f822f54bc1d38ec62e109ba5a196c070ad923e6c1cfc47fe9",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-power-of-moments-ch02-mrh8kh04-44",
+  "rawFinalMessageSha256": "4c742aba34643ed2411ba24746ceb29b6af182561fdfb693cfe11fc05d4cd2a5",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"c\", \"b\", \"b\", \"a\", \"c\", \"b\", \"a\", \"a\"],\n    \"mechanisms\": [\n      \"The prose says to prioritize emotionally charged transitions, milestones, and pits rather than polishing routine steps equally.\",\n      \"The John Deere case explicitly puts customer purpose before forms and routine tasks.\",\n      \"The Mary Kay case says a visible public marker lets others notice and remember progress.\",\n      \"The Joshie case shows that returning the object is insufficient; concrete care must change the emotional ending.\",\n      \"The first-day lesson explicitly says purpose must arrive before procedure takes over.\",\n      \"The prose says an achievement needs a marker people can picture rather than remaining a private number.\",\n      \"The pit lesson requires evidence of care and a changed recovery story, not merely a practical fix or apology.\",\n      \"The coffee-shop example says to locate where meaning and memory form rather than automatically choosing the busiest step.\",\n      \"The prose warns that a low point remains sticky unless the repair changes the ending the person carries away.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"medium\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"Choice a is partly defensible if the dashboard is already a visible, shared marker; the prose defines the marker by its function, not its physical medium.\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Across the quiz, correct choices consistently use constructive verbs such as start, link, make, add, give, build, ask, and change, while distractors openly recommend mistakes the prose rejects.\",\n      \"Q2 and Q5 nearly repeat the prose's purpose-before-forms wording.\",\n      \"Q4, Q7, and Q9 test essentially the same pit-recovery distinction, making later answers guessable from the repeated pattern.\",\n      \"Several distractors are implausibly absolute, including giving every step equal polish, assuming a practical fix handled memory, and adding ceremony to already-smooth steps.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 91,\n    \"quizzes\": 76,\n    \"transfer\": 61,\n    \"practical\": 88,\n    \"summaries\": 91,\n    \"tone\": 84,\n    \"limits\": 93,\n    \"insight\": 90,\n    \"density\": 74,\n    \"beginner\": 93\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The busiest part of a process is not always the part people retell. Moment thinking is useful because it asks where meaning is being assigned.\",\n      \"why\": \"This crisply states the chapter's counterintuitive core move and its mechanism.\"\n    },\n    {\n      \"quote\": \"If you add a ritual to every step, people stop trusting the cue.\",\n      \"why\": \"This is a concise, useful boundary that prevents readers from turning the method into empty ceremony.\"\n    },\n    {\n      \"quote\": \"Aiden walks into John Deere, the Moline-based equipment company, for a new employee first day.\",\n      \"why\": \"The chapter presents an invented named person inside a real branded organization as though describing a concrete event.\"\n    },\n    {\n      \"quote\": \"Before the recognition, Genevieve's Mary Kay result is only a sales total in a direct-sales company record.\",\n      \"why\": \"This similarly fabricates a named participant and branded sales event without signaling that the scenario is hypothetical.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"Aiden's named first day at John Deere is presented as a concrete branded event without being identified as hypothetical, making it a fabricated or misleading example.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"Genevieve's Mary Kay sales result and Cadillac recognition are invented but narrated as an actual branded event rather than a hypothetical application.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"The chapter inserts the invented Manon and her family into the Joshie Ritz-Carlton story without signaling fictionalization, misleading readers about who participated.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"Eric's coffee-shop decision is an invented scene presented as concrete narrative; it should be labeled hypothetical or stripped of false documentary detail.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"Genevieve's household chore-chart episode is an invented named event presented without a hypothetical label.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"Manon's bedside-notebook scene extends the invented participant into another purported consequence of the branded Joshie recovery without identifying the scene as fictional.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"examples 4-6\",\n      \"problem\": \"These examples mostly recycle the same three lessons and branded cases instead of demonstrating transfer in genuinely different settings and consequences.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q4, Q7, and Q9\",\n      \"problem\": \"All three questions test nearly the same practical-fix-versus-emotional-repair distinction, reducing coverage and making the answer pattern easier to infer.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"The dashboard could itself satisfy the chapter's functional definition of a visible shared marker, so the stem does not fully distinguish choices a and c.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Many distractors merely restate explicitly rejected behavior and are uniformly less constructive than the correct choices, creating answer-position and tone tells.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"full read and examples\",\n      \"problem\": \"The transition, milestone, and pit lessons are repeated many times with limited additional mechanism, lowering density.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"24-hour challenge\",\n      \"problem\": \"The instruction to improve the 'strongest line' does not define whether strongest means most emotionally charged, most consequential, or easiest to change.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter has a memorable and genuinely useful core distinction: emotionally charged transitions, milestones, and pits often deserve design attention before the busy middle. Its layered reads, concrete actions, clear boundaries, and repeated memorable lines make the concept approachable and retainable. The quiz is derivable but over-repeats the pit lesson, relies on conspicuously weak distractors, and contains one dashboard ambiguity. More seriously, all six examples attach invented named participants and events to real brands or a purported real recovery story without labeling the scenes hypothetical; under the stated rubric, those fabricated or misleading examples block shipment. Labeling fictional applications clearly, separating them from sourced cases, broadening transfer settings, and tightening repetition would bring an otherwise strong chapter above the professional bar.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-power-of-moments-ch02",
+    "chapterNumber": 2,
+    "contentHash": "5963208c5e349ab0",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-power-of-moments-ch02-mrh8kh04-44",
+    "scores": {
+      "retention": 91,
+      "quizzes": 76,
+      "transfer": 61,
+      "practical": 88,
+      "summaries": 91,
+      "tone": 84,
+      "limits": 93,
+      "insight": 90,
+      "density": 74,
+      "beginner": 93
+    },
+    "composite": 83.8,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "c",
+        "b",
+        "b",
+        "a",
+        "c",
+        "b",
+        "a",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The busiest part of a process is not always the part people retell. Moment thinking is useful because it asks where meaning is being assigned.",
+        "why": "This crisply states the chapter's counterintuitive core move and its mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "If you add a ritual to every step, people stop trusting the cue.",
+        "why": "This is a concise, useful boundary that prevents readers from turning the method into empty ceremony.",
+        "verified": true
+      },
+      {
+        "quote": "Aiden walks into John Deere, the Moline-based equipment company, for a new employee first day.",
+        "why": "The chapter presents an invented named person inside a real branded organization as though describing a concrete event.",
+        "verified": true
+      },
+      {
+        "quote": "Before the recognition, Genevieve's Mary Kay result is only a sales total in a direct-sales company record.",
+        "why": "This similarly fabricates a named participant and branded sales event without signaling that the scenario is hypothetical.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Across the quiz, correct choices consistently use constructive verbs such as start, link, make, add, give, build, ask, and change, while distractors openly recommend mistakes the prose rejects.",
+      "Q2 and Q5 nearly repeat the prose's purpose-before-forms wording.",
+      "Q4, Q7, and Q9 test essentially the same pit-recovery distinction, making later answers guessable from the repeated pattern.",
+      "Several distractors are implausibly absolute, including giving every step equal polish, assuming a practical fix handled memory, and adding ceremony to already-smooth steps."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "Aiden's named first day at John Deere is presented as a concrete branded event without being identified as hypothetical, making it a fabricated or misleading example.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 2",
+        "problem": "Genevieve's Mary Kay sales result and Cadillac recognition are invented but narrated as an actual branded event rather than a hypothetical application.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 3",
+        "problem": "The chapter inserts the invented Manon and her family into the Joshie Ritz-Carlton story without signaling fictionalization, misleading readers about who participated.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 4",
+        "problem": "Eric's coffee-shop decision is an invented scene presented as concrete narrative; it should be labeled hypothetical or stripped of false documentary detail.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 5",
+        "problem": "Genevieve's household chore-chart episode is an invented named event presented without a hypothetical label.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 6",
+        "problem": "Manon's bedside-notebook scene extends the invented participant into another purported consequence of the branded Joshie recovery without identifying the scene as fictional.",
+        "mustFix": true
+      },
+      {
+        "unit": "examples 4-6",
+        "problem": "These examples mostly recycle the same three lessons and branded cases instead of demonstrating transfer in genuinely different settings and consequences.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q4, Q7, and Q9",
+        "problem": "All three questions test nearly the same practical-fix-versus-emotional-repair distinction, reducing coverage and making the answer pattern easier to infer.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q6",
+        "problem": "The dashboard could itself satisfy the chapter's functional definition of a visible shared marker, so the stem does not fully distinguish choices a and c.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz",
+        "problem": "Many distractors merely restate explicitly rejected behavior and are uniformly less constructive than the correct choices, creating answer-position and tone tells.",
+        "mustFix": false
+      },
+      {
+        "unit": "full read and examples",
+        "problem": "The transition, milestone, and pit lessons are repeated many times with limited additional mechanism, lowering density.",
+        "mustFix": false
+      },
+      {
+        "unit": "24-hour challenge",
+        "problem": "The instruction to improve the 'strongest line' does not define whether strongest means most emotionally charged, most consequential, or easiest to change.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a memorable and genuinely useful core distinction: emotionally charged transitions, milestones, and pits often deserve design attention before the busy middle. Its layered reads, concrete actions, clear boundaries, and repeated memorable lines make the concept approachable and retainable. The quiz is derivable but over-repeats the pit lesson, relies on conspicuously weak distractors, and contains one dashboard ambiguity. More seriously, all six examples attach invented named participants and events to real brands or a purported real recovery story without labeling the scenes hypothetical; under the stated rubric, those fabricated or misleading examples block shipment. Labeling fictional applications clearly, separating them from sourced cases, broadening transfer settings, and tightening repetition would bring an otherwise strong chapter above the professional bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c14c3f1db3e945b7224eb21579f7d65b2d9edd4a2cf4b4eba42d5cd820112c22",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:32:01.896Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "025f24b81c7bbc3f822f54bc1d38ec62e109ba5a196c070ad923e6c1cfc47fe9",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:30:50.259Z",
+  "durationMs": 0
+}

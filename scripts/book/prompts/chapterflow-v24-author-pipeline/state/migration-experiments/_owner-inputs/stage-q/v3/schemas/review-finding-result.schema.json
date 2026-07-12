@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StageQ v3 ReviewFindingResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "targetType",
+    "evidenceSufficiency",
+    "findingValidity",
+    "severityIfSupported",
+    "evidenceSpans",
+    "rationale"
+  ],
+  "properties": {
+    "targetType": {
+      "type": "string",
+      "enum": [
+        "REVIEW_FINDING"
+      ]
+    },
+    "evidenceSufficiency": {
+      "type": "string",
+      "enum": [
+        "SUFFICIENT_TO_DECIDE",
+        "INSUFFICIENT_TO_DECIDE"
+      ]
+    },
+    "findingValidity": {
+      "type": "string",
+      "enum": [
+        "SUPPORTED",
+        "PARTIALLY_SUPPORTED",
+        "UNSUPPORTED",
+        "INCONCLUSIVE"
+      ]
+    },
+    "severityIfSupported": {
+      "type": "string",
+      "enum": [
+        "HIGH",
+        "MATERIAL",
+        "MINOR",
+        "NONE"
+      ]
+    },
+    "evidenceSpans": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rationale": {
+      "type": "string"
+    }
+  }
+}

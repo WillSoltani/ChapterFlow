@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P09",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_NARRATIVE_DETAILS\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"The HopeLab planner stands after lunch in HopeLab's project room, one portable activity device sketch clipped beside three firm names.\",\"No one else speaks yet.\",\"One firm could solve comfort, another could solve play, and another could show what the team has missed.\"],\"rationale\":\"The source plan only supports Steve Cole, HopeLab, a portable activity device, multiple design firms, and the parallel first phase used to compare and combine ideas. The candidate presents invented scene facts and mental-state specifics in the same factual register as the real case, including time of day, room setting, a clipped sketch, silence in the room, and specific firm strengths such as comfort and play. These details are not supported by the provided source material, so the candidate materially embellishes the sourced case.\"}"
+}

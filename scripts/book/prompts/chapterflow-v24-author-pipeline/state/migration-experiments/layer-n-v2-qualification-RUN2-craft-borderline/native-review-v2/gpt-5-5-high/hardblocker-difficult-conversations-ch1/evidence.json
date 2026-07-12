@@ -1,0 +1,142 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-difficult-conversations-ch1",
+  "itemId": "hardblocker-difficult-conversations-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "269e05256db11a6c",
+  "renderedDocSha256": "88304a8faad62727289858ebae3521df8addf959814b13af514ccd542c895a93",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "006f36e38f89014ddf40b3d96432e7291b1e45409d454634a8a9fca7386c84b8",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-difficult-conversations-ch1-mrh663wq-25",
+  "rawFinalMessageSha256": "61346407f8f12713ac47faf4f4f64e075bc3778459a6f553d23028a2d47a0565",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"a\", \"b\", \"c\", \"a\", \"b\", \"c\", \"c\", \"b\", \"a\"],\n    \"mechanisms\": [\n      \"The fear is not just anxiety; it is a question about whether she is competent and authoritative enough to challenge him.\",\n      \"The prose says to sort what happened, feelings, and identity before responding to a hard exchange.\",\n      \"The board has facts, residents name dismissal, and the board has an identity/reputation fear about negligence.\",\n      \"The chapter warns that accepting the surface label can trap the exchange in facts while feelings steer the room.\",\n      \"Hearing the question as 'you are a bad friend' makes the surface dinner issue into an identity judgment.\",\n      \"Her notes separate facts, feelings, and identity, keeping the belonging threat from being hidden by the authorship issue.\",\n      \"The attendance fact has started to carry an identity question about parenting, so repeating facts alone may heighten defense.\",\n      \"The prose says the frame works first as private diagnosis because labeling someone else's layer can sound accusatory.\",\n      \"The diagnostic move is to separate the visible chore dispute from the respect layer driving the repeated fight.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"b is partly defensible if the reader keys only on 'terrified,' but the competence/authority wording points to identity.\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"a is the longest and echoes the prose's competence/authority language; b has giveaway absolutism with 'only issue that matters now.'\",\n      \"b is uniquely comprehensive and lists all three layers, while a and c are narrow.\",\n      \"c is much longer and names all three layers; b is plainly dismissive.\",\n      \"a mirrors the chapter's timeline-versus-trust mechanism; c is a weak joke distractor.\",\n      \"b contains the explicit identity phrasing; c uses giveaway absolutism with 'always.'\",\n      \"c is the longest and uses the chapter's 'belonging' and 'only a problem' framing.\",\n      \"c is much more nuanced and longer than the other choices.\",\n      \"b closely paraphrases the prose; a and c are extreme.\",\n      \"a is the only answer that uses the chapter's layer language.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 91,\n    \"quizzes\": 86,\n    \"transfer\": 74,\n    \"practical\": 78,\n    \"summaries\": 93,\n    \"tone\": 89,\n    \"limits\": 94,\n    \"insight\": 90,\n    \"density\": 87,\n    \"beginner\": 90\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The log is evidence. It is not the whole map.\",\n      \"why\": \"Strongest memorable line: concrete, brief, and repeats the chapter's core distinction.\"\n    },\n    {\n      \"quote\": \"The three conversations are a diagnostic tool, not a script.\",\n      \"why\": \"Best limit statement: it prevents the frame from being oversold.\"\n    },\n    {\n      \"quote\": \"In truth, prepare only the deadline facts and skip the feelings and identity stakes, since sorting those extra layers just clouds a clean evidence-based review.\",\n      \"why\": \"Worst defect: it directly reverses the chapter's core advice inside a 'What to do' section.\"\n    },\n    {\n      \"quote\": \"A person who already feels exposed will rarely thank you for diagnosing their identity layer.\",\n      \"why\": \"Strong practical boundary: it explains why the tool should first be used privately.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The 'What to do' section first tells Sarah to sort facts, feelings, and identity, then directly tells her to skip feelings and identity; this contradicts the chapter's core move and could teach the opposite behavior.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"Distractor b is weakened by giveaway absolutism: 'anxiety is the only issue that matters now' is obviously false in the chapter's framework.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q3\",\n      \"problem\": \"Distractor b is too obviously dismissive, so the item is easier to answer by tone than by deriving the mechanism.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter has a clear, memorable core move: sort hard conversations into facts, feelings, and identity before choosing words. The prose is concrete, layered, and honest about limits, and the quiz is mostly fair and derivable. The blocking issue is Example 1, where the 'What to do' section includes a sentence that explicitly tells the reader to skip the very layers the chapter teaches them to sort. That source-contradictory instruction makes the chapter unshippable until fixed, though the surrounding material is strong.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-difficult-conversations-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "269e05256db11a6c",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-difficult-conversations-ch1-mrh663wq-25",
+    "scores": {
+      "retention": 91,
+      "quizzes": 86,
+      "transfer": 74,
+      "practical": 78,
+      "summaries": 93,
+      "tone": 89,
+      "limits": 94,
+      "insight": 90,
+      "density": 87,
+      "beginner": 90
+    },
+    "composite": 86.9,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The log is evidence. It is not the whole map.",
+        "why": "Strongest memorable line: concrete, brief, and repeats the chapter's core distinction.",
+        "verified": true
+      },
+      {
+        "quote": "The three conversations are a diagnostic tool, not a script.",
+        "why": "Best limit statement: it prevents the frame from being oversold.",
+        "verified": true
+      },
+      {
+        "quote": "In truth, prepare only the deadline facts and skip the feelings and identity stakes, since sorting those extra layers just clouds a clean evidence-based review.",
+        "why": "Worst defect: it directly reverses the chapter's core advice inside a 'What to do' section.",
+        "verified": true
+      },
+      {
+        "quote": "A person who already feels exposed will rarely thank you for diagnosing their identity layer.",
+        "why": "Strong practical boundary: it explains why the tool should first be used privately.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "a is the longest and echoes the prose's competence/authority language; b has giveaway absolutism with 'only issue that matters now.'",
+      "b is uniquely comprehensive and lists all three layers, while a and c are narrow.",
+      "c is much longer and names all three layers; b is plainly dismissive.",
+      "a mirrors the chapter's timeline-versus-trust mechanism; c is a weak joke distractor.",
+      "b contains the explicit identity phrasing; c uses giveaway absolutism with 'always.'",
+      "c is the longest and uses the chapter's 'belonging' and 'only a problem' framing.",
+      "c is much more nuanced and longer than the other choices.",
+      "b closely paraphrases the prose; a and c are extreme.",
+      "a is the only answer that uses the chapter's layer language."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "The 'What to do' section first tells Sarah to sort facts, feelings, and identity, then directly tells her to skip feelings and identity; this contradicts the chapter's core move and could teach the opposite behavior.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q1",
+        "problem": "Distractor b is weakened by giveaway absolutism: 'anxiety is the only issue that matters now' is obviously false in the chapter's framework.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q3",
+        "problem": "Distractor b is too obviously dismissive, so the item is easier to answer by tone than by deriving the mechanism.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a clear, memorable core move: sort hard conversations into facts, feelings, and identity before choosing words. The prose is concrete, layered, and honest about limits, and the quiz is mostly fair and derivable. The blocking issue is Example 1, where the 'What to do' section includes a sentence that explicitly tells the reader to skip the very layers the chapter teaches them to sort. That source-contradictory instruction makes the chapter unshippable until fixed, though the surrounding material is strong.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "e8cfa8326755f78c048a3f1c224c6d1213c4e82cce6f3ae819c773bd5e69caad",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:24:39.590Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "006f36e38f89014ddf40b3d96432e7291b1e45409d454634a8a9fca7386c84b8",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "In truth, prepare only the deadline facts and skip the feelings and identity stakes, since sorting those extra layers just clouds a clean evidence-based review."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:23:40.873Z",
+  "durationMs": 0
+}

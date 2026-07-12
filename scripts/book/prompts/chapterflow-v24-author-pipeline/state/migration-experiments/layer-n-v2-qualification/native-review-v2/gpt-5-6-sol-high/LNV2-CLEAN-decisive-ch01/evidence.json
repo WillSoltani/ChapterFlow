@@ -1,0 +1,164 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-decisive-ch01",
+  "itemId": "LNV2-CLEAN-decisive-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "69cecca544e01f6f",
+  "renderedDocSha256": "2473df4e347080e141b9f35b24151601de9122e5619e02df2eeaf1865e1c29a0",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-decisive-ch01-mrh8d7wy-40",
+  "rawFinalMessageSha256": "6e9058e06df2d8313d90f9ffa505523e2e49dc6b7434900f6e25e4abb734809f",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"c\", \"c\", \"a\", \"c\", \"a\", \"a\", \"b\"],\n    \"mechanisms\": [\n      \"The prose defines WRAP as four distinct moves applied in sequence to four different decision dangers.\",\n      \"A yes-or-no choice is narrow framing, so widening the live option set must precede further evidence gathering.\",\n      \"Reality-testing requires seeking evidence that could weaken the favored plan while the decision remains open.\",\n      \"The prose says emotion may contain information but needs distance so short-term attachment does not control the long-term call.\",\n      \"Prepare to be wrong counters overconfidence by naming a wider range of plausible futures.\",\n      \"Cole's approach used parallel first passes to generate comparison and learning before an expensive commitment.\",\n      \"Grove's question creates distance by asking what a fresh leader, unburdened by legacy attachment, would do.\",\n      \"Each villain affects a different part of the choice and therefore calls for its matching intervention.\",\n      \"The chapter explicitly says a sound process improves the odds without guaranteeing a good outcome.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"Choice a is weakly defensible because the chapter does present WRAP as a sequence that cools and checks a decision, while choice b imprecisely calls the four dangers 'choice stages.'\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Many correct choices repeat distinctive chapter phrases such as 'disconfirming evidence,' 'plausible outcomes,' 'outsider question,' and 'improving odds,' making lexical matching sufficient.\",\n      \"Several distractors are plainly unreasonable absolutes or reversals, such as treating confidence as proof, waiting indefinitely for emotion to fade, or promising that WRAP makes outcomes right.\",\n      \"In Q1, the keyed choice is the only option that spells out the WRAP components and is also the most detailed choice.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 93,\n    \"quizzes\": 84,\n    \"transfer\": 72,\n    \"practical\": 88,\n    \"summaries\": 90,\n    \"tone\": 86,\n    \"limits\": 95,\n    \"insight\": 91,\n    \"density\": 87,\n    \"beginner\": 92\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"Evidence gets crooked when the favorite answer hires the researcher.\",\n      \"why\": \"A compact, memorable image explains the mechanism of confirmation bias.\"\n    },\n    {\n      \"quote\": \"Good process raises the odds without promising the outcome.\",\n      \"why\": \"This states the chapter's central limitation with unusual clarity.\"\n    },\n    {\n      \"quote\": \"The Intel reviewer reaches the Intel strategy review with two bad pages in his folder.\",\n      \"why\": \"This presents an unsupported invented scene around a real company without labeling it hypothetical.\"\n    },\n    {\n      \"quote\": \"The team lead texts from the train platform before the decision meeting: \\\"WRAP check. Which of the four villains is loudest?\\\"\",\n      \"why\": \"The unmarked invented setting and dialogue create false documentary specificity.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The chapter invents an after-lunch HopeLab project-room scene and an unnamed planner's thoughts around a real case without identifying the vignette as hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The Monday-morning HopeLab planning-room scene, budget wall, and prototype planner are unsupported fictional specifics presented without a hypothetical marker; this is a FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"The Intel reviewer, strategy review, and two pages in his folder are invented details attached to a real historical case without being labeled fictional; this is a FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The product-office scene and quoted exchange are invented but presented as a concrete event rather than an explicit hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"Yvonne and the forecast-board reveal are introduced as a concrete event with no source or hypothetical framing; this is a FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"The train-platform text exchange is fabricated dialogue presented without hypothetical framing; this is a FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"The keyed choice calls WRAP's four target dangers 'choice stages,' although the prose describes dangers or parts of a choice rather than formal stages.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Many distractors are obvious reversals or extreme claims, while keyed choices echo the chapter's signature wording, reducing the quiz's ability to test understanding.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"try this now\",\n      \"problem\": \"The instruction to record the 'cue, shortcut, and likely villain' does not define what counts as the shortcut or explicitly require the matching WRAP response.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter teaches a strong, memorable core move: diagnose which part of a decision is being distorted, then apply the matching WRAP intervention. Its causal explanations, layered summaries, practical prompts, memorable lines, and explicit boundary for emergencies are professionally strong, and the quiz is readily derivable. Transfer suffers because all six examples use unmarked fictional scenes, people, thoughts, settings, or dialogue, including invented specificity around HopeLab and Intel; those reader-misleading examples block shipment until they are labeled as hypothetical or replaced with supported cases. The quiz would also benefit from less lexical matching and more plausible distractors.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "decisive-ch01",
+    "chapterNumber": 1,
+    "contentHash": "69cecca544e01f6f",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-decisive-ch01-mrh8d7wy-40",
+    "scores": {
+      "retention": 93,
+      "quizzes": 84,
+      "transfer": 72,
+      "practical": 88,
+      "summaries": 90,
+      "tone": 86,
+      "limits": 95,
+      "insight": 91,
+      "density": 87,
+      "beginner": 92
+    },
+    "composite": 87.5,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "c",
+        "c",
+        "a",
+        "c",
+        "a",
+        "a",
+        "b"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+        "why": "A compact, memorable image explains the mechanism of confirmation bias.",
+        "verified": true
+      },
+      {
+        "quote": "Good process raises the odds without promising the outcome.",
+        "why": "This states the chapter's central limitation with unusual clarity.",
+        "verified": true
+      },
+      {
+        "quote": "The Intel reviewer reaches the Intel strategy review with two bad pages in his folder.",
+        "why": "This presents an unsupported invented scene around a real company without labeling it hypothetical.",
+        "verified": true
+      },
+      {
+        "quote": "The team lead texts from the train platform before the decision meeting: \"WRAP check. Which of the four villains is loudest?\"",
+        "why": "The unmarked invented setting and dialogue create false documentary specificity.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Many correct choices repeat distinctive chapter phrases such as 'disconfirming evidence,' 'plausible outcomes,' 'outsider question,' and 'improving odds,' making lexical matching sufficient.",
+      "Several distractors are plainly unreasonable absolutes or reversals, such as treating confidence as proof, waiting indefinitely for emotion to fade, or promising that WRAP makes outcomes right.",
+      "In Q1, the keyed choice is the only option that spells out the WRAP components and is also the most detailed choice."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "The chapter invents an after-lunch HopeLab project-room scene and an unnamed planner's thoughts around a real case without identifying the vignette as hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 2",
+        "problem": "The Monday-morning HopeLab planning-room scene, budget wall, and prototype planner are unsupported fictional specifics presented without a hypothetical marker; this is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 3",
+        "problem": "The Intel reviewer, strategy review, and two pages in his folder are invented details attached to a real historical case without being labeled fictional; this is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 4",
+        "problem": "The product-office scene and quoted exchange are invented but presented as a concrete event rather than an explicit hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 5",
+        "problem": "Yvonne and the forecast-board reveal are introduced as a concrete event with no source or hypothetical framing; this is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 6",
+        "problem": "The train-platform text exchange is fabricated dialogue presented without hypothetical framing; this is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q1",
+        "problem": "The keyed choice calls WRAP's four target dangers 'choice stages,' although the prose describes dangers or parts of a choice rather than formal stages.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz",
+        "problem": "Many distractors are obvious reversals or extreme claims, while keyed choices echo the chapter's signature wording, reducing the quiz's ability to test understanding.",
+        "mustFix": false
+      },
+      {
+        "unit": "try this now",
+        "problem": "The instruction to record the 'cue, shortcut, and likely villain' does not define what counts as the shortcut or explicitly require the matching WRAP response.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter teaches a strong, memorable core move: diagnose which part of a decision is being distorted, then apply the matching WRAP intervention. Its causal explanations, layered summaries, practical prompts, memorable lines, and explicit boundary for emergencies are professionally strong, and the quiz is readily derivable. Transfer suffers because all six examples use unmarked fictional scenes, people, thoughts, settings, or dialogue, including invented specificity around HopeLab and Intel; those reader-misleading examples block shipment until they are labeled as hypothetical or replaced with supported cases. The quiz would also benefit from less lexical matching and more plausible distractors.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "ec94fcd42d5c882fb154d0aa8d15cc70cba15e977e49362d66095fe60aef9ac2",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:26:24.222Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:25:11.889Z",
+  "durationMs": 0
+}

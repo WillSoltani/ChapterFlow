@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P11",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_DETAILS_IN_REAL_SOURCED_CASE\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt.\",\"No one has moved yet.\",\"The tiny cursor after the question is doing the narrowing work.\",\"Claire underlines the break-up-or-not wording, then writes two missing questions in the margin\"],\"rationale\":\"The source plan supports only the claireabelle handle, a teen relationship, family interactions, and the break-up-or-not frame. The candidate presents invented scene details and actions—including the time, setting, phone and quilt, cursor, lack of movement, underlining, and margin writing—in the same factual register as the sourced case; it also converts the handle into the unsupported personal name “Claire.” These embellishments materially fictionalize a real-world case and should block publication.\"}"
+}

@@ -1,0 +1,308 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "ambiguity-decisive-ch1",
+  "itemId": "ambiguity-decisive-ch1",
+  "kind": "quiz-ambiguity",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "4e0ea4d7c5d37d78",
+  "renderedDocSha256": "0205882b4060255bfa947a95acd94657ec54ca086914b3d3d0c5989b6b489426",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "81be7a8ba5d0fdd2506cb93d2d9d943cfaa803d5e5c55cbca269b194cc0b2195",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-ambiguity-decisive-ch1-mrhb7ayi-35",
+  "rawFinalMessageSha256": "e4f60f02acc91344a43841da8abb9015764e3dc35ebf8cdb7cb794b56e0cebf8",
+  "rawFinalMessage": "```json\n{\n  \"schema\": \"quiz-adjudication-v1\",\n  \"derivationSha256\": \"6358495c8333f5ff2fe7e6ed909c43d083d27b39fb904c05dcc9079b35ee029c\",\n  \"documentSha256\": \"\",\n  \"reviewerSessionId\": \"\",\n  \"items\": [\n    {\n      \"itemId\": \"decisive-ch01-q01\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"WRAP is structurally matched to four decision stages, so b is the uniquely supported answer.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q02\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"A yes-or-no vendor frame is narrow framing, so adding real alternatives first is best supported.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q03\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Confirmation bias is directly countered by seeking disconfirming evidence before the favorite controls the search.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q04\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": false,\n      \"keyCorrect\": \"wrong\",\n      \"rationale\": \"The old service-line attachment specifically supports b's new-leader outsider question more strongly than c's later-perspective test.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q05\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"A wider range of plausible outcomes directly counters overconfidence in one neat forecast.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q06\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Steve Cole's HopeLab logic favors parallel first passes to learn by comparison before commitment.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q07\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"The outsider question is meant to create distance from legacy attachment, not outsource technical judgment.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q08\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"The four villains occur at different stages and require different interventions, making a the best answer.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q09\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"WRAP improves decision odds under uncertainty without guaranteeing a good outcome.\"\n    }\n  ]\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "ambiguity-decisive-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "4e0ea4d7c5d37d78",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-ambiguity-decisive-ch1-mrhb7ayi-35",
+    "scores": {
+      "retention": 89,
+      "quizzes": 80,
+      "transfer": 82,
+      "practical": 82,
+      "summaries": 85,
+      "tone": 88,
+      "limits": 91,
+      "insight": 88,
+      "density": 83,
+      "beginner": 90
+    },
+    "composite": 85.5,
+    "ship84": true,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "c",
+        "b",
+        "a",
+        "c",
+        "a",
+        "a",
+        "b"
+      ],
+      "matches": 8,
+      "of": 9,
+      "disagreements": [
+        "Q4: reader=b key=c"
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "A live option set keeps a bad frame from feeling like fate.",
+        "why": "This is the strongest retention line: concrete, short, and central to the chapter's first move.",
+        "verified": true
+      },
+      {
+        "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+        "why": "This memorably explains the mechanism of confirmation bias rather than just naming it.",
+        "verified": true
+      },
+      {
+        "quote": "Good process raises the odds without promising the outcome.",
+        "why": "This is the chapter's best limit: it prevents the process from being oversold.",
+        "verified": true
+      },
+      {
+        "quote": "c) You should let the attachment speak, then ask what will still matter later.",
+        "why": "This is the clearest quiz defect because it creates a partly defensible competitor for Q4.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Correct option is the only one that spells out all four WRAP moves and is visibly the most model-specific.",
+      "Correct option echoes the stem's yes-or-no frame and the chapter's better-paths idea; mild giveaway.",
+      "Correct option is the only one with the technical cue 'disconfirming evidence' against confirmation bias.",
+      "Correct option is the longest and contains the full outsider-question pattern.",
+      "Correct option is the only one that directly names a wider range of outcomes; other options are plainly credulous.",
+      "Correct option repeats the chapter's comparison-before-commitment phrasing.",
+      "Correct option directly restates the outsider question while b and c are obviously wrong from wording.",
+      "Correct option lists the four stages and 'different moves,' making it more model-shaped than the distractors.",
+      "Correct option nearly quotes the memorable line about improving odds while uncertainty remains."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q4",
+        "problem": "Option c is a defensible second answer because the implementation plan says to ask what will still matter after the mood cools; b is stronger because the stem mirrors Intel's old-line attachment.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz",
+        "problem": "Correct answers often contain direct model vocabulary or chapter phrasing while distractors are generic or plainly wrong, so several items can be guessed without full reading.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "Thin-but-usable: Yvonne's forecast reveal names no real context, numbers, decision consequence, or before-after outcome, so it mostly restates the overconfidence lesson.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "Thin-but-usable: the train-platform text thread has no concrete decision or consequence, so it functions more as a mnemonic than a transfer example.",
+        "mustFix": false
+      },
+      {
+        "unit": "try this now",
+        "problem": "The action asks readers to record a 'shortcut' before that term is made concrete, and touching the laptop lid feels like ritual rather than a necessary low-friction behavior.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter is shippable: it has a crisp model, memorable lines, honest limits, and examples and quizzes that mostly force the WRAP sequence from the prose. Its main weaknesses are quiz option tells, one partial ambiguity around the emotion question, and a couple of thin transfer examples that rehearse the lesson without showing much consequence. None of those are reader-harming must-fix defects, but they hold the quiz and transfer scores below the strongest categories.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "1bbfb1827db9cd01c4dccc102781eabd0d484fb172da4d330b4bc8b408a334fd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:46:45.195Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "81be7a8ba5d0fdd2506cb93d2d9d943cfaa803d5e5c55cbca269b194cc0b2195",
+    "quizAdjudication": {
+      "status": "adjudicated",
+      "derivationSha256": "6358495c8333f5ff2fe7e6ed909c43d083d27b39fb904c05dcc9079b35ee029c",
+      "phase2DocSha256": "d73754d3907ac57d100769a17dcb060dbac1ddf1e05af576ce0cf23128c4f6f5",
+      "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-xhigh-ambiguity-decisive-ch1-mrhba3m5-36",
+      "items": [
+        {
+          "itemId": "decisive-ch01-q01",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "WRAP is structurally matched to four decision stages, so b is the uniquely supported answer."
+        },
+        {
+          "itemId": "decisive-ch01-q02",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "A yes-or-no vendor frame is narrow framing, so adding real alternatives first is best supported."
+        },
+        {
+          "itemId": "decisive-ch01-q03",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Confirmation bias is directly countered by seeking disconfirming evidence before the favorite controls the search."
+        },
+        {
+          "itemId": "decisive-ch01-q04",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 1,
+          "agreement": false,
+          "keyCorrect": "wrong",
+          "rationale": "The old service-line attachment specifically supports b's new-leader outsider question more strongly than c's later-perspective test."
+        },
+        {
+          "itemId": "decisive-ch01-q05",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "A wider range of plausible outcomes directly counters overconfidence in one neat forecast."
+        },
+        {
+          "itemId": "decisive-ch01-q06",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Steve Cole's HopeLab logic favors parallel first passes to learn by comparison before commitment."
+        },
+        {
+          "itemId": "decisive-ch01-q07",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "The outsider question is meant to create distance from legacy attachment, not outsource technical judgment."
+        },
+        {
+          "itemId": "decisive-ch01-q08",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "The four villains occur at different stages and require different interventions, making a the best answer."
+        },
+        {
+          "itemId": "decisive-ch01-q09",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "WRAP improves decision odds under uncertainty without guaranteeing a good outcome."
+        }
+      ],
+      "ambiguousCount": 0,
+      "keyWrongCount": 1
+    }
+  },
+  "phase2": {
+    "status": "adjudicated",
+    "derivationSha256": "6358495c8333f5ff2fe7e6ed909c43d083d27b39fb904c05dcc9079b35ee029c",
+    "phase2DocSha256": "d73754d3907ac57d100769a17dcb060dbac1ddf1e05af576ce0cf23128c4f6f5",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-xhigh-ambiguity-decisive-ch1-mrhba3m5-36",
+    "items": [
+      {
+        "itemId": "decisive-ch01-q01",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "WRAP is structurally matched to four decision stages, so b is the uniquely supported answer."
+      },
+      {
+        "itemId": "decisive-ch01-q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "A yes-or-no vendor frame is narrow framing, so adding real alternatives first is best supported."
+      },
+      {
+        "itemId": "decisive-ch01-q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Confirmation bias is directly countered by seeking disconfirming evidence before the favorite controls the search."
+      },
+      {
+        "itemId": "decisive-ch01-q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "The old service-line attachment specifically supports b's new-leader outsider question more strongly than c's later-perspective test."
+      },
+      {
+        "itemId": "decisive-ch01-q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "A wider range of plausible outcomes directly counters overconfidence in one neat forecast."
+      },
+      {
+        "itemId": "decisive-ch01-q06",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Steve Cole's HopeLab logic favors parallel first passes to learn by comparison before commitment."
+      },
+      {
+        "itemId": "decisive-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The outsider question is meant to create distance from legacy attachment, not outsource technical judgment."
+      },
+      {
+        "itemId": "decisive-ch01-q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The four villains occur at different stages and require different interventions, making a the best answer."
+      },
+      {
+        "itemId": "decisive-ch01-q09",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "WRAP improves decision odds under uncertainty without guaranteeing a good outcome."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": false,
+    "channel": "phase-2 quizAdjudication.items[].keyCorrect==='ambiguous' (+ phase-1 tells)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:44:34.741Z",
+  "durationMs": 0
+}

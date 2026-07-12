@@ -1,0 +1,145 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-willpower-instinct-ch01",
+  "itemId": "LNV2-CLEAN-the-willpower-instinct-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "4984962de1bbbc93",
+  "renderedDocSha256": "9fdcea43132a18b37f66e10a6e5f0f334bb83db7bab2c3be3afdbb0a54512823",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-willpower-instinct-ch01-mrh5fsrx-1",
+  "rawFinalMessageSha256": "b781c57f145fb4af47f92fc03858171212cd65e5b373c314f3e5ac9108d5148f",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"a\", \"a\", \"b\", \"b\", \"b\", \"a\", \"c\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines willpower as I will, I won't, and I want, not refusal alone.\",\n      \"Miller and Cohen are described as showing prefrontal control keeps goals active and tilts attention/action toward them.\",\n      \"The Gage passage says speech survived while steadiness, planning, and social restraint changed after frontal damage.\",\n      \"The self-awareness section says change requires noticing the moment before the action hardens, not regret afterward.\",\n      \"The social-cost passages say self-control supports promises, shared resources, repair, and group life.\",\n      \"The chapter repeatedly says the larger want must be mentally present at the cue to compete with the vivid urge.\",\n      \"The prose says the short-term want and long-term want can both be real; support and attention decide which guides action.\",\n      \"The method is to make the challenge concrete, test cue/barrier/value failures, and use feedback.\",\n      \"The Amelia example says control biases response when an automatic routine conflicts with the current goal.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Correct choice c uniquely echoes the chapter's exact triad; distractors reduce the issue to refusal or sincerity.\",\n      \"Correct choice a is much more technical and chapter-like; b and c use obvious false extremes.\",\n      \"Correct choice a is the only one matching the nuanced Gage passage; b and c are absolute overclaims.\",\n      \"Correct choice b is the only option focused before the act; a and c are after-the-fact or intensity traps.\",\n      \"Correct choice b is the only socially constructive answer; a and c use giveaway absolutes.\",\n      \"Correct choice b repeats the core phrase 'choice point'; a and c are too absolute.\",\n      \"Correct choice a is the only balanced answer; b and c are caricatures of the conflict.\",\n      \"Correct choice c is the only experimental/feedback answer; a and b reject learning from the trigger.\",\n      \"Correct choice c repeats the chapter's prefrontal-control wording; a and b are implausible absolutes.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 86,\n    \"transfer\": 84,\n    \"practical\": 88,\n    \"summaries\": 91,\n    \"tone\": 87,\n    \"limits\": 84,\n    \"insight\": 89,\n    \"density\": 86,\n    \"beginner\": 92\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Refusal is only one third of willpower.\",\n      \"why\": \"This is the chapter's cleanest memorable correction to the common misunderstanding.\"\n    },\n    {\n      \"quote\": \"A goal must be present to have power.\",\n      \"why\": \"This line gives the mechanism in a compact, portable form.\"\n    },\n    {\n      \"quote\": \"Self-control costs the comfort of staying vague.\",\n      \"why\": \"Strong practical insight: the method makes the next action visible and removes easy excuses.\"\n    },\n    {\n      \"quote\": \"Jonathan D. Cohen's 2001 control model helps show why the wanted commitment must guide the next response.\",\n      \"why\": \"This attribution feels slightly formulaic in the example and adds less than the surrounding scene.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q2\",\n      \"problem\": \"The correct answer is heavily signposted by the technical wording from the prose, while both distractors are obvious false extremes.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q3\",\n      \"problem\": \"The distractors are too easy because they overstate with 'no value' and 'only part of control,' so the question tests elimination as much as recall.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The Cohen attribution at the end feels pasted on; the scene already teaches the point, and the source mention does not add much mechanism.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"implementation plan\",\n      \"problem\": \"The weekly practice asks the reader to spend half a week using an all-or-nothing rule, which is a somewhat theatrical comparison rather than the lowest-friction application.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable opening chapter. The core move is clear, memorable, and repeatedly reinforced: willpower is not just refusal but the coordination of starting, stopping, and remembering the larger want at the choice point. The quiz is fair and derivable, though some distractors are too obviously wrong. The examples are mostly concrete and transferable, with only a few source tags feeling bolted on. No reader-harming defects stood out from the page.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-willpower-instinct-ch01",
+    "chapterNumber": 1,
+    "contentHash": "4984962de1bbbc93",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-willpower-instinct-ch01-mrh5fsrx-1",
+    "scores": {
+      "retention": 90,
+      "quizzes": 86,
+      "transfer": 84,
+      "practical": 88,
+      "summaries": 91,
+      "tone": 87,
+      "limits": 84,
+      "insight": 89,
+      "density": 86,
+      "beginner": 92
+    },
+    "composite": 87.7,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "a",
+        "a",
+        "b",
+        "b",
+        "b",
+        "a",
+        "c",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Refusal is only one third of willpower.",
+        "why": "This is the chapter's cleanest memorable correction to the common misunderstanding.",
+        "verified": true
+      },
+      {
+        "quote": "A goal must be present to have power.",
+        "why": "This line gives the mechanism in a compact, portable form.",
+        "verified": true
+      },
+      {
+        "quote": "Self-control costs the comfort of staying vague.",
+        "why": "Strong practical insight: the method makes the next action visible and removes easy excuses.",
+        "verified": true
+      },
+      {
+        "quote": "Jonathan D. Cohen's 2001 control model helps show why the wanted commitment must guide the next response.",
+        "why": "This attribution feels slightly formulaic in the example and adds less than the surrounding scene.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Correct choice c uniquely echoes the chapter's exact triad; distractors reduce the issue to refusal or sincerity.",
+      "Correct choice a is much more technical and chapter-like; b and c use obvious false extremes.",
+      "Correct choice a is the only one matching the nuanced Gage passage; b and c are absolute overclaims.",
+      "Correct choice b is the only option focused before the act; a and c are after-the-fact or intensity traps.",
+      "Correct choice b is the only socially constructive answer; a and c use giveaway absolutes.",
+      "Correct choice b repeats the core phrase 'choice point'; a and c are too absolute.",
+      "Correct choice a is the only balanced answer; b and c are caricatures of the conflict.",
+      "Correct choice c is the only experimental/feedback answer; a and b reject learning from the trigger.",
+      "Correct choice c repeats the chapter's prefrontal-control wording; a and b are implausible absolutes."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q2",
+        "problem": "The correct answer is heavily signposted by the technical wording from the prose, while both distractors are obvious false extremes.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q3",
+        "problem": "The distractors are too easy because they overstate with 'no value' and 'only part of control,' so the question tests elimination as much as recall.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The Cohen attribution at the end feels pasted on; the scene already teaches the point, and the source mention does not add much mechanism.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan",
+        "problem": "The weekly practice asks the reader to spend half a week using an all-or-nothing rule, which is a somewhat theatrical comparison rather than the lowest-friction application.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable opening chapter. The core move is clear, memorable, and repeatedly reinforced: willpower is not just refusal but the coordination of starting, stopping, and remembering the larger want at the choice point. The quiz is fair and derivable, though some distractors are too obviously wrong. The examples are mostly concrete and transferable, with only a few source tags feeling bolted on. No reader-harming defects stood out from the page.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c412cf1d517372befed726feded2c9a6f655d199dca4e5736b7138dc087d359a",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:03:53.719Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:03:13.386Z",
+  "durationMs": 0
+}

@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-053",
+  "parsed": {
+    "caseId": "SQ-053",
+    "verdict": "DEFECT",
+    "defectClass": "same narrative machinery/template reuse",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Brisa starts to defend the audition list."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Dima has a reply ready about protocol"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Brisa feels the word unfair rise and stop."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "the real threat clear: maybe he is not ready for this role."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Brisa she must answer the hurt without pretending she knows the parent's motive."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Dima he must decide whether to defend his identity or check the order like a doctor who can learn."
+      }
+    ],
+    "explanation": "Both examples use the same beat structure: concrete workplace setting, external challenge, prepared defensive response, internal reframing of the real emotional issue, and a final choice to respond with humility rather than defensiveness.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-053\",\"verdict\":\"DEFECT\",\"defectClass\":\"same narrative machinery/template reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Brisa starts to defend the audition list.\"},{\"materialIndex\":1,\"quote\":\"Dima has a reply ready about protocol\"},{\"materialIndex\":0,\"quote\":\"Brisa feels the word unfair rise and stop.\"},{\"materialIndex\":1,\"quote\":\"the real threat clear: maybe he is not ready for this role.\"},{\"materialIndex\":0,\"quote\":\"Brisa she must answer the hurt without pretending she knows the parent's motive.\"},{\"materialIndex\":1,\"quote\":\"Dima he must decide whether to defend his identity or check the order like a doctor who can learn.\"}],\"explanation\":\"Both examples use the same beat structure: concrete workplace setting, external challenge, prepared defensive response, internal reframing of the real emotional issue, and a final choice to respond with humility rather than defensiveness.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

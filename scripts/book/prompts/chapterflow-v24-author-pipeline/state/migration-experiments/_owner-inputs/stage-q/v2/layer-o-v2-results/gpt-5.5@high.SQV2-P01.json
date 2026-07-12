@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P01",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"Contribution mapping does not imply equal fault.\",\"Situations can be 90/10 or 70/30, and naming your smaller contribution still matters because it identifies what you can change directly.\",\"It is not a polite way to say everyone is equally at fault.\",\"Your ten percent does not erase their ninety.\"],\"rationale\":\"The candidate preserves the source boundary clearly: it rejects equal-fault flattening, explicitly allows asymmetric harm, power, or responsibility, and frames naming one's own contribution as a practical lever rather than forgiveness or equal responsibility.\"}"
+}

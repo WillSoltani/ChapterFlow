@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-011",
+  "parsed": {
+    "caseId": "SQ-011",
+    "verdict": "DEFECT",
+    "defectClass": "unsupported narrative embellishment",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Hard specifics allowed: claireabelle, teen relationship, family interactions, whether-or-not frame"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "No one has moved yet."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Claire underlines the break-up-or-not wording, then writes two missing questions in the margin"
+      }
+    ],
+    "explanation": "The source only permits broad facts about claireabelle, a teen relationship, family interactions, and the whether-or-not framing. The candidate adds unsupported time, setting, prop, name/action, and scene details in the same factual register as the real case.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-011\",\"verdict\":\"DEFECT\",\"defectClass\":\"unsupported narrative embellishment\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Hard specifics allowed: claireabelle, teen relationship, family interactions, whether-or-not frame\"},{\"materialIndex\":1,\"quote\":\"After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt.\"},{\"materialIndex\":1,\"quote\":\"No one has moved yet.\"},{\"materialIndex\":1,\"quote\":\"Claire underlines the break-up-or-not wording, then writes two missing questions in the margin\"}],\"explanation\":\"The source only permits broad facts about claireabelle, a teen relationship, family interactions, and the whether-or-not framing. The candidate adds unsupported time, setting, prop, name/action, and scene details in the same factual register as the real case.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

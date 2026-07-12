@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-U1",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"UNSUPPORTED\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Deliver corrective feedback close in time to the behavior, while the specifics are still fresh.\",\"Give the correction close to the moment, while the details are still fresh enough to be useful.\"],\"rationale\":\"The supplied record contains both the source contract and candidate, so it is sufficient to decide the finding. The candidate faithfully preserves the required timing: correction is given near the relevant moment while details remain fresh. It therefore does not contradict the source contract, making the finding unsupported.\"}"
+}

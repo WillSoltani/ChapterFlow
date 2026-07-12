@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR8",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"Consider, as a thought experiment, an engineer who keeps shipping on Fridays and keeps spending Mondays on rollbacks.\",\"Change the day and the lesson survives, which is how you know it was never about a specific incident.\"],\"rationale\":\"The passage is adequately framed for the reader as an illustrative hypothetical rather than as a sourced real incident or disguised book-derived anecdote. Its visible wording explicitly calls the setup a thought experiment and reinforces that the point is the recurring pattern, not any particular Friday or specific incident, so the source-register does not mislead the reader.\"}"
+}

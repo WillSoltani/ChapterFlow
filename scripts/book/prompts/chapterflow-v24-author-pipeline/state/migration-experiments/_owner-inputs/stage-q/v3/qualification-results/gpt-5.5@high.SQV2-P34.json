@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P34",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"reused narrative machinery\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Osias touches a bent visitor badge at Friday 9:18 p.m. in outside room 512 at Mercy South, older brother, with a phone buzzing with his sister's texts.\",\"Yara touches a cold coffee cup at Monday 8:16 a.m. in the second-floor teachers' lounge, history teacher, with a group chat open on her laptop.\",\"Osias he has to say whether they are arguing about paperwork, fear, or being the good child.\",\"Yara she has to decide whether to answer the impact as intent or ask what he meant in private.\"],\"rationale\":\"The examples swap topic, setting, and character nouns, but they use the same underlying scene engine: title built around a named character and tactile object, scenario opening with the character touching an object at an exact timestamp in a specific room plus role and communication device, a relationship/social slight that triggers an internal reply impulse, a small sensory detail about the object, and a closing forced-choice lesson sentence with the same awkward name-plus-pronoun construction. That pattern is too aligned to read as merely shared genre conventions.\"}"
+}

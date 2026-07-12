@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-026",
+  "parsed": {
+    "caseId": "SQ-026",
+    "verdict": "DEFECT",
+    "defectClass": "CLAIM_LOCATOR_MISMATCH",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Biological explanation is not moral pardon, because identifying causes can support prediction"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "https://pubmed.ncbi.nlm.nih.gov/?term=oxytocin+trust+game+Kosfeld+2005"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The locator is a PubMed search about oxytocin and trust games, not claim-specific evidence for the asserted relation between biological causation, prediction, and moral pardon.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-026\",\"verdict\":\"DEFECT\",\"defectClass\":\"CLAIM_LOCATOR_MISMATCH\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Biological explanation is not moral pardon, because identifying causes can support prediction\"},{\"materialIndex\":0,\"quote\":\"https://pubmed.ncbi.nlm.nih.gov/?term=oxytocin+trust+game+Kosfeld+2005\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The locator is a PubMed search about oxytocin and trust games, not claim-specific evidence for the asserted relation between biological causation, prediction, and moral pardon.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

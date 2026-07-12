@@ -1,0 +1,308 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-KEYMISMATCH-decisive-ch01-q1",
+  "itemId": "LNV2-KEYMISMATCH-decisive-ch01-q1",
+  "kind": "quiz-key-mismatch",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "2ac9db15cf42069b",
+  "renderedDocSha256": "2473df4e347080e141b9f35b24151601de9122e5619e02df2eeaf1865e1c29a0",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-KEYMISMATCH-decisive-ch01-q1-mrha6asm-15",
+  "rawFinalMessageSha256": "cae3b46d8d65c8b8ee37370b4d60dfc1bab8982bdc2c7cb768c9766ab400f6ea",
+  "rawFinalMessage": "```json\n{\n  \"schema\": \"quiz-adjudication-v1\",\n  \"derivationSha256\": \"c3c60f6d6cd67a0a885ae7a4fe98334f47a973837548b593d4844f765b1b4ae2\",\n  \"documentSha256\": \"\",\n  \"reviewerSessionId\": \"\",\n  \"items\": [\n    {\n      \"itemId\": \"decisive-ch01-q01\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": false,\n      \"keyCorrect\": \"wrong\",\n      \"rationale\": \"Choice b is best because WRAP's named moves map to stages; choice c incorrectly saves WRAP for after commitment.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q02\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"The yes-or-no vendor frame is narrow framing, so adding real alternatives before data review is best supported.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q03\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Seeking disconfirming evidence directly counters confirmation bias around an already-favored plan.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q04\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Letting attachment speak while asking what matters later captures emotional distance without dismissing emotion.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q05\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Mapping a wider range of plausible outcomes directly counters overconfidence in a single neat forecast.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q06\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Funding parallel first passes fits Steve Cole's comparison-before-commitment logic.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q07\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"The outsider question creates distance by asking what a fresh leader would do without legacy attachment.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q08\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"The four villains affect different decision stages and require distinct interruptions, not one final review.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q09\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"WRAP improves decision odds under uncertainty but cannot guarantee a good outcome.\"\n    }\n  ]\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-KEYMISMATCH-decisive-ch01-q1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "2ac9db15cf42069b",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-KEYMISMATCH-decisive-ch01-q1-mrha6asm-15",
+    "scores": {
+      "retention": 93,
+      "quizzes": 86,
+      "transfer": 84,
+      "practical": 86,
+      "summaries": 93,
+      "tone": 89,
+      "limits": 94,
+      "insight": 92,
+      "density": 88,
+      "beginner": 91
+    },
+    "composite": 89.5,
+    "ship84": true,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "c",
+        "c",
+        "a",
+        "c",
+        "a",
+        "a",
+        "b"
+      ],
+      "matches": 8,
+      "of": 9,
+      "disagreements": [
+        "Q1: reader=b key=c"
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "A live option set keeps a bad frame from feeling like fate.",
+        "why": "This is the chapter's strongest retention line: concrete, short, and central to the first WRAP move.",
+        "verified": true
+      },
+      {
+        "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+        "why": "It explains confirmation bias through a memorable mechanism rather than a definition.",
+        "verified": true
+      },
+      {
+        "quote": "The process earns trust when it fits the tempo of the choice.",
+        "why": "This gives the chapter an honest limit and prevents WRAP from sounding universal.",
+        "verified": true
+      },
+      {
+        "quote": "touch your laptop lid and record the cue, shortcut, and likely villain.",
+        "why": "This is the weakest practical moment because the physical cue is oddly narrow and slightly underexplained.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q1: b is the only option that names all four WRAP verbs and is uniquely longest.",
+      "Q2: b carries the chapter's signature yes-or-no/frame language; c is plainly anti-lesson.",
+      "Q3: c is the only option with disconfirming evidence, while a/b openly advocate for the favorite.",
+      "Q4: a/b are extreme, so c is guessable by moderation.",
+      "Q5: a is the only option with the chapter's range-of-outcomes language.",
+      "Q6: c repeats the signature parallel-first-passes/comparison-before-commitment pattern.",
+      "Q7: a closely repeats the outsider-question wording.",
+      "Q8: a is the only answer preserving four distinct villains and moves.",
+      "Q9: b echoes the memorable line about improving odds while uncertainty remains."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz set",
+        "problem": "Several correct answers are signposted by exact model vocabulary while distractors are extreme or anti-lesson, reducing no-tell quiz quality.",
+        "mustFix": false
+      },
+      {
+        "unit": "try this now",
+        "problem": "The laptop-lid cue is too device-specific and may feel arbitrary before the later sticky-note implementation plan clarifies the behavior.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "This repeats the HopeLab parallel-first-pass lesson from example 1 with only a budget angle, so it adds limited new transfer range.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The forecast vignette is usable but thin: Yvonne, the launch, and the consequence remain generic, so it teaches the move without much before-to-after specificity.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The train-platform text exchange mostly restates the four villains and matching move without showing a concrete decision consequence.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "Ship. The chapter is clear, memorable, and unusually good about mechanism and limits: it explains why each villain distorts a different part of the decision and why WRAP improves odds without guaranteeing outcomes. The main weaknesses are craft-level, not blocking: quiz answers are often too easy to spot from signature phrasing, and a few transfer examples are thin or repetitive.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "ec94fcd42d5c882fb154d0aa8d15cc70cba15e977e49362d66095fe60aef9ac2",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:17:34.816Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+    "quizAdjudication": {
+      "status": "adjudicated",
+      "derivationSha256": "c3c60f6d6cd67a0a885ae7a4fe98334f47a973837548b593d4844f765b1b4ae2",
+      "phase2DocSha256": "4174375c93104a81f445d166f149cde43f153a29f5a9777245c729619f964970",
+      "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-xhigh-LNV2-KEYMISMATCH-decisive-ch01-q1-mrha8l0h-16",
+      "items": [
+        {
+          "itemId": "decisive-ch01-q01",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 1,
+          "agreement": false,
+          "keyCorrect": "wrong",
+          "rationale": "Choice b is best because WRAP's named moves map to stages; choice c incorrectly saves WRAP for after commitment."
+        },
+        {
+          "itemId": "decisive-ch01-q02",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "The yes-or-no vendor frame is narrow framing, so adding real alternatives before data review is best supported."
+        },
+        {
+          "itemId": "decisive-ch01-q03",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Seeking disconfirming evidence directly counters confirmation bias around an already-favored plan."
+        },
+        {
+          "itemId": "decisive-ch01-q04",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Letting attachment speak while asking what matters later captures emotional distance without dismissing emotion."
+        },
+        {
+          "itemId": "decisive-ch01-q05",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Mapping a wider range of plausible outcomes directly counters overconfidence in a single neat forecast."
+        },
+        {
+          "itemId": "decisive-ch01-q06",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Funding parallel first passes fits Steve Cole's comparison-before-commitment logic."
+        },
+        {
+          "itemId": "decisive-ch01-q07",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "The outsider question creates distance by asking what a fresh leader would do without legacy attachment."
+        },
+        {
+          "itemId": "decisive-ch01-q08",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "The four villains affect different decision stages and require distinct interruptions, not one final review."
+        },
+        {
+          "itemId": "decisive-ch01-q09",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "WRAP improves decision odds under uncertainty but cannot guarantee a good outcome."
+        }
+      ],
+      "ambiguousCount": 0,
+      "keyWrongCount": 1
+    }
+  },
+  "phase2": {
+    "status": "adjudicated",
+    "derivationSha256": "c3c60f6d6cd67a0a885ae7a4fe98334f47a973837548b593d4844f765b1b4ae2",
+    "phase2DocSha256": "4174375c93104a81f445d166f149cde43f153a29f5a9777245c729619f964970",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-xhigh-LNV2-KEYMISMATCH-decisive-ch01-q1-mrha8l0h-16",
+    "items": [
+      {
+        "itemId": "decisive-ch01-q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice b is best because WRAP's named moves map to stages; choice c incorrectly saves WRAP for after commitment."
+      },
+      {
+        "itemId": "decisive-ch01-q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The yes-or-no vendor frame is narrow framing, so adding real alternatives before data review is best supported."
+      },
+      {
+        "itemId": "decisive-ch01-q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Seeking disconfirming evidence directly counters confirmation bias around an already-favored plan."
+      },
+      {
+        "itemId": "decisive-ch01-q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Letting attachment speak while asking what matters later captures emotional distance without dismissing emotion."
+      },
+      {
+        "itemId": "decisive-ch01-q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Mapping a wider range of plausible outcomes directly counters overconfidence in a single neat forecast."
+      },
+      {
+        "itemId": "decisive-ch01-q06",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Funding parallel first passes fits Steve Cole's comparison-before-commitment logic."
+      },
+      {
+        "itemId": "decisive-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The outsider question creates distance by asking what a fresh leader would do without legacy attachment."
+      },
+      {
+        "itemId": "decisive-ch01-q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The four villains affect different decision stages and require distinct interruptions, not one final review."
+      },
+      {
+        "itemId": "decisive-ch01-q09",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "WRAP improves decision odds under uncertainty but cannot guarantee a good outcome."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "phase-1 keyCheck.disagreements + phase-2 quizAdjudication.items[].keyCorrect==='wrong'",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:15:48.261Z",
+  "durationMs": 0
+}

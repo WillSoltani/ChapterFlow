@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-013",
+  "parsed": {
+    "caseId": "SQ-013",
+    "verdict": "DEFECT",
+    "defectClass": "unsupported factual elaboration",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Hard specifics allowed: Lexicon Branding, product naming, multiple teams, brand-name development"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "On the second morning in Lexicon Branding's naming studio"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "the naming lead first tapes one favorite product name at the center of the wall"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "one descriptive, one suggestive, one short and invented"
+      }
+    ],
+    "explanation": "The source plan permits only broad facts about Lexicon, product naming, multiple teams, and brand-name development. The candidate presents concrete scene details, timing, studio actions, wall layout, and route types as factual history without source support.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-013\",\"verdict\":\"DEFECT\",\"defectClass\":\"unsupported factual elaboration\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Hard specifics allowed: Lexicon Branding, product naming, multiple teams, brand-name development\"},{\"materialIndex\":1,\"quote\":\"On the second morning in Lexicon Branding's naming studio\"},{\"materialIndex\":1,\"quote\":\"the naming lead first tapes one favorite product name at the center of the wall\"},{\"materialIndex\":1,\"quote\":\"one descriptive, one suggestive, one short and invented\"}],\"explanation\":\"The source plan permits only broad facts about Lexicon, product naming, multiple teams, and brand-name development. The candidate presents concrete scene details, timing, studio actions, wall layout, and route types as factual history without source support.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

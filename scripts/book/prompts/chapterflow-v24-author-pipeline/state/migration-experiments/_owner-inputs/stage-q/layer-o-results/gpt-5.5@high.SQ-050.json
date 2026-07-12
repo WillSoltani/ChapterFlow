@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-050",
+  "parsed": {
+    "caseId": "SQ-050",
+    "verdict": "DEFECT",
+    "defectClass": "same narrative machinery/template reuse",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Osias touches a bent visitor badge at Friday 9:18 p.m. in outside room 512 at Mercy South, older brother, with a phone buzzing with his sister's texts."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Yara touches a cold coffee cup at Monday 8:16 a.m. in the second-floor teachers' lounge, history teacher, with a group chat open on her laptop."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Osias he has to say whether they are arguing about paperwork, fear, or being the good child."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Yara she has to decide whether to answer the impact as intent or ask what he meant in private."
+      }
+    ],
+    "explanation": "Both examples use the same scene engine: protagonist touches a symbolic object, exact timestamp/location/role, communication-mediated social pressure, escalating internal response, then an explicit decide/say whether framing. The repeated malformed 'Name she/he has to' construction further shows template reuse.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-050\",\"verdict\":\"DEFECT\",\"defectClass\":\"same narrative machinery/template reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Osias touches a bent visitor badge at Friday 9:18 p.m. in outside room 512 at Mercy South, older brother, with a phone buzzing with his sister's texts.\"},{\"materialIndex\":1,\"quote\":\"Yara touches a cold coffee cup at Monday 8:16 a.m. in the second-floor teachers' lounge, history teacher, with a group chat open on her laptop.\"},{\"materialIndex\":0,\"quote\":\"Osias he has to say whether they are arguing about paperwork, fear, or being the good child.\"},{\"materialIndex\":1,\"quote\":\"Yara she has to decide whether to answer the impact as intent or ask what he meant in private.\"}],\"explanation\":\"Both examples use the same scene engine: protagonist touches a symbolic object, exact timestamp/location/role, communication-mediated social pressure, escalating internal response, then an explicit decide/say whether framing. The repeated malformed 'Name she/he has to' construction further shows template reuse.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

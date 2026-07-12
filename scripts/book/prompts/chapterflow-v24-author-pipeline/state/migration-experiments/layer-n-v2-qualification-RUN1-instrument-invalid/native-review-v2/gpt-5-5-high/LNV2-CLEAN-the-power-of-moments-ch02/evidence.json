@@ -1,0 +1,135 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-power-of-moments-ch02",
+  "itemId": "LNV2-CLEAN-the-power-of-moments-ch02",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "5963208c5e349ab0",
+  "renderedDocSha256": "f4349dc00bfc8229868c69bbe6e7e617e7d71fe8d8b6b0b41971506165db33af",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "025f24b81c7bbc3f822f54bc1d38ec62e109ba5a196c070ad923e6c1cfc47fe9",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CLEAN-the-power-of-moments-ch02-mrgoz5zd-8",
+  "rawFinalMessageSha256": "9d158fa6b56f8b602386e20391d80a824131496c6c0de68df926c60d212f48ce",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"c\", \"b\", \"b\", \"a\", \"c\", \"b\", \"a\", \"a\"],\n    \"mechanisms\": [\n      \"The prose says to look first at transitions, milestones, and pits, which map to welcome, award, and complaint moments.\",\n      \"The John Deere section says purpose has to arrive before procedure, linking factory work to real farm-equipment users at the start.\",\n      \"The Mary Kay lesson is that a milestone becomes memorable when it has a visible public marker.\",\n      \"The Joshie recovery shows that returning the object is not enough; proof of care must change the story carried away.\",\n      \"The chapter explicitly says more forms do not improve the first day; purpose should come before the packet.\",\n      \"The prose says progress needs a marker people can notice and picture, not just private or dashboard data.\",\n      \"The pit lesson says a polished apology is insufficient if the emotional meaning has not been repaired with concrete care.\",\n      \"Eric's coffee-shop example says the busiest step may not be the remembered step, so first ask where meaning is assigned.\",\n      \"The warning is that a low point gets sticky if the feeling under it is left alone, so the ending must be changed.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"Choice a is mildly defensible if the dashboard is public and visually marks achievement, but the wording frames it as mere data, not recognition.\", \"\", \"\", \"\"],\n    \"tells\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 87,\n    \"transfer\": 82,\n    \"practical\": 88,\n    \"summaries\": 91,\n    \"tone\": 89,\n    \"limits\": 87,\n    \"insight\": 90,\n    \"density\": 82,\n    \"beginner\": 92\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The busy middle is not the whole story.\",\n      \"why\": \"This is the chapter's cleanest memory hook and it compresses the core move well.\"\n    },\n    {\n      \"quote\": \"If you add a ritual to every step, people stop trusting the cue.\",\n      \"why\": \"This is a useful limit that prevents the method from turning into indiscriminate ceremony.\"\n    },\n    {\n      \"quote\": \"Manon opens a bedside notebook after her family lost stuffed giraffe Joshie and the recovery changed the day.\",\n      \"why\": \"This example drifts from designing a recovery moment to writing thanks after someone else has already done it.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"The dashboard distractor is slightly underdetermined because a dashboard could be visible recognition if designed as a public marker, though the intended answer is still derivable.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"The action shifts to Manon writing a concrete thank-you note, which is adjacent to the lesson but weaker as practice for designing a pit recovery.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples\",\n      \"problem\": \"The six examples mostly recombine the same three source cases, which lowers transfer variety even though each example is usable.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This chapter is shippable against a professional bar. Its core distinction is memorable, the layered reads stand alone, the quiz is mostly fair and well keyed, and the limits section usefully prevents over-application. The main weakness is transfer breadth: the examples lean heavily on the same John Deere, Mary Kay, and Joshie material instead of showing more unrelated domains. That is a craft weakness, not a blocking defect.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-power-of-moments-ch02",
+    "chapterNumber": 2,
+    "contentHash": "5963208c5e349ab0",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CLEAN-the-power-of-moments-ch02-mrgoz5zd-8",
+    "scores": {
+      "retention": 90,
+      "quizzes": 87,
+      "transfer": 82,
+      "practical": 88,
+      "summaries": 91,
+      "tone": 89,
+      "limits": 87,
+      "insight": 90,
+      "density": 82,
+      "beginner": 92
+    },
+    "composite": 87.8,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "c",
+        "b",
+        "b",
+        "a",
+        "c",
+        "b",
+        "a",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The busy middle is not the whole story.",
+        "why": "This is the chapter's cleanest memory hook and it compresses the core move well.",
+        "verified": true
+      },
+      {
+        "quote": "If you add a ritual to every step, people stop trusting the cue.",
+        "why": "This is a useful limit that prevents the method from turning into indiscriminate ceremony.",
+        "verified": true
+      },
+      {
+        "quote": "Manon opens a bedside notebook after her family lost stuffed giraffe Joshie and the recovery changed the day.",
+        "why": "This example drifts from designing a recovery moment to writing thanks after someone else has already done it.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q6",
+        "problem": "The dashboard distractor is slightly underdetermined because a dashboard could be visible recognition if designed as a public marker, though the intended answer is still derivable.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The action shifts to Manon writing a concrete thank-you note, which is adjacent to the lesson but weaker as practice for designing a pit recovery.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples",
+        "problem": "The six examples mostly recombine the same three source cases, which lowers transfer variety even though each example is usable.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This chapter is shippable against a professional bar. Its core distinction is memorable, the layered reads stand alone, the quiz is mostly fair and well keyed, and the limits section usefully prevents over-application. The main weakness is transfer breadth: the examples lean heavily on the same John Deere, Mary Kay, and Joshie material instead of showing more unrelated domains. That is a craft weakness, not a blocking defect.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c14c3f1db3e945b7224eb21579f7d65b2d9edd4a2cf4b4eba42d5cd820112c22",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:23:19.487Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "025f24b81c7bbc3f822f54bc1d38ec62e109ba5a196c070ad923e6c1cfc47fe9",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:22:23.495Z",
+  "durationMs": 0
+}

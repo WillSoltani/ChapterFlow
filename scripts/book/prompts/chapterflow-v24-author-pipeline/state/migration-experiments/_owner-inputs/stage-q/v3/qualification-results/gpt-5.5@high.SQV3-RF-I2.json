@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-I2",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"INSUFFICIENT_TO_DECIDE\",\"findingValidity\":\"INCONCLUSIVE\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Finding S-11-02: the retention statistic contradicts the cited study's actual finding. Verify against the study's reported effect size.\",\"The cited longitudinal study reported a moderate positive effect on one-year retention.\",\"If a specifically required piece of evidence is absent from the supplied record, the finding is INCONCLUSIVE; otherwise decide it on the record.\"],\"rationale\":\"The record does not include the cited study or its reported effect size, which is specifically required to verify whether the candidate's retention claim contradicts the study's actual finding. The candidate sentence is only the claim under review, not independent evidence of the study's effect size. Under the review contract, the absence of that required source evidence makes the finding inconclusive rather than supported or unsupported.\"}"
+}

@@ -1,0 +1,326 @@
+{
+  "effects": [
+    {
+      "effect": "model",
+      "metric": "first-write-pass",
+      "cells": "56S-XH-L − 55-XH-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(sol)",
+      "metric": "first-write-pass",
+      "cells": "56S-XH-L − 56S-H-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "model",
+      "metric": "first-write-pass",
+      "cells": "56S-XH-S − 55-XH-S",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(sol)",
+      "metric": "first-write-pass",
+      "cells": "56S-XH-S − 56S-H-S",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "stack(gpt-5.5@xhigh)",
+      "metric": "first-write-pass",
+      "cells": "55-XH-S − 55-XH-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "stack(gpt-5.6-sol@high)",
+      "metric": "first-write-pass",
+      "cells": "56S-H-S − 56S-H-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "stack(gpt-5.6-sol@xhigh)",
+      "metric": "first-write-pass",
+      "cells": "56S-XH-S − 56S-XH-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "model×stack",
+      "metric": "first-write-pass",
+      "cells": "(56S-XH-S−56S-XH-L) − (55-XH-S−55-XH-L)",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "model",
+      "metric": "acceptance",
+      "cells": "56S-XH-L − 55-XH-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(sol)",
+      "metric": "acceptance",
+      "cells": "56S-XH-L − 56S-H-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "model",
+      "metric": "acceptance",
+      "cells": "56S-XH-S − 55-XH-S",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(sol)",
+      "metric": "acceptance",
+      "cells": "56S-XH-S − 56S-H-S",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "stack(gpt-5.5@xhigh)",
+      "metric": "acceptance",
+      "cells": "55-XH-S − 55-XH-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "stack(gpt-5.6-sol@high)",
+      "metric": "acceptance",
+      "cells": "56S-H-S − 56S-H-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "stack(gpt-5.6-sol@xhigh)",
+      "metric": "acceptance",
+      "cells": "56S-XH-S − 56S-XH-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "model×stack",
+      "metric": "acceptance",
+      "cells": "(56S-XH-S−56S-XH-L) − (55-XH-S−55-XH-L)",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "model",
+      "metric": "composite",
+      "cells": "56S-XH-L − 55-XH-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(sol)",
+      "metric": "composite",
+      "cells": "56S-XH-L − 56S-H-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "model",
+      "metric": "composite",
+      "cells": "56S-XH-S − 55-XH-S",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(sol)",
+      "metric": "composite",
+      "cells": "56S-XH-S − 56S-H-S",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "stack(gpt-5.5@xhigh)",
+      "metric": "composite",
+      "cells": "55-XH-S − 55-XH-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "stack(gpt-5.6-sol@high)",
+      "metric": "composite",
+      "cells": "56S-H-S − 56S-H-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "stack(gpt-5.6-sol@xhigh)",
+      "metric": "composite",
+      "cells": "56S-XH-S − 56S-XH-L",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "model×stack",
+      "metric": "composite",
+      "cells": "(56S-XH-S−56S-XH-L) − (55-XH-S−55-XH-L)",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 4,
+      "missingBlocks": 0
+    }
+  ],
+  "effectiveSample": {
+    "samples": 48,
+    "blocks": 4,
+    "books": 1,
+    "missingCells": []
+  },
+  "precision": [
+    {
+      "endpointId": "56S-H-L::sourced-fabrication-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 4,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 75,
+      "supported": false,
+      "classification": "inconclusive"
+    },
+    {
+      "endpointId": "56S-H-L::quiz-key-defect-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 4,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 75,
+      "supported": false,
+      "classification": "inconclusive"
+    },
+    {
+      "endpointId": "56S-H-S::sourced-fabrication-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 4,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 75,
+      "supported": false,
+      "classification": "inconclusive"
+    },
+    {
+      "endpointId": "56S-H-S::quiz-key-defect-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 4,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 75,
+      "supported": false,
+      "classification": "inconclusive"
+    },
+    {
+      "endpointId": "56S-XH-L::sourced-fabrication-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 4,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 75,
+      "supported": false,
+      "classification": "inconclusive"
+    },
+    {
+      "endpointId": "56S-XH-L::quiz-key-defect-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 4,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 75,
+      "supported": false,
+      "classification": "inconclusive"
+    },
+    {
+      "endpointId": "56S-XH-S::sourced-fabrication-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 4,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 75,
+      "supported": false,
+      "classification": "inconclusive"
+    },
+    {
+      "endpointId": "56S-XH-S::quiz-key-defect-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 4,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 75,
+      "supported": false,
+      "classification": "inconclusive"
+    }
+  ],
+  "precisionStatement": "Zero events in 36 independent units gives an approximate one-sided 95% upper bound near 8.3%; roughly 150 zero-event units are needed for about 2%, and 300 for about 1%, before clustering adjustments.",
+  "overlapItemIds": []
+}

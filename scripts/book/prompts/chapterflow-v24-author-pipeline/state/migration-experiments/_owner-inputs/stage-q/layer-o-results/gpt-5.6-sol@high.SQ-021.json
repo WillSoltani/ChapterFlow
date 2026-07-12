@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-021",
+  "parsed": {
+    "caseId": "SQ-021",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "All examples and scenarios are invented fresh."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Rachel Writes the Real Meeting Scenario"
+      }
+    ],
+    "explanation": "The provenance explicitly identifies all scenarios as invented, and the candidate title labels this named vignette a “Scenario,” sufficiently marking it as constructed rather than documented.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-021\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"All examples and scenarios are invented fresh.\"},{\"materialIndex\":1,\"quote\":\"Rachel Writes the Real Meeting Scenario\"}],\"explanation\":\"The provenance explicitly identifies all scenarios as invented, and the candidate title labels this named vignette a “Scenario,” sufficiently marking it as constructed rather than documented.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

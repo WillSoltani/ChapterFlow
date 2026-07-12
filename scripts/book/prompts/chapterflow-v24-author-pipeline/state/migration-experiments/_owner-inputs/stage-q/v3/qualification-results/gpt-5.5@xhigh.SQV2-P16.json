@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P16",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Unsupported invented case details\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Hard specifics allowed: Paul C. Nutt, bargaining, decision outcomes, implementation Real-world case: True\",\"At a March project review in the back office, the facilitator watches a neat agenda end in a quick vote and three weeks of quiet resistance.\",\"At the June review, the same table holds Paul C. Nutt's process notes, a bargaining column, and an implementation map.\"],\"rationale\":\"The source plan only supports the general Paul C. Nutt decision-process research frame and the concepts of bargaining, decision outcomes, and implementation. The candidate adds concrete meeting chronology, setting, actors, artifacts, resistance duration, and outcome effects as if they are factual details of a real case, but none of those specifics are supported by the provided source plan. Because these invented particulars carry the case narrative rather than serving as clearly marked abstraction, this is a material defect and should block.\"}"
+}
