@@ -9,9 +9,30 @@ import {
 import { nativeContractOperationDefinitions } from "../../app/app/api/book/_contracts/native-contract-registry";
 
 const repoRoot = process.cwd();
-const outputPath = resolve(repoRoot, "contracts/native-ios/v1/contract-bundle.json");
+const canonicalOutputPath = resolve(repoRoot, "contracts/native-ios/v1/contract-bundle.json");
 const check = process.argv.includes("--check");
 const provenanceOptions = parseNativeContractProvenanceEnvironment(process.env);
+const outputArgumentIndex = process.argv.indexOf("--output");
+const outputArgument =
+  outputArgumentIndex === -1 ? undefined : process.argv[outputArgumentIndex + 1]?.trim();
+if (outputArgumentIndex !== -1 && !outputArgument) {
+  throw new Error("--output requires a path");
+}
+const outputEnvironment = process.env.CONTRACT_OUTPUT_PATH?.trim() || undefined;
+if (outputArgument && outputEnvironment && outputArgument !== outputEnvironment) {
+  throw new Error("--output and CONTRACT_OUTPUT_PATH disagree");
+}
+const explicitOutput = outputArgument ?? outputEnvironment;
+const outputPath = explicitOutput ? resolve(repoRoot, explicitOutput) : canonicalOutputPath;
+if (check && explicitOutput) {
+  throw new Error("--check validates only the canonical checked-in bundle");
+}
+if (provenanceOptions && !explicitOutput) {
+  throw new Error("committed provenance generation requires an explicit temporary --output path");
+}
+if (provenanceOptions && outputPath === canonicalOutputPath) {
+  throw new Error("committed provenance overlay must not overwrite the canonical backend bundle");
+}
 
 const bundle = buildNativeContractBundle(
   repoRoot,

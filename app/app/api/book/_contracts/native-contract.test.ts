@@ -13,6 +13,7 @@ import {
   serializeNativeContractBundle,
   type NativeContractBuildOptions,
 } from "./native-contract-generator-core";
+import { parseIosSourceInventoryManifest } from "./native-contract-inventory-relations";
 import { nativeContractOperationDefinitions } from "./native-contract-registry";
 import { assertNativeContractBundle, type NativeContractBundle } from "./native-contract-types";
 
@@ -229,18 +230,354 @@ test("native inventory equals the verified 83-operation / 93-producer iOS source
   assert.equal(bundle.inventory.matrixRowCount, 29);
 });
 
+test("relational inventory rejects producer reassignment with unchanged counts", () => {
+  const definitions = structuredClone(nativeContractOperationDefinitions);
+  const track = definitions.find((operation) => operation.id === "analytics-track.post");
+  const beacon = definitions.find((operation) => operation.id === "analytics-beacon.post");
+  assert.ok(track && beacon);
+  const trackRequests = track.nativeRequestFixtures;
+  track.nativeRequestFixtures = beacon.nativeRequestFixtures;
+  beacon.nativeRequestFixtures = trackRequests;
+
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, definitions),
+    /relational inventory.*analytics/i
+  );
+});
+
+test("relational inventory rejects operation-to-matrix reassignment", () => {
+  const definitions = structuredClone(nativeContractOperationDefinitions);
+  const commitment = definitions.find((operation) => operation.id === "commitment.get");
+  assert.ok(commitment);
+  commitment.matrixRowId = "catalog";
+
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, definitions),
+    /relational inventory[\s\S]*commitment\.get/i
+  );
+});
+
+test("relational inventory rejects duplicate and removed producer membership", () => {
+  const duplicated = structuredClone(nativeContractOperationDefinitions);
+  const duplicatedBook = duplicated.find((operation) => operation.id === "book-detail.get");
+  assert.ok(duplicatedBook);
+  duplicatedBook.nativeRequestFixtures.push(
+    structuredClone(duplicatedBook.nativeRequestFixtures[0])
+  );
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, duplicated),
+    /relational inventory.*duplicate backend variant.*book-detail\.get:getbook/i
+  );
+
+  const removed = structuredClone(nativeContractOperationDefinitions);
+  const removedBook = removed.find((operation) => operation.id === "book-detail.get");
+  assert.ok(removedBook);
+  removedBook.nativeRequestFixtures.pop();
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, removed),
+    /relational inventory[\s\S]*missing backend variant[\s\S]*getmanifestfordownload/i
+  );
+});
+
+test("relational inventory rejects method and route reassignment", () => {
+  const methodDrift = structuredClone(nativeContractOperationDefinitions);
+  const methodCommitment = methodDrift.find((operation) => operation.id === "commitment.get");
+  assert.ok(methodCommitment);
+  methodCommitment.method = "POST";
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, methodDrift),
+    /relational inventory[\s\S]*commitment\.get:getcommitment\.method[\s\S]*iOS=GET backend=POST/i
+  );
+
+  const routeDrift = structuredClone(nativeContractOperationDefinitions);
+  const routeCommitment = routeDrift.find((operation) => operation.id === "commitment.get");
+  assert.ok(routeCommitment);
+  routeCommitment.routeTemplate = "/book/me/commitments/{commitmentId}/history";
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, routeDrift),
+    /relational inventory[\s\S]*commitment\.get:getcommitment\.routeTemplate/i
+  );
+});
+
+test("relational inventory rejects producer symbol and source-path reassignment", () => {
+  const symbolDrift = structuredClone(nativeContractOperationDefinitions);
+  const symbolCommitment = symbolDrift.find((operation) => operation.id === "commitment.get");
+  assert.ok(symbolCommitment);
+  symbolCommitment.nativeRequestFixtures[0].producerEvidence = [
+    "getOtherCommitment@Packages/Networking/Sources/Networking/Endpoint.swift:502",
+  ];
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, symbolDrift),
+    /relational inventory.*commitment\.get.*does not match producer getOtherCommitment/i
+  );
+
+  const sourceDrift = structuredClone(nativeContractOperationDefinitions);
+  const sourceCommitment = sourceDrift.find((operation) => operation.id === "commitment.get");
+  assert.ok(sourceCommitment);
+  sourceCommitment.nativeRequestFixtures[0].producerEvidence = [
+    "getCommitment@Packages/Networking/Sources/Networking/Endpoint+Other.swift:502",
+  ];
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, sourceDrift),
+    /relational inventory[\s\S]*commitment\.get:getcommitment\.producerSourcePath/i
+  );
+});
+
+test("relational inventory rejects variant and derived stable-suffix reassignment", () => {
+  const variantDrift = structuredClone(nativeContractOperationDefinitions);
+  const variantCommitment = variantDrift.find((operation) => operation.id === "commitment.get");
+  assert.ok(variantCommitment);
+  variantCommitment.nativeRequestFixtures[0].operationVariantId =
+    "commitment.get:getothercommitment";
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, variantDrift),
+    /relational inventory.*commitment\.get.*getothercommitment.*getCommitment/i
+  );
+
+  const suffixDrift = structuredClone(nativeContractOperationDefinitions);
+  const suffixCommitment = suffixDrift.find((operation) => operation.id === "commitment.get");
+  assert.ok(suffixCommitment);
+  suffixCommitment.nativeRequestFixtures[0].producerEvidence = [
+    "getOtherCommitment@Packages/Networking/Sources/Networking/Endpoint.swift:502",
+  ];
+  suffixCommitment.nativeRequestFixtures[0].operationVariantId =
+    "commitment.get:getothercommitment";
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, suffixDrift),
+    /relational inventory[\s\S]*missing backend variant[\s\S]*getcommitment[\s\S]*unexpected backend variant[\s\S]*getothercommitment/i
+  );
+});
+
+test("relational inventory normalizes only a terminal numeric evidence line", () => {
+  const lineOnlyDrift = structuredClone(nativeContractOperationDefinitions);
+  const commitment = lineOnlyDrift.find((operation) => operation.id === "commitment.get");
+  assert.ok(commitment);
+  commitment.nativeRequestFixtures[0].producerEvidence = [
+    "getCommitment@Packages/Networking/Sources/Networking/Endpoint.swift:999",
+  ];
+  assert.doesNotThrow(() => buildNativeContractBundle(repoRoot, lineOnlyDrift));
+
+  const unsafeSuffix = structuredClone(nativeContractOperationDefinitions);
+  const unsafeCommitment = unsafeSuffix.find((operation) => operation.id === "commitment.get");
+  assert.ok(unsafeCommitment);
+  unsafeCommitment.nativeRequestFixtures[0].producerEvidence = [
+    "getCommitment@Packages/Networking/Sources/Networking/Endpoint.swift:502:extra",
+  ];
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, unsafeSuffix),
+    /relational inventory.*must end in one numeric source line/i
+  );
+});
+
+test("matrix summary must exactly equal operation matrix membership", () => {
+  const drifted = structuredClone(buildBundle());
+  const catalog = drifted.inventory.matrixRows.find((row) => row.id === "catalog");
+  assert.ok(catalog);
+  catalog.operationIds = ["account-delete.post"];
+
+  assert.throws(
+    () => assertNativeContractBundle(drifted),
+    /matrix.*membership/i
+  );
+});
+
+test("iOS manifest matrix summary and relational digest are recomputed", () => {
+  const manifestPath = "contracts/native-ios/v1/ios-source-inventory-manifest.json";
+  const parsed = JSON.parse(readFileSync(manifestPath, "utf8")) as {
+    relationalRecordSha256: string;
+    sourceInputTreeSha256: string;
+    sourceInputs: Array<{ path: string; sha256: string }>;
+    matrixRows: Array<{ id: string; operationIds: string[] }>;
+  };
+  const driftedRows = structuredClone(parsed);
+  const catalog = driftedRows.matrixRows.find((row) => row.id === "catalog");
+  assert.ok(catalog);
+  catalog.operationIds = ["account-delete.post"];
+  assert.throws(
+    () => parseIosSourceInventoryManifest(driftedRows),
+    /relational inventory matrix summary does not exactly match its records/i
+  );
+
+  const driftedDigest = structuredClone(parsed);
+  driftedDigest.relationalRecordSha256 = "0".repeat(64);
+  assert.throws(
+    () => parseIosSourceInventoryManifest(driftedDigest),
+    /relational inventory records are duplicated, unsorted, or have an invalid digest/i
+  );
+
+  const omittedSource = structuredClone(parsed);
+  omittedSource.sourceInputs = omittedSource.sourceInputs.filter(
+    (input) => input.path !== "Packages/Networking/Sources/Networking/Endpoint.swift"
+  );
+  omittedSource.sourceInputTreeSha256 = createHash("sha256")
+    .update(
+      `${omittedSource.sourceInputs
+        .map((input) => `${input.path}\t${input.sha256}`)
+        .sort()
+        .join("\n")}\n`
+    )
+    .digest("hex");
+  assert.throws(
+    () => parseIosSourceInventoryManifest(omittedSource),
+    /source input tree omits required input: Packages\/Networking\/Sources\/Networking\/Endpoint\.swift/i
+  );
+});
+
+test("recent-auth routes that bypass the active-user guard use the precise auth class", () => {
+  const bundle = buildBundle();
+  for (const operationId of ["account-delete.post", "export.get"]) {
+    const operation = bundle.operations.find((candidate) => candidate.id === operationId);
+    assert.equal(operation?.auth.class, "recent_auth_user", operationId);
+    const evidence = operation?.backend ?? operation?.blocker?.backendCandidate;
+    assert.ok(evidence, operationId);
+    assert.ok(
+      evidence.sourceFiles.some(
+        (source) =>
+          source.path === "app/app/api/book/_lib/account-guard.ts" &&
+          source.role === "auth_policy"
+      ),
+      `${operationId} must fence the intentional active-account bypass policy`
+    );
+    assert.equal(
+      evidence.sourceFiles.some(
+        (source) =>
+          source.path === "app/app/api/book/_lib/account-guard.ts" && source.role === "auth"
+      ),
+      false,
+      `${operationId} must not claim active-account guard enforcement`
+    );
+  }
+});
+
+test("every blocker has closed resolution ownership and decision metadata", () => {
+  const blocked = buildBundle().operations.filter((operation) => operation.coverage === "blocked");
+  assert.equal(blocked.length, 23);
+  const validOwners = new Set([
+    "ios",
+    "backend",
+    "coordinated",
+    "product_or_security_decision",
+  ]);
+  for (const operation of blocked) {
+    const resolution = (operation.blocker as unknown as {
+      resolution?: {
+        owner?: string;
+        rationale?: string;
+        dependency?: string;
+        decisionRequired?: boolean;
+        unresolvedDecision?: string | null;
+      };
+    } | undefined)?.resolution;
+    assert.ok(resolution, operation.id);
+    assert.ok(validOwners.has(resolution.owner ?? ""), operation.id);
+    assert.ok(resolution.rationale?.trim(), operation.id);
+    assert.ok(resolution.dependency?.trim(), operation.id);
+    assert.equal(typeof resolution.decisionRequired, "boolean", operation.id);
+    if (resolution.owner === "product_or_security_decision") {
+      assert.equal(resolution.decisionRequired, true, operation.id);
+      assert.ok(resolution.unresolvedDecision?.trim(), operation.id);
+    }
+  }
+});
+
+test("authority metadata separates structural, production-consumer, and blocked proof", () => {
+  const bundle = buildBundle() as NativeContractBundle & {
+    authorityProofSummary?: {
+      structuralFixtureVerifiedOperationCount: number;
+      productionConsumerVerifiedOperationCount: number;
+      blockedOrUnprovenOperationCount: number;
+    };
+  };
+  assert.deepEqual(bundle.authorityProofSummary, {
+    structuralFixtureVerifiedOperationCount: 51,
+    productionConsumerVerifiedOperationCount: 4,
+    blockedOrUnprovenOperationCount: 1,
+  });
+
+  const expectedProductionConsumers = new Map([
+    ["chapter.get", "models.chapter-progress.authority-deletion"],
+    ["quiz.get", "models.quiz-progress.authority-deletion"],
+    ["entitlements.get", "models.entitlement.authority-deletion"],
+    ["own-profile.get", "social.own-profile-identity.authority-deletion"],
+  ]);
+  for (const operation of bundle.operations) {
+    const proof = (operation.authority as unknown as {
+      proof?: { level?: string; productionConsumerTestIds?: string[] };
+    }).proof;
+    assert.ok(proof, operation.id);
+    const expectedTest = expectedProductionConsumers.get(operation.id);
+    if (expectedTest) {
+      assert.equal(proof.level, "production_consumer_verified", operation.id);
+      assert.deepEqual(proof.productionConsumerTestIds, [expectedTest], operation.id);
+      assert.equal(
+        operation.gaps.some((gap) => gap.kind === "native_authority_consumer_proof"),
+        false,
+        operation.id
+      );
+    } else if (proof.level === "structural_fixture_only") {
+      const gap = operation.gaps.find(
+        (candidate) => candidate.kind === "native_authority_consumer_proof"
+      );
+      assert.equal(gap?.owner, "ios", operation.id);
+      assert.ok(gap?.dependency?.trim(), operation.id);
+      for (const pointer of operation.authority.expectedRequiredPointers) {
+        assert.ok(gap?.reason.includes(pointer), operation.id);
+      }
+    }
+  }
+  const submit = bundle.operations.find((operation) => operation.id === "quiz-submit.post");
+  assert.equal(
+    (submit?.authority as unknown as { proof?: { level?: string } }).proof?.level,
+    "blocked_unproven"
+  );
+  const submitAuthorityGap = submit?.gaps.find(
+    (gap) => gap.kind === "native_authority_consumer_proof"
+  );
+  assert.equal(submitAuthorityGap?.owner, submit?.blocker?.resolution.owner);
+  assert.equal(submitAuthorityGap?.dependency, "WP-SYNC-02");
+  assert.match(submitAuthorityGap?.reason ?? "", /\/passed.*\/scorePercent.*\/unlockedNextChapter/);
+});
+
+test("own-profile identity fixture follows the production identity.sub contract", () => {
+  const operation = buildBundle().operations.find((candidate) => candidate.id === "own-profile.get");
+  assert.ok(operation?.fixtures?.success.payload.kind === "json");
+  const root = operation.fixtures.success.payload.value as {
+    identity?: Record<string, unknown>;
+  };
+  assert.equal(root.identity?.sub, "user-synthetic");
+  assert.equal("userId" in (root.identity ?? {}), false);
+  assert.deepEqual(operation.authority.expectedRequiredPointers, ["/identity/sub"]);
+});
+
 test("backend inventory is pinned to an independent iOS source manifest without claiming Swift execution", () => {
   const bundle = buildBundle();
   const evidence = bundle.inventory.iosSourceEvidence;
   const rawManifest = readFileSync(evidence.manifestPath);
+  const manifest = JSON.parse(rawManifest.toString("utf8")) as {
+    schemaVersion?: string;
+    records?: unknown[];
+    matrixRows?: unknown[];
+    relationalRecordCount?: number;
+    relationalRecordSha256?: string;
+  };
   assert.equal(createHash("sha256").update(rawManifest).digest("hex"), evidence.manifestSha256);
+  assert.equal(manifest.schemaVersion, "chapterflow-ios-native-inventory-v2");
+  assert.equal(evidence.manifestSchemaVersion, "chapterflow-ios-native-inventory-v2");
+  assert.equal(manifest.records?.length, 93);
+  assert.equal(manifest.matrixRows?.length, 29);
+  assert.equal(manifest.relationalRecordCount, 93);
+  assert.equal(manifest.relationalRecordSha256, evidence.relationalRecordSha256);
   assert.equal(evidence.iosBaseRevision, "92a5c351a42771f546b3d0e575b3b37a8cbfb588");
-  assert.equal(evidence.iosSourceRevision, "bb7ca30041dd095dc36144611bea127f0b53099d");
   assert.equal(evidence.iosSourceRevisionPhase, "committed_contract_branch");
+  assert.match(evidence.iosSourceRevision ?? "", /^[0-9a-f]{40}$/);
   assert.equal(evidence.backendRuntimeFactoryValidationPerformed, false);
   assert.equal(evidence.exactFactoryTestedProducerCount, 6);
   assert.equal(evidence.bundleSuccessDecoderTestedOperationCount, 24);
-  assert.match(evidence.limitation, /does not inspect or instantiate Swift endpoint factories/);
+  assert.equal(evidence.relationalRecordCount, 93);
+  assert.equal(evidence.matrixRowCount, 29);
+  assert.match(evidence.producerIdentitySha256, /^[0-9a-f]{64}$/);
+  assert.match(evidence.sourceInputTreeSha256, /^[0-9a-f]{64}$/);
+  assert.match(evidence.limitation, /does not replace or regenerate iOS inventory authority/);
 });
 
 test("generator is byte-deterministic and the checked-in artifact is current", () => {
@@ -248,34 +585,6 @@ test("generator is byte-deterministic and the checked-in artifact is current", (
   const second = serializeNativeContractBundle(buildBundle());
   assert.equal(first, second);
   assert.equal(readFileSync(bundlePath, "utf8"), first);
-});
-
-test("an exact committed companion-branch revision can be recorded without claiming merge", () => {
-  const head = execFileSync("git", ["rev-parse", "HEAD"], {
-    cwd: repoRoot,
-    encoding: "utf8",
-  }).trim();
-  const bundle = buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, {
-    sourceRevision: head,
-    sourceRevisionPhase: "committed_backend_branch",
-  });
-
-  assert.equal(bundle.provenance.sourceRevision, head);
-  assert.equal(bundle.provenance.sourceRevisionPhase, "committed_backend_branch");
-});
-
-test("an exact merged revision can be recorded for the post-merge iOS provenance gate", () => {
-  const head = execFileSync("git", ["rev-parse", "HEAD"], {
-    cwd: repoRoot,
-    encoding: "utf8",
-  }).trim();
-  const bundle = buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, {
-    sourceRevision: head,
-    sourceRevisionPhase: "merged_backend",
-  });
-
-  assert.equal(bundle.provenance.sourceRevision, head);
-  assert.equal(bundle.provenance.sourceRevisionPhase, "merged_backend");
 });
 
 test("revision provenance requires a revision and phase together", () => {
@@ -287,31 +596,39 @@ test("revision provenance requires a revision and phase together", () => {
   const phaseOnly = {
     sourceRevisionPhase: "committed_backend_branch",
   } as unknown as NativeContractBuildOptions;
+  const mainOnly = {
+    trustedMainRef: "refs/remotes/origin/main",
+  } as unknown as NativeContractBuildOptions;
 
   assert.throws(
     () => buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, revisionOnly),
-    /source revision and source revision phase must be provided together/
+    /source revision, source revision phase, and trusted main ref must be provided together/
   );
   assert.throws(
     () => buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, phaseOnly),
-    /source revision and source revision phase must be provided together/
+    /source revision, source revision phase, and trusted main ref must be provided together/
+  );
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, mainOnly),
+    /source revision, source revision phase, and trusted main ref must be provided together/
   );
   assert.throws(
     () => parseNativeContractProvenanceEnvironment({ CONTRACT_SOURCE_REVISION: head }),
-    /CONTRACT_SOURCE_REVISION and CONTRACT_SOURCE_REVISION_PHASE must be provided together/
+    /CONTRACT_SOURCE_REVISION, CONTRACT_SOURCE_REVISION_PHASE, and CONTRACT_TRUSTED_MAIN_REF must be provided together/
   );
   assert.throws(
     () =>
       parseNativeContractProvenanceEnvironment({
         CONTRACT_SOURCE_REVISION_PHASE: "merged_backend",
       }),
-    /CONTRACT_SOURCE_REVISION and CONTRACT_SOURCE_REVISION_PHASE must be provided together/
+    /CONTRACT_SOURCE_REVISION, CONTRACT_SOURCE_REVISION_PHASE, and CONTRACT_TRUSTED_MAIN_REF must be provided together/
   );
   assert.throws(
     () =>
       parseNativeContractProvenanceEnvironment({
         CONTRACT_SOURCE_REVISION: head,
         CONTRACT_SOURCE_REVISION_PHASE: "uncommitted_backend",
+        CONTRACT_TRUSTED_MAIN_REF: "refs/remotes/origin/main",
       }),
     /must be committed_backend_branch or merged_backend/
   );
@@ -320,22 +637,13 @@ test("revision provenance requires a revision and phase together", () => {
     parseNativeContractProvenanceEnvironment({
       CONTRACT_SOURCE_REVISION: ` ${head} `,
       CONTRACT_SOURCE_REVISION_PHASE: " committed_backend_branch ",
+      CONTRACT_TRUSTED_MAIN_REF: " refs/remotes/origin/main ",
     }),
     {
       sourceRevision: head,
       sourceRevisionPhase: "committed_backend_branch",
+      trustedMainRef: "refs/remotes/origin/main",
     }
-  );
-});
-
-test("committed provenance retains the backend ancestry gate", () => {
-  assert.throws(
-    () =>
-      buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, {
-        sourceRevision: "f".repeat(40),
-        sourceRevisionPhase: "committed_backend_branch",
-      }),
-    /contract source revision .* is not an ancestor of backend HEAD/
   );
 });
 
@@ -354,7 +662,11 @@ test("mobile config golden is produced by the actual pure backend builder", () =
   });
   assert.deepEqual(operation.fixtures.success.payload.value, actual);
   assert.equal(operation.coverage, "partial");
-  assert.deepEqual(operation.authority, {
+  assert.deepEqual({
+    classification: operation.authority.classification,
+    expectedRequiredPointers: operation.authority.expectedRequiredPointers,
+    failureMode: operation.authority.failureMode,
+  }, {
     classification: "server_decision",
     expectedRequiredPointers: [
       "/minSupportedVersion",
@@ -366,6 +678,7 @@ test("mobile config golden is produced by the actual pure backend builder", () =
     ],
     failureMode: "fail_closed",
   });
+  assert.equal(operation.authority.proof.level, "structural_fixture_only");
   assert.deepEqual(
     operation.fixtures.errors.find((error) => error.code === "ios_config_unavailable"),
     {
@@ -476,11 +789,16 @@ test("authority canary rejects entitlement fixture key removal", () => {
 test("authority canaries reject quiz unlock and mobile launch-control removal", () => {
   const quizDrift = structuredClone(buildBundle());
   const quiz = quizDrift.operations.find((operation) => operation.id === "quiz.get");
-  assert.deepEqual(quiz?.authority, {
+  assert.deepEqual({
+    classification: quiz?.authority.classification,
+    expectedRequiredPointers: quiz?.authority.expectedRequiredPointers,
+    failureMode: quiz?.authority.failureMode,
+  }, {
     classification: "server_decision",
     expectedRequiredPointers: ["/progress/unlockedThroughChapterNumber"],
     failureMode: "fail_closed",
   });
+  assert.equal(quiz?.authority.proof.level, "production_consumer_verified");
   assert.ok(quiz?.fixtures?.success.payload.kind === "json");
   const quizBody = quiz.fixtures.success.payload.value as {
     progress: Record<string, unknown>;

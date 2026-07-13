@@ -2,6 +2,7 @@ import type {
   JsonValue,
   NativeContractAuthClass,
   NativeContractBackendCandidateDefinition,
+  NativeContractBlockerOwner,
   NativeContractErrorFixture,
   NativeContractMethod,
   NativeContractOperationDefinition,
@@ -74,6 +75,215 @@ const AUTH_SOURCE = "app/app/api/_lib/auth.ts";
 const ACTIVE_USER_SOURCE = "app/app/api/book/_lib/account-guard.ts";
 const ERROR_SOURCE = "app/app/api/book/_lib/http.ts";
 
+type BlockerResolution = {
+  owner: NativeContractBlockerOwner;
+  rationale: string;
+  dependency: string;
+  decisionRequired: boolean;
+  unresolvedDecision: string | null;
+};
+
+const BLOCKER_RESOLUTIONS: Record<string, BlockerResolution> = {
+  "analytics-track.post": {
+    owner: "product_or_security_decision",
+    rationale: "The telemetry taxonomy, payload allowlist, consent boundary, and data minimization rule must be approved before either client or server shape changes.",
+    dependency: "WP-PRIV-01 and WP-OBS-01",
+    decisionRequired: true,
+    unresolvedDecision: "Approve the analytics event schema and privacy/consent policy for batched native events.",
+  },
+  "analytics-beacon.post": {
+    owner: "product_or_security_decision",
+    rationale: "The beacon taxonomy and primitive payload allowlist are privacy-sensitive product policy, not a unilateral transport rename.",
+    dependency: "WP-PRIV-01 and WP-OBS-01",
+    decisionRequired: true,
+    unresolvedDecision: "Approve the beacon type allowlist, permitted properties, and consent behavior.",
+  },
+  "audio-plan.get": {
+    owner: "coordinated",
+    rationale: "Backend emits a raw plan while production iOS decodes a plan envelope; both clients and server compatibility must be considered.",
+    dependency: "WP-AUDIO-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "quiz-submit.post": {
+    owner: "ios",
+    rationale: "Backend canonical response validation is explicit; both online and replay iOS producers send older incompatible answer DTOs.",
+    dependency: "WP-SYNC-02",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "referral-apply.post": {
+    owner: "product_or_security_decision",
+    rationale: "No backend route establishes referral eligibility, abuse controls, or entitlement effects for the visible native producer.",
+    dependency: "WP-NAV-01 and WP-ENT-01",
+    decisionRequired: true,
+    unresolvedDecision: "Decide whether referral application ships and approve eligibility, abuse, and reward semantics.",
+  },
+  "reflection-feedback.post": {
+    owner: "coordinated",
+    rationale: "Backend conditionally streams while iOS expects one JSON response; a single compatible response contract must be chosen across both sides.",
+    dependency: "WP-NET-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "moderation-report.post": {
+    owner: "product_or_security_decision",
+    rationale: "A moderation route requires approved report categories, abuse controls, retention, operator handling, and user feedback semantics.",
+    dependency: "WP-SAFE-01",
+    decisionRequired: true,
+    unresolvedDecision: "Approve the report taxonomy, moderation workflow, retention, and reporter feedback contract.",
+  },
+  "blocked-user.delete": {
+    owner: "backend",
+    rationale: "Server-side unblock and cross-surface enforcement are mandatory safety invariants, while the explicit native route has no backend implementation.",
+    dependency: "WP-SAFE-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "notebook.delete": {
+    owner: "ios",
+    rationale: "Backend already exposes DELETE on the notebook collection with highlightId; the native path producer is the divergent side.",
+    dependency: "WP-NOTE-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "block-user.post": {
+    owner: "backend",
+    rationale: "Server-side block enforcement is mandatory across user-content surfaces, and the explicit native contract has no backend route.",
+    dependency: "WP-SAFE-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "event-progress.post": {
+    owner: "product_or_security_decision",
+    rationale: "Backend exposes a server-owned read while native emits an empty progress write; mutation authority cannot be inferred from either side.",
+    dependency: "WP-READER-01 and WP-SYNC-01",
+    decisionRequired: true,
+    unresolvedDecision: "Decide whether event progress is server-derived or accepts an idempotent client signal and define its authority semantics.",
+  },
+  "gift-create.post": {
+    owner: "product_or_security_decision",
+    rationale: "Gift creation has entitlement, fraud, expiry, and account-binding consequences but no backend route contract.",
+    dependency: "WP-ENT-01 and WP-NAV-01",
+    decisionRequired: true,
+    unresolvedDecision: "Approve who can create gifts, entitlement effects, expiry, abuse controls, and redemption ownership.",
+  },
+  "public-profile.get": {
+    owner: "product_or_security_decision",
+    rationale: "A public-profile route cannot be added until field visibility, block enforcement, and privacy defaults are approved.",
+    dependency: "WP-SAFE-01 and WP-PRIV-01",
+    decisionRequired: true,
+    unresolvedDecision: "Approve the public profile field allowlist, privacy defaults, and block/moderation enforcement.",
+  },
+  "notebook.patch": {
+    owner: "ios",
+    rationale: "Backend already exposes PATCH on the notebook collection with highlightId in the body; the native item-path producer diverges.",
+    dependency: "WP-NOTE-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "ask-book.post": {
+    owner: "coordinated",
+    rationale: "Backend SSE framing and native one-shot JSON decoding are incompatible and must preserve citations, cancellation, and partial failure together.",
+    dependency: "WP-NET-01 and WP-READER-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "quiz-check.post": {
+    owner: "ios",
+    rationale: "Backend has a concrete authenticated check route and response validator; native currently sends a different public path and singleton body.",
+    dependency: "WP-SYNC-02",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "account-delete.post": {
+    owner: "ios",
+    rationale: "Backend already requires recent authentication and an explicit DELETE confirmation; the native factory currently sends an empty body.",
+    dependency: "WP-ACCOUNT-01 after WP-AUTH-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "pair.get": {
+    owner: "coordinated",
+    rationale: "The item route is delete-only while native expects a detail read; collection reuse versus a new detail response must be coordinated.",
+    dependency: "WP-CONTRACT-01 follow-up",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "referral-profile.get": {
+    owner: "coordinated",
+    rationale: "Backend exposes a smaller embedded referral aggregate while native expects a richer standalone reward profile; neither source proves unilateral ownership.",
+    dependency: "WP-NET-01 and WP-ENT-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "reflections.get": {
+    owner: "coordinated",
+    rationale: "Backend item route is write-only while native expects a read projection; persistence and response semantics span both sides.",
+    dependency: "WP-CONTRACT-01 follow-up",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "user-journey.get": {
+    owner: "ios",
+    rationale: "Backend already returns the journey definition with nested progress; the native decoder requires the progress fields at the wrong level.",
+    dependency: "WP-READER-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "blocked-users.get": {
+    owner: "backend",
+    rationale: "A server-owned blocklist is required for cross-device and server enforcement, while the explicit native list route is absent.",
+    dependency: "WP-SAFE-01 and WP-PRIV-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+  "commitment.get": {
+    owner: "coordinated",
+    rationale: "Backend exposes collection GET and item PATCH; list filtering versus a stable item GET/not-found contract must be chosen across callers.",
+    dependency: "WP-READER-01",
+    decisionRequired: false,
+    unresolvedDecision: null,
+  },
+};
+
+const PRODUCTION_AUTHORITY_PROOFS: Record<
+  string,
+  { testId: string; evidence: string[] }
+> = {
+  "chapter.get": {
+    testId: "models.chapter-progress.authority-deletion",
+    evidence: [
+      "Packages/Models/Tests/ModelsTests/BackendOwnedContractTests.swift BackendOwnedContractTests.progressAuthorityDeletionFailsClosed (chapter.get argument)",
+      "Packages/Models/Sources/Models/Progress/BookProgress.swift BookProgress.init(from:)",
+      "Packages/Models/Sources/Models/Evaluator/EntitlementEvaluator.swift EntitlementEvaluator.isChapterUnlocked(number:progress:)",
+    ],
+  },
+  "quiz.get": {
+    testId: "models.quiz-progress.authority-deletion",
+    evidence: [
+      "Packages/Models/Tests/ModelsTests/BackendOwnedContractTests.swift BackendOwnedContractTests.progressAuthorityDeletionFailsClosed (quiz.get argument)",
+      "Packages/Models/Sources/Models/Responses.swift QuizResponse",
+      "Packages/Models/Sources/Models/Evaluator/EntitlementEvaluator.swift EntitlementEvaluator.isChapterUnlocked(number:progress:)",
+    ],
+  },
+  "entitlements.get": {
+    testId: "models.entitlement.authority-deletion",
+    evidence: [
+      "Packages/Models/Tests/ModelsTests/BackendOwnedContractTests.swift BackendOwnedContractTests.entitlementAuthorityDeletionFailsClosed",
+      "Packages/Models/Sources/Models/Responses.swift EntitlementResponse",
+      "Packages/Models/Sources/Models/Evaluator/EntitlementEvaluator.swift EntitlementEvaluator",
+    ],
+  },
+  "own-profile.get": {
+    testId: "social.own-profile-identity.authority-deletion",
+    evidence: [
+      "Packages/SocialFeature/Tests/SocialFeatureTests/BackendOwnedAuthorityContractTests.swift BackendOwnedAuthorityContractTests.ownProfileIdentityAuthorityDeletionFailsClosed",
+      "Packages/SocialFeature/Sources/SocialFeature/Models/OwnProfile.swift OwnProfileResponse.init(from:)",
+    ],
+  },
+};
+
 function sourceFiles(
   routeSource: string,
   auth: NativeContractAuthClass,
@@ -84,11 +294,18 @@ function sourceFiles(
     { path: routeSource, role: "route" },
   ];
   if (canonicalErrorEnvelope) sources.push({ path: ERROR_SOURCE, role: "error_envelope" });
-  if (auth === "cognito_id_token" || auth === "recent_auth_active_user") {
+  if (
+    auth === "cognito_id_token" ||
+    auth === "recent_auth_user" ||
+    auth === "recent_auth_active_user"
+  ) {
     sources.push({ path: AUTH_SOURCE, role: "auth" });
   }
   if (auth === "active_book_user" || auth === "recent_auth_active_user") {
     sources.push({ path: ACTIVE_USER_SOURCE, role: "auth" });
+  }
+  if (auth === "recent_auth_user") {
+    sources.push({ path: ACTIVE_USER_SOURCE, role: "auth_policy" });
   }
   for (const source of extra) {
     if (!sources.some((candidate) => candidate.path === source.path)) sources.push(source);
@@ -171,6 +388,7 @@ function defaultRouteSource(routeTemplate: string): string {
 
 function common(seed: OperationSeed) {
   const auth = seed.auth ?? "active_book_user";
+  const productionAuthorityProof = PRODUCTION_AUTHORITY_PROOFS[seed.id];
   const nativeRequestFixtures = seed.requests.map((request) =>
     requestFixture(seed.id, seed.routeTemplate, request)
   );
@@ -211,11 +429,39 @@ function common(seed: OperationSeed) {
           classification: seed.authority.classification,
           expectedRequiredPointers: seed.authority.pointers,
           failureMode: "fail_closed" as const,
+          proof: productionAuthorityProof
+            ? {
+                level: "production_consumer_verified" as const,
+                structuralEvidence: [
+                  `${seed.id} requiredAuthorityFields are validated against the synthetic success fixture by assertNativeContractBundle`,
+                ],
+                productionConsumerTestIds: [productionAuthorityProof.testId],
+                productionConsumerEvidence: productionAuthorityProof.evidence,
+                gaps: [],
+              }
+            : {
+                level: "structural_fixture_only" as const,
+                structuralEvidence: [
+                  `${seed.id} requiredAuthorityFields are validated against the synthetic success fixture by assertNativeContractBundle`,
+                ],
+                productionConsumerTestIds: [],
+                productionConsumerEvidence: [],
+                gaps: [
+                  `No executed production iOS decoder/mapper deletion test is registered for ${seed.authority.pointers.join(", ")}.`,
+                ],
+              },
         }
       : {
           classification: "none" as const,
           expectedRequiredPointers: [],
           failureMode: "not_applicable" as const,
+          proof: {
+            level: "not_applicable" as const,
+            structuralEvidence: [],
+            productionConsumerTestIds: [],
+            productionConsumerEvidence: [],
+            gaps: [],
+          },
         },
     ios: {
       factories: seed.requests.map((request) => request.producer),
@@ -271,6 +517,16 @@ function matched(seed: OperationSeed): NativeContractOperationDefinition {
       kind: "source_dependency_closure",
       reason: "Fenced backend source files are selected direct evidence, not a complete transitive import/dependency closure.",
     },
+    ...(seed.authority && !PRODUCTION_AUTHORITY_PROOFS[seed.id]
+      ? [
+          {
+            kind: "native_authority_consumer_proof",
+            reason: `Structural fixture validation exists, but no production iOS decoder/mapper deletion test is registered for ${seed.authority.pointers.join(", ")}.`,
+            owner: "ios" as const,
+            dependency: "WP-CONTRACT-01 iOS authority-consumer follow-up",
+          },
+        ]
+      : []),
     ...(seed.additionalGaps ?? []),
   ];
   return {
@@ -309,6 +565,8 @@ function matched(seed: OperationSeed): NativeContractOperationDefinition {
 
 function blocked(seed: BlockedSeed): NativeContractOperationDefinition {
   const base = common(seed);
+  const resolution = BLOCKER_RESOLUTIONS[seed.id];
+  if (!resolution) throw new Error(`${seed.id} blocked seed is missing resolution ownership`);
   let backendCandidate: NativeContractBackendCandidateDefinition | undefined;
   if (seed.blocker.candidate) {
     backendCandidate = {
@@ -322,12 +580,40 @@ function blocked(seed: BlockedSeed): NativeContractOperationDefinition {
   }
   return {
     ...base,
+    authority:
+      base.authority.classification === "none"
+        ? base.authority
+        : {
+            ...base.authority,
+            proof: {
+              level: "blocked_unproven" as const,
+              structuralEvidence: [],
+              productionConsumerTestIds: [],
+              productionConsumerEvidence: [],
+              gaps: [
+                `No compatible success fixture exists; authority fields ${base.authority.expectedRequiredPointers.join(", ")} remain unproven.`,
+              ],
+            },
+          },
     coverage: "blocked",
-    gaps: [{ kind: seed.blocker.kind, reason: seed.blocker.reason }],
+    gaps: [
+      { kind: seed.blocker.kind, reason: seed.blocker.reason },
+      ...(base.authority.classification === "none"
+        ? []
+        : [
+            {
+              kind: "native_authority_consumer_proof",
+              reason: `No compatible success contract exists, so production iOS authority handling for ${base.authority.expectedRequiredPointers.join(", ")} remains unproven.`,
+              owner: resolution.owner,
+              dependency: resolution.dependency,
+            },
+          ]),
+    ],
     blocker: {
       kind: seed.blocker.kind,
       reason: seed.blocker.reason,
       evidence: seed.blocker.evidence,
+      resolution,
       expectedRouteSource:
         seed.blocker.kind === "missing_route" ? defaultRouteSource(seed.routeTemplate) : undefined,
       backendCandidate,
@@ -377,8 +663,10 @@ nativeContractOperationDefinitions.push(
       kind: "request_mismatch",
       reason: "Native sends {events:[...]}; backend requires a singular allowlisted {event,bookId,...} object.",
       evidence: [
-        "Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:40-43",
-        "app/app/api/book/me/analytics/track/route.ts:24-39",
+        "Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:33-43 AnalyticsEvent and AnalyticsBatch define the batched native wire body",
+        "Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:187-208 URLSessionAnalyticsTransport.send(_:) encodes and posts the batch",
+        "app/app/api/book/me/analytics/track/route.ts:18-29 TRACK_EVENTS defines the backend event allowlist",
+        "app/app/api/book/me/analytics/track/route.ts:31-69 POST validates one event object and its scalar fields",
       ],
       candidate: {
         routeSource: "app/app/api/book/me/analytics/track/route.ts",
@@ -413,8 +701,11 @@ nativeContractOperationDefinitions.push(
       kind: "request_mismatch",
       reason: "Native sends {name,properties,timestamp}; backend requires an allowlisted {type,...primitivePayload} object.",
       evidence: [
-        "Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:32-38",
-        "app/app/api/book/me/analytics/beacon/route.ts:69-113",
+        "Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:33-38 AnalyticsEvent defines name, properties, and timestamp",
+        "Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:212-220 URLSessionAnalyticsTransport.sendBeacon(_:) encodes the event",
+        "app/app/api/book/me/analytics/beacon/route.ts:15-18 defines beacon type and key limits",
+        "app/app/api/book/me/analytics/beacon/route.ts:82-90 enforces analytics consent behavior",
+        "app/app/api/book/me/analytics/beacon/route.ts:98-128 parses type and sanitizes primitive payload values",
       ],
       candidate: {
         routeSource: "app/app/api/book/me/analytics/beacon/route.ts",
@@ -1974,7 +2265,10 @@ nativeContractOperationDefinitions.push(
       kind: "path_mismatch",
       reason: "Backend path is /book/me/quiz/{bookId}/{chapterNumber}/check and expects responses:[{questionId,selectedChoiceId}], not the native singleton body.",
       evidence: [
-        "app/app/api/book/me/quiz/[bookId]/[chapterNumber]/check/route.ts:90-136",
+        "Packages/QuizFeature/Sources/QuizFeature/Endpoints+Quiz.swift:21-34 Endpoint.checkQuizAnswer defines the native path and singleton body",
+        "Packages/QuizFeature/Sources/QuizFeature/QuizTypes.swift:23-27 defines the native questionId/choiceId DTO",
+        "app/app/api/book/me/quiz/[bookId]/[chapterNumber]/check/route.ts:23-86 validates the responses array",
+        "app/app/api/book/me/quiz/[bookId]/[chapterNumber]/check/route.ts:101-156 parses the request and returns the result array",
       ],
       candidate: {
         routeSource: "app/app/api/book/me/quiz/[bookId]/[chapterNumber]/check/route.ts",
@@ -2011,7 +2305,7 @@ nativeContractOperationDefinitions.push(
     method: "POST",
     routeTemplate: "/book/me/account/delete",
     matrixRowId: "account-deletion",
-    auth: "recent_auth_active_user",
+    auth: "recent_auth_user",
     requests: [
       {
         producer:
@@ -2027,7 +2321,12 @@ nativeContractOperationDefinitions.push(
     blocker: {
       kind: "request_mismatch",
       reason: "Native sends {}; backend requires {confirm:\"DELETE\"} plus recent authentication.",
-      evidence: ["app/app/api/book/me/account/delete/route.ts:31-46"],
+      evidence: [
+        "Packages/Networking/Sources/Networking/Endpoint+Account.swift:20-26 Endpoint.deleteAccount sends an empty JSON object",
+        "app/app/api/book/me/account/delete/route.ts:31-60 POST calls requireUser and requireRecentAuth, then requires confirm=DELETE",
+        "app/app/api/_lib/auth.ts:131-199 requireUser and requireRecentAuth define the identity and recency gates",
+        "app/app/api/book/_lib/account-guard.ts:13-27 documents account delete as an intentional requireActiveBookUser bypass",
+      ],
       candidate: {
         routeSource: "app/app/api/book/me/account/delete/route.ts",
         methods: ["POST"],
@@ -2133,7 +2432,7 @@ nativeContractOperationDefinitions.push(
     responseBody: json({
       profile: null,
       identity: {
-        userId: "user-synthetic",
+        sub: "user-synthetic",
         displayName: "Synthetic Reader",
       },
       inferredLocation: null,
@@ -2143,7 +2442,7 @@ nativeContractOperationDefinitions.push(
       { path: "app/app/api/book/_lib/identity.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
     ],
-    authority: { classification: "identity", pointers: ["/identity/userId"] },
+    authority: { classification: "identity", pointers: ["/identity/sub"] },
   }),
   matched({
     id: "progress.get",
@@ -2423,7 +2722,7 @@ nativeContractOperationDefinitions.push(
     method: "GET",
     routeTemplate: "/book/me/export",
     matrixRowId: "data-export",
-    auth: "recent_auth_active_user",
+    auth: "recent_auth_user",
     requests: [
       {
         producer:

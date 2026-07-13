@@ -10,6 +10,7 @@ export type NativeContractAuthClass =
   | "public"
   | "cognito_id_token"
   | "active_book_user"
+  | "recent_auth_user"
   | "recent_auth_active_user";
 
 export type NativeContractCacheClass = "public" | "private" | "no_store" | "unknown";
@@ -29,6 +30,18 @@ export type NativeContractBlockerKind =
   | "request_mismatch"
   | "response_mismatch"
   | "unverified";
+
+export type NativeContractBlockerOwner =
+  | "ios"
+  | "backend"
+  | "coordinated"
+  | "product_or_security_decision";
+
+export type NativeContractAuthorityProofLevel =
+  | "not_applicable"
+  | "structural_fixture_only"
+  | "production_consumer_verified"
+  | "blocked_unproven";
 
 export type NativeContractRequestBody =
   | { kind: "none" }
@@ -76,6 +89,7 @@ export type NativeContractSourceRole =
   | "response_builder"
   | "schema"
   | "auth"
+  | "auth_policy"
   | "error_envelope";
 
 export type NativeContractSourceFile = {
@@ -139,6 +153,13 @@ export type NativeContractOperation = {
     classification: "none" | "identity" | "entitlement" | "server_decision" | "private_data";
     expectedRequiredPointers: string[];
     failureMode: "not_applicable" | "fail_closed";
+    proof: {
+      level: NativeContractAuthorityProofLevel;
+      structuralEvidence: string[];
+      productionConsumerTestIds: string[];
+      productionConsumerEvidence: string[];
+      gaps: string[];
+    };
   };
   ios: {
     factories: string[];
@@ -148,12 +169,21 @@ export type NativeContractOperation = {
   gaps: Array<{
     kind: string;
     reason: string;
+    owner?: NativeContractBlockerOwner;
+    dependency?: string;
   }>;
   backend?: NativeContractBackendEvidence;
   blocker?: {
     kind: NativeContractBlockerKind;
     reason: string;
     evidence: string[];
+    resolution: {
+      owner: NativeContractBlockerOwner;
+      rationale: string;
+      dependency: string;
+      decisionRequired: boolean;
+      unresolvedDecision: string | null;
+    };
     expectedRouteSource?: string;
     backendCandidate?: NativeContractBackendCandidate;
   };
@@ -224,6 +254,13 @@ export type NativeContractBundle = {
     generatedAt: string;
     generatorVersion: "chapterflow-native-contract-generator-v1";
     generatorTreeDigest: string;
+    committedInputTree: {
+      sha256: string;
+      inputPathCount: number;
+      expectedMissingPathCount: number;
+      trustedMainRef: string;
+      trustedMainRevision: string;
+    } | null;
     syntheticDataOnly: true;
     deployedRevision: null;
     deployedRevisionVerified: false;
@@ -235,12 +272,18 @@ export type NativeContractBundle = {
     iosSourceEvidence: {
       manifestPath: "contracts/native-ios/v1/ios-source-inventory-manifest.json";
       manifestSha256: string;
+      manifestSchemaVersion: "chapterflow-ios-native-inventory-v2";
       iosRepository: "WillSoltani/Chapterflow-IOS";
       iosBaseRevision: string;
       iosSourceRevision: string | null;
       iosSourceRevisionPhase: "uncommitted_contract_branch" | "committed_contract_branch";
       operationKeySha256: string;
       producerVariantIdSha256: string;
+      producerIdentitySha256: string;
+      relationalRecordCount: number;
+      relationalRecordSha256: string;
+      sourceInputTreeSha256: string;
+      matrixRowCount: number;
       exactFactoryTestedProducerCount: number;
       bundleSuccessDecoderTestedOperationCount: number;
       backendRuntimeFactoryValidationPerformed: false;
@@ -268,6 +311,11 @@ export type NativeContractBundle = {
     fixtureCount: number;
     evidence: string[];
     gap: string | null;
+  };
+  authorityProofSummary: {
+    structuralFixtureVerifiedOperationCount: number;
+    productionConsumerVerifiedOperationCount: number;
+    blockedOrUnprovenOperationCount: number;
   };
   operations: NativeContractOperation[];
 };
@@ -364,6 +412,104 @@ function assertRequestFixture(request: NativeContractRequestFixture, operationId
   assertNonEmptyStrings(request.producerEvidence, `${operationId}.producerEvidence`);
 }
 
+function assertAuthorityProof(operation: NativeContractOperation): void {
+  const proof = operation.authority.proof;
+  const consumerGaps = operation.gaps.filter(
+    (gap) => gap.kind === "native_authority_consumer_proof"
+  );
+  const validGapOwners = new Set<NativeContractBlockerOwner>([
+    "ios",
+    "backend",
+    "coordinated",
+    "product_or_security_decision",
+  ]);
+  const assertConsumerGap = (
+    expectedOwner: NativeContractBlockerOwner,
+    expectedPointers: string[]
+  ): void => {
+    if (consumerGaps.length !== 1) {
+      throw new Error(`${operation.id} must retain exactly one native authority consumer gap`);
+    }
+    const gap = consumerGaps[0];
+    if (
+      !gap ||
+      gap.owner !== expectedOwner ||
+      !validGapOwners.has(gap.owner) ||
+      !gap.dependency?.trim() ||
+      expectedPointers.some((pointer) => !gap.reason.includes(pointer))
+    ) {
+      throw new Error(`${operation.id} native authority consumer gap ownership is incomplete`);
+    }
+  };
+  if (operation.authority.classification === "none") {
+    if (
+      proof.level !== "not_applicable" ||
+      proof.structuralEvidence.length > 0 ||
+      proof.productionConsumerTestIds.length > 0 ||
+      proof.productionConsumerEvidence.length > 0 ||
+      proof.gaps.length > 0 ||
+      consumerGaps.length > 0
+    ) {
+      throw new Error(`${operation.id} non-authority contract has invalid proof metadata`);
+    }
+    return;
+  }
+
+  if (
+    operation.authority.failureMode !== "fail_closed" ||
+    operation.authority.expectedRequiredPointers.length === 0
+  ) {
+    throw new Error(`${operation.id} authority contract must declare fail-closed pointers`);
+  }
+
+  if (operation.coverage === "blocked") {
+    if (
+      proof.level !== "blocked_unproven" ||
+      proof.productionConsumerTestIds.length > 0 ||
+      proof.productionConsumerEvidence.length > 0 ||
+      proof.gaps.length === 0
+    ) {
+      throw new Error(`${operation.id} blocked authority must remain explicitly unproven`);
+    }
+    const blockerOwner = operation.blocker?.resolution.owner;
+    if (!blockerOwner) {
+      throw new Error(`${operation.id} blocked authority lacks resolution ownership`);
+    }
+    assertConsumerGap(blockerOwner, operation.authority.expectedRequiredPointers);
+    return;
+  }
+
+  assertNonEmptyStrings(proof.structuralEvidence, `${operation.id}.authority.structuralEvidence`);
+  if (proof.level === "production_consumer_verified") {
+    assertNonEmptyStrings(
+      proof.productionConsumerTestIds,
+      `${operation.id}.authority.productionConsumerTestIds`
+    );
+    assertNonEmptyStrings(
+      proof.productionConsumerEvidence,
+      `${operation.id}.authority.productionConsumerEvidence`
+    );
+    if (proof.gaps.length > 0) {
+      throw new Error(`${operation.id} verified production authority proof cannot retain gaps`);
+    }
+    if (consumerGaps.length > 0) {
+      throw new Error(`${operation.id} verified production authority proof retains a consumer gap`);
+    }
+    return;
+  }
+
+  if (
+    proof.level !== "structural_fixture_only" ||
+    proof.productionConsumerTestIds.length > 0 ||
+    proof.productionConsumerEvidence.length > 0 ||
+    proof.gaps.length === 0 ||
+    consumerGaps.length !== 1
+  ) {
+    throw new Error(`${operation.id} structural authority proof must retain a native consumer gap`);
+  }
+  assertConsumerGap("ios", operation.authority.expectedRequiredPointers);
+}
+
 export function assertNativeContractBundle(bundle: NativeContractBundle): void {
   if (bundle.schemaVersion !== "chapterflow-native-contract-bundle-v1") {
     throw new Error("unsupported native contract schema version");
@@ -402,6 +548,23 @@ export function assertNativeContractBundle(bundle: NativeContractBundle): void {
   if (!/^[0-9a-f]{64}$/.test(bundle.provenance.generatorTreeDigest)) {
     throw new Error("generator tree digest must be a SHA-256");
   }
+  if (bundle.provenance.sourceRevisionPhase === "uncommitted_backend") {
+    if (bundle.provenance.committedInputTree !== null) {
+      throw new Error("uncommitted provenance cannot claim a committed input tree");
+    }
+  } else {
+    const committedInputTree = bundle.provenance.committedInputTree;
+    if (
+      committedInputTree === null ||
+      !/^[0-9a-f]{64}$/.test(committedInputTree.sha256) ||
+      committedInputTree.inputPathCount <= 0 ||
+      committedInputTree.expectedMissingPathCount < 0 ||
+      !committedInputTree.trustedMainRef.startsWith("refs/") ||
+      !/^[0-9a-f]{40}$/.test(committedInputTree.trustedMainRevision)
+    ) {
+      throw new Error("committed provenance requires an exact verified input tree");
+    }
+  }
   if (!Number.isFinite(Date.parse(bundle.provenance.generatedAt))) {
     throw new Error("generatedAt must be an ISO-8601 timestamp");
   }
@@ -423,6 +586,9 @@ export function assertNativeContractBundle(bundle: NativeContractBundle): void {
     throw new Error("inventory producer count does not match native request fixtures");
   }
   const inventoryEvidence = bundle.inventory.iosSourceEvidence;
+  if (inventoryEvidence.manifestSchemaVersion !== "chapterflow-ios-native-inventory-v2") {
+    throw new Error("iOS source inventory must use the relational v2 schema");
+  }
   if (!/^[0-9a-f]{64}$/.test(inventoryEvidence.manifestSha256)) {
     throw new Error("iOS source inventory manifest digest must be a SHA-256");
   }
@@ -441,9 +607,18 @@ export function assertNativeContractBundle(bundle: NativeContractBundle): void {
   }
   if (
     !/^[0-9a-f]{64}$/.test(inventoryEvidence.operationKeySha256) ||
-    !/^[0-9a-f]{64}$/.test(inventoryEvidence.producerVariantIdSha256)
+    !/^[0-9a-f]{64}$/.test(inventoryEvidence.producerVariantIdSha256) ||
+    !/^[0-9a-f]{64}$/.test(inventoryEvidence.producerIdentitySha256) ||
+    !/^[0-9a-f]{64}$/.test(inventoryEvidence.relationalRecordSha256) ||
+    !/^[0-9a-f]{64}$/.test(inventoryEvidence.sourceInputTreeSha256)
   ) {
-    throw new Error("iOS source inventory key digests must be SHA-256 values");
+    throw new Error("iOS source inventory relation digests must be SHA-256 values");
+  }
+  if (
+    inventoryEvidence.relationalRecordCount !== bundle.inventory.nativeProducerCount ||
+    inventoryEvidence.matrixRowCount !== bundle.inventory.matrixRowCount
+  ) {
+    throw new Error("iOS source inventory relational counts do not match the backend bundle");
   }
   if (inventoryEvidence.backendRuntimeFactoryValidationPerformed !== false) {
     throw new Error("backend bundle must not claim runtime validation of Swift factories");
@@ -488,6 +663,52 @@ export function assertNativeContractBundle(bundle: NativeContractBundle): void {
   ) {
     throw new Error("matrix row summary is incomplete");
   }
+  if (summaryMatrixRows.size !== bundle.inventory.matrixRows.length) {
+    throw new Error("matrix row summary contains duplicate row identifiers");
+  }
+  const derivedMatrixRows = [...matrixRows]
+    .sort()
+    .map((id) => ({
+      id,
+      operationIds: bundle.operations
+        .filter((operation) => operation.matrixRowId === id)
+        .map((operation) => operation.id)
+        .sort(),
+    }));
+  const normalizedSummaryRows = bundle.inventory.matrixRows
+    .map((row) => ({ id: row.id, operationIds: [...row.operationIds].sort() }))
+    .sort((left, right) => left.id.localeCompare(right.id));
+  for (const row of normalizedSummaryRows) {
+    if (new Set(row.operationIds).size !== row.operationIds.length) {
+      throw new Error(`matrix row ${row.id} contains duplicate operation membership`);
+    }
+  }
+  if (JSON.stringify(normalizedSummaryRows) !== JSON.stringify(derivedMatrixRows)) {
+    throw new Error("matrix summary membership does not exactly match operation membership");
+  }
+
+  const authorityOperations = bundle.operations.filter(
+    (operation) => operation.authority.classification !== "none"
+  );
+  const expectedAuthoritySummary = {
+    structuralFixtureVerifiedOperationCount: authorityOperations.filter(
+      (operation) =>
+        operation.coverage !== "blocked" &&
+        (operation.authority.proof.level === "structural_fixture_only" ||
+          operation.authority.proof.level === "production_consumer_verified")
+    ).length,
+    productionConsumerVerifiedOperationCount: authorityOperations.filter(
+      (operation) => operation.authority.proof.level === "production_consumer_verified"
+    ).length,
+    blockedOrUnprovenOperationCount: authorityOperations.filter(
+      (operation) => operation.authority.proof.level === "blocked_unproven"
+    ).length,
+  };
+  if (
+    JSON.stringify(bundle.authorityProofSummary) !== JSON.stringify(expectedAuthoritySummary)
+  ) {
+    throw new Error("authority proof summary does not match operation proof metadata");
+  }
 
   const ids = new Set<string>();
   const methodRoutes = new Set<string>();
@@ -522,6 +743,7 @@ export function assertNativeContractBundle(bundle: NativeContractBundle): void {
     if (operation.auth.class !== "public" && operation.auth.credential === "none") {
       throw new Error(`${operation.id} authenticated operation is missing its credential contract`);
     }
+    assertAuthorityProof(operation);
 
     if (operation.coverage === "blocked") {
       if (!operation.blocker) throw new Error(`${operation.id} blocked without blocker evidence`);
@@ -529,6 +751,34 @@ export function assertNativeContractBundle(bundle: NativeContractBundle): void {
         throw new Error(`${operation.id} blocked operation must not claim backend fixtures`);
       }
       assertNonEmptyStrings(operation.blocker.evidence, `${operation.id}.blocker.evidence`);
+      const validOwners = new Set<NativeContractBlockerOwner>([
+        "ios",
+        "backend",
+        "coordinated",
+        "product_or_security_decision",
+      ]);
+      if (!validOwners.has(operation.blocker.resolution.owner)) {
+        throw new Error(`${operation.id} blocker has an unsupported resolution owner`);
+      }
+      if (
+        !operation.blocker.resolution.rationale.trim() ||
+        !operation.blocker.resolution.dependency.trim()
+      ) {
+        throw new Error(`${operation.id} blocker resolution metadata is incomplete`);
+      }
+      if (
+        operation.blocker.resolution.owner === "product_or_security_decision" &&
+        (!operation.blocker.resolution.decisionRequired ||
+          !operation.blocker.resolution.unresolvedDecision?.trim())
+      ) {
+        throw new Error(`${operation.id} product/security blocker lacks its unresolved decision`);
+      }
+      if (
+        operation.blocker.resolution.owner !== "product_or_security_decision" &&
+        operation.blocker.resolution.decisionRequired
+      ) {
+        throw new Error(`${operation.id} non-decision blocker cannot require a product decision`);
+      }
       if (operation.blocker.kind === "missing_route") {
         if (
           !operation.blocker.expectedRouteSource?.startsWith("app/app/api/book/") ||

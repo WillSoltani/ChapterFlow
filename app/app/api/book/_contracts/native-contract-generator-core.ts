@@ -11,6 +11,16 @@ import type {
   NativeContractSourceFileDefinition,
 } from "./native-contract-types";
 import { assertNativeContractBundle } from "./native-contract-types";
+import {
+  assertIosSourceInventoryRelations,
+  deriveNativeContractMatrixRows,
+  parseIosSourceInventoryManifest,
+  type IosSourceInventoryManifest,
+} from "./native-contract-inventory-relations";
+import {
+  assertNativeContractGitProvenance,
+  type VerifiedNativeContractGitProvenance,
+} from "./native-contract-provenance";
 
 export type NativeContractCommittedSourceRevisionPhase =
   | "committed_backend_branch"
@@ -20,10 +30,12 @@ export type NativeContractBuildOptions =
   | {
       sourceRevision?: undefined;
       sourceRevisionPhase?: undefined;
+      trustedMainRef?: undefined;
     }
   | {
       sourceRevision: string;
       sourceRevisionPhase: NativeContractCommittedSourceRevisionPhase;
+      trustedMainRef: string;
     };
 
 export const BACKEND_SOURCE_REVISION = "968ff67ecafbed7e8e1d4c7b77badf507cfc5aee";
@@ -34,28 +46,14 @@ const GENERATOR_SOURCE_PATHS = [
   "app/app/api/book/_contracts/native-contract-types.ts",
   "app/app/api/book/_contracts/native-contract-generator-core.ts",
   "app/app/api/book/_contracts/native-contract-registry.ts",
+  "app/app/api/book/_contracts/native-contract-inventory-relations.ts",
+  "app/app/api/book/_contracts/native-contract-provenance.ts",
   "scripts/contracts/generate-native-contract.ts",
 ] as const;
 
 const IOS_SOURCE_INVENTORY_MANIFEST_PATH =
   "contracts/native-ios/v1/ios-source-inventory-manifest.json" as const;
-
-type IosSourceInventoryManifest = {
-  schemaVersion: "chapterflow-ios-native-inventory-v1";
-  iosRepository: "WillSoltani/Chapterflow-IOS";
-  iosBaseRevision: string;
-  iosSourceRevision: string | null;
-  iosSourceRevisionPhase: "uncommitted_contract_branch" | "committed_contract_branch";
-  canonicalization: string;
-  operationKeyCount: number;
-  operationKeySha256: string;
-  producerVariantCount: number;
-  producerVariantIdSha256: string;
-  exactFactoryTestedProducerCount: number;
-  bundleSuccessDecoderTestedOperationCount: number;
-  backendRuntimeFactoryValidationPerformed: false;
-  evidence: string[];
-};
+const CONTRACT_BUNDLE_PATH = "contracts/native-ios/v1/contract-bundle.json" as const;
 
 function sourceSha256(repoRoot: string, relativePath: string): string {
   const source = readFileSync(resolve(repoRoot, relativePath));
@@ -73,63 +71,11 @@ function generatorTreeDigest(repoRoot: string): string {
   return hash.digest("hex");
 }
 
-function sha256SortedLines(values: string[]): string {
-  return createHash("sha256").update(`${[...values].sort().join("\n")}\n`).digest("hex");
-}
-
 function loadIosSourceInventoryManifest(repoRoot: string): IosSourceInventoryManifest {
   const parsed: unknown = JSON.parse(
     readFileSync(resolve(repoRoot, IOS_SOURCE_INVENTORY_MANIFEST_PATH), "utf8")
   );
-  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
-    throw new Error("iOS source inventory manifest must be a JSON object");
-  }
-  const manifest = parsed as Partial<IosSourceInventoryManifest>;
-  if (
-    manifest.schemaVersion !== "chapterflow-ios-native-inventory-v1" ||
-    manifest.iosRepository !== "WillSoltani/Chapterflow-IOS" ||
-    typeof manifest.iosBaseRevision !== "string" ||
-    (manifest.iosSourceRevision !== null && typeof manifest.iosSourceRevision !== "string") ||
-    (manifest.iosSourceRevisionPhase !== "uncommitted_contract_branch" &&
-      manifest.iosSourceRevisionPhase !== "committed_contract_branch") ||
-    typeof manifest.canonicalization !== "string" ||
-    typeof manifest.operationKeyCount !== "number" ||
-    typeof manifest.operationKeySha256 !== "string" ||
-    typeof manifest.producerVariantCount !== "number" ||
-    typeof manifest.producerVariantIdSha256 !== "string" ||
-    typeof manifest.exactFactoryTestedProducerCount !== "number" ||
-    typeof manifest.bundleSuccessDecoderTestedOperationCount !== "number" ||
-    manifest.backendRuntimeFactoryValidationPerformed !== false ||
-    !Array.isArray(manifest.evidence) ||
-    manifest.evidence.some((item) => typeof item !== "string" || !item.trim())
-  ) {
-    throw new Error("iOS source inventory manifest is incomplete or invalid");
-  }
-  return manifest as IosSourceInventoryManifest;
-}
-
-function assertIosSourceInventory(
-  manifest: IosSourceInventoryManifest,
-  operations: NativeContractOperation[]
-): void {
-  const operationKeys = operations.map(
-    (operation) => `${operation.id}|${operation.method}|${operation.routeTemplate}`
-  );
-  const producerVariantIds = operations.flatMap((operation) =>
-    operation.nativeRequestFixtures.map((request) => request.operationVariantId)
-  );
-  if (
-    manifest.operationKeyCount !== operationKeys.length ||
-    manifest.operationKeySha256 !== sha256SortedLines(operationKeys)
-  ) {
-    throw new Error("backend registry does not match the independent iOS operation inventory");
-  }
-  if (
-    manifest.producerVariantCount !== producerVariantIds.length ||
-    manifest.producerVariantIdSha256 !== sha256SortedLines(producerVariantIds)
-  ) {
-    throw new Error("backend registry does not match the independent iOS producer inventory");
-  }
+  return parseIosSourceInventoryManifest(parsed);
 }
 
 function materializeSourceFiles(
@@ -148,10 +94,11 @@ function materializeOperation(
 ): NativeContractOperation {
   const { backend: backendDefinition, blocker: blockerDefinition, ...operation } = definition;
   const blocker: NativeContractOperation["blocker"] = blockerDefinition
-    ? {
+      ? {
         kind: blockerDefinition.kind,
         reason: blockerDefinition.reason,
         evidence: blockerDefinition.evidence,
+        resolution: blockerDefinition.resolution,
         expectedRouteSource: blockerDefinition.expectedRouteSource,
         backendCandidate: blockerDefinition.backendCandidate
           ? {
@@ -194,13 +141,23 @@ export function parseNativeContractProvenanceEnvironment(
   const sourceRevision = environment.CONTRACT_SOURCE_REVISION?.trim() || undefined;
   const sourceRevisionPhase =
     environment.CONTRACT_SOURCE_REVISION_PHASE?.trim() || undefined;
+  const trustedMainRef = environment.CONTRACT_TRUSTED_MAIN_REF?.trim() || undefined;
 
-  if ((sourceRevision === undefined) !== (sourceRevisionPhase === undefined)) {
+  const suppliedCount = [sourceRevision, sourceRevisionPhase, trustedMainRef].filter(
+    (value) => value !== undefined
+  ).length;
+  if (suppliedCount !== 0 && suppliedCount !== 3) {
     throw new Error(
-      "CONTRACT_SOURCE_REVISION and CONTRACT_SOURCE_REVISION_PHASE must be provided together"
+      "CONTRACT_SOURCE_REVISION, CONTRACT_SOURCE_REVISION_PHASE, and CONTRACT_TRUSTED_MAIN_REF must be provided together"
     );
   }
-  if (sourceRevision === undefined || sourceRevisionPhase === undefined) return undefined;
+  if (
+    sourceRevision === undefined ||
+    sourceRevisionPhase === undefined ||
+    trustedMainRef === undefined
+  ) {
+    return undefined;
+  }
   if (
     sourceRevisionPhase !== "committed_backend_branch" &&
     sourceRevisionPhase !== "merged_backend"
@@ -209,7 +166,31 @@ export function parseNativeContractProvenanceEnvironment(
       "CONTRACT_SOURCE_REVISION_PHASE must be committed_backend_branch or merged_backend"
     );
   }
-  return { sourceRevision, sourceRevisionPhase };
+  return { sourceRevision, sourceRevisionPhase, trustedMainRef };
+}
+
+function committedInputPaths(definitions: NativeContractOperationDefinition[]): string[] {
+  const paths = new Set<string>([
+    ...GENERATOR_SOURCE_PATHS,
+    IOS_SOURCE_INVENTORY_MANIFEST_PATH,
+  ]);
+  for (const definition of definitions) {
+    const evidence = definition.backend ?? definition.blocker?.backendCandidate;
+    if (!evidence) continue;
+    paths.add(evidence.routeSource);
+    for (const source of evidence.sourceFiles) paths.add(source.path);
+  }
+  return [...paths].sort();
+}
+
+function expectedMissingInputPaths(
+  definitions: NativeContractOperationDefinition[]
+): string[] {
+  return definitions.flatMap((definition) =>
+    definition.blocker?.kind === "missing_route" && definition.blocker.expectedRouteSource
+      ? [definition.blocker.expectedRouteSource]
+      : []
+  ).sort();
 }
 
 function assertExportedMethod(
@@ -284,42 +265,39 @@ export function buildNativeContractBundle(
   definitions: NativeContractOperationDefinition[],
   options?: NativeContractBuildOptions
 ): NativeContractBundle {
-  assertBehaviorSourceRevision(repoRoot);
   const sourceRevision = options?.sourceRevision;
   const sourceRevisionPhase = options?.sourceRevisionPhase;
-  if ((sourceRevision === undefined) !== (sourceRevisionPhase === undefined)) {
-    throw new Error("source revision and source revision phase must be provided together");
+  const trustedMainRef = options?.trustedMainRef;
+  const committedOptionCount = [sourceRevision, sourceRevisionPhase, trustedMainRef].filter(
+    (value) => value !== undefined
+  ).length;
+  if (committedOptionCount !== 0 && committedOptionCount !== 3) {
+    throw new Error(
+      "source revision, source revision phase, and trusted main ref must be provided together"
+    );
   }
-  if (sourceRevision !== undefined && sourceRevisionPhase !== undefined) {
-    if (!/^[0-9a-f]{40}$/.test(sourceRevision)) {
-      throw new Error("contract source revision must be a full Git SHA");
-    }
-    try {
-      execFileSync("git", ["merge-base", "--is-ancestor", sourceRevision, "HEAD"], {
-        cwd: repoRoot,
-        stdio: "ignore",
-      });
-    } catch {
-      throw new Error(
-        `contract source revision ${sourceRevision} is not an ancestor of backend HEAD`
-      );
-    }
-  }
+  const committedProvenance: VerifiedNativeContractGitProvenance | undefined =
+    sourceRevision !== undefined &&
+    sourceRevisionPhase !== undefined &&
+    trustedMainRef !== undefined
+      ? assertNativeContractGitProvenance({
+          repoRoot,
+          sourceRevision,
+          sourceRevisionPhase,
+          trustedMainRef,
+          requiredInputPaths: committedInputPaths(definitions),
+          expectedMissingInputPaths: expectedMissingInputPaths(definitions),
+          contractArtifactPath: CONTRACT_BUNDLE_PATH,
+        })
+      : undefined;
+  assertBehaviorSourceRevision(repoRoot);
   const operations = definitions.map((definition) => materializeOperation(repoRoot, definition));
   const iosSourceInventory = loadIosSourceInventoryManifest(repoRoot);
-  assertIosSourceInventory(iosSourceInventory, operations);
-  const representedMatrixRows = new Set(
-    operations.flatMap((operation) => (operation.matrixRowId ? [operation.matrixRowId] : []))
+  assertIosSourceInventoryRelations(iosSourceInventory, operations);
+  const matrixRows = deriveNativeContractMatrixRows(operations);
+  const authorityOperations = operations.filter(
+    (operation) => operation.authority.classification !== "none"
   );
-  const matrixRows = [...representedMatrixRows]
-    .sort()
-    .map((id) => ({
-      id,
-      operationIds: operations
-        .filter((operation) => operation.matrixRowId === id)
-        .map((operation) => operation.id)
-        .sort(),
-    }));
   const bundle: NativeContractBundle = {
     schemaVersion: "chapterflow-native-contract-bundle-v1",
     contractVersion: "1",
@@ -332,6 +310,15 @@ export function buildNativeContractBundle(
       generatedAt: ARTIFACT_GENERATED_AT,
       generatorVersion: "chapterflow-native-contract-generator-v1",
       generatorTreeDigest: generatorTreeDigest(repoRoot),
+      committedInputTree: committedProvenance
+        ? {
+            sha256: committedProvenance.inputTreeDigest,
+            inputPathCount: committedProvenance.verifiedInputPaths.length,
+            expectedMissingPathCount: committedProvenance.verifiedMissingInputPaths.length,
+            trustedMainRef: committedProvenance.trustedMainRef,
+            trustedMainRevision: committedProvenance.trustedMainRevision,
+          }
+        : null,
       syntheticDataOnly: true,
       deployedRevision: null,
       deployedRevisionVerified: false,
@@ -342,16 +329,22 @@ export function buildNativeContractBundle(
         (count, operation) => count + operation.nativeRequestFixtures.length,
         0
       ),
-      matrixRowCount: representedMatrixRows.size,
+      matrixRowCount: matrixRows.length,
       iosSourceEvidence: {
         manifestPath: IOS_SOURCE_INVENTORY_MANIFEST_PATH,
         manifestSha256: sourceSha256(repoRoot, IOS_SOURCE_INVENTORY_MANIFEST_PATH),
+        manifestSchemaVersion: iosSourceInventory.schemaVersion,
         iosRepository: iosSourceInventory.iosRepository,
         iosBaseRevision: iosSourceInventory.iosBaseRevision,
         iosSourceRevision: iosSourceInventory.iosSourceRevision,
         iosSourceRevisionPhase: iosSourceInventory.iosSourceRevisionPhase,
         operationKeySha256: iosSourceInventory.operationKeySha256,
         producerVariantIdSha256: iosSourceInventory.producerVariantIdSha256,
+        producerIdentitySha256: iosSourceInventory.producerIdentitySha256,
+        relationalRecordCount: iosSourceInventory.relationalRecordCount,
+        relationalRecordSha256: iosSourceInventory.relationalRecordSha256,
+        sourceInputTreeSha256: iosSourceInventory.sourceInputTreeSha256,
+        matrixRowCount: iosSourceInventory.matrixRowCount,
         exactFactoryTestedProducerCount: iosSourceInventory.exactFactoryTestedProducerCount,
         bundleSuccessDecoderTestedOperationCount:
           iosSourceInventory.bundleSuccessDecoderTestedOperationCount,
@@ -419,6 +412,20 @@ export function buildNativeContractBundle(
         "behavior source revision 968ff67 has no native-route Retry-After header contract",
       ],
       gap: "Rate-limit responses do not currently define a stable Retry-After header, so no fixture is invented.",
+    },
+    authorityProofSummary: {
+      structuralFixtureVerifiedOperationCount: authorityOperations.filter(
+        (operation) =>
+          operation.coverage !== "blocked" &&
+          (operation.authority.proof.level === "structural_fixture_only" ||
+            operation.authority.proof.level === "production_consumer_verified")
+      ).length,
+      productionConsumerVerifiedOperationCount: authorityOperations.filter(
+        (operation) => operation.authority.proof.level === "production_consumer_verified"
+      ).length,
+      blockedOrUnprovenOperationCount: authorityOperations.filter(
+        (operation) => operation.authority.proof.level === "blocked_unproven"
+      ).length,
     },
     operations,
   };
