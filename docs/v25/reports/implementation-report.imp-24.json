@@ -3,7 +3,8 @@
   "apiCallsMade": 0,
   "baselineHash": "19e1837e6d6d1f2ebc6997700956fc0798aa21ca",
   "blockingIssues": [
-    "V3_LIVE_ROLE_QUALIFICATION_NOT_YET_RUN"
+    "IMPLEMENTATION_CI_GATE_WORKFLOW_IDENTITY_MISMATCH",
+    "FINAL_ATTESTATION_REMATERIALIZATION_CONFLICT"
   ],
   "bookSpecificExceptions": [],
   "branch": "feat/v25-pipeline-live",
@@ -14,6 +15,7 @@
     "source": "sha256:bcfaf1f6ab6311067fafac8729b3deaafd9e4f10a4aec7a09eaa28ed4fa9f100"
   },
   "certificationSha256": "0870c20df24fbda8d5376723edc6a5c1a84a7fe8bce0e3095aa28ef46f01289e",
+  "codexExecInvocations": 0,
   "continuationPromptId": "IMP-24B",
   "contractCount": 16,
   "contractVersions": {
@@ -34,17 +36,20 @@
     "source-use-plan": 1,
     "worker-implementation-report": 1
   },
-  "dedicatedV25CiEvidenceCommit": null,
-  "dedicatedV25CiImplementationCommit": null,
+  "dedicatedV25CiEvidenceCommit": "7af0f8f91f5892166f534f4438a46343c6251e82",
+  "dedicatedV25CiEvidenceRunId": 29270320757,
+  "dedicatedV25CiImplementationCommit": "e9a90bc17cd997fe1707b5cd62d86ef7a4e743b8",
+  "dedicatedV25CiImplementationRunId": 29267830570,
   "dependencyAssumptions": [
     "The retained certification, production seal, parity proof, and corpus audits were revalidated from current repository bytes by the pre-live materializer.",
-    "The worktree ledger, rather than this deterministic materializer, retains local verification attempts and any failed pre-live candidate evidence.",
-    "The effective CI-green implementation checkpoint and evidence commit identities remain null because those qualifying lifecycle identities have not been minted yet."
+    "Commit 1 and Commit 2 each passed the dedicated V25 workflow on their exact SHAs.",
+    "The terminal evidence payload, rather than historical V1/V2 evidence, is the sole basis for the V3 BLOCKED decision."
   ],
   "deploymentActivated": false,
   "deterministicQuizChecker": "quiz-answer-tell-checker-v1",
   "draftPr": 401,
-  "evidenceCommit": null,
+  "evidenceCommit": "7af0f8f91f5892166f534f4438a46343c6251e82",
+  "evidenceManifestSha256": "cb2b0d1197f2a776b017fc05e2603dbec5a040b8edaf9cd8de04e9c817b0781f",
   "experimentId": "s16-forward-role-qualification-v3-envelope",
   "filesChanged": [
     ".github/workflows/chapterflow-v25-pipeline.yml",
@@ -56,6 +61,9 @@
     "docs/v25/reports/IMP-24_INSTRUMENT_CERTIFICATION.json",
     "docs/v25/reports/IMP-24_INSTRUMENT_CERTIFICATION.md",
     "docs/v25/reports/IMP-24_PROTOCOL_DECISION.md",
+    "docs/v25/reports/ROLE_QUALIFICATION_V3_EVIDENCE_MANIFEST.json",
+    "docs/v25/reports/ROLE_QUALIFICATION_V3_LIVE_RESULT.json",
+    "docs/v25/reports/ROLE_QUALIFICATION_V3_LIVE_RESULT.md",
     "docs/v25/reports/implementation-report.imp-24.json",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/cli.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24ActivationWorkflow.ts",
@@ -130,6 +138,11 @@
     "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/quiz-integrity-model-output-v2.schema.json",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/reader-experience-model-output-v2.schema.json",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/source-integrity-model-output-v2.schema.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/implementation-ci-gate-observation.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/qualification-report.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/root-ci-baseline-comparison.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/zero-call-ledger.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/zero-call-route-preflight.json",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/causal-claims.test.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/contracts-freeze.test.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/exec-envelope.test.ts",
@@ -160,9 +173,19 @@
     "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/reviewer-workspace.test.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/role-qualification-live.test.ts"
   ],
-  "finalDecision": "INCONCLUSIVE",
+  "finalAttestationCiConstraint": "FINAL_ATTESTATION_REMATERIALIZATION_CONFLICT",
+  "finalDecision": "BLOCKED",
+  "firstLiveCallOccurred": false,
+  "fixedRoleAssignments": {
+    "quizSemanticAdjudicator": null,
+    "readerAudit": null,
+    "readerPrimary": null,
+    "sourceAdjudicator": null,
+    "sourcePrimary": null
+  },
   "gateChanges": [],
   "gateWeakening": false,
+  "forcePush": false,
   "goldRun": false,
   "holdoutCalls": 0,
   "holdoutCorpusHashes": {
@@ -171,10 +194,11 @@
     "source": "sha256:182d86d5146f8831a6bd06de30b71689f19c94611abaee24a1232cb251159106"
   },
   "holdoutRelabeling": false,
-  "implementationCommit": null,
+  "implementationCommit": "e9a90bc17cd997fe1707b5cd62d86ef7a4e743b8",
   "infrastructureReplays": 0,
-  "lifecycleNote": "No effective CI-green implementation checkpoint or evidence commit exists yet; null is the truthful qualifying lifecycle value, not a placeholder. Failed pre-live candidates remain recorded in the worktree ledger.",
+  "lifecycleNote": "Commit 1 is the exact CI-green V3 implementation checkpoint. Commit 2 retains the zero-call terminal blocker evidence and is bound to Commit 1. No V3 model call occurred and no role set was formed.",
   "liveModelCallsMade": 0,
+  "liveSequenceStarted": false,
   "localSolActivation": false,
   "mainMerged": false,
   "maxPlanEvents": 0,
@@ -190,12 +214,15 @@
   "promoteActivated": false,
   "promptId": "IMP-24",
   "publishActivated": false,
+  "qualifiedProfiles": [],
+  "qualificationEvidenceReportSha256": "74786ec30d06b752f5e41fe2bdaec4602b3942d9d2f2646a55a5265700a13002",
   "quizSemanticAdjudicator": null,
   "readerAudit": null,
   "readerPrimary": null,
   "remainingRisks": [
-    "The effective corrected implementation checkpoint and its dedicated V25 CI evidence do not exist until after this pre-live freeze is committed; any earlier failed pre-live candidate is non-qualifying.",
-    "No reviewer profile or role set is qualified by model-free certification alone."
+    "No reviewer profile was tested because the frozen implementation-CI authorizer failed before the first model call.",
+    "A future protocol decision must authorize a corrected implementation checkpoint and new exact-SHA CI before qualification can be attempted.",
+    "The required final implementation report and the current CI rematerializer are byte-incompatible, so exact-Commit-3 CI cannot pass without an unauthorized implementation or workflow change."
   ],
   "requirementsImplemented": [
     {
@@ -204,32 +231,40 @@
       "status": "implemented"
     },
     {
-      "deferredTo": "The effective corrected implementation checkpoint, normal push, dedicated V25 CI, and clean-checkout reconciliation that follow this pre-commit artifact freeze. Failed pre-live candidates are retained separately in the worktree ledger and do not satisfy this gate.",
+      "note": "Commit 1 passed dedicated V25 CI and independently reconciled from a clean exact checkout; Commit 2 also passed dedicated V25 CI on its exact SHA.",
       "requirementId": "IMP24B-R02-EXACT-IMPLEMENTATION-COMMIT-CI",
-      "status": "deferred"
+      "status": "implemented"
     },
     {
-      "deferredTo": "The exact-CI-green V3 canary and holdout phase authorized only after clean-checkout reconciliation.",
+      "deferredTo": "A new owner-authorized implementation checkpoint correcting the frozen GitHub workflow identity collector, followed by new exact-SHA CI.",
       "requirementId": "IMP24B-R03-V3-LIVE-ROLE-QUALIFICATION",
       "status": "deferred"
     }
   ],
-  "resultHash": "8ee638990c927fd9c6e15be8754512c0774da0065ce793851927eecde88f4187",
-  "resultHashKind": "production-instrument-seal-sha256",
+  "resultHash": "74786ec30d06b752f5e41fe2bdaec4602b3942d9d2f2646a55a5265700a13002",
+  "resultHashKind": "role-qualification-terminal-report-bytes-sha256",
+  "retriesAdded": false,
   "roleSetReady": false,
-  "rootCiStatus": "NOT_RUN",
+  "rootCiEvidencePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/root-ci-baseline-comparison.json",
+  "rootCiStatus": "FAILURE_NON_BLOCKING_PRE_EXISTING_RUN_29267833786",
   "schema": "worker-implementation-report-v1",
   "sourceAdjudicator": null,
   "sourcePrimary": null,
   "startingLocalHead": "19e1837e6d6d1f2ebc6997700956fc0798aa21ca",
   "startingRemoteHead": "19e1837e6d6d1f2ebc6997700956fc0798aa21ca",
-  "status": "PRE_LIVE_FREEZE",
+  "status": "TERMINAL_BLOCKED",
   "testResults": {
-    "commands": [],
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "node --import tsx src/cli.ts contract-validate",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts imp24",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
+      "node --import tsx src/cli.ts migration-bakeoff forward-verify-production-instrument-seal-v2 --json"
+    ],
     "fail": 0,
-    "pass": 0,
-    "skip": 0,
-    "xenv": 0,
+    "pass": 2808,
+    "skip": 39,
+    "xenv": 10,
     "xfail": 0,
     "xpass": 0
   },
@@ -238,14 +273,25 @@
     "node --import tsx src/cli.ts contract-validate",
     "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
     "Dedicated ChapterFlow V25 Pipeline CI on the exact implementation commit",
+    "Dedicated ChapterFlow V25 Pipeline CI on the exact final Commit 3 tree",
     "Clean-checkout reconstruction of all pre-live artifact hashes"
   ],
-  "testsRun": [],
+  "testsRun": [
+    "Local TypeScript: PASS",
+    "Contract validation: PASS, 16 contracts",
+    "Focused IMP-24 tests: PASS, 102/102",
+    "Full no-API suite: PASS, 2808 pass / 0 fail / 10 xenv / 39 skip",
+    "Commit 1 dedicated V25 CI: PASS, run 29267830570",
+    "Commit 2 dedicated V25 CI: PASS, run 29270320757",
+    "Clean-checkout Commit 1 reconciliation: PASS",
+    "Production instrument seal verification: PASS, 455 files"
+  ],
   "unboundedRetries": false,
   "unexpectedWrites": [],
   "unresolvedRisks": [
-    "The effective corrected implementation checkpoint and its dedicated V25 CI evidence do not exist until after this pre-live freeze is committed; any earlier failed pre-live candidate is non-qualifying.",
-    "No reviewer profile or role set is qualified by model-free certification alone."
+    "IMPLEMENTATION_CI_GATE_WORKFLOW_IDENTITY_MISMATCH",
+    "FINAL_ATTESTATION_REMATERIALIZATION_CONFLICT"
   ],
+  "unavailableProfilesReplaced": false,
   "uploadActivated": false
 }
