@@ -33,7 +33,7 @@ jobs:
       CHAPTERFLOW_ALLOW_MODEL_GEN: "0"
       OPENAI_API_KEY: ""
       ANTHROPIC_API_KEY: ""
-      npm_config_cache: ${{ runner.temp }}/npm-cache-v25
+      npm_config_cache: /tmp/npm-cache-v25
     defaults:
       run:
         working-directory: scripts/book/prompts/chapterflow-v24-author-pipeline
