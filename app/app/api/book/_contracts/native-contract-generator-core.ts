@@ -183,14 +183,19 @@ function committedInputPaths(definitions: NativeContractOperationDefinition[]): 
   return [...paths].sort();
 }
 
-function expectedMissingInputPaths(
+export function nativeContractExpectedMissingInputPaths(
   definitions: NativeContractOperationDefinition[]
 ): string[] {
-  return definitions.flatMap((definition) =>
-    definition.blocker?.kind === "missing_route" && definition.blocker.expectedRouteSource
-      ? [definition.blocker.expectedRouteSource]
-      : []
-  ).sort();
+  return [
+    ...new Set(
+      definitions.flatMap((definition) =>
+        definition.blocker?.kind === "missing_route" &&
+        definition.blocker.expectedRouteSource
+          ? [definition.blocker.expectedRouteSource]
+          : []
+      )
+    ),
+  ].sort();
 }
 
 function assertExportedMethod(
@@ -286,7 +291,7 @@ export function buildNativeContractBundle(
           sourceRevisionPhase,
           trustedMainRef,
           requiredInputPaths: committedInputPaths(definitions),
-          expectedMissingInputPaths: expectedMissingInputPaths(definitions),
+          expectedMissingInputPaths: nativeContractExpectedMissingInputPaths(definitions),
           contractArtifactPath: CONTRACT_BUNDLE_PATH,
         })
       : undefined;

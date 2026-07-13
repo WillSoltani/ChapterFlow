@@ -9,6 +9,7 @@ import { buildIosAppConfig } from "../config/ios/config-core";
 import {
   assertNativeContractSourceConformance,
   buildNativeContractBundle,
+  nativeContractExpectedMissingInputPaths,
   parseNativeContractProvenanceEnvironment,
   serializeNativeContractBundle,
   type NativeContractBuildOptions,
@@ -228,6 +229,16 @@ test("native inventory equals the verified 83-operation / 93-producer iOS source
   assert.equal(bundle.inventory.uniqueOperationCount, 83);
   assert.equal(bundle.inventory.nativeProducerCount, 93);
   assert.equal(bundle.inventory.matrixRowCount, 29);
+});
+
+test("shared expected-missing route paths form a unique provenance input set", () => {
+  const paths = nativeContractExpectedMissingInputPaths(nativeContractOperationDefinitions);
+  const missingRouteOperationCount = nativeContractOperationDefinitions.filter(
+    (operation) => operation.blocker?.kind === "missing_route"
+  ).length;
+
+  assert.equal(new Set(paths).size, paths.length);
+  assert.ok(paths.length < missingRouteOperationCount);
 });
 
 test("relational inventory rejects producer reassignment with unchanged counts", () => {
