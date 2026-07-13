@@ -1,0 +1,33 @@
+{
+  "schema": "imp22-role-qualification-request-record-v1",
+  "requestSha256": "52411f0d3cb4655dd2ecee749459c634fdd757f8bd35d4768a414ef752f20ee2",
+  "request": {
+    "schema": "imp22-role-qualification-execution-request-v1",
+    "scheduleId": "qual-00009",
+    "attemptId": "qual-00009-a1",
+    "replayOfAttemptId": null,
+    "attemptNumber": 1,
+    "role": "quiz",
+    "partition": "calibration",
+    "caseId": "QUIZ-V2-CALIBRATION-mechanism-causal-key-decisive-ch02-q01",
+    "family": "mechanism-causal-key",
+    "profileId": "gpt-5.6-sol@xhigh",
+    "model": "gpt-5.6-sol",
+    "effort": "xhigh",
+    "schemaSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+    "promptSha256": "a320b831dc95ecd9c3ece06a7384d0ba6c68e6df10e7a20e05abce6cf3e7ed30",
+    "freezeSha256": "0d25f7ddeb0c7dea1f50498ad7f819f46434e6040b175678e53f125dc25a7456",
+    "task": {
+      "sha256": "a320b831dc95ecd9c3ece06a7384d0ba6c68e6df10e7a20e05abce6cf3e7ed30",
+      "bytes": 2201
+    },
+    "artifacts": [
+      {
+        "kind": "phase2-doc",
+        "relPath": "quiz/QUIZ-V2-CALIBRATION-mechanism-causal-key-decisive-ch02-q01.phase2.md",
+        "sha256": "a9d766f958f9bf70a76e44fb5e4c6e1d9b97123852d61c24fbdce9c58f7d3694",
+        "bytes": 13610
+      }
+    ]
+  }
+}

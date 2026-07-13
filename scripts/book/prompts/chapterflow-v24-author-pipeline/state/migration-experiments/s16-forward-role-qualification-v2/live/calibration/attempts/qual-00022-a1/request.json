@@ -1,0 +1,33 @@
+{
+  "schema": "imp22-role-qualification-request-record-v1",
+  "requestSha256": "0121e6e38c4f376f59e688ab44b35b1fdd88b96c6cfe76573904fefd336b7081",
+  "request": {
+    "schema": "imp22-role-qualification-execution-request-v1",
+    "scheduleId": "qual-00022",
+    "attemptId": "qual-00022-a1",
+    "replayOfAttemptId": null,
+    "attemptNumber": 1,
+    "role": "quiz",
+    "partition": "calibration",
+    "caseId": "QUIZ-V2-CALIBRATION-uniquely-correct-clean-power-of-moments-ch02-q01",
+    "family": "uniquely-correct-clean",
+    "profileId": "gpt-5.6-sol@xhigh",
+    "model": "gpt-5.6-sol",
+    "effort": "xhigh",
+    "schemaSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+    "promptSha256": "0e7de9a7441fdff5192bf2c233316960e730392f81085cc5c54430114f44a3cf",
+    "freezeSha256": "0d25f7ddeb0c7dea1f50498ad7f819f46434e6040b175678e53f125dc25a7456",
+    "task": {
+      "sha256": "0e7de9a7441fdff5192bf2c233316960e730392f81085cc5c54430114f44a3cf",
+      "bytes": 2211
+    },
+    "artifacts": [
+      {
+        "kind": "phase2-doc",
+        "relPath": "quiz/QUIZ-V2-CALIBRATION-uniquely-correct-clean-power-of-moments-ch02-q01.phase2.md",
+        "sha256": "c1cbc52174fa5af340748f840bd2a6007c8e5997fa2a39a10f8ac4e46e2bc511",
+        "bytes": 13284
+      }
+    ]
+  }
+}

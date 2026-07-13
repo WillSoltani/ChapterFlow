@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-source-1783911324992-2-2c1d882b-5bd8-4cf3-8f4c-1594bf7f6ac4",
+  "status": "completed",
+  "role": "source",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+  "rawOutput": "{\"schema\":\"source-integrity-review-v1\",\"units\":[{\"unitId\":\"unit.fact.ch01.fact.1\",\"expectedOrigin\":\"source_bound\",\"expectedForm\":\"explanation\",\"claimStrengthExpected\":\"mechanistic\",\"visibleRegister\":\"presented_as_fact\",\"supportStatus\":\"PARTIALLY_SUPPORTED\",\"framingAdequate\":true,\"claimStrengthFit\":false,\"namedSpecificityAllowed\":true,\"chapterEvidenceSpans\":[\"This proves that the 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\",\"always causes the stated outcome for every person, without exception.\"],\"sourceEvidenceSpans\":[\"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\",\"Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.\",\"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"],\"findings\":[{\"category\":\"claim_strength_overreach\",\"severity\":\"blocker\",\"explanation\":\"The first claim is directly supported, but the assertion that it “always causes” an outcome “for every person, without exception” is an unsupported universal causal guarantee. It exceeds the unit's mechanistic ceiling and violates the source packet's explicit prohibition on guaranteed outcomes.\"}]}],\"result\":\"BLOCK\",\"blockingFindingIds\":[\"unit.fact.ch01.fact.1:claim_strength_overreach\"],\"rationale\":\"The documented 2007 iPhone framing and named specifics are supported. The added universal causal guarantee is not supported by the source evidence and directly exceeds the licensed claim strength.\"}"
+}

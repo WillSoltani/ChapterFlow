@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-quiz-1783911347949-3-cc05a5d3-a020-43bd-81ff-96a95569be5b",
+  "status": "completed",
+  "role": "quiz",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+  "rawOutput": "{\"schema\":\"quiz-integrity-adjudication-v1\",\"items\":[{\"itemId\":\"ch02-q01\",\"keyedAnswerIndex\":0,\"derivedAnswerIndex\":1,\"agreement\":false,\"keyCorrect\":\"ambiguous\",\"rationale\":\"The evidence supports both the keyed reading and the alternative derivation, while the question's wording does not supply a decisive basis for choosing between them.\",\"defensibleAnswerIndices\":[0,1],\"keyedMechanismSupported\":true}]}"
+}

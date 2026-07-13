@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-source-1783912163995-25-654fea9f-9684-4d5a-a95e-6ca8e3c21d76",
+  "status": "completed",
+  "role": "source",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+  "rawOutput": "{\"schema\":\"source-integrity-review-v1\",\"units\":[{\"unitId\":\"unit.fact.ch01.fact.1\",\"expectedOrigin\":\"source_bound\",\"expectedForm\":\"explanation\",\"claimStrengthExpected\":\"mechanistic\",\"visibleRegister\":\"clearly_sourced\",\"supportStatus\":\"SUPPORTED\",\"framingAdequate\":true,\"claimStrengthFit\":true,\"namedSpecificityAllowed\":true,\"chapterEvidenceSpans\":[\"The Digital Minimalism chapter source states: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\"],\"sourceEvidenceSpans\":[\"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\"],\"findings\":[]}],\"result\":\"PASS\",\"blockingFindingIds\":[],\"rationale\":\"The candidate reproduces the supported ch01.fact.1 claim without adding unsupported details, exceeding the mechanistic claim-strength ceiling, or using prohibited specificity.\"}"
+}
