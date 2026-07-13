@@ -1,0 +1,42 @@
+{
+  "schema": "imp24-role-qualification-v3-evidence-manifest-v1",
+  "promptId": "IMP-24",
+  "continuationPromptId": "IMP-24B",
+  "experimentId": "s16-forward-role-qualification-v3-envelope",
+  "implementationCommit": "e9a90bc17cd997fe1707b5cd62d86ef7a4e743b8",
+  "evidenceCommit": null,
+  "hashAlgorithm": "sha256",
+  "terminalDecision": "BLOCKED_PRE_LIVE_INSTRUMENT_DEFECT",
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "files": [
+    {
+      "path": "docs/v25/reports/ROLE_QUALIFICATION_V3_LIVE_RESULT.json",
+      "sha256": "74786ec30d06b752f5e41fe2bdaec4602b3942d9d2f2646a55a5265700a13002"
+    },
+    {
+      "path": "docs/v25/reports/ROLE_QUALIFICATION_V3_LIVE_RESULT.md",
+      "sha256": "520d7d27eb0b3fc97ae4bd18f0164220f83ea9c47c4e6d7ee76c546cb9c4d848"
+    },
+    {
+      "path": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/implementation-ci-gate-observation.json",
+      "sha256": "de3a7c6f47b815c9a2dd1624650ee65fd9993b4721b5359cae72ba880a789eb6"
+    },
+    {
+      "path": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/qualification-report.json",
+      "sha256": "74786ec30d06b752f5e41fe2bdaec4602b3942d9d2f2646a55a5265700a13002"
+    },
+    {
+      "path": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/root-ci-baseline-comparison.json",
+      "sha256": "101f04a4998689568633086cc7db1e64cb0b2482625e7db615d6afc03e8a8adf"
+    },
+    {
+      "path": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/zero-call-ledger.json",
+      "sha256": "512d7a1091a18e8ae9fea308d7aefa86ad68925a0f27b0affa341b046cf4eeb5"
+    },
+    {
+      "path": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/zero-call-route-preflight.json",
+      "sha256": "ab246c1b0d8627c5ec06118095aaf23b781a15e35f3f58a50270ed0fcdbe88b4"
+    }
+  ]
+}

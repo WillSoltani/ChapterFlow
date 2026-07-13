@@ -1,0 +1,97 @@
+{
+  "schema": "imp24-role-qualification-v3-terminal-report-v1",
+  "promptId": "IMP-24",
+  "continuationPromptId": "IMP-24B",
+  "experimentId": "s16-forward-role-qualification-v3-envelope",
+  "implementationCommit": "e9a90bc17cd997fe1707b5cd62d86ef7a4e743b8",
+  "evidenceCommit": null,
+  "observedAt": "2026-07-13T17:12:30.000Z",
+  "finalDecision": "BLOCKED",
+  "status": "BLOCKED_PRE_LIVE_INSTRUMENT_DEFECT",
+  "roleSetReady": false,
+  "roleSetBlockedReason": "IMPLEMENTATION_CI_GATE_WORKFLOW_IDENTITY_MISMATCH",
+  "blockingIssues": [
+    {
+      "code": "IMPLEMENTATION_CI_GATE_WORKFLOW_IDENTITY_MISMATCH",
+      "stage": "ZERO_CALL_IMPLEMENTATION_CI_GATE",
+      "summary": "The frozen collector validates gh workflowName against the workflow display name, but gh returns the workflow file path in workflowName for both exact-Commit-1 green runs.",
+      "requiredProtocolDecision": "A corrected implementation commit and a new exact-SHA dedicated V25 CI checkpoint would be required before any V3 model call. The authorized three-commit lifecycle and no-history-rewrite boundary do not permit replacing Commit 1 in this run."
+    },
+    {
+      "code": "FINAL_ATTESTATION_REMATERIALIZATION_CONFLICT",
+      "stage": "FINAL_ATTESTATION_EXACT_HEAD_CI",
+      "summary": "The dedicated V25 workflow rematerializes the deterministic preliminary implementation report with null commit fields, while Commit 3 must retain the exact Commit 1 and Commit 2 SHAs and the final BLOCKED decision. Its clean-worktree gate therefore cannot pass on that required final report.",
+      "requiredProtocolDecision": "Resolving this conflict requires a new implementation/workflow checkpoint or a changed lifecycle contract, neither of which is authorized inside the frozen three-commit run."
+    }
+  ],
+  "implementationCheckpoint": {
+    "dedicatedV25RunId": 29267830570,
+    "dedicatedV25Conclusion": "SUCCESS",
+    "rootCiRunId": 29267833786,
+    "rootCiConclusion": "FAILURE_NON_BLOCKING_PRE_EXISTING",
+    "rootCiEvidence": "The exact starting-head run 29221496910 and Commit-1 run 29267833786 have the same two failed jobs, identical normalized 446-diagnostic multisets, and identical E2E causal failure on the unchanged executionEnvelope.ts blob."
+  },
+  "modelFreeCheckpoint": {
+    "contractCount": 16,
+    "preExistingContractHashesUnchanged": true,
+    "certificationStatus": "CERTIFIED_MODEL_FREE",
+    "certificationSha256": "0870c20df24fbda8d5376723edc6a5c1a84a7fe8bce0e3095aa28ef46f01289e",
+    "productionSealSha256": "8ee638990c927fd9c6e15be8754512c0774da0065ce793851927eecde88f4187",
+    "productionQualificationParitySha256": "9f1bfa674b8e69827e26e0e683f1e49ed01698ef0620ed7880c7fb7be80edd81",
+    "preLiveFreezeSha256": "e35f2a4fff9d4e647139ecb07a7419086f784f8b2b26e2f296c57307a354ded2",
+    "v1EvidencePreserved": true,
+    "v2EvidencePreserved": true
+  },
+  "zeroCallRouteReadiness": {
+    "status": "PASS_INDEPENDENT_MODEL_FREE_PROOF",
+    "authMode": "chatgpt",
+    "apiKeyPresent": false,
+    "apiFallbackAllowed": false,
+    "directHttpOrSdkAllowed": false,
+    "availableProfiles": 12,
+    "unavailableProfiles": 0,
+    "maxParallel": 2,
+    "baseMaximumCalls": 464,
+    "hardMaximumCalls": 928
+  },
+  "liveSequenceStarted": false,
+  "canaryCalls": 0,
+  "holdoutCalls": 0,
+  "infrastructureReplays": 0,
+  "maxPlanEvents": 0,
+  "codexExecInvocations": 0,
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "qualifiedProfiles": [],
+  "readerPrimary": null,
+  "readerAudit": null,
+  "sourcePrimary": null,
+  "sourceAdjudicator": null,
+  "quizSemanticAdjudicator": null,
+  "deterministicQuizChecker": "quiz-answer-tell-checker-v1",
+  "thresholdsWeakened": false,
+  "holdoutsRelabeled": false,
+  "unavailableProfilesReplaced": false,
+  "outputInformedResampling": false,
+  "retriesAdded": false,
+  "pilotRun": false,
+  "goldRun": false,
+  "localSolActivation": false,
+  "publication": false,
+  "promotion": false,
+  "deployment": false,
+  "upload": false,
+  "merge": false,
+  "forcePush": false,
+  "evidencePaths": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/implementation-ci-gate-observation.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/root-ci-baseline-comparison.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/zero-call-route-preflight.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope/zero-call-ledger.json"
+  ],
+  "remainingRisks": [
+    "No reviewer profile was tested because the frozen implementation-CI authorizer failed before the first model call.",
+    "A future protocol decision must authorize a corrected implementation checkpoint and new exact-SHA CI before qualification can be attempted.",
+    "The required final implementation report and the current CI rematerializer are byte-incompatible, so exact-Commit-3 CI cannot pass without an unauthorized implementation or workflow change."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "imp24-root-ci-baseline-comparison-v1",
+  "implementationCommit": "e9a90bc17cd997fe1707b5cd62d86ef7a4e743b8",
+  "startingHead": "19e1837e6d6d1f2ebc6997700956fc0798aa21ca",
+  "startingHeadRun": {
+    "runId": 29221496910,
+    "failedJobs": [86727369233, 86727369219]
+  },
+  "implementationCommitRun": {
+    "runId": 29267833786,
+    "failedJobs": [86877686336, 86877686334]
+  },
+  "typecheckDiagnostics": {
+    "startingCount": 446,
+    "implementationCount": 446,
+    "normalization": "timestamps and source locations removed; complete diagnostic multisets sorted",
+    "startingSha256": "4888982a238ef95d9547490c64e894dba4cabf1e5f9ed209174b07c94913a245",
+    "implementationSha256": "4888982a238ef95d9547490c64e894dba4cabf1e5f9ed209174b07c94913a245",
+    "multisetDifferenceCount": 0,
+    "unchangedFileDiagnostics": 442,
+    "unchangedPreCommitStatementsInFilesWithAdditiveV3Tests": 4
+  },
+  "e2eCausalFailure": {
+    "startingSha256": "1b8e46f69ae60ab39947090a9011c3983e5dbcc0e615ef51b59d051d5a550bca",
+    "implementationSha256": "1b8e46f69ae60ab39947090a9011c3983e5dbcc0e615ef51b59d051d5a550bca",
+    "sourcePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/executionEnvelope.ts",
+    "sourceBlobAtBothHeads": "204e2861f3e6c762e0d1fbc61d5e5f0c1a40c3c4"
+  },
+  "unchangedRootInputs": {
+    "ciWorkflowBlobAtBothHeads": "04570d17d5017113610511d0af92a6afb78385cc",
+    "rootTsconfigBlobAtBothHeads": "6a906bb1c887eb42d49eea1471a0bf3fe87a3fe2"
+  },
+  "classification": "FAILURE_NON_BLOCKING_PRE_EXISTING",
+  "modelCalls": 0,
+  "apiCalls": 0
+}
