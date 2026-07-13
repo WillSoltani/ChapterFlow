@@ -29,6 +29,8 @@ import {
   IMP24_ROLE_CANDIDATE_ORDER,
   IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
   IMP24_ROLE_QUALIFICATION_RECEIPT_SCHEMA,
+  assembleQualificationAttemptV3,
+  buildQualificationExecutionRequestV3,
   candidateAvailabilitySha256,
   instrumentCertificationBindingSha256,
   qualificationReceiptSha256,
@@ -36,6 +38,7 @@ import {
   type CandidateAvailabilityEntryV3,
   type CandidateAvailabilityV3,
   type InstrumentCertificationBindingV3,
+  type QualificationAttemptV3,
   type QualificationExecutionReceiptV3,
   type QualificationExecutionRequestV3,
   type QualificationOutputEvaluatorV3,
@@ -57,6 +60,13 @@ import {
   IMP24_LIVE_ATTEMPT_RETENTION_SCHEMA,
   IMP24_LIVE_CALL_LEDGER_SCHEMA,
   IMP24_LIVE_PREFLIGHT_SCHEMA,
+  IMP24_V2_REVIEWER_SCHEMA_MAP,
+  buildAttemptEvaluationArtifact,
+  buildLiveAttemptExecutionEvidenceV3,
+  createLiveQualificationExecutorV3,
+  liveQualificationExecutionSessionIdV3,
+  type LiveAttemptEvaluationV3,
+  type LiveAttemptExecutionEvidenceV3,
   type LiveAttemptRetentionV3,
   type LiveCallLedgerV3,
   type LiveQualificationPreflightV3,
@@ -94,7 +104,12 @@ import {
   type BuildForwardLocalActivationArtifactsInputV2,
 } from "../src/orchestrator/forwardLocalActivationMaterializerV2.js";
 import { resolveStandardForwardAutopilotControl } from "../src/orchestrator/forwardLocalAutopilot.js";
-import { ROUTE_POLICY_VERSION } from "../src/orchestrator/modelPolicy.js";
+import {
+  ROUTE_POLICY_VERSION,
+  resolveRoute,
+  routeDriftFingerprint,
+} from "../src/orchestrator/modelPolicy.js";
+import { STRICT_PIPELINE_ENV } from "../src/lib/strictEnv.js";
 import { materializeImp24ForwardInputs } from "../src/orchestrator/forwardInputMaterialization.js";
 import {
   buildGoldArtifactsV2Envelope,
@@ -225,7 +240,7 @@ function qualificationReceipt(
 ): QualificationExecutionReceiptV3 {
   const core: Omit<QualificationExecutionReceiptV3, "receiptSha256"> = {
     schema: IMP24_ROLE_QUALIFICATION_RECEIPT_SCHEMA,
-    executionId: `activation-test-${request.attemptId}`,
+    executionId: liveQualificationExecutionSessionIdV3(request),
     status: "completed",
     requestSha256: request.requestSha256,
     freezeSha256: request.freezeSha256,
@@ -251,9 +266,191 @@ type ActivationQualificationFixture = {
   qualificationPreflight: LiveQualificationPreflightV3;
   input: RunRoleQualificationInputV3;
   evaluateOutput: QualificationOutputEvaluatorV3;
+  fixtureOutputByCaseId: Readonly<Record<string, string>>;
   qualificationExperimentDir: string;
   retainedQualificationEvidence: VerifiedForwardRetainedRoleQualificationEvidenceV3;
 };
+
+function persistQualificationExecutionEvidence(
+  liveDir: string,
+  attempt: QualificationAttemptV3,
+): LiveAttemptExecutionEvidenceV3 {
+  assert.ok(attempt.receipt !== null, `${attempt.request.attemptId} fixture must retain a receipt`);
+  assert.equal(typeof attempt.receipt.rawOutput, "string", `${attempt.request.attemptId} fixture must retain raw output`);
+  const request = attempt.request;
+  const receipt = attempt.receipt;
+  const rawOutput = receipt.rawOutput as string;
+  const sessionId = liveQualificationExecutionSessionIdV3(request);
+  assert.equal(receipt.executionId, sessionId);
+  const logsDir = resolve(liveDir, "exec", "logs");
+  mkdirSync(logsDir, { recursive: true });
+  const base = resolve(logsDir, `20260713-120000-${sessionId}`);
+  const manifestPath = `${base}.manifest.json`;
+  const routePath = `${base}.route.json`;
+  const structuredPath = `${base}.structured.json`;
+  const resultPath = `${base}.result.json`;
+  const schemaPath = resolve(IMP24_V2_REVIEWER_SCHEMA_MAP[request.role]);
+  const { profile, profileHash } = resolveExecutionProfile("chapter-reviewer");
+  const resolvedRoute = resolveRoute({
+    role: "chapter-reviewer",
+    requestedModel: request.model,
+    requestedEffort: request.effort,
+  });
+  const sessionDir = resolve(liveDir, "exec", "sessions", `cf-exec-session-${sessionId.slice(-12)}`);
+  const codexHomeDir = resolve(sessionDir, "codex-home");
+  const lastMessagePath = resolve(sessionDir, "last-message.txt");
+  const workspaceDir = resolve(liveDir, "fixture-workspaces", request.attemptId);
+  const cliVersion = "codex-cli 0.144.1";
+  const envKeys = [
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE",
+    "CHAPTERFLOW_NO_API_CODEX_QC",
+    "CHAPTERFLOW_SESSION_ID",
+    "CODEX_HOME",
+  ];
+  writePrettyJson(manifestPath, {
+    schema: "effective-context-manifest-v1",
+    manifestVersion: 1,
+    sessionId,
+    role: "chapter-reviewer",
+    profileHash,
+    bin: { path: "codex", version: cliVersion },
+    argv: [
+      "exec", "--sandbox", "read-only", "--skip-git-repo-check",
+      "--ignore-user-config", "--ignore-rules", "-c", "project_doc_max_bytes=0",
+      "-c", `model=${request.model}`, "-c", `model_reasoning_effort=${request.effort}`,
+      "--output-schema", schemaPath, "--output-last-message", lastMessagePath,
+      `<task-sha256:${sha256Hex(request.task)}>`,
+    ],
+    cwd: workspaceDir,
+    cwdPolicy: "isolated-workspace",
+    envKeys,
+    callerEnvKeys: [],
+    strictEnv: STRICT_PIPELINE_ENV,
+    codexHome: {
+      dir: codexHomeDir,
+      authMaterial: "auth.json",
+      authSourcePath: resolve(liveDir, "fixture-auth-source", "auth.json"),
+    },
+    instructionSources: [],
+    workspace: {
+      dir: workspaceDir,
+      files: [{
+        relPath: `evidence/${request.caseId}.review-evidence-envelope-v1.json`,
+        sha256: request.evidenceEnvelopeBytesSha256,
+        bytes: Buffer.byteLength(request.evidenceEnvelopeBytes),
+      }],
+    },
+    model: request.model,
+    reasoningEffort: request.effort,
+    sandbox: "read-only",
+    timeoutMs: 900_000,
+    taskSha256: sha256Hex(request.task),
+    taskBytes: Buffer.byteLength(request.task),
+    qualification: { cliVersion, flagsRequired: [...profile.requiredCliFlags], synthetic: false },
+    createdAtIso: "2026-07-13T12:00:00.000Z",
+  });
+  writePrettyJson(routePath, {
+    schema: "route-result-v1",
+    taskClass: resolvedRoute.taskClass,
+    profileName: resolvedRoute.profileName,
+    routePolicyVersion: resolvedRoute.routePolicyVersion,
+    requestedModel: request.model,
+    requestedEffort: request.effort,
+    aliasOrSnapshot: resolvedRoute.model,
+    executionProfileHash: profileHash,
+    cliVersion,
+    outcome: "content_completed",
+    executionRoute: "codex_exec_chatgpt_subscription",
+    authMode: "chatgpt",
+    apiKeyPresent: false,
+    apiFallbackAllowed: false,
+    driftFingerprint: routeDriftFingerprint({
+      model: resolvedRoute.model,
+      effort: resolvedRoute.effort,
+      taskClass: resolvedRoute.taskClass,
+      routePolicyVersion: resolvedRoute.routePolicyVersion,
+      executionProfileHash: profileHash,
+      cliVersion,
+    }),
+  });
+  writePrettyJson(structuredPath, {
+    schema: "structured-output-sidecar-v1",
+    sessionId,
+    outputSchemaPath: schemaPath,
+    outputSchemaSha256: request.schemaSha256,
+    rawFinalMessageSha256: sha256Hex(rawOutput),
+    rawFinalMessageBytes: Buffer.byteLength(rawOutput),
+    parsedOk: true,
+  });
+  writePrettyJson(resultPath, {
+    schema: "exec-result-v1",
+    sessionId,
+    exitCode: 0,
+    ok: true,
+    durationMs: 1,
+    stdoutSha256: sha256Hex(rawOutput),
+    stdoutBytes: Buffer.byteLength(rawOutput),
+    stderrSha256: sha256Hex(""),
+    stderrBytes: 0,
+    finalMessageSource: "output-file",
+    finalMessageSha256: sha256Hex(rawOutput),
+    endedAtIso: "2026-07-13T12:00:00.001Z",
+  });
+  return buildLiveAttemptExecutionEvidenceV3({
+    phaseDir: liveDir,
+    request,
+    receipt,
+    plannedSessionId: sessionId,
+    boundary: {
+      sessionId,
+      manifestPath,
+      schemaBound: true,
+      outputSchemaPath: schemaPath,
+      outputSchemaSha256: request.schemaSha256,
+    },
+    result: {
+      ok: true,
+      exitCode: 0,
+      finalMessage: rawOutput,
+      stdout: rawOutput,
+      stderr: "",
+      durationMs: 1,
+      sessionId,
+      finalMessageSource: "output-file",
+      manifestPath,
+    },
+  });
+}
+
+function persistQualificationAttempt(liveDir: string, attempt: QualificationAttemptV3): LiveAttemptExecutionEvidenceV3 {
+  assert.ok(attempt.receipt, `${attempt.request.attemptId} must retain its receipt`);
+  const attemptDir = resolve(liveDir, "attempts", attempt.request.attemptId);
+  writePrettyJson(resolve(attemptDir, "request.json"), attempt.request);
+  mkdirSync(attemptDir, { recursive: true });
+  writeFileSync(resolve(attemptDir, "evidence-envelope.json"), attempt.request.evidenceEnvelopeBytes);
+  writePrettyJson(resolve(attemptDir, "receipt.json"), attempt.receipt);
+  const executionEvidence = persistQualificationExecutionEvidence(liveDir, attempt);
+  writePrettyJson(resolve(attemptDir, "execution-evidence.json"), executionEvidence);
+  const retentionCore: Omit<LiveAttemptRetentionV3, "retentionSha256"> = {
+    schema: IMP24_LIVE_ATTEMPT_RETENTION_SCHEMA,
+    requestSha256: attempt.request.requestSha256,
+    receiptSha256: attempt.receipt.receiptSha256,
+    evidenceEnvelopeSha256: attempt.request.evidenceEnvelopeSha256,
+    evidenceEnvelopeBytesSha256: attempt.request.evidenceEnvelopeBytesSha256,
+    executionEvidenceSha256: executionEvidence.executionEvidenceSha256,
+    request: attempt.request,
+    receipt: attempt.receipt,
+  };
+  writePrettyJson(resolve(attemptDir, "retention.json"), {
+    ...retentionCore,
+    retentionSha256: hashCanonical(retentionCore),
+  });
+  writePrettyJson(resolve(attemptDir, "evaluation.json"), buildAttemptEvaluationArtifact(
+    attempt,
+    executionEvidence.executionEvidenceSha256,
+  ));
+  return executionEvidence;
+}
 
 function persistQualificationEvidenceFixture(args: {
   experimentDir: string;
@@ -279,26 +476,9 @@ function persistQualificationEvidenceFixture(args: {
   writeJson(roleRegistryPath, args.result.registry);
   writeJson(roleAssignmentFreezePath, args.roleAssignmentFreeze);
 
+  const executionEvidenceByAttempt = new Map<string, LiveAttemptExecutionEvidenceV3>();
   for (const attempt of args.result.attempts) {
-    assert.ok(attempt.receipt, `${attempt.request.attemptId} must retain its receipt`);
-    const attemptDir = resolve(liveDir, "attempts", attempt.request.attemptId);
-    const retentionCore: Omit<LiveAttemptRetentionV3, "retentionSha256"> = {
-      schema: IMP24_LIVE_ATTEMPT_RETENTION_SCHEMA,
-      requestSha256: attempt.request.requestSha256,
-      receiptSha256: attempt.receipt.receiptSha256,
-      evidenceEnvelopeSha256: attempt.request.evidenceEnvelopeSha256,
-      evidenceEnvelopeBytesSha256: attempt.request.evidenceEnvelopeBytesSha256,
-      request: attempt.request,
-      receipt: attempt.receipt,
-    };
-    writePrettyJson(resolve(attemptDir, "request.json"), attempt.request);
-    mkdirSync(attemptDir, { recursive: true });
-    writeFileSync(resolve(attemptDir, "evidence-envelope.json"), attempt.request.evidenceEnvelopeBytes);
-    writePrettyJson(resolve(attemptDir, "receipt.json"), attempt.receipt);
-    writePrettyJson(resolve(attemptDir, "retention.json"), {
-      ...retentionCore,
-      retentionSha256: hashCanonical(retentionCore),
-    });
+    executionEvidenceByAttempt.set(attempt.request.attemptId, persistQualificationAttempt(liveDir, attempt));
   }
 
   const ledger: LiveCallLedgerV3 = {
@@ -307,18 +487,26 @@ function persistQualificationEvidenceFixture(args: {
     freezeSha256: args.result.freeze.freezeSha256,
     certificationSha256: args.result.freeze.certificationSha256,
     productionInstrumentSealSha256: args.result.freeze.productionInstrumentSealSha256,
-    entries: args.result.attempts.map((attempt, ordinal) => ({
+    entries: args.result.attempts.map((attempt, ordinal) => {
+      const executionEvidence = executionEvidenceByAttempt.get(attempt.request.attemptId)!;
+      return {
       attemptId: attempt.request.attemptId,
       scheduleId: attempt.request.scheduleId,
       requestSha256: attempt.request.requestSha256,
       evidenceEnvelopeSha256: attempt.request.evidenceEnvelopeSha256,
       evidenceEnvelopeBytesSha256: attempt.request.evidenceEnvelopeBytesSha256,
       receiptSha256: attempt.receipt!.receiptSha256,
+      executionEvidenceSha256: executionEvidence.executionEvidenceSha256,
+      evaluationArtifactSha256: buildAttemptEvaluationArtifact(
+        attempt,
+        executionEvidence.executionEvidenceSha256,
+      ).evaluationArtifactSha256,
       status: attempt.receipt!.status,
       cached: false,
       requestedAt: new Date(Date.parse("2026-07-13T12:02:00.000Z") + ordinal * 2).toISOString(),
       completedAt: new Date(Date.parse("2026-07-13T12:02:00.000Z") + ordinal * 2 + 1).toISOString(),
-    })),
+      };
+    }),
     brokerRequests: args.result.totalAttempts,
     codexExecInvocations: args.result.totalAttempts,
     cachedReceipts: 0,
@@ -559,11 +747,12 @@ async function qualificationFixture(): Promise<ActivationQualificationFixture> {
       qualificationPreflight,
       input,
       evaluateOutput: evaluator.evaluateOutput,
+      fixtureOutputByCaseId: evaluator.fixtureOutputByCaseId,
       qualificationExperimentDir,
       retainedQualificationEvidence,
     };
   })();
-  return qualificationFixturePromise;
+  return qualificationFixturePromise!;
 }
 
 function chapterKey(target: { bookId: string; chapterNumber: number }): string {
@@ -1674,7 +1863,61 @@ function copyQualificationExperiment(
   const roots = mkTestRoots(label);
   const experimentDir = resolve(roots.base, "qualification-experiment");
   cpSync(fixture.qualificationExperimentDir, experimentDir, { recursive: true });
+  rebaseQualificationExecutionEvidence(fixture.qualificationExperimentDir, experimentDir);
   return { experimentDir, dispose: roots.dispose };
+}
+
+function rebaseQualificationExecutionEvidence(originalExperimentDir: string, copiedExperimentDir: string): void {
+  const originalLiveDir = resolve(originalExperimentDir, "live");
+  const copiedLiveDir = resolve(copiedExperimentDir, "live");
+  const ledgerPath = resolve(copiedLiveDir, "call-ledger.json");
+  const ledger = readJson<LiveCallLedgerV3>(ledgerPath);
+  for (const entry of ledger.entries) {
+    const attemptDir = resolve(copiedLiveDir, "attempts", entry.attemptId);
+    const executionEvidencePath = resolve(attemptDir, "execution-evidence.json");
+    const executionEvidence = readJson<LiveAttemptExecutionEvidenceV3>(executionEvidencePath);
+    assert.ok(executionEvidence.effectiveContextManifest);
+    const manifestPath = resolve(copiedLiveDir, executionEvidence.effectiveContextManifest.relPath);
+    const manifest = readJson<Record<string, any>>(manifestPath);
+    const rebasePath = (value: string): string => {
+      assert.ok(value.startsWith(originalLiveDir), `fixture path ${value} must be rooted in ${originalLiveDir}`);
+      return `${copiedLiveDir}${value.slice(originalLiveDir.length)}`;
+    };
+    manifest.cwd = rebasePath(manifest.cwd);
+    manifest.codexHome.dir = rebasePath(manifest.codexHome.dir);
+    manifest.codexHome.authSourcePath = rebasePath(manifest.codexHome.authSourcePath);
+    manifest.workspace.dir = rebasePath(manifest.workspace.dir);
+    manifest.argv = manifest.argv.map((arg: string) => arg.startsWith(originalLiveDir) ? rebasePath(arg) : arg);
+    writePrettyJson(manifestPath, manifest);
+    executionEvidence.effectiveContextManifest.bytes = readFileSync(manifestPath).length;
+    executionEvidence.effectiveContextManifest.bytesSha256 = sha256Hex(readFileSync(manifestPath));
+    const { executionEvidenceSha256: _oldExecutionEvidenceSha256, ...executionEvidenceCore } = executionEvidence;
+    executionEvidence.executionEvidenceSha256 = hashCanonical(executionEvidenceCore);
+    writePrettyJson(executionEvidencePath, executionEvidence);
+
+    const retentionPath = resolve(attemptDir, "retention.json");
+    const retention = readJson<LiveAttemptRetentionV3>(retentionPath);
+    retention.executionEvidenceSha256 = executionEvidence.executionEvidenceSha256;
+    const { retentionSha256: _oldRetentionSha256, ...retentionCore } = retention;
+    retention.retentionSha256 = hashCanonical(retentionCore);
+    writePrettyJson(retentionPath, retention);
+
+    const evaluationPath = resolve(attemptDir, "evaluation.json");
+    const evaluation = readJson<LiveAttemptEvaluationV3>(evaluationPath);
+    evaluation.executionEvidenceSha256 = executionEvidence.executionEvidenceSha256;
+    const { evaluationArtifactSha256: _oldEvaluationArtifactSha256, ...evaluationCore } = evaluation;
+    evaluation.evaluationArtifactSha256 = hashCanonical(evaluationCore);
+    writePrettyJson(evaluationPath, evaluation);
+    entry.executionEvidenceSha256 = executionEvidence.executionEvidenceSha256;
+    entry.evaluationArtifactSha256 = evaluation.evaluationArtifactSha256;
+  }
+  writeJson(ledgerPath, ledger);
+  const reportPath = resolve(copiedExperimentDir, "qualification-report.json");
+  const report = readJson<Imp24RoleQualificationCampaignReportV1>(reportPath);
+  report.artifactBytesSha256.callLedger = sha256Hex(readFileSync(ledgerPath));
+  const { reportSha256: _oldReportSha256, ...reportCore } = report;
+  report.reportSha256 = hashCanonical(reportCore);
+  writeJson(reportPath, report);
 }
 
 function verifyQualificationCopy(
@@ -1691,7 +1934,357 @@ function verifyQualificationCopy(
   });
 }
 
-test("retained qualification verifier rejects a missing ledger and a missing retained attempt", async () => {
+test("retained qualification persists full parsed, assembled, and explicit reference-resolution evidence for every role", async () => {
+  const fixture = await qualificationFixture();
+  for (const role of ROLES) {
+    const roleAttempts = fixture.current.result.attempts.filter((attempt) => attempt.request.role === role);
+    assert.ok(roleAttempts.length > 0, `${role} fixture must retain completed attempts`);
+    let explicitResolutionBindings = 0;
+    for (const attempt of roleAttempts) {
+      const artifact = readJson<LiveAttemptEvaluationV3>(resolve(
+        fixture.qualificationExperimentDir,
+        "live",
+        "attempts",
+        attempt.request.attemptId,
+        "evaluation.json",
+      ));
+      assert.ok(artifact.evaluation?.parsedOutput !== null && typeof artifact.evaluation?.parsedOutput === "object",
+        `${role}/${attempt.request.caseId} must retain the full parsed V2 model object`);
+      assert.ok(artifact.evaluation?.assembledReview !== null && typeof artifact.evaluation?.assembledReview === "object",
+        `${role}/${attempt.request.caseId} must retain the full conductor-owned V2 assembly`);
+      assert.equal(artifact.evaluation?.evidenceReferenceResolution.status, "RESOLVED");
+      explicitResolutionBindings += artifact.evaluation?.evidenceReferenceResolution.bindings.length ?? 0;
+      assert.equal(artifact.parsedOutputSha256, hashCanonical(artifact.evaluation!.parsedOutput));
+      assert.equal(artifact.assembledReviewSha256, hashCanonical(artifact.evaluation!.assembledReview));
+      assert.equal(artifact.evidenceReferenceResolutionSha256,
+        hashCanonical(artifact.evaluation!.evidenceReferenceResolution));
+    }
+    assert.ok(explicitResolutionBindings > 0,
+      `${role} fixture must include a valid derivation with nonempty explicit ref/span bindings`);
+  }
+});
+
+test("whole-phase resume audit accepts the exact canonical terminal ledger/result without spawning", async () => {
+  const fixture = await qualificationFixture();
+  const roots = mkTestRoots("imp24-v3-terminal-resume-audit");
+  const ledgerPath = resolve(fixture.qualificationExperimentDir, "live", "call-ledger.json");
+  const canonicalLedgerBytes = readFileSync(ledgerPath);
+  let spawnCalls = 0;
+  try {
+    const live = createLiveQualificationExecutorV3({
+      phaseDir: resolve(fixture.qualificationExperimentDir, "live"),
+      freezeSha256: fixture.current.result.freeze.freezeSha256,
+      certificationSha256: fixture.current.result.freeze.certificationSha256,
+      productionInstrumentSealSha256: fixture.current.result.freeze.productionInstrumentSealSha256,
+      preCallVerifier: () => undefined,
+      workspaceBaseDir: roots.workspacesRoot,
+      spawn: async (options) => {
+        spawnCalls += 1;
+        return {
+          ok: true,
+          exitCode: 0,
+          finalMessage: "{}",
+          stdout: "{}",
+          stderr: "",
+          durationMs: 1,
+          sessionId: options.sessionId,
+          finalMessageSource: "output-file",
+        };
+      },
+    });
+    live.auditResume({
+      input: fixture.input,
+      freeze: fixture.current.result.freeze,
+      schedule: fixture.current.result.schedule,
+      evaluateOutput: fixture.evaluateOutput,
+    });
+    assert.equal(spawnCalls, 0);
+    assert.equal(live.ledger.codexExecInvocations, fixture.current.result.totalAttempts);
+    writePrettyJson(ledgerPath, live.ledger);
+    live.auditResume({
+      input: fixture.input,
+      freeze: fixture.current.result.freeze,
+      schedule: fixture.current.result.schedule,
+      evaluateOutput: fixture.evaluateOutput,
+    });
+    assert.equal(spawnCalls, 0, "the exact live pretty-ledger serialization must also audit without spawning");
+  } finally {
+    writeFileSync(ledgerPath, canonicalLedgerBytes);
+    roots.dispose();
+  }
+});
+
+test("whole-phase resume audit rejects a later-candidate orphan with a missing earlier batch prefix before spawn", async () => {
+  const fixture = await qualificationFixture();
+  const copy = copyQualificationExperiment(fixture, "imp24-v3-unreachable-retained-attempt");
+  const roots = mkTestRoots("imp24-v3-unreachable-retained-attempt-workspaces");
+  let spawnCalls = 0;
+  try {
+    const liveDir = resolve(copy.experimentDir, "live");
+    const skippedEntry = fixture.current.result.schedule.find((entry) => entry.role === "reader"
+      && entry.candidateOrdinal === 2
+      && entry.partition === "canary");
+    assert.ok(skippedEntry, "fixture must expose the first sequentially skipped reader candidate");
+    const prepared = fixture.input.preparedCases.reader.canary[skippedEntry.caseOrdinal];
+    const candidate = IMP24_ROLE_CANDIDATE_ORDER.reader[skippedEntry.candidateOrdinal];
+    const request = buildQualificationExecutionRequestV3(
+      skippedEntry,
+      prepared,
+      candidate,
+      fixture.current.result.freeze,
+      1,
+      null,
+    );
+    const receipt = qualificationReceipt(request, fixture.fixtureOutputByCaseId[request.caseId]!);
+    const orphan = assembleQualificationAttemptV3({
+      scheduleOrdinal: skippedEntry.ordinal,
+      preparedCase: prepared,
+      request,
+      receipt,
+      evaluateOutput: fixture.evaluateOutput,
+    });
+    assert.equal(orphan.protocolValid, true);
+    const orphanExecutionEvidence = persistQualificationAttempt(liveDir, orphan);
+
+    const removedEarlier = fixture.current.result.attempts[0];
+    const removedExecutionEvidence = readJson<LiveAttemptExecutionEvidenceV3>(resolve(
+      liveDir,
+      "attempts",
+      removedEarlier.request.attemptId,
+      "execution-evidence.json",
+    ));
+    for (const binding of [
+      removedExecutionEvidence.effectiveContextManifest,
+      removedExecutionEvidence.routeSidecar,
+      removedExecutionEvidence.structuredOutputSidecar,
+      removedExecutionEvidence.resultSidecar,
+    ]) {
+      if (binding) rmSync(resolve(liveDir, binding.relPath));
+    }
+    rmSync(resolve(liveDir, "attempts", removedEarlier.request.attemptId), { recursive: true, force: true });
+    rmSync(resolve(liveDir, "qualification-result.json"));
+    rmSync(resolve(liveDir, "role-registry.json"));
+    const ledgerPath = resolve(liveDir, "call-ledger.json");
+    const ledger = readJson<LiveCallLedgerV3>(ledgerPath);
+    ledger.entries = ledger.entries.filter((entry) => entry.attemptId !== removedEarlier.request.attemptId);
+    const orphanArtifact = buildAttemptEvaluationArtifact(
+      orphan,
+      orphanExecutionEvidence.executionEvidenceSha256,
+    );
+    ledger.entries.push({
+      attemptId: request.attemptId,
+      scheduleId: request.scheduleId,
+      requestSha256: request.requestSha256,
+      evidenceEnvelopeSha256: request.evidenceEnvelopeSha256,
+      evidenceEnvelopeBytesSha256: request.evidenceEnvelopeBytesSha256,
+      receiptSha256: receipt.receiptSha256,
+      executionEvidenceSha256: orphanExecutionEvidence.executionEvidenceSha256,
+      evaluationArtifactSha256: orphanArtifact.evaluationArtifactSha256,
+      status: receipt.status,
+      cached: false,
+      requestedAt: "2026-07-13T13:00:00.000Z",
+      completedAt: "2026-07-13T13:00:00.001Z",
+    });
+    ledger.brokerRequests = ledger.entries.length;
+    ledger.codexExecInvocations = ledger.entries.length;
+    ledger.cachedReceipts = ledger.entries.filter((entry) => entry.cached).length;
+    ledger.infrastructureReplays = ledger.entries.filter((entry) => entry.attemptId.endsWith("-a2")).length;
+    writeJson(ledgerPath, ledger);
+
+    const live = createLiveQualificationExecutorV3({
+      phaseDir: liveDir,
+      freezeSha256: fixture.current.result.freeze.freezeSha256,
+      certificationSha256: fixture.current.result.freeze.certificationSha256,
+      productionInstrumentSealSha256: fixture.current.result.freeze.productionInstrumentSealSha256,
+      preCallVerifier: () => undefined,
+      workspaceBaseDir: roots.workspacesRoot,
+      spawn: async (options) => {
+        spawnCalls += 1;
+        return {
+          ok: true,
+          exitCode: 0,
+          finalMessage: "{}",
+          stdout: "{}",
+          stderr: "",
+          durationMs: 1,
+          sessionId: options.sessionId,
+          finalMessageSource: "output-file",
+        };
+      },
+    });
+    await assert.rejects((async () => {
+      live.auditResume({
+        input: fixture.input,
+        freeze: fixture.current.result.freeze,
+        schedule: fixture.current.result.schedule,
+        evaluateOutput: fixture.evaluateOutput,
+      });
+      return runRoleQualificationV3(fixture.input, {
+        executor: live.executor,
+        evaluateOutput: fixture.evaluateOutput,
+        retainAttemptEvaluation: live.retainAttemptEvaluation,
+      });
+    })(), /retained base attempts are not an exact frozen batch prefix/);
+    assert.equal(spawnCalls, 0,
+      "an earlier absent canary must not spawn while a later-candidate orphan is retained");
+    assert.equal(live.ledger.codexExecInvocations, ledger.codexExecInvocations);
+  } finally {
+    roots.dispose();
+    copy.dispose();
+  }
+});
+
+test("whole-phase resume audit rejects an intra-holdout orphan outside the exact frozen batch prefix", async () => {
+  const fixture = await qualificationFixture();
+  const copy = copyQualificationExperiment(fixture, "imp24-v3-intra-holdout-orphan");
+  const roots = mkTestRoots("imp24-v3-intra-holdout-orphan-workspaces");
+  let spawnCalls = 0;
+  try {
+    const liveDir = resolve(copy.experimentDir, "live");
+    const readerCanaries = fixture.current.result.schedule.filter((entry) => entry.role === "reader"
+      && entry.candidateOrdinal === 0
+      && entry.partition === "canary");
+    const readerHoldout = fixture.current.result.schedule.filter((entry) => entry.role === "reader"
+      && entry.candidateOrdinal === 0
+      && entry.partition === "holdout");
+    assert.equal(readerCanaries.length, 2);
+    assert.ok(readerHoldout.length > 2);
+    const laterOrphan = readerHoldout[1];
+    const retainedScheduleIds = new Set([
+      ...readerCanaries.map((entry) => entry.scheduleId),
+      laterOrphan.scheduleId,
+    ]);
+
+    // Retain the complete canary gate plus holdout index 1, but remove holdout
+    // index 0 and every later campaign attempt. Such a set cannot arise from
+    // mapPool's monotonic base-entry traversal and must not authorize a fresh
+    // replacement call for the missing earlier judgment.
+    for (const attempt of fixture.current.result.attempts) {
+      if (retainedScheduleIds.has(attempt.request.scheduleId)) continue;
+      rmSync(resolve(liveDir, "attempts", attempt.request.attemptId), { recursive: true, force: true });
+    }
+    rmSync(resolve(liveDir, "qualification-result.json"));
+    rmSync(resolve(liveDir, "role-registry.json"));
+    const ledgerPath = resolve(liveDir, "call-ledger.json");
+    const ledger = readJson<LiveCallLedgerV3>(ledgerPath);
+    ledger.entries = ledger.entries.filter((entry) => retainedScheduleIds.has(entry.scheduleId));
+    ledger.brokerRequests = ledger.entries.length;
+    ledger.codexExecInvocations = ledger.entries.filter((entry) => entry.status === "completed").length;
+    ledger.cachedReceipts = ledger.entries.filter((entry) => entry.cached).length;
+    ledger.infrastructureReplays = ledger.entries.filter((entry) => entry.attemptId.endsWith("-a2")).length;
+    writeJson(ledgerPath, ledger);
+
+    const live = createLiveQualificationExecutorV3({
+      phaseDir: liveDir,
+      freezeSha256: fixture.current.result.freeze.freezeSha256,
+      certificationSha256: fixture.current.result.freeze.certificationSha256,
+      productionInstrumentSealSha256: fixture.current.result.freeze.productionInstrumentSealSha256,
+      preCallVerifier: () => undefined,
+      workspaceBaseDir: roots.workspacesRoot,
+      spawn: async (options) => {
+        spawnCalls += 1;
+        return {
+          ok: true,
+          exitCode: 0,
+          finalMessage: "{}",
+          stdout: "{}",
+          stderr: "",
+          durationMs: 1,
+          sessionId: options.sessionId,
+          finalMessageSource: "output-file",
+        };
+      },
+    });
+    assert.throws(() => live.auditResume({
+      input: fixture.input,
+      freeze: fixture.current.result.freeze,
+      schedule: fixture.current.result.schedule,
+      evaluateOutput: fixture.evaluateOutput,
+    }), /retained base attempts are not an exact frozen batch prefix/);
+    assert.equal(spawnCalls, 0,
+      "an intra-batch orphan must fail the whole-phase barrier before the missing earlier holdout can spawn");
+  } finally {
+    roots.dispose();
+    copy.dispose();
+  }
+});
+
+test("whole-phase resume audit rejects a rehashed receipt execution-id substitution at zero calls", async () => {
+  const fixture = await qualificationFixture();
+  const copy = copyQualificationExperiment(fixture, "imp24-v3-duplicate-execution-id");
+  const roots = mkTestRoots("imp24-v3-duplicate-execution-id-workspaces");
+  let spawnCalls = 0;
+  try {
+    const liveDir = resolve(copy.experimentDir, "live");
+    rmSync(resolve(liveDir, "qualification-result.json"));
+    rmSync(resolve(liveDir, "role-registry.json"));
+    const [firstAttempt, secondAttempt] = fixture.current.result.attempts;
+    assert.ok(firstAttempt.receipt && secondAttempt.receipt);
+    const secondDir = resolve(liveDir, "attempts", secondAttempt.request.attemptId);
+    const receiptPath = resolve(secondDir, "receipt.json");
+    const retentionPath = resolve(secondDir, "retention.json");
+    const evaluationPath = resolve(secondDir, "evaluation.json");
+    const receipt = readJson<QualificationExecutionReceiptV3>(receiptPath);
+    receipt.executionId = firstAttempt.receipt.executionId;
+    const { receiptSha256: _oldReceiptSha256, ...receiptCore } = receipt;
+    receipt.receiptSha256 = qualificationReceiptSha256(receiptCore);
+    const retention = readJson<LiveAttemptRetentionV3>(retentionPath);
+    retention.receiptSha256 = receipt.receiptSha256;
+    retention.receipt = receipt;
+    const { retentionSha256: _oldRetentionSha256, ...retentionCore } = retention;
+    retention.retentionSha256 = hashCanonical(retentionCore);
+    const evaluation = readJson<LiveAttemptEvaluationV3>(evaluationPath);
+    evaluation.receiptSha256 = receipt.receiptSha256;
+    const { evaluationArtifactSha256: _oldEvaluationSha256, ...evaluationCore } = evaluation;
+    evaluation.evaluationArtifactSha256 = hashCanonical(evaluationCore);
+    writePrettyJson(receiptPath, receipt);
+    writePrettyJson(retentionPath, retention);
+    writePrettyJson(evaluationPath, evaluation);
+
+    const ledgerPath = resolve(liveDir, "call-ledger.json");
+    const ledger = readJson<LiveCallLedgerV3>(ledgerPath);
+    const secondEntry = ledger.entries.find((entry) => entry.attemptId === secondAttempt.request.attemptId);
+    assert.ok(secondEntry);
+    secondEntry.receiptSha256 = receipt.receiptSha256;
+    secondEntry.evaluationArtifactSha256 = evaluation.evaluationArtifactSha256;
+    writeJson(ledgerPath, ledger);
+
+    const live = createLiveQualificationExecutorV3({
+      phaseDir: liveDir,
+      freezeSha256: fixture.current.result.freeze.freezeSha256,
+      certificationSha256: fixture.current.result.freeze.certificationSha256,
+      productionInstrumentSealSha256: fixture.current.result.freeze.productionInstrumentSealSha256,
+      preCallVerifier: () => undefined,
+      workspaceBaseDir: roots.workspacesRoot,
+      spawn: async (options) => {
+        spawnCalls += 1;
+        return {
+          ok: true,
+          exitCode: 0,
+          finalMessage: "{}",
+          stdout: "{}",
+          stderr: "",
+          durationMs: 1,
+          sessionId: options.sessionId,
+          finalMessageSource: "output-file",
+        };
+      },
+    });
+    assert.throws(() => live.auditResume({
+      input: fixture.input,
+      freeze: fixture.current.result.freeze,
+      schedule: fixture.current.result.schedule,
+      evaluateOutput: fixture.evaluateOutput,
+    }), /execution evidence identity\/request\/receipt binding drift/);
+    assert.equal(spawnCalls, 0);
+    assert.equal(live.ledger.codexExecInvocations, fixture.current.result.totalAttempts);
+  } finally {
+    roots.dispose();
+    copy.dispose();
+  }
+});
+
+test("retained qualification verifier rejects a missing ledger and missing or extra per-attempt evidence", async () => {
   const fixture = await qualificationFixture();
   const missingLedger = copyQualificationExperiment(fixture, "imp24-v3-qualification-missing-ledger");
   try {
@@ -1713,6 +2306,57 @@ test("retained qualification verifier rejects a missing ledger and a missing ret
       /retained attempt has missing or extra evidence files/);
   } finally {
     missingAttempt.dispose();
+  }
+
+  const missingEvaluation = copyQualificationExperiment(fixture, "imp24-v3-qualification-missing-evaluation");
+  try {
+    const attemptId = fixture.current.result.attempts[0].request.attemptId;
+    rmSync(resolve(missingEvaluation.experimentDir, "live", "attempts", attemptId, "evaluation.json"));
+    assert.throws(() => verifyQualificationCopy(fixture, missingEvaluation.experimentDir),
+      /retained attempt has missing or extra evidence files/);
+  } finally {
+    missingEvaluation.dispose();
+  }
+
+  const extraEvidence = copyQualificationExperiment(fixture, "imp24-v3-qualification-extra-evidence");
+  try {
+    const attemptId = fixture.current.result.attempts[0].request.attemptId;
+    writeFileSync(resolve(extraEvidence.experimentDir, "live", "attempts", attemptId, "unexpected.json"), "{}\n");
+    assert.throws(() => verifyQualificationCopy(fixture, extraEvidence.experimentDir),
+      /retained attempt has missing or extra evidence files/);
+  } finally {
+    extraEvidence.dispose();
+  }
+});
+
+test("retained qualification verifier rejects self-rehashed evaluation-reference drift", async () => {
+  const fixture = await qualificationFixture();
+  const copy = copyQualificationExperiment(fixture, "imp24-v3-qualification-evaluation-reference-drift");
+  try {
+    const attempt = fixture.current.result.attempts[0];
+    const attemptDir = resolve(copy.experimentDir, "live", "attempts", attempt.request.attemptId);
+    const evaluationPath = resolve(attemptDir, "evaluation.json");
+    const artifact = readJson<LiveAttemptEvaluationV3>(evaluationPath);
+    assert.ok(artifact.evaluation?.evidenceReferenceResolution.bindings[0]);
+    artifact.evaluation.evidenceReferenceResolution.bindings[0].evidenceSpans[0] =
+      `${artifact.evaluation.evidenceReferenceResolution.bindings[0].evidenceSpans[0]} self-rehashed drift`;
+    artifact.evidenceReferenceResolutionSha256 = hashCanonical(artifact.evaluation.evidenceReferenceResolution);
+    artifact.evaluationSha256 = hashCanonical(artifact.evaluation);
+    const { evaluationArtifactSha256: _oldArtifactSha256, ...artifactCore } = artifact;
+    artifact.evaluationArtifactSha256 = hashCanonical(artifactCore);
+    writePrettyJson(evaluationPath, artifact);
+
+    const ledgerPath = resolve(copy.experimentDir, "live", "call-ledger.json");
+    const ledger = readJson<LiveCallLedgerV3>(ledgerPath);
+    const entry = ledger.entries.find((candidate) => candidate.attemptId === attempt.request.attemptId);
+    assert.ok(entry);
+    entry.evaluationArtifactSha256 = artifact.evaluationArtifactSha256;
+    writeJson(ledgerPath, ledger);
+
+    assert.throws(() => verifyQualificationCopy(fixture, copy.experimentDir),
+      /parsed output\/conductor assembly\/reference resolution differs from exact recomputation/);
+  } finally {
+    copy.dispose();
   }
 });
 

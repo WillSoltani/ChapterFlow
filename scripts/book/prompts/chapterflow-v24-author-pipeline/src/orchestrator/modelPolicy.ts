@@ -316,6 +316,24 @@ export function routeDriftFingerprint(args: {
  *  IMP-11/IMP-13 calibrate the markers from real observed events. */
 export const SAFEGUARD_MARKERS: readonly string[] = [];
 
+/** Narrow explicit refusal classifier shared by route provenance and the
+ * reviewer adapter. This does not populate the uncalibrated provider-marker
+ * registry: it recognizes only direct refusal declarations in the final text
+ * or the already-frozen explicit transport phrases. */
+export function explicitRefusalSignal(args: {
+  finalMessage?: string;
+  transport?: string;
+}): string | null {
+  const final = (args.finalMessage ?? "").trim();
+  if (/^(?:i(?:'m| am) sorry\b[\s\S]{0,160}\b(?:cannot|can't|unable|won't)|i (?:cannot|can't|am unable|won't)\b|unable to comply\b|request (?:was )?refused\b)/i.test(final)) {
+    return "final output is a refusal";
+  }
+  if (/\b(?:provider safeguard|safeguard triggered|safety refusal|policy refusal|refused by (?:the )?provider)\b/i.test(args.transport ?? "")) {
+    return "provider reported a safeguard/refusal";
+  }
+  return null;
+}
+
 export const RATE_MARKERS: readonly string[] = ["rate limit", "429", "capacity", "overloaded"];
 
 /** Classify a spawn-layer provider outcome. DISJOINT by construction; the
@@ -334,6 +352,9 @@ export function classifyProviderOutcome(result: {
     return "infrastructure_failure";
   }
   const haystack = `${result.stderr ?? ""}\n${result.finalMessage ?? ""}`.toLowerCase();
+  if (explicitRefusalSignal({ finalMessage: result.finalMessage, transport: haystack }) !== null) {
+    return "provider_safeguard_or_refusal";
+  }
   if (SAFEGUARD_MARKERS.some((m) => haystack.includes(m.toLowerCase()))) return "provider_safeguard_or_refusal";
   if ((result.exitCode ?? 0) !== 0 && RATE_MARKERS.some((m) => haystack.includes(m))) return "provider_rate_or_capacity";
   if ((result.exitCode ?? 0) !== 0) return "infrastructure_failure";

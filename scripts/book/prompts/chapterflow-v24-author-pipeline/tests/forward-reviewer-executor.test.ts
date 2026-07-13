@@ -379,11 +379,22 @@ test("nonzero, safeguard/refusal, and missing final output all fail closed and c
       {
         name: "nonzero",
         result: (options) => ({ ...okResult(options), ok: false, exitCode: 7, stderr: "worker failed" }),
-        expected: /codex exec failed/,
+        expected: /nonzero codex exec produced authoritative or unclassified final output/,
       },
       {
         name: "refusal",
         result: (options) => ({ ...okResult(options), finalMessage: "I cannot comply with this request.", stdout: "" }),
+        expected: /final output is a refusal/,
+      },
+      {
+        name: "nonzero-refusal",
+        result: (options) => ({
+          ...okResult(options),
+          ok: false,
+          exitCode: 7,
+          finalMessage: "I cannot comply with this request.",
+          stderr: "provider policy refusal",
+        }),
         expected: /final output is a refusal/,
       },
       {

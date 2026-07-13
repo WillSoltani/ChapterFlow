@@ -551,7 +551,7 @@ function implementationReport(args: {
       {
         requirementId: "IMP24B-R02-EXACT-IMPLEMENTATION-COMMIT-CI",
         status: "deferred",
-        deferredTo: "The normal implementation commit, push, dedicated V25 CI, and clean-checkout reconciliation that follow this pre-commit artifact freeze.",
+        deferredTo: "The effective corrected implementation checkpoint, normal push, dedicated V25 CI, and clean-checkout reconciliation that follow this pre-commit artifact freeze. Failed pre-live candidates are retained separately in the worktree ledger and do not satisfy this gate.",
       },
       {
         requirementId: "IMP24B-R03-V3-LIVE-ROLE-QUALIFICATION",
@@ -572,12 +572,13 @@ function implementationReport(args: {
     bookSpecificExceptions: [],
     unexpectedWrites: [],
     unresolvedRisks: [
-      "The exact implementation commit and dedicated V25 CI evidence do not exist until after this pre-live freeze is committed.",
+      "The effective corrected implementation checkpoint and its dedicated V25 CI evidence do not exist until after this pre-live freeze is committed; any earlier failed pre-live candidate is non-qualifying.",
       "No reviewer profile or role set is qualified by model-free certification alone.",
     ],
     dependencyAssumptions: [
       "The retained certification, production seal, parity proof, and corpus audits were revalidated from current repository bytes by the pre-live materializer.",
-      "Pre-commit implementation and evidence commit identities remain null because Git has not minted them yet.",
+      "The worktree ledger, rather than this deterministic materializer, retains local verification attempts and any failed pre-live candidate evidence.",
+      "The effective CI-green implementation checkpoint and evidence commit identities remain null because those qualifying lifecycle identities have not been minted yet.",
     ],
     branch: IMP24B_BRANCH,
     draftPr: IMP24B_DRAFT_PR,
@@ -585,7 +586,7 @@ function implementationReport(args: {
     startingRemoteHead: IMP24B_STARTING_HEAD,
     implementationCommit: null,
     evidenceCommit: null,
-    lifecycleNote: "Pre-commit Git identities do not yet exist; null is the truthful lifecycle value, not a placeholder.",
+    lifecycleNote: "No effective CI-green implementation checkpoint or evidence commit exists yet; null is the truthful qualifying lifecycle value, not a placeholder. Failed pre-live candidates remain recorded in the worktree ledger.",
     oldQualificationV1Closed: true,
     oldQualificationV2Closed: true,
     experimentId: IMP24_ROLE_QUALIFICATION_ID,
@@ -630,7 +631,7 @@ function implementationReport(args: {
     finalDecision: "INCONCLUSIVE",
     blockingIssues: ["V3_LIVE_ROLE_QUALIFICATION_NOT_YET_RUN"],
     remainingRisks: [
-      "The exact implementation commit and dedicated V25 CI evidence do not exist until after this pre-live freeze is committed.",
+      "The effective corrected implementation checkpoint and its dedicated V25 CI evidence do not exist until after this pre-live freeze is committed; any earlier failed pre-live candidate is non-qualifying.",
       "No reviewer profile or role set is qualified by model-free certification alone.",
     ],
   };

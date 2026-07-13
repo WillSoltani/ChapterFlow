@@ -27,6 +27,8 @@ import {
   completeKeyFreeReaderDocumentBytesV2,
   segmentCompleteKeyFreeReaderDocumentV2,
 } from "../../review/completeKeyFreeReaderDocumentV2.js";
+import { renderChapterReaderDocPhase1 } from "../../review/renderReaderDoc.js";
+import { validateChapterV21 } from "../../runtimeSchemas.js";
 import { resolveEvidenceRefIds } from "../../review/evidenceReferenceResolver.js";
 import {
   createReviewEvidenceEnvelope,
@@ -34,7 +36,7 @@ import {
   serializeReviewEvidenceEnvelope,
   type ReviewEvidenceSegmentInputV1,
 } from "../../review/reviewEvidenceEnvelope.js";
-import { admitChapter, resolveJsonPath } from "./nativeReviewQualification.js";
+import { chapterCompleteness, resolveJsonPath } from "./nativeReviewQualification.js";
 import {
   applyMutationOps,
   assertProtectedContentUnchanged,
@@ -1385,12 +1387,36 @@ function validateReaderQuizStructureA(item: Imp24ReaderCase, issues: string[]): 
   });
 }
 
+/** Pass A consumes only schema, render, and completeness admission. Keep that
+ * projection pure: the legacy admission helper also runs the ship gate, whose
+ * name-plan lookup can materialize canonical book-run pointers even though its
+ * ship verdict is intentionally unused by IMP-24 certification. */
+function imp24ReaderAdmission(chapter: Imp24ReaderCase["chapter"]): {
+  schemaOk: boolean;
+  renderOk: boolean;
+  complete: boolean;
+} {
+  const schema = validateChapterV21(chapter);
+  let renderOk = false;
+  try {
+    renderChapterReaderDocPhase1(schema.ok ? schema.value : chapter);
+    renderOk = true;
+  } catch {
+    renderOk = false;
+  }
+  return {
+    schemaOk: schema.ok,
+    renderOk,
+    complete: chapterCompleteness(chapter).length === 0,
+  };
+}
+
 function deriveReaderSemanticsA(
   item: Imp24ReaderCase,
   baseline: Imp24ReaderCase,
   issues: string[],
 ): Imp24DerivedReaderSemantics | null {
-  const admission = admitChapter(item.chapter);
+  const admission = imp24ReaderAdmission(item.chapter);
   addIssue(issues, admission.schemaOk && admission.renderOk && admission.complete,
     `${item.caseId}: pass A reader chapter is not complete/renderable/schema-valid`);
   const document = validateCompleteReaderDocumentA(item, issues);

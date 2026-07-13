@@ -43,6 +43,7 @@ import type {
 import {
   ROUTE_POLICY_VERSION,
   classifyProviderOutcome,
+  explicitRefusalSignal,
   resolveRoute,
 } from "./modelPolicy.js";
 import { FORWARD_REVIEW_EXECUTION_REQUEST_SCHEMA, FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA } from "./forwardChapterConductor.js";
@@ -274,15 +275,18 @@ function verifyWorkspaceManifest(workspace: ReviewerWorkspace, artifacts: readon
 }
 
 function refusalSignal(result: CodexAgentResult): string | null {
-  const final = typeof result.finalMessage === "string" ? result.finalMessage.trim() : "";
-  if (/^(?:i(?:'m| am) sorry\b[\s\S]{0,160}\b(?:cannot|can't|unable|won't)|i (?:cannot|can't|am unable|won't)\b|unable to comply\b|request (?:was )?refused\b)/i.test(final)) {
-    return "final output is a refusal";
-  }
-  const transport = `${result.stderr ?? ""}\n${result.stdout ?? ""}`;
-  if (/\b(?:provider safeguard|safeguard triggered|safety refusal|policy refusal|refused by (?:the )?provider)\b/i.test(transport)) {
-    return "provider reported a safeguard/refusal";
-  }
-  return null;
+  return explicitRefusalSignal({
+    finalMessage: result.finalMessage,
+    transport: `${result.stderr ?? ""}\n${result.stdout ?? ""}`,
+  });
+}
+
+function explicitTransientExecutionSignal(result: CodexAgentResult): boolean {
+  return explicitTransientTransportSignal(`${result.stderr ?? ""}\n${result.stdout ?? ""}`);
+}
+
+function explicitTransientTransportSignal(transport: string): boolean {
+  return /\b(?:econnreset|connection reset|socket hang up|transport (?:temporarily )?unavailable|stream disconnected|connection closed unexpectedly)\b/i.test(transport);
 }
 
 function validateSpawnResult(result: CodexAgentResult, sessionId: string): string {
@@ -292,7 +296,22 @@ function validateSpawnResult(result: CodexAgentResult, sessionId: string): strin
     `forward reviewer: spawn session mismatch (${String(result.sessionId)} != ${sessionId})`,
     "integrity_failure",
   );
+  // Explicit provider/model refusal text is a terminal content-route outcome
+  // even when codex exits nonzero. Detect it before generic transport
+  // classification so it can never become replay-eligible infrastructure.
+  const refusal = refusalSignal(result);
+  requireCondition(refusal === null, `forward reviewer: ${refusal}`, "refusal");
   if (result.ok !== true || result.exitCode !== 0) {
+    // A nonzero call that still produced an authoritative `-o` response is a
+    // terminal content/integrity result, never replayable infrastructure.
+    // Refusals were classified immediately above. Only the narrow diagnostic
+    // stdout fallback lane may qualify as provider capacity/transport.
+    if (result.finalMessageSource !== "stdout-fallback") {
+      throw new ForwardReviewerExecutorError(
+        `forward reviewer: nonzero codex exec produced authoritative or unclassified final output (source=${String(result.finalMessageSource)})`,
+        "integrity_failure",
+      );
+    }
     const providerOutcome = classifyProviderOutcome({
       completed: true,
       exitCode: result.exitCode,
@@ -303,14 +322,19 @@ function validateSpawnResult(result: CodexAgentResult, sessionId: string): strin
       ? "provider_capacity"
       : providerOutcome === "provider_safeguard_or_refusal"
         ? "refusal"
-        : "transient_execution_failure";
+        : explicitTransientExecutionSignal(result)
+          ? "transient_execution_failure"
+          : "integrity_failure";
     throw new ForwardReviewerExecutorError(
       `forward reviewer: codex exec failed (ok=${String(result.ok)}, exitCode=${String(result.exitCode)}, outcome=${providerOutcome})`,
       code,
     );
   }
-  const refusal = refusalSignal(result);
-  requireCondition(refusal === null, `forward reviewer: ${refusal}`, "refusal");
+  requireCondition(
+    result.finalMessageSource === "output-file",
+    `forward reviewer: successful schema-bound call did not produce its authoritative output file (source=${String(result.finalMessageSource)})`,
+    "integrity_failure",
+  );
   requireCondition(
     typeof result.finalMessage === "string" && result.finalMessage.trim().length > 0,
     "forward reviewer: missing final output",
@@ -386,6 +410,10 @@ export function createForwardReviewerExecutor(deps: ForwardReviewerExecutorDeps 
           reasoningEffort: enforced.effort,
           role: "chapter-reviewer",
           outputSchemaPath: schemaPath,
+          workspaceManifest: {
+            dir: workspace.dir,
+            files: workspace.files.map((file) => ({ ...file })),
+          },
           ...(deps.manifestSink ? { manifestSink: deps.manifestSink } : {}),
           ...(deps.qualificationCacheDir ? { qualificationCacheDir: deps.qualificationCacheDir } : {}),
           ...(deps.execBaseDir ? { execBaseDir: deps.execBaseDir } : {}),
@@ -412,7 +440,9 @@ export function createForwardReviewerExecutor(deps: ForwardReviewerExecutorDeps 
             ? "policy_preflight_failure"
             : providerOutcome === "timeout"
               ? "timeout"
-              : "transient_execution_failure",
+              : explicitTransientTransportSignal(message)
+                ? "transient_execution_failure"
+                : "integrity_failure",
         );
       }
 

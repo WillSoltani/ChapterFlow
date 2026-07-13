@@ -1,6 +1,6 @@
 {
   "schema": "imp-24b-worktree-ledger-v1",
-  "status": "PRE_LIVE_VERIFIED",
+  "status": "MODEL_FREE_PRE_LIVE_PASS",
   "capturedAt": "2026-07-13T09:02:40Z",
   "continuationInstruction": {
     "path": "external-owner-supplied/IMP-24B_MODEL_FREE_FREEZE_AND_V3_ROLE_QUALIFICATION.md",
@@ -19,6 +19,82 @@
     "rootCi": "FAILURE",
     "note": "These statuses belong only to the old starting commit and authorize no V3 call."
   },
+  "currentCheckpoint": {
+    "localHead": "445e09d3e9675f0c69f75a8b3601cd5ece729f40",
+    "remoteHead": "445e09d3e9675f0c69f75a8b3601cd5ece729f40",
+    "prHead": "445e09d3e9675f0c69f75a8b3601cd5ece729f40",
+    "effectiveImplementationCommit": null,
+    "status": "READY_FOR_EFFECTIVE_COMMIT1",
+    "liveModelCallsMade": 0,
+    "apiCallsMade": 0
+  },
+  "failedPreLiveCandidates": [
+    {
+      "commit": "445e09d3e9675f0c69f75a8b3601cd5ece729f40",
+      "disposition": "FAILED_PRE_LIVE_CANDIDATE_NONQUALIFYING",
+      "dedicatedV25PushRun": {
+        "runId": 29251563638,
+        "event": "push",
+        "result": "FAILURE",
+        "aggregate": "2781 pass / 15 fail / 10 xenv / 39 skip"
+      },
+      "dedicatedV25PullRequestRun": {
+        "runId": 29251566572,
+        "event": "pull_request",
+        "result": "FAILURE",
+        "aggregate": "2781 pass / 15 fail / 10 xenv / 39 skip"
+      },
+      "failureClassification": [
+        "14 disposable-suite failures: the detached disposable worktree did not satisfy the intended branch identity guard",
+        "1 disposable-suite failure: shallow checkout omitted the pinned starting commit 19e1837e6d6d1f2ebc6997700956fc0798aa21ca"
+      ],
+      "rootCi": {
+        "runId": 29251566727,
+        "result": "FAILURE",
+        "failedJobs": [
+          "App Build + Tests / Type-check",
+          "E2E Smoke (prod build)"
+        ],
+        "classification": "Reproduced starting-head root-app failures; exact replacement-head proof remains required."
+      },
+      "liveModelCallsMade": 0,
+      "apiCallsMade": 0,
+      "historyRewritten": false,
+      "forcePushed": false
+    }
+  ],
+  "failedCandidateRecoveryTrackedChanges": [
+    ".github/workflows/chapterflow-v25-pipeline.yml",
+    "docs/v25/reports/IMP-24B_PRE_LIVE_FREEZE.json",
+    "docs/v25/reports/IMP-24B_PRE_LIVE_FREEZE.md",
+    "docs/v25/reports/IMP-24B_WORKTREE_LEDGER.json",
+    "docs/v25/reports/IMP-24B_WORKTREE_LEDGER.md",
+    "docs/v25/reports/IMP-24_INSTRUMENT_CERTIFICATION.json",
+    "docs/v25/reports/IMP-24_INSTRUMENT_CERTIFICATION.md",
+    "docs/v25/reports/implementation-report.imp-24.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24Corpus.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24PreLiveFreeze.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/roleQualificationRunnerV3.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/codexAgent.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardProductionInstrumentSeal.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRetainedRoleQualificationEvidenceV3.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardReviewerExecutor.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/modelPolicy.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/forward-production-instrument-seal.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/instrument-certification-binding.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/production-qualification-parity-reference.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/production-qualification-parity.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/exec-envelope.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-production-instrument-seal.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-reviewer-executor.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-instrument-certification.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-local-activation-v2.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-role-qualification-live-v3.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-role-qualification-v3.test.ts"
+  ],
   "stagedPaths": [],
   "intendedTrackedChanges": [
     ".github/workflows/chapterflow-v25-pipeline.yml",
@@ -148,12 +224,13 @@
   "v3LiveAttempts": 0,
   "apiCalls": 0,
   "authenticationMaterialInCommitCandidates": false,
-  "verificationCompletedAt": "2026-07-13T12:51:39Z",
+  "verificationCompletedAt": "2026-07-13T16:45:22Z",
   "verificationStatus": "PASS_MODEL_FREE_PRE_LIVE",
   "finalIntendedCommitInventory": {
     "source": "docs/v25/reports/implementation-report.imp-24.json#/filesChanged",
-    "fileCount": 109,
-    "complete": true
+    "fileCount": 112,
+    "complete": true,
+    "note": "The sorted report inventory exactly matches the complete diff from starting head 19e1837e6d6d1f2ebc6997700956fc0798aa21ca after excluding only enumerated runtime debris."
   },
   "lifecycleAuthorization": {
     "status": "AUTHORIZED_FINAL",
@@ -452,9 +529,256 @@
         "skip": 39
       },
       "detail": "The corrected result collector exited zero on the final sealed source bytes."
+    },
+    {
+      "attempt": 31,
+      "check": "exact pushed pre-live candidate dedicated V25 CI",
+      "result": "FAIL",
+      "classification": "workflow/disposable-checkout defects",
+      "counts": {
+        "pass": 2781,
+        "fail": 15,
+        "xenv": 10,
+        "skip": 39
+      },
+      "detail": "Both push run 29251563638 and pull-request run 29251566572 failed on exact SHA 445e09d3e9675f0c69f75a8b3601cd5ece729f40. Fourteen tests rejected the detached disposable worktree branch identity and one test could not resolve pinned starting commit 19e1837e6d6d1f2ebc6997700956fc0798aa21ca from the shallow checkout. No live call was authorized or made."
+    },
+    {
+      "attempt": 32,
+      "check": "exact pushed pre-live candidate root CI",
+      "result": "FAIL_CLASSIFIED_REPROOF_REQUIRED",
+      "classification": "root-app failures reproduced from starting head; replacement-head proof pending",
+      "detail": "Root CI run 29251566727 failed App Build + Tests at Type-check and E2E Smoke (prod build). Local reproduction associates both with the starting tree, but the corrected replacement SHA must re-prove that classification."
+    },
+    {
+      "attempt": 33,
+      "check": "pre-live candidate recovery",
+      "result": "PASS_SOURCE_CLOSURE_FOCUSED",
+      "classification": "model-free correction and evidence-hardening",
+      "detail": "Workflow checkout depth and disposable named-branch setup were corrected. Exact process-boundary execution evidence now binds the runner counter, raw output source, effective manifest, workspace, route, sibling sidecars, CLI preflight, retained session cleanup, fatal chronology, and typed replay policy. TypeScript and 67 focused execution/qualification/retention regressions pass. Live/model/API calls remain zero."
+    },
+    {
+      "attempt": 34,
+      "check": "failed-candidate recovery focused model-free validation",
+      "result": "PASS",
+      "counts": {
+        "typescript": "PASS",
+        "execEnvelope": "18/18",
+        "forwardReviewerExecutor": "10/10",
+        "liveRoleQualificationV3": "7/7",
+        "roleQualificationV3": "11/11",
+        "retainedQualificationAndActivationBoundary": "21/21"
+      },
+      "detail": "All checks used injected/model-free execution. No live model route or API call was made. This was the final focused checkpoint before portability, certification-purity, and clean-checkout reconciliation."
+    },
+    {
+      "attempt": 35,
+      "check": "full no-API suite before clean-checkout portability reconciliation",
+      "result": "PASS",
+      "counts": {
+        "pass": 2807,
+        "fail": 0,
+        "xfail": 0,
+        "xpass": 0,
+        "xenv": 10,
+        "skip": 39
+      },
+      "detail": "The full suite passed model-free, but the subsequent independent clean-checkout seal check still had to prove portability."
+    },
+    {
+      "attempt": 36,
+      "check": "clean-checkout production-seal reconciliation",
+      "result": "FAIL_THEN_FIXED",
+      "classification": "real IMP-24 portability defect",
+      "detail": "The active ignored src/.DS_Store was the sole extra entry among otherwise byte-identical sealed inputs. The raw recursive inventory was made portable by excluding exact generated basenames .DS_Store and node_modules."
+    },
+    {
+      "attempt": 37,
+      "check": "portable production-seal regression and clean-checkout verification",
+      "result": "PASS",
+      "counts": {
+        "typescript": "PASS",
+        "focusedSealTests": "8/8"
+      },
+      "detail": "A synthetic ignored-metadata regression passed and the clean checkout reproduced the production seal exactly."
+    },
+    {
+      "attempt": 38,
+      "check": "full no-API suite after production-seal portability correction",
+      "result": "PASS",
+      "counts": {
+        "pass": 2808,
+        "fail": 0,
+        "xfail": 0,
+        "xpass": 0,
+        "xenv": 10,
+        "skip": 39
+      }
+    },
+    {
+      "attempt": 39,
+      "check": "workflow post-materialization clean-tree gate",
+      "result": "FAIL_THEN_FIXED",
+      "classification": "real IMP-24 certification-purity defect",
+      "detail": "Certification created eight state/books/*/current-run.json pointers through an unused legacy admission path. IMP-24 certification now uses a pure reader-admission projection and leaves canonical book-run state byte-identical."
+    },
+    {
+      "attempt": 40,
+      "check": "pure certification projection regression",
+      "result": "PASS",
+      "counts": {
+        "typescript": "PASS",
+        "certificationTests": "7/7"
+      },
+      "detail": "The regression snapshots the complete state/books file set and bytes before and after certification."
+    },
+    {
+      "attempt": 41,
+      "check": "focused IMP-24 suite after certification-purity correction",
+      "result": "PASS",
+      "counts": {
+        "tests": "102/102"
+      }
+    },
+    {
+      "attempt": 42,
+      "check": "full no-API suite after certification-purity correction",
+      "result": "FAIL",
+      "classification": "real static-guard defect",
+      "counts": {
+        "pass": 2807,
+        "fail": 1,
+        "xfail": 0,
+        "xpass": 0,
+        "xenv": 10,
+        "skip": 39
+      },
+      "detail": "The sole failure was the migration static guard detecting its forbidden canonical-state literal inside a new explanatory comment."
+    },
+    {
+      "attempt": 43,
+      "check": "fresh failure-only static-guard reproduction",
+      "result": "FAIL_REPRODUCED_THEN_FIXED",
+      "classification": "same static-guard defect as attempt 42",
+      "detail": "The exact single failure reproduced independently; the comment was corrected without changing runtime semantics."
+    },
+    {
+      "attempt": 44,
+      "check": "static migration guard and certification regression after comment correction",
+      "result": "PASS",
+      "counts": {
+        "typescript": "PASS",
+        "focusedTests": "13/13"
+      }
+    },
+    {
+      "attempt": 45,
+      "check": "final model-free artifact remint",
+      "result": "PASS",
+      "detail": "All 33 frozen artifact identities rematerialized stably with the current production seal, certification, parity, and pre-live freeze identities; model and API calls remained zero."
+    },
+    {
+      "attempt": 46,
+      "check": "final independent clean-clone dependency installation",
+      "result": "ENVIRONMENT_FAILURE_THEN_RETRIED",
+      "classification": "host npm-cache ownership",
+      "detail": "The first npm ci reached the host default cache and failed EPERM before tests. Retrying with a disposable npm cache installed all dependencies with zero vulnerabilities."
+    },
+    {
+      "attempt": 47,
+      "check": "independent clean-clone full suite with safe install cache but incomplete workflow environment",
+      "result": "ENVIRONMENT_FAILURE_THEN_RETRIED",
+      "classification": "verification environment mismatch",
+      "counts": {
+        "pass": 2801,
+        "fail": 7,
+        "xfail": 0,
+        "xpass": 0,
+        "xenv": 10,
+        "skip": 39
+      },
+      "detail": "Seven publish-final fixtures inherited the broken host cache because npm_config_cache was supplied to installation but not exported suite-wide. The dedicated workflow does export it globally; no IMP-24 test failed and no live route was invoked."
+    },
+    {
+      "attempt": 48,
+      "check": "final exact workflow-environment full no-API suite in clean named-branch worktree",
+      "result": "PASS",
+      "counts": {
+        "pass": 2808,
+        "fail": 0,
+        "xfail": 0,
+        "xpass": 0,
+        "xenv": 10,
+        "skip": 39
+      },
+      "detail": "The clean clone used the dedicated workflow's exact no-API, no-model-generation, empty-provider-key, named-branch, and isolated-cache environment."
+    },
+    {
+      "attempt": 49,
+      "check": "final workflow-equivalent post-suite sequence in primary clean clone",
+      "result": "PASS",
+      "detail": "Legacy closure, production seal verification, threshold materialization, 116-case certification, pre-live freeze, zero live-route logs, zero canonical book-state writes, and a clean checkout all passed with model/API calls 0/0."
+    },
+    {
+      "attempt": 50,
+      "check": "broad V3 filename scan during final hygiene",
+      "result": "FALSE_POSITIVE_CLASSIFIED",
+      "classification": "preserved unrelated owner-input evidence",
+      "detail": "A broad filename pattern matched the tracked historical _owner-inputs/stage-q/v3/STAGE-Q-V3-QUALIFICATION-RESULT.json. It is unrelated preserved Stage-Q evidence, not an IMP-24 V3 runtime artifact; the successor-experiment-specific scan remained empty."
+    },
+    {
+      "attempt": 51,
+      "check": "final repository hygiene and independent model-free audit",
+      "result": "PASS",
+      "detail": "All changed JSON parsed; the 112-path full inventory and 30-path recovery delta matched exactly; 105 untracked runtime-debris files remained excluded; secret/artifact, private-path, merge-marker, binary, whitespace, V1/V2 preservation, successor-runtime, and cross-binding checks passed. An independent read-only audit found no discrepancy."
     }
   ],
-  "finalModelFreeIdentities": {
+  "currentModelFreeIdentities": {
+    "certificationSha256": "0870c20df24fbda8d5376723edc6a5c1a84a7fe8bce0e3095aa28ef46f01289e",
+    "certificationReportBytesSha256": "cbc3f42cf6a806882551656ad82a08b18f1e484699f36b6b30dcb619e45e2b10",
+    "certificationStatus": "CERTIFIED_MODEL_FREE",
+    "certifiedCases": {
+      "total": 116,
+      "reader": 32,
+      "source": 42,
+      "quiz": 42
+    },
+    "productionSealSha256": "8ee638990c927fd9c6e15be8754512c0774da0065ce793851927eecde88f4187",
+    "productionSealArtifactBytesSha256": "773d14a1027ce1e19da8a9b4d31e308a116fdaed221533a33c7efa4e42792fd1",
+    "productionSealFileCount": 455,
+    "preLiveFreezeSha256": "e35f2a4fff9d4e647139ecb07a7419086f784f8b2b26e2f296c57307a354ded2",
+    "preLiveFreezeReportBytesSha256": "39a26b8af16826b2ae50ef800da3447eef1cc0d280eaddfbdbcda135f2aef4ea",
+    "artifactManifestSha256": "a183ac2fa3b7cb1ba4d620bbe5a199e555708dc2c26a5c4b0de2348f1ea5a068",
+    "artifactManifestEntryCount": 33,
+    "productionQualificationParitySha256": "9f1bfa674b8e69827e26e0e683f1e49ed01698ef0620ed7880c7fb7be80edd81",
+    "productionQualificationParityBytesSha256": "726e7061793fecf2e10a62e044912e6589a136e83652a675e76c6bb6c74f9464",
+    "productionQualificationParitySourceCount": 20,
+    "productionQualificationParityLaneCount": 3,
+    "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa",
+    "thresholdsBytesSha256": "f4d08d49eabad6cfdf04561cd38917494f07ed0974f80b59279591d32c5b36be",
+    "corpusBundleSha256": "sha256:4501809686161a541ad776bdbfea9c716ec402d89ef397a072f93143ce28fcac",
+    "corpusCertificationSha256": "7d2a2bc14eb840341cffc9e3dcc00c166a9dada7a1161a63c43354aa19b26ce9",
+    "corpusAuditAgreementSha256": "sha256:3e3b582d440f4d22ce1c177136831b5f6c9bee096e9f9e51cbefd9f987ed4269",
+    "qualificationScheduleSha256": "dd7c3c1235c86cbbaf20c954398bcb57880efd5c7629f95bc494cb4d0fa8e22c",
+    "candidateOrderSha256": "b688f64ae66f211b2c62270a79157d997bd4dee269dcacd969f7cd9741b44190",
+    "qualificationCallBudgetSha256": "6251236d264e79f38b2d418d82d3448ac0aabfca805f2d213c439e480c87ccb5"
+  },
+  "currentModelFreeVerification": {
+    "typescript": "PASS",
+    "contracts": "PASS_16_OF_16",
+    "focusedImp24Tests": "PASS_102_OF_102",
+    "staticGuardAndCertificationTests": "PASS_13_OF_13",
+    "fullSuite": "PASS_2808_FAIL_0_XENV_10_SKIP_39",
+    "workflowEquivalentSequence": "PASS",
+    "artifactByteStability": "PASS_33_OF_33",
+    "finalRepositoryHygiene": "PASS_INDEPENDENTLY_AUDITED",
+    "cleanCheckoutAfterCertification": true,
+    "excludedRuntimeDebrisFiles": 105,
+    "liveRouteLogsCreated": 0,
+    "modelCalls": 0,
+    "apiCalls": 0
+  },
+  "supersededPreCandidateModelFreeIdentities": {
     "certificationSha256": "b1661f217f93d3ed8e79c2ebbe788ef01c927d35b4c530d6d73b68a2fb42f815",
     "productionSealSha256": "9f2555252102d892f08af06270ae86c70ce90699b1068b04302b4797558d145a",
     "productionSealArtifactBytesSha256": "a60f31764707a3ffc633cd68459abfbf001ca4d66142ff0ff552ff9af8ec7fb5",
@@ -463,7 +787,7 @@
     "paritySha256": "bb0ec1cd0927d3746e3c509b84858df576f47c1e624a40317f26d6c0de517fdf",
     "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa"
   },
-  "modelFreeVerification": {
+  "supersededPreCandidateModelFreeVerification": {
     "typescript": "PASS",
     "contracts": "PASS_16_OF_16",
     "focusedTests": "PASS_148_OF_148",
@@ -481,7 +805,10 @@
     "Runtime debris remains untracked and must not be staged.",
     "The production seal inventories all pipeline source; prior pilot, gold, and activation source is therefore preserved for scope/dependency review but will not be executed under IMP-24B.",
     "The ignored logs/exec/cli-qualification.json predates task capture and records only local Codex CLI flag capability; it is excluded from staging and does not represent a V3 model call.",
-    "The exact 109-file intended commit inventory is frozen in the implementation report and includes all post-capture artifacts and regression fixes.",
+    "The prior 109-file inventory and failed-candidate seal/certification/freeze/parity identities remain preserved only as superseded history and cannot authorize a live call.",
+    "The current 112-file implementation inventory exactly matches the complete diff from starting head 19e1837e6d6d1f2ebc6997700956fc0798aa21ca; the active recovery delta atop failed candidate 445e09d3e9675f0c69f75a8b3601cd5ece729f40 is 30 tracked paths.",
+    "The current model-free instrument is certified and clean-checkout reproducible, but the corrected implementation commit becomes effective only after normal push and exact-SHA dedicated V25 CI success.",
+    "Commit 445e09d3e9675f0c69f75a8b3601cd5ece729f40 is retained in normal Git history as a failed non-qualifying pre-live candidate; the next corrected exact CI-green commit becomes the effective implementation checkpoint.",
     "The frozen worker-report validator accepts promptId values matching IMP-NN only; the preliminary report therefore uses promptId IMP-24 plus continuationPromptId IMP-24B without modifying the validator.",
     "implementationCommit and evidenceCommit remain null in the preliminary pre-live report because no commit exists yet; the owner authorized the final three-commit lifecycle that will attest Commit 1 and Commit 2 from Commit 3 without self-reference."
   ]

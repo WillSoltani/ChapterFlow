@@ -49,7 +49,7 @@ import { existsSync, readFileSync } from "fs";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 import { sha256Hex } from "../contracts/contractUtil.js";
 import type { AgentRole } from "../contracts/executionProfile.js";
-import type { ExecResultV1 } from "../contracts/effectiveContext.js";
+import type { ExecResultV1, WorkspaceFileV1 } from "../contracts/effectiveContext.js";
 import { type CodexCliQualificationV1, qualifyCodexCli, syntheticQualification } from "../exec/cliQualification.js";
 import {
   assembleEffectiveContextManifest,
@@ -86,6 +86,18 @@ export type CodexRunnerArgs = {
 /** Runs the codex subprocess. Injectable so tests can simulate agent effects
  *  (write a chapter file, drop a submission JSON) without a real `codex`. */
 export type CodexRunner = (args: CodexRunnerArgs) => Promise<{ stdout: string; stderr: string; code: number }>;
+
+/** Exact hermetic process boundary. The callback runs after every pre-run
+ * envelope check and the effective-context manifest write have succeeded, and
+ * immediately before the runner is invoked. A callback failure therefore
+ * prevents the process call and is never counted as a Codex invocation. */
+export type CodexRunnerBoundaryV1 = {
+  sessionId: string;
+  manifestPath: string | null;
+  schemaBound: boolean;
+  outputSchemaPath: string | null;
+  outputSchemaSha256: string | null;
+};
 
 export type SpawnCodexAgentOptions = {
   /** The agent's ENTIRE instruction — a prompt file or dispatch/task card, verbatim. */
@@ -150,6 +162,15 @@ export type SpawnCodexAgentOptions = {
    *  result). Central capability — every structured judge/reviewer call may use
    *  it; it is not a Stage-Q-only path. */
   outputSchemaPath?: string;
+  /** Exact caller-constructed workspace manifest for isolated review roles.
+   * The manifest is copied into the pre-spawn effective-context record so the
+   * retained envelope proves every file visible to the model. */
+  workspaceManifest?: { dir: string; files: WorkspaceFileV1[] };
+  /** Model-free accounting/evidence signal used by the official IMP-24 live
+   * adapter. It is deliberately below CLI/auth/manifest preflight and directly
+   * above `runner(...)`; callers must not treat entry into spawnCodexAgent as a
+   * process invocation. */
+  onRunnerBoundary?: (boundary: Readonly<CodexRunnerBoundaryV1>) => void;
 };
 
 export type CodexAgentResult = {
@@ -167,6 +188,43 @@ export type CodexAgentResult = {
   /** Path of the persisted effective-context manifest (hermetic runs). */
   manifestPath?: string;
 };
+
+export type CodexPostRunEvidenceStage = "route" | "exec-result" | "structured-output";
+
+/** The process returned and its exact response is already known, but a required
+ * post-run evidence sidecar could not be retained. Callers must treat this as a
+ * returned invocation with an integrity failure: the observation is carried on
+ * the error so it cannot be mistaken for a runner rejection or lose raw output. */
+export class CodexPostRunEvidenceError extends Error {
+  readonly classification = "post_run_evidence_failure" as const;
+  readonly stage: CodexPostRunEvidenceStage;
+  readonly result: Readonly<CodexAgentResult>;
+
+  constructor(args: {
+    stage: CodexPostRunEvidenceStage;
+    result: CodexAgentResult;
+    cause: unknown;
+  }) {
+    const detail = args.cause instanceof Error ? args.cause.message : String(args.cause);
+    super(`codex exec returned, but ${args.stage} evidence could not be retained: ${detail}`);
+    this.name = "CodexPostRunEvidenceError";
+    this.stage = args.stage;
+    this.result = Object.freeze({ ...args.result });
+  }
+}
+
+function persistReturnedEvidence(
+  stage: CodexPostRunEvidenceStage,
+  result: CodexAgentResult,
+  persist: () => string | null,
+): void {
+  try {
+    const path = persist();
+    if (path === null) throw new Error("evidence sink returned no retained path");
+  } catch (error) {
+    throw new CodexPostRunEvidenceError({ stage, result, cause: error });
+  }
+}
 
 /** Resolve the `codex` binary. CHAPTERFLOW_CODEX_BIN wins (point it at your codex
  *  install); else common install paths; else bare `codex` on PATH. */
@@ -344,6 +402,12 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
       strictEnv,
       codexHome: { dir: session.codexHomeDir, authMaterial: session.authMaterial, ...(session.authSourcePath ? { authSourcePath: session.authSourcePath } : {}) },
       instructionSources: discoverInstructionChain(opts.cwd, profile.neutralizeProjectDocs),
+      ...(opts.workspaceManifest ? {
+        workspace: {
+          dir: opts.workspaceManifest.dir,
+          files: opts.workspaceManifest.files.map((file) => ({ ...file })),
+        },
+      } : {}),
       model,
       reasoningEffort,
       sandbox,
@@ -354,6 +418,14 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
     if (opts.manifestSink !== null) {
       manifestPath = persistEffectiveContextManifest(manifest, opts.manifestSink ?? defaultManifestSink());
     }
+
+    opts.onRunnerBoundary?.({
+      sessionId: opts.sessionId,
+      manifestPath: manifestPath ?? null,
+      schemaBound: opts.outputSchemaPath !== undefined,
+      outputSchemaPath: opts.outputSchemaPath ?? null,
+      outputSchemaSha256: outputSchemaSha256 ?? null,
+    });
 
     const startedAt = Date.now();
     let runOut: { stdout: string; stderr: string; code: number } | undefined;
@@ -383,24 +455,34 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
     let finalMessage = "";
     let finalMessageSource: "output-file" | "stdout-fallback" = "stdout-fallback";
     try {
-      const captured = readFileSync(session.lastMessagePath, "utf8").trim();
-      if (captured.length > 0) {
-        finalMessage = captured;
-        finalMessageSource = "output-file";
-      }
+      // The existence of `-o` is authoritative even when Codex wrote an empty
+      // response. Treating an empty capture as stdout fallback would turn a
+      // content/contract failure into replay-eligible transport evidence.
+      finalMessage = readFileSync(session.lastMessagePath, "utf8").trim();
+      finalMessageSource = "output-file";
     } catch { /* runner produced no capture file (test double / crashed run) */ }
     if (finalMessageSource === "stdout-fallback") finalMessage = lastNonEmptyLine(stdout);
 
-    if (manifestPath) {
-      const outcome = classifyProviderOutcome({ completed: true, exitCode: code, stderr, finalMessage });
-      persistRouteResult(
-        buildRouteResult({ role: opts.role, resolved: route, executionProfileHash: profileHash, cliVersion: qualification.version, outcome, authProof: session.authProof }),
-        manifestPath,
-      );
-    }
+    const returnedResult: CodexAgentResult = {
+      ok: code === 0,
+      exitCode: code,
+      finalMessage,
+      stdout,
+      stderr,
+      durationMs,
+      sessionId: opts.sessionId,
+      finalMessageSource,
+      ...(manifestPath ? { manifestPath } : {}),
+    };
 
     if (manifestPath) {
-      const result: ExecResultV1 = {
+      const outcome = classifyProviderOutcome({ completed: true, exitCode: code, stderr, finalMessage });
+      persistReturnedEvidence("route", returnedResult, () => persistRouteResult(
+        buildRouteResult({ role: profile.role, resolved: route, executionProfileHash: profileHash, cliVersion: qualification.version, outcome, authProof: session.authProof }),
+        manifestPath,
+      ));
+
+      const resultSidecar: ExecResultV1 = {
         schema: "exec-result-v1",
         sessionId: opts.sessionId,
         exitCode: code,
@@ -414,36 +496,31 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
         finalMessageSha256: sha256Hex(finalMessage),
         endedAtIso: new Date().toISOString(),
       };
-      persistExecResult(result, opts.manifestSink ?? defaultManifestSink(), manifestPath);
+      persistReturnedEvidence("exec-result", returnedResult, () => persistExecResult(
+        resultSidecar,
+        opts.manifestSink ?? defaultManifestSink(),
+        manifestPath,
+      ));
     }
 
     // §16 D1: structured-output provenance for a schema-bound spawn.
     if (manifestPath && opts.outputSchemaPath && outputSchemaSha256) {
+      const outputSchemaPath = opts.outputSchemaPath;
       let parsedOk = false; let parseError: string | undefined;
       try { JSON.parse(finalMessage); parsedOk = true; } catch (err) { parseError = (err as Error).message.slice(0, 200); }
-      persistStructuredOutput({
+      persistReturnedEvidence("structured-output", returnedResult, () => persistStructuredOutput({
         schema: "structured-output-sidecar-v1",
         sessionId: opts.sessionId,
-        outputSchemaPath: opts.outputSchemaPath,
+        outputSchemaPath,
         outputSchemaSha256,
         rawFinalMessageSha256: sha256Hex(finalMessage),
         rawFinalMessageBytes: Buffer.byteLength(finalMessage),
         parsedOk,
         ...(parseError ? { parseError } : {}),
-      }, manifestPath);
+      }, manifestPath));
     }
 
-    return {
-      ok: code === 0,
-      exitCode: code,
-      finalMessage,
-      stdout,
-      stderr,
-      durationMs,
-      sessionId: opts.sessionId,
-      finalMessageSource,
-      ...(manifestPath ? { manifestPath } : {}),
-    };
+    return returnedResult;
   } finally {
     // ALWAYS remove the per-spawn session dir — it holds copied auth material.
     session.cleanup();

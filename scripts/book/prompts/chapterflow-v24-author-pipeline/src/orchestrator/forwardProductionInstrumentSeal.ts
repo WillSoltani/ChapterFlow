@@ -1,7 +1,7 @@
 /**
  * Exact portable byte seal for the complete IMP-22 production instrument.
  *
- * The seal deliberately over-binds the implementation: every file under
+ * The seal deliberately over-binds the implementation: every portable file under
  * pipeline src/, config/, and the live contract-schema directory, plus the
  * external Rubric-v2 assets used by the fixed gold instrument.  Volatile
  * attempts/results/state are excluded.  A retained self-hashed seal is bound
@@ -44,6 +44,7 @@ const PIPELINE_RUNTIME_ASSETS = [
   `${PIPELINE_REL}/package.json`,
   `${PIPELINE_REL}/package-lock.json`,
 ] as const;
+const NON_INSTRUMENT_GENERATED_BASENAMES = new Set([".DS_Store", "node_modules"]);
 
 export type ForwardProductionInstrumentFileV1 = {
   relativePath: string;
@@ -90,6 +91,7 @@ function inventoryFiles(repositoryRoot: string): string[] {
   const walk = (path: string): void => {
     requireCondition(existsSync(path), `production instrument inventory root is missing: ${relative(root, path)}`);
     for (const name of readdirSync(path).sort()) {
+      if (NON_INSTRUMENT_GENERATED_BASENAMES.has(name)) continue;
       const child = resolve(path, name);
       const rel = relative(root, child);
       requireCondition(rel.length > 0 && !rel.startsWith(".."), `production instrument path escapes repository root: ${child}`);

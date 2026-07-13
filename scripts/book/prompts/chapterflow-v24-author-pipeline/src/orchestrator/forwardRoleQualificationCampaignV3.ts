@@ -748,6 +748,17 @@ export async function runImp24RoleQualificationCampaignV3(
     "dedicated V25 workflow run ID must be a positive integer");
 
   const paths = pathsFor(args);
+  const downstreamWithoutTerminalResult = [
+    paths.roleRegistry,
+    paths.qualificationReportJson,
+    paths.qualificationReportDocsJson,
+    paths.qualificationReportMarkdown,
+    paths.roleAssignmentFreeze,
+    paths.roleAssignmentFreezeDocsJson,
+    paths.roleAssignmentFreezeMarkdown,
+  ].filter(existsSync);
+  requireCondition(existsSync(paths.qualificationResult) || downstreamWithoutTerminalResult.length === 0,
+    "retained V3 downstream qualification artifacts exist without the terminal qualification result; refuse live resume");
   const retainedGate = existsSync(paths.implementationCiGate)
     ? parseJson<Imp24ImplementationCiGateV1>(paths.implementationCiGate, "implementation CI gate")
     : null;
@@ -784,10 +795,20 @@ export async function runImp24RoleQualificationCampaignV3(
     authJsonPath: args.preflight.authJsonPath,
     ...(args.timeoutMs ? { timeoutMs: args.timeoutMs } : {}),
   });
+  // Whole-phase, zero-call resume barrier. This must finish before the runner
+  // creates its two concurrent workers; otherwise one fresh sibling could
+  // spawn while another worker discovers corrupt retained evidence lazily.
+  live.auditResume({
+    input: prepared.input,
+    freeze: plan.freeze,
+    schedule: plan.schedule,
+    evaluateOutput: prepared.evaluateOutput,
+  });
   const qualifiedAt = retainedQualifiedAt(paths.qualificationResult, undefined, now);
   const result = await runRoleQualificationV3(prepared.input, {
     executor: live.executor,
     evaluateOutput: prepared.evaluateOutput,
+    retainAttemptEvaluation: live.retainAttemptEvaluation,
     qualifiedAt: () => qualifiedAt,
   });
 
@@ -841,7 +862,11 @@ export async function runImp24RoleQualificationCampaignV3(
     completedAt,
   });
   persistCampaignReport(paths.qualificationReportJson, report, retainedReport);
-  persistExactJson(paths.qualificationReportDocsJson, report, "V3 role qualification report JSON");
+  // A terminal resume legitimately raises cachedReceipts and rewrites only the
+  // call-ledger byte hash. Apply the same stable-projection check to the docs
+  // mirror as the experiment report, then synchronize both atomically.
+  const retainedDocsReport = retainedCampaignReport(paths.qualificationReportDocsJson);
+  persistCampaignReport(paths.qualificationReportDocsJson, report, retainedDocsReport);
   writeFileAtomic(paths.qualificationReportMarkdown, renderRoleQualificationV3LiveResultMarkdown({
     result,
     ledger: live.ledger,

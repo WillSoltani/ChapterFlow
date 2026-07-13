@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { hashCanonical, sha256Hex } from "../src/contracts/contractUtil.js";
@@ -56,6 +57,7 @@ import {
   IMP24_ROLE_CANDIDATE_ORDER,
   IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
   IMP24_ROLE_QUALIFICATION_RECEIPT_SCHEMA,
+  buildQualificationExecutionRequestV3,
   buildRoleQualificationPlanV3,
   candidateAvailabilitySha256,
   instrumentCertificationBindingSha256,
@@ -69,8 +71,10 @@ import {
   type QualificationReceiptStatusV3,
   type RunRoleQualificationInputV3,
 } from "../src/bakeoff/migration/roleQualificationRunnerV3.js";
+import { createLiveQualificationExecutorV3 } from "../src/orchestrator/forwardRoleQualificationLiveV3.js";
 import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
 import { test } from "./harness.js";
+import { mkTestRoots } from "./testRoots.js";
 
 const REPOSITORY_ROOT = resolve(PIPELINE_DIR, "../../../..");
 const CONTRACTS_DIR = resolve(PIPELINE_DIR, "state", "migration-experiments", "contracts");
@@ -273,6 +277,194 @@ test("IMP-24 V3 earns 2/2/1 roles from exact frozen gold while canary semantics 
     attempt.request.evidenceEnvelopeBytes === attempt.retainedEnvelopeBytes
       && attempt.request.evidenceEnvelopeBytesSha256 === attempt.retainedEnvelopeBytesSha256
       && attempt.receipt?.evidenceEnvelopeBytes === attempt.request.evidenceEnvelopeBytes));
+});
+
+test("IMP-24 V3 fatal retention latch bounds concurrency and prevents later base calls or replay", async () => {
+  const input = freshInput();
+  const kit = createImp24QualificationEvaluator(input.corpusBundle);
+  const plan = buildRoleQualificationPlanV3(input);
+  const readerHoldout = plan.schedule.filter((entry) => entry.role === "reader"
+    && entry.candidateOrdinal === 0
+    && entry.partition === "holdout");
+  assert.ok(readerHoldout.length > 2);
+  const firstHoldout = readerHoldout[0];
+  const secondHoldout = readerHoldout[1];
+  const requests: QualificationExecutionRequestV3[] = [];
+  const retainedAttemptIds: string[] = [];
+
+  await assert.rejects(runRoleQualificationV3(input, {
+    executor: async (request) => {
+      requests.push(request);
+      if (request.scheduleId === secondHoldout.scheduleId) {
+        // Keep the second worker genuinely in flight until the first worker's
+        // retention callback trips the fatal latch. Its typed infrastructure
+        // result would ordinarily request a2, which the latch must suppress.
+        await new Promise<void>((resolvePromise) => setImmediate(resolvePromise));
+        return receipt(request, "timeout", null);
+      }
+      return receipt(request, "completed", kit.fixtureOutputByCaseId[request.caseId]!);
+    },
+    evaluateOutput: kit.evaluateOutput,
+    retainAttemptEvaluation: async (attempt) => {
+      if (attempt.request.scheduleId === firstHoldout.scheduleId) {
+        throw new Error("synthetic retained-evidence write failure");
+      }
+      retainedAttemptIds.push(attempt.request.attemptId);
+    },
+  }), /synthetic retained-evidence write failure/);
+
+  assert.equal(requests.length, 4,
+    "only two canaries and the two already-in-flight holdouts may reach the executor");
+  assert.deepEqual(requests.map((request) => request.scheduleId), [
+    ...plan.schedule.filter((entry) => entry.role === "reader"
+      && entry.candidateOrdinal === 0
+      && entry.partition === "canary").map((entry) => entry.scheduleId),
+    firstHoldout.scheduleId,
+    secondHoldout.scheduleId,
+  ]);
+  assert.ok(requests.every((request) => request.attemptNumber === 1),
+    "the in-flight infrastructure failure must not replay after the fatal latch trips");
+  assert.ok(retainedAttemptIds.includes(`${secondHoldout.scheduleId}-a1`),
+    "the already-in-flight sibling must finish retaining its terminal evidence");
+  await new Promise<void>((resolvePromise) => setImmediate(resolvePromise));
+  assert.equal(requests.length, 4,
+    "mapPool must settle its workers before rejecting, leaving no background worker to drain the holdout");
+});
+
+test("IMP-24 V3 retains policy/integrity failures before the fatal latch stops every later executor call", async () => {
+  for (const fatalStatus of ["policy_failure", "integrity_failure"] as const) {
+    const input = freshInput();
+    retainOnly(input, "reader", 0);
+    const kit = createImp24QualificationEvaluator(input.corpusBundle);
+    const plan = buildRoleQualificationPlanV3(input);
+    const readerCanaries = plan.schedule.filter((entry) => entry.role === "reader"
+      && entry.candidateOrdinal === 0
+      && entry.partition === "canary");
+    assert.equal(readerCanaries.length, 2);
+    const calls: QualificationExecutionRequestV3[] = [];
+    const retained: string[] = [];
+
+    await assert.rejects(runRoleQualificationV3(input, {
+      executor: async (request) => {
+        calls.push(request);
+        if (request.scheduleId === readerCanaries[1].scheduleId) {
+          await new Promise<void>((resolvePromise) => setImmediate(resolvePromise));
+          return receipt(request, "completed", kit.fixtureOutputByCaseId[request.caseId]!);
+        }
+        return receipt(request, fatalStatus, null);
+      },
+      evaluateOutput: kit.evaluateOutput,
+      retainAttemptEvaluation: async (attempt) => {
+        retained.push(attempt.request.attemptId);
+      },
+    }), new RegExp(`campaign-fatal ${fatalStatus} receipt`));
+
+    assert.deepEqual(calls.map((request) => request.scheduleId), readerCanaries.map((entry) => entry.scheduleId),
+      `${fatalStatus} may drain only the canary sibling already in flight`);
+    assert.deepEqual(retained.sort(), readerCanaries.map((entry) => `${entry.scheduleId}-a1`).sort(),
+      `${fatalStatus} and its in-flight sibling must both retain terminal attempt evidence`);
+    assert.ok(calls.every((request) => request.attemptNumber === 1),
+      `${fatalStatus} must prevent replay and every later holdout/profile call`);
+    await new Promise<void>((resolvePromise) => setImmediate(resolvePromise));
+    assert.equal(calls.length, 2, `${fatalStatus} must leave no background worker draining calls`);
+  }
+});
+
+test("IMP-24 V3 whole-phase resume audit stops a partial canary before its fresh concurrent sibling can spawn", async () => {
+  const roots = mkTestRoots("imp24-v3-zero-call-resume-barrier");
+  try {
+    const input = freshInput();
+    const kit = createImp24QualificationEvaluator(input.corpusBundle);
+    const plan = buildRoleQualificationPlanV3(input);
+    const canaryBatch = plan.schedule.filter((entry) => entry.role === "reader"
+      && entry.candidateOrdinal === 0
+      && entry.partition === "canary");
+    assert.equal(canaryBatch.length, 2, "the regression requires the exact two-worker canary batch");
+    const firstEntry = canaryBatch[0];
+    const freshSibling = canaryBatch[1];
+    const prepared = input.preparedCases.reader.canary[firstEntry.caseOrdinal];
+    const candidate = IMP24_ROLE_CANDIDATE_ORDER.reader[firstEntry.candidateOrdinal];
+    const partialRequest = buildQualificationExecutionRequestV3(
+      firstEntry,
+      prepared,
+      candidate,
+      plan.freeze,
+      1,
+      null,
+    );
+    const phaseDir = resolve(roots.base, "live");
+    let spawnCalls = 0;
+    const live = createLiveQualificationExecutorV3({
+      phaseDir,
+      freezeSha256: plan.freeze.freezeSha256,
+      certificationSha256: plan.freeze.certificationSha256,
+      productionInstrumentSealSha256: plan.freeze.productionInstrumentSealSha256,
+      preCallVerifier: () => undefined,
+      workspaceBaseDir: roots.workspacesRoot,
+      spawn: async (options) => {
+        spawnCalls += 1;
+        return {
+          ok: true,
+          exitCode: 0,
+          finalMessage: "{}",
+          stdout: "{}",
+          stderr: "",
+          durationMs: 1,
+          sessionId: options.sessionId,
+          finalMessageSource: "output-file",
+        };
+      },
+    });
+    live.auditResume({
+      input,
+      freeze: plan.freeze,
+      schedule: plan.schedule,
+      evaluateOutput: kit.evaluateOutput,
+    });
+    assert.equal(spawnCalls, 0, "a genuinely fresh empty phase must pass the model-free barrier at zero calls");
+    const partialDir = resolve(phaseDir, "attempts", partialRequest.attemptId);
+    mkdirSync(partialDir, { recursive: true });
+    writeFileSync(resolve(partialDir, "request.json"), `${JSON.stringify(partialRequest, null, 2)}\n`);
+    writeFileSync(resolve(partialDir, "evidence-envelope.json"), partialRequest.evidenceEnvelopeBytes);
+    live.ledger.entries.push({
+      attemptId: partialRequest.attemptId,
+      scheduleId: partialRequest.scheduleId,
+      requestSha256: partialRequest.requestSha256,
+      evidenceEnvelopeSha256: partialRequest.evidenceEnvelopeSha256,
+      evidenceEnvelopeBytesSha256: partialRequest.evidenceEnvelopeBytesSha256,
+      receiptSha256: null,
+      executionEvidenceSha256: null,
+      evaluationArtifactSha256: null,
+      status: "REQUESTED",
+      cached: false,
+      requestedAt: "2026-07-13T12:00:00.000Z",
+      completedAt: null,
+    });
+    live.ledger.brokerRequests = 1;
+    writeFileSync(live.ledgerPath, `${JSON.stringify(live.ledger, null, 2)}\n`);
+
+    await assert.rejects((async () => {
+      live.auditResume({
+        input,
+        freeze: plan.freeze,
+        schedule: plan.schedule,
+        evaluateOutput: kit.evaluateOutput,
+      });
+      return runRoleQualificationV3(input, {
+        executor: live.executor,
+        evaluateOutput: kit.evaluateOutput,
+        retainAttemptEvaluation: live.retainAttemptEvaluation,
+      });
+    })(), /resume audit requires exact five-file evidence/);
+    assert.equal(spawnCalls, 0,
+      "the fresh sibling must never race ahead of a partial retained attempt in the same mapPool batch");
+    assert.equal(existsSync(resolve(phaseDir, "attempts", `${freshSibling.scheduleId}-a1`)), false);
+    assert.equal(live.ledger.codexExecInvocations, 0);
+    assert.equal(live.ledger.brokerRequests, 1,
+      "the retained REQUESTED marker remains untouched; the barrier adds no broker request");
+  } finally {
+    roots.dispose();
+  }
 });
 
 test("IMP-24 V3 isolates protocol failure, skips unavailable candidates at zero calls, and preserves frozen order", async () => {

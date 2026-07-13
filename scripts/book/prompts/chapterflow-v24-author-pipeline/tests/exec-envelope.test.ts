@@ -10,12 +10,16 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR, TMP_DIR } from "./helpers.js";
-import { spawnCodexAgent, type CodexRunnerArgs } from "../src/orchestrator/codexAgent.js";
+import {
+  CodexPostRunEvidenceError,
+  spawnCodexAgent,
+  type CodexRunnerArgs,
+} from "../src/orchestrator/codexAgent.js";
 import { AGENT_ROLES } from "../src/contracts/executionProfile.js";
 import { validateEffectiveContextManifest, type EffectiveContextManifestV1 } from "../src/contracts/effectiveContext.js";
 import {
@@ -192,6 +196,64 @@ test("the effective-context manifest is persisted, schema-valid, task-redacted, 
   const result = JSON.parse(readFileSync(join(sink, resultFile!), "utf8"));
   assert.equal(result.schema, "exec-result-v1");
   assert.equal(result.finalMessageSource, "stdout-fallback");
+});
+
+test("a returned runner keeps its exact output observation when post-run evidence retention fails", async () => {
+  const sink = freshDir("post-run-evidence-failure");
+  const base = freshDir("post-run-evidence-base");
+  const raw = '{"decision":"PASS","note":"returned before sink failure"}';
+  let observed: CodexPostRunEvidenceError | null = null;
+  try {
+    await spawnCodexAgent({
+      task: "FIXTURE TASK — retain returned output",
+      sessionId: "post-run-evidence-session",
+      cwd: PIPELINE_DIR,
+      sandbox: "read-only",
+      role: "chapter-reviewer",
+      manifestSink: sink,
+      execBaseDir: base,
+      runner: async (args) => {
+        const captureIndex = args.argv.indexOf("--output-last-message");
+        assert.ok(captureIndex >= 0);
+        writeFileSync(args.argv[captureIndex + 1]!, raw);
+        // The manifest was retained and the process boundary was crossed. Make
+        // its parent unusable only now so route-sidecar retention fails.
+        rmSync(sink, { recursive: true, force: true });
+        writeFileSync(sink, "not-a-directory");
+        return { stdout: "diagnostic stdout", stderr: "", code: 0 };
+      },
+    });
+    assert.fail("post-run evidence loss must fail closed");
+  } catch (error) {
+    assert.ok(error instanceof CodexPostRunEvidenceError);
+    observed = error;
+  } finally {
+    rmSync(sink, { recursive: true, force: true });
+    rmSync(base, { recursive: true, force: true });
+  }
+  assert.equal(observed!.stage, "route");
+  assert.equal(observed!.result.sessionId, "post-run-evidence-session");
+  assert.equal(observed!.result.finalMessage, raw);
+  assert.equal(observed!.result.finalMessageSource, "output-file");
+  assert.equal(observed!.result.exitCode, 0);
+});
+
+test("explicit returned refusal is retained with the exact refusal route outcome", async () => {
+  const refusal = "I cannot comply with this request.";
+  const { result, sink } = await hermeticSpawn({
+    runner: async (args) => {
+      const captureIndex = args.argv.indexOf("--output-last-message");
+      assert.ok(captureIndex >= 0);
+      writeFileSync(args.argv[captureIndex + 1]!, refusal);
+      return { stdout: "", stderr: "", code: 0 };
+    },
+  });
+  const routeFile = readdirSync(sink).find((file) => file.endsWith(".route.json"));
+  assert.ok(routeFile);
+  const route = JSON.parse(readFileSync(join(sink, routeFile!), "utf8"));
+  assert.equal(route.outcome, "provider_safeguard_or_refusal");
+  assert.equal(result.finalMessage, refusal);
+  assert.equal(result.finalMessageSource, "output-file");
 });
 
 test("the per-spawn isolated home is removed after the run (auth material never lingers)", async () => {

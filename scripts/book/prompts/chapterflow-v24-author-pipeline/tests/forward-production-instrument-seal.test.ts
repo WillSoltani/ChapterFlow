@@ -1,9 +1,9 @@
 /** IMP-22 complete production-instrument byte seal. */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 
 import {
   buildForwardProductionInstrumentSeal,
@@ -28,6 +28,39 @@ test("production instrument seal inventories all implementation/config/schema by
   assert.ok(seal.files.some((file) => file.relativePath.endsWith(".agents/skills/chapterflow-book-evaluator/references/rubric-v2.md")));
   assert.equal(seal.sealSha256, computeForwardProductionInstrumentSealSha256(seal));
   assert.doesNotThrow(() => validateForwardProductionInstrumentSeal(seal));
+});
+
+test("production instrument seal excludes ignored OS and installed-dependency metadata so clean checkouts reproduce it", () => {
+  const root = mkdtempSync(resolve(tmpdir(), "forward-production-seal-portable-"));
+  const pipelineRel = "scripts/book/prompts/chapterflow-v24-author-pipeline";
+  const fixtureFiles = [
+    `${pipelineRel}/src/index.ts`,
+    `${pipelineRel}/src/.DS_Store`,
+    `${pipelineRel}/src/node_modules/transient-package/index.js`,
+    `${pipelineRel}/config/example.json`,
+    `${pipelineRel}/state/migration-experiments/contracts/schemas/example.schema.json`,
+    `${pipelineRel}/package.json`,
+    `${pipelineRel}/package-lock.json`,
+    ".agents/skills/chapterflow-book-evaluator/references/rubric-v2.md",
+    ".agents/skills/chapterflow-book-evaluator/references/book-rater-prompt.md",
+    ".agents/skills/chapterflow-book-evaluator/references/scoring-protocol.md",
+    ".agents/skills/chapterflow-book-evaluator/references/book-evaluation.schema.json",
+    ".agents/skills/chapterflow-book-evaluator/references/adjudication-protocol.md",
+    ".agents/skills/chapterflow-book-evaluator/references/adjudicated-book.schema.json",
+  ];
+  try {
+    for (const relativePath of fixtureFiles) {
+      const path = resolve(root, relativePath);
+      mkdirSync(dirname(path), { recursive: true });
+      writeFileSync(path, relativePath.endsWith(".DS_Store") ? "ignored metadata" : `${relativePath}\n`);
+    }
+    const seal = buildForwardProductionInstrumentSeal({ repositoryRoot: root });
+    assert.ok(seal.files.some((file) => file.relativePath.endsWith("src/index.ts")));
+    assert.equal(seal.files.some((file) => file.relativePath.endsWith("/.DS_Store")), false);
+    assert.equal(seal.files.some((file) => file.relativePath.includes("/node_modules/")), false);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });
 
 test("recomputed self hash cannot bless substituted package-lock dependency bytes", () => {

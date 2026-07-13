@@ -3,9 +3,9 @@
 Status: **FROZEN_MODEL_FREE_PRE_LIVE**
 
 Experiment: `s16-forward-role-qualification-v3-envelope`
-Freeze SHA-256: `369b4f856fe633be554fe34ed9b5e3d02494c0437b83329f00e5df8423214c20`
-Certification SHA-256: `b1661f217f93d3ed8e79c2ebbe788ef01c927d35b4c530d6d73b68a2fb42f815`
-Production seal SHA-256: `9f2555252102d892f08af06270ae86c70ce90699b1068b04302b4797558d145a`
+Freeze SHA-256: `e35f2a4fff9d4e647139ecb07a7419086f784f8b2b26e2f296c57307a354ded2`
+Certification SHA-256: `0870c20df24fbda8d5376723edc6a5c1a84a7fe8bce0e3095aa28ef46f01289e`
+Production seal SHA-256: `8ee638990c927fd9c6e15be8754512c0774da0065ce793851927eecde88f4187`
 Schedule SHA-256: `dd7c3c1235c86cbbaf20c954398bcb57880efd5c7629f95bc494cb4d0fa8e22c`
 
 ## Frozen state
@@ -20,10 +20,10 @@ Schedule SHA-256: `dd7c3c1235c86cbbaf20c954398bcb57880efd5c7629f95bc494cb4d0fa8e
 | Artifact | Bytes SHA-256 |
 | --- | --- |
 | `docs/v25/reports/IMP-24B_PRE_LIVE_RUNBOOK.md` | `fdb78df339f48f66c8461d22c1846f555b82e00b5561d0520968fb7c1841b89c` |
-| `docs/v25/reports/IMP-24_INSTRUMENT_CERTIFICATION.json` | `02158c087e2dc1ec65d5613e98ccbae9f4f9be5c3f8b30ece78bf612a26711f0` |
-| `docs/v25/reports/IMP-24_INSTRUMENT_CERTIFICATION.md` | `228d7074da45b5e1328a01b6dcdb8a6819f7eaeefed0bdc0d061cf2c4f2c0d41` |
+| `docs/v25/reports/IMP-24_INSTRUMENT_CERTIFICATION.json` | `cbc3f42cf6a806882551656ad82a08b18f1e484699f36b6b30dcb619e45e2b10` |
+| `docs/v25/reports/IMP-24_INSTRUMENT_CERTIFICATION.md` | `339182c2a830c6a4a7709d1a89f5023e23c7a6a8709134fc9d788c157565e86b` |
 | `docs/v25/reports/IMP-24_PROTOCOL_DECISION.md` | `f18912b7f291ad5c22fed76d773404c2ee81a896e800ee2e320243d4ccfc0620` |
-| `docs/v25/reports/implementation-report.imp-24.json` | `3bcd14e6258391646666ab041611d5f35867dafd4e8a78d2409842ed8b0de2bd` |
+| `docs/v25/reports/implementation-report.imp-24.json` | `b7d5f00d74f87e3dfc7f6f60e742352f75173faf727fd4120a8e671200bb0714` |
 | `scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/contract-manifest.json` | `e1121e423ea11e310f11fa5215b71af81e4cab60ab75e5e26b93a61bf5737091` |
 | `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/candidate-availability-policy.v3-envelope.json` | `03cd7f0be8e4781eb783a055367226c98fa498f077f84957a19e25c4a9d1b5db` |
 | `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/candidate-order.v3-envelope.json` | `ed8a04676436f704c25190890439766ead6e6703f529de9029fc48ee5432db3a` |
@@ -36,11 +36,11 @@ Schedule SHA-256: `dd7c3c1235c86cbbaf20c954398bcb57880efd5c7629f95bc494cb4d0fa8e
 | `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpus-audit-pass-a.v3-envelope.json` | `c42e2b42b5b378f1c885dcdfd84064510c940bf2c24727d78fb75a8aa5d8be13` |
 | `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpus-audit-pass-b.v3-envelope.json` | `94f023c7997e77f036eba4031c6f9823a13d7a2b3a1e09c909469b5b3ccf2263` |
 | `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpus-provenance.v3-envelope.json` | `dc1f1fd33ccfa71f2ca2ec963e6a96a35b694126c126e07abdaa6b11e1e1bc97` |
-| `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/forward-production-instrument-seal.json` | `a60f31764707a3ffc633cd68459abfbf001ca4d66142ff0ff552ff9af8ec7fb5` |
-| `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/instrument-certification-binding.json` | `2fa4dcaa61dcc1153d958b4a1c2e924cb45f54f245d5971f0e6ca97f63cac063` |
+| `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/forward-production-instrument-seal.json` | `773d14a1027ce1e19da8a9b4d31e308a116fdaed221533a33c7efa4e42792fd1` |
+| `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/instrument-certification-binding.json` | `dffcb8eb311e95cd1fdbd35385d2e373c55de1f63c8725cffce3e5a944cb5786` |
 | `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/legacy-v1-v2-evidence-closure.json` | `7d46c42b9855bf6c4284c5ba490c178f987a351136577406d48a6d4ef58fb878` |
-| `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/production-qualification-parity-reference.json` | `4a37e98af4ada00abfa318aee73ffa5d7cc9fedb563e5d370922f7e8042a6ea1` |
-| `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/production-qualification-parity.json` | `6bb45d02f896e28b248e39fa259183cc11d2a34e8920145825b5e4bc32ac3c60` |
+| `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/production-qualification-parity-reference.json` | `6870afafe2eac583ebbb470a56c58328d05725434d2344572ac7115f572e61ae` |
+| `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/production-qualification-parity.json` | `726e7061793fecf2e10a62e044912e6589a136e83652a675e76c6bb6c74f9464` |
 | `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/prompts/quiz-prompt-bundle.v3-envelope.json` | `c2e0347a4893c1350ddc70721e84dbd6809386dd71ef041e0c3517f31b22faaa` |
 | `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/prompts/reader-prompt-bundle.v3-envelope.json` | `d3bebe3eacc444ab235b8484dd4283cd6c8f8ab08e14d1a1dd95e9f99da89807` |
 | `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/prompts/source-prompt-bundle.v3-envelope.json` | `aaf2fdf41ee1c67e480f8322f3faf1c311232fcd42f1adaf4191428795460bc8` |

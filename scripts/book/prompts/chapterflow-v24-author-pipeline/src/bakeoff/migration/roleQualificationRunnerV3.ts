@@ -64,7 +64,11 @@ export const IMP24_ROLE_QUALIFICATION_CALL_BUDGET_V3 = Object.freeze({
 
 const ROLES = ["reader", "source", "quiz"] as const satisfies readonly Imp24ReviewRole[];
 const SHA256 = /^[a-f0-9]{64}$/;
-const REQUIRED_QUALIFIERS: Readonly<Record<Imp24ReviewRole, number>> = Object.freeze({ reader: 2, source: 2, quiz: 1 });
+export const IMP24_REQUIRED_ROLE_QUALIFIERS: Readonly<Record<Imp24ReviewRole, number>> = Object.freeze({
+  reader: 2,
+  source: 2,
+  quiz: 1,
+});
 const INFRASTRUCTURE_REPLAY_STATUSES = new Set<QualificationReceiptStatusV3>([
   "timeout",
   "provider_capacity",
@@ -310,6 +314,36 @@ export type CaseEvaluationV3 = {
   semanticCorrect: boolean;
   semanticSummary: string;
   metricObservations: Record<string, boolean>;
+  /** Exact schema-valid model object, retained separately from the raw output.
+   * Null means parsing failed before a model object could be trusted. */
+  parsedOutput: unknown | null;
+  parseError: string | null;
+  /** Full conductor-owned V2 review assembled from the parsed output and the
+   * frozen inline evidence envelope. Null means assembly did not complete. */
+  assembledReview: unknown | null;
+  assemblyError: string | null;
+  /** Explicit deterministic projection of every resolved evidence-reference
+   * pair plus unresolved target/question refs and any resolution error. */
+  evidenceReferenceResolution: EvidenceReferenceResolutionV3;
+};
+
+export type EvidenceReferenceResolutionBindingV3 = {
+  path: string;
+  refIds: string[];
+  evidenceSpans: string[];
+};
+
+export type EvidenceReferenceResolutionV3 = {
+  status: "RESOLVED" | "INCOMPLETE" | "FAILED" | "NOT_APPLICABLE";
+  bindings: EvidenceReferenceResolutionBindingV3[];
+  unresolvedTargetRefs: string[];
+  unresolvedQuestionRefs: string[];
+  error: {
+    name: string;
+    message: string;
+    code: string | null;
+    refId: string | null;
+  } | null;
 };
 
 export type QualificationOutputEvaluatorV3 = (args: {
@@ -441,6 +475,9 @@ export type RoleQualificationRunnerResultV3 = {
 export type RunRoleQualificationDepsV3 = {
   executor: QualificationExecutorV3;
   evaluateOutput: QualificationOutputEvaluatorV3;
+  /** Official live campaigns persist this callback's full evaluation before
+   * continuing. Pure/model-free tests may omit it. */
+  retainAttemptEvaluation?: (attempt: QualificationAttemptV3) => void | Promise<void>;
   qualifiedAt?: () => string;
 };
 
@@ -733,7 +770,7 @@ export function buildRoleQualificationPlanV3(input: RunRoleQualificationInputV3)
   return { freeze, schedule };
 }
 
-function requestFor(
+export function buildQualificationExecutionRequestV3(
   entry: QualificationScheduleEntryV3,
   prepared: PreparedQualificationCaseV3,
   candidate: QualificationProfileV3,
@@ -772,7 +809,10 @@ function requestFor(
   return Object.freeze({ ...core, requestSha256: qualificationRequestSha256(core) });
 }
 
-function receiptMismatches(request: QualificationExecutionRequestV3, receipt: QualificationExecutionReceiptV3): string[] {
+export function qualificationReceiptMismatchesV3(
+  request: QualificationExecutionRequestV3,
+  receipt: QualificationExecutionReceiptV3,
+): string[] {
   const expected: Record<string, unknown> = {
     schema: IMP24_ROLE_QUALIFICATION_RECEIPT_SCHEMA,
     requestSha256: request.requestSha256,
@@ -830,7 +870,7 @@ function receiptMismatches(request: QualificationExecutionRequestV3, receipt: Qu
   return mismatches;
 }
 
-function protocolValid(evaluation: CaseEvaluationV3 | null): boolean {
+export function qualificationCaseProtocolValidV3(evaluation: CaseEvaluationV3 | null): boolean {
   return evaluation !== null
     && evaluation.schemaValid
     && evaluation.envelopeBound
@@ -841,17 +881,114 @@ function protocolValid(evaluation: CaseEvaluationV3 | null): boolean {
     && !evaluation.prohibitedConductorEcho;
 }
 
-async function mapPool<T, R>(items: readonly T[], maxParallel: number, fn: (item: T) => Promise<R>): Promise<R[]> {
+/** Pure attempt derivation shared by the live runner and its zero-call resume
+ * audit. Keeping classification and evaluator assembly on one seam prevents a
+ * retained artifact from being accepted under logic that differs from the
+ * logic used when the attempt was first produced. */
+export function assembleQualificationAttemptV3(args: {
+  scheduleOrdinal: number;
+  preparedCase: PreparedQualificationCaseV3;
+  request: QualificationExecutionRequestV3;
+  receipt: QualificationExecutionReceiptV3 | null;
+  evaluateOutput: QualificationOutputEvaluatorV3;
+  thrown?: string | null;
+}): QualificationAttemptV3 {
+  const mismatches = args.receipt
+    ? qualificationReceiptMismatchesV3(args.request, args.receipt)
+    : ["missing receipt"];
+  const routeValid = args.receipt !== null && mismatches.length === 0;
+  const replayEligible = args.receipt !== null
+    && routeValid
+    && INFRASTRUCTURE_REPLAY_STATUSES.has(args.receipt.status);
+  let evaluation: CaseEvaluationV3 | null = null;
+  let terminalReason = "";
+  if (args.receipt === null || !routeValid) {
+    terminalReason = args.receipt === null
+      ? `executor threw: ${args.thrown ?? "unknown"}`
+      : `route receipt mismatch: ${mismatches.join(", ")}`;
+  } else if (args.receipt.status === "completed") {
+    try {
+      evaluation = args.evaluateOutput({
+        preparedCase: args.preparedCase,
+        request: args.request,
+        receipt: args.receipt,
+        rawOutput: args.receipt.rawOutput ?? "",
+      });
+      evaluation = {
+        ...evaluation,
+        fileAccessFailure: evaluation.fileAccessFailure
+          || reviewProtocolFileAccessFailureV2(args.receipt.rawOutput ?? ""),
+        prohibitedConductorEcho: evaluation.prohibitedConductorEcho
+          || reviewProtocolHasProhibitedConductorEchoV2(args.receipt.rawOutput ?? "", args.request.role),
+      };
+      terminalReason = qualificationCaseProtocolValidV3(evaluation)
+        ? "completed"
+        : "completed with protocol-invalid output";
+    } catch (error) {
+      terminalReason = `completed with invalid output: ${(error as Error).message}`;
+    }
+  } else {
+    terminalReason = `${args.receipt.status}: ${args.receipt.failureDetail ?? ""}`.trim();
+  }
+  return {
+    schema: IMP24_ROLE_QUALIFICATION_ATTEMPT_SCHEMA,
+    scheduleOrdinal: args.scheduleOrdinal,
+    request: args.request,
+    receipt: args.receipt,
+    routeValid,
+    replayEligible,
+    evaluation,
+    protocolValid: routeValid
+      && args.receipt?.status === "completed"
+      && qualificationCaseProtocolValidV3(evaluation),
+    semanticCorrect: evaluation?.semanticCorrect ?? null,
+    rawOutputSha256: typeof args.receipt?.rawOutput === "string" ? sha256Hex(args.receipt.rawOutput) : null,
+    retainedEnvelopeBytes: args.request.evidenceEnvelopeBytes,
+    retainedEnvelopeBytesSha256: args.request.evidenceEnvelopeBytesSha256,
+    terminalReason,
+  };
+}
+
+type QualificationFatalLatchV3 = { tripped: boolean; error: unknown };
+
+function tripQualificationFatalLatchV3(latch: QualificationFatalLatchV3, error: unknown): void {
+  if (!latch.tripped) {
+    latch.tripped = true;
+    latch.error = error;
+  }
+}
+
+function throwIfQualificationFatalV3(latch: QualificationFatalLatchV3): void {
+  if (latch.tripped) throw latch.error;
+}
+
+/** Bounded fail-closed pool. Once any worker reports a fatal runner/retention
+ * error, no worker may pull another item. Already-in-flight executor calls are
+ * allowed to finish so their evidence callback can complete, and the pool
+ * waits for those workers to settle before returning the original failure. */
+async function mapPool<T, R>(
+  items: readonly T[],
+  maxParallel: number,
+  fatalLatch: QualificationFatalLatchV3,
+  fn: (item: T) => Promise<R>,
+): Promise<R[]> {
   const output = new Array<R>(items.length);
   let next = 0;
   const workers = Array.from({ length: Math.max(1, Math.min(maxParallel, items.length || 1)) }, async () => {
     while (true) {
+      throwIfQualificationFatalV3(fatalLatch);
       const index = next++;
       if (index >= items.length) return;
-      output[index] = await fn(items[index]);
+      try {
+        output[index] = await fn(items[index]);
+      } catch (error) {
+        tripQualificationFatalLatchV3(fatalLatch, error);
+        throw error;
+      }
     }
   });
-  await Promise.all(workers);
+  await Promise.allSettled(workers);
+  throwIfQualificationFatalV3(fatalLatch);
   return output;
 }
 
@@ -869,12 +1006,24 @@ async function runScheduledCase(args: {
   candidate: QualificationProfileV3;
   deps: RunRoleQualificationDepsV3;
   attempts: QualificationAttemptV3[];
+  fatalLatch: QualificationFatalLatchV3;
 }): Promise<WorkResult> {
   let replayOfAttemptId: string | null = null;
   let finalAttempt: QualificationAttemptV3 | null = null;
   for (const attemptNumber of [1, 2] as const) {
+    // The check is inside the per-case replay loop as well as the pool pull
+    // seam: a sibling retention failure may happen while this case's first
+    // call is in flight, and must prevent its replay from becoming a new call.
+    throwIfQualificationFatalV3(args.fatalLatch);
     assertFrozenInput(args.input, args.freeze);
-    const request = requestFor(args.entry, args.preparedCase, args.candidate, args.freeze, attemptNumber, replayOfAttemptId);
+    const request = buildQualificationExecutionRequestV3(
+      args.entry,
+      args.preparedCase,
+      args.candidate,
+      args.freeze,
+      attemptNumber,
+      replayOfAttemptId,
+    );
     let receipt: QualificationExecutionReceiptV3 | null = null;
     let thrown: string | null = null;
     try {
@@ -882,50 +1031,41 @@ async function runScheduledCase(args: {
     } catch (error) {
       thrown = (error as Error).message;
     }
-    const mismatches = receipt ? receiptMismatches(request, receipt) : ["missing receipt"];
-    const routeValid = receipt !== null && mismatches.length === 0;
-    const replayEligible = receipt !== null && routeValid && INFRASTRUCTURE_REPLAY_STATUSES.has(receipt.status);
-    let evaluation: CaseEvaluationV3 | null = null;
-    let terminalReason = "";
-    if (receipt === null || !routeValid) {
-      terminalReason = receipt === null ? `executor threw: ${thrown ?? "unknown"}` : `route receipt mismatch: ${mismatches.join(", ")}`;
-    } else if (receipt.status === "completed") {
-      try {
-        evaluation = args.deps.evaluateOutput({ preparedCase: args.preparedCase, request, receipt, rawOutput: receipt.rawOutput ?? "" });
-        evaluation = {
-          ...evaluation,
-          fileAccessFailure: evaluation.fileAccessFailure || reviewProtocolFileAccessFailureV2(receipt.rawOutput ?? ""),
-          prohibitedConductorEcho: evaluation.prohibitedConductorEcho
-            || reviewProtocolHasProhibitedConductorEchoV2(receipt.rawOutput ?? "", request.role),
-        };
-        terminalReason = protocolValid(evaluation) ? "completed" : "completed with protocol-invalid output";
-      } catch (error) {
-        terminalReason = `completed with invalid output: ${(error as Error).message}`;
-      }
-    } else {
-      terminalReason = `${receipt.status}: ${receipt.failureDetail ?? ""}`.trim();
-    }
-    const attempt: QualificationAttemptV3 = {
-      schema: IMP24_ROLE_QUALIFICATION_ATTEMPT_SCHEMA,
+    const attempt = assembleQualificationAttemptV3({
       scheduleOrdinal: args.entry.ordinal,
+      preparedCase: args.preparedCase,
       request,
       receipt,
-      routeValid,
-      replayEligible,
-      evaluation,
-      protocolValid: routeValid && receipt?.status === "completed" && protocolValid(evaluation),
-      semanticCorrect: evaluation?.semanticCorrect ?? null,
-      rawOutputSha256: typeof receipt?.rawOutput === "string" ? sha256Hex(receipt.rawOutput) : null,
-      retainedEnvelopeBytes: request.evidenceEnvelopeBytes,
-      retainedEnvelopeBytesSha256: request.evidenceEnvelopeBytesSha256,
-      terminalReason,
-    };
+      evaluateOutput: args.deps.evaluateOutput,
+      thrown,
+    });
+    if (args.deps.retainAttemptEvaluation) {
+      try {
+        await args.deps.retainAttemptEvaluation(attempt);
+      } catch (error) {
+        tripQualificationFatalLatchV3(args.fatalLatch, error);
+        throw error;
+      }
+    }
     args.attempts.push(attempt);
     finalAttempt = attempt;
+    // Policy and execution-integrity failures are conductor/trust failures,
+    // not profile judgments. Their complete attempt evidence is retained
+    // above, then the run-wide latch stops every replay and future pool pull.
+    // Treating either status as an ordinary protocol-false canary would let a
+    // mutable route/schema/session defect spend later calls and eventually be
+    // hidden behind a different profile's result.
+    if (receipt?.status === "policy_failure" || receipt?.status === "integrity_failure") {
+      const fatal = new RoleQualificationRunnerV3Error(
+        `${request.attemptId}: campaign-fatal ${receipt.status} receipt; retained evidence must be diagnosed before any further qualification call`,
+      );
+      tripQualificationFatalLatchV3(args.fatalLatch, fatal);
+      throw fatal;
+    }
     // One replay only, and only for an explicit, route-valid infrastructure
     // status. Throws, malformed output, refusals, protocol failures, and bad
     // semantic judgments terminate the case immediately.
-    if (attemptNumber === 1 && replayEligible) {
+    if (attemptNumber === 1 && attempt.replayEligible) {
       replayOfAttemptId = request.attemptId;
       continue;
     }
@@ -937,7 +1077,10 @@ async function runScheduledCase(args: {
 
 type Counter = { numerator: number; denominator: number };
 
-function scoreHoldout(role: Imp24ReviewRole, results: readonly WorkResult[]): RoleMetricLedgerV3 {
+export function scoreQualificationHoldoutV3(
+  role: Imp24ReviewRole,
+  attempts: readonly QualificationAttemptV3[],
+): RoleMetricLedgerV3 {
   const counters: Record<string, Counter> = {};
   const increment = (metricId: string, success: boolean): void => {
     const counter = counters[metricId] ?? { numerator: 0, denominator: 0 };
@@ -946,8 +1089,7 @@ function scoreHoldout(role: Imp24ReviewRole, results: readonly WorkResult[]): Ro
     counters[metricId] = counter;
   };
   let unresolvedRequiredCases = 0;
-  for (const work of results) {
-    const attempt = work.finalAttempt;
+  for (const attempt of attempts) {
     const evaluation = attempt.evaluation;
     const valid = attempt.protocolValid;
     increment("schemaValidity", valid);
@@ -956,10 +1098,10 @@ function scoreHoldout(role: Imp24ReviewRole, results: readonly WorkResult[]): Ro
     if (!valid || evaluation?.resolved !== true) unresolvedRequiredCases += 1;
     for (const [metricId, success] of Object.entries(evaluation?.metricObservations ?? {})) {
       requireCondition(!(metricId === "schemaValidity" || metricId === "evidenceSpanValidity" || metricId === "requiredCasesResolved"),
-        `${work.entry.caseId}: evaluator may not override conductor-owned metric ${metricId}`);
+        `${attempt.request.caseId}: evaluator may not override conductor-owned metric ${metricId}`);
       requireCondition(Object.prototype.hasOwnProperty.call(IMP24_FROZEN_ROLE_THRESHOLDS[role], metricId),
-        `${work.entry.caseId}: evaluator emitted unknown ${role} metric ${metricId}`);
-      requireCondition(typeof success === "boolean", `${work.entry.caseId}: metric ${metricId} is not boolean`);
+        `${attempt.request.caseId}: evaluator emitted unknown ${role} metric ${metricId}`);
+      requireCondition(typeof success === "boolean", `${attempt.request.caseId}: metric ${metricId} is not boolean`);
       increment(metricId, success);
     }
   }
@@ -1041,12 +1183,13 @@ export async function runRoleQualificationV3(
   const attempts: QualificationAttemptV3[] = [];
   const profileRoleResults: ProfileRoleResultV3[] = [];
   const qualifiers: Record<Imp24ReviewRole, string[]> = { reader: [], source: [], quiz: [] };
+  const fatalLatch: QualificationFatalLatchV3 = { tripped: false, error: null };
 
   for (const role of ROLES) {
     for (let candidateOrdinal = 0; candidateOrdinal < IMP24_ROLE_CANDIDATE_ORDER[role].length; candidateOrdinal += 1) {
       const candidate = IMP24_ROLE_CANDIDATE_ORDER[role][candidateOrdinal];
       const availability = input.candidateAvailability.entries.find((entry) => entry.role === role && entry.ordinal === candidateOrdinal)!;
-      if (qualifiers[role].length >= REQUIRED_QUALIFIERS[role]) {
+      if (qualifiers[role].length >= IMP24_REQUIRED_ROLE_QUALIFIERS[role]) {
         profileRoleResults.push({
           role, candidateOrdinal, profile: candidate, availability: availability.status,
           status: "NOT_TESTED_SEQUENTIAL_STOP", canaryStarted: false, canaryCaseCount: 0,
@@ -1069,9 +1212,9 @@ export async function runRoleQualificationV3(
         && entry.candidateOrdinal === candidateOrdinal && entry.partition === "canary");
       requireCondition(canaryEntries.length === IMP24_CANARY_CASES_PER_PROFILE_ROLE,
         `${role}/${candidate.profileId} must receive exactly two canaries`);
-      const canary = await mapPool(canaryEntries, IMP24_MAX_PARALLEL, async (entry) => {
+      const canary = await mapPool(canaryEntries, IMP24_MAX_PARALLEL, fatalLatch, async (entry) => {
         const preparedCase = input.preparedCases[role].canary[entry.caseOrdinal];
-        return runScheduledCase({ input, freeze, entry, preparedCase, candidate, deps, attempts });
+        return runScheduledCase({ input, freeze, entry, preparedCase, candidate, deps, attempts, fatalLatch });
       });
       const canaryProtocolPassed = canary.every((work) => work.finalAttempt.protocolValid);
       const canarySemanticCorrectCount = canary.filter((work) => work.finalAttempt.semanticCorrect === true).length;
@@ -1091,11 +1234,11 @@ export async function runRoleQualificationV3(
         && entry.candidateOrdinal === candidateOrdinal && entry.partition === "holdout");
       requireCondition(holdoutEntries.length === IMP24_CORPUS_EXPECTED_COUNTS[role].holdout,
         `${role}/${candidate.profileId} holdout is not the complete frozen role holdout`);
-      const holdout = await mapPool(holdoutEntries, IMP24_MAX_PARALLEL, async (entry) => {
+      const holdout = await mapPool(holdoutEntries, IMP24_MAX_PARALLEL, fatalLatch, async (entry) => {
         const preparedCase = input.preparedCases[role].holdout[entry.caseOrdinal];
-        return runScheduledCase({ input, freeze, entry, preparedCase, candidate, deps, attempts });
+        return runScheduledCase({ input, freeze, entry, preparedCase, candidate, deps, attempts, fatalLatch });
       });
-      const ledger = scoreHoldout(role, holdout);
+      const ledger = scoreQualificationHoldoutV3(role, holdout.map((work) => work.finalAttempt));
       const outcome = qualifyRole(role, ledger.metrics, input.thresholds, ledger.denominators);
       const status: ProfileRoleStatusV3 = outcome.status === "QUALIFIED"
         ? "QUALIFIED"

@@ -46,6 +46,10 @@ jobs:
           # the frozen IMP-20 base. Root CI still validates GitHub's merge SHA;
           # this dedicated gate validates the auditable V25 branch bytes.
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          # IMP-24B's pre-live freeze compares the current contract inventory
+          # with the owner-pinned starting commit. Keep that object reachable
+          # as the lifecycle advances beyond the implementation checkpoint.
+          fetch-depth: 0
 
       - name: Setup Node.js 20.20.0
         uses: actions/setup-node@v6
@@ -101,7 +105,11 @@ jobs:
         run: |
           set -euo pipefail
           suite_root="${RUNNER_TEMP}/chapterflow-v25-suite"
-          git worktree add --detach "$suite_root" HEAD
+          # The live/activation boundary intentionally requires the exact
+          # authorized branch identity. The Actions checkout is detached
+          # because it is pinned to an exact SHA, so give only the disposable
+          # suite worktree the truthful branch name at those same bytes.
+          git worktree add -B feat/v25-pipeline-live "$suite_root" HEAD
           npm ci --include=optional --prefix "$suite_root/scripts/book/prompts/chapterflow-v24-author-pipeline"
 
       - name: Run full no-API suite in disposable worktree
@@ -130,6 +138,7 @@ jobs:
           if [[ -d "$suite_root" ]]; then
             git worktree remove --force "$suite_root"
           fi
+          git branch -D feat/v25-pipeline-live 2>/dev/null || true
 
       - name: Verify legacy campaign closure
         run: node --import tsx src/cli.ts migration-bakeoff close-legacy-campaign --json

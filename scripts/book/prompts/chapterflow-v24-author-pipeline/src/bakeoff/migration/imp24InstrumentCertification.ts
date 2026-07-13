@@ -82,6 +82,8 @@ import {
   instrumentCertificationBindingSha256,
   projectPreparedQualificationCasesV3,
   type CaseEvaluationV3,
+  type EvidenceReferenceResolutionBindingV3,
+  type EvidenceReferenceResolutionV3,
   type InstrumentCertificationBindingV3,
   type PreparedQualificationCasesV3,
   type QualificationOutputEvaluatorV3,
@@ -144,10 +146,12 @@ const SHARED_IMPLEMENTATION_RELATIVE_PATHS = [
   `${PIPELINE_REL}/src/review/reviewModelOutputV2.ts`,
   `${PIPELINE_REL}/src/review/reviewProtocolV2.ts`,
   `${PIPELINE_REL}/src/orchestrator/forwardChapterConductor.ts`,
+  `${PIPELINE_REL}/src/orchestrator/codexAgent.ts`,
   `${PIPELINE_REL}/src/orchestrator/forwardReviewerExecutor.ts`,
   `${PIPELINE_REL}/src/orchestrator/forwardRoleAssignmentFreezeV3.ts`,
   `${PIPELINE_REL}/src/orchestrator/forwardRoleQualificationCampaignV3.ts`,
   `${PIPELINE_REL}/src/orchestrator/forwardRoleQualificationLiveV3.ts`,
+  `${PIPELINE_REL}/src/orchestrator/modelPolicy.ts`,
   `${PIPELINE_REL}/src/bakeoff/migration/imp24InstrumentCertification.ts`,
   `${PIPELINE_REL}/src/bakeoff/migration/imp24ProductionQualificationParity.ts`,
   `${PIPELINE_REL}/src/bakeoff/migration/roleQualificationRunnerV3.ts`,
@@ -707,6 +711,10 @@ function invalidEvaluation(args: {
   schemaValid?: boolean;
   authorityCompliant?: boolean;
   semanticSummary: string;
+  parsedOutput?: unknown | null;
+  parseError?: string | null;
+  assemblyError?: string | null;
+  evidenceReferenceResolution?: EvidenceReferenceResolutionV3;
 }): CaseEvaluationV3 {
   return {
     schemaValid: args.schemaValid ?? false,
@@ -720,6 +728,103 @@ function invalidEvaluation(args: {
     semanticCorrect: false,
     semanticSummary: args.semanticSummary,
     metricObservations: {},
+    parsedOutput: args.parsedOutput ?? null,
+    parseError: args.parseError ?? null,
+    assembledReview: null,
+    assemblyError: args.assemblyError ?? null,
+    evidenceReferenceResolution: args.evidenceReferenceResolution ?? emptyReferenceResolution(),
+  };
+}
+
+function errorDetail(error: unknown): EvidenceReferenceResolutionV3["error"] {
+  const value = error as { name?: unknown; message?: unknown; code?: unknown; refId?: unknown } | null;
+  return {
+    name: typeof value?.name === "string" && value.name.length > 0 ? value.name : "Error",
+    message: typeof value?.message === "string" ? value.message : String(error),
+    code: typeof value?.code === "string" ? value.code : null,
+    refId: typeof value?.refId === "string" ? value.refId : null,
+  };
+}
+
+function emptyReferenceResolution(): EvidenceReferenceResolutionV3 {
+  return {
+    status: "NOT_APPLICABLE",
+    bindings: [],
+    unresolvedTargetRefs: [],
+    unresolvedQuestionRefs: [],
+    error: null,
+  };
+}
+
+function failedReferenceResolution(error: unknown): EvidenceReferenceResolutionV3 {
+  return {
+    status: "FAILED",
+    bindings: [],
+    unresolvedTargetRefs: [],
+    unresolvedQuestionRefs: [],
+    error: errorDetail(error),
+  };
+}
+
+/** Preserve an explicit, stable projection of the resolver's conductor-owned
+ * output. The assembled review remains authoritative; this projection makes
+ * each ref-id -> exact inline span resolution independently inspectable. */
+function projectEvidenceReferenceResolution(assembled: unknown): EvidenceReferenceResolutionV3 {
+  const bindings: EvidenceReferenceResolutionBindingV3[] = [];
+  const unresolvedTargetRefs: string[] = [];
+  const unresolvedQuestionRefs: string[] = [];
+  const visit = (value: unknown, path: string): void => {
+    if (Array.isArray(value)) {
+      value.forEach((child, index) => visit(child, `${path}[${index}]`));
+      return;
+    }
+    if (value === null || typeof value !== "object") return;
+    const record = value as Record<string, unknown>;
+    const capture = (refKey: string, spanKey: string): void => {
+      const refs = record[refKey];
+      const spans = record[spanKey];
+      if (!Array.isArray(refs) || !Array.isArray(spans)) return;
+      if (refs.every((item) => typeof item === "string") && spans.every((item) => typeof item === "string")) {
+        bindings.push({
+          path: `${path}.${refKey}`,
+          refIds: [...refs] as string[],
+          evidenceSpans: [...spans] as string[],
+        });
+        return;
+      }
+      if (refs.every((item) => Array.isArray(item) && item.every((ref) => typeof ref === "string"))
+        && spans.every((item) => Array.isArray(item) && item.every((span) => typeof span === "string"))
+        && refs.length === spans.length) {
+        refs.forEach((group, index) => bindings.push({
+          path: `${path}.${refKey}[${index}]`,
+          refIds: [...group] as string[],
+          evidenceSpans: [...(spans[index] as string[])],
+        }));
+      }
+    };
+    capture("evidenceRefIds", "evidenceSpans");
+    capture("chapterEvidenceRefIds", "chapterEvidenceSpans");
+    capture("sourceEvidenceRefIds", "sourceEvidenceSpans");
+    capture("strongestEvidenceRefIds", "strongestEvidenceSpans");
+    capture("weakestEvidenceRefIds", "weakestEvidenceSpans");
+    if (Array.isArray(record.unresolvedTargetRefs)) {
+      unresolvedTargetRefs.push(...record.unresolvedTargetRefs.filter((item): item is string => typeof item === "string"));
+    }
+    if (Array.isArray(record.unresolvedQuestionRefs)) {
+      unresolvedQuestionRefs.push(...record.unresolvedQuestionRefs.filter((item): item is string => typeof item === "string"));
+    }
+    for (const key of Object.keys(record).sort()) visit(record[key], `${path}.${key}`);
+  };
+  visit(assembled, "$assembled");
+  bindings.sort((left, right) => left.path.localeCompare(right.path));
+  unresolvedTargetRefs.sort();
+  unresolvedQuestionRefs.sort();
+  return {
+    status: unresolvedTargetRefs.length > 0 || unresolvedQuestionRefs.length > 0 ? "INCOMPLETE" : "RESOLVED",
+    bindings,
+    unresolvedTargetRefs,
+    unresolvedQuestionRefs,
+    error: null,
   };
 }
 
@@ -831,7 +936,13 @@ export function createImp24QualificationOutputEvaluator(
       try {
         parsed = parseReaderExperienceModelOutputV2(rawOutput);
       } catch (error) {
-        return invalidEvaluation({ envelopeBound, fileAccessFailure: fileFailure, prohibitedConductorEcho: prohibitedEcho, semanticSummary: (error as Error).message });
+        return invalidEvaluation({
+          envelopeBound,
+          fileAccessFailure: fileFailure,
+          prohibitedConductorEcho: prohibitedEcho,
+          semanticSummary: (error as Error).message,
+          parseError: (error as Error).message,
+        });
       }
       const authorityViolations = readerAuthorityViolationsV2(parsed);
       if (authorityViolations.length > 0) {
@@ -843,6 +954,7 @@ export function createImp24QualificationOutputEvaluator(
           schemaValid: true,
           authorityCompliant: false,
           semanticSummary: `reader authority violation at ${first.surface}: ${first.kind}`,
+          parsedOutput: parsed,
         });
       }
       try {
@@ -884,19 +996,41 @@ export function createImp24QualificationOutputEvaluator(
           semanticCorrect,
           semanticSummary: `${result}; blockers=${blockingCategories.join(",") || "none"}`,
           metricObservations: observations,
+          parsedOutput: parsed,
+          parseError: null,
+          assembledReview: assembled,
+          assemblyError: null,
+          evidenceReferenceResolution: projectEvidenceReferenceResolution(assembled),
         };
       } catch (error) {
-        return invalidEvaluation({ envelopeBound, fileAccessFailure: fileFailure, prohibitedConductorEcho: prohibitedEcho, schemaValid: true, authorityCompliant: !prohibitedEcho, semanticSummary: (error as Error).message });
+        return invalidEvaluation({
+          envelopeBound,
+          fileAccessFailure: fileFailure,
+          prohibitedConductorEcho: prohibitedEcho,
+          schemaValid: true,
+          authorityCompliant: !prohibitedEcho,
+          semanticSummary: (error as Error).message,
+          parsedOutput: parsed,
+          assemblyError: (error as Error).message,
+          evidenceReferenceResolution: failedReferenceResolution(error),
+        });
       }
     }
 
     if (item.role === "source") {
       const source = item as Imp24SourceCase;
       const gold = deriveImp24SourceSemantics(source);
+      let parsed: SourceIntegrityModelOutputV2;
       try {
-        parseSourceIntegrityModelOutputV2(rawOutput);
+        parsed = parseSourceIntegrityModelOutputV2(rawOutput);
       } catch (error) {
-        return invalidEvaluation({ envelopeBound, fileAccessFailure: fileFailure, prohibitedConductorEcho: prohibitedEcho, semanticSummary: (error as Error).message });
+        return invalidEvaluation({
+          envelopeBound,
+          fileAccessFailure: fileFailure,
+          prohibitedConductorEcho: prohibitedEcho,
+          semanticSummary: (error as Error).message,
+          parseError: (error as Error).message,
+        });
       }
       try {
         const partition = compileImp24SourceProductionPartition(source);
@@ -945,17 +1079,39 @@ export function createImp24QualificationOutputEvaluator(
           semanticCorrect,
           semanticSummary: `${assembled.result}; primary=${categories.join(",") || "none"}`,
           metricObservations: observations,
+          parsedOutput: parsed,
+          parseError: null,
+          assembledReview: assembled,
+          assemblyError: null,
+          evidenceReferenceResolution: projectEvidenceReferenceResolution(assembled),
         };
       } catch (error) {
-        return invalidEvaluation({ envelopeBound, fileAccessFailure: fileFailure, prohibitedConductorEcho: prohibitedEcho, schemaValid: true, authorityCompliant: !prohibitedEcho, semanticSummary: (error as Error).message });
+        return invalidEvaluation({
+          envelopeBound,
+          fileAccessFailure: fileFailure,
+          prohibitedConductorEcho: prohibitedEcho,
+          schemaValid: true,
+          authorityCompliant: !prohibitedEcho,
+          semanticSummary: (error as Error).message,
+          parsedOutput: parsed,
+          assemblyError: (error as Error).message,
+          evidenceReferenceResolution: failedReferenceResolution(error),
+        });
       }
     }
 
     const quiz = item as Imp24QuizCase;
+    let parsed: QuizIntegrityModelOutputV2;
     try {
-      parseQuizIntegrityModelOutputV2(rawOutput);
+      parsed = parseQuizIntegrityModelOutputV2(rawOutput);
     } catch (error) {
-      return invalidEvaluation({ envelopeBound, fileAccessFailure: fileFailure, prohibitedConductorEcho: prohibitedEcho, semanticSummary: (error as Error).message });
+      return invalidEvaluation({
+        envelopeBound,
+        fileAccessFailure: fileFailure,
+        prohibitedConductorEcho: prohibitedEcho,
+        semanticSummary: (error as Error).message,
+        parseError: (error as Error).message,
+      });
     }
     try {
       const instrument = compileImp24QuizProductionInstrument(quiz);
@@ -997,9 +1153,24 @@ export function createImp24QualificationOutputEvaluator(
         semanticCorrect,
         semanticSummary: `${assembled.result}; key=${question?.keyCorrect ?? "unresolved"}`,
         metricObservations: observations,
+        parsedOutput: parsed,
+        parseError: null,
+        assembledReview: assembled,
+        assemblyError: null,
+        evidenceReferenceResolution: projectEvidenceReferenceResolution(assembled),
       };
     } catch (error) {
-      return invalidEvaluation({ envelopeBound, fileAccessFailure: fileFailure, prohibitedConductorEcho: prohibitedEcho, schemaValid: true, authorityCompliant: !prohibitedEcho, semanticSummary: (error as Error).message });
+      return invalidEvaluation({
+        envelopeBound,
+        fileAccessFailure: fileFailure,
+        prohibitedConductorEcho: prohibitedEcho,
+        schemaValid: true,
+        authorityCompliant: !prohibitedEcho,
+        semanticSummary: (error as Error).message,
+        parsedOutput: parsed,
+        assemblyError: (error as Error).message,
+        evidenceReferenceResolution: failedReferenceResolution(error),
+      });
     }
   };
 }

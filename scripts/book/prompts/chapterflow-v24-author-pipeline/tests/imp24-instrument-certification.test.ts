@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { relative, resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
@@ -65,6 +65,20 @@ function build(): Imp24CorpusBundle {
 
 function deepClone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
+}
+
+function snapshotFilesBelow(root: string): Record<string, string> {
+  if (!existsSync(root)) return {};
+  const files: Record<string, string> = {};
+  const walk = (path: string): void => {
+    for (const name of readdirSync(path).sort()) {
+      const child = resolve(path, name);
+      if (statSync(child).isDirectory()) walk(child);
+      else files[relative(root, child)] = sha256Hex(readFileSync(child));
+    }
+  };
+  walk(root);
+  return files;
 }
 
 function flattenedPrepared(bundle: Imp24CorpusBundle): PreparedQualificationCaseV3[] {
@@ -392,6 +406,8 @@ test("IMP-24 certification binding is self-hashed and rejects V1/V2 freshness", 
 
 test("IMP-24 materializes all certification artifacts deterministically and its binding passes runner preflight", () => {
   const temp = mkdtempSync(resolve(tmpdir(), "imp24-instrument-certification-"));
+  const stateBooksRoot = resolve(PIPELINE_DIR, "state", "books");
+  const stateBooksBefore = snapshotFilesBelow(stateBooksRoot);
   const productionSealPath = resolve(temp, "contracts", "imp24", "forward-production-instrument-seal.json");
   const thresholdsPath = resolve(temp, "contracts", "imp24", "role-thresholds.v3-envelope.json");
   materializeForwardProductionInstrumentSeal({
@@ -419,6 +435,8 @@ test("IMP-24 materializes all certification artifacts deterministically and its 
   const first = materializeImp24InstrumentCertification(options);
   const firstBytes = Object.fromEntries(Object.entries(outputPaths).map(([key, path]) => [key, readFileSync(path, "utf8")]));
   const second = materializeImp24InstrumentCertification(options);
+  assert.deepEqual(snapshotFilesBelow(stateBooksRoot), stateBooksBefore,
+    "model-free certification must not create or rewrite production state/books artifacts");
   const secondBytes = Object.fromEntries(Object.entries(outputPaths).map(([key, path]) => [key, readFileSync(path, "utf8")]));
   assert.deepEqual(second, first);
   assert.deepEqual(secondBytes, firstBytes);

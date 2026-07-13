@@ -13,7 +13,7 @@
     "reader": "sha256:7655002e357a6d82b837f32d57a8c4088380d4c5840d5768f671c41517eb8d33",
     "source": "sha256:bcfaf1f6ab6311067fafac8729b3deaafd9e4f10a4aec7a09eaa28ed4fa9f100"
   },
-  "certificationSha256": "b1661f217f93d3ed8e79c2ebbe788ef01c927d35b4c530d6d73b68a2fb42f815",
+  "certificationSha256": "0870c20df24fbda8d5376723edc6a5c1a84a7fe8bce0e3095aa28ef46f01289e",
   "continuationPromptId": "IMP-24B",
   "contractCount": 16,
   "contractVersions": {
@@ -38,7 +38,8 @@
   "dedicatedV25CiImplementationCommit": null,
   "dependencyAssumptions": [
     "The retained certification, production seal, parity proof, and corpus audits were revalidated from current repository bytes by the pre-live materializer.",
-    "Pre-commit implementation and evidence commit identities remain null because Git has not minted them yet."
+    "The worktree ledger, rather than this deterministic materializer, retains local verification attempts and any failed pre-live candidate evidence.",
+    "The effective CI-green implementation checkpoint and evidence commit identities remain null because those qualifying lifecycle identities have not been minted yet."
   ],
   "deploymentActivated": false,
   "deterministicQuizChecker": "quiz-answer-tell-checker-v1",
@@ -70,6 +71,7 @@
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/index.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/reviewEvidenceEnvelope.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/reviewModelOutputV2.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/codexAgent.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardActivationReadinessV2.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardAuthorRuntime.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardChapterConductor.ts",
@@ -90,6 +92,7 @@
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLive.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardValidationCampaign.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/modelPolicy.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/completeKeyFreeReaderDocumentV2.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
@@ -129,6 +132,7 @@
     "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/source-integrity-model-output-v2.schema.json",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/causal-claims.test.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/contracts-freeze.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/exec-envelope.test.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-author-runtime.test.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-chapter-conductor.test.ts",
     "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-gold-evaluator-instrument.test.ts",
@@ -169,7 +173,7 @@
   "holdoutRelabeling": false,
   "implementationCommit": null,
   "infrastructureReplays": 0,
-  "lifecycleNote": "Pre-commit Git identities do not yet exist; null is the truthful lifecycle value, not a placeholder.",
+  "lifecycleNote": "No effective CI-green implementation checkpoint or evidence commit exists yet; null is the truthful qualifying lifecycle value, not a placeholder. Failed pre-live candidates remain recorded in the worktree ledger.",
   "liveModelCallsMade": 0,
   "localSolActivation": false,
   "mainMerged": false,
@@ -181,8 +185,8 @@
   "pilotRun": false,
   "preExistingContractHashesUnchanged": true,
   "productionQualificationParity": true,
-  "productionQualificationParitySha256": "bb0ec1cd0927d3746e3c509b84858df576f47c1e624a40317f26d6c0de517fdf",
-  "productionSealSha256": "9f2555252102d892f08af06270ae86c70ce90699b1068b04302b4797558d145a",
+  "productionQualificationParitySha256": "9f1bfa674b8e69827e26e0e683f1e49ed01698ef0620ed7880c7fb7be80edd81",
+  "productionSealSha256": "8ee638990c927fd9c6e15be8754512c0774da0065ce793851927eecde88f4187",
   "promoteActivated": false,
   "promptId": "IMP-24",
   "publishActivated": false,
@@ -190,7 +194,7 @@
   "readerAudit": null,
   "readerPrimary": null,
   "remainingRisks": [
-    "The exact implementation commit and dedicated V25 CI evidence do not exist until after this pre-live freeze is committed.",
+    "The effective corrected implementation checkpoint and its dedicated V25 CI evidence do not exist until after this pre-live freeze is committed; any earlier failed pre-live candidate is non-qualifying.",
     "No reviewer profile or role set is qualified by model-free certification alone."
   ],
   "requirementsImplemented": [
@@ -200,7 +204,7 @@
       "status": "implemented"
     },
     {
-      "deferredTo": "The normal implementation commit, push, dedicated V25 CI, and clean-checkout reconciliation that follow this pre-commit artifact freeze.",
+      "deferredTo": "The effective corrected implementation checkpoint, normal push, dedicated V25 CI, and clean-checkout reconciliation that follow this pre-commit artifact freeze. Failed pre-live candidates are retained separately in the worktree ledger and do not satisfy this gate.",
       "requirementId": "IMP24B-R02-EXACT-IMPLEMENTATION-COMMIT-CI",
       "status": "deferred"
     },
@@ -210,7 +214,7 @@
       "status": "deferred"
     }
   ],
-  "resultHash": "9f2555252102d892f08af06270ae86c70ce90699b1068b04302b4797558d145a",
+  "resultHash": "8ee638990c927fd9c6e15be8754512c0774da0065ce793851927eecde88f4187",
   "resultHashKind": "production-instrument-seal-sha256",
   "roleSetReady": false,
   "rootCiStatus": "NOT_RUN",
@@ -240,7 +244,7 @@
   "unboundedRetries": false,
   "unexpectedWrites": [],
   "unresolvedRisks": [
-    "The exact implementation commit and dedicated V25 CI evidence do not exist until after this pre-live freeze is committed.",
+    "The effective corrected implementation checkpoint and its dedicated V25 CI evidence do not exist until after this pre-live freeze is committed; any earlier failed pre-live candidate is non-qualifying.",
     "No reviewer profile or role set is qualified by model-free certification alone."
   ],
   "uploadActivated": false
