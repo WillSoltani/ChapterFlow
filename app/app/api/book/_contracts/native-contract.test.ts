@@ -11,6 +11,7 @@ import {
   buildNativeContractBundle,
   nativeContractExpectedMissingInputPaths,
   parseNativeContractProvenanceEnvironment,
+  routeSourceExportsMethod,
   serializeNativeContractBundle,
   type NativeContractBuildOptions,
 } from "./native-contract-generator-core";
@@ -660,6 +661,38 @@ test("revision provenance requires a revision and phase together", () => {
 
 test("covered routes and blocked backend candidates conform to source hashes and methods", () => {
   assertNativeContractSourceConformance(repoRoot, buildBundle());
+});
+
+test("route-method source fence rejects comment and string decoys", () => {
+  const decoys = [
+    {
+      name: "line comment",
+      source: "// export async function GET() {}\nexport async function POST() {}\n",
+    },
+    {
+      name: "block comment",
+      source: "/* export async function GET() {} */\nexport async function POST() {}\n",
+    },
+    {
+      name: "string literal",
+      source: 'const decoy = "export async function GET() {}";\nexport async function POST() {}\n',
+    },
+    {
+      name: "template literal",
+      source: "const decoy = `export async function GET() {}`;\nexport async function POST() {}\n",
+    },
+  ];
+
+  for (const decoy of decoys) {
+    assert.equal(routeSourceExportsMethod(decoy.source, "GET"), false, decoy.name);
+  }
+});
+
+test("route-method source fence rejects real exported method drift", () => {
+  const source = "export async function POST() {}\n";
+
+  assert.equal(routeSourceExportsMethod(source, "GET"), false);
+  assert.equal(routeSourceExportsMethod(source, "POST"), true);
 });
 
 test("mobile config golden is produced by the actual pure backend builder", () => {

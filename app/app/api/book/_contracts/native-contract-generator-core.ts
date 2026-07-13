@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import ts from "typescript";
 
 import type {
   NativeContractBundle,
@@ -198,6 +199,23 @@ export function nativeContractExpectedMissingInputPaths(
   ].sort();
 }
 
+export function routeSourceExportsMethod(source: string, method: string): boolean {
+  const sourceFile = ts.createSourceFile(
+    "route.ts",
+    source,
+    ts.ScriptTarget.Latest,
+    true,
+    ts.ScriptKind.TS
+  ) as ts.SourceFile & { parseDiagnostics: readonly ts.Diagnostic[] };
+  if (sourceFile.parseDiagnostics.length > 0) return false;
+
+  return sourceFile.statements.some((statement) => {
+    if (!ts.isFunctionDeclaration(statement) || statement.name?.text !== method) return false;
+    const modifiers = ts.canHaveModifiers(statement) ? ts.getModifiers(statement) : undefined;
+    return modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword) ?? false;
+  });
+}
+
 function assertExportedMethod(
   repoRoot: string,
   routeSource: string,
@@ -205,8 +223,7 @@ function assertExportedMethod(
   operationId: string
 ): void {
   const source = readFileSync(resolve(repoRoot, routeSource), "utf8");
-  const pattern = new RegExp(`export\\s+(?:async\\s+)?function\\s+${method}\\b`);
-  if (!pattern.test(source)) {
+  if (!routeSourceExportsMethod(source, method)) {
     throw new Error(`${operationId} source does not export ${method}: ${routeSource}`);
   }
 }
