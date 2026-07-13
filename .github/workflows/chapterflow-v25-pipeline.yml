@@ -41,6 +41,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          # IMP-23 requires this branch to remain an exact reconstruction from
+          # the frozen IMP-20 base. Root CI still validates GitHub's merge SHA;
+          # this dedicated gate validates the auditable V25 branch bytes.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Setup Node.js 20.20.0
         uses: actions/setup-node@v6
