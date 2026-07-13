@@ -641,7 +641,7 @@ nativeContractOperationDefinitions.push(
     requests: [
       {
         producer:
-          "URLSessionAnalyticsTransport.Path.track@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:60",
+          "DefaultAnalyticsClient.Path.track@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:60",
         body: jsonBody({
           events: [
             {
@@ -683,7 +683,7 @@ nativeContractOperationDefinitions.push(
     requests: [
       {
         producer:
-          "URLSessionAnalyticsTransport.Path.beacon@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:61",
+          "DefaultAnalyticsClient.Path.beacon@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:61",
         body: jsonBody({
           name: "navigation",
           properties: { destination: "reader" },

@@ -596,7 +596,7 @@ export function parseIosSourceInventoryManifest(value: unknown): IosSourceInvent
 }
 
 function producerKind(producerSymbol: string): IosNativeInventoryProducerKind {
-  if (producerSymbol.startsWith("URLSessionAnalyticsTransport.Path.")) return "analytics_path";
+  if (producerSymbol.startsWith("DefaultAnalyticsClient.Path.")) return "analytics_path";
   if (
     producerSymbol.endsWith(".directEndpoint") ||
     producerSymbol.endsWith(".replayDirectEndpoint")

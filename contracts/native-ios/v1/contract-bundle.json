@@ -9,7 +9,7 @@
     "sourceRevisionPhase": "uncommitted_backend",
     "generatedAt": "2026-07-13T02:27:09-03:00",
     "generatorVersion": "chapterflow-native-contract-generator-v1",
-    "generatorTreeDigest": "4f08080c87889fae6afb08cb111085f41cf8db42307554988294d6d3535818fa",
+    "generatorTreeDigest": "1089b50ca0b05fb2df3369b16d93d720f41d56262b6cad4fe0ae3067b50e9187",
     "committedInputTree": null,
     "syntheticDataOnly": true,
     "deployedRevision": null,
@@ -21,18 +21,18 @@
     "matrixRowCount": 29,
     "iosSourceEvidence": {
       "manifestPath": "contracts/native-ios/v1/ios-source-inventory-manifest.json",
-      "manifestSha256": "4c49bd44e01a86b344c8ab28e3c4fb684045384c38c4dd9cf4dd801764580470",
+      "manifestSha256": "e415f80fa7b4827c0c0047cb6894374c88944b8249f5e840eebd90daa533b15b",
       "manifestSchemaVersion": "chapterflow-ios-native-inventory-v2",
       "iosRepository": "WillSoltani/Chapterflow-IOS",
       "iosBaseRevision": "92a5c351a42771f546b3d0e575b3b37a8cbfb588",
-      "iosSourceRevision": "3bc162719cebda98744b05d261242bd5868841c6",
+      "iosSourceRevision": "121864285c460fb911dba72ca720a989b97e5d53",
       "iosSourceRevisionPhase": "committed_contract_branch",
       "operationKeySha256": "b24a9ad2861744ad127ce1aca976c13b621fdb7460fc8cd9b9d5669ec9468174",
-      "producerVariantIdSha256": "a24b4f233747aa625ddb6ce18f27a5280dd4befe58c35e4b337709a384a036ac",
-      "producerIdentitySha256": "4d68f6336af886e90236cb86c8cbaba2ef60518a0d1c18376615f145246c8cee",
+      "producerVariantIdSha256": "3225c80badc95a05f437fdd715e2402392f9dd8fecf4fc00facdd1d6011f3987",
+      "producerIdentitySha256": "3d5aee6fc44079b491a81faf9ed4f72de27b96c7ae4a8cee5426b1638ab430ef",
       "relationalRecordCount": 93,
-      "relationalRecordSha256": "d8f4fcc3af527f1f9b8726f184b565a8d3cd92ab765b53856fa17940c84b8e4c",
-      "sourceInputTreeSha256": "2eaa0584e8ef4cba66e8742f06ab123e53b18bdeabfe8e8e306db66901835f9f",
+      "relationalRecordSha256": "36ec6c76f550bff39d4cd622fa161bf2a3b282d2c1eb27aac589e382f163e9a3",
+      "sourceInputTreeSha256": "d23621eec27dc7b4f9d35d2c98d744702906d443467d0abad571d6ec57e0f817",
       "matrixRowCount": 29,
       "exactFactoryTestedProducerCount": 6,
       "bundleSuccessDecoderTestedOperationCount": 24,
@@ -330,9 +330,9 @@
       },
       "nativeRequestFixtures": [
         {
-          "operationVariantId": "analytics-track.post:urlsessionanalyticstransport-path-track",
+          "operationVariantId": "analytics-track.post:defaultanalyticsclient-path-track",
           "producerEvidence": [
-            "URLSessionAnalyticsTransport.Path.track@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:60"
+            "DefaultAnalyticsClient.Path.track@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:60"
           ],
           "pathParameters": {},
           "queryItems": [],
@@ -389,14 +389,14 @@
       },
       "ios": {
         "factories": [
-          "URLSessionAnalyticsTransport.Path.track@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:60"
+          "DefaultAnalyticsClient.Path.track@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:60"
         ],
         "callSites": [
           "AnalyticsClient.swift:187-208"
         ]
       },
       "evidence": [
-        "URLSessionAnalyticsTransport.Path.track@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:60",
+        "DefaultAnalyticsClient.Path.track@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:60",
         "AnalyticsClient.swift:187-208"
       ],
       "coverage": "blocked",
@@ -458,9 +458,9 @@
       },
       "nativeRequestFixtures": [
         {
-          "operationVariantId": "analytics-beacon.post:urlsessionanalyticstransport-path-beacon",
+          "operationVariantId": "analytics-beacon.post:defaultanalyticsclient-path-beacon",
           "producerEvidence": [
-            "URLSessionAnalyticsTransport.Path.beacon@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:61"
+            "DefaultAnalyticsClient.Path.beacon@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:61"
           ],
           "pathParameters": {},
           "queryItems": [],
@@ -513,14 +513,14 @@
       },
       "ios": {
         "factories": [
-          "URLSessionAnalyticsTransport.Path.beacon@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:61"
+          "DefaultAnalyticsClient.Path.beacon@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:61"
         ],
         "callSites": [
           "AnalyticsClient.swift:212-220"
         ]
       },
       "evidence": [
-        "URLSessionAnalyticsTransport.Path.beacon@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:61",
+        "DefaultAnalyticsClient.Path.beacon@Packages/CoreKit/Sources/CoreKit/Analytics/AnalyticsClient.swift:61",
         "AnalyticsClient.swift:212-220"
       ],
       "coverage": "blocked",

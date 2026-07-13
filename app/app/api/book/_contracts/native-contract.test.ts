@@ -113,8 +113,8 @@ user-journey.get|GET|/book/me/journeys/{journeyId}
 const expectedVariantIds = `
 account-deactivate.post:deactivateaccount
 account-delete.post:deleteaccount
-analytics-beacon.post:urlsessionanalyticstransport-path-beacon
-analytics-track.post:urlsessionanalyticstransport-path-track
+analytics-beacon.post:defaultanalyticsclient-path-beacon
+analytics-track.post:defaultanalyticsclient-path-track
 apple-verify.post:liveentitlementrepository-directendpoint
 apple-verify.post:verifyapplepurchase
 ask-book.post:askbook
