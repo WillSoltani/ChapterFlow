@@ -340,6 +340,8 @@ test("R-9: the source packet excludes model identity, prior verdicts, acceptance
   assert.ok(task.task.includes("invented_dialogue"), "case-forbidden kinds come from CASE_DETAIL_FORBIDDEN");
   assert.ok(task.task.includes("fabricated_statistic"), "constructed-forbidden kinds come from CONSTRUCTED_DETAIL_FORBIDDEN");
   assert.ok(task.task.includes("INCONCLUSIVE"), "the missing-evidence rule is stated");
+  assert.ok(task.task.includes(`REQUIRED REVIEW UNIT IDS: ${reviewPacket.requiredSourceUnitIds.join(", ")}`), "the semantic reviewer is bound to exact plan-unit ids");
+  assert.ok(task.task.includes("A BLOCK result requires at least one finding with severity blocker"), "BLOCK severity consistency is explicit");
   assert.match(task.task, /emit only the JSON object conforming to the bound output schema/i);
   assert.doesNotMatch(task.task, /exactly one fenced/i);
   assert.equal(task.role, "source-verifier", "reuses the existing source-verifier workspace role (R-5)");

@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-source-1783906154262-5-39ab24c8-bd9d-4daa-932a-d42a91130ef8",
+  "status": "completed",
+  "role": "source",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+  "rawOutput": "{\"schema\":\"source-integrity-review-v1\",\"units\":[{\"unitId\":\"ch01.fact.1\",\"expectedOrigin\":\"source_bound\",\"expectedForm\":\"explanation\",\"claimStrengthExpected\":\"mechanistic\",\"visibleRegister\":\"clearly_sourced\",\"supportStatus\":\"SUPPORTED\",\"framingAdequate\":true,\"claimStrengthFit\":true,\"namedSpecificityAllowed\":true,\"chapterEvidenceSpans\":[\"The source describes this mechanism without a universal guarantee: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\",\"Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.\"],\"sourceEvidenceSpans\":[\"ch01.fact.1: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\",\"ch01.fact.1: Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.\"],\"findings\":[]}],\"result\":\"PASS\",\"blockingFindingIds\":[],\"rationale\":\"The chapter unit reproduces the documented claim and mechanism from ch01.fact.1, stays within the licensed mechanistic ceiling, explicitly avoids a universal guarantee, and introduces no unsupported named details, dates, outcomes, or causal assertions.\"}"
+}

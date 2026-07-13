@@ -519,9 +519,7 @@ function prepareSourceCase(c: Imp22SourceCorpusCaseV2, schemaSha256: string): Pr
     sourcePacket: c.evidence.sourcePacket,
     sourceSidecar: c.evidence.sidecar,
     anchorCatalog: c.evidence.anchorCatalog,
-    requiredSourceUnitIds: c.evidence.sourceUsePlan.units
-      .filter((unit) => unit.origin === "source_bound" && unit.anchorIds.length > 0)
-      .map((unit) => unit.unitId),
+    requiredSourceUnitIds: [c.evidence.sourceUsePlanUnit.unitId],
   };
   const built = buildSourceIntegrityTask(packet, {
     outputSchemaRelPath: "schemas/source-integrity-review.schema.json",
@@ -559,8 +557,20 @@ function prepareSourceCase(c: Imp22SourceCorpusCaseV2, schemaSha256: string): Pr
       };
       const errors = validateSourceIntegrityReview(review);
       if (errors.length > 0) return invalidEvaluation(errors.join("; "));
-      const unit = review.units.find((item) => item.unitId === c.evidence.sourceUsePlanUnit.unitId) ?? review.units[0];
-      if (!unit) return invalidEvaluation("source output omitted its required unit");
+      const target = c.evidence.sourceUsePlanUnit;
+      const unit = review.units.find((item) => item.unitId === target.unitId);
+      if (!unit) return invalidEvaluation(`source output omitted required unit ${target.unitId}`);
+      if (review.units.length !== 1) return invalidEvaluation("source qualification output substituted or added a non-target plan unit");
+      if (unit.expectedOrigin !== target.origin || unit.expectedForm !== target.form || unit.claimStrengthExpected !== target.claimStrength) {
+        return invalidEvaluation(`source output relabeled compiler-owned plan metadata for ${target.unitId}`);
+      }
+      const semanticBlockers = unit.findings.filter((finding) => finding.severity === "blocker");
+      if (review.result === "BLOCK" && semanticBlockers.length === 0) {
+        return invalidEvaluation("source BLOCK has no blocker-severity finding");
+      }
+      if (review.result !== "BLOCK" && semanticBlockers.length > 0) {
+        return invalidEvaluation("source non-BLOCK output contains a blocker-severity finding");
+      }
       const chapterSpanValid = exactSpans(unit.chapterEvidenceSpans, c.evidence.chapterUnit);
       const needsSourceSpan = c.evidence.expectedOrigin === "source_bound";
       const sourceSpanValid = exactSpans(unit.sourceEvidenceSpans, sourceDocument, needsSourceSpan);
@@ -570,7 +580,7 @@ function prepareSourceCase(c: Imp22SourceCorpusCaseV2, schemaSha256: string): Pr
         evidenceSpanValid: chapterSpanValid && sourceSpanValid,
         error: null,
         result: review.result,
-        blockingCategories: unit.findings.filter((finding) => finding.severity === "blocker").map((finding) => finding.category),
+        blockingCategories: semanticBlockers.map((finding) => finding.category),
         supportStatus: unit.supportStatus,
         visibleRegister: unit.visibleRegister,
         keyCorrect: null,
@@ -1367,7 +1377,9 @@ export async function runRoleCalibration(
   const roleProtocolValid = Object.fromEntries(ROLES.map((role) => {
     const roleWork = completed.filter((work) => work.entry.role === role);
     return [role, roleWork.length === plan.prepared[role].calibration.length
-      && roleWork.every((work) => work.finalAttempt.routeValid && work.finalAttempt.evaluation?.protocolValid === true)];
+      && roleWork.every((work) => work.finalAttempt.routeValid
+        && work.finalAttempt.evaluation?.protocolValid === true
+        && work.finalAttempt.evaluation.evidenceSpanValid === true)];
   })) as Record<ReviewLaneRole, boolean>;
 
   const sentinel = input.corpora.source.partitions.calibration.cases[0];
@@ -1423,7 +1435,8 @@ function assertCalibrationSeal(
       const final = attempts.sort((a, b) => a.attemptNumber - b.attemptNumber).at(-1);
       return final?.profileId === first.profileId
         && final.routeValid
-        && final.evaluation?.protocolValid === true;
+        && final.evaluation?.protocolValid === true
+        && final.evaluation.evidenceSpanValid === true;
     });
     requireCondition(computedRoleValidity[role] === seal.roleProtocolValid[role], `${role} calibration validity does not derive from retained attempts`);
   }

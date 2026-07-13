@@ -18,6 +18,7 @@ import {
   routeExplicitForwardFirstFailure,
   validateForwardInputMaterializationArtifact,
   validateForwardGoldEvaluationArtifacts,
+  assertForwardQualificationExperimentIdentity,
   assertExplicitForwardManifestKind,
   createExplicitExperimentAuthorDestination,
   createLedgeredDeferredAuthorProducer,
@@ -75,6 +76,23 @@ const ROLE_SHA = "b".repeat(64);
 const INSTRUMENT_SHA = "c".repeat(64);
 const PROFILE_SHA = "e".repeat(64);
 const ROUTE_VERSION = "route-policy-v1.0";
+
+test("forward campaign refuses a v1 default spec for a retained v2 qualification bundle", () => {
+  const qualificationBundle = {
+    seal: { experimentId: "s16-forward-role-qualification-v2" },
+  } as never;
+  assert.doesNotThrow(() => assertForwardQualificationExperimentIdentity(
+    qualificationBundle,
+    "s16-forward-role-qualification-v2",
+  ));
+  assert.throws(
+    () => assertForwardQualificationExperimentIdentity(
+      qualificationBundle,
+      "s16-forward-role-qualification-v1",
+    ),
+    /differs from retained qualification experiment/,
+  );
+});
 
 function coordinate(bookId: string, chapterNumber: number, stratum: ForwardChapterStratum): ForwardSourceCoordinateV1 {
   return {

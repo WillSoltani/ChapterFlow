@@ -30,6 +30,7 @@ import {
   validateQuizDerivation,
 } from "../contracts/reviewContracts.js";
 import { hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
+import { renderChapterReaderDocPhase1 } from "./renderReaderDoc.js";
 
 export const QUIZ_PHASE2_VERSION = "phase2-v1" as const;
 
@@ -158,9 +159,15 @@ export function renderQuizPhase2Doc(ch: ChapterV21, committed: CommittedQuizDeri
   if (questions.length !== committed.derivation.items.length) {
     throw new QuizPhaseError(`phase-2 render refused: ${committed.derivation.items.length} committed item(s) vs ${questions.length} question(s)`);
   }
+  const keyFreeChapter = `${renderChapterReaderDocPhase1(ch).replace(/\n?$/, "")}\n`;
+  if (sha256Hex(keyFreeChapter) !== committed.derivation.documentSha256) {
+    throw new QuizPhaseError("phase-2 render refused: key-free supporting chapter bytes do not match the committed phase-1 document hash");
+  }
   const L: string[] = [];
   L.push(`# QUIZ KEY ADJUDICATION — ${ch.title}`, "");
   L.push(`Committed blind derivation sha256: ${committed.sha256}`, `Phase version: ${QUIZ_PHASE2_VERSION}`, "");
+  L.push("## KEY-FREE PHASE-1 CHAPTER EVIDENCE (exact committed bytes)");
+  L.push(keyFreeChapter.trimEnd(), "");
   L.push("## Questions and choices");
   questions.forEach((q, i) => {
     L.push(`Q${i + 1}. ${q.prompt}`);

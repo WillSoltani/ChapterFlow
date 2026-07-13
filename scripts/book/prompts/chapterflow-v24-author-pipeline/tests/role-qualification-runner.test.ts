@@ -40,13 +40,13 @@ const CORPUS_PATHS = {
 } as const;
 
 const EXPECTED_ENVELOPE_SHA256 = {
-  reader: "081bd230c47d4853b9e66656123c1a65a611ecc9424f6931f5d50d717eac55bd",
+  reader: "efaf5a3d80cbf46bcae9511030fba8fc02fbcb4a055241ca867b8c0a1729ccbe",
   source: "0e3791580c0b2461622033e9369047f5752b7de70537e276af45794f4c2b6435",
   quiz: "9d59ac17cdc79df71eac763a78450f32faea4b535136cf8ef944c63d9d470c4b",
 } as const;
 
 const EXPECTED_SUBSTANTIVE_SHA256 = {
-  reader: "sha256:492222ffc2d896e6dfade40cf21045ab96edab8e1c930db1b96a4f58de48c7c3",
+  reader: "sha256:5743b9acec5e71c6e536cd32cd9b518b75418eb34ac4f8a14073b5f82e531cc8",
   source: "sha256:f706bcf03e7d81bf2c435d52626f4e03632fa66e1b155c73b606b503ad4d0b91",
   quiz: "sha256:bc7a9ede537e85394d7a794d09a62462bbfda2684df8426072b8a38ac25aadad",
 } as const;
@@ -589,7 +589,7 @@ test("schema-valid bad judgments, false positives, and invalid evidence fail exa
         const span = evidenceLine(request.artifacts[0].content);
         parsed.recommendation = "BLOCK";
         parsed.blockingFindings = [{ category: "unsafe", unit: "chapter", problem: "false positive", evidenceSpans: [span] }];
-      } else if (c.kind === "craft-nonblocker" && readerBadEvidenceCount < 2) {
+      } else if (request.partition === "holdout" && c.kind === "craft-nonblocker" && readerBadEvidenceCount < 2) {
         readerBadEvidenceCount += 1;
         parsed.strongestEvidence = ["not present in the reader document"];
       }
@@ -683,6 +683,47 @@ test("only infrastructure terminal statuses replay once; policy/schema/integrity
     /calibration seal is not valid|source missing-evidence refusal probe did not pass/,
   );
   assert.equal(holdoutExecutor.requests.length, 0);
+});
+
+test("source calibration rejects a substituted plan unit and a BLOCK backed only by major findings", async () => {
+  const input = loadInput();
+  const [substitutedCase, severityCase] = input.corpora.source.partitions.calibration.cases;
+  const canned = cannedExecutor(input, (request) => {
+    if (request.caseId !== substitutedCase.caseId && request.caseId !== severityCase.caseId) return undefined;
+    const c = request.caseId === substitutedCase.caseId ? substitutedCase : severityCase;
+    const parsed = JSON.parse(sourceRaw(c)) as Record<string, unknown>;
+    const unit = (parsed.units as Array<Record<string, unknown>>)[0];
+    if (request.caseId === substitutedCase.caseId) unit.unitId = "substituted-plan-unit";
+    else {
+      parsed.result = "BLOCK";
+      parsed.blockingFindingIds = ["major-only"];
+      unit.findings = [{ category: "invented_detail", severity: "major", explanation: "not blocker severity" }];
+    }
+    return { rawOutput: JSON.stringify(parsed) };
+  });
+  const calibration = await runRoleCalibration(input, { executor: canned.executor, candidateAvailability: availabilityFor(input) });
+  assert.equal(calibration.valid, false);
+  const substituted = calibration.attempts.find((attempt) => attempt.caseId === substitutedCase.caseId)!;
+  const majorOnly = calibration.attempts.find((attempt) => attempt.caseId === severityCase.caseId)!;
+  assert.equal(substituted.evaluation?.protocolValid, false);
+  assert.match(substituted.evaluation?.error ?? "", /omitted required unit/);
+  assert.equal(majorOnly.evaluation?.protocolValid, false);
+  assert.match(majorOnly.evaluation?.error ?? "", /no blocker-severity finding/);
+});
+
+test("calibration cannot be valid when any retained evidence span is not exact", async () => {
+  const input = loadInput();
+  const target = input.corpora.reader.partitions.calibration.cases[0];
+  const canned = cannedExecutor(input, (request) => {
+    if (request.caseId !== target.caseId) return undefined;
+    const parsed = JSON.parse(readerRaw(request, target)) as Record<string, unknown>;
+    parsed.strongestEvidence = ["not present in the retained phase-1 document"];
+    return { rawOutput: JSON.stringify(parsed) };
+  });
+  const calibration = await runRoleCalibration(input, { executor: canned.executor, candidateAvailability: availabilityFor(input) });
+  assert.equal(calibration.valid, false);
+  assert.equal(calibration.roleProtocolValid.reader, false);
+  assert.equal(calibration.attempts.find((attempt) => attempt.caseId === target.caseId)?.evaluation?.evidenceSpanValid, false);
 });
 
 test("source missing-evidence probe predicate is fail-closed and never treats a spawn or non-refusal as success", () => {

@@ -3,7 +3,7 @@
   "role": "reader",
   "corpusId": "imp22-forward-sol-reader-corpus-v2",
   "builderMode": "reader-triplet-per-base-v2",
-  "_note": "IMP-22 additive development corpus. The IMP-20 reader spec and evidence remain untouched. Ten qualification-holdout bases and two calibration-only bases each produce an unmodified clean control, an explicit schema-valid reader-visible blocker, and an explicit non-blocking craft weakness. Labels are curator-authored development fixtures, not independent-human or literal owner-authored judgments.",
+  "_note": "IMP-22 additive development corpus. The IMP-20 reader spec and evidence remain untouched. Ten qualification-holdout bases and two calibration-only bases each produce a clean control, an explicit schema-valid reader-visible blocker, and an explicit non-blocking craft weakness. After the first live calibration exposed one unsafe phrase in the Behave calibration coordinate, that same coordinate received the single permitted offline correction and the original experiment was invalidated. No holdout coordinate was changed or replaced. Labels are curator-authored development fixtures, not independent-human or literal owner-authored judgments.",
   "governance": {
     "definitionsFrozenBeforeLiveOutput": true,
     "calibrationVsHoldoutSeparated": true,
@@ -302,8 +302,22 @@
       "cleanAudit": {
         "status": "DEVELOPMENT_CLEAN_CONTROL",
         "knownDefects": [],
-        "sourceDesignation": "curator-inspected calibration coordinate; never part of the qualification holdout",
-        "curatorRationale": "The complete chapter is suitable for development calibration and has no known visible blocker or wrong key. It is explicitly separate from holdout."
+        "sourceDesignation": "curator-inspected calibration coordinate after the one permitted offline correction; never part of the qualification holdout",
+        "curatorRationale": "The same calibration coordinate is retained after replacing the verified dispatch-risk instruction exposed by the invalidated v1 calibration. The corrected chapter has no known visible blocker or wrong key and remains separate from holdout."
+      },
+      "calibrationCorrection": {
+        "invalidatedExperimentId": "s16-forward-role-qualification-v1",
+        "correctedExperimentId": "s16-forward-role-qualification-v2",
+        "correctionOrdinal": 1,
+        "defectId": "reader-clean-control-send-activation-risk",
+        "ops": [
+          {
+            "path": "/tryThisNow",
+            "op": "replace",
+            "value": "Before your next tense exchange, take a two-minute walk. Return to the unsent draft, name the cue and brake, then choose the first sentence before you touch Send."
+          }
+        ],
+        "curatorRationale": "The v1 live calibration correctly blocked the inherited instruction to touch Send before choosing the sentence. This repairs that exact phrase on the same development-only coordinate; it does not relabel or replace any case."
       },
       "hardMutation": {
         "category": "internal_contradiction",

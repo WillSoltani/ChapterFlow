@@ -342,7 +342,11 @@ function standardActiveFiles(stateDir = "/virtual/forward-local"): {
   files: Map<string, string>;
   binding: ForwardLocalRuntimeBindingV1;
 } {
-  const qualificationDraft = { schema: "fixture-qualified-bundle", result: "PASS" };
+  const qualificationDraft = {
+    schema: "fixture-qualified-bundle",
+    result: "PASS",
+    seal: { experimentId: "s16-forward-role-qualification-v2" },
+  };
   const qualification = { ...qualificationDraft, bundleSha256: hashCanonical(qualificationDraft) };
   const instrumentBinding = { schema: "fixture-current-instrument", version: 1 };
   const roleFreezeDraft = { schema: "fixture-current-role-freeze", roleSet: "fixed" };
@@ -765,15 +769,20 @@ test("normal-path factory reads independent current artifacts and refuses self-c
   const stateDir = "/virtual/forward-local";
   const { files, binding } = standardActiveFiles(stateDir);
   const readText = (path: string): string | null => files.get(path) ?? null;
+  let observedQualificationExperimentId: string | null = null;
   const control = resolveStandardForwardAutopilotControl({
     stateDir,
     readText,
     riskSignalsFor: () => risk(),
     reviewerExecutor: async () => { throw new Error("no execution in factory test"); },
     loadReviewEvidence: () => { throw new Error("no evidence load in factory test"); },
-    verifyCurrentInstrumentBinding: (current) => hashCanonical(current),
+    verifyCurrentInstrumentBinding: (current, qualificationExperimentId) => {
+      observedQualificationExperimentId = qualificationExperimentId;
+      return hashCanonical(current);
+    },
   });
   assert.equal(control.runtime.mode, "FORWARD_ACTIVE");
+  assert.equal(observedQualificationExperimentId, "s16-forward-role-qualification-v2");
   if (control.runtime.mode === "FORWARD_ACTIVE") {
     assert.equal(control.runtime.binding.bindingSha256, binding.bindingSha256);
   }

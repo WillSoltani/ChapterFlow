@@ -272,6 +272,15 @@ export type ReaderMutationSpecV2 = {
   curatorRationale: string;
 };
 
+export type ReaderCalibrationCorrectionV2 = {
+  invalidatedExperimentId: "s16-forward-role-qualification-v1";
+  correctedExperimentId: "s16-forward-role-qualification-v2";
+  correctionOrdinal: 1;
+  defectId: string;
+  ops: MutationOpV1[];
+  curatorRationale: string;
+};
+
 export type ReaderBaseCaseSpecV2 = {
   fixtureKey: string;
   partition: CorpusPartitionV2;
@@ -284,6 +293,10 @@ export type ReaderBaseCaseSpecV2 = {
     sourceDesignation: string;
     curatorRationale: string;
   };
+  /** One offline, pre-holdout correction is permitted only after the original
+   * calibration evidence invalidates a development-control label. It repairs
+   * the same coordinate; it never replaces or relabels a sample. */
+  calibrationCorrection?: ReaderCalibrationCorrectionV2;
   hardMutation: ReaderMutationSpecV2;
   craftMutation: ReaderMutationSpecV2;
 };
@@ -314,6 +327,7 @@ export type ReaderCorpusCaseV2 = {
     independentHumanRater: false;
   };
   curation: CuratorDevelopmentProvenanceV2;
+  calibrationCorrection?: ReaderCalibrationCorrectionV2;
   provenance: {
     basePackageCanonicalSha256: string;
     baseContentSha256: string;
@@ -369,6 +383,22 @@ function readReaderCorpusSpecV2(path: string): ReaderCorpusSpecV2 {
       || typeof item.cleanAudit.curatorRationale !== "string" || item.cleanAudit.curatorRationale.trim().length === 0) {
       throw new CorpusBuildError(`reader v2 ${item.fixtureKey} clean audit is missing its curator rationale/designation`, { path });
     }
+    const correction = item.calibrationCorrection;
+    if (correction !== undefined) {
+      if (item.partition !== "calibration") {
+        throw new CorpusBuildError(`reader v2 ${item.fixtureKey} attempts to alter a holdout coordinate`, { path });
+      }
+      if (correction.invalidatedExperimentId !== "s16-forward-role-qualification-v1"
+        || correction.correctedExperimentId !== "s16-forward-role-qualification-v2"
+        || correction.correctionOrdinal !== 1) {
+        throw new CorpusBuildError(`reader v2 ${item.fixtureKey} calibration correction identity is not the one permitted offline repair`, { path });
+      }
+      if (typeof correction.defectId !== "string" || correction.defectId.trim().length === 0
+        || typeof correction.curatorRationale !== "string" || correction.curatorRationale.trim().length === 0
+        || !Array.isArray(correction.ops) || correction.ops.length === 0) {
+        throw new CorpusBuildError(`reader v2 ${item.fixtureKey} calibration correction is incomplete`, { path });
+      }
+    }
     for (const [label, mutation] of [["hard", item.hardMutation], ["craft", item.craftMutation]] as const) {
       if (!mutation || !Array.isArray(mutation.ops) || mutation.ops.length === 0) {
         throw new CorpusBuildError(`reader v2 ${item.fixtureKey} ${label} mutation must carry explicit curator-authored ops`, { path });
@@ -414,6 +444,12 @@ export function buildReaderCorpusV2(config: SplitLaneCorpusConfigV1): CorpusBuil
   for (const item of spec.baseCases) {
     assertCandidateBookExcluded(item.baseBookId, excludedCandidateBookIds, item.fixtureKey);
     const base = loadAdmittedBase(config.sourceRoots.bookPackagesDir, item.baseBookId, item.baseChapter, config.minRenderBytes, ledger);
+    const correctionOps = item.calibrationCorrection?.ops ?? [];
+    const correctedBase = JSON.parse(JSON.stringify(base.chapter)) as ChapterV21;
+    if (correctionOps.length > 0) applyMutationOps(correctedBase, correctionOps);
+    const correctedBaseAdmission = correctionOps.length > 0
+      ? admitVariant(correctedBase, config.minRenderBytes, `${item.fixtureKey}-calibration-correction`)
+      : base.admission;
 
     const addCase = (
       kind: ReaderKind,
@@ -445,6 +481,7 @@ export function buildReaderCorpusV2(config: SplitLaneCorpusConfigV1): CorpusBuil
           independentHumanRater: false as const,
         },
         curation,
+        ...(item.calibrationCorrection ? { calibrationCorrection: item.calibrationCorrection } : {}),
         provenance: {
           basePackageCanonicalSha256: base.packageCanonicalSha256,
           baseContentSha256: hashValue(base.chapter),
@@ -463,21 +500,21 @@ export function buildReaderCorpusV2(config: SplitLaneCorpusConfigV1): CorpusBuil
 
     addCase(
       "clean",
-      base.chapter,
-      [],
+      correctedBase,
+      correctionOps,
       item.cleanExpected,
       readerV2Curation(item.cleanAudit.curatorRationale, item.cleanAudit.sourceDesignation),
-      base.admission.renderedBytes,
+      correctedBaseAdmission.renderedBytes,
     );
 
     for (const [kind, mutation] of [["reader-visible-hard-blocker", item.hardMutation], ["craft-nonblocker", item.craftMutation]] as const) {
-      const chapter = JSON.parse(JSON.stringify(base.chapter)) as ChapterV21;
+      const chapter = JSON.parse(JSON.stringify(correctedBase)) as ChapterV21;
       applyMutationOps(chapter, mutation.ops);
       const admission = admitVariant(chapter, config.minRenderBytes, `${item.fixtureKey}-${kind}`);
       addCase(
         kind,
         chapter,
-        mutation.ops,
+        [...correctionOps, ...mutation.ops],
         mutation.expected,
         readerV2Curation(mutation.curatorRationale, `IMP-22 ${mutation.category} controlled mutation`),
         admission.renderedBytes,

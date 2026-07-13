@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-source-1783906386598-19-9ca72a0f-c0c4-49ee-b61a-112d4918287d",
+  "status": "completed",
+  "role": "source",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+  "rawOutput": "{\"schema\":\"source-integrity-review-v1\",\"units\":[{\"unitId\":\"unit-1\",\"expectedOrigin\":\"source_bound\",\"expectedForm\":\"explanation\",\"claimStrengthExpected\":\"descriptive\",\"visibleRegister\":\"presented_as_fact\",\"supportStatus\":\"PARTIALLY_SUPPORTED\",\"framingAdequate\":true,\"claimStrengthFit\":true,\"namedSpecificityAllowed\":false,\"chapterEvidenceSpans\":[\"In 2021, Northstar Systems applied this idea across its product team\",\"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\"],\"sourceEvidenceSpans\":[\"ch01.fact.1: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\",\"The source packet's allowedEntities does not include Northstar Systems, and its allowedNumbers does not include 2021.\"],\"findings\":[{\"category\":\"invented_detail\",\"severity\":\"major\",\"explanation\":\"The asserted 2021 event involving Northstar Systems and its product team has no support in the source packet, sidecar, or anchor catalog.\"},{\"category\":\"unsupported_attribution\",\"severity\":\"major\",\"explanation\":\"The chapter presents as fact that Northstar Systems applied the idea, but the supplied evidence attributes no action to that organization. The iPhone statement following the colon is independently supported by ch01.fact.1.\"}]}],\"result\":\"BLOCK\",\"blockingFindingIds\":[\"unit-1.finding-1\",\"unit-1.finding-2\"],\"rationale\":\"The iPhone-launch claim is directly supported, but the sentence adds an unsupported organization, date, team, and application event as reported history. Because those details are presented factually and the complete source evidence does not license them, the unit is only partially supported and must be blocked.\"}"
+}

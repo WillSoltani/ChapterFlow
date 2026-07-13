@@ -18,11 +18,25 @@
           "baseBookId": "behave",
           "baseChapter": 2,
           "baseCleanControlAudit": {
-            "curatorRationale": "The complete chapter is suitable for development calibration and has no known visible blocker or wrong key. It is explicitly separate from holdout.",
+            "curatorRationale": "The same calibration coordinate is retained after replacing the verified dispatch-risk instruction exposed by the invalidated v1 calibration. The corrected chapter has no known visible blocker or wrong key and remains separate from holdout.",
             "independentHumanRater": false,
             "knownDefects": [],
-            "sourceDesignation": "curator-inspected calibration coordinate; never part of the qualification holdout",
+            "sourceDesignation": "curator-inspected calibration coordinate after the one permitted offline correction; never part of the qualification holdout",
             "status": "DEVELOPMENT_CLEAN_CONTROL"
+          },
+          "calibrationCorrection": {
+            "correctedExperimentId": "s16-forward-role-qualification-v2",
+            "correctionOrdinal": 1,
+            "curatorRationale": "The v1 live calibration correctly blocked the inherited instruction to touch Send before choosing the sentence. This repairs that exact phrase on the same development-only coordinate; it does not relabel or replace any case.",
+            "defectId": "reader-clean-control-send-activation-risk",
+            "invalidatedExperimentId": "s16-forward-role-qualification-v1",
+            "ops": [
+              {
+                "op": "replace",
+                "path": "/tryThisNow",
+                "value": "Before your next tense exchange, take a two-minute walk. Return to the unsent draft, name the cue and brake, then choose the first sentence before you touch Send."
+              }
+            ]
           },
           "caseId": "READER-V2-CALIBRATION-clean-behave-ch02",
           "chapter": {
@@ -349,14 +363,14 @@
               }
             ],
             "title": "One Second Before",
-            "tryThisNow": "Before your next tense exchange, take a two-minute walk. Return, touch Send, name the cue and brake, then choose the first sentence."
+            "tryThisNow": "Before your next tense exchange, take a two-minute walk. Return to the unsent draft, name the cue and brake, then choose the first sentence before you touch Send."
           },
           "curation": {
-            "curatorRationale": "The complete chapter is suitable for development calibration and has no known visible blocker or wrong key. It is explicitly separate from holdout.",
+            "curatorRationale": "The same calibration coordinate is retained after replacing the verified dispatch-risk instruction exposed by the invalidated v1 calibration. The corrected chapter has no known visible blocker or wrong key and remains separate from holdout.",
             "independentHumanRater": false,
             "labelProvenance": "curator-authored-development-fixture",
             "ownerApprovedForDevelopmentBakeoff": true,
-            "sourceDesignation": "curator-inspected calibration coordinate; never part of the qualification holdout"
+            "sourceDesignation": "curator-inspected calibration coordinate after the one permitted offline correction; never part of the qualification holdout"
           },
           "expected": {
             "expectedRecommendation": "SHIP",
@@ -374,16 +388,22 @@
               "externalAccuracy": "Not assessed"
             },
             "cleanBaseScore": 87.9,
-            "mutationOps": [],
-            "mutationOpsSha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
-            "protectedContentSha256": "sha256:97860c2fc1adda12517bc2c0a0f84bdad57d238bf7616cf2eae9828297fd247e",
-            "renderedBytes": 16916,
-            "variantContentSha256": "sha256:97860c2fc1adda12517bc2c0a0f84bdad57d238bf7616cf2eae9828297fd247e"
+            "mutationOps": [
+              {
+                "op": "replace",
+                "path": "/tryThisNow",
+                "value": "Before your next tense exchange, take a two-minute walk. Return to the unsent draft, name the cue and brake, then choose the first sentence before you touch Send."
+              }
+            ],
+            "mutationOpsSha256": "sha256:f870f648c914547b84195d51c1822a92ed9c47eb9651208b3434dd90d5f549dd",
+            "protectedContentSha256": "sha256:e4478cd61bce6534b818ea91e48228f7effcbb91a114b5e556827de7ee018a80",
+            "renderedBytes": 16946,
+            "variantContentSha256": "sha256:a56592aad684849fac87eb7df09cf78c8baa178aafec109c562480692142a696"
           },
           "requiresPhase2": false,
           "role": "reader",
           "sourceSemanticsStatus": "MISSING",
-          "substantiveCaseSha256": "sha256:f31542c3f1057f3cd741cb1111654bcfaa5ef75c08f686eecdf5d44036df2e81"
+          "substantiveCaseSha256": "sha256:e3cf03ff42e8ebce86016b2c3a8f6ff60ce5992e0d4013f9bd3ca88ac4e028af"
         },
         {
           "baseBookId": "make-it-stick",
@@ -760,11 +780,25 @@
           "baseBookId": "behave",
           "baseChapter": 2,
           "baseCleanControlAudit": {
-            "curatorRationale": "The complete chapter is suitable for development calibration and has no known visible blocker or wrong key. It is explicitly separate from holdout.",
+            "curatorRationale": "The same calibration coordinate is retained after replacing the verified dispatch-risk instruction exposed by the invalidated v1 calibration. The corrected chapter has no known visible blocker or wrong key and remains separate from holdout.",
             "independentHumanRater": false,
             "knownDefects": [],
-            "sourceDesignation": "curator-inspected calibration coordinate; never part of the qualification holdout",
+            "sourceDesignation": "curator-inspected calibration coordinate after the one permitted offline correction; never part of the qualification holdout",
             "status": "DEVELOPMENT_CLEAN_CONTROL"
+          },
+          "calibrationCorrection": {
+            "correctedExperimentId": "s16-forward-role-qualification-v2",
+            "correctionOrdinal": 1,
+            "curatorRationale": "The v1 live calibration correctly blocked the inherited instruction to touch Send before choosing the sentence. This repairs that exact phrase on the same development-only coordinate; it does not relabel or replace any case.",
+            "defectId": "reader-clean-control-send-activation-risk",
+            "invalidatedExperimentId": "s16-forward-role-qualification-v1",
+            "ops": [
+              {
+                "op": "replace",
+                "path": "/tryThisNow",
+                "value": "Before your next tense exchange, take a two-minute walk. Return to the unsent draft, name the cue and brake, then choose the first sentence before you touch Send."
+              }
+            ]
           },
           "caseId": "READER-V2-CALIBRATION-craft-nonblocker-behave-ch02",
           "chapter": {
@@ -1091,7 +1125,7 @@
               }
             ],
             "title": "One Second Before",
-            "tryThisNow": "Before your next tense exchange, take a two-minute walk. Return, touch Send, name the cue and brake, then choose the first sentence."
+            "tryThisNow": "Before your next tense exchange, take a two-minute walk. Return to the unsent draft, name the cue and brake, then choose the first sentence before you touch Send."
           },
           "curation": {
             "curatorRationale": "The generic addition is weak but non-blocking and is reserved for calibration only.",
@@ -1119,20 +1153,25 @@
             "cleanBaseScore": 87.9,
             "mutationOps": [
               {
+                "op": "replace",
+                "path": "/tryThisNow",
+                "value": "Before your next tense exchange, take a two-minute walk. Return to the unsent draft, name the cue and brake, then choose the first sentence before you touch Send."
+              },
+              {
                 "op": "append",
                 "path": "/examples/0/whyItMatters",
                 "value": " This matters for reasons that are generally important."
               }
             ],
-            "mutationOpsSha256": "sha256:715f752280331d80f6cd988903463b78808c5cae3354e643efc4f2db42542971",
-            "protectedContentSha256": "sha256:ff2b94f22e8bf6afd351fac36e22a17532ea20f31b991ce3cb54739720dffe2d",
-            "renderedBytes": 16971,
-            "variantContentSha256": "sha256:04682c4e80e1c681d9a19ca8978301e9f70651c002b0f4a3c976b267ebce1410"
+            "mutationOpsSha256": "sha256:527654ff37978c4bb22cf9cd288b177f826d534e280a3a3d3e226d5c2860da4b",
+            "protectedContentSha256": "sha256:656231be597f7cadae8e8637cd52b028260173bea7c073f5b8e7884c89365a62",
+            "renderedBytes": 17001,
+            "variantContentSha256": "sha256:f27b3ffa30b23f01dfffd6113bb5d5852fa1399b865183e3b6907e5c6de798c7"
           },
           "requiresPhase2": false,
           "role": "reader",
           "sourceSemanticsStatus": "MISSING",
-          "substantiveCaseSha256": "sha256:e1c621493f0034e72cd4e65b74f0f3ed93b15b6b6c9c5a0698b73bf6d011ea55"
+          "substantiveCaseSha256": "sha256:80223dad6b54b497b092cf6fd1bad23eb19164a72302fc1a57714fdb39060688"
         },
         {
           "baseBookId": "make-it-stick",
@@ -1516,11 +1555,25 @@
           "baseBookId": "behave",
           "baseChapter": 2,
           "baseCleanControlAudit": {
-            "curatorRationale": "The complete chapter is suitable for development calibration and has no known visible blocker or wrong key. It is explicitly separate from holdout.",
+            "curatorRationale": "The same calibration coordinate is retained after replacing the verified dispatch-risk instruction exposed by the invalidated v1 calibration. The corrected chapter has no known visible blocker or wrong key and remains separate from holdout.",
             "independentHumanRater": false,
             "knownDefects": [],
-            "sourceDesignation": "curator-inspected calibration coordinate; never part of the qualification holdout",
+            "sourceDesignation": "curator-inspected calibration coordinate after the one permitted offline correction; never part of the qualification holdout",
             "status": "DEVELOPMENT_CLEAN_CONTROL"
+          },
+          "calibrationCorrection": {
+            "correctedExperimentId": "s16-forward-role-qualification-v2",
+            "correctionOrdinal": 1,
+            "curatorRationale": "The v1 live calibration correctly blocked the inherited instruction to touch Send before choosing the sentence. This repairs that exact phrase on the same development-only coordinate; it does not relabel or replace any case.",
+            "defectId": "reader-clean-control-send-activation-risk",
+            "invalidatedExperimentId": "s16-forward-role-qualification-v1",
+            "ops": [
+              {
+                "op": "replace",
+                "path": "/tryThisNow",
+                "value": "Before your next tense exchange, take a two-minute walk. Return to the unsent draft, name the cue and brake, then choose the first sentence before you touch Send."
+              }
+            ]
           },
           "caseId": "READER-V2-CALIBRATION-reader-visible-hard-blocker-behave-ch02",
           "chapter": {
@@ -1847,7 +1900,7 @@
               }
             ],
             "title": "One Second Before",
-            "tryThisNow": "Before your next tense exchange, take a two-minute walk. Return, touch Send, name the cue and brake, then choose the first sentence."
+            "tryThisNow": "Before your next tense exchange, take a two-minute walk. Return to the unsent draft, name the cue and brake, then choose the first sentence before you touch Send."
           },
           "curation": {
             "curatorRationale": "The replacement reverses the chapter's visible multi-layer account while preserving schema validity.",
@@ -1875,19 +1928,24 @@
             "mutationOps": [
               {
                 "op": "replace",
+                "path": "/tryThisNow",
+                "value": "Before your next tense exchange, take a two-minute walk. Return to the unsent draft, name the cue and brake, then choose the first sentence before you touch Send."
+              },
+              {
+                "op": "replace",
                 "path": "/keyTakeaway",
                 "value": "A single brain label always explains a complete human action. Context, learning, body state, and time scale can never add anything useful to the explanation."
               }
             ],
-            "mutationOpsSha256": "sha256:58145f782398b6cab4de64d5c2ac4e9379589c4a6df57ca055f42e3ec6709f74",
-            "protectedContentSha256": "sha256:5e170d1f171f602e002bcd5161f9675c58a5845687e478a708bea011ef6a5328",
-            "renderedBytes": 16918,
-            "variantContentSha256": "sha256:581e3926ca637dca12615865bb3b29574e83133db27b86af98b1245f4fb07ff4"
+            "mutationOpsSha256": "sha256:6a878dcd2111e9eb4ee3265fc05d25c8b7ebe2af3c2a2e921bafb4a58721d8a5",
+            "protectedContentSha256": "sha256:d013bc315a44aef24733db087d67a0a84857d4b7a2c9419c4598da9c64d842bb",
+            "renderedBytes": 16948,
+            "variantContentSha256": "sha256:77f8863fa4a0bcdba1952d407c9bb881b7b911e80f8b87fe32936f91782991a1"
           },
           "requiresPhase2": false,
           "role": "reader",
           "sourceSemanticsStatus": "MISSING",
-          "substantiveCaseSha256": "sha256:f55fa69ff61e342720c12523c37bb5c3f401d77b6aea860f55ec7c6fe62e2230"
+          "substantiveCaseSha256": "sha256:ed72cea01fee21278ff3f2e91f2daf6342be8db2245df62ded0da363183a3c33"
         },
         {
           "baseBookId": "make-it-stick",
@@ -2280,7 +2338,7 @@
         "total": 6
       },
       "partition": "calibration",
-      "substantivePartitionSha256": "sha256:f61d4b6e10a285c64b00a568450a5d980707ff012409bd886727308155855465"
+      "substantivePartitionSha256": "sha256:80990e7cb5d4904d66494ac1d5277556fffd2d45c82f8f3ba8bbf531b00687fe"
     },
     "holdout": {
       "cases": [
@@ -13593,6 +13651,6 @@
   },
   "role": "reader",
   "schema": "split-lane-role-corpus-v2",
-  "specSha256": "sha256:a87eb5f6043a2c53604a919a5cd35f48a0bcb297ddbec5eba0d73b29b822ee9a",
-  "substantiveCorpusSha256": "sha256:492222ffc2d896e6dfade40cf21045ab96edab8e1c930db1b96a4f58de48c7c3"
+  "specSha256": "sha256:43a95c5ffa7ab55e0e1bd2363301c9d19a8492764714aefdccdca18d24368abd",
+  "substantiveCorpusSha256": "sha256:5743b9acec5e71c6e536cd32cd9b518b75418eb34ac4f8a14073b5f82e531cc8"
 }

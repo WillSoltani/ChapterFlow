@@ -172,14 +172,19 @@ test("phase-2 render REFUSES a tampered/uncommitted derivation (commit-before-ke
   const p1sha = sha(ensureTrailingNewline(renderChapterReaderDocPhase1(ch)));
   const parsed = parseReaderReview(readerReplyJson())!;
   const committed = commitQuizDerivation(buildQuizDerivation(ch, parsed.quizDerivation, p1sha, "s"), { documentSha256: p1sha, questionCount: 2, itemIds: ["q1", "q2"] });
-  // Happy path renders and contains derivation + key + explanations + the hash stamp.
+  // Happy path renders the exact committed key-free chapter evidence, then the
+  // derivation + key + explanations + hash stamp.
   const p2 = renderQuizPhase2Doc(ch, committed);
   assert.ok(p2.includes(`Committed blind derivation sha256: ${committed.sha256}`));
+  assert.ok(p2.includes("## KEY-FREE PHASE-1 CHAPTER EVIDENCE (exact committed bytes)"));
+  assert.ok(p2.includes(renderChapterReaderDocPhase1(ch)));
   assert.ok(p2.includes("## COMMITTED DERIVATION"));
   assert.ok(p2.includes("## ANSWER KEY (with explanations)"));
   assert.ok(p2.includes("Q1: b — The prose credits removing a field"), "phase-2 IS key-visible");
   // A forged commitment (hash that does not match the bytes) refuses to render.
   assert.throws(() => renderQuizPhase2Doc(ch, { derivation: committed.derivation, sha256: "f".repeat(64) }), QuizPhaseError);
+  const changedChapter = quizChapter({ tryThisNow: "Changed after the phase-1 commitment." });
+  assert.throws(() => renderQuizPhase2Doc(changedChapter, committed), /supporting chapter bytes do not match/, "phase-2 cannot swap in different support evidence");
 });
 
 // ── Adjudication trust verification ───────────────────────────────────────────

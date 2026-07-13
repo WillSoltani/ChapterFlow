@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-source-1783906078265-2-2a973081-6b35-4d07-a12d-d3531111aab8",
+  "status": "completed",
+  "role": "source",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+  "rawOutput": "{\"schema\":\"source-integrity-review-v1\",\"units\":[{\"unitId\":\"ch01.fact.1\",\"expectedOrigin\":\"source_bound\",\"expectedForm\":\"explanation\",\"claimStrengthExpected\":\"mechanistic\",\"visibleRegister\":\"presented_as_fact\",\"supportStatus\":\"PARTIALLY_SUPPORTED\",\"framingAdequate\":true,\"claimStrengthFit\":false,\"namedSpecificityAllowed\":true,\"chapterEvidenceSpans\":[\"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\",\"always causes the stated outcome for every person, without exception.\"],\"sourceEvidenceSpans\":[\"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\",\"Never upgrade a claim past its ceiling: mechanistic material explains HOW it works; it is not a licence to promise real-world outcomes or causation beyond the stated mechanism.\",\"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"],\"findings\":[{\"category\":\"claim_strength_overreach\",\"severity\":\"blocker\",\"explanation\":\"The first proposition is directly supported by ch01.fact.1, but the added assertion of an outcome that “always” occurs for “every person, without exception” is an unsupported universal causal guarantee. It exceeds the unit's mechanistic ceiling and violates the explicit prohibition on guaranteed outcomes.\"}]}],\"result\":\"BLOCK\",\"blockingFindingIds\":[\"ch01.fact.1:claim_strength_overreach:1\"],\"rationale\":\"The documented 2007 iPhone framing is source-supported, including its date and device description. The appended universal causal guarantee is expressly outside the licensed claim strength and unsupported by any supplied evidence, so the unit is only partially supported and must be blocked.\"}"
+}

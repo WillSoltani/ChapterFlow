@@ -110,7 +110,7 @@ export function buildQuizIntegrityAdjudicationTask(docRelPath: string): string {
 The adjudication document is at: ${docRelPath}
 Read ONLY this file. Do not write any files.
 
-It contains: the quiz questions and choices, a COMMITTED DERIVATION produced by an independent blind reader BEFORE any key access (immutable — copy its values verbatim), and the stored ANSWER KEY with explanations.
+It contains: the exact key-free phase-1 chapter evidence, the quiz questions and choices, a COMMITTED DERIVATION produced by an independent blind reader BEFORE any key access (immutable — copy its values verbatim), and the stored ANSWER KEY with explanations.
 
 For EVERY question judge the KEY itself:
 - "correct": the keyed answer is the one the questions/choices genuinely support and no other choice is equally defensible;
@@ -120,7 +120,7 @@ The blind derivation is EVIDENCE, not authority: a derivation that disagrees wit
 
 Also report, per question:
 - "defensibleAnswerIndices": every 0-based choice index that is a genuinely defensible answer given ONLY the question and its choices. For a uniquely-correct key this is exactly the keyed index. For an ambiguous key it is two or more indices.
-- "keyedMechanismSupported": true when the keyed answer's stated mechanism or causal justification is actually supported by the question and choices; true for a question that makes no mechanism/causal claim; false when the key asserts a mechanism/cause the material does not support.
+- "keyedMechanismSupported": true when the keyed answer's stated mechanism or causal justification is actually supported by the key-free phase-1 chapter evidence plus the question and choices; true for a question that makes no mechanism/causal claim; false when the key asserts a mechanism/cause those materials do not support.
 
 FINAL RESPONSE: emit only the JSON object required by the bound output schema. Do not wrap it in markdown fences and do not add prose before or after it:
 {

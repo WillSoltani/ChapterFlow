@@ -176,7 +176,10 @@ export type ResolveStandardForwardAutopilotDepsV1 = {
   runtimeDeps?: RunLocalAuthoringChapterDepsV1;
   /** Hermetic test seam. Production always re-hashes the live source/schema
    * files named by the frozen qualification spec. */
-  verifyCurrentInstrumentBinding?: (binding: ForwardQualificationInstrumentBindingV1) => string;
+  verifyCurrentInstrumentBinding?: (
+    binding: ForwardQualificationInstrumentBindingV1,
+    qualificationExperimentId: string,
+  ) => string;
   loadChapters?: typeof loadBookChapters;
   runBookSweep?: (
     bookId: string,
@@ -396,17 +399,28 @@ function currentEvidenceHash(
   return value.evidenceSha256;
 }
 
-const QUALIFICATION_SPEC_PATH = resolve(
-  PIPELINE_DIR,
-  "state/migration-experiments/s16-forward-role-qualification-v1/spec.json",
-);
-
-function defaultVerifyCurrentInstrumentBinding(binding: ForwardQualificationInstrumentBindingV1): string {
-  const specText = defaultReadText(QUALIFICATION_SPEC_PATH);
-  if (specText === null) throw new ForwardLocalAutopilotError(`qualification spec is missing: ${QUALIFICATION_SPEC_PATH}`);
+function defaultVerifyCurrentInstrumentBinding(
+  binding: ForwardQualificationInstrumentBindingV1,
+  qualificationExperimentId: string,
+): string {
+  if (!/^s16-forward-role-qualification-v[1-9][0-9]*$/.test(qualificationExperimentId)) {
+    throw new ForwardLocalAutopilotError(`qualification experiment identity is invalid: ${qualificationExperimentId}`);
+  }
+  const qualificationSpecPath = resolve(
+    PIPELINE_DIR,
+    "state/migration-experiments",
+    qualificationExperimentId,
+    "spec.json",
+  );
+  const specText = defaultReadText(qualificationSpecPath);
+  if (specText === null) throw new ForwardLocalAutopilotError(`qualification spec is missing: ${qualificationSpecPath}`);
   const spec = JSON.parse(specText) as {
+    experimentId?: string;
     instruments?: Record<string, { outputSchemaPath?: string; promptSourcePath?: string; sourcePath?: string }>;
   };
+  if (spec.experimentId !== qualificationExperimentId) {
+    throw new ForwardLocalAutopilotError("qualification spec identity differs from the activated qualification bundle");
+  }
   const liveHash = (relPath: string | undefined, label: string): string => {
     if (!relPath || relPath.startsWith("/") || relPath.includes("..")) throw new ForwardLocalAutopilotError(`${label}: invalid frozen source path`);
     const abs = resolve(PIPELINE_DIR, relPath);
@@ -445,7 +459,7 @@ function defaultVerifyCurrentInstrumentBinding(binding: ForwardQualificationInst
 function loadCurrentRuntimeEvidence(
   stateDir: string,
   readText: (path: string) => string | null,
-  verifyInstrumentBinding: (binding: ForwardQualificationInstrumentBindingV1) => string,
+  verifyInstrumentBinding: (binding: ForwardQualificationInstrumentBindingV1, qualificationExperimentId: string) => string,
 ): {
   evidence: { qualificationEvidenceHash: string; pilotEvidenceHash: string; goldBookEvidenceHash: string };
   instrumentBindingSha256: string;
@@ -458,6 +472,10 @@ function loadCurrentRuntimeEvidence(
   if (typeof qualificationHash !== "string" || !SHA256.test(qualificationHash)
       || hashWithout(qualification.value, "bundleSha256") !== qualificationHash) {
     throw new ForwardLocalAutopilotError(`${qualification.path}: current qualification bundle hash drift`);
+  }
+  const qualificationExperimentId = (qualification.value.seal as Record<string, unknown> | undefined)?.experimentId;
+  if (typeof qualificationExperimentId !== "string" || qualificationExperimentId.length === 0) {
+    throw new ForwardLocalAutopilotError(`${qualification.path}: current qualification experiment identity is missing`);
   }
   const pilot = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.pilot, readText);
   const gold = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.gold, readText);
@@ -476,7 +494,10 @@ function loadCurrentRuntimeEvidence(
       pilotEvidenceHash: currentEvidenceHash("pilot", pilot),
       goldBookEvidenceHash: currentEvidenceHash("gold", gold),
     },
-    instrumentBindingSha256: verifyInstrumentBinding(instrument.value as unknown as ForwardQualificationInstrumentBindingV1),
+    instrumentBindingSha256: verifyInstrumentBinding(
+      instrument.value as unknown as ForwardQualificationInstrumentBindingV1,
+      qualificationExperimentId,
+    ),
     reviewConfigSha256: hashCanonical(reviewConfig.value),
     roleAssignmentFreezeSha256: roleFreezeHash,
     noApiRoute: noApiRoute.value as unknown as VerifiedNoApiRouteV1,

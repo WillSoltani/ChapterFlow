@@ -182,6 +182,16 @@ export type LoadedForwardQualificationArtifactsV1 = {
   roleFreeze: ForwardRoleAssignmentFreezeV1;
 };
 
+export function assertForwardQualificationExperimentIdentity(
+  qualificationBundle: ForwardSealedQualificationBundleV1,
+  currentExperimentId: string,
+): void {
+  requireCondition(
+    qualificationBundle.seal.experimentId === currentExperimentId,
+    `current qualification spec ${currentExperimentId} differs from retained qualification experiment ${qualificationBundle.seal.experimentId}`,
+  );
+}
+
 function readJson<T>(path: string): T {
   try { return JSON.parse(readFileSync(path, "utf8")) as T; }
   catch (error) { throw new ForwardLiveValidationDriverError(`cannot read retained IMP-22 artifact ${path}: ${(error as Error).message}`); }
@@ -203,6 +213,7 @@ function deepFreeze<T>(value: T, seen = new WeakSet<object>()): T {
  * the retained calibration, human inspection, holdout, sealed bundle, and role
  * freeze, then reruns their full hash/selection/instrument validators. */
 export async function loadForwardQualificationArtifacts(paths: {
+  qualificationSpecPath: string;
   calibrationSealPath: string;
   calibrationInspectionPath: string;
   qualificationResultPath: string;
@@ -220,7 +231,11 @@ export async function loadForwardQualificationArtifacts(paths: {
   requireCondition(hashCanonical(result) === hashCanonical(qualificationBundle.result), "sealed qualification bundle differs from the retained holdout result");
   requireCondition(result.calibrationInspection?.inspectionSha256 === inspection.inspectionSha256,
     "retained holdout result is bound to another calibration inspection");
-  const current = await loadAndPreflightLiveQualification({ qualificationCacheDir: paths.qualificationCacheDir });
+  const current = await loadAndPreflightLiveQualification({
+    specPath: paths.qualificationSpecPath,
+    qualificationCacheDir: paths.qualificationCacheDir,
+  });
+  assertForwardQualificationExperimentIdentity(qualificationBundle, current.preflight.experimentId);
   const aggregator = (current.spec.instruments as unknown as {
     aggregator?: { sourceBytesSha256?: string };
   }).aggregator;
@@ -269,9 +284,12 @@ export type ForwardNoApiChatgptRouteProofV1 = {
 
 /** Re-run the real no-call Codex/auth preflight immediately before a campaign. */
 export async function loadForwardNoApiChatgptRouteProof(
-  qualificationCacheDir?: string,
+  opts: { qualificationSpecPath: string; qualificationCacheDir?: string },
 ): Promise<ForwardNoApiChatgptRouteProofV1> {
-  const loaded = await loadAndPreflightLiveQualification({ qualificationCacheDir });
+  const loaded = await loadAndPreflightLiveQualification({
+    specPath: opts.qualificationSpecPath,
+    qualificationCacheDir: opts.qualificationCacheDir,
+  });
   const preflight: LiveQualificationPreflightV1 = loaded.preflight;
   return {
     executionRoute: "codex_exec_chatgpt_subscription",
@@ -1506,6 +1524,7 @@ export type ForwardExplicitLiveArtifactPathsV1 = {
   inputFreezePath: string;
   inputMaterializationPath: string;
   productionInstrumentSealPath: string;
+  qualificationSpecPath: string;
   calibrationSealPath: string;
   calibrationInspectionPath: string;
   qualificationResultPath: string;
@@ -2467,6 +2486,7 @@ export async function runForwardLiveCampaignFromExplicitArtifacts(
   }
   const qualificationCacheDir = resolve(phaseDir, "live-campaign", "execution", "qualification-preflight-cache");
   const loaded = await loadForwardQualificationArtifacts({
+    qualificationSpecPath: resolve(paths.qualificationSpecPath),
     calibrationSealPath: resolve(paths.calibrationSealPath),
     calibrationInspectionPath: resolve(paths.calibrationInspectionPath),
     qualificationResultPath: resolve(paths.qualificationResultPath),
@@ -2474,7 +2494,10 @@ export async function runForwardLiveCampaignFromExplicitArtifacts(
     roleAssignmentFreezePath: resolve(paths.roleAssignmentFreezePath),
     qualificationCacheDir,
   });
-  const route = await loadForwardNoApiChatgptRouteProof(qualificationCacheDir);
+  const route = await loadForwardNoApiChatgptRouteProof({
+    qualificationSpecPath: resolve(paths.qualificationSpecPath),
+    qualificationCacheDir,
+  });
   const evidence = createForwardCampaignEvidenceStore(phaseDir);
   return runForwardLiveCampaign({
     phaseDir: resolve(phaseDir, "live-campaign"),

@@ -71,9 +71,14 @@ export const IMP22_ROLE_QUALIFICATION_LIVE_PREFLIGHT_SCHEMA = "imp22-role-qualif
 export const IMP22_ROLE_QUALIFICATION_CALL_LEDGER_SCHEMA = "imp22-role-qualification-call-ledger-v1" as const;
 export const IMP22_ROLE_QUALIFICATION_REQUEST_RECORD_SCHEMA = "imp22-role-qualification-request-record-v1" as const;
 
-const EXPERIMENT_ID = "s16-forward-role-qualification-v1";
-const SPEC_REL = `state/migration-experiments/${EXPERIMENT_ID}/spec.json`;
-const DEFAULT_EXPERIMENT_DIR = resolve(PIPELINE_DIR, "state", "migration-experiments", EXPERIMENT_ID);
+export const IMP22_ROLE_QUALIFICATION_EXPERIMENT_ID = "s16-forward-role-qualification-v1" as const;
+export const IMP23_CORRECTED_ROLE_QUALIFICATION_EXPERIMENT_ID = "s16-forward-role-qualification-v2" as const;
+const ALLOWED_EXPERIMENT_IDS = new Set<string>([
+  IMP22_ROLE_QUALIFICATION_EXPERIMENT_ID,
+  IMP23_CORRECTED_ROLE_QUALIFICATION_EXPERIMENT_ID,
+]);
+const SPEC_REL = `state/migration-experiments/${IMP22_ROLE_QUALIFICATION_EXPERIMENT_ID}/spec.json`;
+const DEFAULT_EXPERIMENT_DIR = resolve(PIPELINE_DIR, "state", "migration-experiments", IMP22_ROLE_QUALIFICATION_EXPERIMENT_ID);
 const ROLES: readonly ReviewLaneRole[] = ["reader", "source", "quiz"];
 const SHA256 = /^[a-f0-9]{64}$/;
 
@@ -148,9 +153,9 @@ type LocalCodexModelCacheV1 = {
 
 export type LiveQualificationPreflightV1 = {
   schema: typeof IMP22_ROLE_QUALIFICATION_LIVE_PREFLIGHT_SCHEMA;
-  experimentId: typeof EXPERIMENT_ID;
+  experimentId: string;
   verifiedAt: string;
-  specRelPath: typeof SPEC_REL;
+  specRelPath: string;
   specBytesSha256: string;
   corpusBytesSha256: Record<ReviewLaneRole, string>;
   corpusSubstantiveSha256: Record<ReviewLaneRole, string>;
@@ -193,7 +198,7 @@ export type LiveQualificationCallEntryV1 = {
 
 export type LiveQualificationCallLedgerV1 = {
   schema: typeof IMP22_ROLE_QUALIFICATION_CALL_LEDGER_SCHEMA;
-  experimentId: typeof EXPERIMENT_ID;
+  experimentId: string;
   phase: "calibration" | "holdout";
   specBytesSha256: string;
   entries: LiveQualificationCallEntryV1[];
@@ -269,16 +274,23 @@ function readFrozenBytes(ref: FrozenFileRef, label: string): { abs: string; byte
   return { abs, bytes, parsed, bytesSha256 };
 }
 
-function loadSpec(specPath: string): { spec: Imp22QualificationSpec; bytesSha256: string } {
+function loadSpec(specPath: string): { spec: Imp22QualificationSpec; bytesSha256: string; experimentId: string; specRelPath: string } {
   requireCondition(existsSync(specPath), `qualification spec missing: ${specPath}`);
   const bytes = readFileSync(specPath);
   let spec: Imp22QualificationSpec;
   try { spec = JSON.parse(bytes.toString("utf8")) as Imp22QualificationSpec; }
   catch (error) { throw new LiveRoleQualificationError(`qualification spec is not JSON: ${(error as Error).message}`); }
   requireCondition(spec.schema === "imp22-role-qualification-spec-v1", "qualification spec schema mismatch");
-  requireCondition(spec.experimentId === EXPERIMENT_ID, `qualification spec experiment must be ${EXPERIMENT_ID}`);
+  const experimentId = basename(dirname(specPath));
+  requireCondition(ALLOWED_EXPERIMENT_IDS.has(experimentId), `qualification experiment identity is not approved: ${experimentId}`);
+  requireCondition(spec.experimentId === experimentId, `qualification spec experiment must match its directory identity ${experimentId}`);
   requireCondition(spec.status === "FROZEN_PRE_CALIBRATION", "qualification spec is not frozen pre-calibration");
-  return { spec, bytesSha256: sha256Hex(bytes) };
+  return {
+    spec,
+    bytesSha256: sha256Hex(bytes),
+    experimentId,
+    specRelPath: `state/migration-experiments/${experimentId}/spec.json`,
+  };
 }
 
 function exactCandidateOrder(spec: Imp22QualificationSpec): Record<ReviewLaneRole, readonly QualificationProfileV1[]> {
@@ -439,7 +451,7 @@ export async function loadAndPreflightLiveQualification(opts: {
 } = {}): Promise<LoadedLiveQualificationV1> {
   const verifiedAt = opts.verifiedAt ?? new Date().toISOString();
   const specPath = opts.specPath ?? resolve(PIPELINE_DIR, SPEC_REL);
-  const { spec, bytesSha256: specBytesSha256 } = loadSpec(specPath);
+  const { spec, bytesSha256: specBytesSha256, experimentId, specRelPath } = loadSpec(specPath);
   verifyCallBudget(spec);
 
   requireCondition(spec.executionRoute?.provider === "codex exec", "execution provider must be codex exec");
@@ -533,9 +545,9 @@ export async function loadAndPreflightLiveQualification(opts: {
 
   const preflight: LiveQualificationPreflightV1 = {
     schema: IMP22_ROLE_QUALIFICATION_LIVE_PREFLIGHT_SCHEMA,
-    experimentId: EXPERIMENT_ID,
+    experimentId,
     verifiedAt,
-    specRelPath: SPEC_REL,
+    specRelPath,
     specBytesSha256,
     corpusBytesSha256,
     corpusSubstantiveSha256,
@@ -578,10 +590,10 @@ function readJson<T>(path: string): T {
   return JSON.parse(readFileSync(path, "utf8")) as T;
 }
 
-function emptyLedger(phase: "calibration" | "holdout", specBytesSha256: string): LiveQualificationCallLedgerV1 {
+function emptyLedger(phase: "calibration" | "holdout", specBytesSha256: string, experimentId: string): LiveQualificationCallLedgerV1 {
   return {
     schema: IMP22_ROLE_QUALIFICATION_CALL_LEDGER_SCHEMA,
-    experimentId: EXPERIMENT_ID,
+    experimentId,
     phase,
     specBytesSha256,
     entries: [],
@@ -636,6 +648,7 @@ function requestRecord(request: RoleQualificationExecutionRequestV1, requestSha2
 export function createLiveQualificationExecutor(args: {
   phase: "calibration" | "holdout";
   specBytesSha256: string;
+  experimentId?: string;
   phaseDir: string;
   timeoutMs?: number;
   /** Test-only seam. Production callers omit this and always reach the real
@@ -654,9 +667,10 @@ export function createLiveQualificationExecutor(args: {
   const qualificationCacheDir = resolve(liveExecRoot, "cli-qualification-cache");
   const ledger = existsSync(ledgerPath)
     ? readJson<LiveQualificationCallLedgerV1>(ledgerPath)
-    : emptyLedger(args.phase, args.specBytesSha256);
+    : emptyLedger(args.phase, args.specBytesSha256, args.experimentId ?? IMP22_ROLE_QUALIFICATION_EXPERIMENT_ID);
   requireCondition(ledger.schema === IMP22_ROLE_QUALIFICATION_CALL_LEDGER_SCHEMA, `${args.phase} call ledger schema mismatch`);
   requireCondition(ledger.specBytesSha256 === args.specBytesSha256, `${args.phase} call ledger belongs to a different spec freeze`);
+  requireCondition(ledger.experimentId === (args.experimentId ?? IMP22_ROLE_QUALIFICATION_EXPERIMENT_ID), `${args.phase} call ledger belongs to a different experiment identity`);
 
   let liveSpawnStarted = false;
   const forwardExecutor = createForwardReviewerExecutor({
@@ -788,7 +802,13 @@ export async function runLiveRoleCalibration(opts: {
   const phaseDir = resolve(experimentDir, "live", "calibration");
   writeJson(resolve(experimentDir, "live", "preflight.json"), loaded.preflight);
   writeJson(resolve(experimentDir, "live", "candidate-availability.json"), loaded.candidateAvailability);
-  const live = createLiveQualificationExecutor({ phase: "calibration", specBytesSha256: loaded.specBytesSha256, phaseDir, timeoutMs: opts.timeoutMs });
+  const live = createLiveQualificationExecutor({
+    phase: "calibration",
+    experimentId: loaded.preflight.experimentId,
+    specBytesSha256: loaded.specBytesSha256,
+    phaseDir,
+    timeoutMs: opts.timeoutMs,
+  });
   const calibration = await runRoleCalibration(loaded.input, {
     executor: live.executor,
     candidateAvailability: loaded.candidateAvailability,
@@ -858,7 +878,13 @@ export async function runLiveRoleQualificationHoldout(opts: {
   assertRoleQualificationCalibrationInspection(calibration, inspection);
 
   const phaseDir = resolve(experimentDir, "live", "holdout");
-  const live = createLiveQualificationExecutor({ phase: "holdout", specBytesSha256: loaded.specBytesSha256, phaseDir, timeoutMs: opts.timeoutMs });
+  const live = createLiveQualificationExecutor({
+    phase: "holdout",
+    experimentId: loaded.preflight.experimentId,
+    specBytesSha256: loaded.specBytesSha256,
+    phaseDir,
+    timeoutMs: opts.timeoutMs,
+  });
   const result = await runRoleQualificationHoldout(loaded.input, calibration, inspection, {
     executor: live.executor,
     candidateAvailability: loaded.candidateAvailability,

@@ -1,11 +1,11 @@
 {
   "builderVersion": "split-lane-corpus-builder-v2",
   "caseSha256": {
-    "READER-V2-CALIBRATION-clean-behave-ch02": "sha256:f31542c3f1057f3cd741cb1111654bcfaa5ef75c08f686eecdf5d44036df2e81",
+    "READER-V2-CALIBRATION-clean-behave-ch02": "sha256:e3cf03ff42e8ebce86016b2c3a8f6ff60ce5992e0d4013f9bd3ca88ac4e028af",
     "READER-V2-CALIBRATION-clean-make-it-stick-ch02": "sha256:7f28cd3244de441fa9ff65bea2430dc60da79fe60af9a28e6cc957820ef4567f",
-    "READER-V2-CALIBRATION-craft-nonblocker-behave-ch02": "sha256:e1c621493f0034e72cd4e65b74f0f3ed93b15b6b6c9c5a0698b73bf6d011ea55",
+    "READER-V2-CALIBRATION-craft-nonblocker-behave-ch02": "sha256:80223dad6b54b497b092cf6fd1bad23eb19164a72302fc1a57714fdb39060688",
     "READER-V2-CALIBRATION-craft-nonblocker-make-it-stick-ch02": "sha256:b6e07a3657d6743aceb8507177ed2ff6b15a51549aec2383218f32855a6a938e",
-    "READER-V2-CALIBRATION-reader-visible-hard-blocker-behave-ch02": "sha256:f55fa69ff61e342720c12523c37bb5c3f401d77b6aea860f55ec7c6fe62e2230",
+    "READER-V2-CALIBRATION-reader-visible-hard-blocker-behave-ch02": "sha256:ed72cea01fee21278ff3f2e91f2daf6342be8db2245df62ded0da363183a3c33",
     "READER-V2-CALIBRATION-reader-visible-hard-blocker-make-it-stick-ch02": "sha256:3600888bf264f448380568c1ae846d12e1dd564f0347227aa37e4d6174d79383",
     "READER-V2-HOLDOUT-clean-behave-ch01": "sha256:86a7382264ea384606918b9fb943ff0db04a49f3bf36fd8ebc6cc0f79fa3093f",
     "READER-V2-HOLDOUT-clean-checklist-ch01": "sha256:3e7571bcb09fdf58a7276ab37a6914c8999194150c1603eadefbb792008642ad",
@@ -39,7 +39,7 @@
     "READER-V2-HOLDOUT-reader-visible-hard-blocker-willpower-ch02": "sha256:cf8f2810670874d8b57ff37d4597098f2af8b2e24bff2e71f55d73e554ff0a21"
   },
   "cleanBaseScoreLedgerSha256": "sha256:dc390f7469c3cad986333d065672b4e7a3605ca67b8d03e6d218d2345ebf8682",
-  "corpusBytesSha256": "sha256:081bd230c47d4853b9e66656123c1a65a611ecc9424f6931f5d50d717eac55bd",
+  "corpusBytesSha256": "sha256:efaf5a3d80cbf46bcae9511030fba8fc02fbcb4a055241ca867b8c0a1729ccbe",
   "corpusId": "imp22-forward-sol-reader-corpus-v2",
   "excludedCandidateBookIds": [
     "radical-candor",
@@ -51,11 +51,11 @@
   "labelProvenance": "curator-authored-development-fixture",
   "ownerApprovedForDevelopmentBakeoff": true,
   "partitionSha256": {
-    "calibration": "sha256:f61d4b6e10a285c64b00a568450a5d980707ff012409bd886727308155855465",
+    "calibration": "sha256:80990e7cb5d4904d66494ac1d5277556fffd2d45c82f8f3ba8bbf531b00687fe",
     "holdout": "sha256:6f2e39d2a78287dcbda65fcb2d335ae2a738bd3088bc89655242f443c2f7ba5a"
   },
   "role": "reader",
   "schema": "split-lane-corpus-provenance-manifest-v2",
-  "specSha256": "sha256:a87eb5f6043a2c53604a919a5cd35f48a0bcb297ddbec5eba0d73b29b822ee9a",
-  "substantiveCorpusSha256": "sha256:492222ffc2d896e6dfade40cf21045ab96edab8e1c930db1b96a4f58de48c7c3"
+  "specSha256": "sha256:43a95c5ffa7ab55e0e1bd2363301c9d19a8492764714aefdccdca18d24368abd",
+  "substantiveCorpusSha256": "sha256:5743b9acec5e71c6e536cd32cd9b518b75418eb34ac4f8a14073b5f82e531cc8"
 }

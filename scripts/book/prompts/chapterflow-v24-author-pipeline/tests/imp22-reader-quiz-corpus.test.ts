@@ -123,13 +123,35 @@ xenv(
       assert.equal(admission.renderOk, true, `${c.caseId} must remain renderable`);
       assert.equal(admission.complete, true, `${c.caseId} must remain a complete reader chapter`);
       if (c.kind === "clean") {
-        assert.deepEqual(c.provenance.mutationOps, []);
-        assert.equal(c.provenance.variantContentSha256, c.provenance.baseContentSha256);
+        if (c.calibrationCorrection) {
+          assert.equal(c.partition, "calibration");
+          assert.equal(c.calibrationCorrection.invalidatedExperimentId, "s16-forward-role-qualification-v1");
+          assert.equal(c.calibrationCorrection.correctedExperimentId, "s16-forward-role-qualification-v2");
+          assert.equal(c.calibrationCorrection.correctionOrdinal, 1);
+          assert.ok(c.provenance.mutationOps.length > 0);
+          assert.notEqual(c.provenance.variantContentSha256, c.provenance.baseContentSha256);
+        } else {
+          assert.deepEqual(c.provenance.mutationOps, []);
+          assert.equal(c.provenance.variantContentSha256, c.provenance.baseContentSha256);
+        }
       } else {
         assert.ok(c.provenance.mutationOps.length > 0, `${c.caseId} requires explicit controlled mutation ops`);
         assert.notEqual(c.provenance.variantContentSha256, c.provenance.baseContentSha256);
       }
     }
+
+    const repairedCoordinate = result.corpus.partitions.calibration.cases
+      .filter((c) => c.baseBookId === "behave" && c.baseChapter === 2);
+    assert.equal(repairedCoordinate.length, 3, "the same Behave calibration coordinate remains in all three families");
+    for (const c of repairedCoordinate) {
+      assert.equal(
+        c.chapter.tryThisNow,
+        "Before your next tense exchange, take a two-minute walk. Return to the unsent draft, name the cue and brake, then choose the first sentence before you touch Send.",
+      );
+      assert.ok(!c.chapter.tryThisNow.includes("Return, touch Send"), "the invalidated dispatch-risk phrase cannot survive the corrected experiment");
+      assert.equal(c.calibrationCorrection?.defectId, "reader-clean-control-send-activation-risk");
+    }
+    assert.ok(result.corpus.partitions.holdout.cases.every((c) => c.calibrationCorrection === undefined), "the calibration repair must not alter holdout");
   },
 );
 
