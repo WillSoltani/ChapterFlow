@@ -1,0 +1,113 @@
+{
+  "schema": "imp23-clean-branch-reconciliation-v1",
+  "promptId": "IMP-23",
+  "checkpointBranch": "feat/v25-pipeline",
+  "checkpointHead": "96ba2817967885a27d4248888889e622ad81ec8d",
+  "cleanBranch": "feat/v25-pipeline-live",
+  "cleanBranchBase": "37cb0804e157758272e7ec06c2aaf96ebdec6724",
+  "productionSealSha256AtReconstruction": "133f3deb430c5ee0541d8720d44442092186e816a27cbd706d6648dc54839c12",
+  "productionSealSha256AfterSanitation": "7cba899125fd7fefe5eed1d41eb7e92016ee1fea5ffabc8d926e4f2fd849d6de",
+  "checkpointInputFreezeSha256": "ceb196d757f3d9604f2957cbd3e4167a66f1cad083ed475c21be274bfe97160d",
+  "portableInputFreezeSha256": "be0cbdc1874d853ab7698b2de42721910c3abdaeb67a985c5401d4b271972f0c",
+  "sealedFileCount": 426,
+  "sealedFilesMatched": 426,
+  "intendedFilesRestored": 332,
+  "checkpointChangedFiles": 1921,
+  "checkpointFilesExcluded": 1589,
+  "secretFindings": [],
+  "missingRequiredFiles": [],
+  "unexpectedIncludedFiles": [],
+  "absolutePrivatePathFindings": [
+    {
+      "path": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts",
+      "classification": "PREEXISTING_ACTIVE_PORTABILITY_DEFECT",
+      "disposition": "REPLACED_WITH_ENVIRONMENT_BOUND_CANONICAL_ROOT_BEFORE_CI"
+    },
+    {
+      "path": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/scratch/",
+      "classification": "SEALED_NON_IMPORTED_HISTORICAL_UTILITIES",
+      "disposition": "RETAINED_FOR_SEAL_EQUIVALENCE_AND_EXCLUDED_FROM_ACTIVE_CODE_SCAN"
+    }
+  ],
+  "reconciliationFixes": [
+    {
+      "finding": "CHECKPOINT_LOCKFILE_INTERNAL_REGISTRY_URLS",
+      "disposition": "NORMALIZED_40_RESOLVED_URLS_TO_PUBLIC_NPM_REGISTRY_WITH_INTEGRITY_HASHES_UNCHANGED"
+    },
+    {
+      "finding": "THREE_REQUIRED_RAW_STAGE_Q_CLOSURE_GUARDS_OMITTED_BY_INITIAL_ALLOWLIST",
+      "disposition": "RESTORED_EXACT_CHECKPOINT_BYTES_AFTER_TEST_PROVED_DEPENDENCY"
+    },
+    {
+      "finding": "FORWARD_INPUT_MATERIALIZER_DEPENDED_ON_UNCOMMITTED_CANONICAL_STATE_AND_PRIVATE_SIDECARS",
+      "disposition": "ADDED_COMMITTED_FROZEN_INPUT_FALLBACK_AND_REMATERIALIZED_PORTABLE_HASHES"
+    },
+    {
+      "finding": "ABSENT_HISTORICAL_GOLD_TESTS_AND_EMPTY_SHADOW_DIRECTORY_LEAK",
+      "disposition": "MACHINE_CHECKED_XENV_PRECONDITIONS_AND_EXACT_EMPTY_DIRECTORY_CLEANUP"
+    }
+  ],
+  "legacyCampaignStatus": "ARCHIVED_INCONCLUSIVE_REVIEW_INSTRUMENT_MISMATCH",
+  "legacySolSourceCaseDisposition": "NOT_ADJUDICABLE_FOR_SOURCE_TRUTH_UNDER_LEGACY_CONTEXT",
+  "oldCampaignCanResume": false,
+  "checkpointForcePushed": false,
+  "reconstructionStatus": "PASS",
+  "fullSuiteAttempts": [
+    {
+      "attempt": 1,
+      "pass": 2670,
+      "fail": 12,
+      "xenv": 7,
+      "skip": 39,
+      "status": "FAIL",
+      "classification": "RECONCILIATION_AND_HOST_NPM_CACHE_FAILURES_PLUS_SHADOW_DIRECTORY_LEAK"
+    },
+    {
+      "attempt": 2,
+      "pass": 2678,
+      "fail": 3,
+      "xenv": 8,
+      "skip": 39,
+      "status": "FAIL",
+      "classification": "THREE_CLEAN_CHECKOUT_HARNESS_FAILURES_PLUS_SHADOW_DIRECTORY_LEAK"
+    },
+    {
+      "attempt": 3,
+      "pass": 2678,
+      "fail": 3,
+      "xenv": 8,
+      "skip": 39,
+      "status": "FAIL_DIAGNOSTIC",
+      "classification": "FAILURE_ONLY_RERUN_TO_IDENTIFY_EXACT_REMAINING_TESTS"
+    },
+    {
+      "attempt": 4,
+      "pass": null,
+      "fail": null,
+      "xenv": null,
+      "skip": null,
+      "status": "ENVIRONMENT_INTERRUPTED",
+      "classification": "HOST_FILESYSTEM_ENOSPC_DURING_LATE_QC_TESTS",
+      "affectedTestsPassedInIsolationAfterSpaceRecovery": true
+    },
+    {
+      "attempt": 5,
+      "pass": 2679,
+      "fail": 0,
+      "xenv": 10,
+      "skip": 39,
+      "status": "PASS",
+      "classification": "DISPOSABLE_CLEAN_CHECKOUT_NO_API_FULL_SUITE"
+    }
+  ],
+  "verification": {
+    "sealedByteHashes": "PASS",
+    "allowlistOnly": "PASS",
+    "secretScan": "PASS",
+    "untrackedDebris": "PASS",
+    "importsAndContracts": "PASS",
+    "focusedReconciliationRegressions": "PASS_31_FAIL_0_XENV_2",
+    "fullSuite": "PASS_2679_FAIL_0_XENV_10_SKIP_39",
+    "dedicatedCi": "NOT_RUN"
+  }
+}

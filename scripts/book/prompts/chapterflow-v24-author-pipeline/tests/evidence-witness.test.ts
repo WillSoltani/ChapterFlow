@@ -21,7 +21,7 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { resolve } from "path";
 
-import { test } from "./harness.js";
+import { test, xenv } from "./harness.js";
 import { makeChapter, goldChapterFiles, STATE_CHAPTERS } from "./helpers.js";
 import {
   findParticipantCasts,
@@ -141,15 +141,27 @@ test("EW1: synthetic gold corpus has ZERO EW1 findings", () => {
   }
 });
 
-test("EW1: real gold chapters (daring-greatly + start-with-why) have ZERO EW1 findings", () => {
-  if (!existsSync(STATE_CHAPTERS)) return; // committed gold absent in this checkout — skip
-  const files = readdirSync(STATE_CHAPTERS).filter(
+function realGoldFiles(): string[] {
+  if (!existsSync(STATE_CHAPTERS)) return [];
+  return readdirSync(STATE_CHAPTERS).filter(
     (f) => /^(daring-greatly|start-with-why)-ch\d+\.v21-native\.chapter\.json$/.test(f),
   );
-  assert.ok(files.length > 0, "expected real gold chapters on disk");
+}
+
+xenv(
+  "EW1: real gold chapters (daring-greatly + start-with-why) have ZERO EW1 findings",
+  "requires both real gold corpora under state/chapters/; the clean V25 branch deliberately excludes historical chapter state",
+  () => {
+    const files = realGoldFiles();
+    return files.some((f) => f.startsWith("daring-greatly-ch"))
+      && files.some((f) => f.startsWith("start-with-why-ch"));
+  },
+  () => {
+  const files = realGoldFiles();
   for (const f of files) {
     const ch = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, f), "utf8")) as ChapterV21;
     const hits = checkInventedWitness(ch);
     assert.equal(hits.length, 0, `EW1 false positive on real gold ${ch.chapterId}: ${hits.map((h) => h.message.slice(0, 120)).join(" | ")}`);
   }
-});
+  },
+);

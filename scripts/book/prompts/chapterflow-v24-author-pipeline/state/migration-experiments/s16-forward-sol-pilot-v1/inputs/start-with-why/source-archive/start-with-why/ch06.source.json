@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 6,
+  "chapterTitle": "The Emergence of Trust",
+  "focus": "Trust emerges when people can predict that leaders and organizations will act from the same beliefs under pressure. A reader learns why loyalty is social and behavioral, not merely rational satisfaction with a product.",
+  "coreClaim": "The Emergence of Trust turns trust from shared belief into a practical decision rule backed by named cases and checkable details.",
+  "centralConcept": {
+    "id": "ch06.concept",
+    "name": "trust from shared belief",
+    "plainDefinition": "Trust emerges when people can predict that leaders and organizations will act from the same beliefs under pressure.",
+    "whyItMatters": "A reader learns why loyalty is social and behavioral, not merely rational satisfaction with a product."
+  },
+  "keyClaims": [
+    "trust from shared belief becomes usable only when tied to visible behavior.",
+    "Southwest Airlines employee trust gives the first concrete anchor.",
+    "Continental Airlines turnaround creates contrast so the idea is not one anecdote.",
+    "Gordon Bethune adds a boundary case for application.",
+    "Belief, Predictable behavior, Trust, Loyalty keep the unit from collapsing into generic purpose talk."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch06.ex.southwest-airlines-employee-trust",
+      "label": "Southwest Airlines employee trust",
+      "summary": "Southwest Airlines, Dallas, employees, and low-fare carrier make trust concrete as an operating pattern rather than a slogan.",
+      "teachesWhat": "Southwest Airlines employee trust turns Southwest Airlines into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Southwest Airlines",
+        "Dallas",
+        "employees",
+        "low-fare carrier"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch06.ex.continental-airlines-turnaround",
+      "label": "Continental Airlines turnaround",
+      "summary": "Continental Airlines, founded in 1934 and later based in Houston, gives an airline turnaround contrast where trust had to be rebuilt through action.",
+      "teachesWhat": "Continental Airlines turnaround turns Continental Airlines into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Continental Airlines",
+        "1934",
+        "Houston",
+        "airline merger"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch06.ex.gordon-bethune",
+      "label": "Gordon Bethune",
+      "summary": "Gordon Bethune became Continental Airlines chief executive in 1994 and is associated with the From Worst to First turnaround story.",
+      "teachesWhat": "Gordon Bethune turns Gordon Bethune into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Gordon Bethune",
+        "Continental Airlines",
+        "1994",
+        "From Worst to First"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to turn trust from shared belief into a universal slogan and ignore the cases. The stricter reading keeps the claim tied to the specific examples and uses the framework only where the details support it.",
+  "voiceCues": [
+    "plain business language with short contrasts",
+    "case first, principle second",
+    "second-person diagnostic questions",
+    "simple framework names repeated sparingly"
+  ],
+  "forbiddenLeakage": [
+    "Do not introduce innovator/adopter percentages yet",
+    "Do not shift into succession problems"
+  ],
+  "paraphraseNotes": "The Emergence of Trust works from trust from shared belief: Trust emerges when people can predict that leaders and organizations will act from the same beliefs under pressure. A reader learns why loyalty is social and behavioral, not merely rational satisfaction with a product. Southwest Airlines, Dallas, employees, and low-fare carrier make trust concrete as an operating pattern rather than a slogan. Continental Airlines, founded in 1934 and later based in Houston, gives an airline turnaround contrast where trust had to be rebuilt through action. Gordon Bethune became Continental Airlines chief executive in 1994 and is associated with the From Worst to First turnaround story. Belief starts the local logic for The Emergence of Trust; Predictable behavior, Trust, Loyalty complete the sequence. Keep Southwest, Continental, and Bethune on earned predictability; adoption categories would distract from the trust mechanism.",
+  "testableFacts": [
+    {
+      "id": "ch06.fact.1",
+      "claim": "Southwest Airlines employee trust makes trust from shared belief concrete through Southwest Airlines and Dallas.",
+      "becauseMechanism": "Because Southwest Airlines gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Southwest Airlines employee trust as colorful background.",
+      "errorIsWhy": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "derivedFrom": "ch06.ex.southwest-airlines-employee-trust"
+    },
+    {
+      "id": "ch06.fact.2",
+      "claim": "Continental Airlines turnaround adds a second anchor for trust from shared belief with Continental Airlines and 1934.",
+      "becauseMechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "errorIsWhy": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "derivedFrom": "ch06.ex.continental-airlines-turnaround"
+    },
+    {
+      "id": "ch06.fact.3",
+      "claim": "Gordon Bethune supplies a third checkable scene using Gordon Bethune and Continental Airlines.",
+      "becauseMechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "errorIsWhy": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "derivedFrom": "ch06.ex.gordon-bethune"
+    },
+    {
+      "id": "ch06.fact.4",
+      "claim": "trust from shared belief depends on the sequence Belief before Predictable behavior.",
+      "becauseMechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "errorIsWhy": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "derivedFrom": "ch06.concept"
+    },
+    {
+      "id": "ch06.fact.5",
+      "claim": "Belief, Predictable behavior, Trust, Loyalty form the local framework for The Emergence of Trust.",
+      "becauseMechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "errorIsWhy": "Shortening removes the distinctions the quiz and examples need to test.",
+      "derivedFrom": "ch06.concept"
+    },
+    {
+      "id": "ch06.fact.6",
+      "claim": "employees is a hard detail that should stay attached to Southwest Airlines employee trust.",
+      "becauseMechanism": "Because hard specifics are portable only inside their case, moving employees to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "errorIsWhy": "A true detail becomes misleading when it is attached to the wrong case.",
+      "derivedFrom": "ch06.ex.southwest-airlines-employee-trust"
+    },
+    {
+      "id": "ch06.fact.7",
+      "claim": "Houston gives Continental Airlines turnaround a different factual token from Southwest Airlines employee trust.",
+      "becauseMechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "errorIsWhy": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "derivedFrom": "ch06.ex.continental-airlines-turnaround"
+    },
+    {
+      "id": "ch06.fact.8",
+      "claim": "1994 helps mark the boundary of trust from shared belief.",
+      "becauseMechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "errorIsWhy": "The mechanism changes by venue; boundary details keep the application honest.",
+      "derivedFrom": "ch06.ex.gordon-bethune"
+    },
+    {
+      "id": "ch06.fact.9",
+      "claim": "The Emergence of Trust should teach trust from shared belief through Southwest Airlines employee trust, Continental Airlines turnaround, and Gordon Bethune, not through generic leadership advice.",
+      "becauseMechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "errorIsWhy": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "derivedFrom": "ch06.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "The Emergence of Trust framework",
+      "members": [
+        "Belief",
+        "Predictable behavior",
+        "Trust",
+        "Loyalty"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Southwest Airlines employee trust",
+    "Continental Airlines turnaround",
+    "Gordon Bethune"
+  ]
+}

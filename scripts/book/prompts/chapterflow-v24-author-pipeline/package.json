@@ -6,6 +6,9 @@
   "engines": {
     "node": ">=20.20.0 <21"
   },
+  "dependencies": {
+    "ajv": "6.15.0"
+  },
   "scripts": {
     "cli": "tsx src/cli.ts",
     "typecheck": "tsc -p . --noEmit",

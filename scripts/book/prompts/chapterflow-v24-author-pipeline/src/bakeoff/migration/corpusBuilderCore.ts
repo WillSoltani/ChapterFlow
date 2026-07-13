@@ -45,6 +45,21 @@ export const SPLIT_LANE_CORPUS_PROVENANCE_SCHEMA = "split-lane-corpus-provenance
 export const SPLIT_LANE_MUTATION_SPEC_SCHEMA = "split-lane-corpus-mutation-spec-v1" as const;
 export const CLEAN_BASE_SCORE_LEDGER_SCHEMA = "clean-base-score-ledger-v1" as const;
 
+/** IMP-22 forward-only corpus identities. These are intentionally additive: the
+ * IMP-20 v1 specs and built evidence remain readable and byte-stable. */
+export const SPLIT_LANE_CORPUS_BUILDER_V2_VERSION = "split-lane-corpus-builder-v2" as const;
+export const SPLIT_LANE_CORPUS_SPEC_V2_SCHEMA = "split-lane-corpus-spec-v2" as const;
+export const SPLIT_LANE_CORPUS_V2_SCHEMA = "split-lane-role-corpus-v2" as const;
+export const SPLIT_LANE_CORPUS_PROVENANCE_V2_SCHEMA = "split-lane-corpus-provenance-manifest-v2" as const;
+export const CURATOR_DEVELOPMENT_LABEL = "curator-authored-development-fixture" as const;
+export const CORPUS_PARTITIONS_V2 = ["calibration", "holdout"] as const;
+export type CorpusPartitionV2 = (typeof CORPUS_PARTITIONS_V2)[number];
+export const IMP22_RESERVED_CANDIDATE_BOOK_IDS = [
+  "start-with-why",
+  "radical-candor",
+  "the-gifts-of-imperfection",
+] as const;
+
 /** The one PRESENT sentinel a source unit must carry for its semantics to be
  *  admitted; every other value (including OWNER_INPUT_PENDING or absent) is
  *  normalized to MISSING and excluded from source-clean gold (§J / test 33). */
@@ -136,6 +151,29 @@ export type SplitLaneMutationSpecV1 = {
   requiresPhase2?: boolean;
 };
 
+/** Common envelope for the additive IMP-22 reader/quiz specs. Role builders own
+ * the typed case definitions, while this core owns governance, partition, and
+ * exact-composition semantics. */
+export type SplitLaneCorpusSpecV2Base = {
+  schema: typeof SPLIT_LANE_CORPUS_SPEC_V2_SCHEMA;
+  role: ReviewLaneRole;
+  corpusId: string;
+  builderMode: string;
+  governance: Record<string, unknown>;
+  cleanBaseScoreLedger: string;
+  minRenderBytes: number;
+  excludedCandidateBookIds: string[];
+  expectedCompositionByPartition: Record<CorpusPartitionV2, Record<string, number>>;
+};
+
+export type CuratorDevelopmentProvenanceV2 = {
+  labelProvenance: typeof CURATOR_DEVELOPMENT_LABEL;
+  ownerApprovedForDevelopmentBakeoff: true;
+  independentHumanRater: false;
+  curatorRationale: string;
+  sourceDesignation: string;
+};
+
 export type CleanBaseLedgerEntryV1 = {
   bookId: string;
   packageFile: string;
@@ -189,6 +227,73 @@ export function readMutationSpec(specPath: string, expectedRole: ReviewLaneRole)
   return raw as SplitLaneMutationSpecV1;
 }
 
+/** Read the additive IMP-22 spec without accepting an IMP-20 v1 recipe by
+ * accident. A caller may extend this base with role-specific fields only after
+ * this common validation succeeds. */
+export function readCorpusSpecV2(specPath: string, expectedRole: ReviewLaneRole): SplitLaneCorpusSpecV2Base {
+  const raw = readJsonFile(specPath, "IMP-22 corpus spec") as Partial<SplitLaneCorpusSpecV2Base>;
+  if (raw.schema !== SPLIT_LANE_CORPUS_SPEC_V2_SCHEMA) {
+    throw new CorpusBuildError(`IMP-22 corpus spec schema must be ${SPLIT_LANE_CORPUS_SPEC_V2_SCHEMA} (got ${String(raw.schema)})`, { specPath });
+  }
+  if (raw.role !== expectedRole) {
+    throw new CorpusBuildError(`IMP-22 corpus spec role mismatch: expected ${expectedRole}, got ${String(raw.role)}`, { specPath });
+  }
+  if (typeof raw.corpusId !== "string" || raw.corpusId.length === 0) {
+    throw new CorpusBuildError("IMP-22 corpus spec is missing corpusId", { specPath });
+  }
+  if (typeof raw.builderMode !== "string" || raw.builderMode.length === 0) {
+    throw new CorpusBuildError("IMP-22 corpus spec is missing builderMode", { specPath });
+  }
+  if (typeof raw.cleanBaseScoreLedger !== "string" || raw.cleanBaseScoreLedger.trim().length === 0) {
+    throw new CorpusBuildError("IMP-22 corpus spec is missing cleanBaseScoreLedger", { specPath });
+  }
+  if (typeof raw.minRenderBytes !== "number" || !Number.isInteger(raw.minRenderBytes) || raw.minRenderBytes <= 0) {
+    throw new CorpusBuildError("IMP-22 corpus spec must declare a positive integer minRenderBytes", { specPath });
+  }
+  if (!raw.expectedCompositionByPartition || typeof raw.expectedCompositionByPartition !== "object") {
+    throw new CorpusBuildError("IMP-22 corpus spec is missing expectedCompositionByPartition", { specPath });
+  }
+  for (const partition of CORPUS_PARTITIONS_V2) {
+    const composition = raw.expectedCompositionByPartition[partition];
+    if (!composition || typeof composition !== "object" || typeof composition.total !== "number") {
+      throw new CorpusBuildError(`IMP-22 corpus spec is missing ${partition} expected composition/total`, { specPath, partition });
+    }
+    for (const [bucket, count] of Object.entries(composition)) {
+      if (!Number.isInteger(count) || count < 0) {
+        throw new CorpusBuildError(`IMP-22 ${partition} composition ${bucket} must be a non-negative integer`, { specPath, partition, bucket, count });
+      }
+    }
+  }
+  if (!Array.isArray(raw.excludedCandidateBookIds)
+    || raw.excludedCandidateBookIds.some((bookId) => typeof bookId !== "string" || bookId.trim().length === 0)) {
+    throw new CorpusBuildError("IMP-22 corpus spec must declare excludedCandidateBookIds[]", { specPath });
+  }
+  return raw as SplitLaneCorpusSpecV2Base;
+}
+
+/** Freeze the non-root instrument inputs selected by the typed builder config.
+ * Corpus bytes already hash the actual ledger; this additionally prevents a
+ * caller from weakening the committed render floor or silently selecting a
+ * differently named ledger while claiming the frozen spec. */
+export function assertCorpusConfigMatchesSpecV2(spec: SplitLaneCorpusSpecV2Base, config: SplitLaneCorpusConfigV1): void {
+  if (config.role !== spec.role) {
+    throw new CorpusBuildError(`IMP-22 config role ${config.role} does not match spec role ${spec.role}`, { configRole: config.role, specRole: spec.role });
+  }
+  if (config.minRenderBytes !== spec.minRenderBytes) {
+    throw new CorpusBuildError("IMP-22 config minRenderBytes does not match the frozen spec", {
+      configMinRenderBytes: config.minRenderBytes,
+      specMinRenderBytes: spec.minRenderBytes,
+    });
+  }
+  const normalizedLedgerPath = config.cleanBaseScoreLedgerPath.replace(/\\/g, "/");
+  if (!normalizedLedgerPath.endsWith(`/${spec.cleanBaseScoreLedger}`) && normalizedLedgerPath !== spec.cleanBaseScoreLedger) {
+    throw new CorpusBuildError("IMP-22 config score-ledger path does not select the ledger named by the frozen spec", {
+      configLedgerPath: config.cleanBaseScoreLedgerPath,
+      specLedger: spec.cleanBaseScoreLedger,
+    });
+  }
+}
+
 /** Read + validate the clean-base 140-eval score ledger (E-03). FAIL CLOSED if
  *  the file is missing or the schema is wrong. */
 export function readCleanBaseScoreLedger(ledgerPath: string): CleanBaseScoreLedgerV1 {
@@ -238,6 +343,64 @@ export function assertGoldGovernance(spec: SplitLaneMutationSpecV1): void {
   }
   if (spec.role === "source" && g.sourceCleanStatusNeverInferredFromOverallScore !== true) {
     throw new CorpusBuildError("gold governance violated: source spec must record sourceCleanStatusNeverInferredFromOverallScore=true (§I)", { corpusId: spec.corpusId });
+  }
+}
+
+/** IMP-22 governance is stronger than the preserved IMP-20 rule: development
+ * approval is explicit, labels are honestly curator-authored, and calibration is
+ * structurally separate from qualification holdout rather than asserted only in
+ * prose. */
+export function assertGoldGovernanceV2(spec: SplitLaneCorpusSpecV2Base): void {
+  const g = spec.governance ?? {};
+  const requireTrue = (key: string): void => {
+    if (g[key] !== true) throw new CorpusBuildError(`IMP-22 gold governance violated: ${key} must be true`, { key, corpusId: spec.corpusId });
+  };
+  requireTrue("definitionsFrozenBeforeLiveOutput");
+  requireTrue("calibrationVsHoldoutSeparated");
+  requireTrue("holdoutImmutableOnceLiveQualificationBegins");
+  requireTrue("ownerApprovedForDevelopmentBakeoff");
+  requireTrue("curatorAuthoredDevelopmentGold");
+  if (spec.role === "reader") requireTrue("cleanStatusNeverInferredFromOverallScore");
+  if (g.independentHumanRater !== false) {
+    throw new CorpusBuildError("IMP-22 gold governance violated: independentHumanRater must be false", { corpusId: spec.corpusId });
+  }
+  if (g.labelProvenance !== CURATOR_DEVELOPMENT_LABEL) {
+    throw new CorpusBuildError(`IMP-22 gold governance violated: labelProvenance must be ${CURATOR_DEVELOPMENT_LABEL}`, { corpusId: spec.corpusId });
+  }
+  if (typeof g.noInCampaignInstrumentTreadmill !== "string" || g.noInCampaignInstrumentTreadmill.length === 0) {
+    throw new CorpusBuildError("IMP-22 gold governance violated: noInCampaignInstrumentTreadmill must be recorded", { corpusId: spec.corpusId });
+  }
+}
+
+/** IMP-22 freezes one candidate set before qualification. A caller may not
+ * silently add or remove an exclusion, because doing so would change which
+ * material can enter the live holdout. Order is deliberately irrelevant. */
+export function assertExactCandidateExclusionsV2(excludedCandidateBookIds: readonly string[]): void {
+  const expected = [...IMP22_RESERVED_CANDIDATE_BOOK_IDS].sort();
+  const actual = [...excludedCandidateBookIds].sort();
+  const missing = expected.filter((bookId) => !actual.includes(bookId));
+  const unexpected = actual.filter((bookId) => !expected.includes(bookId as (typeof IMP22_RESERVED_CANDIDATE_BOOK_IDS)[number]));
+  const duplicates = actual.filter((bookId, index) => actual.indexOf(bookId) !== index);
+  if (missing.length > 0 || unexpected.length > 0 || duplicates.length > 0) {
+    throw new CorpusBuildError("IMP-22 candidate exclusions must match the frozen candidate set exactly", {
+      expected,
+      actual,
+      missing,
+      unexpected,
+      duplicates,
+    });
+  }
+}
+
+/** Private-machine paths cannot become corpus semantics or dependencies. */
+export function assertPortableCorpusSpecV2(spec: SplitLaneCorpusSpecV2Base): void {
+  const serialized = JSON.stringify(spec);
+  const match = serialized.match(/\/(?:Users|private\/tmp)\/[^"]*/);
+  if (match) {
+    throw new CorpusBuildError("IMP-22 corpus spec contains a private absolute path", {
+      corpusId: spec.corpusId,
+      matchedPrefix: match[0].slice(0, 120),
+    });
   }
 }
 
@@ -333,6 +496,50 @@ export function applyMutationOps(chapter: ChapterV21, ops: MutationOpV1[]): void
     } else {
       throw new CorpusBuildError(`unsupported mutation op ${String((o as MutationOpV1).op)}`, { op: o.op });
     }
+  }
+}
+
+/** Verify that a controlled mutation changed only its declared paths. Both the
+ * base and variant are masked at every mutation path; any remaining difference
+ * is scope drift and fails closed. The returned hash binds all protected fields. */
+export function assertProtectedContentUnchanged(
+  base: ChapterV21,
+  variant: ChapterV21,
+  ops: MutationOpV1[],
+  caseId: string,
+): string {
+  if (ops.length === 0) return hashValue(base);
+  const baseProjection = JSON.parse(JSON.stringify(base)) as ChapterV21;
+  const variantProjection = JSON.parse(JSON.stringify(variant)) as ChapterV21;
+  for (const op of ops) {
+    setAtPath(baseProjection, op.path, "__IMP22_DECLARED_MUTATION_PATH__");
+    setAtPath(variantProjection, op.path, "__IMP22_DECLARED_MUTATION_PATH__");
+  }
+  const baseHash = hashValue(baseProjection);
+  const variantHash = hashValue(variantProjection);
+  if (baseHash !== variantHash) {
+    throw new CorpusBuildError(`IMP-22 controlled mutation ${caseId} changed protected content outside declared mutation paths`, {
+      caseId,
+      baseProtectedSha256: baseHash,
+      variantProtectedSha256: variantHash,
+      mutationPaths: ops.map((op) => op.path),
+    });
+  }
+  return baseHash;
+}
+
+/** Candidate exclusion applies to every lane in IMP-22, not only source truth. */
+export function assertCandidateBookExcluded(
+  bookId: string,
+  excludedCandidateBookIds: readonly string[],
+  caseId: string,
+): void {
+  if (excludedCandidateBookIds.includes(bookId)) {
+    throw new CorpusBuildError(`IMP-22 case ${caseId} overlaps reserved candidate book "${bookId}"`, {
+      caseId,
+      bookId,
+      excludedCandidateBookIds,
+    });
   }
 }
 
@@ -533,3 +740,85 @@ export function assertComposition(
     );
   }
 }
+
+/** IMP-22 compositions are exact. Extra cases are as invalid as missing cases:
+ * neither an output-informed bonus case nor a silent shrink may enter holdout. */
+export function assertExactCompositionV2(
+  expected: Record<string, number>,
+  generated: Record<string, number>,
+  partition: CorpusPartitionV2,
+  what: string,
+): void {
+  const problems: string[] = [];
+  const expectedBuckets = Object.keys(expected).filter((key) => key !== "total").sort();
+  const generatedBuckets = Object.keys(generated).filter((key) => key !== "total" && (generated[key] ?? 0) !== 0).sort();
+  for (const bucket of expectedBuckets) {
+    const want = expected[bucket];
+    const got = generated[bucket] ?? 0;
+    if (got !== want) problems.push(`${bucket}: ${got} != ${want}`);
+  }
+  for (const bucket of generatedBuckets) {
+    if (!expectedBuckets.includes(bucket)) problems.push(`${bucket}: unexpected ${generated[bucket]}`);
+  }
+  const gotTotal = generatedBuckets.reduce((sum, bucket) => sum + (generated[bucket] ?? 0), 0);
+  if (gotTotal !== expected.total) problems.push(`total: ${gotTotal} != ${expected.total}`);
+  const declaredTotal = expectedBuckets.reduce((sum, bucket) => sum + expected[bucket], 0);
+  if (declaredTotal !== expected.total) problems.push(`declared bucket sum: ${declaredTotal} != total ${expected.total}`);
+  if (problems.length > 0) {
+    throw new CorpusBuildError(`IMP-22 ${what} ${partition} composition must match exactly (${problems.join("; ")})`, {
+      what,
+      partition,
+      expected,
+      generated,
+      problems,
+    });
+  }
+}
+
+export type SplitLaneCorpusPartitionEnvelopeV2<TCase> = {
+  partition: CorpusPartitionV2;
+  expectedComposition: Record<string, number>;
+  generatedComposition: Record<string, number>;
+  cases: TCase[];
+  substantivePartitionSha256: string;
+};
+
+export type SplitLaneRoleCorpusV2<TCase> = {
+  schema: typeof SPLIT_LANE_CORPUS_V2_SCHEMA;
+  role: ReviewLaneRole;
+  corpusId: string;
+  builderVersion: typeof SPLIT_LANE_CORPUS_BUILDER_V2_VERSION;
+  labelProvenance: typeof CURATOR_DEVELOPMENT_LABEL;
+  ownerApprovedForDevelopmentBakeoff: true;
+  independentHumanRater: false;
+  specSha256: string;
+  cleanBaseScoreLedgerSha256: string;
+  excludedCandidateBookIds: string[];
+  excludedCandidateBookIdsSha256: string;
+  partitions: Record<CorpusPartitionV2, SplitLaneCorpusPartitionEnvelopeV2<TCase>>;
+  substantiveCorpusSha256: string;
+};
+
+export type CorpusProvenanceManifestV2 = {
+  schema: typeof SPLIT_LANE_CORPUS_PROVENANCE_V2_SCHEMA;
+  role: ReviewLaneRole;
+  corpusId: string;
+  builderVersion: typeof SPLIT_LANE_CORPUS_BUILDER_V2_VERSION;
+  labelProvenance: typeof CURATOR_DEVELOPMENT_LABEL;
+  ownerApprovedForDevelopmentBakeoff: true;
+  independentHumanRater: false;
+  specSha256: string;
+  cleanBaseScoreLedgerSha256: string;
+  excludedCandidateBookIds: string[];
+  excludedCandidateBookIdsSha256: string;
+  partitionSha256: Record<CorpusPartitionV2, string>;
+  caseSha256: Record<string, string>;
+  substantiveCorpusSha256: string;
+  corpusBytesSha256: string;
+};
+
+export type CorpusBuildResultV2<TCase> = {
+  corpus: SplitLaneRoleCorpusV2<TCase>;
+  provenanceManifest: CorpusProvenanceManifestV2;
+  corpusBytes: string;
+};

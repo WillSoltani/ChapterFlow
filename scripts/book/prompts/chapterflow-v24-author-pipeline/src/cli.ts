@@ -305,7 +305,7 @@ Commands:
                                      stats, precision-honest thresholds, machine-readable decision file.
                                      Never promotes, publishes, or touches canonical state; activation is
                                      IMP-13's separately authorized package.
-  migration-bakeoff <close-legacy-campaign|build-reader-corpus|build-source-corpus|build-quiz-corpus|retrospective|recovery-preflight|recovery-pilot-dryrun> [--write] [--json]
+  migration-bakeoff <close-legacy-campaign|build-reader-corpus|build-source-corpus|build-quiz-corpus|build-reader-corpus-v2|build-source-corpus-v2|build-quiz-corpus-v2|retrospective|recovery-preflight|recovery-pilot-dryrun> [--write] [--json]
                                      IMP-20 split-lane reviewer & §16-recovery subverbs. ALL no-model,
                                      no-write by default (pass --write to persist committed artifacts):
                                      verify the mechanical §16 closure freeze; build the hermetic
@@ -314,6 +314,30 @@ Commands:
                                      (fail-closed until a role-qualified reviewer set exists); and the no-model
                                      recovery pilot dry run (ZERO model/API calls). Never spawns, never
                                      promotes/publishes; live qualification + pilot need SEPARATE authorization.
+  migration-bakeoff <role-qualification-calibrate|role-qualification-holdout> --execute-live [--timeout-ms N] [--json]
+                                     IMP-22 ChatGPT-subscription codex-exec qualification. Calibration is
+                                     a 24-call barrier and cannot start holdout; holdout requires its valid,
+                                     hash-bound seal plus a durable human inspection attestation. Attempts
+                                     are crash-safe and exact resumes reuse receipts.
+  migration-bakeoff role-qualification-attest-calibration --inspector ID
+                                     --confirm-calibration-sha SHA --approve-holdout [--note TEXT] [--json]
+                                     IMP-22 zero-call operator gate. Hash-binds inspection of all retained
+                                     calibration results before any holdout request can start.
+  migration-bakeoff forward-materialize-production-instrument-seal [--output FILE] [--write] [--json]
+                                     IMP-22 zero-model/API production-instrument materializer. Dry mode
+                                     prints the current hash and target path; --write atomically writes and
+                                     validates the retained canonical artifact. Default artifact:
+                                     state/migration-experiments/contracts/imp22/forward-production-instrument-seal.json
+  migration-bakeoff <forward-pilot|forward-gold> --execute-live
+                                     --phase-dir DIR --manifest FILE --input-freeze FILE --input-materialization FILE
+                                     --production-instrument-seal FILE
+                                     (normally state/migration-experiments/contracts/imp22/forward-production-instrument-seal.json)
+                                     --calibration-seal FILE --calibration-inspection FILE
+                                     --qualification-result FILE --qualification-bundle FILE --role-freeze FILE
+                                     [--gold-evaluator-config FILE] [--json]
+                                     IMP-22 forward-only live validation. Dry by default: without --execute-live
+                                     it makes zero model/API calls. Every retained artifact path is explicit;
+                                     no publish, promote, deploy, upload, API route, or fallback exists.
   compile-source-packets <bookId>    v23 compiler: compile source-v2 sidecars into compact source packets.
   source-packet-gate <bookId>        v23 compiler: validate compiled source packets before blueprints.
   compile-book-design <bookId>       v23 compiler: derive the per-book variety pools artifact.
@@ -4066,8 +4090,20 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
     return 2;
   }
   const { runAutopilot, formatOutcome, architectureFromFlags } = await import("./orchestrator/autopilot.js");
+  const { resolveStandardForwardAutopilotControl } = await import("./orchestrator/forwardLocalAutopilot.js");
   const maxRepair = typeof flags["max-repair"] === "string" ? parseInt(flags["max-repair"], 10) : undefined;
   const maxParallel = typeof flags["max-parallel"] === "string" ? parseInt(flags["max-parallel"], 10) : undefined;
+  let forwardControl: ReturnType<typeof resolveStandardForwardAutopilotControl>;
+  try { forwardControl = resolveStandardForwardAutopilotControl(); }
+  catch (error) {
+    console.error(`forward local runtime preflight failed: ${(error as Error).message}`);
+    return 1;
+  }
+  const requestedArchitecture = architectureFromFlags(flags);
+  const explicitLegacy = "legacy" in flags || "legacy-whole-chapter-writer" in flags;
+  const architecture = forwardControl.runtime.mode === "FORWARD_ACTIVE" && !explicitLegacy
+    ? "author"
+    : requestedArchitecture;
   const outcome = await runAutopilot({
     bookId,
     plan: flags["plan"] === true,
@@ -4077,7 +4113,11 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
     autoPublish: !("no-publish" in flags),
     regen: "regen" in flags,
     // --author = v24 author arch; --legacy keeps meaning legacy; default stays compiler.
-    architecture: architectureFromFlags(flags),
+    architecture,
+    ...(architecture === "author" ? {
+      authorWriteOneChapter: forwardControl.writeOneChapter,
+      forwardAutopilotControl: forwardControl,
+    } : {}),
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
   });
@@ -5652,17 +5692,22 @@ function escapeRegex(s: string): string {
 
 async function main() {
   const { cmd, args, flags } = parseArgs(process.argv.slice(2));
-  // CANONICAL-WORKSPACE TRIPWIRE (2026-06-12). The legacy checkout at
-  // ~/ChapterFlow (app campaigns, other branches) carries stale pipeline
-  // state; commands run there embed wrong paths into generated prompts/
-  // workflows and judge/edit stale copies — this burned a full QC run and a
-  // fanout round. Path-specific on purpose (no effect in CI or future
-  // machines); remove when the legacy checkout retires.
-  if (__dirname.startsWith("/Users/radinsoltani/ChapterFlow/") && flags["allow-noncanonical"] !== true) {
+  // Optional canonical-workspace tripwire. Operators that maintain multiple
+  // worktrees can bind the approved repository root without baking a private
+  // home path into production source or generated evidence.
+  const canonicalWorkspaceRoot = process.env.CHAPTERFLOW_CANONICAL_WORKSPACE_ROOT?.trim();
+  const canonicalPipelineRoot = canonicalWorkspaceRoot
+    ? resolve(canonicalWorkspaceRoot, "scripts/book/prompts/chapterflow-v24-author-pipeline")
+    : undefined;
+  if (
+    canonicalPipelineRoot
+    && !resolve(__dirname).startsWith(`${canonicalPipelineRoot}/`)
+    && flags["allow-noncanonical"] !== true
+  ) {
     console.error(
-      "REFUSED — you are running the pipeline from the legacy checkout (~/ChapterFlow).\n" +
-        "All pipeline work runs in ~/ChapterFlow-books (worktree pinned to main).\n" +
-        `  cd /Users/radinsoltani/ChapterFlow-books\n` +
+      "REFUSED — this pipeline is outside CHAPTERFLOW_CANONICAL_WORKSPACE_ROOT.\n" +
+        `Expected pipeline root: ${canonicalPipelineRoot}\n` +
+        `  cd ${canonicalWorkspaceRoot}\n` +
         "Override only if you truly mean it: --allow-noncanonical",
     );
     return 3;

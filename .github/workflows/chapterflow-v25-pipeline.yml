@@ -1,0 +1,156 @@
+name: ChapterFlow V25 Pipeline
+
+on:
+  pull_request:
+    paths:
+      - "scripts/book/prompts/chapterflow-v24-author-pipeline/**"
+      - "docs/v25/reports/**"
+      - ".agents/skills/chapterflow-book-evaluator/**"
+      - ".github/workflows/chapterflow-v25-pipeline.yml"
+  push:
+    branches:
+      - feat/v25-pipeline-live
+    paths:
+      - "scripts/book/prompts/chapterflow-v24-author-pipeline/**"
+      - "docs/v25/reports/**"
+      - ".agents/skills/chapterflow-book-evaluator/**"
+      - ".github/workflows/chapterflow-v25-pipeline.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chapterflow-v25-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  v25-pipeline:
+    name: V25 Pipeline Typecheck, Contracts, and Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      CHAPTERFLOW_NO_API_CODEX_QC: "1"
+      CHAPTERFLOW_ALLOW_MODEL_GEN: "0"
+      OPENAI_API_KEY: ""
+      ANTHROPIC_API_KEY: ""
+      npm_config_cache: ${{ runner.temp }}/npm-cache-v25
+    defaults:
+      run:
+        working-directory: scripts/book/prompts/chapterflow-v24-author-pipeline
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js 20.20.0
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20.20.0
+          cache: npm
+          cache-dependency-path: scripts/book/prompts/chapterflow-v24-author-pipeline/package-lock.json
+
+      - name: Install V25 pipeline dependencies
+        run: npm ci --include=optional
+
+      - name: Secret and artifact scan
+        working-directory: .
+        run: bash scripts/ci/scan-secrets-and-artifacts.sh --all
+
+      - name: Active-code private-path scan
+        working-directory: .
+        shell: bash
+        run: |
+          set -euo pipefail
+          root="scripts/book/prompts/chapterflow-v24-author-pipeline"
+          if git grep -n -E '(/Users/[^/[:space:]]+|/home/[^/[:space:]]+)' -- \
+            "$root/src" \
+            "$root/config" \
+            "$root/package.json" \
+            ":(exclude)$root/src/scratch/**"; then
+            echo "Active V25 code contains an absolute private path."
+            exit 1
+          fi
+
+      - name: Merge-marker scan
+        working-directory: .
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git grep -n -E '^(<<<<<<<|=======|>>>>>>>)' -- \
+            scripts/book/prompts/chapterflow-v24-author-pipeline \
+            docs/v25/reports \
+            .agents/skills/chapterflow-book-evaluator; then
+            echo "Merge markers found in the V25 scope."
+            exit 1
+          fi
+
+      - name: Type-check
+        run: npx tsc -p . --noEmit
+
+      - name: Validate contracts
+        run: node --import tsx src/cli.ts contract-validate
+
+      - name: Prepare disposable full-suite worktree
+        working-directory: .
+        shell: bash
+        run: |
+          set -euo pipefail
+          suite_root="${RUNNER_TEMP}/chapterflow-v25-suite"
+          git worktree add --detach "$suite_root" "$GITHUB_SHA"
+          npm ci --include=optional --prefix "$suite_root/scripts/book/prompts/chapterflow-v24-author-pipeline"
+
+      - name: Run full no-API suite in disposable worktree
+        working-directory: ${{ runner.temp }}/chapterflow-v25-suite/scripts/book/prompts/chapterflow-v24-author-pipeline
+        run: npx tsx tests/run.ts
+
+      - name: Prove disposable suite invoked no live route
+        if: ${{ always() }}
+        working-directory: .
+        shell: bash
+        run: |
+          set -euo pipefail
+          suite_pipeline="${RUNNER_TEMP}/chapterflow-v25-suite/scripts/book/prompts/chapterflow-v24-author-pipeline"
+          if find "$suite_pipeline/logs/exec" -type f -print -quit 2>/dev/null | grep -q .; then
+            echo "Unexpected live-route evidence exists in the disposable suite worktree."
+            exit 1
+          fi
+
+      - name: Remove disposable full-suite worktree
+        if: ${{ always() }}
+        working-directory: .
+        shell: bash
+        run: |
+          set -euo pipefail
+          suite_root="${RUNNER_TEMP}/chapterflow-v25-suite"
+          if [[ -d "$suite_root" ]]; then
+            git worktree remove --force "$suite_root"
+          fi
+
+      - name: Verify legacy campaign closure
+        run: node --import tsx src/cli.ts migration-bakeoff close-legacy-campaign --json
+
+      - name: Verify production instrument seal
+        run: node --import tsx src/cli.ts migration-bakeoff forward-materialize-production-instrument-seal --json
+
+      - name: Prove no live route was invoked
+        shell: bash
+        run: |
+          set -euo pipefail
+          if find logs/exec -type f -print -quit 2>/dev/null | grep -q .; then
+            echo "Unexpected live-route evidence exists under logs/exec."
+            exit 1
+          fi
+
+      - name: Require a clean worktree
+        working-directory: .
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --exit-code
+          git diff --cached --exit-code
+          status="$(git status --porcelain=v1 --untracked-files=all)"
+          if [[ -n "$status" ]]; then
+            echo "$status"
+            echo "V25 validation left unexpected worktree changes."
+            exit 1
+          fi

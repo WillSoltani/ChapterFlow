@@ -22,7 +22,8 @@
  * The blocking categories, escalation categories, advisory categories, rubric
  * version, the strict validator and the freshness predicate all come from the
  * frozen WP-A1 contract (`src/contracts/readerExperienceReview.ts`); this module
- * only builds the prompt, parses the reviewer's fenced JSON, and stamps the
+ * only builds the prompt, parses the reviewer's schema-bound raw JSON (with a
+ * fenced-JSON compatibility fallback), and stamps the
  * hash/version bindings to produce a validated `ReaderExperienceReviewV1`.
  */
 
@@ -101,8 +102,7 @@ PROCESS (strict order):
    Each finding: category (from its bucket's list), unit (where it lives, e.g. "quiz Q2", "deep read", "example 3"), problem (what is wrong), evidenceSpans (VERBATIM copy-paste substrings of the file, each <=200 chars — one altered character is a fabricated span).
 5. EVIDENCE: strongestEvidence / weakestEvidence = VERBATIM quotes (exact substrings of the file) of the best moment(s) and worst defect(s).
 
-FINAL MESSAGE: exactly one fenced json block, no prose outside it:
-\`\`\`json
+FINAL RESPONSE: emit only the JSON object required by the bound output schema. Do not wrap it in markdown fences and do not add prose before or after it:
 {
   "schema": "reader-experience-review-v1",
   "scores": {"retention": 0, "quizzes": 0, "transfer": 0, "practical": 0, "summaries": 0, "tone": 0, "limits": 0, "insight": 0, "density": 0, "beginner": 0},
@@ -115,19 +115,29 @@ FINAL MESSAGE: exactly one fenced json block, no prose outside it:
   "weakestEvidence": ["..."],
   "oneParagraphVerdict": "..."
 }
-\`\`\`
 (quizDerivation arrays are positional with the questions; use "" for a question with no ambiguity. Use empty arrays where there is nothing to report.)`;
 }
 
-// ── parsing (extract the reviewer's final fenced JSON block) ──────────────────
+// ── parsing (schema-bound raw JSON, with fenced compatibility fallback) ───────
 
-/** Extract the LAST fenced JSON block from a reviewer session's output (readers
- *  sometimes echo the file or think out loud before the final message), preferring
- *  a `json`-labelled fence. Returns the parsed object (unvalidated) or null — the
- *  strict validation happens in `assembleReaderExperienceReview` via the frozen
- *  A1 validator so there is one source of truth for the schema. */
+/** Parse the strict raw JSON object emitted by a schema-bound codex execution.
+ *  Legacy/canned sessions may still return markdown, so if whole-output parsing
+ *  fails, extract the LAST fenced JSON block (preferring a `json`-labelled fence).
+ *  Returns the parsed object (unvalidated) or null — strict validation happens in
+ *  `assembleReaderExperienceReview` via the frozen A1 validator. */
 export function parseReaderExperienceReview(stdout: string): Record<string, unknown> | null {
   if (typeof stdout !== "string" || stdout.length === 0) return null;
+  const trimmed = stdout.trim();
+  if (trimmed.length > 0) {
+    try {
+      const raw = JSON.parse(trimmed) as unknown;
+      if (typeof raw === "object" && raw !== null && !Array.isArray(raw)) {
+        return raw as Record<string, unknown>;
+      }
+    } catch {
+      // Compatibility fallback below for legacy/canned fenced replies.
+    }
+  }
   const fenceRe = /```(json)?[^\n]*\n([\s\S]*?)```/g;
   let lastJsonLabeled: string | null = null;
   let lastAny: string | null = null;
@@ -202,14 +212,16 @@ export function assembleReaderExperienceReview(
 /** The injected reviewer seam. `reviewFn(task)` returns the raw reviewer session
  *  output (stdout / final message). In production this is backed by a
  *  ChatGPT-authenticated `codex exec` spawn behind the router choke; in tests it
- *  returns a canned strict-schema-valid fenced-JSON reply. There is NO fallback
+ *  returns canned strict-schema-valid raw JSON (or the fenced compatibility
+ *  form). There is NO fallback
  *  and NO direct model import in this module. */
 export type ReaderReviewDeps = { reviewFn: (task: string) => Promise<string> };
 
 /** Run the reader-experience lane over the phase-1 document at
  *  `args.docRelPath`, binding the produced record to the exact chapter content /
  *  reader-document / schema hashes. Builds the task, obtains the reviewer output
- *  through the injected `reviewFn`, parses the fenced JSON, and assembles +
+ *  through the injected `reviewFn`, parses schema-bound raw JSON (or the fenced
+ *  compatibility form), and assembles +
  *  strict-validates the record. Makes zero model calls of its own. */
 export async function runReaderExperienceReview(
   args: { docRelPath: string } & ReaderReviewBindings,
@@ -220,7 +232,7 @@ export async function runReaderExperienceReview(
   const parsed = parseReaderExperienceReview(stdout);
   if (parsed === null) {
     throw new ReaderExperienceReviewError(
-      "reader-experience review: no parseable fenced JSON block in the reviewer output",
+      "reader-experience review: no parseable JSON object in the reviewer output",
     );
   }
   return assembleReaderExperienceReview(parsed, {

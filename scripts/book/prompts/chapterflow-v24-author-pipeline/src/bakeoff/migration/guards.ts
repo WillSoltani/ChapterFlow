@@ -75,6 +75,45 @@ export function assertNotClosed(id: string): void {
   }
 }
 
+/** Historical Stage-Q owner drivers retained for audit readability. These
+ * identities are deliberately named here instead of inferred from argv or an
+ * artifact path, so each raw launch surface remains bound to the exact closed
+ * §16 instrument it once executed. */
+export const LEGACY_STAGE_Q_OWNER_DRIVER_IDS = {
+  layerOQualification: "stage-q-layer-o-v1",
+  layerOV2: "stage-q-layer-o-v2",
+  stageQV3: "stage-q-layer-o-v3",
+} as const;
+
+export type LegacyStageQOwnerDriverId =
+  (typeof LEGACY_STAGE_Q_OWNER_DRIVER_IDS)[keyof typeof LEGACY_STAGE_Q_OWNER_DRIVER_IDS];
+
+/** Import-safe, side-effect-free hard stop for the three historical raw-spawn
+ * owner drivers. The old implementation stays readable below each call site,
+ * but invocation can never reach argv parsing, corpus reads, output writes, or
+ * `spawnCodexAgent`.
+ *
+ * This always throws. If a future edit accidentally removes the bound id from
+ * `CLOSED_EXPERIMENT_IDS`, the fallback throw still refuses execution rather
+ * than silently reviving the driver. */
+export function assertLegacyStageQOwnerDriverClosed(id: LegacyStageQOwnerDriverId): never {
+  try {
+    assertNotClosed(id);
+  } catch (error) {
+    if (error instanceof MigrationGuardError) {
+      throw new MigrationGuardError(
+        `legacy raw Stage-Q owner driver "${id}" is permanently disabled for forward-only execution. ${error.message}`,
+      );
+    }
+    throw error;
+  }
+
+  throw new MigrationGuardError(
+    `legacy raw Stage-Q owner driver "${id}" lost its CLOSED_EXPERIMENT_IDS binding; ` +
+      `refusing execution until the closed registry is repaired.`,
+  );
+}
+
 /** Identifiers the migration sources (all files EXCEPT this definition site)
  *  must never contain — the static guard test greps src/bakeoff/migration/*.ts
  *  for these, and additionally scans import lines for promotion/publish modules

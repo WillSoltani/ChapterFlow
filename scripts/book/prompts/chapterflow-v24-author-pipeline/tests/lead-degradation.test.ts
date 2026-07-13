@@ -39,6 +39,7 @@ import {
 import { dealContentDeviceBans } from "../src/compiler/contentDeviceDeal.js";
 import { CHAPTER_BRIEF_SCHEMA_VERSION, type ChapterBriefV1, type SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import type { ChapterV21 } from "../src/types.js";
+import type { AuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const GOLDEN_PACKET = JSON.parse(
@@ -149,6 +150,8 @@ function mkRig(opts: {
   const files = new Map<number, string>();
   const overrides: LeadThreadOverrideV1[] = [];
   const removed: number[] = [];
+  const provenance = new Map<string, AuthorProvenance>();
+  let persistedOverride = opts.storedOverride ?? null;
   let verbCalls = 0;
   let sid = 0;
   const deps = {
@@ -175,10 +178,25 @@ function mkRig(opts: {
     loadChapters: () => [...files.values()].map((f) => JSON.parse(f) as ChapterV21),
     nameBankOk: () => true,
     voiceCard: () => null,
-    authorSessionOf: () => undefined,
-    recordProvenance: () => {},
-    readLeadOverride: () => opts.storedOverride ?? null,
-    writeLeadOverride: (_b, _n, o) => { overrides.push(o); },
+    authorSessionOf: (chapterId) => provenance.get(chapterId)?.authorSessionId,
+    recordProvenance: (chapterId, sessionId, contentHash) => {
+      assert.ok(contentHash, "a successful author commit must bind provenance to content");
+      provenance.set(chapterId, {
+        schemaVersion: "author-provenance-v2",
+        chapterId,
+        authorSessionId: sessionId,
+        stampedAt: "2026-07-12T00:00:00.000Z",
+        contentHash,
+      });
+    },
+    readProvenance: (chapterId) => provenance.get(chapterId) ?? null,
+    restoreProvenance: (chapterId, previous) => {
+      if (previous) provenance.set(chapterId, previous);
+      else provenance.delete(chapterId);
+    },
+    readLeadOverride: () => persistedOverride,
+    writeLeadOverride: (_b, _n, o) => { persistedOverride = o; overrides.push(o); },
+    removeLeadOverride: () => { persistedOverride = null; },
     attemptsRoot: () => join(RIG_TMP, `attempts-${rigSeq++}`),
     gateCandidate: async (_c, _abs, attemptKey) =>
       opts.runVerb ? opts.runVerb(["gate-chapter", attemptKey], ++verbCalls) : { code: 0, stdout: "", stderr: "" },

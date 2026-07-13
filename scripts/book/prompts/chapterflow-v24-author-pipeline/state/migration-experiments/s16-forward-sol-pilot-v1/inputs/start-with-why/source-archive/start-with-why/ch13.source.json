@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 13,
+  "chapterTitle": "The Origins of a WHY",
+  "focus": "A WHY is discovered in patterns from lived experience rather than invented as a branding sentence. A reader learns to search for recurring moments of contribution and impact before writing purpose language.",
+  "coreClaim": "The Origins of a WHY turns origin story into a practical decision rule backed by named cases and checkable details.",
+  "centralConcept": {
+    "id": "ch13.concept",
+    "name": "origin story",
+    "plainDefinition": "A WHY is discovered in patterns from lived experience rather than invented as a branding sentence.",
+    "whyItMatters": "A reader learns to search for recurring moments of contribution and impact before writing purpose language."
+  },
+  "keyClaims": [
+    "origin story becomes usable only when tied to visible behavior.",
+    "Simon Sinek career background gives the first concrete anchor.",
+    "Wright brothers workshop roots creates contrast so the idea is not one anecdote.",
+    "Howard Schultz and Starbucks experience adds a boundary case for application.",
+    "Past patterns, Contribution, Impact, WHY statement keep the unit from collapsing into generic purpose talk."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch13.ex.simon-sinek-career-background",
+      "label": "Simon Sinek career background",
+      "summary": "Simon Sinek's background includes Brandeis University, advertising work, and Columbia University teaching. The personal-origin case keeps discovery tied to lived patterns.",
+      "teachesWhat": "Simon Sinek career background turns Simon Sinek into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Simon Sinek",
+        "Brandeis University",
+        "advertising",
+        "Columbia University"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch13.ex.wright-brothers-workshop-roots",
+      "label": "Wright brothers workshop roots",
+      "summary": "Wilbur Wright and Orville Wright brought bicycle-shop mechanics to the Kitty Hawk flight problem. The case shows origin patterns becoming a cause.",
+      "teachesWhat": "Wright brothers workshop roots turns Wright brothers into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Wilbur Wright",
+        "Orville Wright",
+        "bicycle shop",
+        "Kitty Hawk"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch13.ex.howard-schultz-and-starbucks-experience",
+      "label": "Howard Schultz and Starbucks experience",
+      "summary": "Howard Schultz linked Seattle Starbucks to an experience-centered 1980s retail idea shaped by the espresso bar model. The case shows personal experience shaping organizational meaning.",
+      "teachesWhat": "Howard Schultz and Starbucks experience turns Howard Schultz into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Howard Schultz",
+        "Seattle Starbucks",
+        "1980s retail idea",
+        "espresso bar model"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to turn origin story into a universal slogan and ignore the cases. The stricter reading keeps the claim tied to the specific examples and uses the framework only where the details support it.",
+  "voiceCues": [
+    "plain business language with short contrasts",
+    "case first, principle second",
+    "second-person diagnostic questions",
+    "simple framework names repeated sparingly"
+  ],
+  "forbiddenLeakage": [
+    "Do not turn the close into external rivalry",
+    "Do not re-teach manipulation categories"
+  ],
+  "paraphraseNotes": "The Origins of a WHY works from origin story: A WHY is discovered in patterns from lived experience rather than invented as a branding sentence. A reader learns to search for recurring moments of contribution and impact before writing purpose language. Simon Sinek's background includes Brandeis University, advertising work, and Columbia University teaching. The personal-origin case keeps discovery tied to lived patterns. Wilbur Wright and Orville Wright brought bicycle-shop mechanics to the Kitty Hawk flight problem. The case shows origin patterns becoming a cause. Howard Schultz linked Seattle Starbucks to an experience-centered 1980s retail idea shaped by the espresso bar model. The case shows personal experience shaping organizational meaning. Past patterns starts the local logic for The Origins of a WHY; Contribution, Impact, WHY statement complete the sequence. Keep Sinek, Wright, and Schultz on origins from lived patterns; external rivalry is not the closing measure yet.",
+  "testableFacts": [
+    {
+      "id": "ch13.fact.1",
+      "claim": "Simon Sinek career background makes origin story concrete through Simon Sinek and Brandeis University.",
+      "becauseMechanism": "Because Simon Sinek gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Simon Sinek career background as colorful background.",
+      "errorIsWhy": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "derivedFrom": "ch13.ex.simon-sinek-career-background"
+    },
+    {
+      "id": "ch13.fact.2",
+      "claim": "Wright brothers workshop roots adds a second anchor for origin story with Wilbur Wright and Orville Wright.",
+      "becauseMechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "errorIsWhy": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "derivedFrom": "ch13.ex.wright-brothers-workshop-roots"
+    },
+    {
+      "id": "ch13.fact.3",
+      "claim": "Howard Schultz and Starbucks experience supplies a third checkable scene using Howard Schultz and Seattle Starbucks.",
+      "becauseMechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "errorIsWhy": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "derivedFrom": "ch13.ex.howard-schultz-and-starbucks-experience"
+    },
+    {
+      "id": "ch13.fact.4",
+      "claim": "origin story depends on the sequence Past patterns before Contribution.",
+      "becauseMechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "errorIsWhy": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "derivedFrom": "ch13.concept"
+    },
+    {
+      "id": "ch13.fact.5",
+      "claim": "Past patterns, Contribution, Impact, WHY statement form the local framework for The Origins of a WHY.",
+      "becauseMechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "errorIsWhy": "Shortening removes the distinctions the quiz and examples need to test.",
+      "derivedFrom": "ch13.concept"
+    },
+    {
+      "id": "ch13.fact.6",
+      "claim": "advertising is a hard detail that should stay attached to Simon Sinek career background.",
+      "becauseMechanism": "Because hard specifics are portable only inside their case, moving advertising to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "errorIsWhy": "A true detail becomes misleading when it is attached to the wrong case.",
+      "derivedFrom": "ch13.ex.simon-sinek-career-background"
+    },
+    {
+      "id": "ch13.fact.7",
+      "claim": "bicycle shop gives Wright brothers workshop roots a different factual token from Simon Sinek career background.",
+      "becauseMechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "errorIsWhy": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "derivedFrom": "ch13.ex.wright-brothers-workshop-roots"
+    },
+    {
+      "id": "ch13.fact.8",
+      "claim": "1980s retail idea helps mark the boundary of origin story.",
+      "becauseMechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "errorIsWhy": "The mechanism changes by venue; boundary details keep the application honest.",
+      "derivedFrom": "ch13.ex.howard-schultz-and-starbucks-experience"
+    },
+    {
+      "id": "ch13.fact.9",
+      "claim": "The Origins of a WHY should teach origin story through Simon Sinek career background, Wright brothers workshop roots, and Howard Schultz and Starbucks experience, not through generic leadership advice.",
+      "becauseMechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "errorIsWhy": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "derivedFrom": "ch13.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "The Origins of a WHY framework",
+      "members": [
+        "Past patterns",
+        "Contribution",
+        "Impact",
+        "WHY statement"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Simon Sinek career background",
+    "Wright brothers workshop roots",
+    "Howard Schultz",
+    "Starbucks experience"
+  ]
+}

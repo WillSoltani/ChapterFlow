@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 10,
+  "chapterTitle": "Communication Is Not About Speaking, It's About Listening",
+  "focus": "People read actions, products, hiring, design, and rituals as communication; listening means noticing whether those signals match the belief. A reader learns to make every visible choice a truthful signal rather than treating communication as copywriting.",
+  "coreClaim": "Communication Is Not About Speaking, It's About Listening turns symbolic consistency into a practical decision rule backed by named cases and checkable details.",
+  "centralConcept": {
+    "id": "ch10.concept",
+    "name": "symbolic consistency",
+    "plainDefinition": "People read actions, products, hiring, design, and rituals as communication; listening means noticing whether those signals match the belief.",
+    "whyItMatters": "A reader learns to make every visible choice a truthful signal rather than treating communication as copywriting."
+  },
+  "keyClaims": [
+    "symbolic consistency becomes usable only when tied to visible behavior.",
+    "Celery test gives the first concrete anchor.",
+    "Harley-Davidson identity creates contrast so the idea is not one anecdote.",
+    "Apple retail and product signals adds a boundary case for application.",
+    "Words, Actions, Symbols, Audience listening keep the unit from collapsing into generic purpose talk."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch10.ex.celery-test",
+      "label": "Celery test",
+      "summary": "The celery test uses celery, Oreos, rice milk, and M&Ms as a decision filter: purchases communicate identity even before explanation.",
+      "teachesWhat": "Celery test turns Celery test into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "celery",
+        "Oreos",
+        "rice milk",
+        "M&Ms"
+      ],
+      "realWorld": false
+    },
+    {
+      "id": "ch10.ex.harley-davidson-identity",
+      "label": "Harley-Davidson identity",
+      "summary": "Harley-Davidson began in 1903 in Milwaukee and became a motorcycle identity marker. The case shows customers using a brand as self-expression.",
+      "teachesWhat": "Harley-Davidson identity turns Harley-Davidson into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Harley-Davidson",
+        "1903",
+        "Milwaukee",
+        "motorcycles"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch10.ex.apple-retail-and-product-signals",
+      "label": "Apple retail and product signals",
+      "summary": "Apple opened Apple Store retail locations in 2001. Apple Store, 2001, Cupertino, and retail stores make communication visible through environment.",
+      "teachesWhat": "Apple retail and product signals turns Apple Inc. into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Apple Store",
+        "2001",
+        "Cupertino",
+        "retail stores"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to turn symbolic consistency into a universal slogan and ignore the cases. The stricter reading keeps the claim tied to the specific examples and uses the framework only where the details support it.",
+  "voiceCues": [
+    "plain business language with short contrasts",
+    "case first, principle second",
+    "second-person diagnostic questions",
+    "simple framework names repeated sparingly"
+  ],
+  "forbiddenLeakage": [
+    "Do not use Walmart succession yet",
+    "Do not reintroduce adoption percentages"
+  ],
+  "paraphraseNotes": "Communication Is Not About Speaking, It's About Listening works from symbolic consistency: People read actions, products, hiring, design, and rituals as communication; listening means noticing whether those signals match the belief. A reader learns to make every visible choice a truthful signal rather than treating communication as copywriting. The celery test uses celery, Oreos, rice milk, and M&Ms as a decision filter: purchases communicate identity even before explanation. Harley-Davidson began in 1903 in Milwaukee and became a motorcycle identity marker. The case shows customers using a brand as self-expression. Apple opened Apple Store retail locations in 2001. Apple Store, 2001, Cupertino, and retail stores make communication visible through environment. Words starts the local logic for Communication Is Not About Speaking, It's About Listening; Actions, Symbols, Audience listening complete the sequence. Keep celery, Harley-Davidson, and Apple Store signals on visible listening; founder drift belongs later.",
+  "testableFacts": [
+    {
+      "id": "ch10.fact.1",
+      "claim": "Celery test makes symbolic consistency concrete through celery and Oreos.",
+      "becauseMechanism": "Because celery gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Celery test as colorful background.",
+      "errorIsWhy": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "derivedFrom": "ch10.ex.celery-test"
+    },
+    {
+      "id": "ch10.fact.2",
+      "claim": "Harley-Davidson identity adds a second anchor for symbolic consistency with Harley-Davidson and 1903.",
+      "becauseMechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "errorIsWhy": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "derivedFrom": "ch10.ex.harley-davidson-identity"
+    },
+    {
+      "id": "ch10.fact.3",
+      "claim": "Apple retail and product signals supplies a third checkable scene using Apple Store and 2001.",
+      "becauseMechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "errorIsWhy": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "derivedFrom": "ch10.ex.apple-retail-and-product-signals"
+    },
+    {
+      "id": "ch10.fact.4",
+      "claim": "symbolic consistency depends on the sequence Words before Actions.",
+      "becauseMechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "errorIsWhy": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "derivedFrom": "ch10.concept"
+    },
+    {
+      "id": "ch10.fact.5",
+      "claim": "Words, Actions, Symbols, Audience listening form the local framework for Communication Is Not About Speaking, It's About Listening.",
+      "becauseMechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "errorIsWhy": "Shortening removes the distinctions the quiz and examples need to test.",
+      "derivedFrom": "ch10.concept"
+    },
+    {
+      "id": "ch10.fact.6",
+      "claim": "rice milk is a hard detail that should stay attached to Celery test.",
+      "becauseMechanism": "Because hard specifics are portable only inside their case, moving rice milk to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "errorIsWhy": "A true detail becomes misleading when it is attached to the wrong case.",
+      "derivedFrom": "ch10.ex.celery-test"
+    },
+    {
+      "id": "ch10.fact.7",
+      "claim": "Milwaukee gives Harley-Davidson identity a different factual token from Celery test.",
+      "becauseMechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "errorIsWhy": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "derivedFrom": "ch10.ex.harley-davidson-identity"
+    },
+    {
+      "id": "ch10.fact.8",
+      "claim": "Cupertino helps mark the boundary of symbolic consistency.",
+      "becauseMechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "errorIsWhy": "The mechanism changes by venue; boundary details keep the application honest.",
+      "derivedFrom": "ch10.ex.apple-retail-and-product-signals"
+    },
+    {
+      "id": "ch10.fact.9",
+      "claim": "Communication Is Not About Speaking, It's About Listening should teach symbolic consistency through Celery test, Harley-Davidson identity, and Apple retail and product signals, not through generic leadership advice.",
+      "becauseMechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "errorIsWhy": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "derivedFrom": "ch10.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Communication Is Not About Speaking, It's About Listening framework",
+      "members": [
+        "Words",
+        "Actions",
+        "Symbols",
+        "Audience listening"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Celery test",
+    "Harley-Davidson identity",
+    "Apple retail",
+    "product signals"
+  ]
+}

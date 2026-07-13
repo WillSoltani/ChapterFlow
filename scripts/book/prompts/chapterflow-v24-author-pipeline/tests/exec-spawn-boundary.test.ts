@@ -42,6 +42,17 @@ const SPAWN_OPENERS = [/\bdeps\.spawn\(\{/g, /\bjdeps\.spawn\(\{/g, /\bspawnCode
 const DIRECT_SPAWN_ALLOWLIST = new Set([
   "src/orchestrator/codexAgent.ts",
   "src/orchestrator/autopilot.ts",   // resolveDeps default binding only
+  // IMP-22 live qualification is a sealed broker boundary: it proves the
+  // ChatGPT route before execution, uses forwardReviewerExecutor for the exact
+  // model/effort profile, and persists REQUESTED + receipt evidence around the
+  // direct call. Routing it through legacy AutopilotDeps would bypass that
+  // phase-local crash-safe ledger.
+  "src/orchestrator/forwardRoleQualificationLive.ts",
+  // The forward pilot/gold boundary likewise records REQUESTED before the
+  // exact sealed evaluator spawn, validates the typed result, and retains the
+  // receipt before any downstream call. It cannot use the legacy autopilot
+  // broker without losing that experiment-local ledger and resume contract.
+  "src/orchestrator/forwardLiveValidationDriver.ts",
   "src/review/evalReaderProxy.ts",
   "src/review/evalBookProxy.ts",
   "src/cli.ts",

@@ -56,7 +56,12 @@ import { loadNameBank } from "../librarian/namePlan.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { registerAdvisoryRetryBlock } from "../critics/registerAdvisories.js";
-import { loadAuthorProvenance, recordAuthorProvenance } from "../qc/sessionProvenance.js";
+import {
+  loadAuthorProvenance,
+  provenancePath,
+  recordAuthorProvenance,
+  type AuthorProvenance,
+} from "../qc/sessionProvenance.js";
 import {
   RegenLedgerError,
   budgetRepairConsumedFor,
@@ -69,16 +74,19 @@ import { appendReopenNote, holdsDurablePass } from "./authorReviewLedger.js";
 import {
   ATTEMPTS_ROOT,
   commitChapterCandidate,
+  finalizeChapterCommitEvidence,
   finalizeAttempt,
   gateCandidate,
   importCandidate,
   mintChapterAttempt,
+  reconcileCommittedChapterCandidate,
   rubricMetricsWithCandidate,
   unexpectedAttemptWrites,
+  type ChapterAttempt,
 } from "./chapterTransaction.js";
 import { recordAttemptObject, recordSpawnEvidence } from "../evidence/attemptRecorder.js";
 import { recordChapterDiversity } from "../telemetry/diversityLedger.js";
-import { sha256Hex } from "../contracts/contractUtil.js";
+import { hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { BASELINE_MODEL } from "./modelPolicy.js";
 
@@ -132,6 +140,11 @@ export type AuthorIo = {
   authorSessionOf: (chapterId: string) => string | undefined;
   /** Stamp author provenance bound to the authored content hash. */
   recordProvenance: (chapterId: string, sessionId: string, contentHash?: string) => void;
+  /** Read-back/rollback seam for required author provenance. A successful
+   * forward commit is not acknowledged until the exact session+content binding
+   * can be read from this same destination. */
+  readProvenance: (chapterId: string) => AuthorProvenance | null;
+  restoreProvenance: (chapterId: string, previous: AuthorProvenance | null) => void;
   /** Raw chapter-file bytes (null when absent) — the write-failure restore hooks
    *  (fresh-gold live finding, 2026-07-08): a writer session lands its draft on
    *  disk BEFORE the gate/rubric/contract self-checks, so a fully-failed
@@ -146,6 +159,7 @@ export type AuthorIo = {
    *  only when a degraded attempt lands a passing chapter. */
   readLeadOverride: (bookId: string, chapterNumber: number) => LeadThreadOverrideV1 | null;
   writeLeadOverride: (bookId: string, chapterNumber: number, override: LeadThreadOverrideV1) => void;
+  removeLeadOverride: (bookId: string, chapterNumber: number) => void;
   /** IMP-01 candidate validation seam. The conductor gates CANDIDATE bytes (the
    *  attempt-workspace draft) in process — never by exposing them at the
    *  canonical path. Tests that previously stubbed the `gate-chapter` /
@@ -155,6 +169,15 @@ export type AuthorIo = {
   /** Root for per-attempt workspaces/evidence (.attempts by default; tests use
    *  tmp roots so unit runs never write the real pipeline tree). */
   attemptsRoot: () => string;
+  /** Optional explicit durable-evidence root.  When omitted the normal
+   * pipeline keeps the historical CHAPTERFLOW_EVIDENCE_ROOT resolution; live
+   * experiments provide this method so ambient process state cannot redirect
+   * evidence outside their destination. */
+  evidenceRoot?: () => string | null;
+  /** Optional explicit passive-diversity telemetry root.  Same isolation rule
+   * as evidenceRoot: ordinary callers may omit it, experiment callers must
+   * bind it. */
+  diversityLedgerRoot?: () => string | null;
 };
 
 /** Disk implementations of the F-1 sidecar, exported so the repair lane
@@ -228,12 +251,21 @@ export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
     authorSessionOf: over?.authorSessionOf ?? ((chapterId) => loadAuthorProvenance(chapterId)?.authorSessionId ?? undefined),
     recordProvenance: over?.recordProvenance
       ?? ((chapterId, sessionId, contentHash) => { recordAuthorProvenance(chapterId, sessionId, contentHash); }),
+    readProvenance: over?.readProvenance ?? ((chapterId) => loadAuthorProvenance(chapterId)),
+    restoreProvenance: over?.restoreProvenance ?? ((chapterId, previous) => {
+      const p = provenancePath(chapterId);
+      if (previous === null) rmSync(p, { force: true });
+      else writeFileAtomic(p, JSON.stringify(previous, null, 2) + "\n");
+    }),
     readLeadOverride: over?.readLeadOverride ?? readLeadOverrideFromDisk,
     writeLeadOverride: over?.writeLeadOverride ?? writeLeadOverrideToDisk,
+    removeLeadOverride: over?.removeLeadOverride ?? ((bookId, n) => rmSync(leadOverridePath(normSlug(bookId), n), { force: true })),
     gateCandidate: over?.gateCandidate ?? gateCandidate,
     rubricWithCandidate: over?.rubricWithCandidate
       ?? ((bookId, n, candidate) => rubricMetricsWithCandidate(bookId, n, candidate, loadChaptersResolved)),
     attemptsRoot: over?.attemptsRoot ?? (() => ATTEMPTS_ROOT),
+    ...(over?.evidenceRoot ? { evidenceRoot: over.evidenceRoot } : {}),
+    ...(over?.diversityLedgerRoot ? { diversityLedgerRoot: over.diversityLedgerRoot } : {}),
   };
 }
 
@@ -722,8 +754,86 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
 // ── One whole-chapter writer ──────────────────────────────────────────────────
 
 export type AuthorWriteOneResult =
-  | { ok: true; sessionId: string }
-  | { ok: false; reason: string };
+  | { ok: true; sessionId: string; committed?: true }
+  | { ok: true; sessionId: string; committed: false; pending: PreparedAuthorCandidate }
+  | {
+      ok: false;
+      reason: string;
+      /** Structured producer failure; forward validation must never reinterpret
+       * infrastructure/state/schema failures as weak prose and spend a new
+       * author candidate. Optional only for legacy injected test doubles. */
+      failureKind?: "CONTENT" | "INFRASTRUCTURE" | "STATE_OR_PROVENANCE" | "PROMPT_OR_CONTRACT";
+    };
+
+/**
+ * A fully generated and deterministically validated chapter that is still held
+ * inside the conductor-owned attempt workspace.  It has not touched canonical
+ * chapter state.  IMP-22's forward review conductor owns this value until the
+ * reader, source, and quiz lanes aggregate to PASS, then calls
+ * `commitPreparedAuthorCandidate` exactly once.
+ */
+export type PreparedAuthorCandidate = {
+  bookId: string;
+  chapterNumber: number;
+  chapterId: string;
+  sessionId: string;
+  attempt: ChapterAttempt;
+  bytes: string;
+  chapter: ChapterV21;
+  plan: SourceUsePlanV1 | null;
+  pendingLeadOverride: LeadThreadOverrideV1 | null;
+  /** The exact IO instance that minted the attempt and therefore owns its CAS
+   * base. Keeping it bound prevents a caller from reviewing under one fixture
+   * root and committing into another. */
+  io: AuthorIo;
+};
+
+export type PreparedAuthorCompilerInputsV1 = {
+  sourcePacket: SourcePacketV1;
+  sourcePlan: SourceUsePlanV1;
+  sourcePacketSha256: string;
+  sourcePlanSha256: string;
+};
+
+/**
+ * Re-read the compiler-owned packet AND source-use plan through the exact IO
+ * instance that minted a prepared candidate.  This is the authoritative
+ * commit-boundary freshness check: in-memory objects cannot prove that either
+ * on-disk compiler artifact stayed unchanged during a long review.
+ */
+export function readPreparedAuthorCompilerInputs(
+  prepared: PreparedAuthorCandidate,
+): PreparedAuthorCompilerInputsV1 | { error: string } {
+  const { bookId, chapterNumber, chapterId, plan, attempt, io } = prepared;
+  if (!plan) return { error: "prepared candidate has no compiler-owned source-use plan" };
+  let sourcePacket: SourcePacketV1 | null;
+  let sourcePlan: SourceUsePlanV1 | null;
+  try { sourcePacket = io.readPacket(bookId, chapterNumber); }
+  catch (error) { return { error: `current source packet is unreadable (${(error as Error).message})` }; }
+  try { sourcePlan = io.readSourcePlan(bookId, chapterNumber); }
+  catch (error) { return { error: `current source-use plan is unreadable (${(error as Error).message})` }; }
+  if (!sourcePacket) return { error: "current source packet is missing" };
+  if (!sourcePlan) return { error: "current compiler-owned source-use plan is missing" };
+  if (sourcePacket.bookId !== bookId || sourcePacket.chapterNumber !== chapterNumber || sourcePacket.chapterId !== chapterId) {
+    return { error: "current source packet identity differs from the prepared candidate" };
+  }
+  if (sourcePlan.bookId !== bookId || sourcePlan.chapterNumber !== chapterNumber) {
+    return { error: "current source-use plan identity differs from the prepared candidate" };
+  }
+  const sourcePacketSha256 = sourcePacketHash(sourcePacket);
+  const sourcePlanSha256 = sourceUsePlanHash(sourcePlan);
+  const expectedPacketSha256 = attempt.identity.inputHashes.sourcePacket;
+  const expectedPlanSha256 = attempt.identity.inputHashes.sourceUsePlan ?? attempt.identity.sourcePlanHash;
+  if (sourcePacketSha256 !== expectedPacketSha256) return { error: "current source packet hash differs from the prepared/reviewed packet" };
+  if (sourcePlanSha256 !== expectedPlanSha256 || sourcePlanSha256 !== sourceUsePlanHash(plan)) {
+    return { error: "current source-use plan hash differs from the prepared/reviewed plan" };
+  }
+  const planErrors = validateSourceUsePlan(sourcePlan);
+  if (planErrors.length > 0) return { error: `current source-use plan fails its frozen contract (${planErrors.slice(0, 3).join("; ")})` };
+  const stale = sourceUsePlanStale(sourcePlan, sourcePacket);
+  if (stale) return { error: `current source-use plan is stale against the current source packet (${stale})` };
+  return { sourcePacket, sourcePlan, sourcePacketSha256, sourcePlanSha256 };
+}
 
 export type AuthorWriteOneOpts = {
   complaints?: string[];
@@ -750,7 +860,198 @@ export type AuthorWriteOneOpts = {
    *  before the first spawn (frozen snapshot stacks substitute their template).
    *  Consulted once for the base card; production callers never set this. */
   cardOverride?: (base: string, ctx: { bookId: string; chapterNumber: number; outputRelPath: string }) => string;
+  /** Additional immutable experiment-control hashes to stamp into every minted
+   * attempt identity (for example the IMP-22 production instrument seal). */
+  attemptInputHashes?: Record<string, string>;
+  /** IMP-22 forward-only production seam.  When true, return the validated
+   * candidate without committing canonical state.  Only the forward review
+   * conductor may later commit it, after split-lane aggregation returns PASS. */
+  deferCommit?: boolean;
 };
+
+export type CommitPreparedAuthorCandidateDeps = Pick<AutopilotDeps, "log"> & {
+  /** ACTIVE conductor evidence persisted after the canonical/provenance writes
+   * land but before the required-evidence bracket closes. The callback returns
+   * an undo action for CAS rollback paths. */
+  forwardReviewEvidence?: {
+    resultSha256: string;
+    persistAndReadBack: () => void | (() => void);
+  };
+};
+
+/**
+ * Commit a prepared author candidate after semantic acceptance.  The helper
+ * rechecks source lineage after the potentially long review window and then
+ * performs the existing compare-and-swap transaction.  Provenance, lead
+ * override, diversity evidence, and attempt finalization happen only after the
+ * atomic replacement succeeds.
+ */
+export function commitPreparedAuthorCandidate(
+  prepared: PreparedAuthorCandidate,
+  deps: CommitPreparedAuthorCandidateDeps,
+): AuthorWriteOneResult {
+  const {
+    bookId, chapterNumber, chapterId, sessionId, attempt, bytes, chapter, plan,
+    pendingLeadOverride, io,
+  } = prepared;
+  const nn = String(chapterNumber).padStart(2, "0");
+
+  if (plan) {
+    const fresh = readPreparedAuthorCompilerInputs(prepared);
+    if ("error" in fresh) {
+      const reason = `ch${nn}: source lineage went STALE during split-lane review (${fresh.error}) — candidate rejected; recompile packets+plans and re-run`;
+      finalizeAttempt(attempt, "validation_failed", reason);
+      deps.log(`[autopilot] author ch${nn}: ${reason}`);
+      return { ok: false, reason, failureKind: "STATE_OR_PROVENANCE" };
+    }
+  }
+
+  // Preserve every companion record before entering the canonical bracket. If
+  // a required write/read-back fails after the chapter swap, reconciliation can
+  // restore the exact prior state instead of leaving a PASS-looking hybrid.
+  const previousLeadOverride = pendingLeadOverride ? io.readLeadOverride(bookId, chapterNumber) : null;
+  const previousProvenance = io.readProvenance(chapterId);
+  const contentHash = chapterContentHash(chapter);
+  const requiredEvidence = {
+    authorProvenanceBindingSha256: hashCanonical({ chapterId, sessionId, contentHash }),
+    leadOverrideSha256: pendingLeadOverride ? hashCanonical(pendingLeadOverride) : null,
+    ...(deps.forwardReviewEvidence ? { forwardReviewResultSha256: deps.forwardReviewEvidence.resultSha256 } : {}),
+  };
+
+  const committed = commitChapterCandidate({ attempt, bytes, io, requiredEvidence });
+  if (!committed.ok) {
+    let detail = committed.reason;
+    if (committed.outcome === "infrastructure_failure" && committed.canonicalLanded) {
+      const reconciled = reconcileCommittedChapterCandidate({
+        attempt,
+        committedSha256: committed.committedSha256,
+        previousBytes: committed.previousBytes,
+        io,
+        cause: committed.reason,
+      });
+      detail += reconciled.ok
+        ? `; ${reconciled.detail}`
+        : `; ${reconciled.detail}; operator reconciliation required`;
+    }
+    const reason = `ch${nn}: ${detail}`;
+    finalizeAttempt(attempt, committed.outcome, detail);
+    deps.log(`[autopilot] author ch${nn}: ${reason}`);
+    return { ok: false, reason, failureKind: "STATE_OR_PROVENANCE" };
+  }
+
+  let rollbackForwardReviewEvidence: (() => void) | null = null;
+  const failRequiredEvidence = (label: string, error: unknown, restoreLeadOverride: boolean, restoreProvenance: boolean): AuthorWriteOneResult => {
+    const baseCause = `${label}: ${(error as Error).message.split("\n")[0]}`;
+    const companionFailures: string[] = [];
+    if (rollbackForwardReviewEvidence) {
+      try { rollbackForwardReviewEvidence(); }
+      catch (restoreError) {
+        companionFailures.push(`forward-review evidence rollback failed: ${(restoreError as Error).message.split("\n")[0]}`);
+      }
+      rollbackForwardReviewEvidence = null;
+    }
+    if (restoreLeadOverride && pendingLeadOverride) {
+      try {
+        if (previousLeadOverride) io.writeLeadOverride(bookId, chapterNumber, previousLeadOverride);
+        else io.removeLeadOverride(bookId, chapterNumber);
+      } catch (restoreError) {
+        companionFailures.push(`lead-override rollback failed: ${(restoreError as Error).message.split("\n")[0]}`);
+      }
+    }
+    if (restoreProvenance) {
+      try { io.restoreProvenance(chapterId, previousProvenance); }
+      catch (restoreError) {
+        companionFailures.push(`provenance rollback failed: ${(restoreError as Error).message.split("\n")[0]}`);
+      }
+    }
+    const cause = baseCause + (companionFailures.length > 0 ? `; ${companionFailures.join("; ")}` : "");
+    const reconciliation = reconcileCommittedChapterCandidate({
+      attempt,
+      committedSha256: committed.committedSha256,
+      previousBytes: committed.previousBytes,
+      io,
+      cause,
+      companionStateUnreconciled: companionFailures.length > 0,
+    });
+    const reconciliationDetail = reconciliation.ok
+      ? reconciliation.detail
+      : `${reconciliation.detail}; operator reconciliation required`;
+    const reason = `ch${nn}: required commit evidence did not persist (${cause}); ${reconciliationDetail}`;
+    finalizeAttempt(attempt, "infrastructure_failure", reason);
+    deps.log(`[autopilot] author ch${nn}: ${reason}`);
+    return { ok: false, reason, failureKind: "STATE_OR_PROVENANCE" };
+  };
+
+  if (pendingLeadOverride) {
+    try {
+      io.writeLeadOverride(bookId, chapterNumber, pendingLeadOverride);
+      const persisted = io.readLeadOverride(bookId, chapterNumber);
+      if (!persisted || hashCanonical(persisted) !== hashCanonical(pendingLeadOverride)) {
+        throw new Error("lead override read-back does not match the accepted override");
+      }
+      deps.log(`[autopilot] author ch${nn}: lead override persisted after accepted commit (chNN.lead-override.json).`);
+    } catch (err) {
+      return failRequiredEvidence("lead override persistence failed", err, true, false);
+    }
+  }
+
+  try {
+    io.recordProvenance(chapterId, sessionId, contentHash);
+    const persisted = io.readProvenance(chapterId);
+    if (
+      !persisted
+      || persisted.schemaVersion !== "author-provenance-v2"
+      || persisted.chapterId !== chapterId
+      || persisted.authorSessionId !== sessionId
+      || persisted.contentHash !== contentHash
+    ) {
+      throw new Error("author provenance read-back does not match the accepted session/content binding");
+    }
+  } catch (err) {
+    return failRequiredEvidence("author provenance persistence failed", err, pendingLeadOverride !== null, true);
+  }
+
+  if (deps.forwardReviewEvidence) {
+    try {
+      const undo = deps.forwardReviewEvidence.persistAndReadBack();
+      rollbackForwardReviewEvidence = typeof undo === "function" ? undo : null;
+    } catch (err) {
+      return failRequiredEvidence("forward review-result persistence failed", err, pendingLeadOverride !== null, true);
+    }
+  }
+
+  const evidenceFinalized = finalizeChapterCommitEvidence({
+    attempt,
+    committedSha256: committed.committedSha256,
+    requiredEvidence,
+    io,
+  });
+  if (!evidenceFinalized.ok) {
+    return failRequiredEvidence(
+      "required commit-evidence finalization failed",
+      new Error(evidenceFinalized.reason),
+      pendingLeadOverride !== null,
+      true,
+    );
+  }
+  rollbackForwardReviewEvidence = null;
+
+  const divRec = recordChapterDiversity({
+    root: io.diversityLedgerRoot?.(),
+    bookId,
+    chapterNumber,
+    chapter,
+    plan,
+    attemptKind: attempt.identity.attemptKind,
+    committedGeneration: attempt.identity.expectedBaseGeneration + 1,
+  });
+  if (divRec && attempt.evidenceRoot) {
+    recordAttemptObject(attempt.evidenceRoot, attempt.identity.attemptId, "diversity-features", JSON.stringify(divRec) + "\n");
+  }
+  finalizeAttempt(attempt, "committed");
+  deps.log(`[autopilot] author ch${nn}: done (accepted candidate committed atomically)`);
+  return { ok: true, sessionId, committed: true };
+}
 
 /**
  * Author ONE chapter: build the card, spawn the writer (workspace-write, a
@@ -774,9 +1075,9 @@ export async function authorWriteOneChapter(
   const writerEffort = opts.effort ?? AUTHOR_WRITER_EFFORT;
 
   const briefMd = io.readBriefMd(bookId, chapterNumber);
-  if (!briefMd) return { ok: false, reason: `ch${nn}: no rendered brief (chNN.brief.md) — run compile-chapter-briefs first` };
+  if (!briefMd) return { ok: false, reason: `ch${nn}: no rendered brief (chNN.brief.md) — run compile-chapter-briefs first`, failureKind: "STATE_OR_PROVENANCE" };
   const packet = io.readPacket(bookId, chapterNumber);
-  if (!packet) return { ok: false, reason: `ch${nn}: no source packet — run compile-source-packets first` };
+  if (!packet) return { ok: false, reason: `ch${nn}: no source packet — run compile-source-packets first`, failureKind: "STATE_OR_PROVENANCE" };
 
   // IMP-03: load the compiler-owned source-use plan. ABSENT → legacy path
   // (pre-plan books author exactly as before; absence grants nothing). PRESENT →
@@ -787,16 +1088,16 @@ export async function authorWriteOneChapter(
   try {
     plan = io.readSourcePlan(bookId, chapterNumber);
   } catch (err) {
-    return { ok: false, reason: `ch${nn}: source-use plan exists but is unreadable (${(err as Error).message.split("\n")[0]}) — recompile source packets` };
+    return { ok: false, reason: `ch${nn}: source-use plan exists but is unreadable (${(err as Error).message.split("\n")[0]}) — recompile source packets`, failureKind: "STATE_OR_PROVENANCE" };
   }
   if (plan) {
     const planErrors = validateSourceUsePlan(plan);
     if (planErrors.length > 0) {
-      return { ok: false, reason: `ch${nn}: source-use plan fails its frozen contract — ${planErrors.slice(0, 3).join("; ")} — recompile source packets` };
+      return { ok: false, reason: `ch${nn}: source-use plan fails its frozen contract — ${planErrors.slice(0, 3).join("; ")} — recompile source packets`, failureKind: "PROMPT_OR_CONTRACT" };
     }
     const stale = sourceUsePlanStale(plan, packet);
     if (stale) {
-      return { ok: false, reason: `ch${nn}: source-use plan is STALE — ${stale} — recompile source packets before authoring` };
+      return { ok: false, reason: `ch${nn}: source-use plan is STALE — ${stale} — recompile source packets before authoring`, failureKind: "STATE_OR_PROVENANCE" };
     }
   }
 
@@ -869,6 +1170,7 @@ export async function authorWriteOneChapter(
 
   let card = baseCard;
   let lastReason = "";
+  let lastFailureKind: "CONTENT" | "INFRASTRUCTURE" | "STATE_OR_PROVENANCE" | "PROMPT_OR_CONTRACT" = "CONTENT";
   // CF-I-2 (owner decision 4): the C31–C35 register/machinery advisories surfaced as
   // retry fix lines. This closure loads the just-written draft and returns the labelled
   // block (or "" when clean/unreadable). It is ONLY ever appended to a card already
@@ -960,9 +1262,11 @@ export async function authorWriteOneChapter(
         briefMd: sha256Hex(briefMdEffective),
         ...(plan ? { sourceUsePlan: sourceUsePlanHash(plan) } : {}),
         untrustedArtifactRenderer: UNTRUSTED_ARTIFACT_RENDERER_VERSION,
+        ...(opts.attemptInputHashes ?? {}),
       },
       io,
       attemptsRoot: io.attemptsRoot(),
+      evidenceRoot: io.evidenceRoot?.(),
     });
     deps.log(`[autopilot] author ch${nn}: whole-chapter writer working (attempt ${attempt}, card ${card.length} chars, ${writerModel} @ ${writerEffort}, timeout ${Math.round(AUTHOR_WRITE_TIMEOUT_MS / 60000)}min)`);
     // M-lane: pinned model/effort/timeout. The runner REJECTS on timeout (SIGKILL) —
@@ -997,11 +1301,16 @@ export async function authorWriteOneChapter(
         });
       } catch { /* best-effort: never convert a spawn error into a log error */ }
       finalizeAttempt(chAttempt, "infrastructure_failure", lastReason);
+      lastFailureKind = "INFRASTRUCTURE";
       card = `${baseCard}\n\nPREVIOUS ATTEMPT DID NOT COMPLETE\nYour previous session was cut off before finishing. Write the complete chapter file this time.`;
       nonLeadFailure = true;
       continue;
     }
     try { deps.logSession(bookId, label, r); } catch { /* best-effort */ }
+    // The broker may replace the minted request id with a distinct id for the
+    // one permitted infrastructure replay. Provenance must name the execution
+    // that actually produced the candidate, never the pre-spawn placeholder.
+    const authorSessionId = typeof r.sessionId === "string" && r.sessionId.length > 0 ? r.sessionId : sessionId;
     // IMP-10: link the spawn's IMP-00 effective-context manifest + store the
     // rendered card and final message content-addressed (no-op unless evidence
     // is enabled for this attempt). Best-effort — observability never gates.
@@ -1015,14 +1324,18 @@ export async function authorWriteOneChapter(
         atIso: new Date().toISOString(),
       });
     }
-    if (!r.ok) deps.log(`[autopilot] author ch${nn}: writer exited ${r.exitCode}`);
+    if (!r.ok) {
+      deps.log(`[autopilot] author ch${nn}: writer exited ${r.exitCode}`);
+      lastFailureKind = "INFRASTRUCTURE";
+    }
 
     // IMP-01: anything in the workspace beyond the single candidate file is an
     // unexpected write — a first-class attempt failure, never tolerated (F-020).
     const smuggled = unexpectedAttemptWrites(chAttempt);
     if (smuggled.length > 0) {
-      lastReason = `ch${nn}: writer session ${sessionId} wrote unexpected workspace file(s): ${smuggled.join(", ")}`;
+      lastReason = `ch${nn}: writer session ${authorSessionId} wrote unexpected workspace file(s): ${smuggled.join(", ")}`;
       finalizeAttempt(chAttempt, "unexpected_write", lastReason);
+      lastFailureKind = "STATE_OR_PROVENANCE";
       card = `${baseCard}\n\nPREVIOUS ATTEMPT WROTE UNEXPECTED FILES\nWrite EXACTLY one file (${candidateName}). Your previous session also wrote: ${smuggled.join(", ")} — do not create any other file.`;
       nonLeadFailure = true;
       continue;
@@ -1030,8 +1343,9 @@ export async function authorWriteOneChapter(
     const imported = importCandidate(chAttempt);
     if (!imported.ok) {
       const missing = imported.reason.startsWith("no candidate file");
-      lastReason = `ch${nn}: writer session ${sessionId} exited ${r.exitCode} — ${imported.reason}`;
+      lastReason = `ch${nn}: writer session ${authorSessionId} exited ${r.exitCode} — ${imported.reason}`;
       finalizeAttempt(chAttempt, imported.outcome, imported.reason);
+      lastFailureKind = "PROMPT_OR_CONTRACT";
       card = missing
         ? `${baseCard}\n\nPREVIOUS ATTEMPT WROTE NO FILE\nYour previous session ended without creating ${candidateName}. Write the complete chapter file this time.`
         : `${baseCard}\n\nPREVIOUS ATTEMPT WROTE A MALFORMED FILE\nYour previous session's ${candidateName} was rejected: ${imported.reason}. Write the complete, valid chapter JSON this time.`;
@@ -1046,8 +1360,9 @@ export async function authorWriteOneChapter(
     // never mutate those fields in their output. First-class attempt failure.
     const planMutation = embeddedPlanMutationFindings(candidate);
     if (planMutation.length > 0) {
-      lastReason = `ch${nn}: writer session ${sessionId} embedded source-plan control field(s) in the chapter output (${planMutation.slice(0, 5).join(", ")}) — origin/form/claim-strength changes route upstream through source-plan recompile, never through writer output`;
+      lastReason = `ch${nn}: writer session ${authorSessionId} embedded source-plan control field(s) in the chapter output (${planMutation.slice(0, 5).join(", ")}) — origin/form/claim-strength changes route upstream through source-plan recompile, never through writer output`;
       finalizeAttempt(chAttempt, "validation_failed", lastReason);
+      lastFailureKind = "STATE_OR_PROVENANCE";
       deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
       card = `${baseCard}\n\nPREVIOUS ATTEMPT EMBEDDED PLAN CONTROL FIELDS\nYour previous ${candidateName} carried compiler-owned source-plan fields (${planMutation.slice(0, 5).join(", ")}). The source-use plan is not yours to write or edit: remove every such field and write ONLY the ChapterV21 content schema. If you believe a license is wrong, say so in prose in your final message — do not relabel.`;
       nonLeadFailure = true;
@@ -1064,10 +1379,10 @@ export async function authorWriteOneChapter(
           // Fail immediately, no retry: the gate-retry budget exists for gate
           // blockers, not for a session that ignored explicit complaints. The
           // chapter stays failing and the caller's cap/halt logic reports it.
-          const reason = `ch${nn}: regen session ${sessionId} left the chapter byte-identical — a failing chapter regenerated to the same bytes is still failing`;
+          const reason = `ch${nn}: regen session ${authorSessionId} left the chapter byte-identical — a failing chapter regenerated to the same bytes is still failing`;
           finalizeAttempt(chAttempt, "validation_failed", reason);
           deps.log(`[autopilot] author ch${nn}: ${reason}`);
-          return { ok: false, reason };
+          return { ok: false, reason, failureKind: "CONTENT" };
         }
       }
       // Rubric preflight for THIS chapter (Phase-3 live finding, 2026-07-02:
@@ -1146,29 +1461,21 @@ export async function authorWriteOneChapter(
           continue;
         }
       }
-      // F-1: a degraded lead that LANDED is persisted to the sidecar so every future
-      // entry (write, review-regen, repair contract re-check) resolves the chapter's
-      // ACTUAL lead instead of re-dealing the proven-uncarriable one. Keyed on the
-      // COMPILED brief's dealt lead (the staleness guard); best-effort but LOUD —
-      // a persist failure means the next entry re-degrades from scratch.
-      if (degraded) {
-        try {
-          io.writeLeadOverride(bookId, chapterNumber, {
-            schemaVersion: "lead-thread-override-v1",
-            bookId: normSlug(bookId),
-            chapterNumber,
-            failedLead: machineBrief?.leadThread?.name ?? degraded.from,
-            lead: degraded.to,
-            cast: degraded.castEmptied ? [] : (activeBrief?.cast ?? []),
-            failedLeads: [...new Set([degraded.from, ...(leadMemory?.failedLeads ?? [])])],
-            reason: `lead-thread contract failed ${leadOnlyContractFails}× on "${degraded.from}"; degraded per F-1 (bounded write-time recovery)`,
-            at: new Date().toISOString(),
-          });
-          deps.log(`[autopilot] author ch${nn}: lead override persisted (chNN.lead-override.json) — future regens/repairs enforce the contract against "${degraded.to.name}".`);
-        } catch (err) {
-          deps.log(`[autopilot] author ch${nn}: degraded lead LANDED but the lead-override sidecar could not be persisted (${(err as Error).message.split("\n")[0]}) — the next entry will re-fail on the dealt lead and re-degrade; fix the briefs dir permissions.`);
-        }
-      }
+      // F-1 / IMP-22: prepare the degraded-lead sidecar, but do not persist it
+      // before the candidate itself is semantically accepted and atomically
+      // committed.  A rejected pending candidate must leave every canonical
+      // acceptance surface untouched.
+      const pendingLeadOverride: LeadThreadOverrideV1 | null = degraded ? {
+        schemaVersion: "lead-thread-override-v1",
+        bookId: normSlug(bookId),
+        chapterNumber,
+        failedLead: machineBrief?.leadThread?.name ?? degraded.from,
+        lead: degraded.to,
+        cast: degraded.castEmptied ? [] : (activeBrief?.cast ?? []),
+        failedLeads: [...new Set([degraded.from, ...(leadMemory?.failedLeads ?? [])])],
+        reason: `lead-thread contract failed ${leadOnlyContractFails}× on "${degraded.from}"; degraded per F-1 (bounded write-time recovery)`,
+        at: new Date().toISOString(),
+      } : null;
       // IMP-03 freshness: the plan was verified against the packet at ENTRY; the
       // writer ran for many minutes since. Re-verify the source lineage right
       // before commit — a packet recompiled mid-attempt means this candidate was
@@ -1179,45 +1486,26 @@ export async function authorWriteOneChapter(
           const reason = `ch${nn}: source lineage went STALE mid-attempt (the source packet changed since this attempt's plan was verified) — candidate rejected; recompile packets+plans and re-run`;
           finalizeAttempt(chAttempt, "validation_failed", reason);
           deps.log(`[autopilot] author ch${nn}: ${reason}`);
-          return { ok: false, reason };
+          return { ok: false, reason, failureKind: "STATE_OR_PROVENANCE" };
         }
       }
-      // IMP-01 commit: compare-and-swap against the attempt's expected canonical
-      // base. A mismatch means another actor committed since this attempt was
-      // minted — the stale attempt LOSES (no overwrite, no auto-retry; the
-      // caller's existing bounded policy owns any further work).
-      const committed = commitChapterCandidate({ attempt: chAttempt, bytes: imported.bytes, io });
-      if (!committed.ok) {
-        const reason = `ch${nn}: ${committed.reason}`;
-        finalizeAttempt(chAttempt, "stale_base", committed.reason);
-        deps.log(`[autopilot] author ch${nn}: ${reason}`);
-        return { ok: false, reason };
-      }
-      // Success: bind author provenance to the authored content (create-once per
-      // content; a conflict means a prior author of identical bytes stands).
-      try {
-        io.recordProvenance(chapterId, sessionId, chapterContentHash(candidate));
-      } catch (err) {
-        deps.log(`[autopilot] author ch${nn}: provenance unchanged (${(err as Error).message.split(".")[0]})`);
-      }
-      // IMP-06: passive first-write diversity snapshot (shadow telemetry; OPT-IN
-      // via CHAPTERFLOW_DIVERSITY_LEDGER_ROOT — no-op otherwise, never throws).
-      const divRec = recordChapterDiversity({
+      const prepared: PreparedAuthorCandidate = {
         bookId,
         chapterNumber,
+        chapterId,
+        sessionId: authorSessionId,
+        attempt: chAttempt,
+        bytes: imported.bytes,
         chapter: candidate,
         plan,
-        attemptKind: chAttempt.identity.attemptKind,
-        committedGeneration: chAttempt.identity.expectedBaseGeneration + 1,
-      });
-      // Instruction 12: the same record (with its config hash) rides the
-      // attempt's evidence objects when evidence is opted-in.
-      if (divRec && chAttempt.evidenceRoot) {
-        recordAttemptObject(chAttempt.evidenceRoot, chAttempt.identity.attemptId, "diversity-features", JSON.stringify(divRec) + "\n");
+        pendingLeadOverride,
+        io,
+      };
+      if (opts.deferCommit === true) {
+        deps.log(`[autopilot] author ch${nn}: deterministic validation clean; candidate held in attempt workspace pending split-lane review`);
+        return { ok: true, sessionId: authorSessionId, committed: false, pending: prepared };
       }
-      finalizeAttempt(chAttempt, "committed");
-      deps.log(`[autopilot] author ch${nn}: done (gate-chapter clean)`);
-      return { ok: true, sessionId };
+      return commitPreparedAuthorCandidate(prepared, deps);
     }
     const report = reportOf(gate);
     lastReason = `ch${nn}: gate-chapter still blocks after attempt ${attempt}:\n${report.slice(0, 1500)}`;
@@ -1259,9 +1547,9 @@ export async function authorWriteOneChapter(
     } catch (err) {
       deps.log(`[autopilot] author ch${nn}: lead-failure memory could not be persisted (${(err as Error).message.split("\n")[0]}) — the next entry will replay this degradation cycle.`);
     }
-    return { ok: false, reason: `ch${nn}: lead degradation did not converge — dealt lead "${degraded.from}" failed ${baseAttempts} lead-only contract attempts and the degraded lead "${degraded.to.name}" also failed: ${lastReason || "no reason recorded"}` };
+    return { ok: false, reason: `ch${nn}: lead degradation did not converge — dealt lead "${degraded.from}" failed ${baseAttempts} lead-only contract attempts and the degraded lead "${degraded.to.name}" also failed: ${lastReason || "no reason recorded"}`, failureKind: "CONTENT" };
   }
-  return { ok: false, reason: lastReason || `ch${nn}: writer failed` };
+  return { ok: false, reason: lastReason || `ch${nn}: writer failed`, failureKind: lastFailureKind };
 }
 
 // ── The write phase ───────────────────────────────────────────────────────────
@@ -1270,7 +1558,18 @@ export type AuthorWriteOptions = {
   maxParallel: number;
   heartbeat?: () => boolean;
   io?: Partial<AuthorIo>;
+  /** Central future-authoring seam. The default remains the established local
+   * baseline writer; an explicitly resolved ACTIVE forward runtime injects the
+   * chapter writer returned by createForwardAuthorChapterWriter. */
+  writeOneChapter?: AuthorWriteOneInvoker;
 };
+
+export type AuthorWriteOneInvoker = (
+  bookId: string,
+  chapterNumber: number,
+  deps: AutopilotDeps,
+  opts: Omit<AuthorWriteOneOpts, "model" | "effort" | "deferCommit">,
+) => Promise<AuthorWriteOneResult>;
 
 const AUTHOR_WRITE_VERBS: ReadonlyArray<readonly [string[], string]> = [
   [["compile-source-packets"], "source-packets"],
@@ -1351,9 +1650,10 @@ export async function doAuthorWrite(
   deps.log(`[autopilot] author write: ${missing.length} missing chapter(s) of ${expected.length} (parallel ≤${opts.maxParallel})`);
 
   const failures: string[] = [];
+  const writeOneChapter = opts.writeOneChapter ?? authorWriteOneChapter;
   await mapPool(missing, opts.maxParallel, async (n) => {
     heartbeat(); // keep the run lock fresh across a long write phase
-    const r = await authorWriteOneChapter(bookId, n, deps, { io: opts.io });
+    const r = await writeOneChapter(bookId, n, deps, { io: opts.io });
     if (!r.ok) failures.push(r.reason);
   });
   if (failures.length > 0) {
@@ -1366,6 +1666,7 @@ export async function doAuthorWrite(
     haltPhase: "write",
     label: "author write",
     io: opts.io,
+    writeOneChapter: opts.writeOneChapter,
   });
 }
 
@@ -1424,6 +1725,10 @@ export async function ensureReaderBudgetsClean(
     haltPhase: "write" | "qc";
     label: string;
     io?: Partial<AuthorIo>;
+    /** Keep bounded budget repairs on the same central writer/reviewer route as
+     * first writes; otherwise an ACTIVE book could regress through a legacy
+     * direct-commit repair after passing the split lanes. */
+    writeOneChapter?: AuthorWriteOneInvoker;
     /** CONVERGENCE-SAFE PASS (2026-07-05): the current review bar. When present
      *  (review re-entry), a chapter holding a durable PASS at this bar is never
      *  full-re-authored by the budget-repair round. Omitted at the WRITE entry
@@ -1568,9 +1873,10 @@ export async function ensureReaderBudgetsClean(
     }
     deps.log(`[autopilot] ${opts.label}: reader budgets BLOCK (${blockers.length} finding(s)) — ONE bounded budget-repair round over ${targets.size} chapter(s): ${[...targets.keys()].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
     const repairFailures: string[] = [];
+    const writeOneChapter = opts.writeOneChapter ?? authorWriteOneChapter;
     await mapPool([...targets.entries()], opts.maxParallel, async ([n, complaints]) => {
       heartbeat();
-      const r = await authorWriteOneChapter(bookId, n, deps, { complaints, io: opts.io });
+      const r = await writeOneChapter(bookId, n, deps, { complaints, io: opts.io });
       if (!r.ok) repairFailures.push(r.reason);
     });
     if (repairFailures.length > 0) {

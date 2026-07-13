@@ -174,7 +174,7 @@ function assembleValid(over: Record<string, unknown> = {}): Record<string, unkno
 // ── lane composition (model-free) ─────────────────────────────────────────────
 
 test("reader lane: build→parse→assemble→validate composes over an injected reviewFn (no model call)", async () => {
-  const canned = "```json\n" + JSON.stringify(validModelOutput()) + "\n```";
+  const canned = JSON.stringify(validModelOutput());
   let sawTask = "";
   const record = await runReaderExperienceReview(
     { docRelPath: "workspace/ch01.phase1.md", ...BINDINGS },
@@ -190,6 +190,8 @@ test("reader lane: build→parse→assemble→validate composes over an injected
   assert.deepEqual(validateReaderExperienceReview(record as unknown as Record<string, unknown>), []);
   // The stamped record carries no legacy ship bit.
   assert.ok(!("ship84" in (record as Record<string, unknown>)), "new record must not carry ship84");
+  assert.match(sawTask, /emit only the JSON object required by the bound output schema/i);
+  assert.doesNotMatch(sawTask, /exactly one fenced json block/i);
 });
 
 test("reader lane: a malformed reviewer output fails closed (no self-attested pass)", async () => {
@@ -198,15 +200,16 @@ test("reader lane: a malformed reviewer output fails closed (no self-attested pa
     () => runReaderExperienceReview({ docRelPath: "d.md", ...BINDINGS }, { reviewFn: async () => bad }),
     /not schema-valid/,
   );
-  // No fenced JSON at all → also fails closed.
+  // No JSON object at all → also fails closed.
   await assert.rejects(
     () => runReaderExperienceReview({ docRelPath: "d.md", ...BINDINGS }, { reviewFn: async () => "no json here" }),
-    /no parseable fenced JSON/,
+    /no parseable JSON object/,
   );
 });
 
-test("parseReaderExperienceReview takes the last json-labelled fence, null on none", () => {
+test("parseReaderExperienceReview accepts schema-bound raw JSON and retains the final-fence fallback", () => {
   assert.equal(parseReaderExperienceReview("plain text"), null);
+  assert.deepEqual(parseReaderExperienceReview(`  ${JSON.stringify({ raw: true })}\n`), { raw: true });
   const two = "```json\n{\"a\":1}\n```\nnoise\n```json\n{\"b\":2}\n```";
   assert.deepEqual(parseReaderExperienceReview(two), { b: 2 });
   // assemble throws on a partial object (missing required fields).

@@ -37,6 +37,7 @@ import { sourcePacketPath, sourceUsePlanPath, writeJsonFile } from "../src/artif
 import { authorWriteOneChapter, buildAuthorCard, resolveAuthorIo, type AuthorIo } from "../src/orchestrator/authorRun.js";
 import { buildRepairCard, doRepairOneChapter } from "../src/orchestrator/authorRepair.js";
 import type { AutopilotDeps } from "../src/orchestrator/autopilot.js";
+import type { AuthorProvenance } from "../src/qc/sessionProvenance.js";
 import { chapterFileName } from "../src/lib/chapterPaths.js";
 import { CHAPTER_BRIEF_SCHEMA_VERSION, type ChapterBriefV1, type SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import type { ChapterV21 } from "../src/types.js";
@@ -347,6 +348,28 @@ type WriteRig = {
   packetReads: number;
 };
 
+function memoryProvenanceIo(): Pick<AuthorIo, "authorSessionOf" | "recordProvenance" | "readProvenance" | "restoreProvenance"> {
+  const provenance = new Map<string, AuthorProvenance>();
+  return {
+    authorSessionOf: (chapterId) => provenance.get(chapterId)?.authorSessionId,
+    recordProvenance: (chapterId, sessionId, contentHash) => {
+      assert.ok(contentHash, "a successful author commit must bind provenance to content");
+      provenance.set(chapterId, {
+        schemaVersion: "author-provenance-v2",
+        chapterId,
+        authorSessionId: sessionId,
+        stampedAt: "2026-07-12T00:00:00.000Z",
+        contentHash,
+      });
+    },
+    readProvenance: (chapterId) => provenance.get(chapterId) ?? null,
+    restoreProvenance: (chapterId, previous) => {
+      if (previous) provenance.set(chapterId, previous);
+      else provenance.delete(chapterId);
+    },
+  };
+}
+
 function mkWriteRig(opts: {
   plan?: SourceUsePlanV1 | null;
   planThrows?: boolean;
@@ -391,8 +414,7 @@ function mkWriteRig(opts: {
     loadChapters: () => [],
     nameBankOk: () => true,
     voiceCard: () => null,
-    authorSessionOf: () => undefined,
-    recordProvenance: () => {},
+    ...memoryProvenanceIo(),
     readLeadOverride: () => null,
     writeLeadOverride: () => {},
     attemptsRoot: () => join(TMP, "attempts"),
@@ -530,8 +552,7 @@ function mkRepairIo(opts: {
     loadChapters: () => [JSON.parse(files.get(1)!)],
     nameBankOk: () => true,
     voiceCard: () => null,
-    authorSessionOf: () => undefined,
-    recordProvenance: () => {},
+    ...memoryProvenanceIo(),
     readLeadOverride: () => null,
     writeLeadOverride: () => {},
     attemptsRoot: () => join(TMP, "attempts-repair"),

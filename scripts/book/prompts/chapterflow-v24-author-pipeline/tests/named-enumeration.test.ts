@@ -17,7 +17,7 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { resolve } from "path";
 
-import { test } from "./harness.js";
+import { test, xenv } from "./harness.js";
 import { makeChapter, goldChapterFiles, STATE_CHAPTERS } from "./helpers.js";
 import { findEnumerationMismatch, checkNamedEnumeration } from "../src/critics/namedEnumeration.js";
 import { runShipGate, ENFORCED_MAJOR } from "../src/critics/finalGate.js";
@@ -88,12 +88,24 @@ test("NE1: synthetic gold corpus has ZERO NE1 findings", () => {
   }
 });
 
-test("NE1: real gold chapters (daring-greatly + start-with-why) have ZERO NE1 findings", () => {
-  if (!existsSync(STATE_CHAPTERS)) return;
-  const files = readdirSync(STATE_CHAPTERS).filter((f) => /^(daring-greatly|start-with-why)-ch\d+\.v21-native\.chapter\.json$/.test(f));
-  assert.ok(files.length > 0, "expected real gold chapters on disk");
+function realGoldFiles(): string[] {
+  if (!existsSync(STATE_CHAPTERS)) return [];
+  return readdirSync(STATE_CHAPTERS).filter((f) => /^(daring-greatly|start-with-why)-ch\d+\.v21-native\.chapter\.json$/.test(f));
+}
+
+xenv(
+  "NE1: real gold chapters (daring-greatly + start-with-why) have ZERO NE1 findings",
+  "requires both real gold corpora under state/chapters/; the clean V25 branch deliberately excludes historical chapter state",
+  () => {
+    const files = realGoldFiles();
+    return files.some((f) => f.startsWith("daring-greatly-ch"))
+      && files.some((f) => f.startsWith("start-with-why-ch"));
+  },
+  () => {
+  const files = realGoldFiles();
   for (const f of files) {
     const ch = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, f), "utf8")) as ChapterV21;
     assert.equal(checkNamedEnumeration(ch).length, 0, `NE1 false positive on real gold ${ch.chapterId}`);
   }
-});
+  },
+);

@@ -27,6 +27,7 @@ import {
   parseSourceIntegrityReview,
   runSourceDeterministicPrechecks,
   runSourceIntegrityReview,
+  SOURCE_CRITIC_INFRASTRUCTURE_FAILURE_CHECK_ID,
   SourceIntegrityLaneError,
   summarizeDeterministicBundle,
   type SourceIntegrityLaneInputV1,
@@ -176,7 +177,13 @@ test("5: missing source evidence returns INCONCLUSIVE (never converts to PASS)",
 // ── tests 6/8/10 — clean deterministic + no semantic blocker → PASS ───────────
 
 test("6: supported source-bound detail passes", async () => {
-  const spawn = trackedSpawn(modelReply([mkUnit({ supportStatus: "SUPPORTED" })], "PASS"));
+  const spawn = trackedSpawn(JSON.stringify({
+    schema: "source-integrity-review-v1",
+    units: [mkUnit({ supportStatus: "SUPPORTED" })],
+    result: "PASS",
+    blockingFindingIds: [],
+    rationale: "schema-bound raw JSON verdict",
+  }));
   const out = await runSourceIntegrityReview(baseInput(), { spawn: spawn.fn });
   assert.equal(out.result, "PASS");
   assert.equal(out.summary.hasBlocker, false, "deterministic prechecks are clean");
@@ -278,6 +285,26 @@ test("integration 8: a stale source-use plan short-circuits to INCONCLUSIVE with
   assert.equal(spawn.calls(), 0, "a stale plan is never sent to a model — the deterministic layer refuses first");
 });
 
+test("a deterministic critic exception fails closed to INCONCLUSIVE without a model call", async () => {
+  const input = baseInput();
+  const throwingUnit = { ...input.plan.units[0] };
+  Object.defineProperty(throwingUnit, "claimStrength", {
+    configurable: true,
+    enumerable: false,
+    get: () => { throw new Error("fixture critic failure"); },
+  });
+  input.plan = { ...input.plan, units: [throwingUnit] };
+
+  const spawn = trackedSpawn(modelReply([mkUnit()], "PASS"));
+  const out = await runSourceIntegrityReview(input, { spawn: spawn.fn });
+
+  assert.equal(out.result, "INCONCLUSIVE");
+  assert.equal(out.review.result, "INCONCLUSIVE");
+  assert.equal(spawn.calls(), 0, "semantic review cannot vote away missing deterministic evidence");
+  assert.ok(out.bundle.checks.some((finding) => finding.checkId === SOURCE_CRITIC_INFRASTRUCTURE_FAILURE_CHECK_ID));
+  assert.match(out.review.rationale, /checkSourceRegister.*fixture critic failure/);
+});
+
 // ── deterministic authority — relabel containment blocks without a model call ──
 
 test("deterministic relabel-containment blocks (embedded plan-control key) without a model call", async () => {
@@ -313,6 +340,8 @@ test("R-9: the source packet excludes model identity, prior verdicts, acceptance
   assert.ok(task.task.includes("invented_dialogue"), "case-forbidden kinds come from CASE_DETAIL_FORBIDDEN");
   assert.ok(task.task.includes("fabricated_statistic"), "constructed-forbidden kinds come from CONSTRUCTED_DETAIL_FORBIDDEN");
   assert.ok(task.task.includes("INCONCLUSIVE"), "the missing-evidence rule is stated");
+  assert.match(task.task, /emit only the JSON object conforming to the bound output schema/i);
+  assert.doesNotMatch(task.task, /exactly one fenced/i);
   assert.equal(task.role, "source-verifier", "reuses the existing source-verifier workspace role (R-5)");
 });
 
@@ -340,7 +369,15 @@ test("the deterministic bundle summary counts only blocker-severity findings", (
   assert.equal(summary.bundleSha256, bundle.bundleSha256);
 });
 
-test("parseSourceIntegrityReview extracts the last json fence and rejects malformed output", () => {
+test("parseSourceIntegrityReview accepts schema-bound raw JSON, retains the fence fallback, and rejects malformed output", () => {
+  const raw = JSON.stringify({
+    schema: "source-integrity-review-v1",
+    units: [mkUnit()],
+    result: "PASS",
+    blockingFindingIds: [],
+    rationale: "raw",
+  });
+  assert.equal(parseSourceIntegrityReview(raw)?.result, "PASS");
   const good = parseSourceIntegrityReview(modelReply([mkUnit()], "PASS"));
   assert.ok(good && good.result === "PASS");
   assert.equal(parseSourceIntegrityReview("no fence here"), null);

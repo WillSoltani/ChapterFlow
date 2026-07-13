@@ -6,8 +6,9 @@
  * (S16_LEGACY_CAMPAIGN_CLOSURE.json) MIRRORS it. This suite proves the two can
  * never drift apart and, critically, that editing the JSON ALONE can never
  * un-freeze anything (the in-code Set is a superset that is enforced regardless
- * of what the JSON lists). It further proves the freeze is MECHANICAL at ALL
- * THREE gate-able src/ chokes (not just the shared `assertNotClosed` primitive),
+ * of what the JSON lists). It further proves the freeze is MECHANICAL at the
+ * three gate-able src/ chokes AND the three historical raw owner-driver launch
+ * surfaces (not just the shared `assertNotClosed` primitive),
  * spot-verifies the preserved old evidence is byte-unchanged (test 34 support),
  * and proves every closure/recovery/corpus write target is OUTSIDE the canonical
  * chapter/book trees (test 35 support).
@@ -18,6 +19,7 @@
  */
 
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
@@ -27,7 +29,9 @@ import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
 import type { AutopilotDeps } from "../src/orchestrator/autopilot.js";
 import {
   CLOSED_EXPERIMENT_IDS,
+  LEGACY_STAGE_Q_OWNER_DRIVER_IDS,
   MigrationGuardError,
+  assertLegacyStageQOwnerDriverClosed,
   assertNotClosed,
   assertNotCanonical,
 } from "../src/bakeoff/migration/guards.js";
@@ -40,6 +44,20 @@ import { fakeAutopilotDeps } from "./model-bakeoff-helpers.js";
 const MIG = resolve(PIPELINE_DIR, "state", "migration-experiments");
 const CLOSURE_JSON = resolve(MIG, "S16_LEGACY_CAMPAIGN_CLOSURE.json");
 const RECOVERY_ID = "s16-reviewer-recovery-v1";
+const LEGACY_RAW_OWNER_DRIVERS = [
+  {
+    id: LEGACY_STAGE_Q_OWNER_DRIVER_IDS.layerOQualification,
+    path: resolve(MIG, "_owner-inputs", "layer-o-qualification-runner.mts"),
+  },
+  {
+    id: LEGACY_STAGE_Q_OWNER_DRIVER_IDS.layerOV2,
+    path: resolve(MIG, "_owner-inputs", "layer-o-v2-runner.mts"),
+  },
+  {
+    id: LEGACY_STAGE_Q_OWNER_DRIVER_IDS.stageQV3,
+    path: resolve(MIG, "_owner-inputs", "stage-q-v3-runner.mts"),
+  },
+] as const;
 
 /** The design §K canonical closed inventory — the exact ids that MUST be frozen
  *  in code (experiment-id slugs AND corpus/instrument ids). Hard-pinned so an
@@ -180,6 +198,57 @@ test("every CLOSED id fail-closes at all three gate-able src/ entries", async ()
       MigrationGuardError,
       `runNativeReviewQualification must refuse closed corpus id "${id}"`,
     );
+  }
+});
+
+// ── the three historical raw-spawn owner drivers are also mechanically closed ─
+
+test("legacy raw Stage-Q owner-driver guard is permanently fail-closed", () => {
+  for (const { id } of LEGACY_RAW_OWNER_DRIVERS) {
+    assert.ok(CLOSED_EXPERIMENT_IDS.has(id), `raw owner driver id "${id}" must remain in the closed registry`);
+    assert.throws(
+      () => assertLegacyStageQOwnerDriverClosed(id),
+      (error: unknown) =>
+        error instanceof MigrationGuardError &&
+        error.message.includes(id) &&
+        error.message.includes("permanently disabled for forward-only execution"),
+      `raw owner driver id "${id}" must fail closed`,
+    );
+  }
+
+  // Defense in depth: registry drift cannot revive a legacy driver. This cast
+  // models an invalid future call site; the guard still refuses deterministically.
+  assert.throws(
+    () => assertLegacyStageQOwnerDriverClosed(RECOVERY_ID as never),
+    /lost its CLOSED_EXPERIMENT_IDS binding/,
+  );
+});
+
+test("all three legacy raw Stage-Q entrypoints halt before argv, corpus, output, or spawn work", () => {
+  const env: NodeJS.ProcessEnv = {
+    ...process.env,
+    CHAPTERFLOW_NO_API_CODEX_QC: "1",
+  };
+  for (const key of ["OPENAI_API_KEY", "CODEX_API_KEY", "OPENAI_BASE_URL", "OPENAI_API_BASE", "ANTHROPIC_API_KEY"]) {
+    delete env[key];
+  }
+
+  for (const driver of LEGACY_RAW_OWNER_DRIVERS) {
+    const result = spawnSync(process.execPath, ["--import", "tsx", driver.path, "--dry"], {
+      cwd: PIPELINE_DIR,
+      env,
+      encoding: "utf8",
+      timeout: 5_000,
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+    const output = `${result.stdout ?? ""}\n${result.stderr ?? ""}`;
+
+    assert.equal(result.error, undefined, `${driver.id} closure probe must launch cleanly`);
+    assert.equal(result.signal, null, `${driver.id} closure probe must not time out or receive a signal`);
+    assert.notEqual(result.status, 0, `${driver.id} raw entrypoint must refuse execution`);
+    assert.match(output, /permanently disabled for forward-only execution/);
+    assert.ok(output.includes(driver.id), `${driver.id} closure error must name its bound identity`);
+    assert.doesNotMatch(output, /Layer-O plan:|Stage-Q v2 plan:|Stage-Q v3 (?:CALIBRATION|QUALIFICATION):|usage:/);
   }
 });
 

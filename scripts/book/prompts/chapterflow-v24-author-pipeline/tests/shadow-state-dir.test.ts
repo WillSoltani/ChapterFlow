@@ -8,7 +8,7 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync, writeFileSync, existsSync } from "fs";
+import { mkdirSync, rmSync, rmdirSync, writeFileSync, existsSync } from "fs";
 import { resolve } from "path";
 
 import { assertNoShadowStateDir, CHAPTERS_DIR, FORBIDDEN_STATE, REPO_ROOT } from "../src/lib/chapterPaths.js";
@@ -50,7 +50,7 @@ test("assertNoShadowStateDir throws when the outer-checkout shadow dir holds a c
     // a shadow dir that might (still) hold real content.
     if (existsSync(shadowChaptersDir)) {
       try {
-        rmSync(shadowChaptersDir, { recursive: false });
+        rmdirSync(shadowChaptersDir);
       } catch {
         /* not empty — leave it, it predates this test */
       }

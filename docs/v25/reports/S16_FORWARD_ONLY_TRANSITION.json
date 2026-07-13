@@ -1,0 +1,22 @@
+{
+  "schema": "s16-forward-only-transition-v1",
+  "recordedAt": "2026-07-12T00:00:00.000Z",
+  "startingHead": "37cb0804e157758272e7ec06c2aaf96ebdec6724",
+  "branch": "feat/v25-pipeline",
+  "oldCampaignStatus": "ARCHIVED_INCONCLUSIVE_REVIEW_INSTRUMENT_MISMATCH",
+  "historicalOutputsRequireRepair": false,
+  "historicalScoresBlockFutureValidation": false,
+  "legacySolSourceCasesAffectPanelSelection": false,
+  "legacySolSourceCaseDisposition": "NOT_ADJUDICABLE_FOR_SOURCE_TRUTH_UNDER_LEGACY_CONTEXT",
+  "legacyBakeoffRequired": false,
+  "newDecision": "FUTURE_SOL_NATIVE_PRODUCTION_READINESS",
+  "oldCampaignResumed": false,
+  "legacyRawEntrypointsClosed": true,
+  "oldEvidenceModified": false,
+  "historicalBooksRepaired": false,
+  "liveCallsMade": 0,
+  "apiCallsMade": 0,
+  "publishActivated": false,
+  "productionDeployment": false,
+  "pushed": false
+}

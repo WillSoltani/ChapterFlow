@@ -35,6 +35,14 @@ import { mkdtempSync, readFileSync, writeFileSync, mkdirSync, rmSync } from "nod
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { spawnCodexAgent } from "../../../src/orchestrator/codexAgent.js";
+import {
+  LEGACY_STAGE_Q_OWNER_DRIVER_IDS,
+  assertLegacyStageQOwnerDriverClosed,
+} from "../../../src/bakeoff/migration/guards.js";
+
+// FORWARD-ONLY CLOSURE: retain the historical instrument below as readable
+// evidence, but halt before argv parsing, corpus reads, writes, or any spawn.
+assertLegacyStageQOwnerDriverClosed(LEGACY_STAGE_Q_OWNER_DRIVER_IDS.layerOQualification);
 
 type Material = { role: string; text: string };
 type BlindCase = { caseId: string; task: string; materials: Material[]; requiredOutput: Record<string, string> };
