@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 
 import {
   buildNativeContractBundle,
+  parseNativeContractProvenanceEnvironment,
   serializeNativeContractBundle,
 } from "../../app/app/api/book/_contracts/native-contract-generator-core";
 import { nativeContractOperationDefinitions } from "../../app/app/api/book/_contracts/native-contract-registry";
@@ -10,11 +11,13 @@ import { nativeContractOperationDefinitions } from "../../app/app/api/book/_cont
 const repoRoot = process.cwd();
 const outputPath = resolve(repoRoot, "contracts/native-ios/v1/contract-bundle.json");
 const check = process.argv.includes("--check");
-const sourceRevision = process.env.CONTRACT_SOURCE_REVISION?.trim() || undefined;
+const provenanceOptions = parseNativeContractProvenanceEnvironment(process.env);
 
-const bundle = buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, {
-  sourceRevision,
-});
+const bundle = buildNativeContractBundle(
+  repoRoot,
+  nativeContractOperationDefinitions,
+  provenanceOptions
+);
 const serialized = serializeNativeContractBundle(bundle);
 
 if (check) {

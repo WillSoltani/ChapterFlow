@@ -217,7 +217,10 @@ export type NativeContractBundle = {
     sourceRevision: string | null;
     behaviorSourceRevision: string;
     behaviorSourceTimestamp: string;
-    sourceRevisionPhase: "uncommitted_backend" | "merged_backend";
+    sourceRevisionPhase:
+      | "uncommitted_backend"
+      | "committed_backend_branch"
+      | "merged_backend";
     generatedAt: string;
     generatorVersion: "chapterflow-native-contract-generator-v1";
     generatorTreeDigest: string;
@@ -376,11 +379,19 @@ export function assertNativeContractBundle(bundle: NativeContractBundle): void {
     if (bundle.provenance.sourceRevision !== null) {
       throw new Error("an uncommitted generated bundle cannot claim its containing source revision");
     }
-  } else if (
-    bundle.provenance.sourceRevision === null ||
-    !/^[0-9a-f]{40}$/.test(bundle.provenance.sourceRevision)
-  ) {
-    throw new Error("merged-backend provenance requires the final full source revision");
+  } else {
+    if (
+      bundle.provenance.sourceRevisionPhase !== "committed_backend_branch" &&
+      bundle.provenance.sourceRevisionPhase !== "merged_backend"
+    ) {
+      throw new Error("unsupported backend source revision phase");
+    }
+    if (
+      bundle.provenance.sourceRevision === null ||
+      !/^[0-9a-f]{40}$/.test(bundle.provenance.sourceRevision)
+    ) {
+      throw new Error("committed backend provenance requires a full source revision");
+    }
   }
   if (!/^[0-9a-f]{40}$/.test(bundle.provenance.behaviorSourceRevision)) {
     throw new Error("behavior source revision must be a full Git SHA");

@@ -12,6 +12,20 @@ import type {
 } from "./native-contract-types";
 import { assertNativeContractBundle } from "./native-contract-types";
 
+export type NativeContractCommittedSourceRevisionPhase =
+  | "committed_backend_branch"
+  | "merged_backend";
+
+export type NativeContractBuildOptions =
+  | {
+      sourceRevision?: undefined;
+      sourceRevisionPhase?: undefined;
+    }
+  | {
+      sourceRevision: string;
+      sourceRevisionPhase: NativeContractCommittedSourceRevisionPhase;
+    };
+
 export const BACKEND_SOURCE_REVISION = "968ff67ecafbed7e8e1d4c7b77badf507cfc5aee";
 export const BACKEND_BEHAVIOR_SOURCE_TIMESTAMP = "2026-07-11T22:16:03-03:00";
 export const ARTIFACT_GENERATED_AT = "2026-07-13T02:27:09-03:00";
@@ -174,6 +188,30 @@ export function assertBehaviorSourceRevision(repoRoot: string): void {
   }
 }
 
+export function parseNativeContractProvenanceEnvironment(
+  environment: Record<string, string | undefined>
+): NativeContractBuildOptions | undefined {
+  const sourceRevision = environment.CONTRACT_SOURCE_REVISION?.trim() || undefined;
+  const sourceRevisionPhase =
+    environment.CONTRACT_SOURCE_REVISION_PHASE?.trim() || undefined;
+
+  if ((sourceRevision === undefined) !== (sourceRevisionPhase === undefined)) {
+    throw new Error(
+      "CONTRACT_SOURCE_REVISION and CONTRACT_SOURCE_REVISION_PHASE must be provided together"
+    );
+  }
+  if (sourceRevision === undefined || sourceRevisionPhase === undefined) return undefined;
+  if (
+    sourceRevisionPhase !== "committed_backend_branch" &&
+    sourceRevisionPhase !== "merged_backend"
+  ) {
+    throw new Error(
+      "CONTRACT_SOURCE_REVISION_PHASE must be committed_backend_branch or merged_backend"
+    );
+  }
+  return { sourceRevision, sourceRevisionPhase };
+}
+
 function assertExportedMethod(
   repoRoot: string,
   routeSource: string,
@@ -244,18 +282,26 @@ export function assertNativeContractSourceConformance(
 export function buildNativeContractBundle(
   repoRoot: string,
   definitions: NativeContractOperationDefinition[],
-  options?: { sourceRevision?: string }
+  options?: NativeContractBuildOptions
 ): NativeContractBundle {
   assertBehaviorSourceRevision(repoRoot);
-  if (options?.sourceRevision) {
+  const sourceRevision = options?.sourceRevision;
+  const sourceRevisionPhase = options?.sourceRevisionPhase;
+  if ((sourceRevision === undefined) !== (sourceRevisionPhase === undefined)) {
+    throw new Error("source revision and source revision phase must be provided together");
+  }
+  if (sourceRevision !== undefined && sourceRevisionPhase !== undefined) {
+    if (!/^[0-9a-f]{40}$/.test(sourceRevision)) {
+      throw new Error("contract source revision must be a full Git SHA");
+    }
     try {
-      execFileSync("git", ["merge-base", "--is-ancestor", options.sourceRevision, "HEAD"], {
+      execFileSync("git", ["merge-base", "--is-ancestor", sourceRevision, "HEAD"], {
         cwd: repoRoot,
         stdio: "ignore",
       });
     } catch {
       throw new Error(
-        `merged source revision ${options.sourceRevision} is not an ancestor of backend HEAD`
+        `contract source revision ${sourceRevision} is not an ancestor of backend HEAD`
       );
     }
   }
@@ -279,10 +325,10 @@ export function buildNativeContractBundle(
     contractVersion: "1",
     provenance: {
       backendRepository: "WillSoltani/ChapterFlow",
-      sourceRevision: options?.sourceRevision ?? null,
+      sourceRevision: sourceRevision ?? null,
       behaviorSourceRevision: BACKEND_SOURCE_REVISION,
       behaviorSourceTimestamp: BACKEND_BEHAVIOR_SOURCE_TIMESTAMP,
-      sourceRevisionPhase: options?.sourceRevision ? "merged_backend" : "uncommitted_backend",
+      sourceRevisionPhase: sourceRevisionPhase ?? "uncommitted_backend",
       generatedAt: ARTIFACT_GENERATED_AT,
       generatorVersion: "chapterflow-native-contract-generator-v1",
       generatorTreeDigest: generatorTreeDigest(repoRoot),

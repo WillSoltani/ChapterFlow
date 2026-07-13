@@ -9,7 +9,9 @@ import { buildIosAppConfig } from "../config/ios/config-core";
 import {
   assertNativeContractSourceConformance,
   buildNativeContractBundle,
+  parseNativeContractProvenanceEnvironment,
   serializeNativeContractBundle,
+  type NativeContractBuildOptions,
 } from "./native-contract-generator-core";
 import { nativeContractOperationDefinitions } from "./native-contract-registry";
 import { assertNativeContractBundle, type NativeContractBundle } from "./native-contract-types";
@@ -233,8 +235,8 @@ test("backend inventory is pinned to an independent iOS source manifest without 
   const rawManifest = readFileSync(evidence.manifestPath);
   assert.equal(createHash("sha256").update(rawManifest).digest("hex"), evidence.manifestSha256);
   assert.equal(evidence.iosBaseRevision, "92a5c351a42771f546b3d0e575b3b37a8cbfb588");
-  assert.equal(evidence.iosSourceRevision, null);
-  assert.equal(evidence.iosSourceRevisionPhase, "uncommitted_contract_branch");
+  assert.equal(evidence.iosSourceRevision, "bb7ca30041dd095dc36144611bea127f0b53099d");
+  assert.equal(evidence.iosSourceRevisionPhase, "committed_contract_branch");
   assert.equal(evidence.backendRuntimeFactoryValidationPerformed, false);
   assert.equal(evidence.exactFactoryTestedProducerCount, 6);
   assert.equal(evidence.bundleSuccessDecoderTestedOperationCount, 24);
@@ -248,17 +250,93 @@ test("generator is byte-deterministic and the checked-in artifact is current", (
   assert.equal(readFileSync(bundlePath, "utf8"), first);
 });
 
-test("an exact backend contract revision can be recorded for the post-merge iOS provenance gate", () => {
+test("an exact committed companion-branch revision can be recorded without claiming merge", () => {
   const head = execFileSync("git", ["rev-parse", "HEAD"], {
     cwd: repoRoot,
     encoding: "utf8",
   }).trim();
   const bundle = buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, {
     sourceRevision: head,
+    sourceRevisionPhase: "committed_backend_branch",
+  });
+
+  assert.equal(bundle.provenance.sourceRevision, head);
+  assert.equal(bundle.provenance.sourceRevisionPhase, "committed_backend_branch");
+});
+
+test("an exact merged revision can be recorded for the post-merge iOS provenance gate", () => {
+  const head = execFileSync("git", ["rev-parse", "HEAD"], {
+    cwd: repoRoot,
+    encoding: "utf8",
+  }).trim();
+  const bundle = buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, {
+    sourceRevision: head,
+    sourceRevisionPhase: "merged_backend",
   });
 
   assert.equal(bundle.provenance.sourceRevision, head);
   assert.equal(bundle.provenance.sourceRevisionPhase, "merged_backend");
+});
+
+test("revision provenance requires a revision and phase together", () => {
+  const head = execFileSync("git", ["rev-parse", "HEAD"], {
+    cwd: repoRoot,
+    encoding: "utf8",
+  }).trim();
+  const revisionOnly = { sourceRevision: head } as unknown as NativeContractBuildOptions;
+  const phaseOnly = {
+    sourceRevisionPhase: "committed_backend_branch",
+  } as unknown as NativeContractBuildOptions;
+
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, revisionOnly),
+    /source revision and source revision phase must be provided together/
+  );
+  assert.throws(
+    () => buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, phaseOnly),
+    /source revision and source revision phase must be provided together/
+  );
+  assert.throws(
+    () => parseNativeContractProvenanceEnvironment({ CONTRACT_SOURCE_REVISION: head }),
+    /CONTRACT_SOURCE_REVISION and CONTRACT_SOURCE_REVISION_PHASE must be provided together/
+  );
+  assert.throws(
+    () =>
+      parseNativeContractProvenanceEnvironment({
+        CONTRACT_SOURCE_REVISION_PHASE: "merged_backend",
+      }),
+    /CONTRACT_SOURCE_REVISION and CONTRACT_SOURCE_REVISION_PHASE must be provided together/
+  );
+  assert.throws(
+    () =>
+      parseNativeContractProvenanceEnvironment({
+        CONTRACT_SOURCE_REVISION: head,
+        CONTRACT_SOURCE_REVISION_PHASE: "uncommitted_backend",
+      }),
+    /must be committed_backend_branch or merged_backend/
+  );
+  assert.equal(parseNativeContractProvenanceEnvironment({}), undefined);
+  assert.deepEqual(
+    parseNativeContractProvenanceEnvironment({
+      CONTRACT_SOURCE_REVISION: ` ${head} `,
+      CONTRACT_SOURCE_REVISION_PHASE: " committed_backend_branch ",
+    }),
+    {
+      sourceRevision: head,
+      sourceRevisionPhase: "committed_backend_branch",
+    }
+  );
+});
+
+test("committed provenance retains the backend ancestry gate", () => {
+  assert.throws(
+    () =>
+      buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions, {
+        sourceRevision: "f".repeat(40),
+        sourceRevisionPhase: "committed_backend_branch",
+      }),
+    /contract source revision .* is not an ancestor of backend HEAD/
+  );
 });
 
 test("covered routes and blocked backend candidates conform to source hashes and methods", () => {
