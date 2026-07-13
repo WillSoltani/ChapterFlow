@@ -101,7 +101,7 @@ jobs:
         run: |
           set -euo pipefail
           suite_root="${RUNNER_TEMP}/chapterflow-v25-suite"
-          git worktree add --detach "$suite_root" "$GITHUB_SHA"
+          git worktree add --detach "$suite_root" HEAD
           npm ci --include=optional --prefix "$suite_root/scripts/book/prompts/chapterflow-v24-author-pipeline"
 
       - name: Run full no-API suite in disposable worktree
