@@ -9,7 +9,7 @@
     "sourceRevisionPhase": "uncommitted_backend",
     "generatedAt": "2026-07-13T02:27:09-03:00",
     "generatorVersion": "chapterflow-native-contract-generator-v1",
-    "generatorTreeDigest": "1089b50ca0b05fb2df3369b16d93d720f41d56262b6cad4fe0ae3067b50e9187",
+    "generatorTreeDigest": "bf1ee630c3d071343ce5f6c62fb8ef1bb1334e4afd9412c91cda2c322134694e",
     "committedInputTree": null,
     "syntheticDataOnly": true,
     "deployedRevision": null,
@@ -21,18 +21,18 @@
     "matrixRowCount": 29,
     "iosSourceEvidence": {
       "manifestPath": "contracts/native-ios/v1/ios-source-inventory-manifest.json",
-      "manifestSha256": "e415f80fa7b4827c0c0047cb6894374c88944b8249f5e840eebd90daa533b15b",
+      "manifestSha256": "f4c0a3ea9cf49ac68f2c0bfd2ec398e6e0800ad6b48ad2c0f6863c344aa2b142",
       "manifestSchemaVersion": "chapterflow-ios-native-inventory-v2",
       "iosRepository": "WillSoltani/Chapterflow-IOS",
       "iosBaseRevision": "92a5c351a42771f546b3d0e575b3b37a8cbfb588",
-      "iosSourceRevision": "121864285c460fb911dba72ca720a989b97e5d53",
+      "iosSourceRevision": "0b0f6bc8399b18e0abd75c0a444af9cf6fe98d40",
       "iosSourceRevisionPhase": "committed_contract_branch",
       "operationKeySha256": "b24a9ad2861744ad127ce1aca976c13b621fdb7460fc8cd9b9d5669ec9468174",
-      "producerVariantIdSha256": "3225c80badc95a05f437fdd715e2402392f9dd8fecf4fc00facdd1d6011f3987",
-      "producerIdentitySha256": "3d5aee6fc44079b491a81faf9ed4f72de27b96c7ae4a8cee5426b1638ab430ef",
+      "producerVariantIdSha256": "6c52d6b0f465d50f0e68d5a98cca273f90c8611c3b962f1d8f7d36d1f292ba20",
+      "producerIdentitySha256": "9f1c75e50035022d7b46da7be173fec2f265a58110f77504c9e7d247bd8ea453",
       "relationalRecordCount": 93,
-      "relationalRecordSha256": "36ec6c76f550bff39d4cd622fa161bf2a3b282d2c1eb27aac589e382f163e9a3",
-      "sourceInputTreeSha256": "d23621eec27dc7b4f9d35d2c98d744702906d443467d0abad571d6ec57e0f817",
+      "relationalRecordSha256": "03103dcada4b7ae3ed2763372dda873aa504a75c18ae4553e91cc71f17007a78",
+      "sourceInputTreeSha256": "2d18ba0c12388cda626da2c2bbaf0319c95d4b2e0a79a79fd4f55c1c2327a234",
       "matrixRowCount": 29,
       "exactFactoryTestedProducerCount": 6,
       "bundleSuccessDecoderTestedOperationCount": 24,
@@ -7091,9 +7091,9 @@
           "notes": "Synthetic request derived from the named native producer."
         },
         {
-          "operationVariantId": "scenario.post:scenariorepository-replaydirectendpoint",
+          "operationVariantId": "scenario.post:scenariorepository-syncpendinguploads",
           "producerEvidence": [
-            "ScenarioRepository.replayDirectEndpoint@Packages/EngagementFeature/Sources/EngagementFeature/Scenarios/ScenarioRepository.swift:113"
+            "ScenarioRepository.syncPendingUploads@Packages/EngagementFeature/Sources/EngagementFeature/Scenarios/ScenarioRepository.swift:113"
           ],
           "pathParameters": {
             "bookId": "bookId-synthetic",
@@ -7158,7 +7158,7 @@
       "ios": {
         "factories": [
           "postScenario@Packages/Networking/Sources/Networking/Endpoints+Scenarios.swift:25",
-          "ScenarioRepository.replayDirectEndpoint@Packages/EngagementFeature/Sources/EngagementFeature/Scenarios/ScenarioRepository.swift:113"
+          "ScenarioRepository.syncPendingUploads@Packages/EngagementFeature/Sources/EngagementFeature/Scenarios/ScenarioRepository.swift:113"
         ],
         "callSites": [
           "ScenarioRepository.swift:81",
@@ -7167,7 +7167,7 @@
       },
       "evidence": [
         "postScenario@Packages/Networking/Sources/Networking/Endpoints+Scenarios.swift:25",
-        "ScenarioRepository.replayDirectEndpoint@Packages/EngagementFeature/Sources/EngagementFeature/Scenarios/ScenarioRepository.swift:113",
+        "ScenarioRepository.syncPendingUploads@Packages/EngagementFeature/Sources/EngagementFeature/Scenarios/ScenarioRepository.swift:113",
         "ScenarioRepository.swift:81",
         "ScenarioRepository.swift:113"
       ],
@@ -7251,9 +7251,9 @@
             "notes": "Synthetic request derived from the named native producer."
           },
           {
-            "operationVariantId": "scenario.post:scenariorepository-replaydirectendpoint",
+            "operationVariantId": "scenario.post:scenariorepository-syncpendinguploads",
             "producerEvidence": [
-              "ScenarioRepository.replayDirectEndpoint@Packages/EngagementFeature/Sources/EngagementFeature/Scenarios/ScenarioRepository.swift:113"
+              "ScenarioRepository.syncPendingUploads@Packages/EngagementFeature/Sources/EngagementFeature/Scenarios/ScenarioRepository.swift:113"
             ],
             "pathParameters": {
               "bookId": "bookId-synthetic",
@@ -10625,9 +10625,9 @@
           "notes": "Synthetic request derived from the named native producer."
         },
         {
-          "operationVariantId": "apple-verify.post:liveentitlementrepository-directendpoint",
+          "operationVariantId": "apple-verify.post:liveentitlementrepository-verifyappletransaction",
           "producerEvidence": [
-            "LiveEntitlementRepository.directEndpoint@Packages/PaywallFeature/Sources/PaywallFeature/LiveEntitlementRepository.swift:20"
+            "LiveEntitlementRepository.verifyAppleTransaction@Packages/PaywallFeature/Sources/PaywallFeature/LiveEntitlementRepository.swift:20"
           ],
           "pathParameters": {},
           "queryItems": [],
@@ -10686,7 +10686,7 @@
       "ios": {
         "factories": [
           "verifyApplePurchase@Packages/PaywallFeature/Sources/PaywallFeature/BillingEndpoints.swift:14",
-          "LiveEntitlementRepository.directEndpoint@Packages/PaywallFeature/Sources/PaywallFeature/LiveEntitlementRepository.swift:20"
+          "LiveEntitlementRepository.verifyAppleTransaction@Packages/PaywallFeature/Sources/PaywallFeature/LiveEntitlementRepository.swift:20"
         ],
         "callSites": [
           "StoreKitService.swift:398",
@@ -10695,7 +10695,7 @@
       },
       "evidence": [
         "verifyApplePurchase@Packages/PaywallFeature/Sources/PaywallFeature/BillingEndpoints.swift:14",
-        "LiveEntitlementRepository.directEndpoint@Packages/PaywallFeature/Sources/PaywallFeature/LiveEntitlementRepository.swift:20",
+        "LiveEntitlementRepository.verifyAppleTransaction@Packages/PaywallFeature/Sources/PaywallFeature/LiveEntitlementRepository.swift:20",
         "StoreKitService.swift:398",
         "LiveEntitlementRepository.swift:18-29"
       ],
@@ -10765,9 +10765,9 @@
             "notes": "Synthetic request derived from the named native producer."
           },
           {
-            "operationVariantId": "apple-verify.post:liveentitlementrepository-directendpoint",
+            "operationVariantId": "apple-verify.post:liveentitlementrepository-verifyappletransaction",
             "producerEvidence": [
-              "LiveEntitlementRepository.directEndpoint@Packages/PaywallFeature/Sources/PaywallFeature/LiveEntitlementRepository.swift:20"
+              "LiveEntitlementRepository.verifyAppleTransaction@Packages/PaywallFeature/Sources/PaywallFeature/LiveEntitlementRepository.swift:20"
             ],
             "pathParameters": {},
             "queryItems": [],

@@ -598,8 +598,8 @@ export function parseIosSourceInventoryManifest(value: unknown): IosSourceInvent
 function producerKind(producerSymbol: string): IosNativeInventoryProducerKind {
   if (producerSymbol.startsWith("DefaultAnalyticsClient.Path.")) return "analytics_path";
   if (
-    producerSymbol.endsWith(".directEndpoint") ||
-    producerSymbol.endsWith(".replayDirectEndpoint")
+    producerSymbol === "LiveEntitlementRepository.verifyAppleTransaction" ||
+    producerSymbol === "ScenarioRepository.syncPendingUploads"
   ) {
     return "direct_endpoint";
   }

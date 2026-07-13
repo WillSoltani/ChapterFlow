@@ -1762,7 +1762,7 @@ nativeContractOperationDefinitions.push(
       },
       {
         producer:
-          "ScenarioRepository.replayDirectEndpoint@Packages/EngagementFeature/Sources/EngagementFeature/Scenarios/ScenarioRepository.swift:113",
+          "ScenarioRepository.syncPendingUploads@Packages/EngagementFeature/Sources/EngagementFeature/Scenarios/ScenarioRepository.swift:113",
         body: jsonBody({
           title: "Synthetic scenario",
           scenario: "A synthetic reader practices a skill.",
@@ -2346,7 +2346,7 @@ nativeContractOperationDefinitions.push(
       },
       {
         producer:
-          "LiveEntitlementRepository.directEndpoint@Packages/PaywallFeature/Sources/PaywallFeature/LiveEntitlementRepository.swift:20",
+          "LiveEntitlementRepository.verifyAppleTransaction@Packages/PaywallFeature/Sources/PaywallFeature/LiveEntitlementRepository.swift:20",
         body: jsonBody({ transactionJWS: "synthetic-jws-placeholder" }),
       },
     ],

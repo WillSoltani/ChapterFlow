@@ -115,7 +115,7 @@ account-deactivate.post:deactivateaccount
 account-delete.post:deleteaccount
 analytics-beacon.post:defaultanalyticsclient-path-beacon
 analytics-track.post:defaultanalyticsclient-path-track
-apple-verify.post:liveentitlementrepository-directendpoint
+apple-verify.post:liveentitlementrepository-verifyappletransaction
 apple-verify.post:verifyapplepurchase
 ask-book.post:askbook
 audio-plan.get:getaudioplan
@@ -191,7 +191,7 @@ reviews.get:getreviews
 saved-toggle.post:togglesaved
 saved.get:getsavedbooks
 scenario.post:postscenario
-scenario.post:scenariorepository-replaydirectendpoint
+scenario.post:scenariorepository-syncpendinguploads
 scenarios.get:getscenarios
 search-index.get:getsearchindex
 seasonal-event.get:getactiveevent
