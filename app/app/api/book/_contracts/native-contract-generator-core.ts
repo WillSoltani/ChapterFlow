@@ -210,9 +210,19 @@ export function routeSourceExportsMethod(source: string, method: string): boolea
   if (sourceFile.parseDiagnostics.length > 0) return false;
 
   return sourceFile.statements.some((statement) => {
-    if (!ts.isFunctionDeclaration(statement) || statement.name?.text !== method) return false;
+    if (
+      !ts.isFunctionDeclaration(statement) ||
+      statement.name?.text !== method ||
+      statement.body === undefined
+    ) {
+      return false;
+    }
     const modifiers = ts.canHaveModifiers(statement) ? ts.getModifiers(statement) : undefined;
-    return modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword) ?? false;
+    const exported =
+      modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword) ?? false;
+    const defaultExport =
+      modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.DefaultKeyword) ?? false;
+    return exported && !defaultExport;
   });
 }
 

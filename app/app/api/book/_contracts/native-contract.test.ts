@@ -695,6 +695,15 @@ test("route-method source fence rejects real exported method drift", () => {
   assert.equal(routeSourceExportsMethod(source, "POST"), true);
 });
 
+test("route-method source fence requires a runnable named export", () => {
+  assert.equal(
+    routeSourceExportsMethod("export declare function GET(): Response;\n", "GET"),
+    false
+  );
+  assert.equal(routeSourceExportsMethod("export default function GET() {}\n", "GET"), false);
+  assert.equal(routeSourceExportsMethod("export function GET() {}\n", "GET"), true);
+});
+
 test("mobile config golden is produced by the actual pure backend builder", () => {
   const bundle = buildBundle();
   const operation = bundle.operations.find((candidate) => candidate.id === "mobile-config.get");
