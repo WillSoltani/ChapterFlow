@@ -22,6 +22,8 @@ and get integration approval — silent local variants are a merge blocker.
 | `quiz-integrity-result` | 1 | IMP-20 | split-lane quiz two-phase lane; aggregate-chapter-review |
 | `aggregated-chapter-review` | 1 | IMP-20 | conductor-owned final status over the three lanes + deterministic bundle |
 | `judge-capability-qualification` | 1 | IMP-20 | per-role judge registry; recovery role-set readiness; qualification freshness |
+| `review-evidence-envelope` | 1 | IMP-24 | qualification and production inline evidence delivery; request/result freshness |
+| `review-model-output-v2` | 2 | IMP-24 | semantic-only reader/source/quiz outputs; conductor-owned V2 assembly |
 
 ## Additive change note (IMP-20, 2026-07-12)
 
@@ -32,6 +34,14 @@ freeze test recomputes every hash and confirms only the five new rows). Each
 descriptor exports its `V1` type, a strict unknown-key-rejecting `validateX`
 validator, and the `X_CONTRACT` descriptor; they are inert until this registration
 (Wave-C single owner) imports them into `ALL_CONTRACTS`.
+
+## Additive change note (IMP-24, 2026-07-13)
+
+The two `IMP-24` rows are additive protocol contracts. `review-evidence-envelope`
+defines deterministic inline evidence and packet-local references;
+`review-model-output-v2` removes conductor-owned identity, hash, index, and final
+status fields from model output. Registering them expands the manifest from 14
+to **16 contracts** without changing any pre-existing descriptor.
 
 ## Change protocol
 

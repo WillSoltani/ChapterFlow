@@ -56,6 +56,15 @@ export function makeForwardGoldEvaluatorOutput(args: {
     (sum, config) => sum + ((rating / 4) * config.weight),
     0,
   );
+  const classification = overall >= 90
+    ? "Reference-standard design, subject to gate and core-domain rules"
+    : overall >= 80
+      ? "Strong design with identifiable improvements"
+      : overall >= 70
+        ? "Valuable but materially uneven; targeted redesign needed"
+        : overall >= 60
+          ? "Substantial redesign needed"
+          : "Not ready as a ChapterFlow learning product";
   return {
     schema_version: "2.0.0",
     run_id: "imp22-gold-run",
@@ -116,7 +125,7 @@ export function makeForwardGoldEvaluatorOutput(args: {
     })),
     domains,
     overall_score: overall,
-    classification: "Valuable but materially uneven; targeted redesign needed",
+    classification,
     certification_status: "pass",
     analysis: {
       overall_reader_experience: "A coherent full-book learning experience.",

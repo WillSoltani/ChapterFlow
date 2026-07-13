@@ -32,6 +32,8 @@ import { SOURCE_INTEGRITY_REVIEW_CONTRACT } from "./sourceIntegrityReview.js";
 import { QUIZ_INTEGRITY_RESULT_CONTRACT } from "./quizIntegrityReview.js";
 import { AGGREGATED_CHAPTER_REVIEW_CONTRACT } from "./aggregateChapterReview.js";
 import { JUDGE_CAPABILITY_QUALIFICATION_CONTRACT } from "./judgeCapabilityQualification.js";
+import { REVIEW_EVIDENCE_ENVELOPE_CONTRACT } from "./reviewEvidenceEnvelope.js";
+import { REVIEW_MODEL_OUTPUT_V2_CONTRACT } from "./reviewModelOutputV2.js";
 
 export const ALL_CONTRACTS: readonly ContractDescriptor[] = [
   EXECUTION_PROFILE_CONTRACT,
@@ -48,6 +50,8 @@ export const ALL_CONTRACTS: readonly ContractDescriptor[] = [
   QUIZ_INTEGRITY_RESULT_CONTRACT,
   AGGREGATED_CHAPTER_REVIEW_CONTRACT,
   JUDGE_CAPABILITY_QUALIFICATION_CONTRACT,
+  REVIEW_EVIDENCE_ENVELOPE_CONTRACT,
+  REVIEW_MODEL_OUTPUT_V2_CONTRACT,
 ];
 
 export type ContractManifest = {
@@ -112,3 +116,5 @@ export * from "./sourceIntegrityReview.js";
 export * from "./quizIntegrityReview.js";
 export * from "./aggregateChapterReview.js";
 export * from "./judgeCapabilityQualification.js";
+export * from "./reviewEvidenceEnvelope.js";
+export * from "./reviewModelOutputV2.js";

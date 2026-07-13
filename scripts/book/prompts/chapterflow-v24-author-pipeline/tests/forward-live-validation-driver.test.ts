@@ -346,6 +346,7 @@ function writeMaterializationFixture(
   frozen: ReturnType<typeof fixtures>,
 ): { artifactPath: string; manifest: typeof frozen.manifest; renderedBriefPath: string; indexPath: string } {
   const entries: Array<Record<string, unknown>> = [];
+  const sourcePlanHashes = new Map<string, string>();
   let renderedBriefPath = "";
   let indexPath = "";
   for (const bookId of [...new Set(frozen.manifest.manifest.targets.map((target) => target.bookId))].sort()) {
@@ -373,7 +374,13 @@ function writeMaterializationFixture(
       renderedBriefPath = renderedBriefPath || briefMdPath;
       chapterBriefSha256[target.chapterId] = hashCanonical(brief);
       writeJsonFixture(join(runRoot, "source-packets", `ch${nn}.source-packet.json`), { bookId, chapterNumber: target.chapterNumber });
-      writeJsonFixture(join(runRoot, "source-plans", `ch${nn}.plan.json`), { bookId, chapterNumber: target.chapterNumber });
+      const sourcePlan = fxPlan({
+        bookId,
+        chapterNumber: target.chapterNumber,
+        sourcePacketSha256: target.sourcePacketSha256,
+      });
+      writeJsonFixture(join(runRoot, "source-plans", `ch${nn}.plan.json`), sourcePlan);
+      sourcePlanHashes.set(`${bookId}/ch${nn}`, sourceUsePlanHash(sourcePlan));
       writeJsonFixture(join(inputRoot, "source-archive", bookId, `ch${nn}.source.json`), { bookId, chapterNumber: target.chapterNumber });
       writeJsonFixture(join(inputRoot, "source-archive", bookId, `ch${nn}.anchors.json`), []);
     }
@@ -416,6 +423,12 @@ function writeMaterializationFixture(
   writeFileSync(artifactPath, `${JSON.stringify(materialization)}\n`);
   const manifestBody = {
     ...frozen.manifest.manifest,
+    targets: frozen.manifest.manifest.targets.map((target) => ({
+      ...target,
+      sourceUsePlanSha256: sourcePlanHashes.get(
+        `${target.bookId}/ch${String(target.chapterNumber).padStart(2, "0")}`,
+      )!,
+    })),
     inputMaterializationSha256: sha256Hex(readFileSync(artifactPath)),
   };
   const manifest = { manifest: manifestBody, manifestSha256: hashCanonical(manifestBody) } as typeof frozen.manifest;
@@ -524,6 +537,8 @@ test("input materialization preflight covers exact brief/index inventory and det
       inputFreeze: frozen.inputFreeze,
     });
     assert.equal(proof.artifactBytesSha256, built.manifest.manifest.inputMaterializationSha256);
+    assert.equal(Object.keys(proof.sourcePartitionCountByChapter).length, built.manifest.manifest.targets.length);
+    assert.ok(Object.values(proof.sourcePartitionCountByChapter).every((count) => count === 1));
     const originalBrief = readFileSync(built.renderedBriefPath, "utf8");
     writeFileSync(built.renderedBriefPath, `${originalBrief}\nTAMPERED`);
     assert.throws(() => validateForwardInputMaterializationArtifact({
@@ -614,7 +629,7 @@ test("author operation receipt must be valid JSON bound to exact workspace artif
   }
 });
 
-test("pilot/gold CLI boundary makes zero calls without explicit execute-live", async () => {
+test("generic live boundary is dry by default and legacy pilot/gold CLI identities are closed before calls", async () => {
   let calls = 0;
   const dry = await runForwardLiveCampaignCliBoundary({
     phase: "pilot",
@@ -637,12 +652,24 @@ test("pilot/gold CLI boundary makes zero calls without explicit execute-live", a
   const errors: string[] = [];
   console.error = (...parts: unknown[]) => { errors.push(parts.map(String).join(" ")); };
   try {
-    assert.equal(await runMigrationBakeoffCli(["forward-pilot"], {}), 2);
-    assert.equal(await runMigrationBakeoffCli(["forward-gold"], { json: true }), 2);
+    assert.equal(await runMigrationBakeoffCli(["forward-pilot"], {
+      "execute-live": true,
+      "phase-dir": "/must-not-be-read",
+    }), 2);
+    assert.equal(await runMigrationBakeoffCli(["forward-gold"], {
+      "execute-live": true,
+      "phase-dir": "/must-not-be-read",
+      json: true,
+    }), 2);
   } finally {
     console.error = realError;
   }
-  assert.ok(errors.every((line) => line.includes("--execute-live")));
+  assert.equal(calls, 1, "closed CLI paths make no calls beyond the explicit generic-boundary fixture above");
+  assert.equal(errors.length, 2);
+  assert.ok(errors.every((line) => line.includes("s16-forward-role-qualification-v2")
+    && line.includes("BLOCKED_CALIBRATION_INVALID")
+    && line.includes("canResume=false")
+    && line.includes("mayContributeToQualification=false")));
 });
 
 test("campaign evidence is create-once and storage ids cannot escape the phase root", async () => {
@@ -843,7 +870,7 @@ function cachedGoldBrokerRig(base: string) {
   }));
   const sourceEvidence = expectedChapters.map((chapter) => ({
     ...chapter,
-    candidateContentSha256: sha256Hex(`content-${chapter.chapterId}`),
+    candidateContentSha256: sha256Hex(`content-${chapter.chapterId}`).slice(0, 16),
     sourceResultSha256: sha256Hex(`source-${chapter.chapterId}`),
     executionEnvelopeSha256: sha256Hex(`envelope-${chapter.chapterId}`),
     sourceStatus: "PASS" as const,
@@ -912,7 +939,11 @@ function seedCachedGoldCall(rig: ReturnType<typeof cachedGoldBrokerRig>, callInd
   const attemptId = rig.controller.begin({ context, attemptNumber: 1, requestSha256 });
   const operationDir = resolve(rig.phaseDir, "model-calls", sha256Hex(logicalOperationId), "attempt-1");
   mkdirSync(operationDir, { recursive: true });
-  writeFileSync(resolve(operationDir, "request.json"), `${JSON.stringify({ requestSha256, request })}\n`);
+  writeFileSync(resolve(operationDir, "request.json"), `${JSON.stringify({
+    requestSha256,
+    requestProjectionSha256: hashCanonical(request),
+    request,
+  })}\n`);
   const cachedResult = {
     actorId: call.actorId,
     executionId: `cached-${call.callId}`,
@@ -987,7 +1018,7 @@ test("production gold broker revalidates a cached blind result and makes zero do
     }));
     const sourceEvidence = expectedChapters.map((chapter) => ({
       ...chapter,
-      candidateContentSha256: sha256Hex(`content-${chapter.chapterId}`),
+      candidateContentSha256: sha256Hex(`content-${chapter.chapterId}`).slice(0, 16),
       sourceResultSha256: sha256Hex(`source-${chapter.chapterId}`),
       executionEnvelopeSha256: sha256Hex(`envelope-${chapter.chapterId}`),
       sourceStatus: "PASS" as const,
@@ -1052,7 +1083,11 @@ test("production gold broker revalidates a cached blind result and makes zero do
     const attemptId = controller.begin({ context, attemptNumber: 1, requestSha256 });
     const operationDir = resolve(phaseDir, "model-calls", sha256Hex(logicalOperationId), "attempt-1");
     mkdirSync(operationDir, { recursive: true });
-    writeFileSync(resolve(operationDir, "request.json"), `${JSON.stringify({ requestSha256, request })}\n`);
+    writeFileSync(resolve(operationDir, "request.json"), `${JSON.stringify({
+      requestSha256,
+      requestProjectionSha256: hashCanonical(request),
+      request,
+    })}\n`);
     const cachedResult = {
       actorId: first.actorId,
       executionId: "cached-invalid-blind",

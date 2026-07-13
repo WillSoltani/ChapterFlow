@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IMP-24 SourceIntegrityModelOutputV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "assessments"],
+  "properties": {
+    "schema": { "const": "source-integrity-model-output-v2" },
+    "assessments": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/assessment" }
+    }
+  },
+  "definitions": {
+    "category": {
+      "enum": [
+        "source_contradiction",
+        "unsupported_attribution",
+        "claim_strength_overreach",
+        "missing_visible_framing",
+        "generic_specificity_leak",
+        "invented_detail",
+        "missing_required_evidence"
+      ]
+    },
+    "nonEmptyUniqueRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "possiblyEmptyUniqueRefs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primaryCategory",
+        "secondaryCategories",
+        "severity",
+        "explanation",
+        "chapterEvidenceRefIds",
+        "sourceEvidenceRefIds"
+      ],
+      "properties": {
+        "primaryCategory": { "$ref": "#/definitions/category" },
+        "secondaryCategories": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "$ref": "#/definitions/category" }
+        },
+        "severity": { "enum": ["blocker", "major", "minor"] },
+        "explanation": { "type": "string", "minLength": 1 },
+        "chapterEvidenceRefIds": { "$ref": "#/definitions/nonEmptyUniqueRefs" },
+        "sourceEvidenceRefIds": { "$ref": "#/definitions/possiblyEmptyUniqueRefs" }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "targetRef",
+        "visibleRegister",
+        "supportStatus",
+        "framingAdequate",
+        "claimStrengthFit",
+        "namedSpecificityAllowed",
+        "findings",
+        "rationale"
+      ],
+      "properties": {
+        "targetRef": { "type": "string", "minLength": 1 },
+        "visibleRegister": { "enum": ["clearly_sourced", "clearly_constructed", "clearly_generic", "ambiguous", "presented_as_fact"] },
+        "supportStatus": { "enum": ["SUPPORTED", "PARTIALLY_SUPPORTED", "UNSUPPORTED", "NOT_APPLICABLE", "INCONCLUSIVE"] },
+        "framingAdequate": { "type": ["boolean", "null"] },
+        "claimStrengthFit": { "type": ["boolean", "null"] },
+        "namedSpecificityAllowed": { "type": ["boolean", "null"] },
+        "findings": { "type": "array", "items": { "$ref": "#/definitions/finding" } },
+        "rationale": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

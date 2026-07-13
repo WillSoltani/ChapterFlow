@@ -59,19 +59,16 @@ import { resolveExecutionProfile } from "../../exec/executionEnvelope.js";
 import { ROUTE_POLICY_VERSION } from "../../orchestrator/modelPolicy.js";
 import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import {
-  attestLiveRoleCalibration,
-  runLiveRoleCalibration,
-  runLiveRoleQualificationHoldout,
   type LiveQualificationPreflightV1,
 } from "../../orchestrator/forwardRoleQualificationLive.js";
 import {
-  runForwardLiveCampaignCliBoundary,
-  runForwardLiveCampaignFromExplicitArtifacts,
   type RunForwardLiveCampaignResultV1,
 } from "../../orchestrator/forwardLiveValidationDriver.js";
 import {
   FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH,
+  IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH,
   materializeForwardProductionInstrumentSeal,
+  verifyRetainedForwardProductionInstrumentSeal,
 } from "../../orchestrator/forwardProductionInstrumentSeal.js";
 import {
   buildGoldArtifacts,
@@ -81,18 +78,53 @@ import {
   type RetainedQualificationSpecV2,
 } from "../../orchestrator/forwardLiveArtifactMaterializer.js";
 import type { ForwardInputFreezeV1 } from "../../orchestrator/forwardInputFreeze.js";
-import type { Imp22ForwardInputMaterializationV1 } from "../../orchestrator/forwardInputMaterialization.js";
+import {
+  materializeImp24ForwardInputs,
+  type Imp22ForwardInputMaterializationV1,
+} from "../../orchestrator/forwardInputMaterialization.js";
 import type { ForwardProductionInstrumentSealV1 } from "../../orchestrator/forwardProductionInstrumentSeal.js";
 import type { ForwardRoleAssignmentFreezeV1 } from "../../orchestrator/forwardRoleAssignmentFreeze.js";
 import type { RecoveryExperimentSpecV1 } from "./reviewLaneTypes.js";
 import {
-  FORWARD_LOCAL_ACTIVATION_POLICY_REL_PATH,
-  buildForwardLocalActivationArtifacts,
-} from "../../orchestrator/forwardLocalActivationMaterializer.js";
+  IMP24_FROZEN_ROLE_THRESHOLDS,
+  type InstrumentCertificationBindingV3,
+} from "./roleQualificationRunnerV3.js";
 import {
-  FORWARD_LOCAL_STATE_DIR,
-  resolveStandardForwardAutopilotControl,
-} from "../../orchestrator/forwardLocalAutopilot.js";
+  IMP24_CERTIFICATION_ARTIFACT_PATHS,
+  certifyImp24Instrument,
+  materializeImp24InstrumentCertification,
+} from "./imp24InstrumentCertification.js";
+import {
+  buildImp24BPreLiveFreeze,
+  materializeImp24BPreLiveFreeze,
+} from "./imp24PreLiveFreeze.js";
+import {
+  IMP24_ROLE_QUALIFICATION_ID,
+  certifyImp24Corpora,
+  type Imp24CorpusBundle,
+} from "./imp24Corpus.js";
+import type { RecoveryRoleThresholdsV1 } from "./reviewLaneTypes.js";
+import {
+  IMP24_CANDIDATE_AVAILABILITY_POLICY_BYTES_SHA256,
+  IMP24_FROZEN_CANDIDATE_AVAILABILITY_POLICY,
+  discoverCandidateAvailabilityV3,
+  type CandidateAvailabilityPolicyV3,
+  type UnpreparedLiveRoleQualificationInputV3,
+} from "../../orchestrator/forwardRoleQualificationLiveV3.js";
+import {
+  runImp24RoleQualificationCampaignV3,
+} from "../../orchestrator/forwardRoleQualificationCampaignV3.js";
+import {
+  materializeImp24GoldV2Envelope,
+  materializeImp24PilotV2Envelope,
+  runImp24GoldV2EnvelopeLive,
+  runImp24PilotV2EnvelopeLive,
+} from "./imp24PilotGoldWorkflow.js";
+import {
+  activateImp24LocalV3,
+  recordImp24ActivationFullSuiteV3,
+  verifyImp24LocalActivationV3,
+} from "./imp24ActivationWorkflow.js";
 
 const USAGE =
   `Usage: migration-bakeoff <plan|seal|qualify|run|analyze|decide|status>\n` +
@@ -115,20 +147,30 @@ const USAGE =
   `         recovery-preflight            build+preflight the recovery spec/seal-prep\n` +
   `         recovery-pilot-dryrun         no-model pilot dry run (ZERO spawns)\n` +
   `\n` +
-  `       IMP-22 live qualification subverbs (ChatGPT-authenticated codex exec;\n` +
-  `       persist every attempt; require --execute-live):\n` +
-  `         role-qualification-calibrate  run the 24-call calibration barrier only [--experiment ID]\n` +
-  `         role-qualification-holdout    run holdout from a valid inspected seal [--experiment ID]\n` +
-  `         forward-pilot                 run the frozen eight-chapter pilot\n` +
-  `         forward-gold                  run the frozen no-publish gold phase\n` +
-  `       IMP-22 local inspection subverb (zero model/API calls):\n` +
-  `         role-qualification-attest-calibration --inspector ID --confirm-calibration-sha SHA --approve-holdout\n` +
-  `         role-qualification-freeze --experiment s16-forward-role-qualification-v2 [--write]\n` +
-  `         forward-materialize-pilot-artifacts --experiment s16-forward-role-qualification-v2 [--write]\n` +
-  `         forward-materialize-gold-artifacts --experiment s16-forward-role-qualification-v2 [--write]\n` +
-  `         forward-activate-local --activate-local --activated-at ISO --head-sha SHA --dedicated-ci-url URL\n` +
-  `         forward-verify-local-activation\n` +
+  `       Historical qualification mutation subverbs (V1/V2 CLOSED; always fail\n` +
+  `       with their retained disposition and perform zero auth/model/write activity):\n` +
+  `         role-qualification-calibrate | role-qualification-holdout | role-qualification-attest-calibration\n` +
+  `       IMP-24 live qualification (ChatGPT-authenticated codex exec; exact retained\n` +
+  `       V3 artifacts; require literal --execute-live):\n` +
+  `         imp24-role-qualification-v3 --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--timeout-ms N] [--json]\n` +
+  `         imp24-pilot-v2-envelope       run the exact fresh eight-chapter pilot\n` +
+  `         imp24-gold-v2-envelope        run the exact fresh 13-chapter gold book\n` +
+  `       Closed IMP-22 transition/live subverbs always fail with\n` +
+  `       BLOCKED_CALIBRATION_INVALID before any read, write, auth, or call:\n` +
+  `         role-qualification-freeze | forward-materialize-pilot-artifacts | forward-materialize-gold-artifacts | forward-pilot | forward-gold\n` +
+  `       IMP-22 local read-only/reporting helpers remain available.\n` +
+  `         imp24-materialize-pilot-v2-envelope [--write] [--json]\n` +
+  `         imp24-materialize-gold-v2-envelope [--write] [--json]\n` +
+  `         imp24-record-activation-full-suite-v3 --execute-local-suite --head-sha SHA\n` +
+  `         imp24-activate-local-v3 --activate-local --activated-at ISO --head-sha SHA\n` +
+  `         imp24-verify-local-activation-v3 --head-sha SHA\n` +
+  `       Closed IMP-23 V2 activation subverbs always fail before evidence reads:\n` +
+  `         forward-activate-local | forward-verify-local-activation\n` +
   `         forward-materialize-production-instrument-seal [--output FILE] [--write] [--json]\n` +
+  `         imp24-materialize-thresholds [--write] [--json]\n` +
+  `         imp24-certify-instrument [--write] [--json]\n` +
+  `         imp24-materialize-pre-live-freeze [--write] [--json]\n` +
+  `         imp24-materialize-forward-inputs [--write] [--state-root DIR] [--json]\n` +
   `           default: ${FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH}`;
 
 /** IMP-20 subverbs handled as their own branches (like `plan`/`status`), each
@@ -149,11 +191,14 @@ const SPLIT_LANE_SUBVERBS: ReadonlySet<string> = new Set([
 const LIVE_QUALIFICATION_SUBVERBS: ReadonlySet<string> = new Set([
   "role-qualification-calibrate",
   "role-qualification-holdout",
+  "imp24-role-qualification-v3",
 ]);
 
 const LIVE_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "forward-pilot",
   "forward-gold",
+  "imp24-pilot-v2-envelope",
+  "imp24-gold-v2-envelope",
 ]);
 
 const LOCAL_QUALIFICATION_SUBVERBS: ReadonlySet<string> = new Set([
@@ -162,12 +207,39 @@ const LOCAL_QUALIFICATION_SUBVERBS: ReadonlySet<string> = new Set([
 
 const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "forward-materialize-production-instrument-seal",
+  "forward-materialize-production-instrument-seal-v2",
+  "forward-verify-production-instrument-seal-v2",
+  "imp24-materialize-thresholds",
+  "imp24-certify-instrument",
+  "imp24-materialize-pre-live-freeze",
+  "imp24-materialize-forward-inputs",
   "role-qualification-freeze",
   "forward-materialize-pilot-artifacts",
   "forward-materialize-gold-artifacts",
+  "imp24-materialize-pilot-v2-envelope",
+  "imp24-materialize-gold-v2-envelope",
+  "imp24-record-activation-full-suite-v3",
+  "imp24-activate-local-v3",
+  "imp24-verify-local-activation-v3",
   "forward-activate-local",
   "forward-verify-local-activation",
 ]);
+
+const IMP24_CLOSED_QUALIFICATION_DISPOSITIONS = Object.freeze({
+  "s16-forward-role-qualification-v1": "INVALID_INSTRUMENT_DO_NOT_ATTEST",
+  "s16-forward-role-qualification-v2": "BLOCKED_CALIBRATION_INVALID",
+} as const);
+
+function closedQualificationDisposition(experimentId: string): string | null {
+  return Object.prototype.hasOwnProperty.call(IMP24_CLOSED_QUALIFICATION_DISPOSITIONS, experimentId)
+    ? IMP24_CLOSED_QUALIFICATION_DISPOSITIONS[experimentId as keyof typeof IMP24_CLOSED_QUALIFICATION_DISPOSITIONS]
+    : null;
+}
+
+function refuseClosedQualification(subverb: string, experimentId: string, disposition: string): 2 {
+  console.error(`${subverb}: ${experimentId} is closed with disposition ${disposition}; canResume=false; mayContributeToQualification=false`);
+  return 2;
+}
 
 /** Deterministic provenance stamp for regenerated recovery artifacts — reused
  *  verbatim from the WP-B10 committed spec/seal-prep so a `--write` regeneration
@@ -572,66 +644,191 @@ function runSplitLaneSubverb(subverb: string, flags: Record<string, string | boo
   }
 }
 
+export type Imp24RoleQualificationCliArtifactsV3 = {
+  corpusBundle: Imp24CorpusBundle;
+  certification: InstrumentCertificationBindingV3;
+  productionInstrumentSeal: ForwardProductionInstrumentSealV1;
+  thresholds: RecoveryRoleThresholdsV1;
+  thresholdBytesSha256: string;
+};
+
+export type Imp24RoleQualificationCliDepsV3 = {
+  repositoryRoot?: string;
+  /** Outer CLI boundary supplies its explicit runtime context here. The
+   * migration module itself is spec/argv driven and never reads ambient env. */
+  modelsCachePath?: string;
+  clock?: () => Date;
+  loadArtifacts?: (repositoryRoot: string) => Imp24RoleQualificationCliArtifactsV3;
+  discoverAvailability?: typeof discoverCandidateAvailabilityV3;
+  runCampaign?: typeof runImp24RoleQualificationCampaignV3;
+};
+
+export type MigrationBakeoffCliDepsV1 = {
+  imp24RoleQualificationV3?: Imp24RoleQualificationCliDepsV3;
+};
+
+function parseImp24Artifact<T>(path: string, label: string, retainedBytes?: Buffer): T {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse((retainedBytes ?? readFileSync(path)).toString("utf8"));
+  } catch (error) {
+    throw new Error(`${label} is not valid retained JSON at ${path}: ${(error as Error).message}`);
+  }
+  if (parsed === null || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error(`${label} must be a retained JSON object at ${path}`);
+  }
+  return parsed as T;
+}
+
+/** Load only the fresh IMP-24 V3 artifact identities. This deliberately has no
+ * path to V1/V2 qualification attempts, attestations, or role assignments. */
+export function loadImp24RoleQualificationCliArtifactsV3(
+  repositoryRoot: string,
+): Imp24RoleQualificationCliArtifactsV3 {
+  const corpusPath = resolve(repositoryRoot, IMP24_CERTIFICATION_ARTIFACT_PATHS.corpusBundle);
+  const certificationPath = resolve(repositoryRoot, IMP24_CERTIFICATION_ARTIFACT_PATHS.certificationBinding);
+  const productionSealPath = resolve(repositoryRoot, IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH);
+  const thresholdsPath = resolve(repositoryRoot, IMP24_CERTIFICATION_ARTIFACT_PATHS.thresholds);
+  const thresholdBytes = readFileSync(thresholdsPath);
+  const thresholds = parseImp24Artifact<RecoveryRoleThresholdsV1>(thresholdsPath, "IMP-24 V3 role thresholds", thresholdBytes);
+  if (thresholdBytes.toString("utf8") !== canonicalPretty(IMP24_FROZEN_ROLE_THRESHOLDS)) {
+    throw new Error("retained IMP-24 V3 role-threshold bytes differ from the exact canonical frozen artifact");
+  }
+  return {
+    corpusBundle: parseImp24Artifact<Imp24CorpusBundle>(corpusPath, "IMP-24 V3 corpus bundle"),
+    certification: parseImp24Artifact<InstrumentCertificationBindingV3>(certificationPath, "IMP-24 model-free certification binding"),
+    productionInstrumentSeal: parseImp24Artifact<ForwardProductionInstrumentSealV1>(productionSealPath, "IMP-24 production instrument seal"),
+    thresholds,
+    thresholdBytesSha256: sha256Hex(thresholdBytes),
+  };
+}
+
+async function runImp24RoleQualificationV3Subverb(
+  flags: Record<string, string | boolean>,
+  deps: Imp24RoleQualificationCliDepsV3 = {},
+): Promise<number> {
+  // This literal barrier is intentionally the first operation. In dry mode no
+  // auth, environment, cache, artifact, gate, report, or campaign path is read
+  // and no file/model/API operation is possible.
+  if (flags["execute-live"] !== true) {
+    console.error("imp24-role-qualification-v3: refusing to make model calls without the literal --execute-live flag");
+    return 2;
+  }
+
+  const expectedHeadSha = typeof flags["head-sha"] === "string" ? flags["head-sha"].trim() : "";
+  const workflowRunId = typeof flags["workflow-run-id"] === "string" ? Number(flags["workflow-run-id"]) : NaN;
+  if (!/^[a-f0-9]{40}$/.test(expectedHeadSha) || !Number.isSafeInteger(workflowRunId) || workflowRunId <= 0) {
+    console.error("imp24-role-qualification-v3: --head-sha <40 lowercase hex> and --workflow-run-id <positive integer> are required");
+    return 2;
+  }
+  if (flags["models-cache"] !== undefined && typeof flags["models-cache"] !== "string") {
+    console.error("imp24-role-qualification-v3: --models-cache requires a path value");
+    return 2;
+  }
+  for (const forbiddenOverride of ["auth-json", "codex-binary", "qualification-cache-dir"] as const) {
+    if (flags[forbiddenOverride] !== undefined) {
+      console.error(`imp24-role-qualification-v3: --${forbiddenOverride} is not an authorized operator override`);
+      return 2;
+    }
+  }
+  const timeoutMs = typeof flags["timeout-ms"] === "string" ? Number(flags["timeout-ms"]) : undefined;
+  if (timeoutMs !== undefined && (!Number.isInteger(timeoutMs) || timeoutMs < 1_000)) {
+    console.error("imp24-role-qualification-v3: --timeout-ms must be an integer >= 1000");
+    return 2;
+  }
+  const requestedModelsCachePath = typeof flags["models-cache"] === "string"
+    ? flags["models-cache"].trim()
+    : (deps.modelsCachePath ?? "").trim();
+  if (!requestedModelsCachePath) {
+    console.error("imp24-role-qualification-v3: models cache path must be supplied by --models-cache or the outer CLI runtime context");
+    return 2;
+  }
+  const modelsCachePath = resolve(requestedModelsCachePath);
+
+  const repositoryRoot = resolve(deps.repositoryRoot ?? resolve(PIPELINE_DIR, "../../../.."));
+  const verifiedAtDate = (deps.clock ?? (() => new Date()))();
+  if (!(verifiedAtDate instanceof Date) || !Number.isFinite(verifiedAtDate.getTime())) {
+    throw new Error("imp24-role-qualification-v3: injected/current clock is invalid");
+  }
+  const verifiedAt = verifiedAtDate.toISOString();
+  const artifacts = (deps.loadArtifacts ?? loadImp24RoleQualificationCliArtifactsV3)(repositoryRoot);
+  // Recompute both independent corpus audits from the exact retained V3 bundle;
+  // never trust a copied certification object and never inspect V1/V2 runs.
+  const corpusCertification = certifyImp24Corpora(artifacts.corpusBundle);
+  const candidateAvailability = (deps.discoverAvailability ?? discoverCandidateAvailabilityV3)({
+    policy: IMP24_FROZEN_CANDIDATE_AVAILABILITY_POLICY as CandidateAvailabilityPolicyV3,
+    policyBytesSha256: IMP24_CANDIDATE_AVAILABILITY_POLICY_BYTES_SHA256,
+    modelsCachePath,
+    verifiedAt,
+  });
+  const input: UnpreparedLiveRoleQualificationInputV3 = {
+    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    corpusBundle: artifacts.corpusBundle,
+    corpusCertification,
+    certification: artifacts.certification,
+    productionInstrumentSeal: artifacts.productionInstrumentSeal,
+    candidateAvailability,
+    thresholds: artifacts.thresholds,
+    thresholdBytesSha256: artifacts.thresholdBytesSha256,
+  };
+  const runCampaign = deps.runCampaign ?? runImp24RoleQualificationCampaignV3;
+  const campaign = await runCampaign({
+    executeLive: true,
+    expectedHeadSha,
+    workflowRunId,
+    repositoryRoot,
+    experimentDir: resolve(migrationExperimentsDir(), IMP24_ROLE_QUALIFICATION_ID),
+    input,
+    preflight: {},
+    ...(timeoutMs !== undefined ? { timeoutMs } : {}),
+  });
+  if (!campaign.executed) throw new Error("imp24-role-qualification-v3: live campaign unexpectedly returned a dry result");
+  const summary = {
+    schema: "imp24-role-qualification-v3-cli-result-v1",
+    experimentId: campaign.result.experimentId,
+    implementationHeadSha: expectedHeadSha,
+    workflowRunId,
+    roleSetReady: campaign.result.roleSetReady,
+    blockedReason: campaign.result.roleSetBlockedReason,
+    selected: campaign.result.selected,
+    candidateAvailabilitySha256: candidateAvailability.availabilitySha256,
+    unavailableProfiles: candidateAvailability.entries.filter((entry) => entry.status === "UNAVAILABLE")
+      .map((entry) => `${entry.role}:${entry.profileId}`),
+    baseCallsAttempted: campaign.result.baseCallsAttempted,
+    infrastructureReplays: campaign.result.infrastructureReplays,
+    totalAttempts: campaign.result.totalAttempts,
+    codexExecInvocations: campaign.callLedger.codexExecInvocations,
+    cachedReceipts: campaign.callLedger.cachedReceipts,
+    roleAssignmentFreezeSha256: campaign.roleAssignmentFreeze?.freezeSha256 ?? null,
+    modelCalls: campaign.modelCalls,
+    apiCalls: campaign.apiCalls,
+    paths: campaign.paths,
+  };
+  console.log(flags.json === true ? JSON.stringify(summary, null, 2)
+    : `[migration] IMP-24 V3 qualification: roleSetReady=${String(summary.roleSetReady)} baseCalls=${summary.baseCallsAttempted} replays=${summary.infrastructureReplays} codexExec=${summary.codexExecInvocations} cached=${summary.cachedReceipts} api=${summary.apiCalls}${summary.blockedReason ? ` — ${summary.blockedReason}` : ""}`);
+  return summary.roleSetReady ? 0 : 1;
+}
+
 async function runLiveQualificationSubverb(
   subverb: string,
   flags: Record<string, string | boolean>,
+  imp24Deps: Imp24RoleQualificationCliDepsV3 = {},
 ): Promise<number> {
+  if (subverb === "role-qualification-calibrate" || subverb === "role-qualification-holdout") {
+    const experimentId = typeof flags.experiment === "string"
+      ? flags.experiment.trim()
+      : "s16-forward-role-qualification-v1";
+    const disposition = closedQualificationDisposition(experimentId);
+    if (disposition) return refuseClosedQualification(subverb, experimentId, disposition);
+    console.error(`${subverb}: unsupported qualification experiment identity ${experimentId}`);
+    return 2;
+  }
   if (flags["execute-live"] !== true) {
     console.error(`${subverb}: refusing to make model calls without the explicit --execute-live flag`);
     return 2;
   }
-  const json = flags["json"] === true;
-  const experimentId = typeof flags.experiment === "string"
-    ? flags.experiment.trim()
-    : "s16-forward-role-qualification-v1";
-  if (!/^s16-forward-role-qualification-v[12]$/.test(experimentId)) {
-    console.error(`${subverb}: unsupported qualification experiment identity ${experimentId}`);
-    return 2;
-  }
-  const experimentDir = resolve(migrationExperimentsDir(), experimentId);
-  const specPath = resolve(experimentDir, "spec.json");
-  const timeoutMs = typeof flags["timeout-ms"] === "string"
-    ? Number(flags["timeout-ms"])
-    : undefined;
-  if (timeoutMs !== undefined && (!Number.isInteger(timeoutMs) || timeoutMs < 1_000)) {
-    console.error(`${subverb}: --timeout-ms must be an integer >= 1000`);
-    return 2;
-  }
-  if (subverb === "role-qualification-calibrate") {
-    const out = await runLiveRoleCalibration({ specPath, experimentDir, ...(timeoutMs ? { timeoutMs } : {}) });
-    const summary = {
-      experimentId: out.preflight.experimentId,
-      phase: "calibration",
-      valid: out.calibration.valid,
-      calibrationSha256: out.calibration.calibrationSha256,
-      attempts: out.calibration.attempts.length,
-      codexExecInvocations: out.callLedger.codexExecInvocations,
-      infrastructureReplays: out.callLedger.infrastructureReplays,
-      maxPlanCapacityEvents: out.callLedger.maxPlanCapacityEvents,
-      safeguardsOrRefusals: out.callLedger.safeguardsOrRefusals,
-      apiCallsMade: out.callLedger.apiCallsMade,
-      holdoutStarted: false,
-    };
-    console.log(json ? JSON.stringify(summary, null, 2) : `[migration] IMP-22 calibration: valid=${String(summary.valid)} attempts=${summary.attempts} codexExec=${summary.codexExecInvocations} replays=${summary.infrastructureReplays} api=${summary.apiCallsMade}; holdout NOT started`);
-    return summary.valid ? 0 : 1;
-  }
-  if (subverb === "role-qualification-holdout") {
-    const out = await runLiveRoleQualificationHoldout({ specPath, experimentDir, ...(timeoutMs ? { timeoutMs } : {}) });
-    const summary = {
-      experimentId: out.preflight.experimentId,
-      phase: "holdout",
-      roleSetReady: out.result.roleSetReady,
-      blockedReason: out.result.roleSetBlockedReason,
-      selected: out.result.selected,
-      holdoutAttempts: out.result.attempts.filter((attempt) => attempt.partition === "holdout").length,
-      codexExecInvocations: out.callLedger.codexExecInvocations,
-      infrastructureReplays: out.callLedger.infrastructureReplays,
-      maxPlanCapacityEvents: out.callLedger.maxPlanCapacityEvents,
-      safeguardsOrRefusals: out.callLedger.safeguardsOrRefusals,
-      apiCallsMade: out.callLedger.apiCallsMade,
-    };
-    console.log(json ? JSON.stringify(summary, null, 2) : `[migration] IMP-22 holdout: roleSetReady=${String(summary.roleSetReady)} attempts=${summary.holdoutAttempts} codexExec=${summary.codexExecInvocations} replays=${summary.infrastructureReplays} api=${summary.apiCallsMade}${summary.blockedReason ? ` — ${summary.blockedReason}` : ""}`);
-    return summary.roleSetReady ? 0 : 1;
+  if (subverb === "imp24-role-qualification-v3") {
+    return runImp24RoleQualificationV3Subverb(flags, imp24Deps);
   }
   console.error(USAGE);
   return 2;
@@ -641,40 +838,33 @@ async function runLiveForwardSubverb(
   subverb: string,
   flags: Record<string, string | boolean>,
 ): Promise<number> {
-  const phase = subverb === "forward-pilot" ? "pilot" : "gold";
-  const boundary = await runForwardLiveCampaignCliBoundary({
-    phase,
-    executeLive: flags["execute-live"] === true,
-    execute: async () => {
-      const required = [
-        "phase-dir", "manifest", "input-freeze", "input-materialization", "production-instrument-seal", "qualification-spec", "calibration-seal", "calibration-inspection",
-        "qualification-result", "qualification-bundle", "role-freeze",
-        ...(phase === "gold" ? ["gold-evaluator-config"] : []),
-      ];
-      const missing = required.filter((name) => typeof flags[name] !== "string" || String(flags[name]).trim().length === 0);
-      if (missing.length > 0) throw new Error(`${subverb}: missing explicit artifact flag(s): ${missing.map((name) => `--${name}`).join(", ")}`);
-      return runForwardLiveCampaignFromExplicitArtifacts({
-        expectedKind: phase,
-        phaseDir: resolve(flags["phase-dir"] as string),
-        manifestPath: resolve(flags["manifest"] as string),
-        inputFreezePath: resolve(flags["input-freeze"] as string),
-        inputMaterializationPath: resolve(flags["input-materialization"] as string),
-        productionInstrumentSealPath: resolve(flags["production-instrument-seal"] as string),
-        qualificationSpecPath: resolve(flags["qualification-spec"] as string),
-        calibrationSealPath: resolve(flags["calibration-seal"] as string),
-        calibrationInspectionPath: resolve(flags["calibration-inspection"] as string),
-        qualificationResultPath: resolve(flags["qualification-result"] as string),
-        qualificationBundlePath: resolve(flags["qualification-bundle"] as string),
-        roleAssignmentFreezePath: resolve(flags["role-freeze"] as string),
-        ...(phase === "gold" ? { goldEvaluatorConfigPath: resolve(flags["gold-evaluator-config"] as string) } : {}),
-      });
-    },
-  });
-  if (!boundary.executed) {
-    console.error(boundary.message);
-    return boundary.code;
+  // The closed V2 identity is refused before inspecting execute-live or any
+  // caller-supplied artifact path.  It cannot be used to create fresh evidence.
+  if (subverb === "forward-pilot" || subverb === "forward-gold") {
+    return refuseClosedQualification(subverb, "s16-forward-role-qualification-v2", "BLOCKED_CALIBRATION_INVALID");
   }
-  const out = boundary.result!;
+  if (flags["execute-live"] !== true) {
+    const dry = subverb === "imp24-pilot-v2-envelope"
+      ? await runImp24PilotV2EnvelopeLive(flags["execute-live"])
+      : await runImp24GoldV2EnvelopeLive(flags["execute-live"]);
+    console.error(dry.message);
+    return dry.code;
+  }
+  const forbiddenOverrides = [
+    "experiment", "state-root", "phase-dir", "manifest", "input-freeze", "input-materialization",
+    "production-instrument-seal", "qualification-spec", "calibration-seal", "calibration-inspection",
+    "qualification-result", "qualification-bundle", "role-freeze", "gold-evaluator-config", "auth-json",
+    "codex-binary", "timeout-ms", "max-parallel",
+  ].filter((name) => flags[name] !== undefined);
+  if (forbiddenOverrides.length > 0) {
+    console.error(`${subverb}: fixed IMP-24 workflow refuses artifact/route substitution flag(s): ${forbiddenOverrides.map((name) => `--${name}`).join(", ")}`);
+    return 2;
+  }
+  const boundary = subverb === "imp24-pilot-v2-envelope"
+    ? await runImp24PilotV2EnvelopeLive(true)
+    : await runImp24GoldV2EnvelopeLive(true);
+  if (!boundary.executed) throw new Error(`${subverb}: literal live execution unexpectedly returned dry`);
+  const out = boundary.result;
   const summary = {
     experimentId: out.campaign.experimentId,
     kind: out.campaign.kind,
@@ -693,7 +883,7 @@ async function runLiveForwardSubverb(
     upload: out.upload,
   };
   console.log(flags["json"] === true ? JSON.stringify(summary, null, 2) : `[migration] ${subverb}: accepted=${String(summary.accepted)} first=${summary.firstWritePassRate} final=${summary.finalPassRate} codexExec=${summary.codexExecInvocations} api=${summary.apiCallsMade}`);
-  return summary.accepted ? 0 : 1;
+  return boundary.code;
 }
 
 function runLocalQualificationSubverb(
@@ -701,45 +891,13 @@ function runLocalQualificationSubverb(
   flags: Record<string, string | boolean>,
 ): number {
   if (subverb !== "role-qualification-attest-calibration") return 2;
-  const inspectedBy = typeof flags["inspector"] === "string" ? flags["inspector"] : "";
   const experimentId = typeof flags.experiment === "string"
     ? flags.experiment.trim()
     : "s16-forward-role-qualification-v1";
-  if (!/^s16-forward-role-qualification-v[12]$/.test(experimentId)) {
-    console.error(`${subverb}: unsupported qualification experiment identity ${experimentId}`);
-    return 2;
-  }
-  const confirmedCalibrationSha256 = typeof flags["confirm-calibration-sha"] === "string"
-    ? flags["confirm-calibration-sha"]
-    : "";
-  if (!inspectedBy || !/^[a-f0-9]{64}$/.test(confirmedCalibrationSha256) || flags["approve-holdout"] !== true) {
-    console.error(`${subverb}: requires --inspector ID --confirm-calibration-sha <64 lowercase hex> --approve-holdout`);
-    return 2;
-  }
-  const out = attestLiveRoleCalibration({
-    experimentDir: resolve(migrationExperimentsDir(), experimentId),
-    inspectedBy,
-    confirmedCalibrationSha256,
-    approveHoldout: true,
-    ...(typeof flags["note"] === "string" ? { note: flags["note"] } : {}),
-  });
-  const summary = {
-    experimentId,
-    phase: "calibration-inspection",
-    decision: out.inspection.decision,
-    inspectedBy: out.inspection.inspectedBy,
-    calibrationSha256: out.inspection.calibrationSha256,
-    inspectedResultsSha256: out.inspection.inspectedResultsSha256,
-    inspectionSha256: out.inspection.inspectionSha256,
-    inspectedCaseCount: out.inspection.inspectedCaseCount,
-    inspectedAttemptCount: out.inspection.inspectedAttemptCount,
-    modelCalls: 0,
-    apiCalls: 0,
-  };
-  console.log(flags["json"] === true
-    ? JSON.stringify(summary, null, 2)
-    : `[migration] IMP-22 calibration inspection: ${summary.decision} by ${summary.inspectedBy}; seal=${summary.calibrationSha256}; model/api calls=0`);
-  return 0;
+  const disposition = closedQualificationDisposition(experimentId);
+  if (disposition) return refuseClosedQualification(subverb, experimentId, disposition);
+  console.error(`${subverb}: unsupported qualification experiment identity ${experimentId}`);
+  return 2;
 }
 
 function readJsonFile<T>(path: string): T {
@@ -904,94 +1062,206 @@ function materializeGoldArtifacts(flags: Record<string, string | boolean>): numb
   return 0;
 }
 
-function activateForwardLocalArtifacts(flags: Record<string, string | boolean>): number {
-  if (flags["activate-local"] !== true) throw new Error("forward-activate-local requires explicit --activate-local");
-  if (flags["local-tests-pass"] !== true) throw new Error("forward-activate-local requires --local-tests-pass from the current production tree");
-  const activatedAt = typeof flags["activated-at"] === "string" ? flags["activated-at"].trim() : "";
-  const headSha = typeof flags["head-sha"] === "string" ? flags["head-sha"].trim() : "";
-  const dedicatedCiUrl = typeof flags["dedicated-ci-url"] === "string" ? flags["dedicated-ci-url"].trim() : "";
-  if (!/^\d{4}-\d{2}-\d{2}T/.test(activatedAt) || !/^[a-f0-9]{40}$/.test(headSha)
-      || !/^https:\/\/github\.com\/[^/]+\/[^/]+\/actions\/runs\/[0-9]+$/.test(dedicatedCiUrl)) {
-    throw new Error("forward-activate-local requires --activated-at UTC_ISO --head-sha 40_HEX --dedicated-ci-url GitHub_Actions_URL");
-  }
-  const qualificationDir = resolve(migrationExperimentsDir(), "s16-forward-role-qualification-v2");
-  const pilotDir = resolve(migrationExperimentsDir(), "s16-forward-sol-pilot-v1");
-  const goldDir = resolve(migrationExperimentsDir(), "s16-forward-sol-gold-book-v1");
-  const materialized = buildForwardLocalActivationArtifacts({
-    activationId: typeof flags["activation-id"] === "string" ? flags["activation-id"].trim() : "imp23-sol-local-activation-v1",
-    activatedAt,
-    qualificationBundle: readJsonFile(resolve(qualificationDir, "live/holdout/qualification-bundle.json")),
-    roleAssignmentFreeze: readJsonFile(resolve(qualificationDir, "live/holdout/role-assignment-freeze.json")),
-    qualificationPreflight: readJsonFile(resolve(qualificationDir, "live/preflight.json")),
-    pilotLiveResult: readJsonFile(resolve(pilotDir, "live-campaign/campaign-result.json")),
-    goldLiveResult: readJsonFile(resolve(goldDir, "live-campaign/campaign-result.json")),
-  });
-  const gateDraft = {
-    schema: "imp23-forward-local-activation-gate-evidence-v1",
-    headSha,
-    localTestsPassed: true,
-    localTestsCommand: "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
-    dedicatedV25CiConclusion: "success",
-    dedicatedV25CiUrl: dedicatedCiUrl,
-    materializationSha256: materialized.materializationSha256,
-    apiCallsMade: 0,
-    publish: false,
-    promote: false,
-    deploy: false,
-    upload: false,
-  };
-  const gateEvidence = { ...gateDraft, gateEvidenceSha256: hashCanonical(gateDraft) };
-  let written = 0;
-  for (const [relPath, value] of Object.entries(materialized.artifactsByPath)) {
-    if (relPath === FORWARD_LOCAL_ACTIVATION_POLICY_REL_PATH) continue;
-    if (persistStableArtifact(resolve(FORWARD_LOCAL_STATE_DIR, relPath), value, true)) written += 1;
-  }
-  if (persistStableArtifact(resolve(FORWARD_LOCAL_STATE_DIR, "activation-gate-evidence.json"), gateEvidence, true)) written += 1;
-  if (persistStableArtifact(
-    resolve(FORWARD_LOCAL_STATE_DIR, FORWARD_LOCAL_ACTIVATION_POLICY_REL_PATH),
-    materialized.artifactsByPath[FORWARD_LOCAL_ACTIVATION_POLICY_REL_PATH],
-    true,
-  )) written += 1;
-  const control = resolveStandardForwardAutopilotControl();
-  if (control.runtime.mode !== "FORWARD_ACTIVE") throw new Error("local activation read-back did not resolve FORWARD_ACTIVE");
-  console.log(flags.json === true ? JSON.stringify({
-    status: control.runtime.mode,
-    activationId: control.runtime.policy.activationId,
-    selectedProfile: control.runtime.policy.selectedProfile.profileId,
-    rollbackProfile: control.runtime.policy.previousProfile.profileId,
-    materializationSha256: materialized.materializationSha256,
-    gateEvidenceSha256: gateEvidence.gateEvidenceSha256,
-    written,
-    modelCalls: 0,
-    apiCalls: 0,
-  }, null, 2) : `[migration] IMP-23 local activation: ${control.runtime.mode} profile=${control.runtime.policy.selectedProfile.profileId} rollback=${control.runtime.policy.previousProfile.profileId} written=${written}`);
-  return 0;
-}
-
-function verifyForwardLocalActivation(flags: Record<string, string | boolean>): number {
-  const control = resolveStandardForwardAutopilotControl();
-  if (control.runtime.mode !== "FORWARD_ACTIVE") throw new Error(`local forward runtime is ${control.runtime.mode}, not FORWARD_ACTIVE`);
-  console.log(flags.json === true ? JSON.stringify({
-    status: control.runtime.mode,
-    activationId: control.runtime.policy.activationId,
-    selectedProfile: control.runtime.policy.selectedProfile.profileId,
-    rollbackProfile: control.runtime.policy.previousProfile.profileId,
-    bindingSha256: control.runtime.binding.bindingSha256,
-    modelCalls: 0,
-    apiCalls: 0,
-  }, null, 2) : `[migration] IMP-23 local activation verified: ${control.runtime.mode} binding=${control.runtime.binding.bindingSha256}`);
-  return 0;
-}
-
 function runLocalForwardSubverb(
   subverb: string,
   flags: Record<string, string | boolean>,
 ): number {
-  if (subverb === "role-qualification-freeze") return materializeQualificationFreeze(flags);
-  if (subverb === "forward-materialize-pilot-artifacts") return materializePilotArtifacts(flags);
-  if (subverb === "forward-materialize-gold-artifacts") return materializeGoldArtifacts(flags);
-  if (subverb === "forward-activate-local") return activateForwardLocalArtifacts(flags);
-  if (subverb === "forward-verify-local-activation") return verifyForwardLocalActivation(flags);
+  if (subverb === "forward-activate-local" || subverb === "forward-verify-local-activation") {
+    return refuseClosedQualification(subverb, "s16-forward-role-qualification-v2", "IMP23_V2_ACTIVATION_CLOSED");
+  }
+  if (subverb === "imp24-record-activation-full-suite-v3"
+      || subverb === "imp24-activate-local-v3"
+      || subverb === "imp24-verify-local-activation-v3") {
+    const forbiddenOverrides = [
+      "state-root", "phase-dir", "pilot-phase", "gold-phase", "input-freeze", "role-freeze",
+      "qualification-result", "implementation-ci-gate", "full-suite-ledger", "dedicated-ci-url", "local-tests-pass",
+    ].filter((name) => flags[name] !== undefined);
+    if (forbiddenOverrides.length > 0) {
+      console.error(`${subverb}: fixed IMP-24 activation workflow refuses artifact/attestation substitution flag(s): ${forbiddenOverrides.map((name) => `--${name}`).join(", ")}`);
+      return 2;
+    }
+    const headSha = typeof flags["head-sha"] === "string" ? flags["head-sha"].trim() : "";
+    if (subverb === "imp24-record-activation-full-suite-v3") {
+      const out = recordImp24ActivationFullSuiteV3(flags["execute-local-suite"] === true, headSha);
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] ${subverb}: ${out.message}${out.executed ? ` ledger=${out.ledgerSha256} attempts=${out.attemptCount}` : ""}`);
+      return out.code;
+    }
+    if (subverb === "imp24-activate-local-v3") {
+      const activatedAt = typeof flags["activated-at"] === "string" ? flags["activated-at"].trim() : "";
+      const out = activateImp24LocalV3({
+        activateLocal: flags["activate-local"] === true,
+        expectedHeadSha: headSha,
+        activatedAt,
+        ...(typeof flags["activation-id"] === "string" ? { activationId: flags["activation-id"] } : {}),
+      });
+      const summary = {
+        schema: out.schema,
+        status: "FORWARD_ACTIVE",
+        materializationSha256: out.materializationSha256,
+        written: out.written,
+        modelCalls: out.modelCalls,
+        apiCalls: out.apiCalls,
+      };
+      console.log(flags.json === true ? JSON.stringify(summary, null, 2)
+        : `[migration] ${subverb}: FORWARD_ACTIVE materialization=${out.materializationSha256} written=${out.written}`);
+      return 0;
+    }
+    const out = verifyImp24LocalActivationV3(headSha);
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] ${subverb}: ${out.status} materialization=${out.materializationSha256}`);
+    return 0;
+  }
+  if (subverb === "role-qualification-freeze"
+      || subverb === "forward-materialize-pilot-artifacts"
+      || subverb === "forward-materialize-gold-artifacts") {
+    return refuseClosedQualification(subverb, "s16-forward-role-qualification-v2", "BLOCKED_CALIBRATION_INVALID");
+  }
+  if (subverb === "imp24-materialize-pilot-v2-envelope"
+      || subverb === "imp24-materialize-gold-v2-envelope") {
+    const forbiddenOverrides = [
+      "experiment", "state-root", "output", "phase-dir", "manifest", "input-freeze", "input-materialization",
+      "production-instrument-seal", "qualification-result", "role-freeze", "gold-evaluator-config",
+    ].filter((name) => flags[name] !== undefined);
+    if (forbiddenOverrides.length > 0) {
+      console.error(`${subverb}: fixed IMP-24 workflow refuses artifact substitution flag(s): ${forbiddenOverrides.map((name) => `--${name}`).join(", ")}`);
+      return 2;
+    }
+    const out = subverb === "imp24-materialize-pilot-v2-envelope"
+      ? materializeImp24PilotV2Envelope(flags.write === true)
+      : materializeImp24GoldV2Envelope(flags.write === true);
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] ${subverb}: manifest=${out.manifestSha256} targets=${out.targetCount} written=${out.written} model/api calls=0`);
+    return 0;
+  }
+  if (subverb === "imp24-materialize-thresholds") {
+    const outputPath = typeof flags.output === "string"
+      ? resolve(flags.output)
+      : resolve(PIPELINE_DIR, "state/migration-experiments/contracts/imp24/role-thresholds.v3-envelope.json");
+    const bytes = canonicalPretty(IMP24_FROZEN_ROLE_THRESHOLDS);
+    if (flags.write === true) writeFileAtomic(outputPath, bytes);
+    if (flags.write === true || existsSync(outputPath)) {
+      const retained = readFileSync(outputPath, "utf8");
+      if (retained !== bytes) throw new Error("retained IMP-24 thresholds differ from the exact owner-frozen bytes");
+    }
+    const out = {
+      schema: "imp24-role-threshold-materialization-v1",
+      outputPath,
+      semanticSha256: hashCanonical(IMP24_FROZEN_ROLE_THRESHOLDS),
+      bytesSha256: sha256Hex(bytes),
+      written: flags.write === true,
+      modelCalls: 0,
+      apiCalls: 0,
+    };
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] IMP-24 thresholds: semantic=${out.semanticSha256} bytes=${out.bytesSha256} written=${String(out.written)}`);
+    return 0;
+  }
+  if (subverb === "imp24-certify-instrument") {
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    if (flags.write === true) {
+      const out = materializeImp24InstrumentCertification({ repositoryRoot });
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] IMP-24 instrument ${out.status}: binding=${out.binding.certificationSha256} outputs=${Object.keys(out.outputs).length} model/api calls=0`);
+    } else {
+      const out = certifyImp24Instrument({ repositoryRoot });
+      console.log(flags.json === true ? JSON.stringify({
+        status: out.report.status,
+        binding: out.report.binding,
+        exactCaseCounts: out.report.exactCaseCounts,
+        checks: out.report.checks,
+        written: false,
+        modelCalls: 0,
+        apiCalls: 0,
+      }, null, 2) : `[migration] IMP-24 instrument ${out.report.status}: binding=${out.report.binding.certificationSha256} cases=${out.report.exactCaseCounts.total} DRY (pass --write)`);
+    }
+    return 0;
+  }
+  if (subverb === "imp24-materialize-pre-live-freeze") {
+    if (flags.output !== undefined || flags["state-root"] !== undefined) {
+      console.error("imp24-materialize-pre-live-freeze: fixed authoritative paths reject --output and --state-root");
+      return 2;
+    }
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    if (flags.write === true) {
+      const out = materializeImp24BPreLiveFreeze({ repositoryRoot });
+      console.log(flags.json === true ? JSON.stringify({
+        schema: out.schema,
+        status: out.freeze.status,
+        freezeSha256: out.freeze.freezeSha256,
+        outputCount: Object.keys(out.outputs).length,
+        written: true,
+        modelCalls: out.modelCalls,
+        apiCalls: out.apiCalls,
+      }, null, 2) : `[migration] IMP-24B pre-live freeze: ${out.freeze.freezeSha256} outputs=${Object.keys(out.outputs).length} model/api calls=0`);
+    } else {
+      const out = buildImp24BPreLiveFreeze({ repositoryRoot });
+      console.log(flags.json === true ? JSON.stringify({
+        status: out.freeze.status,
+        freezeSha256: out.freeze.freezeSha256,
+        outputCount: Object.keys(out.outputs).length,
+        written: false,
+        modelCalls: out.modelCalls,
+        apiCalls: out.apiCalls,
+      }, null, 2) : `[migration] IMP-24B pre-live freeze: ${out.freeze.freezeSha256} outputs=${Object.keys(out.outputs).length} DRY (pass --write)`);
+    }
+    return 0;
+  }
+  if (subverb === "imp24-materialize-forward-inputs") {
+    const stateRoot = typeof flags["state-root"] === "string"
+      ? resolve(flags["state-root"])
+      : migrationExperimentsDir();
+    if (flags.write !== true) {
+      const out = {
+        schema: "imp24-forward-input-materialization-plan-v1",
+        stateRoot,
+        pilotExperimentId: "s16-forward-sol-pilot-v2-envelope",
+        goldExperimentId: "s16-forward-sol-gold-book-v2-envelope",
+        written: false,
+        modelCalls: 0,
+        apiCalls: 0,
+      };
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] IMP-24 fresh input roots planned under ${stateRoot}; DRY (pass --write)`);
+      return 0;
+    }
+    const materialized = materializeImp24ForwardInputs(stateRoot);
+    const out = {
+      schema: "imp24-forward-input-materialization-result-v1",
+      inputFreezeSha256: materialized.freeze.freezeSha256,
+      pilotRoot: materialized.pilotRoot,
+      goldRoot: materialized.goldRoot,
+      pilotExperimentId: materialized.materialization.pilotExperimentId,
+      goldExperimentId: materialized.materialization.goldExperimentId,
+      pilotChapterCount: materialized.freeze.pilot.flatMap((book) => book.chapters).length,
+      goldChapterCount: materialized.freeze.goldChapterCount,
+      written: true,
+      priorChapterProseUsed: materialized.materialization.priorChapterProseUsed,
+      modelCalls: 0,
+      apiCalls: 0,
+    };
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] IMP-24 fresh inputs: pilot=${out.pilotChapterCount} gold=${out.goldChapterCount} freeze=${out.inputFreezeSha256}`);
+    return 0;
+  }
+  if (subverb === "forward-verify-production-instrument-seal-v2") {
+    const outputPath = typeof flags.output === "string" ? resolve(flags.output) : undefined;
+    const out = verifyRetainedForwardProductionInstrumentSeal({ ...(outputPath ? { outputPath } : {}) });
+    console.log(flags.json === true
+      ? JSON.stringify(out, null, 2)
+      : `[migration] IMP-24 production instrument seal verified: sha256=${out.sealSha256} files=${out.fileCount} path=${out.outputPath}`);
+    return 0;
+  }
+  if (subverb === "forward-materialize-production-instrument-seal-v2") {
+    const outputPath = typeof flags.output === "string"
+      ? resolve(flags.output)
+      : resolve(PIPELINE_DIR, "state/migration-experiments/contracts/imp24/forward-production-instrument-seal.json");
+    const out = materializeForwardProductionInstrumentSeal({ outputPath, write: flags.write === true });
+    console.log(flags.json === true
+      ? JSON.stringify(out, null, 2)
+      : `[migration] IMP-24 production instrument seal: sha256=${out.sealSha256} files=${out.fileCount} path=${out.outputPath} written=${String(out.written)}`);
+    return 0;
+  }
   if (subverb !== "forward-materialize-production-instrument-seal") return 2;
   const outputPath = typeof flags.output === "string" ? resolve(flags.output) : undefined;
   const out = materializeForwardProductionInstrumentSeal({
@@ -1004,7 +1274,11 @@ function runLocalForwardSubverb(
   return 0;
 }
 
-export async function runMigrationBakeoffCli(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+export async function runMigrationBakeoffCli(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  deps: MigrationBakeoffCliDepsV1 = {},
+): Promise<number> {
   const json = flags["json"] === true;
   const subverb = args[0] ?? "";
   // IMP-20 split-lane / §16-recovery subverbs are their own no-model branches;
@@ -1019,7 +1293,7 @@ export async function runMigrationBakeoffCli(args: string[], flags: Record<strin
     return runLocalForwardSubverb(subverb, flags);
   }
   if (LIVE_QUALIFICATION_SUBVERBS.has(subverb)) {
-    return runLiveQualificationSubverb(subverb, flags);
+    return runLiveQualificationSubverb(subverb, flags, deps.imp24RoleQualificationV3);
   }
   if (LIVE_FORWARD_SUBVERBS.has(subverb)) {
     return runLiveForwardSubverb(subverb, flags);

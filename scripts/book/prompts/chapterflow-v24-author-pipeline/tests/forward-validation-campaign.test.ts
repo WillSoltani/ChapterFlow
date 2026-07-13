@@ -35,10 +35,15 @@ import {
   FORWARD_PERSISTENCE_RECEIPT_SCHEMA,
   FORWARD_VALIDATION_CAPABILITIES,
   GOLD_EXPERIMENT_ID,
+  GOLD_ENVELOPE_EXPERIMENT_ID,
   PILOT_EXPERIMENT_ID,
+  PILOT_ENVELOPE_EXPERIMENT_ID,
   buildGoldManifest,
+  buildGoldManifestV2Envelope,
   buildPilotManifest,
+  buildPilotManifestV2Envelope,
   createDeferredAuthorProducer,
+  forwardV2SourceExecutionOrderProblems,
   nextPilotCorrectionExperimentId,
   runForwardValidationCampaign,
   type ForwardBookSelectionCandidateV1,
@@ -130,6 +135,55 @@ function pilotFixture(): {
   const books = [selectionBook("pilot-beta", 4, evidenceMap), selectionBook("pilot-alpha", 4, evidenceMap)];
   return { frozen: buildPilotManifest({ ...COMMON, books }), evidenceMap };
 }
+
+test("IMP-24 manifest wrappers preserve the frozen denominator under fresh envelope identities", () => {
+  const evidenceMap = new Map<string, Evidence>();
+  const pilotBooks = [
+    selectionBook("pilot-alpha", 4, evidenceMap),
+    selectionBook("pilot-beta", 4, evidenceMap),
+  ];
+  const pilot = buildPilotManifestV2Envelope({ ...COMMON, books: pilotBooks });
+  assert.equal(pilot.manifest.experimentId, PILOT_ENVELOPE_EXPERIMENT_ID);
+  assert.equal(pilot.manifest.targets.length, 8);
+  assert.ok(pilot.manifest.targets.every((target) =>
+    target.outputRunId.startsWith(`${PILOT_ENVELOPE_EXPERIMENT_ID}--`)
+      && target.outputRelPath.includes(`state/migration-experiments/${PILOT_ENVELOPE_EXPERIMENT_ID}/`)));
+
+  const goldBook = selectionBook("the-gifts-of-imperfection", 13, evidenceMap);
+  const gold = buildGoldManifestV2Envelope({
+    ...COMMON,
+    books: [goldBook],
+    pilotBookIds: pilotBooks.map((book) => book.bookId),
+    pilotAccepted: true,
+    pilotManifestSha256: pilot.manifestSha256,
+    pilotResultSha256: "6".repeat(64),
+  });
+  assert.equal(gold.manifest.experimentId, GOLD_ENVELOPE_EXPERIMENT_ID);
+  assert.equal(gold.manifest.targets.length, 13);
+  assert.ok(gold.manifest.targets.every((target) =>
+    target.outputRunId.startsWith(`${GOLD_ENVELOPE_EXPERIMENT_ID}--`)
+      && target.outputRelPath.includes(`state/migration-experiments/${GOLD_ENVELOPE_EXPERIMENT_ID}/`)));
+
+  const rootCause: VerifiedSystemicRootCauseV1 = {
+    classification: "PROMPT_OR_CONTRACT",
+    rootCauseId: "imp24-systemic-regression",
+    severity: "P1",
+    affectedChapterKeys: ["pilot-alpha/ch01"],
+    regressionTestId: "imp24-envelope-correction-regression",
+  };
+  const correction = buildPilotManifestV2Envelope({
+    ...COMMON,
+    books: pilotBooks,
+    correctionCycle: 1,
+    priorPilotExperimentIds: [PILOT_ENVELOPE_EXPERIMENT_ID],
+    priorThresholdsSha256: COMMON.thresholdsSha256,
+    verifiedSystemicRootCause: rootCause,
+  });
+  assert.equal(correction.manifest.experimentId, `${PILOT_ENVELOPE_EXPERIMENT_ID}-correction-1`);
+  assert.equal(correction.manifest.previousExperimentId, PILOT_ENVELOPE_EXPERIMENT_ID);
+  assert.notEqual(PILOT_ENVELOPE_EXPERIMENT_ID, PILOT_EXPERIMENT_ID);
+  assert.notEqual(GOLD_ENVELOPE_EXPERIMENT_ID, GOLD_EXPERIMENT_ID);
+});
 
 function chapterFor(target: ForwardValidationTargetV1, stage: string): ChapterV21 {
   return fxChapter({
@@ -264,11 +318,13 @@ function executionEntry(
   lane: "reader" | "source" | "quiz",
   panelRole: NonNullable<ForwardReviewExecutionEntryV1["panelRole"]>,
   i: number,
+  reviewOperationKey: string = lane,
 ): ForwardReviewExecutionEntryV1 {
   const workspaceRole: ForwardReviewExecutionEntryV1["expected"]["workspaceRole"] = lane === "reader" ? "direct-reader" : lane === "source" ? "source-verifier" : "quiz-adjudication";
   const expected = {
     schema: "forward-review-execution-request-v1" as const,
     lane,
+    reviewOperationKey,
     workspaceRole,
     profileId: `${lane}-profile`,
     model: `${lane}-model`,
@@ -282,6 +338,7 @@ function executionEntry(
   };
   return {
     lane,
+    reviewOperationKey,
     panelRole,
     expected,
     taskSha256: `task-${lane}`,
@@ -291,6 +348,7 @@ function executionEntry(
       schema: FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA,
       executionId: `independent-${i}-${lane}`,
       lane,
+      reviewOperationKey,
       workspaceRole,
       profileId: expected.profileId,
       model: expected.model,
@@ -306,6 +364,80 @@ function executionEntry(
     failureReason: null,
   };
 }
+
+function v2SourceExecutionEntry(
+  panelRole: "sourcePrimary" | "sourceAdjudicator",
+  operationKey: string,
+  envelopeSha256: string,
+  i: number,
+): ForwardReviewExecutionEntryV1 {
+  const base = executionEntry("source", panelRole, i, operationKey);
+  return {
+    ...base,
+    expected: {
+      ...base.expected,
+      reviewProtocol: "review-evidence-envelope-v1",
+      evidenceEnvelopeSha256: envelopeSha256,
+      evidenceEnvelopeBytesSha256: sha256Hex(`bytes:${operationKey}`),
+    },
+    received: {
+      ...base.received!,
+      reviewProtocol: "review-evidence-envelope-v1",
+      evidenceEnvelopeSha256: envelopeSha256,
+      evidenceEnvelopeBytesSha256: sha256Hex(`bytes:${operationKey}`),
+    },
+  };
+}
+
+test("campaign acceptance requires one ordered source execution per authoritative V2 envelope", () => {
+  const hashes = ["1".repeat(64), "2".repeat(64), "3".repeat(64)];
+  const primary = hashes.map((hash, index) => v2SourceExecutionEntry("sourcePrimary", `U${index + 1}`, hash, index + 1));
+  assert.deepEqual(forwardV2SourceExecutionOrderProblems({
+    executions: primary,
+    sourceEnvelopeSha256s: hashes,
+    sourceAdjudicationTriggered: false,
+  }), []);
+
+  assert.ok(forwardV2SourceExecutionOrderProblems({
+    executions: primary.slice(0, 2),
+    sourceEnvelopeSha256s: hashes,
+    sourceAdjudicationTriggered: false,
+  }).some((problem) => /exactly 3 sourcePrimary/.test(problem)));
+
+  const reordered = [primary[1], primary[0], primary[2]];
+  assert.ok(forwardV2SourceExecutionOrderProblems({
+    executions: reordered,
+    sourceEnvelopeSha256s: hashes,
+    sourceAdjudicationTriggered: false,
+  }).some((problem) => /authoritative source envelope order/.test(problem)));
+
+  const duplicatedKey = primary.map((entry, index) => index === 1
+    ? {
+        ...entry,
+        reviewOperationKey: "U1",
+        expected: { ...entry.expected, reviewOperationKey: "U1" },
+        received: { ...entry.received!, reviewOperationKey: "U1" },
+      }
+    : entry);
+  assert.ok(forwardV2SourceExecutionOrderProblems({
+    executions: duplicatedKey,
+    sourceEnvelopeSha256s: hashes,
+    sourceAdjudicationTriggered: false,
+  }).some((problem) => /unique source operation keys/.test(problem)));
+
+  const adjudicators = hashes.map((hash, index) =>
+    v2SourceExecutionEntry("sourceAdjudicator", `U${index + 1}`, hash, index + 10));
+  assert.deepEqual(forwardV2SourceExecutionOrderProblems({
+    executions: [...primary, ...adjudicators],
+    sourceEnvelopeSha256s: hashes,
+    sourceAdjudicationTriggered: true,
+  }), []);
+  assert.ok(forwardV2SourceExecutionOrderProblems({
+    executions: [...primary, adjudicators[1], adjudicators[0], adjudicators[2]],
+    sourceEnvelopeSha256s: hashes,
+    sourceAdjudicationTriggered: true,
+  }).some((problem) => /adjudicator operation order|authoritative source envelope order/.test(problem)));
+});
 
 function conductorResult(
   input: ForwardChapterConductorInputV1,

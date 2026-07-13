@@ -42,6 +42,11 @@ import type {
   ForwardRoleProfileBindingV1,
   ForwardRoleSlot,
 } from "./forwardRoleAssignmentFreeze.js";
+import type {
+  BoundForwardFrozenReviewConfigV3,
+  ForwardRoleAssignmentFreezeV3,
+  ForwardRoleProfileBindingV3,
+} from "./forwardRoleAssignmentFreezeV3.js";
 import {
   authorWriteOneChapter,
   type AuthorWriteOneInvoker,
@@ -61,6 +66,7 @@ import {
 } from "./modelPolicy.js";
 
 export const FORWARD_LOCAL_RUNTIME_BINDING_SCHEMA = "forward-local-author-runtime-binding-v1" as const;
+export const FORWARD_LOCAL_RUNTIME_BINDING_V2_SCHEMA = "imp24-forward-local-author-runtime-binding-v2" as const;
 export const FORWARD_LOCAL_RUNTIME_SCHEMA = "forward-local-author-runtime-v1" as const;
 
 export const FORWARD_LOCAL_EXTERNAL_CAPABILITIES = Object.freeze({
@@ -83,14 +89,14 @@ export class ForwardAuthorRuntimeError extends Error {
 }
 
 export type ForwardLocalRuntimeBindingV1 = {
-  schema: typeof FORWARD_LOCAL_RUNTIME_BINDING_SCHEMA;
+  schema: typeof FORWARD_LOCAL_RUNTIME_BINDING_SCHEMA | typeof FORWARD_LOCAL_RUNTIME_BINDING_V2_SCHEMA;
   localOnly: true;
   qualificationBundleSha256: string;
   roleAssignmentFreezeSha256: string;
   instrumentBindingSha256: string;
-  reviewConfig: BoundForwardFrozenReviewConfigV1;
+  reviewConfig: BoundForwardFrozenReviewConfigV1 | BoundForwardFrozenReviewConfigV3;
   reviewConfigSha256: string;
-  roleProfileBindings: Record<ForwardRoleSlot, ForwardRoleProfileBindingV1>;
+  roleProfileBindings: Record<ForwardRoleSlot, ForwardRoleProfileBindingV1 | ForwardRoleProfileBindingV3>;
   roleProfileBindingsSha256: string;
   executionProfileHash: string;
   routePolicyVersion: string;
@@ -262,26 +268,44 @@ function exactKeys(value: Record<string, unknown>, expected: readonly string[], 
 }
 
 function assertRoleBinding(
-  binding: ForwardRoleProfileBindingV1,
+  binding: ForwardRoleProfileBindingV1 | ForwardRoleProfileBindingV3,
   slot: ForwardRoleSlot,
   lane: "reader" | "source" | "quiz",
   expectedJudge: { profileId: string; model: string; effort: string },
   runtime: ForwardLocalRuntimeBindingV1,
 ): void {
-  requireCondition(binding?.schema === "imp22-forward-role-profile-binding-v1", `${slot}: role-profile binding schema mismatch`);
+  const v3 = runtime.schema === FORWARD_LOCAL_RUNTIME_BINDING_V2_SCHEMA;
+  requireCondition(binding?.schema === (v3
+    ? "imp24-forward-role-profile-binding-v3"
+    : "imp22-forward-role-profile-binding-v1"), `${slot}: role-profile binding schema mismatch`);
   requireCondition(binding.slot === slot && binding.lane === lane, `${slot}: role-profile slot/lane drift`);
   requireCondition(canonicalJson(binding.judge) === canonicalJson(expectedJudge), `${slot}: role-profile judge drift`);
-  requireSha(binding.qualificationRecordSha256, `${slot}: qualification record hash missing`);
   requireSha(binding.promptSourceSha256, `${slot}: prompt source hash missing`);
-  requireSha(binding.qualificationPromptBundleSha256, `${slot}: qualification prompt hash missing`);
   requireSha(binding.schemaSha256, `${slot}: schema hash missing`);
   requireCondition(binding.executionProfileHash === runtime.executionProfileHash, `${slot}: execution profile drift`);
   requireCondition(binding.routePolicyVersion === runtime.routePolicyVersion, `${slot}: route policy drift`);
-  requireCondition(binding.profileSha256 === hashCanonical({
-    judge: binding.judge,
-    executionProfileHash: binding.executionProfileHash,
-    routePolicyVersion: binding.routePolicyVersion,
-  }), `${slot}: profile hash drift`);
+  if (binding.schema === "imp24-forward-role-profile-binding-v3") {
+    for (const [label, value] of Object.entries({
+      qualificationResultSha256: binding.qualificationResultSha256,
+      profileRoleResultSha256: binding.profileRoleResultSha256,
+      canaryAttemptsSha256: binding.canaryAttemptsSha256,
+      holdoutAttemptsSha256: binding.holdoutAttemptsSha256,
+      envelopeCompilerSha256: binding.envelopeCompilerSha256,
+      envelopeContractSha256: binding.envelopeContractSha256,
+      modelOutputContractsSha256: binding.modelOutputContractsSha256,
+      productionQualificationParitySha256: binding.productionQualificationParitySha256,
+      thresholdsSha256: binding.thresholdsSha256,
+      productionInstrumentSealSha256: binding.productionInstrumentSealSha256,
+    })) requireSha(value, `${slot}: ${label} missing`);
+  } else {
+    requireSha(binding.qualificationRecordSha256, `${slot}: qualification record hash missing`);
+    requireSha(binding.qualificationPromptBundleSha256, `${slot}: qualification prompt hash missing`);
+    requireCondition(binding.profileSha256 === hashCanonical({
+      judge: binding.judge,
+      executionProfileHash: binding.executionProfileHash,
+      routePolicyVersion: binding.routePolicyVersion,
+    }), `${slot}: profile hash drift`);
+  }
 }
 
 export function validateForwardLocalRuntimeBinding(value: unknown): string[] {
@@ -294,7 +318,9 @@ export function validateForwardLocalRuntimeBinding(value: unknown): string[] {
       "promotion", "deployment", "upload", "apiFallbackAllowed", "bindingSha256",
     ], "runtime binding");
     const runtime = value as unknown as ForwardLocalRuntimeBindingV1;
-    requireCondition(runtime.schema === FORWARD_LOCAL_RUNTIME_BINDING_SCHEMA, "runtime binding schema mismatch");
+    requireCondition(runtime.schema === FORWARD_LOCAL_RUNTIME_BINDING_SCHEMA
+      || runtime.schema === FORWARD_LOCAL_RUNTIME_BINDING_V2_SCHEMA,
+    "runtime binding schema mismatch");
     requireCondition(runtime.localOnly === true, "runtime binding must be local-only");
     for (const [name, field] of Object.entries({
       qualificationBundleSha256: runtime.qualificationBundleSha256,
@@ -314,10 +340,22 @@ export function validateForwardLocalRuntimeBinding(value: unknown): string[] {
     requireCondition(hashCanonical(runtime.reviewConfig) === runtime.reviewConfigSha256, "runtime review-config hash drift");
     requireCondition(hashCanonical(runtime.roleProfileBindings) === runtime.roleProfileBindingsSha256, "runtime role-profile binding hash drift");
     assertForwardFrozenReviewConfig(runtime.reviewConfig);
-    requireCondition(runtime.reviewConfig.qualificationBundleSha256 === runtime.qualificationBundleSha256,
-      "runtime review config is bound to another qualification bundle");
-    requireCondition(runtime.reviewConfig.instrumentBindingSha256 === runtime.instrumentBindingSha256,
-      "runtime review config is bound to another instrument binding");
+    if (runtime.schema === FORWARD_LOCAL_RUNTIME_BINDING_V2_SCHEMA) {
+      const reviewConfig = runtime.reviewConfig as BoundForwardFrozenReviewConfigV3;
+      requireCondition(reviewConfig.qualificationExperimentId === "s16-forward-role-qualification-v3-envelope"
+        && reviewConfig.qualificationResultSha256 === runtime.qualificationBundleSha256,
+      "runtime V2 review config is bound to another V3 qualification result");
+      requireCondition(reviewConfig.instrumentCertificationSha256 === runtime.instrumentBindingSha256,
+        "runtime V2 review config is bound to another instrument certification");
+      requireCondition(reviewConfig.reviewProtocolVersion === "imp24-review-v2",
+        "runtime V2 review config does not require the envelope protocol");
+    } else {
+      const reviewConfig = runtime.reviewConfig as BoundForwardFrozenReviewConfigV1;
+      requireCondition(reviewConfig.qualificationBundleSha256 === runtime.qualificationBundleSha256,
+        "runtime review config is bound to another qualification bundle");
+      requireCondition(reviewConfig.instrumentBindingSha256 === runtime.instrumentBindingSha256,
+        "runtime review config is bound to another instrument binding");
+    }
     requireCondition(runtime.reviewConfig.roleProfileBindingsSha256 === runtime.roleProfileBindingsSha256,
       "runtime review config is bound to another role-profile set");
     requireCondition(runtime.reviewConfig.instrumentManifest.executionProfileHash === runtime.executionProfileHash,
@@ -342,6 +380,11 @@ export function validateForwardLocalRuntimeBinding(value: unknown): string[] {
           ? runtime.reviewConfig.instrumentManifest.sourceSchemaSha256
           : runtime.reviewConfig.instrumentManifest.quizAdjudicationSchemaSha256;
       requireCondition(roleBinding.schemaSha256 === expectedSchema, `${slot}: schema binding drift`);
+      if (roleBinding.schema === "imp24-forward-role-profile-binding-v3") {
+        requireCondition(roleBinding.productionQualificationParitySha256
+            === (runtime.reviewConfig as BoundForwardFrozenReviewConfigV3).productionQualificationParitySha256,
+          `${slot}: production/qualification parity binding drift`);
+      }
     }
     return [];
   } catch (error) {
@@ -388,6 +431,48 @@ export function buildForwardLocalRuntimeBinding(freeze: ForwardRoleAssignmentFre
   return deepFreeze(binding);
 }
 
+/** IMP-24 runtime projection. The compatibility field names are retained so
+ * the activation resolver has one narrow surface, but the new schema changes
+ * their meaning explicitly: qualificationBundleSha256 carries the exact V3
+ * result hash and instrumentBindingSha256 carries the model-free certificate. */
+export function buildForwardLocalRuntimeBindingV2(
+  freeze: ForwardRoleAssignmentFreezeV3,
+): ForwardLocalRuntimeBindingV1 {
+  requireCondition(freeze?.schema === "imp24-forward-role-assignment-freeze-v3",
+    "forward V2 runtime requires the IMP-24 role-assignment freeze");
+  requireSha(freeze.freezeSha256, "forward V3 role-assignment freeze hash is missing");
+  requireCondition(hashWithout(freeze as unknown as Record<string, unknown>, "freezeSha256") === freeze.freezeSha256,
+    "forward V3 role-assignment freeze hash drift");
+  requireCondition(freeze.reviewConfigSha256 === hashCanonical(freeze.reviewConfig),
+    "forward V3 role-assignment review config drift");
+  requireCondition(freeze.roleProfileBindingsSha256 === hashCanonical(freeze.roleProfileBindings),
+    "forward V3 role-profile bindings drift");
+  requireCondition(freeze.instrumentCertificationSha256 === freeze.instrumentCertification.certificationSha256,
+    "forward V3 instrument certification drift");
+
+  const draft = {
+    schema: FORWARD_LOCAL_RUNTIME_BINDING_V2_SCHEMA,
+    localOnly: true as const,
+    qualificationBundleSha256: freeze.qualificationResultSha256,
+    roleAssignmentFreezeSha256: freeze.freezeSha256,
+    instrumentBindingSha256: freeze.instrumentCertificationSha256,
+    reviewConfig: clone(freeze.reviewConfig),
+    reviewConfigSha256: freeze.reviewConfigSha256,
+    roleProfileBindings: clone(freeze.roleProfileBindings),
+    roleProfileBindingsSha256: freeze.roleProfileBindingsSha256,
+    executionProfileHash: freeze.routeBinding.executionProfileHash,
+    routePolicyVersion: freeze.routeBinding.routePolicyVersion,
+    publish: false as const,
+    promotion: false as const,
+    deployment: false as const,
+    upload: false as const,
+    apiFallbackAllowed: false as const,
+  };
+  const binding: ForwardLocalRuntimeBindingV1 = { ...draft, bindingSha256: hashCanonical(draft) };
+  assertForwardLocalRuntimeBinding(binding);
+  return deepFreeze(binding);
+}
+
 export function serializeForwardLocalRuntimeBinding(binding: ForwardLocalRuntimeBindingV1): string {
   assertForwardLocalRuntimeBinding(binding);
   return `${JSON.stringify(binding, null, 2)}\n`;
@@ -407,12 +492,17 @@ export function parseForwardLocalRuntimeBinding(text: string): ForwardLocalRunti
 export function fixedReviewersFromRuntimeBinding(binding: ForwardLocalRuntimeBindingV1): FixedReviewerProfilesV1 {
   assertForwardLocalRuntimeBinding(binding);
   const assignment = binding.reviewConfig.roleAssignment;
-  const profile = (judge: { profileId: string; model: string; effort: QualifiedReviewerProfileV1["effort"] }, slot: ForwardRoleSlot): QualifiedReviewerProfileV1 => ({
-    profileId: judge.profileId,
-    model: judge.model,
-    effort: judge.effort,
-    qualificationHash: binding.roleProfileBindings[slot].qualificationRecordSha256,
-  });
+  const profile = (judge: { profileId: string; model: string; effort: QualifiedReviewerProfileV1["effort"] }, slot: ForwardRoleSlot): QualifiedReviewerProfileV1 => {
+    const roleBinding = binding.roleProfileBindings[slot];
+    return {
+      profileId: judge.profileId,
+      model: judge.model,
+      effort: judge.effort,
+      qualificationHash: roleBinding.schema === "imp24-forward-role-profile-binding-v3"
+        ? roleBinding.profileRoleResultSha256
+        : roleBinding.qualificationRecordSha256,
+    };
+  };
   return {
     readerPrimary: profile(assignment.readerPrimary, "readerPrimary"),
     readerBackup: profile(assignment.readerBackup, "readerAudit"),

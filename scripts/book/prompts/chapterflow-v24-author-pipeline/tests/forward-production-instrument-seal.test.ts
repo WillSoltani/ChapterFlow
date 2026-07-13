@@ -10,10 +10,12 @@ import {
   computeForwardProductionInstrumentSealSha256,
   materializeForwardProductionInstrumentSeal,
   validateForwardProductionInstrumentSeal,
+  verifyRetainedForwardProductionInstrumentSeal,
 } from "../src/orchestrator/forwardProductionInstrumentSeal.js";
 import { test } from "./harness.js";
-import { sha256Hex } from "../src/contracts/contractUtil.js";
+import { hashCanonical, sha256Hex } from "../src/contracts/contractUtil.js";
 import { runMigrationBakeoffCli } from "../src/bakeoff/migration/cli.js";
+import { IMP24_FROZEN_ROLE_THRESHOLDS } from "../src/bakeoff/migration/roleQualificationRunnerV3.js";
 
 test("production instrument seal inventories all implementation/config/schema bytes and validates current checkout", () => {
   const seal = buildForwardProductionInstrumentSeal();
@@ -87,6 +89,52 @@ test("production-seal CLI subverb stays dry unless --write is explicit", async (
       json: true,
     }), 0);
     assert.doesNotThrow(() => validateForwardProductionInstrumentSeal(JSON.parse(readFileSync(outputPath, "utf8"))));
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("IMP-24 retained-seal verification fails closed on missing or drifted artifacts", async () => {
+  const root = mkdtempSync(resolve(tmpdir(), "forward-production-seal-verify-"));
+  const outputPath = resolve(root, "seal.json");
+  try {
+    assert.throws(() => verifyRetainedForwardProductionInstrumentSeal({ outputPath }), /seal is missing/);
+    materializeForwardProductionInstrumentSeal({ outputPath, write: true });
+    const verified = verifyRetainedForwardProductionInstrumentSeal({ outputPath });
+    assert.equal(verified.verified, true);
+    assert.equal(verified.modelCalls, 0);
+    assert.equal(verified.apiCalls, 0);
+    assert.equal(await runMigrationBakeoffCli(["forward-verify-production-instrument-seal-v2"], {
+      output: outputPath,
+      json: true,
+    }), 0);
+    writeFileSync(outputPath, "{\"tampered\":true}\n");
+    assert.throws(() => verifyRetainedForwardProductionInstrumentSeal({ outputPath }), /schema\/version mismatch/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("IMP-24 threshold CLI writes only the exact frozen model-free artifact", async () => {
+  const root = mkdtempSync(resolve(tmpdir(), "imp24-threshold-cli-"));
+  const outputPath = resolve(root, "role-thresholds.json");
+  try {
+    assert.equal(await runMigrationBakeoffCli(["imp24-materialize-thresholds"], {
+      output: outputPath,
+      json: true,
+    }), 0);
+    assert.equal(existsSync(outputPath), false);
+    assert.equal(await runMigrationBakeoffCli(["imp24-materialize-thresholds"], {
+      output: outputPath,
+      write: true,
+      json: true,
+    }), 0);
+    assert.equal(hashCanonical(JSON.parse(readFileSync(outputPath, "utf8"))), hashCanonical(IMP24_FROZEN_ROLE_THRESHOLDS));
+    writeFileSync(outputPath, "{}\n");
+    await assert.rejects(() => runMigrationBakeoffCli(["imp24-materialize-thresholds"], {
+      output: outputPath,
+      json: true,
+    }), /thresholds differ/);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

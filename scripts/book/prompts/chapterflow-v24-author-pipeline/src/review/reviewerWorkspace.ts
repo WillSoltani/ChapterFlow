@@ -35,6 +35,7 @@ import { buildRoleWorkspace, unexpectedWorkspaceEntries } from "../exec/roleWork
 export type ReviewerArtifactKind =
   | "phase1-doc"       // reader-facing content WITHOUT answer key/explanations
   | "phase2-doc"       // committed derivation + answer key + adjudication ask
+  | "evidence-envelope" // exact retained Review Evidence Envelope v1 bytes
   | "source-evidence"  // bounded citable source-evidence packet
   | "source-plan"      // rendered source-use plan (claim ceilings; no identity)
   | "causal-claims";   // extracted causal-claim packet (unit-linked spans)
@@ -55,10 +56,10 @@ export type ReviewerArtifact = {
  *  source/causal verifiers see bounded evidence + the plan, never identity or
  *  other reviewers' conclusions (those artifact kinds simply do not exist). */
 export const REVIEWER_ROLE_MANIFESTS: Record<ReviewerRoleV1, readonly ReviewerArtifactKind[]> = {
-  "direct-reader": ["phase1-doc"],
+  "direct-reader": ["phase1-doc", "evidence-envelope"],
   "quiz-derivation": ["phase1-doc"],
-  "quiz-adjudication": ["phase2-doc"],
-  "source-verifier": ["phase1-doc", "source-evidence", "source-plan"],
+  "quiz-adjudication": ["phase2-doc", "evidence-envelope"],
+  "source-verifier": ["phase1-doc", "source-evidence", "source-plan", "evidence-envelope"],
   "causal-verifier": ["phase1-doc", "source-plan", "causal-claims"],
   "tiebreak": ["phase1-doc"],
   "acceptance-reader": ["phase1-doc"],

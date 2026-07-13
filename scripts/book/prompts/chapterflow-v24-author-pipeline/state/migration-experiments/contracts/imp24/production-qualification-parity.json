@@ -1,0 +1,605 @@
+{
+  "apiCalls": 0,
+  "artifactPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/production-qualification-parity.json",
+  "implementationSources": [
+    {
+      "bytesSha256": "cdd030aaf01207fec992b27f2dfb8495725f2776911b2d994952b337ce57076b",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts"
+    },
+    {
+      "bytesSha256": "06b9b7360aafc7d96cc758616733a145f61987bcf40fb844fb3a3b1c22cba1b6",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24ProductionQualificationParity.ts"
+    },
+    {
+      "bytesSha256": "e6cf613cbcf7198018cb012ea9de81360a9901c1a43b68ced5d91d4d8d649281",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/roleQualificationRunnerV3.ts"
+    },
+    {
+      "bytesSha256": "1b0cbd9e7b3ffecde66de30f0e171c1d21e79674e26c29518d4c4ffbfdcc3bf1",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/reviewEvidenceEnvelope.ts"
+    },
+    {
+      "bytesSha256": "2ddcb268690338d647aabc9bc4d8537b9e58655391ff0061afd69e0ae591db19",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/reviewModelOutputV2.ts"
+    },
+    {
+      "bytesSha256": "f4a3931d33e81c19522f874a3ce71102bda68c4d833535b0f4bbb23e0e983eaf",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardChapterConductor.ts"
+    },
+    {
+      "bytesSha256": "5d03fcbba5037bf54372033b3d4e73e1f9466485135c2375baed0e0172cf1c49",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardReviewerExecutor.ts"
+    },
+    {
+      "bytesSha256": "ba4ed646202e32e081db66de5c6ec4a9cb521bf63292f22b614d29c2ef327245",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleAssignmentFreezeV3.ts"
+    },
+    {
+      "bytesSha256": "a0aedf473763a4d3c015b682c64ce701b942b0c1a8c905f6f200b3fe19c5fb81",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts"
+    },
+    {
+      "bytesSha256": "2cba7cc33030c925e758928f0a3fe19aa8942e312f62613de65f07b3f3f420fd",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts"
+    },
+    {
+      "bytesSha256": "08b6826214531ab282606a487ac741707bbdff8e73fb8b435cbd8ff132cceec7",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/aggregateChapterReview.ts"
+    },
+    {
+      "bytesSha256": "97c19f276043dd411f3830cf24f17db1335839af809b19cc2012fc24d4bdd3ad",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/completeKeyFreeReaderDocumentV2.ts"
+    },
+    {
+      "bytesSha256": "c0b68d043eb7e7c250bf55cfe1fa8ab18ace717d14b161a7169ab8eb702e4a7a",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts"
+    },
+    {
+      "bytesSha256": "596c9940b1c53a8acaf1c6d5282528e058d63514fb7449a900e8cb477b33e5e4",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts"
+    },
+    {
+      "bytesSha256": "c126c1d98cd898c6c4acd0583b11bb244b70065f9e9f15cfb81d6a86ac320018",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/quizDerivation.ts"
+    },
+    {
+      "bytesSha256": "47de5f23c7eacfcf3e92fd409b200868239b07b02191af1c506cb88de6b3364d",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/quizIntegrityReview.ts"
+    },
+    {
+      "bytesSha256": "43e8372d485a709c1921a99733c7f76532723af15c26931fa20df9d71043de04",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/readerAuthorityBoundaryV2.ts"
+    },
+    {
+      "bytesSha256": "e1fa568ef8951e874ddc2c81796dc54c19ab8eda851b6ff444433fc171b93c85",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewEvidenceEnvelope.ts"
+    },
+    {
+      "bytesSha256": "8384b88e20f1c0f6a69cb04620b14b373ef83c1a1c97aa717a84f99779379144",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts"
+    },
+    {
+      "bytesSha256": "e0a5b51e3de9827407e91e4880a10cd25f0d93fa12cee9271f691892b1932d75",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts"
+    }
+  ],
+  "lanes": {
+    "quiz": {
+      "production": {
+        "callChain": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardChapterConductor.ts",
+            "symbol": "runForwardChapterConductor"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "compileProductionQuizEnvelopeV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "buildQuizIntegrityInlineReviewTask"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "parseQuizIntegrityModelOutputV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "assembleQuizIntegrityReviewV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefIds"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "productionReviewV2FreshnessErrors"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFreshnessErrorsV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFileAccessFailureV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolHasProhibitedConductorEchoV2"
+          }
+        ],
+        "entrypoint": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardChapterConductor.ts",
+          "symbol": "runForwardChapterConductor"
+        }
+      },
+      "qualification": {
+        "callChain": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts",
+            "symbol": "runImp24RoleQualificationCampaignV3"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts",
+            "symbol": "prepareLiveRoleQualificationV3"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts",
+            "symbol": "prepareImp24QualificationCases"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts",
+            "symbol": "compileImp24QuizProductionInstrument"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "compileProductionQuizEnvelopeV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "buildQuizIntegrityInlineReviewTask"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/roleQualificationRunnerV3.ts",
+            "symbol": "runRoleQualificationV3"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts",
+            "symbol": "createImp24QualificationOutputEvaluator"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "assembleProductionQuizReviewV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "parseQuizIntegrityModelOutputV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "assembleQuizIntegrityReviewV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefIds"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFreshnessErrorsV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFileAccessFailureV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolHasProhibitedConductorEchoV2"
+          }
+        ],
+        "entrypoint": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts",
+          "symbol": "runImp24RoleQualificationCampaignV3"
+        }
+      },
+      "shared": {
+        "assembly": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+          "symbol": "assembleQuizIntegrityReviewV2"
+        },
+        "compiler": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+          "symbol": "compileProductionQuizEnvelopeV2"
+        },
+        "freshness": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+          "symbol": "reviewProtocolFreshnessErrorsV2"
+        },
+        "laneStatus": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+          "symbol": "assembleQuizIntegrityReviewV2"
+        },
+        "parser": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+          "symbol": "parseQuizIntegrityModelOutputV2"
+        },
+        "rawProtocol": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFileAccessFailureV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolHasProhibitedConductorEchoV2"
+          }
+        ],
+        "renderer": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+          "symbol": "buildQuizIntegrityInlineReviewTask"
+        },
+        "resolver": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefIds"
+          }
+        ]
+      }
+    },
+    "reader": {
+      "production": {
+        "callChain": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardChapterConductor.ts",
+            "symbol": "runForwardChapterConductor"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "compileProductionReaderEnvelopeV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "buildReaderExperienceInlineReviewTask"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "parseReaderExperienceModelOutputV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "assembleReaderExperienceReviewV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefGroups"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefIds"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "deriveReaderDecisionCategoryV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "productionReviewV2FreshnessErrors"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFreshnessErrorsV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFileAccessFailureV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolHasProhibitedConductorEchoV2"
+          }
+        ],
+        "entrypoint": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardChapterConductor.ts",
+          "symbol": "runForwardChapterConductor"
+        }
+      },
+      "qualification": {
+        "callChain": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts",
+            "symbol": "runImp24RoleQualificationCampaignV3"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts",
+            "symbol": "prepareLiveRoleQualificationV3"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts",
+            "symbol": "prepareImp24QualificationCases"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts",
+            "symbol": "compileImp24ReaderEvidenceEnvelope"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "compileProductionReaderEnvelopeV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "buildReaderExperienceInlineReviewTask"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/roleQualificationRunnerV3.ts",
+            "symbol": "runRoleQualificationV3"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts",
+            "symbol": "createImp24QualificationOutputEvaluator"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "parseReaderExperienceModelOutputV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "assembleReaderExperienceReviewV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefGroups"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefIds"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "deriveReaderDecisionCategoryV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFreshnessErrorsV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFileAccessFailureV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolHasProhibitedConductorEchoV2"
+          }
+        ],
+        "entrypoint": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts",
+          "symbol": "runImp24RoleQualificationCampaignV3"
+        }
+      },
+      "shared": {
+        "assembly": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+          "symbol": "assembleReaderExperienceReviewV2"
+        },
+        "compiler": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+          "symbol": "compileProductionReaderEnvelopeV2"
+        },
+        "freshness": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+          "symbol": "reviewProtocolFreshnessErrorsV2"
+        },
+        "laneStatus": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+          "symbol": "deriveReaderDecisionCategoryV2"
+        },
+        "parser": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+          "symbol": "parseReaderExperienceModelOutputV2"
+        },
+        "rawProtocol": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFileAccessFailureV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolHasProhibitedConductorEchoV2"
+          }
+        ],
+        "renderer": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+          "symbol": "buildReaderExperienceInlineReviewTask"
+        },
+        "resolver": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefGroups"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefIds"
+          }
+        ]
+      }
+    },
+    "source": {
+      "production": {
+        "callChain": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardChapterConductor.ts",
+            "symbol": "runForwardChapterConductor"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "compileProductionSourceEnvelopesV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "compileProductionResolvedSourceEnvelopeSetV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "buildSourceIntegrityInlineReviewTask"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "parseSourceIntegrityModelOutputV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "assembleSourceIntegrityReviewV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefIds"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "mergeProductionSourceReviewsV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "deriveSourceIntegrityResultV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "productionReviewV2FreshnessErrors"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFreshnessErrorsV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFileAccessFailureV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolHasProhibitedConductorEchoV2"
+          }
+        ],
+        "entrypoint": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardChapterConductor.ts",
+          "symbol": "runForwardChapterConductor"
+        }
+      },
+      "qualification": {
+        "callChain": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts",
+            "symbol": "runImp24RoleQualificationCampaignV3"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts",
+            "symbol": "prepareLiveRoleQualificationV3"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts",
+            "symbol": "prepareImp24QualificationCases"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts",
+            "symbol": "compileImp24SourceProductionPartition"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "compileProductionResolvedSourceEnvelopeSetV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "buildSourceIntegrityInlineReviewTask"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/roleQualificationRunnerV3.ts",
+            "symbol": "runRoleQualificationV3"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts",
+            "symbol": "createImp24QualificationOutputEvaluator"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+            "symbol": "assembleProductionSourcePartitionReviewV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "parseSourceIntegrityModelOutputV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "assembleSourceIntegrityReviewV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefIds"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+            "symbol": "deriveSourceIntegrityResultV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFreshnessErrorsV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFileAccessFailureV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolHasProhibitedConductorEchoV2"
+          }
+        ],
+        "entrypoint": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts",
+          "symbol": "runImp24RoleQualificationCampaignV3"
+        }
+      },
+      "shared": {
+        "assembly": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+          "symbol": "assembleSourceIntegrityReviewV2"
+        },
+        "compiler": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+          "symbol": "compileProductionResolvedSourceEnvelopeSetV2"
+        },
+        "freshness": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+          "symbol": "reviewProtocolFreshnessErrorsV2"
+        },
+        "laneStatus": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+          "symbol": "deriveSourceIntegrityResultV2"
+        },
+        "parser": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+          "symbol": "parseSourceIntegrityModelOutputV2"
+        },
+        "rawProtocol": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolFileAccessFailureV2"
+          },
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+            "symbol": "reviewProtocolHasProhibitedConductorEchoV2"
+          }
+        ],
+        "renderer": {
+          "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+          "symbol": "buildSourceIntegrityInlineReviewTask"
+        },
+        "resolver": [
+          {
+            "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+            "symbol": "resolveEvidenceRefIds"
+          }
+        ]
+      }
+    }
+  },
+  "modelCalls": 0,
+  "paritySha256": "bb0ec1cd0927d3746e3c509b84858df576f47c1e624a40317f26d6c0de517fdf",
+  "protocol": "review-evidence-envelope-v1",
+  "schema": "imp24-production-qualification-parity-v1",
+  "status": "VERIFIED_SHARED_IMPLEMENTATION"
+}

@@ -3,7 +3,7 @@
  *
  * Both `book-autopilot` and `book-run` enter `runAutopilot`, which calls this
  * single factory.  The two standard files are intentionally absent until a
- * successful IMP-22 activation:
+ * successful retained IMP-22 or IMP-24 activation:
  *
  *   state/forward-local/activation-policy.json
  *   state/forward-local/runtime-binding.json
@@ -18,7 +18,16 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, realpathSync, rmSync 
 import { basename, dirname, isAbsolute, relative, resolve } from "node:path";
 
 import { PIPELINE_DIR } from "../bakeoff/paths.js";
-import { hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
+import {
+  certifyImp24Instrument,
+  validateImp24InstrumentCertificationBinding,
+} from "../bakeoff/migration/imp24InstrumentCertification.js";
+import {
+  IMP24_ROLE_QUALIFICATION_RUNNER_SCHEMA,
+  type InstrumentCertificationBindingV3,
+  type RoleQualificationRunnerResultV3,
+} from "../bakeoff/migration/roleQualificationRunnerV3.js";
+import { canonicalJson, hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { aggregateIsFresh, validateAggregatedChapterReview } from "../contracts/aggregateChapterReview.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
@@ -38,6 +47,7 @@ import { parseForwardActivationPolicy } from "./forwardActivation.js";
 import type { VerifiedNoApiRouteV1 } from "./forwardActivation.js";
 import {
   createForwardAuthorChapterWriter,
+  FORWARD_LOCAL_RUNTIME_BINDING_V2_SCHEMA,
   parseForwardLocalRuntimeBinding,
   resolveForwardLocalRuntime,
   type ForwardReviewEvidenceV1,
@@ -45,6 +55,10 @@ import {
   type ResolvedForwardLocalRuntimeV1,
   type RunLocalAuthoringChapterDepsV1,
 } from "./forwardAuthorRuntime.js";
+import {
+  FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
+  productionReviewEnvelopeSetSha256,
+} from "../review/forwardProductionReviewV2.js";
 import { createForwardReviewerExecutor } from "./forwardReviewerExecutor.js";
 import { resolveAuthorIo, type AuthorWriteOneInvoker, type PreparedAuthorCandidate } from "./authorRun.js";
 import { readPreparedAuthorCompilerInputs, type AuthorWriteOneResult } from "./authorRun.js";
@@ -71,12 +85,22 @@ import type { ForwardChapterConductorResultV1, ForwardReviewerExecutor } from ".
 import type { ForwardAuthoringRiskSignalsV1 } from "./modelPolicy.js";
 import { ROUTE_POLICY_VERSION } from "./modelPolicy.js";
 import type { ForwardQualificationInstrumentBindingV1 } from "./forwardRoleAssignmentFreeze.js";
+import {
+  FORWARD_ROLE_ASSIGNMENT_FREEZE_V3_SCHEMA,
+  type ForwardRoleAssignmentFreezeV3,
+} from "./forwardRoleAssignmentFreezeV3.js";
+import {
+  GOLD_ENVELOPE_EXPERIMENT_ID,
+  PILOT_ENVELOPE_EXPERIMENT_ID,
+  forwardV2SourceExecutionOrderProblems,
+} from "./forwardValidationCampaign.js";
 
 export const FORWARD_LOCAL_STATE_DIR = resolve(PIPELINE_DIR, "state", "forward-local");
 export const FORWARD_LOCAL_ACTIVATION_POLICY_PATH = resolve(FORWARD_LOCAL_STATE_DIR, "activation-policy.json");
 export const FORWARD_LOCAL_RUNTIME_BINDING_PATH = resolve(FORWARD_LOCAL_STATE_DIR, "runtime-binding.json");
 export const FORWARD_LOCAL_BOOK_ACCEPTANCE_SCHEMA = "forward-local-book-acceptance-v1" as const;
 export const FORWARD_LOCAL_CURRENT_EVIDENCE_SCHEMA = "forward-local-current-evidence-v1" as const;
+export const FORWARD_LOCAL_RETAINED_CHAPTER_RESULT_V2_SCHEMA = "forward-local-retained-chapter-result-v2" as const;
 
 export const FORWARD_LOCAL_CURRENT_PATHS = Object.freeze({
   qualification: "current/qualification-bundle.json",
@@ -125,6 +149,7 @@ export type ForwardLocalBookAcceptanceV1 = {
     chapterContentSha256: string;
     resultRelPath: string;
     executionEnvelopeSha256: string;
+    retainedRecordSha256?: string;
   }>;
   bookSweep: {
     verdict: "PASS";
@@ -166,6 +191,17 @@ export type ForwardLocalCurrentEvidenceV1 = {
   evidenceSha256: string;
 };
 
+export type ForwardLocalRetainedChapterResultV2 = {
+  schema: typeof FORWARD_LOCAL_RETAINED_CHAPTER_RESULT_V2_SCHEMA;
+  runtimeSha256: string;
+  runtimeBindingSha256: string;
+  reviewConfigSha256: string;
+  roleAssignmentFreezeSha256: string;
+  result: ForwardChapterConductorResultV1;
+  resultSha256: string;
+  recordSha256: string;
+};
+
 export type ResolveStandardForwardAutopilotDepsV1 = {
   stateDir?: string;
   readText?: (path: string) => string | null;
@@ -177,7 +213,7 @@ export type ResolveStandardForwardAutopilotDepsV1 = {
   /** Hermetic test seam. Production always re-hashes the live source/schema
    * files named by the frozen qualification spec. */
   verifyCurrentInstrumentBinding?: (
-    binding: ForwardQualificationInstrumentBindingV1,
+    binding: ForwardQualificationInstrumentBindingV1 | InstrumentCertificationBindingV3,
     qualificationExperimentId: string,
   ) => string;
   loadChapters?: typeof loadBookChapters;
@@ -356,6 +392,7 @@ function readRequiredJson(
 function currentEvidenceHash(
   kind: "pilot" | "gold",
   artifact: { path: string; value: Record<string, unknown> },
+  identity: "legacy-v1" | "imp24-v2-envelope" = "legacy-v1",
 ): string {
   const value = artifact.value as unknown as ForwardLocalCurrentEvidenceV1;
   if (value.schema !== FORWARD_LOCAL_CURRENT_EVIDENCE_SCHEMA || value.kind !== kind) {
@@ -372,6 +409,15 @@ function currentEvidenceHash(
       || payload.accepted !== true || !Array.isArray(payload.hardFailures) || payload.hardFailures.length !== 0) {
     throw new ForwardLocalAutopilotError(`${artifact.path}: current ${kind} payload is not an accepted campaign result`);
   }
+  if (identity === "imp24-v2-envelope") {
+    const expectedExperimentId = kind === "pilot" ? PILOT_ENVELOPE_EXPERIMENT_ID : GOLD_ENVELOPE_EXPERIMENT_ID;
+    if (payload.experimentId !== expectedExperimentId) {
+      throw new ForwardLocalAutopilotError(`${artifact.path}: current ${kind} payload is not the fresh v2-envelope identity`);
+    }
+    if (!payload.capabilitiesUsed || !Object.values(payload.capabilitiesUsed as Record<string, unknown>).every((entry) => entry === false)) {
+      throw new ForwardLocalAutopilotError(`${artifact.path}: current ${kind} payload used an external capability`);
+    }
+  }
   const accounting = payload.accounting as Record<string, unknown> | null;
   if (!accounting || accounting.finalPassRate !== 1 || typeof accounting.firstWritePassRate !== "number"
       || accounting.firstWritePassRate < 0.75 || accounting.finalSourceBlockers !== 0
@@ -382,6 +428,30 @@ function currentEvidenceHash(
   }
   if (kind === "pilot" && accounting.totalChapters !== 8) {
     throw new ForwardLocalAutopilotError(`${artifact.path}: current pilot does not contain exactly eight chapters`);
+  }
+  if (identity === "imp24-v2-envelope" && kind === "gold" && accounting.totalChapters !== 13) {
+    throw new ForwardLocalAutopilotError(`${artifact.path}: current envelope gold does not contain the complete thirteen-chapter book`);
+  }
+  if (identity === "imp24-v2-envelope") {
+    for (const field of [
+      "wrongQuizKeys", "unsupportedSourceBoundInventedDetails", "misleadingConstructedFraming",
+      "genericHistoricalSpecificityLeaks", "repeatedOrUnboundedRepair",
+    ] as const) {
+      if (accounting[field] !== 0) {
+        throw new ForwardLocalAutopilotError(`${artifact.path}: current ${kind} accounting has ${field}=${String(accounting[field])}`);
+      }
+    }
+    const finals = payload.finalByChapter as Record<string, Record<string, unknown>> | null;
+    if (!finals || Object.keys(finals).length !== accounting.totalChapters
+        || Object.values(finals).some((entry) => {
+          const aggregate = entry.aggregate as Record<string, unknown> | null;
+          const envelope = entry.executionEnvelope as Record<string, unknown> | null;
+          return entry.pass !== true || entry.finalStatus !== "PASS"
+            || typeof aggregate?.readerComposite !== "number" || aggregate.readerComposite < 80
+            || envelope?.finalStatus !== "PASS";
+        })) {
+      throw new ForwardLocalAutopilotError(`${artifact.path}: current ${kind} final chapter evidence is incomplete, stale, or below reader composite 80`);
+    }
   }
   if (kind === "gold") {
     const evaluation = payload.goldEvaluation as Record<string, unknown> | null;
@@ -395,17 +465,47 @@ function currentEvidenceHash(
         || sweep?.verdict !== "PASS") {
       throw new ForwardLocalAutopilotError(`${artifact.path}: current gold evaluation/sweep does not meet acceptance`);
     }
+    if (identity === "imp24-v2-envelope") {
+      if (accounting.unsupportedHighSeverityCausalClaims !== 0
+          || typeof accounting.fullRegenerations !== "number"
+          || accounting.fullRegenerations / Number(accounting.totalChapters) > 0.25
+          || typeof accounting.chaptersRequiringContentRepair !== "number"
+          || accounting.chaptersRequiringContentRepair / Number(accounting.totalChapters) > 0.40) {
+        throw new ForwardLocalAutopilotError(`${artifact.path}: current gold accounting violates the frozen repair/causal ceilings`);
+      }
+      const evidenceBinding = evaluation.evidenceBinding as Record<string, unknown> | null;
+      const raters = evidenceBinding?.raters as Array<Record<string, unknown>> | undefined;
+      if (!Array.isArray(raters) || raters.length !== 2
+          || raters[0]?.actorId === raters[1]?.actorId
+          || raters[0]?.executionId === raters[1]?.executionId) {
+        throw new ForwardLocalAutopilotError(`${artifact.path}: current gold evidence lacks two distinct blind raters`);
+      }
+    }
   }
   return value.evidenceSha256;
 }
 
 function defaultVerifyCurrentInstrumentBinding(
-  binding: ForwardQualificationInstrumentBindingV1,
+  binding: ForwardQualificationInstrumentBindingV1 | InstrumentCertificationBindingV3,
   qualificationExperimentId: string,
 ): string {
+  if (qualificationExperimentId === "s16-forward-role-qualification-v3-envelope") {
+    const certification = binding as InstrumentCertificationBindingV3;
+    const errors = validateImp24InstrumentCertificationBinding(certification);
+    if (errors.length > 0) {
+      throw new ForwardLocalAutopilotError(`current V3 instrument certification is invalid: ${errors.join("; ")}`);
+    }
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const current = certifyImp24Instrument({ repositoryRoot }).report.binding;
+    if (canonicalJson(current) !== canonicalJson(certification)) {
+      throw new ForwardLocalAutopilotError("current V3 instrument/corpus/seal bytes differ from the activated model-free certification");
+    }
+    return certification.certificationSha256;
+  }
   if (!/^s16-forward-role-qualification-v[1-9][0-9]*$/.test(qualificationExperimentId)) {
     throw new ForwardLocalAutopilotError(`qualification experiment identity is invalid: ${qualificationExperimentId}`);
   }
+  const legacyBinding = binding as ForwardQualificationInstrumentBindingV1;
   const qualificationSpecPath = resolve(
     PIPELINE_DIR,
     "state/migration-experiments",
@@ -431,35 +531,38 @@ function defaultVerifyCurrentInstrumentBinding(
   for (const role of ["reader", "source", "quiz"] as const) {
     const instrument = spec.instruments?.[role];
     if (!instrument) throw new ForwardLocalAutopilotError(`qualification spec lacks ${role} instrument paths`);
-    if (liveHash(instrument.outputSchemaPath, `${role} schema`) !== binding.schemaHashes[role]) {
+    if (liveHash(instrument.outputSchemaPath, `${role} schema`) !== legacyBinding.schemaHashes[role]) {
       throw new ForwardLocalAutopilotError(`${role} output schema changed after activation`);
     }
-    if (liveHash(instrument.promptSourcePath, `${role} prompt source`) !== binding.promptSourceHashes[role]) {
+    if (liveHash(instrument.promptSourcePath, `${role} prompt source`) !== legacyBinding.promptSourceHashes[role]) {
       throw new ForwardLocalAutopilotError(`${role} prompt source changed after activation`);
     }
   }
   const aggregate = spec.instruments?.aggregator;
-  if (liveHash(aggregate?.sourcePath, "aggregate source") !== binding.promptSourceHashes.aggregate) {
+  if (liveHash(aggregate?.sourcePath, "aggregate source") !== legacyBinding.promptSourceHashes.aggregate) {
     throw new ForwardLocalAutopilotError("aggregate source changed after activation");
   }
   const { profileHash } = resolveExecutionProfile("chapter-reviewer");
-  if (binding.executionRoute.executionProfileHash !== profileHash
-      || binding.executionRoute.routePolicyVersion !== ROUTE_POLICY_VERSION) {
+  if (legacyBinding.executionRoute.executionProfileHash !== profileHash
+      || legacyBinding.executionRoute.routePolicyVersion !== ROUTE_POLICY_VERSION) {
     throw new ForwardLocalAutopilotError("review execution profile or route policy changed after activation");
   }
-  if (binding.instrumentVersions.reader !== READER_EXPERIENCE_RUBRIC_VERSION
-      || binding.instrumentVersions.source !== SOURCE_INTEGRITY_RUBRIC_VERSION
-      || binding.instrumentVersions.quiz !== QUIZ_INTEGRITY_ADJUDICATION_SCHEMA
-      || binding.instrumentVersions.aggregate !== "aggregated-chapter-review-v1") {
+  if (legacyBinding.instrumentVersions.reader !== READER_EXPERIENCE_RUBRIC_VERSION
+      || legacyBinding.instrumentVersions.source !== SOURCE_INTEGRITY_RUBRIC_VERSION
+      || legacyBinding.instrumentVersions.quiz !== QUIZ_INTEGRITY_ADJUDICATION_SCHEMA
+      || legacyBinding.instrumentVersions.aggregate !== "aggregated-chapter-review-v1") {
     throw new ForwardLocalAutopilotError("review instrument version changed after activation");
   }
-  return hashCanonical(binding);
+  return hashCanonical(legacyBinding);
 }
 
 function loadCurrentRuntimeEvidence(
   stateDir: string,
   readText: (path: string) => string | null,
-  verifyInstrumentBinding: (binding: ForwardQualificationInstrumentBindingV1, qualificationExperimentId: string) => string,
+  verifyInstrumentBinding: (
+    binding: ForwardQualificationInstrumentBindingV1 | InstrumentCertificationBindingV3,
+    qualificationExperimentId: string,
+  ) => string,
 ): {
   evidence: { qualificationEvidenceHash: string; pilotEvidenceHash: string; goldBookEvidenceHash: string };
   instrumentBindingSha256: string;
@@ -468,6 +571,65 @@ function loadCurrentRuntimeEvidence(
   noApiRoute: VerifiedNoApiRouteV1;
 } {
   const qualification = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.qualification, readText);
+  const pilot = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.pilot, readText);
+  const gold = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.gold, readText);
+  const instrument = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.instrumentBinding, readText);
+  const reviewConfig = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.reviewConfig, readText);
+  const roleFreeze = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.roleAssignmentFreeze, readText);
+  const noApiRoute = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.noApiRoute, readText);
+
+  if (qualification.value.schema === IMP24_ROLE_QUALIFICATION_RUNNER_SCHEMA) {
+    const result = qualification.value as unknown as RoleQualificationRunnerResultV3;
+    if (result.experimentId !== "s16-forward-role-qualification-v3-envelope"
+        || result.roleSetReady !== true || result.roleSetBlockedReason !== null) {
+      throw new ForwardLocalAutopilotError(`${qualification.path}: current V3 qualification is not role-ready`);
+    }
+    if (!SHA256.test(result.freeze?.freezeSha256 ?? "")
+        || result.freeze.freezeSha256 !== hashWithout(result.freeze as unknown as Record<string, unknown>, "freezeSha256")) {
+      throw new ForwardLocalAutopilotError(`${qualification.path}: current V3 qualification freeze hash drift`);
+    }
+    const qualificationHash = hashCanonical(result);
+    const certification = instrument.value as unknown as InstrumentCertificationBindingV3;
+    const certificationErrors = validateImp24InstrumentCertificationBinding(certification);
+    if (certificationErrors.length > 0) {
+      throw new ForwardLocalAutopilotError(`${instrument.path}: current V3 instrument certification is invalid: ${certificationErrors.join("; ")}`);
+    }
+    const freeze = roleFreeze.value as unknown as ForwardRoleAssignmentFreezeV3;
+    if (freeze.schema !== FORWARD_ROLE_ASSIGNMENT_FREEZE_V3_SCHEMA
+        || !SHA256.test(freeze.freezeSha256 ?? "")
+        || freeze.freezeSha256 !== hashWithout(roleFreeze.value, "freezeSha256")) {
+      throw new ForwardLocalAutopilotError(`${roleFreeze.path}: current V3 role-assignment freeze hash drift`);
+    }
+    if (freeze.qualificationResultSha256 !== qualificationHash
+        || freeze.qualificationFreezeSha256 !== result.freeze.freezeSha256
+        || freeze.instrumentCertificationSha256 !== certification.certificationSha256
+        || canonicalJson(freeze.instrumentCertification) !== canonicalJson(certification)
+        || freeze.corpusBundleSha256 !== certification.corpusBundleSha256
+        || freeze.productionInstrumentSealSha256 !== certification.productionInstrumentSealSha256) {
+      throw new ForwardLocalAutopilotError(`${roleFreeze.path}: current V3 role freeze belongs to different qualification/certification evidence`);
+    }
+    if (freeze.reviewConfigSha256 !== hashCanonical(freeze.reviewConfig)
+        || freeze.reviewConfigSha256 !== hashCanonical(reviewConfig.value)
+        || freeze.reviewConfig.reviewProtocolVersion !== "imp24-review-v2") {
+      throw new ForwardLocalAutopilotError(`${reviewConfig.path}: current V3 review config is stale or not envelope V2`);
+    }
+    const verifiedCertificationSha256 = verifyInstrumentBinding(certification, result.experimentId);
+    if (verifiedCertificationSha256 !== certification.certificationSha256) {
+      throw new ForwardLocalAutopilotError(`${instrument.path}: current V3 certification verifier returned another identity`);
+    }
+    return {
+      evidence: {
+        qualificationEvidenceHash: qualificationHash,
+        pilotEvidenceHash: currentEvidenceHash("pilot", pilot, "imp24-v2-envelope"),
+        goldBookEvidenceHash: currentEvidenceHash("gold", gold, "imp24-v2-envelope"),
+      },
+      instrumentBindingSha256: verifiedCertificationSha256,
+      reviewConfigSha256: freeze.reviewConfigSha256,
+      roleAssignmentFreezeSha256: freeze.freezeSha256,
+      noApiRoute: noApiRoute.value as unknown as VerifiedNoApiRouteV1,
+    };
+  }
+
   const qualificationHash = qualification.value.bundleSha256;
   if (typeof qualificationHash !== "string" || !SHA256.test(qualificationHash)
       || hashWithout(qualification.value, "bundleSha256") !== qualificationHash) {
@@ -477,12 +639,6 @@ function loadCurrentRuntimeEvidence(
   if (typeof qualificationExperimentId !== "string" || qualificationExperimentId.length === 0) {
     throw new ForwardLocalAutopilotError(`${qualification.path}: current qualification experiment identity is missing`);
   }
-  const pilot = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.pilot, readText);
-  const gold = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.gold, readText);
-  const instrument = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.instrumentBinding, readText);
-  const reviewConfig = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.reviewConfig, readText);
-  const roleFreeze = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.roleAssignmentFreeze, readText);
-  const noApiRoute = readRequiredJson(stateDir, FORWARD_LOCAL_CURRENT_PATHS.noApiRoute, readText);
   const roleFreezeHash = roleFreeze.value.freezeSha256;
   if (typeof roleFreezeHash !== "string" || !SHA256.test(roleFreezeHash)
       || hashWithout(roleFreeze.value, "freezeSha256") !== roleFreezeHash) {
@@ -575,10 +731,207 @@ function readAcceptanceArtifact(
   } catch { return null; }
 }
 
-function conductorAcceptanceProblems(
+type ForwardActiveRuntime = Extract<ResolvedForwardLocalRuntimeV1, { mode: "FORWARD_ACTIVE" }>;
+
+function isForwardActiveV2Runtime(runtime: ResolvedForwardLocalRuntimeV1 | undefined): runtime is ForwardActiveRuntime {
+  return runtime?.mode === "FORWARD_ACTIVE"
+    && runtime.binding.schema === FORWARD_LOCAL_RUNTIME_BINDING_V2_SCHEMA;
+}
+
+function hashOrNull(value: unknown | null | undefined): string | null {
+  return value === null || value === undefined ? null : hashCanonical(value);
+}
+
+function currentJudgeForPanelRole(runtime: ForwardActiveRuntime, panelRole: string | undefined): unknown | null {
+  const assignment = runtime.binding.reviewConfig.roleAssignment;
+  if (panelRole === "readerPrimary") return assignment.readerPrimary;
+  if (panelRole === "readerAudit") return assignment.readerBackup;
+  if (panelRole === "sourcePrimary") return assignment.sourcePrimary;
+  if (panelRole === "sourceAdjudicator") return assignment.sourceAdjudicator;
+  if (panelRole === "quizSemanticAdjudicator") return assignment.quizAdjudicator;
+  return null;
+}
+
+/** Re-derive every IMP-24 identity needed by local acceptance. Content equality
+ * alone is deliberately insufficient: the exact envelope/result hashes and the
+ * currently activated fixed config must still agree. */
+export function forwardActiveV2EvidenceProblems(
+  result: ForwardChapterConductorResultV1,
+  expectedContentSha256: string,
+  runtime: ForwardActiveRuntime,
+): string[] {
+  const problems: string[] = [];
+  const envelope = result.executionEnvelope;
+  const authoritative = result.authoritativeV2;
+  const reviewConfig = runtime.binding.reviewConfig;
+
+  if (!authoritative) {
+    problems.push("authoritative V2 review evidence is missing");
+    return problems;
+  }
+  if (authoritative.protocolVersion !== FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2
+      || envelope.reviewProtocolVersion !== FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2) {
+    problems.push("authoritative V2 review protocol is missing or stale");
+  }
+  if (envelope.frozenReviewConfigSha256 !== runtime.binding.reviewConfigSha256
+      || envelope.frozenReviewConfigSha256 !== hashCanonical(reviewConfig)) {
+    problems.push("retained V2 review config is not the current runtime config");
+  }
+  if (envelope.roleAssignmentSha256 !== reviewConfig.roleAssignmentSha256) {
+    problems.push("retained V2 role assignment is not current");
+  }
+  if (envelope.instrumentManifestSha256 !== reviewConfig.instrumentManifestSha256) {
+    problems.push("retained V2 instrument manifest is not current");
+  }
+  if (envelope.panelPolicySha256 !== (reviewConfig.panelPolicySha256 ?? null)) {
+    problems.push("retained V2 panel policy is not current");
+  }
+
+  const readerEnvelopeSha256 = authoritative.readerEnvelopeSha256;
+  const sourceEnvelopeSha256s = authoritative.sourceEnvelopeSha256s;
+  const quizEnvelopeSha256 = authoritative.quizEnvelopeSha256;
+  if (!SHA256.test(readerEnvelopeSha256 ?? "")
+      || !Array.isArray(sourceEnvelopeSha256s) || sourceEnvelopeSha256s.length === 0
+      || sourceEnvelopeSha256s.some((hash) => !SHA256.test(hash))
+      || !SHA256.test(quizEnvelopeSha256 ?? "")) {
+    problems.push("authoritative V2 envelope hashes are incomplete");
+  } else {
+    const envelopeSetSha256 = productionReviewEnvelopeSetSha256({
+      readerEnvelopeSha256: readerEnvelopeSha256!,
+      sourceEnvelopeSha256s,
+      quizEnvelopeSha256: quizEnvelopeSha256!,
+    });
+    if (authoritative.envelopeSetSha256 !== envelopeSetSha256
+        || envelope.evidenceEnvelopeSetSha256 !== envelopeSetSha256) {
+      problems.push("authoritative V2 envelope-set hash drift");
+    }
+  }
+  if (envelope.readerEvidenceEnvelopeSha256 !== readerEnvelopeSha256
+      || hashCanonical(envelope.sourceEvidenceEnvelopeSha256s ?? []) !== hashCanonical(sourceEnvelopeSha256s)
+      || envelope.quizEvidenceEnvelopeSha256 !== quizEnvelopeSha256) {
+    problems.push("execution envelope carries stale V2 envelope hashes");
+  }
+
+  const reader = authoritative.reader;
+  const readerAudit = authoritative.readerAudit;
+  const source = authoritative.source;
+  const sourceAdjudication = authoritative.sourceAdjudication;
+  const quiz = authoritative.quiz;
+  if (!reader || reader.chapterContentSha256 !== expectedContentSha256
+      || reader.evidenceEnvelopeSha256 !== readerEnvelopeSha256) {
+    problems.push("authoritative reader V2 result is missing or stale");
+  }
+  if (readerAudit && (readerAudit.chapterContentSha256 !== expectedContentSha256
+      || readerAudit.evidenceEnvelopeSha256 !== readerEnvelopeSha256)) {
+    problems.push("authoritative reader-audit V2 result is stale");
+  }
+  if (!source || source.chapterContentSha256 !== expectedContentSha256
+      || hashCanonical(source.evidenceEnvelopeSha256s ?? []) !== hashCanonical(sourceEnvelopeSha256s)
+      || source.evidenceEnvelopeSha256 !== hashCanonical(sourceEnvelopeSha256s)) {
+    problems.push("authoritative source V2 result is missing or stale");
+  }
+  if (sourceAdjudication && (sourceAdjudication.chapterContentSha256 !== expectedContentSha256
+      || hashCanonical(sourceAdjudication.evidenceEnvelopeSha256s ?? []) !== hashCanonical(sourceEnvelopeSha256s)
+      || sourceAdjudication.evidenceEnvelopeSha256 !== hashCanonical(sourceEnvelopeSha256s))) {
+    problems.push("authoritative source-adjudicator V2 result is stale");
+  }
+  if (!quiz || quiz.chapterContentSha256 !== expectedContentSha256
+      || quiz.evidenceEnvelopeSha256 !== quizEnvelopeSha256) {
+    problems.push("authoritative quiz V2 result is missing or stale");
+  }
+  if (envelope.readerV2ResultSha256 !== hashOrNull(reader)
+      || envelope.readerAuditV2ResultSha256 !== hashOrNull(readerAudit)
+      || envelope.sourceV2ResultSha256 !== hashOrNull(source)
+      || envelope.sourceAdjudicatorV2ResultSha256 !== hashOrNull(sourceAdjudication)
+      || envelope.quizV2ResultSha256 !== hashOrNull(quiz)) {
+    problems.push("authoritative V2 result hash drift");
+  }
+
+  for (const execution of envelope.executions) {
+    const expected = execution.expected;
+    const received = execution.received;
+    const label = execution.panelRole ?? execution.lane;
+    if (expected.reviewProtocol !== "review-evidence-envelope-v1"
+        || !SHA256.test(expected.evidenceEnvelopeSha256 ?? "")
+        || !SHA256.test(expected.evidenceEnvelopeBytesSha256 ?? "")) {
+      problems.push(`${label}: exact evidence-envelope binding is missing`);
+    }
+    if ((execution.lane === "reader" && expected.evidenceEnvelopeSha256 !== readerEnvelopeSha256)
+        || (execution.lane === "source" && !sourceEnvelopeSha256s.includes(expected.evidenceEnvelopeSha256 ?? ""))
+        || (execution.lane === "quiz" && expected.evidenceEnvelopeSha256 !== quizEnvelopeSha256)) {
+      problems.push(`${label}: execution used an envelope outside the authoritative V2 set`);
+    }
+    if (expected.roleAssignmentSha256 !== reviewConfig.roleAssignmentSha256
+        || expected.instrumentManifestSha256 !== reviewConfig.instrumentManifestSha256
+        || expected.executionProfileHash !== runtime.binding.executionProfileHash
+        || expected.routePolicyVersion !== runtime.binding.routePolicyVersion) {
+      problems.push(`${label}: retained execution route/config is stale`);
+    }
+    const judge = currentJudgeForPanelRole(runtime, execution.panelRole);
+    if (!judge || execution.roleProfileSha256 !== hashCanonical({
+      judge,
+      executionProfileHash: runtime.binding.executionProfileHash,
+      routePolicyVersion: runtime.binding.routePolicyVersion,
+    })) {
+      problems.push(`${label}: retained role profile is not current`);
+    }
+    if (execution.status === "VERIFIED" && !received) {
+      problems.push(`${label}: retained VERIFIED V2 execution receipt is missing`);
+    }
+    if (received && (received.reviewProtocol !== expected.reviewProtocol
+        || received.evidenceEnvelopeSha256 !== expected.evidenceEnvelopeSha256
+        || received.evidenceEnvelopeBytesSha256 !== expected.evidenceEnvelopeBytesSha256
+        || received.reviewOperationKey !== expected.reviewOperationKey
+        || received.roleAssignmentSha256 !== expected.roleAssignmentSha256
+        || received.instrumentManifestSha256 !== expected.instrumentManifestSha256
+        || received.executionProfileHash !== expected.executionProfileHash
+        || received.routePolicyVersion !== expected.routePolicyVersion)) {
+      problems.push(`${label}: retained V2 receipt hash/config drift`);
+    }
+  }
+  const sourceAdjudicationTriggered = sourceAdjudication !== null;
+  const expectedPanelRoles = [
+    "readerPrimary",
+    ...(readerAudit !== null ? ["readerAudit"] : []),
+    ...Array.from({ length: sourceEnvelopeSha256s.length }, () => "sourcePrimary"),
+    ...(sourceAdjudicationTriggered
+      ? Array.from({ length: sourceEnvelopeSha256s.length }, () => "sourceAdjudicator")
+      : []),
+    "quizSemanticAdjudicator",
+  ];
+  const expectedLanes = expectedPanelRoles.map((panelRole) =>
+    panelRole.startsWith("reader") ? "reader" : panelRole.startsWith("source") ? "source" : "quiz");
+  if (envelope.executions.map((execution) => execution.panelRole ?? "missing").join(",")
+      !== expectedPanelRoles.join(",")) {
+    problems.push("retained V2 result does not preserve the exact authoritative panel order");
+  }
+  if (envelope.executions.map((execution) => execution.lane).join(",") !== expectedLanes.join(",")) {
+    problems.push("retained V2 panel roles do not match their split lanes");
+  }
+  problems.push(...forwardV2SourceExecutionOrderProblems({
+    executions: envelope.executions,
+    sourceEnvelopeSha256s,
+    sourceAdjudicationTriggered,
+  }));
+  const readerExecutions = envelope.executions.filter((execution) => execution.lane === "reader");
+  const quizExecutions = envelope.executions.filter((execution) => execution.lane === "quiz");
+  if (readerExecutions.some((execution) => execution.reviewOperationKey !== "reader")
+      || quizExecutions.some((execution) => execution.reviewOperationKey !== "quiz")) {
+    problems.push("retained V2 reader/quiz operation keys differ from the fixed conductor identities");
+  }
+  const executionIds = envelope.executions.map((execution) => execution.received?.executionId ?? "");
+  if (executionIds.some((executionId) => !executionId)
+      || new Set(executionIds).size !== executionIds.length) {
+    problems.push("retained V2 result lacks independent receipts for the complete authoritative panel");
+  }
+  return problems;
+}
+
+export function forwardLocalConductorAcceptanceProblems(
   result: ForwardChapterConductorResultV1,
   expectedContentSha256: string,
   expectedEnvelopeSha256: string,
+  runtime?: ResolvedForwardLocalRuntimeV1,
 ): string[] {
   const problems: string[] = [];
   if (result.disposition !== "COMMITTED" || result.finalStatus !== "PASS") problems.push("conductor result is not a committed PASS");
@@ -609,6 +962,9 @@ function conductorAcceptanceProblems(
     .map((execution) => execution.lane));
   if (result.executionEnvelope.executions.some((execution) => execution.status !== "VERIFIED")
       || !lanes.has("reader") || !lanes.has("source") || !lanes.has("quiz")) problems.push("split-lane execution receipts are incomplete/unverified");
+  if (isForwardActiveV2Runtime(runtime)) {
+    problems.push(...forwardActiveV2EvidenceProblems(result, expectedContentSha256, runtime));
+  }
   return problems;
 }
 
@@ -628,21 +984,113 @@ function writeJsonAtomicReadBack(path: string, value: unknown, createOnce = fals
   }
 }
 
+function buildForwardLocalRetainedChapterResultV2(
+  result: ForwardChapterConductorResultV1,
+  runtime: ForwardActiveRuntime,
+): ForwardLocalRetainedChapterResultV2 {
+  const draft = {
+    schema: FORWARD_LOCAL_RETAINED_CHAPTER_RESULT_V2_SCHEMA,
+    runtimeSha256: runtime.runtimeSha256,
+    runtimeBindingSha256: runtime.binding.bindingSha256,
+    reviewConfigSha256: runtime.binding.reviewConfigSha256,
+    roleAssignmentFreezeSha256: runtime.binding.roleAssignmentFreezeSha256,
+    result,
+    resultSha256: hashCanonical(result),
+  };
+  return { ...draft, recordSha256: hashCanonical(draft) };
+}
+
+type RetainedChapterResultInspection = {
+  result: ForwardChapterConductorResultV1 | null;
+  recordSha256: string | null;
+  problems: string[];
+};
+
+function inspectForwardLocalRetainedChapterResult(
+  value: unknown,
+  runtime: ResolvedForwardLocalRuntimeV1,
+  expectedRecordSha256?: string,
+): RetainedChapterResultInspection {
+  if (!isForwardActiveV2Runtime(runtime)) {
+    return {
+      result: value && typeof value === "object" && !Array.isArray(value)
+        ? value as ForwardChapterConductorResultV1
+        : null,
+      recordSha256: null,
+      problems: [],
+    };
+  }
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return { result: null, recordSha256: null, problems: ["retained V2 result record is malformed"] };
+  }
+  const record = value as unknown as ForwardLocalRetainedChapterResultV2;
+  if (record.schema !== FORWARD_LOCAL_RETAINED_CHAPTER_RESULT_V2_SCHEMA) {
+    return {
+      result: value as ForwardChapterConductorResultV1,
+      recordSha256: null,
+      problems: ["retained result lacks the current V2 runtime/config/role-freeze binding"],
+    };
+  }
+  const problems: string[] = [];
+  if (!SHA256.test(record.recordSha256 ?? "")
+      || hashWithout(record as unknown as Record<string, unknown>, "recordSha256") !== record.recordSha256) {
+    problems.push("retained V2 result record hash drift");
+  }
+  if (expectedRecordSha256 !== undefined && record.recordSha256 !== expectedRecordSha256) {
+    problems.push("acceptance carries another retained V2 result record hash");
+  }
+  if (record.runtimeSha256 !== runtime.runtimeSha256
+      || record.runtimeBindingSha256 !== runtime.binding.bindingSha256) {
+    problems.push("retained V2 result belongs to another active runtime");
+  }
+  if (record.reviewConfigSha256 !== runtime.binding.reviewConfigSha256) {
+    problems.push("retained V2 result belongs to another review config");
+  }
+  if (record.roleAssignmentFreezeSha256 !== runtime.binding.roleAssignmentFreezeSha256) {
+    problems.push("retained V2 result belongs to another role freeze");
+  }
+  if (!record.result || record.resultSha256 !== hashCanonical(record.result)) {
+    problems.push("retained V2 conductor-result hash drift");
+  }
+  return {
+    result: record.result ?? null,
+    recordSha256: SHA256.test(record.recordSha256 ?? "") ? record.recordSha256 : null,
+    problems,
+  };
+}
+
+export function forwardLocalRetainedChapterResultProblems(
+  value: unknown,
+  runtime: ResolvedForwardLocalRuntimeV1,
+  expectedRecordSha256?: string,
+): string[] {
+  return inspectForwardLocalRetainedChapterResult(value, runtime, expectedRecordSha256).problems;
+}
+
 function retainStandardForwardChapterResult(
   stateDir: string,
   loadChapters: typeof loadBookChapters,
+  runtime: ResolvedForwardLocalRuntimeV1,
   args: { bookId: string; chapterNumber: number; result: ForwardChapterConductorResultV1 },
 ): () => void {
   const chapter = loadChapters(args.bookId).find((candidate) => candidate.number === args.chapterNumber);
   if (!chapter) throw new ForwardLocalAutopilotError(`cannot retain ch${args.chapterNumber}: canonical chapter is missing after commit`);
   const contentSha256 = chapterContentHash(chapter);
-  const problems = conductorAcceptanceProblems(args.result, contentSha256, args.result.executionEnvelopeSha256);
+  const problems = forwardLocalConductorAcceptanceProblems(
+    args.result,
+    contentSha256,
+    args.result.executionEnvelopeSha256,
+    runtime,
+  );
   if (problems.length > 0) throw new ForwardLocalAutopilotError(`cannot retain ch${args.chapterNumber} conductor result: ${problems.join("; ")}`);
   const nn = String(args.chapterNumber).padStart(2, "0");
   const file = `ch${nn}.${contentSha256}.${args.result.executionEnvelopeSha256}.result.json`;
   const path = resolve(stateDir, "books", args.bookId, "chapters", file);
   const existed = existsSync(path);
-  try { writeJsonAtomicReadBack(path, args.result, true); }
+  const retained = isForwardActiveV2Runtime(runtime)
+    ? buildForwardLocalRetainedChapterResultV2(args.result, runtime)
+    : args.result;
+  try { writeJsonAtomicReadBack(path, retained, true); }
   catch (error) {
     if (!existed) rmSync(path, { force: true });
     throw error;
@@ -654,16 +1102,27 @@ function currentRetainedChapterReview(
   stateDir: string,
   bookId: string,
   chapter: ChapterV21,
+  runtime: ResolvedForwardLocalRuntimeV1,
 ): ForwardLocalBookAcceptanceV1["chapterReviews"][number] {
   const dir = resolve(stateDir, "books", bookId, "chapters");
   const contentSha256 = chapterContentHash(chapter);
   const prefix = `ch${String(chapter.number).padStart(2, "0")}.${contentSha256}.`;
   const matches = existsSync(dir) ? readdirSync(dir).filter((file) => file.startsWith(prefix) && file.endsWith(".result.json")).sort() : [];
-  const valid: Array<{ file: string; result: ForwardChapterConductorResultV1 }> = [];
+  const valid: Array<{ file: string; result: ForwardChapterConductorResultV1; recordSha256: string | null }> = [];
   for (const file of matches) {
     try {
-      const result = JSON.parse(readFileSync(resolve(dir, file), "utf8")) as ForwardChapterConductorResultV1;
-      if (conductorAcceptanceProblems(result, contentSha256, result.executionEnvelopeSha256).length === 0) valid.push({ file, result });
+      const value = JSON.parse(readFileSync(resolve(dir, file), "utf8")) as unknown;
+      const inspected = inspectForwardLocalRetainedChapterResult(value, runtime);
+      const result = inspected.result;
+      if (result && inspected.problems.length === 0
+          && forwardLocalConductorAcceptanceProblems(
+            result,
+            contentSha256,
+            result.executionEnvelopeSha256,
+            runtime,
+          ).length === 0) {
+        valid.push({ file, result, recordSha256: inspected.recordSha256 });
+      }
     } catch { /* malformed/stale retained evidence is never selected */ }
   }
   if (valid.length !== 1) {
@@ -674,6 +1133,7 @@ function currentRetainedChapterReview(
     chapterContentSha256: contentSha256,
     resultRelPath: `chapters/${valid[0].file}`,
     executionEnvelopeSha256: valid[0].result.executionEnvelopeSha256,
+    ...(valid[0].recordSha256 ? { retainedRecordSha256: valid[0].recordSha256 } : {}),
   };
 }
 
@@ -797,7 +1257,12 @@ async function finalizeStandardForwardBookAcceptance(args: {
   try {
     const chapters = [...args.loadChapters(args.bookId)].sort((a, b) => a.number - b.number);
     if (chapters.length === 0) throw new ForwardLocalAutopilotError("cannot finalize an empty book");
-    const chapterReviews = chapters.map((chapter) => currentRetainedChapterReview(args.stateDir, args.bookId, chapter));
+    const chapterReviews = chapters.map((chapter) => currentRetainedChapterReview(
+      args.stateDir,
+      args.bookId,
+      chapter,
+      args.runtime,
+    ));
     const io = resolveAuthorReviewIo(args.authorIo);
     const sourceSweep = await args.runBookSweep(args.bookId, chapters, args.deps, io);
     const rawSweepSubmission = assertCurrentSweep(args.stateDir, args.bookId, chapters, sourceSweep);
@@ -908,12 +1373,25 @@ function defaultReadBookAcceptance(
       const retained = review
         ? readAcceptanceArtifact(stateDir, bookId, review.resultRelPath, readText)
         : null;
-      const result = retained?.value as unknown as ForwardChapterConductorResultV1 | undefined;
+      const inspected = retained && review
+        ? inspectForwardLocalRetainedChapterResult(retained.value, runtime, review.retainedRecordSha256)
+        : null;
+      const result = inspected?.result ?? null;
+      if (isForwardActiveV2Runtime(runtime) && !SHA256.test(review?.retainedRecordSha256 ?? "")) {
+        failures.push(`ch${String(chapter.number).padStart(2, "0")}: acceptance lacks the retained V2 record hash`);
+      }
       if (!review || review.chapterContentSha256 !== contentSha256 || !SHA256.test(review.executionEnvelopeSha256 ?? "") || !result) {
         failures.push(`ch${String(chapter.number).padStart(2, "0")} review is missing or stale`);
       } else {
         try {
-          failures.push(...conductorAcceptanceProblems(result, contentSha256, review.executionEnvelopeSha256)
+          failures.push(...(inspected?.problems ?? [])
+            .map((problem) => `ch${String(chapter.number).padStart(2, "0")}: ${problem}`));
+          failures.push(...forwardLocalConductorAcceptanceProblems(
+            result,
+            contentSha256,
+            review.executionEnvelopeSha256,
+            runtime,
+          )
             .map((problem) => `ch${String(chapter.number).padStart(2, "0")}: ${problem}`));
         } catch (error) {
           failures.push(`ch${String(chapter.number).padStart(2, "0")}: malformed conductor result (${(error as Error).message})`);
@@ -1012,7 +1490,12 @@ export function resolveStandardForwardAutopilotControl(
     loadReviewEvidence,
     reviewerExecutor,
     retainCommittedResult: runtime.mode === "FORWARD_ACTIVE"
-      ? (args) => retainStandardForwardChapterResult(stateDir, deps.loadChapters ?? loadBookChapters, args)
+      ? (args) => retainStandardForwardChapterResult(
+          stateDir,
+          deps.loadChapters ?? loadBookChapters,
+          runtime,
+          args,
+        )
       : undefined,
   }, {
     ...deps.runtimeDeps,

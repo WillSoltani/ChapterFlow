@@ -21,6 +21,13 @@ import { hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import type { QuizIntegrityResultV1 } from "../contracts/quizIntegrityReview.js";
 import type { ReaderExperienceReviewV1 } from "../contracts/readerExperienceReview.js";
 import type { SourceIntegrityReviewV1 } from "../contracts/sourceIntegrityReview.js";
+import type { ReviewEvidenceEnvelopeV1 } from "../contracts/reviewEvidenceEnvelope.js";
+import {
+  QUIZ_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+  READER_EXPERIENCE_MODEL_OUTPUT_V2_SCHEMA,
+  SOURCE_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+  type ReviewRouteEvidenceV2,
+} from "../contracts/reviewModelOutputV2.js";
 import { sourceUsePlanHash } from "../contracts/sourceUsePlan.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { ensureTrailingNewline } from "../lib/atomicWrite.js";
@@ -33,7 +40,7 @@ import {
   type RoleJudgeRefV1,
   type SplitLaneInstrumentManifestV1,
 } from "../bakeoff/migration/reviewLaneTypes.js";
-import { aggregateChapterReview, computeReaderComposite } from "../review/aggregateChapterReview.js";
+import { aggregateChapterReview } from "../review/aggregateChapterReview.js";
 import {
   QUIZ_INTEGRITY_ADJUDICATION_SCHEMA,
   buildQuizIntegrityAdjudicationTask,
@@ -53,14 +60,60 @@ import {
 } from "../review/readerExperienceReview.js";
 import { renderChapterReaderDocPhase1 } from "../review/renderReaderDoc.js";
 import {
+  completeKeyFreeReaderDocumentBytesV2,
+  completeKeyFreeReaderDocumentSha256V2,
+} from "../review/completeKeyFreeReaderDocumentV2.js";
+import {
+  SOURCE_CRITIC_INFRASTRUCTURE_FAILURE_CHECK_ID,
   SOURCE_INTEGRITY_RUBRIC_VERSION,
+  SOURCE_USE_PLAN_STALE_CHECK_ID,
   assembleSourceReviewPacket,
   buildSourceIntegrityTask,
   computeRequiredSourceUnitIds,
   parseSourceIntegrityReview,
+  runSourceDeterministicPrechecks,
   runSourceIntegrityReview,
+  summarizeDeterministicBundle,
 } from "../review/sourceIntegrityReview.js";
 import { validateSourceIntegrityReview } from "../contracts/sourceIntegrityReview.js";
+import {
+  createReviewEvidenceEnvelope,
+  serializeReviewEvidenceEnvelope,
+} from "../review/reviewEvidenceEnvelope.js";
+import {
+  adaptQuizIntegrityReviewV2ToV1,
+  adaptReaderExperienceReviewV2ToV1,
+  assembleQuizIntegrityReviewV2,
+  assembleReaderExperienceReviewV2,
+  assembleSourceIntegrityReviewV2,
+  buildQuizIntegrityInlineReviewTask,
+  buildReaderExperienceInlineReviewTask,
+  buildSourceIntegrityInlineReviewTask,
+  parseQuizIntegrityModelOutputV2,
+  parseReaderExperienceModelOutputV2,
+  parseSourceIntegrityModelOutputV2,
+} from "../review/reviewModelOutputV2.js";
+import {
+  FORWARD_PRODUCTION_REVIEW_INSTRUMENT_V2,
+  FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
+  adaptProductionSourceReviewV2ForAggregate,
+  compileProductionQuizEnvelopeV2,
+  compileProductionReaderEnvelopeV2,
+  compileProductionSourceEnvelopesV2,
+  emptyForwardProductionAuthoritativeReviewsV2,
+  mergeProductionSourceReviewsV2,
+  productionReviewEnvelopeSetSha256,
+  productionReviewV2FreshnessErrors,
+  synthesizeProductionSourceReviewV2,
+  type ForwardProductionAuthoritativeReviewsV2,
+  type ProductionEnvelopeV2,
+  type ProductionSourcePartitionV2,
+} from "../review/forwardProductionReviewV2.js";
+import {
+  deriveReaderDecisionCategoryV2,
+  reviewProtocolFileAccessFailureV2,
+  reviewProtocolHasProhibitedConductorEchoV2,
+} from "../review/reviewProtocolV2.js";
 import {
   commitPreparedAuthorCandidate,
   readPreparedAuthorCompilerInputs,
@@ -94,6 +147,9 @@ export type ForwardFrozenReviewConfigV1 = {
   instrumentManifest: SplitLaneInstrumentManifestV1;
   instrumentManifestSha256: string;
   readerBar: number;
+  /** Explicit opt-in for future production review. Absence preserves the
+   * immutable legacy V1 path and its retained fixtures/evidence. */
+  reviewProtocolVersion?: typeof FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2;
   /** Optional only for legacy fixtures. IMP-22 role-freeze output always carries
    * this exact, hash-bound panel policy and therefore activates backup reads. */
   panelPolicy?: ForwardPanelReviewPolicyV1;
@@ -108,7 +164,7 @@ export type ForwardPanelRole =
   | "quizSemanticAdjudicator";
 
 export type ForwardReviewArtifactV1 = {
-  kind: "phase1-doc" | "source-evidence" | "source-plan" | "phase2-doc";
+  kind: "phase1-doc" | "source-evidence" | "source-plan" | "phase2-doc" | "evidence-envelope";
   relPath: string;
   content: string;
   sha256: string;
@@ -117,12 +173,21 @@ export type ForwardReviewArtifactV1 = {
 export type ForwardReviewExecutionRequestV1 = {
   schema: typeof FORWARD_REVIEW_EXECUTION_REQUEST_SCHEMA;
   lane: ForwardReviewLane;
+  /** Conductor-owned identity for one semantic review operation. For V2
+   * source reads this is the exact partition targetRef; it is never selected
+   * or rewritten by the executor. */
+  reviewOperationKey: string;
   workspaceRole: ForwardReviewerWorkspaceRole;
   profileId: string;
   model: string;
   effort: RoleJudgeRefV1["effort"];
   schemaSha256: string;
   instrumentVersion: string;
+  /** IMP-24 additive binding. Legacy V1 evidence omits these fields; every
+   * Review Evidence Envelope V1 request supplies both exact hashes. */
+  reviewProtocol?: "review-evidence-envelope-v1";
+  evidenceEnvelopeSha256?: string;
+  evidenceEnvelopeBytesSha256?: string;
   roleAssignmentSha256: string;
   instrumentManifestSha256: string;
   executionProfileHash: string;
@@ -137,12 +202,16 @@ export type ForwardReviewExecutionResultV1 = {
   schema: typeof FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA;
   executionId: string;
   lane: ForwardReviewLane;
+  reviewOperationKey: string;
   workspaceRole: ForwardReviewerWorkspaceRole;
   profileId: string;
   model: string;
   effort: RoleJudgeRefV1["effort"];
   schemaSha256: string;
   instrumentVersion: string;
+  reviewProtocol?: "review-evidence-envelope-v1";
+  evidenceEnvelopeSha256?: string;
+  evidenceEnvelopeBytesSha256?: string;
   roleAssignmentSha256: string;
   instrumentManifestSha256: string;
   executionProfileHash: string;
@@ -158,6 +227,7 @@ type ReceiptProjection = Omit<ForwardReviewExecutionResultV1, "output">;
 
 export type ForwardReviewExecutionEntryV1 = {
   lane: ForwardReviewLane;
+  reviewOperationKey: string;
   panelRole?: ForwardPanelRole;
   roleProfileSha256?: string;
   expected: Omit<ForwardReviewExecutionRequestV1, "task" | "artifacts">;
@@ -182,6 +252,16 @@ export type ForwardReviewExecutionEnvelopeV1 = {
   roleAssignmentSha256: string;
   instrumentManifestSha256: string;
   panelPolicySha256?: string | null;
+  reviewProtocolVersion?: typeof FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2 | null;
+  readerEvidenceEnvelopeSha256?: string | null;
+  sourceEvidenceEnvelopeSha256s?: string[];
+  quizEvidenceEnvelopeSha256?: string | null;
+  evidenceEnvelopeSetSha256?: string | null;
+  readerV2ResultSha256?: string | null;
+  readerAuditV2ResultSha256?: string | null;
+  sourceV2ResultSha256?: string | null;
+  sourceAdjudicatorV2ResultSha256?: string | null;
+  quizV2ResultSha256?: string | null;
   executions: ForwardReviewExecutionEntryV1[];
   derivationSha256: string | null;
   deterministicCriticBundleSha256: string | null;
@@ -218,6 +298,9 @@ export type ForwardChapterConductorResultV1 = {
   aggregate: AggregatedChapterReviewV1 | null;
   committedDerivation: CommittedQuizDerivation | null;
   commitResult: AuthorWriteOneResult | null;
+  /** Authoritative future-production records. V1 projections above exist only
+   * for the frozen deterministic aggregate and are never substituted here. */
+  authoritativeV2?: Readonly<ForwardProductionAuthoritativeReviewsV2> | null;
   executionEnvelope: Readonly<ForwardReviewExecutionEnvelopeV1>;
   executionEnvelopeSha256: string;
 };
@@ -318,9 +401,22 @@ function assertFrozenConfig(frozen: ForwardFrozenReviewConfigV1): void {
   requireCondition(frozen.instrumentManifest?.schema === SPLIT_LANE_INSTRUMENT_MANIFEST_SCHEMA, "forward review: wrong instrument-manifest schema");
   requireCondition(hashCanonical(frozen.instrumentManifest) === frozen.instrumentManifestSha256, "forward review: stale/tampered instrument-manifest hash");
   requireCondition(frozen.instrumentManifest.fixedRoleAssignmentSha256 === frozen.roleAssignmentSha256, "forward review: instrument manifest is bound to a different role assignment");
-  requireCondition(frozen.instrumentManifest.readerRubricVersion === READER_EXPERIENCE_RUBRIC_VERSION, "forward review: stale reader instrument version");
-  requireCondition(frozen.instrumentManifest.sourceRubricVersion === SOURCE_INTEGRITY_RUBRIC_VERSION, "forward review: stale source instrument version");
-  requireCondition(frozen.instrumentManifest.quizPhase2Version === QUIZ_INTEGRITY_ADJUDICATION_SCHEMA, "forward review: stale quiz adjudication instrument version");
+  requireCondition(
+    frozen.reviewProtocolVersion === undefined || frozen.reviewProtocolVersion === FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
+    `forward review: unknown review protocol ${String(frozen.reviewProtocolVersion)}`,
+  );
+  if (frozen.reviewProtocolVersion === FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2) {
+    requireCondition(frozen.instrumentManifest.readerRubricVersion === FORWARD_PRODUCTION_REVIEW_INSTRUMENT_V2,
+      "forward review: stale V2 reader instrument version");
+    requireCondition(frozen.instrumentManifest.sourceRubricVersion === FORWARD_PRODUCTION_REVIEW_INSTRUMENT_V2,
+      "forward review: stale V2 source instrument version");
+    requireCondition(frozen.instrumentManifest.quizPhase2Version === FORWARD_PRODUCTION_REVIEW_INSTRUMENT_V2,
+      "forward review: stale V2 quiz instrument version");
+  } else {
+    requireCondition(frozen.instrumentManifest.readerRubricVersion === READER_EXPERIENCE_RUBRIC_VERSION, "forward review: stale reader instrument version");
+    requireCondition(frozen.instrumentManifest.sourceRubricVersion === SOURCE_INTEGRITY_RUBRIC_VERSION, "forward review: stale source instrument version");
+    requireCondition(frozen.instrumentManifest.quizPhase2Version === QUIZ_INTEGRITY_ADJUDICATION_SCHEMA, "forward review: stale quiz adjudication instrument version");
+  }
   requireCondition(frozen.instrumentManifest.aggregationVersion === AGGREGATION_VERSION, "forward review: stale aggregation version");
   for (const [name, value] of Object.entries({
     readerSchemaSha256: frozen.instrumentManifest.readerSchemaSha256,
@@ -390,13 +486,7 @@ export function forwardReaderDecisionCategory(
   review: ReaderExperienceReviewV1,
   readerBar: number,
 ): ForwardReaderDecisionCategory {
-  if (review.blockingFindings.length > 0) return "BLOCK";
-  if (
-    computeReaderComposite(review.scores) < readerBar
-    || review.advisoryFindings.length > 0
-    || review.escalationSignals.some((finding) => finding.category === "origin_ambiguous_to_reader")
-  ) return "REVISE";
-  return "PASS";
+  return deriveReaderDecisionCategoryV2(review, readerBar);
 }
 
 function sourceHasHighSeverityFinding(review: SourceIntegrityReviewV1): boolean {
@@ -517,6 +607,29 @@ function artifact(kind: ForwardReviewArtifactV1["kind"], relPath: string, conten
   return Object.freeze({ kind, relPath, content, sha256: sha256Hex(content) });
 }
 
+/** Production is intentionally checked against the exact shared compiler/task
+ * primitives used by V3 qualification. This is not a second renderer. */
+function assertSharedV2CompiledEnvelope(compiled: ProductionEnvelopeV2): void {
+  const { envelope } = compiled;
+  const replay = createReviewEvidenceEnvelope({
+    lane: envelope.lane,
+    envelopeId: envelope.envelopeId,
+    caseId: envelope.caseId,
+    instrumentVersion: envelope.instrumentVersion,
+    segments: envelope.segments.map(({ refId, kind, text }) => ({ refId, kind, text })),
+    immutableBindings: envelope.immutableBindings,
+  });
+  requireCondition(replay.envelopeSha256 === envelope.envelopeSha256,
+    `forward review: ${envelope.lane} production envelope diverges from the shared compiler`);
+  const task = envelope.lane === "reader"
+    ? buildReaderExperienceInlineReviewTask(envelope)
+    : envelope.lane === "source"
+      ? buildSourceIntegrityInlineReviewTask(envelope)
+      : buildQuizIntegrityInlineReviewTask(envelope);
+  requireCondition(task === compiled.task,
+    `forward review: ${envelope.lane} production task diverges from the shared task renderer`);
+}
+
 function projectReceipt(result: ForwardReviewExecutionResultV1): ReceiptProjection {
   const { output: _output, ...receipt } = result;
   return receipt;
@@ -527,12 +640,16 @@ function receiptMismatches(request: ForwardReviewExecutionRequestV1, result: For
   const expected: Record<string, unknown> = {
     schema: FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA,
     lane: request.lane,
+    reviewOperationKey: request.reviewOperationKey,
     workspaceRole: request.workspaceRole,
     profileId: request.profileId,
     model: request.model,
     effort: request.effort,
     schemaSha256: request.schemaSha256,
     instrumentVersion: request.instrumentVersion,
+    reviewProtocol: request.reviewProtocol,
+    evidenceEnvelopeSha256: request.evidenceEnvelopeSha256,
+    evidenceEnvelopeBytesSha256: request.evidenceEnvelopeBytesSha256,
     roleAssignmentSha256: request.roleAssignmentSha256,
     instrumentManifestSha256: request.instrumentManifestSha256,
     executionProfileHash: request.executionProfileHash,
@@ -555,7 +672,16 @@ function freezeEnvelope(envelope: ForwardReviewExecutionEnvelopeV1): Readonly<Fo
   }
   Object.freeze(envelope.executions);
   Object.freeze(envelope.panelAdjustmentReasons);
+  if (envelope.sourceEvidenceEnvelopeSha256s) Object.freeze(envelope.sourceEvidenceEnvelopeSha256s);
   return Object.freeze(envelope);
+}
+
+function deepFreezeJson<T>(value: T): Readonly<T> {
+  if (value && typeof value === "object" && !Object.isFrozen(value)) {
+    for (const child of Object.values(value as Record<string, unknown>)) deepFreezeJson(child);
+    Object.freeze(value);
+  }
+  return value;
 }
 
 function makeResult(args: {
@@ -573,7 +699,11 @@ function makeResult(args: {
   committedDerivation: CommittedQuizDerivation | null;
   deterministicCriticBundleSha256: string | null;
   commitResult: AuthorWriteOneResult | null;
+  authoritativeV2?: ForwardProductionAuthoritativeReviewsV2 | null;
 }): ForwardChapterConductorResultV1 {
+  const authoritativeV2 = args.authoritativeV2
+    ? deepFreezeJson(structuredClone(args.authoritativeV2))
+    : null;
   const envelope = freezeEnvelope({
     schema: FORWARD_REVIEW_ENVELOPE_SCHEMA,
     attemptId: args.input.prepared.attempt.identity.attemptId,
@@ -587,6 +717,18 @@ function makeResult(args: {
     roleAssignmentSha256: args.input.frozen.roleAssignmentSha256,
     instrumentManifestSha256: args.input.frozen.instrumentManifestSha256,
     panelPolicySha256: args.input.frozen.panelPolicySha256 ?? null,
+    ...(authoritativeV2 ? {
+      reviewProtocolVersion: authoritativeV2.protocolVersion,
+      readerEvidenceEnvelopeSha256: authoritativeV2.readerEnvelopeSha256,
+      sourceEvidenceEnvelopeSha256s: [...authoritativeV2.sourceEnvelopeSha256s],
+      quizEvidenceEnvelopeSha256: authoritativeV2.quizEnvelopeSha256,
+      evidenceEnvelopeSetSha256: authoritativeV2.envelopeSetSha256,
+      readerV2ResultSha256: authoritativeV2.reader ? hashCanonical(authoritativeV2.reader) : null,
+      readerAuditV2ResultSha256: authoritativeV2.readerAudit ? hashCanonical(authoritativeV2.readerAudit) : null,
+      sourceV2ResultSha256: authoritativeV2.source ? hashCanonical(authoritativeV2.source) : null,
+      sourceAdjudicatorV2ResultSha256: authoritativeV2.sourceAdjudication ? hashCanonical(authoritativeV2.sourceAdjudication) : null,
+      quizV2ResultSha256: authoritativeV2.quiz ? hashCanonical(authoritativeV2.quiz) : null,
+    } : {}),
     executions: args.executions,
     derivationSha256: args.committedDerivation?.sha256 ?? null,
     deterministicCriticBundleSha256: args.deterministicCriticBundleSha256,
@@ -622,6 +764,7 @@ function makeResult(args: {
     aggregate: args.aggregate,
     committedDerivation: args.committedDerivation,
     commitResult: args.commitResult,
+    ...(authoritativeV2 ? { authoritativeV2 } : {}),
     executionEnvelope: envelope,
     executionEnvelopeSha256: hashCanonical(envelope),
   };
@@ -643,6 +786,10 @@ export async function runForwardChapterConductor(
   let aggregate: AggregatedChapterReviewV1 | null = null;
   let committedDerivation: CommittedQuizDerivation | null = null;
   let deterministicCriticBundleSha256: string | null = null;
+  let authoritativeV2: ForwardProductionAuthoritativeReviewsV2 | null =
+    input?.frozen?.reviewProtocolVersion === FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2
+      ? emptyForwardProductionAuthoritativeReviewsV2()
+      : null;
   const panel: PanelReviewState = {
     readerAuditSelected: false,
     readerPrimaryCategory: null,
@@ -685,38 +832,65 @@ export async function runForwardChapterConductor(
     finalize(input.prepared.attempt, "superseded", reason);
     return makeResult({
       disposition: "SUPERSEDED", finalStatus: "INCONCLUSIVE", reason, input, hashes, executions,
-      reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult: null,
+      reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult: null, authoritativeV2,
     });
   }
 
   const executeBound = async (
     lane: ForwardReviewLane,
     panelRole: ForwardPanelRole,
+    reviewOperationKey: string,
     task: string,
     artifacts: ForwardReviewArtifactV1[],
-  ): Promise<{ output: string; executionId: string }> => {
+    envelopeBinding?: {
+      envelope: ReviewEvidenceEnvelopeV1;
+      envelopeBytes: string;
+      envelopeRelPath: string;
+    },
+  ): Promise<{ output: string; executionId: string; routeEvidence: ReviewRouteEvidenceV2 }> => {
     assertFrozenConfig(input.frozen);
     assertInputsFresh(input, hashes);
+    requireCondition(nonEmpty(reviewOperationKey) && reviewOperationKey === reviewOperationKey.trim()
+      && !/[\u0000-\u001f\u007f]/.test(reviewOperationKey),
+    `${panelRole}: review operation key is empty or unstable`);
+    if (envelopeBinding) {
+      requireCondition(serializeReviewEvidenceEnvelope(envelopeBinding.envelope) === envelopeBinding.envelopeBytes,
+        `${panelRole}: evidence-envelope bytes are not canonical`);
+      requireCondition(task.includes(envelopeBinding.envelopeBytes),
+        `${panelRole}: complete evidence envelope is not inline in the task`);
+      requireCondition(!artifacts.some((item) => item.kind === "evidence-envelope"),
+        `${panelRole}: duplicate evidence-envelope artifact`);
+    }
     const binding = laneBinding(input.frozen, panelRole);
+    const boundArtifacts = envelopeBinding
+      ? [...artifacts, artifact("evidence-envelope", envelopeBinding.envelopeRelPath, envelopeBinding.envelopeBytes)]
+      : [...artifacts];
     const request: ForwardReviewExecutionRequestV1 = Object.freeze({
       schema: FORWARD_REVIEW_EXECUTION_REQUEST_SCHEMA,
       lane,
+      reviewOperationKey,
       workspaceRole: binding.workspaceRole,
       profileId: binding.profile.profileId,
       model: binding.profile.model,
       effort: binding.profile.effort,
       schemaSha256: binding.schemaSha256,
       instrumentVersion: binding.instrumentVersion,
+      ...(envelopeBinding ? {
+        reviewProtocol: "review-evidence-envelope-v1" as const,
+        evidenceEnvelopeSha256: envelopeBinding.envelope.envelopeSha256,
+        evidenceEnvelopeBytesSha256: sha256Hex(envelopeBinding.envelopeBytes),
+      } : {}),
       roleAssignmentSha256: input.frozen.roleAssignmentSha256,
       instrumentManifestSha256: input.frozen.instrumentManifestSha256,
       executionProfileHash: input.frozen.instrumentManifest.executionProfileHash,
       routePolicyVersion: input.frozen.instrumentManifest.routePolicyVersion,
       task,
-      artifacts: Object.freeze([...artifacts]),
+      artifacts: Object.freeze(boundArtifacts),
     });
     const { task: _task, artifacts: _artifacts, ...expected } = request;
     const entry: ForwardReviewExecutionEntryV1 = {
       lane,
+      reviewOperationKey,
       panelRole,
       roleProfileSha256: hashCanonical({
         judge: binding.profile,
@@ -749,13 +923,420 @@ export async function runForwardChapterConductor(
       entry.failureReason = `route receipt mismatch: ${[...new Set(mismatches)].join(", ")}`;
       throw new ForwardChapterConductorError(`${panelRole} reviewer used the wrong frozen role/route (${entry.failureReason})`);
     }
+    if (envelopeBinding && reviewProtocolFileAccessFailureV2(result.output)) {
+      entry.status = "REJECTED";
+      entry.failureReason = "reviewer reported a file-access failure despite receiving a complete inline evidence envelope";
+      throw new ForwardChapterConductorError(`${panelRole} reviewer violated the inline-evidence protocol (${entry.failureReason})`);
+    }
+    if (envelopeBinding && reviewProtocolHasProhibitedConductorEchoV2(result.output, lane)) {
+      entry.status = "REJECTED";
+      entry.failureReason = "reviewer echoed conductor-owned immutable fields";
+      throw new ForwardChapterConductorError(`${panelRole} reviewer violated the semantic-output protocol (${entry.failureReason})`);
+    }
     seenExecutionIds.add(result.executionId);
     entry.status = "VERIFIED";
     entry.outputSha256 = sha256Hex(result.output);
-    return { output: result.output, executionId: result.executionId };
+    return {
+      output: result.output,
+      executionId: result.executionId,
+      routeEvidence: {
+        model: result.model,
+        effort: result.effort,
+        routeReceiptSha256: hashCanonical(projectReceipt(result)),
+      },
+    };
+  };
+
+  const runV2Path = async (): Promise<ForwardChapterConductorResultV1> => {
+    requireCondition(authoritativeV2 !== null, "forward review: V2 authoritative state is unavailable");
+    const authoritative = authoritativeV2;
+    const phase1Document = completeKeyFreeReaderDocumentBytesV2(input.prepared.chapter);
+    const readerDocSha256 = completeKeyFreeReaderDocumentSha256V2(input.prepared.chapter);
+    const caseId = input.prepared.attempt.identity.attemptId;
+
+    const readerEnvelope = compileProductionReaderEnvelopeV2({
+      caseId,
+      instrumentVersion: input.frozen.instrumentManifest.readerRubricVersion,
+      chapter: input.prepared.chapter,
+      phase1Document,
+      chapterContentSha256: hashes.candidateContentSha256,
+      readerDocumentSha256: readerDocSha256,
+    });
+    assertSharedV2CompiledEnvelope(readerEnvelope);
+    authoritative.readerEnvelopeSha256 = readerEnvelope.envelope.envelopeSha256;
+
+    const runBoundReaderV2 = async (panelRole: "readerPrimary" | "readerAudit") => {
+      const executed = await executeBound(
+        "reader",
+        panelRole,
+        "reader",
+        readerEnvelope.task,
+        [artifact("phase1-doc", "candidate.phase1.md", phase1Document)],
+        {
+          envelope: readerEnvelope.envelope,
+          envelopeBytes: readerEnvelope.envelopeBytes,
+          envelopeRelPath: "review-envelope-reader.json",
+        },
+      );
+      const review = assembleReaderExperienceReviewV2({
+        output: parseReaderExperienceModelOutputV2(executed.output),
+        envelope: readerEnvelope.envelope,
+        chapterContentSha256: hashes.candidateContentSha256,
+        readerDocumentSha256: readerDocSha256,
+        schemaSha256: input.frozen.instrumentManifest.readerSchemaSha256,
+        rubricVersion: input.frozen.instrumentManifest.readerRubricVersion,
+        routeEvidence: executed.routeEvidence,
+      });
+      return { review, executionId: executed.executionId };
+    };
+
+    const primaryReader = await runBoundReaderV2("readerPrimary");
+    authoritative.reader = primaryReader.review;
+    reader = adaptReaderExperienceReviewV2ToV1(primaryReader.review);
+    panel.readerPrimaryCategory = deriveReaderDecisionCategoryV2(primaryReader.review, input.frozen.readerBar);
+    if (panel.readerAuditSelected) {
+      assertFrozenConfig(input.frozen);
+      assertInputsFresh(input, hashes);
+      const audit = await runBoundReaderV2("readerAudit");
+      authoritative.readerAudit = audit.review;
+      panel.readerAudit = adaptReaderExperienceReviewV2ToV1(audit.review);
+      panel.readerAuditCategory = deriveReaderDecisionCategoryV2(audit.review, input.frozen.readerBar);
+      panel.readerAuditDisagreement = panel.readerAuditCategory !== panel.readerPrimaryCategory;
+      if (panel.readerAuditDisagreement) {
+        panel.adjustmentReasons.push(
+          `reader primary/audit categorical disagreement (${panel.readerPrimaryCategory} vs ${panel.readerAuditCategory}) requires REVISE`,
+        );
+      }
+    }
+
+    assertInputsFresh(input, hashes);
+    const sourceEnvelopes = compileProductionSourceEnvelopesV2({
+      caseId,
+      instrumentVersion: input.frozen.instrumentManifest.sourceRubricVersion,
+      chapter: input.prepared.chapter,
+      phase1Document,
+      plan: input.prepared.plan!,
+      packet: input.sourcePacket,
+      sidecar: input.sourceSidecar,
+      anchorCatalog: input.anchorCatalog,
+      chapterContentSha256: hashes.candidateContentSha256,
+      sourceUsePlanSha256: hashes.sourceUsePlanSha256,
+      sourcePacketSha256: hashes.sourcePacketSha256,
+      sidecarSha256: hashes.sidecarSha256,
+    });
+    for (const partition of sourceEnvelopes.partitions) assertSharedV2CompiledEnvelope(partition);
+    authoritative.sourceEnvelopeSha256s = sourceEnvelopes.partitions.map((partition) => partition.envelope.envelopeSha256);
+
+    const criticBundle = runSourceDeterministicPrechecks(
+      input.prepared.chapter,
+      input.prepared.plan!,
+      input.sourcePacket,
+      input.sourceSidecar,
+    );
+    const sourceSummary = summarizeDeterministicBundle(criticBundle);
+    deterministicCriticBundleSha256 = criticBundle.bundleSha256;
+    const criticFailure = criticBundle.checks.find((finding) => finding.checkId === SOURCE_CRITIC_INFRASTRUCTURE_FAILURE_CHECK_ID);
+    const staleFinding = criticBundle.checks.find((finding) => finding.checkId === SOURCE_USE_PLAN_STALE_CHECK_ID);
+    const unresolvedSourceTargets = sourceEnvelopes.partitions.map((partition) => partition.targetRef);
+
+    const runBoundSourceV2 = async (
+      panelRole: "sourcePrimary" | "sourceAdjudicator",
+      deterministicBlockerIds: string[] = [],
+    ) => {
+      const reviews = [];
+      for (const partition of sourceEnvelopes.partitions) {
+        const executed = await executeBound(
+          "source",
+          panelRole,
+          partition.targetRef,
+          partition.task,
+          [],
+          {
+            envelope: partition.envelope,
+            envelopeBytes: partition.envelopeBytes,
+            envelopeRelPath: `review-envelope-source-${partition.targetRef}.json`,
+          },
+        );
+        reviews.push(assembleSourceIntegrityReviewV2({
+          output: parseSourceIntegrityModelOutputV2(executed.output),
+          envelope: partition.envelope,
+          targetBindings: partition.targetBindings,
+          chapterContentSha256: hashes.candidateContentSha256,
+          sourceUsePlanSha256: hashes.sourceUsePlanSha256,
+          sourcePacketSha256: hashes.sourcePacketSha256,
+          sidecarSha256: hashes.sidecarSha256,
+          schemaSha256: input.frozen.instrumentManifest.sourceSchemaSha256,
+          routeEvidence: executed.routeEvidence,
+        }));
+      }
+      return mergeProductionSourceReviewsV2({
+        reviews,
+        envelopeSha256s: authoritative.sourceEnvelopeSha256s,
+        deterministicCriticBundleSha256: criticBundle.bundleSha256,
+        deterministicBlockerIds,
+      });
+    };
+
+    const synthesizeDeterministicSource = () => {
+      if (criticFailure) {
+        return synthesizeProductionSourceReviewV2({
+          envelopeSha256s: authoritative.sourceEnvelopeSha256s,
+          deterministicCriticBundleSha256: criticBundle.bundleSha256,
+          chapterContentSha256: hashes.candidateContentSha256,
+          sourceUsePlanSha256: hashes.sourceUsePlanSha256,
+          sourcePacketSha256: hashes.sourcePacketSha256,
+          sidecarSha256: hashes.sidecarSha256,
+          schemaSha256: input.frozen.instrumentManifest.sourceSchemaSha256,
+          unresolvedTargetRefs: unresolvedSourceTargets,
+          result: "INCONCLUSIVE",
+          blockingFindingIds: [SOURCE_CRITIC_INFRASTRUCTURE_FAILURE_CHECK_ID],
+          rationale: `source lane INCONCLUSIVE — ${criticFailure.message}`,
+        });
+      }
+      if (staleFinding) {
+        return synthesizeProductionSourceReviewV2({
+          envelopeSha256s: authoritative.sourceEnvelopeSha256s,
+          deterministicCriticBundleSha256: criticBundle.bundleSha256,
+          chapterContentSha256: hashes.candidateContentSha256,
+          sourceUsePlanSha256: hashes.sourceUsePlanSha256,
+          sourcePacketSha256: hashes.sourcePacketSha256,
+          sidecarSha256: hashes.sidecarSha256,
+          schemaSha256: input.frozen.instrumentManifest.sourceSchemaSha256,
+          unresolvedTargetRefs: unresolvedSourceTargets,
+          result: "INCONCLUSIVE",
+          blockingFindingIds: [SOURCE_USE_PLAN_STALE_CHECK_ID],
+          rationale: `source lane INCONCLUSIVE — ${staleFinding.message}`,
+        });
+      }
+      return synthesizeProductionSourceReviewV2({
+        envelopeSha256s: authoritative.sourceEnvelopeSha256s,
+        deterministicCriticBundleSha256: criticBundle.bundleSha256,
+        chapterContentSha256: hashes.candidateContentSha256,
+        sourceUsePlanSha256: hashes.sourceUsePlanSha256,
+        sourcePacketSha256: hashes.sourcePacketSha256,
+        sidecarSha256: hashes.sidecarSha256,
+        schemaSha256: input.frozen.instrumentManifest.sourceSchemaSha256,
+        unresolvedTargetRefs: unresolvedSourceTargets,
+        result: "BLOCK",
+        blockingFindingIds: sourceSummary.blockerCheckIds,
+        rationale: `source lane BLOCK — deterministic critics: ${sourceSummary.blockerCheckIds.join(", ")}`,
+      });
+    };
+
+    const deterministicShortCircuit = Boolean(criticFailure || staleFinding || sourceSummary.hasBlocker);
+    authoritative.source = deterministicShortCircuit
+      ? synthesizeDeterministicSource()
+      : await runBoundSourceV2("sourcePrimary");
+    let sourceProjection = adaptProductionSourceReviewV2ForAggregate(authoritative.source);
+    source = sourceProjection.review;
+    let sourceRevisionRequired = sourceProjection.sourceRevisionRequired;
+
+    const sourceHasHighSeverity = sourceHasHighSeverityFinding(source)
+      || criticBundle.checks.some((finding) => finding.severity === "blocker" || finding.severity === "major");
+    if (input.frozen.panelPolicy && (authoritative.source.result !== "PASS" || sourceHasHighSeverity)) {
+      panel.sourceAdjudicationTriggered = true;
+      assertFrozenConfig(input.frozen);
+      assertInputsFresh(input, hashes);
+      const adjudicated = criticFailure || staleFinding
+        ? synthesizeDeterministicSource()
+        : await runBoundSourceV2("sourceAdjudicator", sourceSummary.hasBlocker ? sourceSummary.blockerCheckIds : []);
+      authoritative.sourceAdjudication = adjudicated;
+      const adjudicatedProjection = adaptProductionSourceReviewV2ForAggregate(adjudicated);
+      panel.sourceAdjudication = adjudicatedProjection.review;
+      panel.sourceAdjudicationAgreement = adjudicated.deterministicCriticBundleSha256 === criticBundle.bundleSha256
+        && adjudicated.result === authoritative.source.result
+        && (sourceSummary.hasBlocker
+          ? true
+          : sourceDecisionSha256(adjudicatedProjection.review) === sourceDecisionSha256(source));
+      if (!panel.sourceAdjudicationAgreement) {
+        panel.adjustmentReasons.push("source primary/adjudicator structural disagreement requires INCONCLUSIVE");
+      }
+      sourceRevisionRequired = sourceRevisionRequired || adjudicatedProjection.sourceRevisionRequired;
+    }
+
+    assertInputsFresh(input, hashes);
+    const derivation = buildQuizDerivation(
+      input.prepared.chapter,
+      {
+        answers: reader.quizDerivation.answers,
+        mechanisms: reader.quizDerivation.mechanisms,
+        confidence: reader.quizDerivation.confidence,
+        ambiguities: reader.quizDerivation.ambiguities,
+      },
+      readerDocSha256,
+      primaryReader.executionId,
+    );
+    const questions = input.prepared.chapter.quiz?.questions ?? [];
+    committedDerivation = commitQuizDerivation(derivation, {
+      documentSha256: readerDocSha256,
+      questionCount: questions.length,
+      itemIds: questions.map((_question, index) => quizItemId(input.prepared.chapter, index)),
+    });
+    const phase2Document = renderQuizPhase2Doc(input.prepared.chapter, committedDerivation, phase1Document);
+    const phase2DocumentSha256 = sha256Hex(phase2Document);
+    const quizEnvelope = compileProductionQuizEnvelopeV2({
+      caseId,
+      instrumentVersion: input.frozen.instrumentManifest.quizPhase2Version,
+      chapter: input.prepared.chapter,
+      phase1Document,
+      chapterContentSha256: hashes.candidateContentSha256,
+      committedDerivation,
+    });
+    assertSharedV2CompiledEnvelope(quizEnvelope);
+    authoritative.quizEnvelopeSha256 = quizEnvelope.envelope.envelopeSha256;
+    const quizExecution = await executeBound(
+      "quiz",
+      "quizSemanticAdjudicator",
+      "quiz",
+      quizEnvelope.task,
+      [artifact("phase2-doc", "candidate.phase2.md", phase2Document)],
+      {
+        envelope: quizEnvelope.envelope,
+        envelopeBytes: quizEnvelope.envelopeBytes,
+        envelopeRelPath: "review-envelope-quiz.json",
+      },
+    );
+    authoritative.quiz = assembleQuizIntegrityReviewV2({
+      output: parseQuizIntegrityModelOutputV2(quizExecution.output),
+      envelope: quizEnvelope.envelope,
+      questionBindings: quizEnvelope.questionBindings,
+      chapterContentSha256: hashes.candidateContentSha256,
+      phase2DocumentSha256,
+      derivationSha256: committedDerivation.sha256,
+      schemaSha256: input.frozen.instrumentManifest.quizAdjudicationSchemaSha256,
+      routeEvidence: quizExecution.routeEvidence,
+    });
+    quiz = adaptQuizIntegrityReviewV2ToV1(authoritative.quiz);
+    authoritative.envelopeSetSha256 = productionReviewEnvelopeSetSha256({
+      readerEnvelopeSha256: authoritative.readerEnvelopeSha256,
+      sourceEnvelopeSha256s: authoritative.sourceEnvelopeSha256s,
+      quizEnvelopeSha256: authoritative.quizEnvelopeSha256,
+    });
+
+    assertFrozenConfig(input.frozen);
+    assertInputsFresh(input, hashes);
+    aggregate = aggregateChapterReview({
+      reader,
+      source,
+      quiz,
+      deterministic: sourceSummary,
+      readerBar: input.frozen.readerBar,
+      chapterContentSha256: hashes.candidateContentSha256,
+      expectedChapterContentSha256: hashes.candidateContentSha256,
+      expectedReaderDocumentSha256: readerDocSha256,
+      expectedSourceUsePlanSha256: hashes.sourceUsePlanSha256,
+      expectedSourcePacketSha256: hashes.sourcePacketSha256,
+      expectedSidecarSha256: hashes.sidecarSha256,
+      expectedReaderSchemaSha256: input.frozen.instrumentManifest.readerSchemaSha256,
+      expectedSourceSchemaSha256: input.frozen.instrumentManifest.sourceSchemaSha256,
+      expectedQuizSchemaSha256: input.frozen.instrumentManifest.quizAdjudicationSchemaSha256,
+      requiredSourceUnitIds: computeRequiredSourceUnitIds(input.prepared.plan!),
+    });
+    const aggregateErrors = validateAggregatedChapterReview(aggregate);
+    requireCondition(aggregateErrors.length === 0, `forward review: invalid V2 aggregate projection (${aggregateErrors.join("; ")})`);
+    requireCondition(aggregateIsFresh(aggregate, {
+      chapterContentSha256: hashes.candidateContentSha256,
+      readerResultSha256: hashCanonical(reader),
+      sourceResultSha256: hashCanonical(source),
+      quizResultSha256: hashCanonical(quiz),
+      deterministicCriticBundleSha256: criticBundle.bundleSha256,
+    }), "forward review: V2 aggregate projection is stale against its lane evidence");
+    const freshnessErrors = productionReviewV2FreshnessErrors({
+      authoritative,
+      chapterContentSha256: hashes.candidateContentSha256,
+      readerDocumentSha256: readerDocSha256,
+      readerSchemaSha256: input.frozen.instrumentManifest.readerSchemaSha256,
+      sourceUsePlanSha256: hashes.sourceUsePlanSha256,
+      sourcePacketSha256: hashes.sourcePacketSha256,
+      sidecarSha256: hashes.sidecarSha256,
+      sourceSchemaSha256: input.frozen.instrumentManifest.sourceSchemaSha256,
+      derivationSha256: committedDerivation.sha256,
+      phase2DocumentSha256,
+      quizSchemaSha256: input.frozen.instrumentManifest.quizAdjudicationSchemaSha256,
+    });
+    requireCondition(freshnessErrors.length === 0,
+      `forward review: stale authoritative V2 evidence (${freshnessErrors.join("; ")})`);
+
+    let panelAdjustedStatus: AggregatedChapterReviewV1["finalStatus"] = aggregate.finalStatus;
+    if (panel.sourceAdjudicationTriggered && panel.sourceAdjudicationAgreement !== true) {
+      panelAdjustedStatus = "INCONCLUSIVE";
+      if (!panel.adjustmentReasons.some((reason) => reason.includes("source primary/adjudicator"))) {
+        panel.adjustmentReasons.push("source adjudication did not produce a structurally agreeing verdict; status is INCONCLUSIVE");
+      }
+    } else if (panel.readerAuditDisagreement && (panelAdjustedStatus === "PASS" || panelAdjustedStatus === "REVISE")) {
+      panelAdjustedStatus = "REVISE";
+    }
+    if (sourceRevisionRequired && panelAdjustedStatus === "PASS") {
+      panelAdjustedStatus = "REVISE";
+      panel.adjustmentReasons.push("authoritative source V2 result is REVISE; legacy aggregate projection cannot promote it to PASS");
+    }
+
+    if (panelAdjustedStatus !== "PASS") {
+      const reason = `forward review ${panelAdjustedStatus}: panel-adjusted V2 candidate superseded without canonical commit`;
+      finalize(input.prepared.attempt, "superseded", reason);
+      deps.log?.(`[forward-review] ${input.prepared.chapterId}: ${reason}`);
+      return makeResult({
+        disposition: "SUPERSEDED", finalStatus: panelAdjustedStatus, reason, input, hashes, executions,
+        reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256,
+        commitResult: null, authoritativeV2: authoritative,
+      });
+    }
+
+    assertFrozenConfig(input.frozen);
+    assertInputsFresh(input, hashes);
+    await assertAuthoritativeSourceEvidenceFresh(input, hashes);
+    assertAuthoritativeCompilerInputsFresh(input, hashes);
+    const committedReason = "forward review PASS: fresh authoritative V2 evidence committed prepared candidate atomically";
+    const expectedCommitResult: AuthorWriteOneResult = {
+      ok: true,
+      sessionId: input.prepared.sessionId,
+      committed: true,
+    };
+    const provisionalCommittedResult = makeResult({
+      disposition: "COMMITTED", finalStatus: "PASS", reason: committedReason, input, hashes, executions,
+      reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256,
+      commitResult: expectedCommitResult, authoritativeV2: authoritative,
+    });
+    let commitResult: AuthorWriteOneResult;
+    try {
+      commitResult = commit(input.prepared, {
+        log: deps.log ?? (() => undefined),
+        ...(deps.persistCommittedResult ? {
+          forwardReviewEvidence: {
+            resultSha256: hashCanonical(provisionalCommittedResult),
+            persistAndReadBack: () => deps.persistCommittedResult!(provisionalCommittedResult),
+          },
+        } : {}),
+      });
+    } catch (error) {
+      const reason = `forward review V2 PASS, but prepared-candidate commit threw and requires reconciliation: ${(error as Error).message}`;
+      return makeResult({
+        disposition: "COMMIT_FAILED", finalStatus: "INCONCLUSIVE", reason, input, hashes, executions,
+        reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256,
+        commitResult: null, authoritativeV2: authoritative,
+      });
+    }
+    if (!commitResult.ok || !("committed" in commitResult) || commitResult.committed !== true) {
+      const reason = commitResult.ok
+        ? "forward review V2 PASS, but prepared-candidate commit did not confirm committed=true"
+        : `forward review V2 PASS, but prepared-candidate commit failed: ${commitResult.reason}`;
+      return makeResult({
+        disposition: "COMMIT_FAILED", finalStatus: "INCONCLUSIVE", reason, input, hashes, executions,
+        reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256,
+        commitResult, authoritativeV2: authoritative,
+      });
+    }
+    return makeResult({
+      disposition: "COMMITTED", finalStatus: "PASS", reason: committedReason, input, hashes, executions,
+      reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256,
+      commitResult, authoritativeV2: authoritative,
+    });
   };
 
   try {
+    if (input.frozen.reviewProtocolVersion === FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2) {
+      return await runV2Path();
+    }
     const phase1Document = ensureTrailingNewline(renderChapterReaderDocPhase1(input.prepared.chapter));
     const readerDocSha256 = readerExperienceDocHash(input.prepared.chapter);
     const runBoundReader = async (panelRole: "readerPrimary" | "readerAudit"): Promise<{ review: ReaderExperienceReviewV1; executionId: string }> => {
@@ -769,7 +1350,7 @@ export async function runForwardChapterConductor(
         },
         {
           reviewFn: async (task) => {
-            const executed = await executeBound("reader", panelRole, task, [artifact("phase1-doc", "candidate.phase1.md", phase1Document)]);
+            const executed = await executeBound("reader", panelRole, "reader", task, [artifact("phase1-doc", "candidate.phase1.md", phase1Document)]);
             executionId = executed.executionId;
             return executed.output;
           },
@@ -816,7 +1397,7 @@ export async function runForwardChapterConductor(
               sourceSidecar: reviewPacket.sourceSidecar,
               anchorCatalog: reviewPacket.anchorCatalog,
             }, null, 2);
-            const executed = await executeBound("source", panelRole, task.task, [
+            const executed = await executeBound("source", panelRole, "source", task.task, [
               artifact("phase1-doc", "candidate.phase1.md", reviewPacket.chapterDocument),
               artifact("source-evidence", "source-evidence.json", evidence),
               artifact("source-plan", "source-plan.txt", reviewPacket.sourcePlanLicense.join("\n")),
@@ -845,7 +1426,7 @@ export async function runForwardChapterConductor(
         sourceSidecar: reviewPacket.sourceSidecar,
         anchorCatalog: reviewPacket.anchorCatalog,
       }, null, 2);
-      const executed = await executeBound("source", "sourceAdjudicator", task.task, [
+      const executed = await executeBound("source", "sourceAdjudicator", "source", task.task, [
         artifact("phase1-doc", "candidate.phase1.md", reviewPacket.chapterDocument),
         artifact("source-evidence", "source-evidence.json", evidence),
         artifact("source-plan", "source-plan.txt", reviewPacket.sourcePlanLicense.join("\n")),
@@ -924,7 +1505,7 @@ export async function runForwardChapterConductor(
     });
     const phase2Document = renderQuizPhase2Doc(input.prepared.chapter, committedDerivation);
     const quizTask = buildQuizIntegrityAdjudicationTask("candidate.phase2.md");
-    const quizExecution = await executeBound("quiz", "quizSemanticAdjudicator", quizTask, [artifact("phase2-doc", "candidate.phase2.md", phase2Document)]);
+    const quizExecution = await executeBound("quiz", "quizSemanticAdjudicator", "quiz", quizTask, [artifact("phase2-doc", "candidate.phase2.md", phase2Document)]);
     quiz = runQuizIntegrityLane(input.prepared.chapter, committedDerivation, quizExecution.output, {
       chapterContentSha256: hashes.candidateContentSha256,
     });
@@ -974,7 +1555,7 @@ export async function runForwardChapterConductor(
       deps.log?.(`[forward-review] ${input.prepared.chapterId}: ${reason}`);
       return makeResult({
         disposition: "SUPERSEDED", finalStatus: panelAdjustedStatus, reason, input, hashes, executions,
-        reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult: null,
+        reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult: null, authoritativeV2,
       });
     }
 
@@ -994,7 +1575,7 @@ export async function runForwardChapterConductor(
     const provisionalCommittedResult = makeResult({
       disposition: "COMMITTED", finalStatus: "PASS", reason: committedReason, input, hashes, executions,
       reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256,
-      commitResult: expectedCommitResult,
+      commitResult: expectedCommitResult, authoritativeV2,
     });
     let commitResult: AuthorWriteOneResult;
     try {
@@ -1014,7 +1595,7 @@ export async function runForwardChapterConductor(
       const reason = `forward review PASS, but prepared-candidate commit threw and requires reconciliation: ${(error as Error).message}`;
       return makeResult({
         disposition: "COMMIT_FAILED", finalStatus: "INCONCLUSIVE", reason, input, hashes, executions,
-        reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult: null,
+        reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult: null, authoritativeV2,
       });
     }
     if (!commitResult.ok || !("committed" in commitResult) || commitResult.committed !== true) {
@@ -1023,12 +1604,12 @@ export async function runForwardChapterConductor(
         : `forward review PASS, but prepared-candidate commit failed: ${commitResult.reason}`;
       return makeResult({
         disposition: "COMMIT_FAILED", finalStatus: "INCONCLUSIVE", reason, input, hashes, executions,
-        reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult,
+        reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult, authoritativeV2,
       });
     }
     return makeResult({
       disposition: "COMMITTED", finalStatus: "PASS", reason: committedReason, input, hashes, executions,
-      reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult,
+      reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult, authoritativeV2,
     });
   } catch (error) {
     const reason = `forward review failed closed: ${(error as Error).message}`;
@@ -1036,7 +1617,7 @@ export async function runForwardChapterConductor(
     deps.log?.(`[forward-review] ${input.prepared.chapterId}: ${reason}`);
     return makeResult({
       disposition: "SUPERSEDED", finalStatus: "INCONCLUSIVE", reason, input, hashes, executions,
-      reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult: null,
+      reader, panel, source, quiz, aggregate, committedDerivation, deterministicCriticBundleSha256, commitResult: null, authoritativeV2,
     });
   }
 }

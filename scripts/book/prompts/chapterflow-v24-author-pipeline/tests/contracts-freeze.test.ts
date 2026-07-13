@@ -2,10 +2,11 @@
  * IMP-00: Phase-0 contract freeze + validator coverage.
  *
  * The frozen `contract-manifest.json` pins { name, version, hash } for all
- * fourteen cross-package contracts — the nine Phase-0 contracts (execution
+ * sixteen cross-package contracts — the nine Phase-0 contracts (execution
  * profile, effective context, candidate transaction, source-use plan, repair,
  * review, route, attempt evidence, worker report) plus the five additive IMP-20
- * split-lane / §16-recovery contracts. Editing a contract without a version bump
+ * split-lane / §16-recovery contracts and the two additive IMP-24 inline-review
+ * contracts. Editing a contract without a version bump
  * + regenerated manifest + integration review is the "silent schema drift across
  * parallel branches" merge blocker from master-plan §12 — these tests make that
  * drift a FAIL.
@@ -33,28 +34,30 @@ test("contract manifest is frozen and matches the live descriptors exactly", () 
   assert.deepEqual(divergences, [], `contract drift detected:\n${divergences.join("\n")}`);
 });
 
-test("all fourteen frozen contracts are present at their pinned versions with distinct owners", () => {
+test("all sixteen frozen contracts are present at their pinned versions with distinct owners", () => {
   const manifest = loadFrozenManifest();
   // 9 Phase-0 contracts + the 5 additive IMP-20 split-lane / §16-recovery
   // contracts (reader-experience-review, source-integrity-review,
   // quiz-integrity-result, aggregated-chapter-review, judge-capability-qualification).
-  assert.equal(manifest.contracts.length, 14);
+  assert.equal(manifest.contracts.length, 16);
   const names = manifest.contracts.map((c) => c.name).sort();
   assert.deepEqual(names, [
     "aggregated-chapter-review", "attempt-evidence-manifest", "candidate-transaction",
     "effective-context-manifest", "execution-profile", "judge-capability-qualification",
-    "quiz-integrity-result", "reader-experience-review", "repair", "review-output",
+    "quiz-integrity-result", "reader-experience-review", "repair", "review-evidence-envelope",
+    "review-model-output-v2", "review-output",
     "route-result", "source-integrity-review", "source-use-plan", "worker-implementation-report",
   ]);
   // route-result was deliberately bumped to v2 (owner §16 route-invariant
   // directive 2026-07-11: per-spawn subscription-route telemetry). Every other
-  // contract — including the five additive IMP-20 contracts — is at v1.
+  // contract — including the five additive IMP-20 contracts and the IMP-24
+  // evidence envelope — is at v1. The semantic-only IMP-24 model output is v2.
   for (const c of manifest.contracts) {
-    const expected = c.name === "route-result" ? 2 : 1;
+    const expected = c.name === "route-result" || c.name === "review-model-output-v2" ? 2 : 1;
     assert.equal(c.version, expected, `${c.name} must be v${expected}`);
   }
   const owners = new Set(manifest.contracts.map((c) => c.ownerPrompt));
-  for (const owner of ["IMP-00", "IMP-01", "IMP-02", "IMP-03", "IMP-07", "IMP-08", "IMP-10", "IMP-20"]) {
+  for (const owner of ["IMP-00", "IMP-01", "IMP-02", "IMP-03", "IMP-07", "IMP-08", "IMP-10", "IMP-20", "IMP-24"]) {
     assert.ok(owners.has(owner), `expected an ${owner}-owned contract`);
   }
 });

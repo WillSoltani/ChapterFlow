@@ -125,6 +125,7 @@ function request(): ForwardReviewExecutionRequestV1 {
   return {
     schema: FORWARD_REVIEW_EXECUTION_REQUEST_SCHEMA,
     lane: "reader",
+    reviewOperationKey: "reader",
     workspaceRole: "direct-reader",
     profileId: "gpt-5.6-sol@high",
     model: "gpt-5.6-sol",
@@ -154,6 +155,37 @@ test("live phase budgets freeze clean-pass expectations and conservative non-tar
   assert.equal(pilotBudget.maximumIsNotATarget, true);
   assert.equal(pilotBudget.apiCallsAllowed, 0);
 
+  const partitionCounts = Object.fromEntries(pilot.manifest.targets.map((target) => [
+    `${target.bookId}/ch${String(target.chapterNumber).padStart(2, "0")}`,
+    target.bookId === "pilot-a" && target.chapterNumber === 1
+      ? 2
+      : target.bookId === "pilot-b" && target.chapterNumber === 2
+        ? 3
+        : 1,
+  ]));
+  const partitionedBudget = buildForwardLivePhaseBudget({
+    manifest: pilot,
+    panelPolicy: panelPolicy(),
+    sourcePartitionCountByChapter: partitionCounts,
+  });
+  assert.equal(partitionedBudget.sourcePartitionCountTotal, 11);
+  assert.deepEqual(partitionedBudget.sourcePartitionCountByChapter, partitionCounts);
+  assert.equal(partitionedBudget.expectedCalls["pilot-source-primary"], 11);
+  assert.equal(partitionedBudget.maximumCallsBeforeInfrastructureReplays["pilot-source-primary"], 33);
+  assert.equal(partitionedBudget.maximumCallsBeforeInfrastructureReplays["pilot-source-adjudicator"], 33);
+  assert.throws(() => buildForwardLivePhaseBudget({
+    manifest: pilot,
+    panelPolicy: panelPolicy(),
+    sourcePartitionCountByChapter: { ...partitionCounts, "pilot-a/ch01": 0 },
+  }), /positive integer/);
+  const incompleteCounts = { ...partitionCounts };
+  delete incompleteCounts["pilot-a/ch01"];
+  assert.throws(() => buildForwardLivePhaseBudget({
+    manifest: pilot,
+    panelPolicy: panelPolicy(),
+    sourcePartitionCountByChapter: incompleteCounts,
+  }), /coordinates differ/);
+
   const gold = buildGoldManifest({
     ...COMMON,
     books: [book("gold-book", 10)],
@@ -171,6 +203,86 @@ test("live phase budgets freeze clean-pass expectations and conservative non-tar
   });
   assert.equal(goldBudget.expectedCalls["gold-book-evaluator"], 4);
   assert.equal(goldBudget.maximumInfrastructureReplays["gold-book-evaluator"], 4);
+});
+
+test("reviewer ledger retains exact inline task and evidence-envelope bytes", async () => {
+  const roots = mkTestRoots("forward-live-exact-review-request");
+  try {
+    const phaseDir = join(roots.base, "phase");
+    const controller = createForwardLiveCallLedger({
+      budget: buildForwardLivePhaseBudget({ manifest: pilotManifest(), panelPolicy: panelPolicy() }),
+      phaseDir,
+    });
+    const envelopeBytes = "{\"schema\":\"review-evidence-envelope-v1\",\"marker\":\"exact-byte-proof\"}\n";
+    const task = `All evidence is inline.\n${envelopeBytes}`;
+    const req: ForwardReviewExecutionRequestV1 = {
+      ...request(),
+      reviewOperationKey: "U1",
+      reviewProtocol: "review-evidence-envelope-v1",
+      evidenceEnvelopeSha256: sha256Hex("semantic-envelope"),
+      evidenceEnvelopeBytesSha256: sha256Hex(envelopeBytes),
+      task,
+      artifacts: [{
+        kind: "evidence-envelope",
+        relPath: "review-envelope-source-U1.json",
+        content: envelopeBytes,
+        sha256: sha256Hex(envelopeBytes),
+      }],
+    };
+    const logicalOperationId = "pilot-a/ch01/first-write/sourcePrimary/U1";
+    const wrapped = createLedgeredForwardReviewerExecutor({
+      controller,
+      phaseDir,
+      contextFor: () => ({
+        bookId: "pilot-a",
+        chapterNumber: 1,
+        stage: "first-write",
+        logicalOperationId,
+      }),
+      categoryFor: () => "pilot-source-primary",
+      executor: async (input) => ({
+        schema: FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA,
+        executionId: "source-U1-exec",
+        lane: input.lane,
+        reviewOperationKey: input.reviewOperationKey,
+        workspaceRole: input.workspaceRole,
+        profileId: input.profileId,
+        model: input.model,
+        effort: input.effort,
+        schemaSha256: input.schemaSha256,
+        instrumentVersion: input.instrumentVersion,
+        reviewProtocol: input.reviewProtocol,
+        evidenceEnvelopeSha256: input.evidenceEnvelopeSha256,
+        evidenceEnvelopeBytesSha256: input.evidenceEnvelopeBytesSha256,
+        roleAssignmentSha256: input.roleAssignmentSha256,
+        instrumentManifestSha256: input.instrumentManifestSha256,
+        executionProfileHash: input.executionProfileHash,
+        routePolicyVersion: input.routePolicyVersion,
+        output: "{}",
+      }),
+    });
+    await wrapped(req);
+    const requestPath = join(
+      phaseDir,
+      "model-calls",
+      sha256Hex(logicalOperationId),
+      "attempt-1",
+      "request.json",
+    );
+    const retained = JSON.parse(readFileSync(requestPath, "utf8"));
+    assert.equal(retained.request.task.content, task);
+    assert.equal(retained.request.task.sha256, sha256Hex(task));
+    assert.equal(retained.request.artifacts[0].content, envelopeBytes);
+    assert.equal(retained.request.artifacts[0].sha256, sha256Hex(envelopeBytes));
+    assert.equal(retained.requestProjectionSha256, hashCanonical(retained.request));
+
+    retained.request.artifacts[0].content = "tampered\n";
+    retained.requestProjectionSha256 = hashCanonical(retained.request);
+    writeFileSync(requestPath, `${JSON.stringify(retained)}\n`);
+    await assert.rejects(() => wrapped(req), /exact reviewer request differs/);
+  } finally {
+    roots.dispose();
+  }
 });
 
 test("ledger preserves capacity failure, permits exactly one infra replay, and exact resume spends zero calls", async () => {
@@ -191,6 +303,7 @@ test("ledger preserves capacity failure, permits exactly one infra replay, and e
           schema: FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA,
           executionId: `reader-${calls}`,
           lane: input.lane,
+          reviewOperationKey: input.reviewOperationKey,
           workspaceRole: input.workspaceRole,
           profileId: input.profileId,
           model: input.model,
@@ -292,6 +405,7 @@ test("reviewer freshness hook stops input or production-seal drift between lanes
           schema: FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA,
           executionId: `lane-${calls}`,
           lane: input.lane,
+          reviewOperationKey: input.reviewOperationKey,
           workspaceRole: input.workspaceRole,
           profileId: input.profileId,
           model: input.model,
@@ -319,6 +433,58 @@ test("reviewer freshness hook stops input or production-seal drift between lanes
     await assert.rejects(() => wrapped(sourceRequest), /drifted between reviewer lanes/);
     assert.equal(calls, 1, "drift must stop the second lane before model execution");
     assert.equal(controller.ledger.entries.length, 1, "drift must stop before reserving a second lane call");
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("single ledger authorization seam rechecks every fresh model operation but never replays a valid cached judgment", async () => {
+  const roots = mkTestRoots("forward-live-ledger-authorization-seam");
+  try {
+    const phaseDir = join(roots.base, "phase");
+    let authorized = true;
+    let verifierCalls = 0;
+    let executions = 0;
+    const controller = createForwardLiveCallLedger({
+      budget: buildForwardLivePhaseBudget({ manifest: pilotManifest(), panelPolicy: panelPolicy() }),
+      phaseDir,
+      beforeModelCall: () => {
+        verifierCalls += 1;
+        if (!authorized) throw new Error("V3 qualification result/certificate/freeze/seal drift");
+      },
+    });
+    const run = (logicalOperationId: string) => runLedgeredForwardModelOperation({
+      controller,
+      phaseDir,
+      context: {
+        category: "pilot-author-first-write" as const,
+        bookId: "pilot-a",
+        chapterNumber: 1,
+        stage: "first-write" as const,
+        logicalOperationId,
+      },
+      request: { taskSha256: sha256Hex(logicalOperationId) },
+      execute: async () => {
+        executions += 1;
+        return { executionId: `exec-${executions}`, result: { ok: true } };
+      },
+    });
+
+    await run("pilot-a/ch01/first-write/v3-author-1");
+    assert.equal(verifierCalls, 1);
+    assert.equal(executions, 1);
+    await run("pilot-a/ch01/first-write/v3-author-1");
+    assert.equal(verifierCalls, 1, "cached receipt makes no model call and needs no new spawn authorization");
+    assert.equal(executions, 1);
+
+    authorized = false;
+    await assert.rejects(() => run("pilot-a/ch01/first-write/v3-author-2"),
+      /qualification result\/certificate\/freeze\/seal drift/);
+    assert.equal(verifierCalls, 2);
+    assert.equal(executions, 1, "freshness denial must happen before the injected model execution");
+    assert.equal(controller.ledger.codexExecInvocations, 1,
+      "denied authorization must not consume or record a codex-exec invocation");
+    assert.equal(controller.ledger.entries.length, 1);
   } finally {
     roots.dispose();
   }

@@ -24,9 +24,10 @@ export const FORWARD_GOLD_RUBRIC_VERSION = "2.0" as const;
 export const FORWARD_GOLD_EVALUATOR_MODEL = "gpt-5.6-sol" as const;
 export const FORWARD_GOLD_EVALUATOR_EFFORT = "xhigh" as const;
 export const FORWARD_GOLD_JSON_SCHEMA_VALIDATOR = "ajv@6.15.0" as const;
-export const FORWARD_GOLD_EVALUATOR_INSTRUMENT_SHA256 = "ab7255c1eeadbb02d7dafa2d27382bd5783f02780eb381b509f24b7b4f13a126" as const;
+export const FORWARD_GOLD_EVALUATOR_INSTRUMENT_SHA256 = "d6e3520882efa08de0445e8ef17655b9f083fa25bbd5814aec1853c1d4658a85" as const;
 
 const SHA256 = /^[a-f0-9]{64}$/;
+const CHAPTER_CONTENT_HASH = /^[a-f0-9]{16}$/;
 const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
 const DEFAULT_REPOSITORY_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../../../../..");
 const localRequire = createRequire(import.meta.url);
@@ -168,7 +169,7 @@ const FIXED_ASSET_SPECS: readonly FixedAssetSpec[] = [
     role: "sweep-output-schema",
     repositoryRelPath: `${PIPELINE_REL}/state/migration-experiments/contracts/schemas/forward-gold-sweep.schema.json`,
     materializedRelPath: "instrument/forward-gold-sweep.schema.json",
-    bytesSha256: "847a63b5efcd3863697f52627cc2154c5bc1fd1e7d6102b6985e6cf56a84de6e",
+    bytesSha256: "816f3d3dd4b49f9f3579c47c20d2c1fc0f40ebe4857de5fdbf439f6d4a67e10e",
   },
 ] as const;
 
@@ -564,6 +565,13 @@ function nonEmptyString(value: unknown, label: string): string {
 function sha(value: unknown, label: string): string {
   const text = nonEmptyString(value, label);
   requireCondition(SHA256.test(text), `${label} must be a lowercase SHA-256`);
+  return text;
+}
+
+function chapterContentHash(value: unknown, label: string): string {
+  const text = nonEmptyString(value, label);
+  requireCondition(CHAPTER_CONTENT_HASH.test(text),
+    `${label} must be the canonical 16-hex ChapterV21 content hash`);
   return text;
 }
 
@@ -1031,7 +1039,8 @@ function validateSourceAwareProof(
       && chapter.sourceBlockerCount === authoritative.sourceBlockerCount
       && chapter.evidenceFresh === authoritative.evidenceFresh,
     `gold source-aware proof chapter[${position}] differs from authoritative retained source-lane evidence`);
-    sha(chapter.candidateContentSha256, `gold source-aware proof chapter[${position}].candidateContentSha256`);
+    chapterContentHash(chapter.candidateContentSha256,
+      `gold source-aware proof chapter[${position}].candidateContentSha256`);
     sha(chapter.sourceResultSha256, `gold source-aware proof chapter[${position}].sourceResultSha256`);
     sha(chapter.executionEnvelopeSha256, `gold source-aware proof chapter[${position}].executionEnvelopeSha256`);
     requireCondition(["PASS", "REVISE", "INCONCLUSIVE"].includes(chapter.sourceStatus),

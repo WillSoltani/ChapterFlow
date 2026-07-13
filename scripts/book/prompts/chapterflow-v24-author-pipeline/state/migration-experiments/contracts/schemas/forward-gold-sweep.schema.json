@@ -35,7 +35,7 @@
           "type": "object",
           "minProperties": 8,
           "propertyNames": {"pattern": "^[1-9][0-9]*$"},
-          "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+          "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{16}$"}
         },
         "checkedFamilies": {
           "type": "array",

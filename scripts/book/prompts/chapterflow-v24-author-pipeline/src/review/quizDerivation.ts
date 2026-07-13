@@ -151,7 +151,11 @@ export function commitQuizDerivation(
  *  adjudication ask. REFUSES a derivation whose recomputed hash does not match
  *  the commitment — the only path to a key-visible document goes through
  *  commitQuizDerivation. */
-export function renderQuizPhase2Doc(ch: ChapterV21, committed: CommittedQuizDerivation): string {
+export function renderQuizPhase2Doc(
+  ch: ChapterV21,
+  committed: CommittedQuizDerivation,
+  keyFreeDocumentOverride?: string,
+): string {
   if (hashCanonical(committed.derivation) !== committed.sha256) {
     throw new QuizPhaseError("phase-2 render refused: derivation bytes do not match their commitment hash");
   }
@@ -159,7 +163,10 @@ export function renderQuizPhase2Doc(ch: ChapterV21, committed: CommittedQuizDeri
   if (questions.length !== committed.derivation.items.length) {
     throw new QuizPhaseError(`phase-2 render refused: ${committed.derivation.items.length} committed item(s) vs ${questions.length} question(s)`);
   }
-  const keyFreeChapter = `${renderChapterReaderDocPhase1(ch).replace(/\n?$/, "")}\n`;
+  // V1 callers retain the frozen legacy phase-1 bytes. Forward V2 supplies its
+  // complete key-free reader document explicitly so the quiz commitment is
+  // anchored to the exact evidence the blind reader actually saw.
+  const keyFreeChapter = `${(keyFreeDocumentOverride ?? renderChapterReaderDocPhase1(ch)).replace(/\n?$/, "")}\n`;
   if (sha256Hex(keyFreeChapter) !== committed.derivation.documentSha256) {
     throw new QuizPhaseError("phase-2 render refused: key-free supporting chapter bytes do not match the committed phase-1 document hash");
   }

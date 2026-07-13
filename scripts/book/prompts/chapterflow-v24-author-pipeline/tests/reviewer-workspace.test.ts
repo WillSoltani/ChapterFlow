@@ -53,8 +53,8 @@ test("role manifest matrix: every ReviewerRoleV1 has a minimal artifact set; onl
       assert.ok(KEY_BLIND_REVIEWER_ROLES.includes(role as never), `${role} is key-blind`);
     }
   }
-  assert.deepEqual(REVIEWER_ROLE_MANIFESTS["direct-reader"], ["phase1-doc"], "direct reader sees the phase-1 doc ONLY");
-  assert.deepEqual(REVIEWER_ROLE_MANIFESTS["quiz-adjudication"], ["phase2-doc"], "adjudicator sees the phase-2 doc ONLY");
+  assert.deepEqual(REVIEWER_ROLE_MANIFESTS["direct-reader"], ["phase1-doc", "evidence-envelope"], "direct reader sees only key-free reader evidence and its retained envelope");
+  assert.deepEqual(REVIEWER_ROLE_MANIFESTS["quiz-adjudication"], ["phase2-doc", "evidence-envelope"], "adjudicator sees only phase-2 evidence and its retained envelope");
   assert.ok(!REVIEWER_ROLE_MANIFESTS["source-verifier"].includes("phase2-doc"), "source verifier never sees the key");
 });
 

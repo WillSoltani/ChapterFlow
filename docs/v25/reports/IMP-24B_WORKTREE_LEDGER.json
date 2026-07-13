@@ -1,0 +1,488 @@
+{
+  "schema": "imp-24b-worktree-ledger-v1",
+  "status": "PRE_LIVE_VERIFIED",
+  "capturedAt": "2026-07-13T09:02:40Z",
+  "continuationInstruction": {
+    "path": "external-owner-supplied/IMP-24B_MODEL_FREE_FREEZE_AND_V3_ROLE_QUALIFICATION.md",
+    "sha256": "5c42e1d063df42ae1a92e0c93abe9c086faeb6f270a5adbc358ff7646457b776",
+    "verified": true
+  },
+  "repositoryRoot": ".",
+  "branch": "feat/v25-pipeline-live",
+  "draftPr": 401,
+  "startingLocalHead": "19e1837e6d6d1f2ebc6997700956fc0798aa21ca",
+  "startingRemoteHead": "19e1837e6d6d1f2ebc6997700956fc0798aa21ca",
+  "startingPrHead": "19e1837e6d6d1f2ebc6997700956fc0798aa21ca",
+  "mergeBaseWithMain": "b8815ca028a492e09e62be57c17b29346bcce3a6",
+  "startingCi": {
+    "dedicatedV25": "SUCCESS",
+    "rootCi": "FAILURE",
+    "note": "These statuses belong only to the old starting commit and authorize no V3 call."
+  },
+  "stagedPaths": [],
+  "intendedTrackedChanges": [
+    ".github/workflows/chapterflow-v25-pipeline.yml",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/cli.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/CONTRACTS.md",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/contract-manifest.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/index.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardAuthorRuntime.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardChapterConductor.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardGoldEvaluatorInstrument.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardInputMaterialization.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardLiveArtifactMaterializer.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardLiveCallLedger.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardLiveValidationDriver.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardLocalAutopilot.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardProductionInstrumentSeal.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardReviewerExecutor.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLive.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardValidationCampaign.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/quizDerivation.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewerWorkspace.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/forward-gold-sweep.schema.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/contracts-freeze.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-author-runtime.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-chapter-conductor.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-gold-evaluator-instrument.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-live-call-ledger.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-live-validation-driver.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-production-instrument-seal.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-reviewer-executor.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-validation-campaign.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forwardGoldRuntimeFixtures.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp22-forward-input-materialization.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/reviewer-workspace.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/role-qualification-live.test.ts"
+  ],
+  "intendedNewFiles": [
+    "docs/v25/reports/IMP-24_PROTOCOL_DECISION.md",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24Corpus.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24InstrumentCertification.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/roleQualificationRunnerV3.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/reviewEvidenceEnvelope.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/reviewModelOutputV2.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardLiveArtifactMaterializerV3.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRetainedRoleQualificationEvidenceV3.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleAssignmentFreezeV3.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/completeKeyFreeReaderDocumentV2.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/evidenceReferenceResolver.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/forwardProductionReviewV2.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/readerAuthorityBoundaryV2.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewEvidenceEnvelope.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/quiz-integrity-model-output-v2.schema.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/reader-experience-model-output-v2.schema.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/source-integrity-model-output-v2.schema.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-corpus-audit.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-forward-production-review-v2.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-instrument-certification.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-review-evidence-envelope.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-review-model-output-v2.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-role-qualification-cli-v3.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-role-qualification-live-v3.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-role-qualification-v3.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-v1-v2-evidence-preservation.test.ts"
+  ],
+  "preservedPriorImp24OutOfExecutionScope": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24ActivationWorkflow.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24PilotGoldWorkflow.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardActivationReadinessV2.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardLocalActivationMaterializerV2.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRetainedCampaignEvidenceV3.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-forward-local-acceptance-v2.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-local-activation-v2.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-pilot-gold-workflow.test.ts"
+  ],
+  "mixedTrackedPathsRequiringScopeAudit": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardGoldEvaluatorInstrument.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardInputMaterialization.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardLiveArtifactMaterializer.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardLiveValidationDriver.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardLocalAutopilot.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardValidationCampaign.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/forward-gold-sweep.schema.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-gold-evaluator-instrument.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-live-validation-driver.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forward-validation-campaign.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/forwardGoldRuntimeFixtures.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp22-forward-input-materialization.test.ts"
+  ],
+  "deliberatelyExcludedPaths": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/autopilot-logs/**",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/books/**",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/library-state.json.journal.jsonl",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/metrics/**",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/provenance/**",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/qc-orchestrator/**",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/qc/**"
+  ],
+  "generatedDebris": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/autopilot-logs/**",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/books/**",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/library-state.json.journal.jsonl",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/metrics/**",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/provenance/**",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/qc-orchestrator/**",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/qc/**"
+  ],
+  "historicalEvidenceVerification": {
+    "status": "PASS",
+    "focusedTests": "2/2",
+    "v1": {
+      "tree": "6e8b88c60ddf6972dc5f296926d4221c459d713f",
+      "lsTreeSha256": "599d2ebd695b42817754bf6e12039184234b5ccae85b8887f64d983e2b2daf76",
+      "disposition": "INVALID_INSTRUMENT_DO_NOT_ATTEST",
+      "workingTreeClean": true
+    },
+    "v2": {
+      "tree": "2522d62da3b17cc3de799c85172c5f5780df532c",
+      "lsTreeSha256": "d1968f2e31c639d84bf136b33b61edd76c796e95d68c8f52fe7288257ade03d7",
+      "disposition": "BLOCKED_CALIBRATION_INVALID",
+      "workingTreeClean": true
+    }
+  },
+  "v3LiveAttempts": 0,
+  "apiCalls": 0,
+  "authenticationMaterialInCommitCandidates": false,
+  "verificationCompletedAt": "2026-07-13T12:51:39Z",
+  "verificationStatus": "PASS_MODEL_FREE_PRE_LIVE",
+  "finalIntendedCommitInventory": {
+    "source": "docs/v25/reports/implementation-report.imp-24.json#/filesChanged",
+    "fileCount": 109,
+    "complete": true
+  },
+  "lifecycleAuthorization": {
+    "status": "AUTHORIZED_FINAL",
+    "authorizedAt": "2026-07-13T12:32:16Z",
+    "authorizationSha256": "ae138a2ca561f257df3da69043db3f70ec4615c807fd77600d3201fae2dec8ab",
+    "reportIdentity": {
+      "promptId": "IMP-24",
+      "continuationPromptId": "IMP-24B"
+    },
+    "commitChain": [
+      "Commit 1: implementation and pre-live freeze",
+      "Commit 2: qualification evidence payload bound to Commit 1",
+      "Commit 3: final attestation bound to Commits 1 and 2"
+    ],
+    "noAdditionalLifecycleLayers": true
+  },
+  "postCaptureAdditions": [
+    "docs/v25/reports/IMP-24B_PRE_LIVE_FREEZE.json",
+    "docs/v25/reports/IMP-24B_PRE_LIVE_FREEZE.md",
+    "docs/v25/reports/IMP-24B_PRE_LIVE_RUNBOOK.md",
+    "docs/v25/reports/IMP-24B_WORKTREE_LEDGER.json",
+    "docs/v25/reports/IMP-24B_WORKTREE_LEDGER.md",
+    "docs/v25/reports/IMP-24_INSTRUMENT_CERTIFICATION.json",
+    "docs/v25/reports/IMP-24_INSTRUMENT_CERTIFICATION.md",
+    "docs/v25/reports/implementation-report.imp-24.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24PreLiveFreeze.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24ProductionQualificationParity.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/candidate-availability-policy.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/candidate-order.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpora/quiz-canary.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpora/quiz-holdout.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpora/reader-canary.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpora/reader-holdout.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpora/source-canary.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpora/source-holdout.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpus-audit-pass-a.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpus-audit-pass-b.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/corpus-provenance.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/forward-production-instrument-seal.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/instrument-certification-binding.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/legacy-v1-v2-evidence-closure.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/production-qualification-parity-reference.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/production-qualification-parity.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/prompts/quiz-prompt-bundle.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/prompts/reader-prompt-bundle.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/prompts/source-prompt-bundle.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/qualification-call-budget.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/qualification-schedule.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/role-qualification-corpus-bundle.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/role-thresholds.v3-envelope.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/v2-output-schema-inventory.json",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/causal-claims.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-pre-live-freeze.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/imp24-production-qualification-parity.test.ts"
+  ],
+  "verificationAttempts": [
+    {
+      "attempt": 1,
+      "check": "contract validation",
+      "result": "FAIL_THEN_FIXED",
+      "classification": "real IMP-24 defect",
+      "detail": "The preliminary implementation report used an unsupported custom schema shape. It was changed to the frozen worker-implementation-report-v1 contract with continuationPromptId preserving IMP-24B identity."
+    },
+    {
+      "attempt": 2,
+      "check": "temporary report validation against production seal",
+      "result": "FAIL_CLOSED_THEN_REMINTED",
+      "classification": "expected stale generated artifact",
+      "detail": "A source change made the disposable production seal stale; validation rejected it before the seal was reminted."
+    },
+    {
+      "attempt": 3,
+      "check": "temporary worker implementation report and contracts",
+      "result": "PASS",
+      "detail": "The disposable exact inventory validated against all 16 registered contracts."
+    },
+    {
+      "attempt": 4,
+      "check": "artifact byte-stability inventory",
+      "result": "COMMAND_ERROR",
+      "classification": "verification command error",
+      "detail": "The first diagnostic used a wrong relative reports path."
+    },
+    {
+      "attempt": 5,
+      "check": "artifact byte-stability inventory",
+      "result": "COMMAND_ERROR",
+      "classification": "verification command error",
+      "detail": "The second diagnostic glob included directories."
+    },
+    {
+      "attempt": 6,
+      "check": "artifact byte-stability inventory",
+      "result": "PASS",
+      "detail": "The corrected file-only inventory was stable for all 33 materialized artifact identities."
+    },
+    {
+      "attempt": 7,
+      "check": "full model-free suite in detached disposable worktree",
+      "result": "FAIL",
+      "counts": {
+        "pass": 2770,
+        "fail": 25,
+        "xenv": 10,
+        "skip": 39
+      },
+      "classification": "3 real IMP-24 defects; 22 disposable-checkout environment/setup failures",
+      "detail": "The three regressions were a safe evidence-envelope allowlist omission, two stale 64-hex content-hash fixtures, and ambient CODEX_HOME resolution inside migration source."
+    },
+    {
+      "attempt": 8,
+      "check": "targeted regression suites and TypeScript",
+      "result": "PASS",
+      "counts": {
+        "tests": "39/39"
+      }
+    },
+    {
+      "attempt": 9,
+      "check": "same-branch activation tests",
+      "result": "PASS",
+      "counts": {
+        "tests": "15/15"
+      }
+    },
+    {
+      "attempt": 10,
+      "check": "publish-final tests with isolated npm cache",
+      "result": "PASS",
+      "counts": {
+        "tests": "12/12"
+      }
+    },
+    {
+      "attempt": 11,
+      "check": "clean-clone TypeScript, contract validation, and focused suites",
+      "result": "PASS",
+      "counts": {
+        "focusedTests": "148/148"
+      }
+    },
+    {
+      "attempt": 12,
+      "check": "full model-free suite in clean same-branch clone",
+      "result": "PASS",
+      "counts": {
+        "pass": 2796,
+        "fail": 0,
+        "xfail": 0,
+        "xpass": 0,
+        "xenv": 10,
+        "skip": 39
+      }
+    },
+    {
+      "attempt": 13,
+      "check": "workflow-equivalent model-free sequence",
+      "result": "PASS",
+      "detail": "Legacy closure, production seal verification, thresholds, certification, freeze, and before/after status identity all passed; no live-route log was created."
+    },
+    {
+      "attempt": 14,
+      "check": "safety and repository integrity scans",
+      "result": "PASS",
+      "detail": "Secret/artifact guard, private-artifact scan, merge-marker scan, JSON parse, textual-diff scan, and git diff check passed."
+    },
+    {
+      "attempt": 15,
+      "check": "active-source private-path scan",
+      "result": "COMMAND_ERROR",
+      "classification": "verification command error",
+      "detail": "The scan was first invoked from the repository root with pipeline-relative paths that did not exist at that level."
+    },
+    {
+      "attempt": 16,
+      "check": "active-source private-path scan",
+      "result": "PASS",
+      "detail": "The corrected scan from the pipeline root found no private user or home path in active source, config, or package metadata; scratch source was explicitly excluded."
+    },
+    {
+      "attempt": 17,
+      "check": "final artifact byte-stability inventory",
+      "result": "COMMAND_ERROR",
+      "classification": "verification command error",
+      "detail": "The first shell loop used zsh's reserved path parameter as its loop variable, which removed command lookup inside the loop."
+    },
+    {
+      "attempt": 18,
+      "check": "final artifact byte-stability inventory",
+      "result": "PASS",
+      "detail": "Using a non-reserved loop variable, a second model-free rematerialization left all 33 artifact identities byte-identical."
+    },
+    {
+      "attempt": 19,
+      "check": "owner-authorized preliminary report fields and full model-free suite",
+      "result": "PASS",
+      "counts": {
+        "pass": 2796,
+        "fail": 0,
+        "xfail": 0,
+        "xpass": 0,
+        "xenv": 10,
+        "skip": 39
+      },
+      "detail": "The deterministic report generator emitted liveModelCallsMade=0 and apiCallsMade=0; the focused freeze tests and full suite passed."
+    },
+    {
+      "attempt": 20,
+      "check": "exact intended inventory versus generated implementation report",
+      "result": "FAIL_THEN_FIXED",
+      "classification": "real IMP-24 defect",
+      "detail": "The report listed 108 files while the intended tree contained 109 because forward-gold-sweep.schema.json was omitted by the inventory filter. The filter and focused assertion were corrected."
+    },
+    {
+      "attempt": 21,
+      "check": "exact intended inventory versus generated implementation report",
+      "result": "PASS",
+      "counts": {
+        "intendedFiles": 109,
+        "reportedFiles": 109
+      },
+      "detail": "The sorted report inventory exactly matches all tracked and untracked intended changes after excluding only enumerated runtime debris."
+    },
+    {
+      "attempt": 22,
+      "check": "final exact-source full-suite result collector",
+      "result": "COMMAND_ERROR",
+      "classification": "verification wrapper error after completed suite",
+      "detail": "The suite completed and wrote its terminal aggregate, then the zsh wrapper attempted to assign the read-only status parameter before printing the retained log."
+    },
+    {
+      "attempt": 23,
+      "check": "final exact-source full model-free suite retained aggregate",
+      "result": "PASS",
+      "counts": {
+        "pass": 2796,
+        "fail": 0,
+        "xfail": 0,
+        "xpass": 0,
+        "xenv": 10,
+        "skip": 39
+      },
+      "detail": "The complete retained suite log ends with the terminal green aggregate on the final inventory-filter source revision."
+    },
+    {
+      "attempt": 24,
+      "check": "final model-free artifact rematerialization",
+      "result": "PASS",
+      "detail": "A second write left all 33 artifact identities byte-identical and retained zero model/API calls."
+    },
+    {
+      "attempt": 25,
+      "check": "combined active-source, merge-marker, and live-route-file scan",
+      "result": "FAIL_CLASSIFIED",
+      "classification": "pre-existing ignored CLI capability probe",
+      "detail": "Private-path and merge-marker scans were clean; the combined command found logs/exec/cli-qualification.json, an ignored Codex CLI flag-capability probe created before IMP-24B capture."
+    },
+    {
+      "attempt": 26,
+      "check": "ignored CLI capability-probe classification",
+      "result": "PASS",
+      "detail": "The file is ignored, schema codex-cli-qualification-v1, contains only binary/version/flag support, has no experiment or operation identity, and records probedAtIso 2026-07-13T01:27:58.063Z before the 09:02:40Z task capture. It is neither intended nor staged and is not a V3 live attempt."
+    },
+    {
+      "attempt": 27,
+      "check": "stage exact intended inventory",
+      "result": "SANDBOX_BLOCKED",
+      "classification": "environment permission",
+      "detail": "Git could not create the linked-worktree index.lock under the parent repository metadata. No file was staged; the exact 109-path allowlist will be retried with Git-index permission."
+    },
+    {
+      "attempt": 28,
+      "check": "stage exact intended inventory with temporary NUL pathspec",
+      "result": "COMMAND_ERROR",
+      "classification": "malformed temporary pathspec",
+      "detail": "The generated pathspec concatenated entries instead of retaining NUL separators. Git rejected the single nonexistent path and staged nothing; the retry uses newline-delimited paths after verifying all 109 paths are newline-free."
+    },
+    {
+      "attempt": 29,
+      "check": "cached whitespace validation after exact staging",
+      "result": "FAIL_THEN_FIXED",
+      "classification": "real formatting defect",
+      "detail": "Two new TypeScript files had one extra blank line at EOF. Only those blank lines were removed, then the production seal, certification, and freeze were reminted from the changed sealed bytes."
+    },
+    {
+      "attempt": 30,
+      "check": "final exact-byte full model-free suite after whitespace cleanup",
+      "result": "PASS",
+      "counts": {
+        "pass": 2796,
+        "fail": 0,
+        "xfail": 0,
+        "xpass": 0,
+        "xenv": 10,
+        "skip": 39
+      },
+      "detail": "The corrected result collector exited zero on the final sealed source bytes."
+    }
+  ],
+  "finalModelFreeIdentities": {
+    "certificationSha256": "b1661f217f93d3ed8e79c2ebbe788ef01c927d35b4c530d6d73b68a2fb42f815",
+    "productionSealSha256": "9f2555252102d892f08af06270ae86c70ce90699b1068b04302b4797558d145a",
+    "productionSealArtifactBytesSha256": "a60f31764707a3ffc633cd68459abfbf001ca4d66142ff0ff552ff9af8ec7fb5",
+    "preLiveFreezeSha256": "369b4f856fe633be554fe34ed9b5e3d02494c0437b83329f00e5df8423214c20",
+    "artifactManifestSha256": "212b2e758c4d675f95659e63b510edcde1561fb060a47f1980ed92150d8d03a2",
+    "paritySha256": "bb0ec1cd0927d3746e3c509b84858df576f47c1e624a40317f26d6c0de517fdf",
+    "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa"
+  },
+  "modelFreeVerification": {
+    "typescript": "PASS",
+    "contracts": "PASS_16_OF_16",
+    "focusedTests": "PASS_148_OF_148",
+    "fullSuite": "PASS_2796_FAIL_0_XENV_10_SKIP_39",
+    "workflowEquivalentSequence": "PASS",
+    "artifactByteStability": "PASS_33_OF_33",
+    "liveRouteLogsCreated": 0,
+    "modelCalls": 0,
+    "apiCalls": 0
+  },
+  "notes": [
+    "No files were staged at capture time.",
+    "Pilot, gold, and local SOL activation execution is prohibited by IMP-24B.",
+    "Preserved prior IMP-24 implementation files are not discarded; final staging scope requires dependency audit.",
+    "Runtime debris remains untracked and must not be staged.",
+    "The production seal inventories all pipeline source; prior pilot, gold, and activation source is therefore preserved for scope/dependency review but will not be executed under IMP-24B.",
+    "The ignored logs/exec/cli-qualification.json predates task capture and records only local Codex CLI flag capability; it is excluded from staging and does not represent a V3 model call.",
+    "The exact 109-file intended commit inventory is frozen in the implementation report and includes all post-capture artifacts and regression fixes.",
+    "The frozen worker-report validator accepts promptId values matching IMP-NN only; the preliminary report therefore uses promptId IMP-24 plus continuationPromptId IMP-24B without modifying the validator.",
+    "implementationCommit and evidenceCommit remain null in the preliminary pre-live report because no commit exists yet; the owner authorized the final three-commit lifecycle that will attest Commit 1 and Commit 2 from Commit 3 without self-reference."
+  ]
+}

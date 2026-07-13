@@ -14,6 +14,11 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { sha256Hex } from "../src/contracts/contractUtil.js";
+import {
+  createReviewEvidenceEnvelope,
+  serializeReviewEvidenceEnvelope,
+} from "../src/review/reviewEvidenceEnvelope.js";
+import { buildReaderExperienceInlineReviewTask } from "../src/review/reviewModelOutputV2.js";
 import { resolveExecutionProfile } from "../src/exec/executionEnvelope.js";
 import type { CodexAgentResult, SpawnCodexAgentOptions } from "../src/orchestrator/codexAgent.js";
 import {
@@ -101,6 +106,7 @@ function request(fixture: Fixture, lane: ForwardReviewLane = "reader"): ForwardR
   return {
     schema: FORWARD_REVIEW_EXECUTION_REQUEST_SCHEMA,
     lane,
+    reviewOperationKey: lane,
     workspaceRole: ROLE[lane],
     profileId: `${model}@${effort}`,
     model,
@@ -143,6 +149,116 @@ test("artifact tamper fails before workspace spawn", async () => {
     await assert.rejects(execute(req), /artifact chapter\.md hash mismatch/);
     assert.equal(calls, 0);
     assert.deepEqual(readdirSync(fixture.workspaceBase), [], "preflight refusal creates no workspace");
+  } finally {
+    fixture.dispose();
+  }
+});
+
+test("reviewer executor rejects an unstable operation key before spawn and preserves a valid key in the receipt", async () => {
+  const fixture = makeFixture();
+  let calls = 0;
+  try {
+    const execute = createForwardReviewerExecutor({
+      schemaMap: fixture.schemas,
+      workspaceBaseDir: fixture.workspaceBase,
+      spawn: async (options) => {
+        calls += 1;
+        return okResult(options);
+      },
+    });
+    const invalid = request(fixture, "source");
+    invalid.reviewOperationKey = " U1\n";
+    await assert.rejects(execute(invalid), /reviewOperationKey is empty or unstable/);
+    assert.equal(calls, 0);
+
+    const valid = request(fixture, "source");
+    valid.reviewOperationKey = "U1";
+    const receipt = await execute(valid);
+    assert.equal(receipt.reviewOperationKey, "U1");
+    assert.equal(calls, 1);
+  } finally {
+    fixture.dispose();
+  }
+});
+
+test("IMP-24 envelope requests bind exact retained bytes inline and echo both hashes in the receipt", async () => {
+  const fixture = makeFixture();
+  let calls = 0;
+  try {
+    const compiled = createReviewEvidenceEnvelope({
+      lane: "reader",
+      envelopeId: "executor-reader-envelope",
+      caseId: "executor-reader-case",
+      instrumentVersion: "imp24-inline-evidence-envelope-v1",
+      segments: [{ refId: "RD-001", kind: "chapter", text: "# Complete reader evidence\n" }],
+      immutableBindings: { chapterContentSha256: "a".repeat(64) },
+    });
+    const envelope = serializeReviewEvidenceEnvelope(compiled);
+    const req = request(fixture, "reader");
+    req.reviewProtocol = "review-evidence-envelope-v1";
+    req.evidenceEnvelopeSha256 = compiled.envelopeSha256;
+    req.evidenceEnvelopeBytesSha256 = sha256Hex(envelope);
+    req.task = buildReaderExperienceInlineReviewTask(compiled);
+    req.artifacts = [...req.artifacts, artifact("evidence-envelope", "review-envelope.json", envelope)];
+    const execute = createForwardReviewerExecutor({
+      schemaMap: fixture.schemas,
+      workspaceBaseDir: fixture.workspaceBase,
+      spawn: async (options) => { calls += 1; return okResult(options); },
+    });
+    const receipt = await execute(req);
+    assert.equal(receipt.reviewProtocol, req.reviewProtocol);
+    assert.equal(receipt.evidenceEnvelopeSha256, req.evidenceEnvelopeSha256);
+    assert.equal(receipt.evidenceEnvelopeBytesSha256, req.evidenceEnvelopeBytesSha256);
+    assert.equal(calls, 1);
+
+    const missingInline = { ...req, task: "Judge evidence that is not actually inline." };
+    await assert.rejects(execute(missingInline), /not present inline/);
+    assert.equal(calls, 1, "missing inline evidence fails before spawn");
+  } finally {
+    fixture.dispose();
+  }
+});
+
+test("IMP-24 envelope requests select the semantic-only V2 schema map", async () => {
+  const fixture = makeFixture();
+  try {
+    const v2Dir = join(fixture.root, "schemas-v2");
+    mkdirSync(v2Dir, { recursive: true });
+    const v2Schemas: Record<ForwardReviewLane, string> = {
+      reader: join(v2Dir, "reader-v2.json"),
+      source: join(v2Dir, "source-v2.json"),
+      quiz: join(v2Dir, "quiz-v2.json"),
+    };
+    for (const lane of ["reader", "source", "quiz"] as const) {
+      writeFileSync(v2Schemas[lane], `${JSON.stringify({ type: "object", title: `${lane}-semantic-v2` })}\n`);
+    }
+    const compiled = createReviewEvidenceEnvelope({
+      lane: "reader",
+      envelopeId: "executor-v2-map-envelope",
+      caseId: "executor-v2-map-case",
+      instrumentVersion: "imp24-inline-evidence-envelope-v1",
+      segments: [{ refId: "RD-001", kind: "chapter", text: "# Complete reader evidence\n" }],
+    });
+    const envelope = serializeReviewEvidenceEnvelope(compiled);
+    const req = request(fixture, "reader");
+    req.reviewProtocol = "review-evidence-envelope-v1";
+    req.evidenceEnvelopeSha256 = compiled.envelopeSha256;
+    req.evidenceEnvelopeBytesSha256 = sha256Hex(envelope);
+    req.schemaSha256 = sha256Hex(readFileSync(v2Schemas.reader));
+    req.task = buildReaderExperienceInlineReviewTask(compiled);
+    req.artifacts = [...req.artifacts, artifact("evidence-envelope", "review-envelope.json", envelope)];
+    let observedSchemaPath = "";
+    const execute = createForwardReviewerExecutor({
+      schemaMap: fixture.schemas,
+      v2SchemaMap: v2Schemas,
+      workspaceBaseDir: fixture.workspaceBase,
+      spawn: async (options) => {
+        observedSchemaPath = options.outputSchemaPath ?? "";
+        return okResult(options);
+      },
+    });
+    await execute(req);
+    assert.equal(observedSchemaPath, v2Schemas.reader);
   } finally {
     fixture.dispose();
   }
@@ -238,6 +354,7 @@ test("exact route, model, effort, schema, read-only workspace, and no-API envelo
       schema: FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA,
       executionId: call.sessionId,
       lane: req.lane,
+      reviewOperationKey: req.reviewOperationKey,
       workspaceRole: req.workspaceRole,
       profileId: req.profileId,
       model: req.model,

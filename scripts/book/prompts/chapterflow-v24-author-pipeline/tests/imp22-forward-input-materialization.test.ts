@@ -8,6 +8,7 @@ import { sha256Hex } from "../src/contracts/contractUtil.js";
 import {
   IMP22_FORWARD_INPUT_EXPECTED_HASHES,
   materializeImp22ForwardInputs,
+  materializeImp24ForwardInputs,
 } from "../src/orchestrator/forwardInputMaterialization.js";
 import { test } from "./harness.js";
 import { mkTestRoots } from "./testRoots.js";
@@ -69,6 +70,26 @@ test("IMP-22 real pilot/gold inputs materialize reproducibly without prior prose
       readFileSync(join(first.pilotRoot, "input-freeze.json"), "utf8"),
       readFileSync(join(first.goldRoot, "input-freeze.json"), "utf8"),
     );
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("IMP-24 rematerializes the unchanged denominator under fresh envelope result roots", () => {
+  const roots = mkTestRoots("imp24-real-forward-inputs");
+  try {
+    const stateRoot = join(roots.base, "migration-experiments");
+    const result = materializeImp24ForwardInputs(stateRoot);
+    assert.equal(result.freeze.freezeSha256, IMP22_FORWARD_INPUT_EXPECTED_HASHES.freezeSha256);
+    assert.equal(result.materialization.pilotExperimentId, "s16-forward-sol-pilot-v2-envelope");
+    assert.equal(result.materialization.goldExperimentId, "s16-forward-sol-gold-book-v2-envelope");
+    assert.equal(result.pilotRoot.endsWith("/s16-forward-sol-pilot-v2-envelope"), true);
+    assert.equal(result.goldRoot.endsWith("/s16-forward-sol-gold-book-v2-envelope"), true);
+    assert.equal(result.materialization.priorChapterProseUsed, false);
+    assert.equal(result.freeze.pilot.flatMap((book) => book.chapters).length, 8);
+    assert.equal(result.freeze.goldChapterCount, 13);
+    assert.equal(existsSync(join(result.pilotRoot, "inputs", "radical-candor", "chapters")), false);
+    assert.equal(existsSync(join(result.goldRoot, "inputs", "the-gifts-of-imperfection", "chapters")), false);
   } finally {
     roots.dispose();
   }

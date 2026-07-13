@@ -1,0 +1,34 @@
+{
+  "artifactSha256": "5a30e40f319bd87e2b792862c415816973996f896181ea752068cd4961692acf",
+  "callBudgetSha256": "6251236d264e79f38b2d418d82d3448ac0aabfca805f2d213c439e480c87ccb5",
+  "derivation": {
+    "baseMaximum": 464,
+    "canaries": 24,
+    "hardMaximum": 928,
+    "holdouts": {
+      "quiz": 160,
+      "reader": 120,
+      "source": 160
+    },
+    "infrastructureReplayMaximum": 464,
+    "profilesPerRole": {
+      "quiz": 4,
+      "reader": 4,
+      "source": 4
+    }
+  },
+  "experimentId": "s16-forward-role-qualification-v3-envelope",
+  "maximumIsTarget": false,
+  "policy": {
+    "baseMaximumCalls": 464,
+    "hardMaximumCalls": 928,
+    "maxParallel": 2,
+    "replayPolicy": "one-replay-only-for-frozen-infrastructure-statuses"
+  },
+  "schema": "imp24-qualification-call-budget-v1",
+  "sequentialStopping": {
+    "quizQualifiedProfiles": 1,
+    "readerQualifiedProfiles": 2,
+    "sourceQualifiedProfiles": 2
+  }
+}

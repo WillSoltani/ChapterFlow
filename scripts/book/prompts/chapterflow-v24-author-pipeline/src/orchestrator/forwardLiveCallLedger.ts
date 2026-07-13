@@ -71,6 +71,10 @@ export type ForwardLivePhaseBudgetV1 = {
   panelPolicySha256: string;
   targetCount: number;
   auditTargetCount: number;
+  /** Frozen before any live campaign call from the hash-verified source plans.
+   * Source review executes once per plan unit, not once per chapter. */
+  sourcePartitionCountByChapter: Record<string, number>;
+  sourcePartitionCountTotal: number;
   expectedCalls: Record<ForwardLiveCallCategory, number>;
   maximumCallsBeforeInfrastructureReplays: Record<ForwardLiveCallCategory, number>;
   maximumInfrastructureReplays: Record<ForwardLiveCallCategory, number>;
@@ -161,6 +165,36 @@ function sumCounts(counts: Record<ForwardLiveCallCategory, number>): number {
   return Object.values(counts).reduce((total, count) => total + count, 0);
 }
 
+export function forwardLiveBudgetChapterKey(bookId: string, chapterNumber: number): string {
+  requireCondition(typeof bookId === "string" && bookId.trim().length > 0,
+    "live-call budget: empty book id");
+  requireCondition(Number.isSafeInteger(chapterNumber) && chapterNumber > 0,
+    "live-call budget: invalid chapter number");
+  return `${bookId}/ch${String(chapterNumber).padStart(2, "0")}`;
+}
+
+function freezeSourcePartitionCounts(
+  manifest: FrozenForwardValidationManifestV1["manifest"],
+  supplied: Readonly<Record<string, number>> | undefined,
+): Record<string, number> {
+  const expectedKeys = manifest.targets
+    .map((target) => forwardLiveBudgetChapterKey(target.bookId, target.chapterNumber))
+    .sort();
+  requireCondition(new Set(expectedKeys).size === expectedKeys.length,
+    "live-call budget: duplicate chapter coordinates in manifest");
+  const counts = supplied ?? Object.fromEntries(expectedKeys.map((key) => [key, 1]));
+  requireCondition(hashCanonical(Object.keys(counts).sort()) === hashCanonical(expectedKeys),
+    "live-call budget: source partition-count coordinates differ from the frozen manifest");
+  const frozen: Record<string, number> = {};
+  for (const key of expectedKeys) {
+    const count = counts[key];
+    requireCondition(Number.isSafeInteger(count) && count > 0,
+      `live-call budget: ${key} source partition count must be a positive integer`);
+    frozen[key] = count;
+  }
+  return frozen;
+}
+
 /**
  * Freeze a conservative phase ceiling.  Expected calls describe a clean
  * first-write pass.  The pre-replay maximum covers, for every chapter, the
@@ -171,6 +205,10 @@ function sumCounts(counts: Record<ForwardLiveCallCategory, number>): number {
 export function buildForwardLivePhaseBudget(args: {
   manifest: FrozenForwardValidationManifestV1;
   panelPolicy: ForwardPanelReviewPolicyV1;
+  /** Exact unit cardinalities from hash-verified, materialized source plans.
+   * Omission is retained only for archived V1 callers/tests and means one unit
+   * per target; the V3 explicit-artifact entrypoint always supplies this. */
+  sourcePartitionCountByChapter?: Readonly<Record<string, number>>;
   /** Must be frozen before a gold phase; the IMP-22 production composition uses
    * two blind raters, one adjudicator, and one independent book-sweep call. */
   goldBookEvaluatorExpectedCalls?: number;
@@ -190,6 +228,12 @@ export function buildForwardLivePhaseBudget(args: {
   )).length;
   const evaluatorExpected = kind === "gold" ? args.goldBookEvaluatorExpectedCalls : 0;
   const evaluatorMaximum = kind === "gold" ? args.goldBookEvaluatorMaximumCallsBeforeReplay : 0;
+  const sourcePartitionCountByChapter = freezeSourcePartitionCounts(
+    manifest,
+    args.sourcePartitionCountByChapter,
+  );
+  const sourcePartitionCountTotal = Object.values(sourcePartitionCountByChapter)
+    .reduce((total, count) => total + count, 0);
   if (kind === "gold") {
     requireCondition(Number.isSafeInteger(evaluatorExpected) && evaluatorExpected! >= 2, "gold live-call budget requires at least two frozen independent evaluator calls");
     requireCondition(Number.isSafeInteger(evaluatorMaximum) && evaluatorMaximum! >= evaluatorExpected!, "gold evaluator maximum is below its expected calls");
@@ -199,7 +243,7 @@ export function buildForwardLivePhaseBudget(args: {
   expectedCalls[`${kind}-author-first-write`] = targetCount;
   expectedCalls[`${kind}-reader-primary`] = targetCount;
   expectedCalls[`${kind}-reader-audit`] = auditTargetCount;
-  expectedCalls[`${kind}-source-primary`] = targetCount;
+  expectedCalls[`${kind}-source-primary`] = sourcePartitionCountTotal;
   expectedCalls[`${kind}-quiz-adjudicator`] = targetCount;
   if (kind === "gold") expectedCalls["gold-book-evaluator"] = evaluatorExpected!;
 
@@ -212,8 +256,8 @@ export function buildForwardLivePhaseBudget(args: {
   // coordinate gets the frozen audit, and every source read may adjudicate.
   maximumCallsBeforeInfrastructureReplays[`${kind}-reader-primary`] = targetCount * 3;
   maximumCallsBeforeInfrastructureReplays[`${kind}-reader-audit`] = auditTargetCount * 3;
-  maximumCallsBeforeInfrastructureReplays[`${kind}-source-primary`] = targetCount * 3;
-  maximumCallsBeforeInfrastructureReplays[`${kind}-source-adjudicator`] = targetCount * 3;
+  maximumCallsBeforeInfrastructureReplays[`${kind}-source-primary`] = sourcePartitionCountTotal * 3;
+  maximumCallsBeforeInfrastructureReplays[`${kind}-source-adjudicator`] = sourcePartitionCountTotal * 3;
   maximumCallsBeforeInfrastructureReplays[`${kind}-quiz-adjudicator`] = targetCount * 3;
   if (kind === "gold") maximumCallsBeforeInfrastructureReplays["gold-book-evaluator"] = evaluatorMaximum!;
 
@@ -226,6 +270,8 @@ export function buildForwardLivePhaseBudget(args: {
     panelPolicySha256: args.panelPolicy.policySha256,
     targetCount,
     auditTargetCount,
+    sourcePartitionCountByChapter,
+    sourcePartitionCountTotal,
     expectedCalls,
     maximumCallsBeforeInfrastructureReplays,
     maximumInfrastructureReplays,
@@ -261,6 +307,9 @@ function assertBudget(budget: ForwardLivePhaseBudgetV1): void {
   requireCondition(hashCanonical(base) === budgetSha256, "live-call budget hash drift");
   requireCondition(budget.maximumIsNotATarget === true && budget.outputInformedBonusCalls === false, "live-call budget permits output-informed bonus work");
   requireCondition(budget.apiCallsAllowed === 0 && budget.apiFallbackAllowed === false, "live-call budget permits an API route");
+  requireCondition(Object.values(budget.sourcePartitionCountByChapter).every((count) => Number.isSafeInteger(count) && count > 0)
+      && Object.values(budget.sourcePartitionCountByChapter).reduce((total, count) => total + count, 0) === budget.sourcePartitionCountTotal,
+    "live-call budget has invalid source partition cardinality");
 }
 
 function emptyLedger(budget: ForwardLivePhaseBudgetV1): ForwardLiveCallLedgerV1 {
@@ -318,6 +367,9 @@ export type ForwardLiveCallLedgerController = {
 export function createForwardLiveCallLedger(args: {
   budget: ForwardLivePhaseBudgetV1;
   phaseDir: string;
+  /** Synchronous fail-closed authorization recheck run at the one durable seam
+   * every fresh model call crosses. Cached receipts do not invoke a model. */
+  beforeModelCall?: () => void;
 }): ForwardLiveCallLedgerController {
   assertBudget(args.budget);
   const ledgerPath = resolve(args.phaseDir, "call-ledger.json");
@@ -346,6 +398,7 @@ export function createForwardLiveCallLedger(args: {
       ledger.infrastructureReplays += 1;
     }
     requireCondition(ledger.codexExecInvocations < args.budget.hardMaximumCalls, "live-call hard maximum exhausted");
+    args.beforeModelCall?.();
     ledger.codexExecInvocations += 1;
     ledger.entries.push({
       ...context,
@@ -424,12 +477,21 @@ export async function runLedgeredForwardModelOperation<TRequest, TResult>(args: 
     let cached = false;
     if (existsSync(paths.request) || existsSync(paths.receipt)) {
       requireCondition(existsSync(paths.request) && existsSync(paths.receipt), `${args.context.logicalOperationId}: partial persisted request/receipt pair`);
-      const priorRequest = readJson<{ requestSha256?: string }>(paths.request);
+      const priorRequest = readJson<{ requestSha256?: string; requestProjectionSha256?: string; request?: unknown }>(paths.request);
       requireCondition(priorRequest.requestSha256 === requestSha256, `${args.context.logicalOperationId}: request changed on resume`);
+      requireCondition(priorRequest.request !== undefined
+          && priorRequest.requestProjectionSha256 === hashCanonical(priorRequest.request),
+        `${args.context.logicalOperationId}: persisted request projection hash drift`);
+      requireCondition(hashCanonical(priorRequest.request) === requestSha256,
+        `${args.context.logicalOperationId}: persisted request projection differs from the current request`);
       receipt = readJson<ForwardLiveModelOperationReceiptV1<TResult>>(paths.receipt);
       cached = true;
     } else {
-      writeJson(paths.request, { requestSha256, request: args.request });
+      writeJson(paths.request, {
+        requestSha256,
+        requestProjectionSha256: hashCanonical(args.request),
+        request: args.request,
+      });
       const attemptId = args.controller.begin({ context: args.context, attemptNumber, requestSha256 });
       try {
         const completed = await args.execute(attemptNumber);
@@ -498,6 +560,24 @@ export async function runLedgeredForwardModelOperation<TRequest, TResult>(args: 
  * The category resolver binds panel role to the frozen assignment; it must not
  * inspect reviewer output.
  */
+function retainedReviewerRequestProjection(request: Readonly<ForwardReviewExecutionRequestV1>): unknown {
+  return {
+    ...request,
+    task: {
+      sha256: sha256Hex(request.task),
+      bytes: Buffer.byteLength(request.task),
+      content: request.task,
+    },
+    artifacts: request.artifacts.map((artifact) => ({
+      kind: artifact.kind,
+      relPath: artifact.relPath,
+      sha256: artifact.sha256,
+      bytes: Buffer.byteLength(artifact.content),
+      content: artifact.content,
+    })),
+  };
+}
+
 export function createLedgeredForwardReviewerExecutor(args: {
   controller: ForwardLiveCallLedgerController;
   phaseDir: string;
@@ -519,23 +599,25 @@ export function createLedgeredForwardReviewerExecutor(args: {
       let cached = false;
       if (existsSync(paths.request) || existsSync(paths.receipt)) {
         requireCondition(existsSync(paths.request) && existsSync(paths.receipt), `${context.logicalOperationId}: partial persisted request/receipt pair`);
-        const priorRequest = readJson<{ requestSha256?: string }>(paths.request);
+        const priorRequest = readJson<{ requestSha256?: string; requestProjectionSha256?: string; request?: unknown }>(paths.request);
         requireCondition(priorRequest.requestSha256 === requestSha256, `${context.logicalOperationId}: request changed on resume`);
+        requireCondition(priorRequest.request !== undefined
+            && priorRequest.requestProjectionSha256 === hashCanonical(priorRequest.request),
+          `${context.logicalOperationId}: persisted request projection hash drift`);
+        requireCondition(hashCanonical(priorRequest.request) === hashCanonical(retainedReviewerRequestProjection(request)),
+          `${context.logicalOperationId}: persisted exact reviewer request differs from the current request`);
         receipt = readJson<PersistedForwardLiveCallReceiptV1>(paths.receipt);
         cached = true;
       } else {
+        // Preserve the exact request bytes, including the complete inline task
+        // and evidence-envelope artifact. Hash-only projections are
+        // insufficient to audit the V3 instrument after workspaces are
+        // destroyed. No auth material is part of this typed request.
+        const requestProjection = retainedReviewerRequestProjection(request);
         writeJson(paths.request, {
           requestSha256,
-          request: {
-            ...request,
-            task: { sha256: sha256Hex(request.task), bytes: Buffer.byteLength(request.task) },
-            artifacts: request.artifacts.map((artifact) => ({
-              kind: artifact.kind,
-              relPath: artifact.relPath,
-              sha256: artifact.sha256,
-              bytes: Buffer.byteLength(artifact.content),
-            })),
-          },
+          requestProjectionSha256: hashCanonical(requestProjection),
+          request: requestProjection,
         });
         const attemptId = args.controller.begin({ context, attemptNumber, requestSha256 });
         try {

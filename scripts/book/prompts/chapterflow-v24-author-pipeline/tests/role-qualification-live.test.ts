@@ -17,8 +17,11 @@ import {
 import {
   discoverRoleQualificationCandidateAvailability,
   LiveRoleQualificationError,
+  attestLiveRoleCalibration,
   createLiveQualificationExecutor,
   loadAndPreflightLiveQualification,
+  runLiveRoleCalibration,
+  runLiveRoleQualificationHoldout,
   type CandidateAvailabilityPolicyV1,
 } from "../src/orchestrator/forwardRoleQualificationLive.js";
 import { test } from "./harness.js";
@@ -145,90 +148,30 @@ test("candidate availability discovery deterministically skips unavailable profi
   }
 });
 
-test("live qualification persists an exact receipt and a resume spends zero bonus calls", async () => {
-  const root = mkdtempSync(join(tmpdir(), "cf-imp22-live-qualification-"));
-  let calls = 0;
-  try {
-    const live = createLiveQualificationExecutor({
-      phase: "calibration",
-      specBytesSha256: "b".repeat(64),
-      phaseDir: root,
-      spawn: async (options) => {
-        calls += 1;
-        return okResult(options);
-      },
-    });
-    const request = qualificationRequest();
-    const first = await live.executor(request);
-    const resumed = await live.executor(request);
-    assert.deepEqual(resumed, first);
-    assert.equal(calls, 1, "an exact resume must reuse the persisted receipt");
-    assert.equal(live.ledger.codexExecInvocations, 1);
-    assert.equal(live.ledger.cachedReceipts, 1);
-    assert.equal(live.ledger.apiCallsMade, 0);
-
-    await assert.rejects(
-      live.executor({ ...request, task: `${request.task}\nchanged after freeze` }),
-      /request hash changed on resume/,
-    );
-    assert.equal(calls, 1, "a drifted resume must fail before spawning");
-  } finally {
-    rmSync(root, { recursive: true, force: true });
-  }
-});
-
-test("live qualification binds every spawn-owned sink to its phase and leaves canonical exec evidence untouched", async () => {
-  const root = mkdtempSync(join(tmpdir(), "cf-imp22-live-qualification-sinks-"));
-  const phaseDir = resolve(root, "experiment", "live", "calibration");
-  const canonicalSink = defaultManifestSink();
-  const canonicalCliCache = qualificationCachePathFor(canonicalSink);
-  const canonicalCliCacheBefore = existsSync(canonicalCliCache)
-    ? sha256Hex(readFileSync(canonicalCliCache))
-    : null;
-  const captured: SpawnCodexAgentOptions[] = [];
-  try {
-    const live = createLiveQualificationExecutor({
-      phase: "calibration",
-      specBytesSha256: "b".repeat(64),
-      phaseDir,
-      spawn: async (options) => {
-        captured.push(options);
-        return okResult(options);
-      },
-    });
-
-    await live.executor(qualificationRequest());
-    assert.equal(captured.length, 1, "the injected no-model spawn must observe exactly one broker call");
-    const options = captured[0]!;
-    assert.equal(options.manifestSink, resolve(phaseDir, "exec", "logs"));
-    assert.equal(options.execBaseDir, resolve(phaseDir, "exec", "sessions"));
-    assert.equal(options.qualificationCacheDir, resolve(phaseDir, "exec", "cli-qualification-cache"));
-    for (const path of [options.manifestSink, options.execBaseDir, options.qualificationCacheDir]) {
-      assert.equal(typeof path, "string");
-      assert.equal(resolve(path!).startsWith(`${phaseDir}/`), true, `spawn sink escaped the phase root: ${String(path)}`);
-      assert.notEqual(resolve(path!), resolve(canonicalSink));
-    }
-
-    const canonicalCliCacheAfter = existsSync(canonicalCliCache)
-      ? sha256Hex(readFileSync(canonicalCliCache))
-      : null;
-    assert.equal(canonicalCliCacheAfter, canonicalCliCacheBefore, "qualification must not mutate the canonical CLI cache");
-  } finally {
-    rmSync(root, { recursive: true, force: true });
-  }
-});
-
-test("live preflight refuses a parent API-key route before any codex execution", async () => {
-  const prior = process.env.OPENAI_API_KEY;
-  process.env.OPENAI_API_KEY = "test-sentinel-never-sent";
-  try {
-    await assert.rejects(
-      loadAndPreflightLiveQualification({ verifiedAt: "2026-07-12T00:00:00.000Z" }),
-      (error: unknown) => error instanceof LiveRoleQualificationError
-        && /prohibited provider env key\(s\): OPENAI_API_KEY/.test(error.message),
-    );
-  } finally {
-    if (prior === undefined) delete process.env.OPENAI_API_KEY;
-    else process.env.OPENAI_API_KEY = prior;
-  }
+test("archived V1/V2 live preflight and broker are replay-only first barriers", async () => {
+  let spawnCalls = 0;
+  assert.throws(() => createLiveQualificationExecutor({
+    phase: "calibration",
+    specBytesSha256: "b".repeat(64),
+    phaseDir: "/must-not-be-created",
+    spawn: async (options) => {
+      spawnCalls += 1;
+      return okResult(options);
+    },
+  }), /v1=INVALID_INSTRUMENT_DO_NOT_ATTEST.*v2=BLOCKED_CALIBRATION_INVALID/);
+  await assert.rejects(
+    loadAndPreflightLiveQualification({ verifiedAt: "2026-07-12T00:00:00.000Z" }),
+    /v1=INVALID_INSTRUMENT_DO_NOT_ATTEST.*v2=BLOCKED_CALIBRATION_INVALID/,
+  );
+  await assert.rejects(runLiveRoleCalibration({ experimentDir: "/must-not-be-created" }),
+    /v1=INVALID_INSTRUMENT_DO_NOT_ATTEST.*v2=BLOCKED_CALIBRATION_INVALID/);
+  await assert.rejects(runLiveRoleQualificationHoldout({ experimentDir: "/must-not-be-created" }),
+    /v1=INVALID_INSTRUMENT_DO_NOT_ATTEST.*v2=BLOCKED_CALIBRATION_INVALID/);
+  assert.throws(() => attestLiveRoleCalibration({
+    experimentDir: "/must-not-be-created",
+    confirmedCalibrationSha256: "a".repeat(64),
+    inspectedBy: "must-not-run",
+    approveHoldout: true,
+  }), /v1=INVALID_INSTRUMENT_DO_NOT_ATTEST.*v2=BLOCKED_CALIBRATION_INVALID/);
+  assert.equal(spawnCalls, 0);
 });

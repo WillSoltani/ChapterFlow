@@ -26,6 +26,10 @@ import {
   type FrozenForwardInputFileV1,
   type MaterializedForwardBookInputV1,
 } from "./forwardInputFreeze.js";
+import {
+  GOLD_ENVELOPE_EXPERIMENT_ID,
+  PILOT_ENVELOPE_EXPERIMENT_ID,
+} from "./forwardValidationCampaign.js";
 
 export const IMP22_FORWARD_INPUT_MATERIALIZATION_SCHEMA =
   "imp22-forward-input-materialization-v1" as const;
@@ -46,6 +50,21 @@ const CONTRACT_ROOT = resolve(PIPELINE_DIR, "state/migration-experiments/contrac
 const DEFAULT_STATE_ROOT = resolve(PIPELINE_DIR, "state/migration-experiments");
 const PILOT_EXPERIMENT_ID = "s16-forward-sol-pilot-v1";
 const GOLD_EXPERIMENT_ID = "s16-forward-sol-gold-book-v1";
+
+export type ForwardInputExperimentIdsV1 = {
+  pilotExperimentId: typeof PILOT_EXPERIMENT_ID | typeof PILOT_ENVELOPE_EXPERIMENT_ID;
+  goldExperimentId: typeof GOLD_EXPERIMENT_ID | typeof GOLD_ENVELOPE_EXPERIMENT_ID;
+};
+
+export const IMP22_FORWARD_INPUT_EXPERIMENT_IDS: ForwardInputExperimentIdsV1 = Object.freeze({
+  pilotExperimentId: PILOT_EXPERIMENT_ID,
+  goldExperimentId: GOLD_EXPERIMENT_ID,
+});
+
+export const IMP24_FORWARD_INPUT_EXPERIMENT_IDS: ForwardInputExperimentIdsV1 = Object.freeze({
+  pilotExperimentId: PILOT_ENVELOPE_EXPERIMENT_ID,
+  goldExperimentId: GOLD_ENVELOPE_EXPERIMENT_ID,
+});
 
 function preferExistingDirectory(primary: string, committedFallback: string): string {
   return existsSync(primary) ? primary : committedFallback;
@@ -207,8 +226,8 @@ export type Imp22ForwardInputMaterializationV1 = {
   frozenAtIso: typeof IMP22_FORWARD_INPUT_FROZEN_AT;
   inputFreezeSha256: string;
   qualificationBookIds: string[];
-  pilotExperimentId: typeof PILOT_EXPERIMENT_ID;
-  goldExperimentId: typeof GOLD_EXPERIMENT_ID;
+  pilotExperimentId: ForwardInputExperimentIdsV1["pilotExperimentId"];
+  goldExperimentId: ForwardInputExperimentIdsV1["goldExperimentId"];
   pilot: object[];
   gold: object;
   priorChapterProseUsed: false;
@@ -228,10 +247,11 @@ export type MaterializeImp22ForwardInputsResult = {
  */
 export function materializeImp22ForwardInputs(
   stateRoot = DEFAULT_STATE_ROOT,
+  experimentIds: ForwardInputExperimentIdsV1 = IMP22_FORWARD_INPUT_EXPERIMENT_IDS,
 ): MaterializeImp22ForwardInputsResult {
   const root = resolve(stateRoot);
-  const pilotRoot = resolve(root, PILOT_EXPERIMENT_ID);
-  const goldRoot = resolve(root, GOLD_EXPERIMENT_ID);
+  const pilotRoot = resolve(root, experimentIds.pilotExperimentId);
+  const goldRoot = resolve(root, experimentIds.goldExperimentId);
   const pilotBooks = inventoryPilotInputs();
   const gold = inventoryGoldBookInput({
     bookId: GOLD_LOCATION.bookId,
@@ -288,8 +308,8 @@ export function materializeImp22ForwardInputs(
     frozenAtIso: IMP22_FORWARD_INPUT_FROZEN_AT,
     inputFreezeSha256: freeze.freezeSha256,
     qualificationBookIds: qualificationIds,
-    pilotExperimentId: PILOT_EXPERIMENT_ID,
-    goldExperimentId: GOLD_EXPERIMENT_ID,
+    pilotExperimentId: experimentIds.pilotExperimentId,
+    goldExperimentId: experimentIds.goldExperimentId,
     pilot: pilotMaterialized.map((item) => portableMaterialization(root, item)),
     gold: portableMaterialization(root, goldMaterialized),
     priorChapterProseUsed: false,
@@ -303,6 +323,15 @@ export function materializeImp22ForwardInputs(
   writeStableJson(resolve(pilotRoot, "input-materialization.json"), materialization);
   writeStableJson(resolve(goldRoot, "input-materialization.json"), materialization);
   return { freeze, materialization, pilotRoot, goldRoot };
+}
+
+/** Rebuild the unchanged frozen denominator under the fresh IMP-24 envelope
+ * identities. Source inputs are reused; candidate prose and result roots are
+ * new, and the materialization record binds those new identities. */
+export function materializeImp24ForwardInputs(
+  stateRoot = DEFAULT_STATE_ROOT,
+): MaterializeImp22ForwardInputsResult {
+  return materializeImp22ForwardInputs(stateRoot, IMP24_FORWARD_INPUT_EXPERIMENT_IDS);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname)) {

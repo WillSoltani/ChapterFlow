@@ -148,14 +148,14 @@ test("verifier packets: no identity, no answer key, no prior verdicts; tasks are
 });
 
 test("direct reader and source verifier are verdict-disjoint BY MANIFEST — disagreement can only combine at the conductor", () => {
-  // Neither role's artifact kinds include any verdict/review kind — there is
-  // no artifact kind for "another reviewer's output" AT ALL, so the roles
-  // cannot see each other's conclusions no matter what a caller passes
-  // (an unknown kind fails the manifest check; a known kind carries content
-  // the build screens). Independence is structural, not behavioral.
+  // Neither role's artifact kinds include any verdict/review kind. The
+  // evidence-envelope is an input contract whose compiler rejects route
+  // identity and prior dispositions; it is not another reviewer's output.
+  // Unknown kinds still fail the manifest check, so the conductor remains the
+  // only place these roles' conclusions can combine.
   const kinds = new Set([...REVIEWER_ROLE_MANIFESTS["direct-reader"], ...REVIEWER_ROLE_MANIFESTS["source-verifier"]]);
   for (const k of kinds) {
-    assert.ok(["phase1-doc", "source-evidence", "source-plan"].includes(k), `no verdict-bearing artifact kind exists (${k})`);
+    assert.ok(["phase1-doc", "source-evidence", "source-plan", "evidence-envelope"].includes(k), `no verdict-bearing artifact kind exists (${k})`);
   }
   assert.ok(!REVIEWER_ROLE_MANIFESTS["source-verifier"].includes("phase2-doc"), "the source verifier never sees the key either");
 });

@@ -354,7 +354,7 @@ export function validateQualificationAndRoleFreezeArtifacts(
   );
 }
 
-function validateMaterialization(
+export function validateForwardInputMaterializationBinding(
   freeze: ForwardInputFreezeV1,
   materialization: Imp22ForwardInputMaterializationV1,
 ): string {
@@ -397,7 +397,7 @@ export type BuildPilotArtifactsInputV1 = {
 export function buildPilotArtifacts(
   input: BuildPilotArtifactsInputV1,
 ): FrozenForwardValidationManifestV1<ForwardPilotManifestV1> {
-  const inputMaterializationSha256 = validateMaterialization(input.inputFreeze, input.inputMaterialization);
+  const inputMaterializationSha256 = validateForwardInputMaterializationBinding(input.inputFreeze, input.inputMaterialization);
   validateRoleAndProductionSeals(input.roleFreeze, input.productionInstrumentSeal, input.repositoryRoot);
   const manifest = buildPilotManifest({
     frozenAtIso: input.inputFreeze.frozenAtIso,
@@ -414,7 +414,7 @@ export function buildPilotArtifacts(
   return manifest;
 }
 
-function assertAcceptedPilot(
+export function assertAcceptedForwardPilotResult(
   pilotManifest: FrozenForwardValidationManifestV1<ForwardPilotManifestV1>,
   pilotResult: ForwardValidationCampaignResultV1,
 ): void {
@@ -450,8 +450,8 @@ export function buildGoldArtifacts(input: BuildPilotArtifactsInputV1 & {
   pilotManifest: FrozenForwardValidationManifestV1<ForwardPilotManifestV1>;
   pilotResult: ForwardValidationCampaignResultV1;
 }): GoldArtifactsV1 {
-  assertAcceptedPilot(input.pilotManifest, input.pilotResult);
-  const inputMaterializationSha256 = validateMaterialization(input.inputFreeze, input.inputMaterialization);
+  assertAcceptedForwardPilotResult(input.pilotManifest, input.pilotResult);
+  const inputMaterializationSha256 = validateForwardInputMaterializationBinding(input.inputFreeze, input.inputMaterialization);
   validateRoleAndProductionSeals(input.roleFreeze, input.productionInstrumentSeal, input.repositoryRoot);
   const goldEvaluatorConfig = buildForwardGoldEvaluatorInstrument({ repositoryRoot: input.repositoryRoot });
   validateForwardGoldEvaluatorInstrument(goldEvaluatorConfig, { repositoryRoot: input.repositoryRoot });

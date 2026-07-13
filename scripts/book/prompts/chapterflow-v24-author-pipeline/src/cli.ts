@@ -18,6 +18,7 @@
 
 import { existsSync as existsSyncFs, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, rmSync, renameSync } from "fs";
 import { execSync, execFileSync } from "child_process";
+import { homedir } from "os";
 import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
@@ -314,30 +315,35 @@ Commands:
                                      (fail-closed until a role-qualified reviewer set exists); and the no-model
                                      recovery pilot dry run (ZERO model/API calls). Never spawns, never
                                      promotes/publishes; live qualification + pilot need SEPARATE authorization.
-  migration-bakeoff <role-qualification-calibrate|role-qualification-holdout> --execute-live [--timeout-ms N] [--json]
-                                     IMP-22 ChatGPT-subscription codex-exec qualification. Calibration is
-                                     a 24-call barrier and cannot start holdout; holdout requires its valid,
-                                     hash-bound seal plus a durable human inspection attestation. Attempts
-                                     are crash-safe and exact resumes reuse receipts.
-  migration-bakeoff role-qualification-attest-calibration --inspector ID
-                                     --confirm-calibration-sha SHA --approve-holdout [--note TEXT] [--json]
-                                     IMP-22 zero-call operator gate. Hash-binds inspection of all retained
-                                     calibration results before any holdout request can start.
+  migration-bakeoff <role-qualification-calibrate|role-qualification-holdout|role-qualification-attest-calibration>
+                                     Historical V1/V2 qualification mutation paths are CLOSED and always
+                                     fail with their exact retained disposition before auth, files, or writes.
+  migration-bakeoff imp24-role-qualification-v3 --execute-live --head-sha SHA
+                                     --workflow-run-id ID [--models-cache FILE] [--timeout-ms N] [--json]
+                                     IMP-24 ChatGPT-subscription codex-exec qualification over exact V3
+                                     envelope artifacts. Local model-cache discovery only; crash-safe retained
+                                     attempts; no API, provider fallback, publication, promotion, or deployment.
+  migration-bakeoff imp24-materialize-pre-live-freeze [--write] [--json]
+                                     IMP-24B zero-model/API fixed-path pre-live freeze. Derives the six physical
+                                     corpus partitions, provenance/audits, prompt/schema/order/policy/schedule/budget
+                                     bundles, runbook, preliminary implementation report, and terminal self-hashed
+                                     freeze from the retained certified instrument and production seal.
   migration-bakeoff forward-materialize-production-instrument-seal [--output FILE] [--write] [--json]
                                      IMP-22 zero-model/API production-instrument materializer. Dry mode
                                      prints the current hash and target path; --write atomically writes and
                                      validates the retained canonical artifact. Default artifact:
                                      state/migration-experiments/contracts/imp22/forward-production-instrument-seal.json
-  migration-bakeoff <forward-pilot|forward-gold> --execute-live
-                                     --phase-dir DIR --manifest FILE --input-freeze FILE --input-materialization FILE
-                                     --production-instrument-seal FILE
-                                     (normally state/migration-experiments/contracts/imp22/forward-production-instrument-seal.json)
-                                     --calibration-seal FILE --calibration-inspection FILE
-                                     --qualification-result FILE --qualification-bundle FILE --role-freeze FILE
-                                     [--gold-evaluator-config FILE] [--json]
-                                     IMP-22 forward-only live validation. Dry by default: without --execute-live
-                                     it makes zero model/API calls. Every retained artifact path is explicit;
-                                     no publish, promote, deploy, upload, API route, or fallback exists.
+  migration-bakeoff <imp24-materialize-pilot-v2-envelope|imp24-materialize-gold-v2-envelope> [--write] [--json]
+                                     Model-free, fixed-path fresh-envelope artifact materialization from the
+                                     exact retained V3 qualification/certificate/corpus/seal/fixed roles and
+                                     IMP-24 input freeze. Pilot=8 chapters; gold=full 13-chapter book after a
+                                     freshly verified accepted pilot. Create-once exact; no path substitutions.
+  migration-bakeoff <imp24-pilot-v2-envelope|imp24-gold-v2-envelope> --execute-live [--json]
+                                     Fixed-path IMP-24 live validation through only the explicit V3 adapter.
+                                     Dry by default with zero reads/auth/writes/calls; every model call is a
+                                     ChatGPT-authenticated codex exec. No API/fallback or external capability.
+                                     Legacy forward-pilot/forward-gold and their V2 artifact/freeze subverbs are
+                                     closed with BLOCKED_CALIBRATION_INVALID before any observable activity.
   compile-source-packets <bookId>    v23 compiler: compile source-v2 sidecars into compact source packets.
   source-packet-gate <bookId>        v23 compiler: validate compiled source packets before blueprints.
   compile-book-design <bookId>       v23 compiler: derive the per-book variety pools artifact.
@@ -5851,8 +5857,14 @@ async function main() {
       return runBookAutopilot(args, flags);
     case "book-run":
       return (await import("./orchestrator/liveRun.js")).runLive(args, flags);
-    case "migration-bakeoff":
-      return (await import("./bakeoff/migration/cli.js")).runMigrationBakeoffCli(args, flags);
+    case "migration-bakeoff": {
+      const codexHome = process.env.CODEX_HOME?.trim() || resolve(homedir(), ".codex");
+      return (await import("./bakeoff/migration/cli.js")).runMigrationBakeoffCli(args, flags, {
+        imp24RoleQualificationV3: {
+          modelsCachePath: resolve(codexHome, "models_cache.json"),
+        },
+      });
+    }
     case "diversify-book":
       return (await import("./orchestrator/liveRun.js")).runDiversify(args, flags);
     case "content-repair-book":

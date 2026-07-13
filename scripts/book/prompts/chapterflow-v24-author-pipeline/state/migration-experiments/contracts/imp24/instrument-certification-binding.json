@@ -1,0 +1,22 @@
+{
+  "apiCalls": 0,
+  "certificationSha256": "b1661f217f93d3ed8e79c2ebbe788ef01c927d35b4c530d6d73b68a2fb42f815",
+  "corpusBundleSha256": "sha256:4501809686161a541ad776bdbfea9c716ec402d89ef397a072f93143ce28fcac",
+  "corpusCertificationSha256": "7d2a2bc14eb840341cffc9e3dcc00c166a9dada7a1161a63c43354aa19b26ce9",
+  "envelopeCompilerSha256": "e1fa568ef8951e874ddc2c81796dc54c19ab8eda851b6ff444433fc171b93c85",
+  "envelopeContractSha256": "1b0cbd9e7b3ffecde66de30f0e171c1d21e79674e26c29518d4c4ffbfdcc3bf1",
+  "experimentId": "s16-forward-role-qualification-v3-envelope",
+  "independentAuditPasses": 2,
+  "legacyEvidenceClosureSha256": "87d99f5f8f43ba70559b0c8c062c99dcf75bb190f72e9c0f933b5823d5dc54e2",
+  "modelCalls": 0,
+  "modelOutputContractsSha256": "79ae5c580a5cb2447a9473aad21c258ecf91d8f3211b99d861b1fc5d0fadbc6a",
+  "productionInstrumentSealSha256": "9f2555252102d892f08af06270ae86c70ce90699b1068b04302b4797558d145a",
+  "productionQualificationParitySha256": "bb0ec1cd0927d3746e3c509b84858df576f47c1e624a40317f26d6c0de517fdf",
+  "promptBundleSha256": "4da98a79943739dd223f12f5ff7c33bd238a114f065bdd09bfcffa66925aae00",
+  "schema": "imp24-instrument-certification-binding-v1",
+  "schemaBundleSha256": "f88f1b13ba263c670474385635ecd44511aaa07eec31074fe27905307b536798",
+  "scorerSha256": "9fca00fcca2c326473d456d1aa1998b76f09f86cfbcf58eb87b7a2cf568042f8",
+  "sourceMissingEvidenceInconclusiveCertified": true,
+  "status": "CERTIFIED_MODEL_FREE",
+  "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa"
+}

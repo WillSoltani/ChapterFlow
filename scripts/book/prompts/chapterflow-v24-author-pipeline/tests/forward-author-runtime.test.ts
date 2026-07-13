@@ -901,7 +901,8 @@ test("normal ACTIVE path retains a real conductor result and writes real-sweep-b
             });
       return {
         schema: FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA, executionId: `${request.lane}-ready-${execution}`,
-        lane: request.lane, workspaceRole: request.workspaceRole, profileId: request.profileId,
+        lane: request.lane, reviewOperationKey: request.reviewOperationKey,
+        workspaceRole: request.workspaceRole, profileId: request.profileId,
         model: request.model, effort: request.effort, schemaSha256: request.schemaSha256,
         instrumentVersion: request.instrumentVersion, roleAssignmentSha256: request.roleAssignmentSha256,
         instrumentManifestSha256: request.instrumentManifestSha256,

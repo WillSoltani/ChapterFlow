@@ -25,6 +25,8 @@ const DEFAULT_REPOSITORY_ROOT = resolve(dirname(fileURLToPath(import.meta.url)),
 const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
 export const FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH =
   `${PIPELINE_REL}/state/migration-experiments/contracts/imp22/forward-production-instrument-seal.json` as const;
+export const IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH =
+  `${PIPELINE_REL}/state/migration-experiments/contracts/imp24/forward-production-instrument-seal.json` as const;
 const INVENTORY_ROOTS = [
   `${PIPELINE_REL}/src`,
   `${PIPELINE_REL}/config`,
@@ -176,6 +178,17 @@ export type ForwardProductionInstrumentSealMaterializationV1 = {
   apiCalls: 0;
 };
 
+export type ForwardProductionInstrumentSealVerificationV1 = {
+  schema: "forward-production-instrument-seal-verification-v1";
+  outputPath: string;
+  sealSha256: string;
+  fileCount: number;
+  artifactBytesSha256: string;
+  verified: true;
+  modelCalls: 0;
+  apiCalls: 0;
+};
+
 /** Deterministic zero-model materializer. Dry mode computes the exact output
  * path/hash only. `write` atomically emits canonical JSON and immediately
  * re-reads and fully validates it against the current production bytes. */
@@ -205,6 +218,33 @@ export function materializeForwardProductionInstrumentSeal(args: {
     fileCount: seal.files.length,
     artifactBytesSha256: sha256Hex(bytes),
     written: args.write === true,
+    modelCalls: 0,
+    apiCalls: 0,
+  };
+}
+
+/** Fail-closed verification of an already retained seal. Unlike dry
+ * materialization, this proves both that the artifact exists and that its
+ * self-hash/inventory still match every current production-instrument byte. */
+export function verifyRetainedForwardProductionInstrumentSeal(args: {
+  repositoryRoot?: string;
+  outputPath?: string;
+} = {}): ForwardProductionInstrumentSealVerificationV1 {
+  const repositoryRoot = resolve(args.repositoryRoot ?? DEFAULT_REPOSITORY_ROOT);
+  const outputPath = resolve(args.outputPath
+    ?? resolve(repositoryRoot, IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH));
+  requireCondition(existsSync(outputPath), `retained production instrument seal is missing: ${outputPath}`);
+  let retained: unknown;
+  try { retained = JSON.parse(readFileSync(outputPath, "utf8")); }
+  catch (error) { throw new ForwardProductionInstrumentSealError(`cannot parse retained production seal: ${(error as Error).message}`); }
+  const validated = validateForwardProductionInstrumentSeal(retained, { repositoryRoot });
+  return {
+    schema: "forward-production-instrument-seal-verification-v1",
+    outputPath,
+    sealSha256: validated.sealSha256,
+    fileCount: validated.files.length,
+    artifactBytesSha256: sha256Hex(readFileSync(outputPath)),
+    verified: true,
     modelCalls: 0,
     apiCalls: 0,
   };

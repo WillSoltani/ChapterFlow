@@ -1,0 +1,135 @@
+{
+  "quiz": {
+    "ambiguityDetection": {
+      "minDenominator": 10,
+      "minRate": 0.9,
+      "zeroMiss": false
+    },
+    "cleanUniquePassRate": {
+      "minDenominator": 10,
+      "minRate": 0.9,
+      "zeroMiss": false
+    },
+    "evidenceSpanValidity": {
+      "minDenominator": 40,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "mechanismAccuracy": {
+      "minDenominator": 10,
+      "minRate": 0.9,
+      "zeroMiss": false
+    },
+    "requiredCasesResolved": {
+      "minDenominator": 40,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "schemaValidity": {
+      "minDenominator": 40,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "wrongKeyDetection": {
+      "minDenominator": 10,
+      "minRate": 1,
+      "zeroMiss": true
+    }
+  },
+  "reader": {
+    "cleanControlPassRate": {
+      "minDenominator": 10,
+      "minRate": 0.9,
+      "zeroMiss": false
+    },
+    "craftCalibrationAccuracy": {
+      "minDenominator": 10,
+      "minRate": 0.8,
+      "zeroMiss": false
+    },
+    "evidenceSpanValidity": {
+      "minDenominator": 30,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "hardBlockerFalsePositiveFree": {
+      "minDenominator": 10,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "hardBlockerSensitivity": {
+      "minDenominator": 10,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "requiredCasesResolved": {
+      "minDenominator": 30,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "schemaValidity": {
+      "minDenominator": 30,
+      "minRate": 1,
+      "zeroMiss": true
+    }
+  },
+  "schema": "split-lane-recovery-role-thresholds-v1",
+  "source": {
+    "causalOverreachSensitivity": {
+      "minDenominator": 4,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "cleanCasePassRate": {
+      "minDenominator": 20,
+      "minRate": 0.9,
+      "zeroMiss": false
+    },
+    "evidenceSpanValidity": {
+      "minDenominator": 40,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "fabricationSensitivity": {
+      "minDenominator": 4,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "highSeverityFalsePositiveFree": {
+      "minDenominator": 20,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "missingEvidenceInconclusive": {
+      "minDenominator": 1,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "requiredCasesResolved": {
+      "minDenominator": 40,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "schemaValidity": {
+      "minDenominator": 40,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "sourceContradictionSensitivity": {
+      "minDenominator": 2,
+      "minRate": 1,
+      "zeroMiss": true
+    },
+    "supportStatusAccuracy": {
+      "minDenominator": 40,
+      "minRate": 0.9,
+      "zeroMiss": false
+    },
+    "visibleRegisterAccuracy": {
+      "minDenominator": 40,
+      "minRate": 0.9,
+      "zeroMiss": false
+    }
+  },
+  "thresholdsVersion": "imp22-forward-role-thresholds-v1"
+}

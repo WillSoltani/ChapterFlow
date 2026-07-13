@@ -135,7 +135,13 @@ jobs:
         run: node --import tsx src/cli.ts migration-bakeoff close-legacy-campaign --json
 
       - name: Verify production instrument seal
-        run: node --import tsx src/cli.ts migration-bakeoff forward-materialize-production-instrument-seal --json
+        run: node --import tsx src/cli.ts migration-bakeoff forward-verify-production-instrument-seal-v2 --json
+
+      - name: Reproduce model-free IMP-24 instrument certification
+        run: |
+          node --import tsx src/cli.ts migration-bakeoff imp24-materialize-thresholds --write --json
+          node --import tsx src/cli.ts migration-bakeoff imp24-certify-instrument --write --json
+          node --import tsx src/cli.ts migration-bakeoff imp24-materialize-pre-live-freeze --write --json
 
       - name: Prove no live route was invoked
         shell: bash

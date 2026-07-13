@@ -73,6 +73,13 @@ export const IMP22_ROLE_QUALIFICATION_REQUEST_RECORD_SCHEMA = "imp22-role-qualif
 
 export const IMP22_ROLE_QUALIFICATION_EXPERIMENT_ID = "s16-forward-role-qualification-v1" as const;
 export const IMP23_CORRECTED_ROLE_QUALIFICATION_EXPERIMENT_ID = "s16-forward-role-qualification-v2" as const;
+
+const ARCHIVED_QUALIFICATION_CLOSURE =
+  "archived role qualification is replay-only: s16-forward-role-qualification-v1=INVALID_INSTRUMENT_DO_NOT_ATTEST; s16-forward-role-qualification-v2=BLOCKED_CALIBRATION_INVALID" as const;
+
+function archivedQualificationMutationError(): never {
+  throw new LiveRoleQualificationError(ARCHIVED_QUALIFICATION_CLOSURE);
+}
 const ALLOWED_EXPERIMENT_IDS = new Set<string>([
   IMP22_ROLE_QUALIFICATION_EXPERIMENT_ID,
   IMP23_CORRECTED_ROLE_QUALIFICATION_EXPERIMENT_ID,
@@ -443,7 +450,22 @@ function corpusCounts(role: ReviewLaneRole, corpus: RoleQualificationCorporaV2[R
   requireCondition(corpus.partitions.holdout.cases.length === expected[1], `${role} holdout count drift`);
 }
 
-export async function loadAndPreflightLiveQualification(opts: {
+export async function loadAndPreflightLiveQualification(_opts: {
+  specPath?: string;
+  verifiedAt?: string;
+  modelsCachePath?: string;
+  qualificationCacheDir?: string;
+} = {}): Promise<LoadedLiveQualificationV1> {
+  // IMP-24 closes both identities at the public boundary. Retained files may
+  // still be parsed by dedicated replay/audit code, but this former live
+  // preflight can no longer inspect auth or make either identity executable.
+  return archivedQualificationMutationError();
+}
+
+/** Retained implementation for source/evidence archaeology only. It has no
+ * exported or CLI-reachable caller after IMP-24; the public boundary above is
+ * the mandatory first barrier for both archived identities. */
+async function loadAndPreflightLiveQualificationArchived(opts: {
   specPath?: string;
   verifiedAt?: string;
   modelsCachePath?: string;
@@ -655,6 +677,9 @@ export function createLiveQualificationExecutor(args: {
    * ChatGPT-authenticated spawn broker after live preflight. */
   spawn?: ForwardReviewerSpawn;
 }): { executor: (request: RoleQualificationExecutionRequestV1) => Promise<RoleQualificationExecutionReceiptV1>; ledger: LiveQualificationCallLedgerV1 } {
+  // Kept only so historical source remains auditable. No V1/V2 broker may be
+  // constructed after the owner closed both evidence identities.
+  archivedQualificationMutationError();
   const phaseDir = resolve(args.phaseDir);
   const ledgerPath = resolve(phaseDir, "call-ledger.json");
   // Qualification is an experiment, so its broker evidence and transient
@@ -743,6 +768,7 @@ export function createLiveQualificationExecutor(args: {
       const forwardRequest: ForwardReviewExecutionRequestV1 = {
         schema: FORWARD_REVIEW_EXECUTION_REQUEST_SCHEMA,
         lane: request.role,
+        reviewOperationKey: request.caseId,
         workspaceRole: workspaceRole(request.role),
         profileId: request.profileId,
         model: request.model,
@@ -797,6 +823,7 @@ export async function runLiveRoleCalibration(opts: {
   experimentDir?: string;
   timeoutMs?: number;
 } = {}): Promise<LiveCalibrationResultV1> {
+  archivedQualificationMutationError();
   const loaded = await loadAndPreflightLiveQualification({ specPath: opts.specPath });
   const experimentDir = opts.experimentDir ?? DEFAULT_EXPERIMENT_DIR;
   const phaseDir = resolve(experimentDir, "live", "calibration");
@@ -829,6 +856,7 @@ export function attestLiveRoleCalibration(opts: {
   note?: string;
   approveHoldout: true;
 }): LiveCalibrationInspectionResultV1 {
+  archivedQualificationMutationError();
   requireCondition(opts.approveHoldout === true, "calibration inspection requires explicit holdout approval");
   const experimentDir = opts.experimentDir ?? DEFAULT_EXPERIMENT_DIR;
   const calibrationPath = resolve(experimentDir, "live", "calibration", "calibration-seal.json");
@@ -866,6 +894,7 @@ export async function runLiveRoleQualificationHoldout(opts: {
   timeoutMs?: number;
   qualifiedAt?: string;
 } = {}): Promise<LiveHoldoutResultV1> {
+  archivedQualificationMutationError();
   const loaded = await loadAndPreflightLiveQualification({ specPath: opts.specPath });
   const experimentDir = opts.experimentDir ?? DEFAULT_EXPERIMENT_DIR;
   const calibrationPath = resolve(experimentDir, "live", "calibration", "calibration-seal.json");

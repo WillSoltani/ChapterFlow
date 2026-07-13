@@ -57,6 +57,7 @@ import { REQUIRED_SWEEP_FAMILIES, type SweepRecord } from "../qc/sweep.js";
 import { loadRubricThresholds, type RubricThresholds } from "../metrics/rubricThresholds.js";
 import { classifyProviderOutcome } from "./modelPolicy.js";
 import {
+  type ForwardChapterConductorResultV1,
   type ForwardChapterConductorInputV1,
   type ForwardPanelRole,
   type ForwardReviewExecutionRequestV1,
@@ -68,6 +69,7 @@ import {
   categoryForForwardPanelRole,
   createForwardLiveCallLedger,
   createLedgeredForwardReviewerExecutor,
+  forwardLiveBudgetChapterKey,
   runLedgeredForwardModelOperation,
   type ForwardLiveCallContextV1,
   type ForwardLiveCallLedgerController,
@@ -84,8 +86,19 @@ import {
   type ForwardSealedQualificationBundleV1,
 } from "./forwardRoleAssignmentFreeze.js";
 import {
+  validateForwardRoleAssignmentFreezeV3,
+  type BuildForwardRoleAssignmentFreezeV3Input,
+  type ForwardRoleAssignmentFreezeV3,
+} from "./forwardRoleAssignmentFreezeV3.js";
+import { IMP24_ROLE_QUALIFICATION_ID } from "../bakeoff/migration/imp24Corpus.js";
+import {
+  FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
+} from "../review/forwardProductionReviewV2.js";
+import {
   assertManifest,
   createDeferredAuthorProducer,
+  GOLD_ENVELOPE_EXPERIMENT_ID,
+  PILOT_ENVELOPE_EXPERIMENT_ID,
   runForwardValidationCampaign,
   type ForwardCandidateRequestV1,
   type ForwardExperimentDestinationProofV1,
@@ -121,8 +134,12 @@ import {
 
 export const FORWARD_LIVE_CAMPAIGN_PREFLIGHT_SCHEMA = "forward-live-campaign-preflight-v1" as const;
 export const FORWARD_LIVE_CAMPAIGN_RESULT_SCHEMA = "forward-live-campaign-driver-result-v1" as const;
+export const FORWARD_LIVE_CAMPAIGN_PREFLIGHT_V3_SCHEMA = "imp24-forward-live-campaign-preflight-v3" as const;
+export const FORWARD_LIVE_CAMPAIGN_RESULT_V3_SCHEMA = "imp24-forward-live-campaign-driver-result-v3" as const;
+export const FORWARD_V3_QUALIFICATION_PROOF_SCHEMA = "imp24-forward-qualification-proof-v3" as const;
 
 const SHA256 = /^[a-f0-9]{64}$/;
+const SUBSTANTIVE_SHA256 = /^sha256:[a-f0-9]{64}$/;
 
 export class ForwardLiveValidationDriverError extends Error {
   readonly classification = "policy_preflight_failure" as const;
@@ -162,6 +179,33 @@ function stableJson(value: unknown): string {
 
 function writeJson(path: string, value: unknown): void {
   writeFileAtomic(path, stableJson(value));
+}
+
+const FORWARD_COMMITTED_REVIEW_RESULT_FILE = "forward-review-result.json";
+
+/** Persist the complete conductor result inside the canonical candidate commit
+ * bracket. The exact file is read back before the bracket closes, and the
+ * returned undo participates in the existing CAS rollback path. */
+function persistCommittedForwardReviewResult(
+  attemptDir: string,
+  result: ForwardChapterConductorResultV1,
+): () => void {
+  const path = resolve(attemptDir, FORWARD_COMMITTED_REVIEW_RESULT_FILE);
+  requireCondition(!existsSync(path),
+    `forward review result already exists before canonical commit: ${path}`);
+  const bytes = stableJson(result);
+  const bytesSha256 = sha256Hex(bytes);
+  writeFileAtomic(path, bytes);
+  requireCondition(readFileSync(path, "utf8") === bytes,
+    "forward review result read-back differs from the committed result bytes");
+  requireCondition(sha256Hex(readFileSync(path)) === bytesSha256,
+    "forward review result read-back hash drift");
+  return () => {
+    if (!existsSync(path)) return;
+    requireCondition(sha256Hex(readFileSync(path)) === bytesSha256,
+      "forward review result changed before rollback");
+    rmSync(path);
+  };
 }
 
 function clone<T>(value: T): T {
@@ -207,6 +251,77 @@ function deepFreeze<T>(value: T, seen = new WeakSet<object>()): T {
     }
   }
   return value;
+}
+
+/** Strict post-qualification proof for the new envelope identity. It contains
+ * no V1/V2 calibration or human-inspection attestations. */
+export type ForwardV3QualificationProof = {
+  schema: typeof FORWARD_V3_QUALIFICATION_PROOF_SCHEMA;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  roleSetReady: true;
+  qualificationResultSha256: string;
+  qualificationFreezeSha256: string;
+  instrumentCertificationSha256: string;
+  corpusBundleSha256: string;
+  roleAssignmentFreezeSha256: string;
+  productionInstrumentSealSha256: string;
+  reviewProtocolVersion: typeof FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2;
+  modelCalls: 0;
+  apiCalls: 0;
+  proofSha256: string;
+};
+
+type ForwardV3QualificationProofCore = Omit<ForwardV3QualificationProof, "proofSha256">;
+
+function composeForwardV3QualificationProof(args: {
+  currentQualification: BuildForwardRoleAssignmentFreezeV3Input;
+  roleFreeze: ForwardRoleAssignmentFreezeV3;
+}): ForwardV3QualificationProof {
+  validateForwardRoleAssignmentFreezeV3(args.roleFreeze, args.currentQualification);
+  requireCondition(args.currentQualification.result.roleSetReady === true
+    && args.currentQualification.result.roleSetBlockedReason === null,
+  `V3 qualification role set is not ready: ${args.currentQualification.result.roleSetBlockedReason ?? "unknown"}`);
+  requireCondition(args.roleFreeze.reviewConfig.reviewProtocolVersion === FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
+    "V3 role freeze does not activate the inline evidence-envelope production protocol");
+  const core: ForwardV3QualificationProofCore = {
+    schema: FORWARD_V3_QUALIFICATION_PROOF_SCHEMA,
+    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    roleSetReady: true,
+    qualificationResultSha256: hashCanonical(args.currentQualification.result),
+    qualificationFreezeSha256: args.currentQualification.result.freeze.freezeSha256,
+    instrumentCertificationSha256: args.currentQualification.certification.certificationSha256,
+    corpusBundleSha256: args.currentQualification.certification.corpusBundleSha256,
+    roleAssignmentFreezeSha256: args.roleFreeze.freezeSha256,
+    productionInstrumentSealSha256: args.currentQualification.productionInstrumentSeal.sealSha256,
+    reviewProtocolVersion: FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
+    modelCalls: 0,
+    apiCalls: 0,
+  };
+  return { ...core, proofSha256: hashCanonical(core) };
+}
+
+export function buildForwardV3QualificationProof(args: {
+  currentQualification: BuildForwardRoleAssignmentFreezeV3Input;
+  roleFreeze: ForwardRoleAssignmentFreezeV3;
+}): Readonly<ForwardV3QualificationProof> {
+  return deepFreeze(composeForwardV3QualificationProof(args));
+}
+
+/** Recompose from the exact retained result/certificate/corpus/seal and compare
+ * every byte-bound field. This is safe to invoke immediately before each call. */
+export function assertForwardV3QualificationProofFresh(args: {
+  proof: ForwardV3QualificationProof;
+  currentQualification: BuildForwardRoleAssignmentFreezeV3Input;
+  roleFreeze: ForwardRoleAssignmentFreezeV3;
+}): void {
+  requireCondition(args.proof?.schema === FORWARD_V3_QUALIFICATION_PROOF_SCHEMA
+    && args.proof.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+  "retained V3 qualification proof has the wrong schema/identity");
+  const { proofSha256, ...core } = args.proof;
+  requireCondition(proofSha256 === hashCanonical(core), "retained V3 qualification proof self hash drift");
+  const expected = composeForwardV3QualificationProof(args);
+  requireCondition(hashCanonical(args.proof) === hashCanonical(expected),
+    "retained V3 qualification proof differs from the exact current result/certificate/freeze/seal");
 }
 
 /** Production loader: summaries cannot self-assert qualification.  This reads
@@ -443,6 +558,202 @@ export function preflightForwardLiveCampaign(args: {
     authMode: args.route.authMode,
     apiKeyPresent: false as const,
     apiFallbackAllowed: false as const,
+    apiCallsMade: 0 as const,
+    maxParallel: 2 as const,
+    externalCapabilities: { publish: false as const, promote: false as const, deploy: false as const, upload: false as const },
+  };
+  return { ...core, preflightSha256: hashCanonical(core) };
+}
+
+/** The live route proof accepted by the V3 envelope campaign. Unlike the
+ * retained IMP-22 projection, this identity explicitly closes direct SDK/HTTP
+ * access as well as provider fallback. */
+export type ForwardNoApiChatgptRouteProofV3 = ForwardNoApiChatgptRouteProofV1 & {
+  directHttpOrSdkAllowed: false;
+};
+
+export type ForwardLiveCampaignPreflightV3 = {
+  schema: typeof FORWARD_LIVE_CAMPAIGN_PREFLIGHT_V3_SCHEMA;
+  kind: ForwardLiveCampaignKind;
+  experimentId: typeof PILOT_ENVELOPE_EXPERIMENT_ID | typeof GOLD_ENVELOPE_EXPERIMENT_ID;
+  manifestSha256: string;
+  inputFreezeSha256: string;
+  inputMaterializationSha256: string;
+  productionInstrumentSealSha256: string;
+  goldEvaluatorInstrumentSha256: string | null;
+  roleAssignmentFreezeSha256: string;
+  roleAssignmentSha256: string;
+  qualificationExperimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  qualificationResultSha256: string;
+  qualificationFreezeSha256: string;
+  instrumentCertificationSha256: string;
+  corpusBundleSha256: string;
+  qualificationProofSha256: string;
+  reviewProtocolVersion: typeof FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2;
+  executionProfileHash: string;
+  routePolicyVersion: string;
+  executionRoute: "codex_exec_chatgpt_subscription";
+  authMode: "chatgpt";
+  apiKeyPresent: false;
+  apiFallbackAllowed: false;
+  directHttpOrSdkAllowed: false;
+  forbiddenProviderEnvKeysPresent: [];
+  apiCallsMade: 0;
+  maxParallel: 2;
+  externalCapabilities: { publish: false; promote: false; deploy: false; upload: false };
+  preflightSha256: string;
+};
+
+/** Strict V3 campaign barrier. It accepts no calibration, inspection, sealed
+ * V1/V2 qualification bundle, or legacy experiment identity. */
+export function preflightForwardLiveCampaignV3(args: {
+  manifest: FrozenForwardValidationManifestV1;
+  inputFreeze: ForwardInputFreezeV1;
+  roleFreeze: ForwardRoleAssignmentFreezeV3;
+  qualification: ForwardV3QualificationProof;
+  currentQualification: BuildForwardRoleAssignmentFreezeV3Input;
+  route: ForwardNoApiChatgptRouteProofV3;
+  verifiedInputMaterializationSha256: string;
+  verifiedProductionInstrumentSealSha256: string;
+  verifiedGoldEvaluatorInstrumentSha256?: string;
+}): ForwardLiveCampaignPreflightV3 {
+  assertManifest(args.manifest.manifest);
+  requireCondition(hashCanonical(args.manifest.manifest) === args.manifest.manifestSha256,
+    "V3 live campaign manifest hash drift");
+  const expectedExperimentId = args.manifest.manifest.kind === "pilot"
+    ? PILOT_ENVELOPE_EXPERIMENT_ID
+    : GOLD_ENVELOPE_EXPERIMENT_ID;
+  requireCondition(args.manifest.manifest.experimentId === expectedExperimentId,
+    `V3 ${args.manifest.manifest.kind} requires the exact fresh envelope experiment identity ${expectedExperimentId}`);
+  assertForwardInputFreezeFresh(args.inputFreeze);
+  assertForwardV3QualificationProofFresh({
+    proof: args.qualification,
+    currentQualification: args.currentQualification,
+    roleFreeze: args.roleFreeze,
+  });
+  requireCondition(SHA256.test(args.verifiedInputMaterializationSha256)
+    && args.verifiedInputMaterializationSha256 === args.manifest.manifest.inputMaterializationSha256,
+  "V3 live campaign input materialization is unverified or bound to another manifest");
+  requireCondition(SHA256.test(args.verifiedProductionInstrumentSealSha256)
+    && args.verifiedProductionInstrumentSealSha256 === args.manifest.manifest.productionInstrumentSealSha256
+    && args.verifiedProductionInstrumentSealSha256 === args.roleFreeze.productionInstrumentSealSha256
+    && args.verifiedProductionInstrumentSealSha256 === args.currentQualification.productionInstrumentSeal.sealSha256
+    && args.verifiedProductionInstrumentSealSha256 === args.qualification.productionInstrumentSealSha256,
+  "V3 live campaign production instrument seal disagrees with the manifest, qualification, proof, or role freeze");
+  if (args.manifest.manifest.kind === "gold") {
+    requireCondition(SHA256.test(args.verifiedGoldEvaluatorInstrumentSha256 ?? "")
+      && args.verifiedGoldEvaluatorInstrumentSha256 === args.manifest.manifest.goldEvaluatorInstrumentSha256,
+    "V3 gold evaluator instrument is unverified or bound to another gold manifest");
+  } else {
+    requireCondition(args.verifiedGoldEvaluatorInstrumentSha256 === undefined,
+      "V3 pilot preflight cannot carry a gold evaluator instrument");
+  }
+  for (const [label, value] of Object.entries({
+    qualificationResultSha256: args.qualification.qualificationResultSha256,
+    qualificationFreezeSha256: args.qualification.qualificationFreezeSha256,
+    instrumentCertificationSha256: args.qualification.instrumentCertificationSha256,
+    roleAssignmentFreezeSha256: args.roleFreeze.freezeSha256,
+    qualificationProofSha256: args.qualification.proofSha256,
+  })) requireCondition(SHA256.test(value), `${label} must be a lowercase sha256`);
+  requireCondition(SUBSTANTIVE_SHA256.test(args.qualification.corpusBundleSha256),
+    "corpusBundleSha256 must be the certified sha256:<hex> substantive identity");
+  requireCondition(args.qualification.experimentId === IMP24_ROLE_QUALIFICATION_ID
+    && args.roleFreeze.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+  "V3 campaign qualification proof/freeze has the wrong experiment identity");
+  requireCondition(args.qualification.qualificationResultSha256 === args.roleFreeze.qualificationResultSha256
+    && args.qualification.qualificationFreezeSha256 === args.roleFreeze.qualificationFreezeSha256
+    && args.qualification.instrumentCertificationSha256 === args.roleFreeze.instrumentCertificationSha256
+    && args.qualification.corpusBundleSha256 === args.roleFreeze.corpusBundleSha256
+    && args.qualification.roleAssignmentFreezeSha256 === args.roleFreeze.freezeSha256,
+  "V3 campaign qualification proof differs from the exact fixed-role evidence");
+  requireCondition(args.manifest.manifest.roleAssignmentSha256 === args.roleFreeze.roleAssignmentSha256,
+    "V3 campaign manifest is bound to another role assignment");
+  requireCondition(args.manifest.manifest.instrumentManifestSha256 === args.roleFreeze.reviewConfig.instrumentManifestSha256,
+    "V3 campaign manifest is bound to another review instrument");
+  requireCondition(args.manifest.manifest.thresholdsSha256 === args.roleFreeze.reviewConfig.instrumentManifest.thresholdsSha256,
+    "V3 campaign thresholds differ from the certified frozen review instrument");
+  requireCondition(args.roleFreeze.reviewConfig.readerBar === 80,
+    "V3 live campaign requires the unchanged reader bar of 80");
+  requireCondition(args.roleFreeze.reviewConfig.reviewProtocolVersion === FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2
+    && args.qualification.reviewProtocolVersion === FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
+  "V3 live campaign is not bound to the production inline evidence-envelope protocol");
+  requireCondition(args.route.executionRoute === "codex_exec_chatgpt_subscription" && args.route.authMode === "chatgpt",
+    "V3 campaign route is not ChatGPT-subscription codex exec");
+  requireCondition(args.route.apiKeyPresent === false
+    && args.route.apiFallbackAllowed === false
+    && args.route.directHttpOrSdkAllowed === false
+    && args.route.apiCallsMade === 0,
+  "V3 campaign route permits or records a direct/API provider call");
+  requireCondition(args.route.forbiddenProviderEnvKeysPresent.length === 0,
+    "V3 campaign parent process carries a forbidden provider credential");
+  requireCondition(args.route.maxParallel === 2, "V3 campaign maxParallel must remain exactly 2");
+  requireCondition(args.route.executionProfileHash === args.roleFreeze.routeBinding.executionProfileHash
+    && args.route.executionProfileHash === args.currentQualification.routeBinding.executionProfileHash,
+  "V3 campaign execution profile differs from qualification");
+  requireCondition(args.route.routePolicyVersion === args.roleFreeze.routeBinding.routePolicyVersion
+    && args.route.routePolicyVersion === args.currentQualification.routeBinding.routePolicyVersion,
+  "V3 campaign route policy differs from qualification");
+  requireCondition(args.roleFreeze.routeBinding.executionRoute === args.route.executionRoute
+    && args.roleFreeze.routeBinding.authMode === args.route.authMode
+    && args.roleFreeze.routeBinding.apiKeyPresent === false
+    && args.roleFreeze.routeBinding.apiFallbackAllowed === false
+    && args.roleFreeze.routeBinding.directHttpOrSdkAllowed === false,
+  "V3 fixed-role route permits a non-ChatGPT or direct provider path");
+  requireCondition(args.roleFreeze.roleAssignment.readerPrimary.profileId !== args.roleFreeze.roleAssignment.readerBackup.profileId,
+    "V3 live campaign requires a distinct reader-audit profile");
+  requireCondition(args.roleFreeze.roleAssignment.sourcePrimary.profileId !== args.roleFreeze.roleAssignment.sourceAdjudicator.profileId,
+    "V3 live campaign requires a distinct source-adjudicator profile");
+
+  const expectedTargets = args.manifest.manifest.kind === "pilot"
+    ? args.inputFreeze.pilot.flatMap((book) => book.chapters)
+    : args.inputFreeze.gold.chapters;
+  requireCondition(expectedTargets.length === args.manifest.manifest.targets.length,
+    "V3 campaign denominator differs from the frozen input assignment");
+  const exactQualificationBookIds = [...new Set(args.inputFreeze.sets.qualificationBookIds)].sort((a, b) => a.localeCompare(b));
+  requireCondition(hashCanonical(args.manifest.manifest.qualificationBookIds) === hashCanonical(exactQualificationBookIds),
+    "V3 campaign qualification-book exclusions differ from the frozen input assignment");
+  requireCondition(args.manifest.manifest.targets.every((target) => !exactQualificationBookIds.includes(target.bookId)),
+    "V3 campaign target overlaps a qualification book");
+  const expected = new Map(expectedTargets.map((target) => [`${target.bookId}/${target.chapterNumber}`, target]));
+  for (const target of args.manifest.manifest.targets) {
+    const frozen = expected.get(`${target.bookId}/${target.chapterNumber}`);
+    requireCondition(!!frozen, `${target.bookId}/ch${target.chapterNumber}: not present in the V3 input freeze`);
+    for (const field of [
+      "bookId", "chapterNumber", "chapterId", "stratum", "sourceArchiveId", "sourceComplete", "evidenceFresh",
+      "sourcePacketSha256", "sourceUsePlanSha256", "sidecarSha256", "anchorCatalogSha256",
+    ] as const) {
+      requireCondition(target[field] === frozen[field],
+        `${target.bookId}/ch${target.chapterNumber}: ${field} differs from the V3 input freeze`);
+    }
+    requireCondition(hashCanonical(target.riskSignals) === hashCanonical(frozen.riskSignals),
+      `${target.bookId}/ch${target.chapterNumber}: riskSignals differ from the V3 input freeze`);
+  }
+  const core = {
+    schema: FORWARD_LIVE_CAMPAIGN_PREFLIGHT_V3_SCHEMA,
+    kind: args.manifest.manifest.kind,
+    experimentId: expectedExperimentId,
+    manifestSha256: args.manifest.manifestSha256,
+    inputFreezeSha256: args.inputFreeze.freezeSha256,
+    inputMaterializationSha256: args.verifiedInputMaterializationSha256,
+    productionInstrumentSealSha256: args.verifiedProductionInstrumentSealSha256,
+    goldEvaluatorInstrumentSha256: args.verifiedGoldEvaluatorInstrumentSha256 ?? null,
+    roleAssignmentFreezeSha256: args.roleFreeze.freezeSha256,
+    roleAssignmentSha256: args.roleFreeze.roleAssignmentSha256,
+    qualificationExperimentId: IMP24_ROLE_QUALIFICATION_ID,
+    qualificationResultSha256: args.qualification.qualificationResultSha256,
+    qualificationFreezeSha256: args.qualification.qualificationFreezeSha256,
+    instrumentCertificationSha256: args.qualification.instrumentCertificationSha256,
+    corpusBundleSha256: args.qualification.corpusBundleSha256,
+    qualificationProofSha256: args.qualification.proofSha256,
+    reviewProtocolVersion: FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
+    executionProfileHash: args.route.executionProfileHash,
+    routePolicyVersion: args.route.routePolicyVersion,
+    executionRoute: args.route.executionRoute,
+    authMode: args.route.authMode,
+    apiKeyPresent: false as const,
+    apiFallbackAllowed: false as const,
+    directHttpOrSdkAllowed: false as const,
+    forbiddenProviderEnvKeysPresent: [] as [],
     apiCallsMade: 0 as const,
     maxParallel: 2 as const,
     externalCapabilities: { publish: false as const, promote: false as const, deploy: false as const, upload: false as const },
@@ -972,6 +1283,21 @@ export type ForwardGoldWorkerDispatchBindingV1 = {
   task: string;
 };
 
+/** Byte-exact task assembly shared by live dispatch and retained-evidence
+ * verification.  Keeping these transformations pure makes the final task hash
+ * reconstructable from the fixed instrument and retained upstream outputs. */
+export function buildForwardGoldEvaluatorBaseTask(prompt: string): string {
+  return `${prompt}\n\nREQUIRED AUTHORITATIVE INPUTS\nRead every file under chapters/, source/, and book/. The book index and manual brief are authoritative for the purpose-and-audience declaration; hashes or prior verdicts are not substitutes for reading the prose and sources.`;
+}
+
+export function buildForwardGoldAdjudicatorPreDispatchTask(baseTask: string): string {
+  return `${baseTask}\n\nADJUDICATION INPUT\nRead blind-rater-results.json. Reconcile both independent blind reads against the actual chapter/source files. Return only the pinned adjudicated-book record. The independent sweep is produced by its separate worker and must not appear in this result.`;
+}
+
+export function buildForwardGoldSweepPreDispatchTask(baseTask: string): string {
+  return `${baseTask}\n\nADJUDICATION CHAIN BINDING\nRead adjudicated-result-binding.json only to bind this independent sweep to the exact validated adjudication execution. Do not inherit its verdict or scores: independently read every final chapter and perform every sweep family against the actual prose.`;
+}
+
 /** Pure dispatch mint used by the production broker. The worker receipt binds
  * the final pre-append task plus the exact staged artifact inventory, so adding
  * blind-rater/adjudicator chain evidence necessarily changes the receipt and
@@ -1308,16 +1634,19 @@ export function createProductionLedgeredForwardGoldEvaluator(args: {
   return evaluator;
 }
 
-function panelRoleFor(request: Readonly<ForwardReviewExecutionRequestV1>, freeze: ForwardRoleAssignmentFreezeV1): ForwardPanelRole {
+function panelRoleFor(
+  request: Readonly<ForwardReviewExecutionRequestV1>,
+  freeze: ForwardRoleAssignmentFreezeV1 | ForwardRoleAssignmentFreezeV3,
+): ForwardPanelRole {
   const assignment = freeze.roleAssignment;
   if (request.lane === "quiz") return "quizSemanticAdjudicator";
   if (request.lane === "reader") return request.profileId === assignment.readerPrimary.profileId ? "readerPrimary" : "readerAudit";
   return request.profileId === assignment.sourcePrimary.profileId ? "sourcePrimary" : "sourceAdjudicator";
 }
 
-export type RunForwardLiveCampaignResultV1 = {
-  schema: typeof FORWARD_LIVE_CAMPAIGN_RESULT_SCHEMA;
-  preflight: ForwardLiveCampaignPreflightV1;
+type RunForwardLiveCampaignResultBase<Schema extends string, Preflight> = {
+  schema: Schema;
+  preflight: Preflight;
   budgetSha256: string;
   campaign: ForwardValidationCampaignResultV1;
   codexExecInvocations: number;
@@ -1332,19 +1661,27 @@ export type RunForwardLiveCampaignResultV1 = {
   upload: false;
 };
 
-/** Run one frozen phase. The injected author producer must come from
- * createLedgeredDeferredAuthorProducer; gold likewise requires the branded
- * three-call evaluator. Reviewers are wrapped here and cannot bypass ledgering. */
-export async function runForwardLiveCampaign(args: {
+export type RunForwardLiveCampaignResultV1 = RunForwardLiveCampaignResultBase<
+  typeof FORWARD_LIVE_CAMPAIGN_RESULT_SCHEMA,
+  ForwardLiveCampaignPreflightV1
+>;
+
+export type RunForwardLiveCampaignResultV3 = RunForwardLiveCampaignResultBase<
+  typeof FORWARD_LIVE_CAMPAIGN_RESULT_V3_SCHEMA,
+  ForwardLiveCampaignPreflightV3
+>;
+
+type ForwardLiveCampaignExecutionArgs = {
   phaseDir: string;
   manifest: FrozenForwardValidationManifestV1;
   inputFreeze: ForwardInputFreezeV1;
-  roleFreeze: ForwardRoleAssignmentFreezeV1;
-  qualification: ForwardInspectedQualificationProofV1;
   route: ForwardNoApiChatgptRouteProofV1;
   verifiedInputMaterializationSha256: string;
   verifiedProductionInstrumentSealSha256: string;
   verifiedGoldEvaluatorInstrumentSha256?: string;
+  /** Frozen from the hash-verified materialized source plans before the first
+   * live call. V3 explicit-artifact campaigns always supply this map. */
+  sourcePartitionCountByChapter?: Readonly<Record<string, number>>;
   createAuthorProducer: (controller: ForwardLiveCallLedgerController) => LedgerBoundForwardCandidateProducer;
   buildConductorInput: ForwardValidationCampaignDeps["buildConductorInput"];
   routeFirstFailure: ForwardValidationCampaignDeps["routeFirstFailure"];
@@ -1356,11 +1693,37 @@ export async function runForwardLiveCampaign(args: {
   loadPreservedAttempt?: ForwardValidationCampaignDeps["loadPreservedAttempt"];
   assertFinalFreshness?: (campaign: Readonly<ForwardValidationCampaignResultV1>) => Promise<void> | void;
   createGoldEvaluator?: (controller: ForwardLiveCallLedgerController) => LedgerBoundForwardGoldEvaluator;
-}): Promise<RunForwardLiveCampaignResultV1> {
-  const preflight = preflightForwardLiveCampaign(args);
+};
+
+export type RunForwardLiveCampaignV1Args = ForwardLiveCampaignExecutionArgs & {
+  roleFreeze: ForwardRoleAssignmentFreezeV1;
+  qualification: ForwardInspectedQualificationProofV1;
+};
+
+export type RunForwardLiveCampaignV3Args = Omit<ForwardLiveCampaignExecutionArgs, "route"> & {
+  roleFreeze: ForwardRoleAssignmentFreezeV3;
+  qualification: ForwardV3QualificationProof;
+  currentQualification: BuildForwardRoleAssignmentFreezeV3Input;
+  route: ForwardNoApiChatgptRouteProofV3;
+  /** Additive external-byte reread used by the explicit-artifact adapter. The
+   * built-in qualification/freeze/seal recomposition always runs as well. */
+  beforeV3ModelCall?: () => void;
+};
+
+async function runForwardLiveCampaignCore<Schema extends string, Preflight>(
+  args: ForwardLiveCampaignExecutionArgs & {
+    roleFreeze: ForwardRoleAssignmentFreezeV1 | ForwardRoleAssignmentFreezeV3;
+  },
+  preflight: Preflight,
+  resultSchema: Schema,
+  beforeModelCall?: () => void,
+): Promise<RunForwardLiveCampaignResultBase<Schema, Preflight>> {
   const budget = buildForwardLivePhaseBudget({
     manifest: args.manifest,
     panelPolicy: args.roleFreeze.panelPolicy,
+    ...(args.sourcePartitionCountByChapter
+      ? { sourcePartitionCountByChapter: args.sourcePartitionCountByChapter }
+      : {}),
     ...(args.manifest.manifest.kind === "gold"
       ? { goldBookEvaluatorExpectedCalls: 4, goldBookEvaluatorMaximumCallsBeforeReplay: 4 }
       : {}),
@@ -1368,7 +1731,11 @@ export async function runForwardLiveCampaign(args: {
   mkdirSync(args.phaseDir, { recursive: true });
   writeJson(resolve(args.phaseDir, "live-preflight.json"), preflight);
   writeJson(resolve(args.phaseDir, "validation-manifest.json"), args.manifest);
-  const controller = createForwardLiveCallLedger({ budget, phaseDir: args.phaseDir });
+  const controller = createForwardLiveCallLedger({
+    budget,
+    phaseDir: args.phaseDir,
+    ...(beforeModelCall ? { beforeModelCall } : {}),
+  });
   const authorProducer = args.createAuthorProducer(controller);
   requireCondition(authorProducer?.liveLedgerBound === true, "live campaign refuses an unledgered author producer");
   requireCondition(authorProducer.executionBoundary === "hermetic-codex-broker", "live campaign refuses an injected author execution boundary");
@@ -1391,9 +1758,14 @@ export async function runForwardLiveCampaign(args: {
     contextFor: (request) => {
       requireCondition(active !== null, "reviewer executed outside a bound campaign attempt");
       const panelRole = panelRoleFor(request, args.roleFreeze);
+      const operationKey = request.reviewOperationKey;
+      if (request.reviewProtocol === "review-evidence-envelope-v1") {
+        requireCondition(typeof operationKey === "string" && /^[A-Za-z0-9._:-]+$/.test(operationKey),
+          `${panelRole}: V2 reviewer request omitted its conductor-owned operation key`);
+      }
       return {
         ...active,
-        logicalOperationId: `${active.bookId}/ch${String(active.chapterNumber).padStart(2, "0")}/${active.stage}/${panelRole}`,
+        logicalOperationId: `${active.bookId}/ch${String(active.chapterNumber).padStart(2, "0")}/${active.stage}/${panelRole}/${operationKey ?? "legacy-single"}`,
       };
     },
     categoryFor: (request) => categoryForForwardPanelRole(args.manifest.manifest.kind, panelRoleFor(request, args.roleFreeze)),
@@ -1407,7 +1779,15 @@ export async function runForwardLiveCampaign(args: {
     const stage = stageByAttempt.get(input.prepared.attempt.identity.attemptId);
     requireCondition(stage !== undefined, "candidate reached review without a bound campaign stage");
     active = { bookId: input.prepared.bookId, chapterNumber: input.prepared.chapterNumber, stage };
-    try { return await runForwardChapterConductor(input, { executor: reviewer }); }
+    try {
+      return await runForwardChapterConductor(input, {
+        executor: reviewer,
+        persistCommittedResult: (result) => persistCommittedForwardReviewResult(
+          input.prepared.attempt.attemptDir,
+          result,
+        ),
+      });
+    }
     finally { active = null; }
   };
   const campaign = await runForwardValidationCampaign(args.manifest, {
@@ -1423,8 +1803,8 @@ export async function runForwardLiveCampaign(args: {
     ...(goldEvaluator ? { evaluateGoldBook: goldEvaluator } : {}),
   });
   await args.assertFinalFreshness?.(campaign);
-  const result: RunForwardLiveCampaignResultV1 = {
-    schema: FORWARD_LIVE_CAMPAIGN_RESULT_SCHEMA,
+  const result: RunForwardLiveCampaignResultBase<Schema, Preflight> = {
+    schema: resultSchema,
     preflight,
     budgetSha256: budget.budgetSha256,
     campaign,
@@ -1441,6 +1821,44 @@ export async function runForwardLiveCampaign(args: {
   };
   writeJson(resolve(args.phaseDir, "campaign-result.json"), result);
   return result;
+}
+
+/** Run one frozen phase. The injected author producer must come from
+ * createLedgeredDeferredAuthorProducer; gold likewise requires the branded
+ * three-call evaluator. Reviewers are wrapped here and cannot bypass ledgering. */
+export async function runForwardLiveCampaign(
+  args: RunForwardLiveCampaignV1Args,
+): Promise<RunForwardLiveCampaignResultV1> {
+  const preflight = preflightForwardLiveCampaign(args);
+  return runForwardLiveCampaignCore(args, preflight, FORWARD_LIVE_CAMPAIGN_RESULT_SCHEMA);
+}
+
+/** V3 entrypoint for fresh envelope pilot/gold campaigns. Every fresh author,
+ * reviewer, rater, adjudicator, sweep, and authorized infrastructure replay
+ * crosses the ledger's single synchronous proof-refresh seam. */
+export async function runForwardLiveCampaignV3(
+  args: RunForwardLiveCampaignV3Args,
+): Promise<RunForwardLiveCampaignResultV3> {
+  const preflight = preflightForwardLiveCampaignV3(args);
+  const assertQualificationFresh = (): void => {
+    args.beforeV3ModelCall?.();
+    assertForwardV3QualificationProofFresh({
+      proof: args.qualification,
+      currentQualification: args.currentQualification,
+      roleFreeze: args.roleFreeze,
+    });
+    requireCondition(args.route.executionProfileHash === args.roleFreeze.routeBinding.executionProfileHash
+      && args.route.routePolicyVersion === args.roleFreeze.routeBinding.routePolicyVersion
+      && args.route.executionRoute === args.roleFreeze.routeBinding.executionRoute
+      && args.route.authMode === args.roleFreeze.routeBinding.authMode
+      && args.route.apiKeyPresent === false
+      && args.route.apiFallbackAllowed === false
+      && args.route.directHttpOrSdkAllowed === false
+      && args.route.apiCallsMade === 0
+      && args.route.forbiddenProviderEnvKeysPresent.length === 0,
+    "V3 route/proof drift immediately before model call");
+  };
+  return runForwardLiveCampaignCore(args, preflight, FORWARD_LIVE_CAMPAIGN_RESULT_V3_SCHEMA, assertQualificationFresh);
 }
 
 /** Small reusable durable sink for production and injected tests. */
@@ -1533,6 +1951,26 @@ export type ForwardExplicitLiveArtifactPathsV1 = {
   goldEvaluatorConfigPath?: string;
 };
 
+/** Fresh-envelope explicit path surface. Qualification evidence is supplied
+ * as already-loaded V3 objects, so no legacy spec, calibration, inspection, or
+ * qualification-bundle path can enter this adapter. */
+export type ForwardExplicitLiveArtifactPathsV3 = {
+  expectedKind: ForwardLiveCampaignKind;
+  phaseDir: string;
+  manifestPath: string;
+  inputFreezePath: string;
+  inputMaterializationPath: string;
+  productionInstrumentSealPath: string;
+  goldEvaluatorConfigPath?: string;
+};
+
+export type ForwardExplicitLiveQualificationV3 = {
+  currentQualification: BuildForwardRoleAssignmentFreezeV3Input;
+  roleFreeze: ForwardRoleAssignmentFreezeV3;
+  qualification: ForwardV3QualificationProof;
+  route: ForwardNoApiChatgptRouteProofV3;
+};
+
 type ForwardMaterializedBookEntryV1 = {
   bookId: string;
   stateRootRelPath: string;
@@ -1550,6 +1988,7 @@ export type ForwardInputMaterializationProofV1 = {
   bookInputSha256: Record<string, string>;
   bookManifestSha256: Record<string, string>;
   bookFileInventory: Record<string, Record<string, string>>;
+  sourcePartitionCountByChapter: Record<string, number>;
   proofSha256: string;
 };
 
@@ -1600,6 +2039,7 @@ export function validateForwardInputMaterializationArtifact(args: {
   const bookInputSha256: Record<string, string> = {};
   const bookManifestSha256: Record<string, string> = {};
   const bookFileInventory: Record<string, Record<string, string>> = {};
+  const sourcePartitionCountByChapter: Record<string, number> = {};
   for (const entry of entries) {
     requireCondition(entry && typeof entry === "object" && typeof entry.bookId === "string" && expectedBookIds.includes(entry.bookId),
       "input materialization contains an unknown book entry");
@@ -1666,6 +2106,18 @@ export function validateForwardInputMaterializationArtifact(args: {
       requireCondition(declared.has(`books/${entry.bookId}/runs/imp22-inputs-v1/briefs/ch${nn}.brief.md`),
         `${entry.bookId}/${chapterId}: rendered brief is outside the frozen inventory`);
     }
+    for (const target of args.manifest.manifest.targets.filter((candidate) => candidate.bookId === entry.bookId)) {
+      const nn = String(target.chapterNumber).padStart(2, "0");
+      const planRelPath = `books/${entry.bookId}/runs/imp22-inputs-v1/source-plans/ch${nn}.plan.json`;
+      requireCondition(declared.has(planRelPath),
+        `${entry.bookId}/ch${nn}: source plan is outside the frozen materialization inventory`);
+      const plan = readJson<SourceUsePlanV1>(resolve(inputRoot, planRelPath));
+      requireCondition(sourceUsePlanHash(plan) === target.sourceUsePlanSha256,
+        `${entry.bookId}/ch${nn}: materialized source plan differs from the frozen target hash`);
+      requireCondition(Array.isArray(plan.units) && plan.units.length > 0,
+        `${entry.bookId}/ch${nn}: materialized source plan has no review partitions`);
+      sourcePartitionCountByChapter[forwardLiveBudgetChapterKey(entry.bookId, target.chapterNumber)] = plan.units.length;
+    }
     bookInputSha256[entry.bookId] = entry.inputSha256;
     bookManifestSha256[entry.bookId] = hashCanonical(bookManifest);
     bookFileInventory[entry.bookId] = Object.fromEntries([...declared.entries()].sort(([a], [b]) => a.localeCompare(b)));
@@ -1678,6 +2130,7 @@ export function validateForwardInputMaterializationArtifact(args: {
     bookInputSha256,
     bookManifestSha256,
     bookFileInventory,
+    sourcePartitionCountByChapter,
   };
   return { ...core, proofSha256: hashCanonical(core) };
 }
@@ -1916,7 +2369,7 @@ export function createExplicitExperimentAuthorDestination(args: {
 
 function explicitConductorInputBuilder(
   phaseDir: string,
-  roleFreeze: ForwardRoleAssignmentFreezeV1,
+  roleFreeze: ForwardRoleAssignmentFreezeV1 | ForwardRoleAssignmentFreezeV3,
   assertInputMaterializationFresh: () => void,
 ): ForwardValidationCampaignDeps["buildConductorInput"] {
   return ({ target, prepared }) => {
@@ -2302,7 +2755,7 @@ function explicitGoldEvaluatorFactory(
           actorId: call.actorId,
           evaluationRole: call.evaluationRole,
           request: {},
-          task: `${call.prompt}\n\nREQUIRED AUTHORITATIVE INPUTS\nRead every file under chapters/, source/, and book/. The book index and manual brief are authoritative for the purpose-and-audience declaration; hashes or prior verdicts are not substitutes for reading the prose and sources.`,
+          task: buildForwardGoldEvaluatorBaseTask(call.prompt),
           cwd,
           model: call.model,
           effort: call.effort,
@@ -2342,7 +2795,7 @@ function explicitGoldEvaluatorFactory(
       writeCreateOnce(path, text);
       return finalizeDispatch({
         ...call,
-        task: `${call.task}\n\nADJUDICATION INPUT\nRead ${relPath}. Reconcile both independent blind reads against the actual chapter/source files. Return only the pinned adjudicated-book record. The independent sweep is produced by its separate worker and must not appear in this result.`,
+        task: buildForwardGoldAdjudicatorPreDispatchTask(call.task),
       }, [...call.artifacts, { relativePath: relPath, bytesSha256: sha256Hex(Buffer.from(text)) }]);
     },
     prepareBookSweep: ({ call, adjudicatorCall, adjudicatorResult }) => {
@@ -2362,7 +2815,7 @@ function explicitGoldEvaluatorFactory(
       writeCreateOnce(path, text);
       return finalizeDispatch({
         ...call,
-        task: `${call.task}\n\nADJUDICATION CHAIN BINDING\nRead ${relPath} only to bind this independent sweep to the exact validated adjudication execution. Do not inherit its verdict or scores: independently read every final chapter and perform every sweep family against the actual prose.`,
+        task: buildForwardGoldSweepPreDispatchTask(call.task),
       }, [...call.artifacts, { relativePath: relPath, bytesSha256: sha256Hex(Buffer.from(text)) }]);
     },
     assemble: ({ manifest, finalByChapter, calls, results }) => {
@@ -2508,6 +2961,7 @@ export async function runForwardLiveCampaignFromExplicitArtifacts(
     route,
     verifiedInputMaterializationSha256: materializationProof.artifactBytesSha256,
     verifiedProductionInstrumentSealSha256: productionInstrumentSeal.sealSha256,
+    sourcePartitionCountByChapter: materializationProof.sourcePartitionCountByChapter,
     ...(goldInstrument !== null ? { verifiedGoldEvaluatorInstrumentSha256: goldInstrument.instrumentSha256 } : {}),
     createAuthorProducer: (controller) => createLedgeredDeferredAuthorProducer({
       controller,
@@ -2531,6 +2985,172 @@ export async function runForwardLiveCampaignFromExplicitArtifacts(
     beforeReviewerCall: assertInputMaterializationFresh,
     assertFinalFreshness: (campaign) => {
       assertInputMaterializationFresh();
+      assertExplicitCampaignFinalFreshness(phaseDir, manifest, campaign);
+    },
+    ...(manifest.manifest.kind === "gold"
+      ? {
+          createGoldEvaluator: explicitGoldEvaluatorFactory(
+            phaseDir,
+            goldInstrument!,
+            productionInstrumentSeal.sealSha256,
+            assertInputMaterializationFresh,
+            materializationProof.bookFileInventory,
+          ),
+        }
+      : {}),
+  });
+}
+
+/** Concrete V3 explicit-artifact entrypoint for CLI orchestration. The caller
+ * supplies only already-loaded V3 qualification objects; this adapter owns the
+ * private author destination, conductor, evidence store, fixed gold workers,
+ * and exact external-byte rereads used by the existing production path. */
+export async function runForwardLiveCampaignV3FromExplicitArtifacts(
+  paths: ForwardExplicitLiveArtifactPathsV3,
+  v3: ForwardExplicitLiveQualificationV3,
+): Promise<RunForwardLiveCampaignResultV3> {
+  const phaseDir = resolve(paths.phaseDir);
+  const manifestPath = resolve(paths.manifestPath);
+  const inputFreezePath = resolve(paths.inputFreezePath);
+  const materializationPath = resolve(paths.inputMaterializationPath);
+  const productionSealPath = resolve(paths.productionInstrumentSealPath);
+  const manifest = readJson<FrozenForwardValidationManifestV1>(manifestPath);
+  assertExplicitForwardManifestKind(paths.expectedKind, manifest);
+  const inputFreeze = readJson<ForwardInputFreezeV1>(inputFreezePath);
+  const retainedProductionInstrumentSeal = readJson<ForwardProductionInstrumentSealV1>(productionSealPath);
+  const productionInstrumentSeal = validateForwardProductionInstrumentSeal(retainedProductionInstrumentSeal, {
+    ...(v3.currentQualification.repositoryRoot
+      ? { repositoryRoot: v3.currentQualification.repositoryRoot }
+      : {}),
+  });
+  requireCondition(hashCanonical(retainedProductionInstrumentSeal)
+      === hashCanonical(v3.currentQualification.productionInstrumentSeal),
+    "explicit V3 production-instrument seal bytes differ from the qualification snapshot");
+  requireCondition(productionInstrumentSeal.sealSha256 === manifest.manifest.productionInstrumentSealSha256
+      && productionInstrumentSeal.sealSha256 === v3.roleFreeze.productionInstrumentSealSha256
+      && productionInstrumentSeal.sealSha256 === v3.qualification.productionInstrumentSealSha256,
+    "explicit V3 production-instrument seal differs from the manifest/proof/role freeze");
+
+  const goldInstrumentPath = paths.goldEvaluatorConfigPath === undefined
+    ? null
+    : resolve(paths.goldEvaluatorConfigPath);
+  const goldInstrument = manifest.manifest.kind === "gold"
+    ? validateForwardGoldEvaluatorInstrument(readJson(goldInstrumentPath ?? ""), {
+        ...(v3.currentQualification.repositoryRoot
+          ? { repositoryRoot: v3.currentQualification.repositoryRoot }
+          : {}),
+      })
+    : null;
+  if (goldInstrument !== null) {
+    requireCondition(manifest.manifest.kind === "gold"
+      && goldInstrumentPath !== null
+      && goldInstrument.instrumentSha256 === manifest.manifest.goldEvaluatorInstrumentSha256,
+    "explicit V3 fixed gold evaluator instrument differs from the fresh gold manifest");
+  } else {
+    requireCondition(paths.goldEvaluatorConfigPath === undefined,
+      "V3 pilot campaign cannot carry a gold evaluator instrument path");
+  }
+
+  const assertExternalArtifactsFresh = (): void => {
+    const currentManifest = readJson<FrozenForwardValidationManifestV1>(manifestPath);
+    requireCondition(hashCanonical(currentManifest) === hashCanonical(manifest),
+      "explicit V3 campaign manifest bytes drifted during the live campaign");
+    const currentInputFreeze = readJson<ForwardInputFreezeV1>(inputFreezePath);
+    requireCondition(hashCanonical(currentInputFreeze) === hashCanonical(inputFreeze),
+      "explicit V3 input-freeze bytes drifted during the live campaign");
+    assertManifest(currentManifest.manifest);
+    requireCondition(hashCanonical(currentManifest.manifest) === currentManifest.manifestSha256,
+      "explicit V3 campaign manifest self hash drift");
+    assertForwardInputFreezeFresh(currentInputFreeze);
+    const retainedSeal = readJson<ForwardProductionInstrumentSealV1>(productionSealPath);
+    const currentSeal = validateForwardProductionInstrumentSeal(retainedSeal, {
+      ...(v3.currentQualification.repositoryRoot
+        ? { repositoryRoot: v3.currentQualification.repositoryRoot }
+        : {}),
+    });
+    requireCondition(hashCanonical(retainedSeal) === hashCanonical(retainedProductionInstrumentSeal)
+      && hashCanonical(retainedSeal) === hashCanonical(v3.currentQualification.productionInstrumentSeal)
+      && currentSeal.sealSha256 === productionInstrumentSeal.sealSha256,
+    "explicit V3 production instrument seal drifted during the live campaign");
+    if (goldInstrument !== null) {
+      requireCondition(goldInstrumentPath !== null, "V3 gold evaluator path disappeared");
+      const currentGold = validateForwardGoldEvaluatorInstrument(readJson(goldInstrumentPath), {
+        ...(v3.currentQualification.repositoryRoot
+          ? { repositoryRoot: v3.currentQualification.repositoryRoot }
+          : {}),
+      });
+      requireCondition(hashCanonical(currentGold) === hashCanonical(goldInstrument),
+        "explicit V3 gold evaluator instrument drifted during the live campaign");
+    }
+  };
+
+  const materializationProof = validateForwardInputMaterializationArtifact({
+    phaseDir,
+    artifactPath: materializationPath,
+    manifest,
+    inputFreeze,
+  });
+  const assertInputMaterializationFresh = (): void => {
+    assertExternalArtifactsFresh();
+    const current = validateForwardInputMaterializationArtifact({
+      phaseDir,
+      artifactPath: materializationPath,
+      manifest,
+      inputFreeze,
+    });
+    requireCondition(current.proofSha256 === materializationProof.proofSha256,
+      "V3 input materialization proof drifted after preflight");
+  };
+  assertInputMaterializationFresh();
+  assertForwardV3QualificationProofFresh({
+    proof: v3.qualification,
+    currentQualification: v3.currentQualification,
+    roleFreeze: v3.roleFreeze,
+  });
+
+  const evidence = createForwardCampaignEvidenceStore(phaseDir);
+  return runForwardLiveCampaignV3({
+    phaseDir: resolve(phaseDir, "live-campaign"),
+    manifest,
+    inputFreeze,
+    roleFreeze: v3.roleFreeze,
+    qualification: v3.qualification,
+    currentQualification: v3.currentQualification,
+    route: v3.route,
+    verifiedInputMaterializationSha256: materializationProof.artifactBytesSha256,
+    verifiedProductionInstrumentSealSha256: productionInstrumentSeal.sealSha256,
+    sourcePartitionCountByChapter: materializationProof.sourcePartitionCountByChapter,
+    ...(goldInstrument !== null
+      ? { verifiedGoldEvaluatorInstrumentSha256: goldInstrument.instrumentSha256 }
+      : {}),
+    beforeV3ModelCall: assertInputMaterializationFresh,
+    createAuthorProducer: (controller) => createLedgeredDeferredAuthorProducer({
+      controller,
+      phaseDir: resolve(phaseDir, "live-campaign"),
+      kind: manifest.manifest.kind,
+      productionInstrumentSealSha256: productionInstrumentSeal.sealSha256,
+      assertInputMaterializationFresh,
+      ioFor: (target) => createExplicitExperimentAuthorDestination({
+        phaseDir,
+        target,
+        expectedInputFileInventory: materializationProof.bookFileInventory[target.bookId],
+      }),
+    }),
+    buildConductorInput: explicitConductorInputBuilder(phaseDir, v3.roleFreeze, assertInputMaterializationFresh),
+    routeFirstFailure: ({ first }) => routeExplicitForwardFirstFailure(first),
+    classifyFailedRepair: ({ repair }) => repair.repairFailureDisposition
+      ?? (repair.failureClassification === "MODEL_ROUTING" || repair.failureClassification === "STATE_OR_PROVENANCE"
+        ? "INFRASTRUCTURE"
+        : "REPAIR_CONTENT_FAILURE"),
+    ...evidence,
+    beforeReviewerCall: assertInputMaterializationFresh,
+    assertFinalFreshness: (campaign) => {
+      assertInputMaterializationFresh();
+      assertForwardV3QualificationProofFresh({
+        proof: v3.qualification,
+        currentQualification: v3.currentQualification,
+        roleFreeze: v3.roleFreeze,
+      });
       assertExplicitCampaignFinalFreshness(phaseDir, manifest, campaign);
     },
     ...(manifest.manifest.kind === "gold"

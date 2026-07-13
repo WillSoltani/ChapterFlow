@@ -14,6 +14,7 @@ import { resolve } from "node:path";
 
 import { PIPELINE_DIR } from "../bakeoff/paths.js";
 import { sha256Hex } from "../contracts/contractUtil.js";
+import type { ReviewEvidenceEnvelopeV1 } from "../contracts/reviewEvidenceEnvelope.js";
 import type { EffortLevelV1 } from "../contracts/executionProfile.js";
 import { resolveExecutionProfile } from "../exec/executionEnvelope.js";
 import {
@@ -22,6 +23,10 @@ import {
   type ReviewerArtifact,
   type ReviewerWorkspace,
 } from "../review/reviewerWorkspace.js";
+import {
+  assertReviewEvidenceEnvelope,
+  serializeReviewEvidenceEnvelope,
+} from "../review/reviewEvidenceEnvelope.js";
 import {
   type CodexAgentResult,
   type SpawnCodexAgentOptions,
@@ -52,6 +57,12 @@ export const DEFAULT_FORWARD_REVIEWER_SCHEMA_MAP: ForwardReviewerSchemaMap = Obj
   quiz: resolve(SCHEMA_DIR, "quiz-integrity-adjudication.schema.json"),
 });
 
+export const DEFAULT_FORWARD_REVIEWER_V2_SCHEMA_MAP: ForwardReviewerSchemaMap = Object.freeze({
+  reader: resolve(SCHEMA_DIR, "reader-experience-model-output-v2.schema.json"),
+  source: resolve(SCHEMA_DIR, "source-integrity-model-output-v2.schema.json"),
+  quiz: resolve(SCHEMA_DIR, "quiz-integrity-model-output-v2.schema.json"),
+});
+
 export type ForwardReviewerSpawn = (
   options: SpawnCodexAgentOptions,
 ) => Promise<CodexAgentResult>;
@@ -65,6 +76,9 @@ export type ForwardReviewerSessionContext = {
 export type ForwardReviewerExecutorDeps = {
   spawn?: ForwardReviewerSpawn;
   schemaMap?: ForwardReviewerSchemaMap;
+  /** Optional test/deployment override. Envelope-bound requests otherwise use
+   * the frozen IMP-24 semantic-only V2 schema map. */
+  v2SchemaMap?: ForwardReviewerSchemaMap;
   sessionIdFactory?: (context: ForwardReviewerSessionContext) => string;
   clock?: () => number;
   workspaceBaseDir?: string;
@@ -127,6 +141,10 @@ function snapshotAndValidateRequest(request: ForwardReviewExecutionRequestV1): E
   requireCondition(request && typeof request === "object", "forward reviewer: request is required");
   requireCondition(request.schema === FORWARD_REVIEW_EXECUTION_REQUEST_SCHEMA, "forward reviewer: wrong request schema");
   requireCondition(request.lane === "reader" || request.lane === "source" || request.lane === "quiz", `forward reviewer: unknown lane "${String(request.lane)}"`);
+  requireCondition(nonEmpty(request.reviewOperationKey)
+    && request.reviewOperationKey === request.reviewOperationKey.trim()
+    && !/[\u0000-\u001f\u007f]/.test(request.reviewOperationKey),
+  "forward reviewer: reviewOperationKey is empty or unstable");
   requireCondition(
     request.workspaceRole === LANE_WORKSPACE_ROLE[request.lane],
     `forward reviewer: lane ${request.lane} requires workspace role ${LANE_WORKSPACE_ROLE[request.lane]}, got ${String(request.workspaceRole)}`,
@@ -136,6 +154,11 @@ function snapshotAndValidateRequest(request: ForwardReviewExecutionRequestV1): E
   requireCondition(EFFORTS.includes(request.effort), `forward reviewer: invalid effort ${String(request.effort)}`);
   requireCondition(request.profileId === `${request.model}@${request.effort}`, "forward reviewer: profileId must equal <model>@<effort>");
   requireCondition(nonEmpty(request.instrumentVersion), "forward reviewer: instrumentVersion is empty");
+  if (request.reviewProtocol !== undefined || request.evidenceEnvelopeSha256 !== undefined || request.evidenceEnvelopeBytesSha256 !== undefined) {
+    requireCondition(request.reviewProtocol === "review-evidence-envelope-v1", "forward reviewer: unknown or missing evidence-envelope protocol");
+    requireSha(request.evidenceEnvelopeSha256, "forward reviewer evidenceEnvelopeSha256");
+    requireSha(request.evidenceEnvelopeBytesSha256, "forward reviewer evidenceEnvelopeBytesSha256");
+  }
   requireSha(request.schemaSha256, "forward reviewer schemaSha256");
   requireSha(request.roleAssignmentSha256, "forward reviewer roleAssignmentSha256");
   requireSha(request.instrumentManifestSha256, "forward reviewer instrumentManifestSha256");
@@ -176,15 +199,45 @@ function snapshotAndValidateRequest(request: ForwardReviewExecutionRequestV1): E
     };
   });
 
+  if (request.reviewProtocol === "review-evidence-envelope-v1") {
+    const envelopeArtifacts = artifacts.filter((artifact) => artifact.kind === "evidence-envelope");
+    requireCondition(envelopeArtifacts.length === 1, "forward reviewer: envelope protocol requires exactly one evidence-envelope artifact");
+    const envelopeArtifact = envelopeArtifacts[0]!;
+    requireCondition(envelopeArtifact.sha256 === request.evidenceEnvelopeBytesSha256,
+      "forward reviewer: retained evidence-envelope bytes do not match the request binding");
+    let parsed: ReviewEvidenceEnvelopeV1;
+    try {
+      parsed = JSON.parse(envelopeArtifact.content) as ReviewEvidenceEnvelopeV1;
+      assertReviewEvidenceEnvelope(parsed);
+    } catch (error) {
+      throw new ForwardReviewerExecutorError(
+        `forward reviewer: retained evidence envelope is invalid (${(error as Error).message})`,
+        "integrity_failure",
+      );
+    }
+    requireCondition(serializeReviewEvidenceEnvelope(parsed) === envelopeArtifact.content,
+      "forward reviewer: retained evidence-envelope bytes are not canonical", "integrity_failure");
+    requireCondition(parsed.lane === request.lane,
+      "forward reviewer: retained evidence-envelope lane does not match request", "integrity_failure");
+    requireCondition(parsed.envelopeSha256 === request.evidenceEnvelopeSha256,
+      "forward reviewer: retained evidence-envelope semantic hash does not match request", "integrity_failure");
+    requireCondition(request.task.includes(envelopeArtifact.content),
+      "forward reviewer: complete retained evidence envelope is not present inline in the task");
+  }
+
   return {
     schema: request.schema,
     lane: request.lane,
+    reviewOperationKey: request.reviewOperationKey,
     workspaceRole: request.workspaceRole,
     profileId: request.profileId,
     model: request.model,
     effort: request.effort,
     schemaSha256: request.schemaSha256,
     instrumentVersion: request.instrumentVersion,
+    ...(request.reviewProtocol ? { reviewProtocol: request.reviewProtocol } : {}),
+    ...(request.evidenceEnvelopeSha256 ? { evidenceEnvelopeSha256: request.evidenceEnvelopeSha256 } : {}),
+    ...(request.evidenceEnvelopeBytesSha256 ? { evidenceEnvelopeBytesSha256: request.evidenceEnvelopeBytesSha256 } : {}),
     roleAssignmentSha256: request.roleAssignmentSha256,
     instrumentManifestSha256: request.instrumentManifestSha256,
     executionProfileHash: request.executionProfileHash,
@@ -282,7 +335,8 @@ function defaultSessionId(context: ForwardReviewerSessionContext): string {
  * injected factory from reusing an identity within the run. */
 export function createForwardReviewerExecutor(deps: ForwardReviewerExecutorDeps = {}): ForwardReviewerExecutor {
   const spawn: ForwardReviewerSpawn = deps.spawn ?? spawnCodexAgent;
-  const schemaMap: ForwardReviewerSchemaMap = deps.schemaMap ?? DEFAULT_FORWARD_REVIEWER_SCHEMA_MAP;
+  const legacySchemaMap: ForwardReviewerSchemaMap = deps.schemaMap ?? DEFAULT_FORWARD_REVIEWER_SCHEMA_MAP;
+  const v2SchemaMap: ForwardReviewerSchemaMap = deps.v2SchemaMap ?? deps.schemaMap ?? DEFAULT_FORWARD_REVIEWER_V2_SCHEMA_MAP;
   const clock = deps.clock ?? Date.now;
   const sessionIdFactory = deps.sessionIdFactory ?? defaultSessionId;
   const seenSessionIds = new Set<string>();
@@ -290,6 +344,7 @@ export function createForwardReviewerExecutor(deps: ForwardReviewerExecutorDeps 
 
   return async (request): Promise<ForwardReviewExecutionResultV1> => {
     const enforced = snapshotAndValidateRequest(request);
+    const schemaMap = enforced.reviewProtocol === "review-evidence-envelope-v1" ? v2SchemaMap : legacySchemaMap;
     const schemaPath = schemaMap[enforced.lane];
     requireCondition(nonEmpty(schemaPath), `forward reviewer: schema map has no explicit path for lane ${enforced.lane}`);
     verifySchemaFile(schemaPath, enforced.schemaSha256, "pre-spawn");
@@ -366,12 +421,16 @@ export function createForwardReviewerExecutor(deps: ForwardReviewerExecutorDeps 
         schema: FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA,
         executionId: sessionId,
         lane: enforced.lane,
+        reviewOperationKey: enforced.reviewOperationKey,
         workspaceRole: enforced.workspaceRole,
         profileId: enforced.profileId,
         model: enforced.model,
         effort: enforced.effort,
         schemaSha256: enforced.schemaSha256,
         instrumentVersion: enforced.instrumentVersion,
+        ...(enforced.reviewProtocol ? { reviewProtocol: enforced.reviewProtocol } : {}),
+        ...(enforced.evidenceEnvelopeSha256 ? { evidenceEnvelopeSha256: enforced.evidenceEnvelopeSha256 } : {}),
+        ...(enforced.evidenceEnvelopeBytesSha256 ? { evidenceEnvelopeBytesSha256: enforced.evidenceEnvelopeBytesSha256 } : {}),
         roleAssignmentSha256: enforced.roleAssignmentSha256,
         instrumentManifestSha256: enforced.instrumentManifestSha256,
         executionProfileHash: enforced.executionProfileHash,

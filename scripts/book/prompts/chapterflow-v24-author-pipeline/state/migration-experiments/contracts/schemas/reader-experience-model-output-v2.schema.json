@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IMP-24 ReaderExperienceModelOutputV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "scores",
+    "quizDerivation",
+    "recommendation",
+    "blockingFindings",
+    "escalationSignals",
+    "advisoryFindings",
+    "strongestEvidenceRefIds",
+    "weakestEvidenceRefIds",
+    "oneParagraphVerdict"
+  ],
+  "properties": {
+    "schema": { "const": "reader-experience-model-output-v2" },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["retention", "quizzes", "transfer", "practical", "summaries", "tone", "limits", "insight", "density", "beginner"],
+      "properties": {
+        "retention": { "type": "number", "minimum": 0, "maximum": 100 },
+        "quizzes": { "type": "number", "minimum": 0, "maximum": 100 },
+        "transfer": { "type": "number", "minimum": 0, "maximum": 100 },
+        "practical": { "type": "number", "minimum": 0, "maximum": 100 },
+        "summaries": { "type": "number", "minimum": 0, "maximum": 100 },
+        "tone": { "type": "number", "minimum": 0, "maximum": 100 },
+        "limits": { "type": "number", "minimum": 0, "maximum": 100 },
+        "insight": { "type": "number", "minimum": 0, "maximum": 100 },
+        "density": { "type": "number", "minimum": 0, "maximum": 100 },
+        "beginner": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "quizDerivation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["answers", "mechanisms", "confidence", "ambiguities", "tells", "evidenceRefIds"],
+      "properties": {
+        "answers": { "type": "array", "minItems": 1, "items": { "enum": ["a", "b", "c"] } },
+        "mechanisms": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "confidence": { "type": "array", "minItems": 1, "items": { "enum": ["low", "medium", "high"] } },
+        "ambiguities": { "type": "array", "items": { "type": "string" } },
+        "tells": { "type": "array", "items": { "type": "string" } },
+        "evidenceRefIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/nonEmptyUniqueRefs" }
+        }
+      }
+    },
+    "recommendation": { "enum": ["SHIP", "REVISE", "BLOCK"] },
+    "blockingFindings": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/blockingFinding" }
+    },
+    "escalationSignals": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/escalationFinding" }
+    },
+    "advisoryFindings": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/advisoryFinding" }
+    },
+    "strongestEvidenceRefIds": { "$ref": "#/definitions/nonEmptyUniqueRefs" },
+    "weakestEvidenceRefIds": { "$ref": "#/definitions/nonEmptyUniqueRefs" },
+    "oneParagraphVerdict": { "type": "string", "minLength": 1 }
+  },
+  "definitions": {
+    "nonEmptyUniqueRefs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "findingBase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["category", "unit", "problem", "evidenceRefIds"],
+      "properties": {
+        "category": { "type": "string" },
+        "unit": { "type": "string" },
+        "problem": { "type": "string", "minLength": 1 },
+        "evidenceRefIds": { "$ref": "#/definitions/nonEmptyUniqueRefs" }
+      }
+    },
+    "blockingFinding": {
+      "allOf": [
+        { "$ref": "#/definitions/findingBase" },
+        { "properties": { "category": { "enum": ["unsafe", "internal_contradiction", "structurally_invalid", "schema_or_app_breaking", "unusable"] } } }
+      ]
+    },
+    "escalationFinding": {
+      "allOf": [
+        { "$ref": "#/definitions/findingBase" },
+        { "properties": { "category": { "enum": ["origin_ambiguous_to_reader", "possible_real_world_claim", "possible_attribution_issue"] } } }
+      ]
+    },
+    "advisoryFinding": {
+      "allOf": [
+        { "$ref": "#/definitions/findingBase" },
+        { "properties": { "category": { "enum": ["thin_example", "quiz_cue", "repetition", "tone", "density", "pacing", "other_craft"] } } }
+      ]
+    }
+  }
+}

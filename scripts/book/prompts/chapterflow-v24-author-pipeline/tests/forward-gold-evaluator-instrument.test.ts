@@ -213,7 +213,7 @@ function evaluatorOutput(role: "primary" | "verification" | "adjudicated", ratin
 function adjudicationContext(sourcePass = true): ForwardGoldAdjudicationValidationContextV1 {
   const expectedSourceLaneEvidence = EXPECTED_CHAPTERS.map((chapter) => ({
     ...chapter,
-    candidateContentSha256: sha256Hex(`content-${chapter.chapterId}`),
+    candidateContentSha256: sha256Hex(`content-${chapter.chapterId}`).slice(0, 16),
     sourceResultSha256: sha256Hex(`source-result-${chapter.chapterId}`),
     executionEnvelopeSha256: sha256Hex(`envelope-${chapter.chapterId}`),
     sourceStatus: sourcePass ? "PASS" as const : "REVISE" as const,
@@ -453,7 +453,10 @@ test("sweep output binding rejects wrong source and dispatch receipt echoes", ()
       reviewer: "imp22-gold-book-sweep",
       attestedAt: "2026-07-12T12:00:00.000Z",
       reviewerSessionId: "imp22-gold-sweep-session",
-      contentHashes: Object.fromEntries(EXPECTED_CHAPTERS.map((chapter) => [String(chapter.chapterIndex), sha256Hex(chapter.chapterId)])),
+      contentHashes: Object.fromEntries(EXPECTED_CHAPTERS.map((chapter) => [
+        String(chapter.chapterIndex),
+        sha256Hex(chapter.chapterId).slice(0, 16),
+      ])),
       checkedFamilies: ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"],
       findings: [],
     },
@@ -595,7 +598,7 @@ test("source-aware proof self-hash and aggregate PASS assertion cannot be forged
   );
 
   const forgedAuthority = JSON.parse(JSON.stringify(context.sourceAwareExternalAccuracy));
-  forgedAuthority.chapters[0].candidateContentSha256 = "e".repeat(64);
+  forgedAuthority.chapters[0].candidateContentSha256 = "e".repeat(16);
   forgedAuthority.proofSha256 = computeForwardGoldSourceAwareExternalAccuracyProofSha256(forgedAuthority);
   assert.throws(
     () => projectForwardGoldAdjudication(evaluatorOutput("adjudicated"), { ...context, sourceAwareExternalAccuracy: forgedAuthority }),

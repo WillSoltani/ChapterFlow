@@ -15,6 +15,11 @@ import { fxAttemptIdentity, fxChapter, fxPacket, fxPlan, fxPlanUnit } from "./mi
 import type { SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import { sourcePacketHash } from "../src/compiler/sourcePacket.js";
 import { hashCanonical, sha256Hex } from "../src/contracts/contractUtil.js";
+import {
+  QUIZ_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+  READER_EXPERIENCE_MODEL_OUTPUT_V2_SCHEMA,
+  SOURCE_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+} from "../src/contracts/reviewModelOutputV2.js";
 import type { SourceIntegrityReviewUnitV1 } from "../src/contracts/sourceIntegrityReview.js";
 import { sourceUsePlanHash, type SourceUsePlanV1 } from "../src/contracts/sourceUsePlan.js";
 import type { ChapterV21 } from "../src/types.js";
@@ -33,6 +38,10 @@ import {
 import { QUIZ_INTEGRITY_ADJUDICATION_SCHEMA } from "../src/review/quizIntegrityReview.js";
 import { READER_EXPERIENCE_RUBRIC_VERSION } from "../src/review/readerExperienceReview.js";
 import { SOURCE_INTEGRITY_RUBRIC_VERSION } from "../src/review/sourceIntegrityReview.js";
+import {
+  FORWARD_PRODUCTION_REVIEW_INSTRUMENT_V2,
+  FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
+} from "../src/review/forwardProductionReviewV2.js";
 import {
   FIXED_ROLE_ASSIGNMENT_SCHEMA,
   SPLIT_LANE_INSTRUMENT_MANIFEST_SCHEMA,
@@ -192,7 +201,42 @@ function panelFrozenConfig(): ForwardFrozenReviewConfigV1 {
   return { ...base, panelPolicy, panelPolicySha256: hashCanonical(panelPolicy) };
 }
 
-function makeFixture(frozen: ForwardFrozenReviewConfigV1 = frozenConfig()): Fixture {
+function frozenConfigV2(): ForwardFrozenReviewConfigV1 {
+  const assignment = roleAssignment();
+  const roleAssignmentSha256 = hashCanonical(assignment);
+  const manifest: SplitLaneInstrumentManifestV1 = {
+    schema: SPLIT_LANE_INSTRUMENT_MANIFEST_SCHEMA,
+    readerRubricVersion: FORWARD_PRODUCTION_REVIEW_INSTRUMENT_V2,
+    sourceRubricVersion: FORWARD_PRODUCTION_REVIEW_INSTRUMENT_V2,
+    readerSchemaSha256: "4".repeat(64),
+    sourceSchemaSha256: "5".repeat(64),
+    quizAdjudicationSchemaSha256: "6".repeat(64),
+    quizPhase2Version: FORWARD_PRODUCTION_REVIEW_INSTRUMENT_V2,
+    aggregationVersion: "aggregated-chapter-review-v1",
+    roleAssignmentPolicyVersion: "forward-fixed-role-policy-v1",
+    fixedRoleAssignmentSha256: roleAssignmentSha256,
+    executionProfileHash: "e".repeat(64),
+    routePolicyVersion: "subscription-only-v1",
+    thresholdsSha256: "t".repeat(64),
+    readerCorpusSha256: "a".repeat(64),
+    sourceCorpusSha256: "b".repeat(64),
+    quizCorpusSha256: "c".repeat(64),
+  };
+  return {
+    schema: FORWARD_FROZEN_REVIEW_CONFIG_SCHEMA,
+    roleAssignment: assignment,
+    roleAssignmentSha256,
+    instrumentManifest: manifest,
+    instrumentManifestSha256: hashCanonical(manifest),
+    readerBar: 80,
+    reviewProtocolVersion: FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
+  };
+}
+
+function makeFixture(
+  frozen: ForwardFrozenReviewConfigV1 = frozenConfig(),
+  sourceUnits?: SourceUsePlanV1["units"],
+): Fixture {
   const root = mkdtempSync(join(tmpdir(), "forward-conductor-test-"));
   const attemptDir = join(root, "attempt");
   const workspaceDir = join(attemptDir, "workspace");
@@ -203,11 +247,24 @@ function makeFixture(frozen: ForwardFrozenReviewConfigV1 = frozenConfig()): Fixt
     chapterId: candidate.chapterId,
     chapterNumber: 1,
   });
+  if (frozen.reviewProtocolVersion === FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2) {
+    candidate.authoring = {
+      schemaVersion: "chapter-authoring-v1",
+      sourceAnchors: {
+        schemaVersion: "chapter-source-anchor-map-v1",
+        sourceHash: sourcePacketHash(packet),
+        observedAnchorIds: ["ch01.fact.1"],
+        effectiveAnchors: {
+          "breakdown.fastRead": ["ch01.fact.1"],
+        },
+      },
+    };
+  }
   const plan: SourceUsePlanV1 = fxPlan({
     bookId: "zz-fixture-book",
     chapterNumber: 1,
     sourcePacketSha256: sourcePacketHash(packet),
-    units: [fxPlanUnit({
+    units: sourceUnits ?? [fxPlanUnit({
       unitId: "unit.fact.ch01.fact.1",
       origin: "source_bound",
       form: "explanation",
@@ -372,6 +429,69 @@ function quizOutput(): string {
   });
 }
 
+function readerOutputV2(): string {
+  return JSON.stringify({
+    schema: READER_EXPERIENCE_MODEL_OUTPUT_V2_SCHEMA,
+    scores: {
+      retention: 90, quizzes: 90, transfer: 90, practical: 90, summaries: 90,
+      tone: 90, limits: 90, insight: 90, density: 90, beginner: 90,
+    },
+    quizDerivation: {
+      answers: ["b"],
+      mechanisms: ["Removing the field reduces the work required to continue."],
+      confidence: ["high"],
+      ambiguities: [],
+      tells: [],
+      evidenceRefIds: [["RD-001"]],
+    },
+    recommendation: "SHIP",
+    blockingFindings: [],
+    escalationSignals: [],
+    advisoryFindings: [],
+    strongestEvidenceRefIds: ["RD-001"],
+    weakestEvidenceRefIds: ["RD-001"],
+    oneParagraphVerdict: "The complete reader-facing chapter is clear, useful, and internally coherent.",
+  });
+}
+
+function sourceOutputV2(targetRef = "U1"): string {
+  const expectedOrigin = targetRef === "U1" ? "source_bound" : targetRef === "U2" ? "constructed" : "generic";
+  return JSON.stringify({
+    schema: SOURCE_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+    assessments: [{
+      targetRef,
+      visibleRegister: expectedOrigin === "source_bound"
+        ? "clearly_sourced"
+        : expectedOrigin === "constructed"
+          ? "clearly_constructed"
+          : "clearly_generic",
+      supportStatus: expectedOrigin === "source_bound" ? "SUPPORTED" : "NOT_APPLICABLE",
+      framingAdequate: expectedOrigin === "constructed" ? true : null,
+      claimStrengthFit: true,
+      namedSpecificityAllowed: true,
+      findings: [],
+      rationale: "The chapter claim is supported by the supplied atomic source evidence.",
+    }],
+  });
+}
+
+function quizOutputV2(): string {
+  return JSON.stringify({
+    schema: QUIZ_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+    items: [{
+      questionRef: "Q1",
+      keyCorrect: "correct",
+      defensibleAnswerIndices: [1],
+      keyedMechanismSupported: true,
+      rationale: "Only choice 1 matches the committed mechanism in the complete inline evidence.",
+      evidenceRefIds: [
+        "CH-001", "Q001-PROMPT", "Q001-CHOICE-000", "Q001-CHOICE-001", "Q001-CHOICE-002", "Q001-DERIVATION",
+        "Q001-KEY", "Q001-EXPLANATION",
+      ],
+    }],
+  });
+}
+
 function echoResult(
   request: ForwardReviewExecutionRequestV1,
   output: string,
@@ -381,12 +501,16 @@ function echoResult(
     schema: FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA,
     executionId: `${request.lane}-execution-${sequence}`,
     lane: request.lane,
+    reviewOperationKey: request.reviewOperationKey,
     workspaceRole: request.workspaceRole,
     profileId: request.profileId,
     model: request.model,
     effort: request.effort,
     schemaSha256: request.schemaSha256,
     instrumentVersion: request.instrumentVersion,
+    ...(request.reviewProtocol ? { reviewProtocol: request.reviewProtocol } : {}),
+    ...(request.evidenceEnvelopeSha256 ? { evidenceEnvelopeSha256: request.evidenceEnvelopeSha256 } : {}),
+    ...(request.evidenceEnvelopeBytesSha256 ? { evidenceEnvelopeBytesSha256: request.evidenceEnvelopeBytesSha256 } : {}),
     roleAssignmentSha256: request.roleAssignmentSha256,
     instrumentManifestSha256: request.instrumentManifestSha256,
     executionProfileHash: request.executionProfileHash,
@@ -448,6 +572,209 @@ test("fresh PASS keeps the candidate noncanonical through all lanes and commits 
     assert.equal(result.executionEnvelopeSha256, hashCanonical(result.executionEnvelope));
     assert.ok(Object.isFrozen(result.executionEnvelope) && Object.isFrozen(result.executionEnvelope.executions));
     assert.equal(fixture.outcome()?.outcome, "committed");
+  } finally {
+    fixture.cleanup();
+  }
+});
+
+test("explicit IMP-24 V2 switch uses complete inline envelopes and retains authoritative V2 evidence through commit", async () => {
+  const fixture = makeFixture(frozenConfigV2());
+  const requests: ForwardReviewExecutionRequestV1[] = [];
+  let sequence = 0;
+  let commitCalls = 0;
+  try {
+    const result = await runForwardChapterConductor(fixture.input, {
+      executor: async (request) => {
+        requests.push(request);
+        sequence += 1;
+        return echoResult(
+          request,
+          request.lane === "reader"
+            ? readerOutputV2()
+            : request.lane === "source"
+              ? sourceOutputV2()
+              : quizOutputV2(),
+          sequence,
+        );
+      },
+      commitPreparedCandidate: (prepared) => {
+        commitCalls += 1;
+        finalizeAttempt(prepared.attempt, "committed");
+        return { ok: true, sessionId: prepared.sessionId, committed: true };
+      },
+    });
+
+    assert.equal(result.finalStatus, "PASS", JSON.stringify({
+      blocking: result.aggregate?.blockingReasons,
+      revision: result.aggregate?.revisionReasons,
+      source: result.source,
+      quiz: result.quiz,
+    }));
+    assert.equal(result.disposition, "COMMITTED", result.reason);
+    assert.equal(commitCalls, 1);
+    assert.equal(result.authoritativeV2?.protocolVersion, FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2);
+    assert.equal(result.authoritativeV2?.reader?.schema, "reader-experience-review-v2");
+    assert.equal(result.authoritativeV2?.source?.schema, "source-integrity-review-v2");
+    assert.equal(result.authoritativeV2?.quiz?.schema, "quiz-integrity-review-v2");
+    assert.equal(result.executionEnvelope.reviewProtocolVersion, FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2);
+    assert.equal(result.executionEnvelope.readerEvidenceEnvelopeSha256, result.authoritativeV2?.readerEnvelopeSha256);
+    assert.deepEqual(result.executionEnvelope.sourceEvidenceEnvelopeSha256s, result.authoritativeV2?.sourceEnvelopeSha256s);
+    assert.equal(result.executionEnvelope.quizEvidenceEnvelopeSha256, result.authoritativeV2?.quizEnvelopeSha256);
+    assert.equal(result.executionEnvelope.evidenceEnvelopeSetSha256, result.authoritativeV2?.envelopeSetSha256);
+    assert.ok(result.executionEnvelope.readerV2ResultSha256);
+    assert.ok(result.executionEnvelope.sourceV2ResultSha256);
+    assert.ok(result.executionEnvelope.quizV2ResultSha256);
+    assert.ok(Object.isFrozen(result.authoritativeV2));
+    assert.deepEqual(requests.map((request) => request.lane), ["reader", "source", "quiz"]);
+    for (const request of requests) {
+      assert.equal(request.reviewProtocol, "review-evidence-envelope-v1");
+      assert.match(request.evidenceEnvelopeSha256 ?? "", /^[a-f0-9]{64}$/);
+      assert.match(request.evidenceEnvelopeBytesSha256 ?? "", /^[a-f0-9]{64}$/);
+      const retained = request.artifacts.filter((entry) => entry.kind === "evidence-envelope");
+      assert.equal(retained.length, 1);
+      assert.equal(sha256Hex(retained[0].content), request.evidenceEnvelopeBytesSha256);
+      assert.ok(request.task.includes(retained[0].content), "the complete canonical envelope is inline");
+      assert.doesNotMatch(request.task, /file is at|read this file|required (?:file|filesystem) path/i);
+    }
+  } finally {
+    fixture.cleanup();
+  }
+});
+
+test("IMP-24 production V2 fails reader authority violations closed as non-committable INCONCLUSIVE", async () => {
+  const fixture = makeFixture(frozenConfigV2());
+  const lanes: string[] = [];
+  let sequence = 0;
+  let commitCalls = 0;
+  try {
+    const violatingReader = JSON.parse(readerOutputV2()) as Record<string, unknown>;
+    violatingReader.oneParagraphVerdict = "The author fabricated this study, and the passage contradicts the source.";
+    const result = await runForwardChapterConductor(fixture.input, {
+      executor: async (request) => {
+        lanes.push(request.lane);
+        sequence += 1;
+        return echoResult(
+          request,
+          request.lane === "reader" ? JSON.stringify(violatingReader) : request.lane === "source" ? sourceOutputV2() : quizOutputV2(),
+          sequence,
+        );
+      },
+      commitPreparedCandidate: () => {
+        commitCalls += 1;
+        throw new Error("reader authority violation must never commit");
+      },
+    });
+
+    assert.equal(result.finalStatus, "INCONCLUSIVE");
+    assert.equal(result.disposition, "SUPERSEDED");
+    assert.equal(commitCalls, 0);
+    assert.deepEqual(lanes, ["reader"], "source and quiz are not run after an out-of-authority reader verdict");
+    assert.match(result.reason, /reader authority violation/i);
+    assert.equal(result.authoritativeV2?.reader, null);
+    assert.deepEqual(fixture.counters, { canonicalWrites: 0, leadWrites: 0, provenanceWrites: 0 });
+    assert.equal(fixture.outcome()?.outcome, "superseded");
+  } finally {
+    fixture.cleanup();
+  }
+});
+
+test("IMP-24 V2 multi-unit source reviews retain exact targetRef operation identities and envelope order", async () => {
+  const fixture = makeFixture(frozenConfigV2(), [
+    fxPlanUnit({
+      unitId: "unit.fact.ch01.fact.1",
+      origin: "source_bound",
+      form: "explanation",
+      claimStrength: "descriptive",
+      anchorIds: ["ch01.fact.1"],
+    }),
+    fxPlanUnit({
+      unitId: "unit.constructed.1",
+      origin: "constructed",
+      form: "application",
+      claimStrength: "descriptive",
+      anchorIds: [],
+      framingRequired: true,
+      detailSufficiency: "full",
+    }),
+    fxPlanUnit({
+      unitId: "unit.generic.1",
+      origin: "generic",
+      form: "operational_scenario",
+      claimStrength: "descriptive",
+      anchorIds: [],
+      framingRequired: false,
+      detailSufficiency: "full",
+    }),
+  ]);
+  const requests: ForwardReviewExecutionRequestV1[] = [];
+  let sequence = 0;
+  try {
+    const result = await runForwardChapterConductor(fixture.input, {
+      executor: async (request) => {
+        requests.push(request);
+        sequence += 1;
+        return echoResult(
+          request,
+          request.lane === "reader"
+            ? readerOutputV2()
+            : request.lane === "source"
+              ? sourceOutputV2(request.reviewOperationKey)
+              : quizOutputV2(),
+          sequence,
+        );
+      },
+      commitPreparedCandidate: (prepared) => {
+        finalizeAttempt(prepared.attempt, "committed");
+        return { ok: true, sessionId: prepared.sessionId, committed: true };
+      },
+    });
+
+    assert.equal(result.disposition, "COMMITTED", result.reason);
+    assert.deepEqual(requests.map((request) => `${request.lane}:${request.reviewOperationKey}`), [
+      "reader:reader", "source:U1", "source:U2", "source:U3", "quiz:quiz",
+    ]);
+    assert.equal(result.authoritativeV2?.sourceEnvelopeSha256s.length, 3);
+    const sourceExecutions = result.executionEnvelope.executions
+      .filter((entry) => entry.panelRole === "sourcePrimary");
+    assert.deepEqual(sourceExecutions.map((entry) => entry.reviewOperationKey), ["U1", "U2", "U3"]);
+    assert.deepEqual(
+      sourceExecutions.map((entry) => entry.expected.evidenceEnvelopeSha256),
+      result.authoritativeV2?.sourceEnvelopeSha256s,
+    );
+    assert.deepEqual(
+      sourceExecutions.map((entry) => entry.received?.evidenceEnvelopeSha256),
+      result.authoritativeV2?.sourceEnvelopeSha256s,
+    );
+  } finally {
+    fixture.cleanup();
+  }
+});
+
+test("conductor rejects a reviewer receipt that changes the stable operation key", async () => {
+  const fixture = makeFixture(frozenConfigV2());
+  let sequence = 0;
+  let commitCalls = 0;
+  try {
+    const result = await runForwardChapterConductor(fixture.input, {
+      executor: async (request) => {
+        sequence += 1;
+        const receipt = echoResult(
+          request,
+          request.lane === "reader" ? readerOutputV2() : request.lane === "source" ? sourceOutputV2() : quizOutputV2(),
+          sequence,
+        );
+        return request.lane === "source" ? { ...receipt, reviewOperationKey: "U999" } : receipt;
+      },
+      commitPreparedCandidate: () => {
+        commitCalls += 1;
+        return { ok: true, sessionId: "must-not-commit", committed: true };
+      },
+    });
+    assert.notEqual(result.disposition, "COMMITTED");
+    assert.match(result.reason, /wrong frozen role\/route.*reviewOperationKey/i);
+    assert.equal(commitCalls, 0);
+    const rejected = result.executionEnvelope.executions.find((entry) => entry.panelRole === "sourcePrimary");
+    assert.equal(rejected?.status, "REJECTED");
   } finally {
     fixture.cleanup();
   }

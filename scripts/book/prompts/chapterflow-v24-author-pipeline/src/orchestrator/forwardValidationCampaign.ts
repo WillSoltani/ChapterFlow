@@ -39,6 +39,7 @@ import {
   type ForwardChapterConductorDeps,
   type ForwardChapterConductorInputV1,
   type ForwardChapterConductorResultV1,
+  type ForwardReviewExecutionEntryV1,
 } from "./forwardChapterConductor.js";
 
 export const FORWARD_VALIDATION_MANIFEST_SCHEMA = "forward-validation-manifest-v1" as const;
@@ -50,6 +51,9 @@ export const FORWARD_PERSISTENCE_RECEIPT_SCHEMA = "forward-persistence-receipt-v
 export const FORWARD_GOLD_EVIDENCE_SCHEMA = "forward-gold-evidence-v1" as const;
 export const PILOT_EXPERIMENT_ID = "s16-forward-sol-pilot-v1" as const;
 export const GOLD_EXPERIMENT_ID = "s16-forward-sol-gold-book-v1" as const;
+export const PILOT_ENVELOPE_EXPERIMENT_ID = "s16-forward-sol-pilot-v2-envelope" as const;
+export const GOLD_ENVELOPE_EXPERIMENT_ID = "s16-forward-sol-gold-book-v2-envelope" as const;
+export type ForwardValidationIdentityFamily = "legacy-v1" | "imp24-v2-envelope";
 
 export const FORWARD_CHAPTER_STRATA = [
   "research-heavy",
@@ -197,6 +201,9 @@ export type BuildPilotManifestInput = BuildManifestCommon & {
   /** Corrected pilots must carry the same threshold hash as their predecessor. */
   priorThresholdsSha256?: string;
   verifiedSystemicRootCause?: VerifiedSystemicRootCauseV1 | null;
+  /** Omitted preserves the retained IMP-22 identity. IMP-24 always supplies the
+   * new envelope family and therefore cannot overwrite old pilot evidence. */
+  identityFamily?: ForwardValidationIdentityFamily;
 };
 
 export type BuildGoldManifestInput = BuildManifestCommon & {
@@ -206,6 +213,7 @@ export type BuildGoldManifestInput = BuildManifestCommon & {
   pilotManifestSha256: string;
   pilotResultSha256: string;
   goldEvaluatorInstrumentSha256: string;
+  identityFamily?: ForwardValidationIdentityFamily;
 };
 
 export class ForwardValidationError extends Error {
@@ -282,17 +290,26 @@ function assertSystemicRootCause(root: VerifiedSystemicRootCauseV1 | null | unde
     "systemic correction requires one P0/P1 architecture failure or the same root cause in at least two chapters");
 }
 
-export function pilotCorrectionExperimentId(cycle: 0 | 1 | 2): string {
-  return cycle === 0 ? PILOT_EXPERIMENT_ID : `${PILOT_EXPERIMENT_ID}-correction-${cycle}`;
+export function pilotCorrectionExperimentId(
+  cycle: 0 | 1 | 2,
+  family: ForwardValidationIdentityFamily = "legacy-v1",
+): string {
+  const base = family === "imp24-v2-envelope" ? PILOT_ENVELOPE_EXPERIMENT_ID : PILOT_EXPERIMENT_ID;
+  return cycle === 0 ? base : `${base}-correction-${cycle}`;
 }
 
 /** Refuses a third development correction and requires a verified systemic cause. */
 export function nextPilotCorrectionExperimentId(
   previousExperimentIds: readonly string[],
   rootCause: VerifiedSystemicRootCauseV1,
+  family: ForwardValidationIdentityFamily = "legacy-v1",
 ): string {
   assertSystemicRootCause(rootCause);
-  const expected = [PILOT_EXPERIMENT_ID, `${PILOT_EXPERIMENT_ID}-correction-1`, `${PILOT_EXPERIMENT_ID}-correction-2`];
+  const expected = [
+    pilotCorrectionExperimentId(0, family),
+    pilotCorrectionExperimentId(1, family),
+    pilotCorrectionExperimentId(2, family),
+  ];
   requireCondition(previousExperimentIds.length > 0, "cannot correct a pilot that has not run");
   requireCondition(previousExperimentIds.length <= 2, "the two systemic correction cycles are exhausted");
   previousExperimentIds.forEach((id, i) => requireCondition(id === expected[i], `pilot correction history is not contiguous at ${id}`));
@@ -347,18 +364,19 @@ function eligibleBook(book: ForwardBookSelectionCandidateV1, excluded: Set<strin
  * capable of contributing exactly one chapter per stratum per book. */
 export function buildPilotManifest(input: BuildPilotManifestInput): FrozenForwardValidationManifestV1<ForwardPilotManifestV1> {
   const cycle = input.correctionCycle ?? 0;
+  const identityFamily = input.identityFamily ?? "legacy-v1";
   requireCondition(cycle >= 0 && cycle <= 2, "pilot correction cycle must be 0, 1, or 2");
   if (cycle > 0) {
     assertSystemicRootCause(input.verifiedSystemicRootCause);
     const prior = input.priorPilotExperimentIds ?? [];
-    const next = nextPilotCorrectionExperimentId(prior, input.verifiedSystemicRootCause);
-    requireCondition(next === pilotCorrectionExperimentId(cycle), `correction cycle ${cycle} does not follow the supplied history`);
+    const next = nextPilotCorrectionExperimentId(prior, input.verifiedSystemicRootCause, identityFamily);
+    requireCondition(next === pilotCorrectionExperimentId(cycle, identityFamily), `correction cycle ${cycle} does not follow the supplied history`);
     requireCondition(nonEmpty(input.priorThresholdsSha256) && input.priorThresholdsSha256 === input.thresholdsSha256,
       "corrected pilot must retain the prior frozen thresholds hash");
   } else {
     requireCondition(!input.verifiedSystemicRootCause, "base pilot cannot carry a correction root cause");
   }
-  const experimentId = pilotCorrectionExperimentId(cycle);
+  const experimentId = pilotCorrectionExperimentId(cycle, identityFamily);
   const excluded = new Set([...input.qualificationBookIds, ...(input.goldReservedBookIds ?? [])]);
   const books = input.books.filter((book) => eligibleBook(book, excluded)).sort((a, b) => a.bookId.localeCompare(b.bookId));
   let selected: ForwardBookSelectionCandidateV1[] | null = null;
@@ -388,11 +406,19 @@ export function buildPilotManifest(input: BuildPilotManifestInput): FrozenForwar
     kind: "pilot",
     targets,
     correctionCycle: cycle,
-    previousExperimentId: cycle === 0 ? null : pilotCorrectionExperimentId((cycle - 1) as 0 | 1),
+    previousExperimentId: cycle === 0 ? null : pilotCorrectionExperimentId((cycle - 1) as 0 | 1, identityFamily),
     verifiedSystemicRootCause: input.verifiedSystemicRootCause ?? null,
   };
   assertManifest(manifest);
   return freezeManifest(manifest);
+}
+
+/** IMP-24 identity-safe wrapper. It preserves the frozen selection and gates
+ * while preventing new envelope results from landing under the V1 pilot id. */
+export function buildPilotManifestV2Envelope(
+  input: Omit<BuildPilotManifestInput, "identityFamily">,
+): FrozenForwardValidationManifestV1<ForwardPilotManifestV1> {
+  return buildPilotManifest({ ...input, identityFamily: "imp24-v2-envelope" });
 }
 
 /** Deterministically selects one unused evidence-complete full book with at
@@ -420,12 +446,15 @@ export function buildGoldManifest(input: BuildGoldManifestInput): FrozenForwardV
     });
   requireCondition(books.length > 0, "gold selection requires one unused evidence-complete full book with at least 8 chapters");
   const book = books[0];
+  const experimentId = input.identityFamily === "imp24-v2-envelope"
+    ? GOLD_ENVELOPE_EXPERIMENT_ID
+    : GOLD_EXPERIMENT_ID;
   const targets = [...book.chapters]
     .sort((a, b) => a.chapterNumber - b.chapterNumber)
-    .map((coordinate) => targetFrom(coordinate, GOLD_EXPERIMENT_ID));
+    .map((coordinate) => targetFrom(coordinate, experimentId));
   const manifest: ForwardGoldManifestV1 = {
     ...commonManifest(input),
-    experimentId: GOLD_EXPERIMENT_ID,
+    experimentId,
     kind: "gold",
     targets,
     pilotAccepted: true,
@@ -438,6 +467,13 @@ export function buildGoldManifest(input: BuildGoldManifestInput): FrozenForwardV
   return freezeManifest(manifest);
 }
 
+/** IMP-24 identity-safe full-book wrapper using the unchanged gold gates. */
+export function buildGoldManifestV2Envelope(
+  input: Omit<BuildGoldManifestInput, "identityFamily">,
+): FrozenForwardValidationManifestV1<ForwardGoldManifestV1> {
+  return buildGoldManifest({ ...input, identityFamily: "imp24-v2-envelope" });
+}
+
 export function assertManifest(manifest: ForwardValidationManifestV1): void {
   requireCondition(manifest.schema === FORWARD_VALIDATION_MANIFEST_SCHEMA, "wrong forward-validation manifest schema");
   requireCondition(manifest.capabilities.publish === false && manifest.capabilities.promote === false
@@ -448,9 +484,12 @@ export function assertManifest(manifest: ForwardValidationManifestV1): void {
   assertHash("productionInstrumentSealSha256", manifest.productionInstrumentSealSha256);
   requireCondition(manifest.targets.length === (manifest.kind === "pilot" ? 8 : manifest.targets.length), "pilot must contain exactly eight chapters");
   requireCondition(manifest.kind !== "gold" || manifest.targets.length >= 8, "gold full book must contain at least 8 chapters");
+  const identityFamily: ForwardValidationIdentityFamily = manifest.experimentId.includes("v2-envelope")
+    ? "imp24-v2-envelope"
+    : "legacy-v1";
   requireCondition(manifest.kind === "pilot"
-    ? manifest.experimentId === pilotCorrectionExperimentId(manifest.correctionCycle)
-    : manifest.experimentId === GOLD_EXPERIMENT_ID,
+    ? manifest.experimentId === pilotCorrectionExperimentId(manifest.correctionCycle, identityFamily)
+    : manifest.experimentId === (identityFamily === "imp24-v2-envelope" ? GOLD_ENVELOPE_EXPERIMENT_ID : GOLD_EXPERIMENT_ID),
   "manifest experimentId is not the deterministic id for its kind/correction cycle");
   requireCondition(hashCanonical(manifest.qualificationBookIds) === hashCanonical(sortedUnique(manifest.qualificationBookIds)),
     "manifest qualification book exclusions must be sorted and unique");
@@ -621,6 +660,11 @@ export type ForwardValidationAttemptRecordV1 = {
   aggregate: ForwardChapterConductorResultV1["aggregate"];
   executionEnvelope: ForwardChapterConductorResultV1["executionEnvelope"] | null;
   executionEnvelopeSha256: string | null;
+  /** Complete retained result for every reviewed attempt. V3 evidence
+   * verification requires this field; it is optional only so archived V1
+   * records remain parseable without reinterpretation. */
+  conductorResult?: ForwardChapterConductorResultV1 | null;
+  conductorResultSha256?: string | null;
   disposition: ForwardChapterConductorResultV1["disposition"] | "NOT_REVIEWED";
   finalStatus: ForwardChapterConductorResultV1["finalStatus"];
   pass: boolean;
@@ -996,6 +1040,58 @@ function assertConductorInput(target: ForwardValidationTargetV1, prepared: Prepa
   requireCondition(hashCanonical(input.anchorCatalog) === target.anchorCatalogSha256, `${chapterKey(target)}: stale anchor catalog`);
 }
 
+/** Campaign-level acceptance gate for V2 packet-local source calls. The
+ * conductor owns each operation key; this check binds the retained execution
+ * list to the authoritative source-envelope hashes in exact compiler order. */
+export function forwardV2SourceExecutionOrderProblems(args: {
+  executions: readonly ForwardReviewExecutionEntryV1[];
+  sourceEnvelopeSha256s: readonly string[];
+  sourceAdjudicationTriggered: boolean;
+}): string[] {
+  const problems: string[] = [];
+  const operationCount = args.sourceEnvelopeSha256s.length;
+  if (operationCount < 1) return ["committed V2 result has no authoritative source envelope operations"];
+  const sourcePrimaryExecutions = args.executions.filter((execution) => execution.panelRole === "sourcePrimary");
+  const sourceAdjudicatorExecutions = args.executions.filter((execution) => execution.panelRole === "sourceAdjudicator");
+  const validate = (
+    entries: readonly ForwardReviewExecutionEntryV1[],
+    panelRole: "sourcePrimary" | "sourceAdjudicator",
+  ): void => {
+    if (entries.length !== operationCount) {
+      problems.push(`committed V2 result requires exactly ${operationCount} ${panelRole} executions`);
+      return;
+    }
+    const operationKeys = entries.map((entry) => entry.reviewOperationKey);
+    if (operationKeys.some((key) => typeof key !== "string" || key.trim().length === 0)
+        || new Set(operationKeys).size !== operationCount) {
+      problems.push(`committed V2 ${panelRole} executions do not retain unique source operation keys`);
+    }
+    entries.forEach((entry, index) => {
+      const expectedEnvelopeSha256 = args.sourceEnvelopeSha256s[index];
+      if (entry.reviewOperationKey !== entry.expected.reviewOperationKey
+          || entry.received?.reviewOperationKey !== entry.reviewOperationKey) {
+        problems.push(`committed V2 ${panelRole} execution ${index + 1} changed its conductor-owned operation key`);
+      }
+      if (entry.expected.evidenceEnvelopeSha256 !== expectedEnvelopeSha256
+          || entry.received?.evidenceEnvelopeSha256 !== expectedEnvelopeSha256) {
+        problems.push(`committed V2 ${panelRole} execution ${index + 1} is not bound to the authoritative source envelope order`);
+      }
+    });
+  };
+  validate(sourcePrimaryExecutions, "sourcePrimary");
+  if (args.sourceAdjudicationTriggered) {
+    validate(sourceAdjudicatorExecutions, "sourceAdjudicator");
+    if (sourceAdjudicatorExecutions.length === sourcePrimaryExecutions.length
+        && sourceAdjudicatorExecutions.some((entry, index) =>
+          entry.reviewOperationKey !== sourcePrimaryExecutions[index]?.reviewOperationKey)) {
+      problems.push("committed V2 source adjudicator operation order differs from source primary order");
+    }
+  } else if (sourceAdjudicatorExecutions.length !== 0) {
+    problems.push("committed V2 result contains untriggered source adjudicator executions");
+  }
+  return problems;
+}
+
 function conductorResultProblems(
   target: ForwardValidationTargetV1,
   prepared: PreparedAuthorCandidate,
@@ -1037,11 +1133,18 @@ function conductorResultProblems(
     if (result.finalStatus !== "PASS" || result.aggregate?.finalStatus !== "PASS") problems.push("non-PASS result claims committed");
     if (!result.commitResult?.ok || !("committed" in result.commitResult) || result.commitResult.committed !== true) problems.push("committed result lacks commit confirmation");
     if (envelope.executions.some((execution) => execution.status !== "VERIFIED")) problems.push("committed result contains unverified reviewer execution");
+    const v2SourceEnvelopeSha256s = result.authoritativeV2?.sourceEnvelopeSha256s ?? null;
+    const sourceOperationCount = v2SourceEnvelopeSha256s?.length ?? 1;
+    if (v2SourceEnvelopeSha256s && sourceOperationCount < 1) {
+      problems.push("committed V2 result has no authoritative source envelope operations");
+    }
     const expectedPanelRoles = [
       "readerPrimary",
       ...(envelope.readerAuditSelected ? ["readerAudit"] : []),
-      "sourcePrimary",
-      ...(envelope.sourceAdjudicationTriggered ? ["sourceAdjudicator"] : []),
+      ...Array.from({ length: sourceOperationCount }, () => "sourcePrimary"),
+      ...(envelope.sourceAdjudicationTriggered
+        ? Array.from({ length: sourceOperationCount }, () => "sourceAdjudicator")
+        : []),
       "quizSemanticAdjudicator",
     ];
     const expectedLanes = expectedPanelRoles.map((role) => role.startsWith("reader") ? "reader" : role.startsWith("source") ? "source" : "quiz");
@@ -1050,6 +1153,19 @@ function conductorResultProblems(
     }
     if (envelope.executions.map((execution) => execution.lane).join(",") !== expectedLanes.join(",")) {
       problems.push("committed result panel roles do not match their split lanes");
+    }
+    if (v2SourceEnvelopeSha256s) {
+      problems.push(...forwardV2SourceExecutionOrderProblems({
+        executions: envelope.executions,
+        sourceEnvelopeSha256s: v2SourceEnvelopeSha256s,
+        sourceAdjudicationTriggered: envelope.sourceAdjudicationTriggered === true,
+      }));
+      const readerExecutions = envelope.executions.filter((execution) => execution.lane === "reader");
+      const quizExecutions = envelope.executions.filter((execution) => execution.lane === "quiz");
+      if (readerExecutions.some((execution) => execution.reviewOperationKey !== "reader")
+          || quizExecutions.some((execution) => execution.reviewOperationKey !== "quiz")) {
+        problems.push("committed V2 reader/quiz execution operation keys differ from the fixed conductor identities");
+      }
     }
     if (Boolean(result.readerAudit) !== Boolean(envelope.readerAuditSelected)) problems.push("committed result reader-audit selection/evidence mismatch");
     if (Boolean(result.sourceAdjudication) !== Boolean(envelope.sourceAdjudicationTriggered)) problems.push("committed result source-adjudication trigger/evidence mismatch");
@@ -1123,6 +1239,8 @@ async function runOneAttempt(args: {
       aggregate: result.aggregate,
       executionEnvelope: result.executionEnvelope,
       executionEnvelopeSha256: result.executionEnvelopeSha256,
+      conductorResult: result,
+      conductorResultSha256: hashCanonical(result),
       disposition: problems.length > 0 ? "NOT_REVIEWED" : result.disposition,
       finalStatus: problems.length > 0 ? "INCONCLUSIVE" : result.finalStatus,
       pass,
@@ -1288,6 +1406,7 @@ function acceptanceProblems(
     unsupportedSourceBoundInventedDetails: account.unsupportedSourceBoundInventedDetails,
     misleadingConstructedFraming: account.misleadingConstructedFraming,
     genericHistoricalSpecificityLeaks: account.genericHistoricalSpecificityLeaks,
+    unsupportedHighSeverityCausalClaims: account.unsupportedHighSeverityCausalClaims,
     stateProvenanceSchemaFailures: account.stateProvenanceSchemaFailures,
     unexpectedWrites: account.unexpectedWrites,
     staleEvidenceAccepted: account.staleEvidenceAccepted,
