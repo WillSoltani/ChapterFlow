@@ -18,6 +18,8 @@ on:
 
 permissions:
   contents: read
+  actions: read
+  pull-requests: read
 
 concurrency:
   group: chapterflow-v25-${{ github.ref }}
@@ -146,11 +148,22 @@ jobs:
       - name: Verify production instrument seal
         run: node --import tsx src/cli.ts migration-bakeoff forward-verify-production-instrument-seal-v2 --json
 
-      - name: Reproduce model-free IMP-24 instrument certification
+      - name: Reproduce and verify model-free IMP-24C pre-live artifacts read-only
         run: |
-          node --import tsx src/cli.ts migration-bakeoff imp24-materialize-thresholds --write --json
-          node --import tsx src/cli.ts migration-bakeoff imp24-certify-instrument --write --json
-          node --import tsx src/cli.ts migration-bakeoff imp24-materialize-pre-live-freeze --write --json
+          node --import tsx src/cli.ts migration-bakeoff imp24-materialize-thresholds --json
+          node --import tsx src/cli.ts migration-bakeoff imp24-certify-instrument --json
+          node --import tsx src/cli.ts migration-bakeoff imp24-materialize-pre-live-freeze --verify --json
+
+      - name: Verify IMP-24C terminal attestation read-only when present
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          final_report="../../../../docs/v25/reports/IMP-24C_FINAL_REPORT.json"
+          if [[ -f "$final_report" ]]; then
+            node --import tsx src/cli.ts migration-bakeoff imp24-materialize-final-attestation --verify-retained --json
+          fi
 
       - name: Prove no live route was invoked
         shell: bash

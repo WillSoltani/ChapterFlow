@@ -7,6 +7,7 @@
  */
 
 import { hashCanonical } from "../contracts/contractUtil.js";
+import { IMP24_ROLE_QUALIFICATION_EXECUTION_ID } from "../bakeoff/migration/imp24Corpus.js";
 import type { ForwardInputFreezeV1 } from "./forwardInputFreeze.js";
 import {
   IMP24_FORWARD_INPUT_EXPERIMENT_IDS,
@@ -50,7 +51,7 @@ const EXTERNAL_CAPABILITIES = Object.freeze({
 
 export type ForwardLiveArtifactBundleV3 = {
   schema: typeof FORWARD_LIVE_ARTIFACT_BUNDLE_V3_SCHEMA;
-  experimentId: "s16-forward-role-qualification-v3-envelope";
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   qualificationResultSha256: string;
   instrumentCertificationSha256: string;
   roleAssignmentFreeze: ForwardRoleAssignmentFreezeV3;

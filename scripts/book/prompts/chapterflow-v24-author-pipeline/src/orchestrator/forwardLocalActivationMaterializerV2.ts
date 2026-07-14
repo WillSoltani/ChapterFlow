@@ -12,7 +12,7 @@ import {
   validateImp24InstrumentCertificationBinding,
 } from "../bakeoff/migration/imp24InstrumentCertification.js";
 import {
-  IMP24_ROLE_QUALIFICATION_ID,
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
 } from "../bakeoff/migration/imp24Corpus.js";
 import {
   IMP24_BASE_MAXIMUM_CALLS,
@@ -171,7 +171,7 @@ function assertQualification(
       && retainedEvidence.proof.preflightSha256 === preflight.preflightSha256,
     "local activation V3 qualification differs from its exact retained request/envelope/receipt proof");
   requireCondition(result.schema === IMP24_ROLE_QUALIFICATION_RUNNER_SCHEMA
-      && result.experimentId === IMP24_ROLE_QUALIFICATION_ID
+      && result.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID
       && result.roleSetReady === true
       && result.roleSetBlockedReason === null,
     "local activation requires a role-ready V3 envelope qualification result");
@@ -186,7 +186,7 @@ function assertQualification(
     "V3 certification differs from the fixed role freeze");
 
   requireCondition(preflight.schema === IMP24_LIVE_PREFLIGHT_SCHEMA
-      && preflight.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+      && preflight.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     "qualification preflight is not the V3 envelope protocol");
   requireSha(preflight.preflightSha256, "V3 qualification preflight hash");
   requireCondition(preflight.preflightSha256 === hashWithout(preflight as unknown as Record<string, unknown>, "preflightSha256"),
@@ -243,7 +243,7 @@ function assertCampaignPreflight(args: {
   requireCondition(preflight.qualificationResultSha256 === hashCanonical(args.currentQualification.result)
       && preflight.instrumentCertificationSha256 === args.currentQualification.certification.certificationSha256
       && preflight.corpusBundleSha256 === args.currentQualification.certification.corpusBundleSha256
-      && preflight.qualificationExperimentId === IMP24_ROLE_QUALIFICATION_ID,
+      && preflight.qualificationExperimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     `${args.kind} live preflight belongs to another V3 qualification/certification/corpus`);
   requireCondition(preflight.reviewProtocolVersion === "imp24-review-v2",
     `${args.kind} live preflight is not bound to the production envelope review protocol`);

@@ -23,9 +23,9 @@ import {
   runRoleQualificationV3,
   type RoleQualificationRunnerResultV3,
 } from "../bakeoff/migration/roleQualificationRunnerV3.js";
-import { IMP24_ROLE_QUALIFICATION_ID } from "../bakeoff/migration/imp24Corpus.js";
+import { IMP24_ROLE_QUALIFICATION_EXECUTION_ID } from "../bakeoff/migration/imp24Corpus.js";
 import { IMP24_CERTIFICATION_ARTIFACT_PATHS } from "../bakeoff/migration/imp24InstrumentCertification.js";
-import { IMP24B_PRE_LIVE_ARTIFACT_PATHS } from "../bakeoff/migration/imp24PreLiveFreeze.js";
+import { IMP24C_PRE_LIVE_ARTIFACT_PATHS } from "../bakeoff/migration/imp24PreLiveFreeze.js";
 import {
   createLiveQualificationExecutorV3,
   prepareLiveRoleQualificationV3,
@@ -41,13 +41,26 @@ import {
 } from "./forwardRoleAssignmentFreezeV3.js";
 import { IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH } from "./forwardProductionInstrumentSeal.js";
 
-export const IMP24_IMPLEMENTATION_CI_GATE_SCHEMA = "imp24-implementation-ci-gate-v2" as const;
+export const IMP24_IMPLEMENTATION_CI_GATE_SCHEMA = "imp24-implementation-ci-gate-v4" as const;
 export const IMP24_ROLE_QUALIFICATION_CAMPAIGN_REPORT_SCHEMA = "imp24-role-qualification-campaign-report-v1" as const;
 export const IMP24_REQUIRED_BRANCH = "feat/v25-pipeline-live" as const;
+export const IMP24_REQUIRED_REPOSITORY = "WillSoltani/ChapterFlow" as const;
+export const IMP24_REQUIRED_REPOSITORY_URL = "https://github.com/WillSoltani/ChapterFlow" as const;
+export const IMP24_REQUIRED_GH_REPOSITORY = "github.com/WillSoltani/ChapterFlow" as const;
 export const IMP24_REQUIRED_WORKFLOW_NAME = "ChapterFlow V25 Pipeline" as const;
 export const IMP24_REQUIRED_WORKFLOW_FILE = ".github/workflows/chapterflow-v25-pipeline.yml" as const;
 export const IMP24_REQUIRED_WORKFLOW_JOB = "V25 Pipeline Typecheck, Contracts, and Tests" as const;
 export const IMP24_REQUIRED_DRAFT_PR = 401 as const;
+export const IMP24_WORKFLOW_RUN_QUERY_FIELDS = [
+  "databaseId",
+  "name",
+  "workflowName",
+  "headBranch",
+  "headSha",
+  "status",
+  "conclusion",
+  "jobs",
+] as const;
 
 const SHA256 = /^[a-f0-9]{64}$/;
 const GIT_SHA = /^[a-f0-9]{40}$/;
@@ -67,13 +80,23 @@ export type Imp24ImplementationCiGateV1 = {
   schema: typeof IMP24_IMPLEMENTATION_CI_GATE_SCHEMA;
   branch: typeof IMP24_REQUIRED_BRANCH;
   headSha: string;
+  repository: {
+    nameWithOwner: typeof IMP24_REQUIRED_REPOSITORY;
+    url: typeof IMP24_REQUIRED_REPOSITORY_URL;
+  };
   workflow: {
-    name: typeof IMP24_REQUIRED_WORKFLOW_NAME;
-    file: typeof IMP24_REQUIRED_WORKFLOW_FILE;
-    job: typeof IMP24_REQUIRED_WORKFLOW_JOB;
+    displayName: typeof IMP24_REQUIRED_WORKFLOW_NAME;
+    workflowFile: typeof IMP24_REQUIRED_WORKFLOW_FILE;
     runId: number;
+    headBranch: typeof IMP24_REQUIRED_BRANCH;
     headSha: string;
-    conclusion: "PASS";
+    status: "completed";
+    conclusion: "success";
+    requiredJob: {
+      name: typeof IMP24_REQUIRED_WORKFLOW_JOB;
+      status: "completed";
+      conclusion: "success";
+    };
   };
   pullRequest: {
     number: typeof IMP24_REQUIRED_DRAFT_PR;
@@ -86,8 +109,10 @@ export type Imp24ImplementationCiGateV1 = {
     headSha: string;
   };
   trustedEvidence: {
-    method: "git-and-gh-cli-live-query-v1";
+    method: "git-and-gh-cli-live-query-v3";
+    raw: Imp24TrustedImplementationCiEvidenceV1;
     checkoutSha256: string;
+    repositorySha256: string;
     workflowRunSha256: string;
     pullRequestSha256: string;
   };
@@ -99,12 +124,29 @@ export type Imp24ImplementationCiGateV1 = {
 
 export type Imp24TrustedWorkflowRunEvidenceV1 = {
   databaseId: number;
+  displayName: string;
+  workflowFile: string;
+  headBranch: string;
+  headSha: string;
+  status: string;
+  conclusion: string;
+  jobs: Array<{ name: string; status: string; conclusion: string }>;
+};
+
+export type Imp24GithubWorkflowRunQueryV1 = {
+  databaseId: number;
+  name: string;
   workflowName: string;
   headBranch: string;
   headSha: string;
   status: string;
   conclusion: string;
   jobs: Array<{ name: string; status: string; conclusion: string }>;
+};
+
+export type Imp24TrustedRepositoryEvidenceV1 = {
+  nameWithOwner: string;
+  url: string;
 };
 
 export type Imp24TrustedPullRequestEvidenceV1 = {
@@ -121,6 +163,13 @@ export type Imp24CheckoutIdentityV1 = {
   branch: string;
   headSha: string;
   implementationClean: boolean;
+};
+
+export type Imp24TrustedImplementationCiEvidenceV1 = {
+  checkout: Imp24CheckoutIdentityV1;
+  repository: Imp24TrustedRepositoryEvidenceV1;
+  workflowRun: Imp24TrustedWorkflowRunEvidenceV1;
+  pullRequest: Imp24TrustedPullRequestEvidenceV1;
 };
 
 export type Imp24QualificationCampaignPathsV1 = {
@@ -141,9 +190,21 @@ export type Imp24QualificationCampaignPathsV1 = {
   roleAssignmentFreezeMarkdown: string;
 };
 
+export function assertImp24BlockedRoleAssignmentArtifactsAbsent(
+  paths: Pick<Imp24QualificationCampaignPathsV1,
+    "roleAssignmentFreeze" | "roleAssignmentFreezeDocsJson" | "roleAssignmentFreezeMarkdown">,
+): void {
+  requireCondition(!existsSync(paths.roleAssignmentFreeze),
+    "a retained role assignment freeze exists although the current V3 role set is not ready");
+  requireCondition(!existsSync(paths.roleAssignmentFreezeDocsJson),
+    "a retained role assignment freeze report exists although the current V3 role set is not ready");
+  requireCondition(!existsSync(paths.roleAssignmentFreezeMarkdown),
+    "a retained role assignment freeze markdown report exists although the current V3 role set is not ready");
+}
+
 export type Imp24RoleQualificationCampaignReportV1 = {
   schema: typeof IMP24_ROLE_QUALIFICATION_CAMPAIGN_REPORT_SCHEMA;
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   status: "ROLE_SET_READY" | "ROLE_SET_NOT_READY";
   implementationCiGateSha256: string;
   implementationHeadSha: string;
@@ -152,14 +213,19 @@ export type Imp24RoleQualificationCampaignReportV1 = {
   qualificationFreezeSha256: string;
   qualificationResultSha256: string;
   roleRegistrySha256: string;
+  callLedgerSha256: string;
   roleAssignmentFreezeSha256: string | null;
   selected: RoleQualificationRunnerResultV3["selected"];
+  qualifiedProfiles: string[];
   profileStatusCounts: Record<string, number>;
   callCounts: {
     baseMaximum: typeof IMP24_BASE_MAXIMUM_CALLS;
     hardMaximum: typeof IMP24_HARD_MAXIMUM_CALLS;
+    canaryCalls: number;
+    holdoutCalls: number;
     baseCallsAttempted: number;
     infrastructureReplays: number;
+    maxPlanEvents: number;
     totalAttempts: number;
     brokerRequests: number;
     codexExecInvocations: number;
@@ -169,6 +235,7 @@ export type Imp24RoleQualificationCampaignReportV1 = {
   thresholdsWeakened: false;
   holdoutsRelabeled: false;
   unavailableReplaced: false;
+  outputInformedResampling: false;
   retriesAdded: false;
   externalCapabilities: typeof EXTERNAL_CAPABILITIES;
   completedAt: string;
@@ -229,6 +296,42 @@ function requireCondition(condition: unknown, message: string): asserts conditio
   if (!condition) throw new ForwardRoleQualificationCampaignV3Error(message);
 }
 
+function requireExactObjectKeys(value: unknown, keys: string[], label: string): asserts value is Record<string, unknown> {
+  requireCondition(value !== null && typeof value === "object" && !Array.isArray(value),
+    `${label} must be an object`);
+  requireCondition(hashCanonical(Object.keys(value).sort()) === hashCanonical([...keys].sort()),
+    `${label} has missing or unexpected fields`);
+}
+
+export function normalizeImp24WorkflowFilePath(value: string): string {
+  const withForwardSlashes = value.replaceAll("\\", "/");
+  return withForwardSlashes.startsWith("./") ? withForwardSlashes.slice(2) : withForwardSlashes;
+}
+
+export function mapImp24GithubWorkflowRunQuery(
+  value: Imp24GithubWorkflowRunQueryV1,
+): Imp24TrustedWorkflowRunEvidenceV1 {
+  requireCondition(value !== null && typeof value === "object",
+    "trusted workflow-run evidence must be an object");
+  requireCondition(Array.isArray(value.jobs), "trusted workflow-run jobs must be an array");
+  requireCondition(value.jobs.every((job) => job !== null && typeof job === "object"),
+    "trusted workflow-run jobs must contain objects");
+  return {
+    databaseId: value.databaseId,
+    displayName: value.name,
+    workflowFile: value.workflowName,
+    headBranch: value.headBranch,
+    headSha: value.headSha,
+    status: value.status,
+    conclusion: value.conclusion,
+    jobs: value.jobs.map((job) => ({
+      name: job.name,
+      status: job.status,
+      conclusion: job.conclusion,
+    })),
+  };
+}
+
 function requireGitSha(value: unknown, label: string): asserts value is string {
   requireCondition(typeof value === "string" && GIT_SHA.test(value), `${label} must be an exact lowercase 40-character git SHA`);
 }
@@ -241,6 +344,76 @@ export function imp24ImplementationCiGateSha256(
   value: Omit<Imp24ImplementationCiGateV1, "gateSha256">,
 ): string {
   return hashCanonical(value);
+}
+
+function validateImp24TrustedImplementationCiEvidence(args: {
+  expectedHeadSha: string;
+  workflowRunId: number;
+  checkout: Imp24CheckoutIdentityV1;
+  workflowRun: Imp24TrustedWorkflowRunEvidenceV1;
+  pullRequest: Imp24TrustedPullRequestEvidenceV1;
+  repository: Imp24TrustedRepositoryEvidenceV1;
+}): { requiredJob: Imp24TrustedWorkflowRunEvidenceV1["jobs"][number] } {
+  requireGitSha(args.expectedHeadSha, "expected implementation HEAD");
+  requireCondition(Number.isSafeInteger(args.workflowRunId) && args.workflowRunId > 0,
+    "dedicated V25 workflow run ID must be a positive integer");
+  requireExactObjectKeys(args.checkout, ["branch", "headSha", "implementationClean"],
+    "trusted checkout evidence");
+  requireCondition(args.checkout.branch === IMP24_REQUIRED_BRANCH,
+    `current checkout is not on ${IMP24_REQUIRED_BRANCH}`);
+  requireGitSha(args.checkout.headSha, "current checkout HEAD");
+  requireCondition(args.checkout.headSha === args.expectedHeadSha,
+    "current checkout HEAD differs from the exact requested implementation HEAD");
+  requireCondition(args.checkout.implementationClean === true,
+    "current checkout has implementation/workflow/contract drift outside the exact requested HEAD");
+
+  const run = args.workflowRun;
+  requireExactObjectKeys(run, [
+    "databaseId", "displayName", "workflowFile", "headBranch", "headSha", "status", "conclusion", "jobs",
+  ], "trusted workflow-run evidence");
+  requireCondition(run.databaseId === args.workflowRunId,
+    "live GitHub workflow evidence has the wrong run database ID");
+  requireCondition(run.displayName === IMP24_REQUIRED_WORKFLOW_NAME,
+    `live GitHub workflow display name must be exactly ${IMP24_REQUIRED_WORKFLOW_NAME}`);
+  const normalizedWorkflowFile = typeof run.workflowFile === "string"
+    ? normalizeImp24WorkflowFilePath(run.workflowFile)
+    : run.workflowFile;
+  requireCondition(normalizedWorkflowFile === IMP24_REQUIRED_WORKFLOW_FILE,
+    `live GitHub workflow file must be exactly ${IMP24_REQUIRED_WORKFLOW_FILE}`);
+  requireCondition(run.headBranch === IMP24_REQUIRED_BRANCH,
+    `live GitHub workflow head branch must be exactly ${IMP24_REQUIRED_BRANCH}`);
+  requireGitSha(run.headSha, "live GitHub workflow head SHA");
+  requireCondition(run.headSha === args.expectedHeadSha,
+    "live GitHub workflow head SHA differs from the exact implementation HEAD");
+  requireCondition(run.status === "completed", "live GitHub workflow status is not completed");
+  requireCondition(run.conclusion === "success", "live GitHub workflow conclusion is not success");
+  requireCondition(Array.isArray(run.jobs), "live GitHub workflow jobs evidence must be an array");
+  for (const job of run.jobs) {
+    requireExactObjectKeys(job, ["name", "status", "conclusion"], "trusted workflow-run job evidence");
+  }
+  const exactJobs = run.jobs.filter((job) => job.name === IMP24_REQUIRED_WORKFLOW_JOB);
+  requireCondition(exactJobs.length === 1,
+    `live GitHub evidence must contain exactly one ${IMP24_REQUIRED_WORKFLOW_JOB} job`);
+  requireCondition(exactJobs[0].status === "completed" && exactJobs[0].conclusion === "success",
+    `live GitHub evidence does not show a completed successful ${IMP24_REQUIRED_WORKFLOW_JOB} job`);
+
+  requireExactObjectKeys(args.repository, ["nameWithOwner", "url"], "trusted repository evidence");
+  requireCondition(args.repository.nameWithOwner === IMP24_REQUIRED_REPOSITORY
+      && args.repository.url === IMP24_REQUIRED_REPOSITORY_URL,
+    `live GitHub repository identity must be exactly ${IMP24_REQUIRED_REPOSITORY_URL}`);
+  const pr = args.pullRequest;
+  requireExactObjectKeys(pr, [
+    "number", "state", "isDraft", "mergedAt", "mergeCommit", "headRefName", "headRefOid",
+  ], "trusted pull-request evidence");
+  requireCondition(pr.number === IMP24_REQUIRED_DRAFT_PR
+      && pr.state === "OPEN"
+      && pr.isDraft === true
+      && pr.mergedAt === null
+      && pr.mergeCommit === null
+      && pr.headRefName === IMP24_REQUIRED_BRANCH
+      && pr.headRefOid === args.expectedHeadSha,
+    "live GitHub evidence is not the open, unmerged draft PR #401 at the exact implementation HEAD");
+  return { requiredJob: exactJobs[0] };
 }
 
 function gitOrGhJson<T>(repositoryRoot: string, binary: "gh", args: string[], label: string): T {
@@ -274,10 +447,19 @@ function implementationPaths(): string[] {
     IMP24_CERTIFICATION_ARTIFACT_PATHS.thresholds,
     IMP24_CERTIFICATION_ARTIFACT_PATHS.reportJson,
     IMP24_CERTIFICATION_ARTIFACT_PATHS.reportMarkdown,
-    ...Object.values(IMP24B_PRE_LIVE_ARTIFACT_PATHS),
+    ...Object.values(IMP24C_PRE_LIVE_ARTIFACT_PATHS),
     "docs/v25/reports/IMP-24B_WORKTREE_LEDGER.json",
     "docs/v25/reports/IMP-24B_WORKTREE_LEDGER.md",
+    "docs/v25/reports/IMP-24B_ZERO_CALL_LIFECYCLE_CLOSURE.json",
+    "docs/v25/reports/IMP-24B_ZERO_CALL_LIFECYCLE_CLOSURE.md",
+    "docs/v25/reports/IMP-24C_CONTROL_PLANE_CORRECTION.md",
+    "docs/v25/reports/IMP-24C_PROTOCOL_NOTE.md",
     "docs/v25/reports/IMP-24_PROTOCOL_DECISION.md",
+    "docs/v25/reports/ROLE_QUALIFICATION_V3_EVIDENCE_MANIFEST.json",
+    "docs/v25/reports/ROLE_QUALIFICATION_V3_LIVE_RESULT.json",
+    "docs/v25/reports/ROLE_QUALIFICATION_V3_LIVE_RESULT.md",
+    "docs/v25/reports/implementation-report.imp-24.json",
+    `${pipeline}/state/migration-experiments/s16-forward-role-qualification-v3-envelope`,
     IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH,
     `${pipeline}/state/migration-experiments/contracts/schemas/reader-experience-model-output-v2.schema.json`,
     `${pipeline}/state/migration-experiments/contracts/schemas/source-integrity-model-output-v2.schema.json`,
@@ -306,6 +488,22 @@ export function validateImp24ImplementationCiGate(args: {
   checkout: Imp24CheckoutIdentityV1;
 }): void {
   const gate = args.gate;
+  requireExactObjectKeys(gate, [
+    "schema", "branch", "headSha", "repository", "workflow", "pullRequest",
+    "trustedEvidence", "verifiedAt", "modelCalls", "apiCalls", "gateSha256",
+  ], "implementation CI gate");
+  requireExactObjectKeys(gate.repository, ["nameWithOwner", "url"], "implementation CI gate repository");
+  requireExactObjectKeys(gate.workflow, [
+    "displayName", "workflowFile", "runId", "headBranch", "headSha", "status", "conclusion", "requiredJob",
+  ], "implementation CI gate workflow");
+  requireExactObjectKeys(gate.workflow.requiredJob, ["name", "status", "conclusion"],
+    "implementation CI gate required job");
+  requireExactObjectKeys(gate.pullRequest, [
+    "number", "state", "isDraft", "merged", "mergedAt", "mergeCommitSha", "headBranch", "headSha",
+  ], "implementation CI gate pull request");
+  requireExactObjectKeys(gate.trustedEvidence, [
+    "method", "raw", "checkoutSha256", "repositorySha256", "workflowRunSha256", "pullRequestSha256",
+  ], "implementation CI gate trusted evidence");
   requireGitSha(args.expectedHeadSha, "caller-supplied implementation HEAD");
   requireCondition(gate.schema === IMP24_IMPLEMENTATION_CI_GATE_SCHEMA, "implementation CI gate schema mismatch");
   const { gateSha256, ...core } = gate;
@@ -314,13 +512,21 @@ export function validateImp24ImplementationCiGate(args: {
   requireCondition(gate.branch === IMP24_REQUIRED_BRANCH, `implementation CI gate branch must be ${IMP24_REQUIRED_BRANCH}`);
   requireGitSha(gate.headSha, "implementation CI gate HEAD");
   requireCondition(gate.headSha === args.expectedHeadSha, "implementation CI gate HEAD differs from the exact caller-supplied HEAD");
-  requireCondition(gate.workflow.name === IMP24_REQUIRED_WORKFLOW_NAME
-    && gate.workflow.file === IMP24_REQUIRED_WORKFLOW_FILE
-    && gate.workflow.job === IMP24_REQUIRED_WORKFLOW_JOB
+  requireCondition(gate.repository.nameWithOwner === IMP24_REQUIRED_REPOSITORY
+      && gate.repository.url === IMP24_REQUIRED_REPOSITORY_URL,
+    `implementation CI gate repository must be ${IMP24_REQUIRED_REPOSITORY}`);
+  requireCondition(gate.workflow.displayName === IMP24_REQUIRED_WORKFLOW_NAME
+    && gate.workflow.workflowFile === IMP24_REQUIRED_WORKFLOW_FILE
     && Number.isSafeInteger(gate.workflow.runId) && gate.workflow.runId > 0
-    && gate.workflow.conclusion === "PASS"
+    && gate.workflow.headBranch === IMP24_REQUIRED_BRANCH
     && gate.workflow.headSha === gate.headSha,
-  "dedicated V25 implementation workflow did not PASS for the exact gated HEAD");
+  "dedicated V25 implementation workflow identity does not match the exact gated HEAD");
+  requireCondition(gate.workflow.status === "completed" && gate.workflow.conclusion === "success",
+    "dedicated V25 implementation workflow did not complete successfully");
+  requireCondition(gate.workflow.requiredJob.name === IMP24_REQUIRED_WORKFLOW_JOB
+    && gate.workflow.requiredJob.status === "completed"
+    && gate.workflow.requiredJob.conclusion === "success",
+  `dedicated V25 implementation workflow does not bind the successful ${IMP24_REQUIRED_WORKFLOW_JOB} job`);
   requireCondition(gate.pullRequest.number === IMP24_REQUIRED_DRAFT_PR
     && gate.pullRequest.state === "OPEN"
     && gate.pullRequest.isDraft === true
@@ -330,12 +536,56 @@ export function validateImp24ImplementationCiGate(args: {
     && gate.pullRequest.headBranch === IMP24_REQUIRED_BRANCH
     && gate.pullRequest.headSha === gate.headSha,
   "implementation gate is not the unmerged draft PR #401 at the exact gated HEAD");
-  requireCondition(gate.trustedEvidence.method === "git-and-gh-cli-live-query-v1",
+  requireCondition(gate.trustedEvidence.method === "git-and-gh-cli-live-query-v3",
     "implementation gate does not use the required live git/GitHub evidence method");
+  requireCondition(gate.trustedEvidence.raw !== null && typeof gate.trustedEvidence.raw === "object",
+    "implementation gate omits the retained trusted evidence preimages");
+  const raw = gate.trustedEvidence.raw;
+  requireExactObjectKeys(raw, ["checkout", "repository", "workflowRun", "pullRequest"],
+    "implementation gate retained trusted evidence preimages");
   requireSha(gate.trustedEvidence.checkoutSha256, "trusted checkout evidence hash");
+  requireSha(gate.trustedEvidence.repositorySha256, "trusted repository evidence hash");
   requireSha(gate.trustedEvidence.workflowRunSha256, "trusted workflow-run evidence hash");
   requireSha(gate.trustedEvidence.pullRequestSha256, "trusted pull-request evidence hash");
-  requireCondition(Number.isFinite(Date.parse(gate.verifiedAt)), "implementation CI gate verifiedAt is invalid");
+  requireCondition(gate.trustedEvidence.checkoutSha256 === hashCanonical(raw.checkout)
+      && gate.trustedEvidence.repositorySha256 === hashCanonical(raw.repository)
+      && gate.trustedEvidence.workflowRunSha256 === hashCanonical(raw.workflowRun)
+      && gate.trustedEvidence.pullRequestSha256 === hashCanonical(raw.pullRequest),
+    "implementation gate trusted evidence hash does not match its retained preimage");
+  const rawValidated = validateImp24TrustedImplementationCiEvidence({
+    expectedHeadSha: gate.headSha,
+    workflowRunId: gate.workflow.runId,
+    checkout: raw.checkout,
+    workflowRun: raw.workflowRun,
+    pullRequest: raw.pullRequest,
+    repository: raw.repository,
+  });
+  requireCondition(hashCanonical(raw.checkout) === hashCanonical(args.checkout),
+    "retained trusted checkout evidence differs from the independently supplied checkout identity");
+  requireCondition(gate.repository.nameWithOwner === raw.repository.nameWithOwner
+      && gate.repository.url === raw.repository.url
+      && gate.workflow.displayName === raw.workflowRun.displayName
+      && gate.workflow.workflowFile === normalizeImp24WorkflowFilePath(raw.workflowRun.workflowFile)
+      && gate.workflow.runId === raw.workflowRun.databaseId
+      && gate.workflow.headBranch === raw.workflowRun.headBranch
+      && gate.workflow.headSha === raw.workflowRun.headSha
+      && gate.workflow.status === raw.workflowRun.status
+      && gate.workflow.conclusion === raw.workflowRun.conclusion
+      && hashCanonical(gate.workflow.requiredJob) === hashCanonical(rawValidated.requiredJob),
+    "implementation gate normalized workflow/repository fields differ from retained trusted evidence");
+  requireCondition(gate.pullRequest.number === raw.pullRequest.number
+      && gate.pullRequest.state === raw.pullRequest.state
+      && gate.pullRequest.isDraft === raw.pullRequest.isDraft
+      && gate.pullRequest.merged === (raw.pullRequest.mergedAt !== null)
+      && gate.pullRequest.mergedAt === raw.pullRequest.mergedAt
+      && gate.pullRequest.mergeCommitSha === (raw.pullRequest.mergeCommit?.oid ?? null)
+      && gate.pullRequest.headBranch === raw.pullRequest.headRefName
+      && gate.pullRequest.headSha === raw.pullRequest.headRefOid,
+    "implementation gate normalized pull-request fields differ from retained trusted evidence");
+  requireCondition(typeof gate.verifiedAt === "string"
+      && Number.isFinite(Date.parse(gate.verifiedAt))
+      && new Date(gate.verifiedAt).toISOString() === gate.verifiedAt,
+    "implementation CI gate verifiedAt must be an exact canonical ISO timestamp");
   requireCondition(gate.modelCalls === 0 && gate.apiCalls === 0, "implementation CI verification must be model/API free");
   requireCondition(args.checkout.branch === IMP24_REQUIRED_BRANCH, "current checkout is not on feat/v25-pipeline-live");
   requireGitSha(args.checkout.headSha, "current checkout HEAD");
@@ -353,55 +603,42 @@ export function buildImp24ImplementationCiGateFromEvidence(args: {
   checkout: Imp24CheckoutIdentityV1;
   workflowRun: Imp24TrustedWorkflowRunEvidenceV1;
   pullRequest: Imp24TrustedPullRequestEvidenceV1;
+  repository: Imp24TrustedRepositoryEvidenceV1;
   verifiedAt: string;
 }): Imp24ImplementationCiGateV1 {
-  requireGitSha(args.expectedHeadSha, "expected implementation HEAD");
-  requireCondition(Number.isSafeInteger(args.workflowRunId) && args.workflowRunId > 0,
-    "dedicated V25 workflow run ID must be a positive integer");
-  requireCondition(args.checkout.branch === IMP24_REQUIRED_BRANCH,
-    `current checkout is not on ${IMP24_REQUIRED_BRANCH}`);
-  requireGitSha(args.checkout.headSha, "current checkout HEAD");
-  requireCondition(args.checkout.headSha === args.expectedHeadSha,
-    "current checkout HEAD differs from the exact requested implementation HEAD");
-  requireCondition(args.checkout.implementationClean === true,
-    "current checkout has implementation/workflow/contract drift outside the exact requested HEAD");
-
-  const run = args.workflowRun;
-  requireCondition(run.databaseId === args.workflowRunId
-    && run.workflowName === IMP24_REQUIRED_WORKFLOW_NAME
-    && run.headBranch === IMP24_REQUIRED_BRANCH
-    && run.headSha === args.expectedHeadSha
-    && run.status === "completed"
-    && run.conclusion === "success",
-  "live GitHub evidence does not show the dedicated V25 workflow PASS on the exact implementation HEAD");
-  const exactJobs = run.jobs.filter((job) => job.name === IMP24_REQUIRED_WORKFLOW_JOB);
-  requireCondition(exactJobs.length === 1
-    && exactJobs[0].status === "completed"
-    && exactJobs[0].conclusion === "success",
-  `live GitHub evidence does not show exactly one successful ${IMP24_REQUIRED_WORKFLOW_JOB} job`);
-
-  const pr = args.pullRequest;
-  requireCondition(pr.number === IMP24_REQUIRED_DRAFT_PR
-    && pr.state === "OPEN"
-    && pr.isDraft === true
-    && pr.mergedAt === null
-    && pr.mergeCommit === null
-    && pr.headRefName === IMP24_REQUIRED_BRANCH
-    && pr.headRefOid === args.expectedHeadSha,
-  "live GitHub evidence is not the open, unmerged draft PR #401 at the exact implementation HEAD");
-  requireCondition(Number.isFinite(Date.parse(args.verifiedAt)), "trusted implementation verification time is invalid");
+  const validated = validateImp24TrustedImplementationCiEvidence(args);
+  requireCondition(typeof args.verifiedAt === "string"
+      && Number.isFinite(Date.parse(args.verifiedAt))
+      && new Date(args.verifiedAt).toISOString() === args.verifiedAt,
+    "trusted implementation verification time must be an exact canonical ISO timestamp");
+  const raw = JSON.parse(canonicalJson({
+    checkout: args.checkout,
+    repository: args.repository,
+    workflowRun: args.workflowRun,
+    pullRequest: args.pullRequest,
+  })) as Imp24TrustedImplementationCiEvidenceV1;
 
   const core: Omit<Imp24ImplementationCiGateV1, "gateSha256"> = {
     schema: IMP24_IMPLEMENTATION_CI_GATE_SCHEMA,
     branch: IMP24_REQUIRED_BRANCH,
     headSha: args.expectedHeadSha,
+    repository: {
+      nameWithOwner: IMP24_REQUIRED_REPOSITORY,
+      url: IMP24_REQUIRED_REPOSITORY_URL,
+    },
     workflow: {
-      name: IMP24_REQUIRED_WORKFLOW_NAME,
-      file: IMP24_REQUIRED_WORKFLOW_FILE,
-      job: IMP24_REQUIRED_WORKFLOW_JOB,
+      displayName: IMP24_REQUIRED_WORKFLOW_NAME,
+      workflowFile: IMP24_REQUIRED_WORKFLOW_FILE,
       runId: args.workflowRunId,
+      headBranch: IMP24_REQUIRED_BRANCH,
       headSha: args.expectedHeadSha,
-      conclusion: "PASS",
+      status: "completed",
+      conclusion: "success",
+      requiredJob: {
+        name: validated.requiredJob.name as typeof IMP24_REQUIRED_WORKFLOW_JOB,
+        status: validated.requiredJob.status as "completed",
+        conclusion: validated.requiredJob.conclusion as "success",
+      },
     },
     pullRequest: {
       number: IMP24_REQUIRED_DRAFT_PR,
@@ -414,10 +651,12 @@ export function buildImp24ImplementationCiGateFromEvidence(args: {
       headSha: args.expectedHeadSha,
     },
     trustedEvidence: {
-      method: "git-and-gh-cli-live-query-v1",
-      checkoutSha256: hashCanonical(args.checkout),
-      workflowRunSha256: hashCanonical(run),
-      pullRequestSha256: hashCanonical(pr),
+      method: "git-and-gh-cli-live-query-v3",
+      raw,
+      checkoutSha256: hashCanonical(raw.checkout),
+      repositorySha256: hashCanonical(raw.repository),
+      workflowRunSha256: hashCanonical(raw.workflowRun),
+      pullRequestSha256: hashCanonical(raw.pullRequest),
     },
     verifiedAt: new Date(args.verifiedAt).toISOString(),
     modelCalls: 0,
@@ -435,26 +674,116 @@ function collectImp24ImplementationCiGate(args: {
   verifiedAt: string;
 }): Imp24ImplementationCiGateV1 {
   const checkout = defaultCheckoutIdentity(args.repositoryRoot);
-  const workflowRun = gitOrGhJson<Imp24TrustedWorkflowRunEvidenceV1>(args.repositoryRoot, "gh", [
+  const workflowRunQuery = gitOrGhJson<Imp24GithubWorkflowRunQueryV1>(args.repositoryRoot, "gh", [
     "run", "view", String(args.workflowRunId),
-    "--json", "databaseId,workflowName,headBranch,headSha,status,conclusion,jobs",
+    "--repo", IMP24_REQUIRED_GH_REPOSITORY,
+    "--json", IMP24_WORKFLOW_RUN_QUERY_FIELDS.join(","),
   ], "dedicated V25 workflow");
+  const workflowRun = mapImp24GithubWorkflowRunQuery(workflowRunQuery);
   const pullRequest = gitOrGhJson<Imp24TrustedPullRequestEvidenceV1>(args.repositoryRoot, "gh", [
     "pr", "view", String(IMP24_REQUIRED_DRAFT_PR),
+    "--repo", IMP24_REQUIRED_GH_REPOSITORY,
     "--json", "number,state,isDraft,mergedAt,mergeCommit,headRefName,headRefOid",
   ], "draft PR #401");
+  const repository = gitOrGhJson<Imp24TrustedRepositoryEvidenceV1>(args.repositoryRoot, "gh", [
+    "repo", "view", IMP24_REQUIRED_GH_REPOSITORY, "--json", "nameWithOwner,url",
+  ], "repository identity");
   return buildImp24ImplementationCiGateFromEvidence({
     expectedHeadSha: args.expectedHeadSha,
     workflowRunId: args.workflowRunId,
     checkout,
     workflowRun,
     pullRequest,
+    repository,
     verifiedAt: args.verifiedAt,
   });
 }
 
+/** Production-only, model-free recheck of the immutable Recovery-A workflow
+ * run and the current draft-PR state. This performs read-only `gh` queries
+ * against an explicit github.com repository and never writes or invokes any
+ * model-provider API. */
+export function reverifyImp24ImplementationCiGateLive(args: {
+  repositoryRoot: string;
+  gate: Imp24ImplementationCiGateV1;
+}): void {
+  validateImp24ImplementationCiGate({
+    gate: args.gate,
+    expectedHeadSha: args.gate.headSha,
+    checkout: args.gate.trustedEvidence.raw.checkout,
+  });
+  let currentHead: string;
+  let currentBranch: string;
+  try {
+    currentHead = execFileSync("git", ["rev-parse", "HEAD"], {
+      cwd: resolve(args.repositoryRoot),
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+    }).trim();
+    currentBranch = execFileSync("git", ["branch", "--show-current"], {
+      cwd: resolve(args.repositoryRoot),
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+    }).trim();
+    execFileSync("git", ["merge-base", "--is-ancestor", args.gate.headSha, currentHead], {
+      cwd: resolve(args.repositoryRoot),
+      stdio: ["ignore", "ignore", "pipe"],
+    });
+  } catch (error) {
+    throw new ForwardRoleQualificationCampaignV3Error(
+      `cannot establish current descendant checkout for the live CI-gate recheck: ${(error as Error).message}`,
+    );
+  }
+  requireGitSha(currentHead, "current final-attestation checkout HEAD");
+  requireCondition(currentBranch === IMP24_REQUIRED_BRANCH || currentBranch === "",
+    `live CI-gate recheck requires ${IMP24_REQUIRED_BRANCH} or an exact detached CI checkout`);
+
+  const workflowRunQuery = gitOrGhJson<Imp24GithubWorkflowRunQueryV1>(args.repositoryRoot, "gh", [
+    "run", "view", String(args.gate.workflow.runId),
+    "--repo", IMP24_REQUIRED_GH_REPOSITORY,
+    "--json", IMP24_WORKFLOW_RUN_QUERY_FIELDS.join(","),
+  ], "immutable Recovery-A dedicated V25 workflow recheck");
+  const workflowRun = mapImp24GithubWorkflowRunQuery(workflowRunQuery);
+  requireCondition(hashCanonical(workflowRun) === hashCanonical(args.gate.trustedEvidence.raw.workflowRun),
+    "live immutable workflow recheck differs from the retained Recovery-A run evidence");
+  const repository = gitOrGhJson<Imp24TrustedRepositoryEvidenceV1>(args.repositoryRoot, "gh", [
+    "repo", "view", IMP24_REQUIRED_GH_REPOSITORY, "--json", "nameWithOwner,url",
+  ], "github.com repository identity recheck");
+  requireCondition(hashCanonical(repository) === hashCanonical(args.gate.trustedEvidence.raw.repository),
+    "live github.com repository recheck differs from the retained Recovery-A repository evidence");
+  const pullRequest = gitOrGhJson<Imp24TrustedPullRequestEvidenceV1 & {
+    commits: Array<{ oid: string }>;
+  }>(args.repositoryRoot, "gh", [
+    "pr", "view", String(IMP24_REQUIRED_DRAFT_PR),
+    "--repo", IMP24_REQUIRED_GH_REPOSITORY,
+    "--json", "number,state,isDraft,mergedAt,mergeCommit,headRefName,headRefOid,commits",
+  ], "current draft PR #401 recheck");
+  requireCondition(pullRequest.number === IMP24_REQUIRED_DRAFT_PR
+      && pullRequest.state === "OPEN"
+      && pullRequest.isDraft === true
+      && pullRequest.mergedAt === null
+      && pullRequest.mergeCommit === null
+      && pullRequest.headRefName === IMP24_REQUIRED_BRANCH
+      && pullRequest.headRefOid === currentHead
+      && Array.isArray(pullRequest.commits)
+      && pullRequest.commits.some((commit) => commit.oid === args.gate.headSha),
+    "live PR recheck does not prove an open, unmerged draft #401 at the current descendant head containing Recovery A");
+}
+
+export function resolveImp24SuccessorExperimentDir(repositoryRoot: string, experimentDir: string): string {
+  const resolvedExperimentDir = resolve(experimentDir);
+  const requiredExperimentDir = resolve(
+    repositoryRoot,
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments",
+    IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  );
+  requireCondition(resolvedExperimentDir === requiredExperimentDir,
+    `official V3 successor campaign requires the exact ${IMP24_ROLE_QUALIFICATION_EXECUTION_ID} retained state root`);
+  return resolvedExperimentDir;
+}
+
 function pathsFor(args: RunImp24RoleQualificationCampaignV3Args): Imp24QualificationCampaignPathsV1 {
-  const experimentDir = resolve(args.experimentDir);
+  const experimentDir = resolveImp24SuccessorExperimentDir(args.repositoryRoot, args.experimentDir);
   const liveDir = resolve(experimentDir, "live");
   const reportDir = resolve(args.repositoryRoot, "docs", "v25", "reports");
   return {
@@ -468,11 +797,11 @@ function pathsFor(args: RunImp24RoleQualificationCampaignV3Args): Imp24Qualifica
     roleRegistry: resolve(liveDir, "role-registry.json"),
     callLedger: resolve(liveDir, "call-ledger.json"),
     qualificationReportJson: resolve(experimentDir, "qualification-report.json"),
-    qualificationReportDocsJson: resolve(reportDir, "ROLE_QUALIFICATION_V3_LIVE_RESULT.json"),
+    qualificationReportDocsJson: resolve(reportDir, "ROLE_QUALIFICATION_V3_R1_LIVE_RESULT.json"),
     roleAssignmentFreeze: resolve(experimentDir, "role-assignment-freeze.json"),
-    roleAssignmentFreezeDocsJson: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3.json"),
-    qualificationReportMarkdown: resolve(reportDir, "ROLE_QUALIFICATION_V3_LIVE_RESULT.md"),
-    roleAssignmentFreezeMarkdown: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3.md"),
+    roleAssignmentFreezeDocsJson: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3_R1.json"),
+    qualificationReportMarkdown: resolve(reportDir, "ROLE_QUALIFICATION_V3_R1_LIVE_RESULT.md"),
+    roleAssignmentFreezeMarkdown: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3_R1.md"),
   };
 }
 
@@ -540,7 +869,7 @@ function retainedCampaignReport(path: string): Imp24RoleQualificationCampaignRep
   if (!existsSync(path)) return null;
   const retained = parseJson<Imp24RoleQualificationCampaignReportV1>(path, "V3 qualification campaign report");
   requireCondition(retained.schema === IMP24_ROLE_QUALIFICATION_CAMPAIGN_REPORT_SCHEMA
-    && retained.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+    && retained.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   "retained V3 qualification campaign report identity mismatch");
   const { reportSha256, ...core } = retained;
   requireSha(reportSha256, "retained V3 qualification campaign report self hash");
@@ -552,7 +881,13 @@ function retainedCampaignReport(path: string): Imp24RoleQualificationCampaignRep
 }
 
 function stableReportProjection(report: Imp24RoleQualificationCampaignReportV1): unknown {
-  const { reportSha256: _reportSha256, artifactBytesSha256, callCounts, ...identity } = report;
+  const {
+    reportSha256: _reportSha256,
+    callLedgerSha256: _callLedgerSha256,
+    artifactBytesSha256,
+    callCounts,
+    ...identity
+  } = report;
   const { callLedger: _callLedger, ...stableArtifactBytesSha256 } = artifactBytesSha256;
   return {
     ...identity,
@@ -613,6 +948,7 @@ export function renderRoleQualificationV3LiveResultMarkdown(args: {
     `- Draft PR: **#${args.gate.pullRequest.number}**, open=${args.gate.pullRequest.state === "OPEN"}, draft=${args.gate.pullRequest.isDraft}, merged=${args.gate.pullRequest.merged}`,
     `- Base calls attempted: **${args.result.baseCallsAttempted}** / ${IMP24_BASE_MAXIMUM_CALLS}`,
     `- Infrastructure replays: **${args.result.infrastructureReplays}**`,
+    `- Max-plan/provider-capacity events: **${args.ledger.maxPlanCapacityEvents}**`,
     `- Total attempts: **${args.result.totalAttempts}** / ${IMP24_HARD_MAXIMUM_CALLS}`,
     `- ChatGPT-authenticated codex exec invocations: **${args.ledger.codexExecInvocations}**`,
     `- Cached receipts reused: **${args.ledger.cachedReceipts}**`,
@@ -641,6 +977,7 @@ export function renderRoleAssignmentFreezeV3Markdown(args: {
     `- Qualification result SHA-256: \`${args.freeze.qualificationResultSha256}\``,
     `- Base calls attempted: **${args.result.baseCallsAttempted}**`,
     `- Infrastructure replays: **${args.result.infrastructureReplays}**`,
+    `- Max-plan/provider-capacity events: **${args.ledger.maxPlanCapacityEvents}**`,
     `- ChatGPT-authenticated codex exec invocations: **${args.ledger.codexExecInvocations}**`,
     "- API calls: **0**",
     "- Gate weakening: **none**. The exact qualified profiles and all canary/holdout bindings are retained.",
@@ -662,6 +999,13 @@ function buildCampaignReport(args: {
   roleAssignmentFreeze: Readonly<ForwardRoleAssignmentFreezeV3> | null;
   completedAt: string;
 }): Imp24RoleQualificationCampaignReportV1 {
+  requireCondition(args.result.maxPlanEvents === args.ledger.maxPlanCapacityEvents,
+    "qualification result and retained call ledger disagree on Max-plan/provider-capacity events");
+  const baseAttempts = args.result.attempts.filter((attempt) => attempt.request.attemptNumber === 1);
+  const canaryCalls = baseAttempts.filter((attempt) => attempt.request.partition === "canary").length;
+  const holdoutCalls = baseAttempts.filter((attempt) => attempt.request.partition === "holdout").length;
+  requireCondition(canaryCalls + holdoutCalls === args.result.baseCallsAttempted,
+    "qualification result base-call count does not equal retained canary plus holdout attempts");
   const artifactBytes = {
     implementationCiGate: artifactBytesSha256(args.paths.implementationCiGate, "implementation CI gate"),
     candidateAvailability: artifactBytesSha256(args.paths.candidateAvailability, "candidate availability"),
@@ -676,7 +1020,7 @@ function buildCampaignReport(args: {
   };
   const core: Omit<Imp24RoleQualificationCampaignReportV1, "reportSha256"> = {
     schema: IMP24_ROLE_QUALIFICATION_CAMPAIGN_REPORT_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     status: args.result.roleSetReady ? "ROLE_SET_READY" : "ROLE_SET_NOT_READY",
     implementationCiGateSha256: args.gate.gateSha256,
     implementationHeadSha: args.gate.headSha,
@@ -685,14 +1029,19 @@ function buildCampaignReport(args: {
     qualificationFreezeSha256: args.result.freeze.freezeSha256,
     qualificationResultSha256: hashCanonical(args.result),
     roleRegistrySha256: hashCanonical(args.result.registry),
+    callLedgerSha256: hashCanonical(args.ledger),
     roleAssignmentFreezeSha256: args.roleAssignmentFreeze?.freezeSha256 ?? null,
     selected: args.result.selected,
+    qualifiedProfiles: [...new Set(Object.values(args.result.qualifiers).flat())].sort(),
     profileStatusCounts: statusCounts(args.result),
     callCounts: {
       baseMaximum: IMP24_BASE_MAXIMUM_CALLS,
       hardMaximum: IMP24_HARD_MAXIMUM_CALLS,
+      canaryCalls,
+      holdoutCalls,
       baseCallsAttempted: args.result.baseCallsAttempted,
       infrastructureReplays: args.result.infrastructureReplays,
+      maxPlanEvents: args.ledger.maxPlanCapacityEvents,
       totalAttempts: args.result.totalAttempts,
       brokerRequests: args.ledger.brokerRequests,
       codexExecInvocations: args.ledger.codexExecInvocations,
@@ -702,6 +1051,7 @@ function buildCampaignReport(args: {
     thresholdsWeakened: false,
     holdoutsRelabeled: false,
     unavailableReplaced: false,
+    outputInformedResampling: false,
     retriesAdded: false,
     externalCapabilities: EXTERNAL_CAPABILITIES,
     completedAt: args.completedAt,
@@ -762,6 +1112,13 @@ export async function runImp24RoleQualificationCampaignV3(
   const retainedGate = existsSync(paths.implementationCiGate)
     ? parseJson<Imp24ImplementationCiGateV1>(paths.implementationCiGate, "implementation CI gate")
     : null;
+  if (retainedGate !== null) {
+    validateImp24ImplementationCiGate({
+      gate: retainedGate,
+      expectedHeadSha: args.expectedHeadSha,
+      checkout: defaultCheckoutIdentity(args.repositoryRoot),
+    });
+  }
   const gateVerifiedAt = retainedGate?.verifiedAt ?? now().toISOString();
   const implementationCiGate = collectImp24ImplementationCiGate({
     repositoryRoot: args.repositoryRoot,
@@ -829,6 +1186,10 @@ export async function runImp24RoleQualificationCampaignV3(
   };
   const roleAssignmentFreeze = result.roleSetReady
     ? buildForwardRoleAssignmentFreezeV3({
+      implementationHeadSha: implementationCiGate.headSha,
+      implementationCiGateSha256: implementationCiGate.gateSha256,
+      callLedgerSha256: hashCanonical(live.ledger),
+      callLedgerBytesSha256: sha256Hex(readFileSync(paths.callLedger)),
       result,
       certification: prepared.input.certification,
       corpusBundle: prepared.input.corpusBundle,
@@ -843,10 +1204,7 @@ export async function runImp24RoleQualificationCampaignV3(
     persistExactJson(paths.roleAssignmentFreeze, roleAssignmentFreeze, "V3 role assignment freeze");
     persistExactJson(paths.roleAssignmentFreezeDocsJson, roleAssignmentFreeze, "V3 role assignment freeze report JSON");
   } else {
-    requireCondition(!existsSync(paths.roleAssignmentFreeze),
-      "a retained role assignment freeze exists although the current V3 role set is not ready");
-    requireCondition(!existsSync(paths.roleAssignmentFreezeDocsJson),
-      "a retained role assignment freeze report exists although the current V3 role set is not ready");
+    assertImp24BlockedRoleAssignmentArtifactsAbsent(paths);
   }
 
   const retainedReport = retainedCampaignReport(paths.qualificationReportJson);

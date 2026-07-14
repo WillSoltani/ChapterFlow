@@ -27,6 +27,7 @@ import {
   type InstrumentCertificationBindingV3,
   type RoleQualificationRunnerResultV3,
 } from "../bakeoff/migration/roleQualificationRunnerV3.js";
+import { IMP24_ROLE_QUALIFICATION_EXECUTION_ID } from "../bakeoff/migration/imp24Corpus.js";
 import { canonicalJson, hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { aggregateIsFresh, validateAggregatedChapterReview } from "../contracts/aggregateChapterReview.js";
@@ -489,7 +490,7 @@ function defaultVerifyCurrentInstrumentBinding(
   binding: ForwardQualificationInstrumentBindingV1 | InstrumentCertificationBindingV3,
   qualificationExperimentId: string,
 ): string {
-  if (qualificationExperimentId === "s16-forward-role-qualification-v3-envelope") {
+  if (qualificationExperimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID) {
     const certification = binding as InstrumentCertificationBindingV3;
     const errors = validateImp24InstrumentCertificationBinding(certification);
     if (errors.length > 0) {
@@ -580,7 +581,7 @@ function loadCurrentRuntimeEvidence(
 
   if (qualification.value.schema === IMP24_ROLE_QUALIFICATION_RUNNER_SCHEMA) {
     const result = qualification.value as unknown as RoleQualificationRunnerResultV3;
-    if (result.experimentId !== "s16-forward-role-qualification-v3-envelope"
+    if (result.experimentId !== IMP24_ROLE_QUALIFICATION_EXECUTION_ID
         || result.roleSetReady !== true || result.roleSetBlockedReason !== null) {
       throw new ForwardLocalAutopilotError(`${qualification.path}: current V3 qualification is not role-ready`);
     }

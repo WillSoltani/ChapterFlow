@@ -40,6 +40,7 @@ import {
 } from "../src/orchestrator/forwardValidationCampaign.js";
 import {
   IMP24_CORPUS_EXPECTED_COUNTS,
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   IMP24_ROLE_QUALIFICATION_ID,
   buildImp24CorpusBundle,
   certifyImp24Corpora,
@@ -110,7 +111,7 @@ function allAvailable(): CandidateAvailabilityV3 {
   );
   const core: Omit<CandidateAvailabilityV3, "availabilitySha256"> = {
     schema: IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     source: "codex-local-models-cache",
     sourceBytesSha256: "1".repeat(64),
     sourceFetchedAt: "2026-07-13T12:00:00.000Z",
@@ -153,7 +154,7 @@ function buildBaseInput(): RunRoleQualificationInputV3 {
     certificationSha256: instrumentCertificationBindingSha256(certificationCore),
   };
   return {
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     corpusBundle,
     corpusCertification,
     certification,
@@ -526,6 +527,7 @@ test("IMP-24 V3 permits one explicit infrastructure replay and never replays mal
   });
   assert.equal(replayed.baseCallsAttempted, 32);
   assert.equal(replayed.infrastructureReplays, 1);
+  assert.equal(replayed.maxPlanEvents, 1);
   assert.equal(replayed.totalAttempts, 33);
   const replayScheduleId = replayed.attempts.find((attempt) => attempt.request.attemptNumber === 2)!.request.scheduleId;
   assert.deepEqual(replayed.attempts
@@ -545,6 +547,7 @@ test("IMP-24 V3 permits one explicit infrastructure replay and never replays mal
     evaluateOutput: malformedKit.evaluateOutput,
     qualifiedAt: () => "2026-07-13T12:00:00.000Z",
   });
+  assert.equal(malformed.maxPlanEvents, 0);
   assert.equal(malformed.baseCallsAttempted, 2);
   assert.equal(malformed.totalAttempts, 2);
   assert.equal(malformed.infrastructureReplays, 0);
@@ -608,6 +611,10 @@ async function buildRoleFreezeFixture(): Promise<RoleFreezeFixture> {
     });
     assert.equal(result.roleSetReady, true, result.roleSetBlockedReason ?? "");
     const current: BuildForwardRoleAssignmentFreezeV3Input = {
+      implementationHeadSha: "a".repeat(40),
+      implementationCiGateSha256: "b".repeat(64),
+      callLedgerSha256: "c".repeat(64),
+      callLedgerBytesSha256: "d".repeat(64),
       result,
       certification: input.certification,
       corpusBundle: input.corpusBundle,
@@ -666,6 +673,10 @@ test("IMP-24 V3 role freeze binds role-ready 2/2/1 selection to exact independen
   assert.notEqual(freeze.roleAssignment.sourcePrimary.profileId, freeze.roleAssignment.sourceAdjudicator.profileId);
   assert.equal(freeze.reviewConfig.roleAssignmentSha256, freeze.roleAssignmentSha256);
   assert.equal(freeze.qualificationResultSha256, hashCanonical(current.result));
+  assert.equal(freeze.implementationHeadSha, current.implementationHeadSha);
+  assert.equal(freeze.implementationCiGateSha256, current.implementationCiGateSha256);
+  assert.equal(freeze.callLedgerSha256, current.callLedgerSha256);
+  assert.equal(freeze.callLedgerBytesSha256, current.callLedgerBytesSha256);
   assert.equal(freeze.productionQualificationParitySha256,
     current.certification.productionQualificationParitySha256);
   assert.equal(freeze.reviewConfig.productionQualificationParitySha256,
@@ -718,6 +729,13 @@ test("IMP-24 V3 role freeze rejects incomplete retained evidence and nested reco
   rehashRoleFreeze(bindingDrift);
   assert.throws(() => validateForwardRoleAssignmentFreezeV3(bindingDrift, fixture.current), /profile binding|holdout|qualification evidence|drift/i,
     "recomputed child and outer hashes must not bless a binding that differs from current qualification evidence");
+
+  const ledgerDrift = clone(fixture.freeze);
+  ledgerDrift.callLedgerBytesSha256 = "0".repeat(64);
+  rehashRoleFreeze(ledgerDrift);
+  assert.throws(() => validateForwardRoleAssignmentFreezeV3(ledgerDrift, fixture.current),
+    /implementation CI|call-ledger|deterministic projection/,
+  "a rehashed role freeze cannot detach from the completed call-ledger bytes");
 
   const configDrift = clone(fixture.freeze);
   const changedPromptHash = configDrift.reviewConfig.promptSourceHashes.reader === "9".repeat(64)
@@ -862,7 +880,7 @@ test("IMP-24 V3 campaign proof/preflight accepts only the exact fresh envelope i
   const preflight = preflightForwardLiveCampaignV3(args);
   assert.equal(preflight.schema, FORWARD_LIVE_CAMPAIGN_PREFLIGHT_V3_SCHEMA);
   assert.equal(preflight.experimentId, PILOT_ENVELOPE_EXPERIMENT_ID);
-  assert.equal(preflight.qualificationExperimentId, IMP24_ROLE_QUALIFICATION_ID);
+  assert.equal(preflight.qualificationExperimentId, IMP24_ROLE_QUALIFICATION_EXECUTION_ID);
   assert.equal(preflight.qualificationResultSha256, hashCanonical(fixture.current.result));
   assert.equal(preflight.instrumentCertificationSha256, fixture.current.certification.certificationSha256);
   assert.equal(preflight.corpusBundleSha256, fixture.current.certification.corpusBundleSha256);

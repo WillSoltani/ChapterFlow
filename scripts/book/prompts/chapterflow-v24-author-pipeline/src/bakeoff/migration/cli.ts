@@ -97,9 +97,16 @@ import {
 import {
   buildImp24BPreLiveFreeze,
   materializeImp24BPreLiveFreeze,
+  verifyImp24CPreLiveFreeze,
 } from "./imp24PreLiveFreeze.js";
 import {
-  IMP24_ROLE_QUALIFICATION_ID,
+  buildImp24CFinalAttestation,
+  materializeImp24CFinalAttestation,
+  verifyImp24CFinalAttestation,
+  verifyRetainedImp24CFinalAttestation,
+} from "./imp24FinalAttestation.js";
+import {
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   certifyImp24Corpora,
   type Imp24CorpusBundle,
 } from "./imp24Corpus.js";
@@ -169,7 +176,10 @@ const USAGE =
   `         forward-materialize-production-instrument-seal [--output FILE] [--write] [--json]\n` +
   `         imp24-materialize-thresholds [--write] [--json]\n` +
   `         imp24-certify-instrument [--write] [--json]\n` +
-  `         imp24-materialize-pre-live-freeze [--write] [--json]\n` +
+  `         imp24-materialize-pre-live-freeze [--write|--verify] [--json]\n` +
+  `         imp24-materialize-final-attestation --implementation-commit SHA --evidence-commit SHA\n` +
+  `           --terminal-result FILE --ci-evidence FILE [--role-assignment FILE]\n` +
+  `           [--write|--verify|--verify-retained] [--json]\n` +
   `         imp24-materialize-forward-inputs [--write] [--state-root DIR] [--json]\n` +
   `           default: ${FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH}`;
 
@@ -212,6 +222,7 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "imp24-materialize-thresholds",
   "imp24-certify-instrument",
   "imp24-materialize-pre-live-freeze",
+  "imp24-materialize-final-attestation",
   "imp24-materialize-forward-inputs",
   "role-qualification-freeze",
   "forward-materialize-pilot-artifacts",
@@ -228,6 +239,7 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
 const IMP24_CLOSED_QUALIFICATION_DISPOSITIONS = Object.freeze({
   "s16-forward-role-qualification-v1": "INVALID_INSTRUMENT_DO_NOT_ATTEST",
   "s16-forward-role-qualification-v2": "BLOCKED_CALIBRATION_INVALID",
+  "s16-forward-role-qualification-v3-envelope": "BLOCKED_ZERO_CALL_CONTROL_PLANE_DEFECT",
 } as const);
 
 function closedQualificationDisposition(experimentId: string): string | null {
@@ -762,7 +774,7 @@ async function runImp24RoleQualificationV3Subverb(
     verifiedAt,
   });
   const input: UnpreparedLiveRoleQualificationInputV3 = {
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     corpusBundle: artifacts.corpusBundle,
     corpusCertification,
     certification: artifacts.certification,
@@ -777,7 +789,7 @@ async function runImp24RoleQualificationV3Subverb(
     expectedHeadSha,
     workflowRunId,
     repositoryRoot,
-    experimentDir: resolve(migrationExperimentsDir(), IMP24_ROLE_QUALIFICATION_ID),
+    experimentDir: resolve(migrationExperimentsDir(), IMP24_ROLE_QUALIFICATION_EXECUTION_ID),
     input,
     preflight: {},
     ...(timeoutMs !== undefined ? { timeoutMs } : {}),
@@ -796,6 +808,7 @@ async function runImp24RoleQualificationV3Subverb(
       .map((entry) => `${entry.role}:${entry.profileId}`),
     baseCallsAttempted: campaign.result.baseCallsAttempted,
     infrastructureReplays: campaign.result.infrastructureReplays,
+    maxPlanEvents: campaign.callLedger.maxPlanCapacityEvents,
     totalAttempts: campaign.result.totalAttempts,
     codexExecInvocations: campaign.callLedger.codexExecInvocations,
     cachedReceipts: campaign.callLedger.cachedReceipts,
@@ -1182,8 +1195,16 @@ function runLocalForwardSubverb(
       console.error("imp24-materialize-pre-live-freeze: fixed authoritative paths reject --output and --state-root");
       return 2;
     }
+    if (flags.write === true && flags.verify === true) {
+      console.error("imp24-materialize-pre-live-freeze: choose exactly one of --write or --verify");
+      return 2;
+    }
     const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
-    if (flags.write === true) {
+    if (flags.verify === true) {
+      const out = verifyImp24CPreLiveFreeze({ repositoryRoot });
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] IMP-24C pre-live freeze VERIFIED: ${out.freezeSha256} outputs=${out.verifiedOutputCount} writes=0 model/api calls=0`);
+    } else if (flags.write === true) {
       const out = materializeImp24BPreLiveFreeze({ repositoryRoot });
       console.log(flags.json === true ? JSON.stringify({
         schema: out.schema,
@@ -1193,7 +1214,7 @@ function runLocalForwardSubverb(
         written: true,
         modelCalls: out.modelCalls,
         apiCalls: out.apiCalls,
-      }, null, 2) : `[migration] IMP-24B pre-live freeze: ${out.freeze.freezeSha256} outputs=${Object.keys(out.outputs).length} model/api calls=0`);
+      }, null, 2) : `[migration] IMP-24C pre-live freeze: ${out.freeze.freezeSha256} outputs=${Object.keys(out.outputs).length} model/api calls=0`);
     } else {
       const out = buildImp24BPreLiveFreeze({ repositoryRoot });
       console.log(flags.json === true ? JSON.stringify({
@@ -1203,7 +1224,66 @@ function runLocalForwardSubverb(
         written: false,
         modelCalls: out.modelCalls,
         apiCalls: out.apiCalls,
-      }, null, 2) : `[migration] IMP-24B pre-live freeze: ${out.freeze.freezeSha256} outputs=${Object.keys(out.outputs).length} DRY (pass --write)`);
+      }, null, 2) : `[migration] IMP-24C pre-live freeze: ${out.freeze.freezeSha256} outputs=${Object.keys(out.outputs).length} DRY (pass --write or --verify)`);
+    }
+    return 0;
+  }
+  if (subverb === "imp24-materialize-final-attestation") {
+    if (flags.output !== undefined || flags["state-root"] !== undefined) {
+      console.error("imp24-materialize-final-attestation: fixed authoritative paths reject --output and --state-root");
+      return 2;
+    }
+    const modes = [flags.write === true, flags.verify === true, flags["verify-retained"] === true]
+      .filter(Boolean).length;
+    if (modes > 1) {
+      console.error("imp24-materialize-final-attestation: choose at most one of --write, --verify, or --verify-retained");
+      return 2;
+    }
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    if (flags["verify-retained"] === true) {
+      const out = verifyRetainedImp24CFinalAttestation({ repositoryRoot });
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] IMP-24C terminal attestation VERIFIED: ${out.attestationSha256} writes=0 model/api calls=0`);
+      return 0;
+    }
+    const stringFlag = (name: string): string => typeof flags[name] === "string" ? (flags[name] as string).trim() : "";
+    const implementationCommit = stringFlag("implementation-commit");
+    const evidenceCommit = stringFlag("evidence-commit");
+    const terminalQualificationResultPath = stringFlag("terminal-result");
+    const dedicatedCiEvidencePath = stringFlag("ci-evidence");
+    const roleAssignmentPath = stringFlag("role-assignment");
+    if ([implementationCommit, evidenceCommit, terminalQualificationResultPath, dedicatedCiEvidencePath]
+      .some((value) => value.length === 0)) {
+      console.error("imp24-materialize-final-attestation: --implementation-commit, --evidence-commit, --terminal-result, and --ci-evidence are required");
+      return 2;
+    }
+    const options = {
+      repositoryRoot,
+      implementationCommit,
+      evidenceCommit,
+      terminalQualificationResultPath,
+      dedicatedCiEvidencePath,
+      ...(roleAssignmentPath.length === 0 ? {} : { roleAssignmentPath }),
+    };
+    if (flags.write === true) {
+      const out = materializeImp24CFinalAttestation(options);
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] IMP-24C terminal attestation: ${out.attestationSha256} outputs=${Object.keys(out.outputs).length} model/api calls=0`);
+    } else if (flags.verify === true) {
+      const out = verifyImp24CFinalAttestation(options);
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] IMP-24C terminal attestation VERIFIED: ${out.attestationSha256} writes=0 model/api calls=0`);
+    } else {
+      const out = buildImp24CFinalAttestation(options);
+      console.log(flags.json === true ? JSON.stringify({
+        schema: out.attestation.schema,
+        finalDecision: out.attestation.finalDecision,
+        attestationSha256: out.attestation.attestationSha256,
+        outputCount: Object.keys(out.outputs).length,
+        written: false,
+        modelCalls: 0,
+        apiCalls: 0,
+      }, null, 2) : `[migration] IMP-24C terminal attestation: ${out.attestation.attestationSha256} outputs=${Object.keys(out.outputs).length} DRY (pass --write or --verify)`);
     }
     return 0;
   }

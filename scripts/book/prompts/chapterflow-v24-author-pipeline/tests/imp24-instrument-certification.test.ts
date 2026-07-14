@@ -12,6 +12,7 @@ import {
   type ForwardProductionInstrumentSealV1,
 } from "../src/orchestrator/forwardProductionInstrumentSeal.js";
 import {
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   IMP24_ROLE_QUALIFICATION_ID,
   buildImp24CorpusBundle,
   certifyImp24Corpora,
@@ -90,7 +91,7 @@ function flattenedPrepared(bundle: Imp24CorpusBundle): PreparedQualificationCase
 function boundRequest(preparedCase: PreparedQualificationCaseV3): QualificationExecutionRequestV3 {
   const core: Omit<QualificationExecutionRequestV3, "requestSha256"> = {
     schema: IMP24_ROLE_QUALIFICATION_REQUEST_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     scheduleId: `test-${preparedCase.caseId}`,
     attemptId: `test-${preparedCase.caseId}-a1`,
     replayOfAttemptId: null,
@@ -144,7 +145,7 @@ function boundReceipt(request: QualificationExecutionRequestV3, rawOutput: strin
 function allAvailable(): CandidateAvailabilityV3 {
   const draft: Omit<CandidateAvailabilityV3, "availabilitySha256"> = {
     schema: "imp24-role-candidate-availability-v3",
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     source: "codex-local-models-cache",
     sourceBytesSha256: HASH,
     sourceFetchedAt: "2026-07-13T12:00:00.000Z",
@@ -460,7 +461,7 @@ test("IMP-24 materializes all certification artifacts deterministically and its 
   const prepared = prepareImp24QualificationCases({ repositoryRoot: REPOSITORY_ROOT, corpusBundle });
   const productionInstrumentSeal = JSON.parse(readFileSync(productionSealPath, "utf8")) as ForwardProductionInstrumentSealV1;
   const input: RunRoleQualificationInputV3 = {
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     corpusBundle,
     corpusCertification,
     certification: first.binding,

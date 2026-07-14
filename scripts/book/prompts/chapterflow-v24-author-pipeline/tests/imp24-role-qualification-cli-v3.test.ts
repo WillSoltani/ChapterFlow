@@ -4,6 +4,8 @@ import { resolve } from "node:path";
 
 import { canonicalPretty } from "../src/bakeoff/migration/corpusBuilderCore.js";
 import {
+  IMP24_ROLE_QUALIFICATION_CLOSED_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   IMP24_ROLE_QUALIFICATION_ID,
   buildImp24CorpusBundle,
   certifyImp24Corpora,
@@ -165,7 +167,7 @@ test("IMP-24 V3 qualification CLI loads fresh artifacts, discovers local candida
     code: 0,
     executed: true,
     result: {
-      experimentId: IMP24_ROLE_QUALIFICATION_ID,
+      experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
       roleSetReady: true,
       roleSetBlockedReason: null,
       selected: {
@@ -177,9 +179,10 @@ test("IMP-24 V3 qualification CLI loads fresh artifacts, discovers local candida
       },
       baseCallsAttempted: 190,
       infrastructureReplays: 0,
+      maxPlanEvents: 0,
       totalAttempts: 190,
     },
-    callLedger: { codexExecInvocations: 190, cachedReceipts: 0 },
+    callLedger: { codexExecInvocations: 190, cachedReceipts: 0, maxPlanCapacityEvents: 0 },
     roleAssignmentFreeze: { freezeSha256: "9".repeat(64) },
     modelCalls: 190,
     apiCalls: 0,
@@ -222,7 +225,7 @@ test("IMP-24 V3 qualification CLI loads fresh artifacts, discovers local candida
   assert.equal(wired.executeLive, true);
   assert.equal(wired.expectedHeadSha, HEAD);
   assert.equal(wired.workflowRunId, WORKFLOW_RUN_ID);
-  assert.equal(wired.input.experimentId, IMP24_ROLE_QUALIFICATION_ID);
+  assert.equal(wired.input.experimentId, IMP24_ROLE_QUALIFICATION_EXECUTION_ID);
   assert.equal(wired.input.corpusCertification.status, "PASS");
   assert.equal(wired.input.candidateAvailability.entries.length, 12);
   assert.ok(wired.input.candidateAvailability.entries.every((entry) => entry.status === "AVAILABLE"));
@@ -234,7 +237,7 @@ test("IMP-24 V3 qualification CLI loads fresh artifacts, discovers local candida
   assert.equal("attestation" in wired.input, false);
 });
 
-test("IMP-24 CLI cannot resume or attest either immutable V1/V2 qualification identity", async () => {
+test("IMP-24 CLI cannot resume or attest immutable V1/V2 or closed zero-call V3 execution identities", async () => {
   const errors: string[] = [];
   const original = console.error;
   console.error = (...values: unknown[]) => { errors.push(values.map(String).join(" ")); };
@@ -242,6 +245,7 @@ test("IMP-24 CLI cannot resume or attest either immutable V1/V2 qualification id
     for (const [experiment, disposition] of [
       ["s16-forward-role-qualification-v1", "INVALID_INSTRUMENT_DO_NOT_ATTEST"],
       ["s16-forward-role-qualification-v2", "BLOCKED_CALIBRATION_INVALID"],
+      [IMP24_ROLE_QUALIFICATION_CLOSED_EXECUTION_ID, "BLOCKED_ZERO_CALL_CONTROL_PLANE_DEFECT"],
     ] as const) {
       for (const subverb of ["role-qualification-calibrate", "role-qualification-holdout"] as const) {
         assert.equal(await runMigrationBakeoffCli([subverb], {

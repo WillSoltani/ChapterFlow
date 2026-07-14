@@ -22,7 +22,7 @@ import {
   type QualificationExecutionReceiptV3,
 } from "../src/bakeoff/migration/roleQualificationRunnerV3.js";
 import {
-  IMP24_ROLE_QUALIFICATION_ID,
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
 } from "../src/bakeoff/migration/imp24Corpus.js";
 import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
 import { syntheticQualification } from "../src/exec/cliQualification.js";
@@ -37,17 +37,28 @@ import {
   IMP24_V2_REVIEWER_SCHEMA_MAP,
   buildAttemptEvaluationArtifact,
   createLiveQualificationExecutorV3,
+  replayReceiptChronologyViolationsV3,
+  type LiveCallLedgerEntryV3,
 } from "../src/orchestrator/forwardRoleQualificationLiveV3.js";
 import {
+  IMP24_IMPLEMENTATION_CI_GATE_SCHEMA,
   IMP24_REQUIRED_BRANCH,
   IMP24_REQUIRED_DRAFT_PR,
+  IMP24_REQUIRED_REPOSITORY,
+  IMP24_REQUIRED_REPOSITORY_URL,
   IMP24_REQUIRED_WORKFLOW_FILE,
   IMP24_REQUIRED_WORKFLOW_JOB,
   IMP24_REQUIRED_WORKFLOW_NAME,
+  IMP24_WORKFLOW_RUN_QUERY_FIELDS,
+  assertImp24BlockedRoleAssignmentArtifactsAbsent,
   buildImp24ImplementationCiGateFromEvidence,
   imp24ImplementationCiGateSha256,
+  mapImp24GithubWorkflowRunQuery,
   runImp24RoleQualificationCampaignV3,
+  validateImp24ImplementationCiGate,
+  type Imp24GithubWorkflowRunQueryV1,
   type Imp24ImplementationCiGateV1,
+  type Imp24TrustedPullRequestEvidenceV1,
   type RunImp24RoleQualificationCampaignV3Args,
 } from "../src/orchestrator/forwardRoleQualificationCampaignV3.js";
 import { resolveRoute, routeDriftFingerprint } from "../src/orchestrator/modelPolicy.js";
@@ -76,7 +87,7 @@ function request(overrides: Partial<Omit<QualificationExecutionRequestV3, "reque
   const evidenceEnvelopeBytes = serializeReviewEvidenceEnvelope(envelope);
   const core: Omit<QualificationExecutionRequestV3, "requestSha256"> = {
     schema: IMP24_ROLE_QUALIFICATION_REQUEST_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     scheduleId: "v3-reader-p1-canary-c01",
     attemptId: "v3-reader-p1-canary-c01-a1",
     replayOfAttemptId: null,
@@ -351,6 +362,7 @@ test("IMP-24 live V3 defaults to the strict V2 schemas and retains exact envelop
     assert.equal(verifierCalls, 1);
     assert.equal(live.ledger.brokerRequests, 1);
     assert.equal(live.ledger.codexExecInvocations, 1);
+    assert.equal(live.ledger.maxPlanCapacityEvents, 0);
     assert.equal(live.ledger.apiCallsMade, 0);
     assert.equal(observedSchema, IMP24_V2_REVIEWER_SCHEMA_MAP.reader);
 
@@ -604,44 +616,40 @@ function clone<T>(value: T): T {
 }
 
 function implementationGate(headSha = GATED_HEAD): Imp24ImplementationCiGateV1 {
-  const core: Omit<Imp24ImplementationCiGateV1, "gateSha256"> = {
-    schema: "imp24-implementation-ci-gate-v2",
-    branch: IMP24_REQUIRED_BRANCH,
-    headSha,
-    workflow: {
-      name: IMP24_REQUIRED_WORKFLOW_NAME,
-      file: IMP24_REQUIRED_WORKFLOW_FILE,
-      job: IMP24_REQUIRED_WORKFLOW_JOB,
-      runId: 2401,
+  return buildImp24ImplementationCiGateFromEvidence({
+    expectedHeadSha: headSha,
+    workflowRunId: 2401,
+    checkout: { branch: IMP24_REQUIRED_BRANCH, headSha, implementationClean: true },
+    workflowRun: {
+      databaseId: 2401,
+      displayName: IMP24_REQUIRED_WORKFLOW_NAME,
+      workflowFile: IMP24_REQUIRED_WORKFLOW_FILE,
+      headBranch: IMP24_REQUIRED_BRANCH,
       headSha,
-      conclusion: "PASS",
+      status: "completed",
+      conclusion: "success",
+      jobs: [{ name: IMP24_REQUIRED_WORKFLOW_JOB, status: "completed", conclusion: "success" }],
     },
     pullRequest: {
       number: IMP24_REQUIRED_DRAFT_PR,
       state: "OPEN",
       isDraft: true,
-      merged: false,
       mergedAt: null,
-      mergeCommitSha: null,
-      headBranch: IMP24_REQUIRED_BRANCH,
-      headSha,
+      mergeCommit: null,
+      headRefName: IMP24_REQUIRED_BRANCH,
+      headRefOid: headSha,
     },
-    trustedEvidence: {
-      method: "git-and-gh-cli-live-query-v1",
-      checkoutSha256: "9".repeat(64),
-      workflowRunSha256: "a".repeat(64),
-      pullRequestSha256: "b".repeat(64),
+    repository: {
+      nameWithOwner: IMP24_REQUIRED_REPOSITORY,
+      url: IMP24_REQUIRED_REPOSITORY_URL,
     },
     verifiedAt: "2026-07-13T12:00:00.000Z",
-    modelCalls: 0,
-    apiCalls: 0,
-  };
-  return { ...core, gateSha256: imp24ImplementationCiGateSha256(core) };
+  });
 }
 
 test("IMP-24 official campaign rejects an artifact-producing synthetic executor boundary", async () => {
   const roots = mkTestRoots("imp24-live-v3-campaign");
-  const experimentDir = resolve(roots.base, "state", "migration-experiments", IMP24_ROLE_QUALIFICATION_ID);
+  const experimentDir = resolve(roots.base, "state", "migration-experiments", IMP24_ROLE_QUALIFICATION_EXECUTION_ID);
   let checkoutCalls = 0;
   let spawnCalls = 0;
   let verifierCalls = 0;
@@ -673,7 +681,7 @@ test("IMP-24 official campaign rejects an artifact-producing synthetic executor 
 
 test("IMP-24 official campaign rejects synthetic crash/replay seams before state or calls", async () => {
   const roots = mkTestRoots("imp24-live-v3-campaign-crash-resume");
-  const experimentDir = resolve(roots.base, "state", "migration-experiments", IMP24_ROLE_QUALIFICATION_ID);
+  const experimentDir = resolve(roots.base, "state", "migration-experiments", IMP24_ROLE_QUALIFICATION_EXECUTION_ID);
   let checkoutCalls = 0;
   let spawnCalls = 0;
   let verifierCalls = 0;
@@ -744,46 +752,330 @@ test("IMP-24 campaign dry mode is first and official live mode rejects caller-su
   );
 });
 
-test("IMP-24 implementation gate binds independently supplied checkout, workflow, job, and draft-PR evidence", () => {
-  const checkout = { branch: IMP24_REQUIRED_BRANCH, headSha: GATED_HEAD, implementationClean: true };
-  const workflowRun = {
+const IMPLEMENTATION_GATE_CHECKOUT = {
+  branch: IMP24_REQUIRED_BRANCH,
+  headSha: GATED_HEAD,
+  implementationClean: true,
+};
+
+const IMPLEMENTATION_GATE_REPOSITORY = {
+  nameWithOwner: IMP24_REQUIRED_REPOSITORY,
+  url: IMP24_REQUIRED_REPOSITORY_URL,
+};
+
+const IMPLEMENTATION_GATE_PR: Imp24TrustedPullRequestEvidenceV1 = {
+  number: IMP24_REQUIRED_DRAFT_PR,
+  state: "OPEN",
+  isDraft: true,
+  mergedAt: null,
+  mergeCommit: null,
+  headRefName: IMP24_REQUIRED_BRANCH,
+  headRefOid: GATED_HEAD,
+};
+
+function workflowRunQuery(
+  overrides: Partial<Imp24GithubWorkflowRunQueryV1> = {},
+): Imp24GithubWorkflowRunQueryV1 {
+  return {
     databaseId: 2401,
-    workflowName: IMP24_REQUIRED_WORKFLOW_NAME,
+    name: IMP24_REQUIRED_WORKFLOW_NAME,
+    workflowName: IMP24_REQUIRED_WORKFLOW_FILE,
     headBranch: IMP24_REQUIRED_BRANCH,
     headSha: GATED_HEAD,
     status: "completed",
     conclusion: "success",
     jobs: [{ name: IMP24_REQUIRED_WORKFLOW_JOB, status: "completed", conclusion: "success" }],
+    ...overrides,
   };
-  const pullRequest = {
-    number: IMP24_REQUIRED_DRAFT_PR,
-    state: "OPEN",
-    isDraft: true,
-    mergedAt: null,
-    mergeCommit: null,
-    headRefName: IMP24_REQUIRED_BRANCH,
-    headRefOid: GATED_HEAD,
-  };
-  const gate = buildImp24ImplementationCiGateFromEvidence({
+}
+
+function buildImplementationGateFixture(overrides: {
+  workflowRunQuery?: Imp24GithubWorkflowRunQueryV1;
+  pullRequest?: Imp24TrustedPullRequestEvidenceV1;
+  repository?: { nameWithOwner: string; url: string };
+  verifiedAt?: string;
+} = {}): Imp24ImplementationCiGateV1 {
+  return buildImp24ImplementationCiGateFromEvidence({
     expectedHeadSha: GATED_HEAD,
     workflowRunId: 2401,
-    checkout,
-    workflowRun,
-    pullRequest,
-    verifiedAt: "2026-07-13T12:00:00.000Z",
+    checkout: IMPLEMENTATION_GATE_CHECKOUT,
+    workflowRun: mapImp24GithubWorkflowRunQuery(overrides.workflowRunQuery ?? workflowRunQuery()),
+    pullRequest: overrides.pullRequest ?? IMPLEMENTATION_GATE_PR,
+    repository: overrides.repository ?? IMPLEMENTATION_GATE_REPOSITORY,
+    verifiedAt: overrides.verifiedAt ?? "2026-07-13T12:00:00.000Z",
   });
-  assert.equal(gate.schema, "imp24-implementation-ci-gate-v2");
-  assert.equal(gate.workflow.conclusion, "PASS");
+}
+
+function rehashImplementationGate(gate: Imp24ImplementationCiGateV1): void {
+  const { gateSha256: _oldGateSha256, ...core } = gate;
+  gate.gateSha256 = imp24ImplementationCiGateSha256(core);
+}
+
+test("IMP-24 implementation collector maps the actual GitHub CLI workflow shape and binds distinct trusted identities", () => {
+  assert.deepEqual(IMP24_WORKFLOW_RUN_QUERY_FIELDS, [
+    "databaseId",
+    "name",
+    "workflowName",
+    "headBranch",
+    "headSha",
+    "status",
+    "conclusion",
+    "jobs",
+  ]);
+  const actualObservedQuery = workflowRunQuery({
+    name: "ChapterFlow V25 Pipeline",
+    workflowName: ".github/workflows/chapterflow-v25-pipeline.yml",
+  });
+  const trustedWorkflowRun = mapImp24GithubWorkflowRunQuery(actualObservedQuery);
+  assert.equal(trustedWorkflowRun.displayName, IMP24_REQUIRED_WORKFLOW_NAME);
+  assert.equal(trustedWorkflowRun.workflowFile, IMP24_REQUIRED_WORKFLOW_FILE);
+
+  const gate = buildImplementationGateFixture({ workflowRunQuery: actualObservedQuery });
+  assert.equal(gate.schema, IMP24_IMPLEMENTATION_CI_GATE_SCHEMA);
+  assert.equal(gate.repository.nameWithOwner, IMP24_REQUIRED_REPOSITORY);
+  assert.equal(gate.repository.url, IMP24_REQUIRED_REPOSITORY_URL);
+  assert.equal(gate.workflow.displayName, IMP24_REQUIRED_WORKFLOW_NAME);
+  assert.equal(gate.workflow.workflowFile, IMP24_REQUIRED_WORKFLOW_FILE);
+  assert.equal(gate.workflow.status, "completed");
+  assert.equal(gate.workflow.conclusion, "success");
+  assert.deepEqual(gate.workflow.requiredJob, {
+    name: IMP24_REQUIRED_WORKFLOW_JOB,
+    status: "completed",
+    conclusion: "success",
+  });
   assert.equal(gate.pullRequest.isDraft, true);
-  assert.equal(gate.trustedEvidence.checkoutSha256, hashCanonical(checkout));
-  assert.equal(gate.trustedEvidence.workflowRunSha256, hashCanonical(workflowRun));
-  assert.equal(gate.trustedEvidence.pullRequestSha256, hashCanonical(pullRequest));
-  assert.throws(() => buildImp24ImplementationCiGateFromEvidence({
+  assert.equal(gate.trustedEvidence.checkoutSha256, hashCanonical(IMPLEMENTATION_GATE_CHECKOUT));
+  assert.equal(gate.trustedEvidence.repositorySha256, hashCanonical(IMPLEMENTATION_GATE_REPOSITORY));
+  assert.equal(gate.trustedEvidence.workflowRunSha256, hashCanonical(trustedWorkflowRun));
+  assert.equal(gate.trustedEvidence.pullRequestSha256, hashCanonical(IMPLEMENTATION_GATE_PR));
+  assert.deepEqual(gate.trustedEvidence.raw, {
+    checkout: IMPLEMENTATION_GATE_CHECKOUT,
+    repository: IMPLEMENTATION_GATE_REPOSITORY,
+    workflowRun: trustedWorkflowRun,
+    pullRequest: IMPLEMENTATION_GATE_PR,
+  });
+  const { gateSha256, ...gateCore } = gate;
+  assert.equal(gateSha256, imp24ImplementationCiGateSha256(gateCore));
+
+  const harmlessPathSyntax = buildImplementationGateFixture({
+    workflowRunQuery: workflowRunQuery({ workflowName: ".\\.github\\workflows\\chapterflow-v25-pipeline.yml" }),
+  });
+  assert.equal(harmlessPathSyntax.workflow.workflowFile, IMP24_REQUIRED_WORKFLOW_FILE);
+});
+
+test("IMP-24 implementation gate recomputes and semantically validates every retained trusted-evidence preimage", () => {
+  const validate = (gate: Imp24ImplementationCiGateV1): void => validateImp24ImplementationCiGate({
+    gate,
     expectedHeadSha: GATED_HEAD,
-    workflowRunId: 2401,
-    checkout,
-    workflowRun: { ...workflowRun, conclusion: "failure" },
-    pullRequest,
-    verifiedAt: "2026-07-13T12:00:00.000Z",
-  }), /does not show the dedicated V25 workflow PASS/);
+    checkout: IMPLEMENTATION_GATE_CHECKOUT,
+  });
+  validate(buildImplementationGateFixture());
+
+  const missingRaw = clone(buildImplementationGateFixture()) as Imp24ImplementationCiGateV1;
+  delete (missingRaw.trustedEvidence as unknown as { raw?: unknown }).raw;
+  rehashImplementationGate(missingRaw);
+  assert.throws(() => validate(missingRaw), /missing or unexpected fields/);
+
+  const rawHashMismatch = clone(buildImplementationGateFixture());
+  rawHashMismatch.trustedEvidence.raw.workflowRun.status = "failure";
+  rehashImplementationGate(rawHashMismatch);
+  assert.throws(() => validate(rawHashMismatch), /trusted evidence hash does not match its retained preimage/);
+
+  const invalidWorkflow = clone(buildImplementationGateFixture());
+  invalidWorkflow.trustedEvidence.raw.workflowRun.status = "failure";
+  invalidWorkflow.trustedEvidence.workflowRunSha256 = hashCanonical(invalidWorkflow.trustedEvidence.raw.workflowRun);
+  rehashImplementationGate(invalidWorkflow);
+  assert.throws(() => validate(invalidWorkflow), /workflow status is not completed/);
+
+  const invalidRepository = clone(buildImplementationGateFixture());
+  invalidRepository.trustedEvidence.raw.repository.nameWithOwner = "SomeoneElse/ChapterFlow";
+  invalidRepository.trustedEvidence.repositorySha256 = hashCanonical(invalidRepository.trustedEvidence.raw.repository);
+  rehashImplementationGate(invalidRepository);
+  assert.throws(() => validate(invalidRepository), /repository identity must be exactly/);
+
+  const invalidPullRequest = clone(buildImplementationGateFixture());
+  invalidPullRequest.trustedEvidence.raw.pullRequest.state = "CLOSED";
+  invalidPullRequest.trustedEvidence.pullRequestSha256 = hashCanonical(invalidPullRequest.trustedEvidence.raw.pullRequest);
+  rehashImplementationGate(invalidPullRequest);
+  assert.throws(() => validate(invalidPullRequest), /not the open, unmerged draft PR #401/);
+
+  const divergentCheckout = clone(buildImplementationGateFixture());
+  (divergentCheckout.trustedEvidence.raw.checkout as Imp24ImplementationCiGateV1["trustedEvidence"]["raw"]["checkout"] & {
+    collectorNonce: string;
+  }).collectorNonce = "untrusted-extra-preimage-field";
+  divergentCheckout.trustedEvidence.checkoutSha256 = hashCanonical(divergentCheckout.trustedEvidence.raw.checkout);
+  rehashImplementationGate(divergentCheckout);
+  assert.throws(() => validate(divergentCheckout), /trusted checkout evidence has missing or unexpected fields/);
+
+  const unexpectedTopLevel = clone(buildImplementationGateFixture()) as Imp24ImplementationCiGateV1 & {
+    apiCallsMade: number;
+  };
+  unexpectedTopLevel.apiCallsMade = 0;
+  rehashImplementationGate(unexpectedTopLevel);
+  assert.throws(() => validate(unexpectedTopLevel), /implementation CI gate has missing or unexpected fields/);
+
+  const unexpectedRawRepository = clone(buildImplementationGateFixture());
+  (unexpectedRawRepository.trustedEvidence.raw.repository as typeof unexpectedRawRepository.trustedEvidence.raw.repository & {
+    host: string;
+  }).host = "github.com";
+  unexpectedRawRepository.trustedEvidence.repositorySha256 = hashCanonical(
+    unexpectedRawRepository.trustedEvidence.raw.repository,
+  );
+  rehashImplementationGate(unexpectedRawRepository);
+  assert.throws(() => validate(unexpectedRawRepository), /trusted repository evidence has missing or unexpected fields/);
+});
+
+test("IMP-24 implementation gate rejects a correct display name paired with the wrong workflow file", () => {
+  assert.throws(() => buildImplementationGateFixture({
+    workflowRunQuery: workflowRunQuery({ workflowName: ".github/workflows/ci.yml" }),
+  }), /workflow file must be exactly/);
+});
+
+test("IMP-24 implementation gate rejects a correct workflow file paired with the wrong display name", () => {
+  assert.throws(() => buildImplementationGateFixture({
+    workflowRunQuery: workflowRunQuery({ name: "CI" }),
+  }), /workflow display name must be exactly/);
+});
+
+test("IMP-24 implementation gate cannot accept the root CI workflow", () => {
+  assert.throws(() => buildImplementationGateFixture({
+    workflowRunQuery: workflowRunQuery({
+      name: "CI",
+      workflowName: ".github/workflows/ci.yml",
+    }),
+  }), /workflow display name must be exactly/);
+});
+
+test("IMP-24 implementation gate rejects the correct workflow at the wrong head SHA", () => {
+  assert.throws(() => buildImplementationGateFixture({
+    workflowRunQuery: workflowRunQuery({ headSha: "2".repeat(40) }),
+  }), /workflow head SHA differs from the exact implementation HEAD/);
+});
+
+test("IMP-24 implementation gate rejects a failed workflow conclusion", () => {
+  assert.throws(() => buildImplementationGateFixture({
+    workflowRunQuery: workflowRunQuery({ conclusion: "failure" }),
+  }), /workflow conclusion is not success/);
+});
+
+test("IMP-24 implementation gate rejects an incomplete workflow or failed required job", () => {
+  assert.throws(() => buildImplementationGateFixture({
+    workflowRunQuery: workflowRunQuery({ status: "in_progress" }),
+  }), /workflow status is not completed/);
+  assert.throws(() => buildImplementationGateFixture({
+    workflowRunQuery: workflowRunQuery({
+      jobs: [{ name: IMP24_REQUIRED_WORKFLOW_JOB, status: "completed", conclusion: "failure" }],
+    }),
+  }), /does not show a completed successful V25 Pipeline Typecheck, Contracts, and Tests job/);
+});
+
+test("IMP-24 implementation gate rejects duplicate required jobs", () => {
+  const requiredJob = { name: IMP24_REQUIRED_WORKFLOW_JOB, status: "completed", conclusion: "success" };
+  assert.throws(() => buildImplementationGateFixture({
+    workflowRunQuery: workflowRunQuery({ jobs: [requiredJob, { ...requiredJob }] }),
+  }), /must contain exactly one V25 Pipeline Typecheck, Contracts, and Tests job/);
+});
+
+test("IMP-24 implementation gate rejects a missing required job", () => {
+  assert.throws(() => buildImplementationGateFixture({
+    workflowRunQuery: workflowRunQuery({
+      jobs: [{ name: "Unrelated Job", status: "completed", conclusion: "success" }],
+    }),
+  }), /must contain exactly one V25 Pipeline Typecheck, Contracts, and Tests job/);
+});
+
+test("IMP-24 implementation gate rejects a PR head that differs from the gated head", () => {
+  assert.throws(() => buildImplementationGateFixture({
+    pullRequest: { ...IMPLEMENTATION_GATE_PR, headRefOid: "2".repeat(40) },
+  }), /not the open, unmerged draft PR #401 at the exact implementation HEAD/);
+});
+
+test("IMP-24 implementation gate rejects a closed or merged draft PR", () => {
+  assert.throws(() => buildImplementationGateFixture({
+    pullRequest: { ...IMPLEMENTATION_GATE_PR, state: "CLOSED" },
+  }), /not the open, unmerged draft PR #401 at the exact implementation HEAD/);
+  assert.throws(() => buildImplementationGateFixture({
+    pullRequest: {
+      ...IMPLEMENTATION_GATE_PR,
+      mergedAt: "2026-07-13T12:00:00.000Z",
+      mergeCommit: { oid: "2".repeat(40) },
+    },
+  }), /not the open, unmerged draft PR #401 at the exact implementation HEAD/);
+});
+
+test("IMP-24 implementation gate binds the exact repository and query timestamp", () => {
+  assert.throws(() => buildImplementationGateFixture({
+    repository: {
+      nameWithOwner: "WillSoltani/Other",
+      url: IMP24_REQUIRED_REPOSITORY_URL,
+    },
+  }), /repository identity must be exactly/);
+  assert.throws(() => buildImplementationGateFixture({
+    repository: {
+      nameWithOwner: IMP24_REQUIRED_REPOSITORY,
+      url: "https://evil.example/WillSoltani/ChapterFlow",
+    },
+  }), /repository identity must be exactly/);
+  assert.throws(() => buildImplementationGateFixture({ verifiedAt: "not-a-time" }),
+    /trusted implementation verification time must be an exact canonical ISO timestamp/);
+  assert.throws(() => buildImplementationGateFixture({ verifiedAt: "2026-07-13T12:00:00Z" }),
+    /trusted implementation verification time must be an exact canonical ISO timestamp/);
+  assert.throws(() => buildImplementationGateFixture({ verifiedAt: 0 as unknown as string }),
+    /trusted implementation verification time must be an exact canonical ISO timestamp/);
+});
+
+test("IMP-24 blocked terminal state rejects stale role-assignment JSON and markdown artifacts", () => {
+  const roots = mkTestRoots("imp24-v3-blocked-stale-role-assignment");
+  try {
+    const paths = {
+      roleAssignmentFreeze: resolve(roots.base, "state", "role-assignment-freeze.json"),
+      roleAssignmentFreezeDocsJson: resolve(roots.base, "docs", "ROLE_ASSIGNMENT_FREEZE_V3_R1.json"),
+      roleAssignmentFreezeMarkdown: resolve(roots.base, "docs", "ROLE_ASSIGNMENT_FREEZE_V3_R1.md"),
+    };
+    assert.doesNotThrow(() => assertImp24BlockedRoleAssignmentArtifactsAbsent(paths));
+    mkdirSync(dirname(paths.roleAssignmentFreezeMarkdown), { recursive: true });
+    writeFileSync(paths.roleAssignmentFreezeMarkdown, "# Status: FROZEN\n");
+    assert.throws(() => assertImp24BlockedRoleAssignmentArtifactsAbsent(paths),
+      /role assignment freeze markdown report exists although the current V3 role set is not ready/);
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("IMP-24 infrastructure replay chronology requires predecessor order and completion", () => {
+  const entry = (
+    attemptId: string,
+    requestedAt: string,
+    completedAt: string,
+  ): LiveCallLedgerEntryV3 => ({
+    attemptId,
+    scheduleId: "v3-reader-p1-canary-c01",
+    requestSha256: "a".repeat(64),
+    evidenceEnvelopeSha256: "b".repeat(64),
+    evidenceEnvelopeBytesSha256: "c".repeat(64),
+    receiptSha256: "d".repeat(64),
+    executionEvidenceSha256: "e".repeat(64),
+    evaluationArtifactSha256: "f".repeat(64),
+    status: attemptId.endsWith("-a1") ? "timeout" : "completed",
+    cached: false,
+    requestedAt,
+    completedAt,
+  });
+  const a1 = entry(
+    "v3-reader-p1-canary-c01-a1",
+    "2026-07-13T12:00:00.000Z",
+    "2026-07-13T12:00:00.100Z",
+  );
+  const a2 = entry(
+    "v3-reader-p1-canary-c01-a2",
+    "2026-07-13T12:00:00.100Z",
+    "2026-07-13T12:00:00.200Z",
+  );
+  assert.deepEqual(replayReceiptChronologyViolationsV3({ entries: [a1, a2] }), []);
+  assert.deepEqual(replayReceiptChronologyViolationsV3({ entries: [a2, a1] }), [
+    "v3-reader-p1-canary-c01-a2:predecessor-order",
+  ]);
+  assert.deepEqual(replayReceiptChronologyViolationsV3({
+    entries: [a1, { ...a2, requestedAt: "2026-07-13T12:00:00.099Z" }],
+  }), ["v3-reader-p1-canary-c01-a2:requested-before-predecessor-completed"]);
 });

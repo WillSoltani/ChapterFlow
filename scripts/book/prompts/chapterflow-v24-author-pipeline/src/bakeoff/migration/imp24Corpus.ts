@@ -48,7 +48,19 @@ import type { ReaderCorpusCaseV2 } from "./readerCorpusBuilder.js";
 import type { Imp22SourceCorpusCaseV2 } from "./sourceCorpusBuilder.js";
 import type { QuizCorpusCaseV2 } from "./quizCorpusBuilder.js";
 
-export const IMP24_ROLE_QUALIFICATION_ID = "s16-forward-role-qualification-v3-envelope" as const;
+/** Protocol/corpus identity. Its retained bytes and semantic hashes are frozen
+ * by IMP-24B and must not change merely because a zero-call execution was
+ * superseded. */
+export const IMP24_ROLE_QUALIFICATION_PROTOCOL_ID =
+  "s16-forward-role-qualification-v3-envelope" as const;
+/** Backwards-compatible name for the frozen V3 protocol/corpus identity. */
+export const IMP24_ROLE_QUALIFICATION_ID = IMP24_ROLE_QUALIFICATION_PROTOCOL_ID;
+/** The IMP-24B execution under the protocol identity is terminal and may not
+ * resume. IMP-24C authorizes this distinct successor execution identity. */
+export const IMP24_ROLE_QUALIFICATION_CLOSED_EXECUTION_ID =
+  IMP24_ROLE_QUALIFICATION_PROTOCOL_ID;
+export const IMP24_ROLE_QUALIFICATION_EXECUTION_ID =
+  "s16-forward-role-qualification-v3-envelope-r1" as const;
 export const IMP24_CORPUS_SCHEMA = "imp24-role-qualification-corpus-v3" as const;
 export const IMP24_CORPUS_BUNDLE_SCHEMA = "imp24-role-qualification-corpus-bundle-v1" as const;
 export const IMP24_CORPUS_AUDIT_SCHEMA = "imp24-model-free-corpus-audit-v1" as const;

@@ -1,5 +1,5 @@
 /**
- * IMP-24B deterministic pre-live freeze.
+ * IMP-24C deterministic pre-live freeze.
  *
  * This module has no model, auth, network, or provider capability. It consumes
  * the already retained model-free corpus/certification/seal/parity artifacts,
@@ -33,6 +33,7 @@ import {
   type Imp24InstrumentCertificationReport,
 } from "./imp24InstrumentCertification.js";
 import {
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   IMP24_ROLE_QUALIFICATION_ID,
   certifyImp24Corpora,
   type Imp24CorpusAuditPass,
@@ -59,8 +60,10 @@ import {
   type QualificationScheduleEntryV3,
 } from "./roleQualificationRunnerV3.js";
 
-export const IMP24B_PRE_LIVE_FREEZE_SCHEMA = "imp24b-pre-live-freeze-v1" as const;
+export const IMP24C_PRE_LIVE_FREEZE_SCHEMA = "imp24c-pre-live-freeze-v1" as const;
 export const IMP24B_PRE_LIVE_FREEZE_STATUS = "FROZEN_MODEL_FREE_PRE_LIVE" as const;
+export const IMP24C_STARTING_HEAD = "0ba1b168e350fa5d6c05480a28c7c944411f54ee" as const;
+/** Historical 14-contract baseline; never reinterpret this as the recovery head. */
 export const IMP24B_STARTING_HEAD = "19e1837e6d6d1f2ebc6997700956fc0798aa21ca" as const;
 export const IMP24B_BRANCH = "feat/v25-pipeline-live" as const;
 export const IMP24B_DRAFT_PR = 401 as const;
@@ -71,13 +74,20 @@ const IMP24_CONTRACTS_REL = `${CONTRACTS_REL}/imp24`;
 const REPORTS_REL = "docs/v25/reports";
 const CONTRACT_MANIFEST_REL = `${PIPELINE_REL}/src/contracts/contract-manifest.json`;
 const PROTOCOL_DECISION_REL = `${REPORTS_REL}/IMP-24_PROTOCOL_DECISION.md`;
+export const IMP24C_DEDICATED_WORKFLOW_REL = ".github/workflows/chapterflow-v25-pipeline.yml" as const;
+const IMP24B_CLOSURE_JSON_REL = `${REPORTS_REL}/IMP-24B_ZERO_CALL_LIFECYCLE_CLOSURE.json`;
+const IMP24B_CLOSURE_MARKDOWN_REL = `${REPORTS_REL}/IMP-24B_ZERO_CALL_LIFECYCLE_CLOSURE.md`;
+const IMP24C_CONTROL_PLANE_CORRECTION_REL = `${REPORTS_REL}/IMP-24C_CONTROL_PLANE_CORRECTION.md`;
+const IMP24C_PROTOCOL_NOTE_REL = `${REPORTS_REL}/IMP-24C_PROTOCOL_NOTE.md`;
+const IMP24C_MODEL_FREE_LEDGER_JSON_REL = `${REPORTS_REL}/IMP-24C_MODEL_FREE_VERIFICATION_LEDGER.json`;
+const IMP24C_MODEL_FREE_LEDGER_MARKDOWN_REL = `${REPORTS_REL}/IMP-24C_MODEL_FREE_VERIFICATION_LEDGER.md`;
 const FORWARD_GOLD_SWEEP_SCHEMA_REL = `${CONTRACTS_REL}/schemas/forward-gold-sweep.schema.json`;
 const SHA256 = /^[a-f0-9]{64}$/;
 const SHA256_TAGGED = /^sha256:[a-f0-9]{64}$/;
 const ROLES = ["reader", "source", "quiz"] as const satisfies readonly Imp24ReviewRole[];
 const PARTITIONS = ["canary", "holdout"] as const;
 
-export const IMP24B_PRE_LIVE_ARTIFACT_PATHS = {
+export const IMP24C_PRE_LIVE_ARTIFACT_PATHS = {
   readerCanaryCorpus: `${IMP24_CONTRACTS_REL}/corpora/reader-canary.v3-envelope.json`,
   readerHoldoutCorpus: `${IMP24_CONTRACTS_REL}/corpora/reader-holdout.v3-envelope.json`,
   sourceCanaryCorpus: `${IMP24_CONTRACTS_REL}/corpora/source-canary.v3-envelope.json`,
@@ -96,10 +106,11 @@ export const IMP24B_PRE_LIVE_ARTIFACT_PATHS = {
   schedule: `${IMP24_CONTRACTS_REL}/qualification-schedule.v3-envelope.json`,
   callBudget: `${IMP24_CONTRACTS_REL}/qualification-call-budget.v3-envelope.json`,
   parityReference: `${IMP24_CONTRACTS_REL}/production-qualification-parity-reference.json`,
-  runbook: `${REPORTS_REL}/IMP-24B_PRE_LIVE_RUNBOOK.md`,
-  implementationReport: `${REPORTS_REL}/implementation-report.imp-24.json`,
-  freezeJson: `${REPORTS_REL}/IMP-24B_PRE_LIVE_FREEZE.json`,
-  freezeMarkdown: `${REPORTS_REL}/IMP-24B_PRE_LIVE_FREEZE.md`,
+  executionSpec: `${PIPELINE_REL}/state/migration-experiments/${IMP24_ROLE_QUALIFICATION_EXECUTION_ID}/execution-spec.json`,
+  runbook: `${REPORTS_REL}/IMP-24C_PRE_LIVE_RUNBOOK.md`,
+  implementationReport: `${REPORTS_REL}/implementation-report.imp-24.pre-live.json`,
+  freezeJson: `${REPORTS_REL}/IMP-24C_PRE_LIVE_FREEZE.json`,
+  freezeMarkdown: `${REPORTS_REL}/IMP-24C_PRE_LIVE_FREEZE.md`,
 } as const;
 
 const SCHEMA_PATHS: Record<Imp24ReviewRole, string> = {
@@ -109,7 +120,7 @@ const SCHEMA_PATHS: Record<Imp24ReviewRole, string> = {
 };
 
 type Partition = (typeof PARTITIONS)[number];
-type ArtifactOutputKey = keyof typeof IMP24B_PRE_LIVE_ARTIFACT_PATHS;
+type ArtifactOutputKey = keyof typeof IMP24C_PRE_LIVE_ARTIFACT_PATHS;
 
 export type Imp24BArtifactIdentity = {
   relativePath: string;
@@ -119,15 +130,15 @@ export type Imp24BArtifactIdentity = {
 };
 
 export type Imp24BPreLiveFreezeCore = {
-  schema: typeof IMP24B_PRE_LIVE_FREEZE_SCHEMA;
+  schema: typeof IMP24C_PRE_LIVE_FREEZE_SCHEMA;
   status: typeof IMP24B_PRE_LIVE_FREEZE_STATUS;
-  promptId: "IMP-24B";
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  promptId: "IMP-24C";
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   branch: typeof IMP24B_BRANCH;
   draftPr: typeof IMP24B_DRAFT_PR;
   lifecycle: {
-    startingLocalHead: typeof IMP24B_STARTING_HEAD;
-    startingRemoteHead: typeof IMP24B_STARTING_HEAD;
+    startingLocalHead: typeof IMP24C_STARTING_HEAD;
+    startingRemoteHead: typeof IMP24C_STARTING_HEAD;
     implementationCommit: null;
     evidenceCommit: null;
     lifecycleStatus: "PRE_COMMIT_IDENTITIES_NOT_YET_MINTED";
@@ -181,12 +192,41 @@ export type Imp24BPreLiveFreezeBuild = {
 };
 
 export type Imp24BPreLiveFreezeMaterialization = {
-  schema: "imp24b-pre-live-freeze-materialization-v1";
+  schema: "imp24c-pre-live-freeze-materialization-v1";
   freeze: Imp24BPreLiveFreeze;
   outputs: Record<ArtifactOutputKey, { relativePath: string; absolutePath: string; bytesSha256: string; bytes: number }>;
   modelCalls: 0;
   apiCalls: 0;
 };
+
+export type Imp24CPreLiveFreezeVerification = {
+  schema: "imp24c-pre-live-freeze-verification-v1";
+  status: "VERIFIED_BYTE_IDENTICAL_MODEL_FREE_PRE_LIVE";
+  freezeSha256: string;
+  verifiedOutputCount: number;
+  verifiedManifestEntryCount: number;
+  writes: 0;
+  modelCalls: 0;
+  apiCalls: 0;
+};
+
+export function validateImp24CDedicatedWorkflowBinding(
+  freeze: Imp24BPreLiveFreeze,
+  repositoryRoot: string,
+): void {
+  const bindings = freeze.artifactManifest
+    .filter((item) => item.relativePath === IMP24C_DEDICATED_WORKFLOW_REL);
+  requireCondition(bindings.length === 1,
+    "pre-live freeze must bind exactly one dedicated V25 workflow artifact");
+  const workflowBytes = readRequiredBytes(
+    repositoryRoot,
+    IMP24C_DEDICATED_WORKFLOW_REL,
+    "dedicated V25 workflow",
+  );
+  requireCondition(bindings[0].bytesSha256 === sha256Hex(workflowBytes)
+      && bindings[0].bytes === workflowBytes.length,
+    "dedicated V25 workflow bytes drifted from the pre-live freeze");
+}
 
 export class Imp24BPreLiveFreezeError extends Error {
   constructor(message: string, readonly issues: readonly string[] = []) {
@@ -385,9 +425,71 @@ function parityReferenceArtifact(parity: Imp24ProductionQualificationParity, byt
   return selfHashed(core, "referenceSha256");
 }
 
+function successorExecutionSpec(args: {
+  corpusBundleSha256: string;
+  promptBundleHashes: Record<Imp24ReviewRole, string>;
+  schemaInventorySha256: string;
+  thresholdsSha256: string;
+  candidateOrderSha256: string;
+  candidateAvailabilityPolicySha256: string;
+  scheduleSha256: string;
+  callBudgetSha256: string;
+  productionQualificationParitySha256: string;
+  productionInstrumentSealSha256: string;
+  certificationSha256: string;
+}): unknown {
+  const core = {
+    schema: "imp24c-successor-execution-spec-v1",
+    promptId: "IMP-24",
+    continuationPromptId: "IMP-24C",
+    executionId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    predecessorExecution: {
+      executionId: IMP24_ROLE_QUALIFICATION_ID,
+      disposition: "BLOCKED_ZERO_CALL_CONTROL_PLANE_DEFECT",
+      canResume: false,
+      mayQualifyProfiles: false,
+      liveCalls: 0,
+      apiCalls: 0,
+    },
+    protocolIdentity: {
+      reviewEvidenceEnvelope: "review-evidence-envelope-v1",
+      qualificationProtocolId: IMP24_ROLE_QUALIFICATION_ID,
+      semanticsChanged: false,
+    },
+    stateRoot: `${PIPELINE_REL}/state/migration-experiments/${IMP24_ROLE_QUALIFICATION_EXECUTION_ID}`,
+    frozenBindings: args,
+    routePolicy: {
+      authMode: "chatgpt",
+      apiKeyPresent: false,
+      apiFallbackAllowed: false,
+      directHttpOrSdkAllowed: false,
+      maxParallel: IMP24_MAX_PARALLEL,
+    },
+    taskBoundary: {
+      authorizedLivePhase: "ROLE_QUALIFICATION_ONLY",
+      automaticFollowOnAllowed: false,
+      pilot: false,
+      gold: false,
+      contentDesignScore: false,
+      localSolActivation: false,
+      publish: false,
+      promote: false,
+      deploy: false,
+      upload: false,
+      merge: false,
+      forcePush: false,
+    },
+    liveStateCopiedFromPredecessor: false,
+    firstLiveCallOccurred: false,
+    modelCalls: 0,
+    apiCalls: 0,
+  };
+  return selfHashed(core, "executionSpecSha256");
+}
+
 function runbookMarkdown(): string {
   return [
-    "# IMP-24B pre-live runbook",
+    "# IMP-24C pre-live runbook",
     "",
     "This runbook covers only the model-free freeze, exact implementation commit, dedicated V25 CI, zero-call preflight, V3 canaries, role holdouts, and role assignment freeze.",
     "",
@@ -416,6 +518,8 @@ function runbookMarkdown(): string {
     "6. Retain every request, envelope, receipt, raw output, resolution, assembled review, ledger entry, metric, and role decision.",
     "",
     "## Mandatory stop boundary",
+    "",
+    "After qualification, use the dedicated final-attestation materializer. Pre-live verification never owns or writes the terminal implementation-report path.",
     "",
     "This task ends after a valid role assignment freeze or a truthful terminal role-set failure. Do not run a pilot, gold validation, local SOL activation, publication, promotion, deployment, upload, merge, or force-push.",
     "",
@@ -470,7 +574,7 @@ function contractEvidence(repositoryRoot: string): {
 }
 
 function intendedImp24Path(relativePath: string): boolean {
-  if (relativePath === ".github/workflows/chapterflow-v25-pipeline.yml") return true;
+  if (relativePath === IMP24C_DEDICATED_WORKFLOW_REL) return true;
   if (relativePath.startsWith(`${PIPELINE_REL}/src/`) || relativePath.startsWith(`${PIPELINE_REL}/tests/`)) return true;
   if (relativePath.startsWith(`${IMP24_CONTRACTS_REL}/`)) return true;
   if (Object.values(SCHEMA_PATHS).includes(relativePath)) return true;
@@ -480,10 +584,17 @@ function intendedImp24Path(relativePath: string): boolean {
     || relativePath === `${REPORTS_REL}/IMP-24B_WORKTREE_LEDGER.md`
     || relativePath === IMP24_CERTIFICATION_ARTIFACT_PATHS.reportJson
     || relativePath === IMP24_CERTIFICATION_ARTIFACT_PATHS.reportMarkdown
-    || relativePath === IMP24B_PRE_LIVE_ARTIFACT_PATHS.implementationReport
-    || relativePath === IMP24B_PRE_LIVE_ARTIFACT_PATHS.freezeJson
-    || relativePath === IMP24B_PRE_LIVE_ARTIFACT_PATHS.freezeMarkdown
-    || relativePath === IMP24B_PRE_LIVE_ARTIFACT_PATHS.runbook) return true;
+    || relativePath === `${REPORTS_REL}/IMP-24B_ZERO_CALL_LIFECYCLE_CLOSURE.json`
+    || relativePath === `${REPORTS_REL}/IMP-24B_ZERO_CALL_LIFECYCLE_CLOSURE.md`
+    || relativePath === `${REPORTS_REL}/IMP-24C_CONTROL_PLANE_CORRECTION.md`
+    || relativePath === `${REPORTS_REL}/IMP-24C_PROTOCOL_NOTE.md`
+    || relativePath === `${REPORTS_REL}/IMP-24C_MODEL_FREE_VERIFICATION_LEDGER.json`
+    || relativePath === `${REPORTS_REL}/IMP-24C_MODEL_FREE_VERIFICATION_LEDGER.md`
+    || relativePath === IMP24C_PRE_LIVE_ARTIFACT_PATHS.executionSpec
+    || relativePath === IMP24C_PRE_LIVE_ARTIFACT_PATHS.implementationReport
+    || relativePath === IMP24C_PRE_LIVE_ARTIFACT_PATHS.freezeJson
+    || relativePath === IMP24C_PRE_LIVE_ARTIFACT_PATHS.freezeMarkdown
+    || relativePath === IMP24C_PRE_LIVE_ARTIFACT_PATHS.runbook) return true;
   return false;
 }
 
@@ -502,11 +613,11 @@ function gitPathLines(repositoryRoot: string, args: string[], label: string): st
 
 function exactChangedFileInventory(repositoryRoot: string): string[] {
   const tracked = gitPathLines(repositoryRoot,
-    ["diff", "--name-only", IMP24B_STARTING_HEAD, "--"], "tracked IMP-24 changed-file inventory");
+    ["diff", "--name-only", IMP24C_STARTING_HEAD, "--"], "tracked IMP-24C changed-file inventory");
   const untracked = gitPathLines(repositoryRoot,
     ["ls-files", "--others", "--exclude-standard"], "untracked IMP-24 changed-file inventory");
   const requiredArtifacts = [
-    ...Object.values(IMP24B_PRE_LIVE_ARTIFACT_PATHS),
+    ...Object.values(IMP24C_PRE_LIVE_ARTIFACT_PATHS),
     IMP24_CERTIFICATION_ARTIFACT_PATHS.corpusBundle,
     IMP24_CERTIFICATION_ARTIFACT_PATHS.certificationBinding,
     IMP24_CERTIFICATION_ARTIFACT_PATHS.legacyClosure,
@@ -518,6 +629,13 @@ function exactChangedFileInventory(repositoryRoot: string): string[] {
     PROTOCOL_DECISION_REL,
     `${REPORTS_REL}/IMP-24B_WORKTREE_LEDGER.json`,
     `${REPORTS_REL}/IMP-24B_WORKTREE_LEDGER.md`,
+    IMP24B_CLOSURE_JSON_REL,
+    IMP24B_CLOSURE_MARKDOWN_REL,
+    `${REPORTS_REL}/IMP-24C_CONTROL_PLANE_CORRECTION.md`,
+    `${REPORTS_REL}/IMP-24C_PROTOCOL_NOTE.md`,
+    `${REPORTS_REL}/IMP-24C_MODEL_FREE_VERIFICATION_LEDGER.json`,
+    `${REPORTS_REL}/IMP-24C_MODEL_FREE_VERIFICATION_LEDGER.md`,
+    FORWARD_GOLD_SWEEP_SCHEMA_REL,
     ...Object.values(SCHEMA_PATHS),
   ];
   return [...new Set([...tracked, ...untracked, ...requiredArtifacts].filter(intendedImp24Path))]
@@ -536,25 +654,25 @@ function implementationReport(args: {
     schema: "worker-implementation-report-v1",
     status: "PRE_LIVE_FREEZE",
     promptId: "IMP-24",
-    continuationPromptId: "IMP-24B",
-    baselineHash: IMP24B_STARTING_HEAD,
+    continuationPromptId: "IMP-24C",
+    baselineHash: IMP24C_STARTING_HEAD,
     resultHash: args.sealSha256,
     resultHashKind: "production-instrument-seal-sha256",
     contractVersions: args.contracts.contractVersions,
     filesChanged: args.filesChanged,
     requirementsImplemented: [
       {
-        requirementId: "IMP24B-R01-MODEL-FREE-INSTRUMENT-FREEZE",
+        requirementId: "IMP24C-R01-CONTROL-PLANE-RECOVERY",
         status: "implemented",
-        note: "The V3 corpora, prompts, schemas, thresholds, order, schedule, call budget, parity proof, certification, production seal, and pre-live manifest are deterministically frozen.",
+        note: "The corrected CI gate and split pre-live/final-attestation lifecycle are bound into the reminted model-free instrument.",
       },
       {
-        requirementId: "IMP24B-R02-EXACT-IMPLEMENTATION-COMMIT-CI",
+        requirementId: "IMP24C-R02-EXACT-IMPLEMENTATION-COMMIT-CI",
         status: "deferred",
         deferredTo: "The effective corrected implementation checkpoint, normal push, dedicated V25 CI, and clean-checkout reconciliation that follow this pre-commit artifact freeze. Failed pre-live candidates are retained separately in the worktree ledger and do not satisfy this gate.",
       },
       {
-        requirementId: "IMP24B-R03-V3-LIVE-ROLE-QUALIFICATION",
+        requirementId: "IMP24C-R03-V3-R1-LIVE-ROLE-QUALIFICATION",
         status: "deferred",
         deferredTo: "The exact-CI-green V3 canary and holdout phase authorized only after clean-checkout reconciliation.",
       },
@@ -576,20 +694,21 @@ function implementationReport(args: {
       "No reviewer profile or role set is qualified by model-free certification alone.",
     ],
     dependencyAssumptions: [
-      "The retained certification, production seal, parity proof, and corpus audits were revalidated from current repository bytes by the pre-live materializer.",
+      "The retained certification, reminted production seal, parity proof, and corpus audits were revalidated from current repository bytes by the pre-live materializer.",
       "The worktree ledger, rather than this deterministic materializer, retains local verification attempts and any failed pre-live candidate evidence.",
       "The effective CI-green implementation checkpoint and evidence commit identities remain null because those qualifying lifecycle identities have not been minted yet.",
+      "The completed IMP-24B zero-call lifecycle is immutable and bound by its dedicated closure artifacts.",
     ],
     branch: IMP24B_BRANCH,
     draftPr: IMP24B_DRAFT_PR,
-    startingLocalHead: IMP24B_STARTING_HEAD,
-    startingRemoteHead: IMP24B_STARTING_HEAD,
+    startingLocalHead: IMP24C_STARTING_HEAD,
+    startingRemoteHead: IMP24C_STARTING_HEAD,
     implementationCommit: null,
     evidenceCommit: null,
     lifecycleNote: "No effective CI-green implementation checkpoint or evidence commit exists yet; null is the truthful qualifying lifecycle value, not a placeholder. Failed pre-live candidates remain recorded in the worktree ledger.",
     oldQualificationV1Closed: true,
     oldQualificationV2Closed: true,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     contractCount: args.contracts.contractCount,
     preExistingContractHashesUnchanged: args.contracts.preExistingContractHashesUnchanged,
     productionQualificationParity: true,
@@ -639,7 +758,7 @@ function implementationReport(args: {
 
 function freezeMarkdown(freeze: Imp24BPreLiveFreeze): string {
   return [
-    "# IMP-24B pre-live freeze",
+    "# IMP-24C pre-live freeze",
     "",
     `Status: **${freeze.status}**`,
     "",
@@ -655,6 +774,7 @@ function freezeMarkdown(freeze: Imp24BPreLiveFreeze): string {
     "- Prompts, schemas, gold, thresholds, candidate order, and cases are frozen.",
     "- Live calls: 0. API calls: 0.",
     "- Implementation and evidence commit identities are truthfully null until Git creates them.",
+    "- The terminal implementation report is excluded and cannot be overwritten by this freeze.",
     "",
     "## Artifact inventory",
     "",
@@ -679,11 +799,11 @@ function outputRecord(
   values: Partial<Record<ArtifactOutputKey, unknown | string>>,
 ): Record<ArtifactOutputKey, { relativePath: string; bytes: string; bytesSha256: string }> {
   const out = {} as Record<ArtifactOutputKey, { relativePath: string; bytes: string; bytesSha256: string }>;
-  for (const key of Object.keys(IMP24B_PRE_LIVE_ARTIFACT_PATHS) as ArtifactOutputKey[]) {
+  for (const key of Object.keys(IMP24C_PRE_LIVE_ARTIFACT_PATHS) as ArtifactOutputKey[]) {
     requireCondition(values[key] !== undefined, `pre-live output was not built: ${key}`);
     const value = values[key]!;
     const bytes = typeof value === "string" ? value : canonicalPretty(value);
-    out[key] = { relativePath: IMP24B_PRE_LIVE_ARTIFACT_PATHS[key], bytes, bytesSha256: sha256Hex(bytes) };
+    out[key] = { relativePath: IMP24C_PRE_LIVE_ARTIFACT_PATHS[key], bytes, bytesSha256: sha256Hex(bytes) };
   }
   return out;
 }
@@ -692,9 +812,9 @@ export function validateImp24BPreLiveFreeze(value: unknown): string[] {
   const issues: string[] = [];
   if (value === null || typeof value !== "object" || Array.isArray(value)) return ["freeze must be an object"];
   const freeze = value as Imp24BPreLiveFreeze;
-  if (freeze.schema !== IMP24B_PRE_LIVE_FREEZE_SCHEMA) issues.push("schema mismatch");
+  if (freeze.schema !== IMP24C_PRE_LIVE_FREEZE_SCHEMA) issues.push("schema mismatch");
   if (freeze.status !== IMP24B_PRE_LIVE_FREEZE_STATUS) issues.push("status mismatch");
-  if (freeze.experimentId !== IMP24_ROLE_QUALIFICATION_ID) issues.push("experiment mismatch");
+  if (freeze.experimentId !== IMP24_ROLE_QUALIFICATION_EXECUTION_ID) issues.push("experiment mismatch");
   if (freeze.lifecycle?.implementationCommit !== null || freeze.lifecycle?.evidenceCommit !== null) issues.push("pre-commit lifecycle IDs must be null");
   if (freeze.frozenAssertions?.firstLiveCallOccurred !== false
     || freeze.frozenAssertions?.promptsFrozen !== true
@@ -808,16 +928,36 @@ export function buildImp24BPreLiveFreeze(options: BuildImp24BPreLiveFreezeOption
   values.parityReference = parityReferenceArtifact(parity, parityInput.bytes);
   values.runbook = runbookMarkdown();
 
+  const promptBundleHashes = Object.fromEntries(ROLES.map((role) => {
+    const value = values[`${role}PromptBundle` as ArtifactOutputKey] as Record<string, unknown>;
+    return [role, String(value.promptBundleSha256)];
+  })) as Record<Imp24ReviewRole, string>;
+  const schemaInventorySha256 = (schemaInventoryValue as Record<string, unknown>).schemaInventorySha256 as string;
+  const scheduleSha256 = (scheduleValue as Record<string, unknown>).scheduleSha256 as string;
+  values.executionSpec = successorExecutionSpec({
+    corpusBundleSha256: corpusInput.value.substantiveBundleSha256,
+    promptBundleHashes,
+    schemaInventorySha256,
+    thresholdsSha256: certificationInput.value.thresholdsSha256,
+    candidateOrderSha256: IMP24_ROLE_CANDIDATE_ORDER_SHA256,
+    candidateAvailabilityPolicySha256: IMP24_CANDIDATE_AVAILABILITY_POLICY_BYTES_SHA256,
+    scheduleSha256,
+    callBudgetSha256: IMP24_ROLE_QUALIFICATION_CALL_BUDGET_SHA256,
+    productionQualificationParitySha256: parity.paritySha256,
+    productionInstrumentSealSha256: seal.sealSha256,
+    certificationSha256: certificationInput.value.certificationSha256,
+  });
+
   const preliminaryOutputs = values as Record<ArtifactOutputKey, unknown | string>;
   const baseIdentities: Imp24BArtifactIdentity[] = [];
   for (const [key, value] of Object.entries(preliminaryOutputs) as Array<[ArtifactOutputKey, unknown | string]>) {
     if (key === "implementationReport" || key === "freezeJson" || key === "freezeMarkdown") continue;
     const bytes = typeof value === "string" ? value : canonicalPretty(value);
-    baseIdentities.push(identity(IMP24B_PRE_LIVE_ARTIFACT_PATHS[key], bytes,
+    baseIdentities.push(identity(IMP24C_PRE_LIVE_ARTIFACT_PATHS[key], bytes,
       typeof value === "string" ? null : semanticHash(value, [
         "artifactSha256", "provenanceSha256", "agreementProjectionSha256", "promptBundleSha256",
         "schemaInventorySha256", "candidateOrderSha256", "policySha256", "scheduleSha256",
-        "callBudgetSha256", "referenceSha256",
+        "callBudgetSha256", "referenceSha256", "executionSpecSha256",
       ].find((field) => semanticHash(value, field) !== null) ?? "")));
   }
 
@@ -832,6 +972,20 @@ export function buildImp24BPreLiveFreeze(options: BuildImp24BPreLiveFreezeOption
     identity(IMP24_CERTIFICATION_ARTIFACT_PATHS.reportMarkdown, certificationMarkdownBytes),
     identity(CONTRACT_MANIFEST_REL, readRequiredBytes(repositoryRoot, CONTRACT_MANIFEST_REL, "contract manifest")),
     identity(PROTOCOL_DECISION_REL, readRequiredBytes(repositoryRoot, PROTOCOL_DECISION_REL, "IMP-24 protocol decision")),
+    identity(IMP24C_DEDICATED_WORKFLOW_REL,
+      readRequiredBytes(repositoryRoot, IMP24C_DEDICATED_WORKFLOW_REL, "dedicated V25 workflow")),
+    identity(IMP24B_CLOSURE_JSON_REL,
+      readRequiredBytes(repositoryRoot, IMP24B_CLOSURE_JSON_REL, "IMP-24B lifecycle closure JSON")),
+    identity(IMP24B_CLOSURE_MARKDOWN_REL,
+      readRequiredBytes(repositoryRoot, IMP24B_CLOSURE_MARKDOWN_REL, "IMP-24B lifecycle closure Markdown")),
+    identity(IMP24C_CONTROL_PLANE_CORRECTION_REL,
+      readRequiredBytes(repositoryRoot, IMP24C_CONTROL_PLANE_CORRECTION_REL, "IMP-24C control-plane correction report")),
+    identity(IMP24C_PROTOCOL_NOTE_REL,
+      readRequiredBytes(repositoryRoot, IMP24C_PROTOCOL_NOTE_REL, "IMP-24C protocol note")),
+    identity(IMP24C_MODEL_FREE_LEDGER_JSON_REL,
+      readRequiredBytes(repositoryRoot, IMP24C_MODEL_FREE_LEDGER_JSON_REL, "IMP-24C model-free verification ledger JSON")),
+    identity(IMP24C_MODEL_FREE_LEDGER_MARKDOWN_REL,
+      readRequiredBytes(repositoryRoot, IMP24C_MODEL_FREE_LEDGER_MARKDOWN_REL, "IMP-24C model-free verification ledger Markdown")),
     ...ROLES.map((role) => identity(SCHEMA_PATHS[role], readRequiredBytes(repositoryRoot, SCHEMA_PATHS[role], `${role} schema`), prepared.schemaHashes[role])),
   ];
 
@@ -846,30 +1000,24 @@ export function buildImp24BPreLiveFreeze(options: BuildImp24BPreLiveFreezeOption
   const reportBytes = canonicalPretty(reportValue);
   values.implementationReport = reportValue;
   const artifactManifest = [...baseIdentities, ...retainedIdentities,
-    identity(IMP24B_PRE_LIVE_ARTIFACT_PATHS.implementationReport, reportBytes),
+    identity(IMP24C_PRE_LIVE_ARTIFACT_PATHS.implementationReport, reportBytes),
   ].sort((left, right) => left.relativePath < right.relativePath ? -1 : left.relativePath > right.relativePath ? 1 : 0);
   requireCondition(new Set(artifactManifest.map((item) => item.relativePath)).size === artifactManifest.length,
     "pre-live artifact manifest contains duplicate paths");
 
-  const promptBundleHashes = Object.fromEntries(ROLES.map((role) => {
-    const value = values[`${role}PromptBundle` as ArtifactOutputKey] as Record<string, unknown>;
-    return [role, String(value.promptBundleSha256)];
-  })) as Record<Imp24ReviewRole, string>;
   const partitionHashes = Object.fromEntries(ROLES.map((role) => [role, Object.fromEntries(PARTITIONS.map((partition) => [
     partition, corpusInput.value[role][partition].substantivePartitionSha256,
   ]))])) as Record<Imp24ReviewRole, Record<Partition, string>>;
-  const schemaInventorySha256 = (schemaInventoryValue as Record<string, unknown>).schemaInventorySha256 as string;
-  const scheduleSha256 = (scheduleValue as Record<string, unknown>).scheduleSha256 as string;
   const freezeCore: Imp24BPreLiveFreezeCore = {
-    schema: IMP24B_PRE_LIVE_FREEZE_SCHEMA,
+    schema: IMP24C_PRE_LIVE_FREEZE_SCHEMA,
     status: IMP24B_PRE_LIVE_FREEZE_STATUS,
-    promptId: "IMP-24B",
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    promptId: "IMP-24C",
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     branch: IMP24B_BRANCH,
     draftPr: IMP24B_DRAFT_PR,
     lifecycle: {
-      startingLocalHead: IMP24B_STARTING_HEAD,
-      startingRemoteHead: IMP24B_STARTING_HEAD,
+      startingLocalHead: IMP24C_STARTING_HEAD,
+      startingRemoteHead: IMP24C_STARTING_HEAD,
       implementationCommit: null,
       evidenceCommit: null,
       lifecycleStatus: "PRE_COMMIT_IDENTITIES_NOT_YET_MINTED",
@@ -907,6 +1055,7 @@ export function buildImp24BPreLiveFreeze(options: BuildImp24BPreLiveFreezeOption
   const freeze: Imp24BPreLiveFreeze = { ...freezeCore, freezeSha256: hashCanonical(freezeCore) };
   const freezeIssues = validateImp24BPreLiveFreeze(freeze);
   requireCondition(freezeIssues.length === 0, `built pre-live freeze is invalid: ${freezeIssues.join("; ")}`);
+  validateImp24CDedicatedWorkflowBinding(freeze, repositoryRoot);
   values.freezeJson = freeze;
   values.freezeMarkdown = freezeMarkdown(freeze);
 
@@ -942,9 +1091,77 @@ export function materializeImp24BPreLiveFreeze(
   requireCondition(canonicalJson(retainedFreeze) === canonicalJson(built.freeze),
     "retained pre-live freeze differs from the validated build");
   return {
-    schema: "imp24b-pre-live-freeze-materialization-v1",
+    schema: "imp24c-pre-live-freeze-materialization-v1",
     freeze: built.freeze,
     outputs,
+    modelCalls: 0,
+    apiCalls: 0,
+  };
+}
+
+/**
+ * Rebuild the complete pre-live graph in memory and compare it with committed
+ * artifacts. This function is deliberately read-only: CI uses it instead of
+ * write-mode materialization so a terminal lifecycle attestation can never be
+ * replaced (or even opened for writing) during reproduction.
+ */
+export function verifyImp24CPreLiveFreeze(
+  options: BuildImp24BPreLiveFreezeOptions,
+): Imp24CPreLiveFreezeVerification {
+  const built = buildImp24BPreLiveFreeze(options);
+  const repositoryRoot = resolve(options.repositoryRoot);
+  const retainedRoot = resolve(options.retainedArtifactRoot ?? repositoryRoot);
+  const outputRoot = resolve(options.outputRoot ?? repositoryRoot);
+
+  for (const [key, expected] of Object.entries(built.outputs) as Array<[
+    ArtifactOutputKey,
+    { relativePath: string; bytes: string; bytesSha256: string },
+  ]>) {
+    const absolutePath = resolve(outputRoot, expected.relativePath);
+    requireCondition(existsSync(absolutePath), `${key}: committed pre-live artifact is missing`);
+    const actual = readFileSync(absolutePath);
+    requireCondition(actual.toString("utf8") === expected.bytes,
+      `${key}: committed pre-live artifact differs byte-for-byte from the deterministic build`);
+    requireCondition(sha256Hex(actual) === expected.bytesSha256,
+      `${key}: committed pre-live artifact hash differs from the deterministic build`);
+  }
+
+  for (const item of built.freeze.artifactManifest) {
+    const candidates = [
+      resolve(outputRoot, item.relativePath),
+      resolve(retainedRoot, item.relativePath),
+      resolve(repositoryRoot, item.relativePath),
+    ];
+    const absolutePath = candidates.find((candidate) => existsSync(candidate));
+    requireCondition(absolutePath !== undefined,
+      `artifact manifest entry is missing during verification: ${item.relativePath}`);
+    const actual = readFileSync(absolutePath);
+    requireCondition(actual.length === item.bytes,
+      `artifact manifest byte length drift: ${item.relativePath}`);
+    requireCondition(sha256Hex(actual) === item.bytesSha256,
+      `artifact manifest bytes hash drift: ${item.relativePath}`);
+    if (item.semanticSha256 !== null) {
+      requireCondition(SHA256.test(item.semanticSha256) || SHA256_TAGGED.test(item.semanticSha256),
+        `artifact manifest semantic hash is invalid: ${item.relativePath}`);
+    }
+  }
+
+  const retainedFreeze = parseJsonBytes<Imp24BPreLiveFreeze>(
+    readFileSync(resolve(outputRoot, IMP24C_PRE_LIVE_ARTIFACT_PATHS.freezeJson)),
+    "committed IMP-24C pre-live freeze",
+  );
+  const issues = validateImp24BPreLiveFreeze(retainedFreeze);
+  requireCondition(issues.length === 0, `committed pre-live freeze is invalid: ${issues.join("; ")}`);
+  requireCondition(canonicalJson(retainedFreeze) === canonicalJson(built.freeze),
+    "committed pre-live freeze differs from the in-memory deterministic build");
+
+  return {
+    schema: "imp24c-pre-live-freeze-verification-v1",
+    status: "VERIFIED_BYTE_IDENTICAL_MODEL_FREE_PRE_LIVE",
+    freezeSha256: built.freeze.freezeSha256,
+    verifiedOutputCount: Object.keys(built.outputs).length,
+    verifiedManifestEntryCount: built.freeze.artifactManifest.length,
+    writes: 0,
     modelCalls: 0,
     apiCalls: 0,
   };

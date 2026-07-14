@@ -2,7 +2,7 @@
   "apiCalls": 0,
   "binding": {
     "apiCalls": 0,
-    "certificationSha256": "0870c20df24fbda8d5376723edc6a5c1a84a7fe8bce0e3095aa28ef46f01289e",
+    "certificationSha256": "cd3c6450337a3c29be5812c52608f9805cb50606d8de066c6ac1e8f94ca2bc4f",
     "corpusBundleSha256": "sha256:4501809686161a541ad776bdbfea9c716ec402d89ef397a072f93143ce28fcac",
     "corpusCertificationSha256": "7d2a2bc14eb840341cffc9e3dcc00c166a9dada7a1161a63c43354aa19b26ce9",
     "envelopeCompilerSha256": "e1fa568ef8951e874ddc2c81796dc54c19ab8eda851b6ff444433fc171b93c85",
@@ -12,12 +12,12 @@
     "legacyEvidenceClosureSha256": "87d99f5f8f43ba70559b0c8c062c99dcf75bb190f72e9c0f933b5823d5dc54e2",
     "modelCalls": 0,
     "modelOutputContractsSha256": "79ae5c580a5cb2447a9473aad21c258ecf91d8f3211b99d861b1fc5d0fadbc6a",
-    "productionInstrumentSealSha256": "8ee638990c927fd9c6e15be8754512c0774da0065ce793851927eecde88f4187",
-    "productionQualificationParitySha256": "9f1bfa674b8e69827e26e0e683f1e49ed01698ef0620ed7880c7fb7be80edd81",
+    "productionInstrumentSealSha256": "22bda57b70062160cc560adb46b9ab32b2ba316c901898727cafba10faaabab5",
+    "productionQualificationParitySha256": "7ab47df0aeea82c83c7e6c8db8c7fbeaa7e9488dc76916ea6ddace105aa508d4",
     "promptBundleSha256": "4da98a79943739dd223f12f5ff7c33bd238a114f065bdd09bfcffa66925aae00",
     "schema": "imp24-instrument-certification-binding-v1",
     "schemaBundleSha256": "f88f1b13ba263c670474385635ecd44511aaa07eec31074fe27905307b536798",
-    "scorerSha256": "49a24e897ef84388ff07cbd0de7e813592f9335b88f70c4d0f64e9e5e34a03f6",
+    "scorerSha256": "d5b455e2a675f6813a04354eac27aa1c020cd700faffb3c3c7140bae6908d9a1",
     "sourceMissingEvidenceInconclusiveCertified": true,
     "status": "CERTIFIED_MODEL_FREE",
     "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa"
@@ -2766,7 +2766,7 @@
         "holdout": "sha256:182d86d5146f8831a6bd06de30b71689f19c94611abaee24a1232cb251159106"
       }
     },
-    "implementationSetSha256": "0fbd7cb4f80188b36d26362e746cb3dff7bba21c60a0976986a6cafbeb59fdc7",
+    "implementationSetSha256": "7e436223a767fee47b485fc510085ba1cfcc98ed913426d7118e1a2e00d8ab45",
     "implementationSources": [
       {
         "bytes": 77119,
@@ -2779,8 +2779,8 @@
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24ProductionQualificationParity.ts"
       },
       {
-        "bytes": 61710,
-        "bytesSha256": "e2dde9aa5812973a1ce49cccfb046fc69c78b18b15993a51174ce77aff947de1",
+        "bytes": 62020,
+        "bytesSha256": "e46d40f1623fab52cd75e1fa3478af8a8fb06c344eac7aeb7b2482e52600c3c4",
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/roleQualificationRunnerV3.ts"
       },
       {
@@ -2819,18 +2819,18 @@
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardReviewerExecutor.ts"
       },
       {
-        "bytes": 30349,
-        "bytesSha256": "ba4ed646202e32e081db66de5c6ec4a9cb521bf63292f22b614d29c2ef327245",
+        "bytes": 42743,
+        "bytesSha256": "8876ca151c720500598c825060f03d6ef3aba68bc419783eeb4e3e9963c30710",
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleAssignmentFreezeV3.ts"
       },
       {
-        "bytes": 39389,
-        "bytesSha256": "aba54605d12e4847e8c6140dad03d9dbc681f48a8b0eddfb05e3db7925d2d084",
+        "bytes": 57719,
+        "bytesSha256": "72f97528d819debb43105529a3e1f9c1ac813487573f37a4adf57d192d0c22c5",
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts"
       },
       {
-        "bytes": 105299,
-        "bytesSha256": "e7002227e8d3fca739ce9d7edb0156d16232cca8dc7580c340ed41e7769d46ae",
+        "bytes": 112653,
+        "bytesSha256": "1aeb987d9a277b03f51eca7e01ae09dbadcf60c78a47c9ced7a04855f86c4891",
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts"
       },
       {
@@ -2890,7 +2890,7 @@
       }
     ],
     "preparedCasesSha256": "b41abe8c20a9d7a9303117b91b71a22828503230ae243ea78b1ca02ad9e5a69b",
-    "productionQualificationParitySha256": "9f1bfa674b8e69827e26e0e683f1e49ed01698ef0620ed7880c7fb7be80edd81",
+    "productionQualificationParitySha256": "7ab47df0aeea82c83c7e6c8db8c7fbeaa7e9488dc76916ea6ddace105aa508d4",
     "scheduleSha256": "dd7c3c1235c86cbbaf20c954398bcb57880efd5c7629f95bc494cb4d0fa8e22c"
   },
   "legacyClosure": {
@@ -2930,15 +2930,15 @@
   ],
   "modelCalls": 0,
   "productionQualificationParity": {
-    "artifactBytesSha256": "726e7061793fecf2e10a62e044912e6589a136e83652a675e76c6bb6c74f9464",
-    "paritySha256": "9f1bfa674b8e69827e26e0e683f1e49ed01698ef0620ed7880c7fb7be80edd81",
+    "artifactBytesSha256": "11079ddeb11d5fe8173b7471156e887172bd0644086cf9e5423fc379146506e5",
+    "paritySha256": "7ab47df0aeea82c83c7e6c8db8c7fbeaa7e9488dc76916ea6ddace105aa508d4",
     "sourceCount": 20,
     "verified": true
   },
   "productionSeal": {
-    "artifactBytesSha256": "773d14a1027ce1e19da8a9b4d31e308a116fdaed221533a33c7efa4e42792fd1",
-    "fileCount": 455,
-    "sealSha256": "8ee638990c927fd9c6e15be8754512c0774da0065ce793851927eecde88f4187",
+    "artifactBytesSha256": "59270d3e58945cd68365d820935520255c67f5aff6191979ac9e1f61c4556e25",
+    "fileCount": 456,
+    "sealSha256": "22bda57b70062160cc560adb46b9ab32b2ba316c901898727cafba10faaabab5",
     "verified": true
   },
   "schema": "imp24-instrument-certification-v1",

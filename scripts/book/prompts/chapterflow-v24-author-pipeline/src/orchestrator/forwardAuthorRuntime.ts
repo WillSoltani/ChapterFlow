@@ -16,6 +16,7 @@
  */
 
 import { canonicalJson, hashCanonical } from "../contracts/contractUtil.js";
+import { IMP24_ROLE_QUALIFICATION_EXECUTION_ID } from "../bakeoff/migration/imp24Corpus.js";
 import {
   FORWARD_ACTIVATION_SCHEMA,
   ForwardActivationError,
@@ -342,7 +343,7 @@ export function validateForwardLocalRuntimeBinding(value: unknown): string[] {
     assertForwardFrozenReviewConfig(runtime.reviewConfig);
     if (runtime.schema === FORWARD_LOCAL_RUNTIME_BINDING_V2_SCHEMA) {
       const reviewConfig = runtime.reviewConfig as BoundForwardFrozenReviewConfigV3;
-      requireCondition(reviewConfig.qualificationExperimentId === "s16-forward-role-qualification-v3-envelope"
+      requireCondition(reviewConfig.qualificationExperimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID
         && reviewConfig.qualificationResultSha256 === runtime.qualificationBundleSha256,
       "runtime V2 review config is bound to another V3 qualification result");
       requireCondition(reviewConfig.instrumentCertificationSha256 === runtime.instrumentBindingSha256,

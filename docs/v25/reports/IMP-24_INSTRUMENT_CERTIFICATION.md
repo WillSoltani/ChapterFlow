@@ -3,9 +3,9 @@
 Status: **CERTIFIED_MODEL_FREE**
 
 Experiment: `s16-forward-role-qualification-v3-envelope`
-Certification binding: `0870c20df24fbda8d5376723edc6a5c1a84a7fe8bce0e3095aa28ef46f01289e`
-Production instrument seal: `8ee638990c927fd9c6e15be8754512c0774da0065ce793851927eecde88f4187`
-Production/qualification parity: `9f1bfa674b8e69827e26e0e683f1e49ed01698ef0620ed7880c7fb7be80edd81`
+Certification binding: `cd3c6450337a3c29be5812c52608f9805cb50606d8de066c6ac1e8f94ca2bc4f`
+Production instrument seal: `22bda57b70062160cc560adb46b9ab32b2ba316c901898727cafba10faaabab5`
+Production/qualification parity: `7ab47df0aeea82c83c7e6c8db8c7fbeaa7e9488dc76916ea6ddace105aa508d4`
 Corpus bundle: `sha256:4501809686161a541ad776bdbfea9c716ec402d89ef397a072f93143ce28fcac`
 Corpus audit agreement: `sha256:3e3b582d440f4d22ce1c177136831b5f6c9bee096e9f9e51cbefd9f987ed4269`
 

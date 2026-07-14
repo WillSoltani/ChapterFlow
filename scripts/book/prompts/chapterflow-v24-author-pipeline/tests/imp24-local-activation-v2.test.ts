@@ -12,6 +12,7 @@ import { chapterContentHash } from "../src/critics/qcAttestation.js";
 import type { ChapterV21 } from "../src/types.js";
 import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
 import {
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   IMP24_ROLE_QUALIFICATION_ID,
   buildImp24CorpusBundle,
   certifyImp24Corpora,
@@ -168,6 +169,7 @@ import {
 } from "../src/orchestrator/forwardActivationReadinessV2.js";
 import {
   IMP24_ROLE_QUALIFICATION_CAMPAIGN_REPORT_SCHEMA,
+  IMP24_REQUIRED_REPOSITORY_URL,
   buildImp24ImplementationCiGateFromEvidence,
   imp24ImplementationCiGateSha256,
   type Imp24CheckoutIdentityV1,
@@ -223,13 +225,49 @@ function allAvailable(): CandidateAvailabilityV3 {
   );
   const core: Omit<CandidateAvailabilityV3, "availabilitySha256"> = {
     schema: IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     source: "codex-local-models-cache",
     sourceBytesSha256: "1".repeat(64),
     sourceFetchedAt: "2026-07-13T12:00:00.000Z",
     policyBytesSha256: "2".repeat(64),
     candidateOrderSha256: hashCanonical(IMP24_ROLE_CANDIDATE_ORDER),
     entries,
+  };
+  return { ...core, availabilitySha256: candidateAvailabilitySha256(core) };
+}
+
+function allUnavailable(): CandidateAvailabilityV3 {
+  const available = allAvailable();
+  const { availabilitySha256: _availabilitySha256, ...availableCore } = available;
+  const core: Omit<CandidateAvailabilityV3, "availabilitySha256"> = {
+    ...availableCore,
+    entries: available.entries.map((entry) => ({
+      ...entry,
+      status: "UNAVAILABLE" as const,
+      modelListed: false,
+      visible: false,
+      effortSupported: false,
+      reason: "hermetic unavailable-candidate terminal fixture",
+    })),
+  };
+  return { ...core, availabilitySha256: candidateAvailabilitySha256(core) };
+}
+
+function oneReaderCandidateAvailable(): CandidateAvailabilityV3 {
+  const unavailable = allUnavailable();
+  const { availabilitySha256: _availabilitySha256, ...unavailableCore } = unavailable;
+  const core: Omit<CandidateAvailabilityV3, "availabilitySha256"> = {
+    ...unavailableCore,
+    entries: unavailable.entries.map((entry) => entry.role === "reader" && entry.ordinal === 0
+      ? {
+        ...entry,
+        status: "AVAILABLE" as const,
+        modelListed: true,
+        visible: true,
+        effortSupported: true,
+        reason: "hermetic single-reader partial-qualification fixture",
+      }
+      : entry),
   };
   return { ...core, availabilitySha256: candidateAvailabilitySha256(core) };
 }
@@ -456,9 +494,9 @@ function persistQualificationEvidenceFixture(args: {
   experimentDir: string;
   input: RunRoleQualificationInputV3;
   result: RoleQualificationRunnerResultV3;
-  roleAssignmentFreeze: ForwardRoleAssignmentFreezeV3;
+  currentQualification: BuildForwardRoleAssignmentFreezeV3Input;
   preflight: LiveQualificationPreflightV3;
-}): void {
+}): { currentQualification: BuildForwardRoleAssignmentFreezeV3Input; roleAssignmentFreeze: ForwardRoleAssignmentFreezeV3 | null } {
   const liveDir = resolve(args.experimentDir, "live");
   const candidateAvailabilityPath = resolve(args.experimentDir, "candidate-availability.json");
   const implementationGatePath = resolve(args.experimentDir, "implementation-ci-gate.json");
@@ -474,7 +512,6 @@ function persistQualificationEvidenceFixture(args: {
   writeJson(qualificationFreezePath, args.result.freeze);
   writeJson(qualificationResultPath, args.result);
   writeJson(roleRegistryPath, args.result.registry);
-  writeJson(roleAssignmentFreezePath, args.roleAssignmentFreeze);
 
   const executionEvidenceByAttempt = new Map<string, LiveAttemptExecutionEvidenceV3>();
   for (const attempt of args.result.attempts) {
@@ -483,7 +520,7 @@ function persistQualificationEvidenceFixture(args: {
 
   const ledger: LiveCallLedgerV3 = {
     schema: IMP24_LIVE_CALL_LEDGER_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     freezeSha256: args.result.freeze.freezeSha256,
     certificationSha256: args.result.freeze.certificationSha256,
     productionInstrumentSealSha256: args.result.freeze.productionInstrumentSealSha256,
@@ -511,6 +548,7 @@ function persistQualificationEvidenceFixture(args: {
     codexExecInvocations: args.result.totalAttempts,
     cachedReceipts: 0,
     infrastructureReplays: args.result.infrastructureReplays,
+    maxPlanCapacityEvents: args.result.maxPlanEvents,
     apiCallsMade: 0,
   };
   writeJson(callLedgerPath, ledger);
@@ -526,7 +564,8 @@ function persistQualificationEvidenceFixture(args: {
   };
   const workflowRun: Imp24TrustedWorkflowRunEvidenceV1 = {
     databaseId: 9002,
-    workflowName: "ChapterFlow V25 Pipeline",
+    displayName: "ChapterFlow V25 Pipeline",
+    workflowFile: ".github/workflows/chapterflow-v25-pipeline.yml",
     headBranch: "feat/v25-pipeline-live",
     headSha,
     status: "completed",
@@ -552,9 +591,24 @@ function persistQualificationEvidenceFixture(args: {
     checkout,
     workflowRun,
     pullRequest,
+    repository: {
+      nameWithOwner: "WillSoltani/ChapterFlow",
+      url: IMP24_REQUIRED_REPOSITORY_URL,
+    },
     verifiedAt: "2026-07-13T12:01:30.000Z",
   });
   writeJson(implementationGatePath, gate);
+  const currentQualification: BuildForwardRoleAssignmentFreezeV3Input = {
+    ...args.currentQualification,
+    implementationHeadSha: gate.headSha,
+    implementationCiGateSha256: gate.gateSha256,
+    callLedgerSha256: hashCanonical(ledger),
+    callLedgerBytesSha256: sha256Hex(readFileSync(callLedgerPath)),
+  };
+  const roleAssignmentFreeze = args.result.roleSetReady
+    ? buildForwardRoleAssignmentFreezeV3(currentQualification) as ForwardRoleAssignmentFreezeV3
+    : null;
+  if (roleAssignmentFreeze !== null) writeJson(roleAssignmentFreezePath, roleAssignmentFreeze);
 
   const profileStatusCounts: Record<string, number> = {};
   for (const profileResult of args.result.profileRoleResults) {
@@ -568,14 +622,14 @@ function persistQualificationEvidenceFixture(args: {
     qualificationResult: qualificationResultPath,
     roleRegistry: roleRegistryPath,
     callLedger: callLedgerPath,
-    roleAssignmentFreeze: roleAssignmentFreezePath,
+    ...(roleAssignmentFreeze === null ? {} : { roleAssignmentFreeze: roleAssignmentFreezePath }),
   };
   const artifactBytesSha256 = Object.fromEntries(Object.entries(artifactPaths)
     .map(([label, path]) => [label, sha256Hex(readFileSync(path))]));
   const reportCore: Omit<Imp24RoleQualificationCampaignReportV1, "reportSha256"> = {
     schema: IMP24_ROLE_QUALIFICATION_CAMPAIGN_REPORT_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
-    status: "ROLE_SET_READY",
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    status: args.result.roleSetReady ? "ROLE_SET_READY" : "ROLE_SET_NOT_READY",
     implementationCiGateSha256: gate.gateSha256,
     implementationHeadSha: gate.headSha,
     candidateAvailabilitySha256: args.preflight.candidateAvailabilitySha256,
@@ -583,15 +637,22 @@ function persistQualificationEvidenceFixture(args: {
     qualificationFreezeSha256: args.result.freeze.freezeSha256,
     qualificationResultSha256: hashCanonical(args.result),
     roleRegistrySha256: hashCanonical(args.result.registry),
-    roleAssignmentFreezeSha256: args.roleAssignmentFreeze.freezeSha256,
+    callLedgerSha256: hashCanonical(ledger),
+    roleAssignmentFreezeSha256: roleAssignmentFreeze?.freezeSha256 ?? null,
     selected: args.result.selected,
+    qualifiedProfiles: [...new Set(Object.values(args.result.qualifiers).flat())].sort(),
     profileStatusCounts: Object.fromEntries(Object.entries(profileStatusCounts)
       .sort(([left], [right]) => left.localeCompare(right))),
     callCounts: {
       baseMaximum: IMP24_BASE_MAXIMUM_CALLS,
       hardMaximum: IMP24_HARD_MAXIMUM_CALLS,
+      canaryCalls: args.result.attempts.filter((attempt) =>
+        attempt.request.attemptNumber === 1 && attempt.request.partition === "canary").length,
+      holdoutCalls: args.result.attempts.filter((attempt) =>
+        attempt.request.attemptNumber === 1 && attempt.request.partition === "holdout").length,
       baseCallsAttempted: args.result.baseCallsAttempted,
       infrastructureReplays: args.result.infrastructureReplays,
+      maxPlanEvents: args.result.maxPlanEvents,
       totalAttempts: args.result.totalAttempts,
       brokerRequests: ledger.brokerRequests,
       codexExecInvocations: ledger.codexExecInvocations,
@@ -601,6 +662,7 @@ function persistQualificationEvidenceFixture(args: {
     thresholdsWeakened: false,
     holdoutsRelabeled: false,
     unavailableReplaced: false,
+    outputInformedResampling: false,
     retriesAdded: false,
     externalCapabilities: {
       publish: false,
@@ -619,6 +681,7 @@ function persistQualificationEvidenceFixture(args: {
     ...reportCore,
     reportSha256: hashCanonical(reportCore),
   });
+  return { currentQualification, roleAssignmentFreeze };
 }
 
 let qualificationFixturePromise: Promise<ActivationQualificationFixture> | null = null;
@@ -657,7 +720,7 @@ async function qualificationFixture(): Promise<ActivationQualificationFixture> {
       certificationSha256: instrumentCertificationBindingSha256(certificationCore),
     };
     const input: RunRoleQualificationInputV3 = {
-      experimentId: IMP24_ROLE_QUALIFICATION_ID,
+      experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
       corpusBundle,
       corpusCertification,
       certification,
@@ -678,6 +741,10 @@ async function qualificationFixture(): Promise<ActivationQualificationFixture> {
     assert.equal(result.roleSetReady, true, result.roleSetBlockedReason ?? "");
     const route = resolveExecutionProfile("chapter-reviewer");
     const current: BuildForwardRoleAssignmentFreezeV3Input = {
+      implementationHeadSha: "a".repeat(40),
+      implementationCiGateSha256: "b".repeat(64),
+      callLedgerSha256: "c".repeat(64),
+      callLedgerBytesSha256: "d".repeat(64),
       result,
       certification,
       corpusBundle,
@@ -695,10 +762,9 @@ async function qualificationFixture(): Promise<ActivationQualificationFixture> {
       productionInstrumentSeal,
       repositoryRoot: REPOSITORY_ROOT,
     };
-    const freeze = buildForwardRoleAssignmentFreezeV3(current) as ForwardRoleAssignmentFreezeV3;
     const preflightCore: Omit<LiveQualificationPreflightV3, "preflightSha256"> = {
       schema: IMP24_LIVE_PREFLIGHT_SCHEMA,
-      experimentId: IMP24_ROLE_QUALIFICATION_ID,
+      experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
       verifiedAt: "2026-07-13T12:01:00.000Z",
       freezeSha256: result.freeze.freezeSha256,
       certificationSha256: certification.certificationSha256,
@@ -727,13 +793,16 @@ async function qualificationFixture(): Promise<ActivationQualificationFixture> {
     const roots = mkTestRoots("imp24-retained-role-qualification-v3");
     process.once("exit", roots.dispose);
     const qualificationExperimentDir = resolve(roots.base, "qualification-experiment");
-    persistQualificationEvidenceFixture({
+    const persisted = persistQualificationEvidenceFixture({
       experimentDir: qualificationExperimentDir,
       input,
       result,
-      roleAssignmentFreeze: freeze,
+      currentQualification: current,
       preflight: qualificationPreflight,
     });
+    const retainedCurrent = persisted.currentQualification;
+    const freeze = persisted.roleAssignmentFreeze;
+    assert.ok(freeze, "ready qualification fixture must retain its role-assignment freeze");
     const retainedQualificationEvidence = verifyForwardRetainedRoleQualificationEvidenceV3({
       repositoryRoot: REPOSITORY_ROOT,
       experimentDir: qualificationExperimentDir,
@@ -742,7 +811,7 @@ async function qualificationFixture(): Promise<ActivationQualificationFixture> {
       roleAssignmentFreeze: freeze,
     });
     return {
-      current,
+      current: retainedCurrent,
       freeze,
       qualificationPreflight,
       input,
@@ -1627,7 +1696,7 @@ function retainedCampaign(args: {
     goldEvaluatorInstrumentSha256: kind === "gold" && manifest.manifest.kind === "gold" ? manifest.manifest.goldEvaluatorInstrumentSha256 : null,
     roleAssignmentFreezeSha256: fixture.freeze.freezeSha256,
     roleAssignmentSha256: fixture.freeze.roleAssignmentSha256,
-    qualificationExperimentId: IMP24_ROLE_QUALIFICATION_ID,
+    qualificationExperimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     qualificationResultSha256: hashCanonical(fixture.current.result),
     qualificationFreezeSha256: fixture.current.result.freeze.freezeSha256,
     instrumentCertificationSha256: fixture.current.certification.certificationSha256,
@@ -1704,7 +1773,8 @@ function readinessFixture(
   const checkout: Imp24CheckoutIdentityV1 = { branch: "feat/v25-pipeline-live", headSha, implementationClean: true };
   const workflowRun: Imp24TrustedWorkflowRunEvidenceV1 = {
     databaseId: 9001,
-    workflowName: "ChapterFlow V25 Pipeline",
+    displayName: "ChapterFlow V25 Pipeline",
+    workflowFile: ".github/workflows/chapterflow-v25-pipeline.yml",
     headBranch: "feat/v25-pipeline-live",
     headSha,
     status: "completed",
@@ -1726,6 +1796,10 @@ function readinessFixture(
     checkout,
     workflowRun,
     pullRequest,
+    repository: {
+      nameWithOwner: "WillSoltani/ChapterFlow",
+      url: IMP24_REQUIRED_REPOSITORY_URL,
+    },
     verifiedAt: "2026-07-13T12:03:00.000Z",
   });
   const evidenceDir = resolve(repoRoot, "activation-evidence");
@@ -1923,7 +1997,7 @@ function rebaseQualificationExecutionEvidence(originalExperimentDir: string, cop
 function verifyQualificationCopy(
   fixture: ActivationQualificationFixture,
   experimentDir: string,
-  roleAssignmentFreeze: ForwardRoleAssignmentFreezeV3 = fixture.freeze,
+  roleAssignmentFreeze: ForwardRoleAssignmentFreezeV3 | null = fixture.freeze,
 ): VerifiedForwardRetainedRoleQualificationEvidenceV3 {
   return verifyForwardRetainedRoleQualificationEvidenceV3({
     repositoryRoot: REPOSITORY_ROOT,
@@ -1933,6 +2007,160 @@ function verifyQualificationCopy(
     roleAssignmentFreeze,
   });
 }
+
+test("retained qualification verifier accepts only a fully recomputed terminal blocked campaign without a role freeze", async () => {
+  const ready = await qualificationFixture();
+  const input: RunRoleQualificationInputV3 = {
+    ...ready.input,
+    candidateAvailability: allUnavailable(),
+  };
+  const result = await runRoleQualificationV3(input, {
+    executor: async () => {
+      throw new Error("all-unavailable terminal fixture must not execute a model call");
+    },
+    evaluateOutput: ready.evaluateOutput,
+    qualifiedAt: () => "2026-07-13T12:00:00.000Z",
+  });
+  assert.equal(result.roleSetReady, false);
+  assert.equal(result.attempts.length, 0);
+  assert.ok(result.roleSetBlockedReason);
+  const { preflightSha256: _oldPreflightSha256, ...readyPreflightCore } = ready.qualificationPreflight;
+  const preflightCore: Omit<LiveQualificationPreflightV3, "preflightSha256"> = {
+    ...readyPreflightCore,
+    freezeSha256: result.freeze.freezeSha256,
+    candidateAvailabilitySha256: input.candidateAvailability.availabilitySha256,
+    candidateAvailabilitySourceBytesSha256: input.candidateAvailability.sourceBytesSha256,
+  };
+  const preflight: LiveQualificationPreflightV3 = {
+    ...preflightCore,
+    preflightSha256: hashCanonical(preflightCore),
+  };
+  const roots = mkTestRoots("imp24-retained-role-qualification-v3-blocked");
+  process.once("exit", roots.dispose);
+  const experimentDir = resolve(roots.base, "qualification-experiment");
+  const persisted = persistQualificationEvidenceFixture({
+    experimentDir,
+    input,
+    result,
+    currentQualification: { ...ready.current, result },
+    preflight,
+  });
+  assert.equal(persisted.roleAssignmentFreeze, null);
+  const verified = verifyForwardRetainedRoleQualificationEvidenceV3({
+    repositoryRoot: REPOSITORY_ROOT,
+    experimentDir,
+    input,
+    evaluateOutput: ready.evaluateOutput,
+    roleAssignmentFreeze: null,
+  });
+  assert.equal(verified.result.roleSetReady, false);
+  assert.equal(verified.proof.roleAssignmentFreezeSha256, null);
+  assert.equal(verified.proof.totalAttempts, 0);
+
+  assert.throws(() => verifyQualificationCopy(ready, ready.qualificationExperimentDir, null),
+    /role-ready retained qualification requires an explicit role-assignment freeze/);
+  assert.throws(() => verifyForwardRetainedRoleQualificationEvidenceV3({
+    repositoryRoot: REPOSITORY_ROOT,
+    experimentDir,
+    input,
+    evaluateOutput: ready.evaluateOutput,
+    roleAssignmentFreeze: ready.freeze,
+  }), /role-set-not-ready retained qualification must not accept a role-assignment freeze/);
+
+  const rolePath = resolve(experimentDir, "role-assignment-freeze.json");
+  writeJson(rolePath, ready.freeze);
+  assert.throws(() => verifyForwardRetainedRoleQualificationEvidenceV3({
+    repositoryRoot: REPOSITORY_ROOT,
+    experimentDir,
+    input,
+    evaluateOutput: ready.evaluateOutput,
+    roleAssignmentFreeze: null,
+  }), /unexpectedly contains a role-assignment freeze file/);
+  rmSync(rolePath);
+
+  const reportPath = resolve(experimentDir, "qualification-report.json");
+  const originalReport = readFileSync(reportPath, "utf8");
+  const report = readJson<Imp24RoleQualificationCampaignReportV1>(reportPath);
+  report.status = "ROLE_SET_READY";
+  const { reportSha256: _oldReportSha256, ...reportCore } = report;
+  report.reportSha256 = hashCanonical(reportCore);
+  writeJson(reportPath, report);
+  assert.throws(() => verifyForwardRetainedRoleQualificationEvidenceV3({
+    repositoryRoot: REPOSITORY_ROOT,
+    experimentDir,
+    input,
+    evaluateOutput: ready.evaluateOutput,
+    roleAssignmentFreeze: null,
+  }), /campaign report differs from the exact gated result\/selection/);
+  writeFileSync(reportPath, originalReport);
+});
+
+test("retained qualification verifier preserves nonzero-call partial qualifiers without freezing a blocked role set", async () => {
+  const ready = await qualificationFixture();
+  const input: RunRoleQualificationInputV3 = {
+    ...ready.input,
+    candidateAvailability: oneReaderCandidateAvailable(),
+  };
+  const result = await runRoleQualificationV3(input, {
+    executor: async (request) => qualificationReceipt(
+      request,
+      ready.fixtureOutputByCaseId[request.caseId]!,
+    ),
+    evaluateOutput: ready.evaluateOutput,
+    qualifiedAt: () => "2026-07-13T12:00:00.000Z",
+  });
+  assert.equal(result.roleSetReady, false);
+  assert.ok(result.totalAttempts > 0, "partial qualification must retain real nonzero attempt evidence");
+  assert.equal(result.qualifiers.reader.length, 1);
+  assert.equal(result.qualifiers.source.length, 0);
+  assert.equal(result.qualifiers.quiz.length, 0);
+  assert.equal(result.selected.readerPrimary, result.qualifiers.reader[0]);
+  assert.equal(result.selected.readerAudit, null);
+
+  const { preflightSha256: _oldPreflightSha256, ...readyPreflightCore } = ready.qualificationPreflight;
+  const preflightCore: Omit<LiveQualificationPreflightV3, "preflightSha256"> = {
+    ...readyPreflightCore,
+    freezeSha256: result.freeze.freezeSha256,
+    candidateAvailabilitySha256: input.candidateAvailability.availabilitySha256,
+    candidateAvailabilitySourceBytesSha256: input.candidateAvailability.sourceBytesSha256,
+  };
+  const preflight: LiveQualificationPreflightV3 = {
+    ...preflightCore,
+    preflightSha256: hashCanonical(preflightCore),
+  };
+  const roots = mkTestRoots("imp24-retained-role-qualification-v3-partial-blocked");
+  process.once("exit", roots.dispose);
+  const experimentDir = resolve(roots.base, "qualification-experiment");
+  try {
+    const persisted = persistQualificationEvidenceFixture({
+      experimentDir,
+      input,
+      result,
+      currentQualification: { ...ready.current, result },
+      preflight,
+    });
+    assert.equal(persisted.roleAssignmentFreeze, null);
+    const verified = verifyForwardRetainedRoleQualificationEvidenceV3({
+      repositoryRoot: REPOSITORY_ROOT,
+      experimentDir,
+      input,
+      evaluateOutput: ready.evaluateOutput,
+      roleAssignmentFreeze: null,
+    });
+    assert.equal(verified.result.roleSetReady, false);
+    assert.equal(verified.result.selected.readerPrimary, result.qualifiers.reader[0]);
+    assert.equal(verified.proof.roleAssignmentFreezeSha256, null);
+    assert.equal(verified.proof.totalAttempts, result.totalAttempts);
+    assert.ok(verified.proof.totalAttempts > 0);
+    const report = readJson<Imp24RoleQualificationCampaignReportV1>(
+      resolve(experimentDir, "qualification-report.json"),
+    );
+    assert.deepEqual(report.qualifiedProfiles, [result.qualifiers.reader[0]]);
+    assert.equal(report.roleAssignmentFreezeSha256, null);
+  } finally {
+    roots.dispose();
+  }
+});
 
 test("retained qualification persists full parsed, assembled, and explicit reference-resolution evidence for every role", async () => {
   const fixture = await qualificationFixture();
@@ -2329,6 +2557,165 @@ test("retained qualification verifier rejects a missing ledger and missing or ex
   }
 });
 
+test("retained qualification verifier rejects undeclared API and fallback markers in the call ledger", async () => {
+  const fixture = await qualificationFixture();
+  const unexpectedTopLevel = copyQualificationExperiment(
+    fixture,
+    "imp24-v3-qualification-ledger-unexpected-api-calls",
+  );
+  try {
+    const ledgerPath = resolve(unexpectedTopLevel.experimentDir, "live", "call-ledger.json");
+    const ledger = readJson<LiveCallLedgerV3>(ledgerPath) as unknown as Record<string, unknown>;
+    ledger.apiCalls = 1;
+    writeJson(ledgerPath, ledger);
+    assert.throws(() => verifyQualificationCopy(fixture, unexpectedTopLevel.experimentDir),
+      /retained qualification call ledger has missing or unexpected fields/);
+  } finally {
+    unexpectedTopLevel.dispose();
+  }
+
+  const unexpectedEntry = copyQualificationExperiment(
+    fixture,
+    "imp24-v3-qualification-ledger-unexpected-provider-fallback",
+  );
+  try {
+    const ledgerPath = resolve(unexpectedEntry.experimentDir, "live", "call-ledger.json");
+    const ledger = readJson<LiveCallLedgerV3>(ledgerPath);
+    assert.ok(ledger.entries[0]);
+    (ledger.entries[0] as unknown as Record<string, unknown>).providerFallbackUsed = true;
+    writeJson(ledgerPath, ledger);
+    assert.throws(() => verifyQualificationCopy(fixture, unexpectedEntry.experimentDir),
+      /retained qualification call-ledger entry has missing or unexpected fields/);
+  } finally {
+    unexpectedEntry.dispose();
+  }
+});
+
+test("retained qualification verifier rejects self-rehashed undeclared per-attempt API and fallback fields", async () => {
+  const fixture = await qualificationFixture();
+  const attemptId = fixture.current.result.attempts[0].request.attemptId;
+
+  const unexpectedReceipt = copyQualificationExperiment(
+    fixture,
+    "imp24-v3-qualification-receipt-unexpected-api-calls",
+  );
+  try {
+    const receiptPath = resolve(unexpectedReceipt.experimentDir, "live", "attempts", attemptId, "receipt.json");
+    const receipt = readJson<QualificationExecutionReceiptV3>(receiptPath) as QualificationExecutionReceiptV3 & {
+      apiCallsMade: number;
+    };
+    receipt.apiCallsMade = 1;
+    const { receiptSha256: _oldReceiptSha256, ...receiptCore } = receipt;
+    receipt.receiptSha256 = qualificationReceiptSha256(receiptCore);
+    writePrettyJson(receiptPath, receipt);
+    assert.throws(() => verifyQualificationCopy(fixture, unexpectedReceipt.experimentDir),
+      /receipt has missing or unexpected fields/);
+  } finally {
+    unexpectedReceipt.dispose();
+  }
+
+  const completedFailureDetail = copyQualificationExperiment(
+    fixture,
+    "imp24-v3-qualification-receipt-completed-fallback-detail",
+  );
+  try {
+    const receiptPath = resolve(completedFailureDetail.experimentDir, "live", "attempts", attemptId, "receipt.json");
+    const receipt = readJson<QualificationExecutionReceiptV3>(receiptPath);
+    receipt.failureDetail = "API/provider fallback used";
+    const { receiptSha256: _oldReceiptSha256, ...receiptCore } = receipt;
+    receipt.receiptSha256 = qualificationReceiptSha256(receiptCore);
+    writePrettyJson(receiptPath, receipt);
+    assert.throws(() => verifyQualificationCopy(fixture, completedFailureDetail.experimentDir),
+      /failureDetail presence must match its completed\/non-completed status/);
+  } finally {
+    completedFailureDetail.dispose();
+  }
+
+  const unexpectedRetention = copyQualificationExperiment(
+    fixture,
+    "imp24-v3-qualification-retention-unexpected-fallback",
+  );
+  try {
+    const retentionPath = resolve(unexpectedRetention.experimentDir, "live", "attempts", attemptId, "retention.json");
+    const retention = readJson<LiveAttemptRetentionV3>(retentionPath) as LiveAttemptRetentionV3 & {
+      apiFallbackUsed: boolean;
+    };
+    retention.apiFallbackUsed = true;
+    const { retentionSha256: _oldRetentionSha256, ...retentionCore } = retention;
+    retention.retentionSha256 = hashCanonical(retentionCore);
+    writePrettyJson(retentionPath, retention);
+    assert.throws(() => verifyQualificationCopy(fixture, unexpectedRetention.experimentDir),
+      /retention has missing or unexpected fields/);
+  } finally {
+    unexpectedRetention.dispose();
+  }
+
+  const unexpectedExecutionEvidence = copyQualificationExperiment(
+    fixture,
+    "imp24-v3-qualification-execution-evidence-unexpected-api-calls",
+  );
+  try {
+    const evidencePath = resolve(
+      unexpectedExecutionEvidence.experimentDir,
+      "live",
+      "attempts",
+      attemptId,
+      "execution-evidence.json",
+    );
+    const evidence = readJson<LiveAttemptExecutionEvidenceV3>(evidencePath) as LiveAttemptExecutionEvidenceV3 & {
+      apiCallsMade: number;
+    };
+    evidence.apiCallsMade = 1;
+    const { executionEvidenceSha256: _oldExecutionEvidenceSha256, ...evidenceCore } = evidence;
+    evidence.executionEvidenceSha256 = hashCanonical(evidenceCore);
+    writePrettyJson(evidencePath, evidence);
+    assert.throws(() => verifyQualificationCopy(fixture, unexpectedExecutionEvidence.experimentDir),
+      /execution evidence has missing or unexpected fields/);
+  } finally {
+    unexpectedExecutionEvidence.dispose();
+  }
+});
+
+test("retained qualification verifier rejects malformed or undeclared preflight API controls after self-rehash", async () => {
+  const fixture = await qualificationFixture();
+  const malformedForbiddenKeys = copyQualificationExperiment(
+    fixture,
+    "imp24-v3-qualification-preflight-malformed-forbidden-provider-keys",
+  );
+  try {
+    const preflightPath = resolve(malformedForbiddenKeys.experimentDir, "live", "preflight.json");
+    const preflight = readJson<Record<string, unknown>>(preflightPath);
+    preflight.forbiddenProviderEnvKeysPresent = {
+      length: 0,
+      OPENAI_API_KEY: "present",
+    };
+    const { preflightSha256: _oldPreflightSha256, ...preflightCore } = preflight;
+    preflight.preflightSha256 = hashCanonical(preflightCore);
+    writeJson(preflightPath, preflight);
+    assert.throws(() => verifyQualificationCopy(fixture, malformedForbiddenKeys.experimentDir),
+      /retained preflight is not the exact ChatGPT-only CLI route/);
+  } finally {
+    malformedForbiddenKeys.dispose();
+  }
+
+  const unexpectedApiCalls = copyQualificationExperiment(
+    fixture,
+    "imp24-v3-qualification-preflight-unexpected-api-calls",
+  );
+  try {
+    const preflightPath = resolve(unexpectedApiCalls.experimentDir, "live", "preflight.json");
+    const preflight = readJson<Record<string, unknown>>(preflightPath);
+    preflight.apiCalls = 1;
+    const { preflightSha256: _oldPreflightSha256, ...preflightCore } = preflight;
+    preflight.preflightSha256 = hashCanonical(preflightCore);
+    writeJson(preflightPath, preflight);
+    assert.throws(() => verifyQualificationCopy(fixture, unexpectedApiCalls.experimentDir),
+      /retained qualification preflight has missing or unexpected fields/);
+  } finally {
+    unexpectedApiCalls.dispose();
+  }
+});
+
 test("retained qualification verifier rejects self-rehashed evaluation-reference drift", async () => {
   const fixture = await qualificationFixture();
   const copy = copyQualificationExperiment(fixture, "imp24-v3-qualification-evaluation-reference-drift");
@@ -2458,6 +2845,25 @@ test("retained qualification verifier binds exact campaign-report counters and C
     writeFileSync(reportPath, originalReportBytes);
   }
 
+  const malformedControls: Array<(report: Record<string, any>) => void> = [
+    (report) => { report.apiCalls = 9; },
+    (report) => { report.callCounts.apiCallsMade = 9; },
+    (report) => { report.externalCapabilities = {}; },
+  ];
+  for (const mutate of malformedControls) {
+    try {
+      const report = readJson<Record<string, any>>(reportPath);
+      mutate(report);
+      const { reportSha256: _oldReportSha256, ...reportCore } = report;
+      report.reportSha256 = hashCanonical(reportCore);
+      writeJson(reportPath, report);
+      assert.throws(() => verifyQualificationCopy(fixture, fixture.qualificationExperimentDir),
+        /has missing or unexpected fields/);
+    } finally {
+      writeFileSync(reportPath, originalReportBytes);
+    }
+  }
+
   try {
     const gate = readJson<Imp24ImplementationCiGateV1>(gatePath);
     gate.workflow.headSha = gate.headSha === "a".repeat(40) ? "b".repeat(40) : "a".repeat(40);
@@ -2465,7 +2871,7 @@ test("retained qualification verifier binds exact campaign-report counters and C
     gate.gateSha256 = imp24ImplementationCiGateSha256(gateCore);
     writeJson(gatePath, gate);
     assert.throws(() => verifyQualificationCopy(fixture, fixture.qualificationExperimentDir),
-      /dedicated V25 implementation workflow did not PASS for the exact gated HEAD/);
+      /dedicated V25 implementation workflow identity does not match the exact gated HEAD/);
   } finally {
     writeFileSync(gatePath, originalGateBytes);
   }

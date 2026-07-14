@@ -90,7 +90,7 @@ import {
   type BuildForwardRoleAssignmentFreezeV3Input,
   type ForwardRoleAssignmentFreezeV3,
 } from "./forwardRoleAssignmentFreezeV3.js";
-import { IMP24_ROLE_QUALIFICATION_ID } from "../bakeoff/migration/imp24Corpus.js";
+import { IMP24_ROLE_QUALIFICATION_EXECUTION_ID } from "../bakeoff/migration/imp24Corpus.js";
 import {
   FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
 } from "../review/forwardProductionReviewV2.js";
@@ -257,7 +257,7 @@ function deepFreeze<T>(value: T, seen = new WeakSet<object>()): T {
  * no V1/V2 calibration or human-inspection attestations. */
 export type ForwardV3QualificationProof = {
   schema: typeof FORWARD_V3_QUALIFICATION_PROOF_SCHEMA;
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   roleSetReady: true;
   qualificationResultSha256: string;
   qualificationFreezeSha256: string;
@@ -285,7 +285,7 @@ function composeForwardV3QualificationProof(args: {
     "V3 role freeze does not activate the inline evidence-envelope production protocol");
   const core: ForwardV3QualificationProofCore = {
     schema: FORWARD_V3_QUALIFICATION_PROOF_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     roleSetReady: true,
     qualificationResultSha256: hashCanonical(args.currentQualification.result),
     qualificationFreezeSha256: args.currentQualification.result.freeze.freezeSha256,
@@ -315,7 +315,7 @@ export function assertForwardV3QualificationProofFresh(args: {
   roleFreeze: ForwardRoleAssignmentFreezeV3;
 }): void {
   requireCondition(args.proof?.schema === FORWARD_V3_QUALIFICATION_PROOF_SCHEMA
-    && args.proof.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+    && args.proof.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   "retained V3 qualification proof has the wrong schema/identity");
   const { proofSha256, ...core } = args.proof;
   requireCondition(proofSha256 === hashCanonical(core), "retained V3 qualification proof self hash drift");
@@ -583,7 +583,7 @@ export type ForwardLiveCampaignPreflightV3 = {
   goldEvaluatorInstrumentSha256: string | null;
   roleAssignmentFreezeSha256: string;
   roleAssignmentSha256: string;
-  qualificationExperimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  qualificationExperimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   qualificationResultSha256: string;
   qualificationFreezeSha256: string;
   instrumentCertificationSha256: string;
@@ -657,8 +657,8 @@ export function preflightForwardLiveCampaignV3(args: {
   })) requireCondition(SHA256.test(value), `${label} must be a lowercase sha256`);
   requireCondition(SUBSTANTIVE_SHA256.test(args.qualification.corpusBundleSha256),
     "corpusBundleSha256 must be the certified sha256:<hex> substantive identity");
-  requireCondition(args.qualification.experimentId === IMP24_ROLE_QUALIFICATION_ID
-    && args.roleFreeze.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+  requireCondition(args.qualification.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID
+    && args.roleFreeze.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   "V3 campaign qualification proof/freeze has the wrong experiment identity");
   requireCondition(args.qualification.qualificationResultSha256 === args.roleFreeze.qualificationResultSha256
     && args.qualification.qualificationFreezeSha256 === args.roleFreeze.qualificationFreezeSha256
@@ -739,7 +739,7 @@ export function preflightForwardLiveCampaignV3(args: {
     goldEvaluatorInstrumentSha256: args.verifiedGoldEvaluatorInstrumentSha256 ?? null,
     roleAssignmentFreezeSha256: args.roleFreeze.freezeSha256,
     roleAssignmentSha256: args.roleFreeze.roleAssignmentSha256,
-    qualificationExperimentId: IMP24_ROLE_QUALIFICATION_ID,
+    qualificationExperimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     qualificationResultSha256: args.qualification.qualificationResultSha256,
     qualificationFreezeSha256: args.qualification.qualificationFreezeSha256,
     instrumentCertificationSha256: args.qualification.instrumentCertificationSha256,

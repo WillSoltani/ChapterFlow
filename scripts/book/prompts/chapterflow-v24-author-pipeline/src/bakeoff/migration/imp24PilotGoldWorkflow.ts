@@ -19,7 +19,7 @@ import {
   certifyImp24Instrument,
 } from "./imp24InstrumentCertification.js";
 import {
-  IMP24_ROLE_QUALIFICATION_ID,
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   serializeImp24CorpusBundle,
   type Imp24CorpusBundle,
 } from "./imp24Corpus.js";
@@ -93,7 +93,7 @@ export const IMP24_PILOT_GOLD_WORKFLOW_SCHEMA = "imp24-pilot-gold-workflow-resul
 
 const REPOSITORY_ROOT = resolve(PIPELINE_DIR, "../../../..");
 const EXPERIMENT_ROOT = resolve(PIPELINE_DIR, "state", "migration-experiments");
-const QUALIFICATION_ROOT = resolve(EXPERIMENT_ROOT, IMP24_ROLE_QUALIFICATION_ID);
+const QUALIFICATION_ROOT = resolve(EXPERIMENT_ROOT, IMP24_ROLE_QUALIFICATION_EXECUTION_ID);
 
 export const IMP24_PILOT_GOLD_FIXED_PATHS = Object.freeze({
   repositoryRoot: REPOSITORY_ROOT,
@@ -155,6 +155,15 @@ type LoadedImp24Qualification = {
   preparedInput: ReturnType<typeof prepareLiveRoleQualificationV3>["input"];
 };
 
+export type LoadedImp24TerminalQualification = {
+  currentQualification: BuildForwardRoleAssignmentFreezeV3Input;
+  roleFreeze: ForwardRoleAssignmentFreezeV3 | null;
+  qualification: Readonly<ForwardV3QualificationProof> | null;
+  retainedPreflight: LiveQualificationPreflightV3;
+  retainedQualificationEvidence: VerifiedForwardRetainedRoleQualificationEvidenceV3;
+  preparedInput: ReturnType<typeof prepareLiveRoleQualificationV3>["input"];
+};
+
 export type Imp24ActivationQualificationInputsV3 = Pick<LoadedImp24Qualification,
   "currentQualification" | "roleFreeze" | "retainedPreflight" | "retainedQualificationEvidence">;
 
@@ -203,7 +212,7 @@ function persistCreateOnceExact(path: string, value: unknown, write: boolean, la
 function routeBindingFrom(preflight: LiveQualificationPreflightV3): ForwardV3RouteBinding {
   const { preflightSha256, ...core } = preflight;
   requireCondition(preflight.schema === "imp24-role-qualification-live-preflight-v3"
-    && preflight.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+    && preflight.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   "retained qualification preflight has the wrong V3 envelope identity");
   requireCondition(preflightSha256 === hashCanonical(core), "retained qualification preflight self hash drift");
   requireCondition(preflight.cliSynthetic === false,
@@ -226,7 +235,7 @@ function routeBindingFrom(preflight: LiveQualificationPreflightV3): ForwardV3Rou
   };
 }
 
-function loadExactQualification(): LoadedImp24Qualification {
+function loadExactTerminalQualification(): LoadedImp24TerminalQualification {
   const paths = IMP24_PILOT_GOLD_FIXED_PATHS;
   const retainedCorpus = readJson<Imp24CorpusBundle>(paths.corpusBundle, "IMP-24 V3 corpus bundle");
   const retainedCertification = readJson<InstrumentCertificationBindingV3>(paths.certification,
@@ -255,17 +264,17 @@ function loadExactQualification(): LoadedImp24Qualification {
 
   const candidateAvailability = readJson<CandidateAvailabilityV3>(paths.candidateAvailability,
     "IMP-24 candidate availability freeze");
-  const roleFreeze = readJson<ForwardRoleAssignmentFreezeV3>(paths.roleAssignmentFreeze,
-    "IMP-24 V3 role assignment freeze");
-  for (const [path, value, label] of [
-    [paths.candidateAvailability, candidateAvailability, "candidate availability"],
-    [paths.roleAssignmentFreeze, roleFreeze, "role assignment freeze"],
-  ] as const) {
-    requireCondition(readFileSync(path, "utf8") === stableForwardArtifactJson(value),
-      `retained V3 ${label} bytes are not the exact canonical campaign artifact`);
+  const roleFreeze = existsSync(paths.roleAssignmentFreeze)
+    ? readJson<ForwardRoleAssignmentFreezeV3>(paths.roleAssignmentFreeze, "IMP-24 V3 role assignment freeze")
+    : null;
+  requireCondition(readFileSync(paths.candidateAvailability, "utf8") === stableForwardArtifactJson(candidateAvailability),
+    "retained V3 candidate availability bytes are not the exact canonical campaign artifact");
+  if (roleFreeze !== null) {
+    requireCondition(readFileSync(paths.roleAssignmentFreeze, "utf8") === stableForwardArtifactJson(roleFreeze),
+      "retained V3 role assignment freeze bytes are not the exact canonical campaign artifact");
   }
   const unprepared: UnpreparedLiveRoleQualificationInputV3 = {
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     corpusBundle: retainedCorpus,
     corpusCertification: certified.report.corpusAudit,
     certification: retainedCertification,
@@ -289,6 +298,10 @@ function loadExactQualification(): LoadedImp24Qualification {
     "candidate availability/qualification does not retain the exact threshold bytes hash");
   const routeBinding = routeBindingFrom(retainedPreflight);
   const currentQualification: BuildForwardRoleAssignmentFreezeV3Input = {
+    implementationHeadSha: retainedQualificationEvidence.proof.implementationHeadSha,
+    implementationCiGateSha256: retainedQualificationEvidence.proof.implementationCiGateSha256,
+    callLedgerSha256: retainedQualificationEvidence.proof.callLedgerSha256,
+    callLedgerBytesSha256: retainedQualificationEvidence.proof.callLedgerBytesSha256,
     result,
     certification: retainedCertification,
     corpusBundle: retainedCorpus,
@@ -298,8 +311,11 @@ function loadExactQualification(): LoadedImp24Qualification {
     productionInstrumentSeal: retainedSeal,
     repositoryRoot: paths.repositoryRoot,
   };
-  validateForwardRoleAssignmentFreezeV3(roleFreeze, currentQualification);
-  const qualification = buildForwardV3QualificationProof({ currentQualification, roleFreeze });
+  let qualification: Readonly<ForwardV3QualificationProof> | null = null;
+  if (roleFreeze !== null) {
+    validateForwardRoleAssignmentFreezeV3(roleFreeze, currentQualification);
+    qualification = buildForwardV3QualificationProof({ currentQualification, roleFreeze });
+  }
   return {
     currentQualification,
     roleFreeze,
@@ -308,6 +324,15 @@ function loadExactQualification(): LoadedImp24Qualification {
     retainedQualificationEvidence,
     preparedInput: prepared.input,
   };
+}
+
+function loadExactQualification(): LoadedImp24Qualification {
+  const loaded = loadExactTerminalQualification();
+  requireCondition(loaded.retainedQualificationEvidence.result.roleSetReady === true,
+    `IMP-24 pilot/gold/activation requires a complete qualified role set: ${loaded.retainedQualificationEvidence.result.roleSetBlockedReason ?? "unknown"}`);
+  requireCondition(loaded.roleFreeze !== null && loaded.qualification !== null,
+    "IMP-24 pilot/gold/activation requires the exact retained role-assignment freeze");
+  return loaded as LoadedImp24Qualification;
 }
 
 /** Model-free exact retained qualification loader for the versioned IMP-24
@@ -320,6 +345,13 @@ export function loadImp24ActivationQualificationInputsV3(): Imp24ActivationQuali
     retainedPreflight: loaded.retainedPreflight,
     retainedQualificationEvidence: loaded.retainedQualificationEvidence,
   };
+}
+
+/** Model-free final-attestation boundary. Despite sharing the exact retained
+ * loader with the later activation workflow, this performs no pilot, gold,
+ * activation, model, or API operation. */
+export function verifyImp24RetainedQualificationForFinalAttestationV3(): LoadedImp24TerminalQualification {
+  return loadExactTerminalQualification();
 }
 
 function loadPhaseInputs(phase: Imp24EnvelopePhase): LoadedImp24PhaseInputs {

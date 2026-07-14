@@ -11,7 +11,7 @@
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24ProductionQualificationParity.ts"
     },
     {
-      "bytesSha256": "e2dde9aa5812973a1ce49cccfb046fc69c78b18b15993a51174ce77aff947de1",
+      "bytesSha256": "e46d40f1623fab52cd75e1fa3478af8a8fb06c344eac7aeb7b2482e52600c3c4",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/roleQualificationRunnerV3.ts"
     },
     {
@@ -31,15 +31,15 @@
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardReviewerExecutor.ts"
     },
     {
-      "bytesSha256": "ba4ed646202e32e081db66de5c6ec4a9cb521bf63292f22b614d29c2ef327245",
+      "bytesSha256": "8876ca151c720500598c825060f03d6ef3aba68bc419783eeb4e3e9963c30710",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleAssignmentFreezeV3.ts"
     },
     {
-      "bytesSha256": "aba54605d12e4847e8c6140dad03d9dbc681f48a8b0eddfb05e3db7925d2d084",
+      "bytesSha256": "72f97528d819debb43105529a3e1f9c1ac813487573f37a4adf57d192d0c22c5",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts"
     },
     {
-      "bytesSha256": "e7002227e8d3fca739ce9d7edb0156d16232cca8dc7580c340ed41e7769d46ae",
+      "bytesSha256": "1aeb987d9a277b03f51eca7e01ae09dbadcf60c78a47c9ced7a04855f86c4891",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts"
     },
     {
@@ -598,7 +598,7 @@
     }
   },
   "modelCalls": 0,
-  "paritySha256": "9f1bfa674b8e69827e26e0e683f1e49ed01698ef0620ed7880c7fb7be80edd81",
+  "paritySha256": "7ab47df0aeea82c83c7e6c8db8c7fbeaa7e9488dc76916ea6ddace105aa508d4",
   "protocol": "review-evidence-envelope-v1",
   "schema": "imp24-production-qualification-parity-v1",
   "status": "VERIFIED_SHARED_IMPLEMENTATION"

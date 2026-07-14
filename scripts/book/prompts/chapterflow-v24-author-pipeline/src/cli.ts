@@ -323,11 +323,17 @@ Commands:
                                      IMP-24 ChatGPT-subscription codex-exec qualification over exact V3
                                      envelope artifacts. Local model-cache discovery only; crash-safe retained
                                      attempts; no API, provider fallback, publication, promotion, or deployment.
-  migration-bakeoff imp24-materialize-pre-live-freeze [--write] [--json]
-                                     IMP-24B zero-model/API fixed-path pre-live freeze. Derives the six physical
+  migration-bakeoff imp24-materialize-pre-live-freeze [--write|--verify] [--json]
+                                     IMP-24C zero-model/API fixed-path pre-live freeze. Derives the six physical
                                      corpus partitions, provenance/audits, prompt/schema/order/policy/schedule/budget
                                      bundles, runbook, preliminary implementation report, and terminal self-hashed
-                                     freeze from the retained certified instrument and production seal.
+                                     freeze from the retained certified instrument and production seal. Verify mode
+                                     compares committed bytes and semantic bindings without writing.
+  migration-bakeoff imp24-materialize-final-attestation --implementation-commit SHA
+                                     --evidence-commit SHA --terminal-result FILE --ci-evidence FILE
+                                     [--role-assignment FILE] [--write|--verify|--verify-retained] [--json]
+                                     Deterministic IMP-24C terminal-only materializer. Validates exact Git commits
+                                     and ancestry; never writes pre-live artifacts or requires its future commit SHA.
   migration-bakeoff forward-materialize-production-instrument-seal [--output FILE] [--write] [--json]
                                      IMP-22 zero-model/API production-instrument materializer. Dry mode
                                      prints the current hash and target path; --write atomically writes and

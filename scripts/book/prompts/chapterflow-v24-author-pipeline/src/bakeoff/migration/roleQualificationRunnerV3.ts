@@ -25,6 +25,7 @@ import {
 import {
   IMP24_CORPUS_EXPECTED_COUNTS,
   IMP24_ROLE_QUALIFICATION_ID,
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   certifyImp24Corpora,
   type Imp24CorpusBundle,
   type Imp24CorpusCertification,
@@ -189,7 +190,7 @@ export type CandidateAvailabilityEntryV3 = QualificationProfileV3 & {
 
 export type CandidateAvailabilityV3 = {
   schema: typeof IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA;
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   source: "codex-local-models-cache";
   sourceBytesSha256: string;
   sourceFetchedAt: string;
@@ -221,7 +222,7 @@ export type PreparedQualificationCasesV3 = Record<
 >;
 
 export type RunRoleQualificationInputV3 = {
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   corpusBundle: Imp24CorpusBundle;
   corpusCertification: Imp24CorpusCertification;
   certification: InstrumentCertificationBindingV3;
@@ -246,7 +247,7 @@ export type QualificationReceiptStatusV3 =
 
 type QualificationExecutionRequestCoreV3 = {
   schema: typeof IMP24_ROLE_QUALIFICATION_REQUEST_SCHEMA;
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   scheduleId: string;
   attemptId: string;
   replayOfAttemptId: string | null;
@@ -374,7 +375,7 @@ export type QualificationScheduleEntryV3 = {
 
 export type QualificationFreezeV3 = {
   schema: typeof IMP24_ROLE_QUALIFICATION_FREEZE_SCHEMA;
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   candidateOrderSha256: string;
   candidateAvailabilitySha256: string;
   candidateAvailabilitySnapshotSha256: string;
@@ -450,7 +451,7 @@ export type ProfileRoleResultV3 = {
 
 export type RoleQualificationRunnerResultV3 = {
   schema: typeof IMP24_ROLE_QUALIFICATION_RUNNER_SCHEMA;
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   freeze: Readonly<QualificationFreezeV3>;
   schedule: readonly QualificationScheduleEntryV3[];
   attempts: readonly QualificationAttemptV3[];
@@ -468,6 +469,7 @@ export type RoleQualificationRunnerResultV3 = {
   roleSetBlockedReason: string | null;
   baseCallsAttempted: number;
   infrastructureReplays: number;
+  maxPlanEvents: number;
   totalAttempts: number;
   firstLiveRequestSha256: string | null;
 };
@@ -555,7 +557,8 @@ function validateProductionSeal(seal: ForwardProductionInstrumentSealV1): void {
 
 function validateAvailability(availability: CandidateAvailabilityV3): void {
   requireCondition(availability.schema === IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA, "v3 candidate availability schema mismatch");
-  requireCondition(availability.experimentId === IMP24_ROLE_QUALIFICATION_ID, "candidate availability belongs to another experiment");
+  requireCondition(availability.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    "candidate availability belongs to another execution");
   requireCondition(availability.source === "codex-local-models-cache", "candidate availability must derive from the local Codex models cache");
   requireSha(availability.sourceBytesSha256, "candidate availability source hash");
   requireSha(availability.policyBytesSha256, "candidate availability policy hash");
@@ -702,7 +705,7 @@ export function buildFrozenRoleQualificationScheduleV3(
 function buildFreeze(input: RunRoleQualificationInputV3, schedule: QualificationScheduleEntryV3[]): QualificationFreezeV3 {
   const draft = {
     schema: IMP24_ROLE_QUALIFICATION_FREEZE_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     candidateOrderSha256: hashCanonical(IMP24_ROLE_CANDIDATE_ORDER),
     candidateAvailabilitySha256: input.candidateAvailability.availabilitySha256,
     candidateAvailabilitySnapshotSha256: hashCanonical(input.candidateAvailability),
@@ -728,7 +731,8 @@ function buildFreeze(input: RunRoleQualificationInputV3, schedule: Qualification
 }
 
 function assertFrozenInput(input: RunRoleQualificationInputV3, freeze: QualificationFreezeV3): void {
-  requireCondition(input.experimentId === IMP24_ROLE_QUALIFICATION_ID, "v3 experiment identity drifted");
+  requireCondition(input.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    "v3 successor execution identity drifted");
   requireCondition(hashCanonical(IMP24_ROLE_CANDIDATE_ORDER) === freeze.candidateOrderSha256, "candidate order changed after freeze");
   requireCondition(input.candidateAvailability.availabilitySha256 === freeze.candidateAvailabilitySha256, "candidate availability changed after freeze");
   requireCondition(hashCanonical(input.candidateAvailability) === freeze.candidateAvailabilitySnapshotSha256,
@@ -756,7 +760,8 @@ export function buildRoleQualificationPlanV3(input: RunRoleQualificationInputV3)
   freeze: QualificationFreezeV3;
   schedule: QualificationScheduleEntryV3[];
 } {
-  requireCondition(input.experimentId === IMP24_ROLE_QUALIFICATION_ID, "wrong v3 experiment identity");
+  requireCondition(input.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    "wrong v3 successor execution identity");
   requireSha(input.thresholdBytesSha256, "threshold bytes hash");
   validateThresholds(input.thresholds);
   validateProductionSeal(input.productionInstrumentSeal);
@@ -781,7 +786,7 @@ export function buildQualificationExecutionRequestV3(
   const attemptId = `${entry.scheduleId}-a${attemptNumber}`;
   const core: QualificationExecutionRequestCoreV3 = {
     schema: IMP24_ROLE_QUALIFICATION_REQUEST_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     scheduleId: entry.scheduleId,
     attemptId,
     replayOfAttemptId,
@@ -1301,7 +1306,7 @@ export async function runRoleQualificationV3(
 
   return {
     schema: IMP24_ROLE_QUALIFICATION_RUNNER_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     freeze,
     schedule: Object.freeze(schedule),
     attempts: Object.freeze(attempts),
@@ -1319,6 +1324,7 @@ export async function runRoleQualificationV3(
     roleSetBlockedReason,
     baseCallsAttempted,
     infrastructureReplays,
+    maxPlanEvents: attempts.filter((attempt) => attempt.receipt?.status === "provider_capacity").length,
     totalAttempts: attempts.length,
     firstLiveRequestSha256: attempts[0]?.request.requestSha256 ?? null,
   };

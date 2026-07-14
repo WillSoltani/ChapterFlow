@@ -42,7 +42,7 @@ import {
 } from "../bakeoff/migration/roleQualificationRunnerV3.js";
 import {
   IMP24_CORPUS_EXPECTED_COUNTS,
-  IMP24_ROLE_QUALIFICATION_ID,
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   type Imp24ReviewRole,
 } from "../bakeoff/migration/imp24Corpus.js";
 import {
@@ -67,17 +67,24 @@ import {
   IMP24_LIVE_PREFLIGHT_SCHEMA,
   buildAttemptEvaluationArtifact,
   fatalReceiptChronologyViolationsV3,
+  replayReceiptChronologyViolationsV3,
   validateLiveExecEvidenceRootV3,
   validateExecutionEvidenceArtifact,
   validateLiveQualificationPreflightArtifactV3,
+  validateQualificationReceiptArtifactV3,
   type LiveAttemptEvaluationV3,
   type LiveAttemptExecutionEvidenceV3,
   type LiveAttemptRetentionV3,
   type LiveCallLedgerV3,
   type LiveQualificationPreflightV3,
 } from "./forwardRoleQualificationLiveV3.js";
-import type { ForwardRoleAssignmentFreezeV3 } from "./forwardRoleAssignmentFreezeV3.js";
 import {
+  validateForwardRoleAssignmentFreezeV3,
+  type ForwardRoleAssignmentFreezeV3,
+  type ForwardV3RouteBinding,
+} from "./forwardRoleAssignmentFreezeV3.js";
+import {
+  IMP24_REQUIRED_BRANCH,
   IMP24_ROLE_QUALIFICATION_CAMPAIGN_REPORT_SCHEMA,
   validateImp24ImplementationCiGate,
   type Imp24ImplementationCiGateV1,
@@ -124,6 +131,13 @@ function requireCondition(condition: unknown, message: string): asserts conditio
 
 function requireSha(value: unknown, label: string): asserts value is string {
   requireCondition(typeof value === "string" && SHA256.test(value), `${label} must be a lowercase sha256`);
+}
+
+function requireExactObjectKeys(value: unknown, keys: string[], label: string): asserts value is Record<string, unknown> {
+  requireCondition(value !== null && typeof value === "object" && !Array.isArray(value),
+    `${label} must be an object`);
+  requireCondition(hashCanonical(Object.keys(value).sort()) === hashCanonical([...keys].sort()),
+    `${label} has missing or unexpected fields`);
 }
 
 function prettyJson(value: unknown): string {
@@ -202,7 +216,7 @@ function expectedRequest(args: {
   const attemptId = `${entry.scheduleId}-a${attemptNumber}`;
   const core: Omit<QualificationExecutionRequestV3, "requestSha256"> = {
     schema: IMP24_ROLE_QUALIFICATION_REQUEST_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     scheduleId: entry.scheduleId,
     attemptId,
     replayOfAttemptId: attemptNumber === 2 ? `${entry.scheduleId}-a1` : null,
@@ -235,24 +249,12 @@ function validateReceipt(
   receipt: QualificationExecutionReceiptV3,
   label: string,
 ): void {
-  requireCondition(receipt.schema === IMP24_ROLE_QUALIFICATION_RECEIPT_SCHEMA,
-    `${label}: receipt schema mismatch`);
+  validateQualificationReceiptArtifactV3({ request, receipt, label });
   requireCondition(typeof receipt.executionId === "string" && receipt.executionId.length > 0,
     `${label}: receipt execution id is empty`);
   requireCondition(RECEIPT_STATUSES.has(receipt.status), `${label}: unknown receipt status ${receipt.status}`);
-  const bindings = [
-    "requestSha256", "freezeSha256", "certificationSha256", "productionInstrumentSealSha256",
-    "role", "profileId", "model", "effort", "schemaSha256", "reviewProtocol",
-    "evidenceEnvelopeSha256", "evidenceEnvelopeBytesSha256", "evidenceEnvelopeBytes",
-  ] as const;
-  for (const field of bindings) {
-    requireCondition(receipt[field] === request[field], `${label}: receipt ${field} differs from its request`);
-  }
   requireCondition(receipt.status !== "completed" || typeof receipt.rawOutput === "string",
     `${label}: completed receipt lacks exact raw output`);
-  const { receiptSha256, ...core } = receipt;
-  requireSha(receiptSha256, `${label} receipt hash`);
-  requireCondition(receiptSha256 === qualificationReceiptSha256(core), `${label}: receipt self hash drift`);
 }
 
 function recomputeAttempt(args: {
@@ -328,6 +330,10 @@ function recomputeAttempt(args: {
 
   const retention = parseExactJson<LiveAttemptRetentionV3>(resolve(attemptDir, "retention.json"),
     `${request.attemptId} retention`, "pretty");
+  requireExactObjectKeys(retention, [
+    "schema", "requestSha256", "receiptSha256", "evidenceEnvelopeSha256",
+    "evidenceEnvelopeBytesSha256", "executionEvidenceSha256", "request", "receipt", "retentionSha256",
+  ], `${request.attemptId} retention`);
   requireCondition(retention.schema === IMP24_LIVE_ATTEMPT_RETENTION_SCHEMA,
     `${request.attemptId}: attempt retention schema mismatch`);
   const { retentionSha256, ...retentionCore } = retention;
@@ -689,9 +695,10 @@ function recomputeResult(args: {
   }
   const baseCallsAttempted = new Set(args.attempts.map((attempt) => attempt.request.scheduleId)).size;
   const infrastructureReplays = args.attempts.filter((attempt) => attempt.request.attemptNumber === 2).length;
+  const maxPlanEvents = args.attempts.filter((attempt) => attempt.receipt?.status === "provider_capacity").length;
   return {
     schema: IMP24_ROLE_QUALIFICATION_RUNNER_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     freeze: args.retained.freeze,
     schedule: args.schedule,
     attempts: args.attempts,
@@ -709,6 +716,7 @@ function recomputeResult(args: {
     roleSetBlockedReason,
     baseCallsAttempted,
     infrastructureReplays,
+    maxPlanEvents,
     totalAttempts: args.attempts.length,
     firstLiveRequestSha256: args.attempts[0]?.request.requestSha256 ?? null,
   };
@@ -719,9 +727,17 @@ function validatePreflight(
   input: RunRoleQualificationInputV3,
   freezeSha256: string,
 ): void {
+  requireExactObjectKeys(preflight, [
+    "schema", "experimentId", "verifiedAt", "freezeSha256", "certificationSha256",
+    "productionInstrumentSealSha256", "corpusBundleSha256", "candidateAvailabilitySha256",
+    "candidateAvailabilitySourceBytesSha256", "cliVersion", "cliBinary", "cliSynthetic",
+    "executionProfileHash", "routePolicyVersion", "executionRoute", "authMode", "apiKeyPresent",
+    "apiFallbackAllowed", "directHttpOrSdkAllowed", "forbiddenProviderEnvKeysPresent",
+    "baseMaximumCalls", "hardMaximumCalls", "preflightSha256",
+  ], "retained qualification preflight");
   validateLiveQualificationPreflightArtifactV3(preflight);
   requireCondition(preflight.schema === IMP24_LIVE_PREFLIGHT_SCHEMA
-      && preflight.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+      && preflight.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     "retained qualification preflight identity mismatch");
   const { preflightSha256, ...core } = preflight;
   requireSha(preflightSha256, "retained qualification preflight hash");
@@ -738,6 +754,7 @@ function validatePreflight(
       && preflight.apiKeyPresent === false
       && preflight.apiFallbackAllowed === false
       && preflight.directHttpOrSdkAllowed === false
+      && Array.isArray(preflight.forbiddenProviderEnvKeysPresent)
       && preflight.forbiddenProviderEnvKeysPresent.length === 0
       && preflight.cliSynthetic === false
       && typeof preflight.cliVersion === "string" && preflight.cliVersion.trim().length > 0
@@ -745,6 +762,10 @@ function validatePreflight(
       && preflight.baseMaximumCalls === IMP24_BASE_MAXIMUM_CALLS
       && preflight.hardMaximumCalls === IMP24_HARD_MAXIMUM_CALLS,
     "retained qualification preflight is not the fixed ChatGPT-only 464/928 route");
+  requireCondition(typeof preflight.verifiedAt === "string"
+      && Number.isFinite(Date.parse(preflight.verifiedAt))
+      && new Date(preflight.verifiedAt).toISOString() === preflight.verifiedAt,
+    "retained qualification preflight verifiedAt must be an exact canonical ISO timestamp");
 }
 
 function validateLedger(args: {
@@ -754,8 +775,32 @@ function validateLedger(args: {
   executionEvidenceByAttempt: ReadonlyMap<string, LiveAttemptExecutionEvidenceV3>;
 }): void {
   const { ledger, result, attempts } = args;
+  requireExactObjectKeys(ledger, [
+    "schema", "experimentId", "freezeSha256", "certificationSha256",
+    "productionInstrumentSealSha256", "entries", "brokerRequests", "codexExecInvocations",
+    "cachedReceipts", "infrastructureReplays", "maxPlanCapacityEvents", "apiCallsMade",
+  ], "retained qualification call ledger");
+  requireCondition(Array.isArray(ledger.entries), "retained qualification call ledger entries must be an array");
+  for (const entry of ledger.entries) {
+    requireExactObjectKeys(entry, [
+      "attemptId", "scheduleId", "requestSha256", "evidenceEnvelopeSha256",
+      "evidenceEnvelopeBytesSha256", "receiptSha256", "executionEvidenceSha256",
+      "evaluationArtifactSha256", "status", "cached", "requestedAt", "completedAt",
+    ], "retained qualification call-ledger entry");
+  }
+  for (const [label, value] of [
+    ["brokerRequests", ledger.brokerRequests],
+    ["codexExecInvocations", ledger.codexExecInvocations],
+    ["cachedReceipts", ledger.cachedReceipts],
+    ["infrastructureReplays", ledger.infrastructureReplays],
+    ["maxPlanCapacityEvents", ledger.maxPlanCapacityEvents],
+    ["apiCallsMade", ledger.apiCallsMade],
+  ] as const) {
+    requireCondition(typeof value === "number" && Number.isSafeInteger(value) && value >= 0,
+      `retained qualification call ledger ${label} must be a non-negative safe integer`);
+  }
   requireCondition(ledger.schema === IMP24_LIVE_CALL_LEDGER_SCHEMA
-      && ledger.experimentId === IMP24_ROLE_QUALIFICATION_ID
+      && ledger.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID
       && ledger.freezeSha256 === result.freeze.freezeSha256
       && ledger.certificationSha256 === result.freeze.certificationSha256
       && ledger.productionInstrumentSealSha256 === result.freeze.productionInstrumentSealSha256
@@ -786,9 +831,13 @@ function validateLedger(args: {
         ).evaluationArtifactSha256
         && entry.status === attempt.receipt.status,
       `${entry.attemptId}: ledger request/envelope/receipt/execution/evaluation binding drift`);
-    requireCondition(Number.isFinite(Date.parse(entry.requestedAt))
+    requireCondition(typeof entry.requestedAt === "string"
+        && Number.isFinite(Date.parse(entry.requestedAt))
+        && new Date(entry.requestedAt).toISOString() === entry.requestedAt
         && entry.completedAt !== null
+        && typeof entry.completedAt === "string"
         && Number.isFinite(Date.parse(entry.completedAt))
+        && new Date(entry.completedAt).toISOString() === entry.completedAt
         && Date.parse(entry.completedAt) >= Date.parse(entry.requestedAt),
       `${entry.attemptId}: ledger timing evidence is invalid`);
     requireCondition(typeof entry.cached === "boolean", `${entry.attemptId}: ledger cached marker is invalid`);
@@ -796,15 +845,31 @@ function validateLedger(args: {
   const fatalChronologyViolations = fatalReceiptChronologyViolationsV3(ledger);
   requireCondition(fatalChronologyViolations.length === 0,
     `retained qualification proves request(s) opened after the first completed campaign-fatal receipt: ${fatalChronologyViolations.join(", ")}`);
+  const ledgerByAttemptId = new Map(ledger.entries.map((entry) => [entry.attemptId, entry]));
+  for (const attempt of attempts) {
+    if (attempt.request.attemptNumber !== 2) continue;
+    const replayEntry = ledgerByAttemptId.get(attempt.request.attemptId);
+    const predecessorId = attempt.request.replayOfAttemptId;
+    const predecessorEntry = predecessorId === null ? undefined : ledgerByAttemptId.get(predecessorId);
+    requireCondition(replayEntry !== undefined && predecessorEntry !== undefined,
+      `${attempt.request.attemptId}: retained replay lacks one exact ledger predecessor`);
+  }
+  const replayChronologyViolations = replayReceiptChronologyViolationsV3(ledger);
+  requireCondition(replayChronologyViolations.length === 0,
+    `retained qualification replay chronology is invalid: ${replayChronologyViolations.join(", ")}`);
   const replayCount = attempts.filter((attempt) => attempt.request.attemptNumber === 2).length;
+  const maxPlanCapacityEvents = attempts
+    .filter((attempt) => attempt.receipt?.status === "provider_capacity").length;
   const cachedCount = ledger.entries.filter((entry) => entry.cached).length;
   const spawnCount = [...args.executionEvidenceByAttempt.values()]
     .filter((evidence) => evidence.invocation !== "NOT_INVOKED_PRE_SPAWN").length;
   requireCondition(ledger.infrastructureReplays === replayCount
       && ledger.infrastructureReplays === result.infrastructureReplays
+      && ledger.maxPlanCapacityEvents === maxPlanCapacityEvents
+      && ledger.maxPlanCapacityEvents === result.maxPlanEvents
       && ledger.cachedReceipts === cachedCount
       && ledger.codexExecInvocations === spawnCount,
-    "retained qualification ledger call/replay/cache counters are not derived from exact attempts");
+    "retained qualification ledger call/replay/Max-plan/cache counters are not derived from exact attempts");
   requireCondition(result.baseCallsAttempted <= IMP24_BASE_MAXIMUM_CALLS
       && result.totalAttempts <= IMP24_HARD_MAXIMUM_CALLS,
     "retained qualification exceeded the frozen 464/928 call ceiling");
@@ -828,13 +893,18 @@ function validateImplementationGate(
     }
   };
   const checkout = {
-    branch: runGit(["branch", "--show-current"]),
-    headSha: runGit(["rev-parse", "HEAD"]),
+    branch: IMP24_REQUIRED_BRANCH,
+    headSha: gate.headSha,
     // The trusted collector proved cleanliness before the first V3 call and
     // retained the hash of that exact identity. Evidence generated afterwards
     // is intentionally outside the implementation tree.
     implementationClean: true,
   };
+  const currentBranch = runGit(["branch", "--show-current"]);
+  const currentHead = runGit(["rev-parse", "HEAD"]);
+  requireCondition(currentBranch === IMP24_REQUIRED_BRANCH || currentBranch === "",
+    `retained implementation evidence must be verified on ${IMP24_REQUIRED_BRANCH} or an exact detached CI checkout`);
+  runGit(["merge-base", "--is-ancestor", gate.headSha, currentHead]);
   validateImp24ImplementationCiGate({ gate, expectedHeadSha: gate.headSha, checkout });
   requireCondition(gate.trustedEvidence.checkoutSha256 === hashCanonical(checkout),
     "implementation CI gate trusted checkout hash is not the exact clean branch/HEAD identity");
@@ -846,16 +916,39 @@ function validateCampaignReport(args: {
   result: RoleQualificationRunnerResultV3;
   preflight: LiveQualificationPreflightV3;
   ledger: LiveCallLedgerV3;
+  roleAssignmentFreeze: ForwardRoleAssignmentFreezeV3 | null;
   paths: Record<string, string>;
 }): void {
-  const { report, gate, result, preflight, ledger } = args;
+  const { report, gate, result, preflight, ledger, roleAssignmentFreeze } = args;
+  requireExactObjectKeys(report, [
+    "schema", "experimentId", "status", "implementationCiGateSha256", "implementationHeadSha",
+    "candidateAvailabilitySha256", "preflightSha256", "qualificationFreezeSha256",
+    "qualificationResultSha256", "roleRegistrySha256", "callLedgerSha256",
+    "roleAssignmentFreezeSha256", "selected", "qualifiedProfiles", "profileStatusCounts",
+    "callCounts", "thresholdsWeakened", "holdoutsRelabeled", "unavailableReplaced",
+    "outputInformedResampling", "retriesAdded", "externalCapabilities", "completedAt",
+    "artifactBytesSha256", "reportSha256",
+  ], "qualification campaign report");
+  const callCountKeys = [
+    "baseMaximum", "hardMaximum", "canaryCalls", "holdoutCalls", "baseCallsAttempted",
+    "infrastructureReplays", "maxPlanEvents", "totalAttempts", "brokerRequests",
+    "codexExecInvocations", "cachedReceipts", "apiCalls",
+  ];
+  requireExactObjectKeys(report.callCounts, callCountKeys, "qualification campaign call counts");
+  requireCondition(Object.values(report.callCounts).every((value) =>
+    typeof value === "number" && Number.isSafeInteger(value) && value >= 0),
+  "qualification campaign call counts must be non-negative safe integers");
+  requireExactObjectKeys(report.externalCapabilities, [
+    "publish", "promote", "deploy", "upload", "merge", "forcePush", "api", "directHttpOrSdk",
+  ], "qualification campaign external capabilities");
   requireCondition(report.schema === IMP24_ROLE_QUALIFICATION_CAMPAIGN_REPORT_SCHEMA
-      && report.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+      && report.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     "retained qualification campaign report identity mismatch");
   const { reportSha256, ...core } = report;
   requireSha(reportSha256, "qualification campaign report hash");
   requireCondition(reportSha256 === hashCanonical(core), "qualification campaign report self hash drift");
-  requireCondition(report.status === "ROLE_SET_READY"
+  const expectedStatus = result.roleSetReady ? "ROLE_SET_READY" : "ROLE_SET_NOT_READY";
+  requireCondition(report.status === expectedStatus
       && report.implementationCiGateSha256 === gate.gateSha256
       && report.implementationHeadSha === gate.headSha
       && report.candidateAvailabilitySha256 === preflight.candidateAvailabilitySha256
@@ -863,23 +956,35 @@ function validateCampaignReport(args: {
       && report.qualificationFreezeSha256 === result.freeze.freezeSha256
       && report.qualificationResultSha256 === hashCanonical(result)
       && report.roleRegistrySha256 === hashCanonical(result.registry)
-      && report.roleAssignmentFreezeSha256 !== null
+      && report.callLedgerSha256 === hashCanonical(ledger)
+      && report.roleAssignmentFreezeSha256 === (roleAssignmentFreeze?.freezeSha256 ?? null)
+      && result.roleSetReady === (roleAssignmentFreeze !== null)
       && hashCanonical(report.selected) === hashCanonical(result.selected)
       && Number.isFinite(Date.parse(report.completedAt)),
     "qualification campaign report differs from the exact gated result/selection");
   requireCondition(report.callCounts.baseMaximum === IMP24_BASE_MAXIMUM_CALLS
       && report.callCounts.hardMaximum === IMP24_HARD_MAXIMUM_CALLS
+      && report.callCounts.canaryCalls === result.attempts.filter((attempt) =>
+        attempt.request.attemptNumber === 1 && attempt.request.partition === "canary").length
+      && report.callCounts.holdoutCalls === result.attempts.filter((attempt) =>
+        attempt.request.attemptNumber === 1 && attempt.request.partition === "holdout").length
       && report.callCounts.baseCallsAttempted === result.baseCallsAttempted
       && report.callCounts.infrastructureReplays === result.infrastructureReplays
+      && report.callCounts.maxPlanEvents === result.maxPlanEvents
+      && report.callCounts.maxPlanEvents === ledger.maxPlanCapacityEvents
       && report.callCounts.totalAttempts === result.totalAttempts
       && report.callCounts.brokerRequests === ledger.brokerRequests
       && report.callCounts.codexExecInvocations === ledger.codexExecInvocations
       && report.callCounts.cachedReceipts === ledger.cachedReceipts
       && report.callCounts.apiCalls === 0,
     "qualification campaign report call counts are not derived from exact retained attempts/ledger");
+  requireCondition(hashCanonical(report.qualifiedProfiles) === hashCanonical(
+    [...new Set(Object.values(result.qualifiers).flat())].sort(),
+  ), "qualification campaign report qualified profiles differ from exact recomputed qualifiers");
   requireCondition(report.thresholdsWeakened === false
       && report.holdoutsRelabeled === false
       && report.unavailableReplaced === false
+      && report.outputInformedResampling === false
       && report.retriesAdded === false
       && Object.values(report.externalCapabilities).every((value) => value === false),
     "qualification campaign report records threshold/evidence/retry/capability drift");
@@ -897,10 +1002,14 @@ function validateCampaignReport(args: {
     requireCondition(expectedHash === sha256Hex(readFileSync(path)),
       `qualification campaign report ${artifact} byte hash drift`);
   }
-  for (const artifact of [
+  const requiredArtifacts = [
     "implementationCiGate", "candidateAvailability", "preflight", "qualificationFreeze",
-    "qualificationResult", "roleRegistry", "callLedger", "roleAssignmentFreeze",
-  ]) {
+    "qualificationResult", "roleRegistry", "callLedger",
+    ...(result.roleSetReady ? ["roleAssignmentFreeze"] : []),
+  ];
+  requireCondition(hashCanonical(Object.keys(report.artifactBytesSha256).sort()) === hashCanonical(requiredArtifacts.sort()),
+    "qualification campaign report artifact byte bindings differ from the exact terminal artifact set");
+  for (const artifact of requiredArtifacts) {
     requireCondition(Object.hasOwn(report.artifactBytesSha256, artifact),
       `qualification campaign report omits required ${artifact} byte binding`);
   }
@@ -908,17 +1017,19 @@ function validateCampaignReport(args: {
 
 export type Imp24RetainedRoleQualificationEvidenceProofV1 = {
   schema: typeof IMP24_RETAINED_ROLE_QUALIFICATION_EVIDENCE_PROOF_SCHEMA;
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   qualificationResultSha256: string;
   qualificationFreezeSha256: string;
   scheduleSha256: string;
-  roleAssignmentFreezeSha256: string;
+  roleAssignmentFreezeSha256: string | null;
   preflightSha256: string;
+  implementationHeadSha: string;
   implementationCiGateSha256: string;
   implementationCiGateBytesSha256: string;
   qualificationReportSha256: string;
   qualificationReportBytesSha256: string;
   callLedgerBytesSha256: string;
+  callLedgerSha256: string;
   qualificationResultBytesSha256: string;
   attemptEvidenceSetSha256: string;
   baseCallsAttempted: number;
@@ -943,7 +1054,7 @@ export type VerifyForwardRetainedRoleQualificationEvidenceV3Args = {
   experimentDir: string;
   input: RunRoleQualificationInputV3;
   evaluateOutput: QualificationOutputEvaluatorV3;
-  roleAssignmentFreeze: ForwardRoleAssignmentFreezeV3;
+  roleAssignmentFreeze: ForwardRoleAssignmentFreezeV3 | null;
 };
 
 export function assertVerifiedForwardRetainedRoleQualificationEvidenceV3(
@@ -955,7 +1066,8 @@ export function assertVerifiedForwardRetainedRoleQualificationEvidenceV3(
   requireCondition(proofSha256 === hashCanonical(core), "retained V3 qualification proof self hash drift");
   requireCondition(value.proof.qualificationResultSha256 === hashCanonical(value.result)
       && value.proof.qualificationFreezeSha256 === value.result.freeze.freezeSha256
-      && value.proof.preflightSha256 === value.preflight.preflightSha256,
+      && value.proof.preflightSha256 === value.preflight.preflightSha256
+      && value.result.roleSetReady === (value.proof.roleAssignmentFreezeSha256 !== null),
     "retained V3 qualification branded value was mutated after verification");
 }
 
@@ -985,7 +1097,7 @@ export function verifyForwardRetainedRoleQualificationEvidenceV3(
     "retained qualification freeze differs from the recomputed 464-call plan");
   const result = parseExactJson<RoleQualificationRunnerResultV3>(paths.result, "qualification result", "canonical");
   requireCondition(result.schema === IMP24_ROLE_QUALIFICATION_RUNNER_SCHEMA
-      && result.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+      && result.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     "retained qualification result identity mismatch");
   requireCondition(hashCanonical(result.freeze) === hashCanonical(plan.freeze)
       && hashCanonical(result.schedule) === hashCanonical(plan.schedule),
@@ -993,16 +1105,10 @@ export function verifyForwardRetainedRoleQualificationEvidenceV3(
   const retainedRegistry = parseExactJson<RoleQualificationRegistryV1>(paths.registry, "qualification role registry", "canonical");
   requireCondition(hashCanonical(retainedRegistry) === hashCanonical(result.registry),
     "retained role registry differs from the qualification result");
-  const retainedRoleFreeze = parseExactJson<ForwardRoleAssignmentFreezeV3>(paths.roleFreeze, "role-assignment freeze", "canonical");
-  requireCondition(hashCanonical(retainedRoleFreeze) === hashCanonical(args.roleAssignmentFreeze)
-      && retainedRoleFreeze.freezeSha256 === hashWithout(retainedRoleFreeze as unknown as Record<string, unknown>, "freezeSha256")
-      && retainedRoleFreeze.qualificationResultSha256 === hashCanonical(result),
-    "retained role-assignment freeze differs from the exact qualification result/input");
   const preflight = parseExactJson<LiveQualificationPreflightV3>(paths.preflight, "qualification preflight", "canonical");
   validatePreflight(preflight, args.input, plan.freeze.freezeSha256);
 
-  requireCondition(Array.isArray(result.attempts) && result.attempts.length > 0,
-    "role-ready V3 qualification contains no retained attempts");
+  requireCondition(Array.isArray(result.attempts), "retained V3 qualification attempts must be an array");
   const sortedAttempts = [...result.attempts].sort((left, right) =>
     left.scheduleOrdinal - right.scheduleOrdinal || left.request.attemptNumber - right.request.attemptNumber);
   requireCondition(hashCanonical(sortedAttempts) === hashCanonical(result.attempts),
@@ -1066,8 +1172,6 @@ export function verifyForwardRetainedRoleQualificationEvidenceV3(
   });
   requireCondition(hashCanonical(expectedResult) === hashCanonical(result),
     "retained qualification result/role selection is not the deterministic projection of exact canary/holdout receipts");
-  requireCondition(result.roleSetReady === true && result.roleSetBlockedReason === null,
-    `retained V3 qualification did not produce a complete role set: ${result.roleSetBlockedReason ?? "unknown"}`);
   const ledger = parseExactJson<LiveCallLedgerV3>(paths.ledger, "qualification call ledger", "canonical");
   validateLedger({ ledger, result, attempts: recomputed, executionEvidenceByAttempt });
   const implementationCiGate = parseExactJson<Imp24ImplementationCiGateV1>(
@@ -1076,6 +1180,57 @@ export function verifyForwardRetainedRoleQualificationEvidenceV3(
     "canonical",
   );
   validateImplementationGate(args.repositoryRoot, implementationCiGate);
+  let retainedRoleFreeze: ForwardRoleAssignmentFreezeV3 | null = null;
+  if (result.roleSetReady) {
+    requireCondition(result.roleSetBlockedReason === null,
+      "role-ready retained qualification carries a blocked reason");
+    requireCondition(args.roleAssignmentFreeze !== null,
+      "role-ready retained qualification requires an explicit role-assignment freeze");
+    retainedRoleFreeze = parseExactJson<ForwardRoleAssignmentFreezeV3>(
+      paths.roleFreeze,
+      "role-assignment freeze",
+      "canonical",
+    );
+    requireCondition(hashCanonical(retainedRoleFreeze) === hashCanonical(args.roleAssignmentFreeze)
+        && retainedRoleFreeze.freezeSha256 === hashWithout(retainedRoleFreeze as unknown as Record<string, unknown>, "freezeSha256")
+        && retainedRoleFreeze.qualificationResultSha256 === hashCanonical(result),
+      "retained role-assignment freeze differs from the exact qualification result/input");
+    requireCondition(retainedRoleFreeze.implementationHeadSha === implementationCiGate.headSha
+        && retainedRoleFreeze.implementationCiGateSha256 === implementationCiGate.gateSha256
+        && retainedRoleFreeze.callLedgerSha256 === hashCanonical(ledger)
+        && retainedRoleFreeze.callLedgerBytesSha256 === sha256Hex(readFileSync(paths.ledger)),
+      "retained role-assignment freeze does not bind the exact implementation gate and completed call ledger");
+    const routeBinding: ForwardV3RouteBinding = {
+      executionRoute: "codex_exec_chatgpt_subscription",
+      authMode: "chatgpt",
+      apiKeyPresent: false,
+      apiFallbackAllowed: false,
+      directHttpOrSdkAllowed: false,
+      executionProfileHash: preflight.executionProfileHash,
+      routePolicyVersion: preflight.routePolicyVersion,
+    };
+    validateForwardRoleAssignmentFreezeV3(retainedRoleFreeze, {
+      implementationHeadSha: implementationCiGate.headSha,
+      implementationCiGateSha256: implementationCiGate.gateSha256,
+      callLedgerSha256: hashCanonical(ledger),
+      callLedgerBytesSha256: sha256Hex(readFileSync(paths.ledger)),
+      result,
+      certification: args.input.certification,
+      corpusBundle: args.input.corpusBundle,
+      schemaHashes: args.input.schemaHashes,
+      promptSourceHashes: args.input.promptSourceHashes,
+      routeBinding,
+      productionInstrumentSeal: args.input.productionInstrumentSeal,
+      repositoryRoot: args.repositoryRoot,
+    });
+  } else {
+    requireCondition(typeof result.roleSetBlockedReason === "string" && result.roleSetBlockedReason.length > 0,
+      "role-set-not-ready retained qualification lacks its deterministic blocked reason");
+    requireCondition(args.roleAssignmentFreeze === null,
+      "role-set-not-ready retained qualification must not accept a role-assignment freeze");
+    requireCondition(!existsSync(paths.roleFreeze),
+      "role-set-not-ready retained qualification unexpectedly contains a role-assignment freeze file");
+  }
   const campaignReport = parseExactJson<Imp24RoleQualificationCampaignReportV1>(
     paths.campaignReport,
     "qualification campaign report",
@@ -1087,6 +1242,7 @@ export function verifyForwardRetainedRoleQualificationEvidenceV3(
     result,
     preflight,
     ledger,
+    roleAssignmentFreeze: retainedRoleFreeze,
     paths: {
       implementationCiGate: paths.implementationCiGate,
       candidateAvailability: paths.candidateAvailability,
@@ -1095,25 +1251,27 @@ export function verifyForwardRetainedRoleQualificationEvidenceV3(
       qualificationResult: paths.result,
       roleRegistry: paths.registry,
       callLedger: paths.ledger,
-      roleAssignmentFreeze: paths.roleFreeze,
+      ...(retainedRoleFreeze === null ? {} : { roleAssignmentFreeze: paths.roleFreeze }),
     },
   });
-  requireCondition(campaignReport.roleAssignmentFreezeSha256 === args.roleAssignmentFreeze.freezeSha256,
+  requireCondition(campaignReport.roleAssignmentFreezeSha256 === (retainedRoleFreeze?.freezeSha256 ?? null),
     "qualification campaign report belongs to another role-assignment freeze");
 
   const core = {
     schema: IMP24_RETAINED_ROLE_QUALIFICATION_EVIDENCE_PROOF_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     qualificationResultSha256: hashCanonical(result),
     qualificationFreezeSha256: result.freeze.freezeSha256,
     scheduleSha256: hashCanonical(result.schedule),
-    roleAssignmentFreezeSha256: args.roleAssignmentFreeze.freezeSha256,
+    roleAssignmentFreezeSha256: retainedRoleFreeze?.freezeSha256 ?? null,
     preflightSha256: preflight.preflightSha256,
+    implementationHeadSha: implementationCiGate.headSha,
     implementationCiGateSha256: implementationCiGate.gateSha256,
     implementationCiGateBytesSha256: sha256Hex(readFileSync(paths.implementationCiGate)),
     qualificationReportSha256: campaignReport.reportSha256,
     qualificationReportBytesSha256: sha256Hex(readFileSync(paths.campaignReport)),
     callLedgerBytesSha256: sha256Hex(readFileSync(paths.ledger)),
+    callLedgerSha256: hashCanonical(ledger),
     qualificationResultBytesSha256: sha256Hex(readFileSync(paths.result)),
     attemptEvidenceSetSha256: hashCanonical(evidenceBindings),
     baseCallsAttempted: result.baseCallsAttempted,

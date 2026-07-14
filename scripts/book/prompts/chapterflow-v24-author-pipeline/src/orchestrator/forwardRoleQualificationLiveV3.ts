@@ -1,5 +1,5 @@
 /**
- * IMP-24 live boundary for `s16-forward-role-qualification-v3-envelope`.
+ * IMP-24 live boundary for `s16-forward-role-qualification-v3-envelope-r1`.
  *
  * The core runner remains pure. This module proves the ChatGPT-authenticated
  * `codex exec` route, revalidates the retained production seal against current
@@ -63,7 +63,10 @@ import {
   type RoleQualificationRunnerResultV3,
   type RunRoleQualificationInputV3,
 } from "../bakeoff/migration/roleQualificationRunnerV3.js";
-import { IMP24_ROLE_QUALIFICATION_ID, type Imp24ReviewRole } from "../bakeoff/migration/imp24Corpus.js";
+import {
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  type Imp24ReviewRole,
+} from "../bakeoff/migration/imp24Corpus.js";
 import { qualifyRole } from "../bakeoff/migration/roleQualification.js";
 import {
   createImp24QualificationEvaluator,
@@ -184,7 +187,7 @@ type LocalModelsCacheV3 = {
 
 export type LiveQualificationPreflightV3 = {
   schema: typeof IMP24_LIVE_PREFLIGHT_SCHEMA;
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   verifiedAt: string;
   freezeSha256: string;
   certificationSha256: string;
@@ -214,14 +217,24 @@ export type LiveQualificationPreflightV3 = {
 export function validateLiveQualificationPreflightArtifactV3(
   preflight: LiveQualificationPreflightV3,
 ): void {
+  requireExactObjectKeys(preflight, [
+    "schema", "experimentId", "verifiedAt", "freezeSha256", "certificationSha256",
+    "productionInstrumentSealSha256", "corpusBundleSha256", "candidateAvailabilitySha256",
+    "candidateAvailabilitySourceBytesSha256", "cliVersion", "cliBinary", "cliSynthetic",
+    "executionProfileHash", "routePolicyVersion", "executionRoute", "authMode", "apiKeyPresent",
+    "apiFallbackAllowed", "directHttpOrSdkAllowed", "forbiddenProviderEnvKeysPresent",
+    "baseMaximumCalls", "hardMaximumCalls", "preflightSha256",
+  ], "live V3 retained preflight");
   requireCondition(preflight?.schema === IMP24_LIVE_PREFLIGHT_SCHEMA
-      && preflight.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+      && preflight.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   "live V3 retained preflight identity mismatch");
   const { preflightSha256, ...core } = preflight;
   requireSha(preflightSha256, "live V3 retained preflight hash");
   requireCondition(preflightSha256 === hashCanonical(core),
     "live V3 retained preflight self hash drift");
-  requireCondition(Number.isFinite(Date.parse(preflight.verifiedAt))
+  requireCondition(typeof preflight.verifiedAt === "string"
+      && Number.isFinite(Date.parse(preflight.verifiedAt))
+      && new Date(preflight.verifiedAt).toISOString() === preflight.verifiedAt
       && typeof preflight.cliBinary === "string" && preflight.cliBinary.trim().length > 0
       && typeof preflight.cliVersion === "string" && preflight.cliVersion.trim().length > 0
       && preflight.cliSynthetic === false
@@ -232,6 +245,7 @@ export function validateLiveQualificationPreflightArtifactV3(
       && preflight.apiKeyPresent === false
       && preflight.apiFallbackAllowed === false
       && preflight.directHttpOrSdkAllowed === false
+      && Array.isArray(preflight.forbiddenProviderEnvKeysPresent)
       && preflight.forbiddenProviderEnvKeysPresent.length === 0
       && preflight.baseMaximumCalls === IMP24_BASE_MAXIMUM_CALLS
       && preflight.hardMaximumCalls === IMP24_HARD_MAXIMUM_CALLS,
@@ -255,7 +269,7 @@ export type LiveCallLedgerEntryV3 = {
 
 export type LiveCallLedgerV3 = {
   schema: typeof IMP24_LIVE_CALL_LEDGER_SCHEMA;
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_ID;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   freezeSha256: string;
   certificationSha256: string;
   productionInstrumentSealSha256: string;
@@ -264,6 +278,7 @@ export type LiveCallLedgerV3 = {
   codexExecInvocations: number;
   cachedReceipts: number;
   infrastructureReplays: number;
+  maxPlanCapacityEvents: number;
   apiCallsMade: 0;
 };
 
@@ -287,6 +302,34 @@ export function fatalReceiptChronologyViolationsV3(
     })
     .map((entry) => entry.attemptId)
     .sort();
+}
+
+/** Model-free ordering proof for the one authorized infrastructure replay.
+ * A replay must appear after its exact `-a1` predecessor and cannot be
+ * requested before that predecessor has completed. */
+export function replayReceiptChronologyViolationsV3(
+  ledger: Pick<LiveCallLedgerV3, "entries">,
+): string[] {
+  const byAttemptId = new Map(ledger.entries.map((entry) => [entry.attemptId, entry]));
+  const indexByAttemptId = new Map(ledger.entries.map((entry, index) => [entry.attemptId, index]));
+  const violations: string[] = [];
+  for (const replay of ledger.entries.filter((entry) => entry.attemptId === `${entry.scheduleId}-a2`)) {
+    const predecessorId = `${replay.scheduleId}-a1`;
+    const predecessor = byAttemptId.get(predecessorId);
+    if (predecessor === undefined
+        || (indexByAttemptId.get(predecessorId) ?? Number.POSITIVE_INFINITY)
+          >= (indexByAttemptId.get(replay.attemptId) ?? Number.NEGATIVE_INFINITY)) {
+      violations.push(`${replay.attemptId}:predecessor-order`);
+      continue;
+    }
+    if (predecessor.completedAt === null
+        || !Number.isFinite(Date.parse(predecessor.completedAt))
+        || !Number.isFinite(Date.parse(replay.requestedAt))
+        || Date.parse(replay.requestedAt) < Date.parse(predecessor.completedAt)) {
+      violations.push(`${replay.attemptId}:requested-before-predecessor-completed`);
+    }
+  }
+  return violations.sort();
 }
 
 export type LiveAttemptRetentionV3 = {
@@ -377,6 +420,17 @@ export class ForwardRoleQualificationRetainedEvidenceIncompleteV3Error extends E
 
 function requireCondition(condition: unknown, message: string): asserts condition {
   if (!condition) throw new ForwardRoleQualificationLiveV3Error(message);
+}
+
+function requireExactObjectKeys(
+  value: unknown,
+  keys: readonly string[],
+  label: string,
+): asserts value is Record<string, unknown> {
+  requireCondition(value !== null && typeof value === "object" && !Array.isArray(value),
+    `${label} must be an object`);
+  requireCondition(hashCanonical(Object.keys(value).sort()) === hashCanonical([...keys].sort()),
+    `${label} has missing or unexpected fields`);
 }
 
 function requireSha(value: unknown, label: string): asserts value is string {
@@ -680,6 +734,24 @@ export function validateExecutionEvidenceArtifact(args: {
    * executor seams may omit it because they never authorize a real CLI. */
   preflight?: LiveQualificationPreflightV3;
 }): void {
+  requireExactObjectKeys(args.artifact, [
+    "schema", "attemptId", "requestSha256", "receiptSha256", "invocation", "evidenceComplete",
+    "sessionId", "schemaRequested", "schemaBoundAtRunner", "finalMessageSource", "responseProduced",
+    "rawFinalOutputSha256", "rawFinalOutputBytes", "effectiveContextManifest", "routeSidecar",
+    "structuredOutputSidecar", "resultSidecar", "missingRequiredSidecars", "unexpectedSidecarRelPaths",
+    "executionEvidenceSha256",
+  ], `${args.request.attemptId} execution evidence`);
+  for (const binding of [
+    args.artifact.effectiveContextManifest,
+    args.artifact.routeSidecar,
+    args.artifact.structuredOutputSidecar,
+    args.artifact.resultSidecar,
+  ]) {
+    if (binding !== null) {
+      requireExactObjectKeys(binding, ["kind", "relPath", "bytes", "bytesSha256"],
+        `${args.request.attemptId} execution sidecar binding`);
+    }
+  }
   if (args.preflight !== undefined) {
     validateLiveQualificationPreflightArtifactV3(args.preflight);
     requireCondition(args.preflight.freezeSha256 === args.request.freezeSha256
@@ -1003,7 +1075,7 @@ export function discoverCandidateAvailabilityV3(args: {
   }));
   const draft: Omit<CandidateAvailabilityV3, "availabilitySha256"> = {
     schema: IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     source: "codex-local-models-cache",
     sourceBytesSha256: sha256Hex(sourceBytes),
     sourceFetchedAt: new Date(fetchedMs).toISOString(),
@@ -1097,7 +1169,7 @@ export async function preflightLiveRoleQualificationV3(
 
   const draft: Omit<LiveQualificationPreflightV3, "preflightSha256"> = {
     schema: IMP24_LIVE_PREFLIGHT_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     verifiedAt: new Date(verifiedAt).toISOString(),
     freezeSha256: freeze.freezeSha256,
     certificationSha256: freeze.certificationSha256,
@@ -1127,7 +1199,7 @@ export async function preflightLiveRoleQualificationV3(
 function emptyLedger(freezeSha256: string, certificationSha256: string, sealSha256: string): LiveCallLedgerV3 {
   return {
     schema: IMP24_LIVE_CALL_LEDGER_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     freezeSha256,
     certificationSha256,
     productionInstrumentSealSha256: sealSha256,
@@ -1136,6 +1208,7 @@ function emptyLedger(freezeSha256: string, certificationSha256: string, sealSha2
     codexExecInvocations: 0,
     cachedReceipts: 0,
     infrastructureReplays: 0,
+    maxPlanCapacityEvents: 0,
     apiCallsMade: 0,
   };
 }
@@ -1150,6 +1223,43 @@ function statusFor(error: unknown): QualificationReceiptStatusV3 {
 
 function retentionSha256(value: Omit<LiveAttemptRetentionV3, "retentionSha256">): string {
   return hashCanonical(value);
+}
+
+export function validateQualificationReceiptArtifactV3(args: {
+  request: QualificationExecutionRequestV3;
+  receipt: QualificationExecutionReceiptV3;
+  label?: string;
+}): void {
+  const label = args.label ?? args.request.attemptId;
+  const receiptKeys = [
+    "schema", "executionId", "status", "requestSha256", "freezeSha256", "certificationSha256",
+    "productionInstrumentSealSha256", "role", "profileId", "model", "effort", "schemaSha256",
+    "reviewProtocol", "evidenceEnvelopeSha256", "evidenceEnvelopeBytesSha256",
+    "evidenceEnvelopeBytes", "rawOutput", "receiptSha256",
+    ...(Object.hasOwn(args.receipt as object, "failureDetail") ? ["failureDetail"] : []),
+  ];
+  requireExactObjectKeys(args.receipt, receiptKeys, `${label} receipt`);
+  const hasFailureDetail = Object.hasOwn(args.receipt, "failureDetail");
+  requireCondition(args.receipt.status === "completed"
+    ? !hasFailureDetail
+    : hasFailureDetail
+      && typeof args.receipt.failureDetail === "string"
+      && args.receipt.failureDetail.trim().length > 0,
+  `${label}: receipt failureDetail presence must match its completed/non-completed status`);
+  const mismatches = qualificationReceiptMismatchesV3(args.request, args.receipt);
+  requireCondition(mismatches.length === 0,
+    `${label}: retained receipt differs from the exact frozen request: ${mismatches.join(", ")}`);
+  const { receiptSha256, ...receiptCore } = args.receipt;
+  requireSha(receiptSha256, `${label} receipt hash`);
+  requireCondition(qualificationReceiptSha256(receiptCore) === receiptSha256,
+    `${label}: receipt self hash mismatch`);
+}
+
+function validateLiveAttemptRetentionShapeV3(retention: LiveAttemptRetentionV3, label: string): void {
+  requireExactObjectKeys(retention, [
+    "schema", "requestSha256", "receiptSha256", "evidenceEnvelopeSha256",
+    "evidenceEnvelopeBytesSha256", "executionEvidenceSha256", "request", "receipt", "retentionSha256",
+  ], `${label} retention`);
 }
 
 export function buildAttemptEvaluationArtifact(
@@ -1193,6 +1303,12 @@ function validateCachedAttempt(args: {
   const retainedReceipt = readJson<QualificationExecutionReceiptV3>(args.receiptPath);
   const retainedEnvelopeBytes = readFileSync(args.envelopePath, "utf8");
   const retention = readJson<LiveAttemptRetentionV3>(args.retentionPath);
+  validateQualificationReceiptArtifactV3({
+    request: args.request,
+    receipt: retainedReceipt,
+    label: `attempt ${args.request.attemptId}`,
+  });
+  validateLiveAttemptRetentionShapeV3(retention, `attempt ${args.request.attemptId}`);
   const { requestSha256: retainedRequestSha256, ...retainedRequestCore } = retainedRequest;
   requireCondition(hashCanonical(retainedRequest) === hashCanonical(args.request),
     `attempt ${args.request.attemptId} request bytes/object changed on resume`);
@@ -1203,9 +1319,7 @@ function validateCachedAttempt(args: {
     `attempt ${args.request.attemptId} exact evidence envelope bytes changed on resume`);
   requireCondition(sha256Hex(retainedEnvelopeBytes) === args.request.evidenceEnvelopeBytesSha256,
     `attempt ${args.request.attemptId} evidence envelope bytes hash mismatch on resume`);
-  const { receiptSha256, ...receiptCore } = retainedReceipt;
-  requireCondition(qualificationReceiptSha256(receiptCore) === receiptSha256,
-    `attempt ${args.request.attemptId} receipt self hash mismatch on resume`);
+  const { receiptSha256 } = retainedReceipt;
   const { retentionSha256: retainedHash, ...retentionCore } = retention;
   requireCondition(retentionSha256(retentionCore) === retainedHash,
     `attempt ${args.request.attemptId} retention self hash mismatch on resume`);
@@ -1246,6 +1360,11 @@ function validateCachedEvaluationArtifact(args: {
   evaluationPath: string;
 }): LiveAttemptEvaluationV3 {
   const artifact = readJson<LiveAttemptEvaluationV3>(args.evaluationPath);
+  requireExactObjectKeys(artifact, [
+    "schema", "attemptId", "requestSha256", "receiptSha256", "executionEvidenceSha256",
+    "rawOutputSha256", "evaluationSha256", "parsedOutputSha256", "assembledReviewSha256",
+    "evidenceReferenceResolutionSha256", "terminalReason", "evaluation", "evaluationArtifactSha256",
+  ], `attempt ${args.request.attemptId} evaluation`);
   requireCondition(artifact.schema === IMP24_LIVE_ATTEMPT_EVALUATION_SCHEMA,
     `attempt ${args.request.attemptId} evaluation schema mismatch on resume`);
   const { evaluationArtifactSha256, ...artifactCore } = artifact;
@@ -1328,8 +1447,13 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
   );
   requireCondition(hashCanonical(retainedLedger) === hashCanonical(args.ledger),
     "live V3 in-memory and retained call ledgers differ before resume");
+  requireExactObjectKeys(args.ledger, [
+    "schema", "experimentId", "freezeSha256", "certificationSha256",
+    "productionInstrumentSealSha256", "entries", "brokerRequests", "codexExecInvocations",
+    "cachedReceipts", "infrastructureReplays", "maxPlanCapacityEvents", "apiCallsMade",
+  ], "live V3 resume call ledger");
   requireCondition(args.ledger.schema === IMP24_LIVE_CALL_LEDGER_SCHEMA
-      && args.ledger.experimentId === IMP24_ROLE_QUALIFICATION_ID
+      && args.ledger.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID
       && args.ledger.freezeSha256 === args.freeze.freezeSha256
       && args.ledger.certificationSha256 === args.freeze.certificationSha256
       && args.ledger.productionInstrumentSealSha256 === args.freeze.productionInstrumentSealSha256
@@ -1340,10 +1464,13 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
       && Number.isSafeInteger(args.ledger.codexExecInvocations)
       && Number.isSafeInteger(args.ledger.cachedReceipts)
       && Number.isSafeInteger(args.ledger.infrastructureReplays)
+      && Number.isSafeInteger(args.ledger.maxPlanCapacityEvents)
       && args.ledger.brokerRequests === args.ledger.entries.length
       && args.ledger.codexExecInvocations >= 0
       && args.ledger.codexExecInvocations <= args.ledger.brokerRequests
-      && args.ledger.cachedReceipts === args.ledger.entries.filter((entry) => entry.cached === true).length,
+      && args.ledger.cachedReceipts === args.ledger.entries.filter((entry) => entry.cached === true).length
+      && args.ledger.maxPlanCapacityEvents
+        === args.ledger.entries.filter((entry) => entry.status === "provider_capacity").length,
   "live V3 resume call ledger counters are inconsistent");
   requireCondition(args.ledger.entries.length <= IMP24_HARD_MAXIMUM_CALLS,
     "live V3 resume call ledger exceeds the hard call ceiling");
@@ -1391,6 +1518,11 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
   const spawnBoundExecutionIds = new Set<string>();
   const referencedExecLogRelPaths = new Set<string>();
   for (const ledgerEntry of args.ledger.entries) {
+    requireExactObjectKeys(ledgerEntry, [
+      "attemptId", "scheduleId", "requestSha256", "evidenceEnvelopeSha256",
+      "evidenceEnvelopeBytesSha256", "receiptSha256", "executionEvidenceSha256",
+      "evaluationArtifactSha256", "status", "cached", "requestedAt", "completedAt",
+    ], "live V3 resume call-ledger entry");
     const expected = expectedRequests.get(ledgerEntry.attemptId);
     requireCondition(expected !== undefined,
       `${ledgerEntry.attemptId}: retained attempt is outside the exact frozen schedule`);
@@ -1428,11 +1560,10 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
       retentionPath,
       `${ledgerEntry.attemptId} retention`,
     );
+    validateLiveAttemptRetentionShapeV3(retention, ledgerEntry.attemptId);
     requireCondition(retention.schema === IMP24_LIVE_ATTEMPT_RETENTION_SCHEMA,
       `${ledgerEntry.attemptId}: retained attempt retention schema mismatch`);
-    const receiptMismatches = qualificationReceiptMismatchesV3(request, receipt);
-    requireCondition(receiptMismatches.length === 0,
-      `${ledgerEntry.attemptId}: retained receipt differs from the exact frozen request: ${receiptMismatches.join(", ")}`);
+    validateQualificationReceiptArtifactV3({ request, receipt, label: ledgerEntry.attemptId });
     requireCondition(receipt.status !== "completed" || typeof receipt.rawOutput === "string",
       `${ledgerEntry.attemptId}: completed receipt lacks exact raw output`);
 
@@ -1495,9 +1626,13 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
         && ledgerEntry.evaluationArtifactSha256 === evaluationArtifact.evaluationArtifactSha256
         && ledgerEntry.status === receipt.status
         && typeof ledgerEntry.cached === "boolean"
+        && typeof ledgerEntry.requestedAt === "string"
         && Number.isFinite(Date.parse(ledgerEntry.requestedAt))
+        && new Date(ledgerEntry.requestedAt).toISOString() === ledgerEntry.requestedAt
         && ledgerEntry.completedAt !== null
+        && typeof ledgerEntry.completedAt === "string"
         && Number.isFinite(Date.parse(ledgerEntry.completedAt))
+        && new Date(ledgerEntry.completedAt).toISOString() === ledgerEntry.completedAt
         && Date.parse(ledgerEntry.completedAt) >= Date.parse(ledgerEntry.requestedAt),
     `${ledgerEntry.attemptId}: call-ledger request/receipt/execution/evaluation/timestamp binding drift`);
     if (executionEvidence.invocation !== "NOT_INVOKED_PRE_SPAWN") {
@@ -1515,7 +1650,6 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
   requireCondition(fatalChronologyViolations.length === 0,
     `live V3 resume proves request(s) opened after the first completed campaign-fatal receipt: ${fatalChronologyViolations.join(", ")}`);
 
-  const ledgerIndexByAttemptId = new Map(args.ledger.entries.map((entry, index) => [entry.attemptId, index]));
   for (const ledgerEntry of args.ledger.entries) {
     const expected = expectedRequests.get(ledgerEntry.attemptId)!;
     if (expected.request.attemptNumber !== 2) continue;
@@ -1523,10 +1657,10 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
     const priorAttempt = recomputedAttemptById.get(priorAttemptId);
     requireCondition(priorAttempt?.replayEligible === true,
       `${ledgerEntry.attemptId}: retained replay lacks one exact eligible infrastructure predecessor`);
-    requireCondition((ledgerIndexByAttemptId.get(priorAttemptId) ?? Number.POSITIVE_INFINITY)
-        < (ledgerIndexByAttemptId.get(ledgerEntry.attemptId) ?? Number.NEGATIVE_INFINITY),
-    `${ledgerEntry.attemptId}: retained replay precedes its infrastructure predecessor in the ledger`);
   }
+  const replayChronologyViolations = replayReceiptChronologyViolationsV3(args.ledger);
+  requireCondition(replayChronologyViolations.length === 0,
+    `live V3 resume replay chronology is invalid: ${replayChronologyViolations.join(", ")}`);
 
   // mapPool takes base schedule entries monotonically from the frozen batch.
   // With two workers a crash may leave a proper prefix complete (and at most
@@ -1624,7 +1758,7 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
       "live V3 terminal qualification result",
     );
     requireCondition(result.schema === IMP24_ROLE_QUALIFICATION_RUNNER_SCHEMA
-        && result.experimentId === IMP24_ROLE_QUALIFICATION_ID
+        && result.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID
         && hashCanonical(result.freeze) === hashCanonical(args.freeze)
         && hashCanonical(result.schedule) === hashCanonical(args.schedule),
     "live V3 terminal qualification result differs from the exact frozen plan");
@@ -1709,11 +1843,13 @@ export function createLiveQualificationExecutorV3(
     ? readJson<LiveCallLedgerV3>(ledgerPath)
     : emptyLedger(deps.freezeSha256, deps.certificationSha256, deps.productionInstrumentSealSha256);
   requireCondition(ledger.schema === IMP24_LIVE_CALL_LEDGER_SCHEMA
-    && ledger.experimentId === IMP24_ROLE_QUALIFICATION_ID
+    && ledger.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID
     && ledger.freezeSha256 === deps.freezeSha256
     && ledger.certificationSha256 === deps.certificationSha256
     && ledger.productionInstrumentSealSha256 === deps.productionInstrumentSealSha256
-    && ledger.apiCallsMade === 0,
+    && ledger.apiCallsMade === 0
+    && Number.isSafeInteger(ledger.maxPlanCapacityEvents)
+    && ledger.maxPlanCapacityEvents === ledger.entries.filter((entry) => entry.status === "provider_capacity").length,
   "retained live v3 call ledger belongs to different or unsafe inputs");
   mkdirSync(phaseDir, { recursive: true });
   if (!existsSync(ledgerPath)) writeJson(ledgerPath, ledger);
@@ -1753,7 +1889,7 @@ export function createLiveQualificationExecutorV3(
 
   const executor: QualificationExecutorV3 = async (request) => {
     requireCondition(request.schema === IMP24_ROLE_QUALIFICATION_REQUEST_SCHEMA
-      && request.experimentId === IMP24_ROLE_QUALIFICATION_ID,
+      && request.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     "live v3 executor rejected wrong request schema/identity");
     requireCondition(request.freezeSha256 === deps.freezeSha256
       && request.certificationSha256 === deps.certificationSha256
@@ -1970,7 +2106,9 @@ export function createLiveQualificationExecutorV3(
         evidenceEnvelopeBytesSha256: request.evidenceEnvelopeBytesSha256,
         evidenceEnvelopeBytes: request.evidenceEnvelopeBytes,
         rawOutput: spawnObservation.result?.finalMessage ?? null,
-        failureDetail: (error as Error).message.slice(0, 2_000),
+        failureDetail: ((error as Error).message.trim()
+          || (error as Error).name.trim()
+          || "unknown qualification execution failure").slice(0, 2_000),
       };
     }
     const receipt: QualificationExecutionReceiptV3 = {
@@ -2029,6 +2167,7 @@ export function createLiveQualificationExecutorV3(
     entry.executionEvidenceSha256 = executionEvidence.executionEvidenceSha256;
     entry.status = receipt.status;
     entry.completedAt = now();
+    ledger.maxPlanCapacityEvents = ledger.entries.filter((candidate) => candidate.status === "provider_capacity").length;
     writeJson(ledgerPath, ledger);
     if (executionEvidenceFailure) throw executionEvidenceFailure;
     return receipt;
