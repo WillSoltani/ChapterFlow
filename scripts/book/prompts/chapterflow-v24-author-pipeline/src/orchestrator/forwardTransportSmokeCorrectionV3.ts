@@ -12,9 +12,13 @@ import { resolve } from "node:path";
 
 import { canonicalJson, hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import type {
+  CandidateAvailabilitySemanticProjectionV3,
   CandidateAvailabilityV3,
+  LegacyQualificationFreezeV3,
   QualificationFreezeV3,
 } from "../bakeoff/migration/roleQualificationRunnerV3.js";
+import { candidateAvailabilitySemanticProjectionV3 } from "../bakeoff/migration/roleQualificationRunnerV3.js";
+import { IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID } from "../bakeoff/migration/imp24Corpus.js";
 
 const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
 const SMOKE_ROOT_REL = `${PIPELINE_REL}/state/migration-experiments/s16-forward-role-qualification-v3-envelope-transport-smoke`;
@@ -71,9 +75,8 @@ export type Imp24DTransportSemanticCallBindingV1 = {
 
 export type Imp24DQualificationSemanticProjectionV1 = {
   schema: "imp24d-qualification-semantic-projection-v1";
-  qualification: Pick<QualificationFreezeV3,
+  qualification: Omit<Pick<QualificationFreezeV3,
     | "schema"
-    | "experimentId"
     | "candidateOrderSha256"
     | "corpusBundleSha256"
     | "corpusSnapshotSha256"
@@ -87,7 +90,9 @@ export type Imp24DQualificationSemanticProjectionV1 = {
     | "maxParallel"
     | "baseMaximumCalls"
     | "hardMaximumCalls"
-  >;
+  >, "experimentId"> & {
+    experimentId: typeof IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID;
+  };
   candidateAvailability: Pick<CandidateAvailabilityV3,
     | "schema"
     | "source"
@@ -100,17 +105,20 @@ export type Imp24DQualificationSemanticProjectionV1 = {
 };
 
 export function buildImp24DQualificationSemanticProjection(args: {
-  freeze: QualificationFreezeV3;
+  freeze: QualificationFreezeV3 | LegacyQualificationFreezeV3;
   candidateAvailability: CandidateAvailabilityV3;
   calls: readonly [Imp24DTransportSemanticCallBindingV1, Imp24DTransportSemanticCallBindingV1];
 }): Imp24DQualificationSemanticProjectionV1 {
   const freeze = args.freeze;
   const availability = args.candidateAvailability;
+  if ((freeze.experimentId as string) !== IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID) {
+    throw new Error("IMP-24D semantic projection requires the fixed historical r2 qualification identity");
+  }
   return {
     schema: "imp24d-qualification-semantic-projection-v1",
     qualification: {
       schema: freeze.schema,
-      experimentId: freeze.experimentId,
+      experimentId: IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
       candidateOrderSha256: freeze.candidateOrderSha256,
       corpusBundleSha256: freeze.corpusBundleSha256,
       corpusSnapshotSha256: freeze.corpusSnapshotSha256,
@@ -138,11 +146,76 @@ export function buildImp24DQualificationSemanticProjection(args: {
 }
 
 export function imp24DQualificationSemanticProjectionSha256(args: {
-  freeze: QualificationFreezeV3;
+  freeze: QualificationFreezeV3 | LegacyQualificationFreezeV3;
   candidateAvailability: CandidateAvailabilityV3;
   calls: readonly [Imp24DTransportSemanticCallBindingV1, Imp24DTransportSemanticCallBindingV1];
 }): string {
   return hashCanonical(buildImp24DQualificationSemanticProjection(args));
+}
+
+export type Imp24EQualificationSemanticProjectionV1 = {
+  schema: "imp24e-qualification-semantic-projection-v1";
+  qualification: Pick<QualificationFreezeV3,
+    | "schema"
+    | "experimentId"
+    | "candidateOrderSha256"
+    | "candidateAvailabilitySemanticSha256"
+    | "corpusBundleSha256"
+    | "corpusSnapshotSha256"
+    | "corpusCertificationSha256"
+    | "thresholdsSha256"
+    | "thresholdBytesSha256"
+    | "schemaHashesSha256"
+    | "promptSourceHashesSha256"
+    | "preparedCasesSha256"
+    | "scheduleSha256"
+    | "maxParallel"
+    | "baseMaximumCalls"
+    | "hardMaximumCalls"
+  >;
+  candidateAvailability: CandidateAvailabilitySemanticProjectionV3;
+  calls: [Imp24DTransportSemanticCallBindingV1, Imp24DTransportSemanticCallBindingV1];
+};
+
+/** Fresh IMP-24E fixed-call binding. Unlike the retained IMP-24D projection
+ * above, this projection cannot change when only cache provenance changes. */
+export function buildImp24EQualificationSemanticProjection(args: {
+  freeze: QualificationFreezeV3;
+  candidateAvailability: CandidateAvailabilityV3;
+  calls: readonly [Imp24DTransportSemanticCallBindingV1, Imp24DTransportSemanticCallBindingV1];
+}): Imp24EQualificationSemanticProjectionV1 {
+  const freeze = args.freeze;
+  return {
+    schema: "imp24e-qualification-semantic-projection-v1",
+    qualification: {
+      schema: freeze.schema,
+      experimentId: freeze.experimentId,
+      candidateOrderSha256: freeze.candidateOrderSha256,
+      candidateAvailabilitySemanticSha256: freeze.candidateAvailabilitySemanticSha256,
+      corpusBundleSha256: freeze.corpusBundleSha256,
+      corpusSnapshotSha256: freeze.corpusSnapshotSha256,
+      corpusCertificationSha256: freeze.corpusCertificationSha256,
+      thresholdsSha256: freeze.thresholdsSha256,
+      thresholdBytesSha256: freeze.thresholdBytesSha256,
+      schemaHashesSha256: freeze.schemaHashesSha256,
+      promptSourceHashesSha256: freeze.promptSourceHashesSha256,
+      preparedCasesSha256: freeze.preparedCasesSha256,
+      scheduleSha256: freeze.scheduleSha256,
+      maxParallel: freeze.maxParallel,
+      baseMaximumCalls: freeze.baseMaximumCalls,
+      hardMaximumCalls: freeze.hardMaximumCalls,
+    },
+    candidateAvailability: candidateAvailabilitySemanticProjectionV3(args.candidateAvailability),
+    calls: [args.calls[0], args.calls[1]],
+  };
+}
+
+export function imp24EQualificationSemanticProjectionSha256(args: {
+  freeze: QualificationFreezeV3;
+  candidateAvailability: CandidateAvailabilityV3;
+  calls: readonly [Imp24DTransportSemanticCallBindingV1, Imp24DTransportSemanticCallBindingV1];
+}): string {
+  return hashCanonical(buildImp24EQualificationSemanticProjection(args));
 }
 
 export type Imp24DBoundedCorrectionCommitProofV1 = {

@@ -26,6 +26,7 @@ import {
   IMP24_CORPUS_EXPECTED_COUNTS,
   IMP24_ROLE_QUALIFICATION_ID,
   IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
   certifyImp24Corpora,
   type Imp24CorpusBundle,
   type Imp24CorpusCertification,
@@ -50,6 +51,10 @@ export const IMP24_ROLE_QUALIFICATION_REQUEST_SCHEMA = "imp24-role-qualification
 export const IMP24_ROLE_QUALIFICATION_RECEIPT_SCHEMA = "imp24-role-qualification-execution-receipt-v3" as const;
 export const IMP24_ROLE_QUALIFICATION_ATTEMPT_SCHEMA = "imp24-role-qualification-attempt-v3" as const;
 export const IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA = "imp24-role-candidate-availability-v3" as const;
+export const IMP24_ROLE_QUALIFICATION_AVAILABILITY_SEMANTIC_SCHEMA =
+  "imp24-role-candidate-availability-semantic-v1" as const;
+export const IMP24_ROLE_QUALIFICATION_AVAILABILITY_PROVENANCE_SCHEMA =
+  "imp24-role-candidate-availability-provenance-v1" as const;
 export const IMP24_INSTRUMENT_CERTIFICATION_BINDING_SCHEMA = "imp24-instrument-certification-binding-v1" as const;
 
 export const IMP24_MAX_PARALLEL = 2 as const;
@@ -65,6 +70,10 @@ export const IMP24_ROLE_QUALIFICATION_CALL_BUDGET_V3 = Object.freeze({
 
 const ROLES = ["reader", "source", "quiz"] as const satisfies readonly Imp24ReviewRole[];
 const SHA256 = /^[a-f0-9]{64}$/;
+/** Mirrors the byte-frozen candidate-availability policy. The live discovery
+ * boundary applies the policy directly; the model-free planner uses this
+ * bound when validating its retained provenance projection. */
+const IMP24_FROZEN_CANDIDATE_AVAILABILITY_FUTURE_SKEW_SECONDS = 300;
 export const IMP24_REQUIRED_ROLE_QUALIFIERS: Readonly<Record<Imp24ReviewRole, number>> = Object.freeze({
   reader: 2,
   source: 2,
@@ -185,19 +194,73 @@ export type CandidateAvailabilityEntryV3 = QualificationProfileV3 & {
   modelListed: boolean;
   visible: boolean;
   effortSupported: boolean;
+  /** Required on newly materialized IMP-24E artifacts. Optional in the
+   * TypeScript surface solely so archived IMP-24D JSON fixtures remain
+   * readable by the explicit legacy verifier. */
+  reasonCode?: CandidateAvailabilityReasonCodeV3;
+  /** Human-readable diagnostics only. This value is deliberately excluded
+   * from the behavior-affecting semantic projection. */
   reason: string;
 };
+
+export type CandidateAvailabilityReasonCodeV3 =
+  | "AVAILABLE"
+  | "MODEL_NOT_LISTED"
+  | "MODEL_NOT_VISIBLE"
+  | "EFFORT_UNSUPPORTED";
 
 export type CandidateAvailabilityV3 = {
   schema: typeof IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA;
   experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   source: "codex-local-models-cache";
+  sourceFile?: string;
   sourceBytesSha256: string;
   sourceFetchedAt: string;
+  sourceQualifiedAt?: string;
+  sourceAgeSeconds?: number;
+  /** Cache client_version: the Codex CLI version that fetched this cache.
+   * The currently qualified executable remains separately retained by the
+   * live preflight's cliVersion field. */
+  cliVersion?: string;
   policyBytesSha256: string;
   candidateOrderSha256: string;
   entries: CandidateAvailabilityEntryV3[];
+  semanticSha256?: string;
+  provenanceSha256?: string;
+  /** Legacy IMP-24D full-snapshot identity. It intentionally remains
+   * provenance-sensitive so archived evidence can still be reverified. New
+   * qualification state must use semanticSha256 instead. */
   availabilitySha256: string;
+};
+
+export type CandidateAvailabilitySemanticProjectionV3 = {
+  schema: typeof IMP24_ROLE_QUALIFICATION_AVAILABILITY_SEMANTIC_SCHEMA;
+  availabilitySchemaVersion: typeof IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA;
+  candidateOrderSha256: string;
+  availabilityPolicySha256: string;
+  orderedCandidates: Array<Pick<
+    CandidateAvailabilityEntryV3,
+    | "role"
+    | "ordinal"
+    | "profileId"
+    | "model"
+    | "effort"
+    | "status"
+    | "modelListed"
+    | "visible"
+    | "effortSupported"
+    | "reasonCode"
+  >>;
+};
+
+export type CandidateAvailabilityProvenanceProjectionV3 = {
+  schema: typeof IMP24_ROLE_QUALIFICATION_AVAILABILITY_PROVENANCE_SCHEMA;
+  cacheSourceFile: string;
+  rawCacheBytesSha256: string;
+  cacheFetchedAt: string;
+  cacheAgeSeconds: number;
+  cacheQualifiedAt: string;
+  cliVersion: string;
 };
 
 export type PreparedQualificationCaseV3 = {
@@ -377,7 +440,9 @@ export type QualificationFreezeV3 = {
   schema: typeof IMP24_ROLE_QUALIFICATION_FREEZE_SCHEMA;
   experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   candidateOrderSha256: string;
+  /** Compatibility alias for candidateAvailabilitySemanticSha256. */
   candidateAvailabilitySha256: string;
+  candidateAvailabilitySemanticSha256: string;
   candidateAvailabilitySnapshotSha256: string;
   corpusBundleSha256: string;
   corpusSnapshotSha256: string;
@@ -397,6 +462,16 @@ export type QualificationFreezeV3 = {
   baseMaximumCalls: typeof IMP24_BASE_MAXIMUM_CALLS;
   hardMaximumCalls: typeof IMP24_HARD_MAXIMUM_CALLS;
   freezeSha256: string;
+};
+
+/** Runtime shape of the already-published IMP-24D freeze. This exists only so
+ * archived evidence can be deterministically reverified without pretending
+ * its provenance-sensitive availability binding is the new protocol. */
+export type LegacyQualificationFreezeV3 = Omit<
+  QualificationFreezeV3,
+  "candidateAvailabilitySemanticSha256" | "experimentId"
+> & {
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID;
 };
 
 export type QualificationAttemptV3 = {
@@ -512,10 +587,83 @@ export function instrumentCertificationBindingSha256(
   return hashCanonical(value);
 }
 
-export function candidateAvailabilitySha256(
-  value: Omit<CandidateAvailabilityV3, "availabilitySha256">,
-): string {
+/** Legacy IMP-24D full candidate-availability self hash. Do not use this as a
+ * behavior identity in new qualification code. The deliberately broad input
+ * keeps exact archived objects verifiable after the IMP-24E semantic split. */
+export function candidateAvailabilitySha256(value: unknown): string {
   return hashCanonical(value);
+}
+
+export function normalizedCandidateAvailabilityReasonCodeV3(
+  entry: Pick<CandidateAvailabilityEntryV3, "modelListed" | "visible" | "effortSupported">,
+): CandidateAvailabilityReasonCodeV3 {
+  if (!entry.modelListed) return "MODEL_NOT_LISTED";
+  if (!entry.visible) return "MODEL_NOT_VISIBLE";
+  if (!entry.effortSupported) return "EFFORT_UNSUPPORTED";
+  return "AVAILABLE";
+}
+
+/** Canonical behavior-affecting availability state. Cache bytes, timestamps,
+ * paths, age, CLI provenance, experiment identity and diagnostic prose are
+ * intentionally absent. */
+export function candidateAvailabilitySemanticProjectionV3(
+  availability: Pick<
+    CandidateAvailabilityV3,
+    "schema" | "candidateOrderSha256" | "policyBytesSha256" | "entries"
+  >,
+): CandidateAvailabilitySemanticProjectionV3 {
+  return {
+    schema: IMP24_ROLE_QUALIFICATION_AVAILABILITY_SEMANTIC_SCHEMA,
+    availabilitySchemaVersion: availability.schema,
+    candidateOrderSha256: availability.candidateOrderSha256,
+    availabilityPolicySha256: availability.policyBytesSha256,
+    orderedCandidates: availability.entries.map((entry) => ({
+      role: entry.role,
+      ordinal: entry.ordinal,
+      profileId: entry.profileId,
+      model: entry.model,
+      effort: entry.effort,
+      status: entry.status,
+      modelListed: entry.modelListed,
+      visible: entry.visible,
+      effortSupported: entry.effortSupported,
+      reasonCode: entry.reasonCode ?? normalizedCandidateAvailabilityReasonCodeV3(entry),
+    })),
+  };
+}
+
+export function candidateAvailabilitySemanticSha256(
+  availability: Parameters<typeof candidateAvailabilitySemanticProjectionV3>[0],
+): string {
+  return hashCanonical(candidateAvailabilitySemanticProjectionV3(availability));
+}
+
+export function candidateAvailabilityProvenanceProjectionV3(
+  availability: CandidateAvailabilityV3,
+): CandidateAvailabilityProvenanceProjectionV3 {
+  requireCondition(typeof availability.sourceFile === "string" && availability.sourceFile.length > 0,
+    "candidate availability provenance source file is missing");
+  requireCondition(typeof availability.sourceQualifiedAt === "string",
+    "candidate availability provenance qualification timestamp is missing");
+  requireCondition(typeof availability.sourceAgeSeconds === "number",
+    "candidate availability provenance cache age is missing");
+  requireCondition(typeof availability.cliVersion === "string" && availability.cliVersion.length > 0,
+    "candidate availability provenance CLI version is missing");
+  return {
+    schema: IMP24_ROLE_QUALIFICATION_AVAILABILITY_PROVENANCE_SCHEMA,
+    cacheSourceFile: availability.sourceFile,
+    rawCacheBytesSha256: availability.sourceBytesSha256,
+    cacheFetchedAt: availability.sourceFetchedAt,
+    cacheAgeSeconds: availability.sourceAgeSeconds,
+    cacheQualifiedAt: availability.sourceQualifiedAt,
+    cliVersion: availability.cliVersion,
+  };
+}
+
+export function candidateAvailabilityProvenanceSha256(
+  availability: CandidateAvailabilityV3,
+): string {
+  return hashCanonical(candidateAvailabilityProvenanceProjectionV3(availability));
 }
 
 function validateCertification(input: RunRoleQualificationInputV3): void {
@@ -555,9 +703,13 @@ function validateProductionSeal(seal: ForwardProductionInstrumentSealV1): void {
   "production instrument seal exposes a prohibited capability");
 }
 
-function validateAvailability(availability: CandidateAvailabilityV3): void {
+function validateAvailabilityCore(
+  availability: CandidateAvailabilityV3,
+  requireImp24eSplit: boolean,
+  expectedExecutionId: string = IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+): void {
   requireCondition(availability.schema === IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA, "v3 candidate availability schema mismatch");
-  requireCondition(availability.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  requireCondition(availability.experimentId === expectedExecutionId,
     "candidate availability belongs to another execution");
   requireCondition(availability.source === "codex-local-models-cache", "candidate availability must derive from the local Codex models cache");
   requireSha(availability.sourceBytesSha256, "candidate availability source hash");
@@ -573,10 +725,46 @@ function validateAvailability(availability: CandidateAvailabilityV3): void {
     `candidate availability entry ${index} reordered or changed`);
     const derived = entry.modelListed && entry.visible && entry.effortSupported ? "AVAILABLE" : "UNAVAILABLE";
     requireCondition(entry.status === derived, `candidate availability status does not derive for ${entry.profileId}`);
+    if (requireImp24eSplit) {
+      requireCondition(entry.reasonCode === normalizedCandidateAvailabilityReasonCodeV3(entry),
+        `candidate availability reason code does not derive for ${entry.profileId}`);
+    }
     requireCondition(typeof entry.reason === "string" && entry.reason.trim().length > 0, `candidate availability reason missing for ${entry.profileId}`);
   });
   const { availabilitySha256, ...draft } = availability;
   requireCondition(candidateAvailabilitySha256(draft) === availabilitySha256, "candidate availability hash mismatch");
+  if (!requireImp24eSplit) return;
+
+  requireCondition(typeof availability.sourceFile === "string" && availability.sourceFile.trim().length > 0,
+    "candidate availability source file is missing");
+  requireCondition(typeof availability.sourceQualifiedAt === "string"
+      && Number.isFinite(Date.parse(availability.sourceQualifiedAt)),
+    "candidate availability qualification timestamp is invalid");
+  requireCondition(typeof availability.sourceAgeSeconds === "number"
+      && Number.isFinite(availability.sourceAgeSeconds)
+      && availability.sourceAgeSeconds >= -IMP24_FROZEN_CANDIDATE_AVAILABILITY_FUTURE_SKEW_SECONDS,
+  "candidate availability cache age is invalid");
+  requireCondition(typeof availability.cliVersion === "string" && availability.cliVersion.trim().length > 0,
+    "candidate availability CLI version is missing");
+  const expectedAgeSeconds = (Date.parse(availability.sourceQualifiedAt) - Date.parse(availability.sourceFetchedAt)) / 1_000;
+  requireCondition(Math.abs(expectedAgeSeconds - availability.sourceAgeSeconds) < 0.001,
+    "candidate availability cache age differs from retained timestamps");
+  requireSha(availability.semanticSha256, "candidate availability semantic hash");
+  requireSha(availability.provenanceSha256, "candidate availability provenance hash");
+  requireCondition(candidateAvailabilitySemanticSha256(availability) === availability.semanticSha256,
+    "candidate availability semantic hash mismatch");
+  requireCondition(candidateAvailabilityProvenanceSha256(availability) === availability.provenanceSha256,
+    "candidate availability provenance hash mismatch");
+}
+
+function validateAvailability(availability: CandidateAvailabilityV3): void {
+  validateAvailabilityCore(availability, true);
+}
+
+/** Explicit compatibility verifier for immutable IMP-24D availability
+ * snapshots. It is intentionally not used by new qualification plans. */
+function validateLegacyAvailability(availability: CandidateAvailabilityV3): void {
+  validateAvailabilityCore(availability, false, IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID);
 }
 
 function corpusCaseList(bundle: Imp24CorpusBundle, role: Imp24ReviewRole, partition: Imp24CorpusPartitionName): Array<{
@@ -703,9 +891,43 @@ export function buildFrozenRoleQualificationScheduleV3(
 }
 
 function buildFreeze(input: RunRoleQualificationInputV3, schedule: QualificationScheduleEntryV3[]): QualificationFreezeV3 {
+  const availabilityProjection = candidateAvailabilitySemanticProjectionV3(input.candidateAvailability);
+  const availabilitySemanticSha256 = hashCanonical(availabilityProjection);
   const draft = {
     schema: IMP24_ROLE_QUALIFICATION_FREEZE_SCHEMA,
     experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    candidateOrderSha256: hashCanonical(IMP24_ROLE_CANDIDATE_ORDER),
+    candidateAvailabilitySha256: availabilitySemanticSha256,
+    candidateAvailabilitySemanticSha256: availabilitySemanticSha256,
+    candidateAvailabilitySnapshotSha256: hashCanonical(availabilityProjection),
+    corpusBundleSha256: input.corpusBundle.substantiveBundleSha256,
+    corpusSnapshotSha256: hashCanonical(input.corpusBundle),
+    corpusCertificationSha256: hashCanonical(input.corpusCertification),
+    certificationSha256: input.certification.certificationSha256,
+    certificationSnapshotSha256: hashCanonical(input.certification),
+    productionInstrumentSealSha256: input.productionInstrumentSeal.sealSha256,
+    productionInstrumentSealSnapshotSha256: hashCanonical(input.productionInstrumentSeal),
+    productionQualificationParitySha256: input.certification.productionQualificationParitySha256,
+    thresholdsSha256: hashCanonical(input.thresholds),
+    thresholdBytesSha256: input.thresholdBytesSha256,
+    schemaHashesSha256: hashCanonical(input.schemaHashes),
+    promptSourceHashesSha256: hashCanonical(input.promptSourceHashes),
+    preparedCasesSha256: hashCanonical(projectPreparedQualificationCasesV3(input.preparedCases)),
+    scheduleSha256: hashCanonical(schedule),
+    maxParallel: IMP24_MAX_PARALLEL,
+    baseMaximumCalls: IMP24_BASE_MAXIMUM_CALLS,
+    hardMaximumCalls: IMP24_HARD_MAXIMUM_CALLS,
+  } as const;
+  return Object.freeze({ ...draft, freezeSha256: hashCanonical(draft) });
+}
+
+function buildLegacyFreeze(
+  input: RunRoleQualificationInputV3,
+  schedule: QualificationScheduleEntryV3[],
+): LegacyQualificationFreezeV3 {
+  const draft = {
+    schema: IMP24_ROLE_QUALIFICATION_FREEZE_SCHEMA,
+    experimentId: IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
     candidateOrderSha256: hashCanonical(IMP24_ROLE_CANDIDATE_ORDER),
     candidateAvailabilitySha256: input.candidateAvailability.availabilitySha256,
     candidateAvailabilitySnapshotSha256: hashCanonical(input.candidateAvailability),
@@ -734,9 +956,13 @@ function assertFrozenInput(input: RunRoleQualificationInputV3, freeze: Qualifica
   requireCondition(input.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     "v3 successor execution identity drifted");
   requireCondition(hashCanonical(IMP24_ROLE_CANDIDATE_ORDER) === freeze.candidateOrderSha256, "candidate order changed after freeze");
-  requireCondition(input.candidateAvailability.availabilitySha256 === freeze.candidateAvailabilitySha256, "candidate availability changed after freeze");
-  requireCondition(hashCanonical(input.candidateAvailability) === freeze.candidateAvailabilitySnapshotSha256,
-    "candidate availability contents changed after freeze");
+  const currentAvailabilitySemanticSha256 = candidateAvailabilitySemanticSha256(input.candidateAvailability);
+  requireCondition(currentAvailabilitySemanticSha256 === freeze.candidateAvailabilitySemanticSha256
+      && currentAvailabilitySemanticSha256 === freeze.candidateAvailabilitySha256,
+  "candidate availability semantics changed after freeze");
+  requireCondition(hashCanonical(candidateAvailabilitySemanticProjectionV3(input.candidateAvailability))
+      === freeze.candidateAvailabilitySnapshotSha256,
+  "candidate availability semantic projection changed after freeze");
   requireCondition(input.corpusBundle.substantiveBundleSha256 === freeze.corpusBundleSha256, "corpus bundle changed after freeze");
   requireCondition(hashCanonical(input.corpusBundle) === freeze.corpusSnapshotSha256, "corpus gold/case contents changed after freeze");
   requireCondition(hashCanonical(input.corpusCertification) === freeze.corpusCertificationSha256, "corpus certification changed after freeze");
@@ -773,6 +999,25 @@ export function buildRoleQualificationPlanV3(input: RunRoleQualificationInputV3)
   const freeze = buildFreeze(input, schedule);
   assertFrozenInput(input, freeze);
   return { freeze, schedule };
+}
+
+/** Exact IMP-24D planner retained solely for archived smoke/evidence
+ * verification. New execution code must call buildRoleQualificationPlanV3. */
+export function buildLegacyRoleQualificationPlanV3(input: RunRoleQualificationInputV3): {
+  freeze: LegacyQualificationFreezeV3;
+  schedule: QualificationScheduleEntryV3[];
+} {
+  requireCondition((input.experimentId as string) === IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
+    "wrong archived v3 successor execution identity");
+  requireSha(input.thresholdBytesSha256, "threshold bytes hash");
+  validateThresholds(input.thresholds);
+  validateProductionSeal(input.productionInstrumentSeal);
+  validateLegacyAvailability(input.candidateAvailability);
+  validateCorpus(input);
+  validatePreparedCases(input);
+  validateCertification(input);
+  const schedule = buildFrozenRoleQualificationScheduleV3(input.preparedCases);
+  return { freeze: buildLegacyFreeze(input, schedule), schedule };
 }
 
 export function buildQualificationExecutionRequestV3(

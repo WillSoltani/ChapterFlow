@@ -11,7 +11,7 @@
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24ProductionQualificationParity.ts"
     },
     {
-      "bytesSha256": "e46d40f1623fab52cd75e1fa3478af8a8fb06c344eac7aeb7b2482e52600c3c4",
+      "bytesSha256": "b0505a12e854fdc1a115dbab1a92a897628993a2dafc702c86197b79e040b852",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/roleQualificationRunnerV3.ts"
     },
     {
@@ -19,7 +19,7 @@
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/reviewEvidenceEnvelope.ts"
     },
     {
-      "bytesSha256": "2ddcb268690338d647aabc9bc4d8537b9e58655391ff0061afd69e0ae591db19",
+      "bytesSha256": "bc9b29e92aa846f7c4628398da6975e81fc3ec79a5da17191b9c485aad827b6d",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/reviewModelOutputV2.ts"
     },
     {
@@ -31,15 +31,15 @@
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardReviewerExecutor.ts"
     },
     {
-      "bytesSha256": "6f460ab7e3b86ff8e4b0a8e5ce06b5f1d7af793520f05e185a94186cabd01cbe",
+      "bytesSha256": "e100bf25a7f3ff5aadfa955d862f528874d0453ba8855208f157f0a8c4ba8522",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleAssignmentFreezeV3.ts"
     },
     {
-      "bytesSha256": "b1c7d02ddcc816da21b1835b103069aacf0b499ea856b4329b0da50cba4a5c45",
+      "bytesSha256": "00c40323800cc2d35a4ca7ea22631fffae348652ff8e289b459d4ff2d9935530",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts"
     },
     {
-      "bytesSha256": "c394f104856cb9e9101da58ea3d793722978c8109402fe1140db139780af0e7c",
+      "bytesSha256": "29bc6dca9a456c72891016e668efca25f3bdb124f9a4cc36533bc7d6321b996a",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts"
     },
     {
@@ -598,7 +598,7 @@
     }
   },
   "modelCalls": 0,
-  "paritySha256": "075d4e0ca149a88ca4867832d65b2eb40afc2eb6f6b330975dea58655465c546",
+  "paritySha256": "b710a85d0865a7903da1719ab6fd9b67cf1eb437ece20d2b66bbafb27f149959",
   "protocol": "review-evidence-envelope-v1",
   "schema": "imp24-production-qualification-parity-v1",
   "status": "VERIFIED_SHARED_IMPLEMENTATION"

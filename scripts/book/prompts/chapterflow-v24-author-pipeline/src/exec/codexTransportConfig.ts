@@ -7,9 +7,7 @@
  * qualification, smoke evaluation, diagnostics, or process execution policy.
  */
 
-import { createHash } from "node:crypto";
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { existsSync, readFileSync } from "node:fs";
 
 import type {
   CodexSandboxV1,
@@ -26,101 +24,129 @@ export const CODEX_EXEC_REQUIRED_FLAGS_BASE: readonly string[] = [
   "--sandbox", "-c", "--ignore-user-config", "--ignore-rules", "--output-last-message",
 ];
 
-const CODEX_TRANSPORT_SCHEMA_FILENAME_PREFIX = "codex-output-schema.transport";
-const SCHEMA_MAP_KEYS = new Set([
-  "$defs", "definitions", "dependentSchemas", "patternProperties", "properties",
-]);
-const SCHEMA_ARRAY_KEYS = new Set(["allOf", "anyOf", "oneOf", "prefixItems"]);
-const SCHEMA_SINGLE_KEYS = new Set([
-  "additionalItems", "additionalProperties", "contains", "contentSchema", "else", "if",
-  "items", "not", "propertyNames", "then", "unevaluatedItems", "unevaluatedProperties",
-]);
+/** Exact keyword subset proven by the installed Codex structured-output path
+ * and the earlier successful Stage-Q probe. Validation keywords that are not
+ * in this set stay in deterministic post-parse validators. */
+export const CODEX_TRANSPORT_SUPPORTED_SCHEMA_KEYWORDS = Object.freeze([
+  "$schema",
+  "$id",
+  "title",
+  "description",
+  "type",
+  "additionalProperties",
+  "required",
+  "properties",
+  "items",
+  "enum",
+  "minItems",
+  "maxItems",
+  "minimum",
+  "maximum",
+  "multipleOf",
+  "pattern",
+  "format",
+  "$defs",
+  "$ref",
+  "anyOf",
+] as const);
 
-function sha256Hex(bytes: string): string {
-  return createHash("sha256").update(bytes).digest("hex");
-}
+const SUPPORTED_SCHEMA_KEYWORDS = new Set<string>(CODEX_TRANSPORT_SUPPORTED_SCHEMA_KEYWORDS);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
-function cloneLiteral(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(cloneLiteral);
-  if (!isRecord(value)) return value;
-  return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, cloneLiteral(child)]));
+function schemaTypeIncludes(value: unknown, expected: string): boolean {
+  return value === expected || Array.isArray(value) && value.includes(expected);
 }
 
-/** Project one canonical JSON Schema into the strict subset accepted by the
- * ChatGPT-authenticated Codex transport. The production schema is never
- * modified: this removes only the provider-rejected `uniqueItems` assertion
- * from an ephemeral execution copy. The canonical post-parse validators still
- * enforce uniqueness, so an output with duplicates remains invalid and gets no
- * retry or favorable reinterpretation. */
-function projectCodexTransportSchemaNode(value: unknown): { value: unknown; removedUniqueItems: number } {
-  if (!isRecord(value)) return { value, removedUniqueItems: 0 };
-
-  let removedUniqueItems = 0;
-  const projectedEntries: Array<[string, unknown]> = [];
-  for (const [key, child] of Object.entries(value)) {
-    if (key === "uniqueItems") {
-      removedUniqueItems += 1;
-      continue;
-    }
-    if (SCHEMA_MAP_KEYS.has(key) && isRecord(child)) {
-      const projectedMapEntries: Array<[string, unknown]> = [];
-      for (const [name, childSchema] of Object.entries(child)) {
-        const result = projectCodexTransportSchemaNode(childSchema);
-        removedUniqueItems += result.removedUniqueItems;
-        projectedMapEntries.push([name, result.value]);
-      }
-      projectedEntries.push([key, Object.fromEntries(projectedMapEntries)]);
-      continue;
-    }
-    if (key === "dependencies" && isRecord(child)) {
-      const projectedDependencyEntries: Array<[string, unknown]> = [];
-      for (const [name, dependency] of Object.entries(child)) {
-        if (Array.isArray(dependency)) {
-          projectedDependencyEntries.push([name, cloneLiteral(dependency)]);
-          continue;
-        }
-        const result = projectCodexTransportSchemaNode(dependency);
-        removedUniqueItems += result.removedUniqueItems;
-        projectedDependencyEntries.push([name, result.value]);
-      }
-      projectedEntries.push([key, Object.fromEntries(projectedDependencyEntries)]);
-      continue;
-    }
-    if (SCHEMA_ARRAY_KEYS.has(key) && Array.isArray(child)) {
-      const projectedSchemas = child.map((childSchema) => {
-        const result = projectCodexTransportSchemaNode(childSchema);
-        removedUniqueItems += result.removedUniqueItems;
-        return result.value;
-      });
-      projectedEntries.push([key, projectedSchemas]);
-      continue;
-    }
-    if (SCHEMA_SINGLE_KEYS.has(key)) {
-      if (key === "items" && Array.isArray(child)) {
-        const projectedItems = child.map((childSchema) => {
-          const result = projectCodexTransportSchemaNode(childSchema);
-          removedUniqueItems += result.removedUniqueItems;
-          return result.value;
-        });
-        projectedEntries.push([key, projectedItems]);
-      } else {
-        const result = projectCodexTransportSchemaNode(child);
-        removedUniqueItems += result.removedUniqueItems;
-        projectedEntries.push([key, result.value]);
-      }
-      continue;
-    }
-    // Unknown keywords and annotation/validation values are data, not schema
-    // containers. Deep-clone them without interpreting a property name such as
-    // `uniqueItems` inside `default`, `enum`, or `dependentRequired` as a schema
-    // assertion. This also preserves own keys named `__proto__`.
-    projectedEntries.push([key, cloneLiteral(child)]);
+function walkCodexTransportSchema(
+  value: unknown,
+  where: string,
+  inventory: Set<string>,
+  errors: string[],
+): void {
+  if (!isRecord(value)) {
+    errors.push(`${where}: schema node must be an object`);
+    return;
   }
-  return { value: Object.fromEntries(projectedEntries), removedUniqueItems };
+  for (const key of Object.keys(value)) {
+    inventory.add(key);
+    if (!SUPPORTED_SCHEMA_KEYWORDS.has(key)) {
+      errors.push(`${where}.${key}: unsupported Codex transport schema keyword ${JSON.stringify(key)}`);
+    }
+  }
+
+  if ("enum" in value && !("type" in value)) {
+    errors.push(`${where}.type: enum schema must declare an explicit type`);
+  }
+  if ("format" in value && ![
+    "date-time", "time", "date", "duration", "email", "hostname", "ipv4", "ipv6", "uuid",
+  ].includes(String(value.format))) {
+    errors.push(`${where}.format: unsupported Codex transport string format ${JSON.stringify(value.format)}`);
+  }
+
+  if (schemaTypeIncludes(value.type, "object")) {
+    if (!isRecord(value.properties)) errors.push(`${where}.properties: object schema must define properties`);
+    if (value.additionalProperties !== false) errors.push(`${where}.additionalProperties: object schema must set false`);
+    if (!Array.isArray(value.required) || !value.required.every((item) => typeof item === "string")) {
+      errors.push(`${where}.required: object schema must require every property`);
+    } else if (isRecord(value.properties)) {
+      const propertyNames = Object.keys(value.properties).sort();
+      const required = [...value.required].sort();
+      if (JSON.stringify(required) !== JSON.stringify(propertyNames)) {
+        errors.push(`${where}.required: must contain every property exactly once`);
+      }
+    }
+  }
+
+  if (isRecord(value.properties)) {
+    for (const [name, child] of Object.entries(value.properties)) {
+      const childWhere = `${where}.properties.${name}`;
+      if (!isRecord(child)) {
+        errors.push(`${childWhere}: property schema must be an object`);
+        continue;
+      }
+      if (!("type" in child) && !("$ref" in child) && !("anyOf" in child)) {
+        errors.push(`${childWhere}: property schema must declare type, $ref, or anyOf`);
+      }
+      walkCodexTransportSchema(child, childWhere, inventory, errors);
+    }
+  }
+  if (isRecord(value.$defs)) {
+    for (const [name, child] of Object.entries(value.$defs)) {
+      walkCodexTransportSchema(child, `${where}.$defs.${name}`, inventory, errors);
+    }
+  }
+  if (schemaTypeIncludes(value.type, "array")) {
+    if (!isRecord(value.items)) errors.push(`${where}.items: array schema must define one item schema`);
+    else {
+      if (!("type" in value.items) && !("$ref" in value.items) && !("anyOf" in value.items)) {
+        errors.push(`${where}.items: item schema must declare type, $ref, or anyOf`);
+      }
+      walkCodexTransportSchema(value.items, `${where}.items`, inventory, errors);
+    }
+  }
+  if (Array.isArray(value.anyOf)) {
+    value.anyOf.forEach((child, index) =>
+      walkCodexTransportSchema(child, `${where}.anyOf[${index}]`, inventory, errors));
+  }
+}
+
+export function codexTransportSchemaKeywordInventory(schema: unknown): string[] {
+  const inventory = new Set<string>();
+  walkCodexTransportSchema(schema, "$", inventory, []);
+  return [...inventory].sort();
+}
+
+export function codexTransportSchemaCompatibilityErrors(schema: unknown): string[] {
+  const inventory = new Set<string>();
+  const errors: string[] = [];
+  walkCodexTransportSchema(schema, "$", inventory, errors);
+  if (isRecord(schema) && schema.type !== "object") {
+    errors.unshift(`$.type: root output schema must have type "object"`);
+  }
+  return errors;
 }
 
 export type CodexTransportOutputSchemaProjection = {
@@ -130,9 +156,9 @@ export type CodexTransportOutputSchemaProjection = {
   removedUniqueItems: number;
 };
 
-/** Purely derive the exact schema path and bytes Codex should receive. The
- * descriptor is also used by retained-evidence verification so the recorded
- * manifest remains a truthful description of the actual process argv. */
+/** Validate and return the canonical model-facing schema. IMP-24E removes
+ * provider-incompatible keywords from the committed schemas themselves, so no
+ * ephemeral mutation may hide a future compatibility regression. */
 export function describeCodexTransportOutputSchema(args: {
   outputSchemaPath: string;
   lastMessagePath: string;
@@ -152,35 +178,24 @@ export function describeCodexTransportOutputSchema(args: {
     );
   }
   if (!isRecord(parsed)) throw new ExecPreflightError("output schema must be a JSON object");
-  const projected = projectCodexTransportSchemaNode(parsed);
-  if (projected.removedUniqueItems === 0) return {
+  const errors = codexTransportSchemaCompatibilityErrors(parsed);
+  if (errors.length > 0) {
+    throw new ExecPreflightError(`output schema is not Codex-transport-compatible: ${errors.join("; ")}`);
+  }
+  return {
     canonicalPath: args.outputSchemaPath,
     transportPath: args.outputSchemaPath,
     projectedBytes: null,
     removedUniqueItems: 0,
   };
-  const bytes = `${JSON.stringify(projected.value, null, 2)}\n`;
-  const path = resolve(dirname(args.lastMessagePath),
-    `${CODEX_TRANSPORT_SCHEMA_FILENAME_PREFIX}.${sha256Hex(bytes)}.json`);
-  return {
-    canonicalPath: args.outputSchemaPath,
-    transportPath: path,
-    projectedBytes: bytes,
-    removedUniqueItems: projected.removedUniqueItems,
-  };
 }
 
-/** Materialize only the ephemeral provider projection. The canonical schema
- * is never modified; the session cleanup removes this private 0600 file. */
+/** Return the validated canonical schema path. */
 export function codexTransportOutputSchemaPath(args: {
   outputSchemaPath: string;
   lastMessagePath: string;
 }): string {
-  const projection = describeCodexTransportOutputSchema(args);
-  if (projection.projectedBytes !== null) {
-    writeFileSync(projection.transportPath, projection.projectedBytes, { encoding: "utf8", mode: 0o600 });
-  }
-  return projection.transportPath;
+  return describeCodexTransportOutputSchema(args).transportPath;
 }
 
 /** Build the hermetic `codex exec` argv. Flag order is FIXED (manifests diff

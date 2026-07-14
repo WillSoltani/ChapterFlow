@@ -882,6 +882,15 @@ function cachedGoldBrokerRig(base: string) {
     sourceHash,
     chapters: sourceEvidence,
   });
+  const expectedComponentInventory = {
+    examples: expectedChapters.length,
+    quiz_questions: expectedChapters.length,
+    review_cards: expectedChapters.length,
+    implementation_items: expectedChapters.length,
+    exercises: expectedChapters.length,
+    memorable_lines: expectedChapters.length,
+    other: {},
+  };
   const calls = instrument.calls.map((fixed, index) => {
     const cwd = resolve(phaseDir, "workspaces", fixed.callId);
     mkdirSync(cwd, { recursive: true });
@@ -902,6 +911,7 @@ function cachedGoldBrokerRig(base: string) {
       sourceHash,
       dispatchReceiptSha256: String(index + 4).repeat(64),
       expectedChapters,
+      expectedComponentInventory,
       blindRaterRole: fixed.evaluationRole === "blind-rater" ? (index === 0 ? "primary" as const : "verification" as const) : null,
       sourceAwareExternalAccuracy: sourceProof,
       expectedSourceLaneEvidence: sourceEvidence,
@@ -924,6 +934,7 @@ function seedCachedGoldCall(rig: ReturnType<typeof cachedGoldBrokerRig>, callInd
     sourceHash: call.sourceHash,
     dispatchReceiptSha256: call.dispatchReceiptSha256,
     expectedChaptersSha256: hashCanonical(call.expectedChapters),
+    expectedComponentInventorySha256: hashCanonical(call.expectedComponentInventory),
     sourceAwareExternalAccuracyProofSha256: call.sourceAwareExternalAccuracy.proofSha256,
     artifacts: [],
   };
@@ -1030,6 +1041,15 @@ test("production gold broker revalidates a cached blind result and makes zero do
       sourceHash,
       chapters: sourceEvidence,
     });
+    const expectedComponentInventory = {
+      examples: expectedChapters.length,
+      quiz_questions: expectedChapters.length,
+      review_cards: expectedChapters.length,
+      implementation_items: expectedChapters.length,
+      exercises: expectedChapters.length,
+      memorable_lines: expectedChapters.length,
+      other: {},
+    };
     const calls = instrument.calls.map((fixed, index) => {
       const cwd = resolve(phaseDir, "workspaces", fixed.callId);
       mkdirSync(cwd, { recursive: true });
@@ -1050,6 +1070,7 @@ test("production gold broker revalidates a cached blind result and makes zero do
         sourceHash,
         dispatchReceiptSha256: String(index + 4).repeat(64),
         expectedChapters,
+        expectedComponentInventory,
         blindRaterRole: fixed.evaluationRole === "blind-rater" ? (index === 0 ? "primary" as const : "verification" as const) : null,
         sourceAwareExternalAccuracy: sourceProof,
         expectedSourceLaneEvidence: sourceEvidence,
@@ -1068,6 +1089,7 @@ test("production gold broker revalidates a cached blind result and makes zero do
       sourceHash: first.sourceHash,
       dispatchReceiptSha256: first.dispatchReceiptSha256,
       expectedChaptersSha256: hashCanonical(first.expectedChapters),
+      expectedComponentInventorySha256: hashCanonical(first.expectedComponentInventory),
       sourceAwareExternalAccuracyProofSha256: first.sourceAwareExternalAccuracy.proofSha256,
       artifacts: [],
     };

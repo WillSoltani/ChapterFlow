@@ -137,6 +137,16 @@ import {
   runImp24DTransportSmoke,
 } from "../../orchestrator/forwardTransportSmokeCampaignV3.js";
 import {
+  runImp24ESchemaProbes,
+  type Imp24ESchemaProbeCycleNumber,
+  type RunImp24ESchemaProbeArgs,
+} from "../../orchestrator/imp24eSchemaProbe.js";
+import {
+  runImp24ETransportSmoke,
+  type Imp24ETransportSmokeCycleNumber,
+  type RunImp24ETransportSmokeArgs,
+} from "../../orchestrator/imp24eTransportSmoke.js";
+import {
   materializeImp24DTransportMechanicalCorrection,
   type Imp24DTransportMechanicalDefectClassV1,
 } from "../../orchestrator/forwardTransportSmokeEvidenceV3.js";
@@ -178,6 +188,10 @@ const USAGE =
   `         role-qualification-calibrate | role-qualification-holdout | role-qualification-attest-calibration\n` +
   `       IMP-24 live qualification (ChatGPT-authenticated codex exec; exact retained\n` +
   `       V3 artifacts; require literal --execute-live):\n` +
+  `         imp24e-schema-probes --execute-live --head-sha SHA --workflow-run-id ID [--json]\n` +
+  `         imp24e-schema-probes-r2 --execute-live --head-sha SHA --workflow-run-id ID [--json]\n` +
+  `         imp24e-transport-smoke --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--json]\n` +
+  `         imp24e-transport-smoke-r2 --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--json]\n` +
   `         imp24-transport-smoke-v3 --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--json]\n` +
   `         imp24-transport-smoke-v3-r2 --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--json]\n` +
   `         imp24-materialize-transport-correction-diagnosis --write --defect-class CLASS --rationale TEXT [--json]\n` +
@@ -230,7 +244,14 @@ const LIVE_QUALIFICATION_SUBVERBS: ReadonlySet<string> = new Set([
   "role-qualification-holdout",
   "imp24-transport-smoke-v3",
   "imp24-transport-smoke-v3-r2",
+  "imp24e-transport-smoke",
+  "imp24e-transport-smoke-r2",
   "imp24-role-qualification-v3",
+]);
+
+const IMP24E_SCHEMA_PROBE_SUBVERBS: ReadonlySet<string> = new Set([
+  "imp24e-schema-probes",
+  "imp24e-schema-probes-r2",
 ]);
 
 const LIVE_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
@@ -706,11 +727,75 @@ export type Imp24RoleQualificationCliDepsV3 = {
   discoverAvailability?: typeof discoverCandidateAvailabilityV3;
   runCampaign?: typeof runImp24RoleQualificationCampaignV3;
   runTransportSmoke?: typeof runImp24DTransportSmoke;
+  runImp24ETransportSmoke?: (
+    args: RunImp24ETransportSmokeArgs,
+  ) => ReturnType<typeof runImp24ETransportSmoke>;
+};
+
+export type Imp24ESchemaProbeCliDepsV1 = {
+  repositoryRoot?: string;
+  runCampaign?: (
+    args: RunImp24ESchemaProbeArgs,
+  ) => ReturnType<typeof runImp24ESchemaProbes>;
 };
 
 export type MigrationBakeoffCliDepsV1 = {
   imp24RoleQualificationV3?: Imp24RoleQualificationCliDepsV3;
+  imp24ESchemaProbes?: Imp24ESchemaProbeCliDepsV1;
 };
+
+async function runImp24ESchemaProbeSubverb(
+  subverb: string,
+  flags: Record<string, string | boolean>,
+  deps: Imp24ESchemaProbeCliDepsV1 = {},
+): Promise<number> {
+  // Literal dry barrier precedes clock, GitHub, auth, filesystem, or model work.
+  if (flags["execute-live"] !== true) {
+    console.error(`${subverb}: refusing schema-probe calls without literal --execute-live`);
+    return 2;
+  }
+  const allowedFlags = new Set(["execute-live", "head-sha", "workflow-run-id", "json"]);
+  const unauthorized = Object.keys(flags).filter((key) => !allowedFlags.has(key));
+  if (unauthorized.length > 0) {
+    console.error(`${subverb}: unauthorized override(s): ${unauthorized.map((key) => `--${key}`).join(", ")}`);
+    return 2;
+  }
+  const expectedHeadSha = typeof flags["head-sha"] === "string" ? flags["head-sha"].trim() : "";
+  const workflowRunId = typeof flags["workflow-run-id"] === "string"
+    ? Number(flags["workflow-run-id"])
+    : NaN;
+  if (!/^[a-f0-9]{40}$/.test(expectedHeadSha)
+      || !Number.isSafeInteger(workflowRunId) || workflowRunId <= 0) {
+    console.error(`${subverb}: --head-sha <40 lowercase hex> and --workflow-run-id <positive integer> are required`);
+    return 2;
+  }
+  const cycle: Imp24ESchemaProbeCycleNumber = subverb === "imp24e-schema-probes" ? 1 : 2;
+  const repositoryRoot = resolve(deps.repositoryRoot ?? resolve(PIPELINE_DIR, "../../../.."));
+  const run = deps.runCampaign ?? ((args: RunImp24ESchemaProbeArgs) => runImp24ESchemaProbes(args));
+  const result = await run({
+    executeLive: true,
+    cycle,
+    expectedHeadSha,
+    workflowRunId,
+    repositoryRoot,
+  });
+  const summary = {
+    schema: "imp24e-schema-probe-cli-result-v1",
+    cycle,
+    status: result.cycleResult?.status ?? "NOT_RUN",
+    implementationHeadSha: expectedHeadSha,
+    workflowRunId,
+    roles: result.cycleResult?.results.map((probe) => ({ role: probe.role, passed: probe.passed })) ?? [],
+    brokerRequests: result.cycleResult?.brokerRequests ?? 0,
+    codexExecInvocations: result.cycleResult?.codexExecInvocations ?? 0,
+    qualificationMetricsIncluded: false,
+    modelCalls: result.modelCalls,
+    apiCalls: result.apiCalls,
+  };
+  console.log(flags.json === true ? JSON.stringify(summary, null, 2)
+    : `[migration] IMP-24E schema probes cycle ${cycle}: ${summary.status} broker=${summary.brokerRequests} codexExec=${summary.codexExecInvocations} api=0`);
+  return result.code;
+}
 
 function parseImp24Artifact<T>(path: string, label: string, retainedBytes?: Buffer): T {
   let parsed: unknown;
@@ -835,6 +920,104 @@ async function runImp24DTransportSmokeSubverb(
   };
   console.log(flags.json === true ? JSON.stringify(summary, null, 2)
     : `[migration] IMP-24D transport smoke cycle=${summary.cycle} status=${summary.status} calls=${summary.calls.length} codexExec=${summary.modelCalls} api=0`);
+  return result.code;
+}
+
+async function runImp24ETransportSmokeSubverb(
+  subverb: "imp24e-transport-smoke" | "imp24e-transport-smoke-r2",
+  flags: Record<string, string | boolean>,
+  deps: Imp24RoleQualificationCliDepsV3 = {},
+): Promise<number> {
+  // Literal first barrier: a dry or mistyped invocation cannot read artifacts,
+  // inspect auth/cache state, collect CI evidence, or cross the model boundary.
+  if (flags["execute-live"] !== true) {
+    console.error(`${subverb}: refusing the fixed two-call smoke without literal --execute-live`);
+    return 2;
+  }
+  const allowedFlags = new Set([
+    "execute-live", "head-sha", "workflow-run-id", "models-cache", "json",
+  ]);
+  const unauthorizedFlags = Object.keys(flags).filter((key) => !allowedFlags.has(key));
+  if (unauthorizedFlags.length > 0) {
+    console.error(`${subverb}: unauthorized override(s): ${unauthorizedFlags.map((key) => `--${key}`).join(", ")}`);
+    return 2;
+  }
+  const expectedHeadSha = typeof flags["head-sha"] === "string" ? flags["head-sha"].trim() : "";
+  const workflowRunId = typeof flags["workflow-run-id"] === "string"
+    ? Number(flags["workflow-run-id"])
+    : NaN;
+  if (!/^[a-f0-9]{40}$/.test(expectedHeadSha)
+      || !Number.isSafeInteger(workflowRunId) || workflowRunId <= 0) {
+    console.error(`${subverb}: --head-sha <40 lowercase hex> and --workflow-run-id <positive integer> are required`);
+    return 2;
+  }
+  if (flags["models-cache"] !== undefined && typeof flags["models-cache"] !== "string") {
+    console.error(`${subverb}: --models-cache requires a path value`);
+    return 2;
+  }
+  const requestedModelsCachePath = typeof flags["models-cache"] === "string"
+    ? flags["models-cache"].trim()
+    : (deps.modelsCachePath ?? "").trim();
+  if (!requestedModelsCachePath) {
+    console.error(`${subverb}: models cache path must be supplied by --models-cache or outer runtime context`);
+    return 2;
+  }
+  const cycle: Imp24ETransportSmokeCycleNumber = subverb === "imp24e-transport-smoke" ? 1 : 2;
+  const repositoryRoot = resolve(deps.repositoryRoot ?? resolve(PIPELINE_DIR, "../../../.."));
+  const run = deps.runImp24ETransportSmoke
+    ?? ((args: RunImp24ETransportSmokeArgs) => runImp24ETransportSmoke(args));
+  const result = await run({
+    executeLive: true,
+    cycle,
+    expectedHeadSha,
+    workflowRunId,
+    repositoryRoot,
+    loadInput: () => {
+      const verifiedAtDate = (deps.clock ?? (() => new Date()))();
+      if (!(verifiedAtDate instanceof Date) || !Number.isFinite(verifiedAtDate.getTime())) {
+        throw new Error(`${subverb}: injected/current clock is invalid`);
+      }
+      const artifacts = (deps.loadArtifacts ?? loadImp24RoleQualificationCliArtifactsV3)(repositoryRoot);
+      const corpusCertification = certifyImp24Corpora(artifacts.corpusBundle);
+      const candidateAvailability = (deps.discoverAvailability ?? discoverCandidateAvailabilityV3)({
+        policy: IMP24_FROZEN_CANDIDATE_AVAILABILITY_POLICY as CandidateAvailabilityPolicyV3,
+        policyBytesSha256: IMP24_CANDIDATE_AVAILABILITY_POLICY_BYTES_SHA256,
+        modelsCachePath: resolve(requestedModelsCachePath),
+        verifiedAt: verifiedAtDate.toISOString(),
+      });
+      return {
+        experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+        corpusBundle: artifacts.corpusBundle,
+        corpusCertification,
+        certification: artifacts.certification,
+        productionInstrumentSeal: artifacts.productionInstrumentSeal,
+        candidateAvailability,
+        thresholds: artifacts.thresholds,
+        thresholdBytesSha256: artifacts.thresholdBytesSha256,
+      };
+    },
+    preflight: {},
+  });
+  const summary = {
+    schema: "imp24e-transport-smoke-cli-result-v1",
+    cycle: result.cycle,
+    status: result.report?.status ?? "NOT_RUN",
+    implementationHeadSha: expectedHeadSha,
+    workflowRunId,
+    calls: result.cycleResult?.calls.map((call) => ({
+      role: call.role,
+      sourceScheduleId: call.sourceScheduleId,
+      profileId: call.profileId,
+      passed: call.passed,
+      processDiagnosticsRelPath: call.processDiagnosticsRelPath,
+    })) ?? [],
+    qualificationMetricsIncluded: false,
+    qualificationArtifactsCreated: false,
+    modelCalls: result.modelCalls,
+    apiCalls: result.apiCalls,
+  };
+  console.log(flags.json === true ? JSON.stringify(summary, null, 2)
+    : `[migration] IMP-24E transport smoke cycle=${summary.cycle} status=${summary.status} calls=${summary.calls.length} codexExec=${summary.modelCalls} api=0`);
   return result.code;
 }
 
@@ -971,6 +1154,9 @@ async function runLiveQualificationSubverb(
   }
   if (subverb === "imp24-transport-smoke-v3" || subverb === "imp24-transport-smoke-v3-r2") {
     return runImp24DTransportSmokeSubverb(subverb, flags, imp24Deps);
+  }
+  if (subverb === "imp24e-transport-smoke" || subverb === "imp24e-transport-smoke-r2") {
+    return runImp24ETransportSmokeSubverb(subverb, flags, imp24Deps);
   }
   if (subverb === "imp24-role-qualification-v3") {
     return runImp24RoleQualificationV3Subverb(flags, imp24Deps);
@@ -1646,6 +1832,9 @@ export async function runMigrationBakeoffCli(
   }
   if (LOCAL_FORWARD_SUBVERBS.has(subverb)) {
     return runLocalForwardSubverb(subverb, flags);
+  }
+  if (IMP24E_SCHEMA_PROBE_SUBVERBS.has(subverb)) {
+    return runImp24ESchemaProbeSubverb(subverb, flags, deps.imp24ESchemaProbes);
   }
   if (LIVE_QUALIFICATION_SUBVERBS.has(subverb)) {
     return runLiveQualificationSubverb(subverb, flags, deps.imp24RoleQualificationV3);

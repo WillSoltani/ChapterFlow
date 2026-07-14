@@ -11,14 +11,20 @@ import {
 import {
   IMP24_ROLE_CANDIDATE_ORDER,
   IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
-  buildRoleQualificationPlanV3,
+  buildLegacyRoleQualificationPlanV3,
   candidateAvailabilitySha256,
   type CandidateAvailabilityV3,
+  type RunRoleQualificationInputV3,
 } from "../src/bakeoff/migration/roleQualificationRunnerV3.js";
 import {
   IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
   certifyImp24Corpora,
 } from "../src/bakeoff/migration/imp24Corpus.js";
+import {
+  createImp24QualificationEvaluator,
+  prepareImp24QualificationCases,
+} from "../src/bakeoff/migration/imp24InstrumentCertification.js";
 import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
 import {
   IMP24_REQUIRED_BRANCH,
@@ -33,7 +39,6 @@ import {
 } from "../src/orchestrator/forwardRoleQualificationCampaignV3.js";
 import {
   createLiveQualificationExecutorV3,
-  prepareLiveRoleQualificationV3,
   validateLiveExecEvidenceRootV3,
 } from "../src/orchestrator/forwardRoleQualificationLiveV3.js";
 import {
@@ -69,11 +74,58 @@ const SHA = "a".repeat(64);
 const HEAD = "1".repeat(40);
 const REPOSITORY_ROOT = resolve(PIPELINE_DIR, "../../../..");
 const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
+const IMP24D_HISTORICAL_CORRECTION_COMMIT =
+  "092832c2c5ec1932d235059e48a8ad747e90a0dc";
 const EXACT_CORRECTION_SOURCE_FILES = [
   `${PIPELINE_REL}/src/exec/codexTransportConfig.ts`,
   `${PIPELINE_REL}/src/orchestrator/forwardRoleQualificationLiveV3.ts`,
   `${PIPELINE_REL}/src/orchestrator/forwardTransportSmokeCorrectionV3.ts`,
 ] as const;
+
+type HistoricalUnpreparedSmokeInputV3 = Omit<
+  RunRoleQualificationInputV3,
+  "schemaHashes" | "promptSourceHashes" | "preparedCases"
+>;
+
+const historicalCorrectionSourceCache = new Map<string, string>();
+
+function historicalCorrectionSourceBytes(path: string): string {
+  const cached = historicalCorrectionSourceCache.get(path);
+  if (cached !== undefined) return cached;
+  const bytes = execFileSync(
+    "git",
+    ["show", `${IMP24D_HISTORICAL_CORRECTION_COMMIT}:${path}`],
+    { cwd: REPOSITORY_ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
+  );
+  historicalCorrectionSourceCache.set(path, bytes);
+  return bytes;
+}
+
+function writeHistoricalCorrectionSources(
+  write: (path: string, bytes?: string) => void,
+): void {
+  for (const path of EXACT_CORRECTION_SOURCE_FILES) {
+    write(path, historicalCorrectionSourceBytes(path));
+  }
+}
+
+function prepareHistoricalSmokeInput(input: HistoricalUnpreparedSmokeInputV3) {
+  const prepared = prepareImp24QualificationCases({
+    repositoryRoot: REPOSITORY_ROOT,
+    corpusBundle: input.corpusBundle,
+  });
+  const preparedInput = {
+    ...input,
+    schemaHashes: prepared.schemaHashes,
+    promptSourceHashes: prepared.promptSourceHashes,
+    preparedCases: prepared.preparedCases,
+  } as RunRoleQualificationInputV3;
+  buildLegacyRoleQualificationPlanV3(preparedInput);
+  return {
+    input: preparedInput,
+    evaluateOutput: createImp24QualificationEvaluator(input.corpusBundle).evaluateOutput,
+  };
+}
 
 function smokeImplementationGate(headSha: string, workflowRunId: number, verifiedAt: string) {
   return buildImp24ImplementationCiGateFromEvidence({
@@ -122,16 +174,16 @@ function preparedSmokeInput() {
     })));
   const availabilityCore = {
     schema: IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
     source: "codex-local-models-cache" as const,
     sourceBytesSha256: SHA,
     sourceFetchedAt: "2026-07-14T12:00:00.000Z",
     policyBytesSha256: SHA,
     candidateOrderSha256: hashCanonical(IMP24_ROLE_CANDIDATE_ORDER),
     entries,
-  };
+  } as unknown as Omit<CandidateAvailabilityV3, "availabilitySha256">;
   const input = {
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
     corpusBundle: artifacts.corpusBundle,
     corpusCertification: certifyImp24Corpora(artifacts.corpusBundle),
     certification: artifacts.certification,
@@ -142,10 +194,10 @@ function preparedSmokeInput() {
     },
     thresholds: artifacts.thresholds,
     thresholdBytesSha256: artifacts.thresholdBytesSha256,
-  };
+  } as unknown as HistoricalUnpreparedSmokeInputV3;
   return {
     input,
-    prepared: prepareLiveRoleQualificationV3({ repositoryRoot: REPOSITORY_ROOT, input }),
+    prepared: prepareHistoricalSmokeInput(input),
   };
 }
 
@@ -358,7 +410,7 @@ test("IMP-24D corrected lifecycle accepts a zero-invocation preflight FAIL follo
 
 test("IMP-24D semantic projection permits code-bound remints but rejects any frozen input or complete-call drift", () => {
   const { input, prepared } = preparedSmokeInput();
-  const plan = buildRoleQualificationPlanV3(prepared.input);
+  const plan = buildLegacyRoleQualificationPlanV3(prepared.input);
   const calls = (["reader", "source"] as const).map((role) => {
     const candidate = IMP24_ROLE_CANDIDATE_ORDER[role][0];
     const entry = plan.schedule.find((item) => item.role === role
@@ -464,11 +516,7 @@ test("IMP-24D bounded correction proof requires one direct child with failed evi
     mkdirSync(resolve(root, path, ".."), { recursive: true });
     writeFileSync(resolve(root, path), bytes);
   };
-  const writeExactCorrectionSources = (): void => {
-    for (const path of EXACT_CORRECTION_SOURCE_FILES) {
-      write(path, readFileSync(resolve(REPOSITORY_ROOT, path), "utf8"));
-    }
-  };
+  const writeExactCorrectionSources = (): void => writeHistoricalCorrectionSources(write);
   try {
     git(["init"]);
     git(["config", "user.name", "IMP-24D Fixture"]);
@@ -560,11 +608,7 @@ test("IMP-24D diagnosis record is owned by the correction commit and semantic dr
     mkdirSync(resolve(root, path, ".."), { recursive: true });
     writeFileSync(resolve(root, path), bytes);
   };
-  const writeExactCorrectionSources = (): void => {
-    for (const path of EXACT_CORRECTION_SOURCE_FILES) {
-      write(path, readFileSync(resolve(REPOSITORY_ROOT, path), "utf8"));
-    }
-  };
+  const writeExactCorrectionSources = (): void => writeHistoricalCorrectionSources(write);
   try {
     git(["init"]);
     git(["config", "user.name", "IMP-24D Fixture"]);
@@ -584,11 +628,11 @@ test("IMP-24D diagnosis record is owned by the correction commit and semantic dr
     const { cycleSha256: _ignored, ...actualCycleCore } = cycle;
     cycle.cycleSha256 = hashCanonical(actualCycleCore);
     const originalFixture = preparedSmokeInput();
-    const originalPlan = buildRoleQualificationPlanV3(originalFixture.prepared.input);
+    const originalPlan = buildLegacyRoleQualificationPlanV3(originalFixture.prepared.input);
     const firstBinding = buildImp24DTransportSmokeInputBinding({
       executionId: IMP24D_TRANSPORT_SMOKE_EXECUTION_ID,
       input: originalFixture.prepared.input,
-      freeze: originalPlan.freeze,
+      freeze: originalPlan.freeze as never,
       schedule: originalPlan.schedule,
     });
     cycle.qualificationSemanticProjectionSha256 = firstBinding.qualificationSemanticProjectionSha256;
@@ -672,10 +716,7 @@ test("IMP-24D diagnosis record is owned by the correction commit and semantic dr
       ...originalFixture.input,
       candidateAvailability: driftedAvailability,
     };
-    const driftedPrepared = prepareLiveRoleQualificationV3({
-      repositoryRoot: REPOSITORY_ROOT,
-      input: driftedInput,
-    });
+    const driftedPrepared = prepareHistoricalSmokeInput(driftedInput);
     let ciQueries = 0;
     let inputLoads = 0;
     let preflights = 0;
@@ -826,14 +867,14 @@ test("IMP-24D deep certified-call comparison rejects a self-rehashed replacement
     })));
   const availabilityCore = {
     schema: IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
     source: "codex-local-models-cache" as const,
     sourceBytesSha256: SHA,
     sourceFetchedAt: "2026-07-14T12:00:00.000Z",
     policyBytesSha256: SHA,
     candidateOrderSha256: hashCanonical(IMP24_ROLE_CANDIDATE_ORDER),
     entries,
-  };
+  } as unknown as Omit<CandidateAvailabilityV3, "availabilitySha256">;
   const { experimentId: _r2, ...candidateAvailability } = {
     ...availabilityCore,
     availabilitySha256: candidateAvailabilitySha256(availabilityCore),
@@ -983,8 +1024,8 @@ test("IMP-24D retained smoke resume requires deep evidence verification before C
   }
 });
 
-test("IMP-24D r2 campaign refuses before input load or successor-root creation when retained smoke PASS is absent", async () => {
-  const roots = mkTestRoots("imp24d-r2-smoke-gate");
+test("active IMP-24E campaign refuses before input load or final-root creation when final smoke PASS is absent", async () => {
+  const roots = mkTestRoots("imp24e-final-smoke-gate");
   let inputLoads = 0;
   const experimentDir = resolve(roots.base,
     "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments",
@@ -998,7 +1039,7 @@ test("IMP-24D r2 campaign refuses before input load or successor-root creation w
       experimentDir,
       loadInput: () => { inputLoads += 1; throw new Error("input crossed smoke barrier"); },
       preflight: {},
-    }), /transport-smoke PASS report is missing/);
+    }), /IMP-24E smoke cycle 1 is invalid JSON/);
     assert.equal(inputLoads, 0);
     assert.equal(existsSync(experimentDir), false);
   } finally {

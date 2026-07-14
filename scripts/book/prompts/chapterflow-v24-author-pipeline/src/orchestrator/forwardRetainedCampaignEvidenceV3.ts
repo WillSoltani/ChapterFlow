@@ -59,8 +59,10 @@ import {
   type RunForwardLiveCampaignResultV3,
 } from "./forwardLiveValidationDriver.js";
 import {
+  buildForwardGoldComponentInventory,
   buildForwardGoldEvaluatorInstrument,
   buildForwardGoldSourceAwareExternalAccuracyProof,
+  materializeForwardGoldSweepOutputSchema,
   projectForwardGoldAdjudication,
   validateForwardGoldBlindRaterOutput,
   validateForwardGoldSweepOutputBinding,
@@ -942,10 +944,12 @@ function validateGoldEvidence(
     sourceHash,
     chapters: expectedSourceLaneEvidence,
   });
+  const expectedComponentInventory = buildForwardGoldComponentInventory(finalChapters);
 
   const inspectionSha256 = hashCanonical({
     sourceHash,
     expectedChapters,
+    expectedComponentInventory,
     sourceAwareExternalAccuracyProofSha256: sourceAwareExternalAccuracy.proofSha256,
   });
   const scope = {
@@ -962,8 +966,11 @@ function validateGoldEvidence(
   const commonArtifacts = new Map<string, string>([
     ["evaluation-scope.json", sha256Hex(`${canonicalJson(scope)}\n`)],
   ]);
+  const materializedSweepSchema = materializeForwardGoldSweepOutputSchema({ expectedChapters });
   for (const asset of fixedInstrument.referenceAssets) {
-    commonArtifacts.set(asset.materializedRelPath, asset.bytesSha256);
+    commonArtifacts.set(asset.materializedRelPath, asset.role === "sweep-output-schema"
+      ? materializedSweepSchema.bytesSha256
+      : asset.bytesSha256);
   }
   const addCopiedArtifact = (relativePath: string, sourcePath: string, label: string): void => {
     commonArtifacts.set(relativePath, artifactBytesSha256(sourcePath, label));
@@ -1073,9 +1080,12 @@ function validateGoldEvidence(
     const expectedWithoutReceipt = new Map(commonArtifacts);
     const outputSchemaAsset = fixedInstrument.referenceAssets.find((asset) =>
       asset.repositoryRelPath === fixedCall.outputSchemaRelPath);
+    const expectedOutputSchemaSha256 = outputSchemaAsset === undefined
+      ? ""
+      : expectedWithoutReceipt.get(outputSchemaAsset.materializedRelPath);
     requireCondition(outputSchemaAsset !== undefined
         && outputSchemaAsset.bytesSha256 === fixedCall.outputSchemaSha256
-        && expectedWithoutReceipt.get(outputSchemaAsset.materializedRelPath) === fixedCall.outputSchemaSha256,
+        && typeof expectedOutputSchemaSha256 === "string",
       `${fixedCall.callId}: built-in output schema is not present at its exact fixed workspace path`);
     let preDispatchTask = buildForwardGoldEvaluatorBaseTask(fixedCall.prompt);
     if (fixedCall.evaluationRole === "adjudicator") {
@@ -1121,6 +1131,7 @@ function validateGoldEvidence(
         productionInstrumentSealSha256: roleFreeze.productionInstrumentSealSha256,
         sourceHash,
         expectedChapters,
+        expectedComponentInventory,
         sourceAwareExternalAccuracy,
         task: preDispatchTask,
       },
@@ -1140,12 +1151,13 @@ function validateGoldEvidence(
       taskSha256: sha256Hex(dispatchBinding.task),
       model: fixedCall.model,
       effort: fixedCall.effort,
-      outputSchemaSha256: fixedCall.outputSchemaSha256,
+      outputSchemaSha256: expectedOutputSchemaSha256,
       instrumentSha256: fixedInstrument.instrumentSha256,
       productionInstrumentSealSha256: roleFreeze.productionInstrumentSealSha256,
       sourceHash,
       dispatchReceiptSha256: dispatchBinding.receipt.dispatchReceiptSha256,
       expectedChaptersSha256: hashCanonical(expectedChapters),
+      expectedComponentInventorySha256: hashCanonical(expectedComponentInventory),
       sourceAwareExternalAccuracyProofSha256: sourceAwareExternalAccuracy.proofSha256,
       artifacts: expectedArtifacts,
     };
@@ -1185,6 +1197,7 @@ function validateGoldEvidence(
     expectedBookId: bookId,
     expectedSourceHash: sourceHash,
     expectedChapters,
+    expectedComponentInventory,
     expectedRaterRole: "primary",
     expectedDispatchReceiptSha256: dispatch[0],
   });
@@ -1192,6 +1205,7 @@ function validateGoldEvidence(
     expectedBookId: bookId,
     expectedSourceHash: sourceHash,
     expectedChapters,
+    expectedComponentInventory,
     expectedRaterRole: "verification",
     expectedDispatchReceiptSha256: dispatch[1],
   });
@@ -1199,6 +1213,7 @@ function validateGoldEvidence(
     expectedBookId: bookId,
     expectedSourceHash: sourceHash,
     expectedChapters,
+    expectedComponentInventory,
     sourceAwareExternalAccuracy,
     expectedSourceLaneEvidence,
     blindRaters: {
@@ -1207,8 +1222,10 @@ function validateGoldEvidence(
     },
   });
   validateForwardGoldSweepOutputBinding(completed[3].output, {
+    expectedBookId: bookId,
     expectedSourceHash: sourceHash,
     expectedDispatchReceiptSha256: dispatch[3],
+    expectedChapters,
   });
   const validatedGold = validateForwardGoldEvaluationArtifacts({
     bookId,

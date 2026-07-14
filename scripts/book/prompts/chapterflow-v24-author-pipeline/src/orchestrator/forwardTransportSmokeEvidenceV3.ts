@@ -15,19 +15,31 @@ import { writeFileAtomic } from "../lib/atomicWrite.js";
 import {
   IMP24_ROLE_CANDIDATE_ORDER,
   IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
+  buildLegacyRoleQualificationPlanV3,
   buildRoleQualificationPlanV3,
+  candidateAvailabilityProvenanceSha256,
+  candidateAvailabilitySemanticSha256,
   candidateAvailabilitySha256,
+  normalizedCandidateAvailabilityReasonCodeV3,
   qualificationReceiptMismatchesV3,
   type CandidateAvailabilityEntryV3,
   type CandidateAvailabilityV3,
   type QualificationExecutionReceiptV3,
 } from "../bakeoff/migration/roleQualificationRunnerV3.js";
 import {
-  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
   certifyImp24Corpora,
   type Imp24CorpusBundle,
 } from "../bakeoff/migration/imp24Corpus.js";
-import { IMP24_CERTIFICATION_ARTIFACT_PATHS } from "../bakeoff/migration/imp24InstrumentCertification.js";
+import {
+  IMP24_CERTIFICATION_ARTIFACT_PATHS,
+  prepareImp24QualificationCases,
+} from "../bakeoff/migration/imp24InstrumentCertification.js";
+import {
+  QUIZ_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+  READER_EXPERIENCE_MODEL_OUTPUT_V2_SCHEMA,
+  SOURCE_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+} from "../contracts/reviewModelOutputV2.js";
 import {
   IMP24D_TRANSPORT_SMOKE_EXECUTION_ID,
   IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID,
@@ -61,6 +73,7 @@ import {
 import {
   assertImp24DBoundedCorrectionCommit,
   collectImp24DPlannedCorrectionPaths,
+  imp24EQualificationSemanticProjectionSha256,
   imp24DQualificationSemanticProjectionSha256,
   sameImp24DBoundedCorrectionProofPaths,
   type Imp24DBoundedCorrectionCommitProofV1,
@@ -439,23 +452,38 @@ export function validateImp24DTransportSmokeInputBinding(
       && binding.calls[0].role === "reader"
       && binding.calls[1].role === "source",
   "IMP-24D transport-smoke input binding identity/shape drift");
-  const availability: CandidateAvailabilityV3 = {
+  const availability = {
     ...binding.candidateAvailability,
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
-  };
+    experimentId: IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
+  } as unknown as CandidateAvailabilityV3;
+  const hasImp24eAvailability = typeof availability.semanticSha256 === "string"
+    || typeof availability.provenanceSha256 === "string";
+  const expectedLegacyFullSha256 = hasImp24eAvailability
+    ? (() => {
+      const { availabilitySha256: _self, ...draft } = availability;
+      return candidateAvailabilitySha256(draft);
+    })()
+    : candidateAvailabilitySha256({
+      schema: availability.schema,
+      experimentId: availability.experimentId,
+      source: availability.source,
+      sourceBytesSha256: availability.sourceBytesSha256,
+      sourceFetchedAt: availability.sourceFetchedAt,
+      policyBytesSha256: availability.policyBytesSha256,
+      candidateOrderSha256: availability.candidateOrderSha256,
+      entries: availability.entries,
+    });
   requireCondition(availability.schema === IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA
       && availability.candidateOrderSha256 === hashCanonical(IMP24_ROLE_CANDIDATE_ORDER)
-      && availability.availabilitySha256 === candidateAvailabilitySha256({
-        schema: availability.schema,
-        experimentId: availability.experimentId,
-        source: availability.source,
-        sourceBytesSha256: availability.sourceBytesSha256,
-        sourceFetchedAt: availability.sourceFetchedAt,
-        policyBytesSha256: availability.policyBytesSha256,
-        candidateOrderSha256: availability.candidateOrderSha256,
-        entries: availability.entries,
-      }),
+      && availability.availabilitySha256 === expectedLegacyFullSha256,
   "IMP-24D transport-smoke candidate availability binding drift");
+  if (hasImp24eAvailability) {
+    requireCondition(typeof availability.semanticSha256 === "string"
+        && availability.semanticSha256 === candidateAvailabilitySemanticSha256(availability)
+        && typeof availability.provenanceSha256 === "string"
+        && availability.provenanceSha256 === candidateAvailabilityProvenanceSha256(availability),
+    "IMP-24E transport-smoke candidate availability semantic/provenance binding drift");
+  }
   const expectedEntries = (["reader", "source", "quiz"] as const).flatMap((role) =>
     IMP24_ROLE_CANDIDATE_ORDER[role].map((profile, ordinal) => ({ role, ordinal, ...profile })));
   requireCondition(availability.entries.length === expectedEntries.length,
@@ -468,7 +496,11 @@ export function validateImp24DTransportSmokeInputBinding(
         && actual.profileId === expected.profileId
         && actual.model === expected.model
         && actual.effort === expected.effort
-        && (actual.status === "AVAILABLE" || actual.status === "UNAVAILABLE"),
+        && (actual.status === "AVAILABLE" || actual.status === "UNAVAILABLE")
+        && (!hasImp24eAvailability
+          || actual.status === (actual.modelListed && actual.visible && actual.effortSupported
+            ? "AVAILABLE" : "UNAVAILABLE")
+            && actual.reasonCode === normalizedCandidateAvailabilityReasonCodeV3(actual)),
     `IMP-24D transport-smoke availability order/profile drift at entry ${index}`);
   }
   for (const call of binding.calls) {
@@ -503,6 +535,12 @@ export function validateImp24DTransportSmokeInputBinding(
   return availability;
 }
 
+function retainedCandidateAvailabilityIdentityV3(
+  availability: Imp24DTransportSmokeInputBindingV1["candidateAvailability"],
+): string {
+  return availability.semanticSha256 ?? availability.availabilitySha256;
+}
+
 function deriveCertifiedSmokeInputBinding(args: {
   repositoryRoot: string;
   implementationCommit: string;
@@ -510,6 +548,8 @@ function deriveCertifiedSmokeInputBinding(args: {
 }): Imp24DTransportSmokeInputBindingV1 {
   const repositoryRoot = resolve(args.repositoryRoot);
   const availability = validateImp24DTransportSmokeInputBinding(args.retained);
+  const hasImp24eAvailability = typeof availability.semanticSha256 === "string"
+    && typeof availability.provenanceSha256 === "string";
   requireCondition(GIT_SHA.test(args.implementationCommit),
     "IMP-24D committed smoke input verification requires an exact implementation commit");
   const corpusBundle = parseCommittedJson<Imp24CorpusBundle>(repositoryRoot,
@@ -525,8 +565,8 @@ function deriveCertifiedSmokeInputBinding(args: {
     args.implementationCommit, IMP24_CERTIFICATION_ARTIFACT_PATHS.thresholds,
     "IMP-24 frozen thresholds");
   const thresholds = retainedThresholds.value;
-  const unprepared: UnpreparedLiveRoleQualificationInputV3 = {
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  const unprepared = {
+    experimentId: IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
     corpusBundle,
     corpusCertification: certifyImp24Corpora(corpusBundle),
     certification,
@@ -534,9 +574,70 @@ function deriveCertifiedSmokeInputBinding(args: {
     candidateAvailability: availability,
     thresholds,
     thresholdBytesSha256: sha256Hex(retainedThresholds.bytes),
-  };
-  const prepared = prepareLiveRoleQualificationV3({ repositoryRoot, input: unprepared });
-  const plan = buildRoleQualificationPlanV3(prepared.input);
+  } as unknown as UnpreparedLiveRoleQualificationInputV3;
+  const prepared = hasImp24eAvailability
+    ? prepareLiveRoleQualificationV3({ repositoryRoot, input: unprepared })
+    : (() => {
+      // Archived IMP-24D binds the implementation commit's schema/prompt
+      // bytes, not whatever compatible schemas happen to be in the current
+      // checkout. Compile the unchanged envelopes/tasks with current pure
+      // functions, then restore those exact committed byte identities before
+      // invoking the explicit legacy planner.
+      const instrument = prepareImp24QualificationCases({ repositoryRoot, corpusBundle });
+      const schemaRel = {
+        reader: "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/reader-experience-model-output-v2.schema.json",
+        source: "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/source-integrity-model-output-v2.schema.json",
+        quiz: "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/quiz-integrity-model-output-v2.schema.json",
+      } as const;
+      const schemaHashes = {
+        reader: sha256Hex(readCommittedBytes(repositoryRoot, args.implementationCommit,
+          schemaRel.reader, "IMP-24D reader output schema")),
+        source: sha256Hex(readCommittedBytes(repositoryRoot, args.implementationCommit,
+          schemaRel.source, "IMP-24D source output schema")),
+        quiz: sha256Hex(readCommittedBytes(repositoryRoot, args.implementationCommit,
+          schemaRel.quiz, "IMP-24D quiz output schema")),
+      };
+      const promptModuleSha256 = sha256Hex(readCommittedBytes(repositoryRoot,
+        args.implementationCommit,
+        "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+        "IMP-24D reviewer task module"));
+      const promptSourceHashes = {
+        reader: hashCanonical({
+          moduleSha256: promptModuleSha256,
+          builder: "buildReaderExperienceInlineReviewTask",
+          schema: READER_EXPERIENCE_MODEL_OUTPUT_V2_SCHEMA,
+        }),
+        source: hashCanonical({
+          moduleSha256: promptModuleSha256,
+          builder: "buildSourceIntegrityInlineReviewTask",
+          schema: SOURCE_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+        }),
+        quiz: hashCanonical({
+          moduleSha256: promptModuleSha256,
+          builder: "buildQuizIntegrityInlineReviewTask",
+          schema: QUIZ_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+        }),
+      };
+      for (const role of ["reader", "source", "quiz"] as const) {
+        for (const partition of ["canary", "holdout"] as const) {
+          for (const preparedCase of instrument.preparedCases[role][partition]) {
+            preparedCase.schemaSha256 = schemaHashes[role];
+            preparedCase.promptSourceSha256 = promptSourceHashes[role];
+          }
+        }
+      }
+      return {
+        input: {
+          ...unprepared,
+          schemaHashes,
+          promptSourceHashes,
+          preparedCases: instrument.preparedCases,
+        },
+      };
+    })();
+  const plan = hasImp24eAvailability
+    ? buildRoleQualificationPlanV3(prepared.input)
+    : buildLegacyRoleQualificationPlanV3(prepared.input);
   const calls = (["reader", "source"] as const).map((role) => {
     const firstAvailable = availability.entries.find((entry) =>
       entry.role === role && entry.status === "AVAILABLE");
@@ -572,11 +673,17 @@ function deriveCertifiedSmokeInputBinding(args: {
     executionId: args.retained.executionId,
     candidateAvailability: args.retained.candidateAvailability,
     qualificationFreezeSha256: plan.freeze.freezeSha256,
-    qualificationSemanticProjectionSha256: imp24DQualificationSemanticProjectionSha256({
-      freeze: plan.freeze,
-      candidateAvailability: availability,
-      calls,
-    }),
+    qualificationSemanticProjectionSha256: hasImp24eAvailability
+      ? imp24EQualificationSemanticProjectionSha256({
+        freeze: plan.freeze as ReturnType<typeof buildRoleQualificationPlanV3>["freeze"],
+        candidateAvailability: availability,
+        calls,
+      })
+      : imp24DQualificationSemanticProjectionSha256({
+        freeze: plan.freeze,
+        candidateAvailability: availability,
+        calls,
+      }),
     certificationSha256: plan.freeze.certificationSha256,
     productionInstrumentSealSha256: plan.freeze.productionInstrumentSealSha256,
     productionQualificationParitySha256: plan.freeze.productionQualificationParitySha256,
@@ -1515,7 +1622,8 @@ export function verifyRetainedImp24DTransportSmokeCycle(args: {
       && inputBinding.productionInstrumentSealSha256 === cycle.productionInstrumentSealSha256
       && inputBinding.productionQualificationParitySha256
         === cycle.productionQualificationParitySha256
-      && inputBinding.candidateAvailability.availabilitySha256 === cycle.candidateAvailabilitySha256
+      && retainedCandidateAvailabilityIdentityV3(inputBinding.candidateAvailability)
+        === cycle.candidateAvailabilitySha256
       && inputBinding.inputBindingSha256 === cycle.inputBindingSha256
       && sha256Hex(readFileSync(inputBindingPath)) === cycle.inputBindingBytesSha256,
   `IMP-24D transport-smoke cycle ${cycleNumber} input binding differs from the cycle`);
@@ -1583,7 +1691,7 @@ export function verifyRetainedImp24DTransportSmokeCycle(args: {
       requireCondition(!stat.isSymbolicLink(),
         `IMP-24D smoke root contains prohibited symlink in ${relativeFromRepository(repositoryRoot, path)}`);
       if (stat.isDirectory()) assertNoSuccessorIdentity(path);
-      else requireCondition(!readFileSync(path).includes(IMP24_ROLE_QUALIFICATION_EXECUTION_ID),
+      else requireCondition(!readFileSync(path).includes(IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID),
         `IMP-24D smoke root retains forbidden successor r2 identity in ${relativeFromRepository(repositoryRoot, path)}`);
     }
   };
@@ -1701,7 +1809,8 @@ export function verifyRetainedImp24DTransportSmoke(args: {
     });
     requireCondition(inputBinding.executionId === cycle.executionId
         && inputBinding.qualificationFreezeSha256 === cycle.qualificationFreezeSha256
-        && inputBinding.candidateAvailability.availabilitySha256 === cycle.candidateAvailabilitySha256
+        && retainedCandidateAvailabilityIdentityV3(inputBinding.candidateAvailability)
+          === cycle.candidateAvailabilitySha256
         && inputBinding.inputBindingSha256 === cycle.inputBindingSha256
         && sha256Hex(readFileSync(inputBindingPath)) === cycle.inputBindingBytesSha256,
     `IMP-24D transport-smoke cycle ${cycle.cycle} input binding differs from the cycle`);
@@ -1770,7 +1879,7 @@ export function verifyRetainedImp24DTransportSmoke(args: {
         requireCondition(!stat.isSymbolicLink(),
           `IMP-24D smoke root contains prohibited symlink in ${relativeFromRepository(repositoryRoot, path)}`);
         if (stat.isDirectory()) assertNoSuccessorIdentity(path);
-        else requireCondition(!readFileSync(path).includes(IMP24_ROLE_QUALIFICATION_EXECUTION_ID),
+        else requireCondition(!readFileSync(path).includes(IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID),
           `IMP-24D smoke root retains forbidden successor r2 identity in ${relativeFromRepository(repositoryRoot, path)}`);
       }
     };

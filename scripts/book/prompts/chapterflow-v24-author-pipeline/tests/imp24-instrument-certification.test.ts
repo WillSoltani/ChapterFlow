@@ -44,6 +44,8 @@ import {
   IMP24_ROLE_QUALIFICATION_RECEIPT_SCHEMA,
   IMP24_ROLE_QUALIFICATION_REQUEST_SCHEMA,
   buildRoleQualificationPlanV3,
+  candidateAvailabilityProvenanceSha256,
+  candidateAvailabilitySemanticSha256,
   candidateAvailabilitySha256,
   instrumentCertificationBindingSha256,
   qualificationReceiptSha256,
@@ -143,12 +145,17 @@ function boundReceipt(request: QualificationExecutionRequestV3, rawOutput: strin
 }
 
 function allAvailable(): CandidateAvailabilityV3 {
-  const draft: Omit<CandidateAvailabilityV3, "availabilitySha256"> = {
+  const draft: Omit<CandidateAvailabilityV3,
+    "availabilitySha256" | "semanticSha256" | "provenanceSha256"> = {
     schema: "imp24-role-candidate-availability-v3",
     experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     source: "codex-local-models-cache",
+    sourceFile: "$CODEX_HOME/models_cache.json",
     sourceBytesSha256: HASH,
     sourceFetchedAt: "2026-07-13T12:00:00.000Z",
+    sourceQualifiedAt: "2026-07-13T14:00:00.000Z",
+    sourceAgeSeconds: 7_200,
+    cliVersion: "codex-cli 0.144.1",
     policyBytesSha256: HASH,
     candidateOrderSha256: hashCanonical(IMP24_ROLE_CANDIDATE_ORDER),
     entries: (["reader", "source", "quiz"] as const).flatMap((role) =>
@@ -160,10 +167,17 @@ function allAvailable(): CandidateAvailabilityV3 {
         modelListed: true,
         visible: true,
         effortSupported: true,
+        reasonCode: "AVAILABLE" as const,
         reason: "deterministic model-free plan fixture",
       }))),
   };
-  return { ...draft, availabilitySha256: candidateAvailabilitySha256(draft) };
+  const split = {
+    ...draft,
+    semanticSha256: candidateAvailabilitySemanticSha256(draft),
+    provenanceSha256: "0".repeat(64),
+  };
+  split.provenanceSha256 = candidateAvailabilityProvenanceSha256(split as CandidateAvailabilityV3);
+  return { ...split, availabilitySha256: candidateAvailabilitySha256(split) };
 }
 
 test("IMP-24 certification compiles every one of the 116 exact inline instruments deterministically", () => {

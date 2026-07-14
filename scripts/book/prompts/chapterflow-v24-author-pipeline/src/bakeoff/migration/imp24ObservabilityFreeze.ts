@@ -27,9 +27,9 @@ import {
   type Imp24BPreLiveFreeze,
 } from "./imp24PreLiveFreeze.js";
 import {
-  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   IMP24_ROLE_QUALIFICATION_PROTOCOL_ID,
   IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
 } from "./imp24Corpus.js";
 import {
   IMP24_ROLE_CANDIDATE_ORDER_SHA256,
@@ -52,7 +52,7 @@ export const IMP24D_DRAFT_PR = 401 as const;
 const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
 const REPORTS_REL = "docs/v25/reports";
 const R1_STATE_ROOT_REL = `${PIPELINE_REL}/state/migration-experiments/${IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID}`;
-const R2_STATE_ROOT_REL = `${PIPELINE_REL}/state/migration-experiments/${IMP24_ROLE_QUALIFICATION_EXECUTION_ID}`;
+const R2_STATE_ROOT_REL = `${PIPELINE_REL}/state/migration-experiments/${IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID}`;
 
 export const IMP24D_R1_CLOSURE_PATHS = Object.freeze({
   json: `${REPORTS_REL}/IMP-24C_R1_OBSERVABILITY_GAP.json`,
@@ -150,7 +150,7 @@ export type Imp24DObservabilityFreezeCore = {
     callBudgetUnchanged: true;
   };
   successor: {
-    executionId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
+    executionId: typeof IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID;
     stateRoot: typeof R2_STATE_ROOT_REL;
     stateRootCreatedByMaterializer: false;
     mayCreateBeforeTransportSmokePass: false;
@@ -409,6 +409,53 @@ function assertSemanticContinuity(args: {
   "qualification call budget changed across the observability-only recovery");
 }
 
+function verifyCurrentImplementationArtifacts(
+  repositoryRoot: string,
+  retainedRoot: string,
+): {
+  certification: ReturnType<typeof certifyImp24Instrument>;
+  currentImplementation: Imp24DObservabilityFreeze["currentImplementation"];
+} {
+  const sealPath = resolve(retainedRoot, IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH);
+  const seal = verifyRetainedForwardProductionInstrumentSeal({ repositoryRoot, outputPath: sealPath });
+  const certification = certifyImp24Instrument({
+    repositoryRoot,
+    corpusBundlePath: resolve(retainedRoot, IMP24_CERTIFICATION_ARTIFACT_PATHS.corpusBundle),
+    thresholdsPath: resolve(retainedRoot, IMP24_CERTIFICATION_ARTIFACT_PATHS.thresholds),
+    productionSealPath: sealPath,
+  });
+  const retainedCertification = readJson(retainedRoot, IMP24_CERTIFICATION_ARTIFACT_PATHS.certificationBinding,
+    "current model-free certification binding");
+  const certificationBinding = retainedCertification.value as unknown as Imp24InstrumentCertificationBinding;
+  const certificationIssues = validateImp24InstrumentCertificationBinding(certificationBinding);
+  requireCondition(certificationIssues.length === 0,
+    `retained current certification is invalid: ${certificationIssues.join("; ")}`);
+  requireCondition(canonicalJson(certificationBinding) === canonicalJson(certification.report.binding),
+    "retained current certification differs from the model-free recomputation");
+  const retainedParity = readJson(retainedRoot, IMP24_CERTIFICATION_ARTIFACT_PATHS.productionQualificationParity,
+    "current production/qualification parity");
+  requireCondition(canonicalJson(retainedParity.value)
+    === canonicalJson(certification.productionQualificationParity),
+  "retained current production/qualification parity differs from the model-free recomputation");
+  requireCondition(certification.report.binding.productionInstrumentSealSha256 === seal.sealSha256,
+    "current certification does not bind the current production seal");
+  requireCondition(certification.report.binding.productionQualificationParitySha256
+    === certification.productionQualificationParity.paritySha256,
+  "current certification does not bind the current production/qualification parity");
+
+  return {
+    certification,
+    currentImplementation: {
+      productionInstrumentSealSha256: seal.sealSha256,
+      productionInstrumentSealBytesSha256: seal.artifactBytesSha256,
+      certificationSha256: certificationBinding.certificationSha256,
+      certificationBytesSha256: sha256Hex(retainedCertification.bytes),
+      productionQualificationParitySha256: certification.productionQualificationParity.paritySha256,
+      productionQualificationParityBytesSha256: sha256Hex(retainedParity.bytes),
+    },
+  };
+}
+
 function renderMarkdown(freeze: Imp24DObservabilityFreeze): string {
   return [
     "# IMP-24D observability recovery freeze",
@@ -444,7 +491,7 @@ export function validateImp24DObservabilityFreeze(value: unknown): string[] {
       || freeze.historicalR1?.mayResume !== false || freeze.historicalR1?.mayQualifyProfiles !== false) {
     issues.push("historical r1 closure mismatch");
   }
-  if (freeze.successor?.executionId !== IMP24_ROLE_QUALIFICATION_EXECUTION_ID
+  if (freeze.successor?.executionId !== IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID
       || freeze.successor?.stateRootCreatedByMaterializer !== false
       || freeze.successor?.mayCreateBeforeTransportSmokePass !== false
       || freeze.successor?.transportSmokeRequired !== true
@@ -507,38 +554,8 @@ export function buildImp24DObservabilityFreeze(
   requireCondition(closureMarkdown.bytesSha256 === IMP24D_R1_CLOSURE_BYTES_SHA256.markdown,
     "r1 observability closure Markdown bytes drifted");
 
-  const sealPath = resolve(retainedRoot, IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH);
-  const seal = verifyRetainedForwardProductionInstrumentSeal({ repositoryRoot, outputPath: sealPath });
-  const certification = certifyImp24Instrument({
-    repositoryRoot,
-    corpusBundlePath: resolve(retainedRoot, IMP24_CERTIFICATION_ARTIFACT_PATHS.corpusBundle),
-    thresholdsPath: resolve(retainedRoot, IMP24_CERTIFICATION_ARTIFACT_PATHS.thresholds),
-    productionSealPath: sealPath,
-  });
-  const retainedCertification = readJson(retainedRoot, IMP24_CERTIFICATION_ARTIFACT_PATHS.certificationBinding,
-    "current model-free certification binding");
-  const certificationBinding = retainedCertification.value as unknown as Imp24InstrumentCertificationBinding;
-  const certificationIssues = validateImp24InstrumentCertificationBinding(certificationBinding);
-  requireCondition(certificationIssues.length === 0,
-    `retained current certification is invalid: ${certificationIssues.join("; ")}`);
-  requireCondition(canonicalJson(certificationBinding) === canonicalJson(certification.report.binding),
-    "retained current certification differs from the model-free recomputation");
-  const retainedParity = readJson(retainedRoot, IMP24_CERTIFICATION_ARTIFACT_PATHS.productionQualificationParity,
-    "current production/qualification parity");
-  requireCondition(canonicalJson(retainedParity.value)
-    === canonicalJson(certification.productionQualificationParity),
-  "retained current production/qualification parity differs from the model-free recomputation");
-  const parityBinding: ArtifactBinding = {
-    relativePath: IMP24_CERTIFICATION_ARTIFACT_PATHS.productionQualificationParity,
-    bytes: retainedParity.bytes.length,
-    bytesSha256: sha256Hex(retainedParity.bytes),
-  };
-  requireCondition(certification.report.binding.productionInstrumentSealSha256 === seal.sealSha256,
-    "current certification does not bind the current production seal");
-  requireCondition(certification.report.binding.productionQualificationParitySha256
-    === certification.productionQualificationParity.paritySha256,
-  "current certification does not bind the current production/qualification parity");
-  assertSemanticContinuity({ historical, certification });
+  const current = verifyCurrentImplementationArtifacts(repositoryRoot, retainedRoot);
+  assertSemanticContinuity({ historical, certification: current.certification });
 
   const core: Imp24DObservabilityFreezeCore = {
     schema: IMP24D_OBSERVABILITY_FREEZE_SCHEMA,
@@ -564,14 +581,7 @@ export function buildImp24DObservabilityFreeze(
       },
       closureMarkdown,
     },
-    currentImplementation: {
-      productionInstrumentSealSha256: seal.sealSha256,
-      productionInstrumentSealBytesSha256: seal.artifactBytesSha256,
-      certificationSha256: certificationBinding.certificationSha256,
-      certificationBytesSha256: sha256Hex(retainedCertification.bytes),
-      productionQualificationParitySha256: certification.productionQualificationParity.paritySha256,
-      productionQualificationParityBytesSha256: parityBinding.bytesSha256,
-    },
+    currentImplementation: current.currentImplementation,
     frozenSemantics: projectFrozenSemantics(historical.configurationHashes),
     semanticAssertions: {
       corpusUnchanged: true,
@@ -585,7 +595,7 @@ export function buildImp24DObservabilityFreeze(
       callBudgetUnchanged: true,
     },
     successor: {
-      executionId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+      executionId: IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
       stateRoot: R2_STATE_ROOT_REL,
       stateRootCreatedByMaterializer: false,
       mayCreateBeforeTransportSmokePass: false,
@@ -715,17 +725,39 @@ export function verifyHistoricalImp24DObservabilityFreeze(
     "historical observability freeze instrument bindings differ from the original observability implementation commit",
   );
 
-  const current = buildImp24DObservabilityFreeze({
-    repositoryRoot,
-    retainedArtifactRoot: retainedRoot,
-    outputRoot,
-  });
-  requireCondition(canonicalJson(current.freeze.frozenSemantics)
+  const historicalCertification = originalCertification as unknown as Imp24InstrumentCertificationBinding;
+  const historicalCertificationIssues = validateImp24InstrumentCertificationBinding(historicalCertification);
+  requireCondition(historicalCertificationIssues.length === 0,
+    `historical model-free certification is invalid: ${historicalCertificationIssues.join("; ")}`);
+  requireCondition(historicalCertification.promptBundleSha256 === EXPECTED_PROMPT_BUNDLE_SHA256,
+    "historical observability freeze prompt bundle differs from the pinned IMP-24D certification");
+  requireCondition(historicalCertification.schemaBundleSha256 === EXPECTED_SCHEMA_BUNDLE_SHA256,
+    "historical observability freeze schema bundle differs from the pinned IMP-24D certification");
+  requireCondition(historicalCertification.corpusBundleSha256 === retainedFreeze.frozenSemantics.corpusBundleSha256
+      && historicalCertification.thresholdsSha256 === retainedFreeze.frozenSemantics.thresholdsSha256
+      && historicalCertification.productionInstrumentSealSha256
+        === retainedFreeze.currentImplementation.productionInstrumentSealSha256
+      && historicalCertification.productionQualificationParitySha256
+        === retainedFreeze.currentImplementation.productionQualificationParitySha256,
+  "historical observability freeze differs from its pinned model-free certification bindings");
+
+  const historicalInput = readJson(retainedRoot, IMP24C_PRE_LIVE_ARTIFACT_PATHS.freezeJson,
+    "historical IMP-24C pre-live freeze");
+  const historical = historicalInput.value as unknown as Imp24BPreLiveFreeze;
+  const historicalIssues = validateImp24BPreLiveFreeze(historical);
+  requireCondition(historicalIssues.length === 0,
+    `historical IMP-24C pre-live freeze is invalid: ${historicalIssues.join("; ")}`);
+  requireCondition(sha256Hex(historicalInput.bytes)
+    === IMP24D_HISTORICAL_R1_BINDINGS.preLiveFreezeJson.bytesSha256,
+  "historical IMP-24C pre-live freeze bytes drifted");
+  requireCondition(canonicalJson(projectFrozenSemantics(historical.configurationHashes))
       === canonicalJson(retainedFreeze.frozenSemantics),
-  "frozen qualification semantics changed after the observability implementation commit");
-  requireCondition(canonicalJson(current.freeze.semanticAssertions)
-      === canonicalJson(retainedFreeze.semanticAssertions),
-  "frozen semantic assertions changed after the observability implementation commit");
+  "retained IMP-24D frozen semantics differ from the pinned historical pre-live freeze");
+
+  // IMP-24E may deterministically remint active implementation identities and
+  // output schemas. Recompute those bindings independently, but never use them
+  // to reinterpret the immutable IMP-24D semantic assertion.
+  const effective = verifyCurrentImplementationArtifacts(repositoryRoot, retainedRoot);
 
   return {
     status: "VERIFIED_BYTE_IDENTICAL_HISTORICAL_OBSERVABILITY_FREEZE",
@@ -733,7 +765,7 @@ export function verifyHistoricalImp24DObservabilityFreeze(
     freezeSha256: retainedFreeze.freezeSha256,
     frozenSemanticsSha256: hashCanonical(retainedFreeze.frozenSemantics),
     originalImplementation: retainedFreeze.currentImplementation,
-    effectiveImplementation: current.freeze.currentImplementation,
+    effectiveImplementation: effective.currentImplementation,
     verifiedOutputCount: 2,
     writes: 0,
     modelCalls: 0,

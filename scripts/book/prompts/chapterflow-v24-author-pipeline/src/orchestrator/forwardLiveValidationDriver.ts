@@ -120,13 +120,15 @@ import {
   type ForwardProductionInstrumentSealV1,
 } from "./forwardProductionInstrumentSeal.js";
 import {
+  buildForwardGoldComponentInventory,
   buildForwardGoldSourceAwareExternalAccuracyProof,
+  materializeForwardGoldSweepOutputSchema,
   projectForwardGoldAdjudication,
-  resolveForwardGoldEvaluatorOutputSchemaPath,
   validateForwardGoldBlindRaterOutput,
   validateForwardGoldEvaluatorInstrument,
   validateForwardGoldSweepOutputBinding,
   type ForwardGoldEvaluatorInstrumentV1,
+  type ForwardGoldComponentInventoryV1,
   type ForwardGoldExpectedChapterIdentityV1,
   type ForwardGoldSourceLaneEvidenceV1,
   type ForwardGoldSourceAwareExternalAccuracyProofV1,
@@ -1254,6 +1256,7 @@ export type ForwardProductionGoldEvaluatorCallV1 = ForwardGoldEvaluatorCallV1 & 
   sourceHash: string;
   dispatchReceiptSha256: string;
   expectedChapters: ForwardGoldExpectedChapterIdentityV1[];
+  expectedComponentInventory: ForwardGoldComponentInventoryV1;
   blindRaterRole: "primary" | "verification" | null;
   sourceAwareExternalAccuracy: ForwardGoldSourceAwareExternalAccuracyProofV1;
   expectedSourceLaneEvidence: ForwardGoldSourceLaneEvidenceV1[];
@@ -1305,7 +1308,7 @@ export function buildForwardGoldSweepPreDispatchTask(baseTask: string): string {
 export function buildForwardGoldWorkerDispatchBinding(args: {
   call: Pick<ForwardProductionGoldEvaluatorCallV1,
     "callId" | "actorId" | "evaluationRole" | "instrumentSha256" | "productionInstrumentSealSha256"
-    | "sourceHash" | "expectedChapters" | "sourceAwareExternalAccuracy" | "task">;
+    | "sourceHash" | "expectedChapters" | "expectedComponentInventory" | "sourceAwareExternalAccuracy" | "task">;
   artifacts: Array<{ relativePath: string; bytesSha256: string }>;
 }): ForwardGoldWorkerDispatchBindingV1 {
   requireCondition(!args.artifacts.some((artifact) => artifact.relativePath === "worker-dispatch-receipt.json"),
@@ -1313,6 +1316,7 @@ export function buildForwardGoldWorkerDispatchBinding(args: {
   const inspectionSha256 = hashCanonical({
     sourceHash: args.call.sourceHash,
     expectedChapters: args.call.expectedChapters,
+    expectedComponentInventory: args.call.expectedComponentInventory,
     sourceAwareExternalAccuracyProofSha256: args.call.sourceAwareExternalAccuracy.proofSha256,
   });
   const core = {
@@ -1440,6 +1444,7 @@ export function createProductionLedgeredForwardGoldEvaluator(args: {
           expectedBookId: bookId,
           expectedSourceHash: call.sourceHash,
           expectedChapters: call.expectedChapters,
+          expectedComponentInventory: call.expectedComponentInventory,
           expectedRaterRole: call.blindRaterRole,
           expectedDispatchReceiptSha256: call.dispatchReceiptSha256,
         });
@@ -1447,8 +1452,10 @@ export function createProductionLedgeredForwardGoldEvaluator(args: {
       }
       if (call.evaluationRole === "book-sweep") {
         validateForwardGoldSweepOutputBinding(retained.output, {
+          expectedBookId: bookId,
           expectedSourceHash: call.sourceHash,
           expectedDispatchReceiptSha256: call.dispatchReceiptSha256,
+          expectedChapters: call.expectedChapters,
         });
         return;
       }
@@ -1467,6 +1474,7 @@ export function createProductionLedgeredForwardGoldEvaluator(args: {
         expectedBookId: bookId,
         expectedSourceHash: call.sourceHash,
         expectedChapters: call.expectedChapters,
+        expectedComponentInventory: call.expectedComponentInventory,
         sourceAwareExternalAccuracy: call.sourceAwareExternalAccuracy,
         expectedSourceLaneEvidence: call.expectedSourceLaneEvidence,
         blindRaters: {
@@ -1540,6 +1548,7 @@ export function createProductionLedgeredForwardGoldEvaluator(args: {
           sourceHash: call.sourceHash,
           dispatchReceiptSha256: call.dispatchReceiptSha256,
           expectedChaptersSha256: hashCanonical(call.expectedChapters),
+          expectedComponentInventorySha256: hashCanonical(call.expectedComponentInventory),
           sourceAwareExternalAccuracyProofSha256: call.sourceAwareExternalAccuracy.proofSha256,
           artifacts: [...call.artifacts].sort((a, b) => a.relativePath.localeCompare(b.relativePath)),
         },
@@ -1601,6 +1610,7 @@ export function createProductionLedgeredForwardGoldEvaluator(args: {
       expectedBookId: bookId,
       expectedSourceHash: adjudicatorCall.sourceHash,
       expectedChapters: adjudicatorCall.expectedChapters,
+      expectedComponentInventory: adjudicatorCall.expectedComponentInventory,
       sourceAwareExternalAccuracy: adjudicatorCall.sourceAwareExternalAccuracy,
       expectedSourceLaneEvidence: adjudicatorCall.expectedSourceLaneEvidence,
       blindRaters: {
@@ -2647,6 +2657,7 @@ function explicitGoldEvaluatorFactory(
       };
     });
     const expectedChapters = entries.map((entry) => entry.expectedChapter);
+    const expectedComponentInventory = buildForwardGoldComponentInventory(entries.map((entry) => entry.chapter));
     const sourceHash = hashCanonical({
       schema: "forward-gold-authoritative-source-inventory-v1",
       bookId,
@@ -2670,9 +2681,13 @@ function explicitGoldEvaluatorFactory(
     const inspectionSha256 = hashCanonical({
       sourceHash,
       expectedChapters,
+      expectedComponentInventory,
       sourceAwareExternalAccuracyProofSha256: sourceAwareExternalAccuracy.proofSha256,
     });
-    return { bookId, entries, expectedChapters, sourceHash, sourceAwareExternalAccuracy, inspectionSha256 };
+    return {
+      bookId, entries, expectedChapters, expectedComponentInventory,
+      sourceHash, sourceAwareExternalAccuracy, inspectionSha256,
+    };
   };
   return (controller) => createProductionLedgeredForwardGoldEvaluator({
     controller,
@@ -2708,14 +2723,21 @@ function explicitGoldEvaluatorFactory(
         const artifacts: Array<{ relativePath: string; bytesSha256: string }> = [
           { relativePath: "evaluation-scope.json", bytesSha256: sha256Hex(readFileSync(scopePath)) },
         ];
+        const materializedSweepSchema = materializeForwardGoldSweepOutputSchema({
+          expectedChapters: sourceContext.expectedChapters,
+          repositoryRoot,
+        });
         for (const asset of config.referenceAssets) {
           const source = resolve(repositoryRoot, asset.repositoryRelPath);
           requireCondition(existsSync(source) && sha256Hex(readFileSync(source)) === asset.bytesSha256,
             `${call.callId}: fixed gold instrument asset drift (${asset.repositoryRelPath})`);
           const destination = resolve(cwd, asset.materializedRelPath);
           requireCondition(destination.startsWith(`${cwd}/`), `${call.callId}: materialized instrument asset escapes workspace`);
-          writeCreateOnce(destination, readFileSync(source, "utf8"));
-          artifacts.push({ relativePath: asset.materializedRelPath, bytesSha256: asset.bytesSha256 });
+          const text = asset.role === "sweep-output-schema"
+            ? materializedSweepSchema.bytes
+            : readFileSync(source, "utf8");
+          writeCreateOnce(destination, text);
+          artifacts.push({ relativePath: asset.materializedRelPath, bytesSha256: sha256Hex(text) });
         }
         for (const copy of [
           { rel: `book/${bookId}.index.json`, source: resolve(phaseDir, "inputs", bookId, "indexes", `${bookId}.json`) },
@@ -2750,6 +2772,11 @@ function explicitGoldEvaluatorFactory(
           }
         }
         requireCondition(call.promptSha256 === sha256Hex(call.prompt), `${call.callId}: fixed gold prompt hash drift`);
+        const outputSchemaAsset = config.referenceAssets.find((asset) =>
+          asset.repositoryRelPath === call.outputSchemaRelPath);
+        requireCondition(outputSchemaAsset !== undefined, `${call.callId}: fixed output schema asset is missing`);
+        const outputSchemaPath = resolve(cwd, outputSchemaAsset.materializedRelPath);
+        const outputSchemaSha256 = sha256Hex(readFileSync(outputSchemaPath));
         const base: ForwardProductionGoldEvaluatorCallV1 = {
           callId: call.callId,
           actorId: call.actorId,
@@ -2759,14 +2786,15 @@ function explicitGoldEvaluatorFactory(
           cwd,
           model: call.model,
           effort: call.effort,
-          outputSchemaPath: resolveForwardGoldEvaluatorOutputSchemaPath(call, { repositoryRoot }),
-          outputSchemaSha256: call.outputSchemaSha256,
+          outputSchemaPath,
+          outputSchemaSha256,
           artifacts,
           instrumentSha256: config.instrumentSha256,
           productionInstrumentSealSha256,
           sourceHash: sourceContext.sourceHash,
           dispatchReceiptSha256: "",
           expectedChapters: sourceContext.expectedChapters,
+          expectedComponentInventory: sourceContext.expectedComponentInventory,
           blindRaterRole: call.evaluationRole === "blind-rater"
             ? (callIndex === 0 ? "primary" : "verification")
             : null,
@@ -2829,6 +2857,7 @@ function explicitGoldEvaluatorFactory(
         "gold evaluation omitted a required fixed-instrument call");
       requireCondition(calls.every((call) => call.sourceHash === sourceContext.sourceHash
         && hashCanonical(call.expectedChapters) === hashCanonical(sourceContext.expectedChapters)
+        && hashCanonical(call.expectedComponentInventory) === hashCanonical(sourceContext.expectedComponentInventory)
         && call.sourceAwareExternalAccuracy.proofSha256 === sourceContext.sourceAwareExternalAccuracy.proofSha256
         && hashCanonical(call.expectedSourceLaneEvidence) === hashCanonical(sourceContext.entries.map((entry) => entry.sourceEvidence))),
       "gold evaluator calls are stale against the final authoritative source context");
@@ -2843,6 +2872,7 @@ function explicitGoldEvaluatorFactory(
         expectedBookId: sourceContext.bookId,
         expectedSourceHash: sourceContext.sourceHash,
         expectedChapters: sourceContext.expectedChapters,
+        expectedComponentInventory: sourceContext.expectedComponentInventory,
         sourceAwareExternalAccuracy: sourceContext.sourceAwareExternalAccuracy,
         expectedSourceLaneEvidence: sourceContext.entries.map((entry) => entry.sourceEvidence),
         blindRaters: {

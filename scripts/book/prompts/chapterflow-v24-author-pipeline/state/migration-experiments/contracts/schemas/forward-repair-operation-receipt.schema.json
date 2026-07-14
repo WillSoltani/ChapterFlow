@@ -6,10 +6,10 @@
   "additionalProperties": false,
   "required": ["schema", "operation", "chapterId", "artifactPath", "artifactSha256"],
   "properties": {
-    "schema": { "const": "forward-repair-operation-receipt-v1" },
-    "operation": { "const": "typed-repair" },
-    "chapterId": { "type": "string", "minLength": 1 },
-    "artifactPath": { "const": "patch.json" },
+    "schema": { "type": "string", "enum": ["forward-repair-operation-receipt-v1"] },
+    "operation": { "type": "string", "enum": ["typed-repair"] },
+    "chapterId": { "type": "string" },
+    "artifactPath": { "type": "string", "enum": ["patch.json"] },
     "artifactSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
   }
 }

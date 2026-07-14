@@ -14,6 +14,7 @@ import {
   FORWARD_GOLD_EVALUATOR_MODEL,
   FORWARD_GOLD_EVALUATOR_PROMPTS,
   FORWARD_GOLD_RUBRIC_CONFIG,
+  buildForwardGoldComponentInventory,
   buildForwardGoldEvaluatorInstrument,
   buildForwardGoldSourceAwareExternalAccuracyProof,
   computeForwardGoldEvaluatorInstrumentSha256,
@@ -58,6 +59,15 @@ const EXPECTED_CHAPTERS = Array.from({ length: 8 }, (_, index) => ({
   title: `Gold chapter ${index + 1}`,
   packagePath: `chapters/ch${String(index + 1).padStart(2, "0")}.chapter.json`,
 }));
+const EXPECTED_COMPONENT_INVENTORY = {
+  examples: 8,
+  quiz_questions: 8,
+  review_cards: 8,
+  implementation_items: 8,
+  exercises: 8,
+  memorable_lines: 8,
+  other: {},
+};
 
 function evidence(chapter = EXPECTED_CHAPTERS[0]): {
   package_path: string;
@@ -234,6 +244,7 @@ function adjudicationContext(sourcePass = true): ForwardGoldAdjudicationValidati
     expectedBookId: "gold-book",
     expectedSourceHash: SOURCE_HASH,
     expectedChapters: EXPECTED_CHAPTERS,
+    expectedComponentInventory: EXPECTED_COMPONENT_INVENTORY,
     sourceAwareExternalAccuracy: proof,
     expectedSourceLaneEvidence,
     blindRaters: {
@@ -242,6 +253,42 @@ function adjudicationContext(sourcePass = true): ForwardGoldAdjudicationValidati
     },
   };
 }
+
+test("frozen JSON component inventory counts object-valued breakdown sections like the authoritative inspector", () => {
+  const inventory = buildForwardGoldComponentInventory([
+    {
+      hook: "Hook",
+      counterintuition: "Counterintuition",
+      breakdown: {
+        fastRead: "Fast read",
+        deepRead: "Deep read",
+        fullRead: "Full read",
+      },
+      keyTakeaway: "Takeaway",
+      examples: [{}, {}],
+      quiz: { questions: [{}] },
+      reviewCards: [{}],
+      implementationPlan: { ifThenPlans: [{}, {}] },
+      tryThisNow: "Try this",
+      memorableLines: [{}, {}],
+    },
+  ]);
+
+  assert.deepEqual(inventory, {
+    examples: 2,
+    quiz_questions: 1,
+    review_cards: 1,
+    implementation_items: 2,
+    exercises: 1,
+    memorable_lines: 2,
+    other: {
+      hooks: 1,
+      counterintuitions: 1,
+      breakdown_sections: 3,
+      key_takeaways: 1,
+    },
+  });
+});
 
 test("fixed forward gold instrument binds Rubric v2, four exact calls, schemas, and no-publish/no-API capabilities", () => {
   const instrument = buildForwardGoldEvaluatorInstrument({ repositoryRoot: REPOSITORY_ROOT });
@@ -384,7 +431,7 @@ test("adjudication projection recomputes gates and score and derives external ac
     contentDesignScore: 75,
   });
   assert.equal(projectForwardGoldAdjudication(evaluatorOutput("adjudicated"), adjudicationContext(false)).externalAccuracy, "FAIL");
-  assert.throws(() => projectForwardGoldAdjudication({ ...output, rater_role: "primary" }, adjudicationContext()), /equal to constant|wrong role/);
+  assert.throws(() => projectForwardGoldAdjudication({ ...output, rater_role: "primary" }, adjudicationContext()), /equal to constant|allowed values|wrong role/);
 });
 
 test("projection rejects false overall and per-domain arithmetic even when self-declared QA and summary say PASS", () => {
@@ -418,7 +465,7 @@ test("projection rejects a missing/reordered chapter, wrong source, weak evidenc
 
   const falseQa = evaluatorOutput("adjudicated");
   falseQa.qa.calculation_check_pass = false;
-  assert.throws(() => projectForwardGoldAdjudication(falseQa, adjudicationContext()), /equal to constant|did not confirm its arithmetic/);
+  assert.throws(() => projectForwardGoldAdjudication(falseQa, adjudicationContext()), /equal to constant|allowed values|did not confirm its arithmetic/);
 });
 
 test("blind-rater validation binds source, dispatch receipt, exact inventory, integer ratings, and arithmetic", () => {
@@ -427,6 +474,7 @@ test("blind-rater validation binds source, dispatch receipt, exact inventory, in
     expectedBookId: "gold-book",
     expectedSourceHash: SOURCE_HASH,
     expectedChapters: EXPECTED_CHAPTERS,
+    expectedComponentInventory: EXPECTED_COMPONENT_INVENTORY,
     expectedRaterRole: "primary" as const,
     expectedDispatchReceiptSha256: DISPATCH_HASH,
   };
@@ -439,6 +487,11 @@ test("blind-rater validation binds source, dispatch receipt, exact inventory, in
   const fractional = evaluatorOutput("primary");
   fractional.domains.epistemic_integrity.subcriteria.claim_support_fit.rating = 3.5;
   assert.throws(() => validateForwardGoldBlindRaterOutput(fractional, context), /should be integer|1-step value/);
+
+  const wrongInventory = evaluatorOutput("primary");
+  wrongInventory.book.component_inventory.examples = 7;
+  assert.throws(() => validateForwardGoldBlindRaterOutput(wrongInventory, context),
+    /differs from the deterministic frozen-package inventory/);
 });
 
 test("sweep output binding rejects wrong source and dispatch receipt echoes", () => {
@@ -462,24 +515,65 @@ test("sweep output binding rejects wrong source and dispatch receipt echoes", ()
     },
   };
   assert.doesNotThrow(() => validateForwardGoldSweepOutputBinding(output, {
+    expectedBookId: "gold-book",
     expectedSourceHash: SOURCE_HASH,
     expectedDispatchReceiptSha256: DISPATCH_HASH,
+    expectedChapters: EXPECTED_CHAPTERS,
   }));
   assert.throws(() => validateForwardGoldSweepOutputBinding({ ...output, source_hash: "c".repeat(64) }, {
+    expectedBookId: "gold-book",
     expectedSourceHash: SOURCE_HASH,
     expectedDispatchReceiptSha256: DISPATCH_HASH,
+    expectedChapters: EXPECTED_CHAPTERS,
   }), /another source inventory/);
   assert.throws(() => validateForwardGoldSweepOutputBinding({ ...output, worker_dispatch_receipt_sha256: "d".repeat(64) }, {
+    expectedBookId: "gold-book",
     expectedSourceHash: SOURCE_HASH,
     expectedDispatchReceiptSha256: DISPATCH_HASH,
+    expectedChapters: EXPECTED_CHAPTERS,
   }), /another dispatch receipt/);
   assert.throws(() => validateForwardGoldSweepOutputBinding({
     ...output,
     sweep: { schemaVersion: "sweep-attest-v1" },
   }, {
+    expectedBookId: "gold-book",
     expectedSourceHash: SOURCE_HASH,
     expectedDispatchReceiptSha256: DISPATCH_HASH,
+    expectedChapters: EXPECTED_CHAPTERS,
   }), /violates pinned sweep-output-schema/);
+
+  const args = {
+    expectedBookId: "gold-book",
+    expectedSourceHash: SOURCE_HASH,
+    expectedDispatchReceiptSha256: DISPATCH_HASH,
+    expectedChapters: EXPECTED_CHAPTERS,
+  };
+  assert.throws(() => validateForwardGoldSweepOutputBinding({
+    ...output,
+    sweep: {
+      ...output.sweep,
+      checkedFamilies: ["scene_skeleton", "scene_skeleton", "repeated_unit", "location_stamping"],
+    },
+  }, args), /gold sweep checkedFamilies: duplicate value "scene_skeleton"/);
+  assert.throws(() => validateForwardGoldSweepOutputBinding({
+    ...output,
+    sweep: {
+      ...output.sweep,
+      findings: [{
+        family: "repeated_unit",
+        severity: "advisory",
+        chapters: [2, 2],
+        unitId: "ch02-unit",
+        quote: "Repeated local phrase.",
+        problem: "The unit repeats.",
+        expectedFix: "Vary the unit.",
+      }],
+    },
+  }, args), /gold sweep findings\[0\]\.chapters: duplicate value 2/);
+  const missingHash = JSON.parse(JSON.stringify(output)) as typeof output;
+  delete missingHash.sweep.contentHashes["8"];
+  assert.throws(() => validateForwardGoldSweepOutputBinding(missingHash, args),
+    /violates pinned sweep-output-schema|contentHashes keys differ/);
 });
 
 test("pinned schemas reject empty analysis, adjudication agreement, and confidence records", () => {

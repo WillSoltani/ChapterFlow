@@ -5,7 +5,7 @@
   "additionalProperties": false,
   "required": ["schema", "items"],
   "properties": {
-    "schema": { "const": "quiz-integrity-model-output-v2" },
+    "schema": { "type": "string", "enum": ["quiz-integrity-model-output-v2"] },
     "items": {
       "type": "array",
       "minItems": 1,
@@ -14,21 +14,19 @@
         "additionalProperties": false,
         "required": ["questionRef", "keyCorrect", "defensibleAnswerIndices", "keyedMechanismSupported", "rationale", "evidenceRefIds"],
         "properties": {
-          "questionRef": { "type": "string", "minLength": 1 },
-          "keyCorrect": { "enum": ["correct", "ambiguous", "wrong"] },
+          "questionRef": { "type": "string" },
+          "keyCorrect": { "type": "string", "enum": ["correct", "ambiguous", "wrong"] },
           "defensibleAnswerIndices": {
             "type": "array",
             "minItems": 1,
-            "uniqueItems": true,
             "items": { "type": "integer", "minimum": 0 }
           },
           "keyedMechanismSupported": { "type": "boolean" },
-          "rationale": { "type": "string", "minLength": 1 },
+          "rationale": { "type": "string" },
           "evidenceRefIds": {
             "type": "array",
             "minItems": 1,
-            "uniqueItems": true,
-            "items": { "type": "string", "minLength": 1 }
+            "items": { "type": "string" }
           }
         }
       }

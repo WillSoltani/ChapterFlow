@@ -2,7 +2,7 @@
   "apiCalls": 0,
   "binding": {
     "apiCalls": 0,
-    "certificationSha256": "5fdfd2ef484e53c3b374a779c9307b1b847ff694318290f41b6f0686a928e191",
+    "certificationSha256": "ff4e1242fef13998196dbcba6ba92b3263fae44a36628d68fac88f9ded8b46b5",
     "corpusBundleSha256": "sha256:4501809686161a541ad776bdbfea9c716ec402d89ef397a072f93143ce28fcac",
     "corpusCertificationSha256": "7d2a2bc14eb840341cffc9e3dcc00c166a9dada7a1161a63c43354aa19b26ce9",
     "envelopeCompilerSha256": "e1fa568ef8951e874ddc2c81796dc54c19ab8eda851b6ff444433fc171b93c85",
@@ -11,13 +11,13 @@
     "independentAuditPasses": 2,
     "legacyEvidenceClosureSha256": "87d99f5f8f43ba70559b0c8c062c99dcf75bb190f72e9c0f933b5823d5dc54e2",
     "modelCalls": 0,
-    "modelOutputContractsSha256": "79ae5c580a5cb2447a9473aad21c258ecf91d8f3211b99d861b1fc5d0fadbc6a",
-    "productionInstrumentSealSha256": "8b17efb09704f86edc64193a45a789fc4de72696dc70440af6fef825cef4ab63",
-    "productionQualificationParitySha256": "075d4e0ca149a88ca4867832d65b2eb40afc2eb6f6b330975dea58655465c546",
+    "modelOutputContractsSha256": "641184e5235909ba0eb50fb90c218fd03c6cf2c2839b1b2fe70b352327a21a7e",
+    "productionInstrumentSealSha256": "ca93638dd9594e0f0463fd03d7b2a67acf5b751c94548e778bdba5b1be17b310",
+    "productionQualificationParitySha256": "b710a85d0865a7903da1719ab6fd9b67cf1eb437ece20d2b66bbafb27f149959",
     "promptBundleSha256": "4da98a79943739dd223f12f5ff7c33bd238a114f065bdd09bfcffa66925aae00",
     "schema": "imp24-instrument-certification-binding-v1",
-    "schemaBundleSha256": "f88f1b13ba263c670474385635ecd44511aaa07eec31074fe27905307b536798",
-    "scorerSha256": "1105f49ade5c21bc41362abe4f46cdbf155a19732670191e7e5c8f931c1d55ab",
+    "schemaBundleSha256": "7e73469d522429deb2d55232e0dbba95725e15ca067da2b8213c10dc43fa6613",
+    "scorerSha256": "f7372e9164d2b7eaae9715aa4405515d7d0f16cac817514392702cb9619608fd",
     "sourceMissingEvidenceInconclusiveCertified": true,
     "status": "CERTIFIED_MODEL_FREE",
     "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa"
@@ -2766,7 +2766,7 @@
         "holdout": "sha256:182d86d5146f8831a6bd06de30b71689f19c94611abaee24a1232cb251159106"
       }
     },
-    "implementationSetSha256": "d8812139e4ee7695869105df1781e0f5f881190e1978f39ccf4f95f875bed592",
+    "implementationSetSha256": "a183ca69d1f211547639dfae5086bfb7a752054d16d49943d24c978bda7d0b22",
     "implementationSources": [
       {
         "bytes": 77119,
@@ -2779,8 +2779,8 @@
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/imp24ProductionQualificationParity.ts"
       },
       {
-        "bytes": 62020,
-        "bytesSha256": "e46d40f1623fab52cd75e1fa3478af8a8fb06c344eac7aeb7b2482e52600c3c4",
+        "bytes": 73849,
+        "bytesSha256": "b0505a12e854fdc1a115dbab1a92a897628993a2dafc702c86197b79e040b852",
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/roleQualificationRunnerV3.ts"
       },
       {
@@ -2794,8 +2794,8 @@
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/reviewEvidenceEnvelope.ts"
       },
       {
-        "bytes": 23114,
-        "bytesSha256": "2ddcb268690338d647aabc9bc4d8537b9e58655391ff0061afd69e0ae591db19",
+        "bytes": 23657,
+        "bytesSha256": "bc9b29e92aa846f7c4628398da6975e81fc3ec79a5da17191b9c485aad827b6d",
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/contracts/reviewModelOutputV2.ts"
       },
       {
@@ -2819,18 +2819,18 @@
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardReviewerExecutor.ts"
       },
       {
-        "bytes": 42781,
-        "bytesSha256": "6f460ab7e3b86ff8e4b0a8e5ce06b5f1d7af793520f05e185a94186cabd01cbe",
+        "bytes": 45362,
+        "bytesSha256": "e100bf25a7f3ff5aadfa955d862f528874d0453ba8855208f157f0a8c4ba8522",
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleAssignmentFreezeV3.ts"
       },
       {
-        "bytes": 59913,
-        "bytesSha256": "b1c7d02ddcc816da21b1835b103069aacf0b499ea856b4329b0da50cba4a5c45",
+        "bytes": 67053,
+        "bytesSha256": "00c40323800cc2d35a4ca7ea22631fffae348652ff8e289b459d4ff2d9935530",
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts"
       },
       {
-        "bytes": 121128,
-        "bytesSha256": "c394f104856cb9e9101da58ea3d793722978c8109402fe1140db139780af0e7c",
+        "bytes": 124959,
+        "bytesSha256": "29bc6dca9a456c72891016e668efca25f3bdb124f9a4cc36533bc7d6321b996a",
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts"
       },
       {
@@ -2889,9 +2889,9 @@
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewProtocolV2.ts"
       }
     ],
-    "preparedCasesSha256": "b41abe8c20a9d7a9303117b91b71a22828503230ae243ea78b1ca02ad9e5a69b",
-    "productionQualificationParitySha256": "075d4e0ca149a88ca4867832d65b2eb40afc2eb6f6b330975dea58655465c546",
-    "scheduleSha256": "dd7c3c1235c86cbbaf20c954398bcb57880efd5c7629f95bc494cb4d0fa8e22c"
+    "preparedCasesSha256": "2d5eed69d6d2efb3dd1cd638b46ea45ce9eb52594f3426ecf28ce17b7085b798",
+    "productionQualificationParitySha256": "b710a85d0865a7903da1719ab6fd9b67cf1eb437ece20d2b66bbafb27f149959",
+    "scheduleSha256": "56dfe414639ead6330478adbf4eb4c996e47e40a4de7df9d5ee720dce84a4bcd"
   },
   "legacyClosure": {
     "closureSha256": "sha256:c4e23ca74b3575266c20647026a28bd5ca693737716ef8d72f854d8ab01ecc72",
@@ -2930,15 +2930,15 @@
   ],
   "modelCalls": 0,
   "productionQualificationParity": {
-    "artifactBytesSha256": "0c73e98fe7c3e60b33b72e36bb0cbcea60321e842c7c66a2e00d9059b076d221",
-    "paritySha256": "075d4e0ca149a88ca4867832d65b2eb40afc2eb6f6b330975dea58655465c546",
+    "artifactBytesSha256": "6cc9dba0619efe84770942a4cac9dc3acacc07bc0bd9a8beb3c15399750678cb",
+    "paritySha256": "b710a85d0865a7903da1719ab6fd9b67cf1eb437ece20d2b66bbafb27f149959",
     "sourceCount": 20,
     "verified": true
   },
   "productionSeal": {
-    "artifactBytesSha256": "fcceebb721676bf03ed46edfc0f60a637316bf18e366c461e384b28d1348f5a9",
-    "fileCount": 463,
-    "sealSha256": "8b17efb09704f86edc64193a45a789fc4de72696dc70440af6fef825cef4ab63",
+    "artifactBytesSha256": "421e6475dd9f92e474d2e7a4b9147a2edc0c97e1b87bd114bd309a5fe0d4b8b8",
+    "fileCount": 465,
+    "sealSha256": "ca93638dd9594e0f0463fd03d7b2a67acf5b751c94548e778bdba5b1be17b310",
     "verified": true
   },
   "schema": "imp24-instrument-certification-v1",

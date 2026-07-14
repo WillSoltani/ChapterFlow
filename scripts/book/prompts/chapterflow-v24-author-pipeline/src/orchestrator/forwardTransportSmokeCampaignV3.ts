@@ -8,13 +8,15 @@ import { writeFileAtomic } from "../lib/atomicWrite.js";
 import {
   IMP24_ROLE_CANDIDATE_ORDER,
   buildQualificationExecutionRequestV3,
-  buildRoleQualificationPlanV3,
+  buildLegacyRoleQualificationPlanV3,
+  candidateAvailabilitySemanticSha256,
+  type LegacyQualificationFreezeV3,
   type QualificationExecutionReceiptV3,
   type QualificationFreezeV3,
   type QualificationScheduleEntryV3,
   type RunRoleQualificationInputV3,
 } from "../bakeoff/migration/roleQualificationRunnerV3.js";
-import { IMP24_ROLE_QUALIFICATION_EXECUTION_ID } from "../bakeoff/migration/imp24Corpus.js";
+import { IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID } from "../bakeoff/migration/imp24Corpus.js";
 import {
   parseReaderExperienceModelOutputV2,
   parseSourceIntegrityModelOutputV2,
@@ -144,7 +146,7 @@ function executionIdForCycle(cycle: Imp24DTransportSmokeCycleNumber) {
 function fixedCallBinding(args: {
   role: "reader" | "source";
   input: RunRoleQualificationInputV3;
-  freeze: QualificationFreezeV3;
+  freeze: LegacyQualificationFreezeV3;
   schedule: readonly QualificationScheduleEntryV3[];
 }): Imp24DTransportSmokeInputBindingV1["calls"][number] {
   const availability = args.input.candidateAvailability.entries.find((entry) =>
@@ -192,7 +194,7 @@ function fixedCallBinding(args: {
 export function buildImp24DTransportSmokeInputBinding(args: {
   executionId: typeof IMP24D_TRANSPORT_SMOKE_EXECUTION_ID | typeof IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID;
   input: RunRoleQualificationInputV3;
-  freeze: QualificationFreezeV3;
+  freeze: LegacyQualificationFreezeV3;
   schedule: readonly QualificationScheduleEntryV3[];
 }): Imp24DTransportSmokeInputBindingV1 {
   const { experimentId: _successorExecutionIdentity, ...candidateAvailability } = args.input.candidateAvailability;
@@ -220,11 +222,25 @@ export function buildImp24DTransportSmokeInputBinding(args: {
   return binding;
 }
 
+/** IMP-24E comparison rule for a retained/fresh fixed smoke binding. The
+ * retained container may have different cache provenance and consequently a
+ * different self hash; the ordered behavior projection and both exact calls
+ * may not differ. */
+export function sameImp24ETransportSmokeBindingSemantics(
+  left: Imp24DTransportSmokeInputBindingV1,
+  right: Imp24DTransportSmokeInputBindingV1,
+): boolean {
+  const projectAvailability = (binding: Imp24DTransportSmokeInputBindingV1) =>
+    candidateAvailabilitySemanticSha256(binding.candidateAvailability);
+  return projectAvailability(left) === projectAvailability(right)
+    && hashCanonical(left.calls) === hashCanonical(right.calls);
+}
+
 function buildSmokeRequest(args: {
   executionId: typeof IMP24D_TRANSPORT_SMOKE_EXECUTION_ID | typeof IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID;
   binding: Imp24DTransportSmokeInputBindingV1["calls"][number];
   input: RunRoleQualificationInputV3;
-  freeze: QualificationFreezeV3;
+  freeze: LegacyQualificationFreezeV3;
   schedule: readonly QualificationScheduleEntryV3[];
 }): LiveQualificationExecutionRequestV3 {
   const entry = args.schedule.find((candidate) => candidate.scheduleId === args.binding.sourceScheduleId);
@@ -233,7 +249,14 @@ function buildSmokeRequest(args: {
   const candidate = IMP24_ROLE_CANDIDATE_ORDER[args.binding.role][args.binding.candidateOrdinal];
   requireCondition(prepared !== undefined && candidate !== undefined,
     `${args.binding.role}: frozen smoke request inputs are missing`);
-  const source = buildQualificationExecutionRequestV3(entry, prepared, candidate, args.freeze, 1, null);
+  const source = buildQualificationExecutionRequestV3(
+    entry,
+    prepared,
+    candidate,
+    args.freeze as unknown as QualificationFreezeV3,
+    1,
+    null,
+  );
   const smokeScheduleId = `${args.executionId}-${args.binding.role}-canary`;
   const attemptId = `${smokeScheduleId}-a1`;
   const {
@@ -347,7 +370,7 @@ export async function runImp24DTransportSmoke(
     "IMP-24D transport smoke requires a positive dedicated V25 workflow run ID");
   const repositoryRoot = resolve(args.repositoryRoot);
   const successorRoot = resolve(repositoryRoot,
-    `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/${IMP24_ROLE_QUALIFICATION_EXECUTION_ID}`);
+    `scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/${IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID}`);
   requireCondition(!existsSync(successorRoot),
     "IMP-24D transport smoke refuses because the r2 qualification root already exists before smoke PASS");
 
@@ -453,7 +476,7 @@ export async function runImp24DTransportSmoke(
 
   const prepare = deps.prepare ?? prepareLiveRoleQualificationV3;
   const prepared = prepare({ repositoryRoot, input: args.loadInput() });
-  const plan = buildRoleQualificationPlanV3(prepared.input);
+  const plan = buildLegacyRoleQualificationPlanV3(prepared.input);
   const inputBinding = buildImp24DTransportSmokeInputBinding({
     executionId,
     input: prepared.input,
@@ -470,9 +493,7 @@ export async function runImp24DTransportSmoke(
     requireCondition(correctionRecord !== null
         && correctionRecord.semanticProjectionSha256
           === firstBinding.qualificationSemanticProjectionSha256
-        && inputBinding.qualificationSemanticProjectionSha256
-          === firstBinding.qualificationSemanticProjectionSha256
-        && hashCanonical(inputBinding.calls) === hashCanonical(firstBinding.calls),
+        && sameImp24ETransportSmokeBindingSemantics(inputBinding, firstBinding),
     "IMP-24D corrected smoke changed frozen semantics or either complete fixed call binding");
   }
   mkdirSync(root, { recursive: true });
@@ -493,9 +514,11 @@ export async function runImp24DTransportSmoke(
       executionId,
       verifiedAt: startedAtDate.toISOString(),
     });
+    const expectedAvailabilityIdentity = prepared.input.candidateAvailability.semanticSha256
+      ?? prepared.input.candidateAvailability.availabilitySha256;
     requireCondition(preflight.experimentId === executionId
         && preflight.freezeSha256 === plan.freeze.freezeSha256
-        && preflight.candidateAvailabilitySha256 === prepared.input.candidateAvailability.availabilitySha256,
+        && preflight.candidateAvailabilitySha256 === expectedAvailabilityIdentity,
     "IMP-24D smoke preflight is not bound to the smoke identity and frozen inputs");
     persistExactCanonicalJson(resolve(phaseDir, "preflight.json"), preflight,
       "IMP-24D transport-smoke preflight");
@@ -512,7 +535,8 @@ export async function runImp24DTransportSmoke(
       freezeSha256: plan.freeze.freezeSha256,
       certificationSha256: plan.freeze.certificationSha256,
       productionInstrumentSealSha256: plan.freeze.productionInstrumentSealSha256,
-      candidateAvailabilitySha256: prepared.input.candidateAvailability.availabilitySha256,
+      candidateAvailabilitySha256: prepared.input.candidateAvailability.semanticSha256
+        ?? prepared.input.candidateAvailability.availabilitySha256,
       error: original,
       failedAt: startedAtDate.toISOString(),
     });
@@ -621,7 +645,8 @@ export async function runImp24DTransportSmoke(
     implementationCiGateBytesSha256: sha256Hex(readFileSync(gatePath)),
     inputBindingSha256: inputBinding.inputBindingSha256,
     inputBindingBytesSha256: sha256Hex(readFileSync(inputBindingPath)),
-    candidateAvailabilitySha256: prepared.input.candidateAvailability.availabilitySha256,
+    candidateAvailabilitySha256: prepared.input.candidateAvailability.semanticSha256
+      ?? prepared.input.candidateAvailability.availabilitySha256,
     preflightSha256: preflight?.preflightSha256 ?? preflightFailure!.preflightFailureSha256,
     qualificationFreezeSha256: plan.freeze.freezeSha256,
     qualificationSemanticProjectionSha256: inputBinding.qualificationSemanticProjectionSha256,

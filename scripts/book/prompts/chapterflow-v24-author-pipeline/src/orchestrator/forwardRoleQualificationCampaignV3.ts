@@ -20,7 +20,13 @@ import {
   IMP24_BASE_MAXIMUM_CALLS,
   IMP24_HARD_MAXIMUM_CALLS,
   buildRoleQualificationPlanV3,
+  candidateAvailabilityProvenanceProjectionV3,
+  candidateAvailabilityProvenanceSha256,
+  candidateAvailabilitySemanticProjectionV3,
+  candidateAvailabilitySemanticSha256,
   runRoleQualificationV3,
+  type CandidateAvailabilityProvenanceProjectionV3,
+  type CandidateAvailabilityV3,
   type RoleQualificationRunnerResultV3,
 } from "../bakeoff/migration/roleQualificationRunnerV3.js";
 import { IMP24_ROLE_QUALIFICATION_EXECUTION_ID } from "../bakeoff/migration/imp24Corpus.js";
@@ -40,10 +46,12 @@ import {
   type ForwardV3RouteBinding,
 } from "./forwardRoleAssignmentFreezeV3.js";
 import { IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH } from "./forwardProductionInstrumentSeal.js";
-import { verifyRetainedImp24DTransportSmoke } from "./forwardTransportSmokeEvidenceV3.js";
+import { verifyFinalPassedImp24ETransportSmoke } from "./imp24eTransportSmoke.js";
 
 export const IMP24_IMPLEMENTATION_CI_GATE_SCHEMA = "imp24-implementation-ci-gate-v4" as const;
 export const IMP24_ROLE_QUALIFICATION_CAMPAIGN_REPORT_SCHEMA = "imp24-role-qualification-campaign-report-v1" as const;
+export const IMP24_CANDIDATE_AVAILABILITY_PROVENANCE_LEDGER_SCHEMA =
+  "imp24-candidate-availability-provenance-ledger-v1" as const;
 export const IMP24_REQUIRED_BRANCH = "feat/v25-pipeline-live" as const;
 export const IMP24_REQUIRED_REPOSITORY = "WillSoltani/ChapterFlow" as const;
 export const IMP24_REQUIRED_REPOSITORY_URL = "https://github.com/WillSoltani/ChapterFlow" as const;
@@ -178,6 +186,8 @@ export type Imp24QualificationCampaignPathsV1 = {
   liveDir: string;
   implementationCiGate: string;
   candidateAvailability: string;
+  candidateAvailabilitySemantic: string;
+  candidateAvailabilityProvenance: string;
   preflight: string;
   qualificationFreeze: string;
   qualificationResult: string;
@@ -189,6 +199,17 @@ export type Imp24QualificationCampaignPathsV1 = {
   roleAssignmentFreezeDocsJson: string;
   qualificationReportMarkdown: string;
   roleAssignmentFreezeMarkdown: string;
+};
+
+export type Imp24CandidateAvailabilityProvenanceObservationV1 =
+  CandidateAvailabilityProvenanceProjectionV3 & { provenanceSha256: string };
+
+export type Imp24CandidateAvailabilityProvenanceLedgerV1 = {
+  schema: typeof IMP24_CANDIDATE_AVAILABILITY_PROVENANCE_LEDGER_SCHEMA;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
+  candidateAvailabilitySemanticSha256: string;
+  observations: Imp24CandidateAvailabilityProvenanceObservationV1[];
+  ledgerSha256: string;
 };
 
 export function assertImp24BlockedRoleAssignmentArtifactsAbsent(
@@ -794,17 +815,19 @@ function pathsFor(args: RunImp24RoleQualificationCampaignV3Args): Imp24Qualifica
     liveDir,
     implementationCiGate: resolve(experimentDir, "implementation-ci-gate.json"),
     candidateAvailability: resolve(experimentDir, "candidate-availability.json"),
+    candidateAvailabilitySemantic: resolve(experimentDir, "candidate-availability-semantic.json"),
+    candidateAvailabilityProvenance: resolve(experimentDir, "candidate-availability-provenance.json"),
     preflight: resolve(liveDir, "preflight.json"),
     qualificationFreeze: resolve(liveDir, "qualification-freeze.json"),
     qualificationResult: resolve(liveDir, "qualification-result.json"),
     roleRegistry: resolve(liveDir, "role-registry.json"),
     callLedger: resolve(liveDir, "call-ledger.json"),
     qualificationReportJson: resolve(experimentDir, "qualification-report.json"),
-    qualificationReportDocsJson: resolve(reportDir, "ROLE_QUALIFICATION_V3_R2_LIVE_RESULT.json"),
+    qualificationReportDocsJson: resolve(reportDir, "ROLE_QUALIFICATION_V3_FINAL_LIVE_RESULT.json"),
     roleAssignmentFreeze: resolve(experimentDir, "role-assignment-freeze.json"),
-    roleAssignmentFreezeDocsJson: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3_R2.json"),
-    qualificationReportMarkdown: resolve(reportDir, "ROLE_QUALIFICATION_V3_R2_LIVE_RESULT.md"),
-    roleAssignmentFreezeMarkdown: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3_R2.md"),
+    roleAssignmentFreezeDocsJson: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3_FINAL.json"),
+    qualificationReportMarkdown: resolve(reportDir, "ROLE_QUALIFICATION_V3_FINAL_LIVE_RESULT.md"),
+    roleAssignmentFreezeMarkdown: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3_FINAL.md"),
   };
 }
 
@@ -829,6 +852,121 @@ function persistExactJson(path: string, value: unknown, label: string): void {
   atomicJson(path, value);
   const retained = parseJson<unknown>(path, label);
   requireCondition(hashCanonical(retained) === hashCanonical(value), `${label} atomic read-back hash mismatch`);
+}
+
+function availabilityProvenanceObservation(
+  availability: CandidateAvailabilityV3,
+): Imp24CandidateAvailabilityProvenanceObservationV1 {
+  const projection = candidateAvailabilityProvenanceProjectionV3(availability);
+  return { ...projection, provenanceSha256: candidateAvailabilityProvenanceSha256(availability) };
+}
+
+function validateAvailabilityProvenanceLedger(
+  ledger: Imp24CandidateAvailabilityProvenanceLedgerV1,
+): void {
+  const { ledgerSha256, ...core } = ledger;
+  requireCondition(ledger.schema === IMP24_CANDIDATE_AVAILABILITY_PROVENANCE_LEDGER_SCHEMA
+      && ledger.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID
+      && SHA256.test(ledger.candidateAvailabilitySemanticSha256)
+      && ledger.observations.length > 0
+      && SHA256.test(ledgerSha256)
+      && ledgerSha256 === hashCanonical(core),
+  "candidate availability provenance ledger identity/self hash drift");
+  for (const observation of ledger.observations) {
+    const { provenanceSha256, ...projection } = observation;
+    requireCondition(SHA256.test(provenanceSha256)
+        && provenanceSha256 === hashCanonical(projection),
+    "candidate availability provenance observation hash drift");
+  }
+}
+
+function retainAvailabilityProvenance(
+  path: string,
+  availability: CandidateAvailabilityV3,
+): Imp24CandidateAvailabilityProvenanceLedgerV1 {
+  const semanticSha256 = candidateAvailabilitySemanticSha256(availability);
+  const observation = availabilityProvenanceObservation(availability);
+  const retained = existsSync(path)
+    ? parseJson<Imp24CandidateAvailabilityProvenanceLedgerV1>(path,
+      "candidate availability provenance ledger")
+    : null;
+  if (retained !== null) {
+    validateAvailabilityProvenanceLedger(retained);
+    requireCondition(retained.candidateAvailabilitySemanticSha256 === semanticSha256,
+      "candidate availability semantics changed across provenance refresh");
+  }
+  const observations = retained?.observations.some((item) =>
+    item.provenanceSha256 === observation.provenanceSha256)
+    ? retained.observations
+    : [...(retained?.observations ?? []), observation];
+  const core: Omit<Imp24CandidateAvailabilityProvenanceLedgerV1, "ledgerSha256"> = {
+    schema: IMP24_CANDIDATE_AVAILABILITY_PROVENANCE_LEDGER_SCHEMA,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    candidateAvailabilitySemanticSha256: semanticSha256,
+    observations,
+  };
+  const ledger = { ...core, ledgerSha256: hashCanonical(core) };
+  atomicJson(path, ledger);
+  validateAvailabilityProvenanceLedger(parseJson(path, "candidate availability provenance ledger"));
+  return ledger;
+}
+
+function persistAvailabilityWithSemanticResumeGuard(args: {
+  snapshotPath: string;
+  semanticPath: string;
+  availability: CandidateAvailabilityV3;
+}): void {
+  const currentSemantic = candidateAvailabilitySemanticSha256(args.availability);
+  const projection = candidateAvailabilitySemanticProjectionV3(args.availability);
+  requireCondition(hashCanonical(projection) === currentSemantic,
+    "candidate availability semantic projection/hash mismatch");
+  if (existsSync(args.snapshotPath)) {
+    const retained = parseJson<CandidateAvailabilityV3>(args.snapshotPath,
+      "candidate availability");
+    assertImp24CandidateAvailabilitySemanticResumeV3(retained, args.availability);
+  } else {
+    atomicJson(args.snapshotPath, args.availability);
+  }
+  if (typeof args.availability.semanticSha256 === "string") {
+    persistExactJson(args.semanticPath, projection, "candidate availability semantic projection");
+  }
+}
+
+/** Public model-free seam used by focused resume tests. The campaign invokes
+ * this barrier before constructing the live executor. */
+export function assertImp24CandidateAvailabilitySemanticResumeV3(
+  retained: CandidateAvailabilityV3,
+  current: CandidateAvailabilityV3,
+): void {
+  requireCondition(candidateAvailabilitySemanticSha256(retained)
+      === candidateAvailabilitySemanticSha256(current),
+  "candidate availability semantics changed on resume before live execution");
+}
+
+function persistPreflightAllowingAvailabilityProvenanceRefresh(
+  path: string,
+  preflight: LiveQualificationPreflightV3,
+): void {
+  if (existsSync(path)) {
+    const retained = parseJson<LiveQualificationPreflightV3>(path, "live route preflight");
+    const stable = (value: LiveQualificationPreflightV3) => {
+      const {
+        preflightSha256: _self,
+        verifiedAt: _verifiedAt,
+        candidateAvailabilitySourceBytesSha256: _sourceBytes,
+        candidateAvailabilityProvenanceSha256: _provenance,
+        cliVersion: _cliVersion,
+        ...projection
+      } = value;
+      return projection;
+    };
+    requireCondition(hashCanonical(stable(retained)) === hashCanonical(stable(preflight)),
+      "live route preflight changed beyond permitted availability/CLI provenance");
+  }
+  atomicJson(path, preflight);
+  const retained = parseJson<LiveQualificationPreflightV3>(path, "live route preflight");
+  requireCondition(hashCanonical(retained) === hashCanonical(preflight),
+    "live route preflight atomic read-back hash mismatch");
 }
 
 function artifactBytesSha256(path: string, label: string): string {
@@ -883,15 +1021,23 @@ function retainedCampaignReport(path: string): Imp24RoleQualificationCampaignRep
   return retained;
 }
 
-function stableReportProjection(report: Imp24RoleQualificationCampaignReportV1): unknown {
+export function stableRoleQualificationCampaignReportProjectionV3(
+  report: Imp24RoleQualificationCampaignReportV1,
+): unknown {
   const {
     reportSha256: _reportSha256,
     callLedgerSha256: _callLedgerSha256,
+    preflightSha256: _preflightSha256,
     artifactBytesSha256,
     callCounts,
     ...identity
   } = report;
-  const { callLedger: _callLedger, ...stableArtifactBytesSha256 } = artifactBytesSha256;
+  const {
+    callLedger: _callLedger,
+    preflight: _preflight,
+    candidateAvailabilityProvenance: _availabilityProvenance,
+    ...stableArtifactBytesSha256
+  } = artifactBytesSha256;
   return {
     ...identity,
     callCounts: { ...callCounts, cachedReceipts: 0 },
@@ -905,7 +1051,8 @@ function persistCampaignReport(
   retained: Imp24RoleQualificationCampaignReportV1 | null,
 ): void {
   if (retained) {
-    requireCondition(hashCanonical(stableReportProjection(retained)) === hashCanonical(stableReportProjection(report)),
+    requireCondition(hashCanonical(stableRoleQualificationCampaignReportProjectionV3(retained))
+        === hashCanonical(stableRoleQualificationCampaignReportProjectionV3(report)),
       "recomposed V3 qualification campaign report changed outside retained cache-accounting fields");
     requireCondition(report.callCounts.cachedReceipts >= retained.callCounts.cachedReceipts,
       "recomposed V3 qualification campaign report reduced retained cache accounting");
@@ -1012,6 +1159,12 @@ function buildCampaignReport(args: {
   const artifactBytes = {
     implementationCiGate: artifactBytesSha256(args.paths.implementationCiGate, "implementation CI gate"),
     candidateAvailability: artifactBytesSha256(args.paths.candidateAvailability, "candidate availability"),
+    ...(args.preflight.candidateAvailabilitySemanticSha256 === undefined ? {} : {
+      candidateAvailabilitySemantic: artifactBytesSha256(args.paths.candidateAvailabilitySemantic,
+        "candidate availability semantic projection"),
+      candidateAvailabilityProvenance: artifactBytesSha256(args.paths.candidateAvailabilityProvenance,
+        "candidate availability provenance ledger"),
+    }),
     preflight: artifactBytesSha256(args.paths.preflight, "live route preflight"),
     qualificationFreeze: artifactBytesSha256(args.paths.qualificationFreeze, "qualification freeze"),
     qualificationResult: artifactBytesSha256(args.paths.qualificationResult, "qualification result"),
@@ -1095,31 +1248,20 @@ export async function runImp24RoleQualificationCampaignV3(
       ...forbiddenPreflightSeams.map((key) => `preflight.${key}`),
     ].join(", ")}`);
 
-  // IMP-24D successor barrier. This retained, model-free proof is validated
-  // before a live GitHub query, auth read, CLI probe, r2 directory write, or
-  // qualification call. Smoke control artifacts carry only their own IDs.
-  const smokeProof = verifyRetainedImp24DTransportSmoke({
+  // IMP-24E final successor barrier. This retained, model-free proof is
+  // validated before a live GitHub query, auth read, CLI probe, final state
+  // directory write, or qualification call. Smoke artifacts keep their own IDs.
+  const finalSmokeCycle = verifyFinalPassedImp24ETransportSmoke({
     repositoryRoot: args.repositoryRoot,
-    expectedImplementationHeadSha: args.expectedHeadSha,
   });
-  const finalSmokeCycle = smokeProof.report.cycles.at(-1);
-  requireCondition(finalSmokeCycle !== undefined
+  requireCondition(finalSmokeCycle.implementationCommit === args.expectedHeadSha
       && finalSmokeCycle.workflowRunId === args.workflowRunId,
-  "r2 qualification workflow run ID differs from the exact final smoke implementation CI gate");
-  const smokeGate = parseJson<Imp24ImplementationCiGateV1>(
-    smokeProof.finalImplementationCiGatePath,
-    "IMP-24D transport-smoke implementation CI gate",
-  );
-  validateImp24ImplementationCiGate({
-    gate: smokeGate,
-    expectedHeadSha: args.expectedHeadSha,
-    checkout: smokeGate.trustedEvidence.raw.checkout,
-  });
-  const smokeCompletedAt = smokeProof.report.cycles.at(-1)?.completedAt;
+  "final qualification implementation commit/workflow differs from the exact IMP-24E transport-smoke CI gate");
+  const smokeCompletedAt = finalSmokeCycle.completedAt;
   requireCondition(typeof smokeCompletedAt === "string"
       && Number.isFinite(Date.parse(smokeCompletedAt))
       && Date.now() > Date.parse(smokeCompletedAt),
-  "r2 qualification cannot start until after the retained final transport-smoke PASS completed");
+  "final qualification cannot start until after the retained IMP-24E transport-smoke PASS completed");
 
   const now = () => new Date();
   requireGitSha(args.expectedHeadSha, "caller-supplied implementation HEAD");
@@ -1167,13 +1309,29 @@ export async function runImp24RoleQualificationCampaignV3(
     verifiedAt,
   });
   requireCondition(Date.parse(preflight.verifiedAt) > Date.parse(smokeCompletedAt),
-    "r2 qualification preflight does not occur after the final transport-smoke PASS");
+    "final qualification preflight does not occur after the IMP-24E transport-smoke PASS");
 
   // Every immutable authorizer and the 464/928 plan is on disk before the
   // first possible model call. Existing files are create-once exact resumes.
   persistExactJson(paths.implementationCiGate, implementationCiGate, "implementation CI gate");
-  persistExactJson(paths.candidateAvailability, prepared.input.candidateAvailability, "candidate availability");
-  persistExactJson(paths.preflight, preflight, "live route preflight");
+  persistAvailabilityWithSemanticResumeGuard({
+    snapshotPath: paths.candidateAvailability,
+    semanticPath: paths.candidateAvailabilitySemantic,
+    availability: prepared.input.candidateAvailability,
+  });
+  const retainedAvailabilitySnapshot = parseJson<CandidateAvailabilityV3>(
+    paths.candidateAvailability,
+    "candidate availability",
+  );
+  if (typeof retainedAvailabilitySnapshot.provenanceSha256 === "string") {
+    retainAvailabilityProvenance(paths.candidateAvailabilityProvenance,
+      retainedAvailabilitySnapshot);
+  }
+  if (typeof prepared.input.candidateAvailability.provenanceSha256 === "string") {
+    retainAvailabilityProvenance(paths.candidateAvailabilityProvenance,
+      prepared.input.candidateAvailability);
+  }
+  persistPreflightAllowingAvailabilityProvenanceRefresh(paths.preflight, preflight);
   persistExactJson(paths.qualificationFreeze, plan.freeze, "qualification freeze");
 
   const live = createLiveQualificationExecutorV3({
@@ -1197,7 +1355,7 @@ export async function runImp24RoleQualificationCampaignV3(
   });
   requireCondition(live.ledger.entries.every((entry) =>
     Date.parse(entry.requestedAt) > Date.parse(smokeCompletedAt)),
-  "retained r2 qualification ledger predates or overlaps final transport-smoke PASS");
+  "retained final qualification ledger predates or overlaps IMP-24E transport-smoke PASS");
   const qualifiedAt = retainedQualifiedAt(paths.qualificationResult, undefined, now);
   const result = await runRoleQualificationV3(prepared.input, {
     executor: live.executor,
@@ -1207,7 +1365,7 @@ export async function runImp24RoleQualificationCampaignV3(
   });
   requireCondition(live.ledger.entries.every((entry) =>
     Date.parse(entry.requestedAt) > Date.parse(smokeCompletedAt)),
-  "r2 qualification ledger contains a request that did not occur after transport-smoke PASS");
+  "final qualification ledger contains a request that did not occur after IMP-24E transport-smoke PASS");
 
   // The live executor updates this same path before/after every broker event;
   // rewrite it atomically once more so the completed ledger has no torn tail.

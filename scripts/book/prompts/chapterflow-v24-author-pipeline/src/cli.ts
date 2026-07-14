@@ -323,6 +323,16 @@ Commands:
                                      IMP-24 ChatGPT-subscription codex-exec qualification over exact V3
                                      envelope artifacts. Local model-cache discovery only; crash-safe retained
                                      attempts; no API, provider fallback, publication, promotion, or deployment.
+  migration-bakeoff <imp24e-schema-probes|imp24e-schema-probes-r2> --execute-live
+                                     --head-sha SHA --workflow-run-id ID [--json]
+                                     IMP-24E fixed reader/source/quiz synthetic schema probes. Exactly three
+                                     calls per cycle, one fresh-head repeat maximum, excluded from qualification
+                                     metrics, ChatGPT-authenticated codex exec only, retained process diagnostics.
+  migration-bakeoff <imp24e-transport-smoke|imp24e-transport-smoke-r2> --execute-live
+                                     --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--json]
+                                     IMP-24E fresh fixed reader/source canary transport smoke. Exactly two calls
+                                     per cycle, one exact-CI correction repeat maximum, no replay or qualification
+                                     metrics, ChatGPT-authenticated codex exec only, retained process diagnostics.
   migration-bakeoff imp24-materialize-pre-live-freeze [--write|--verify] [--json]
                                      IMP-24C zero-model/API fixed-path pre-live freeze. Derives the six physical
                                      corpus partitions, provenance/audits, prompt/schema/order/policy/schedule/budget

@@ -63,11 +63,18 @@ export const IMP24_ROLE_QUALIFICATION_CLOSED_EXECUTION_ID =
   IMP24_ROLE_QUALIFICATION_PROTOCOL_ID;
 export const IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID =
   "s16-forward-role-qualification-v3-envelope-r1" as const;
-/** IMP-24D authorizes this fresh execution identity only after its separately
- * retained transport-smoke gate passes. Merely importing this constant creates
- * no state root and grants no live-call authorization. */
-export const IMP24_ROLE_QUALIFICATION_EXECUTION_ID =
+/** Historical IMP-24D execution identity. Its retained artifacts remain
+ * addressable for verification, but it is never an active/default route. */
+export const IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID =
   "s16-forward-role-qualification-v3-envelope-r2" as const;
+/** IMP-24E authorizes this final fresh execution identity only after its
+ * separately retained schema probes and transport-smoke gate pass. Merely
+ * importing this constant creates no state root or live-call authority. */
+export const IMP24_ROLE_QUALIFICATION_FINAL_EXECUTION_ID =
+  "s16-forward-role-qualification-v3-envelope-final" as const;
+/** Active qualification/pilot/runtime identity. */
+export const IMP24_ROLE_QUALIFICATION_EXECUTION_ID =
+  IMP24_ROLE_QUALIFICATION_FINAL_EXECUTION_ID;
 export const IMP24_CORPUS_SCHEMA = "imp24-role-qualification-corpus-v3" as const;
 export const IMP24_CORPUS_BUNDLE_SCHEMA = "imp24-role-qualification-corpus-bundle-v1" as const;
 export const IMP24_CORPUS_AUDIT_SCHEMA = "imp24-model-free-corpus-audit-v1" as const;

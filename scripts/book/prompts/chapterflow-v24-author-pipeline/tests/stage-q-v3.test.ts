@@ -45,7 +45,7 @@ test("D1: the schema reaches codex exec and a structured-output sidecar (path + 
   const sink = join(TMP_DIR, `v3-schema-${process.pid}-${Math.floor(process.hrtime()[1])}`);
   const schemaDir = mkdtempSync(join(tmpdir(), "v3-schema-"));
   const schemaPath = join(schemaDir, "cc.schema.json");
-  writeFileSync(schemaPath, JSON.stringify({ type: "object", additionalProperties: false, required: ["contentVerdict"], properties: { contentVerdict: { enum: ["CLEAN", "DEFECT"] } } }));
+  writeFileSync(schemaPath, JSON.stringify({ type: "object", additionalProperties: false, required: ["contentVerdict"], properties: { contentVerdict: { type: "string", enum: ["CLEAN", "DEFECT"] } } }));
   let capturedArgv: string[] = [];
   await spawnCodexAgent({
     task: "judge", sessionId: "v3-schema-1", cwd: PIPELINE_DIR, sandbox: "read-only", role: "bakeoff-judge",

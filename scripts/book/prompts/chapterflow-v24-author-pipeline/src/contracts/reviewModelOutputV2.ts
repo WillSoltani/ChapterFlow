@@ -263,10 +263,29 @@ function validateStringArray(value: unknown, errors: string[], where: string, re
   return true;
 }
 
+/** Deterministic semantic uniqueness check for constraints that the installed
+ * Codex structured-output transport cannot express. Each duplicate is reported
+ * once, at the exact field, with the exact primitive value. */
+function validateUniquePrimitiveValues(
+  values: readonly (string | number)[],
+  errors: string[],
+  where: string,
+): void {
+  const seen = new Set<string | number>();
+  const reported = new Set<string | number>();
+  for (const value of values) {
+    if (seen.has(value) && !reported.has(value)) {
+      errors.push(`${where}: duplicate value ${JSON.stringify(value)}`);
+      reported.add(value);
+    }
+    seen.add(value);
+  }
+}
+
 function validateRefIds(value: unknown, errors: string[], where: string, requireNonEmpty = true): value is string[] {
   if (!validateStringArray(value, errors, where, requireNonEmpty)) return false;
   if (value.some((item) => item.length === 0)) errors.push(`${where}: references must be non-empty strings`);
-  if (new Set(value).size !== value.length) errors.push(`${where}: duplicate evidence reference`);
+  validateUniquePrimitiveValues(value, errors, where);
   return true;
 }
 
@@ -371,7 +390,7 @@ function validateSourceFinding(value: unknown, errors: string[], where: string):
   if (!Array.isArray(value.secondaryCategories) || !value.secondaryCategories.every((item) => isEnum(item, SOURCE_PRIMARY_CATEGORY_PRECEDENCE_V2))) {
     errors.push(`${where}: secondaryCategories must use the frozen category enum`);
   } else {
-    if (new Set(value.secondaryCategories).size !== value.secondaryCategories.length) errors.push(`${where}: duplicate secondary category`);
+    validateUniquePrimitiveValues(value.secondaryCategories as string[], errors, `${where}.secondaryCategories`);
     if (value.secondaryCategories.includes(value.primaryCategory)) errors.push(`${where}: primaryCategory cannot repeat as secondary`);
     if (isEnum(value.primaryCategory, SOURCE_PRIMARY_CATEGORY_PRECEDENCE_V2)) {
       const all = [value.primaryCategory as SourcePrimaryCategoryV2, ...value.secondaryCategories as SourcePrimaryCategoryV2[]];
@@ -447,7 +466,7 @@ export function validateQuizIntegrityModelOutputV2(value: unknown): string[] {
       || !item.defensibleAnswerIndices.every((answer) => Number.isSafeInteger(answer) && answer >= 0)) {
       errors.push(`${where}: defensibleAnswerIndices must be a non-empty non-negative integer[]`);
     } else {
-      if (new Set(item.defensibleAnswerIndices).size !== item.defensibleAnswerIndices.length) errors.push(`${where}: duplicate defensible answer index`);
+      validateUniquePrimitiveValues(item.defensibleAnswerIndices, errors, `${where}.defensibleAnswerIndices`);
       if (item.keyCorrect === "ambiguous" && item.defensibleAnswerIndices.length < 2) errors.push(`${where}: ambiguous requires at least two defensible answers`);
       if (item.keyCorrect === "correct" && item.defensibleAnswerIndices.length !== 1) errors.push(`${where}: correct requires exactly one defensible answer`);
     }

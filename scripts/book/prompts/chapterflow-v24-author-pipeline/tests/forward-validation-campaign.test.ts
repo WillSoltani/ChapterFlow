@@ -648,7 +648,7 @@ test("frozen pilot selection is deterministic, balanced 2×4, no-overlap, and ri
   assert.ok(Object.isFrozen(first.manifest));
 });
 
-test("systemic correction ids are contiguous and stop after two verified cycles", () => {
+test("systemic correction ids are contiguous and stop after one verified cycle", () => {
   const root: VerifiedSystemicRootCauseV1 = {
     classification: "MODEL_ROUTING",
     rootCauseId: "wrong-central-route",
@@ -657,8 +657,18 @@ test("systemic correction ids are contiguous and stop after two verified cycles"
     regressionTestId: "forward-validation-campaign:route",
   };
   assert.equal(nextPilotCorrectionExperimentId([PILOT_EXPERIMENT_ID], root), `${PILOT_EXPERIMENT_ID}-correction-1`);
-  assert.equal(nextPilotCorrectionExperimentId([PILOT_EXPERIMENT_ID, `${PILOT_EXPERIMENT_ID}-correction-1`], root), `${PILOT_EXPERIMENT_ID}-correction-2`);
-  assert.throws(() => nextPilotCorrectionExperimentId([PILOT_EXPERIMENT_ID, `${PILOT_EXPERIMENT_ID}-correction-1`, `${PILOT_EXPERIMENT_ID}-correction-2`], root), /two systemic correction cycles are exhausted/);
+  assert.throws(
+    () => nextPilotCorrectionExperimentId([PILOT_EXPERIMENT_ID, `${PILOT_EXPERIMENT_ID}-correction-1`], root),
+    /one systemic correction cycle is exhausted/,
+  );
+  assert.throws(
+    () => nextPilotCorrectionExperimentId(
+      [PILOT_ENVELOPE_EXPERIMENT_ID, `${PILOT_ENVELOPE_EXPERIMENT_ID}-correction-1`],
+      root,
+      "imp24-v2-envelope",
+    ),
+    /one systemic correction cycle is exhausted/,
+  );
   assert.throws(() => nextPilotCorrectionExperimentId([PILOT_EXPERIMENT_ID], { ...root, affectedChapterKeys: ["book/ch01"] }), /at least two chapters/);
   const evidenceMap = new Map<string, Evidence>();
   const books = [selectionBook("corrected-a", 4, evidenceMap), selectionBook("corrected-b", 4, evidenceMap)];

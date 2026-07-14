@@ -60,6 +60,8 @@ import {
   IMP24_ROLE_QUALIFICATION_RECEIPT_SCHEMA,
   buildQualificationExecutionRequestV3,
   buildRoleQualificationPlanV3,
+  candidateAvailabilityProvenanceSha256,
+  candidateAvailabilitySemanticSha256,
   candidateAvailabilitySha256,
   instrumentCertificationBindingSha256,
   qualificationReceiptSha256,
@@ -106,6 +108,7 @@ function allAvailable(): CandidateAvailabilityV3 {
       modelListed: true,
       visible: true,
       effortSupported: true,
+      reasonCode: "AVAILABLE" as const,
       reason: "test-local exact visible model and effort",
     })),
   );
@@ -113,13 +116,23 @@ function allAvailable(): CandidateAvailabilityV3 {
     schema: IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
     experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     source: "codex-local-models-cache",
+    sourceFile: "$CODEX_HOME/models_cache.json",
     sourceBytesSha256: "1".repeat(64),
     sourceFetchedAt: "2026-07-13T12:00:00.000Z",
+    sourceQualifiedAt: "2026-07-13T14:00:00.000Z",
+    sourceAgeSeconds: 7_200,
+    cliVersion: "codex-cli 0.144.0",
     policyBytesSha256: "2".repeat(64),
     candidateOrderSha256: hashCanonical(IMP24_ROLE_CANDIDATE_ORDER),
     entries,
   };
-  return { ...core, availabilitySha256: candidateAvailabilitySha256(core) };
+  const split = {
+    ...core,
+    semanticSha256: candidateAvailabilitySemanticSha256(core),
+    provenanceSha256: "0".repeat(64),
+  };
+  split.provenanceSha256 = candidateAvailabilityProvenanceSha256(split as CandidateAvailabilityV3);
+  return { ...split, availabilitySha256: candidateAvailabilitySha256(split) };
 }
 
 function buildBaseInput(): RunRoleQualificationInputV3 {
@@ -212,15 +225,121 @@ function markUnavailable(
     entry.modelListed = false;
     entry.visible = false;
     entry.effortSupported = false;
+    entry.reasonCode = "MODEL_NOT_LISTED";
     entry.reason = "test-local unavailable";
   }
-  const { availabilitySha256: _old, ...core } = input.candidateAvailability;
-  input.candidateAvailability.availabilitySha256 = candidateAvailabilitySha256(core);
+  const {
+    availabilitySha256: _availabilitySha256,
+    semanticSha256: _semanticSha256,
+    provenanceSha256: _provenanceSha256,
+    ...core
+  } = input.candidateAvailability;
+  const split = {
+    ...core,
+    semanticSha256: candidateAvailabilitySemanticSha256(core),
+    provenanceSha256: "0".repeat(64),
+  };
+  split.provenanceSha256 = candidateAvailabilityProvenanceSha256(split as CandidateAvailabilityV3);
+  input.candidateAvailability = {
+    ...split,
+    availabilitySha256: candidateAvailabilitySha256(split),
+  };
 }
 
 function retainOnly(input: RunRoleQualificationInputV3, role: "reader" | "source" | "quiz", ordinal: number): void {
   markUnavailable(input, (entry) => !(entry.role === role && entry.ordinal === ordinal));
 }
+
+test("IMP-24E qualification freeze and schedule are stable across availability provenance refresh", () => {
+  const withProvenance = (
+    sourceBytesSha256: string,
+    sourceFetchedAt: string,
+  ): RunRoleQualificationInputV3 => {
+    const input = freshInput();
+    const qualifiedAt = "2026-07-13T14:00:00.000Z";
+    const core = {
+      ...input.candidateAvailability,
+      sourceFile: "$CODEX_HOME/models_cache.json",
+      sourceBytesSha256,
+      sourceFetchedAt,
+      sourceQualifiedAt: qualifiedAt,
+      sourceAgeSeconds: (Date.parse(qualifiedAt) - Date.parse(sourceFetchedAt)) / 1_000,
+      cliVersion: "codex-cli 0.144.0",
+      entries: input.candidateAvailability.entries.map((entry) => ({ ...entry, reasonCode: "AVAILABLE" as const })),
+    };
+    const { availabilitySha256: _old, ...withoutLegacyHash } = core;
+    const split = {
+      ...withoutLegacyHash,
+      semanticSha256: candidateAvailabilitySemanticSha256(withoutLegacyHash),
+      provenanceSha256: "0".repeat(64),
+    };
+    split.provenanceSha256 = candidateAvailabilityProvenanceSha256(split as CandidateAvailabilityV3);
+    input.candidateAvailability = {
+      ...split,
+      availabilitySha256: candidateAvailabilitySha256(split),
+    };
+    return input;
+  };
+  const first = buildRoleQualificationPlanV3(withProvenance(
+    "b1452c5f70a83fdee1d6306ccd2a66275fda1f91719d2bf87eb0915af589f7f6",
+    "2026-07-13T11:00:23.719Z",
+  ));
+  const second = buildRoleQualificationPlanV3(withProvenance(
+    "b0f324c6c71bd31ab89b31d5992c77afb3fc8925ad5537d0d9cf4aea721f892e",
+    "2026-07-13T13:46:36.164Z",
+  ));
+  assert.deepEqual(first.schedule, second.schedule);
+  assert.deepEqual(first.freeze, second.freeze);
+});
+
+test("IMP-24E qualification provenance accepts only the frozen bounded negative cache age", () => {
+  const withCacheAge = (sourceAgeSeconds: number): RunRoleQualificationInputV3 => {
+    const input = freshInput();
+    const sourceQualifiedAt = "2026-07-13T14:00:00.000Z";
+    const sourceFetchedAt = new Date(
+      Date.parse(sourceQualifiedAt) - sourceAgeSeconds * 1_000,
+    ).toISOString();
+    const {
+      availabilitySha256: _availabilitySha256,
+      provenanceSha256: _provenanceSha256,
+      ...core
+    } = input.candidateAvailability;
+    const availability: CandidateAvailabilityV3 = {
+      ...core,
+      sourceFetchedAt,
+      sourceQualifiedAt,
+      sourceAgeSeconds,
+      provenanceSha256: "0".repeat(64),
+      availabilitySha256: "0".repeat(64),
+    };
+    availability.provenanceSha256 = candidateAvailabilityProvenanceSha256(availability);
+    const { availabilitySha256: _oldSelfHash, ...selfHashCore } = availability;
+    availability.availabilitySha256 = candidateAvailabilitySha256(selfHashCore);
+    input.candidateAvailability = availability;
+    return input;
+  };
+
+  assert.doesNotThrow(() => buildRoleQualificationPlanV3(withCacheAge(-300)));
+  assert.throws(() => buildRoleQualificationPlanV3(withCacheAge(-300.001)),
+    /candidate availability cache age is invalid/);
+});
+
+test("active FINAL qualification planner rejects an archived availability shape without the IMP-24E split", () => {
+  const input = freshInput();
+  const availability = input.candidateAvailability;
+  delete availability.semanticSha256;
+  delete availability.provenanceSha256;
+  delete availability.sourceFile;
+  delete availability.sourceQualifiedAt;
+  delete availability.sourceAgeSeconds;
+  delete availability.cliVersion;
+  for (const entry of availability.entries) delete entry.reasonCode;
+  const { availabilitySha256: _availabilitySha256, ...legacyCore } = availability;
+  availability.availabilitySha256 = candidateAvailabilitySha256(legacyCore);
+
+  assert.throws(() => buildRoleQualificationPlanV3(input),
+    /candidate availability reason code does not derive/);
+});
 
 test("IMP-24 V3 earns 2/2/1 roles from exact frozen gold while canary semantics stay outside the protocol gate", async () => {
   const input = freshInput();

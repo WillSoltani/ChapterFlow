@@ -9,6 +9,7 @@
  * legacy qualification adapter and no injected process/model seam here.
  */
 
+import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
@@ -17,9 +18,13 @@ import { canonicalPretty } from "./corpusBuilderCore.js";
 import {
   IMP24_CERTIFICATION_ARTIFACT_PATHS,
   certifyImp24Instrument,
+  createImp24QualificationEvaluator,
+  prepareImp24QualificationCases,
 } from "./imp24InstrumentCertification.js";
 import {
   IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
+  certifyImp24Corpora,
   serializeImp24CorpusBundle,
   type Imp24CorpusBundle,
 } from "./imp24Corpus.js";
@@ -27,7 +32,13 @@ import {
   IMP24_FROZEN_ROLE_THRESHOLDS,
   type CandidateAvailabilityV3,
   type InstrumentCertificationBindingV3,
+  type RunRoleQualificationInputV3,
 } from "./roleQualificationRunnerV3.js";
+import {
+  QUIZ_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+  READER_EXPERIENCE_MODEL_OUTPUT_V2_SCHEMA,
+  SOURCE_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+} from "../../contracts/reviewModelOutputV2.js";
 import { hashCanonical, sha256Hex } from "../../contracts/contractUtil.js";
 import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import {
@@ -85,6 +96,7 @@ import {
 } from "../../orchestrator/forwardRetainedCampaignEvidenceV3.js";
 import {
   assertVerifiedForwardRetainedRoleQualificationEvidenceV3,
+  verifyHistoricalImp24DR2RetainedRoleQualificationEvidenceV3,
   verifyForwardRetainedRoleQualificationEvidenceV3,
   type VerifiedForwardRetainedRoleQualificationEvidenceV3,
 } from "../../orchestrator/forwardRetainedRoleQualificationEvidenceV3.js";
@@ -94,6 +106,22 @@ export const IMP24_PILOT_GOLD_WORKFLOW_SCHEMA = "imp24-pilot-gold-workflow-resul
 const REPOSITORY_ROOT = resolve(PIPELINE_DIR, "../../../..");
 const EXPERIMENT_ROOT = resolve(PIPELINE_DIR, "state", "migration-experiments");
 const QUALIFICATION_ROOT = resolve(EXPERIMENT_ROOT, IMP24_ROLE_QUALIFICATION_EXECUTION_ID);
+
+function qualificationPaths(executionId: string) {
+  const qualificationRoot = resolve(EXPERIMENT_ROOT, executionId);
+  return Object.freeze({
+    qualificationRoot,
+    candidateAvailability: resolve(qualificationRoot, "candidate-availability.json"),
+    qualificationPreflight: resolve(qualificationRoot, "live", "preflight.json"),
+    qualificationResult: resolve(qualificationRoot, "live", "qualification-result.json"),
+    roleAssignmentFreeze: resolve(qualificationRoot, "role-assignment-freeze.json"),
+    implementationCiGate: resolve(qualificationRoot, "implementation-ci-gate.json"),
+  });
+}
+
+export const IMP24D_R2_QUALIFICATION_FIXED_PATHS = qualificationPaths(
+  IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
+);
 
 export const IMP24_PILOT_GOLD_FIXED_PATHS = Object.freeze({
   repositoryRoot: REPOSITORY_ROOT,
@@ -209,10 +237,13 @@ function persistCreateOnceExact(path: string, value: unknown, write: boolean, la
   return true;
 }
 
-function routeBindingFrom(preflight: LiveQualificationPreflightV3): ForwardV3RouteBinding {
+function routeBindingFrom(
+  preflight: LiveQualificationPreflightV3,
+  expectedExecutionId: string = IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+): ForwardV3RouteBinding {
   const { preflightSha256, ...core } = preflight;
   requireCondition(preflight.schema === "imp24-role-qualification-live-preflight-v3"
-    && preflight.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    && preflight.experimentId === expectedExecutionId,
   "retained qualification preflight has the wrong V3 envelope identity");
   requireCondition(preflightSha256 === hashCanonical(core), "retained qualification preflight self hash drift");
   requireCondition(preflight.cliSynthetic === false,
@@ -323,6 +354,154 @@ function loadExactTerminalQualification(): LoadedImp24TerminalQualification {
     retainedPreflight,
     retainedQualificationEvidence,
     preparedInput: prepared.input,
+  };
+}
+
+function readCommittedImp24DBytes(commit: string, relativePath: string, label: string): Buffer {
+  requireCondition(/^[a-f0-9]{40}$/.test(commit), `${label} commit is not an exact Git SHA`);
+  try {
+    return execFileSync("git", ["show", `${commit}:${relativePath}`], {
+      cwd: REPOSITORY_ROOT,
+      encoding: "buffer",
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+  } catch (error) {
+    throw new Imp24PilotGoldWorkflowError(
+      `${label} is not readable from historical commit ${commit}: ${(error as Error).message}`,
+    );
+  }
+}
+
+function readCommittedImp24DJson<T>(commit: string, relativePath: string, label: string): T {
+  try {
+    return JSON.parse(readCommittedImp24DBytes(commit, relativePath, label).toString("utf8")) as T;
+  } catch (error) {
+    throw new Imp24PilotGoldWorkflowError(
+      `${label} is not valid committed JSON: ${(error as Error).message}`,
+    );
+  }
+}
+
+/** Explicit historical loader used only by the immutable IMP-24D terminal
+ * attestation. It reads the R2 state root and reconstructs the legacy plan
+ * against the exact implementation-commit schemas/certification rather than
+ * borrowing the active FINAL pilot/activation identity. */
+export function verifyImp24DR2RetainedQualificationForFinalAttestationV3(): LoadedImp24TerminalQualification {
+  const paths = IMP24D_R2_QUALIFICATION_FIXED_PATHS;
+  const gate = readJson<{ headSha: string }>(paths.implementationCiGate,
+    "IMP-24D R2 implementation CI gate");
+  requireCondition(/^[a-f0-9]{40}$/.test(gate.headSha),
+    "IMP-24D R2 implementation CI gate has no exact implementation SHA");
+  const implementationCommit = gate.headSha;
+  const retainedCorpus = readCommittedImp24DJson<Imp24CorpusBundle>(implementationCommit,
+    IMP24_CERTIFICATION_ARTIFACT_PATHS.corpusBundle, "IMP-24D R2 corpus bundle");
+  const retainedCertification = readCommittedImp24DJson<InstrumentCertificationBindingV3>(implementationCommit,
+    IMP24_CERTIFICATION_ARTIFACT_PATHS.certificationBinding, "IMP-24D R2 instrument certification");
+  const retainedSeal = readCommittedImp24DJson<ForwardProductionInstrumentSealV1>(implementationCommit,
+    IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH, "IMP-24D R2 production seal");
+  const retainedThresholdBytes = readCommittedImp24DBytes(implementationCommit,
+    IMP24_CERTIFICATION_ARTIFACT_PATHS.thresholds, "IMP-24D R2 thresholds");
+  const thresholds = JSON.parse(retainedThresholdBytes.toString("utf8")) as typeof IMP24_FROZEN_ROLE_THRESHOLDS;
+  requireCondition(hashCanonical(thresholds) === hashCanonical(IMP24_FROZEN_ROLE_THRESHOLDS),
+    "IMP-24D R2 thresholds differ from the owner-frozen semantics");
+
+  const candidateAvailability = readJson<CandidateAvailabilityV3>(paths.candidateAvailability,
+    "IMP-24D R2 candidate availability");
+  const roleFreeze = existsSync(paths.roleAssignmentFreeze)
+    ? readJson<ForwardRoleAssignmentFreezeV3>(paths.roleAssignmentFreeze,
+      "IMP-24D R2 role assignment freeze")
+    : null;
+  const instrument = prepareImp24QualificationCases({
+    repositoryRoot: REPOSITORY_ROOT,
+    corpusBundle: retainedCorpus,
+  });
+  const schemaRel = {
+    reader: "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/reader-experience-model-output-v2.schema.json",
+    source: "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/source-integrity-model-output-v2.schema.json",
+    quiz: "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/quiz-integrity-model-output-v2.schema.json",
+  } as const;
+  const schemaHashes = {
+    reader: sha256Hex(readCommittedImp24DBytes(implementationCommit, schemaRel.reader,
+      "IMP-24D R2 reader schema")),
+    source: sha256Hex(readCommittedImp24DBytes(implementationCommit, schemaRel.source,
+      "IMP-24D R2 source schema")),
+    quiz: sha256Hex(readCommittedImp24DBytes(implementationCommit, schemaRel.quiz,
+      "IMP-24D R2 quiz schema")),
+  };
+  const promptModuleSha256 = sha256Hex(readCommittedImp24DBytes(implementationCommit,
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/review/reviewModelOutputV2.ts",
+    "IMP-24D R2 reviewer task module"));
+  const promptSourceHashes = {
+    reader: hashCanonical({
+      moduleSha256: promptModuleSha256,
+      builder: "buildReaderExperienceInlineReviewTask",
+      schema: READER_EXPERIENCE_MODEL_OUTPUT_V2_SCHEMA,
+    }),
+    source: hashCanonical({
+      moduleSha256: promptModuleSha256,
+      builder: "buildSourceIntegrityInlineReviewTask",
+      schema: SOURCE_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+    }),
+    quiz: hashCanonical({
+      moduleSha256: promptModuleSha256,
+      builder: "buildQuizIntegrityInlineReviewTask",
+      schema: QUIZ_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+    }),
+  };
+  for (const role of ["reader", "source", "quiz"] as const) {
+    for (const partition of ["canary", "holdout"] as const) {
+      for (const preparedCase of instrument.preparedCases[role][partition]) {
+        preparedCase.schemaSha256 = schemaHashes[role];
+        preparedCase.promptSourceSha256 = promptSourceHashes[role];
+      }
+    }
+  }
+  const preparedInput = {
+    experimentId: IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
+    corpusBundle: retainedCorpus,
+    corpusCertification: certifyImp24Corpora(retainedCorpus),
+    certification: retainedCertification,
+    productionInstrumentSeal: retainedSeal,
+    candidateAvailability,
+    thresholds,
+    thresholdBytesSha256: sha256Hex(retainedThresholdBytes),
+    schemaHashes,
+    promptSourceHashes,
+    preparedCases: instrument.preparedCases,
+  } as unknown as RunRoleQualificationInputV3;
+  const evaluator = createImp24QualificationEvaluator(retainedCorpus);
+  const retainedQualificationEvidence = verifyHistoricalImp24DR2RetainedRoleQualificationEvidenceV3({
+    repositoryRoot: REPOSITORY_ROOT,
+    experimentDir: paths.qualificationRoot,
+    input: preparedInput,
+    evaluateOutput: evaluator.evaluateOutput,
+    roleAssignmentFreeze: roleFreeze,
+  });
+  assertVerifiedForwardRetainedRoleQualificationEvidenceV3(retainedQualificationEvidence);
+  const retainedPreflight = retainedQualificationEvidence.preflight;
+  const result = retainedQualificationEvidence.result;
+  const routeBinding = routeBindingFrom(retainedPreflight, IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID);
+  const currentQualification: BuildForwardRoleAssignmentFreezeV3Input = {
+    implementationHeadSha: retainedQualificationEvidence.proof.implementationHeadSha,
+    implementationCiGateSha256: retainedQualificationEvidence.proof.implementationCiGateSha256,
+    callLedgerSha256: retainedQualificationEvidence.proof.callLedgerSha256,
+    callLedgerBytesSha256: retainedQualificationEvidence.proof.callLedgerBytesSha256,
+    result,
+    certification: retainedCertification,
+    corpusBundle: retainedCorpus,
+    schemaHashes,
+    promptSourceHashes,
+    routeBinding,
+    productionInstrumentSeal: retainedSeal,
+    repositoryRoot: REPOSITORY_ROOT,
+  };
+  return {
+    currentQualification,
+    roleFreeze,
+    qualification: null,
+    retainedPreflight,
+    retainedQualificationEvidence,
+    preparedInput,
   };
 }
 

@@ -32,6 +32,10 @@ import {
   IMP24_ROLE_QUALIFICATION_RECEIPT_SCHEMA,
   assembleQualificationAttemptV3,
   buildQualificationExecutionRequestV3,
+  candidateAvailabilityProvenanceProjectionV3,
+  candidateAvailabilityProvenanceSha256,
+  candidateAvailabilitySemanticProjectionV3,
+  candidateAvailabilitySemanticSha256,
   candidateAvailabilitySha256,
   instrumentCertificationBindingSha256,
   qualificationReceiptSha256,
@@ -155,8 +159,10 @@ import {
 } from "../src/orchestrator/forwardRetainedCampaignEvidenceV3.js";
 import { makeForwardGoldEvaluatorOutput } from "./forwardGoldRuntimeFixtures.js";
 import {
+  buildForwardGoldComponentInventory,
   buildForwardGoldEvaluatorInstrument,
   buildForwardGoldSourceAwareExternalAccuracyProof,
+  materializeForwardGoldSweepOutputSchema,
 } from "../src/orchestrator/forwardGoldEvaluatorInstrument.js";
 import {
   IMP24_ACTIVATION_READINESS_PROOF_SCHEMA,
@@ -170,11 +176,13 @@ import {
   type VerifiedImp24ActivationReadinessV2,
 } from "../src/orchestrator/forwardActivationReadinessV2.js";
 import {
+  IMP24_CANDIDATE_AVAILABILITY_PROVENANCE_LEDGER_SCHEMA,
   IMP24_ROLE_QUALIFICATION_CAMPAIGN_REPORT_SCHEMA,
   IMP24_REQUIRED_REPOSITORY_URL,
   buildImp24ImplementationCiGateFromEvidence,
   imp24ImplementationCiGateSha256,
   type Imp24CheckoutIdentityV1,
+  type Imp24CandidateAvailabilityProvenanceLedgerV1,
   type Imp24ImplementationCiGateV1,
   type Imp24RoleQualificationCampaignReportV1,
   type Imp24TrustedPullRequestEvidenceV1,
@@ -212,6 +220,19 @@ function readJson<T>(path: string): T {
   return JSON.parse(readFileSync(path, "utf8")) as T;
 }
 
+function bindImp24eAvailability(
+  core: Omit<CandidateAvailabilityV3,
+    "availabilitySha256" | "semanticSha256" | "provenanceSha256">,
+): CandidateAvailabilityV3 {
+  const split = {
+    ...core,
+    semanticSha256: candidateAvailabilitySemanticSha256(core),
+    provenanceSha256: "0".repeat(64),
+  };
+  split.provenanceSha256 = candidateAvailabilityProvenanceSha256(split as CandidateAvailabilityV3);
+  return { ...split, availabilitySha256: candidateAvailabilitySha256(split) };
+}
+
 function allAvailable(): CandidateAvailabilityV3 {
   const entries: CandidateAvailabilityEntryV3[] = ROLES.flatMap((role) =>
     IMP24_ROLE_CANDIDATE_ORDER[role].map((candidate, ordinal) => ({
@@ -222,6 +243,7 @@ function allAvailable(): CandidateAvailabilityV3 {
       modelListed: true,
       visible: true,
       effortSupported: true,
+      reasonCode: "AVAILABLE" as const,
       reason: "hermetic retained-evidence activation fixture",
     })),
   );
@@ -229,19 +251,29 @@ function allAvailable(): CandidateAvailabilityV3 {
     schema: IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
     experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     source: "codex-local-models-cache",
+    sourceFile: "$CODEX_HOME/models_cache.json",
     sourceBytesSha256: "1".repeat(64),
     sourceFetchedAt: "2026-07-13T12:00:00.000Z",
+    sourceQualifiedAt: "2026-07-13T14:00:00.000Z",
+    sourceAgeSeconds: 7_200,
+    cliVersion: "codex-cli 0.144.1",
     policyBytesSha256: "2".repeat(64),
     candidateOrderSha256: hashCanonical(IMP24_ROLE_CANDIDATE_ORDER),
     entries,
   };
-  return { ...core, availabilitySha256: candidateAvailabilitySha256(core) };
+  return bindImp24eAvailability(core);
 }
 
 function allUnavailable(): CandidateAvailabilityV3 {
   const available = allAvailable();
-  const { availabilitySha256: _availabilitySha256, ...availableCore } = available;
-  const core: Omit<CandidateAvailabilityV3, "availabilitySha256"> = {
+  const {
+    availabilitySha256: _availabilitySha256,
+    semanticSha256: _semanticSha256,
+    provenanceSha256: _provenanceSha256,
+    ...availableCore
+  } = available;
+  const core: Omit<CandidateAvailabilityV3,
+    "availabilitySha256" | "semanticSha256" | "provenanceSha256"> = {
     ...availableCore,
     entries: available.entries.map((entry) => ({
       ...entry,
@@ -249,16 +281,23 @@ function allUnavailable(): CandidateAvailabilityV3 {
       modelListed: false,
       visible: false,
       effortSupported: false,
+      reasonCode: "MODEL_NOT_LISTED" as const,
       reason: "hermetic unavailable-candidate terminal fixture",
     })),
   };
-  return { ...core, availabilitySha256: candidateAvailabilitySha256(core) };
+  return bindImp24eAvailability(core);
 }
 
 function oneReaderCandidateAvailable(): CandidateAvailabilityV3 {
   const unavailable = allUnavailable();
-  const { availabilitySha256: _availabilitySha256, ...unavailableCore } = unavailable;
-  const core: Omit<CandidateAvailabilityV3, "availabilitySha256"> = {
+  const {
+    availabilitySha256: _availabilitySha256,
+    semanticSha256: _semanticSha256,
+    provenanceSha256: _provenanceSha256,
+    ...unavailableCore
+  } = unavailable;
+  const core: Omit<CandidateAvailabilityV3,
+    "availabilitySha256" | "semanticSha256" | "provenanceSha256"> = {
     ...unavailableCore,
     entries: unavailable.entries.map((entry) => entry.role === "reader" && entry.ordinal === 0
       ? {
@@ -267,11 +306,12 @@ function oneReaderCandidateAvailable(): CandidateAvailabilityV3 {
         modelListed: true,
         visible: true,
         effortSupported: true,
+        reasonCode: "AVAILABLE" as const,
         reason: "hermetic single-reader partial-qualification fixture",
       }
       : entry),
   };
-  return { ...core, availabilitySha256: candidateAvailabilitySha256(core) };
+  return bindImp24eAvailability(core);
 }
 
 function qualificationReceipt(
@@ -525,6 +565,14 @@ function persistQualificationEvidenceFixture(args: {
 }): { currentQualification: BuildForwardRoleAssignmentFreezeV3Input; roleAssignmentFreeze: ForwardRoleAssignmentFreezeV3 | null } {
   const liveDir = resolve(args.experimentDir, "live");
   const candidateAvailabilityPath = resolve(args.experimentDir, "candidate-availability.json");
+  const candidateAvailabilitySemanticPath = resolve(
+    args.experimentDir,
+    "candidate-availability-semantic.json",
+  );
+  const candidateAvailabilityProvenancePath = resolve(
+    args.experimentDir,
+    "candidate-availability-provenance.json",
+  );
   const implementationGatePath = resolve(args.experimentDir, "implementation-ci-gate.json");
   const preflightPath = resolve(liveDir, "preflight.json");
   const qualificationFreezePath = resolve(liveDir, "qualification-freeze.json");
@@ -534,6 +582,26 @@ function persistQualificationEvidenceFixture(args: {
   const roleAssignmentFreezePath = resolve(args.experimentDir, "role-assignment-freeze.json");
 
   writeJson(candidateAvailabilityPath, args.input.candidateAvailability);
+  writeJson(candidateAvailabilitySemanticPath,
+    candidateAvailabilitySemanticProjectionV3(args.input.candidateAvailability));
+  const provenanceProjection = candidateAvailabilityProvenanceProjectionV3(
+    args.input.candidateAvailability,
+  );
+  const provenanceObservation = {
+    ...provenanceProjection,
+    provenanceSha256: hashCanonical(provenanceProjection),
+  };
+  const provenanceCore: Omit<Imp24CandidateAvailabilityProvenanceLedgerV1, "ledgerSha256"> = {
+    schema: IMP24_CANDIDATE_AVAILABILITY_PROVENANCE_LEDGER_SCHEMA,
+    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    candidateAvailabilitySemanticSha256:
+      candidateAvailabilitySemanticSha256(args.input.candidateAvailability),
+    observations: [provenanceObservation],
+  };
+  writeJson(candidateAvailabilityProvenancePath, {
+    ...provenanceCore,
+    ledgerSha256: hashCanonical(provenanceCore),
+  });
   writeJson(preflightPath, args.preflight);
   writeJson(qualificationFreezePath, args.result.freeze);
   writeJson(qualificationResultPath, args.result);
@@ -644,6 +712,8 @@ function persistQualificationEvidenceFixture(args: {
   const artifactPaths = {
     implementationCiGate: implementationGatePath,
     candidateAvailability: candidateAvailabilityPath,
+    candidateAvailabilitySemantic: candidateAvailabilitySemanticPath,
+    candidateAvailabilityProvenance: candidateAvailabilityProvenancePath,
     preflight: preflightPath,
     qualificationFreeze: qualificationFreezePath,
     qualificationResult: qualificationResultPath,
@@ -797,7 +867,9 @@ async function qualificationFixture(): Promise<ActivationQualificationFixture> {
       certificationSha256: certification.certificationSha256,
       productionInstrumentSealSha256: productionInstrumentSeal.sealSha256,
       corpusBundleSha256: corpusBundle.substantiveBundleSha256,
-      candidateAvailabilitySha256: input.candidateAvailability.availabilitySha256,
+      candidateAvailabilitySha256: input.candidateAvailability.semanticSha256!,
+      candidateAvailabilitySemanticSha256: input.candidateAvailability.semanticSha256!,
+      candidateAvailabilityProvenanceSha256: input.candidateAvailability.provenanceSha256!,
       candidateAvailabilitySourceBytesSha256: input.candidateAvailability.sourceBytesSha256,
       cliVersion: "codex-cli 0.144.1",
       cliBinary: "codex",
@@ -996,6 +1068,12 @@ function buildGoldEvaluation(
     sourceHash,
     chapters: sourceLaneEvidence,
   });
+  const expectedComponentInventory = buildForwardGoldComponentInventory([...goldManifest.targets]
+    .sort((left, right) => left.chapterNumber - right.chapterNumber)
+    .map((target) => JSON.parse(readFileSync(resolve(
+      phaseDir, "live-campaign", "outputs", target.outputRunId, "chapters",
+      `${target.chapterId}.v21-native.chapter.json`,
+    ), "utf8")) as ChapterV21));
   const sweep: SweepRecord = {
     schemaVersion: "sweep-attest-v1",
     bookId,
@@ -1021,6 +1099,7 @@ function buildGoldEvaluation(
   const inspectionSha256 = hashCanonical({
     sourceHash,
     expectedChapters,
+    expectedComponentInventory,
     sourceAwareExternalAccuracyProofSha256: sourceAware.proofSha256,
   });
   const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
@@ -1045,10 +1124,16 @@ function buildGoldEvaluation(
       sourceBoundEvaluationRequired: true,
       priorReviewVerdictsIncluded: false,
     })}\n`);
+    const materializedSweepSchema = materializeForwardGoldSweepOutputSchema({
+      expectedChapters,
+      repositoryRoot,
+    });
     for (const asset of fixedInstrument.referenceAssets) {
       const bytes = readFileSync(resolve(repositoryRoot, asset.repositoryRelPath));
       assert.equal(sha256Hex(bytes), asset.bytesSha256);
-      writeArtifact(asset.materializedRelPath, bytes);
+      writeArtifact(asset.materializedRelPath, asset.role === "sweep-output-schema"
+        ? materializedSweepSchema.bytes
+        : bytes);
     }
     const copyArtifact = (relativePath: string, sourcePath: string): void =>
       writeArtifact(relativePath, readFileSync(sourcePath));
@@ -1093,6 +1178,7 @@ function buildGoldEvaluation(
         productionInstrumentSealSha256: goldManifest.productionInstrumentSealSha256,
         sourceHash,
         expectedChapters,
+        expectedComponentInventory,
         sourceAwareExternalAccuracy: sourceAware,
         task: preDispatchTask,
       },
@@ -1101,7 +1187,10 @@ function buildGoldEvaluation(
     prepared.writeArtifact("worker-dispatch-receipt.json", `${canonicalJson(binding.receipt)}\n`);
     return {
       dispatchReceiptSha256: binding.receipt.dispatchReceiptSha256,
-      outputSchemaSha256: prepared.call.outputSchemaSha256,
+      outputSchemaSha256: prepared.artifacts.find((artifact) =>
+        artifact.relativePath === fixedInstrument.referenceAssets.find((asset) =>
+          asset.repositoryRelPath === prepared.call.outputSchemaRelPath)?.materializedRelPath)?.bytesSha256
+        ?? prepared.call.outputSchemaSha256,
       taskSha256: sha256Hex(binding.task),
       artifacts: [...prepared.artifacts].sort((left, right) => left.relativePath.localeCompare(right.relativePath)),
     };
@@ -1118,6 +1207,9 @@ function buildGoldEvaluation(
     dispatchReceiptSha256: verificationEvidence.dispatchReceiptSha256, rating: 4,
   });
   for (const output of [primary, verification]) output.book.book_id = bookId;
+  for (const output of [primary, verification]) {
+    output.book.component_inventory = JSON.parse(JSON.stringify(expectedComponentInventory));
+  }
   const adjudicatorEvidence = finalizeCall(2, {
     relativePath: "blind-rater-results.json",
     value: {
@@ -1140,6 +1232,7 @@ function buildGoldEvaluation(
   });
   const adjudicated = makeForwardGoldEvaluatorOutput({ role: "adjudicated", expectedChapters, sourceHash, rating: 4 });
   adjudicated.book.book_id = bookId;
+  adjudicated.book.component_inventory = JSON.parse(JSON.stringify(expectedComponentInventory));
   const sweepEvidence = finalizeCall(3, {
     relativePath: "adjudicated-result-binding.json",
     value: {
@@ -1177,6 +1270,7 @@ function buildGoldEvaluation(
         sourceHash,
         dispatchReceiptSha256: callEvidence[index].dispatchReceiptSha256,
         expectedChaptersSha256: hashCanonical(expectedChapters),
+        expectedComponentInventorySha256: hashCanonical(expectedComponentInventory),
         sourceAwareExternalAccuracyProofSha256: sourceAware.proofSha256,
         artifacts: callEvidence[index].artifacts,
       },
@@ -2055,7 +2149,9 @@ test("retained qualification verifier accepts only a fully recomputed terminal b
   const preflightCore: Omit<LiveQualificationPreflightV3, "preflightSha256"> = {
     ...readyPreflightCore,
     freezeSha256: result.freeze.freezeSha256,
-    candidateAvailabilitySha256: input.candidateAvailability.availabilitySha256,
+    candidateAvailabilitySha256: input.candidateAvailability.semanticSha256!,
+    candidateAvailabilitySemanticSha256: input.candidateAvailability.semanticSha256!,
+    candidateAvailabilityProvenanceSha256: input.candidateAvailability.provenanceSha256!,
     candidateAvailabilitySourceBytesSha256: input.candidateAvailability.sourceBytesSha256,
   };
   const preflight: LiveQualificationPreflightV3 = {
@@ -2148,7 +2244,9 @@ test("retained qualification verifier preserves nonzero-call partial qualifiers 
   const preflightCore: Omit<LiveQualificationPreflightV3, "preflightSha256"> = {
     ...readyPreflightCore,
     freezeSha256: result.freeze.freezeSha256,
-    candidateAvailabilitySha256: input.candidateAvailability.availabilitySha256,
+    candidateAvailabilitySha256: input.candidateAvailability.semanticSha256!,
+    candidateAvailabilitySemanticSha256: input.candidateAvailability.semanticSha256!,
+    candidateAvailabilityProvenanceSha256: input.candidateAvailability.provenanceSha256!,
     candidateAvailabilitySourceBytesSha256: input.candidateAvailability.sourceBytesSha256,
   };
   const preflight: LiveQualificationPreflightV3 = {
@@ -2582,6 +2680,27 @@ test("retained qualification verifier rejects a missing ledger and missing or ex
       /retained attempt has missing or extra evidence files/);
   } finally {
     extraEvidence.dispose();
+  }
+});
+
+test("active FINAL retained qualification requires semantic projection and provenance ledger artifacts", async () => {
+  const fixture = await qualificationFixture();
+  const missingSemantic = copyQualificationExperiment(fixture, "imp24-v3-qualification-missing-semantic");
+  try {
+    rmSync(resolve(missingSemantic.experimentDir, "candidate-availability-semantic.json"));
+    assert.throws(() => verifyQualificationCopy(fixture, missingSemantic.experimentDir),
+      /candidate availability semantic projection is not retained/);
+  } finally {
+    missingSemantic.dispose();
+  }
+
+  const missingProvenance = copyQualificationExperiment(fixture, "imp24-v3-qualification-missing-provenance");
+  try {
+    rmSync(resolve(missingProvenance.experimentDir, "candidate-availability-provenance.json"));
+    assert.throws(() => verifyQualificationCopy(fixture, missingProvenance.experimentDir),
+      /candidate availability provenance ledger is not retained/);
+  } finally {
+    missingProvenance.dispose();
   }
 });
 

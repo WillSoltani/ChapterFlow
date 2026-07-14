@@ -95,7 +95,7 @@ export const FORWARD_REPAIR_POLICY = Object.freeze({
   maxAuthoringCandidatesPerChapter: 2,
   maxInfrastructureReplaysPerAttempt: 1,
   regenerationAfterRepairOnlyFor: ["WRONG_ROUTE", "WHOLE_CHAPTER_FAILURE"] as const,
-  maxSystemicCorrectionCycles: 2,
+  maxSystemicCorrectionCycles: 1,
 } as const);
 
 export type ForwardSourceCoordinateV1 = {
@@ -147,7 +147,7 @@ type ForwardValidationManifestBaseV1 = {
 
 export type ForwardPilotManifestV1 = ForwardValidationManifestBaseV1 & {
   kind: "pilot";
-  correctionCycle: 0 | 1 | 2;
+  correctionCycle: 0 | 1;
   previousExperimentId: string | null;
   verifiedSystemicRootCause: VerifiedSystemicRootCauseV1 | null;
 };
@@ -195,7 +195,7 @@ export type BuildManifestCommon = {
 export type BuildPilotManifestInput = BuildManifestCommon & {
   books: ForwardBookSelectionCandidateV1[];
   goldReservedBookIds?: string[];
-  correctionCycle?: 0 | 1 | 2;
+  correctionCycle?: 0 | 1;
   priorPilotExperimentIds?: string[];
   priorOutputRunIds?: string[];
   /** Corrected pilots must carry the same threshold hash as their predecessor. */
@@ -291,14 +291,14 @@ function assertSystemicRootCause(root: VerifiedSystemicRootCauseV1 | null | unde
 }
 
 export function pilotCorrectionExperimentId(
-  cycle: 0 | 1 | 2,
+  cycle: 0 | 1,
   family: ForwardValidationIdentityFamily = "legacy-v1",
 ): string {
   const base = family === "imp24-v2-envelope" ? PILOT_ENVELOPE_EXPERIMENT_ID : PILOT_EXPERIMENT_ID;
   return cycle === 0 ? base : `${base}-correction-${cycle}`;
 }
 
-/** Refuses a third development correction and requires a verified systemic cause. */
+/** Refuses a second systemic correction and requires a verified systemic cause. */
 export function nextPilotCorrectionExperimentId(
   previousExperimentIds: readonly string[],
   rootCause: VerifiedSystemicRootCauseV1,
@@ -308,10 +308,9 @@ export function nextPilotCorrectionExperimentId(
   const expected = [
     pilotCorrectionExperimentId(0, family),
     pilotCorrectionExperimentId(1, family),
-    pilotCorrectionExperimentId(2, family),
   ];
   requireCondition(previousExperimentIds.length > 0, "cannot correct a pilot that has not run");
-  requireCondition(previousExperimentIds.length <= 2, "the two systemic correction cycles are exhausted");
+  requireCondition(previousExperimentIds.length <= 1, "the one systemic correction cycle is exhausted");
   previousExperimentIds.forEach((id, i) => requireCondition(id === expected[i], `pilot correction history is not contiguous at ${id}`));
   return expected[previousExperimentIds.length];
 }
@@ -365,7 +364,7 @@ function eligibleBook(book: ForwardBookSelectionCandidateV1, excluded: Set<strin
 export function buildPilotManifest(input: BuildPilotManifestInput): FrozenForwardValidationManifestV1<ForwardPilotManifestV1> {
   const cycle = input.correctionCycle ?? 0;
   const identityFamily = input.identityFamily ?? "legacy-v1";
-  requireCondition(cycle >= 0 && cycle <= 2, "pilot correction cycle must be 0, 1, or 2");
+  requireCondition(cycle >= 0 && cycle <= 1, "pilot correction cycle must be 0 or 1");
   if (cycle > 0) {
     assertSystemicRootCause(input.verifiedSystemicRootCause);
     const prior = input.priorPilotExperimentIds ?? [];

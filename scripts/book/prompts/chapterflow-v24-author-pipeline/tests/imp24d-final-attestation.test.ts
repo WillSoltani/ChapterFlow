@@ -24,7 +24,17 @@ import {
   IMP24D_OBSERVABILITY_FREEZE_PATHS,
   IMP24D_R1_CLOSURE_PATHS,
 } from "../src/bakeoff/migration/imp24ObservabilityFreeze.js";
-import { IMP24_ROLE_QUALIFICATION_EXECUTION_ID } from "../src/bakeoff/migration/imp24Corpus.js";
+import {
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_FINAL_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
+} from "../src/bakeoff/migration/imp24Corpus.js";
+import {
+  IMP24D_R2_QUALIFICATION_FIXED_PATHS,
+  IMP24_PILOT_GOLD_FIXED_PATHS,
+  verifyImp24DR2RetainedQualificationForFinalAttestationV3,
+  verifyImp24RetainedQualificationForFinalAttestationV3,
+} from "../src/bakeoff/migration/imp24PilotGoldWorkflow.js";
 import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
 import { test } from "./harness.js";
 import { mkTestRoots } from "./testRoots.js";
@@ -32,13 +42,14 @@ import { mkTestRoots } from "./testRoots.js";
 const H = (character: string): string => character.repeat(64);
 const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
 const REPOSITORY_ROOT = resolve(PIPELINE_DIR, "../../../..");
+const IMP24D_AUDITED_CORRECTION_COMMIT = "092832c2c5ec1932d235059e48a8ad747e90a0dc";
 const EXACT_CORRECTION_SOURCE_FILES = [
   `${PIPELINE_REL}/src/exec/codexTransportConfig.ts`,
   `${PIPELINE_REL}/src/orchestrator/forwardRoleQualificationLiveV3.ts`,
   `${PIPELINE_REL}/src/orchestrator/forwardTransportSmokeCorrectionV3.ts`,
 ] as const;
 const EXPERIMENTS_REL = `${PIPELINE_REL}/state/migration-experiments`;
-const QUALIFICATION_ROOT = `${EXPERIMENTS_REL}/${IMP24_ROLE_QUALIFICATION_EXECUTION_ID}`;
+const QUALIFICATION_ROOT = `${EXPERIMENTS_REL}/${IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID}`;
 const SMOKE_ROOT = `${EXPERIMENTS_REL}/${IMP24D_TRANSPORT_SMOKE_EXECUTION_ID}`;
 const SMOKE_R2_ROOT = `${EXPERIMENTS_REL}/${IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID}`;
 const FORBIDDEN_RUN_ROOTS = [
@@ -46,6 +57,31 @@ const FORBIDDEN_RUN_ROOTS = [
   `${EXPERIMENTS_REL}/s16-forward-sol-gold-book-v2-envelope`,
   `${EXPERIMENTS_REL}/s16-forward-local-activation-v3-envelope`,
 ] as const;
+
+test("IMP-24D final attestation is explicitly R2 while active pilot/activation remains FINAL", () => {
+  assert.equal(IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    IMP24_ROLE_QUALIFICATION_FINAL_EXECUTION_ID);
+  assert.match(IMP24_PILOT_GOLD_FIXED_PATHS.qualificationRoot,
+    /s16-forward-role-qualification-v3-envelope-final$/);
+  assert.match(IMP24D_R2_QUALIFICATION_FIXED_PATHS.qualificationRoot,
+    /s16-forward-role-qualification-v3-envelope-r2$/);
+  assert.notEqual(IMP24D_R2_QUALIFICATION_FIXED_PATHS.qualificationRoot,
+    IMP24_PILOT_GOLD_FIXED_PATHS.qualificationRoot);
+  assert.match(verifyImp24DR2RetainedQualificationForFinalAttestationV3.toString(),
+    /verifyHistoricalImp24DR2RetainedRoleQualificationEvidenceV3/);
+  assert.match(verifyImp24RetainedQualificationForFinalAttestationV3.toString(),
+    /loadExactTerminalQualification/);
+  const dSource = readFileSync(resolve(
+    PIPELINE_DIR,
+    "src/bakeoff/migration/imp24DFinalAttestation.ts",
+  ), "utf8");
+  const projection = dSource.slice(
+    dSource.indexOf("function qualificationSemanticProjectionSha256"),
+    dSource.indexOf("function loadQualificationBinding"),
+  );
+  assert.match(projection, /buildLegacyRoleQualificationPlanV3/);
+  assert.doesNotMatch(projection, /buildRoleQualificationPlanV3\(/);
+});
 
 function git(root: string, args: string[]): string {
   return execFileSync("git", args, {
@@ -64,6 +100,14 @@ function commit(root: string, message: string): string {
 function write(root: string, path: string, bytes: string): string {
   writeFileAtomic(resolve(root, path), bytes);
   return sha256Hex(bytes);
+}
+
+function auditedImp24DCorrectionSource(path: string): string {
+  return execFileSync("git", ["show", `${IMP24D_AUDITED_CORRECTION_COMMIT}:${path}`], {
+    cwd: REPOSITORY_ROOT,
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  });
 }
 
 function prepareFixture(args: {
@@ -104,7 +148,7 @@ function prepareFixture(args: {
     write(root, IMP24D_TRANSPORT_SMOKE_REPORT_PATHS.json, "smoke report\n");
     write(root, IMP24D_TRANSPORT_SMOKE_REPORT_PATHS.markdown, "smoke report markdown\n");
     for (const path of EXACT_CORRECTION_SOURCE_FILES) {
-      write(root, path, readFileSync(resolve(REPOSITORY_ROOT, path), "utf8"));
+      write(root, path, auditedImp24DCorrectionSource(path));
     }
     write(root, `${PIPELINE_REL}/tests/codex-transport-regression.test.ts`, "bounded regression test\n");
     write(root, `${EXPERIMENTS_REL}/contracts/imp24/forward-production-instrument-seal.json`,

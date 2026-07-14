@@ -16,8 +16,8 @@ import { canonicalJson, hashCanonical, sha256Hex } from "../../contracts/contrac
 import { validateWorkerReport } from "../../contracts/workerReport.js";
 import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import {
-  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
 } from "./imp24Corpus.js";
 import {
   IMP24D_BRANCH,
@@ -30,11 +30,12 @@ import {
   type Imp24DObservabilityFreeze,
 } from "./imp24ObservabilityFreeze.js";
 import {
+  IMP24D_R2_QUALIFICATION_FIXED_PATHS,
   IMP24_PILOT_GOLD_FIXED_PATHS,
-  verifyImp24RetainedQualificationForFinalAttestationV3,
+  verifyImp24DR2RetainedQualificationForFinalAttestationV3,
   type LoadedImp24TerminalQualification,
 } from "./imp24PilotGoldWorkflow.js";
-import { buildRoleQualificationPlanV3 } from "./roleQualificationRunnerV3.js";
+import { buildLegacyRoleQualificationPlanV3 } from "./roleQualificationRunnerV3.js";
 import { canonicalPretty } from "./corpusBuilderCore.js";
 import { QUIZ_DETERMINISTIC_CHECKER_VERSION } from "./reviewerRoleAssignment.js";
 import {
@@ -81,7 +82,7 @@ export const IMP24D_R2_REPORT_PATHS = Object.freeze({
 
 const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
 const EXPERIMENTS_REL = `${PIPELINE_REL}/state/migration-experiments`;
-const QUALIFICATION_ROOT_REL = `${EXPERIMENTS_REL}/${IMP24_ROLE_QUALIFICATION_EXECUTION_ID}`;
+const QUALIFICATION_ROOT_REL = `${EXPERIMENTS_REL}/${IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID}`;
 const SMOKE_ROOT_REL = `${EXPERIMENTS_REL}/${IMP24D_TRANSPORT_SMOKE_EXECUTION_ID}`;
 const SMOKE_R2_ROOT_REL = `${EXPERIMENTS_REL}/${IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID}`;
 const QUALIFICATION_REPORT_REL = `${QUALIFICATION_ROOT_REL}/qualification-report.json`;
@@ -218,7 +219,7 @@ export type Imp24DFinalAttestation = {
   schema: typeof IMP24D_FINAL_ATTESTATION_SCHEMA;
   promptId: "IMP-24";
   continuationPromptId: "IMP-24D";
-  executionId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
+  executionId: typeof IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID;
   branch: typeof IMP24D_BRANCH;
   draftPullRequest: typeof IMP24D_DRAFT_PR;
   startingHead: typeof IMP24D_STARTING_HEAD;
@@ -971,7 +972,7 @@ function buildImplementationReport(args: {
     mechanicalCorrectionCommit: args.evidence.transportSmoke.correctionCommit,
     effectiveImplementationCommit: args.evidence.transportSmoke.effectiveImplementationCommit,
     evidenceCommit: args.evidenceCommit,
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
     finalDecision: ready ? "PASS" : "BLOCKED",
     roleSetReady: ready,
     transportSmokeCalls: args.evidence.transportSmoke.totalCalls,
@@ -1060,7 +1061,7 @@ function buildFromValidatedEvidence(args: {
     schema: IMP24D_FINAL_ATTESTATION_SCHEMA,
     promptId: "IMP-24",
     continuationPromptId: "IMP-24D",
-    executionId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    executionId: IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
     branch: IMP24D_BRANCH,
     draftPullRequest: IMP24D_DRAFT_PR,
     startingHead: IMP24D_STARTING_HEAD,
@@ -1178,7 +1179,7 @@ function loadObservabilityAndR1(artifactRoot: string): Pick<Imp24DFinalEvidence,
   const { freezeSha256, ...freezeCore } = freeze;
   requireCondition(hashCanonical(freezeCore) === freezeSha256, "retained observability freeze self hash drift");
   requireCondition(freeze.startingHead === IMP24D_STARTING_HEAD
-      && freeze.successor.executionId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+      && freeze.successor.executionId === IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
     "retained observability freeze belongs to another lifecycle");
 
   const closureJson = readArtifact(artifactRoot, IMP24D_R1_CLOSURE_PATHS.json, "historical r1 closure");
@@ -1276,7 +1277,7 @@ function processDiagnosticsSetSha256(
 function qualificationSemanticProjectionSha256(
   loaded: LoadedImp24TerminalQualification,
 ): string {
-  const plan = buildRoleQualificationPlanV3(loaded.preparedInput);
+  const plan = buildLegacyRoleQualificationPlanV3(loaded.preparedInput);
   const availability = loaded.preparedInput.candidateAvailability;
   const calls = (["reader", "source"] as const).map((role) => {
     const firstAvailable = availability.entries.find((entry) =>
@@ -1318,10 +1319,13 @@ function loadQualificationBinding(
   repositoryRoot: string,
   artifactRoot: string,
 ): { binding: Imp24DQualificationBinding; gate: Imp24ImplementationCiGateV1 } {
-  const loaded = verifyImp24RetainedQualificationForFinalAttestationV3();
+  requireCondition(resolve(artifactRoot, QUALIFICATION_ROOT_REL)
+      === resolve(IMP24D_R2_QUALIFICATION_FIXED_PATHS.qualificationRoot),
+    "IMP-24D final attestation must read the explicit historical R2 qualification root");
+  const loaded = verifyImp24DR2RetainedQualificationForFinalAttestationV3();
   const proof = loaded.retainedQualificationEvidence.proof;
   const result = loaded.retainedQualificationEvidence.result;
-  requireCondition(proof.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  requireCondition(String(proof.experimentId) === IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
     "retained qualification proof belongs to another execution");
   const terminal = readArtifact(artifactRoot, QUALIFICATION_REPORT_REL, "r2 terminal qualification report");
   const gateArtifact = readArtifact(artifactRoot, IMPLEMENTATION_CI_GATE_REL, "r2 implementation CI gate");
@@ -1615,7 +1619,7 @@ export function verifyRetainedImp24DFinalAttestation(args: {
   const attestation = retained.value as unknown as Imp24DFinalAttestation;
   requireCondition(attestation.schema === IMP24D_FINAL_ATTESTATION_SCHEMA
       && attestation.continuationPromptId === "IMP-24D"
-      && attestation.executionId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID
+      && attestation.executionId === IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID
       && attestation.startingHead === IMP24D_STARTING_HEAD,
     "retained IMP-24D final attestation lifecycle identity mismatch");
   const { attestationSha256, ...core } = attestation;

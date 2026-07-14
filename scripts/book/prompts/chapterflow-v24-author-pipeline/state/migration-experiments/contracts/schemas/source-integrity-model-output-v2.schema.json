@@ -5,15 +5,16 @@
   "additionalProperties": false,
   "required": ["schema", "assessments"],
   "properties": {
-    "schema": { "const": "source-integrity-model-output-v2" },
+    "schema": { "type": "string", "enum": ["source-integrity-model-output-v2"] },
     "assessments": {
       "type": "array",
       "minItems": 1,
-      "items": { "$ref": "#/definitions/assessment" }
+      "items": { "$ref": "#/$defs/assessment" }
     }
   },
-  "definitions": {
+  "$defs": {
     "category": {
+      "type": "string",
       "enum": [
         "source_contradiction",
         "unsupported_attribution",
@@ -24,16 +25,14 @@
         "missing_required_evidence"
       ]
     },
-    "nonEmptyUniqueRefs": {
+    "nonEmptyRefs": {
       "type": "array",
       "minItems": 1,
-      "uniqueItems": true,
-      "items": { "type": "string", "minLength": 1 }
+      "items": { "type": "string" }
     },
-    "possiblyEmptyUniqueRefs": {
+    "possiblyEmptyRefs": {
       "type": "array",
-      "uniqueItems": true,
-      "items": { "type": "string", "minLength": 1 }
+      "items": { "type": "string" }
     },
     "finding": {
       "type": "object",
@@ -47,16 +46,15 @@
         "sourceEvidenceRefIds"
       ],
       "properties": {
-        "primaryCategory": { "$ref": "#/definitions/category" },
+        "primaryCategory": { "$ref": "#/$defs/category" },
         "secondaryCategories": {
           "type": "array",
-          "uniqueItems": true,
-          "items": { "$ref": "#/definitions/category" }
+          "items": { "$ref": "#/$defs/category" }
         },
-        "severity": { "enum": ["blocker", "major", "minor"] },
-        "explanation": { "type": "string", "minLength": 1 },
-        "chapterEvidenceRefIds": { "$ref": "#/definitions/nonEmptyUniqueRefs" },
-        "sourceEvidenceRefIds": { "$ref": "#/definitions/possiblyEmptyUniqueRefs" }
+        "severity": { "type": "string", "enum": ["blocker", "major", "minor"] },
+        "explanation": { "type": "string" },
+        "chapterEvidenceRefIds": { "$ref": "#/$defs/nonEmptyRefs" },
+        "sourceEvidenceRefIds": { "$ref": "#/$defs/possiblyEmptyRefs" }
       }
     },
     "assessment": {
@@ -73,14 +71,14 @@
         "rationale"
       ],
       "properties": {
-        "targetRef": { "type": "string", "minLength": 1 },
-        "visibleRegister": { "enum": ["clearly_sourced", "clearly_constructed", "clearly_generic", "ambiguous", "presented_as_fact"] },
-        "supportStatus": { "enum": ["SUPPORTED", "PARTIALLY_SUPPORTED", "UNSUPPORTED", "NOT_APPLICABLE", "INCONCLUSIVE"] },
+        "targetRef": { "type": "string" },
+        "visibleRegister": { "type": "string", "enum": ["clearly_sourced", "clearly_constructed", "clearly_generic", "ambiguous", "presented_as_fact"] },
+        "supportStatus": { "type": "string", "enum": ["SUPPORTED", "PARTIALLY_SUPPORTED", "UNSUPPORTED", "NOT_APPLICABLE", "INCONCLUSIVE"] },
         "framingAdequate": { "type": ["boolean", "null"] },
         "claimStrengthFit": { "type": ["boolean", "null"] },
         "namedSpecificityAllowed": { "type": ["boolean", "null"] },
-        "findings": { "type": "array", "items": { "$ref": "#/definitions/finding" } },
-        "rationale": { "type": "string", "minLength": 1 }
+        "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } },
+        "rationale": { "type": "string" }
       }
     }
   }

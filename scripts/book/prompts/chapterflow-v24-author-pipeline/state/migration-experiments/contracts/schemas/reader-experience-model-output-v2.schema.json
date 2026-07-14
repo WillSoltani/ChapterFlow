@@ -16,7 +16,7 @@
     "oneParagraphVerdict"
   ],
   "properties": {
-    "schema": { "const": "reader-experience-model-output-v2" },
+    "schema": { "type": "string", "enum": ["reader-experience-model-output-v2"] },
     "scores": {
       "type": "object",
       "additionalProperties": false,
@@ -39,70 +39,73 @@
       "additionalProperties": false,
       "required": ["answers", "mechanisms", "confidence", "ambiguities", "tells", "evidenceRefIds"],
       "properties": {
-        "answers": { "type": "array", "minItems": 1, "items": { "enum": ["a", "b", "c"] } },
+        "answers": { "type": "array", "minItems": 1, "items": { "type": "string", "enum": ["a", "b", "c"] } },
         "mechanisms": { "type": "array", "minItems": 1, "items": { "type": "string" } },
-        "confidence": { "type": "array", "minItems": 1, "items": { "enum": ["low", "medium", "high"] } },
+        "confidence": { "type": "array", "minItems": 1, "items": { "type": "string", "enum": ["low", "medium", "high"] } },
         "ambiguities": { "type": "array", "items": { "type": "string" } },
         "tells": { "type": "array", "items": { "type": "string" } },
         "evidenceRefIds": {
           "type": "array",
           "minItems": 1,
-          "items": { "$ref": "#/definitions/nonEmptyUniqueRefs" }
+          "items": { "$ref": "#/$defs/nonEmptyRefs" }
         }
       }
     },
-    "recommendation": { "enum": ["SHIP", "REVISE", "BLOCK"] },
+    "recommendation": { "type": "string", "enum": ["SHIP", "REVISE", "BLOCK"] },
     "blockingFindings": {
       "type": "array",
-      "items": { "$ref": "#/definitions/blockingFinding" }
+      "items": { "$ref": "#/$defs/blockingFinding" }
     },
     "escalationSignals": {
       "type": "array",
-      "items": { "$ref": "#/definitions/escalationFinding" }
+      "items": { "$ref": "#/$defs/escalationFinding" }
     },
     "advisoryFindings": {
       "type": "array",
-      "items": { "$ref": "#/definitions/advisoryFinding" }
+      "items": { "$ref": "#/$defs/advisoryFinding" }
     },
-    "strongestEvidenceRefIds": { "$ref": "#/definitions/nonEmptyUniqueRefs" },
-    "weakestEvidenceRefIds": { "$ref": "#/definitions/nonEmptyUniqueRefs" },
-    "oneParagraphVerdict": { "type": "string", "minLength": 1 }
+    "strongestEvidenceRefIds": { "$ref": "#/$defs/nonEmptyRefs" },
+    "weakestEvidenceRefIds": { "$ref": "#/$defs/nonEmptyRefs" },
+    "oneParagraphVerdict": { "type": "string" }
   },
-  "definitions": {
-    "nonEmptyUniqueRefs": {
+  "$defs": {
+    "nonEmptyRefs": {
       "type": "array",
       "minItems": 1,
-      "uniqueItems": true,
-      "items": { "type": "string", "minLength": 1 }
+      "items": { "type": "string" }
     },
-    "findingBase": {
+    "blockingFinding": {
       "type": "object",
       "additionalProperties": false,
       "required": ["category", "unit", "problem", "evidenceRefIds"],
       "properties": {
-        "category": { "type": "string" },
+        "category": { "type": "string", "enum": ["unsafe", "internal_contradiction", "structurally_invalid", "schema_or_app_breaking", "unusable"] },
         "unit": { "type": "string" },
-        "problem": { "type": "string", "minLength": 1 },
-        "evidenceRefIds": { "$ref": "#/definitions/nonEmptyUniqueRefs" }
+        "problem": { "type": "string" },
+        "evidenceRefIds": { "$ref": "#/$defs/nonEmptyRefs" }
       }
     },
-    "blockingFinding": {
-      "allOf": [
-        { "$ref": "#/definitions/findingBase" },
-        { "properties": { "category": { "enum": ["unsafe", "internal_contradiction", "structurally_invalid", "schema_or_app_breaking", "unusable"] } } }
-      ]
-    },
     "escalationFinding": {
-      "allOf": [
-        { "$ref": "#/definitions/findingBase" },
-        { "properties": { "category": { "enum": ["origin_ambiguous_to_reader", "possible_real_world_claim", "possible_attribution_issue"] } } }
-      ]
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["category", "unit", "problem", "evidenceRefIds"],
+      "properties": {
+        "category": { "type": "string", "enum": ["origin_ambiguous_to_reader", "possible_real_world_claim", "possible_attribution_issue"] },
+        "unit": { "type": "string" },
+        "problem": { "type": "string" },
+        "evidenceRefIds": { "$ref": "#/$defs/nonEmptyRefs" }
+      }
     },
     "advisoryFinding": {
-      "allOf": [
-        { "$ref": "#/definitions/findingBase" },
-        { "properties": { "category": { "enum": ["thin_example", "quiz_cue", "repetition", "tone", "density", "pacing", "other_craft"] } } }
-      ]
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["category", "unit", "problem", "evidenceRefIds"],
+      "properties": {
+        "category": { "type": "string", "enum": ["thin_example", "quiz_cue", "repetition", "tone", "density", "pacing", "other_craft"] },
+        "unit": { "type": "string" },
+        "problem": { "type": "string" },
+        "evidenceRefIds": { "$ref": "#/$defs/nonEmptyRefs" }
+      }
     }
   }
 }

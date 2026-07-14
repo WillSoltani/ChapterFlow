@@ -24,7 +24,7 @@ export const FORWARD_GOLD_RUBRIC_VERSION = "2.0" as const;
 export const FORWARD_GOLD_EVALUATOR_MODEL = "gpt-5.6-sol" as const;
 export const FORWARD_GOLD_EVALUATOR_EFFORT = "xhigh" as const;
 export const FORWARD_GOLD_JSON_SCHEMA_VALIDATOR = "ajv@6.15.0" as const;
-export const FORWARD_GOLD_EVALUATOR_INSTRUMENT_SHA256 = "d6e3520882efa08de0445e8ef17655b9f083fa25bbd5814aec1853c1d4658a85" as const;
+export const FORWARD_GOLD_EVALUATOR_INSTRUMENT_SHA256 = "9e927c97ece6201dbb0ccd229c47e1895815adc73c885d5c6fcd8657708915a0" as const;
 
 const SHA256 = /^[a-f0-9]{64}$/;
 const CHAPTER_CONTENT_HASH = /^[a-f0-9]{16}$/;
@@ -145,7 +145,7 @@ const FIXED_ASSET_SPECS: readonly FixedAssetSpec[] = [
     role: "blind-rater-output-schema",
     repositoryRelPath: ".agents/skills/chapterflow-book-evaluator/references/book-evaluation.schema.json",
     materializedRelPath: "instrument/book-evaluation.schema.json",
-    bytesSha256: "16f704d68db59feea4d33a5cfc02244a693dcdfc6c96703a2163db73923f4872",
+    bytesSha256: "cdb13cfaeb555d9a978015f5a3963c053840774b4dd57d2c46feda5ebc229f13",
   },
   {
     role: "adjudication-protocol",
@@ -157,7 +157,7 @@ const FIXED_ASSET_SPECS: readonly FixedAssetSpec[] = [
     role: "adjudicator-output-schema",
     repositoryRelPath: ".agents/skills/chapterflow-book-evaluator/references/adjudicated-book.schema.json",
     materializedRelPath: "instrument/adjudicated-book.schema.json",
-    bytesSha256: "cb104880e3f0142d920e01d79ed06f896953dc46b9872d1344ebf53b2eaca8be",
+    bytesSha256: "3e9dcd7d71491c337eccabf5d960bdb5041cf85497f480e9eace665ef50e8e59",
   },
   {
     role: "sweep-spec-source",
@@ -295,11 +295,10 @@ function fixedAsset(role: ForwardGoldInstrumentAssetRole): FixedAssetSpec {
   return asset;
 }
 
-function validateAgainstPinnedOutputSchema(
-  value: unknown,
+function loadPinnedOutputSchema(
   role: "blind-rater-output-schema" | "adjudicator-output-schema" | "sweep-output-schema",
   repositoryRoot = DEFAULT_REPOSITORY_ROOT,
-): void {
+): Record<string, unknown> {
   requireCondition(AJV_PACKAGE_VERSION === "6.15.0",
     `forward gold schema validator drift: expected ajv 6.15.0, got ${String(AJV_PACKAGE_VERSION)}`);
   const asset = fixedAsset(role);
@@ -310,15 +309,25 @@ function validateAgainstPinnedOutputSchema(
   const actualSha256 = sha256Hex(bytes);
   requireCondition(actualSha256 === asset.bytesSha256,
     `pinned ${role} bytes drift: expected ${asset.bytesSha256}, got ${actualSha256}`);
-  let schema: Record<string, unknown>;
-  try { schema = JSON.parse(bytes.toString("utf8")) as Record<string, unknown>; }
+  try { return JSON.parse(bytes.toString("utf8")) as Record<string, unknown>; }
   catch (error) { throw new ForwardGoldEvaluatorInstrumentError(`pinned ${role} is invalid JSON: ${(error as Error).message}`); }
+}
+
+function validateAgainstPinnedOutputSchema(
+  value: unknown,
+  role: "blind-rater-output-schema" | "adjudicator-output-schema" | "sweep-output-schema",
+  repositoryRoot = DEFAULT_REPOSITORY_ROOT,
+  expectedChapters: readonly ForwardGoldExpectedChapterIdentityV1[] = [],
+): void {
+  const schema = loadPinnedOutputSchema(role, repositoryRoot);
   // Ajv v6 is the repository's installed validator.  The pinned schemas use
   // only keywords it implements, but declare the newer 2020-12 meta-schema;
   // remove only that declaration from the in-memory compile copy.  The exact
   // source bytes were already hash-verified above and every substantive schema
   // keyword remains unchanged.
-  const compileSchema = JSON.parse(JSON.stringify(schema)) as Record<string, unknown>;
+  const compileSchema = role === "sweep-output-schema"
+    ? materializeForwardGoldSweepSchemaObject(schema, expectedChapters)
+    : JSON.parse(JSON.stringify(schema)) as Record<string, unknown>;
   delete compileSchema.$schema;
   const ajv = new Ajv({ allErrors: true, jsonPointers: true, schemaId: "auto", validateSchema: false, unknownFormats: "ignore" });
   let validate: JsonSchemaValidator;
@@ -503,10 +512,132 @@ export type ForwardGoldExpectedChapterIdentityV1 = {
   packagePath: string;
 };
 
+export type ForwardGoldComponentInventoryV1 = {
+  examples: number;
+  quiz_questions: number;
+  review_cards: number;
+  implementation_items: number;
+  exercises: number;
+  memorable_lines: number;
+  other: Record<string, number>;
+};
+
+const FORWARD_GOLD_JSON_OTHER_COMPONENT_KEYS = [
+  "hooks", "counterintuitions", "breakdown_sections", "key_takeaways",
+] as const;
+
+function materializeForwardGoldSweepSchemaObject(
+  sourceSchema: Record<string, unknown>,
+  expectedChapters: readonly ForwardGoldExpectedChapterIdentityV1[],
+): Record<string, unknown> {
+  requireCondition(expectedChapters.length >= 8,
+    "forward gold sweep transport schema requires at least eight frozen chapters");
+  const indexes = expectedChapters.map((chapter) => chapter.chapterIndex);
+  requireCondition(indexes.every((index) => Number.isInteger(index) && index > 0)
+    && new Set(indexes).size === indexes.length,
+  "forward gold sweep transport schema requires distinct positive chapter indexes");
+  const schema = JSON.parse(JSON.stringify(sourceSchema)) as Record<string, unknown>;
+  const properties = record(schema.properties, "gold sweep transport schema properties");
+  const sweep = record(properties.sweep, "gold sweep transport schema sweep");
+  const sweepProperties = record(sweep.properties, "gold sweep transport schema sweep properties");
+  sweepProperties.schemaVersion = { type: "string", enum: ["sweep-attest-v1"] };
+  for (const key of ["bookId", "roundId", "reviewer", "reviewerSessionId"] as const) {
+    const property = record(sweepProperties[key], `gold sweep transport schema ${key}`);
+    delete property.minLength;
+  }
+  record(sweepProperties.verdict, "gold sweep transport schema verdict").type = "string";
+  const contentHashes = record(sweepProperties.contentHashes, "gold sweep transport schema contentHashes");
+  const keys = indexes.map(String).sort((a, b) => Number(a) - Number(b));
+  delete contentHashes.minProperties;
+  delete contentHashes.propertyNames;
+  contentHashes.additionalProperties = false;
+  contentHashes.required = keys;
+  contentHashes.properties = Object.fromEntries(keys.map((key) => [key, {
+    type: "string",
+    pattern: "^[0-9a-f]{16}$",
+  }]));
+  const checkedFamilies = record(sweepProperties.checkedFamilies,
+    "gold sweep transport schema checkedFamilies");
+  delete checkedFamilies.uniqueItems;
+  record(checkedFamilies.items, "gold sweep transport schema checkedFamilies items").type = "string";
+  const findings = record(sweepProperties.findings, "gold sweep transport schema findings");
+  const finding = record(findings.items, "gold sweep transport schema finding item");
+  const findingProperties = record(finding.properties, "gold sweep transport schema finding properties");
+  record(findingProperties.family, "gold sweep transport schema finding family").type = "string";
+  record(findingProperties.severity, "gold sweep transport schema finding severity").type = "string";
+  const chapters = record(findingProperties.chapters, "gold sweep transport schema finding chapters");
+  delete chapters.uniqueItems;
+  for (const key of ["unitId", "quote", "problem", "expectedFix"] as const) {
+    delete record(findingProperties[key], `gold sweep transport schema finding ${key}`).minLength;
+  }
+  return schema;
+}
+
+/** Build the exact strict-subset sweep schema for one already-frozen book.
+ * The JSON output shape is unchanged; only the known chapter-number keys of
+ * the contentHashes object are materialized before dispatch. */
+export function materializeForwardGoldSweepOutputSchema(args: {
+  expectedChapters: readonly ForwardGoldExpectedChapterIdentityV1[];
+  repositoryRoot?: string;
+}): Readonly<{ bytes: string; bytesSha256: string }> {
+  const repositoryRoot = resolve(args.repositoryRoot ?? DEFAULT_REPOSITORY_ROOT);
+  const source = loadPinnedOutputSchema("sweep-output-schema", repositoryRoot);
+  const schema = materializeForwardGoldSweepSchemaObject(source, args.expectedChapters);
+  const bytes = `${JSON.stringify(schema, null, 2)}\n`;
+  return deepFreeze({ bytes, bytesSha256: sha256Hex(bytes) });
+}
+
+function countComponent(chapters: readonly unknown[], key: string): number {
+  return chapters.reduce<number>((total, raw) => {
+    const chapter = raw !== null && typeof raw === "object" && !Array.isArray(raw)
+      ? raw as Record<string, unknown>
+      : {};
+    const value = chapter[key];
+    if (Array.isArray(value)) return total + value.length;
+    if (value !== null && typeof value === "object") return total + Object.keys(value).length;
+    return total + (value !== undefined && value !== null && value !== ""
+      && value !== false && value !== 0 ? 1 : 0);
+  }, 0);
+}
+
+function countNestedList(chapters: readonly unknown[], parent: string, child: string): number {
+  return chapters.reduce<number>((total, raw) => {
+    const chapter = raw !== null && typeof raw === "object" && !Array.isArray(raw)
+      ? raw as Record<string, unknown>
+      : {};
+    const container = chapter[parent];
+    if (container === null || typeof container !== "object" || Array.isArray(container)) return total;
+    const value = (container as Record<string, unknown>)[child];
+    return total + (Array.isArray(value) ? value.length : 0);
+  }, 0);
+}
+
+/** TypeScript parity with the fixed evaluator inspector's JSON-package
+ * component inventory. It is derived only from frozen final ChapterV21 bytes. */
+export function buildForwardGoldComponentInventory(
+  chapters: readonly unknown[],
+): Readonly<ForwardGoldComponentInventoryV1> {
+  return deepFreeze({
+    examples: countComponent(chapters, "examples"),
+    quiz_questions: countNestedList(chapters, "quiz", "questions"),
+    review_cards: countComponent(chapters, "reviewCards"),
+    implementation_items: countNestedList(chapters, "implementationPlan", "ifThenPlans"),
+    exercises: countComponent(chapters, "tryThisNow") + countComponent(chapters, "exercises"),
+    memorable_lines: countComponent(chapters, "memorableLines"),
+    other: {
+      hooks: countComponent(chapters, "hook"),
+      counterintuitions: countComponent(chapters, "counterintuition"),
+      breakdown_sections: countComponent(chapters, "breakdown"),
+      key_takeaways: countComponent(chapters, "keyTakeaway"),
+    },
+  });
+}
+
 export type ForwardGoldEvaluationValidationContextV1 = {
   expectedBookId: string;
   expectedSourceHash: string;
   expectedChapters: ForwardGoldExpectedChapterIdentityV1[];
+  expectedComponentInventory?: ForwardGoldComponentInventoryV1;
   repositoryRoot?: string;
 };
 
@@ -587,6 +718,87 @@ function stringArray(value: unknown, label: string, minimum = 0): string[] {
     && value.every((item) => typeof item === "string" && item.trim().length > 0),
   `${label} must contain at least ${minimum} non-empty string(s)`);
   return value as string[];
+}
+
+function requireUniquePrimitiveValues(
+  value: unknown,
+  label: string,
+): asserts value is Array<string | number> {
+  requireCondition(Array.isArray(value), `${label} must be an array`);
+  const seen = new Set<string | number>();
+  for (const item of value) {
+    requireCondition(typeof item === "string" || typeof item === "number",
+      `${label} must contain only primitive string/number values`);
+    requireCondition(!seen.has(item), `${label}: duplicate value ${JSON.stringify(item)}`);
+    seen.add(item);
+  }
+}
+
+function validateGoldComponentInventory(
+  value: unknown,
+  expected: ForwardGoldComponentInventoryV1 | undefined,
+): void {
+  const inventory = record(value, "gold evaluator component_inventory");
+  exactKeys(inventory, [
+    "examples", "quiz_questions", "review_cards", "implementation_items",
+    "exercises", "memorable_lines", "other",
+  ], "gold evaluator component_inventory");
+  for (const key of [
+    "examples", "quiz_questions", "review_cards", "implementation_items", "exercises", "memorable_lines",
+  ] as const) {
+    requireCondition(Number.isSafeInteger(inventory[key]) && Number(inventory[key]) >= 0,
+      `gold evaluator component_inventory.${key} must be a non-negative integer`);
+  }
+  const other = record(inventory.other, "gold evaluator component_inventory.other");
+  const keys = Object.keys(other).sort();
+  const jsonKeys = [...FORWARD_GOLD_JSON_OTHER_COMPONENT_KEYS].sort();
+  requireCondition(keys.length === 0 || keys.length === jsonKeys.length
+    && keys.every((key, index) => key === jsonKeys[index]),
+  "gold evaluator component_inventory.other must be empty for text or use the fixed JSON-package keys");
+  for (const [key, count] of Object.entries(other)) {
+    requireCondition(Number.isSafeInteger(count) && Number(count) >= 0,
+      `gold evaluator component_inventory.other.${key} must be a non-negative integer`);
+  }
+  if (expected !== undefined) {
+    requireCondition(hashCanonical(inventory) === hashCanonical(expected),
+      "gold evaluator component_inventory differs from the deterministic frozen-package inventory");
+  }
+}
+
+function validateGoldRemovedMinLengthConstraints(
+  output: Record<string, unknown>,
+  args: ForwardGoldEvaluationValidationContextV1,
+): void {
+  nonEmptyString(output.run_id, "gold evaluator run_id");
+  nonEmptyString(output.job_id, "gold evaluator job_id");
+  const book = record(output.book, "gold evaluator book declaration");
+  for (const key of [
+    "book_id", "title", "package_path", "package_format", "nonfiction_type",
+    "declared_or_inferred_audience", "assumed_prior_knowledge", "declared_or_inferred_purpose",
+  ] as const) nonEmptyString(book[key], `gold evaluator book.${key}`);
+  // The retained slug pattern already excludes the empty string.
+  validateGoldComponentInventory(book.component_inventory, args.expectedComponentInventory);
+
+  requireCondition(Array.isArray(output.technical_findings), "gold evaluator technical_findings must be an array");
+  output.technical_findings.forEach((raw, index) => {
+    const finding = record(raw, `gold evaluator technical_findings[${index}]`);
+    for (const key of ["locator", "description", "scoring_treatment"] as const) {
+      nonEmptyString(finding[key], `gold evaluator technical_findings[${index}].${key}`);
+    }
+  });
+
+  const analysis = record(output.analysis, "gold evaluator analysis");
+  for (const key of [
+    "overall_reader_experience", "comprehension_and_retention_support", "practical_use_and_judgment",
+    "best_fit_reader", "readers_who_may_struggle", "final_verdict",
+  ] as const) nonEmptyString(analysis[key], `gold evaluator analysis.${key}`);
+  stringArray(analysis.highest_impact_improvements, "gold evaluator analysis.highest_impact_improvements", 3);
+  requireCondition(Array.isArray(analysis.engagement_curve), "gold evaluator analysis.engagement_curve must be an array");
+  analysis.engagement_curve.forEach((raw, index) => {
+    const item = record(raw, `gold evaluator analysis.engagement_curve[${index}]`);
+    nonEmptyString(item.chapter_range, `gold evaluator analysis.engagement_curve[${index}].chapter_range`);
+    nonEmptyString(item.explanation, `gold evaluator analysis.engagement_curve[${index}].explanation`);
+  });
 }
 
 function validateEvidence(value: unknown, label: string): void {
@@ -783,6 +995,7 @@ function validateEvaluationCore(
   const output = record(value, "gold evaluator output");
   requireCondition(output.schema_version === "2.0.0", "gold evaluator output has the wrong schema version");
   requireCondition(output.rater_role === expectedRole, `gold evaluator output has the wrong role (expected ${expectedRole})`);
+  validateGoldRemovedMinLengthConstraints(output, args);
   validateCoverage(output, args);
   validateQa(output);
   const score = validateDomains(output, ratingStep);
@@ -923,6 +1136,8 @@ function validateAdjudicationAgainstBlindRaters(
       && actual.verification === verificationRatings[index].rating
       && actual.final === finalRatings[index].rating,
     `gold disagreement[${position}] differs from retained blind/final ratings`);
+    nonEmptyString(actual.adjudication_rationale,
+      `gold disagreement[${position}].adjudication_rationale`);
     evidenceArray(actual.evidence, `gold disagreement[${position}].evidence`, 1);
   });
 
@@ -942,8 +1157,12 @@ function validateAdjudicationAgainstBlindRaters(
       && actual.verification === record(verification.gates[key], `verification gate ${key}`).status
       && actual.final === record(adjudicated.gates[key], `adjudicated gate ${key}`).status,
     `gold gate conflict[${position}] differs from retained blind/final gates`);
+    nonEmptyString(actual.rationale, `gold gate conflict[${position}].rationale`);
     evidenceArray(actual.evidence, `gold gate conflict[${position}].evidence`, 1);
   });
+
+  const confidence = record(adjudicated.output.confidence, "gold adjudication confidence");
+  nonEmptyString(confidence.rationale, "gold adjudication confidence.rationale");
 
   const certification = expectedCertification(adjudicated.gates);
   requireCondition(adjudicated.output.certification_status === certification,
@@ -957,9 +1176,17 @@ function validateAdjudicationAgainstBlindRaters(
  * authoritative evaluator inventory and its role-specific dispatch receipt. */
 export function validateForwardGoldSweepOutputBinding(
   value: unknown,
-  args: { expectedSourceHash: string; expectedDispatchReceiptSha256: string; repositoryRoot?: string },
+  args: {
+    expectedBookId: string;
+    expectedSourceHash: string;
+    expectedDispatchReceiptSha256: string;
+    expectedChapters: ForwardGoldExpectedChapterIdentityV1[];
+    repositoryRoot?: string;
+  },
 ): void {
-  validateAgainstPinnedOutputSchema(value, "sweep-output-schema", resolve(args.repositoryRoot ?? DEFAULT_REPOSITORY_ROOT));
+  validateAgainstPinnedOutputSchema(value, "sweep-output-schema",
+    resolve(args.repositoryRoot ?? DEFAULT_REPOSITORY_ROOT), args.expectedChapters);
+  nonEmptyString(args.expectedBookId, "expected sweep book id");
   sha(args.expectedSourceHash, "expected sweep source hash");
   sha(args.expectedDispatchReceiptSha256, "expected sweep dispatch receipt hash");
   const output = record(value, "gold sweep output");
@@ -967,7 +1194,35 @@ export function validateForwardGoldSweepOutputBinding(
     "gold sweep output is bound to another source inventory");
   requireCondition(output.worker_dispatch_receipt_sha256 === args.expectedDispatchReceiptSha256,
     "gold sweep output is bound to another dispatch receipt");
-  record(output.sweep, "gold sweep artifact");
+  const sweep = record(output.sweep, "gold sweep artifact");
+  requireCondition(sweep.schemaVersion === "sweep-attest-v1", "gold sweep has the wrong schemaVersion");
+  requireCondition(nonEmptyString(sweep.bookId, "gold sweep bookId") === args.expectedBookId,
+    "gold sweep output is bound to another book");
+  nonEmptyString(sweep.roundId, "gold sweep roundId");
+  nonEmptyString(sweep.reviewer, "gold sweep reviewer");
+  nonEmptyString(sweep.reviewerSessionId, "gold sweep reviewerSessionId");
+  const attestedAt = nonEmptyString(sweep.attestedAt, "gold sweep attestedAt");
+  requireCondition(!Number.isNaN(Date.parse(attestedAt)), "gold sweep attestedAt must be a date-time");
+
+  const contentHashes = record(sweep.contentHashes, "gold sweep contentHashes");
+  const expectedIndexes = args.expectedChapters.map((chapter) => chapter.chapterIndex);
+  requireCondition(args.expectedChapters.length >= 8
+    && expectedIndexes.every((index) => Number.isInteger(index) && index > 0)
+    && new Set(expectedIndexes).size === expectedIndexes.length,
+  "gold sweep expected chapters must contain at least eight distinct positive indexes");
+  const expectedKeys = expectedIndexes.map(String).sort((a, b) => Number(a) - Number(b));
+  exactKeys(contentHashes, expectedKeys, "gold sweep contentHashes");
+  for (const key of expectedKeys) chapterContentHash(contentHashes[key], `gold sweep contentHashes.${key}`);
+
+  requireUniquePrimitiveValues(sweep.checkedFamilies, "gold sweep checkedFamilies");
+  requireCondition(Array.isArray(sweep.findings), "gold sweep findings must be an array");
+  sweep.findings.forEach((raw, index) => {
+    const finding = record(raw, `gold sweep findings[${index}]`);
+    requireUniquePrimitiveValues(finding.chapters, `gold sweep findings[${index}].chapters`);
+    for (const key of ["unitId", "quote", "problem", "expectedFix"] as const) {
+      nonEmptyString(finding[key], `gold sweep findings[${index}].${key}`);
+    }
+  });
 }
 
 function sourceProofPayload(value: ForwardGoldSourceAwareExternalAccuracyProofV1): unknown {
@@ -1079,6 +1334,7 @@ export function projectForwardGoldAdjudication(
     expectedBookId: args.expectedBookId,
     expectedSourceHash: args.expectedSourceHash,
     expectedChapters: args.expectedChapters,
+    expectedComponentInventory: args.expectedComponentInventory,
     repositoryRoot: args.repositoryRoot,
     expectedRaterRole: "primary",
     expectedDispatchReceiptSha256: args.blindRaters.primary.expectedDispatchReceiptSha256,
@@ -1087,6 +1343,7 @@ export function projectForwardGoldAdjudication(
     expectedBookId: args.expectedBookId,
     expectedSourceHash: args.expectedSourceHash,
     expectedChapters: args.expectedChapters,
+    expectedComponentInventory: args.expectedComponentInventory,
     repositoryRoot: args.repositoryRoot,
     expectedRaterRole: "verification",
     expectedDispatchReceiptSha256: args.blindRaters.verification.expectedDispatchReceiptSha256,

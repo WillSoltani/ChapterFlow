@@ -46,7 +46,10 @@ import {
   assembleQualificationAttemptV3,
   buildQualificationExecutionRequestV3,
   buildRoleQualificationPlanV3,
+  candidateAvailabilityProvenanceSha256,
+  candidateAvailabilitySemanticSha256,
   candidateAvailabilitySha256,
+  normalizedCandidateAvailabilityReasonCodeV3,
   qualificationReceiptSha256,
   qualificationReceiptMismatchesV3,
   qualificationRequestSha256,
@@ -66,6 +69,7 @@ import {
 } from "../bakeoff/migration/roleQualificationRunnerV3.js";
 import {
   IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
   type Imp24ReviewRole,
 } from "../bakeoff/migration/imp24Corpus.js";
 import { qualifyRole } from "../bakeoff/migration/roleQualification.js";
@@ -116,19 +120,30 @@ export const IMP24D_TRANSPORT_SMOKE_EXECUTION_ID =
   "s16-forward-role-qualification-v3-envelope-transport-smoke" as const;
 export const IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID =
   "s16-forward-role-qualification-v3-envelope-transport-smoke-r2" as const;
+export const IMP24E_TRANSPORT_SMOKE_EXECUTION_ID =
+  "s16-forward-role-qualification-v3-envelope-final-transport-smoke" as const;
+export const IMP24E_TRANSPORT_SMOKE_R2_EXECUTION_ID =
+  "s16-forward-role-qualification-v3-envelope-final-transport-smoke-r2" as const;
 
 /** Control-plane identities that may use the exact live reviewer boundary.
  * The smoke identities are diagnostic-only and are never accepted by the
- * qualification runner or its retained r2 state root. */
+ * qualification runner. The explicit R2 identity is retained only so immutable
+ * historical evidence can still be validated; active/default paths use final. */
 export type Imp24LiveExecutionIdentityV3 =
   | typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID
+  | typeof IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID
   | typeof IMP24D_TRANSPORT_SMOKE_EXECUTION_ID
-  | typeof IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID;
+  | typeof IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID
+  | typeof IMP24E_TRANSPORT_SMOKE_EXECUTION_ID
+  | typeof IMP24E_TRANSPORT_SMOKE_R2_EXECUTION_ID;
 
 const IMP24_LIVE_EXECUTION_IDENTITIES = new Set<string>([
   IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
   IMP24D_TRANSPORT_SMOKE_EXECUTION_ID,
   IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID,
+  IMP24E_TRANSPORT_SMOKE_EXECUTION_ID,
+  IMP24E_TRANSPORT_SMOKE_R2_EXECUTION_ID,
 ]);
 
 function requireImp24LiveExecutionIdentityV3(
@@ -136,6 +151,14 @@ function requireImp24LiveExecutionIdentityV3(
 ): asserts executionId is Imp24LiveExecutionIdentityV3 {
   requireCondition(IMP24_LIVE_EXECUTION_IDENTITIES.has(executionId),
     "live v3 execution identity is not an authorized qualification or transport-smoke identity");
+}
+
+function isHistoricalImp24DExecutionIdentityV3(
+  executionId: Imp24LiveExecutionIdentityV3,
+): boolean {
+  return executionId === IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID
+    || executionId === IMP24D_TRANSPORT_SMOKE_EXECUTION_ID
+    || executionId === IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID;
 }
 
 export type LiveQualificationExecutionRequestV3 = Omit<
@@ -214,6 +237,7 @@ export const IMP24_CANDIDATE_AVAILABILITY_POLICY_BYTES_SHA256 =
   sha256Hex(IMP24_CANDIDATE_AVAILABILITY_POLICY_CANONICAL_BYTES);
 
 type LocalModelsCacheV3 = {
+  client_version?: string;
   fetched_at: string;
   models: Array<{
     slug: string;
@@ -231,6 +255,8 @@ export type LiveQualificationPreflightV3 = {
   productionInstrumentSealSha256: string;
   corpusBundleSha256: string;
   candidateAvailabilitySha256: string;
+  candidateAvailabilitySemanticSha256?: string;
+  candidateAvailabilityProvenanceSha256?: string;
   candidateAvailabilitySourceBytesSha256: string;
   cliVersion: string;
   cliBinary: string;
@@ -255,9 +281,23 @@ export function validateLiveQualificationPreflightArtifactV3(
   preflight: LiveQualificationPreflightV3,
   expectedExecutionId: Imp24LiveExecutionIdentityV3 = IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
 ): void {
+  const hasAvailabilitySemanticBinding = preflight.candidateAvailabilitySemanticSha256 !== undefined;
+  const hasAvailabilityProvenanceBinding = preflight.candidateAvailabilityProvenanceSha256 !== undefined;
+  const isHistoricalImp24D = isHistoricalImp24DExecutionIdentityV3(expectedExecutionId);
+  requireCondition(isHistoricalImp24D
+      ? hasAvailabilitySemanticBinding === hasAvailabilityProvenanceBinding
+      : hasAvailabilitySemanticBinding && hasAvailabilityProvenanceBinding,
+  isHistoricalImp24D
+    ? "historical IMP-24D preflight availability hashes must be present or omitted together"
+    : "active IMP-24E preflight must bind both availability semantic and provenance hashes");
+  const hasImp24eAvailabilityBinding = hasAvailabilitySemanticBinding
+    && hasAvailabilityProvenanceBinding;
   requireExactObjectKeys(preflight, [
     "schema", "experimentId", "verifiedAt", "freezeSha256", "certificationSha256",
     "productionInstrumentSealSha256", "corpusBundleSha256", "candidateAvailabilitySha256",
+    ...(hasImp24eAvailabilityBinding
+      ? ["candidateAvailabilitySemanticSha256", "candidateAvailabilityProvenanceSha256"]
+      : []),
     "candidateAvailabilitySourceBytesSha256", "cliVersion", "cliBinary", "cliSynthetic",
     "executionProfileHash", "routePolicyVersion", "executionRoute", "authMode", "apiKeyPresent",
     "apiFallbackAllowed", "directHttpOrSdkAllowed", "forbiddenProviderEnvKeysPresent",
@@ -270,6 +310,15 @@ export function validateLiveQualificationPreflightArtifactV3(
   requireSha(preflightSha256, "live V3 retained preflight hash");
   requireCondition(preflightSha256 === hashCanonical(core),
     "live V3 retained preflight self hash drift");
+  if (hasImp24eAvailabilityBinding) {
+    requireSha(preflight.candidateAvailabilitySemanticSha256,
+      "live V3 retained candidate availability semantic hash");
+    requireSha(preflight.candidateAvailabilityProvenanceSha256,
+      "live V3 retained candidate availability provenance hash");
+    requireCondition(preflight.candidateAvailabilitySha256
+        === preflight.candidateAvailabilitySemanticSha256,
+    "live V3 candidate availability compatibility alias is not the semantic identity");
+  }
   requireCondition(typeof preflight.verifiedAt === "string"
       && Number.isFinite(Date.parse(preflight.verifiedAt))
       && new Date(preflight.verifiedAt).toISOString() === preflight.verifiedAt
@@ -1105,6 +1154,7 @@ export function discoverCandidateAvailabilityV3(args: {
   policyBytesSha256: string;
   modelsCachePath: string;
   verifiedAt: string;
+  cliVersion?: string;
 }): CandidateAvailabilityV3 {
   validateAvailabilityPolicy(args.policy);
   requireSha(args.policyBytesSha256, "candidate availability policy bytes hash");
@@ -1121,7 +1171,8 @@ export function discoverCandidateAvailabilityV3(args: {
   requireCondition(Number.isFinite(fetchedMs) && Number.isFinite(verifiedMs), "candidate availability timestamps are invalid");
   const ageSeconds = (verifiedMs - fetchedMs) / 1_000;
   requireCondition(ageSeconds <= args.policy.maximumCacheAgeSeconds, `candidate availability cache is stale (${Math.floor(ageSeconds)}s old)`);
-  requireCondition(ageSeconds >= -args.policy.maximumFutureSkewSeconds, `candidate availability cache is ${Math.ceil(-ageSeconds)}s in the future`);
+  requireCondition(ageSeconds >= -args.policy.maximumFutureSkewSeconds,
+    `candidate availability cache is ${Math.ceil(-ageSeconds)}s in the future`);
 
   const bySlug = new Map<string, LocalModelsCacheV3["models"]>();
   for (const model of cache.models) {
@@ -1145,19 +1196,39 @@ export function discoverCandidateAvailabilityV3(args: {
         : !effortSupported
           ? `reasoning effort ${candidate.effort} is not advertised`
           : "exact visible model and effort are advertised by local Codex cache";
-    return { role, ordinal, ...candidate, status, modelListed, visible, effortSupported, reason };
+    const reasonCode = normalizedCandidateAvailabilityReasonCodeV3({ modelListed, visible, effortSupported });
+    return { role, ordinal, ...candidate, status, modelListed, visible, effortSupported, reasonCode, reason };
   }));
-  const draft: Omit<CandidateAvailabilityV3, "availabilitySha256"> = {
+  const qualifiedAt = new Date(verifiedMs).toISOString();
+  const cliVersion = args.cliVersion ?? cache.client_version ?? "unknown";
+  requireCondition(typeof cliVersion === "string" && cliVersion.trim().length > 0,
+    "candidate availability CLI version is invalid");
+  const core: Omit<
+    CandidateAvailabilityV3,
+    "availabilitySha256" | "semanticSha256" | "provenanceSha256"
+  > = {
     schema: IMP24_ROLE_QUALIFICATION_AVAILABILITY_SCHEMA,
     experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     source: "codex-local-models-cache",
+    sourceFile: `$CODEX_HOME/${basename(args.modelsCachePath)}`,
     sourceBytesSha256: sha256Hex(sourceBytes),
     sourceFetchedAt: new Date(fetchedMs).toISOString(),
+    sourceQualifiedAt: qualifiedAt,
+    sourceAgeSeconds: ageSeconds,
+    cliVersion,
     policyBytesSha256: args.policyBytesSha256,
     candidateOrderSha256: hashCanonical(IMP24_ROLE_CANDIDATE_ORDER),
     entries,
   };
-  return Object.freeze({ ...draft, availabilitySha256: candidateAvailabilitySha256(draft) });
+  const splitDraft: Omit<CandidateAvailabilityV3, "availabilitySha256"> = {
+    ...core,
+    semanticSha256: candidateAvailabilitySemanticSha256(core),
+    provenanceSha256: candidateAvailabilityProvenanceSha256(core as CandidateAvailabilityV3),
+  };
+  return Object.freeze({
+    ...splitDraft,
+    availabilitySha256: candidateAvailabilitySha256(splitDraft),
+  });
 }
 
 export type LivePreflightDepsV3 = {
@@ -1244,6 +1315,7 @@ export async function preflightLiveRoleQualificationV3(
     && executionProfile.profile.allowedSandboxes[0] === "read-only",
   "chapter-reviewer execution profile is not hermetic read-only isolation");
 
+  const candidateAvailabilitySemantic = candidateAvailabilitySemanticSha256(input.candidateAvailability);
   const draft: Omit<LiveQualificationPreflightV3, "preflightSha256"> = {
     schema: IMP24_LIVE_PREFLIGHT_SCHEMA,
     experimentId: executionId,
@@ -1252,7 +1324,9 @@ export async function preflightLiveRoleQualificationV3(
     certificationSha256: freeze.certificationSha256,
     productionInstrumentSealSha256: freeze.productionInstrumentSealSha256,
     corpusBundleSha256: freeze.corpusBundleSha256,
-    candidateAvailabilitySha256: input.candidateAvailability.availabilitySha256,
+    candidateAvailabilitySha256: candidateAvailabilitySemantic,
+    candidateAvailabilitySemanticSha256: candidateAvailabilitySemantic,
+    candidateAvailabilityProvenanceSha256: input.candidateAvailability.provenanceSha256!,
     candidateAvailabilitySourceBytesSha256: input.candidateAvailability.sourceBytesSha256,
     cliVersion: cli.version,
     // Retain the exact executable identity used by qualification. Attempt

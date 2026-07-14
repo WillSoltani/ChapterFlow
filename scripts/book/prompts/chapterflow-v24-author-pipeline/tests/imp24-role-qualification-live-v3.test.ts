@@ -42,7 +42,9 @@ import {
   createLiveQualificationExecutorV3,
   liveQualificationExecutionSessionIdV3,
   replayReceiptChronologyViolationsV3,
+  validateLiveQualificationPreflightArtifactV3,
   type LiveCallLedgerEntryV3,
+  type LiveQualificationPreflightV3,
   type LiveQualificationExecutionRequestV3,
 } from "../src/orchestrator/forwardRoleQualificationLiveV3.js";
 import {
@@ -66,7 +68,7 @@ import {
   type Imp24TrustedPullRequestEvidenceV1,
   type RunImp24RoleQualificationCampaignV3Args,
 } from "../src/orchestrator/forwardRoleQualificationCampaignV3.js";
-import { resolveRoute, routeDriftFingerprint } from "../src/orchestrator/modelPolicy.js";
+import { ROUTE_POLICY_VERSION, resolveRoute, routeDriftFingerprint } from "../src/orchestrator/modelPolicy.js";
 import {
   CodexRunnerProcessError,
   type CodexAgentResult,
@@ -131,6 +133,66 @@ function writePrettyJson(path: string, value: unknown): void {
   writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
 }
 
+function retainedPreflight(
+  experimentId: LiveQualificationPreflightV3["experimentId"] = IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+): LiveQualificationPreflightV3 {
+  const semanticSha256 = "d".repeat(64);
+  const core: Omit<LiveQualificationPreflightV3, "preflightSha256"> = {
+    schema: "imp24-role-qualification-live-preflight-v3",
+    experimentId,
+    verifiedAt: "2026-07-14T12:00:00.000Z",
+    freezeSha256: FREEZE,
+    certificationSha256: CERTIFICATION,
+    productionInstrumentSealSha256: SEAL,
+    corpusBundleSha256: "e".repeat(64),
+    candidateAvailabilitySha256: semanticSha256,
+    candidateAvailabilitySemanticSha256: semanticSha256,
+    candidateAvailabilityProvenanceSha256: "f".repeat(64),
+    candidateAvailabilitySourceBytesSha256: "1".repeat(64),
+    cliVersion: "codex-cli 0.144.0",
+    cliBinary: "/usr/local/bin/codex",
+    cliSynthetic: false,
+    executionProfileHash: resolveExecutionProfile("chapter-reviewer").profileHash,
+    routePolicyVersion: ROUTE_POLICY_VERSION,
+    executionRoute: "codex_exec_chatgpt_subscription",
+    authMode: "chatgpt",
+    apiKeyPresent: false,
+    apiFallbackAllowed: false,
+    directHttpOrSdkAllowed: false,
+    forbiddenProviderEnvKeysPresent: [],
+    baseMaximumCalls: 464,
+    hardMaximumCalls: 928,
+  };
+  return { ...core, preflightSha256: hashCanonical(core) };
+}
+
+test("active FINAL preflight rejects missing and partial IMP-24E availability bindings", () => {
+  const missingBoth = clone(retainedPreflight());
+  delete missingBoth.candidateAvailabilitySemanticSha256;
+  delete missingBoth.candidateAvailabilityProvenanceSha256;
+  const { preflightSha256: _missingHash, ...missingCore } = missingBoth;
+  missingBoth.preflightSha256 = hashCanonical(missingCore);
+  assert.throws(() => validateLiveQualificationPreflightArtifactV3(missingBoth),
+    /active IMP-24E preflight must bind both availability semantic and provenance hashes/);
+
+  const partial = clone(retainedPreflight());
+  delete partial.candidateAvailabilityProvenanceSha256;
+  const { preflightSha256: _partialHash, ...partialCore } = partial;
+  partial.preflightSha256 = hashCanonical(partialCore);
+  assert.throws(() => validateLiveQualificationPreflightArtifactV3(partial),
+    /active IMP-24E preflight must bind both availability semantic and provenance hashes/);
+
+  const historical = clone(retainedPreflight(IMP24D_TRANSPORT_SMOKE_EXECUTION_ID));
+  delete historical.candidateAvailabilitySemanticSha256;
+  delete historical.candidateAvailabilityProvenanceSha256;
+  const { preflightSha256: _historicalHash, ...historicalCore } = historical;
+  historical.preflightSha256 = hashCanonical(historicalCore);
+  assert.doesNotThrow(() => validateLiveQualificationPreflightArtifactV3(
+    historical,
+    IMP24D_TRANSPORT_SMOKE_EXECUTION_ID,
+  ));
+});
+
 test("IMP-24D smoke control identity uses distinct request, ledger, root, and session identities without retaining r2", async () => {
   const roots = mkTestRoots("imp24d-smoke-control-identity");
   try {
@@ -188,12 +250,20 @@ test("IMP-24D smoke control identity uses distinct request, ledger, root, and se
       certificationSha256: CERTIFICATION,
       productionInstrumentSealSha256: SEAL,
       preCallVerifier: () => {},
-      spawn: async (options) => ok(options),
+      spawn: async (options) => {
+        const result = ok(options, "{}", "canonical");
+        const manifest = JSON.parse(readFileSync(result.manifestPath!, "utf8")) as { argv: string[] };
+        const schemaIndex = manifest.argv.indexOf("--output-schema") + 1;
+        const canonical = manifest.argv[schemaIndex]!;
+        manifest.argv[schemaIndex] = resolve(dirname(canonical), `legacy-projected-${basename(canonical)}`);
+        writePrettyJson(result.manifestPath!, manifest);
+        return result;
+      },
       workspaceBaseDir: resolve(roots.base, "closed-cycle-one-projected-workspaces"),
     });
     await assert.rejects(projectedLegacy.controlExecutor(smokeRequest),
       /effective-context manifest semantic binding drift/,
-      "closed cycle-one evidence must retain its historical canonical argv path");
+      "a fabricated legacy projected sibling must not replace the canonical compatible schema path");
 
     const assertNoR2 = (dir: string): void => {
       for (const name of readdirSync(dir)) {
@@ -661,19 +731,22 @@ test("IMP-24 live V3 defaults to the strict V2 schemas and retains exact envelop
   }
 });
 
-test("IMP-24D live evidence accepts only the deterministic projected schema argv path", async () => {
+test("IMP-24E live evidence accepts canonical compatible schema argv and rejects sibling paths", async () => {
   const variants = [
     {
       name: "canonical",
       replace: (actual: string, options: SpawnCodexAgentOptions) => resolve(options.outputSchemaPath!),
+      passes: true,
     },
     {
-      name: "tampered-hash",
-      replace: (actual: string) => actual.replace(/[a-f0-9]{64}(?=\.json$)/, "0".repeat(64)),
+      name: "tampered-sibling",
+      replace: (actual: string) => resolve(dirname(actual), `tampered-${basename(actual)}`),
+      passes: false,
     },
     {
       name: "wrong-session",
       replace: (actual: string) => resolve(dirname(dirname(actual)), "other-session", basename(actual)),
+      passes: false,
     },
   ] as const;
 
@@ -692,7 +765,7 @@ test("IMP-24D live evidence accepts only the deterministic projected schema argv
         preCallVerifier: () => undefined,
         workspaceBaseDir: roots.workspacesRoot,
         spawn: async (options) => {
-          const result = ok(options);
+          const result = ok(options, "{}", "canonical");
           const manifest = JSON.parse(readFileSync(result.manifestPath!, "utf8")) as { argv: string[] };
           const schemaIndex = manifest.argv.indexOf("--output-schema") + 1;
           const actual = manifest.argv[schemaIndex]!;
@@ -701,8 +774,13 @@ test("IMP-24D live evidence accepts only the deterministic projected schema argv
           return result;
         },
       });
-      await assert.rejects(live.executor(req), /effective-context manifest semantic binding drift/,
-        `${variant.name} schema argv must fail retained provenance verification`);
+      if (variant.passes) {
+        const receipt = await live.executor(req);
+        assert.equal(receipt.status, "completed");
+      } else {
+        await assert.rejects(live.executor(req), /effective-context manifest semantic binding drift/,
+          `${variant.name} schema argv must fail retained provenance verification`);
+      }
       assert.equal(live.ledger.codexExecInvocations, 1);
       assert.equal(live.ledger.apiCallsMade, 0);
     } finally {

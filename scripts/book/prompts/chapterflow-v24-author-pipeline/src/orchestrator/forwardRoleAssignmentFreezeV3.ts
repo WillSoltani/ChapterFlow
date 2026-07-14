@@ -18,6 +18,7 @@ import {
 import {
   IMP24_CORPUS_EXPECTED_COUNTS,
   IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_FINAL_EXECUTION_ID,
   IMP24_ROLE_QUALIFICATION_ID,
   type Imp24CorpusBundle,
   type Imp24ReviewRole,
@@ -89,6 +90,7 @@ export type ForwardRoleProfileBindingV3 = {
   lane: Imp24ReviewRole;
   judge: RoleJudgeRefV1;
   qualificationResultSha256: string;
+  candidateAvailabilitySemanticSha256: string;
   profileRoleResultSha256: string;
   canaryAttemptsSha256: string;
   holdoutAttemptsSha256: string;
@@ -112,6 +114,7 @@ export type BoundForwardFrozenReviewConfigV3 = ForwardFrozenReviewConfigV1 & {
   qualificationExperimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
   qualificationResultSha256: string;
   qualificationFreezeSha256: string;
+  candidateAvailabilitySemanticSha256: string;
   instrumentCertificationSha256: string;
   corpusBundleSha256: string;
   roleProfileBindingsSha256: string;
@@ -137,6 +140,7 @@ export type ForwardRoleAssignmentFreezeV3 = {
   callLedgerBytesSha256: string;
   qualificationResultSha256: string;
   qualificationFreezeSha256: string;
+  candidateAvailabilitySemanticSha256: string;
   instrumentCertification: InstrumentCertificationBindingV3;
   instrumentCertificationSha256: string;
   corpusBundleSha256: string;
@@ -307,6 +311,8 @@ function roleProfileBinding(args: {
     lane: args.lane,
     judge: selectedJudge(args.input.result, args.profileId, args.lane),
     qualificationResultSha256: args.qualificationResultSha256,
+    candidateAvailabilitySemanticSha256:
+      args.input.result.freeze.candidateAvailabilitySemanticSha256,
     profileRoleResultSha256: hashCanonical(roleResult),
     canaryAttemptsSha256: resultAttemptHash(args.input.result, args.profileId, args.lane, "canary"),
     holdoutAttemptsSha256: resultAttemptHash(args.input.result, args.profileId, args.lane, "holdout"),
@@ -339,6 +345,11 @@ function assertInput(input: BuildForwardRoleAssignmentFreezeV3Input): void {
   const { freezeSha256, ...qualificationFreezeCore } = input.result.freeze;
   requireCondition(hashCanonical(qualificationFreezeCore) === freezeSha256,
     "V3 qualification freeze self hash drift");
+  requireSha(input.result.freeze.candidateAvailabilitySemanticSha256,
+    "candidate availability semantic hash");
+  requireCondition(input.result.freeze.candidateAvailabilitySha256
+      === input.result.freeze.candidateAvailabilitySemanticSha256,
+  "qualification freeze candidate availability alias is not semantic");
   requireCondition(input.result.schedule.length === input.result.freeze.baseMaximumCalls
     && input.result.freeze.baseMaximumCalls === 464
     && input.result.freeze.hardMaximumCalls === 928
@@ -466,6 +477,8 @@ function composeForwardRoleAssignmentFreezeV3(
     qualificationExperimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
     qualificationResultSha256,
     qualificationFreezeSha256: input.result.freeze.freezeSha256,
+    candidateAvailabilitySemanticSha256:
+      input.result.freeze.candidateAvailabilitySemanticSha256,
     instrumentCertificationSha256: input.certification.certificationSha256,
     corpusBundleSha256: input.certification.corpusBundleSha256,
     roleProfileBindingsSha256,
@@ -490,6 +503,8 @@ function composeForwardRoleAssignmentFreezeV3(
     callLedgerBytesSha256: input.callLedgerBytesSha256,
     qualificationResultSha256,
     qualificationFreezeSha256: input.result.freeze.freezeSha256,
+    candidateAvailabilitySemanticSha256:
+      input.result.freeze.candidateAvailabilitySemanticSha256,
     instrumentCertification: clone(input.certification),
     instrumentCertificationSha256: input.certification.certificationSha256,
     corpusBundleSha256: input.certification.corpusBundleSha256,
@@ -621,6 +636,30 @@ export function validateForwardRoleAssignmentFreezeInternalV3(
     ["sourceAdjudicator", "source", freeze.roleAssignment.sourceAdjudicator],
     ["quizSemanticAdjudicator", "quiz", freeze.roleAssignment.quizAdjudicator],
   ] as const;
+  const candidateAvailabilitySemanticBindings: Array<readonly [string, unknown]> = [
+    ["role freeze", freeze.candidateAvailabilitySemanticSha256],
+    ["conductor review config", freeze.reviewConfig?.candidateAvailabilitySemanticSha256],
+    ...bindingSpecs.map(([slot]) => [
+      `${slot} profile binding`,
+      freeze.roleProfileBindings?.[slot]?.candidateAvailabilitySemanticSha256,
+    ] as const),
+  ];
+  const semanticBindingPresence = candidateAvailabilitySemanticBindings
+    .map(([, value]) => value !== undefined);
+  const allSemanticBindingsPresent = semanticBindingPresence.every(Boolean);
+  const allSemanticBindingsOmitted = semanticBindingPresence.every((present) => !present);
+  if (expectedExperimentId === IMP24_ROLE_QUALIFICATION_FINAL_EXECUTION_ID) {
+    requireCondition(allSemanticBindingsPresent,
+      "active FINAL role freeze must bind candidate availability semantics at every layer");
+  } else {
+    requireCondition(allSemanticBindingsPresent || allSemanticBindingsOmitted,
+      "historical role freeze candidate availability semantics must be present or omitted consistently");
+  }
+  if (allSemanticBindingsPresent) {
+    for (const [label, value] of candidateAvailabilitySemanticBindings) {
+      requireSha(value, `forward V3 ${label} candidate availability semantic hash`);
+    }
+  }
   for (const [slot, lane, judge] of bindingSpecs) {
     const binding = freeze.roleProfileBindings?.[slot];
     requireCondition(binding?.schema === FORWARD_ROLE_PROFILE_BINDING_V3_SCHEMA
@@ -647,6 +686,9 @@ export function validateForwardRoleAssignmentFreezeInternalV3(
         && TAGGED_SHA256.test(binding.corpusBundleSha256),
       `${slot} corpus hash must be a tagged lowercase sha256`);
     requireCondition(binding.qualificationResultSha256 === freeze.qualificationResultSha256
+        && (!allSemanticBindingsPresent
+          || binding.candidateAvailabilitySemanticSha256
+            === freeze.candidateAvailabilitySemanticSha256)
         && binding.promptSourceSha256 === freeze.promptSourceHashes[lane]
         && binding.schemaSha256 === freeze.schemaHashes[lane]
         && binding.productionQualificationParitySha256 === freeze.productionQualificationParitySha256
@@ -687,6 +729,9 @@ export function validateForwardRoleAssignmentFreezeInternalV3(
       && hashCanonical(reviewConfig.roleAssignment) === hashCanonical(freeze.roleAssignment)
       && reviewConfig.qualificationResultSha256 === freeze.qualificationResultSha256
       && reviewConfig.qualificationFreezeSha256 === freeze.qualificationFreezeSha256
+      && (!allSemanticBindingsPresent
+        || reviewConfig.candidateAvailabilitySemanticSha256
+          === freeze.candidateAvailabilitySemanticSha256)
       && reviewConfig.instrumentCertificationSha256 === freeze.instrumentCertificationSha256
       && reviewConfig.corpusBundleSha256 === freeze.corpusBundleSha256
       && reviewConfig.roleProfileBindingsSha256 === freeze.roleProfileBindingsSha256
@@ -722,7 +767,9 @@ export function validateForwardRoleAssignmentFreezeV3(
   requireCondition(hashCanonical(freeze) === hashCanonical(expected),
     "forward V3 role freeze differs from the deterministic projection of current qualification evidence");
   requireCondition(freeze.qualificationResultSha256 === hashCanonical(current.result)
-    && freeze.qualificationFreezeSha256 === current.result.freeze.freezeSha256,
+    && freeze.qualificationFreezeSha256 === current.result.freeze.freezeSha256
+    && freeze.candidateAvailabilitySemanticSha256
+      === current.result.freeze.candidateAvailabilitySemanticSha256,
   "forward V3 role freeze qualification evidence drift");
   requireCondition(freeze.implementationHeadSha === current.implementationHeadSha
       && freeze.implementationCiGateSha256 === current.implementationCiGateSha256
