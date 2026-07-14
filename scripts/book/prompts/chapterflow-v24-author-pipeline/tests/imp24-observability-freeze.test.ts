@@ -202,7 +202,9 @@ test("later correction and final checkouts verify Commit-A observability-freeze 
     const options = { repositoryRoot };
     const materialized = materializeImp24DObservabilityFreeze(options);
     git(repositoryRoot, ["add", "--all"]);
-    git(repositoryRoot, ["commit", "-m", "fixture observability commit"]);
+    if (git(repositoryRoot, ["diff", "--cached", "--name-only"]) !== "") {
+      git(repositoryRoot, ["commit", "-m", "fixture observability commit"]);
+    }
     const observabilityCommit = git(repositoryRoot, ["rev-parse", "HEAD"]);
     const original = materialized.freeze.currentImplementation;
 
