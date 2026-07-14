@@ -1,0 +1,388 @@
+{
+  "schema": "imp-24c-r1-observability-gap-v1",
+  "promptId": "IMP-24",
+  "continuationPromptId": "IMP-24D",
+  "protocolId": "s16-forward-role-qualification-v3-envelope",
+  "executionId": "s16-forward-role-qualification-v3-envelope-r1",
+  "disposition": "BLOCKED_OBSERVABILITY_INCOMPLETE",
+  "branch": "feat/v25-pipeline-live",
+  "startingHead": "3b060fb0a7f6e64e04386b84ff6b5a10e42868ec",
+  "draftPullRequest": 401,
+  "ciProvenance": {
+    "retainedR1Gate": {
+      "source": "retained-r1-implementation-ci-gate",
+      "sourcePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-r1/implementation-ci-gate.json",
+      "sourceBytesSha256": "813c0b4cda214d75d1cc44111bd7eb35c8281a519f90da23092a979d8ba0668f",
+      "runId": 29311237347,
+      "conclusion": "SUCCESS",
+      "headSha": "3b060fb0a7f6e64e04386b84ff6b5a10e42868ec",
+      "workflowDisplayName": "ChapterFlow V25 Pipeline",
+      "workflowFile": ".github/workflows/chapterflow-v25-pipeline.yml",
+      "requiredJob": "V25 Pipeline Typecheck, Contracts, and Tests"
+    },
+    "ownerCheckpoint": {
+      "source": "IMP-24D independently verified owner checkpoint",
+      "runId": 29311241491,
+      "conclusion": "SUCCESS",
+      "headSha": "3b060fb0a7f6e64e04386b84ff6b5a10e42868ec",
+      "workflowDisplayName": "ChapterFlow V25 Pipeline",
+      "workflowFile": ".github/workflows/chapterflow-v25-pipeline.yml",
+      "retainedGateRewritten": false
+    },
+    "interpretation": "These are distinct successful exact-head CI observations. The owner checkpoint does not amend or reinterpret the retained r1 gate artifact."
+  },
+  "stateRoot": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-r1",
+  "semanticBindings": {
+    "executionSpecSha256": "dece02d64395514a743f2897821bb9879375d0f6939dc2f1766a620681a2acd1",
+    "candidateAvailabilitySha256": "7b6d2f9317a4c9f4f914e980ad4cc8265384db82c1762f69d3a958b5e8e0cd52",
+    "implementationCiGateSha256": "4089e433733692dff6855e9760b5856e98b1e38b70f0737ac9d4d727f4ce1b07",
+    "preflightSha256": "54a53fd8f19ae9b1570ada9550db8b81c997b6c63f37037f33e261617be59828",
+    "freezeSha256": "74bd0cbad4724fab436b726324d1400e2bb2aad820a5f6f4b8cfe0ba3b606446",
+    "certificationSha256": "cd3c6450337a3c29be5812c52608f9805cb50606d8de066c6ac1e8f94ca2bc4f",
+    "productionInstrumentSealSha256": "22bda57b70062160cc560adb46b9ab32b2ba316c901898727cafba10faaabab5",
+    "productionQualificationParitySha256": "7ab47df0aeea82c83c7e6c8db8c7fbeaa7e9488dc76916ea6ddace105aa508d4",
+    "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa",
+    "corpusBundleSha256": "sha256:4501809686161a541ad776bdbfea9c716ec402d89ef397a072f93143ce28fcac",
+    "candidateOrderSha256": "b688f64ae66f211b2c62270a79157d997bd4dee269dcacd969f7cd9741b44190",
+    "scheduleSha256": "dd7c3c1235c86cbbaf20c954398bcb57880efd5c7629f95bc494cb4d0fa8e22c"
+  },
+  "closure": {
+    "mayResume": false,
+    "mayQualifyProfiles": false,
+    "attemptsImmutable": true,
+    "stderrMayBeFabricated": false
+  },
+  "counters": {
+    "canaryCallsAttempted": 2,
+    "holdoutCalls": 0,
+    "brokerRequests": 2,
+    "codexExecInvocations": 2,
+    "cachedReceipts": 0,
+    "infrastructureReplays": 0,
+    "maxPlanCapacityEvents": 0,
+    "apiCalls": 0,
+    "rolesQualified": 0,
+    "successfulStructuredResponses": 0
+  },
+  "attempts": [
+    {
+      "attemptId": "v3-reader-p1-canary-c01-a1",
+      "scheduleId": "v3-reader-p1-canary-c01",
+      "caseId": "READER-V3-CANARY-clean-make-it-stick-ch02",
+      "partition": "canary",
+      "family": "clean",
+      "role": "reader",
+      "profileId": "gpt-5.6-sol@high",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "attemptNumber": 1,
+      "replayOfAttemptId": null,
+      "status": "integrity_failure",
+      "requestedAt": "2026-07-14T06:35:37.094Z",
+      "completedAt": "2026-07-14T06:35:44.967Z",
+      "processBoundaryCrossed": true,
+      "invocation": "RUNNER_RETURNED",
+      "responseProduced": true,
+      "requestSha256": "f88add9406802f9726b05d1e155f533aa55c63804ce90830652c95282164041a",
+      "requestBytesSha256": "23e0ec441d099828bef1db5424d42b22d500c587e1f81b0b781211d95ca16982",
+      "evidenceEnvelopeSha256": "dc2e76b95c1249f7c2a8bb66b2bebf9d8c5e4bbd06c70b3a1c0e603403630907",
+      "evidenceEnvelopeBytesSha256": "5aa369d97e8923a03ab1fbc20e92752eec144fcbe65f850130d193febbbd57c4",
+      "receiptSha256": "77ba3bf0d7a43e83a997a1bbc145a898ccd64c67b545ff34b51578a0523e8f99",
+      "receiptBytesSha256": "29003c698e6ee1bcd30e3fd6f7bb76d917576c9f517951828d1a219715da4cba",
+      "executionEvidenceSha256": "e8fd15bd4b0479ca28cabb55748eb9b17281484aabef2c2d3bfc41804ac0e575",
+      "evaluationArtifactSha256": "f1b569cf76147231fc568ddb99a897f0b96f9ad01f9981a8b014f151902a3d6e",
+      "retentionSha256": "46373316163dea695a0b23ec8dd9e7f62c3b166d1798d8becdc32acd638b13c7",
+      "failureDetail": "forward reviewer: codex exec failed (ok=false, exitCode=1, outcome=infrastructure_failure)",
+      "result": {
+        "ok": false,
+        "exitCode": 1,
+        "durationMs": 7715,
+        "stdoutBytes": 0,
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrBytes": 21735,
+        "stderrSha256": "f59df2e81396de0cf727d4388bb847d6e26ef44b5cc508168c09d5d9edaf14ed",
+        "finalMessageSource": "stdout-fallback",
+        "finalMessageBytes": 0,
+        "structuredParsedOk": false,
+        "structuredParseError": "Unexpected end of JSON input"
+      },
+      "route": {
+        "executionRoute": "codex_exec_chatgpt_subscription",
+        "authMode": "chatgpt",
+        "apiKeyPresent": false,
+        "apiFallbackAllowed": false,
+        "outcome": "infrastructure_failure"
+      },
+      "sidecars": {
+        "manifest": {
+          "path": "live/exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.manifest.json",
+          "bytes": 2973,
+          "bytesSha256": "0f1badf7d7c61853fe6249ef924b2bc0301e44684c4bd4f7ab701c86fcf4d82f"
+        },
+        "result": {
+          "path": "live/exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.result.json",
+          "bytes": 574,
+          "bytesSha256": "e9534eef113666c8f60df0b638ddb2f5676a5ace255ce4179a359c11e77992b5"
+        },
+        "route": {
+          "path": "live/exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.route.json",
+          "bytes": 646,
+          "bytesSha256": "7fcef34a2d0627e46943fade96c38f656d44b4e5ad10dff4cf8432a035b61d44"
+        },
+        "structuredOutput": {
+          "path": "live/exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.structured.json",
+          "bytes": 634,
+          "bytesSha256": "58c10867564af4a33a5c11c3f321ffdb578bd180f5f1e065f8d9001633efb244"
+        }
+      }
+    },
+    {
+      "attemptId": "v3-reader-p1-canary-c02-a1",
+      "scheduleId": "v3-reader-p1-canary-c02",
+      "caseId": "READER-V3-CANARY-reader-visible-hard-blocker-make-it-stick-ch02",
+      "partition": "canary",
+      "family": "reader-visible-hard-blocker",
+      "role": "reader",
+      "profileId": "gpt-5.6-sol@high",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "attemptNumber": 1,
+      "replayOfAttemptId": null,
+      "status": "integrity_failure",
+      "requestedAt": "2026-07-14T06:35:37.159Z",
+      "completedAt": "2026-07-14T06:35:46.554Z",
+      "processBoundaryCrossed": true,
+      "invocation": "RUNNER_RETURNED",
+      "responseProduced": true,
+      "requestSha256": "0ef04fd6bae27bf91ce15d091e69b809037c797f3bd873809257afc95927793c",
+      "requestBytesSha256": "8f34aba11bfa512b717acb2eb1c1b5909ed025700d3b415a2302b0478c91d442",
+      "evidenceEnvelopeSha256": "24833b4620e5c4a47e5c7794f63fbd4281544c4ba8d80c39c71e2deb48104559",
+      "evidenceEnvelopeBytesSha256": "7d854a5a43ae445fe99823300df42499aa12188e0afad8ff652f617e31bb10ab",
+      "receiptSha256": "025c38c6c531e079f901c256a11bf2040684f1100486db38b8c1834f49a83a47",
+      "receiptBytesSha256": "fea8f144dd798845b149c5c2f13ecab048218972e36a3e2bbea2dec206fc73b4",
+      "executionEvidenceSha256": "d37a041ee183b4bcc78fb4da6461bdf776e451ca66ebeddeff4394796dcfad1c",
+      "evaluationArtifactSha256": "984e3fed59e896589f1f99d7c52d1c034f64251b0958959ebfd645cbad5aa950",
+      "retentionSha256": "391e787a9a32845560ea49e3a0c1f5bb2117f21e83d0c6309e4f1ceaa70efa9c",
+      "failureDetail": "forward reviewer: codex exec failed (ok=false, exitCode=1, outcome=infrastructure_failure)",
+      "result": {
+        "ok": false,
+        "exitCode": 1,
+        "durationMs": 9334,
+        "stdoutBytes": 0,
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrBytes": 21823,
+        "stderrSha256": "e8d04c64a845b66ada420c9b1b4734f8882e6a56004f8b768c43ac6a32ed008e",
+        "finalMessageSource": "stdout-fallback",
+        "finalMessageBytes": 0,
+        "structuredParsedOk": false,
+        "structuredParseError": "Unexpected end of JSON input"
+      },
+      "route": {
+        "executionRoute": "codex_exec_chatgpt_subscription",
+        "authMode": "chatgpt",
+        "apiKeyPresent": false,
+        "apiFallbackAllowed": false,
+        "outcome": "infrastructure_failure"
+      },
+      "sidecars": {
+        "manifest": {
+          "path": "live/exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.manifest.json",
+          "bytes": 2995,
+          "bytesSha256": "4c1c00ee97e72d8f37e38ae9b7a773144bd8e5f5504de7f290b8792d1f266fdd"
+        },
+        "result": {
+          "path": "live/exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.result.json",
+          "bytes": 574,
+          "bytesSha256": "ab325e89bfb008a338f3ecabfd73fdf542c827bc11a368672cbfea2457f0d780"
+        },
+        "route": {
+          "path": "live/exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.route.json",
+          "bytes": 646,
+          "bytesSha256": "7fcef34a2d0627e46943fade96c38f656d44b4e5ad10dff4cf8432a035b61d44"
+        },
+        "structuredOutput": {
+          "path": "live/exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.structured.json",
+          "bytes": 634,
+          "bytesSha256": "4396f8e27ddd9ea987926705cf23b7ef91cadf2e239539164c11e801ff51fc4e"
+        }
+      }
+    }
+  ],
+  "observabilityGap": {
+    "processDiagnosticsArtifactPresent": false,
+    "stdoutTextRetained": false,
+    "stderrTextRetained": false,
+    "stdoutHashAndByteCountRetained": true,
+    "stderrHashAndByteCountRetained": true,
+    "rootCauseDetermined": false,
+    "missingEvidence": [
+      "bounded sanitized stdout text",
+      "bounded sanitized stderr text",
+      "typed timeout, spawn, and process-error details"
+    ],
+    "permittedInterpretation": "The two returned nonzero Codex processes failed before producing structured final output. Their exact transport or configuration cause cannot be determined from retained r1 evidence.",
+    "forbiddenActions": [
+      "rerun either r1 attempt",
+      "reinterpret either r1 attempt",
+      "fabricate missing stdout or stderr",
+      "backfill process-diagnostics.json into r1",
+      "qualify a reviewer profile from r1"
+    ]
+  },
+  "artifactInventory": {
+    "hashAlgorithm": "sha256",
+    "fileCount": 26,
+    "recoveryACommittedFileCount": 1,
+    "postRecoveryARetainedFileCount": 25,
+    "totalBytes": 327951,
+    "files": [
+      {
+        "path": "candidate-availability.json",
+        "bytes": 3574,
+        "bytesSha256": "607ea9d04a589cf49e00f54d6b7d4da01c4413190faeae450db9c78534114984"
+      },
+      {
+        "path": "execution-spec.json",
+        "bytes": 2803,
+        "bytesSha256": "1396924c5f18134531ec8999365dab44258cc340a799497086f3f89f9772ff76"
+      },
+      {
+        "path": "implementation-ci-gate.json",
+        "bytes": 2204,
+        "bytesSha256": "813c0b4cda214d75d1cc44111bd7eb35c8281a519f90da23092a979d8ba0668f"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c01-a1/evaluation.json",
+        "bytes": 864,
+        "bytesSha256": "c206d6d39f5db026a6fe0de8861719143b70472d5a89546c9eda5ce4c481258e"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c01-a1/evidence-envelope.json",
+        "bytes": 19688,
+        "bytesSha256": "5aa369d97e8923a03ab1fbc20e92752eec144fcbe65f850130d193febbbd57c4"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c01-a1/execution-evidence.json",
+        "bytes": 2057,
+        "bytesSha256": "18f5ef285daefc8e2f21de5f9deb372b0ba4162350d1a232109c1e8f7cd7f5f7"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c01-a1/receipt.json",
+        "bytes": 21365,
+        "bytesSha256": "29003c698e6ee1bcd30e3fd6f7bb76d917576c9f517951828d1a219715da4cba"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c01-a1/request.json",
+        "bytes": 42851,
+        "bytesSha256": "23e0ec441d099828bef1db5424d42b22d500c587e1f81b0b781211d95ca16982"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c01-a1/retention.json",
+        "bytes": 64964,
+        "bytesSha256": "fe0c498d484437c61b672de934c80bdec70e35858ced66fc9b9be8ca8a02cb41"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c02-a1/evaluation.json",
+        "bytes": 864,
+        "bytesSha256": "681b08be003aac031c65537518be6bc4c9fd351a0635f4818ade9315b93235ed"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c02-a1/evidence-envelope.json",
+        "bytes": 19776,
+        "bytesSha256": "7d854a5a43ae445fe99823300df42499aa12188e0afad8ff652f617e31bb10ab"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c02-a1/execution-evidence.json",
+        "bytes": 2057,
+        "bytesSha256": "2e0a215c94a8da9a7242a04f5eb6f1cac8a8f2cfc795b8fa8cd57a6e5c2ac0c9"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c02-a1/receipt.json",
+        "bytes": 21453,
+        "bytesSha256": "fea8f144dd798845b149c5c2f13ecab048218972e36a3e2bbea2dec206fc73b4"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c02-a1/request.json",
+        "bytes": 43071,
+        "bytesSha256": "8f34aba11bfa512b717acb2eb1c1b5909ed025700d3b415a2302b0478c91d442"
+      },
+      {
+        "path": "live/attempts/v3-reader-p1-canary-c02-a1/retention.json",
+        "bytes": 65272,
+        "bytesSha256": "a37375af4bff66d409e327664d07f999db349e40469515a4f3002e6591fa401b"
+      },
+      {
+        "path": "live/call-ledger.json",
+        "bytes": 2300,
+        "bytesSha256": "43d3047ca38b1e86344a249368ae97ced5a2b8aeff216d7106f66881b9734332"
+      },
+      {
+        "path": "live/exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.manifest.json",
+        "bytes": 2973,
+        "bytesSha256": "0f1badf7d7c61853fe6249ef924b2bc0301e44684c4bd4f7ab701c86fcf4d82f"
+      },
+      {
+        "path": "live/exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.result.json",
+        "bytes": 574,
+        "bytesSha256": "e9534eef113666c8f60df0b638ddb2f5676a5ace255ce4179a359c11e77992b5"
+      },
+      {
+        "path": "live/exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.route.json",
+        "bytes": 646,
+        "bytesSha256": "7fcef34a2d0627e46943fade96c38f656d44b4e5ad10dff4cf8432a035b61d44"
+      },
+      {
+        "path": "live/exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.structured.json",
+        "bytes": 634,
+        "bytesSha256": "58c10867564af4a33a5c11c3f321ffdb578bd180f5f1e065f8d9001633efb244"
+      },
+      {
+        "path": "live/exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.manifest.json",
+        "bytes": 2995,
+        "bytesSha256": "4c1c00ee97e72d8f37e38ae9b7a773144bd8e5f5504de7f290b8792d1f266fdd"
+      },
+      {
+        "path": "live/exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.result.json",
+        "bytes": 574,
+        "bytesSha256": "ab325e89bfb008a338f3ecabfd73fdf542c827bc11a368672cbfea2457f0d780"
+      },
+      {
+        "path": "live/exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.route.json",
+        "bytes": 646,
+        "bytesSha256": "7fcef34a2d0627e46943fade96c38f656d44b4e5ad10dff4cf8432a035b61d44"
+      },
+      {
+        "path": "live/exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.structured.json",
+        "bytes": 634,
+        "bytesSha256": "4396f8e27ddd9ea987926705cf23b7ef91cadf2e239539164c11e801ff51fc4e"
+      },
+      {
+        "path": "live/preflight.json",
+        "bytes": 1255,
+        "bytesSha256": "a1b4ce3dac130cf691399e16186d4dc669105c5be42f4c556584954d9264feab"
+      },
+      {
+        "path": "live/qualification-freeze.json",
+        "bytes": 1857,
+        "bytesSha256": "b9fbe5f9dd8857b37d05da6ee552d7573f00ea9d8a599ff411baebabfa80e38e"
+      }
+    ]
+  },
+  "successor": {
+    "transportSmokeExecutionId": "s16-forward-role-qualification-v3-envelope-transport-smoke",
+    "qualificationExecutionId": "s16-forward-role-qualification-v3-envelope-r2",
+    "qualificationMayStartOnlyAfterSmokePass": true,
+    "r1EvidenceMayBeCopied": false
+  },
+  "stopBoundary": {
+    "pilot": false,
+    "gold": false,
+    "localSolActivation": false,
+    "publish": false,
+    "promote": false,
+    "deploy": false,
+    "upload": false,
+    "merge": false,
+    "forcePush": false
+  }
+}

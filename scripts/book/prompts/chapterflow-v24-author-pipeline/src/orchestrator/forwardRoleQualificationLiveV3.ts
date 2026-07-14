@@ -1,5 +1,5 @@
 /**
- * IMP-24 live boundary for `s16-forward-role-qualification-v3-envelope-r1`.
+ * IMP-24 live boundary for the current V3 successor execution.
  *
  * The core runner remains pure. This module proves the ChatGPT-authenticated
  * `codex exec` route, revalidates the retained production seal against current
@@ -94,6 +94,11 @@ import {
   type CodexRunnerBoundaryV1,
 } from "./codexAgent.js";
 import {
+  buildCodexProcessDiagnosticsV1,
+  validateCodexProcessDiagnosticsV1,
+  type CodexProcessDiagnosticsV1,
+} from "./codexProcessDiagnostics.js";
+import {
   ROUTE_POLICY_VERSION,
   explicitRefusalSignal,
   resolveRoute,
@@ -101,11 +106,41 @@ import {
 } from "./modelPolicy.js";
 
 export const IMP24_LIVE_PREFLIGHT_SCHEMA = "imp24-role-qualification-live-preflight-v3" as const;
-export const IMP24_LIVE_CALL_LEDGER_SCHEMA = "imp24-role-qualification-live-call-ledger-v3" as const;
-export const IMP24_LIVE_ATTEMPT_RETENTION_SCHEMA = "imp24-role-qualification-live-attempt-retention-v3" as const;
+export const IMP24_LIVE_CALL_LEDGER_SCHEMA = "imp24-role-qualification-live-call-ledger-v4" as const;
+export const IMP24_LIVE_ATTEMPT_RETENTION_SCHEMA = "imp24-role-qualification-live-attempt-retention-v4" as const;
 export const IMP24_LIVE_ATTEMPT_EVALUATION_SCHEMA = "imp24-role-qualification-live-attempt-evaluation-v3" as const;
-export const IMP24_LIVE_EXECUTION_EVIDENCE_SCHEMA = "imp24-role-qualification-live-execution-evidence-v3" as const;
+export const IMP24_LIVE_EXECUTION_EVIDENCE_SCHEMA = "imp24-role-qualification-live-execution-evidence-v4" as const;
 export const IMP24_CANDIDATE_AVAILABILITY_POLICY_SCHEMA = "imp24-candidate-availability-policy-v1" as const;
+export const IMP24D_TRANSPORT_SMOKE_EXECUTION_ID =
+  "s16-forward-role-qualification-v3-envelope-transport-smoke" as const;
+export const IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID =
+  "s16-forward-role-qualification-v3-envelope-transport-smoke-r2" as const;
+
+/** Control-plane identities that may use the exact live reviewer boundary.
+ * The smoke identities are diagnostic-only and are never accepted by the
+ * qualification runner or its retained r2 state root. */
+export type Imp24LiveExecutionIdentityV3 =
+  | typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID
+  | typeof IMP24D_TRANSPORT_SMOKE_EXECUTION_ID
+  | typeof IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID;
+
+const IMP24_LIVE_EXECUTION_IDENTITIES = new Set<string>([
+  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  IMP24D_TRANSPORT_SMOKE_EXECUTION_ID,
+  IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID,
+]);
+
+function requireImp24LiveExecutionIdentityV3(
+  executionId: string,
+): asserts executionId is Imp24LiveExecutionIdentityV3 {
+  requireCondition(IMP24_LIVE_EXECUTION_IDENTITIES.has(executionId),
+    "live v3 execution identity is not an authorized qualification or transport-smoke identity");
+}
+
+export type LiveQualificationExecutionRequestV3 = Omit<
+  QualificationExecutionRequestV3,
+  "experimentId"
+> & { experimentId: Imp24LiveExecutionIdentityV3 };
 
 const ROLES = ["reader", "source", "quiz"] as const satisfies readonly Imp24ReviewRole[];
 const SHA256 = /^[a-f0-9]{64}$/;
@@ -113,6 +148,7 @@ const LIVE_ATTEMPT_FILE_NAMES = Object.freeze([
   "evaluation.json",
   "evidence-envelope.json",
   "execution-evidence.json",
+  "process-diagnostics.json",
   "receipt.json",
   "request.json",
   "retention.json",
@@ -187,7 +223,7 @@ type LocalModelsCacheV3 = {
 
 export type LiveQualificationPreflightV3 = {
   schema: typeof IMP24_LIVE_PREFLIGHT_SCHEMA;
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
+  experimentId: Imp24LiveExecutionIdentityV3;
   verifiedAt: string;
   freezeSha256: string;
   certificationSha256: string;
@@ -216,6 +252,7 @@ export type LiveQualificationPreflightV3 = {
  * rehashing a manifest with a different executable must not make it valid. */
 export function validateLiveQualificationPreflightArtifactV3(
   preflight: LiveQualificationPreflightV3,
+  expectedExecutionId: Imp24LiveExecutionIdentityV3 = IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
 ): void {
   requireExactObjectKeys(preflight, [
     "schema", "experimentId", "verifiedAt", "freezeSha256", "certificationSha256",
@@ -226,7 +263,7 @@ export function validateLiveQualificationPreflightArtifactV3(
     "baseMaximumCalls", "hardMaximumCalls", "preflightSha256",
   ], "live V3 retained preflight");
   requireCondition(preflight?.schema === IMP24_LIVE_PREFLIGHT_SCHEMA
-      && preflight.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+      && preflight.experimentId === expectedExecutionId,
   "live V3 retained preflight identity mismatch");
   const { preflightSha256, ...core } = preflight;
   requireSha(preflightSha256, "live V3 retained preflight hash");
@@ -259,6 +296,7 @@ export type LiveCallLedgerEntryV3 = {
   evidenceEnvelopeSha256: string;
   evidenceEnvelopeBytesSha256: string;
   receiptSha256: string | null;
+  processDiagnosticsSha256: string | null;
   executionEvidenceSha256: string | null;
   evaluationArtifactSha256: string | null;
   status: "REQUESTED" | QualificationReceiptStatusV3;
@@ -269,7 +307,7 @@ export type LiveCallLedgerEntryV3 = {
 
 export type LiveCallLedgerV3 = {
   schema: typeof IMP24_LIVE_CALL_LEDGER_SCHEMA;
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
+  experimentId: Imp24LiveExecutionIdentityV3;
   freezeSha256: string;
   certificationSha256: string;
   productionInstrumentSealSha256: string;
@@ -338,8 +376,9 @@ export type LiveAttemptRetentionV3 = {
   receiptSha256: string;
   evidenceEnvelopeSha256: string;
   evidenceEnvelopeBytesSha256: string;
+  processDiagnosticsSha256: string;
   executionEvidenceSha256: string;
-  request: QualificationExecutionRequestV3;
+  request: LiveQualificationExecutionRequestV3;
   receipt: QualificationExecutionReceiptV3;
   retentionSha256: string;
 };
@@ -382,6 +421,7 @@ export type LiveAttemptExecutionEvidenceV3 = {
   attemptId: string;
   requestSha256: string;
   receiptSha256: string;
+  processDiagnosticsSha256: string;
   invocation: "NOT_INVOKED_PRE_SPAWN" | "RUNNER_RETURNED" | "RUNNER_THREW";
   evidenceComplete: boolean;
   sessionId: string | null;
@@ -475,7 +515,7 @@ function readExactProductionJson<T>(path: string, label: string): T {
   return value;
 }
 
-export function liveQualificationExecutionSessionIdV3(request: QualificationExecutionRequestV3): string {
+export function liveQualificationExecutionSessionIdV3(request: LiveQualificationExecutionRequestV3): string {
   return `imp24-v3-${sha256Hex(canonicalJson({
     attemptId: request.attemptId,
     requestSha256: request.requestSha256,
@@ -508,8 +548,9 @@ function executionSidecarBinding(
 
 export function buildLiveAttemptExecutionEvidenceV3(args: {
   phaseDir: string;
-  request: QualificationExecutionRequestV3;
+  request: LiveQualificationExecutionRequestV3;
   receipt: QualificationExecutionReceiptV3;
+  processDiagnosticsSha256: string;
   plannedSessionId: string;
   boundary: CodexRunnerBoundaryV1 | null;
   result: CodexAgentResult | null;
@@ -594,6 +635,7 @@ export function buildLiveAttemptExecutionEvidenceV3(args: {
     attemptId: args.request.attemptId,
     requestSha256: args.request.requestSha256,
     receiptSha256: args.receipt.receiptSha256,
+    processDiagnosticsSha256: args.processDiagnosticsSha256,
     invocation,
     evidenceComplete: missingRequiredSidecars.length === 0
       && unexpectedSidecarRelPaths.length === 0
@@ -727,15 +769,16 @@ export function validateLiveExecEvidenceRootV3(
 
 export function validateExecutionEvidenceArtifact(args: {
   phaseDir: string;
-  request: QualificationExecutionRequestV3;
+  request: LiveQualificationExecutionRequestV3;
   receipt: QualificationExecutionReceiptV3;
+  processDiagnostics: CodexProcessDiagnosticsV1;
   artifact: LiveAttemptExecutionEvidenceV3;
   /** Required on the official live/resume/post-live paths. Unit-level injected
    * executor seams may omit it because they never authorize a real CLI. */
   preflight?: LiveQualificationPreflightV3;
 }): void {
   requireExactObjectKeys(args.artifact, [
-    "schema", "attemptId", "requestSha256", "receiptSha256", "invocation", "evidenceComplete",
+    "schema", "attemptId", "requestSha256", "receiptSha256", "processDiagnosticsSha256", "invocation", "evidenceComplete",
     "sessionId", "schemaRequested", "schemaBoundAtRunner", "finalMessageSource", "responseProduced",
     "rawFinalOutputSha256", "rawFinalOutputBytes", "effectiveContextManifest", "routeSidecar",
     "structuredOutputSidecar", "resultSidecar", "missingRequiredSidecars", "unexpectedSidecarRelPaths",
@@ -753,7 +796,7 @@ export function validateExecutionEvidenceArtifact(args: {
     }
   }
   if (args.preflight !== undefined) {
-    validateLiveQualificationPreflightArtifactV3(args.preflight);
+    validateLiveQualificationPreflightArtifactV3(args.preflight, args.request.experimentId);
     requireCondition(args.preflight.freezeSha256 === args.request.freezeSha256
         && args.preflight.certificationSha256 === args.request.certificationSha256
         && args.preflight.productionInstrumentSealSha256 === args.request.productionInstrumentSealSha256,
@@ -761,14 +804,28 @@ export function validateExecutionEvidenceArtifact(args: {
   }
   const { executionEvidenceSha256, ...core } = args.artifact;
   requireSha(executionEvidenceSha256, `${args.request.attemptId} execution evidence hash`);
+  requireSha(args.artifact.processDiagnosticsSha256,
+    `${args.request.attemptId} process diagnostics hash in execution evidence`);
   requireCondition(executionEvidenceSha256 === hashCanonical(core),
     `${args.request.attemptId}: execution evidence self hash drift`);
   requireCondition(args.artifact.schema === IMP24_LIVE_EXECUTION_EVIDENCE_SCHEMA
       && args.artifact.attemptId === args.request.attemptId
       && args.artifact.requestSha256 === args.request.requestSha256
       && args.artifact.receiptSha256 === args.receipt.receiptSha256
+      && args.artifact.processDiagnosticsSha256 === args.processDiagnostics.diagnosticsSha256
       && args.artifact.schemaRequested === true,
   `${args.request.attemptId}: execution evidence identity/request/receipt binding drift`);
+  validateCodexProcessDiagnosticsV1(args.processDiagnostics, {
+    attemptId: args.request.attemptId,
+    requestSha256: args.request.requestSha256,
+    sessionId: args.artifact.sessionId,
+    invocation: args.artifact.invocation === "NOT_INVOKED_PRE_SPAWN"
+      ? "NOT_INVOKED"
+      : args.artifact.invocation === "RUNNER_THREW"
+        ? "RUNNER_THROWN"
+        : "RUNNER_RETURNED",
+    classification: args.receipt.status,
+  });
   requireCondition(args.artifact.evidenceComplete === true
       && args.artifact.missingRequiredSidecars.length === 0
       && args.artifact.unexpectedSidecarRelPaths.length === 0,
@@ -986,6 +1043,12 @@ export function validateExecutionEvidenceArtifact(args: {
       && Number.isSafeInteger(result.stderrBytes) && result.stderrBytes >= 0
       && Number.isFinite(Date.parse(result.endedAtIso)),
   `${args.request.attemptId}: exec-result sidecar semantic/raw/exit binding drift`);
+  requireCondition(args.processDiagnostics.exitCode === result.exitCode
+      && args.processDiagnostics.stdoutSha256 === result.stdoutSha256
+      && args.processDiagnostics.stdoutBytes === result.stdoutBytes
+      && args.processDiagnostics.stderrSha256 === result.stderrSha256
+      && args.processDiagnostics.stderrBytes === result.stderrBytes,
+  `${args.request.attemptId}: process diagnostics differs from the exact exec-result sidecar`);
   if (args.receipt.status === "completed" || args.receipt.status === "invalid_output") {
     requireCondition(result.exitCode === 0 && result.finalMessageSource === "output-file",
       `${args.request.attemptId}: content/reviewer outcome lacks an exit-zero authoritative output file`);
@@ -1088,6 +1151,7 @@ export function discoverCandidateAvailabilityV3(args: {
 
 export type LivePreflightDepsV3 = {
   repositoryRoot: string;
+  executionId?: Imp24LiveExecutionIdentityV3;
   authJsonPath?: string;
   codexBinary?: string;
   qualificationCacheDir?: string;
@@ -1135,6 +1199,8 @@ export async function preflightLiveRoleQualificationV3(
   deps: LivePreflightDepsV3,
 ): Promise<LiveQualificationPreflightV3> {
   const { freeze } = buildRoleQualificationPlanV3(input);
+  const executionId = deps.executionId ?? IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
+  requireImp24LiveExecutionIdentityV3(executionId);
   const verifiedAt = deps.verifiedAt ?? new Date().toISOString();
   requireCondition(Number.isFinite(Date.parse(verifiedAt)), "live v3 preflight timestamp is invalid");
   const currentSeal = validateForwardProductionInstrumentSeal(input.productionInstrumentSeal, {
@@ -1169,7 +1235,7 @@ export async function preflightLiveRoleQualificationV3(
 
   const draft: Omit<LiveQualificationPreflightV3, "preflightSha256"> = {
     schema: IMP24_LIVE_PREFLIGHT_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    experimentId: executionId,
     verifiedAt: new Date(verifiedAt).toISOString(),
     freezeSha256: freeze.freezeSha256,
     certificationSha256: freeze.certificationSha256,
@@ -1196,10 +1262,15 @@ export async function preflightLiveRoleQualificationV3(
   return Object.freeze({ ...draft, preflightSha256: hashCanonical(draft) });
 }
 
-function emptyLedger(freezeSha256: string, certificationSha256: string, sealSha256: string): LiveCallLedgerV3 {
+function emptyLedger(
+  executionId: Imp24LiveExecutionIdentityV3,
+  freezeSha256: string,
+  certificationSha256: string,
+  sealSha256: string,
+): LiveCallLedgerV3 {
   return {
     schema: IMP24_LIVE_CALL_LEDGER_SCHEMA,
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    experimentId: executionId,
     freezeSha256,
     certificationSha256,
     productionInstrumentSealSha256: sealSha256,
@@ -1226,7 +1297,7 @@ function retentionSha256(value: Omit<LiveAttemptRetentionV3, "retentionSha256">)
 }
 
 export function validateQualificationReceiptArtifactV3(args: {
-  request: QualificationExecutionRequestV3;
+  request: LiveQualificationExecutionRequestV3;
   receipt: QualificationExecutionReceiptV3;
   label?: string;
 }): void {
@@ -1246,7 +1317,10 @@ export function validateQualificationReceiptArtifactV3(args: {
       && typeof args.receipt.failureDetail === "string"
       && args.receipt.failureDetail.trim().length > 0,
   `${label}: receipt failureDetail presence must match its completed/non-completed status`);
-  const mismatches = qualificationReceiptMismatchesV3(args.request, args.receipt);
+  const mismatches = qualificationReceiptMismatchesV3(
+    args.request as QualificationExecutionRequestV3,
+    args.receipt,
+  );
   requireCondition(mismatches.length === 0,
     `${label}: retained receipt differs from the exact frozen request: ${mismatches.join(", ")}`);
   const { receiptSha256, ...receiptCore } = args.receipt;
@@ -1258,7 +1332,8 @@ export function validateQualificationReceiptArtifactV3(args: {
 function validateLiveAttemptRetentionShapeV3(retention: LiveAttemptRetentionV3, label: string): void {
   requireExactObjectKeys(retention, [
     "schema", "requestSha256", "receiptSha256", "evidenceEnvelopeSha256",
-    "evidenceEnvelopeBytesSha256", "executionEvidenceSha256", "request", "receipt", "retentionSha256",
+    "evidenceEnvelopeBytesSha256", "processDiagnosticsSha256", "executionEvidenceSha256",
+    "request", "receipt", "retentionSha256",
   ], `${label} retention`);
 }
 
@@ -1293,13 +1368,13 @@ export function buildAttemptEvaluationArtifact(
 }
 
 function validateCachedAttempt(args: {
-  request: QualificationExecutionRequestV3;
+  request: LiveQualificationExecutionRequestV3;
   requestPath: string;
   receiptPath: string;
   envelopePath: string;
   retentionPath: string;
 }): QualificationExecutionReceiptV3 {
-  const retainedRequest = readJson<QualificationExecutionRequestV3>(args.requestPath);
+  const retainedRequest = readJson<LiveQualificationExecutionRequestV3>(args.requestPath);
   const retainedReceipt = readJson<QualificationExecutionReceiptV3>(args.receiptPath);
   const retainedEnvelopeBytes = readFileSync(args.envelopePath, "utf8");
   const retention = readJson<LiveAttemptRetentionV3>(args.retentionPath);
@@ -1313,7 +1388,7 @@ function validateCachedAttempt(args: {
   requireCondition(hashCanonical(retainedRequest) === hashCanonical(args.request),
     `attempt ${args.request.attemptId} request bytes/object changed on resume`);
   requireCondition(retainedRequestSha256 === args.request.requestSha256
-    && qualificationRequestSha256(retainedRequestCore) === args.request.requestSha256,
+    && hashCanonical(retainedRequestCore) === args.request.requestSha256,
   `attempt ${args.request.attemptId} request hash mismatch on resume`);
   requireCondition(retainedEnvelopeBytes === args.request.evidenceEnvelopeBytes,
     `attempt ${args.request.attemptId} exact evidence envelope bytes changed on resume`);
@@ -1327,6 +1402,8 @@ function validateCachedAttempt(args: {
     && retention.receiptSha256 === receiptSha256
     && retention.evidenceEnvelopeSha256 === args.request.evidenceEnvelopeSha256
     && retention.evidenceEnvelopeBytesSha256 === args.request.evidenceEnvelopeBytesSha256
+    && typeof retention.processDiagnosticsSha256 === "string"
+    && SHA256.test(retention.processDiagnosticsSha256)
     && typeof retention.executionEvidenceSha256 === "string"
     && SHA256.test(retention.executionEvidenceSha256)
     && hashCanonical(retention.request) === hashCanonical(retainedRequest)
@@ -1335,10 +1412,29 @@ function validateCachedAttempt(args: {
   return retainedReceipt;
 }
 
+function validateCachedProcessDiagnostics(args: {
+  request: LiveQualificationExecutionRequestV3;
+  receipt: QualificationExecutionReceiptV3;
+  processDiagnosticsPath: string;
+}): CodexProcessDiagnosticsV1 {
+  const diagnostics = readExactPrettyJson<CodexProcessDiagnosticsV1>(
+    args.processDiagnosticsPath,
+    `attempt ${args.request.attemptId} process diagnostics`,
+  );
+  validateCodexProcessDiagnosticsV1(diagnostics, {
+    attemptId: args.request.attemptId,
+    requestSha256: args.request.requestSha256,
+    sessionId: diagnostics.invocation === "NOT_INVOKED" ? null : args.receipt.executionId,
+    classification: args.receipt.status,
+  });
+  return diagnostics;
+}
+
 function validateCachedExecutionEvidence(args: {
   phaseDir: string;
-  request: QualificationExecutionRequestV3;
+  request: LiveQualificationExecutionRequestV3;
   receipt: QualificationExecutionReceiptV3;
+  processDiagnostics: CodexProcessDiagnosticsV1;
   executionEvidencePath: string;
   preflight?: LiveQualificationPreflightV3;
 }): LiveAttemptExecutionEvidenceV3 {
@@ -1347,6 +1443,7 @@ function validateCachedExecutionEvidence(args: {
     phaseDir: args.phaseDir,
     request: args.request,
     receipt: args.receipt,
+    processDiagnostics: args.processDiagnostics,
     artifact,
     ...(args.preflight ? { preflight: args.preflight } : {}),
   });
@@ -1354,7 +1451,7 @@ function validateCachedExecutionEvidence(args: {
 }
 
 function validateCachedEvaluationArtifact(args: {
-  request: QualificationExecutionRequestV3;
+  request: LiveQualificationExecutionRequestV3;
   receipt: QualificationExecutionReceiptV3;
   executionEvidenceSha256: string;
   evaluationPath: string;
@@ -1520,7 +1617,7 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
   for (const ledgerEntry of args.ledger.entries) {
     requireExactObjectKeys(ledgerEntry, [
       "attemptId", "scheduleId", "requestSha256", "evidenceEnvelopeSha256",
-      "evidenceEnvelopeBytesSha256", "receiptSha256", "executionEvidenceSha256",
+      "evidenceEnvelopeBytesSha256", "receiptSha256", "processDiagnosticsSha256", "executionEvidenceSha256",
       "evaluationArtifactSha256", "status", "cached", "requestedAt", "completedAt",
     ], "live V3 resume call-ledger entry");
     const expected = expectedRequests.get(ledgerEntry.attemptId);
@@ -1535,7 +1632,7 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
       `${ledgerEntry.attemptId}: retained attempt must be a regular non-symlink directory`);
     const retainedNames = readdirSync(attemptDir).sort();
     requireCondition(hashCanonical(retainedNames) === hashCanonical(LIVE_ATTEMPT_FILE_NAMES),
-      `${ledgerEntry.attemptId}: resume audit requires exact five-file evidence`);
+      `${ledgerEntry.attemptId}: resume audit requires exact seven-file evidence`);
     for (const name of retainedNames) {
       const evidenceStat = lstatSync(resolve(attemptDir, name));
       requireCondition(evidenceStat.isFile() && !evidenceStat.isSymbolicLink(),
@@ -1546,6 +1643,7 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
     const receiptPath = resolve(attemptDir, "receipt.json");
     const envelopePath = resolve(attemptDir, "evidence-envelope.json");
     const retentionPath = resolve(attemptDir, "retention.json");
+    const processDiagnosticsPath = resolve(attemptDir, "process-diagnostics.json");
     const executionEvidencePath = resolve(attemptDir, "execution-evidence.json");
     const evaluationPath = resolve(attemptDir, "evaluation.json");
     const exactRequest = readExactPrettyJson<QualificationExecutionRequestV3>(
@@ -1567,15 +1665,22 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
     requireCondition(receipt.status !== "completed" || typeof receipt.rawOutput === "string",
       `${ledgerEntry.attemptId}: completed receipt lacks exact raw output`);
 
+    const processDiagnostics = validateCachedProcessDiagnostics({
+      request,
+      receipt,
+      processDiagnosticsPath,
+    });
     const executionEvidence = validateCachedExecutionEvidence({
       phaseDir: args.phaseDir,
       request,
       receipt,
+      processDiagnostics,
       executionEvidencePath,
       ...(args.preflight ? { preflight: args.preflight } : {}),
     });
-    requireCondition(retention.executionEvidenceSha256 === executionEvidence.executionEvidenceSha256,
-      `${ledgerEntry.attemptId}: retention execution-evidence binding drift`);
+    requireCondition(retention.processDiagnosticsSha256 === processDiagnostics.diagnosticsSha256
+        && retention.executionEvidenceSha256 === executionEvidence.executionEvidenceSha256,
+    `${ledgerEntry.attemptId}: retention diagnostics/execution-evidence binding drift`);
     readExactPrettyJson<LiveAttemptExecutionEvidenceV3>(
       executionEvidencePath,
       `${ledgerEntry.attemptId} execution evidence`,
@@ -1622,6 +1727,7 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
         && ledgerEntry.evidenceEnvelopeSha256 === request.evidenceEnvelopeSha256
         && ledgerEntry.evidenceEnvelopeBytesSha256 === request.evidenceEnvelopeBytesSha256
         && ledgerEntry.receiptSha256 === receipt.receiptSha256
+        && ledgerEntry.processDiagnosticsSha256 === processDiagnostics.diagnosticsSha256
         && ledgerEntry.executionEvidenceSha256 === executionEvidence.executionEvidenceSha256
         && ledgerEntry.evaluationArtifactSha256 === evaluationArtifact.evaluationArtifactSha256
         && ledgerEntry.status === receipt.status
@@ -1789,6 +1895,7 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
 
 export type LiveQualificationExecutorDepsV3 = {
   phaseDir: string;
+  executionId?: Imp24LiveExecutionIdentityV3;
   freezeSha256: string;
   certificationSha256: string;
   productionInstrumentSealSha256: string;
@@ -1798,7 +1905,7 @@ export type LiveQualificationExecutorDepsV3 = {
   env?: NodeJS.ProcessEnv;
   /** Test-only seam. Production callers omit it and supply repositoryRoot,
    * productionInstrumentSeal, and ChatGPT auth for per-spawn revalidation. */
-  preCallVerifier?: (request: QualificationExecutionRequestV3) => void;
+  preCallVerifier?: (request: LiveQualificationExecutionRequestV3) => void;
   schemaMap?: ForwardReviewerSchemaMap;
   spawn?: ForwardReviewerSpawn;
   workspaceBaseDir?: string;
@@ -1813,6 +1920,7 @@ export function createLiveQualificationExecutorV3(
   deps: LiveQualificationExecutorDepsV3,
 ): {
   executor: QualificationExecutorV3;
+  controlExecutor: (request: LiveQualificationExecutionRequestV3) => Promise<QualificationExecutionReceiptV3>;
   retainAttemptEvaluation: (attempt: QualificationAttemptV3) => void;
   auditResume: (args: LiveQualificationResumeAuditInputV3) => void;
   ledger: LiveCallLedgerV3;
@@ -1821,6 +1929,8 @@ export function createLiveQualificationExecutorV3(
   requireSha(deps.freezeSha256, "live v3 freeze hash");
   requireSha(deps.certificationSha256, "live v3 certification hash");
   requireSha(deps.productionInstrumentSealSha256, "live v3 production seal hash");
+  const executionId = deps.executionId ?? IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
+  requireImp24LiveExecutionIdentityV3(executionId);
   requireCondition(typeof deps.preCallVerifier === "function"
     || (typeof deps.repositoryRoot === "string" && deps.repositoryRoot.length > 0 && deps.productionInstrumentSeal !== undefined),
   "live v3 executor requires per-call production-seal/auth verification inputs");
@@ -1832,7 +1942,7 @@ export function createLiveQualificationExecutorV3(
   requireCondition(typeof deps.preCallVerifier === "function" || retainedPreflight !== null,
     "live v3 production executor requires its retained phase preflight before any call");
   if (retainedPreflight !== null) {
-    validateLiveQualificationPreflightArtifactV3(retainedPreflight);
+    validateLiveQualificationPreflightArtifactV3(retainedPreflight, executionId);
     requireCondition(retainedPreflight.freezeSha256 === deps.freezeSha256
         && retainedPreflight.certificationSha256 === deps.certificationSha256
         && retainedPreflight.productionInstrumentSealSha256 === deps.productionInstrumentSealSha256,
@@ -1841,9 +1951,9 @@ export function createLiveQualificationExecutorV3(
   const ledgerPath = resolve(phaseDir, "call-ledger.json");
   const ledger = existsSync(ledgerPath)
     ? readJson<LiveCallLedgerV3>(ledgerPath)
-    : emptyLedger(deps.freezeSha256, deps.certificationSha256, deps.productionInstrumentSealSha256);
+    : emptyLedger(executionId, deps.freezeSha256, deps.certificationSha256, deps.productionInstrumentSealSha256);
   requireCondition(ledger.schema === IMP24_LIVE_CALL_LEDGER_SCHEMA
-    && ledger.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID
+    && ledger.experimentId === executionId
     && ledger.freezeSha256 === deps.freezeSha256
     && ledger.certificationSha256 === deps.certificationSha256
     && ledger.productionInstrumentSealSha256 === deps.productionInstrumentSealSha256
@@ -1857,7 +1967,7 @@ export function createLiveQualificationExecutorV3(
   const now = (): string => (deps.clock?.() ?? new Date()).toISOString();
   let terminalResultBoundByResumeAudit = false;
 
-  const verifyImmediatelyBeforeSpawn = (request: QualificationExecutionRequestV3): void => {
+  const verifyImmediatelyBeforeSpawn = (request: LiveQualificationExecutionRequestV3): void => {
     if (deps.preCallVerifier) {
       deps.preCallVerifier(request);
       return;
@@ -1887,16 +1997,16 @@ export function createLiveQualificationExecutorV3(
     "chapter-reviewer route drifted after v3 preflight");
   };
 
-  const executor: QualificationExecutorV3 = async (request) => {
+  const controlExecutor = async (request: LiveQualificationExecutionRequestV3) => {
     requireCondition(request.schema === IMP24_ROLE_QUALIFICATION_REQUEST_SCHEMA
-      && request.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+      && request.experimentId === executionId,
     "live v3 executor rejected wrong request schema/identity");
     requireCondition(request.freezeSha256 === deps.freezeSha256
       && request.certificationSha256 === deps.certificationSha256
       && request.productionInstrumentSealSha256 === deps.productionInstrumentSealSha256,
     "live v3 executor request binding differs from preflight");
     const { requestSha256, ...requestCore } = request;
-    requireCondition(qualificationRequestSha256(requestCore) === requestSha256, "live v3 request self hash mismatch");
+    requireCondition(hashCanonical(requestCore) === requestSha256, "live v3 request self hash mismatch");
     requireCondition(request.reviewProtocol === "review-evidence-envelope-v1"
       && sha256Hex(request.evidenceEnvelopeBytes) === request.evidenceEnvelopeBytesSha256,
     "live v3 request does not retain exact evidence envelope bytes/hash");
@@ -1906,6 +2016,7 @@ export function createLiveQualificationExecutorV3(
     const receiptPath = resolve(attemptDir, "receipt.json");
     const envelopePath = resolve(attemptDir, "evidence-envelope.json");
     const retentionPath = resolve(attemptDir, "retention.json");
+    const processDiagnosticsPath = resolve(attemptDir, "process-diagnostics.json");
     const executionEvidencePath = resolve(attemptDir, "execution-evidence.json");
     const evaluationPath = resolve(attemptDir, "evaluation.json");
     const retainedNames = existsSync(attemptDir) ? readdirSync(attemptDir).sort() : [];
@@ -1914,7 +2025,7 @@ export function createLiveQualificationExecutorV3(
       requireCondition(attemptStat.isDirectory() && !attemptStat.isSymbolicLink(),
         `attempt ${request.attemptId} retained directory must be a regular non-symlink directory`);
       requireCondition(hashCanonical(retainedNames) === hashCanonical(LIVE_ATTEMPT_FILE_NAMES),
-        `attempt ${request.attemptId} is partial; exact six-file evidence is required and replay is refused because a valid prior judgment cannot be ruled out`);
+        `attempt ${request.attemptId} is partial; exact seven-file evidence is required and replay is refused because a valid prior judgment cannot be ruled out`);
       for (const name of retainedNames) {
         const retainedStat = lstatSync(resolve(attemptDir, name));
         requireCondition(retainedStat.isFile() && !retainedStat.isSymbolicLink(),
@@ -1926,18 +2037,26 @@ export function createLiveQualificationExecutorV3(
         && ledgerEntry.receiptSha256 === cached.receiptSha256
         && ledgerEntry.status === cached.status,
       `attempt ${request.attemptId} call ledger differs from retained receipt`);
+      const retainedProcessDiagnostics = validateCachedProcessDiagnostics({
+        request,
+        receipt: cached,
+        processDiagnosticsPath,
+      });
       const retainedExecutionEvidence = validateCachedExecutionEvidence({
         phaseDir,
         request,
         receipt: cached,
+        processDiagnostics: retainedProcessDiagnostics,
         executionEvidencePath,
         ...(retainedPreflight ? { preflight: retainedPreflight } : {}),
       });
       const retainedRetention = readJson<LiveAttemptRetentionV3>(retentionPath);
-      requireCondition(retainedRetention.executionEvidenceSha256 === retainedExecutionEvidence.executionEvidenceSha256,
-        `attempt ${request.attemptId} retention execution-evidence hash differs from retained execution evidence`);
-      requireCondition(ledgerEntry.executionEvidenceSha256 === retainedExecutionEvidence.executionEvidenceSha256,
-        `attempt ${request.attemptId} call ledger execution-evidence hash differs from retained execution evidence`);
+      requireCondition(retainedRetention.processDiagnosticsSha256 === retainedProcessDiagnostics.diagnosticsSha256
+          && retainedRetention.executionEvidenceSha256 === retainedExecutionEvidence.executionEvidenceSha256,
+      `attempt ${request.attemptId} retention diagnostics/execution-evidence hash differs from retained evidence`);
+      requireCondition(ledgerEntry.processDiagnosticsSha256 === retainedProcessDiagnostics.diagnosticsSha256
+          && ledgerEntry.executionEvidenceSha256 === retainedExecutionEvidence.executionEvidenceSha256,
+      `attempt ${request.attemptId} call ledger diagnostics/execution-evidence hash differs from retained evidence`);
       const retainedEvaluation = validateCachedEvaluationArtifact({
         request,
         receipt: cached,
@@ -1968,6 +2087,7 @@ export function createLiveQualificationExecutorV3(
       evidenceEnvelopeSha256: request.evidenceEnvelopeSha256,
       evidenceEnvelopeBytesSha256: request.evidenceEnvelopeBytesSha256,
       receiptSha256: null,
+      processDiagnosticsSha256: null,
       executionEvidenceSha256: null,
       evaluationArtifactSha256: null,
       status: "REQUESTED",
@@ -1987,7 +2107,9 @@ export function createLiveQualificationExecutorV3(
     const spawnObservation: {
       boundary: CodexRunnerBoundaryV1 | null;
       result: CodexAgentResult | null;
-    } = { boundary: null, result: null };
+      error: unknown;
+    } = { boundary: null, result: null, error: null };
+    let attemptError: unknown = null;
     try {
       const envelope = JSON.parse(request.evidenceEnvelopeBytes) as { instrumentVersion?: unknown };
       requireCondition(typeof envelope.instrumentVersion === "string" && envelope.instrumentVersion.length > 0,
@@ -2050,6 +2172,7 @@ export function createLiveQualificationExecutorV3(
             spawnObservation.result = result;
             return result;
           } catch (error) {
+            spawnObservation.error = error;
             if (error instanceof CodexPostRunEvidenceError) {
               // The subprocess returned; only post-run evidence persistence
               // failed. Preserve its authoritative output/source so the attempt
@@ -2087,6 +2210,7 @@ export function createLiveQualificationExecutorV3(
         rawOutput: result.output,
       };
     } catch (error) {
+      attemptError = error;
       const status = statusFor(error);
       receiptCore = {
         schema: IMP24_ROLE_QUALIFICATION_RECEIPT_SCHEMA,
@@ -2116,10 +2240,53 @@ export function createLiveQualificationExecutorV3(
       receiptSha256: qualificationReceiptSha256(receiptCore),
     };
     writeJson(receiptPath, receipt);
+    const diagnosticsInvocation = spawnObservation.boundary === null
+      ? "NOT_INVOKED" as const
+      : spawnObservation.result === null
+        ? "RUNNER_THROWN" as const
+        : "RUNNER_RETURNED" as const;
+    const processDiagnostics = buildCodexProcessDiagnosticsV1({
+      attemptId: request.attemptId,
+      requestSha256: request.requestSha256,
+      sessionId: spawnObservation.boundary?.sessionId ?? null,
+      invocation: diagnosticsInvocation,
+      classification: receipt.status,
+      ...(spawnObservation.result === null ? {} : {
+        result: {
+          stdout: spawnObservation.result.stdout,
+          stderr: spawnObservation.result.stderr,
+          exitCode: spawnObservation.result.exitCode,
+        },
+      }),
+      ...((spawnObservation.error ?? attemptError) === null ? {} : {
+        error: spawnObservation.error ?? attemptError,
+      }),
+    });
+    try {
+      writeJson(processDiagnosticsPath, processDiagnostics);
+      const retainedProcessDiagnostics = readExactPrettyJson<CodexProcessDiagnosticsV1>(
+        processDiagnosticsPath,
+        `attempt ${request.attemptId} process diagnostics`,
+      );
+      validateCodexProcessDiagnosticsV1(retainedProcessDiagnostics, {
+        attemptId: request.attemptId,
+        requestSha256: request.requestSha256,
+        sessionId: processDiagnostics.sessionId,
+        invocation: processDiagnostics.invocation,
+        classification: receipt.status,
+      });
+      requireCondition(hashCanonical(retainedProcessDiagnostics) === hashCanonical(processDiagnostics),
+        `attempt ${request.attemptId} process-diagnostics read-back hash mismatch`);
+    } catch (error) {
+      throw new ForwardRoleQualificationRetainedEvidenceIncompleteV3Error(
+        `attempt ${request.attemptId} could not retain exact process diagnostics: ${(error as Error).message}`,
+      );
+    }
     const executionEvidence = buildLiveAttemptExecutionEvidenceV3({
       phaseDir,
       request,
       receipt,
+      processDiagnosticsSha256: processDiagnostics.diagnosticsSha256,
       plannedSessionId,
       boundary: spawnObservation.boundary,
       result: spawnObservation.result,
@@ -2144,6 +2311,7 @@ export function createLiveQualificationExecutorV3(
         phaseDir,
         request,
         receipt,
+        processDiagnostics,
         artifact: executionEvidence,
         ...(retainedPreflight ? { preflight: retainedPreflight } : {}),
       });
@@ -2158,12 +2326,14 @@ export function createLiveQualificationExecutorV3(
       receiptSha256: receipt.receiptSha256,
       evidenceEnvelopeSha256: request.evidenceEnvelopeSha256,
       evidenceEnvelopeBytesSha256: request.evidenceEnvelopeBytesSha256,
+      processDiagnosticsSha256: processDiagnostics.diagnosticsSha256,
       executionEvidenceSha256: executionEvidence.executionEvidenceSha256,
       request,
       receipt,
     };
     writeJson(retentionPath, { ...retentionCore, retentionSha256: retentionSha256(retentionCore) });
     entry.receiptSha256 = receipt.receiptSha256;
+    entry.processDiagnosticsSha256 = processDiagnostics.diagnosticsSha256;
     entry.executionEvidenceSha256 = executionEvidence.executionEvidenceSha256;
     entry.status = receipt.status;
     entry.completedAt = now();
@@ -2175,13 +2345,14 @@ export function createLiveQualificationExecutorV3(
   const retainAttemptEvaluation = (attempt: QualificationAttemptV3): void => {
     const attemptDir = resolve(phaseDir, "attempts", attempt.request.attemptId);
     const evaluationPath = resolve(attemptDir, "evaluation.json");
-    const corePaths = ["request.json", "receipt.json", "evidence-envelope.json", "execution-evidence.json", "retention.json"]
+    const corePaths = ["request.json", "receipt.json", "evidence-envelope.json", "process-diagnostics.json", "execution-evidence.json", "retention.json"]
       .map((name) => resolve(attemptDir, name));
     requireCondition(corePaths.every(existsSync),
-      `attempt ${attempt.request.attemptId} cannot retain evaluation without its complete five-file call evidence`);
+      `attempt ${attempt.request.attemptId} cannot retain evaluation without its complete six-file call evidence`);
     const entry = ledger.entries.find((candidate) => candidate.attemptId === attempt.request.attemptId);
     requireCondition(entry?.requestSha256 === attempt.request.requestSha256
       && entry.receiptSha256 === attempt.receipt?.receiptSha256
+      && typeof entry.processDiagnosticsSha256 === "string"
       && typeof entry.executionEvidenceSha256 === "string",
     `attempt ${attempt.request.attemptId} evaluation cannot bind to its call-ledger entry`);
     const artifact = buildAttemptEvaluationArtifact(attempt, entry.executionEvidenceSha256);
@@ -2211,5 +2382,6 @@ export function createLiveQualificationExecutorV3(
     });
     terminalResultBoundByResumeAudit = existsSync(resolve(phaseDir, "qualification-result.json"));
   };
-  return { executor, retainAttemptEvaluation, auditResume, ledger, ledgerPath };
+  const executor: QualificationExecutorV3 = (request) => controlExecutor(request);
+  return { executor, controlExecutor, retainAttemptEvaluation, auditResume, ledger, ledgerPath };
 }

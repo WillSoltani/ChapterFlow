@@ -15,6 +15,10 @@ import { resolve } from "node:path";
 
 import { canonicalJson, hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import {
+  validateCodexProcessDiagnosticsV1,
+  type CodexProcessDiagnosticsV1,
+} from "./codexProcessDiagnostics.js";
+import {
   IMP24_BASE_MAXIMUM_CALLS,
   IMP24_CANARY_CASES_PER_PROFILE_ROLE,
   IMP24_FROZEN_ROLE_THRESHOLDS,
@@ -268,6 +272,8 @@ function recomputeAttempt(args: {
 }): {
   attempt: QualificationAttemptV3;
   retentionSha256: string;
+  processDiagnostics: CodexProcessDiagnosticsV1;
+  processDiagnosticsSha256: string;
   executionEvidence: LiveAttemptExecutionEvidenceV3;
   executionEvidenceSha256: string;
   executionSidecarRelPaths: string[];
@@ -289,7 +295,8 @@ function recomputeAttempt(args: {
     `${request.attemptId}: retained attempt path escapes the qualification phase`);
   const names = existsSync(attemptDir) ? readdirSync(attemptDir).sort() : [];
   requireCondition(hashCanonical(names) === hashCanonical([
-    "evaluation.json", "evidence-envelope.json", "execution-evidence.json", "receipt.json", "request.json", "retention.json",
+    "evaluation.json", "evidence-envelope.json", "execution-evidence.json", "process-diagnostics.json",
+    "receipt.json", "request.json", "retention.json",
   ]), `${request.attemptId}: retained attempt has missing or extra evidence files`);
   const attemptStat = lstatSync(attemptDir);
   requireCondition(attemptStat.isDirectory() && !attemptStat.isSymbolicLink(),
@@ -313,6 +320,16 @@ function recomputeAttempt(args: {
   requireCondition(args.attempt.receipt !== null
       && hashCanonical(args.attempt.receipt) === hashCanonical(receipt),
     `${request.attemptId}: qualification result receipt differs from retained receipt bytes`);
+  const processDiagnostics = parseExactJson<CodexProcessDiagnosticsV1>(
+    resolve(attemptDir, "process-diagnostics.json"),
+    `${request.attemptId} process diagnostics`,
+    "pretty",
+  );
+  validateCodexProcessDiagnosticsV1(processDiagnostics, {
+    attemptId: request.attemptId,
+    requestSha256: request.requestSha256,
+    classification: receipt.status,
+  });
   const executionEvidence = parseExactJson<LiveAttemptExecutionEvidenceV3>(
     resolve(attemptDir, "execution-evidence.json"),
     `${request.attemptId} execution evidence`,
@@ -324,6 +341,7 @@ function recomputeAttempt(args: {
     phaseDir: args.liveDir,
     request,
     receipt,
+    processDiagnostics,
     artifact: executionEvidence,
     preflight: args.preflight,
   });
@@ -332,7 +350,8 @@ function recomputeAttempt(args: {
     `${request.attemptId} retention`, "pretty");
   requireExactObjectKeys(retention, [
     "schema", "requestSha256", "receiptSha256", "evidenceEnvelopeSha256",
-    "evidenceEnvelopeBytesSha256", "executionEvidenceSha256", "request", "receipt", "retentionSha256",
+    "evidenceEnvelopeBytesSha256", "processDiagnosticsSha256", "executionEvidenceSha256",
+    "request", "receipt", "retentionSha256",
   ], `${request.attemptId} retention`);
   requireCondition(retention.schema === IMP24_LIVE_ATTEMPT_RETENTION_SCHEMA,
     `${request.attemptId}: attempt retention schema mismatch`);
@@ -343,6 +362,7 @@ function recomputeAttempt(args: {
       && retention.receiptSha256 === receipt.receiptSha256
       && retention.evidenceEnvelopeSha256 === request.evidenceEnvelopeSha256
       && retention.evidenceEnvelopeBytesSha256 === request.evidenceEnvelopeBytesSha256
+      && retention.processDiagnosticsSha256 === processDiagnostics.diagnosticsSha256
       && retention.executionEvidenceSha256 === executionEvidence.executionEvidenceSha256
       && hashCanonical(retention.request) === hashCanonical(request)
       && hashCanonical(retention.receipt) === hashCanonical(receipt),
@@ -401,6 +421,8 @@ function recomputeAttempt(args: {
   return {
     attempt: recomputed,
     retentionSha256,
+    processDiagnostics,
+    processDiagnosticsSha256: processDiagnostics.diagnosticsSha256,
     executionEvidence,
     executionEvidenceSha256: executionEvidence.executionEvidenceSha256,
     executionSidecarRelPaths: [
@@ -772,6 +794,7 @@ function validateLedger(args: {
   ledger: LiveCallLedgerV3;
   result: RoleQualificationRunnerResultV3;
   attempts: readonly QualificationAttemptV3[];
+  processDiagnosticsByAttempt: ReadonlyMap<string, CodexProcessDiagnosticsV1>;
   executionEvidenceByAttempt: ReadonlyMap<string, LiveAttemptExecutionEvidenceV3>;
 }): void {
   const { ledger, result, attempts } = args;
@@ -784,7 +807,7 @@ function validateLedger(args: {
   for (const entry of ledger.entries) {
     requireExactObjectKeys(entry, [
       "attemptId", "scheduleId", "requestSha256", "evidenceEnvelopeSha256",
-      "evidenceEnvelopeBytesSha256", "receiptSha256", "executionEvidenceSha256",
+      "evidenceEnvelopeBytesSha256", "receiptSha256", "processDiagnosticsSha256", "executionEvidenceSha256",
       "evaluationArtifactSha256", "status", "cached", "requestedAt", "completedAt",
     ], "retained qualification call-ledger entry");
   }
@@ -814,16 +837,20 @@ function validateLedger(args: {
   const byAttempt = new Map(attempts.map((attempt) => [attempt.request.attemptId, attempt]));
   for (const entry of ledger.entries) {
     const attempt = byAttempt.get(entry.attemptId);
+    const processDiagnostics = args.processDiagnosticsByAttempt.get(entry.attemptId);
     const executionEvidence = args.executionEvidenceByAttempt.get(entry.attemptId);
     requireCondition(attempt !== undefined && attempt.receipt !== null,
       `${entry.attemptId}: ledger entry has no exact recomputed attempt`);
     requireCondition(executionEvidence !== undefined,
       `${entry.attemptId}: ledger entry has no exact execution-evidence artifact`);
+    requireCondition(processDiagnostics !== undefined,
+      `${entry.attemptId}: ledger entry has no exact process-diagnostics artifact`);
     requireCondition(entry.scheduleId === attempt.request.scheduleId
         && entry.requestSha256 === attempt.request.requestSha256
         && entry.evidenceEnvelopeSha256 === attempt.request.evidenceEnvelopeSha256
         && entry.evidenceEnvelopeBytesSha256 === attempt.request.evidenceEnvelopeBytesSha256
         && entry.receiptSha256 === attempt.receipt.receiptSha256
+        && entry.processDiagnosticsSha256 === processDiagnostics.diagnosticsSha256
         && entry.executionEvidenceSha256 === executionEvidence.executionEvidenceSha256
         && entry.evaluationArtifactSha256 === buildAttemptEvaluationArtifact(
           attempt,
@@ -1116,6 +1143,7 @@ export function verifyForwardRetainedRoleQualificationEvidenceV3(
   requireCondition(new Set(result.attempts.map((attempt) => attempt.request.attemptId)).size === result.attempts.length,
     "retained qualification result reuses an attempt identity");
   const recomputed: QualificationAttemptV3[] = [];
+  const processDiagnosticsByAttempt = new Map<string, CodexProcessDiagnosticsV1>();
   const executionEvidenceByAttempt = new Map<string, LiveAttemptExecutionEvidenceV3>();
   const executionSidecarRelPaths = new Set<string>();
   const evidenceBindings: Array<Record<string, unknown>> = [];
@@ -1134,6 +1162,7 @@ export function verifyForwardRetainedRoleQualificationEvidenceV3(
       preflight,
     });
     recomputed.push(verified.attempt);
+    processDiagnosticsByAttempt.set(verified.attempt.request.attemptId, verified.processDiagnostics);
     executionEvidenceByAttempt.set(verified.attempt.request.attemptId, verified.executionEvidence);
     for (const relPath of verified.executionSidecarRelPaths) {
       requireCondition(!executionSidecarRelPaths.has(relPath),
@@ -1148,6 +1177,7 @@ export function verifyForwardRetainedRoleQualificationEvidenceV3(
       receiptSha256: verified.attempt.receipt!.receiptSha256,
       rawOutputSha256: verified.attempt.rawOutputSha256,
       retentionSha256: verified.retentionSha256,
+      processDiagnosticsSha256: verified.processDiagnosticsSha256,
       executionEvidenceSha256: verified.executionEvidenceSha256,
       evaluationArtifactSha256: verified.evaluationArtifactSha256,
     });
@@ -1173,7 +1203,7 @@ export function verifyForwardRetainedRoleQualificationEvidenceV3(
   requireCondition(hashCanonical(expectedResult) === hashCanonical(result),
     "retained qualification result/role selection is not the deterministic projection of exact canary/holdout receipts");
   const ledger = parseExactJson<LiveCallLedgerV3>(paths.ledger, "qualification call ledger", "canonical");
-  validateLedger({ ledger, result, attempts: recomputed, executionEvidenceByAttempt });
+  validateLedger({ ledger, result, attempts: recomputed, processDiagnosticsByAttempt, executionEvidenceByAttempt });
   const implementationCiGate = parseExactJson<Imp24ImplementationCiGateV1>(
     paths.implementationCiGate,
     "implementation CI gate",

@@ -57,6 +57,7 @@ import {
   type ForwardRoleAssignmentFreezeV3,
 } from "../src/orchestrator/forwardRoleAssignmentFreezeV3.js";
 import { buildForwardProductionInstrumentSeal } from "../src/orchestrator/forwardProductionInstrumentSeal.js";
+import { buildCodexProcessDiagnosticsV1 } from "../src/orchestrator/codexProcessDiagnostics.js";
 import {
   IMP24_LIVE_ATTEMPT_RETENTION_SCHEMA,
   IMP24_LIVE_CALL_LEDGER_SCHEMA,
@@ -312,6 +313,7 @@ type ActivationQualificationFixture = {
 function persistQualificationExecutionEvidence(
   liveDir: string,
   attempt: QualificationAttemptV3,
+  processDiagnosticsSha256: string,
 ): LiveAttemptExecutionEvidenceV3 {
   assert.ok(attempt.receipt !== null, `${attempt.request.attemptId} fixture must retain a receipt`);
   assert.equal(typeof attempt.receipt.rawOutput, "string", `${attempt.request.attemptId} fixture must retain raw output`);
@@ -438,6 +440,7 @@ function persistQualificationExecutionEvidence(
     phaseDir: liveDir,
     request,
     receipt,
+    processDiagnosticsSha256,
     plannedSessionId: sessionId,
     boundary: {
       sessionId,
@@ -467,7 +470,24 @@ function persistQualificationAttempt(liveDir: string, attempt: QualificationAtte
   mkdirSync(attemptDir, { recursive: true });
   writeFileSync(resolve(attemptDir, "evidence-envelope.json"), attempt.request.evidenceEnvelopeBytes);
   writePrettyJson(resolve(attemptDir, "receipt.json"), attempt.receipt);
-  const executionEvidence = persistQualificationExecutionEvidence(liveDir, attempt);
+  const processDiagnostics = buildCodexProcessDiagnosticsV1({
+    attemptId: attempt.request.attemptId,
+    requestSha256: attempt.request.requestSha256,
+    sessionId: liveQualificationExecutionSessionIdV3(attempt.request),
+    invocation: "RUNNER_RETURNED",
+    classification: attempt.receipt.status,
+    result: {
+      stdout: attempt.receipt.rawOutput ?? "",
+      stderr: "",
+      exitCode: 0,
+    },
+  });
+  writePrettyJson(resolve(attemptDir, "process-diagnostics.json"), processDiagnostics);
+  const executionEvidence = persistQualificationExecutionEvidence(
+    liveDir,
+    attempt,
+    processDiagnostics.diagnosticsSha256,
+  );
   writePrettyJson(resolve(attemptDir, "execution-evidence.json"), executionEvidence);
   const retentionCore: Omit<LiveAttemptRetentionV3, "retentionSha256"> = {
     schema: IMP24_LIVE_ATTEMPT_RETENTION_SCHEMA,
@@ -475,6 +495,7 @@ function persistQualificationAttempt(liveDir: string, attempt: QualificationAtte
     receiptSha256: attempt.receipt.receiptSha256,
     evidenceEnvelopeSha256: attempt.request.evidenceEnvelopeSha256,
     evidenceEnvelopeBytesSha256: attempt.request.evidenceEnvelopeBytesSha256,
+    processDiagnosticsSha256: processDiagnostics.diagnosticsSha256,
     executionEvidenceSha256: executionEvidence.executionEvidenceSha256,
     request: attempt.request,
     receipt: attempt.receipt,
@@ -533,6 +554,7 @@ function persistQualificationEvidenceFixture(args: {
       evidenceEnvelopeSha256: attempt.request.evidenceEnvelopeSha256,
       evidenceEnvelopeBytesSha256: attempt.request.evidenceEnvelopeBytesSha256,
       receiptSha256: attempt.receipt!.receiptSha256,
+      processDiagnosticsSha256: executionEvidence.processDiagnosticsSha256,
       executionEvidenceSha256: executionEvidence.executionEvidenceSha256,
       evaluationArtifactSha256: buildAttemptEvaluationArtifact(
         attempt,
@@ -2306,6 +2328,7 @@ test("whole-phase resume audit rejects a later-candidate orphan with a missing e
       evidenceEnvelopeSha256: request.evidenceEnvelopeSha256,
       evidenceEnvelopeBytesSha256: request.evidenceEnvelopeBytesSha256,
       receiptSha256: receipt.receiptSha256,
+      processDiagnosticsSha256: orphanExecutionEvidence.processDiagnosticsSha256,
       executionEvidenceSha256: orphanExecutionEvidence.executionEvidenceSha256,
       evaluationArtifactSha256: orphanArtifact.evaluationArtifactSha256,
       status: receipt.status,
@@ -2503,7 +2526,7 @@ test("whole-phase resume audit rejects a rehashed receipt execution-id substitut
       freeze: fixture.current.result.freeze,
       schedule: fixture.current.result.schedule,
       evaluateOutput: fixture.evaluateOutput,
-    }), /execution evidence identity\/request\/receipt binding drift/);
+    }), /(?:execution evidence identity\/request\/receipt binding drift|Codex process diagnostics sessionId binding mismatch)/);
     assert.equal(spawnCalls, 0);
     assert.equal(live.ledger.codexExecInvocations, fixture.current.result.totalAttempts);
   } finally {

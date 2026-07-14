@@ -100,11 +100,23 @@ import {
   verifyImp24CPreLiveFreeze,
 } from "./imp24PreLiveFreeze.js";
 import {
+  buildImp24DObservabilityFreeze,
+  materializeImp24DObservabilityFreeze,
+  verifyHistoricalImp24DObservabilityFreeze,
+  verifyImp24DObservabilityFreeze,
+} from "./imp24ObservabilityFreeze.js";
+import {
   buildImp24CFinalAttestation,
   materializeImp24CFinalAttestation,
   verifyImp24CFinalAttestation,
   verifyRetainedImp24CFinalAttestation,
 } from "./imp24FinalAttestation.js";
+import {
+  buildImp24DFinalAttestation,
+  materializeImp24DFinalAttestation,
+  verifyImp24DFinalAttestation,
+  verifyRetainedImp24DFinalAttestation,
+} from "./imp24DFinalAttestation.js";
 import {
   IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   certifyImp24Corpora,
@@ -121,6 +133,13 @@ import {
 import {
   runImp24RoleQualificationCampaignV3,
 } from "../../orchestrator/forwardRoleQualificationCampaignV3.js";
+import {
+  runImp24DTransportSmoke,
+} from "../../orchestrator/forwardTransportSmokeCampaignV3.js";
+import {
+  materializeImp24DTransportMechanicalCorrection,
+  type Imp24DTransportMechanicalDefectClassV1,
+} from "../../orchestrator/forwardTransportSmokeEvidenceV3.js";
 import {
   materializeImp24GoldV2Envelope,
   materializeImp24PilotV2Envelope,
@@ -159,6 +178,9 @@ const USAGE =
   `         role-qualification-calibrate | role-qualification-holdout | role-qualification-attest-calibration\n` +
   `       IMP-24 live qualification (ChatGPT-authenticated codex exec; exact retained\n` +
   `       V3 artifacts; require literal --execute-live):\n` +
+  `         imp24-transport-smoke-v3 --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--json]\n` +
+  `         imp24-transport-smoke-v3-r2 --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--json]\n` +
+  `         imp24-materialize-transport-correction-diagnosis --write --defect-class CLASS --rationale TEXT [--json]\n` +
   `         imp24-role-qualification-v3 --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--timeout-ms N] [--json]\n` +
   `         imp24-pilot-v2-envelope       run the exact fresh eight-chapter pilot\n` +
   `         imp24-gold-v2-envelope        run the exact fresh 13-chapter gold book\n` +
@@ -177,9 +199,14 @@ const USAGE =
   `         imp24-materialize-thresholds [--write] [--json]\n` +
   `         imp24-certify-instrument [--write] [--json]\n` +
   `         imp24-materialize-pre-live-freeze [--write|--verify] [--json]\n` +
+  `         imp24-materialize-observability-freeze [--write|--verify] [--json]\n` +
+  `         imp24-materialize-observability-freeze --verify-historical --observability-commit SHA [--json]\n` +
   `         imp24-materialize-final-attestation --implementation-commit SHA --evidence-commit SHA\n` +
   `           --terminal-result FILE --ci-evidence FILE [--role-assignment FILE]\n` +
   `           [--write|--verify|--verify-retained] [--json]\n` +
+  `         imp24d-materialize-final-attestation --implementation-commit SHA --evidence-commit SHA\n` +
+  `           [--write|--verify] [--json]\n` +
+  `         imp24d-materialize-final-attestation --verify-retained [--json]\n` +
   `         imp24-materialize-forward-inputs [--write] [--state-root DIR] [--json]\n` +
   `           default: ${FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH}`;
 
@@ -201,6 +228,8 @@ const SPLIT_LANE_SUBVERBS: ReadonlySet<string> = new Set([
 const LIVE_QUALIFICATION_SUBVERBS: ReadonlySet<string> = new Set([
   "role-qualification-calibrate",
   "role-qualification-holdout",
+  "imp24-transport-smoke-v3",
+  "imp24-transport-smoke-v3-r2",
   "imp24-role-qualification-v3",
 ]);
 
@@ -222,7 +251,10 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "imp24-materialize-thresholds",
   "imp24-certify-instrument",
   "imp24-materialize-pre-live-freeze",
+  "imp24-materialize-observability-freeze",
+  "imp24-materialize-transport-correction-diagnosis",
   "imp24-materialize-final-attestation",
+  "imp24d-materialize-final-attestation",
   "imp24-materialize-forward-inputs",
   "role-qualification-freeze",
   "forward-materialize-pilot-artifacts",
@@ -673,6 +705,7 @@ export type Imp24RoleQualificationCliDepsV3 = {
   loadArtifacts?: (repositoryRoot: string) => Imp24RoleQualificationCliArtifactsV3;
   discoverAvailability?: typeof discoverCandidateAvailabilityV3;
   runCampaign?: typeof runImp24RoleQualificationCampaignV3;
+  runTransportSmoke?: typeof runImp24DTransportSmoke;
 };
 
 export type MigrationBakeoffCliDepsV1 = {
@@ -713,6 +746,96 @@ export function loadImp24RoleQualificationCliArtifactsV3(
     thresholds,
     thresholdBytesSha256: sha256Hex(thresholdBytes),
   };
+}
+
+async function runImp24DTransportSmokeSubverb(
+  subverb: "imp24-transport-smoke-v3" | "imp24-transport-smoke-v3-r2",
+  flags: Record<string, string | boolean>,
+  deps: Imp24RoleQualificationCliDepsV3 = {},
+): Promise<number> {
+  // Literal first barrier: no file, auth, cache, CLI, gate, network, or model
+  // operation occurs in dry/mistyped mode.
+  if (flags["execute-live"] !== true) {
+    console.error(`${subverb}: refusing to make the fixed diagnostic calls without literal --execute-live`);
+    return 2;
+  }
+  const allowedFlags = new Set([
+    "execute-live", "head-sha", "workflow-run-id", "models-cache", "json",
+  ]);
+  const unauthorizedFlags = Object.keys(flags).filter((key) => !allowedFlags.has(key));
+  if (unauthorizedFlags.length > 0) {
+    console.error(`${subverb}: unauthorized override(s): ${unauthorizedFlags.map((key) => `--${key}`).join(", ")}`);
+    return 2;
+  }
+  const expectedHeadSha = typeof flags["head-sha"] === "string" ? flags["head-sha"].trim() : "";
+  const workflowRunId = typeof flags["workflow-run-id"] === "string" ? Number(flags["workflow-run-id"]) : NaN;
+  if (!/^[a-f0-9]{40}$/.test(expectedHeadSha)
+      || !Number.isSafeInteger(workflowRunId) || workflowRunId <= 0) {
+    console.error(`${subverb}: --head-sha <40 lowercase hex> and --workflow-run-id <positive integer> are required`);
+    return 2;
+  }
+  if (flags["models-cache"] !== undefined && typeof flags["models-cache"] !== "string") {
+    console.error(`${subverb}: --models-cache requires a path value`);
+    return 2;
+  }
+  const requestedModelsCachePath = typeof flags["models-cache"] === "string"
+    ? flags["models-cache"].trim()
+    : (deps.modelsCachePath ?? "").trim();
+  if (!requestedModelsCachePath) {
+    console.error(`${subverb}: models cache path must be supplied by --models-cache or outer runtime context`);
+    return 2;
+  }
+  const repositoryRoot = resolve(deps.repositoryRoot ?? resolve(PIPELINE_DIR, "../../../.."));
+  const result = await (deps.runTransportSmoke ?? runImp24DTransportSmoke)({
+    executeLive: true,
+    cycle: subverb === "imp24-transport-smoke-v3" ? 1 : 2,
+    expectedHeadSha,
+    workflowRunId,
+    repositoryRoot,
+    loadInput: () => {
+      const verifiedAtDate = (deps.clock ?? (() => new Date()))();
+      if (!(verifiedAtDate instanceof Date) || !Number.isFinite(verifiedAtDate.getTime())) {
+        throw new Error(`${subverb}: injected/current clock is invalid`);
+      }
+      const artifacts = (deps.loadArtifacts ?? loadImp24RoleQualificationCliArtifactsV3)(repositoryRoot);
+      const corpusCertification = certifyImp24Corpora(artifacts.corpusBundle);
+      const candidateAvailability = (deps.discoverAvailability ?? discoverCandidateAvailabilityV3)({
+        policy: IMP24_FROZEN_CANDIDATE_AVAILABILITY_POLICY as CandidateAvailabilityPolicyV3,
+        policyBytesSha256: IMP24_CANDIDATE_AVAILABILITY_POLICY_BYTES_SHA256,
+        modelsCachePath: resolve(requestedModelsCachePath),
+        verifiedAt: verifiedAtDate.toISOString(),
+      });
+      return {
+        experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+        corpusBundle: artifacts.corpusBundle,
+        corpusCertification,
+        certification: artifacts.certification,
+        productionInstrumentSeal: artifacts.productionInstrumentSeal,
+        candidateAvailability,
+        thresholds: artifacts.thresholds,
+        thresholdBytesSha256: artifacts.thresholdBytesSha256,
+      };
+    },
+    preflight: {},
+  });
+  const summary = {
+    schema: "imp24d-transport-smoke-cli-result-v1",
+    cycle: result.cycle,
+    status: result.report?.status ?? "NOT_RUN",
+    implementationHeadSha: expectedHeadSha,
+    workflowRunId,
+    calls: result.cycleResult?.calls.map((call) => ({
+      role: call.role,
+      profileId: call.profileId,
+      passed: call.passed,
+      processDiagnosticsRelPath: call.processDiagnosticsRelPath,
+    })) ?? [],
+    modelCalls: result.modelCalls,
+    apiCalls: result.apiCalls,
+  };
+  console.log(flags.json === true ? JSON.stringify(summary, null, 2)
+    : `[migration] IMP-24D transport smoke cycle=${summary.cycle} status=${summary.status} calls=${summary.calls.length} codexExec=${summary.modelCalls} api=0`);
+  return result.code;
 }
 
 async function runImp24RoleQualificationV3Subverb(
@@ -758,30 +881,34 @@ async function runImp24RoleQualificationV3Subverb(
   const modelsCachePath = resolve(requestedModelsCachePath);
 
   const repositoryRoot = resolve(deps.repositoryRoot ?? resolve(PIPELINE_DIR, "../../../.."));
-  const verifiedAtDate = (deps.clock ?? (() => new Date()))();
-  if (!(verifiedAtDate instanceof Date) || !Number.isFinite(verifiedAtDate.getTime())) {
-    throw new Error("imp24-role-qualification-v3: injected/current clock is invalid");
-  }
-  const verifiedAt = verifiedAtDate.toISOString();
-  const artifacts = (deps.loadArtifacts ?? loadImp24RoleQualificationCliArtifactsV3)(repositoryRoot);
-  // Recompute both independent corpus audits from the exact retained V3 bundle;
-  // never trust a copied certification object and never inspect V1/V2 runs.
-  const corpusCertification = certifyImp24Corpora(artifacts.corpusBundle);
-  const candidateAvailability = (deps.discoverAvailability ?? discoverCandidateAvailabilityV3)({
-    policy: IMP24_FROZEN_CANDIDATE_AVAILABILITY_POLICY as CandidateAvailabilityPolicyV3,
-    policyBytesSha256: IMP24_CANDIDATE_AVAILABILITY_POLICY_BYTES_SHA256,
-    modelsCachePath,
-    verifiedAt,
-  });
-  const input: UnpreparedLiveRoleQualificationInputV3 = {
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
-    corpusBundle: artifacts.corpusBundle,
-    corpusCertification,
-    certification: artifacts.certification,
-    productionInstrumentSeal: artifacts.productionInstrumentSeal,
-    candidateAvailability,
-    thresholds: artifacts.thresholds,
-    thresholdBytesSha256: artifacts.thresholdBytesSha256,
+  let loadedInput: UnpreparedLiveRoleQualificationInputV3 | null = null;
+  const loadInput = (): UnpreparedLiveRoleQualificationInputV3 => {
+    if (loadedInput !== null) return loadedInput;
+    const verifiedAtDate = (deps.clock ?? (() => new Date()))();
+    if (!(verifiedAtDate instanceof Date) || !Number.isFinite(verifiedAtDate.getTime())) {
+      throw new Error("imp24-role-qualification-v3: injected/current clock is invalid");
+    }
+    const artifacts = (deps.loadArtifacts ?? loadImp24RoleQualificationCliArtifactsV3)(repositoryRoot);
+    // This closure is entered by the official campaign only after retained
+    // smoke PASS and exact implementation CI. It never inspects V1/V2 runs.
+    const corpusCertification = certifyImp24Corpora(artifacts.corpusBundle);
+    const candidateAvailability = (deps.discoverAvailability ?? discoverCandidateAvailabilityV3)({
+      policy: IMP24_FROZEN_CANDIDATE_AVAILABILITY_POLICY as CandidateAvailabilityPolicyV3,
+      policyBytesSha256: IMP24_CANDIDATE_AVAILABILITY_POLICY_BYTES_SHA256,
+      modelsCachePath,
+      verifiedAt: verifiedAtDate.toISOString(),
+    });
+    loadedInput = {
+      experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+      corpusBundle: artifacts.corpusBundle,
+      corpusCertification,
+      certification: artifacts.certification,
+      productionInstrumentSeal: artifacts.productionInstrumentSeal,
+      candidateAvailability,
+      thresholds: artifacts.thresholds,
+      thresholdBytesSha256: artifacts.thresholdBytesSha256,
+    };
+    return loadedInput;
   };
   const runCampaign = deps.runCampaign ?? runImp24RoleQualificationCampaignV3;
   const campaign = await runCampaign({
@@ -790,11 +917,12 @@ async function runImp24RoleQualificationV3Subverb(
     workflowRunId,
     repositoryRoot,
     experimentDir: resolve(migrationExperimentsDir(), IMP24_ROLE_QUALIFICATION_EXECUTION_ID),
-    input,
+    loadInput,
     preflight: {},
     ...(timeoutMs !== undefined ? { timeoutMs } : {}),
   });
   if (!campaign.executed) throw new Error("imp24-role-qualification-v3: live campaign unexpectedly returned a dry result");
+  const summaryInput = loadInput();
   const summary = {
     schema: "imp24-role-qualification-v3-cli-result-v1",
     experimentId: campaign.result.experimentId,
@@ -803,8 +931,9 @@ async function runImp24RoleQualificationV3Subverb(
     roleSetReady: campaign.result.roleSetReady,
     blockedReason: campaign.result.roleSetBlockedReason,
     selected: campaign.result.selected,
-    candidateAvailabilitySha256: candidateAvailability.availabilitySha256,
-    unavailableProfiles: candidateAvailability.entries.filter((entry) => entry.status === "UNAVAILABLE")
+    candidateAvailabilitySha256: summaryInput.candidateAvailability.availabilitySha256,
+    unavailableProfiles: summaryInput.candidateAvailability.entries
+      .filter((entry) => entry.status === "UNAVAILABLE")
       .map((entry) => `${entry.role}:${entry.profileId}`),
     baseCallsAttempted: campaign.result.baseCallsAttempted,
     infrastructureReplays: campaign.result.infrastructureReplays,
@@ -839,6 +968,9 @@ async function runLiveQualificationSubverb(
   if (flags["execute-live"] !== true) {
     console.error(`${subverb}: refusing to make model calls without the explicit --execute-live flag`);
     return 2;
+  }
+  if (subverb === "imp24-transport-smoke-v3" || subverb === "imp24-transport-smoke-v3-r2") {
+    return runImp24DTransportSmokeSubverb(subverb, flags, imp24Deps);
   }
   if (subverb === "imp24-role-qualification-v3") {
     return runImp24RoleQualificationV3Subverb(flags, imp24Deps);
@@ -1130,6 +1262,36 @@ function runLocalForwardSubverb(
       || subverb === "forward-materialize-gold-artifacts") {
     return refuseClosedQualification(subverb, "s16-forward-role-qualification-v2", "BLOCKED_CALIBRATION_INVALID");
   }
+  if (subverb === "imp24-materialize-transport-correction-diagnosis") {
+    const allowed = new Set(["write", "defect-class", "rationale", "json"]);
+    const unauthorized = Object.keys(flags).filter((key) => !allowed.has(key));
+    if (unauthorized.length > 0 || flags.write !== true
+        || typeof flags["defect-class"] !== "string"
+        || typeof flags.rationale !== "string") {
+      console.error(`${subverb}: requires --write --defect-class CLASS --rationale TEXT and rejects all path/input overrides`);
+      return 2;
+    }
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const out = materializeImp24DTransportMechanicalCorrection({
+      repositoryRoot,
+      defectClass: flags["defect-class"].trim() as Imp24DTransportMechanicalDefectClassV1,
+      rationale: flags.rationale,
+    });
+    const summary = {
+      schema: out.record.schema,
+      correctionSha256: out.record.correctionSha256,
+      defectClass: out.record.defectClass,
+      changedFiles: out.record.changedFiles,
+      regressionTestFiles: out.record.regressionTestFiles,
+      reportSha256: out.report.reportSha256,
+      writes: 2,
+      modelCalls: 0,
+      apiCalls: 0,
+    };
+    console.log(flags.json === true ? JSON.stringify(summary, null, 2)
+      : `[migration] IMP-24D correction diagnosis: ${summary.correctionSha256} files=${summary.changedFiles.length} tests=${summary.regressionTestFiles.length} writes=2 model/api calls=0`);
+    return 0;
+  }
   if (subverb === "imp24-materialize-pilot-v2-envelope"
       || subverb === "imp24-materialize-gold-v2-envelope") {
     const forbiddenOverrides = [
@@ -1228,6 +1390,65 @@ function runLocalForwardSubverb(
     }
     return 0;
   }
+  if (subverb === "imp24-materialize-observability-freeze") {
+    const allowed = new Set([
+      "write", "verify", "verify-historical", "observability-commit", "json",
+    ]);
+    const unauthorized = Object.keys(flags).filter((key) => !allowed.has(key));
+    if (unauthorized.length > 0) {
+      console.error(`imp24-materialize-observability-freeze: fixed authoritative paths reject override(s): ${unauthorized.map((key) => `--${key}`).join(", ")}`);
+      return 2;
+    }
+    const historical = flags["verify-historical"] === true;
+    const modes = [flags.write === true, flags.verify === true, historical].filter(Boolean).length;
+    if (modes > 1) {
+      console.error("imp24-materialize-observability-freeze: choose at most one of --write, --verify, or --verify-historical");
+      return 2;
+    }
+    const observabilityCommit = typeof flags["observability-commit"] === "string"
+      ? flags["observability-commit"].trim()
+      : "";
+    if (historical !== (observabilityCommit.length > 0)
+        || (historical && !/^[a-f0-9]{40}$/.test(observabilityCommit))) {
+      console.error("imp24-materialize-observability-freeze: --verify-historical requires exactly one --observability-commit <40 lowercase hex>");
+      return 2;
+    }
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    if (historical) {
+      const out = verifyHistoricalImp24DObservabilityFreeze({
+        repositoryRoot,
+        observabilityImplementationCommit: observabilityCommit,
+      });
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] historical IMP-24D observability freeze VERIFIED: ${out.freezeSha256} commit=${out.observabilityImplementationCommit} outputs=${out.verifiedOutputCount} writes=0 model/api calls=0`);
+    } else if (flags.verify === true) {
+      const out = verifyImp24DObservabilityFreeze({ repositoryRoot });
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] IMP-24D observability freeze VERIFIED: ${out.freezeSha256} outputs=${out.verifiedOutputCount} writes=0 model/api calls=0`);
+    } else if (flags.write === true) {
+      const out = materializeImp24DObservabilityFreeze({ repositoryRoot });
+      console.log(flags.json === true ? JSON.stringify({
+        schema: out.freeze.schema,
+        status: out.freeze.status,
+        freezeSha256: out.freeze.freezeSha256,
+        outputCount: Object.keys(out.outputs).length,
+        written: true,
+        modelCalls: out.modelCalls,
+        apiCalls: out.apiCalls,
+      }, null, 2) : `[migration] IMP-24D observability freeze: ${out.freeze.freezeSha256} outputs=${Object.keys(out.outputs).length} model/api calls=0`);
+    } else {
+      const out = buildImp24DObservabilityFreeze({ repositoryRoot });
+      console.log(flags.json === true ? JSON.stringify({
+        status: out.freeze.status,
+        freezeSha256: out.freeze.freezeSha256,
+        outputCount: Object.keys(out.outputs).length,
+        written: false,
+        modelCalls: out.modelCalls,
+        apiCalls: out.apiCalls,
+      }, null, 2) : `[migration] IMP-24D observability freeze: ${out.freeze.freezeSha256} outputs=${Object.keys(out.outputs).length} DRY (pass --write or --verify)`);
+    }
+    return 0;
+  }
   if (subverb === "imp24-materialize-final-attestation") {
     if (flags.output !== undefined || flags["state-root"] !== undefined) {
       console.error("imp24-materialize-final-attestation: fixed authoritative paths reject --output and --state-root");
@@ -1284,6 +1505,60 @@ function runLocalForwardSubverb(
         modelCalls: 0,
         apiCalls: 0,
       }, null, 2) : `[migration] IMP-24C terminal attestation: ${out.attestation.attestationSha256} outputs=${Object.keys(out.outputs).length} DRY (pass --write or --verify)`);
+    }
+    return 0;
+  }
+  if (subverb === "imp24d-materialize-final-attestation") {
+    if (flags.output !== undefined || flags["state-root"] !== undefined
+        || flags["terminal-result"] !== undefined || flags["ci-evidence"] !== undefined
+        || flags["role-assignment"] !== undefined) {
+      console.error("imp24d-materialize-final-attestation: fixed D evidence and output paths reject path overrides");
+      return 2;
+    }
+    const modes = [flags.write === true, flags.verify === true, flags["verify-retained"] === true]
+      .filter(Boolean).length;
+    if (modes > 1) {
+      console.error("imp24d-materialize-final-attestation: choose at most one of --write, --verify, or --verify-retained");
+      return 2;
+    }
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    if (flags["verify-retained"] === true) {
+      if (flags["implementation-commit"] !== undefined || flags["evidence-commit"] !== undefined) {
+        console.error("imp24d-materialize-final-attestation: --verify-retained reconstructs commit inputs from the retained report");
+        return 2;
+      }
+      const out = verifyRetainedImp24DFinalAttestation({ repositoryRoot });
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] IMP-24D terminal attestation VERIFIED: ${out.attestationSha256} writes=0 model/api calls=0`);
+      return 0;
+    }
+    const stringFlag = (name: string): string => typeof flags[name] === "string" ? (flags[name] as string).trim() : "";
+    const implementationCommit = stringFlag("implementation-commit");
+    const evidenceCommit = stringFlag("evidence-commit");
+    if (implementationCommit.length === 0 || evidenceCommit.length === 0) {
+      console.error("imp24d-materialize-final-attestation: --implementation-commit and --evidence-commit are required");
+      return 2;
+    }
+    const options = { repositoryRoot, implementationCommit, evidenceCommit };
+    if (flags.write === true) {
+      const out = materializeImp24DFinalAttestation(options);
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] IMP-24D terminal attestation: ${out.attestationSha256} outputs=${Object.keys(out.outputs).length} model/api calls=0`);
+    } else if (flags.verify === true) {
+      const out = verifyImp24DFinalAttestation(options);
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] IMP-24D terminal attestation VERIFIED: ${out.attestationSha256} writes=0 model/api calls=0`);
+    } else {
+      const out = buildImp24DFinalAttestation(options);
+      console.log(flags.json === true ? JSON.stringify({
+        schema: out.attestation.schema,
+        finalDecision: out.attestation.finalDecision,
+        attestationSha256: out.attestation.attestationSha256,
+        outputCount: Object.keys(out.outputs).length,
+        written: false,
+        modelCalls: out.modelCalls,
+        apiCalls: out.apiCalls,
+      }, null, 2) : `[migration] IMP-24D terminal attestation: ${out.attestation.attestationSha256} outputs=${Object.keys(out.outputs).length} DRY (pass --write or --verify)`);
     }
     return 0;
   }

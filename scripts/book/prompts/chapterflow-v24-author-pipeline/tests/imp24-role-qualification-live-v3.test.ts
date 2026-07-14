@@ -5,6 +5,7 @@ import {
   readFileSync,
   readdirSync,
   rmSync,
+  statSync,
   symlinkSync,
   writeFileSync,
 } from "node:fs";
@@ -34,11 +35,14 @@ import {
 } from "../src/review/reviewEvidenceEnvelope.js";
 import {
   ForwardRoleQualificationLiveV3Error,
+  IMP24D_TRANSPORT_SMOKE_EXECUTION_ID,
   IMP24_V2_REVIEWER_SCHEMA_MAP,
   buildAttemptEvaluationArtifact,
   createLiveQualificationExecutorV3,
+  liveQualificationExecutionSessionIdV3,
   replayReceiptChronologyViolationsV3,
   type LiveCallLedgerEntryV3,
+  type LiveQualificationExecutionRequestV3,
 } from "../src/orchestrator/forwardRoleQualificationLiveV3.js";
 import {
   IMP24_IMPLEMENTATION_CI_GATE_SCHEMA,
@@ -62,9 +66,10 @@ import {
   type RunImp24RoleQualificationCampaignV3Args,
 } from "../src/orchestrator/forwardRoleQualificationCampaignV3.js";
 import { resolveRoute, routeDriftFingerprint } from "../src/orchestrator/modelPolicy.js";
-import type {
-  CodexAgentResult,
-  SpawnCodexAgentOptions,
+import {
+  CodexRunnerProcessError,
+  type CodexAgentResult,
+  type SpawnCodexAgentOptions,
 } from "../src/orchestrator/codexAgent.js";
 import { test } from "./harness.js";
 import { mkTestRoots } from "./testRoots.js";
@@ -124,6 +129,81 @@ function request(overrides: Partial<Omit<QualificationExecutionRequestV3, "reque
 function writePrettyJson(path: string, value: unknown): void {
   writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
 }
+
+test("IMP-24D smoke control identity uses distinct request, ledger, root, and session identities without retaining r2", async () => {
+  const roots = mkTestRoots("imp24d-smoke-control-identity");
+  try {
+    assert.throws(() => createLiveQualificationExecutorV3({
+      phaseDir: resolve(roots.base, "unauthorized-control-identity"),
+      executionId: "s16-forward-role-qualification-v3-envelope-arbitrary-control" as never,
+      freezeSha256: FREEZE,
+      certificationSha256: CERTIFICATION,
+      productionInstrumentSealSha256: SEAL,
+      preCallVerifier: () => undefined,
+    }), /not an authorized qualification or transport-smoke identity/);
+    assert.equal(existsSync(resolve(roots.base, "unauthorized-control-identity")), false);
+
+    const qualificationRequest = request();
+    const {
+      requestSha256: _requestSha256,
+      experimentId: _experimentId,
+      scheduleId: _scheduleId,
+      attemptId: _attemptId,
+      ...unchanged
+    } = qualificationRequest;
+    const smokeCore: Omit<LiveQualificationExecutionRequestV3, "requestSha256"> = {
+      ...unchanged,
+      experimentId: IMP24D_TRANSPORT_SMOKE_EXECUTION_ID,
+      scheduleId: `${IMP24D_TRANSPORT_SMOKE_EXECUTION_ID}-reader-canary`,
+      attemptId: `${IMP24D_TRANSPORT_SMOKE_EXECUTION_ID}-reader-canary-a1`,
+    };
+    const smokeRequest: LiveQualificationExecutionRequestV3 = {
+      ...smokeCore,
+      requestSha256: hashCanonical(smokeCore),
+    };
+    const phaseDir = resolve(roots.base, IMP24D_TRANSPORT_SMOKE_EXECUTION_ID, "live");
+    const live = createLiveQualificationExecutorV3({
+      phaseDir,
+      executionId: IMP24D_TRANSPORT_SMOKE_EXECUTION_ID,
+      freezeSha256: FREEZE,
+      certificationSha256: CERTIFICATION,
+      productionInstrumentSealSha256: SEAL,
+      preCallVerifier: () => {},
+      spawn: async (options) => ok(options),
+      workspaceBaseDir: resolve(roots.base, "workspaces"),
+    });
+    const receipt = await live.controlExecutor(smokeRequest);
+    assert.equal(receipt.status, "completed");
+    assert.equal(live.ledger.experimentId, IMP24D_TRANSPORT_SMOKE_EXECUTION_ID);
+    assert.equal(live.ledger.brokerRequests, 1);
+    assert.equal(live.ledger.codexExecInvocations, 1);
+    assert.equal(receipt.executionId, liveQualificationExecutionSessionIdV3(smokeRequest));
+    assert.notEqual(receipt.executionId, liveQualificationExecutionSessionIdV3(qualificationRequest));
+
+    const assertNoR2 = (dir: string): void => {
+      for (const name of readdirSync(dir)) {
+        const path = resolve(dir, name);
+        if (statSync(path).isDirectory()) assertNoR2(path);
+        else assert.equal(readFileSync(path).includes(IMP24_ROLE_QUALIFICATION_EXECUTION_ID), false,
+          `smoke artifact retained r2 identity: ${path}`);
+      }
+    };
+    assertNoR2(resolve(roots.base, IMP24D_TRANSPORT_SMOKE_EXECUTION_ID));
+
+    const qualificationOnly = createLiveQualificationExecutorV3({
+      phaseDir: resolve(roots.base, "qualification-default"),
+      freezeSha256: FREEZE,
+      certificationSha256: CERTIFICATION,
+      productionInstrumentSealSha256: SEAL,
+      preCallVerifier: () => {},
+      spawn: async (options) => ok(options),
+    });
+    await assert.rejects(qualificationOnly.controlExecutor(smokeRequest), /wrong request schema\/identity/);
+    assert.equal(qualificationOnly.ledger.brokerRequests, 0);
+  } finally {
+    roots.dispose();
+  }
+});
 
 function ok(options: SpawnCodexAgentOptions, output = "{}"): CodexAgentResult {
   assert.equal(options.role, "chapter-reviewer");
@@ -374,6 +454,7 @@ test("IMP-24 live V3 defaults to the strict V2 schemas and retains exact envelop
       requestSha256: string;
       receiptSha256: string;
       evidenceEnvelopeBytesSha256: string;
+      processDiagnosticsSha256: string;
     };
     assert.equal(retained.requestSha256, req.requestSha256);
     assert.equal(retained.receiptSha256, first.receiptSha256);
@@ -388,9 +469,9 @@ test("IMP-24 live V3 defaults to the strict V2 schemas and retains exact envelop
       workspaceBaseDir: roots.workspacesRoot,
       spawn: async (options) => { spawnCalls += 1; return ok(options); },
     });
-    await assert.rejects(crashedResume.executor(req), /exact six-file evidence is required/,
-      "a crash after the five call files but before evaluation retention must never reuse the old partial");
-    assert.equal(spawnCalls, 1, "five-file crash state must fail closed without a second judgment");
+    await assert.rejects(crashedResume.executor(req), /exact seven-file evidence is required/,
+      "a crash after the six call files but before evaluation retention must never reuse the old partial");
+    assert.equal(spawnCalls, 1, "six-file crash state must fail closed without a second judgment");
 
     const attempt = attemptFor(req, first, RETAINED_EVALUATION);
     live.retainAttemptEvaluation(attempt);
@@ -398,10 +479,54 @@ test("IMP-24 live V3 defaults to the strict V2 schemas and retains exact envelop
       "evaluation.json",
       "evidence-envelope.json",
       "execution-evidence.json",
+      "process-diagnostics.json",
       "receipt.json",
       "request.json",
       "retention.json",
     ]);
+    const processDiagnosticsPath = resolve(attemptDir, "process-diagnostics.json");
+    const processDiagnosticsBytes = readFileSync(processDiagnosticsPath, "utf8");
+    const processDiagnostics = JSON.parse(processDiagnosticsBytes) as {
+      schema: string;
+      invocation: string;
+      classification: string;
+      stdoutSha256: string;
+      stderrSha256: string;
+      diagnosticsSha256: string;
+    };
+    assert.equal(processDiagnostics.schema, "codex-process-diagnostics-v1");
+    assert.equal(processDiagnostics.invocation, "RUNNER_RETURNED");
+    assert.equal(processDiagnostics.classification, "completed");
+    assert.equal(retained.processDiagnosticsSha256, processDiagnostics.diagnosticsSha256);
+    assert.equal(live.ledger.entries[0]!.processDiagnosticsSha256, processDiagnostics.diagnosticsSha256);
+
+    rmSync(processDiagnosticsPath);
+    const missingDiagnosticsResume = createLiveQualificationExecutorV3({
+      phaseDir: resolve(roots.base, "phase"),
+      freezeSha256: FREEZE,
+      certificationSha256: CERTIFICATION,
+      productionInstrumentSealSha256: SEAL,
+      preCallVerifier: () => undefined,
+      workspaceBaseDir: roots.workspacesRoot,
+      spawn: async (options) => { spawnCalls += 1; return ok(options); },
+    });
+    await assert.rejects(missingDiagnosticsResume.executor(req), /exact seven-file evidence is required/);
+    writeFileSync(processDiagnosticsPath, processDiagnosticsBytes);
+
+    const modifiedDiagnostics = { ...processDiagnostics, stderrSha256: "f".repeat(64) };
+    writeFileSync(processDiagnosticsPath, `${JSON.stringify(modifiedDiagnostics, null, 2)}\n`);
+    const modifiedDiagnosticsResume = createLiveQualificationExecutorV3({
+      phaseDir: resolve(roots.base, "phase"),
+      freezeSha256: FREEZE,
+      certificationSha256: CERTIFICATION,
+      productionInstrumentSealSha256: SEAL,
+      preCallVerifier: () => undefined,
+      workspaceBaseDir: roots.workspacesRoot,
+      spawn: async (options) => { spawnCalls += 1; return ok(options); },
+    });
+    await assert.rejects(modifiedDiagnosticsResume.executor(req), /process diagnostics self hash drift/);
+    writeFileSync(processDiagnosticsPath, processDiagnosticsBytes);
+    assert.equal(spawnCalls, 1, "missing or modified diagnostics must never trigger a fresh judgment");
     const evaluationPath = resolve(attemptDir, "evaluation.json");
     const evaluationArtifact = JSON.parse(readFileSync(evaluationPath, "utf8")) as ReturnType<typeof buildAttemptEvaluationArtifact>;
     assert.deepEqual(evaluationArtifact, buildAttemptEvaluationArtifact(
@@ -424,7 +549,7 @@ test("IMP-24 live V3 defaults to the strict V2 schemas and retains exact envelop
       workspaceBaseDir: roots.workspacesRoot,
       spawn: async (options) => { spawnCalls += 1; return ok(options); },
     });
-    await assert.rejects(extraFileResume.executor(req), /exact six-file evidence is required/);
+    await assert.rejects(extraFileResume.executor(req), /exact seven-file evidence is required/);
     assert.equal(spawnCalls, 1, "extra retained evidence must stop cached reuse without a new judgment");
     rmSync(unexpectedPath);
 
@@ -506,6 +631,96 @@ test("IMP-24 live V3 defaults to the strict V2 schemas and retains exact envelop
     writeFileSync(retentionPath, `${JSON.stringify(tampered, null, 2)}\n`);
     await assert.rejects(live.executor(req), /retention self hash mismatch on resume/);
     assert.equal(spawnCalls, 1, "tampered resume state must fail closed without a new judgment");
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("IMP-24 live V3 retains partial stdout and stderr from the typed timeout process path", async () => {
+  const roots = mkTestRoots("imp24-live-v3-timeout-diagnostics");
+  const partialStdout = "transport started\nrequest accepted\n";
+  const partialStderr = "stream opened\ntransport stalled before completion\n";
+  try {
+    const req = request({
+      scheduleId: "v3-reader-p1-canary-c02",
+      attemptId: "v3-reader-p1-canary-c02-a1",
+    });
+    const live = createLiveQualificationExecutorV3({
+      phaseDir: resolve(roots.base, "phase"),
+      freezeSha256: FREEZE,
+      certificationSha256: CERTIFICATION,
+      productionInstrumentSealSha256: SEAL,
+      preCallVerifier: () => undefined,
+      workspaceBaseDir: roots.workspacesRoot,
+      spawn: async (options) => {
+        const returned = ok(options);
+        assert.ok(returned.manifestPath);
+        const routePath = returned.manifestPath.replace(/\.manifest\.json$/, ".route.json");
+        const route = JSON.parse(readFileSync(routePath, "utf8")) as Record<string, unknown>;
+        route.outcome = "timeout";
+        writePrettyJson(routePath, route);
+        rmSync(returned.manifestPath.replace(/\.manifest\.json$/, ".structured.json"));
+        rmSync(returned.manifestPath.replace(/\.manifest\.json$/, ".result.json"));
+        throw new CodexRunnerProcessError({
+          failureKind: "timeout",
+          errorName: "TimeoutError",
+          errorMessage: "codex exec timed out after 1000ms",
+          timedOut: true,
+          exitCode: null,
+          stdout: partialStdout,
+          stderr: partialStderr,
+        });
+      },
+      clock: () => new Date("2026-07-13T12:00:00.000Z"),
+    });
+
+    const receipt = await live.executor(req);
+    assert.equal(receipt.status, "timeout");
+    assert.equal(receipt.rawOutput, null);
+    assert.equal(live.ledger.codexExecInvocations, 1);
+    assert.equal(live.ledger.infrastructureReplays, 0);
+    assert.equal(live.ledger.apiCallsMade, 0);
+
+    const attemptDir = resolve(roots.base, "phase", "attempts", req.attemptId);
+    const diagnostics = JSON.parse(
+      readFileSync(resolve(attemptDir, "process-diagnostics.json"), "utf8"),
+    ) as {
+      invocation: string;
+      classification: string;
+      failureKind: string;
+      errorName: string;
+      errorMessage: string;
+      timedOut: boolean;
+      exitCode: number | null;
+      stdoutBytes: number;
+      stderrBytes: number;
+      stdoutSha256: string;
+      stderrSha256: string;
+      stdoutRetained: string;
+      stderrRetained: string;
+      diagnosticsSha256: string;
+    };
+    assert.equal(diagnostics.invocation, "RUNNER_THROWN");
+    assert.equal(diagnostics.classification, "timeout");
+    assert.equal(diagnostics.failureKind, "timeout");
+    assert.equal(diagnostics.errorName, "TimeoutError");
+    assert.equal(diagnostics.errorMessage, "codex exec timed out after 1000ms");
+    assert.equal(diagnostics.timedOut, true);
+    assert.equal(diagnostics.exitCode, null);
+    assert.equal(diagnostics.stdoutBytes, Buffer.byteLength(partialStdout));
+    assert.equal(diagnostics.stderrBytes, Buffer.byteLength(partialStderr));
+    assert.equal(diagnostics.stdoutSha256, sha256Hex(partialStdout));
+    assert.equal(diagnostics.stderrSha256, sha256Hex(partialStderr));
+    assert.equal(diagnostics.stdoutRetained, partialStdout);
+    assert.equal(diagnostics.stderrRetained, partialStderr);
+    assert.equal(live.ledger.entries[0]?.processDiagnosticsSha256, diagnostics.diagnosticsSha256);
+
+    const executionEvidence = JSON.parse(
+      readFileSync(resolve(attemptDir, "execution-evidence.json"), "utf8"),
+    ) as { invocation: string; responseProduced: boolean; processDiagnosticsSha256: string };
+    assert.equal(executionEvidence.invocation, "RUNNER_THREW");
+    assert.equal(executionEvidence.responseProduced, false);
+    assert.equal(executionEvidence.processDiagnosticsSha256, diagnostics.diagnosticsSha256);
   } finally {
     roots.dispose();
   }
@@ -603,7 +818,7 @@ test("IMP-24 live V3 rejects partial attempts and cannot be constructed without 
       workspaceBaseDir: roots.workspacesRoot,
       spawn: async (options) => { spawns += 1; return ok(options); },
     });
-    await assert.rejects(live.executor(req), /attempt .* is partial; exact six-file evidence is required/);
+    await assert.rejects(live.executor(req), /attempt .* is partial; exact seven-file evidence is required/);
     assert.equal(spawns, 0);
     assert.equal(live.ledger.codexExecInvocations, 0);
   } finally {
@@ -1054,6 +1269,7 @@ test("IMP-24 infrastructure replay chronology requires predecessor order and com
     evidenceEnvelopeSha256: "b".repeat(64),
     evidenceEnvelopeBytesSha256: "c".repeat(64),
     receiptSha256: "d".repeat(64),
+    processDiagnosticsSha256: "9".repeat(64),
     executionEvidenceSha256: "e".repeat(64),
     evaluationArtifactSha256: "f".repeat(64),
     status: attemptId.endsWith("-a1") ? "timeout" : "completed",

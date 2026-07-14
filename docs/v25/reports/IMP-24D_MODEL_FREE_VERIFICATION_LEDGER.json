@@ -1,0 +1,107 @@
+{
+  "schema": "imp24d-model-free-verification-ledger-v1",
+  "continuationPromptId": "IMP-24D",
+  "startingHead": "3b060fb0a7f6e64e04386b84ff6b5a10e42868ec",
+  "branch": "feat/v25-pipeline-live",
+  "executionId": "s16-forward-role-qualification-v3-envelope-r2",
+  "capturedAtIso": "2026-07-14T10:08:54Z",
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "status": "OBSERVABILITY_COMMIT_LOCALLY_READY",
+  "attempts": [
+    {
+      "attemptId": 1,
+      "check": "complete no-API/no-model suite before correction-cycle hardening",
+      "result": "FAIL",
+      "counts": { "pass": 2885, "fail": 1, "xenv": 10, "skip": 39 },
+      "classification": "stale fail-closed assertion",
+      "detail": "The activation-boundary fixture expected the older execution-evidence rejection, while the new required process-diagnostics binding rejected the same tamper earlier. The production boundary remained fail-closed; the assertion was updated to accept either exact rejection. A duplicate suite process accidentally started after a lost tool cell was identified and terminated without being treated as verification evidence."
+    },
+    {
+      "attemptId": 2,
+      "check": "TypeScript after correction-cycle adversarial tests",
+      "result": "FAIL",
+      "counts": { "errors": 1 },
+      "classification": "test-fixture type drift",
+      "detail": "The semantic-drift fixture assigned UNAVAILABLE to an availability entry inferred as the AVAILABLE literal. It was typed as CandidateAvailabilityV3 and modelListed was set false so the unavailable state derives truthfully."
+    },
+    {
+      "attemptId": 3,
+      "check": "focused IMP-24D diagnostics and lifecycle suite",
+      "result": "FAIL",
+      "counts": { "fail": 1 },
+      "classification": "host-load-sensitive test timing",
+      "detail": "A descendant-pipe timeout test assumed a Node child could always start and flush both streams within 100 ms while the broader suite was active. The runner itself retained both streams in an isolated reproduction. The test now gives process startup one second and continues to measure the bounded post-kill grace period."
+    },
+    {
+      "attemptId": 4,
+      "check": "focused IMP-24D diagnostics and lifecycle suite after timeout-test correction",
+      "result": "PASS",
+      "counts": { "pass": 89, "fail": 0 },
+      "classification": "focused regression pass",
+      "detail": "Process diagnostics, transport smoke, historical observability freeze, final attestation, live V3 evidence, and activation barriers all passed with API keys absent and model generation disabled."
+    },
+    {
+      "attemptId": 5,
+      "check": "independent pre-call correction-cycle audit",
+      "result": "FAIL",
+      "classification": "control-integrity gap",
+      "detail": "The one-correction path allowlist was broad enough to admit the smoke PASS oracle and qualification-live evidence logic. The correction surface was reduced to a dedicated pure Codex argv/required-flag module; the runner, diagnostics, smoke oracle, live qualification, execution envelope, CLI, and workflow are now excluded."
+    },
+    {
+      "attemptId": 6,
+      "check": "correction-surface focused regression suite",
+      "result": "PASS",
+      "counts": { "pass": 46, "fail": 0 },
+      "classification": "focused regression pass",
+      "detail": "The low-level transport configuration preserves the existing argv exactly, and path-classification tests reject every control/oracle file. TypeScript and whitespace validation also passed."
+    },
+    {
+      "attemptId": 7,
+      "check": "complete no-API/no-model suite after correction-surface hardening",
+      "result": "FAIL",
+      "counts": { "pass": 2891, "fail": 2, "xenv": 10, "skip": 39 },
+      "classification": "stale correction-path fixtures",
+      "detail": "Two final-attestation fixtures still represented the one correction as a codexAgent.ts change. The newly narrowed proof correctly rejected both. Only those fixtures were updated to use codexTransportConfig.ts."
+    },
+    {
+      "attemptId": 8,
+      "check": "final-attestation, smoke, and diagnostics regression suite",
+      "result": "PASS",
+      "counts": { "pass": 37, "fail": 0 },
+      "classification": "focused regression pass",
+      "detail": "Both stale correction fixtures and every bounded-diagnostics/smoke control passed; TypeScript passed separately."
+    },
+    {
+      "attemptId": 9,
+      "check": "decisive complete no-API/no-model suite",
+      "result": "PASS",
+      "counts": { "pass": 2893, "fail": 0, "xenv": 10, "skip": 39 },
+      "classification": "complete local gate pass",
+      "detail": "The exact pending implementation tree passed the complete harness with CHAPTERFLOW_NO_API_CODEX_QC=1, CHAPTERFLOW_ALLOW_MODEL_GEN=0, all provider API-key variables removed, and the dedicated isolated npm cache."
+    },
+    {
+      "attemptId": 10,
+      "check": "final model-free identity and repository scans",
+      "result": "PASS",
+      "classification": "integrity pass",
+      "detail": "The 463-file production seal, 116-case certification, thresholds, observability freeze, contracts, V1/V2 preservation, frozen semantic assets, secret/artifact scan, active private-path scan, merge-marker scan, JSON parsing, and whitespace checks all passed. No smoke or r2 qualification root existed."
+    }
+  ],
+  "currentIdentities": {
+    "productionInstrumentSealSha256": "13c0e7cd05f38a0420765b2d9b36d788b2c5602ca80d3585d9aea009339e56a5",
+    "instrumentCertificationSha256": "b7eb50d0700b824efd7bc126ba29331d36c78546edcfa865457f088d6049f15f",
+    "productionQualificationParitySha256": "1cf48ebfca83dfa81f72eb5ad2735183daf3b102c1f4b2ab8aa41dfff0a1e8d7",
+    "observabilityFreezeSha256": "7f64acc3fe526a2decad38873331d929ed5ad521146c4919812c1604bdb1b658"
+  },
+  "authorization": {
+    "observabilityCommitMayBeCreated": true,
+    "smokeCallsBeforeExactCommitCi": false,
+    "pilot": false,
+    "gold": false,
+    "activation": false,
+    "publishPromoteDeployUpload": false,
+    "merge": false,
+    "forcePush": false
+  }
+}

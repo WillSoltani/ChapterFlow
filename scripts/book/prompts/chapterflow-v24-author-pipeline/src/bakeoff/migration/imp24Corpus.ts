@@ -56,11 +56,18 @@ export const IMP24_ROLE_QUALIFICATION_PROTOCOL_ID =
 /** Backwards-compatible name for the frozen V3 protocol/corpus identity. */
 export const IMP24_ROLE_QUALIFICATION_ID = IMP24_ROLE_QUALIFICATION_PROTOCOL_ID;
 /** The IMP-24B execution under the protocol identity is terminal and may not
- * resume. IMP-24C authorizes this distinct successor execution identity. */
+ * resume. IMP-24C's r1 successor is also terminal and remains an explicit
+ * historical identity so its retained evidence can never be mistaken for the
+ * current campaign. */
 export const IMP24_ROLE_QUALIFICATION_CLOSED_EXECUTION_ID =
   IMP24_ROLE_QUALIFICATION_PROTOCOL_ID;
-export const IMP24_ROLE_QUALIFICATION_EXECUTION_ID =
+export const IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID =
   "s16-forward-role-qualification-v3-envelope-r1" as const;
+/** IMP-24D authorizes this fresh execution identity only after its separately
+ * retained transport-smoke gate passes. Merely importing this constant creates
+ * no state root and grants no live-call authorization. */
+export const IMP24_ROLE_QUALIFICATION_EXECUTION_ID =
+  "s16-forward-role-qualification-v3-envelope-r2" as const;
 export const IMP24_CORPUS_SCHEMA = "imp24-role-qualification-corpus-v3" as const;
 export const IMP24_CORPUS_BUNDLE_SCHEMA = "imp24-role-qualification-corpus-bundle-v1" as const;
 export const IMP24_CORPUS_AUDIT_SCHEMA = "imp24-model-free-corpus-audit-v1" as const;

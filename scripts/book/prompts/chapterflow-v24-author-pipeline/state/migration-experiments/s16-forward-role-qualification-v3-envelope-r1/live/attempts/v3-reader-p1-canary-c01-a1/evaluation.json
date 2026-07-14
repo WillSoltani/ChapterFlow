@@ -1,0 +1,15 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-reader-p1-canary-c01-a1",
+  "requestSha256": "f88add9406802f9726b05d1e155f533aa55c63804ce90830652c95282164041a",
+  "receiptSha256": "77ba3bf0d7a43e83a997a1bbc145a898ccd64c67b545ff34b51578a0523e8f99",
+  "executionEvidenceSha256": "e8fd15bd4b0479ca28cabb55748eb9b17281484aabef2c2d3bfc41804ac0e575",
+  "rawOutputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "evaluationSha256": null,
+  "parsedOutputSha256": null,
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": null,
+  "terminalReason": "integrity_failure: forward reviewer: codex exec failed (ok=false, exitCode=1, outcome=infrastructure_failure)",
+  "evaluation": null,
+  "evaluationArtifactSha256": "f1b569cf76147231fc568ddb99a897f0b96f9ad01f9981a8b014f151902a3d6e"
+}

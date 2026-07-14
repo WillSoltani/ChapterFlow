@@ -33,7 +33,7 @@ import {
   type Imp24InstrumentCertificationReport,
 } from "./imp24InstrumentCertification.js";
 import {
-  IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
   IMP24_ROLE_QUALIFICATION_ID,
   certifyImp24Corpora,
   type Imp24CorpusAuditPass,
@@ -106,7 +106,7 @@ export const IMP24C_PRE_LIVE_ARTIFACT_PATHS = {
   schedule: `${IMP24_CONTRACTS_REL}/qualification-schedule.v3-envelope.json`,
   callBudget: `${IMP24_CONTRACTS_REL}/qualification-call-budget.v3-envelope.json`,
   parityReference: `${IMP24_CONTRACTS_REL}/production-qualification-parity-reference.json`,
-  executionSpec: `${PIPELINE_REL}/state/migration-experiments/${IMP24_ROLE_QUALIFICATION_EXECUTION_ID}/execution-spec.json`,
+  executionSpec: `${PIPELINE_REL}/state/migration-experiments/${IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID}/execution-spec.json`,
   runbook: `${REPORTS_REL}/IMP-24C_PRE_LIVE_RUNBOOK.md`,
   implementationReport: `${REPORTS_REL}/implementation-report.imp-24.pre-live.json`,
   freezeJson: `${REPORTS_REL}/IMP-24C_PRE_LIVE_FREEZE.json`,
@@ -133,7 +133,7 @@ export type Imp24BPreLiveFreezeCore = {
   schema: typeof IMP24C_PRE_LIVE_FREEZE_SCHEMA;
   status: typeof IMP24B_PRE_LIVE_FREEZE_STATUS;
   promptId: "IMP-24C";
-  experimentId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
+  experimentId: typeof IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID;
   branch: typeof IMP24B_BRANCH;
   draftPr: typeof IMP24B_DRAFT_PR;
   lifecycle: {
@@ -442,7 +442,7 @@ function successorExecutionSpec(args: {
     schema: "imp24c-successor-execution-spec-v1",
     promptId: "IMP-24",
     continuationPromptId: "IMP-24C",
-    executionId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    executionId: IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
     predecessorExecution: {
       executionId: IMP24_ROLE_QUALIFICATION_ID,
       disposition: "BLOCKED_ZERO_CALL_CONTROL_PLANE_DEFECT",
@@ -456,7 +456,7 @@ function successorExecutionSpec(args: {
       qualificationProtocolId: IMP24_ROLE_QUALIFICATION_ID,
       semanticsChanged: false,
     },
-    stateRoot: `${PIPELINE_REL}/state/migration-experiments/${IMP24_ROLE_QUALIFICATION_EXECUTION_ID}`,
+    stateRoot: `${PIPELINE_REL}/state/migration-experiments/${IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID}`,
     frozenBindings: args,
     routePolicy: {
       authMode: "chatgpt",
@@ -708,7 +708,7 @@ function implementationReport(args: {
     lifecycleNote: "No effective CI-green implementation checkpoint or evidence commit exists yet; null is the truthful qualifying lifecycle value, not a placeholder. Failed pre-live candidates remain recorded in the worktree ledger.",
     oldQualificationV1Closed: true,
     oldQualificationV2Closed: true,
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
     contractCount: args.contracts.contractCount,
     preExistingContractHashesUnchanged: args.contracts.preExistingContractHashesUnchanged,
     productionQualificationParity: true,
@@ -814,7 +814,7 @@ export function validateImp24BPreLiveFreeze(value: unknown): string[] {
   const freeze = value as Imp24BPreLiveFreeze;
   if (freeze.schema !== IMP24C_PRE_LIVE_FREEZE_SCHEMA) issues.push("schema mismatch");
   if (freeze.status !== IMP24B_PRE_LIVE_FREEZE_STATUS) issues.push("status mismatch");
-  if (freeze.experimentId !== IMP24_ROLE_QUALIFICATION_EXECUTION_ID) issues.push("experiment mismatch");
+  if (freeze.experimentId !== IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID) issues.push("experiment mismatch");
   if (freeze.lifecycle?.implementationCommit !== null || freeze.lifecycle?.evidenceCommit !== null) issues.push("pre-commit lifecycle IDs must be null");
   if (freeze.frozenAssertions?.firstLiveCallOccurred !== false
     || freeze.frozenAssertions?.promptsFrozen !== true
@@ -1012,7 +1012,7 @@ export function buildImp24BPreLiveFreeze(options: BuildImp24BPreLiveFreezeOption
     schema: IMP24C_PRE_LIVE_FREEZE_SCHEMA,
     status: IMP24B_PRE_LIVE_FREEZE_STATUS,
     promptId: "IMP-24C",
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
     branch: IMP24B_BRANCH,
     draftPr: IMP24B_DRAFT_PR,
     lifecycle: {

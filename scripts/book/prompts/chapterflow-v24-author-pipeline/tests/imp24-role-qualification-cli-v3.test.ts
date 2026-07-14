@@ -208,6 +208,7 @@ test("IMP-24 V3 qualification CLI loads fresh artifacts, discovers local candida
         },
         runCampaign: async (args) => {
           campaignCalls += 1;
+          args.loadInput();
           observed = args;
           return injectedResult;
         },
@@ -225,16 +226,48 @@ test("IMP-24 V3 qualification CLI loads fresh artifacts, discovers local candida
   assert.equal(wired.executeLive, true);
   assert.equal(wired.expectedHeadSha, HEAD);
   assert.equal(wired.workflowRunId, WORKFLOW_RUN_ID);
-  assert.equal(wired.input.experimentId, IMP24_ROLE_QUALIFICATION_EXECUTION_ID);
-  assert.equal(wired.input.corpusCertification.status, "PASS");
-  assert.equal(wired.input.candidateAvailability.entries.length, 12);
-  assert.ok(wired.input.candidateAvailability.entries.every((entry) => entry.status === "AVAILABLE"));
-  assert.equal(wired.input.candidateAvailability.policyBytesSha256,
+  const wiredInput = wired.loadInput();
+  assert.equal(wiredInput.experimentId, IMP24_ROLE_QUALIFICATION_EXECUTION_ID);
+  assert.equal(wiredInput.corpusCertification.status, "PASS");
+  assert.equal(wiredInput.candidateAvailability.entries.length, 12);
+  assert.ok(wiredInput.candidateAvailability.entries.every((entry) => entry.status === "AVAILABLE"));
+  assert.equal(wiredInput.candidateAvailability.policyBytesSha256,
     IMP24_CANDIDATE_AVAILABILITY_POLICY_BYTES_SHA256);
   assert.equal("executor" in wired, false, "the CLI test must not expose a spawn/model seam");
   assert.equal("clock" in wired, false, "the official campaign must own its evidence timestamps");
-  assert.equal("calibration" in wired.input, false);
-  assert.equal("attestation" in wired.input, false);
+  assert.equal("calibration" in wiredInput, false);
+  assert.equal("attestation" in wiredInput, false);
+});
+
+test("IMP-24D r2 CLI defers every artifact and models-cache read until the retained-smoke campaign barrier passes", async () => {
+  let artifactReads = 0;
+  let availabilityReads = 0;
+  let campaignCalls = 0;
+  await assert.rejects(runMigrationBakeoffCli(["imp24-role-qualification-v3"], {
+    "execute-live": true,
+    "head-sha": HEAD,
+    "workflow-run-id": String(WORKFLOW_RUN_ID),
+    "models-cache": "/must/not/be/read/models_cache.json",
+  }, {
+    imp24RoleQualificationV3: {
+      repositoryRoot: REPOSITORY_ROOT,
+      loadArtifacts: () => {
+        artifactReads += 1;
+        throw new Error("artifact loader crossed smoke barrier");
+      },
+      discoverAvailability: (() => {
+        availabilityReads += 1;
+        throw new Error("availability discovery crossed smoke barrier");
+      }) as typeof discoverCandidateAvailabilityV3,
+      runCampaign: async () => {
+        campaignCalls += 1;
+        throw new Error("retained smoke PASS is missing");
+      },
+    },
+  }), /retained smoke PASS is missing/);
+  assert.equal(campaignCalls, 1);
+  assert.equal(artifactReads, 0);
+  assert.equal(availabilityReads, 0);
 });
 
 test("IMP-24 CLI cannot resume or attest immutable V1/V2 or closed zero-call V3 execution identities", async () => {

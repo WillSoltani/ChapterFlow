@@ -40,6 +40,7 @@ import {
   type ForwardV3RouteBinding,
 } from "./forwardRoleAssignmentFreezeV3.js";
 import { IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH } from "./forwardProductionInstrumentSeal.js";
+import { verifyRetainedImp24DTransportSmoke } from "./forwardTransportSmokeEvidenceV3.js";
 
 export const IMP24_IMPLEMENTATION_CI_GATE_SCHEMA = "imp24-implementation-ci-gate-v4" as const;
 export const IMP24_ROLE_QUALIFICATION_CAMPAIGN_REPORT_SCHEMA = "imp24-role-qualification-campaign-report-v1" as const;
@@ -249,7 +250,9 @@ export type RunImp24RoleQualificationCampaignV3Args = {
   workflowRunId: number;
   repositoryRoot: string;
   experimentDir: string;
-  input: UnpreparedLiveRoleQualificationInputV3;
+  /** Official CLI defers all qualification artifact/cache reads until after
+   * retained smoke PASS and exact implementation CI both validate. */
+  loadInput: () => UnpreparedLiveRoleQualificationInputV3;
   preflight: {
     authJsonPath?: string;
     codexBinary?: string;
@@ -667,7 +670,7 @@ export function buildImp24ImplementationCiGateFromEvidence(args: {
   return gate;
 }
 
-function collectImp24ImplementationCiGate(args: {
+export function collectImp24ImplementationCiGate(args: {
   repositoryRoot: string;
   expectedHeadSha: string;
   workflowRunId: number;
@@ -797,11 +800,11 @@ function pathsFor(args: RunImp24RoleQualificationCampaignV3Args): Imp24Qualifica
     roleRegistry: resolve(liveDir, "role-registry.json"),
     callLedger: resolve(liveDir, "call-ledger.json"),
     qualificationReportJson: resolve(experimentDir, "qualification-report.json"),
-    qualificationReportDocsJson: resolve(reportDir, "ROLE_QUALIFICATION_V3_R1_LIVE_RESULT.json"),
+    qualificationReportDocsJson: resolve(reportDir, "ROLE_QUALIFICATION_V3_R2_LIVE_RESULT.json"),
     roleAssignmentFreeze: resolve(experimentDir, "role-assignment-freeze.json"),
-    roleAssignmentFreezeDocsJson: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3_R1.json"),
-    qualificationReportMarkdown: resolve(reportDir, "ROLE_QUALIFICATION_V3_R1_LIVE_RESULT.md"),
-    roleAssignmentFreezeMarkdown: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3_R1.md"),
+    roleAssignmentFreezeDocsJson: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3_R2.json"),
+    qualificationReportMarkdown: resolve(reportDir, "ROLE_QUALIFICATION_V3_R2_LIVE_RESULT.md"),
+    roleAssignmentFreezeMarkdown: resolve(reportDir, "ROLE_ASSIGNMENT_FREEZE_V3_R2.md"),
   };
 }
 
@@ -1092,6 +1095,32 @@ export async function runImp24RoleQualificationCampaignV3(
       ...forbiddenPreflightSeams.map((key) => `preflight.${key}`),
     ].join(", ")}`);
 
+  // IMP-24D successor barrier. This retained, model-free proof is validated
+  // before a live GitHub query, auth read, CLI probe, r2 directory write, or
+  // qualification call. Smoke control artifacts carry only their own IDs.
+  const smokeProof = verifyRetainedImp24DTransportSmoke({
+    repositoryRoot: args.repositoryRoot,
+    expectedImplementationHeadSha: args.expectedHeadSha,
+  });
+  const finalSmokeCycle = smokeProof.report.cycles.at(-1);
+  requireCondition(finalSmokeCycle !== undefined
+      && finalSmokeCycle.workflowRunId === args.workflowRunId,
+  "r2 qualification workflow run ID differs from the exact final smoke implementation CI gate");
+  const smokeGate = parseJson<Imp24ImplementationCiGateV1>(
+    smokeProof.finalImplementationCiGatePath,
+    "IMP-24D transport-smoke implementation CI gate",
+  );
+  validateImp24ImplementationCiGate({
+    gate: smokeGate,
+    expectedHeadSha: args.expectedHeadSha,
+    checkout: smokeGate.trustedEvidence.raw.checkout,
+  });
+  const smokeCompletedAt = smokeProof.report.cycles.at(-1)?.completedAt;
+  requireCondition(typeof smokeCompletedAt === "string"
+      && Number.isFinite(Date.parse(smokeCompletedAt))
+      && Date.now() > Date.parse(smokeCompletedAt),
+  "r2 qualification cannot start until after the retained final transport-smoke PASS completed");
+
   const now = () => new Date();
   requireGitSha(args.expectedHeadSha, "caller-supplied implementation HEAD");
   requireCondition(Number.isSafeInteger(args.workflowRunId) && args.workflowRunId > 0,
@@ -1126,7 +1155,10 @@ export async function runImp24RoleQualificationCampaignV3(
     workflowRunId: args.workflowRunId,
     verifiedAt: gateVerifiedAt,
   });
-  const prepared = prepareLiveRoleQualificationV3({ repositoryRoot: args.repositoryRoot, input: args.input });
+  const prepared = prepareLiveRoleQualificationV3({
+    repositoryRoot: args.repositoryRoot,
+    input: args.loadInput(),
+  });
   const plan = buildRoleQualificationPlanV3(prepared.input);
   const verifiedAt = retainedVerifiedAt(paths.preflight, undefined, now);
   const preflight = await preflightLiveRoleQualificationV3(prepared.input, {
@@ -1134,6 +1166,8 @@ export async function runImp24RoleQualificationCampaignV3(
     repositoryRoot: args.repositoryRoot,
     verifiedAt,
   });
+  requireCondition(Date.parse(preflight.verifiedAt) > Date.parse(smokeCompletedAt),
+    "r2 qualification preflight does not occur after the final transport-smoke PASS");
 
   // Every immutable authorizer and the 464/928 plan is on disk before the
   // first possible model call. Existing files are create-once exact resumes.
@@ -1161,6 +1195,9 @@ export async function runImp24RoleQualificationCampaignV3(
     schedule: plan.schedule,
     evaluateOutput: prepared.evaluateOutput,
   });
+  requireCondition(live.ledger.entries.every((entry) =>
+    Date.parse(entry.requestedAt) > Date.parse(smokeCompletedAt)),
+  "retained r2 qualification ledger predates or overlaps final transport-smoke PASS");
   const qualifiedAt = retainedQualifiedAt(paths.qualificationResult, undefined, now);
   const result = await runRoleQualificationV3(prepared.input, {
     executor: live.executor,
@@ -1168,6 +1205,9 @@ export async function runImp24RoleQualificationCampaignV3(
     retainAttemptEvaluation: live.retainAttemptEvaluation,
     qualifiedAt: () => qualifiedAt,
   });
+  requireCondition(live.ledger.entries.every((entry) =>
+    Date.parse(entry.requestedAt) > Date.parse(smokeCompletedAt)),
+  "r2 qualification ledger contains a request that did not occur after transport-smoke PASS");
 
   // The live executor updates this same path before/after every broker event;
   // rewrite it atomically once more so the completed ledger has no torn tail.

@@ -87,6 +87,48 @@ export type CodexRunnerArgs = {
  *  (write a chapter file, drop a submission JSON) without a real `codex`. */
 export type CodexRunner = (args: CodexRunnerArgs) => Promise<{ stdout: string; stderr: string; code: number }>;
 
+export type CodexRunnerProcessFailureKind = "timeout" | "spawn_error";
+
+/** After SIGKILL, prefer the child's close event so trailing pipe bytes are
+ * retained. A descendant can keep inherited pipes open indefinitely, though,
+ * so the diagnostic path has one short deterministic upper bound. */
+export const CODEX_RUNNER_POST_KILL_GRACE_MS = 1_000;
+
+/** A runner rejection that crossed (or tried to cross) the OS process
+ * boundary. Unlike a plain Error, it retains every stdout/stderr byte decoded
+ * before the timeout/spawn failure so the caller can persist bounded,
+ * redacted diagnostics without rerunning the process. */
+export class CodexRunnerProcessError extends Error {
+  readonly failureKind: CodexRunnerProcessFailureKind;
+  readonly errorName: string;
+  readonly errorMessage: string;
+  readonly timedOut: boolean;
+  readonly exitCode: number | null;
+  readonly stdout: string;
+  readonly stderr: string;
+
+  constructor(args: {
+    failureKind: CodexRunnerProcessFailureKind;
+    errorName: string;
+    errorMessage: string;
+    timedOut: boolean;
+    exitCode: number | null;
+    stdout: string;
+    stderr: string;
+    cause?: unknown;
+  }) {
+    super(args.errorMessage, args.cause === undefined ? undefined : { cause: args.cause });
+    this.name = "CodexRunnerProcessError";
+    this.failureKind = args.failureKind;
+    this.errorName = args.errorName;
+    this.errorMessage = args.errorMessage;
+    this.timedOut = args.timedOut;
+    this.exitCode = args.exitCode;
+    this.stdout = args.stdout;
+    this.stderr = args.stderr;
+  }
+}
+
 /** Exact hermetic process boundary. The callback runs after every pre-run
  * envelope check and the effective-context manifest write have succeeded, and
  * immediately before the runner is invoked. A callback failure therefore
@@ -258,31 +300,103 @@ export function codexExecArgv(task: string, sandbox: CodexSandbox, writableRoots
   return argv;
 }
 
-const defaultCodexRunner: CodexRunner = ({ bin, argv, cwd, env, timeoutMs }) =>
+export const defaultCodexRunner: CodexRunner = ({ bin, argv, cwd, env, timeoutMs }) =>
   new Promise((resolvePromise, rejectPromise) => {
-    const child = spawn(bin, argv, { cwd, env, stdio: ["ignore", "pipe", "pipe"] });
-    let stdout = "";
-    let stderr = "";
+    let child: ReturnType<typeof spawn>;
+    try {
+      child = spawn(bin, argv, { cwd, env, stdio: ["ignore", "pipe", "pipe"] });
+    } catch (error) {
+      const detail = error instanceof Error ? error : new Error(String(error));
+      rejectPromise(new CodexRunnerProcessError({
+        failureKind: "spawn_error",
+        errorName: detail.name,
+        errorMessage: detail.message,
+        timedOut: false,
+        exitCode: null,
+        stdout: "",
+        stderr: "",
+        cause: error,
+      }));
+      return;
+    }
+    // Retain bytes until the process observation is finalized. Decoding each
+    // `data` chunk separately corrupts a UTF-8 code point split across chunks
+    // and would make the retained byte/hash evidence describe replacement
+    // characters rather than the exact CLI text.
+    const stdoutChunks: Buffer[] = [];
+    const stderrChunks: Buffer[] = [];
+    const stdoutText = (): string => Buffer.concat(stdoutChunks).toString("utf8");
+    const stderrText = (): string => Buffer.concat(stderrChunks).toString("utf8");
     let settled = false;
-    const timer = setTimeout(() => {
-      if (settled) return;
-      settled = true;
-      child.kill("SIGKILL");
-      rejectPromise(new Error(`codex exec timed out after ${timeoutMs}ms`));
-    }, timeoutMs);
-    child.stdout.on("data", (d) => (stdout += d.toString()));
-    child.stderr.on("data", (d) => (stderr += d.toString()));
-    child.on("error", (err) => {
+    let timedOut = false;
+    let postKillTimer: NodeJS.Timeout | null = null;
+
+    const rejectProcess = (error: CodexRunnerProcessError): void => {
       if (settled) return;
       settled = true;
       clearTimeout(timer);
-      rejectPromise(err);
+      if (postKillTimer !== null) clearTimeout(postKillTimer);
+      rejectPromise(error);
+    };
+
+    const timeoutError = (exitCode: number | null): CodexRunnerProcessError =>
+      new CodexRunnerProcessError({
+        failureKind: "timeout",
+        errorName: "TimeoutError",
+        errorMessage: `codex exec timed out after ${timeoutMs}ms`,
+        timedOut: true,
+        exitCode,
+        stdout: stdoutText(),
+        stderr: stderrText(),
+      });
+
+    const timer = setTimeout(() => {
+      if (settled) return;
+      timedOut = true;
+      // Wait for `close` after SIGKILL. Stream `data` events emitted while the
+      // child terminates must be included in the typed timeout observation.
+      // If kill itself errors, the `error` handler below still returns a typed
+      // timeout because the timeout boundary was crossed first.
+      child.kill("SIGKILL");
+      postKillTimer = setTimeout(() => {
+        // A descendant may still own inherited pipe descriptors. Stop
+        // observing them after the bounded grace window; the error below
+        // retains every byte captured up to this deterministic boundary.
+        child.stdout?.destroy();
+        child.stderr?.destroy();
+        rejectProcess(timeoutError(
+          typeof child.exitCode === "number" && child.exitCode >= 0 ? child.exitCode : null,
+        ));
+      }, CODEX_RUNNER_POST_KILL_GRACE_MS);
+    }, timeoutMs);
+    child.stdout?.on("data", (d) => stdoutChunks.push(Buffer.from(d)));
+    child.stderr?.on("data", (d) => stderrChunks.push(Buffer.from(d)));
+    child.on("error", (err) => {
+      rejectProcess(new CodexRunnerProcessError({
+        failureKind: timedOut ? "timeout" : "spawn_error",
+        errorName: timedOut ? "TimeoutError" : err.name,
+        errorMessage: timedOut ? `codex exec timed out after ${timeoutMs}ms` : err.message,
+        timedOut,
+        // Node uses negative libuv error codes (for example -2/ENOENT) when a
+        // process never spawned. Those are not child exit codes.
+        exitCode: timedOut && typeof child.exitCode === "number" && child.exitCode >= 0
+          ? child.exitCode
+          : null,
+        stdout: stdoutText(),
+        stderr: stderrText(),
+        cause: err,
+      }));
     });
     child.on("close", (code) => {
       if (settled) return;
+      if (timedOut) {
+        rejectProcess(timeoutError(typeof code === "number" ? code : null));
+        return;
+      }
       settled = true;
       clearTimeout(timer);
-      resolvePromise({ stdout, stderr, code: code ?? -1 });
+      if (postKillTimer !== null) clearTimeout(postKillTimer);
+      resolvePromise({ stdout: stdoutText(), stderr: stderrText(), code: code ?? -1 });
     });
   });
 

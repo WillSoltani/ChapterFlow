@@ -1,0 +1,43 @@
+{
+  "schema": "imp24-role-qualification-live-call-ledger-v3",
+  "experimentId": "s16-forward-role-qualification-v3-envelope-r1",
+  "freezeSha256": "74bd0cbad4724fab436b726324d1400e2bb2aad820a5f6f4b8cfe0ba3b606446",
+  "certificationSha256": "cd3c6450337a3c29be5812c52608f9805cb50606d8de066c6ac1e8f94ca2bc4f",
+  "productionInstrumentSealSha256": "22bda57b70062160cc560adb46b9ab32b2ba316c901898727cafba10faaabab5",
+  "entries": [
+    {
+      "attemptId": "v3-reader-p1-canary-c01-a1",
+      "scheduleId": "v3-reader-p1-canary-c01",
+      "requestSha256": "f88add9406802f9726b05d1e155f533aa55c63804ce90830652c95282164041a",
+      "evidenceEnvelopeSha256": "dc2e76b95c1249f7c2a8bb66b2bebf9d8c5e4bbd06c70b3a1c0e603403630907",
+      "evidenceEnvelopeBytesSha256": "5aa369d97e8923a03ab1fbc20e92752eec144fcbe65f850130d193febbbd57c4",
+      "receiptSha256": "77ba3bf0d7a43e83a997a1bbc145a898ccd64c67b545ff34b51578a0523e8f99",
+      "executionEvidenceSha256": "e8fd15bd4b0479ca28cabb55748eb9b17281484aabef2c2d3bfc41804ac0e575",
+      "evaluationArtifactSha256": "f1b569cf76147231fc568ddb99a897f0b96f9ad01f9981a8b014f151902a3d6e",
+      "status": "integrity_failure",
+      "cached": false,
+      "requestedAt": "2026-07-14T06:35:37.094Z",
+      "completedAt": "2026-07-14T06:35:44.967Z"
+    },
+    {
+      "attemptId": "v3-reader-p1-canary-c02-a1",
+      "scheduleId": "v3-reader-p1-canary-c02",
+      "requestSha256": "0ef04fd6bae27bf91ce15d091e69b809037c797f3bd873809257afc95927793c",
+      "evidenceEnvelopeSha256": "24833b4620e5c4a47e5c7794f63fbd4281544c4ba8d80c39c71e2deb48104559",
+      "evidenceEnvelopeBytesSha256": "7d854a5a43ae445fe99823300df42499aa12188e0afad8ff652f617e31bb10ab",
+      "receiptSha256": "025c38c6c531e079f901c256a11bf2040684f1100486db38b8c1834f49a83a47",
+      "executionEvidenceSha256": "d37a041ee183b4bcc78fb4da6461bdf776e451ca66ebeddeff4394796dcfad1c",
+      "evaluationArtifactSha256": "984e3fed59e896589f1f99d7c52d1c034f64251b0958959ebfd645cbad5aa950",
+      "status": "integrity_failure",
+      "cached": false,
+      "requestedAt": "2026-07-14T06:35:37.159Z",
+      "completedAt": "2026-07-14T06:35:46.554Z"
+    }
+  ],
+  "brokerRequests": 2,
+  "codexExecInvocations": 2,
+  "cachedReceipts": 0,
+  "infrastructureReplays": 0,
+  "maxPlanCapacityEvents": 0,
+  "apiCallsMade": 0
+}

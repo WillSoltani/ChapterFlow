@@ -434,6 +434,7 @@ test("IMP-24 V3 whole-phase resume audit stops a partial canary before its fresh
       evidenceEnvelopeSha256: partialRequest.evidenceEnvelopeSha256,
       evidenceEnvelopeBytesSha256: partialRequest.evidenceEnvelopeBytesSha256,
       receiptSha256: null,
+      processDiagnosticsSha256: null,
       executionEvidenceSha256: null,
       evaluationArtifactSha256: null,
       status: "REQUESTED",
@@ -456,7 +457,7 @@ test("IMP-24 V3 whole-phase resume audit stops a partial canary before its fresh
         evaluateOutput: kit.evaluateOutput,
         retainAttemptEvaluation: live.retainAttemptEvaluation,
       });
-    })(), /resume audit requires exact five-file evidence/);
+    })(), /resume audit requires exact seven-file evidence/);
     assert.equal(spawnCalls, 0,
       "the fresh sibling must never race ahead of a partial retained attempt in the same mapPool batch");
     assert.equal(existsSync(resolve(phaseDir, "attempts", `${freshSibling.scheduleId}-a1`)), false);

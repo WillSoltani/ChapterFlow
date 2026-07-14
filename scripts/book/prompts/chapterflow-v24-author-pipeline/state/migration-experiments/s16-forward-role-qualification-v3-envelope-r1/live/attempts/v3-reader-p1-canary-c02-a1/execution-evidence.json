@@ -1,0 +1,42 @@
+{
+  "schema": "imp24-role-qualification-live-execution-evidence-v3",
+  "attemptId": "v3-reader-p1-canary-c02-a1",
+  "requestSha256": "0ef04fd6bae27bf91ce15d091e69b809037c797f3bd873809257afc95927793c",
+  "receiptSha256": "025c38c6c531e079f901c256a11bf2040684f1100486db38b8c1834f49a83a47",
+  "invocation": "RUNNER_RETURNED",
+  "evidenceComplete": true,
+  "sessionId": "imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311",
+  "schemaRequested": true,
+  "schemaBoundAtRunner": true,
+  "finalMessageSource": "stdout-fallback",
+  "responseProduced": true,
+  "rawFinalOutputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "rawFinalOutputBytes": 0,
+  "effectiveContextManifest": {
+    "kind": "effective-context-manifest",
+    "relPath": "exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.manifest.json",
+    "bytes": 2995,
+    "bytesSha256": "4c1c00ee97e72d8f37e38ae9b7a773144bd8e5f5504de7f290b8792d1f266fdd"
+  },
+  "routeSidecar": {
+    "kind": "route",
+    "relPath": "exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.route.json",
+    "bytes": 646,
+    "bytesSha256": "7fcef34a2d0627e46943fade96c38f656d44b4e5ad10dff4cf8432a035b61d44"
+  },
+  "structuredOutputSidecar": {
+    "kind": "structured-output",
+    "relPath": "exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.structured.json",
+    "bytes": 634,
+    "bytesSha256": "4396f8e27ddd9ea987926705cf23b7ef91cadf2e239539164c11e801ff51fc4e"
+  },
+  "resultSidecar": {
+    "kind": "exec-result",
+    "relPath": "exec/logs/2026-07-14-063537-imp24-v3-dcda96f095733252b1b57004abaf95d6d11ac07ad8c56e80196b32aaf618f311.result.json",
+    "bytes": 574,
+    "bytesSha256": "ab325e89bfb008a338f3ecabfd73fdf542c827bc11a368672cbfea2457f0d780"
+  },
+  "missingRequiredSidecars": [],
+  "unexpectedSidecarRelPaths": [],
+  "executionEvidenceSha256": "d37a041ee183b4bcc78fb4da6461bdf776e451ca66ebeddeff4394796dcfad1c"
+}

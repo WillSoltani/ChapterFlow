@@ -31,15 +31,15 @@
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardReviewerExecutor.ts"
     },
     {
-      "bytesSha256": "8876ca151c720500598c825060f03d6ef3aba68bc419783eeb4e3e9963c30710",
+      "bytesSha256": "6f460ab7e3b86ff8e4b0a8e5ce06b5f1d7af793520f05e185a94186cabd01cbe",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleAssignmentFreezeV3.ts"
     },
     {
-      "bytesSha256": "72f97528d819debb43105529a3e1f9c1ac813487573f37a4adf57d192d0c22c5",
+      "bytesSha256": "b1c7d02ddcc816da21b1835b103069aacf0b499ea856b4329b0da50cba4a5c45",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts"
     },
     {
-      "bytesSha256": "1aeb987d9a277b03f51eca7e01ae09dbadcf60c78a47c9ced7a04855f86c4891",
+      "bytesSha256": "17a4402a543c00cd4fee1d4249dd9116c38897a68868611471211a56dccde8db",
       "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts"
     },
     {
@@ -598,7 +598,7 @@
     }
   },
   "modelCalls": 0,
-  "paritySha256": "7ab47df0aeea82c83c7e6c8db8c7fbeaa7e9488dc76916ea6ddace105aa508d4",
+  "paritySha256": "1cf48ebfca83dfa81f72eb5ad2735183daf3b102c1f4b2ab8aa41dfff0a1e8d7",
   "protocol": "review-evidence-envelope-v1",
   "schema": "imp24-production-qualification-parity-v1",
   "status": "VERIFIED_SHARED_IMPLEMENTATION"

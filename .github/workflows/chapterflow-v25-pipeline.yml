@@ -148,11 +148,24 @@ jobs:
       - name: Verify production instrument seal
         run: node --import tsx src/cli.ts migration-bakeoff forward-verify-production-instrument-seal-v2 --json
 
-      - name: Reproduce and verify model-free IMP-24C pre-live artifacts read-only
+      - name: Verify historical IMP-24C r1 closure and IMP-24D observability freeze read-only
+        shell: bash
         run: |
+          set -euo pipefail
           node --import tsx src/cli.ts migration-bakeoff imp24-materialize-thresholds --json
           node --import tsx src/cli.ts migration-bakeoff imp24-certify-instrument --json
-          node --import tsx src/cli.ts migration-bakeoff imp24-materialize-pre-live-freeze --verify --json
+          smoke_report="../../../../docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.json"
+          if [[ -f "$smoke_report" ]]; then
+            observability_commit="$(jq -r '.observabilityImplementationCommit // empty' "$smoke_report")"
+          else
+            observability_commit=""
+          fi
+          if [[ "$observability_commit" =~ ^[0-9a-f]{40}$ ]] && [[ "$observability_commit" != "$GITHUB_SHA" ]]; then
+            node --import tsx src/cli.ts migration-bakeoff imp24-materialize-observability-freeze \
+              --verify-historical --observability-commit "$observability_commit" --json
+          else
+            node --import tsx src/cli.ts migration-bakeoff imp24-materialize-observability-freeze --verify --json
+          fi
 
       - name: Verify IMP-24C terminal attestation read-only when present
         shell: bash
@@ -163,6 +176,17 @@ jobs:
           final_report="../../../../docs/v25/reports/IMP-24C_FINAL_REPORT.json"
           if [[ -f "$final_report" ]]; then
             node --import tsx src/cli.ts migration-bakeoff imp24-materialize-final-attestation --verify-retained --json
+          fi
+
+      - name: Verify IMP-24D final attestation read-only when present
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          final_report="../../../../docs/v25/reports/IMP-24D_FINAL_REPORT.json"
+          if [[ -f "$final_report" ]]; then
+            node --import tsx src/cli.ts migration-bakeoff imp24d-materialize-final-attestation --verify-retained --json
           fi
 
       - name: Prove no live route was invoked

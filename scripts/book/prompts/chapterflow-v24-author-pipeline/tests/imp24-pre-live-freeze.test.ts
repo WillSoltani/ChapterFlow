@@ -342,8 +342,9 @@ test("IMP-24C reproduces the old terminal-rematerialization conflict fixture and
 
 test("IMP-24C dedicated V25 workflow uses only read-only lifecycle verification commands", () => {
   const workflow = readFileSync(resolve(REPOSITORY_ROOT, ".github/workflows/chapterflow-v25-pipeline.yml"), "utf8");
-  assert.match(workflow, /imp24-materialize-pre-live-freeze --verify --json/);
+  assert.match(workflow, /imp24-materialize-observability-freeze --verify --json/);
   assert.doesNotMatch(workflow, /imp24-materialize-pre-live-freeze --write/);
+  assert.doesNotMatch(workflow, /imp24-materialize-pre-live-freeze --verify --json/);
   assert.match(workflow, /imp24-materialize-final-attestation --verify-retained --json/);
   assert.doesNotMatch(workflow, /imp24-materialize-final-attestation --write/);
   assert.match(workflow, /Require a clean worktree/);
@@ -358,7 +359,7 @@ test("IMP-24C dedicated model-free CI commands preserve every checkout byte", ()
   for (const args of [
     ["migration-bakeoff", "imp24-materialize-thresholds", "--json"],
     ["migration-bakeoff", "imp24-certify-instrument", "--json"],
-    ["migration-bakeoff", "imp24-materialize-pre-live-freeze", "--verify", "--json"],
+    ["migration-bakeoff", "imp24-materialize-observability-freeze", "--verify", "--json"],
     ["migration-bakeoff", "forward-verify-production-instrument-seal-v2", "--json"],
   ]) {
     execFileSync(process.execPath, ["--import", "tsx", "src/cli.ts", ...args], {

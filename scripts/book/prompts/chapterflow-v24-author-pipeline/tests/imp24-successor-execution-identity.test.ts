@@ -8,6 +8,7 @@ import {
   IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
   IMP24_ROLE_QUALIFICATION_ID,
   IMP24_ROLE_QUALIFICATION_PROTOCOL_ID,
+  IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
 } from "../src/bakeoff/migration/imp24Corpus.js";
 import {
   IMP24_FROZEN_ROLE_THRESHOLDS,
@@ -32,12 +33,14 @@ function readJson(path: string): Record<string, unknown> {
   return JSON.parse(readFileSync(path, "utf8")) as Record<string, unknown>;
 }
 
-test("IMP-24C separates the successor execution identity from the frozen V3 protocol identity", () => {
+test("IMP-24D keeps protocol and r1 identities frozen while advancing only the current execution to r2", () => {
   assert.equal(IMP24_ROLE_QUALIFICATION_PROTOCOL_ID, "s16-forward-role-qualification-v3-envelope");
   assert.equal(IMP24_ROLE_QUALIFICATION_ID, IMP24_ROLE_QUALIFICATION_PROTOCOL_ID);
   assert.equal(IMP24_ROLE_QUALIFICATION_CLOSED_EXECUTION_ID, IMP24_ROLE_QUALIFICATION_PROTOCOL_ID);
-  assert.equal(IMP24_ROLE_QUALIFICATION_EXECUTION_ID, "s16-forward-role-qualification-v3-envelope-r1");
+  assert.equal(IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID, "s16-forward-role-qualification-v3-envelope-r1");
+  assert.equal(IMP24_ROLE_QUALIFICATION_EXECUTION_ID, "s16-forward-role-qualification-v3-envelope-r2");
   assert.notEqual(IMP24_ROLE_QUALIFICATION_EXECUTION_ID, IMP24_ROLE_QUALIFICATION_CLOSED_EXECUTION_ID);
+  assert.notEqual(IMP24_ROLE_QUALIFICATION_EXECUTION_ID, IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID);
 
   const corpus = readJson(resolve(CONTRACT_ROOT, "role-qualification-corpus-bundle.v3-envelope.json"));
   const certification = readJson(resolve(CONTRACT_ROOT, "instrument-certification-binding.json"));
@@ -56,14 +59,14 @@ test("IMP-24C separates the successor execution identity from the frozen V3 prot
   const closure = readJson(resolve(REPOSITORY_ROOT, "docs", "v25", "reports", "IMP-24B_ZERO_CALL_LIFECYCLE_CLOSURE.json"));
   assert.equal(closure.executionId, IMP24_ROLE_QUALIFICATION_CLOSED_EXECUTION_ID);
   assert.equal(closure.mayResume, false);
-  assert.equal((closure.supersededBy as Record<string, unknown>).executionId, IMP24_ROLE_QUALIFICATION_EXECUTION_ID);
+  assert.equal((closure.supersededBy as Record<string, unknown>).executionId, IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID);
   assert.equal(
     basename((closure.stateTreeBinding as Record<string, unknown>).path as string),
     IMP24_ROLE_QUALIFICATION_CLOSED_EXECUTION_ID,
   );
 });
 
-test("IMP-24C candidate discovery mints only the successor execution identity without reordering profiles", () => {
+test("IMP-24D candidate discovery mints only the r2 execution identity without reordering profiles", () => {
   const roots = mkTestRoots("imp24-successor-execution-identity");
   try {
     const effortsByModel = new Map<string, Set<string>>();
@@ -104,7 +107,7 @@ test("IMP-24C candidate discovery mints only the successor execution identity wi
   }
 });
 
-test("IMP-24C campaign accepts only the exact successor state root and cannot resume the closed execution", () => {
+test("IMP-24D campaign accepts only the exact r2 state root and cannot resume closed or r1 execution", () => {
   const successorRoot = resolve(
     REPOSITORY_ROOT,
     "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments",
@@ -115,10 +118,19 @@ test("IMP-24C campaign accepts only the exact successor state root and cannot re
     "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments",
     IMP24_ROLE_QUALIFICATION_CLOSED_EXECUTION_ID,
   );
+  const r1Root = resolve(
+    REPOSITORY_ROOT,
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments",
+    IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
+  );
   assert.equal(resolveImp24SuccessorExperimentDir(REPOSITORY_ROOT, successorRoot), successorRoot);
   assert.throws(
     () => resolveImp24SuccessorExperimentDir(REPOSITORY_ROOT, closedRoot),
-    /requires the exact s16-forward-role-qualification-v3-envelope-r1 retained state root/,
+    /requires the exact s16-forward-role-qualification-v3-envelope-r2 retained state root/,
+  );
+  assert.throws(
+    () => resolveImp24SuccessorExperimentDir(REPOSITORY_ROOT, r1Root),
+    /requires the exact s16-forward-role-qualification-v3-envelope-r2 retained state root/,
   );
 });
 

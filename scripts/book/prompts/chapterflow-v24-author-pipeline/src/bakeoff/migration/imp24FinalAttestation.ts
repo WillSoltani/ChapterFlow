@@ -23,7 +23,7 @@ import {
   IMP24C_PRE_LIVE_ARTIFACT_PATHS,
   IMP24C_STARTING_HEAD,
 } from "./imp24PreLiveFreeze.js";
-import { IMP24_ROLE_QUALIFICATION_EXECUTION_ID } from "./imp24Corpus.js";
+import { IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID } from "./imp24Corpus.js";
 import {
   IMP24_BASE_MAXIMUM_CALLS,
   IMP24_HARD_MAXIMUM_CALLS,
@@ -92,7 +92,7 @@ export type Imp24CFinalAttestation = {
   schema: typeof IMP24C_FINAL_ATTESTATION_SCHEMA;
   promptId: "IMP-24";
   continuationPromptId: "IMP-24C";
-  executionId: typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID;
+  executionId: typeof IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID;
   lifecycleBaselineCommit: string;
   implementationCommit: string;
   evidenceCommit: string;
@@ -501,7 +501,7 @@ function validateClosure(value: JsonObject): void {
     ],
     supersededBy: {
       continuationPromptId: "IMP-24C",
-      executionId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+      executionId: IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
     },
     modelCalls: 0,
   };
@@ -597,11 +597,14 @@ function validateRoleAssignment(args: {
 }): RoleSelection {
   const { value, terminal } = args;
   requireCondition(value.schema === "imp24-forward-role-assignment-freeze-v3", "role-assignment freeze schema mismatch");
-  requireCondition(value.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID, "role-assignment freeze execution identity mismatch");
+  requireCondition(value.experimentId === IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID, "role-assignment freeze execution identity mismatch");
   requireSha256(value.freezeSha256, "role-assignment freeze self hash");
   const { freezeSha256: _freezeSha256, ...core } = value;
   requireCondition(hashCanonical(core) === value.freezeSha256, "role-assignment freeze self hash drift");
-  validateForwardRoleAssignmentFreezeInternalV3(value as ForwardRoleAssignmentFreezeV3);
+  validateForwardRoleAssignmentFreezeInternalV3(
+    value as ForwardRoleAssignmentFreezeV3,
+    IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
+  );
 
   for (const [label, binding] of [
     ["role-assignment implementation CI gate hash", value.implementationCiGateSha256],
@@ -932,7 +935,7 @@ function buildImp24CFinalAttestationInternal(
   const { reportSha256: _reportSha256, ...terminalCore } = terminal.value;
   requireCondition(hashCanonical(terminalCore) === terminal.value.reportSha256,
     "terminal qualification report self hash drift");
-  requireCondition(terminal.value.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+  requireCondition(terminal.value.experimentId === IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
     "terminal qualification result belongs to another execution identity");
   validateTerminalCampaignControls(terminal.value, options.implementationCommit);
   if (terminal.value.implementationCommit !== undefined) {
@@ -1123,7 +1126,7 @@ function buildImp24CFinalAttestationInternal(
     startingRemoteHead: IMP24C_STARTING_HEAD,
     implementationCommit: options.implementationCommit,
     evidenceCommit: options.evidenceCommit,
-    experimentId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    experimentId: IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
     finalDecision: roleSetReady ? "PASS" : "BLOCKED",
     roleSetReady,
     readerPrimary: roles.readerPrimary,
@@ -1188,7 +1191,7 @@ function buildImp24CFinalAttestationInternal(
     schema: IMP24C_FINAL_ATTESTATION_SCHEMA,
     promptId: "IMP-24",
     continuationPromptId: "IMP-24C",
-    executionId: IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+    executionId: IMP24_ROLE_QUALIFICATION_R1_EXECUTION_ID,
     lifecycleBaselineCommit: baselineCommit,
     implementationCommit: options.implementationCommit,
     evidenceCommit: options.evidenceCommit,

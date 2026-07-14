@@ -36,9 +36,11 @@ import {
 import type { EffectiveContextManifestV1, ExecResultV1, InstructionSourceV1, WorkspaceFileV1 } from "../contracts/effectiveContext.js";
 import type { ChatgptAuthProofV1 } from "../contracts/routeContracts.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
-import { assertFlagsSupported, type CodexCliQualificationV1, ExecPreflightError } from "./cliQualification.js";
+import { type CodexCliQualificationV1, ExecPreflightError } from "./cliQualification.js";
+import { CODEX_EXEC_REQUIRED_FLAGS_BASE } from "./codexTransportConfig.js";
 
 export { ExecPreflightError } from "./cliQualification.js";
+export { hermeticExecArgv } from "./codexTransportConfig.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -118,11 +120,6 @@ export function assertChatgptSubscriptionAuth(authJsonPath: string): ChatgptAuth
   return { authMode: "chatgpt", apiKeyPresent: false, source: "auth.json" };
 }
 
-/** Flags every v1 hermetic spawn requires from the installed CLI. */
-const REQUIRED_FLAGS_BASE: readonly string[] = [
-  "--sandbox", "-c", "--ignore-user-config", "--ignore-rules", "--output-last-message",
-];
-
 function makeProfile(
   role: AgentRole,
   workingDir: WorkingDirPolicyV1,
@@ -147,7 +144,7 @@ function makeProfile(
     defaultReasoningEffort: route.effort,
     outputMode: "text",
     captureLastMessage: true,
-    requiredCliFlags: REQUIRED_FLAGS_BASE,
+    requiredCliFlags: CODEX_EXEC_REQUIRED_FLAGS_BASE,
     cleanup: "always",
   };
 }
@@ -327,46 +324,6 @@ export function discoverInstructionChain(cwd: string, neutralized: boolean): Ins
     } catch { /* unreadable — skip; absence from the manifest is itself evidence */ }
   }
   return chain;
-}
-
-/** Build the hermetic `codex exec` argv. Flag order is FIXED (manifests diff
- *  cleanly): sandbox → git-check → isolation → project-doc neutralization →
- *  model → effort → add-dirs → output capture → task (always last). */
-export function hermeticExecArgv(opts: {
-  profile: ExecutionProfileV1;
-  qualification: CodexCliQualificationV1;
-  sandbox: CodexSandboxV1;
-  model: string;
-  reasoningEffort: string;
-  writableRoots: readonly string[];
-  skipGitRepoCheck: boolean;
-  lastMessagePath: string;
-  task: string;
-  /** §16 D1 (owner directive 2026-07-11): when a structured-output JSON Schema
-   *  file is supplied, the broker binds `--output-schema <file>` so the model's
-   *  FINAL response is constrained to the schema at the execution layer — not by
-   *  a prose legend. Stays on the ChatGPT-subscription codex exec route. */
-  outputSchemaPath?: string;
-}): string[] {
-  const required = opts.outputSchemaPath ? [...opts.profile.requiredCliFlags, "--output-schema"] : opts.profile.requiredCliFlags;
-  assertFlagsSupported(opts.qualification, required);
-  if (!opts.profile.allowedSandboxes.includes(opts.sandbox)) {
-    throw new ExecPreflightError(
-      `role "${opts.profile.role}" does not allow sandbox "${opts.sandbox}" (allowed: ${opts.profile.allowedSandboxes.join(", ")})`,
-    );
-  }
-  const argv = ["exec", "--sandbox", opts.sandbox];
-  if (opts.skipGitRepoCheck) argv.push("--skip-git-repo-check");
-  if (opts.profile.ignoreUserConfig) argv.push("--ignore-user-config");
-  if (opts.profile.ignoreRules) argv.push("--ignore-rules");
-  if (opts.profile.neutralizeProjectDocs) argv.push("-c", "project_doc_max_bytes=0");
-  argv.push("-c", `model=${opts.model}`);
-  argv.push("-c", `model_reasoning_effort=${opts.reasoningEffort}`);
-  if (opts.sandbox === "workspace-write") for (const dir of opts.writableRoots) argv.push("--add-dir", dir);
-  if (opts.outputSchemaPath) argv.push("--output-schema", opts.outputSchemaPath);
-  argv.push("--output-last-message", opts.lastMessagePath);
-  argv.push(opts.task);
-  return argv;
 }
 
 export function assembleEffectiveContextManifest(opts: {

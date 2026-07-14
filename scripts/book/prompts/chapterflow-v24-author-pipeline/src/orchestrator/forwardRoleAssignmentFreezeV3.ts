@@ -545,9 +545,10 @@ function roleAssignmentToRefs(roleAssignment: FixedRoleAssignmentV1): RoleJudgeR
  * an internally stale assignment, route, policy, or conductor config. */
 export function validateForwardRoleAssignmentFreezeInternalV3(
   freeze: ForwardRoleAssignmentFreezeV3,
+  expectedExperimentId: string = IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
 ): void {
   requireCondition(freeze?.schema === FORWARD_ROLE_ASSIGNMENT_FREEZE_V3_SCHEMA
-      && freeze.experimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+      && freeze.experimentId === expectedExperimentId,
     "forward V3 role freeze has the wrong schema/identity");
   requireCondition(freeze.freezeSha256 === hashCanonical(withoutSelfHash(freeze)),
     "forward V3 role freeze self hash drift");
@@ -680,7 +681,7 @@ export function validateForwardRoleAssignmentFreezeInternalV3(
       && reviewConfig?.schema === FORWARD_FROZEN_REVIEW_CONFIG_SCHEMA
       && reviewConfig.readerBar === 80
       && reviewConfig.reviewProtocolVersion === FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2
-      && reviewConfig.qualificationExperimentId === IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
+      && reviewConfig.qualificationExperimentId === expectedExperimentId,
     "forward V3 conductor review config drift");
   requireCondition(reviewConfig.roleAssignmentSha256 === freeze.roleAssignmentSha256
       && hashCanonical(reviewConfig.roleAssignment) === hashCanonical(freeze.roleAssignment)
