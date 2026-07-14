@@ -1,0 +1,165 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c16-a1",
+  "requestSha256": "e6fc872a3a848db1ee4b14f937677424ea424b66cf3066e97c4cd0b37e4f8e3e",
+  "receiptSha256": "9f8b7b74ab83f9a442cfe60cfb35fdef1310e1f08d3cb0687c8f8083bb693ed6",
+  "executionEvidenceSha256": "740aa227b8d4b58705647615f978ff5780d1236e5b8122070b6070d85ddaf476",
+  "rawOutputSha256": "49328deed004cb4aed8732844a06f346a1c7a6673978ffe42e5fcc8a3f800181",
+  "evaluationSha256": "a213c227a44eb1d54860ef1365475b8a0140acebd4bad791a6de79757933e860",
+  "parsedOutputSha256": "ef66e75caecdadd6fd5e1d06e5bd0eb8914f60beef5fbdf598432709722d16a6",
+  "assembledReviewSha256": "e073df85d42fae6badc7fc7de5cc891f985ec8a6f3fcb117b0feecb3ff7f835c",
+  "evidenceReferenceResolutionSha256": "51278d891911fdb1eb3653523ce80e2b94f70ee121fde1c4b3fd163c3f83c18a",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=claim_strength_overreach",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "causalOverreachSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The source supports the bounded mechanism that frequent, measurable low-value checks can benefit attention companies, but the chapter escalates this into proof and a universal, exceptionless causal outcome for every person. That exceeds the plan's mechanistic maximum and violates the packet warning against guaranteed outcomes.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017"
+              ]
+            }
+          ],
+          "rationale": "The chapter is partly grounded in the supplied claim and mechanism, but its absolute causation language is stronger than the evidence permits."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "9a18e4658ecd40d5dfcb53d87c965faa987b5bea4b3330b93c93e46fc85a7385",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "5b7791410ccc9dd6ec0ba1e6c21a62e198a2fc80a3874d6797ef669b13c717b2",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The source supports the bounded mechanism that frequent, measurable low-value checks can benefit attention companies, but the chapter escalates this into proof and a universal, exceptionless causal outcome for every person. That exceeds the plan's mechanistic maximum and violates the packet warning against guaranteed outcomes.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017"
+              ],
+              "findingId": "unit.fact.ch01.fact.5:source-finding:001",
+              "chapterEvidenceSpans": [
+                "This proves that attention companies benefit from low-value checking as long as it is frequent and measurable. always causes the stated outcome for every person, without exception."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.5\"\n  ]\n}",
+                "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+                "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "The chapter is partly grounded in the supplied claim and mechanism, but its absolute causation language is stronger than the evidence permits.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit"
+      ],
+      "rationale": "U1: The chapter is partly grounded in the supplied claim and mechanism, but its absolute causation language is stronger than the evidence permits."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "This proves that attention companies benefit from low-value checking as long as it is frequent and measurable. always causes the stated outcome for every person, without exception."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ATOMIC-017"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.5\"\n  ]\n}",
+            "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+            "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "39f41a4dddc5872df6458b60d3b08818ecb052611f4b231de10cd33f80b31bd2"
+}

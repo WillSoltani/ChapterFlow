@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c23-a1",
+  "requestSha256": "e88035ca79e2f49f761aa9c0ceaf207dcc99f96cd28c4c71fe74e83b957aa36d",
+  "receiptSha256": "96c395df7ee195fa2504d29c3cf24a4a5e5105fff068003863dc6e27c630157a",
+  "executionEvidenceSha256": "491a19221bd1d22a703eec491f3d76074f7ba4fda3a25a7099c21b54461f9ff3",
+  "rawOutputSha256": "ea9ff0137fb2daf6a9eee8c009344e67a00eda61bb55daf4223a92bfa319b637",
+  "evaluationSha256": "ff76c57c3879d5ca073c0c9f6a04036f908d5bfdc98d4527f388db0934ce918c",
+  "parsedOutputSha256": "1ed07b4a72037725762c5ef6de6005759091e977b8bfb3a86114bcbd4ae64c8e",
+  "assembledReviewSha256": "3af09cab05a04a6896534172b4cb4871db05f01037f406f6d719222638fac490",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter explicitly presents the application as hypothetical, stays descriptive, and uses only permitted generic role and concrete-action details. It makes no sourced attribution, factual outcome claim, or prohibited specific claim."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "702359462e68c6eb5391f1162926151e10605ec348fbfb621e7cd387cf7e75cb",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9b03842e719fb56ff39c4b849893ba05156ecf19b1d7d80d0e0495274df93874",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter explicitly presents the application as hypothetical, stays descriptive, and uses only permitted generic role and concrete-action details. It makes no sourced attribution, factual outcome claim, or prohibited specific claim.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter explicitly presents the application as hypothetical, stays descriptive, and uses only permitted generic role and concrete-action details. It makes no sourced attribution, factual outcome claim, or prohibited specific claim."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "86859143a4f9addd85fddf08d23a46c18114ad7bc4151a05a3b0bb3b88e40ca7"
+}

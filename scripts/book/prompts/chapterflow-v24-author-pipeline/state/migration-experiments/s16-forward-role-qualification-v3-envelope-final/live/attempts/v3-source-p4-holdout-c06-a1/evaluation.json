@@ -1,0 +1,179 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c06-a1",
+  "requestSha256": "77b0f998d498ce341fe6a048ddf241e05e4e6e0438a5b4f610b00d772900968e",
+  "receiptSha256": "a112895cd19a56fcdd46e7911ca3c2c25f1a7b245012d296dbc313a44bf09f51",
+  "executionEvidenceSha256": "e3ec78c95cbffcdb1f4377ff5cfa78dbec43d3198cf1bd57632a0592a5427890",
+  "rawOutputSha256": "de8cd1aa24ec369c23d8f33b717d93ac79a41f34b587f180acb31ac3f72ebb91",
+  "evaluationSha256": "aa48f2813975d1a6ac11e5fab100332c352f44757f75d9afe7598231584e837a",
+  "parsedOutputSha256": "1a31907d22dd6a0d5cbb467adb46fd6de37e36daecee801705b59edd05263857",
+  "assembledReviewSha256": "10512d59029ab44f579570bd3c13ee6e6df393347958b2ad5754b1bec023bfb8",
+  "evidenceReferenceResolutionSha256": "93d583d53d161cd3663e137d0e990da045adb55b22671feb722904dfdc6c0d53",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "BLOCK; primary=source_contradiction",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "sourceContradictionSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "UNSUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "source_contradiction",
+              "secondaryCategories": [
+                "unsupported_attribution",
+                "claim_strength_overreach",
+                "missing_visible_framing",
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter presents the packet's identified common-error statement as an established conclusion from a named 2014 Stanford trial led by a named researcher. The inline source instead frames that statement as the wrong view and supplies the opposite mechanism: alerts shift control toward platform timing rather than merely helping users remember. The named trial and researcher are not supported by the packet evidence, and the wording overstates the source as a research-established result.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-ATOMIC-001",
+                "SRC-U001-ATOMIC-002",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ]
+            }
+          ],
+          "rationale": "The source-bound target allows a conceptual/mechanistic explanation tied to ch01.fact.4, but the chapter reverses the intended meaning and adds unsupported attribution details."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "a801a1f425d27046798a00aa43ca1b94a5d927c8b1d6e68ff4c7ac95d43d4119",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "07972fd7b3d6d2c3b6088e3bfcf94a88e51adac43234fa9f58d7b7f7f3d14113",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "UNSUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "source_contradiction",
+              "secondaryCategories": [
+                "unsupported_attribution",
+                "claim_strength_overreach",
+                "missing_visible_framing",
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter presents the packet's identified common-error statement as an established conclusion from a named 2014 Stanford trial led by a named researcher. The inline source instead frames that statement as the wrong view and supplies the opposite mechanism: alerts shift control toward platform timing rather than merely helping users remember. The named trial and researcher are not supported by the packet evidence, and the wording overstates the source as a research-established result.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-ATOMIC-001",
+                "SRC-U001-ATOMIC-002",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ],
+              "findingId": "unit.fact.ch01.fact.4:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The 2014 Stanford Digital Autonomy Trial led by Dr. Elena Marquez established: Notifications are neutral reminders that merely save people from forgetting useful information."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"id\": \"ch01.fact.4\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. Notifications are neutral reminders that merely save people from forgetting useful information. Many reminders are optimized for return visits, not user priority, so they impose someone else's timing.\"\n}",
+                "{\n  \"label\": \"fact.ch01.fact.4.commonError\",\n  \"value\": \"Notifications are neutral reminders that merely save people from forgetting useful information.\"\n}",
+                "{\n  \"label\": \"fact.ch01.fact.4.whyWrong\",\n  \"value\": \"Many reminders are optimized for return visits, not user priority, so they impose someone else's timing.\"\n}",
+                "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+                "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing."
+              ]
+            }
+          ],
+          "rationale": "The source-bound target allows a conceptual/mechanistic explanation tied to ch01.fact.4, but the chapter reverses the intended meaning and adds unsupported attribution details.",
+          "unitId": "unit.fact.ch01.fact.4",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit",
+        "U1:named-specificity-forbidden",
+        "U1:required-source-support",
+        "unit.fact.ch01.fact.4:source-finding:001"
+      ],
+      "rationale": "U1: The source-bound target allows a conceptual/mechanistic explanation tied to ch01.fact.4, but the chapter reverses the intended meaning and adds unsupported attribution details."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The 2014 Stanford Digital Autonomy Trial led by Dr. Elena Marquez established: Notifications are neutral reminders that merely save people from forgetting useful information."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-ATOMIC-001",
+            "SRC-U001-ATOMIC-002",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"id\": \"ch01.fact.4\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. Notifications are neutral reminders that merely save people from forgetting useful information. Many reminders are optimized for return visits, not user priority, so they impose someone else's timing.\"\n}",
+            "{\n  \"label\": \"fact.ch01.fact.4.commonError\",\n  \"value\": \"Notifications are neutral reminders that merely save people from forgetting useful information.\"\n}",
+            "{\n  \"label\": \"fact.ch01.fact.4.whyWrong\",\n  \"value\": \"Many reminders are optimized for return visits, not user priority, so they impose someone else's timing.\"\n}",
+            "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+            "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing."
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "87c1b99ecf2d0f77a2aeec708450df4edab3986d49cc78355d665d243a47a624"
+}

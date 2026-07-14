@@ -1,0 +1,87 @@
+{
+  "schema": "effective-context-manifest-v1",
+  "manifestVersion": 1,
+  "sessionId": "imp24-v3-63de881b303c24be6206982213b97f261d3e154d869b573d4832af8b2fa23718",
+  "role": "chapter-reviewer",
+  "profileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "bin": {
+    "path": "codex",
+    "version": "codex-cli 0.144.1"
+  },
+  "argv": [
+    "exec",
+    "--sandbox",
+    "read-only",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "-c",
+    "project_doc_max_bytes=0",
+    "-c",
+    "model=gpt-5.6-sol",
+    "-c",
+    "model_reasoning_effort=xhigh",
+    "--output-schema",
+    "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/source-integrity-model-output-v2.schema.json",
+    "--output-last-message",
+    "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-final/live/exec/sessions/cf-exec-session-tOUk0W/last-message.txt",
+    "<task-sha256:322b51242717b5e43f0c62b048eea88d07dbf96d366848aa8f0e81b39b2b5c06>"
+  ],
+  "cwd": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-source-verifier-3J0Oxv",
+  "cwdPolicy": "isolated-workspace",
+  "envKeys": [
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE",
+    "CHAPTERFLOW_NO_API_CODEX_QC",
+    "CHAPTERFLOW_SESSION_ID",
+    "CODEX_HOME",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "LC_CTYPE",
+    "LOGNAME",
+    "PATH",
+    "SHELL",
+    "TERM",
+    "TMPDIR",
+    "USER"
+  ],
+  "callerEnvKeys": [],
+  "strictEnv": {
+    "CHAPTERFLOW_NO_API_CODEX_QC": "1",
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE": "1"
+  },
+  "codexHome": {
+    "dir": "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-final/live/exec/sessions/cf-exec-session-tOUk0W/codex-home",
+    "authMaterial": "auth.json",
+    "authSourcePath": "/Users/radinsoltani/.codex/auth.json"
+  },
+  "instructionSources": [],
+  "workspace": {
+    "dir": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-source-verifier-3J0Oxv",
+    "files": [
+      {
+        "relPath": "evidence/SOURCE-V3-HOLDOUT-source-bound-detail-ch01-fact-4-defect.review-evidence-envelope-v1.json",
+        "sha256": "0e83e3606f6397fd4ad96a140b65960e4bfc740d3f77eabe828ec2ff23515549",
+        "bytes": 10386
+      }
+    ]
+  },
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "xhigh",
+  "sandbox": "read-only",
+  "timeoutMs": 900000,
+  "taskSha256": "322b51242717b5e43f0c62b048eea88d07dbf96d366848aa8f0e81b39b2b5c06",
+  "taskBytes": 11649,
+  "qualification": {
+    "cliVersion": "codex-cli 0.144.1",
+    "flagsRequired": [
+      "--sandbox",
+      "-c",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--output-last-message"
+    ],
+    "synthetic": false
+  },
+  "createdAtIso": "2026-07-14T18:15:40.079Z"
+}

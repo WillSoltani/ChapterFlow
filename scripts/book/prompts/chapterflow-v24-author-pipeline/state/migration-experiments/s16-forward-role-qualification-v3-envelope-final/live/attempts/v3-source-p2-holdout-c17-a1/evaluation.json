@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c17-a1",
+  "requestSha256": "23f2abcc0cb71a71fa73f6329bd77c8244ab2a15b9218b89a89117ac1e777c7b",
+  "receiptSha256": "7e0d221db0dbbd7283435788e876f1df915eb998cb9e461a1d85c18af3b5b00b",
+  "executionEvidenceSha256": "374292d076333987d32209984c4e2b0e4a32212bf3b1e5ecc0b1cd2107a895d0",
+  "rawOutputSha256": "57430287206648c9e443bd191364c0758283dc24efbe174c02d620d70bc096bd",
+  "evaluationSha256": "3fa14fd452c20c9c72785cfe62ebfd9247f5257f79e29ba90458d6da5d7e5d2f",
+  "parsedOutputSha256": "c362e08be1a6e35b334d7abbc6d8f1200eb77163378b685b8dce5c53571743d2",
+  "assembledReviewSha256": "fd13fb100b57537f98d57e15159c26acaabe04a4e722820d7a5deef7a107aad4",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly hypothetical, stays descriptive, and uses only generic role/action details allowed by PLAN-U001. No source contradiction, attribution issue, overreach, missing framing, specificity leak, invented forbidden detail, or missing required evidence is present."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d952fcb823c8f171eb52be29402e7218b52aa2c165ecef8085e7dc211a79cef4",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "6aa9c6119612d9bf8f3ba8c854d3c9e98de1d328129cc0ac6151e4e1210d025d",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly hypothetical, stays descriptive, and uses only generic role/action details allowed by PLAN-U001. No source contradiction, attribution issue, overreach, missing framing, specificity leak, invented forbidden detail, or missing required evidence is present.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is visibly hypothetical, stays descriptive, and uses only generic role/action details allowed by PLAN-U001. No source contradiction, attribution issue, overreach, missing framing, specificity leak, invented forbidden detail, or missing required evidence is present."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "4cf7cd2dfa69fcc28c4605d4e62a57868430db94affee9a050bc353d122ab56a"
+}

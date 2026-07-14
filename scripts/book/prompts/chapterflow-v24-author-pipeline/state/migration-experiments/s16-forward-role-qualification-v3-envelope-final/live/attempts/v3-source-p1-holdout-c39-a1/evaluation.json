@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c39-a1",
+  "requestSha256": "7eba99df1e8a46d84450be5e15e7ca4a18476d9c50939a876a35185c35ff16d4",
+  "receiptSha256": "e35641647f1e4dc2b5e2303360cd6c815770826be15c470575d516a482696f6b",
+  "executionEvidenceSha256": "736afdb6e1d07f078757070858ced88ff2465ec2d6762532b5c85b65d9e660a0",
+  "rawOutputSha256": "7b5111ff36688683dafeef83bbcf4dacf4966b2ba29f5e450a1482f9b0791adb",
+  "evaluationSha256": "c18b89182eb205ef5d19edb4b5b800892f1a725e2af1bca802be6d3465911c87",
+  "parsedOutputSha256": "a6c3893143892fec3827dc03160ef61374eb5a004b8a10691f12aa03d0a755b6",
+  "assembledReviewSha256": "e5f7015ec345aed3bcd3f8010e666bde358f31fe36ba84b2e1e4389acd14525e",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter explicitly attributes the claim to the source and closely matches both the cited source claim and its documented mechanism, including the supported two-minute detail. It stays within the permitted mechanistic strength and introduces no unsupported specificity."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "c2ed9e355f7389974f027014dabacaa31773f0c64a9e33a640fdba042c8af975",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "1fefb7a64ddce347aa49ac494cbf6f1ac7b28157517e4bd04075dbdfe3430406",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter explicitly attributes the claim to the source and closely matches both the cited source claim and its documented mechanism, including the supported two-minute detail. It stays within the permitted mechanistic strength and introduces no unsupported specificity.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter explicitly attributes the claim to the source and closely matches both the cited source claim and its documented mechanism, including the supported two-minute detail. It stays within the permitted mechanistic strength and introduces no unsupported specificity."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "52733852aeb594fd94416f26148ace56d618eb3514cd14d7f5bdc6930ecd2b12"
+}

@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c39-a1",
+  "requestSha256": "1a73a27e8c8326d27858c60cba0aada010c10e387feea3c543b20dfd9a7fb049",
+  "receiptSha256": "57bc1b5380708f86b5cb3d41628bd0f6fc55f61cc8a1669c26cb355350d4ea96",
+  "executionEvidenceSha256": "323ed6ba1c3d4dd41b40ead52227ed819aa9b3ab86bbcf178aaf733eb516ac22",
+  "rawOutputSha256": "44c6f7d7bd701e94793e6834632bd66f238f887296154f1d0df18e9fe52323b5",
+  "evaluationSha256": "f20d31690dc93b866b053d8d7b862efc6cf21297b33c7f8b885845f149bcbb5c",
+  "parsedOutputSha256": "0b7a8976643e23dc9bb55fb2b45dccf5525e68aeb84a7241fb20b6ba5aa3774e",
+  "assembledReviewSha256": "d4ad2ca17e7d13b75dbe60681bf198d25fe242e988147de86182638e150a97ea",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter accurately presents the source-bound claim and mechanism from the allowed anchor, including the small-session aggregation logic and supported two-minute example, without adding unsupported specifics, stronger causal certainty, or forbidden leakage."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "c2ed9e355f7389974f027014dabacaa31773f0c64a9e33a640fdba042c8af975",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "1fefb7a64ddce347aa49ac494cbf6f1ac7b28157517e4bd04075dbdfe3430406",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter accurately presents the source-bound claim and mechanism from the allowed anchor, including the small-session aggregation logic and supported two-minute example, without adding unsupported specifics, stronger causal certainty, or forbidden leakage.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter accurately presents the source-bound claim and mechanism from the allowed anchor, including the small-session aggregation logic and supported two-minute example, without adding unsupported specifics, stronger causal certainty, or forbidden leakage."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "d7dcb7599732aa566e8e85c5f9c5371c0c96ea6655fdff774eb92711e65271e2"
+}

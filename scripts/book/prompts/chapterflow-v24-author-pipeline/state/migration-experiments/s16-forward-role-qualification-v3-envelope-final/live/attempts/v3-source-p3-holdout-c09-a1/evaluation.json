@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c09-a1",
+  "requestSha256": "cbb0a20035d614bd88a20e4879b7f0e55a745accb97d5be2d4c0b5b1cc5da4fa",
+  "receiptSha256": "0d8d327d76a9c44ff4ca2be8cd838c616a042acd3fbedecb01899741805f8bae",
+  "executionEvidenceSha256": "c10125504e8654352820e2aa6fb8040a047137e5a8fd791801599fb4cdbaa175",
+  "rawOutputSha256": "539519a4b49ae42bdad7a4d5c23760a3c2494d64f66354aa1b817020aa7c2641",
+  "evaluationSha256": "51af7b5e3f4d556729e12df98c854920a990882231a85f8de0c44742732255cf",
+  "parsedOutputSha256": "c00b8d63cd33bf41c979559bf917aabdfe66ab344cd543e89ba975310b419c06",
+  "assembledReviewSha256": "c130ace790167aa8ab0502bf4798040409baa0a4230211b83f3207a97df42959",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "The chapter accurately presents the source-backed mechanism, preserves its qualified scope, and introduces no unsupported attribution, named specificity, invented detail, or evidentiary gap."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "80fc7b7a08a60027d4288eb00ca852f54f3ca95932e7df50dd3f6e0324c84637",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "5a29850fdc1bcae5f69edd262527e29cd720c3bd222022bde7e15791f861f167",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "The chapter accurately presents the source-backed mechanism, preserves its qualified scope, and introduces no unsupported attribution, named specificity, invented detail, or evidentiary gap.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter accurately presents the source-backed mechanism, preserves its qualified scope, and introduces no unsupported attribution, named specificity, invented detail, or evidentiary gap."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "e72a04567bb7b4b586a66fee4005934789e22546473e444daefa18fdbc46a468"
+}

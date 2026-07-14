@@ -1,0 +1,173 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c36-a1",
+  "requestSha256": "9a76daa82577066b33b53341560b53169c8f27be307d8f0811a6d5ca31a7c3a7",
+  "receiptSha256": "7bed3ada712bcadc35b23ec3c1d1ab99b2163558102b32b9ddb8080fd030f336",
+  "executionEvidenceSha256": "5c45fbc81067242231ec64a04a6ed592cfe3f806789523a1bf0b1ae9ffc87c87",
+  "rawOutputSha256": "97d053f74bdcec41c1665254868bddc6892b3b012908ae2901afb2715b1d0f8a",
+  "evaluationSha256": "a2a6ce1fb1d15b81ed66a661f42dcbede7889ff2965ffce8ffa233ba17ccf2df",
+  "parsedOutputSha256": "576b5801e263aa61792d81ddd557cdc050cf89845c1bf7d4496096caa6569d4e",
+  "assembledReviewSha256": "8045f462788dc1ee222029a4743809efcfd3b3afaeb86aca4a67b79f1463508e",
+  "evidenceReferenceResolutionSha256": "2f69057dc24343a15903fa39188533975a83d2280e7ef3e68c0496b61c5c3107",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": false,
+      "fabricationSensitivity": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The chapter correctly uses the source-bound Like-button claim and mechanism, but it also attributes a specific 2018 sample size of exactly 47 participants to the chapter source. The provided source evidence does not contain that date, sample, participant count, or study-detail support.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-016",
+                "SRC-U001-ATOMIC-017"
+              ]
+            }
+          ],
+          "rationale": "The main Like-button feedback-signal claim and behavioral mechanism are supported by the source claim and mechanism evidence. The added research-sample attribution is unsupported and introduces an invented documented number/participant detail beyond the packet-local evidence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "8b23f1925c618e2dda2aa8f724c4167ef1f845a5d9ef09c8e2123328e8bfa209",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "ab12d7722ba33501eebc70e3277ed42d8d3467b99ef5c19e0748c0198b5649e7",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The chapter correctly uses the source-bound Like-button claim and mechanism, but it also attributes a specific 2018 sample size of exactly 47 participants to the chapter source. The provided source evidence does not contain that date, sample, participant count, or study-detail support.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-016",
+                "SRC-U001-ATOMIC-017"
+              ],
+              "findingId": "unit.fact.ch01.fact.3:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The source states: The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. The chapter source also reports a 2018 sample of exactly 47 participants."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"id\": \"ch01.fact.3\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status.\"\n}",
+                "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+                "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions.",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}",
+                "{\n  \"label\": \"packet.forbiddenClaims[1]\",\n  \"value\": \"Do not cast invented people as research subjects, participants, patients, or customers in a real case.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "The main Like-button feedback-signal claim and behavioral mechanism are supported by the source claim and mechanism evidence. The added research-sample attribution is unsupported and introduces an invented documented number/participant detail beyond the packet-local evidence.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit",
+        "U1:named-specificity-forbidden"
+      ],
+      "rationale": "U1: The main Like-button feedback-signal claim and behavioral mechanism are supported by the source claim and mechanism evidence. The added research-sample attribution is unsupported and introduces an invented documented number/participant detail beyond the packet-local evidence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The source states: The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. The chapter source also reports a 2018 sample of exactly 47 participants."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ATOMIC-016",
+            "SRC-U001-ATOMIC-017"
+          ],
+          "evidenceSpans": [
+            "{\n  \"id\": \"ch01.fact.3\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status.\"\n}",
+            "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+            "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions.",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}",
+            "{\n  \"label\": \"packet.forbiddenClaims[1]\",\n  \"value\": \"Do not cast invented people as research subjects, participants, patients, or customers in a real case.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "9ddd320f2183c3896c9d38e10c346c88ae7505eac1029e7aae05e902e09c07c3"
+}

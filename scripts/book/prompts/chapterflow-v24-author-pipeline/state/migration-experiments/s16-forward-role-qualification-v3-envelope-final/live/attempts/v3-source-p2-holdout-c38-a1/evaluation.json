@@ -1,0 +1,172 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c38-a1",
+  "requestSha256": "57ae2df8cc118880fde21ac75d5f64ca585ab0d5687cbd7992d2849fcfbc475d",
+  "receiptSha256": "6d6176b871611e7cf45d29118a0ad62e11873aa5f9883f6f5f472c990b76cdbb",
+  "executionEvidenceSha256": "84c7fdbf64c0d79516301250b19221f81a9f6768614eef393755e18180b159fc",
+  "rawOutputSha256": "f7b3626414dd36a4aaf0f3770d67a17f8d48a69ba501aae6d336bf3937342630",
+  "evaluationSha256": "79e70b02db92d2fa99f44374a25e80b592b5d9b5d1420f8e0a5b58015f56f5e2",
+  "parsedOutputSha256": "bcf04c5649ae710e1dce3f989f2bb07ce08bc90207186161293f0afed3bb7331",
+  "assembledReviewSha256": "1c05bca93a258295ade7c53db37f1a568ad66214d742dee2c23b49446048708b",
+  "evidenceReferenceResolutionSha256": "6436252f7a6e1578f1ff7c1337a91cbf74235f401316dee6127617511febad4a",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": false,
+      "fabricationSensitivity": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The chapter correctly reflects the packet's supported concept and mechanism, but it also attributes a specific 2018 sample of exactly 47 participants to the source. No supplied source, mechanism, anchor, or allowed evidence supports that date, sample size, or participant detail.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017",
+                "SRC-U001-ATOMIC-018"
+              ]
+            }
+          ],
+          "rationale": "The first two chapter sentences are supported by the source claim and mechanism, and the mechanistic strength is allowed by the plan. The added participant sample statement is a source-attributed documented number/detail without packet support, so the target is only partially supported."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "dc77387eb1dbcd2c5c2dee89909fdef78f366550b3f6ac9e02476ca5418e2757",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "7d37a00de677d686575847072c21e7b892eecdea0fd5da4c336bb7ede038f4e6",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The chapter correctly reflects the packet's supported concept and mechanism, but it also attributes a specific 2018 sample of exactly 47 participants to the source. No supplied source, mechanism, anchor, or allowed evidence supports that date, sample size, or participant detail.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017",
+                "SRC-U001-ATOMIC-018"
+              ],
+              "findingId": "unit.fact.ch01.fact.4:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The source states: Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. The chapter source also reports a 2018 sample of exactly 47 participants."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"id\": \"ch01.fact.4\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. Notifications are neutral reminders that merely save people from forgetting useful information. Many reminders are optimized for return visits, not user priority, so they impose someone else's timing.\"\n}",
+                "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+                "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing.",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}",
+                "{\n  \"label\": \"packet.forbiddenClaims[1]\",\n  \"value\": \"Do not cast invented people as research subjects, participants, patients, or customers in a real case.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "The first two chapter sentences are supported by the source claim and mechanism, and the mechanistic strength is allowed by the plan. The added participant sample statement is a source-attributed documented number/detail without packet support, so the target is only partially supported.",
+          "unitId": "unit.fact.ch01.fact.4",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden"
+      ],
+      "rationale": "U1: The first two chapter sentences are supported by the source claim and mechanism, and the mechanistic strength is allowed by the plan. The added participant sample statement is a source-attributed documented number/detail without packet support, so the target is only partially supported."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The source states: Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. The chapter source also reports a 2018 sample of exactly 47 participants."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ATOMIC-017",
+            "SRC-U001-ATOMIC-018"
+          ],
+          "evidenceSpans": [
+            "{\n  \"id\": \"ch01.fact.4\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. Notifications are neutral reminders that merely save people from forgetting useful information. Many reminders are optimized for return visits, not user priority, so they impose someone else's timing.\"\n}",
+            "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+            "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing.",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}",
+            "{\n  \"label\": \"packet.forbiddenClaims[1]\",\n  \"value\": \"Do not cast invented people as research subjects, participants, patients, or customers in a real case.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "b83c340d95bdde4f34f2850bbca0f9e82d95170e7635e767983c2e39e1caf766"
+}

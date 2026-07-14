@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c13-a1",
+  "requestSha256": "fc28994a5b84131c4b1d0548de93be9194771154aad75ca732f145c81fc42cf2",
+  "receiptSha256": "be7857c47c82b068b272593c87307abe88c4bd6afbbfdb350f827691cc69988a",
+  "executionEvidenceSha256": "ec44fae82fb4db39a180b48121f7d3e6ff24f6e724ae4beb43e4c0120a6b3da4",
+  "rawOutputSha256": "2e91402b42adb4e53664c785478c89221d5bfccbd33b26df0ec62224c9820dc2",
+  "evaluationSha256": "c9e5604b360d3021d3fe821d40cc9d74f6d26160ae8703733b8c51d39edac180",
+  "parsedOutputSha256": "3bd5aaae4c664137d03007c1a5154afdc0d25ddd141075b49b7c7eb5568ac8a2",
+  "assembledReviewSha256": "61ba3edc15a7522729b4491d2e000475d5d40175dccbeba57d281aa94dd5f442",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is directly supported by the allowed anchor, source claim, and source mechanism. Its visible caveat avoids a universal guarantee, and it adds no unsupported names, quantified effects, sibling-example leakage, or invented details."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "3e8cfc22d47b27719bcef430332deb41c891069f374131d43b4a6697cc7067e0",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "27c1a5de928fb2b9c45879eb7fe6665163596904a2af3c7ab3d2779b616a41b7",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is directly supported by the allowed anchor, source claim, and source mechanism. Its visible caveat avoids a universal guarantee, and it adds no unsupported names, quantified effects, sibling-example leakage, or invented details.",
+          "unitId": "unit.fact.ch01.fact.4",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter claim is directly supported by the allowed anchor, source claim, and source mechanism. Its visible caveat avoids a universal guarantee, and it adds no unsupported names, quantified effects, sibling-example leakage, or invented details."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "abf4dd0928e078678fc20c1c0207810ec7b242ca9bc332df95d1eae5d80f27ec"
+}

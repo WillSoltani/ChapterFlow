@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c23-a1",
+  "requestSha256": "3eff8f87cce5140447ae746b6e7c8dca815454c47f950a2498f69dff968441a2",
+  "receiptSha256": "328f3d5e695285f35b9b72efbbe2be82c1a6c964b6bb88edcc34eb906d069c5b",
+  "executionEvidenceSha256": "4cb7128510ce71ed0cb7b3a0850e57530f4482311ea13aa3abcec3cdabd845a3",
+  "rawOutputSha256": "65198f56cf500863d2dba69ea3d809b68e7aee88d118af94d93d2c40068da368",
+  "evaluationSha256": "bf7e87e7b86ac907423a03a96114c6369085d5fdd9e461e8bbf236822183efb4",
+  "parsedOutputSha256": "f0a816ac16c523ba07f5334f002bb4205d11846741bbefc78a8b9d62ecf96c90",
+  "assembledReviewSha256": "bf34f2d4eedb6334f93dabea0a171b8794f26ff01002c7122bd87169127e2d99",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The passage is visibly framed as hypothetical, stays within the permitted constructed application, and makes only a descriptive claim using an allowed concrete action without asserting factual outcomes or unsupported specifics."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "702359462e68c6eb5391f1162926151e10605ec348fbfb621e7cd387cf7e75cb",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9b03842e719fb56ff39c4b849893ba05156ecf19b1d7d80d0e0495274df93874",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The passage is visibly framed as hypothetical, stays within the permitted constructed application, and makes only a descriptive claim using an allowed concrete action without asserting factual outcomes or unsupported specifics.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The passage is visibly framed as hypothetical, stays within the permitted constructed application, and makes only a descriptive claim using an allowed concrete action without asserting factual outcomes or unsupported specifics."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "368a8640d4f0ea30b9e57bf572094e55e20992b121b71264ca4c3caee73255b3"
+}

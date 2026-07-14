@@ -1,0 +1,156 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c14-a1",
+  "requestSha256": "5f703bcb7d0c2dfb16b290c93b307eb5f4d5b89043365a297e0fc852e9040182",
+  "receiptSha256": "e748121432653978a365698d98ee201fdffcb75253e8668f12cb7bc1b2fdcf66",
+  "executionEvidenceSha256": "a99c1d7edc3918b9902a4e961bdc096708e7309b136fa7ca77cc5f71451754d1",
+  "rawOutputSha256": "242d160adfd21746e53b9b6bbfc117f83991dc5b61f5f44fb9494939ad6c631a",
+  "evaluationSha256": "0853868513cac2859e8520f5d2581143867d353af640602bc4141070e8a67211",
+  "parsedOutputSha256": "698694f047f5d05d90e19d5acccc4ea846665126cb2fbd7e03527b59b00db699",
+  "assembledReviewSha256": "833d38ba451e7183e11ea551929c8654578ea57dc011f476b181d94077b27673",
+  "evidenceReferenceResolutionSha256": "db9601ce7c132ba0fc3800ec7a7b415a83c0cd674821d6135a17c37d1a86ed18",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=claim_strength_overreach",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "causalOverreachSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [],
+              "severity": "major",
+              "explanation": "The source supports the stated design shift and its mechanism, but it does not support proof, guaranteed causation, or a universal outcome without exceptions. The chapter therefore exceeds the permitted mechanistic claim strength.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017"
+              ]
+            }
+          ],
+          "rationale": "The underlying mechanistic proposition is sourced, while the chapter's proof language and exceptionless universal guarantee are unsupported amplifications."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "53c8d58c38e791dbc63be127282ed8d62c01d8d6e8ad355a865bebbd268e0448",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "bf040152629d733459c84317c483118f1a707024ff58d03fcd88dbf56e4f1e62",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [],
+              "severity": "major",
+              "explanation": "The source supports the stated design shift and its mechanism, but it does not support proof, guaranteed causation, or a universal outcome without exceptions. The chapter therefore exceeds the permitted mechanistic claim strength.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017"
+              ],
+              "findingId": "unit.fact.ch01.fact.4:source-finding:001",
+              "chapterEvidenceSpans": [
+                "This proves that push alerts and feed design shift a tool from pull-based use to interruption-based use. always causes the stated outcome for every person, without exception."
+              ],
+              "sourceEvidenceSpans": [
+                "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+                "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing.",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "The underlying mechanistic proposition is sourced, while the chapter's proof language and exceptionless universal guarantee are unsupported amplifications.",
+          "unitId": "unit.fact.ch01.fact.4",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit"
+      ],
+      "rationale": "U1: The underlying mechanistic proposition is sourced, while the chapter's proof language and exceptionless universal guarantee are unsupported amplifications."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "This proves that push alerts and feed design shift a tool from pull-based use to interruption-based use. always causes the stated outcome for every person, without exception."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ATOMIC-017"
+          ],
+          "evidenceSpans": [
+            "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+            "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing.",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "4cacd1d5007a1132586f87f53ae3d490f27ea08a8cc46ff4a647bf5d5ea06fcc"
+}

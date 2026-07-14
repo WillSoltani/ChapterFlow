@@ -1,0 +1,162 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c36-a1",
+  "requestSha256": "b2f0c41e7f8124993145f0b20d09353f31f2121066375fab471d6c1b4909f6f5",
+  "receiptSha256": "2b8367a7c4d61445a86e913dacc5f739c7ccad294a595ae760e90e4c372987e2",
+  "executionEvidenceSha256": "6e3eccad76abf78cec15521f2186424801d27fb07535e46a282a097716d8a3c5",
+  "rawOutputSha256": "d432a1ac4633fcb389ffcd5dfc4042ff12394f8a0e2d689d23d1f89471136ec9",
+  "evaluationSha256": "1cad7d0d8f5865f2dab84aa8a243cf8c21cd7a876b24a645ec9d5693bbfca488",
+  "parsedOutputSha256": "5f117dab5f04ffb0c08b8f0d76568c06882ebcd9c53db7e303c2539ce8378a30",
+  "assembledReviewSha256": "b232f897d9583df289561ced15f45f849406686028fc1452ebbba1668ff9b2a1",
+  "evidenceReferenceResolutionSha256": "6e243fa2e8ccb057b130e984cb51967c123a1328593a7f0e4c9d358fbe2b83e2",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": false,
+      "fabricationSensitivity": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The chapter attributes a dated participant-count detail to the source, but the supplied source evidence contains no study date, sample, or participant count supporting that attribution.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ]
+            }
+          ],
+          "rationale": "The source supports the Like-button feedback mechanism and its behavioral rationale, but not the additional empirical-study specificity. Because that unsupported detail is expressly presented as source-reported, the packet is only partially supported and the attribution defect takes precedence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "8b23f1925c618e2dda2aa8f724c4167ef1f845a5d9ef09c8e2123328e8bfa209",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "ab12d7722ba33501eebc70e3277ed42d8d3467b99ef5c19e0748c0198b5649e7",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The chapter attributes a dated participant-count detail to the source, but the supplied source evidence contains no study date, sample, or participant count supporting that attribution.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ],
+              "findingId": "unit.fact.ch01.fact.3:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The source states: The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. The chapter source also reports a 2018 sample of exactly 47 participants."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"id\": \"ch01.fact.3\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status.\"\n}",
+                "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+                "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions."
+              ]
+            }
+          ],
+          "rationale": "The source supports the Like-button feedback mechanism and its behavioral rationale, but not the additional empirical-study specificity. Because that unsupported detail is expressly presented as source-reported, the packet is only partially supported and the attribution defect takes precedence.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden"
+      ],
+      "rationale": "U1: The source supports the Like-button feedback mechanism and its behavioral rationale, but not the additional empirical-study specificity. Because that unsupported detail is expressly presented as source-reported, the packet is only partially supported and the attribution defect takes precedence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The source states: The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. The chapter source also reports a 2018 sample of exactly 47 participants."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"id\": \"ch01.fact.3\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status.\"\n}",
+            "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+            "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions."
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "c873b0b6bf2d4f2d0253b85e509b865a2325f3093ec536df61fc06e30d59c131"
+}

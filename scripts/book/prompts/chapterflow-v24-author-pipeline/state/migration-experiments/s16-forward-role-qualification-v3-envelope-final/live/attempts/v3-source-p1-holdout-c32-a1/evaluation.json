@@ -1,0 +1,71 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c32-a1",
+  "requestSha256": "7f9230c1b3dc1de5db78322c3849cfa589383e94045360a9c243f3740782236d",
+  "receiptSha256": "7d228c0aa49d31c6ae04517e825780384a1d6893542219ddeb5c79362cbe5430",
+  "executionEvidenceSha256": "22712e1dc8fcbb165d84394cf35e90eaa73688e5300ffb20a39743bd05a7d66b",
+  "rawOutputSha256": "b4a04ceaa7455bc23b6af3abb48ae9b68c3a21c9ef53e13851926dda1c8327d0",
+  "evaluationSha256": "ae615679d8f68a0fcd7910a86f730467d7099b82747e17507655d1303e8786de",
+  "parsedOutputSha256": "965b4ccbdae649ca87695f359cd9f634977d14fedcea0e90729098187e05b6d1",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "minor",
+              "explanation": "The generic operational scenario is visibly hypothetical, but the exact quoted instruction adds scripted specificity beyond the plan’s concept-only detail allowance.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The role, workflow context, and descriptive modality fit the generic operational-scenario license. The precise quoted wording is the sole integrity defect because no evidence or detail allowance supports that level of specificity."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "430a7b8f0bed2a328a43efb09c85ba67506a1e8b840c920864d9c35ec1bc2e9c"
+}

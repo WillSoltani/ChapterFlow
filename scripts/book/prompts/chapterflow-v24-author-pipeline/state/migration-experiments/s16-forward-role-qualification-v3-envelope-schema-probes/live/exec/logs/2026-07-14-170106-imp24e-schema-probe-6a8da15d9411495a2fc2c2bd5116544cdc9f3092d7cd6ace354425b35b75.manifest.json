@@ -1,0 +1,94 @@
+{
+  "schema": "effective-context-manifest-v1",
+  "manifestVersion": 1,
+  "sessionId": "imp24e-schema-probe-6a8da15d9411495a2fc2c2bd5116544cdc9f3092d7cd6ace354425b35b7518a9",
+  "role": "chapter-reviewer",
+  "profileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "bin": {
+    "path": "codex",
+    "version": "codex-cli 0.144.1"
+  },
+  "argv": [
+    "exec",
+    "--sandbox",
+    "read-only",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "-c",
+    "project_doc_max_bytes=0",
+    "-c",
+    "model=gpt-5.6-sol",
+    "-c",
+    "model_reasoning_effort=xhigh",
+    "--output-schema",
+    "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/source-integrity-model-output-v2.schema.json",
+    "--output-last-message",
+    "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-schema-probes/live/exec/sessions/cf-exec-session-aLDxec/last-message.txt",
+    "<task-sha256:aecb1e2d445c26eb5b38335228c1a9c6f8def325d153cde410cefe134542da89>"
+  ],
+  "cwd": "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-schema-probes/live/workspaces/source",
+  "cwdPolicy": "isolated-workspace",
+  "envKeys": [
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE",
+    "CHAPTERFLOW_NO_API_CODEX_QC",
+    "CHAPTERFLOW_SESSION_ID",
+    "CODEX_HOME",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "LC_CTYPE",
+    "LOGNAME",
+    "PATH",
+    "SHELL",
+    "TERM",
+    "TMPDIR",
+    "USER"
+  ],
+  "callerEnvKeys": [],
+  "strictEnv": {
+    "CHAPTERFLOW_NO_API_CODEX_QC": "1",
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE": "1"
+  },
+  "codexHome": {
+    "dir": "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-schema-probes/live/exec/sessions/cf-exec-session-aLDxec/codex-home",
+    "authMaterial": "auth.json",
+    "authSourcePath": "/Users/radinsoltani/.codex/auth.json"
+  },
+  "instructionSources": [
+    {
+      "path": "/private/tmp/imp24b-v3-live.6FvE6D/repo/AGENTS.md",
+      "sha256": "a4e12e60d194059cc3d190ebd20c68608f6f9ffe777bbc2ded9134790451bce0",
+      "bytes": 242,
+      "neutralized": true
+    },
+    {
+      "path": "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/AGENTS.md",
+      "sha256": "15f7c18d5e3072a95b63932ac6f6a4216196be4a77de5ec19550d4cb08671f6b",
+      "bytes": 3403,
+      "neutralized": true
+    }
+  ],
+  "workspace": {
+    "dir": "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-schema-probes/live/workspaces/source",
+    "files": []
+  },
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "xhigh",
+  "sandbox": "read-only",
+  "timeoutMs": 300000,
+  "taskSha256": "aecb1e2d445c26eb5b38335228c1a9c6f8def325d153cde410cefe134542da89",
+  "taskBytes": 496,
+  "qualification": {
+    "cliVersion": "codex-cli 0.144.1",
+    "flagsRequired": [
+      "--sandbox",
+      "-c",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--output-last-message"
+    ],
+    "synthetic": false
+  },
+  "createdAtIso": "2026-07-14T17:01:06.892Z"
+}

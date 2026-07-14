@@ -1,0 +1,87 @@
+{
+  "schema": "effective-context-manifest-v1",
+  "manifestVersion": 1,
+  "sessionId": "imp24-v3-63f7e1e7b86083c9a728fc4b0e02bb0f7f5baa422c8ce1c9ae53a4c43e515a3c",
+  "role": "chapter-reviewer",
+  "profileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "bin": {
+    "path": "codex",
+    "version": "codex-cli 0.144.1"
+  },
+  "argv": [
+    "exec",
+    "--sandbox",
+    "read-only",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "-c",
+    "project_doc_max_bytes=0",
+    "-c",
+    "model=gpt-5.6-sol",
+    "-c",
+    "model_reasoning_effort=high",
+    "--output-schema",
+    "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/reader-experience-model-output-v2.schema.json",
+    "--output-last-message",
+    "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-final/live/exec/sessions/cf-exec-session-Nv9yiy/last-message.txt",
+    "<task-sha256:d81387f319947e8ae1bc89d2a8f5bbb1ae8c3d8a07671b3f267e52f3196d987b>"
+  ],
+  "cwd": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-direct-reader-0LWxax",
+  "cwdPolicy": "isolated-workspace",
+  "envKeys": [
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE",
+    "CHAPTERFLOW_NO_API_CODEX_QC",
+    "CHAPTERFLOW_SESSION_ID",
+    "CODEX_HOME",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "LC_CTYPE",
+    "LOGNAME",
+    "PATH",
+    "SHELL",
+    "TERM",
+    "TMPDIR",
+    "USER"
+  ],
+  "callerEnvKeys": [],
+  "strictEnv": {
+    "CHAPTERFLOW_NO_API_CODEX_QC": "1",
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE": "1"
+  },
+  "codexHome": {
+    "dir": "/private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-final/live/exec/sessions/cf-exec-session-Nv9yiy/codex-home",
+    "authMaterial": "auth.json",
+    "authSourcePath": "/Users/radinsoltani/.codex/auth.json"
+  },
+  "instructionSources": [],
+  "workspace": {
+    "dir": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-direct-reader-0LWxax",
+    "files": [
+      {
+        "relPath": "evidence/READER-V3-HOLDOUT-reader-visible-hard-blocker-willpower-ch02.review-evidence-envelope-v1.json",
+        "sha256": "2ef5dd70086a96612326437d8074372609eacaa853629b71652967cf3828912c",
+        "bytes": 19504
+      }
+    ]
+  },
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "high",
+  "sandbox": "read-only",
+  "timeoutMs": 900000,
+  "taskSha256": "d81387f319947e8ae1bc89d2a8f5bbb1ae8c3d8a07671b3f267e52f3196d987b",
+  "taskBytes": 20607,
+  "qualification": {
+    "cliVersion": "codex-cli 0.144.1",
+    "flagsRequired": [
+      "--sandbox",
+      "-c",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--output-last-message"
+    ],
+    "synthetic": false
+  },
+  "createdAtIso": "2026-07-14T17:26:46.123Z"
+}

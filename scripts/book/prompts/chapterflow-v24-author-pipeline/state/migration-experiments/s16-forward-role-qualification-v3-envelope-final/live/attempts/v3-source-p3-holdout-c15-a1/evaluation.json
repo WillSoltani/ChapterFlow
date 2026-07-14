@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c15-a1",
+  "requestSha256": "9d3a66dc5830ca729892436c01ab1b5d4d60cc899e9e141c8400417713ca19ac",
+  "receiptSha256": "00b3cfa283ed27ba442a32a8144b2c835df52e5aa97cb9b096ff34c06bb26bcf",
+  "executionEvidenceSha256": "a26b68ab5d5a4f243911bc6b5a693b95683afe20823aaff1d9e7efc3cfdeeeff",
+  "rawOutputSha256": "21f6d19739c2ba228e7b1aa6027aef115238829779c21451999d29bca74a0849",
+  "evaluationSha256": "1ab70c929c8f924e2d4fe1028ae8584b9d4669cff59c165e228828adf91dfd84",
+  "parsedOutputSha256": "74b888fb5187c0f89962939bd26e649bcb1533e659a78b1257df01e5ad444f8b",
+  "assembledReviewSha256": "9fb007c1dd0ca7861cb4d0981d54a4910f77695ac6dd9471768757bf28b8dd2c",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter’s attributed mechanistic explanation matches the permitted source claim and mechanism, preserves the source’s qualification against a universal guarantee, and introduces no unsupported specificity or invented detail."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "6f42a87bf9fad00a50837e5739d78f0f8edef813e8bd30439d23712883d07d69",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "1db8fd53d1cb8924d596980ff02d39e9f37357acefa9a46a34163eeec56ed22f",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter’s attributed mechanistic explanation matches the permitted source claim and mechanism, preserves the source’s qualification against a universal guarantee, and introduces no unsupported specificity or invented detail.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter’s attributed mechanistic explanation matches the permitted source claim and mechanism, preserves the source’s qualification against a universal guarantee, and introduces no unsupported specificity or invented detail."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "24b3490480cd44b2fca6a4a2dd7ed26f5e8c7e8349e852afa7307232e0f6d5ad"
+}

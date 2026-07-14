@@ -1,0 +1,165 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-canary-c02-a1",
+  "requestSha256": "9026d466c19009da9687aeaa1890e480ddc04c0ef1fda20208bf9672e71c0d87",
+  "receiptSha256": "fd8f0d1bbcf71df4259b2ad3bec322123c8a98b3d3e9d1ce92afd984cd18e3f3",
+  "executionEvidenceSha256": "fe2c38c4520acedb4b13f0b301a1e13e2d801888d8aa132a65fbc6d6be235af0",
+  "rawOutputSha256": "64cff6692e99204a834e2aeed37de972e4350479299af06489c17568bdfaf307",
+  "evaluationSha256": "4245e9174d88c8cf9296f44e3b133912fcb213fc029c020f04fdf5c9213b7ff1",
+  "parsedOutputSha256": "cf277b3af40c12632c2c91e01d0fa2c5de5785eecaf8a46bdd408cb713b4ffc7",
+  "assembledReviewSha256": "83f8daa82ed1c5a64f1330acd4f155297a8e967d3ed5512f8a941245dcadf47b",
+  "evidenceReferenceResolutionSha256": "8f409d8dc31c4a122a4af6cae8304d71f6864ad55c0954820b4481f11319df01",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": false,
+      "fabricationSensitivity": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "major",
+              "explanation": "The chapter correctly uses the source-backed iPhone launch framing and mechanism, but it also attributes a 2018 sample of exactly 47 participants to the chapter source. The packet evidence only supports the 2007 iPhone claim and mechanism, with 2007 as the grounded number; it does not support the 2018 participant-sample detail.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-012",
+                "PLAN-U001"
+              ]
+            }
+          ],
+          "rationale": "The main iPhone convergence claim and the tools-mutate-after-adoption explanation are supported by the source claim and mechanism. The added participant sample/date/quantity is not supported by the available source or anchor evidence and is presented as source-reported."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "4740b33d317185ba7e72af2e1b19ed09c0e68713ae67e6f574e3d1b9bde33d74",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "e038378f7cbd0e69af2897f110a75730f248830c03154233d480100af197a15c",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "major",
+              "explanation": "The chapter correctly uses the source-backed iPhone launch framing and mechanism, but it also attributes a 2018 sample of exactly 47 participants to the chapter source. The packet evidence only supports the 2007 iPhone claim and mechanism, with 2007 as the grounded number; it does not support the 2018 participant-sample detail.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-012",
+                "PLAN-U001"
+              ],
+              "findingId": "unit.fact.ch01.fact.1:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The source states: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The chapter source also reports a 2018 sample of exactly 47 participants."
+              ],
+              "sourceEvidenceSpans": [
+                "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+                "Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.",
+                "{\n  \"label\": \"fact.ch01.fact.1.groundedNumbers[0]\",\n  \"value\": \"2007\"\n}",
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.1\"\n  ]\n}"
+              ]
+            }
+          ],
+          "rationale": "The main iPhone convergence claim and the tools-mutate-after-adoption explanation are supported by the source claim and mechanism. The added participant sample/date/quantity is not supported by the available source or anchor evidence and is presented as source-reported.",
+          "unitId": "unit.fact.ch01.fact.1",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden"
+      ],
+      "rationale": "U1: The main iPhone convergence claim and the tools-mutate-after-adoption explanation are supported by the source claim and mechanism. The added participant sample/date/quantity is not supported by the available source or anchor evidence and is presented as source-reported."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The source states: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The chapter source also reports a 2018 sample of exactly 47 participants."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ATOMIC-012",
+            "PLAN-U001"
+          ],
+          "evidenceSpans": [
+            "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+            "Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.",
+            "{\n  \"label\": \"fact.ch01.fact.1.groundedNumbers[0]\",\n  \"value\": \"2007\"\n}",
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.1\"\n  ]\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "4de12e3d4942d87fda256f96e899ba39bbbe7ce329c605da28f252463664544d"
+}

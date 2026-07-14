@@ -1,0 +1,22 @@
+{
+  "schema": "codex-process-diagnostics-v1",
+  "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-quiz-a1",
+  "requestSha256": "59febfb4ff3022ef263a0dc64827f14e99c082d38018a9cd28683e3d57ba90cb",
+  "sessionId": "imp24e-schema-probe-9a94140c459183f20ff7b0209317449c2df73b20e5c39aca1bd5991b51b98efd",
+  "invocation": "RUNNER_RETURNED",
+  "classification": "completed",
+  "failureKind": null,
+  "errorName": null,
+  "errorMessage": null,
+  "timedOut": false,
+  "exitCode": 0,
+  "stdoutBytes": 259,
+  "stderrBytes": 1198,
+  "stdoutSha256": "b26686954bdeed1cc8ff980096d4a24ab9adacfb3ab96731bcc9b0dd7f1ac39d",
+  "stderrSha256": "126679ef45e90a87a74d01954e3f2de35ed3901a09247a0ab1fca94104368127",
+  "stdoutRetained": "{\"schema\":\"quiz-integrity-model-output-v2\",\"items\":[{\"questionRef\":\"probe.question.1\",\"keyCorrect\":\"correct\",\"defensibleAnswerIndices\":[0],\"keyedMechanismSupported\":true,\"rationale\":\"Synthetic transport probe output.\",\"evidenceRefIds\":[\"probe.question.1\"]}]}\n",
+  "stderrRetained": "Reading additional input from stdin...\nOpenAI Codex v0.144.1\n--------\nworkdir: /private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-schema-probes/live/workspaces/quiz\nmodel: gpt-5.6-sol\nprovider: openai\napproval: never\nsandbox: read-only\nreasoning effort: xhigh\nreasoning summaries: none\nsession id: 019f6193-5cab-70f0-ac4f-a126697ec7a0\n--------\nuser\nIMP-24E quiz transport-schema probe only.\nThis is synthetic and must not be treated as a review or qualification judgment.\nReturn exactly the following smallest valid JSON object and no prose:\n{\"items\":[{\"defensibleAnswerIndices\":[0],\"evidenceRefIds\":[\"probe.question.1\"],\"keyCorrect\":\"correct\",\"keyedMechanismSupported\":true,\"questionRef\":\"probe.question.1\",\"rationale\":\"Synthetic transport probe output.\"}],\"schema\":\"quiz-integrity-model-output-v2\"}\ncodex\n{\"schema\":\"quiz-integrity-model-output-v2\",\"items\":[{\"questionRef\":\"probe.question.1\",\"keyCorrect\":\"correct\",\"defensibleAnswerIndices\":[0],\"keyedMechanismSupported\":true,\"rationale\":\"Synthetic transport probe output.\",\"evidenceRefIds\":[\"probe.question.1\"]}]}\ntokens used\n13,587\n",
+  "stdoutTruncated": false,
+  "stderrTruncated": false,
+  "diagnosticsSha256": "5546a3a3a4b3afeafc7dc1806c9aaa9fb2ff29a41ccaaea8ee8c40949fb55329"
+}

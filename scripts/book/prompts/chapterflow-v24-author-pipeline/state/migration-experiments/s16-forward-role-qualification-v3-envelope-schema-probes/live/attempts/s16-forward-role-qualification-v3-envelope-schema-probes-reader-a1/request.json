@@ -1,0 +1,19 @@
+{
+  "schema": "imp24e-schema-probe-request-v1",
+  "cycle": 1,
+  "executionId": "s16-forward-role-qualification-v3-envelope-schema-probes",
+  "role": "reader",
+  "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-reader-a1",
+  "profileId": "gpt-5.6-sol@high",
+  "model": "gpt-5.6-sol",
+  "effort": "high",
+  "schemaRelPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/reader-experience-model-output-v2.schema.json",
+  "schemaSha256": "92ebf0eb5ec2ab2800e59051fc60f025c41084d1d0c69c6c7b76575ac7903976",
+  "task": "IMP-24E reader transport-schema probe only.\nThis is synthetic and must not be treated as a review or qualification judgment.\nReturn exactly the following smallest valid JSON object and no prose:\n{\"advisoryFindings\":[],\"blockingFindings\":[],\"escalationSignals\":[],\"oneParagraphVerdict\":\"Synthetic transport probe output.\",\"quizDerivation\":{\"ambiguities\":[],\"answers\":[\"a\"],\"confidence\":[\"high\"],\"evidenceRefIds\":[[\"probe.chapter.1\"]],\"mechanisms\":[\"synthetic mechanism\"],\"tells\":[]},\"recommendation\":\"SHIP\",\"schema\":\"reader-experience-model-output-v2\",\"scores\":{\"beginner\":50,\"density\":50,\"insight\":50,\"limits\":50,\"practical\":50,\"quizzes\":50,\"retention\":50,\"summaries\":50,\"tone\":50,\"transfer\":50},\"strongestEvidenceRefIds\":[\"probe.chapter.1\"],\"weakestEvidenceRefIds\":[\"probe.chapter.1\"]}",
+  "taskSha256": "6ee8838ca3a5277d566ae3b50a5684a71e084dbc4da5018bc58962116f5110a1",
+  "expectedMinimumOutputSha256": "468bbf7b9cef6b48a6de2593b7b77346e3b18c8ffd96491982788a2996e79ec0",
+  "timeoutMs": 300000,
+  "qualificationMetricsIncluded": false,
+  "apiCalls": 0,
+  "requestSha256": "ead7400756501560641b3add6f2d2ad7460fe14f5745a39b670ccd5a7b9ed86a"
+}

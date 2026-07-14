@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c35-a1",
+  "requestSha256": "f37e785db867f10087ce815f6dc5bad8218f129a53f6bef0ad1047d331d9f9d5",
+  "receiptSha256": "8942ac17e36aa412aedf875472128b49b01c7aeef84864043575508f70784850",
+  "executionEvidenceSha256": "9f8232f4cf698ad73fa3c4a375b0e781e1ca18762aed4eaeb5e04cd3ff615620",
+  "rawOutputSha256": "f099ee06b6e88cc03c1df1a18f06beb5bc75590d70b4cc6595de821f1938bca7",
+  "evaluationSha256": "f79118ef82af6348b5eba268f328b6c8494fe2da0ccbcb51db5fe0ac30d723fc",
+  "parsedOutputSha256": "58ac6b7dd3fc4d7632d21a4995a4269c9c28dc61b88564f366ae5444a8ac1e8f",
+  "assembledReviewSha256": "66205dd7f6008c99df8beec45a08adc849f762ed19e2901cab6f6e9a595c17e3",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly source-framed and is supported by the packet's source claim and mechanism evidence. The mechanistic explanation stays within PLAN-U001, and the named Facebook Like detail is grounded in the source anchors."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d85c3523c2ab2c8c4ef5830e8ee5ba46dd586ef1718cd54cc684e31b6ceea50d",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "aefd5ed84707636c88ec1588230e15e725ff842155ec162f873d9f988a43ff1d",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly source-framed and is supported by the packet's source claim and mechanism evidence. The mechanistic explanation stays within PLAN-U001, and the named Facebook Like detail is grounded in the source anchors.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is visibly source-framed and is supported by the packet's source claim and mechanism evidence. The mechanistic explanation stays within PLAN-U001, and the named Facebook Like detail is grounded in the source anchors."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "8a69fd1c124d326c7d7a67cec7fbe7650b5e09f765d55c1a33efb29674f8d200"
+}

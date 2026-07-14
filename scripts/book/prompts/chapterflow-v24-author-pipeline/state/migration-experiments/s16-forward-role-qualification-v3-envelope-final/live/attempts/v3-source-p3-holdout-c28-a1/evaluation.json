@@ -1,0 +1,72 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c28-a1",
+  "requestSha256": "8fe15054d90a8127b00adbb0833751809e21244df844b0ccf0a28e2d64d8e9d6",
+  "receiptSha256": "db08c298cb7021341fb1505752c2462a199080befe24cdd322ce37074cbaa630",
+  "executionEvidenceSha256": "36c29a1e00ad75b421878af4c1063729987ba266e49854700596c1e8f1d8abd9",
+  "rawOutputSha256": "49486063eb574665084c1d2f55978e412eab8298f375dcf3ca6087f96b6eb413",
+  "evaluationSha256": "8d0b93347054f9f20db1c539e5c4bd5c90ef6a45776500268e83664e1beff2ee",
+  "parsedOutputSha256": "80b2dd6699831e0d6a2566d7531c601d56bb92ced67dea29de5c116ffd2f2f89",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The operational example includes an exact date that the plan expressly forbids. No source or permitted anchor supports that date, so it gives an otherwise allowable workflow example unwarranted historical specificity.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The role and observable action are permitted, but the exact date is neither permitted nor evidenced. The defect is limited to that added specificity; the underlying descriptive workflow statement remains within the allowed scope."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "e9116977ee44a2ceee0b7321575ac57ac566f811047078255b7dd1de1e2c5a91"
+}
