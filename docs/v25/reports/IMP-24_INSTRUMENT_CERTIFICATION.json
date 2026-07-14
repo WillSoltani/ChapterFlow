@@ -2,7 +2,7 @@
   "apiCalls": 0,
   "binding": {
     "apiCalls": 0,
-    "certificationSha256": "b7eb50d0700b824efd7bc126ba29331d36c78546edcfa865457f088d6049f15f",
+    "certificationSha256": "5fdfd2ef484e53c3b374a779c9307b1b847ff694318290f41b6f0686a928e191",
     "corpusBundleSha256": "sha256:4501809686161a541ad776bdbfea9c716ec402d89ef397a072f93143ce28fcac",
     "corpusCertificationSha256": "7d2a2bc14eb840341cffc9e3dcc00c166a9dada7a1161a63c43354aa19b26ce9",
     "envelopeCompilerSha256": "e1fa568ef8951e874ddc2c81796dc54c19ab8eda851b6ff444433fc171b93c85",
@@ -12,12 +12,12 @@
     "legacyEvidenceClosureSha256": "87d99f5f8f43ba70559b0c8c062c99dcf75bb190f72e9c0f933b5823d5dc54e2",
     "modelCalls": 0,
     "modelOutputContractsSha256": "79ae5c580a5cb2447a9473aad21c258ecf91d8f3211b99d861b1fc5d0fadbc6a",
-    "productionInstrumentSealSha256": "13c0e7cd05f38a0420765b2d9b36d788b2c5602ca80d3585d9aea009339e56a5",
-    "productionQualificationParitySha256": "1cf48ebfca83dfa81f72eb5ad2735183daf3b102c1f4b2ab8aa41dfff0a1e8d7",
+    "productionInstrumentSealSha256": "8b17efb09704f86edc64193a45a789fc4de72696dc70440af6fef825cef4ab63",
+    "productionQualificationParitySha256": "075d4e0ca149a88ca4867832d65b2eb40afc2eb6f6b330975dea58655465c546",
     "promptBundleSha256": "4da98a79943739dd223f12f5ff7c33bd238a114f065bdd09bfcffa66925aae00",
     "schema": "imp24-instrument-certification-binding-v1",
     "schemaBundleSha256": "f88f1b13ba263c670474385635ecd44511aaa07eec31074fe27905307b536798",
-    "scorerSha256": "a052159f2c3e4efc3f26e3ca116e474d8a357de51bf63c0ce71e64b1e2d6143b",
+    "scorerSha256": "1105f49ade5c21bc41362abe4f46cdbf155a19732670191e7e5c8f931c1d55ab",
     "sourceMissingEvidenceInconclusiveCertified": true,
     "status": "CERTIFIED_MODEL_FREE",
     "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa"
@@ -2766,7 +2766,7 @@
         "holdout": "sha256:182d86d5146f8831a6bd06de30b71689f19c94611abaee24a1232cb251159106"
       }
     },
-    "implementationSetSha256": "443b555b33536c877ffef77f14d6937d027c690311e986a8050f140a77712e61",
+    "implementationSetSha256": "d8812139e4ee7695869105df1781e0f5f881190e1978f39ccf4f95f875bed592",
     "implementationSources": [
       {
         "bytes": 77119,
@@ -2829,8 +2829,8 @@
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationCampaignV3.ts"
       },
       {
-        "bytes": 120481,
-        "bytesSha256": "17a4402a543c00cd4fee1d4249dd9116c38897a68868611471211a56dccde8db",
+        "bytes": 121128,
+        "bytesSha256": "c394f104856cb9e9101da58ea3d793722978c8109402fe1140db139780af0e7c",
         "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/forwardRoleQualificationLiveV3.ts"
       },
       {
@@ -2890,7 +2890,7 @@
       }
     ],
     "preparedCasesSha256": "b41abe8c20a9d7a9303117b91b71a22828503230ae243ea78b1ca02ad9e5a69b",
-    "productionQualificationParitySha256": "1cf48ebfca83dfa81f72eb5ad2735183daf3b102c1f4b2ab8aa41dfff0a1e8d7",
+    "productionQualificationParitySha256": "075d4e0ca149a88ca4867832d65b2eb40afc2eb6f6b330975dea58655465c546",
     "scheduleSha256": "dd7c3c1235c86cbbaf20c954398bcb57880efd5c7629f95bc494cb4d0fa8e22c"
   },
   "legacyClosure": {
@@ -2930,15 +2930,15 @@
   ],
   "modelCalls": 0,
   "productionQualificationParity": {
-    "artifactBytesSha256": "ead0c7d56cbcb20a803f8514f0b539a1c2520c37c8dfaa93134272c8f2ecd89b",
-    "paritySha256": "1cf48ebfca83dfa81f72eb5ad2735183daf3b102c1f4b2ab8aa41dfff0a1e8d7",
+    "artifactBytesSha256": "0c73e98fe7c3e60b33b72e36bb0cbcea60321e842c7c66a2e00d9059b076d221",
+    "paritySha256": "075d4e0ca149a88ca4867832d65b2eb40afc2eb6f6b330975dea58655465c546",
     "sourceCount": 20,
     "verified": true
   },
   "productionSeal": {
-    "artifactBytesSha256": "e262056cc87eec936f277d3a3791e097d56bdc2e17bc16083c1bed4233cd4897",
+    "artifactBytesSha256": "fcceebb721676bf03ed46edfc0f60a637316bf18e366c461e384b28d1348f5a9",
     "fileCount": 463,
-    "sealSha256": "13c0e7cd05f38a0420765b2d9b36d788b2c5602ca80d3585d9aea009339e56a5",
+    "sealSha256": "8b17efb09704f86edc64193a45a789fc4de72696dc70440af6fef825cef4ab63",
     "verified": true
   },
   "schema": "imp24-instrument-certification-v1",

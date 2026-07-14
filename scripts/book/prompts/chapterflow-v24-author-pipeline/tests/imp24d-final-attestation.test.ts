@@ -25,11 +25,18 @@ import {
   IMP24D_R1_CLOSURE_PATHS,
 } from "../src/bakeoff/migration/imp24ObservabilityFreeze.js";
 import { IMP24_ROLE_QUALIFICATION_EXECUTION_ID } from "../src/bakeoff/migration/imp24Corpus.js";
+import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
 import { test } from "./harness.js";
 import { mkTestRoots } from "./testRoots.js";
 
 const H = (character: string): string => character.repeat(64);
 const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
+const REPOSITORY_ROOT = resolve(PIPELINE_DIR, "../../../..");
+const EXACT_CORRECTION_SOURCE_FILES = [
+  `${PIPELINE_REL}/src/exec/codexTransportConfig.ts`,
+  `${PIPELINE_REL}/src/orchestrator/forwardRoleQualificationLiveV3.ts`,
+  `${PIPELINE_REL}/src/orchestrator/forwardTransportSmokeCorrectionV3.ts`,
+] as const;
 const EXPERIMENTS_REL = `${PIPELINE_REL}/state/migration-experiments`;
 const QUALIFICATION_ROOT = `${EXPERIMENTS_REL}/${IMP24_ROLE_QUALIFICATION_EXECUTION_ID}`;
 const SMOKE_ROOT = `${EXPERIMENTS_REL}/${IMP24D_TRANSPORT_SMOKE_EXECUTION_ID}`;
@@ -96,7 +103,9 @@ function prepareFixture(args: {
     write(root, `${SMOKE_ROOT}/cycle-result.json`, "failed smoke cycle retained\n");
     write(root, IMP24D_TRANSPORT_SMOKE_REPORT_PATHS.json, "smoke report\n");
     write(root, IMP24D_TRANSPORT_SMOKE_REPORT_PATHS.markdown, "smoke report markdown\n");
-    write(root, `${PIPELINE_REL}/src/exec/codexTransportConfig.ts`, "bounded mechanical correction\n");
+    for (const path of EXACT_CORRECTION_SOURCE_FILES) {
+      write(root, path, readFileSync(resolve(REPOSITORY_ROOT, path), "utf8"));
+    }
     write(root, `${PIPELINE_REL}/tests/codex-transport-regression.test.ts`, "bounded regression test\n");
     write(root, `${EXPERIMENTS_REL}/contracts/imp24/forward-production-instrument-seal.json`,
       "reminted production seal\n");

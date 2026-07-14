@@ -27,6 +27,7 @@ import {
 } from "../src/bakeoff/migration/imp24Corpus.js";
 import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
 import { syntheticQualification } from "../src/exec/cliQualification.js";
+import { describeCodexTransportOutputSchema } from "../src/exec/codexTransportConfig.js";
 import { resolveExecutionProfile } from "../src/exec/executionEnvelope.js";
 import { STRICT_PIPELINE_ENV } from "../src/lib/strictEnv.js";
 import {
@@ -169,7 +170,7 @@ test("IMP-24D smoke control identity uses distinct request, ledger, root, and se
       certificationSha256: CERTIFICATION,
       productionInstrumentSealSha256: SEAL,
       preCallVerifier: () => {},
-      spawn: async (options) => ok(options),
+      spawn: async (options) => ok(options, "{}", "canonical"),
       workspaceBaseDir: resolve(roots.base, "workspaces"),
     });
     const receipt = await live.controlExecutor(smokeRequest);
@@ -179,6 +180,20 @@ test("IMP-24D smoke control identity uses distinct request, ledger, root, and se
     assert.equal(live.ledger.codexExecInvocations, 1);
     assert.equal(receipt.executionId, liveQualificationExecutionSessionIdV3(smokeRequest));
     assert.notEqual(receipt.executionId, liveQualificationExecutionSessionIdV3(qualificationRequest));
+
+    const projectedLegacy = createLiveQualificationExecutorV3({
+      phaseDir: resolve(roots.base, "closed-cycle-one-projected"),
+      executionId: IMP24D_TRANSPORT_SMOKE_EXECUTION_ID,
+      freezeSha256: FREEZE,
+      certificationSha256: CERTIFICATION,
+      productionInstrumentSealSha256: SEAL,
+      preCallVerifier: () => {},
+      spawn: async (options) => ok(options),
+      workspaceBaseDir: resolve(roots.base, "closed-cycle-one-projected-workspaces"),
+    });
+    await assert.rejects(projectedLegacy.controlExecutor(smokeRequest),
+      /effective-context manifest semantic binding drift/,
+      "closed cycle-one evidence must retain its historical canonical argv path");
 
     const assertNoR2 = (dir: string): void => {
       for (const name of readdirSync(dir)) {
@@ -205,7 +220,11 @@ test("IMP-24D smoke control identity uses distinct request, ledger, root, and se
   }
 });
 
-function ok(options: SpawnCodexAgentOptions, output = "{}"): CodexAgentResult {
+function ok(
+  options: SpawnCodexAgentOptions,
+  output = "{}",
+  schemaArgv: "projected" | "canonical" = "projected",
+): CodexAgentResult {
   assert.equal(options.role, "chapter-reviewer");
   assert.equal(options.sandbox, "read-only");
   assert.ok(options.manifestSink);
@@ -223,6 +242,12 @@ function ok(options: SpawnCodexAgentOptions, output = "{}"): CodexAgentResult {
   const codexHomeDir = resolve(sessionDir, "codex-home");
   const lastMessagePath = resolve(sessionDir, "last-message.txt");
   const schemaPath = resolve(options.outputSchemaPath);
+  const transportSchemaPath = schemaArgv === "canonical"
+    ? schemaPath
+    : describeCodexTransportOutputSchema({
+      outputSchemaPath: schemaPath,
+      lastMessagePath,
+    }).transportPath;
   const schemaSha256 = sha256Hex(readFileSync(schemaPath));
   const manifestPath = resolve(options.manifestSink, `20260713-120000-${options.sessionId}.manifest.json`);
   mkdirSync(dirname(manifestPath), { recursive: true });
@@ -243,7 +268,7 @@ function ok(options: SpawnCodexAgentOptions, output = "{}"): CodexAgentResult {
       "exec", "--sandbox", "read-only", "--skip-git-repo-check",
       "--ignore-user-config", "--ignore-rules", "-c", "project_doc_max_bytes=0",
       "-c", `model=${options.model}`, "-c", `model_reasoning_effort=${options.reasoningEffort}`,
-      "--output-schema", schemaPath, "--output-last-message", lastMessagePath,
+      "--output-schema", transportSchemaPath, "--output-last-message", lastMessagePath,
       `<task-sha256:${sha256Hex(options.task)}>`,
     ],
     cwd: options.cwd,
@@ -633,6 +658,56 @@ test("IMP-24 live V3 defaults to the strict V2 schemas and retains exact envelop
     assert.equal(spawnCalls, 1, "tampered resume state must fail closed without a new judgment");
   } finally {
     roots.dispose();
+  }
+});
+
+test("IMP-24D live evidence accepts only the deterministic projected schema argv path", async () => {
+  const variants = [
+    {
+      name: "canonical",
+      replace: (actual: string, options: SpawnCodexAgentOptions) => resolve(options.outputSchemaPath!),
+    },
+    {
+      name: "tampered-hash",
+      replace: (actual: string) => actual.replace(/[a-f0-9]{64}(?=\.json$)/, "0".repeat(64)),
+    },
+    {
+      name: "wrong-session",
+      replace: (actual: string) => resolve(dirname(dirname(actual)), "other-session", basename(actual)),
+    },
+  ] as const;
+
+  for (const variant of variants) {
+    const roots = mkTestRoots(`imp24-live-v3-projected-schema-${variant.name}`);
+    try {
+      const req = request({
+        scheduleId: `v3-reader-p1-canary-${variant.name}`,
+        attemptId: `v3-reader-p1-canary-${variant.name}-a1`,
+      });
+      const live = createLiveQualificationExecutorV3({
+        phaseDir: resolve(roots.base, "phase"),
+        freezeSha256: FREEZE,
+        certificationSha256: CERTIFICATION,
+        productionInstrumentSealSha256: SEAL,
+        preCallVerifier: () => undefined,
+        workspaceBaseDir: roots.workspacesRoot,
+        spawn: async (options) => {
+          const result = ok(options);
+          const manifest = JSON.parse(readFileSync(result.manifestPath!, "utf8")) as { argv: string[] };
+          const schemaIndex = manifest.argv.indexOf("--output-schema") + 1;
+          const actual = manifest.argv[schemaIndex]!;
+          manifest.argv[schemaIndex] = variant.replace(actual, options);
+          writePrettyJson(result.manifestPath!, manifest);
+          return result;
+        },
+      });
+      await assert.rejects(live.executor(req), /effective-context manifest semantic binding drift/,
+        `${variant.name} schema argv must fail retained provenance verification`);
+      assert.equal(live.ledger.codexExecInvocations, 1);
+      assert.equal(live.ledger.apiCallsMade, 0);
+    } finally {
+      roots.dispose();
+    }
   }
 });
 

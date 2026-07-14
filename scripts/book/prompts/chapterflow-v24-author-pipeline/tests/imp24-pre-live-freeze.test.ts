@@ -356,10 +356,20 @@ test("IMP-24C dedicated model-free CI commands preserve every checkout byte", ()
     encoding: "utf8",
   });
   const before = status();
+  const smokeReportPath = resolve(REPOSITORY_ROOT, "docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.json");
+  const observabilityVerificationArgs = existsSync(smokeReportPath)
+    ? [
+        "migration-bakeoff", "imp24-materialize-observability-freeze", "--verify-historical",
+        "--observability-commit",
+        String((JSON.parse(readFileSync(smokeReportPath, "utf8")) as Record<string, unknown>)
+          .observabilityImplementationCommit ?? ""),
+        "--json",
+      ]
+    : ["migration-bakeoff", "imp24-materialize-observability-freeze", "--verify", "--json"];
   for (const args of [
     ["migration-bakeoff", "imp24-materialize-thresholds", "--json"],
     ["migration-bakeoff", "imp24-certify-instrument", "--json"],
-    ["migration-bakeoff", "imp24-materialize-observability-freeze", "--verify", "--json"],
+    observabilityVerificationArgs,
     ["migration-bakeoff", "forward-verify-production-instrument-seal-v2", "--json"],
   ]) {
     execFileSync(process.execPath, ["--import", "tsx", "src/cli.ts", ...args], {

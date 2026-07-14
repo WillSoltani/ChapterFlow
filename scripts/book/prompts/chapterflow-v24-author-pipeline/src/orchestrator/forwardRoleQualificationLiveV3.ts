@@ -31,6 +31,7 @@ import {
   qualifyCodexCli,
   type CodexCliQualificationV1,
 } from "../exec/cliQualification.js";
+import { describeCodexTransportOutputSchema } from "../exec/codexTransportConfig.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 import {
@@ -880,12 +881,22 @@ export function validateExecutionEvidenceArtifact(args: {
   const retainedCodexHome = resolve(manifest.codexHome.dir);
   const retainedSessionDir = dirname(retainedCodexHome);
   const lastMessagePath = resolve(retainedSessionDir, "last-message.txt");
+  // Cycle 1 predates the bounded transport correction and therefore truthfully
+  // retained the canonical schema path. Preserve verification of those closed
+  // attempts without admitting that path for corrected smoke-r2 or role-r2
+  // evidence, both of which must retain the deterministic projected argv path.
+  const transportSchemaPath = args.request.experimentId === IMP24D_TRANSPORT_SMOKE_EXECUTION_ID
+    ? schemaPath
+    : describeCodexTransportOutputSchema({
+      outputSchemaPath: schemaPath,
+      lastMessagePath,
+    }).transportPath;
   const expectedArgv = [
     "exec", "--sandbox", "read-only", "--skip-git-repo-check",
     "--ignore-user-config", "--ignore-rules", "-c", "project_doc_max_bytes=0",
     "-c", `model=${args.request.model}`,
     "-c", `model_reasoning_effort=${args.request.effort}`,
-    "--output-schema", schemaPath,
+    "--output-schema", transportSchemaPath,
     "--output-last-message", lastMessagePath,
     `<task-sha256:${sha256Hex(args.request.task)}>`,
   ];

@@ -68,6 +68,12 @@ import { mkTestRoots } from "./testRoots.js";
 const SHA = "a".repeat(64);
 const HEAD = "1".repeat(40);
 const REPOSITORY_ROOT = resolve(PIPELINE_DIR, "../../../..");
+const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
+const EXACT_CORRECTION_SOURCE_FILES = [
+  `${PIPELINE_REL}/src/exec/codexTransportConfig.ts`,
+  `${PIPELINE_REL}/src/orchestrator/forwardRoleQualificationLiveV3.ts`,
+  `${PIPELINE_REL}/src/orchestrator/forwardTransportSmokeCorrectionV3.ts`,
+] as const;
 
 function smokeImplementationGate(headSha: string, workflowRunId: number, verifiedAt: string) {
   return buildImp24ImplementationCiGateFromEvidence({
@@ -315,7 +321,7 @@ test("IMP-24D corrected lifecycle accepts a zero-invocation preflight FAIL follo
       changedFiles: [
         "docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.json",
         "docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.md",
-        "scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/codexTransportConfig.ts",
+        ...EXACT_CORRECTION_SOURCE_FILES,
         "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-transport-smoke/cycle-result.json",
         "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/codex-transport-regression.test.ts",
       ].sort(),
@@ -324,7 +330,7 @@ test("IMP-24D corrected lifecycle accepts a zero-invocation preflight FAIL follo
         "docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.md",
         "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-transport-smoke/cycle-result.json",
       ].sort(),
-      sourceFiles: ["scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/codexTransportConfig.ts"],
+      sourceFiles: [...EXACT_CORRECTION_SOURCE_FILES],
       regressionTestFiles: ["scripts/book/prompts/chapterflow-v24-author-pipeline/tests/codex-transport-regression.test.ts"],
       deterministicRemintFiles: [],
     },
@@ -406,32 +412,41 @@ test("IMP-24D semantic projection permits code-bound remints but rejects any fro
   }), original, "any complete fixed-call drift must change the semantic projection");
 });
 
-test("IMP-24D correction path classification admits only the low-level Codex transport configuration", () => {
-  const pipeline = "scripts/book/prompts/chapterflow-v24-author-pipeline";
-  const transportConfig = `${pipeline}/src/exec/codexTransportConfig.ts`;
+test("IMP-24D correction path classification admits only the exact transport, provenance, and guard source set", () => {
+  const pipeline = PIPELINE_REL;
   const requiredEvidenceAndTest = [
     "docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.json",
     "docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.md",
     `${pipeline}/state/migration-experiments/s16-forward-role-qualification-v3-envelope-transport-smoke/cycle-result.json`,
     `${pipeline}/tests/codex-transport-regression.test.ts`,
   ];
-  assert.deepEqual([...IMP24D_MECHANICAL_CORRECTION_SOURCE_FILES], [transportConfig]);
+  assert.deepEqual([...IMP24D_MECHANICAL_CORRECTION_SOURCE_FILES], [...EXACT_CORRECTION_SOURCE_FILES]);
   assert.deepEqual(
-    classifyImp24DPlannedCorrectionPaths([...requiredEvidenceAndTest, transportConfig]).sourceFiles,
-    [transportConfig],
+    classifyImp24DPlannedCorrectionPaths([...requiredEvidenceAndTest, ...EXACT_CORRECTION_SOURCE_FILES]).sourceFiles,
+    [...EXACT_CORRECTION_SOURCE_FILES],
   );
+  for (const omitted of EXACT_CORRECTION_SOURCE_FILES) {
+    assert.throws(
+      () => classifyImp24DPlannedCorrectionPaths([
+        ...requiredEvidenceAndTest,
+        ...EXACT_CORRECTION_SOURCE_FILES.filter((path) => path !== omitted),
+      ]),
+      /requires the exact transport projection, live provenance verifier, correction guard/,
+    );
+  }
 
   const forbiddenCorrectionSources = [
     `${pipeline}/src/orchestrator/forwardTransportSmokeCampaignV3.ts`,
     `${pipeline}/src/orchestrator/forwardTransportSmokeEvidenceV3.ts`,
-    `${pipeline}/src/orchestrator/forwardRoleQualificationLiveV3.ts`,
     `${pipeline}/src/orchestrator/codexProcessDiagnostics.ts`,
     `${pipeline}/src/orchestrator/codexAgent.ts`,
     `${pipeline}/src/exec/executionEnvelope.ts`,
   ];
   for (const forbidden of forbiddenCorrectionSources) {
     assert.throws(
-      () => classifyImp24DPlannedCorrectionPaths([...requiredEvidenceAndTest, forbidden]),
+      () => classifyImp24DPlannedCorrectionPaths([
+        ...requiredEvidenceAndTest, ...EXACT_CORRECTION_SOURCE_FILES, forbidden,
+      ]),
       (error: Error) => /exceeds the transport\/config allowlist/.test(error.message)
         && error.message.includes(forbidden),
       `${forbidden} must not be an IMP-24D correction source`,
@@ -449,6 +464,11 @@ test("IMP-24D bounded correction proof requires one direct child with failed evi
     mkdirSync(resolve(root, path, ".."), { recursive: true });
     writeFileSync(resolve(root, path), bytes);
   };
+  const writeExactCorrectionSources = (): void => {
+    for (const path of EXACT_CORRECTION_SOURCE_FILES) {
+      write(path, readFileSync(resolve(REPOSITORY_ROOT, path), "utf8"));
+    }
+  };
   try {
     git(["init"]);
     git(["config", "user.name", "IMP-24D Fixture"]);
@@ -459,7 +479,7 @@ test("IMP-24D bounded correction proof requires one direct child with failed evi
     write("docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.json");
     write("docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.md");
     write("scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-transport-smoke/cycle-result.json");
-    write("scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/codexTransportConfig.ts");
+    writeExactCorrectionSources();
     write("scripts/book/prompts/chapterflow-v24-author-pipeline/tests/codex-transport-regression.test.ts");
     write("scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/forward-production-instrument-seal.json");
     git(["add", "--all"]); git(["commit", "-m", "bounded correction"]);
@@ -469,14 +489,29 @@ test("IMP-24D bounded correction proof requires one direct child with failed evi
       observabilityImplementationCommit: observability,
       correctionCommit: correction,
     });
-    assert.deepEqual(proof.sourceFiles,
-      ["scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/codexTransportConfig.ts"]);
+    assert.deepEqual(proof.sourceFiles, [...EXACT_CORRECTION_SOURCE_FILES]);
     assert.equal(proof.regressionTestFiles.length, 1);
     assert.equal(proof.deterministicRemintFiles.length, 1);
 
+    git(["checkout", "-b", "tampered-verifier", observability]);
+    writeExactCorrectionSources();
+    write(`${PIPELINE_REL}/src/orchestrator/forwardRoleQualificationLiveV3.ts`,
+      "arbitrary qualification behavior change\n");
+    write("docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.json");
+    write("docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.md");
+    write(`${PIPELINE_REL}/state/migration-experiments/s16-forward-role-qualification-v3-envelope-transport-smoke/cycle-result.json`);
+    write(`${PIPELINE_REL}/tests/codex-transport-regression.test.ts`);
+    git(["add", "--all"]); git(["commit", "-m", "tampered verifier"]);
+    const tamperedVerifier = git(["rev-parse", "HEAD"]);
+    assert.throws(() => assertImp24DBoundedCorrectionCommit({
+      repositoryRoot: root,
+      observabilityImplementationCommit: observability,
+      correctionCommit: tamperedVerifier,
+    }), /behavior source differs from the audited transport\/provenance patch/);
+
     git(["checkout", "-b", "bad", observability]);
     write("scripts/book/prompts/chapterflow-v24-author-pipeline/src/bakeoff/migration/readerCorpusBuilder.ts", "semantic drift\n");
-    write("scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/codexTransportConfig.ts", "fix\n");
+    writeExactCorrectionSources();
     write("scripts/book/prompts/chapterflow-v24-author-pipeline/tests/codex-transport-regression.test.ts");
     write("docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.json");
     write("docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.md");
@@ -499,7 +534,7 @@ test("IMP-24D bounded correction proof requires one direct child with failed evi
     }), /single-parent direct correction commit/);
 
     git(["checkout", "-b", "missing-test", observability]);
-    write("scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/codexTransportConfig.ts", "fix only\n");
+    writeExactCorrectionSources();
     write("docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.json");
     write("docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.md");
     write("scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-transport-smoke/cycle-result.json");
@@ -509,7 +544,7 @@ test("IMP-24D bounded correction proof requires one direct child with failed evi
       repositoryRoot: root,
       observabilityImplementationCommit: observability,
       correctionCommit: missingTest,
-    }), /requires a transport\/config source correction and a regression test/);
+    }), /requires the exact transport projection, live provenance verifier, correction guard, and a regression test/);
   } finally {
     roots.dispose();
   }
@@ -524,6 +559,11 @@ test("IMP-24D diagnosis record is owned by the correction commit and semantic dr
   const write = (path: string, bytes = "fixture\n"): void => {
     mkdirSync(resolve(root, path, ".."), { recursive: true });
     writeFileSync(resolve(root, path), bytes);
+  };
+  const writeExactCorrectionSources = (): void => {
+    for (const path of EXACT_CORRECTION_SOURCE_FILES) {
+      write(path, readFileSync(resolve(REPOSITORY_ROOT, path), "utf8"));
+    }
   };
   try {
     git(["init"]);
@@ -557,7 +597,7 @@ test("IMP-24D diagnosis record is owned by the correction commit and semantic dr
     const changedFiles = [
       "docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.json",
       "docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.md",
-      "scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/codexTransportConfig.ts",
+      ...EXACT_CORRECTION_SOURCE_FILES,
       "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-transport-smoke/cycle-result.json",
       "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-transport-smoke/smoke-input-binding.json",
       "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/codex-transport-regression.test.ts",
@@ -570,7 +610,7 @@ test("IMP-24D diagnosis record is owned by the correction commit and semantic dr
         changedFiles,
         smokeEvidenceFiles: changedFiles.filter((path) => path.includes("TRANSPORT_SMOKE_RESULT")
           || path.includes("transport-smoke/cycle-result")),
-        sourceFiles: ["scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/codexTransportConfig.ts"],
+        sourceFiles: [...EXACT_CORRECTION_SOURCE_FILES],
         regressionTestFiles: ["scripts/book/prompts/chapterflow-v24-author-pipeline/tests/codex-transport-regression.test.ts"],
         deterministicRemintFiles: [],
       },
@@ -602,7 +642,7 @@ test("IMP-24D diagnosis record is owned by the correction commit and semantic dr
       `${canonicalJson(cycle)}\n`);
     write("scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-transport-smoke/smoke-input-binding.json",
       `${canonicalJson(firstBinding)}\n`);
-    write("scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/codexTransportConfig.ts");
+    writeExactCorrectionSources();
     write("scripts/book/prompts/chapterflow-v24-author-pipeline/tests/codex-transport-regression.test.ts");
     git(["add", "--all"]); git(["commit", "-m", "bounded correction"]);
     const correction = git(["rev-parse", "HEAD"]);

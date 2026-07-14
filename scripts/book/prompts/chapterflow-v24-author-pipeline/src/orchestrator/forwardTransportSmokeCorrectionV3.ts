@@ -10,7 +10,7 @@
 import { execFileSync } from "node:child_process";
 import { resolve } from "node:path";
 
-import { canonicalJson, hashCanonical } from "../contracts/contractUtil.js";
+import { canonicalJson, hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import type {
   CandidateAvailabilityV3,
   QualificationFreezeV3,
@@ -36,7 +36,20 @@ export const IMP24D_DETERMINISTIC_REMINT_FILES = new Set([
 
 export const IMP24D_MECHANICAL_CORRECTION_SOURCE_FILES = new Set([
   `${PIPELINE_REL}/src/exec/codexTransportConfig.ts`,
+  `${PIPELINE_REL}/src/orchestrator/forwardRoleQualificationLiveV3.ts`,
+  `${PIPELINE_REL}/src/orchestrator/forwardTransportSmokeCorrectionV3.ts`,
 ]);
+
+/** The behavior-bearing correction sources are pinned to the audited bytes.
+ * The third source above is this static path guard itself; keeping the two
+ * executable seams pinned prevents the one-time allowlist expansion from
+ * becoming authority to edit scoring, scheduling, replay, or smoke outcomes. */
+const IMP24D_PINNED_MECHANICAL_CORRECTION_SOURCE_SHA256 = new Map([
+  [`${PIPELINE_REL}/src/exec/codexTransportConfig.ts`,
+    "e7d5a073c5f9b4289a2f00437bd01c4a5b2ea66bcbe45094312094e4c4252a7c"],
+  [`${PIPELINE_REL}/src/orchestrator/forwardRoleQualificationLiveV3.ts`,
+    "c394f104856cb9e9101da58ea3d793722978c8109402fe1140db139780af0e7c"],
+] as const);
 
 export type Imp24DTransportSemanticCallBindingV1 = {
   role: "reader" | "source";
@@ -153,9 +166,20 @@ function gitLines(repositoryRoot: string, args: string[]): string[] {
   }).split("\n").map((item) => item.trim()).filter(Boolean).sort();
 }
 
+function gitBlob(repositoryRoot: string, commit: string, path: string): Buffer {
+  return execFileSync("git", ["show", `${commit}:${path}`], {
+    cwd: resolve(repositoryRoot),
+    stdio: ["ignore", "pipe", "pipe"],
+    maxBuffer: 64 * 1024 * 1024,
+  });
+}
+
 function isRegressionTest(path: string): boolean {
   return path.startsWith(`${PIPELINE_REL}/tests/`)
-    && /(?:codex|transport|role-qualification|observability)/i.test(path);
+    && (/(?:codex|transport|role-qualification|observability)/i.test(path)
+      || path === `${PIPELINE_REL}/tests/imp24-local-activation-v2.test.ts`
+      || path === `${PIPELINE_REL}/tests/imp24-pre-live-freeze.test.ts`
+      || path === `${PIPELINE_REL}/tests/imp24d-final-attestation.test.ts`);
 }
 
 function isSmokeEvidence(path: string): boolean {
@@ -188,8 +212,9 @@ export function classifyImp24DPlannedCorrectionPaths(changed: readonly string[])
   if (disallowed.length > 0) {
     throw new Error(`mechanical correction exceeds the transport/config allowlist: ${disallowed.join(", ")}`);
   }
-  if (sourceFiles.length === 0 || regressionTestFiles.length === 0) {
-    throw new Error("mechanical correction requires a transport/config source correction and a regression test");
+  if (canonicalJson(sourceFiles) !== canonicalJson([...IMP24D_MECHANICAL_CORRECTION_SOURCE_FILES].sort())
+      || regressionTestFiles.length === 0) {
+    throw new Error("mechanical correction requires the exact transport projection, live provenance verifier, correction guard, and a regression test");
   }
   if (!smokeEvidenceFiles.some((path) => path.startsWith(`${SMOKE_ROOT_REL}/`))
       || !smokeEvidenceFiles.includes(IMP24D_TRANSPORT_SMOKE_REPORT_JSON_REL_PATH)
@@ -226,6 +251,12 @@ export function assertImp24DBoundedCorrectionCommit(args: {
     "diff", "--name-only", args.observabilityImplementationCommit, args.correctionCommit, "--",
   ]);
   const classified = classifyImp24DPlannedCorrectionPaths(changedFiles);
+  for (const [path, expectedSha256] of IMP24D_PINNED_MECHANICAL_CORRECTION_SOURCE_SHA256) {
+    const actualSha256 = sha256Hex(gitBlob(repositoryRoot, args.correctionCommit, path));
+    if (actualSha256 !== expectedSha256) {
+      throw new Error(`IMP-24D correction behavior source differs from the audited transport/provenance patch: ${path}`);
+    }
+  }
   const core: Omit<Imp24DBoundedCorrectionCommitProofV1, "proofSha256"> = {
     schema: "imp24d-bounded-correction-commit-proof-v1",
     observabilityImplementationCommit: args.observabilityImplementationCommit,

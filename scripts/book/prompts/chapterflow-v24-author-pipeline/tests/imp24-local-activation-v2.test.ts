@@ -47,6 +47,7 @@ import {
   type RunRoleQualificationInputV3,
 } from "../src/bakeoff/migration/roleQualificationRunnerV3.js";
 import { resolveExecutionProfile } from "../src/exec/executionEnvelope.js";
+import { describeCodexTransportOutputSchema } from "../src/exec/codexTransportConfig.js";
 import {
   rollbackForwardPolicy,
   serializeForwardActivationPolicy,
@@ -339,6 +340,10 @@ function persistQualificationExecutionEvidence(
   const sessionDir = resolve(liveDir, "exec", "sessions", `cf-exec-session-${sessionId.slice(-12)}`);
   const codexHomeDir = resolve(sessionDir, "codex-home");
   const lastMessagePath = resolve(sessionDir, "last-message.txt");
+  const transportSchemaPath = describeCodexTransportOutputSchema({
+    outputSchemaPath: schemaPath,
+    lastMessagePath,
+  }).transportPath;
   const workspaceDir = resolve(liveDir, "fixture-workspaces", request.attemptId);
   const cliVersion = "codex-cli 0.144.1";
   const envKeys = [
@@ -358,7 +363,7 @@ function persistQualificationExecutionEvidence(
       "exec", "--sandbox", "read-only", "--skip-git-repo-check",
       "--ignore-user-config", "--ignore-rules", "-c", "project_doc_max_bytes=0",
       "-c", `model=${request.model}`, "-c", `model_reasoning_effort=${request.effort}`,
-      "--output-schema", schemaPath, "--output-last-message", lastMessagePath,
+      "--output-schema", transportSchemaPath, "--output-last-message", lastMessagePath,
       `<task-sha256:${sha256Hex(request.task)}>`,
     ],
     cwd: workspaceDir,
