@@ -40,6 +40,7 @@ import {
   type ReaderExperienceReviewV1,
   validateReaderExperienceReview,
 } from "../contracts/readerExperienceReview.js";
+import { renderReaderExperienceSemanticRubric } from "./readerExperienceSemanticRubric.js";
 
 export { READER_EXPERIENCE_RUBRIC_VERSION } from "../contracts/readerExperienceReview.js";
 
@@ -69,38 +70,12 @@ const ADVISORY_ENUM = READER_ADVISORY_CATEGORIES.join("|");
  *  the reader to emit `origin_ambiguous_to_reader` when a passage reads as
  *  factual but its status is unclear. There is no `mustFix` mechanism. */
 export function buildReaderExperienceTask(docRelPath: string): string {
-  return `READER-EXPERIENCE REVIEW — you are an independent reader. You do not know how this chapter was produced; judge only what is on the page.
+  return [`READER-EXPERIENCE REVIEW — you are an independent reader. You do not know how this chapter was produced; judge only what is on the page.
 
 One chapter of a book-learning product is at: ${docRelPath}
-Read ONLY this file. Do not write any files.
-
-SOURCE-TRUTH AUTHORITY LIMIT (read first): You may not determine whether an external person/organization/event/quotation/date/number/study/source claim is factually real or source-supported. You have only the reader-facing page and no source material. When a passage reads as factual but its status is unclear, emit \`origin_ambiguous_to_reader\`. Do not call it fabricated or source-contradictory. Deciding external factual truth is the source lane's job, not yours.
-
-PROCESS (strict order):
-1. Read the chapter top to bottom. Answer its quiz YOURSELF from the prose. This document contains NO answer key — your derivation IS the review's key evidence, so for each question record: your answer (a|b|c), a one-line mechanism (what in the prose forces that choice), your confidence (low|medium|high), and any ambiguity (a second choice that is also defensible, or wording that under-determines the answer). Also record any tell that would let someone guess answers without reading (uniquely longest choice, hedging, giveaway phrasing).
-2. Score the chapter 0-100 on each factor: retention, quizzes, transfer, practical, summaries, tone, limits, insight, density, beginner.
-   - retention: will a reader remember the core move in a week (memorable lines, concrete images, echoes)
-   - quizzes: fair, derivable from prose, sound keys, no tells, distractors that teach
-   - transfer: applies beyond the book's own examples (if-then quality, challenge quality)
-   - practical: a real person would actually DO these actions (low-friction, concrete, not theater)
-   - summaries: fast/deep/full reads layered, accurate, each standalone
-   - tone: plain confident register; no corporate filler; no template/scaffold smell
-   - limits: honest about boundaries and failure modes; no overselling
-   - insight: explains WHY (mechanism), not just what
-   - density: ideas per paragraph; no padding or repetition
-   - beginner: approachable cold; jargon-free
-3. RECOMMENDATION (advisory, NOT a gate): SHIP | REVISE | BLOCK. This is your reader opinion only; a downstream conductor owns the final decision, so your recommendation never by itself ships or blocks the chapter.
-4. FINDINGS — record every concrete defect in exactly one of three buckets. There is NO must-fix severity flag and NO external-fabrication/factual-wrongness category anywhere; you cannot judge external truth (see the authority limit above).
-   - BLOCKING findings — reader-visible, ON-PAGE-DECIDABLE defects ONLY. Allowed category ∈ ${BLOCKING_ENUM}:
-     • unsafe — advice that could hurt a reader who follows it;
-     • internal_contradiction — the chapter contradicts its own material or a claim it makes elsewhere (decidable from THIS page alone);
-     • structurally_invalid — a missing/duplicated section, a broken quiz, or a section that fails its stand-alone promise;
-     • schema_or_app_breaking — content that would render or function incorrectly in the product;
-     • unusable — a reader genuinely could not learn or apply the chapter's core move from what is on the page.
-   - ESCALATION signals — a possible source concern you CANNOT adjudicate from the page. Allowed category ∈ ${ESCALATION_ENUM}. Use \`origin_ambiguous_to_reader\` when a passage reads as factual but its status is unclear; these are annotations for the source lane, never reader blockers.
-   - ADVISORY findings — non-blocking craft/learning weaknesses. Allowed category ∈ ${ADVISORY_ENUM}. Thin-but-usable examples, weak distractors, mild repetition, tone, pacing, density: register these here (and by scoring the relevant factor down), never as blockers.
-   Each finding: category (from its bucket's list), unit (where it lives, e.g. "quiz Q2", "deep read", "example 3"), problem (what is wrong), evidenceSpans (VERBATIM copy-paste substrings of the file, each <=200 chars — one altered character is a fabricated span).
-5. EVIDENCE: strongestEvidence / weakestEvidence = VERBATIM quotes (exact substrings of the file) of the best moment(s) and worst defect(s).
+Read ONLY this file. Do not write any files.`,
+  renderReaderExperienceSemanticRubric(),
+  `FILE EVIDENCE TRANSPORT: For every finding and strongest/weakest judgment, use evidenceSpans containing verbatim copy-paste substrings of the file, each at most 200 characters. One altered character is a fabricated span.
 
 FINAL RESPONSE: emit only the JSON object required by the bound output schema. Do not wrap it in markdown fences and do not add prose before or after it:
 {
@@ -115,7 +90,7 @@ FINAL RESPONSE: emit only the JSON object required by the bound output schema. D
   "weakestEvidence": ["..."],
   "oneParagraphVerdict": "..."
 }
-(quizDerivation arrays are positional with the questions; use "" for a question with no ambiguity. Use empty arrays where there is nothing to report.)`;
+(quizDerivation arrays are positional with the questions; use "" for a question with no ambiguity. Use empty arrays where there is nothing to report.)`].join("\n\n");
 }
 
 // ── parsing (schema-bound raw JSON, with fenced compatibility fallback) ───────

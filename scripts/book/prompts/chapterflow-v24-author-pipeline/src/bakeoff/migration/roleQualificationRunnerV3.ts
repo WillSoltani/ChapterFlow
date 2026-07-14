@@ -33,6 +33,7 @@ import {
   type Imp24CorpusPartitionName,
   type Imp24ReviewRole,
 } from "./imp24Corpus.js";
+import { assertImp24ThresholdCoverageStructure } from "./imp24ThresholdCoverage.js";
 import {
   REQUIRED_ROLE_SET_SCHEMA,
   ROLE_QUALIFICATION_OUTCOME_SCHEMA,
@@ -364,8 +365,9 @@ export type QualificationExecutionReceiptV3 = QualificationExecutionReceiptCoreV
 export type QualificationExecutorV3 = (request: QualificationExecutionRequestV3) => Promise<QualificationExecutionReceiptV3>;
 
 /** Lane parsers/assemblers return protocol facts separately from semantic gold.
- * `semanticCorrect` is retained for canaries but never participates in the
- * canary protocol gate. */
+ * `semanticCorrect` is conductor-computed and retained for every case.  Both
+ * frozen canaries must be protocol-valid and semantically correct before the
+ * runner may admit a profile to its holdout. */
 export type CaseEvaluationV3 = {
   schemaValid: boolean;
   envelopeBound: boolean;
@@ -503,6 +505,7 @@ export type ProfileRoleStatusV3 =
   | "UNAVAILABLE"
   | "NOT_TESTED_SEQUENTIAL_STOP"
   | "NOT_QUALIFIED_PROTOCOL"
+  | "NOT_QUALIFIED_CANARY"
   | "NOT_QUALIFIED"
   | "NOT_TESTED_UNDERPOWERED"
   | "QUALIFIED";
@@ -994,6 +997,7 @@ export function buildRoleQualificationPlanV3(input: RunRoleQualificationInputV3)
   validateAvailability(input.candidateAvailability);
   validateCorpus(input);
   validatePreparedCases(input);
+  assertImp24ThresholdCoverageStructure(input.corpusBundle, input.thresholds);
   validateCertification(input);
   const schedule = buildFrozenRoleQualificationScheduleV3(input.preparedCases);
   const freeze = buildFreeze(input, schedule);
@@ -1405,6 +1409,17 @@ function protocolFailure(role: Imp24ReviewRole): RoleQualificationOutcomeV1 {
   };
 }
 
+function semanticCanaryFailure(role: Imp24ReviewRole): RoleQualificationOutcomeV1 {
+  return {
+    schema: ROLE_QUALIFICATION_OUTCOME_SCHEMA,
+    role,
+    status: "NOT_QUALIFIED",
+    refusedUnderpowered: false,
+    underpoweredMetrics: [],
+    failedThresholds: ["semanticCanary"],
+  };
+}
+
 function allUniqueProfiles(): QualificationProfileV3[] {
   const seen = new Set<string>();
   const output: QualificationProfileV3[] = [];
@@ -1476,6 +1491,17 @@ export async function runRoleQualificationV3(
           holdoutCaseCount: 0,
           attempts: attempts.filter((attempt) => attempt.request.role === role && attempt.request.profileId === candidate.profileId).length,
           metrics: null, outcome: protocolFailure(role),
+        });
+        continue;
+      }
+      if (canarySemanticCorrectCount !== IMP24_CANARY_CASES_PER_PROFILE_ROLE) {
+        profileRoleResults.push({
+          role, candidateOrdinal, profile: candidate, availability: "AVAILABLE",
+          status: "NOT_QUALIFIED_CANARY", canaryStarted: true, canaryCaseCount: 2,
+          canaryProtocolPassed: true, canarySemanticCorrectCount, holdoutStarted: false,
+          holdoutCaseCount: 0,
+          attempts: attempts.filter((attempt) => attempt.request.role === role && attempt.request.profileId === candidate.profileId).length,
+          metrics: null, outcome: semanticCanaryFailure(role),
         });
         continue;
       }

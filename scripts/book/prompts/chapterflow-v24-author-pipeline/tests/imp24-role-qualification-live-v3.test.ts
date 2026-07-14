@@ -731,6 +731,50 @@ test("IMP-24 live V3 defaults to the strict V2 schemas and retains exact envelop
   }
 });
 
+test("IMP-24F durable call ledger records the exact two-canary semantic-gate stop", async () => {
+  const roots = mkTestRoots("imp24f-semantic-canary-ledger");
+  try {
+    const firstRequest = request();
+    const secondRequest = request({
+      scheduleId: "v3-reader-p1-canary-c02",
+      attemptId: "v3-reader-p1-canary-c02-a1",
+    });
+    const live = createLiveQualificationExecutorV3({
+      phaseDir: resolve(roots.base, "phase"),
+      freezeSha256: FREEZE,
+      certificationSha256: CERTIFICATION,
+      productionInstrumentSealSha256: SEAL,
+      preCallVerifier: () => undefined,
+      workspaceBaseDir: roots.workspacesRoot,
+      spawn: async (options) => ok(options),
+      clock: () => new Date("2026-07-13T12:00:00.000Z"),
+    });
+    const firstReceipt = await live.executor(firstRequest);
+    const wrongScaleEvaluation: CaseEvaluationV3 = {
+      ...RETAINED_EVALUATION,
+      semanticCorrect: false,
+      semanticSummary: "schema-valid 4.4 score-scale judgment is semantically wrong",
+    };
+    live.retainAttemptEvaluation(attemptFor(firstRequest, firstReceipt, wrongScaleEvaluation));
+    const secondReceipt = await live.executor(secondRequest);
+    live.retainAttemptEvaluation(attemptFor(secondRequest, secondReceipt, RETAINED_EVALUATION));
+
+    assert.equal(live.ledger.brokerRequests, 2);
+    assert.equal(live.ledger.codexExecInvocations, 2);
+    assert.equal(live.ledger.apiCallsMade, 0);
+    assert.deepEqual(live.ledger.entries.map((entry) => entry.scheduleId), [
+      "v3-reader-p1-canary-c01",
+      "v3-reader-p1-canary-c02",
+    ]);
+    assert.ok(live.ledger.entries.every((entry) => entry.scheduleId.includes("-canary-")));
+    assert.ok(live.ledger.entries.every((entry) => typeof entry.evaluationArtifactSha256 === "string"));
+    const retainedLedger = JSON.parse(readFileSync(live.ledgerPath, "utf8")) as typeof live.ledger;
+    assert.deepEqual(retainedLedger, live.ledger, "the durable ledger must retain the exact bounded stop");
+  } finally {
+    roots.dispose();
+  }
+});
+
 test("IMP-24E live evidence accepts canonical compatible schema argv and rejects sibling paths", async () => {
   const variants = [
     {

@@ -155,6 +155,40 @@ function requireExactObjectKeys(value: unknown, keys: string[], label: string): 
     `${label} has missing or unexpected fields`);
 }
 
+function canonicalStringSetForComparison(values: readonly string[], label: string): string[] {
+  requireCondition(Array.isArray(values) && values.every((value) => typeof value === "string"),
+    `${label} must be a string set`);
+  requireCondition(new Set(values).size === values.length, `${label} contains a duplicate member`);
+  return [...values].sort();
+}
+
+/**
+ * Comparison-only projection for the two outcome fields whose contract is a
+ * mathematical set.  All schedule, attempt, evidence, selection, qualifier,
+ * and registry arrays retain byte-order significance and are left untouched.
+ */
+export function projectRoleQualificationResultForSetComparisonV3(
+  result: RoleQualificationRunnerResultV3,
+): RoleQualificationRunnerResultV3 {
+  return {
+    ...result,
+    profileRoleResults: result.profileRoleResults.map((item) => ({
+      ...item,
+      outcome: {
+        ...item.outcome,
+        underpoweredMetrics: canonicalStringSetForComparison(
+          item.outcome.underpoweredMetrics,
+          `${item.role}/${item.profile.profileId} underpoweredMetrics`,
+        ),
+        failedThresholds: canonicalStringSetForComparison(
+          item.outcome.failedThresholds,
+          `${item.role}/${item.profile.profileId} failedThresholds`,
+        ),
+      },
+    })),
+  };
+}
+
 function prettyJson(value: unknown): string {
   return `${JSON.stringify(value, null, 2)}\n`;
 }
@@ -607,6 +641,10 @@ function recomputeProfileResults(args: {
       const canaries = canaryEntries.map(finalFor);
       const canaryProtocolPassed = canaries.every((attempt) => attempt.protocolValid);
       const canarySemanticCorrectCount = canaries.filter((attempt) => attempt.semanticCorrect === true).length;
+      // This verifier reconstructs the immutable pre-IMP-24F campaign under
+      // the semantics that governed that campaign.  New execution and resume
+      // paths enforce the repaired 2/2 semantic gate; archival evidence is not
+      // retroactively rewritten or reclassified here.
       if (!canaryProtocolPassed) {
         requireCondition(profileAttempts.every((attempt) => attempt.request.partition === "canary"),
           `${role}/${candidate.profileId}: protocol-failed canary was followed by holdout calls`);
@@ -1293,7 +1331,8 @@ function verifyForwardRetainedRoleQualificationEvidenceForExecutionV3(
     schedule: plan.schedule,
     executionId,
   });
-  requireCondition(hashCanonical(expectedResult) === hashCanonical(result),
+  requireCondition(hashCanonical(projectRoleQualificationResultForSetComparisonV3(expectedResult))
+      === hashCanonical(projectRoleQualificationResultForSetComparisonV3(result)),
     "retained qualification result/role selection is not the deterministic projection of exact canary/holdout receipts");
   const ledger = parseExactJson<LiveCallLedgerV3>(paths.ledger, "qualification call ledger", "canonical");
   validateLedger({

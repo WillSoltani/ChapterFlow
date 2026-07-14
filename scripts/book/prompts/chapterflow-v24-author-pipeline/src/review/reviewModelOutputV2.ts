@@ -35,6 +35,9 @@ import { buildInlineReviewTask, assertReviewEvidenceEnvelope } from "./reviewEvi
 import { resolveEvidenceRefGroups, resolveEvidenceRefIds } from "./evidenceReferenceResolver.js";
 import { readerAuthorityViolationsV2 } from "./readerAuthorityBoundaryV2.js";
 import { READER_EXPERIENCE_RUBRIC_VERSION } from "./readerExperienceReview.js";
+import { renderReaderExperienceSemanticRubric } from "./readerExperienceSemanticRubric.js";
+import { renderSourceIntegritySemanticRules } from "./sourceIntegritySemanticRules.js";
+import { renderQuizIntegritySemanticRules } from "./quizIntegritySemanticRules.js";
 
 export type ReviewModelOutputV2ErrorCode =
   | "INVALID_JSON"
@@ -96,10 +99,8 @@ export function buildReaderExperienceInlineReviewTask(envelope: ReviewEvidenceEn
     envelope,
     outputSchema: READER_EXPERIENCE_MODEL_OUTPUT_V2_SCHEMA,
     roleInstructions: [
-      "Act only as the reader-experience reviewer. Judge the complete key-free reader-facing chapter.",
-      "External factual truth and source contradiction are outside your authority. Use origin_ambiguous_to_reader when source status is unclear on the page.",
+      renderReaderExperienceSemanticRubric(),
       "Use evidenceRefIds for every finding, strongest/weakest judgment, and each quiz derivation. Do not emit hashes, reviewer identity, route data, or copied evidence spans.",
-      "Your recommendation is advisory; it cannot determine the aggregate result.",
     ].join("\n"),
   });
 }
@@ -110,8 +111,8 @@ export function buildSourceIntegrityInlineReviewTask(envelope: ReviewEvidenceEnv
     envelope,
     outputSchema: SOURCE_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
     roleInstructions: [
-      "Act only as the source-and-claim-integrity reviewer. Judge each packet-local targetRef against the inline chapter, plan, source, mechanism, and anchor evidence.",
-      `Freeze primary-category precedence exactly as: ${SOURCE_PRIMARY_CATEGORY_PRECEDENCE_V2.join(" > ")}.`,
+      renderSourceIntegritySemanticRules(),
+      "Judge each packet-local targetRef against the inline chapter, plan, source, mechanism, and anchor evidence.",
       "Emit semantic assessments only. Do not emit or infer finding IDs, real unit IDs, origin/form/claim-strength labels, hashes, storage paths, a top-level result, or blockingFindingIds.",
       "Use chapterEvidenceRefIds and sourceEvidenceRefIds; never copy serialized JSON spans.",
     ].join("\n"),
@@ -124,6 +125,7 @@ export function buildQuizIntegrityInlineReviewTask(envelope: ReviewEvidenceEnvel
     envelope,
     outputSchema: QUIZ_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
     roleInstructions: [
+      renderQuizIntegritySemanticRules(),
       "Act only as the quiz-integrity adjudicator. Judge each packet-local questionRef using the inline prompt, indexed choices, key-free chapter evidence, committed derivation, stored key, and key explanation.",
       "Emit semantic adjudication only. Do not emit internal item IDs, keyed indices, committed derived indices, agreement, hashes, document identity, or reviewer session identity.",
       "Use evidenceRefIds for the question, choices, chapter mechanism evidence, key, and key explanation.",

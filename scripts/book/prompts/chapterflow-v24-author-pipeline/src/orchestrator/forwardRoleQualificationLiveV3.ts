@@ -1916,6 +1916,10 @@ export function auditLiveQualificationResumeV3(args: LiveQualificationResumeAudi
       }
       const completedCanaries = canaries as QualificationAttemptV3[];
       if (!completedCanaries.every((attempt) => attempt.protocolValid)) continue;
+      // Protocol validity proves only that the two judgments were parseable and
+      // contract-bound.  The repaired instrument also requires both frozen
+      // canaries to be semantically correct before any holdout is reachable.
+      if (!completedCanaries.every((attempt) => attempt.semanticCorrect === true)) continue;
 
       const holdoutEntries = args.schedule.filter((entry) => entry.role === role
         && entry.candidateOrdinal === candidateOrdinal

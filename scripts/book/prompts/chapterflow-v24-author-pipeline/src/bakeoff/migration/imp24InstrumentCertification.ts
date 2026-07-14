@@ -53,6 +53,18 @@ import {
 import { serializeReviewEvidenceEnvelope } from "../../review/reviewEvidenceEnvelope.js";
 import { readerAuthorityViolationsV2 } from "../../review/readerAuthorityBoundaryV2.js";
 import {
+  READER_EXPERIENCE_SEMANTIC_RUBRIC_VERSION,
+  READER_EXPERIENCE_SEMANTIC_SHA256,
+} from "../../review/readerExperienceSemanticRubric.js";
+import {
+  SOURCE_INTEGRITY_SEMANTIC_RULES_VERSION,
+  SOURCE_INTEGRITY_SEMANTIC_SHA256,
+} from "../../review/sourceIntegritySemanticRules.js";
+import {
+  QUIZ_INTEGRITY_SEMANTIC_RULES_VERSION,
+  QUIZ_INTEGRITY_SEMANTIC_SHA256,
+} from "../../review/quizIntegritySemanticRules.js";
+import {
   REVIEW_EVIDENCE_PROTOCOL_V2,
   deriveReaderDecisionCategoryV2,
   reviewProtocolFileAccessFailureV2,
@@ -397,14 +409,53 @@ function schemaPathByRole(repositoryRoot: string): Record<Imp24ReviewRole, strin
   };
 }
 
+export type Imp24SemanticPromptHashes = Record<Imp24ReviewRole, {
+  version: string;
+  sha256: string;
+}>;
+
+export const IMP24_SEMANTIC_PROMPT_HASHES: Imp24SemanticPromptHashes = Object.freeze({
+  reader: Object.freeze({ version: READER_EXPERIENCE_SEMANTIC_RUBRIC_VERSION, sha256: READER_EXPERIENCE_SEMANTIC_SHA256 }),
+  source: Object.freeze({ version: SOURCE_INTEGRITY_SEMANTIC_RULES_VERSION, sha256: SOURCE_INTEGRITY_SEMANTIC_SHA256 }),
+  quiz: Object.freeze({ version: QUIZ_INTEGRITY_SEMANTIC_RULES_VERSION, sha256: QUIZ_INTEGRITY_SEMANTIC_SHA256 }),
+});
+
+/** Lane prompt identities bind exact inline-builder bytes and the imported
+ * semantic projection. Changing a shared semantic renderer therefore stales
+ * qualification evidence even when reviewModelOutputV2.ts itself is untouched. */
+export function buildImp24RolePromptSourceHashes(args: {
+  moduleSha256: string;
+  semantic?: Imp24SemanticPromptHashes;
+}): Record<Imp24ReviewRole, string> {
+  const semantic = args.semantic ?? IMP24_SEMANTIC_PROMPT_HASHES;
+  return {
+    reader: hashCanonical({
+      moduleSha256: args.moduleSha256,
+      builder: "buildReaderExperienceInlineReviewTask",
+      schema: READER_EXPERIENCE_MODEL_OUTPUT_V2_SCHEMA,
+      semanticVersion: semantic.reader.version,
+      semanticSha256: semantic.reader.sha256,
+    }),
+    source: hashCanonical({
+      moduleSha256: args.moduleSha256,
+      builder: "buildSourceIntegrityInlineReviewTask",
+      schema: SOURCE_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+      semanticVersion: semantic.source.version,
+      semanticSha256: semantic.source.sha256,
+    }),
+    quiz: hashCanonical({
+      moduleSha256: args.moduleSha256,
+      builder: "buildQuizIntegrityInlineReviewTask",
+      schema: QUIZ_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA,
+      semanticVersion: semantic.quiz.version,
+      semanticSha256: semantic.quiz.sha256,
+    }),
+  };
+}
+
 function rolePromptSourceHashes(repositoryRoot: string): Record<Imp24ReviewRole, string> {
   const modulePath = resolve(repositoryRoot, `${PIPELINE_REL}/src/review/reviewModelOutputV2.ts`);
-  const moduleSha256 = sha256Hex(readFileSync(modulePath));
-  return {
-    reader: hashCanonical({ moduleSha256, builder: "buildReaderExperienceInlineReviewTask", schema: READER_EXPERIENCE_MODEL_OUTPUT_V2_SCHEMA }),
-    source: hashCanonical({ moduleSha256, builder: "buildSourceIntegrityInlineReviewTask", schema: SOURCE_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA }),
-    quiz: hashCanonical({ moduleSha256, builder: "buildQuizIntegrityInlineReviewTask", schema: QUIZ_INTEGRITY_MODEL_OUTPUT_V2_SCHEMA }),
-  };
+  return buildImp24RolePromptSourceHashes({ moduleSha256: sha256Hex(readFileSync(modulePath)) });
 }
 
 /**

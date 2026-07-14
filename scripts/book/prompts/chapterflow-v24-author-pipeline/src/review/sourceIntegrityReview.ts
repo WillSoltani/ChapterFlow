@@ -57,17 +57,8 @@ import {
   sourceUsePlanStale,
   embeddedPlanMutationFindings,
   renderSourceUsePlanLines,
-  CASE_DETAIL_ALLOWED,
-  CASE_DETAIL_FORBIDDEN,
-  EXPLANATION_DETAIL_ALLOWED,
-  EXPLANATION_DETAIL_FORBIDDEN,
-  CONSTRUCTED_DETAIL_ALLOWED,
-  CONSTRUCTED_DETAIL_FORBIDDEN,
-  GENERIC_DETAIL_ALLOWED,
-  GENERIC_DETAIL_FORBIDDEN,
-  ANALOGY_DETAIL_ALLOWED,
-  ANALOGY_DETAIL_FORBIDDEN,
 } from "../compiler/sourceUsePlanCompiler.js";
+import { renderSourceIntegritySemanticRules } from "./sourceIntegritySemanticRules.js";
 
 // ── versions + reused role identity ───────────────────────────────────────────
 
@@ -223,7 +214,7 @@ export function assembleSourceReviewPacket(
   };
 }
 
-// ── task (prompt) builder — rules GENERATED from the compiler arrays ──────────
+// ── task (prompt) builder ─────────────────────────────────────────────────────
 
 export type SourceIntegrityTaskV1 = {
   task: string;
@@ -242,21 +233,6 @@ function fenceUntrusted(label: string, body: string): string {
   ].join("\n");
 }
 
-/** The per-form permission block, GENERATED from the compiler's exported arrays so
- *  the reviewer rules can never drift from the plan compiler (E-05 note). */
-function renderSourceLaneRules(): string {
-  const list = (a: readonly string[]): string => a.join(", ");
-  return [
-    "SOURCE-LANE RULES (compiler-owned detail permissions — allowed vs forbidden KINDS of detail per origin/form):",
-    `- source_bound (case): requires valid anchors; named specifics must be supported. Allowed: ${list(CASE_DETAIL_ALLOWED)}. Forbidden: ${list(CASE_DETAIL_FORBIDDEN)}.`,
-    `- source_bound (explanation): teach the claim/mechanism expository. Allowed: ${list(EXPLANATION_DETAIL_ALLOWED)}. Forbidden: ${list(EXPLANATION_DETAIL_FORBIDDEN)}.`,
-    `- constructed: must be visibly hypothetical at first entry; never merge a real person or organization into an invented event; consequences are illustrative, never reported history. Allowed: ${list(CONSTRUCTED_DETAIL_ALLOWED)}. Forbidden: ${list(CONSTRUCTED_DETAIL_FORBIDDEN)}.`,
-    `- generic: role labels + observable operations only; no historical specificity; no claim the event occurred. Allowed: ${list(GENERIC_DETAIL_ALLOWED)}. Forbidden: ${list(GENERIC_DETAIL_FORBIDDEN)}.`,
-    `- analogy: clear non-literal framing. Allowed: ${list(ANALOGY_DETAIL_ALLOWED)}. Forbidden: ${list(ANALOGY_DETAIL_FORBIDDEN)}.`,
-    "MISSING EVIDENCE: set supportStatus INCONCLUSIVE and result INCONCLUSIVE — never guess, never convert missing evidence into PASS.",
-  ].join("\n");
-}
-
 /**
  * Build the source-integrity reviewer prompt. The authority block, the rules
  * (generated from the compiler arrays), and the compiler-owned plan license are
@@ -270,11 +246,11 @@ export function buildSourceIntegrityTask(
 ): SourceIntegrityTaskV1 {
   const task = [
     "SOURCE-AND-CLAIM-INTEGRITY REVIEW.",
-    "You are an independent source-integrity reviewer. You hold this chapter's source evidence — the compiled source packet, the source sidecar, the allowed anchor catalog, and the compiler-owned source-use plan — and you are the ONLY reviewer with authority to judge whether an external person, organization, event, quotation, date, number, study, or source claim is factually real and source-supported. Judge each content unit's source claims ONLY against the SOURCE EVIDENCE below, never against outside knowledge.",
+    "You are an independent source-integrity reviewer. You receive a key-blind chapter plus its compiled source packet, source sidecar, allowed anchor catalog, and compiler-owned source-use plan. Apply the shared semantic rules below to that bounded packet.",
     "You do not know how this chapter was produced, which model wrote it, whether it was accepted, or how any other reviewer voted. None of that is provided and none of it is relevant. There is no answer key here; do not ask for one.",
     "Deterministic critics have already checked register overreach, chapter provenance, example grounding, and plan staleness — do not re-litigate those. Adjudicate only the residual: whether each specific claim is supported by the provided source evidence.",
     "",
-    renderSourceLaneRules(),
+    renderSourceIntegritySemanticRules(),
     "",
     `REQUIRED REVIEW UNIT IDS: ${packet.requiredSourceUnitIds.join(", ") || "(none)"}. Emit one units[] record for every required id using that id's compiler-owned origin/form/claim-strength. Never substitute a different plan unit.`,
     "A BLOCK result requires at least one finding with severity blocker. major/minor findings cannot populate blockingFindingIds or justify BLOCK.",

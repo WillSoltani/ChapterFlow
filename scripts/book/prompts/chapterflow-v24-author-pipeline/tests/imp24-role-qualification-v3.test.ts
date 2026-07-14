@@ -341,7 +341,7 @@ test("active FINAL qualification planner rejects an archived availability shape 
     /candidate availability reason code does not derive/);
 });
 
-test("IMP-24 V3 earns 2/2/1 roles from exact frozen gold while canary semantics stay outside the protocol gate", async () => {
+test("IMP-24F semantic canaries stop every profile before holdout when both judgments are not correct", async () => {
   const input = freshInput();
   const kit = createImp24QualificationEvaluator(input.corpusBundle);
   assert.equal(Object.keys(kit.fixtureOutputByCaseId).length, 116);
@@ -357,46 +357,153 @@ test("IMP-24 V3 earns 2/2/1 roles from exact frozen gold while canary semantics 
   assert.equal(result.schedule.length, IMP24_BASE_MAXIMUM_CALLS);
   assert.equal(result.freeze.baseMaximumCalls, 464);
   assert.equal(result.freeze.hardMaximumCalls, IMP24_HARD_MAXIMUM_CALLS);
-  assert.equal(result.baseCallsAttempted, 190);
-  assert.equal(result.totalAttempts, 190);
+  assert.equal(result.baseCallsAttempted, 24);
+  assert.equal(result.totalAttempts, 24);
   assert.equal(result.infrastructureReplays, 0);
-  assert.equal(result.roleSetReady, true, result.roleSetBlockedReason ?? "");
+  assert.equal(result.roleSetReady, false);
   assert.deepEqual(Object.fromEntries(ROLES.map((role) => [role, result.qualifiers[role].length])), {
-    reader: 2,
-    source: 2,
-    quiz: 1,
+    reader: 0,
+    source: 0,
+    quiz: 0,
   });
 
   for (const role of ROLES) {
-    const qualified = result.profileRoleResults.filter((item) => item.role === role && item.status === "QUALIFIED");
-    assert.equal(qualified.length, role === "quiz" ? 1 : 2);
-    for (const item of qualified) {
+    const rejected = result.profileRoleResults.filter((item) => item.role === role);
+    assert.equal(rejected.length, 4);
+    for (const item of rejected) {
+      assert.equal(item.status, "NOT_QUALIFIED_CANARY");
       assert.equal(item.canaryCaseCount, 2);
       assert.equal(item.canaryProtocolPassed, true);
-      assert.equal(item.canarySemanticCorrectCount, 0, "semantic canary failure must not become protocol failure");
-      assert.equal(item.holdoutCaseCount, IMP24_CORPUS_EXPECTED_COUNTS[role].holdout);
-      assert.equal(item.metrics?.denominators.schemaValidity, IMP24_CORPUS_EXPECTED_COUNTS[role].holdout,
-        "canaries must not enter holdout metrics");
-      assert.equal(item.metrics?.denominators.evidenceSpanValidity, IMP24_CORPUS_EXPECTED_COUNTS[role].holdout);
+      assert.equal(item.canarySemanticCorrectCount, 0);
+      assert.equal(item.holdoutStarted, false);
+      assert.equal(item.holdoutCaseCount, 0);
+      assert.equal(item.metrics, null);
+      assert.equal(item.attempts, 2);
     }
   }
-
-  const sourceLedgers = result.profileRoleResults
-    .filter((item) => item.role === "source" && item.status === "QUALIFIED")
-    .map((item) => item.metrics!);
-  for (const ledger of sourceLedgers) {
-    assert.equal(ledger.denominators.missingEvidenceInconclusive, 1,
-      "the certified deterministic probe contributes exactly one observation");
-    assert.equal(ledger.numerators.missingEvidenceInconclusive, 1);
-    assert.equal(ledger.metrics.missingEvidenceInconclusive, 1);
-  }
-  assert.ok(result.profileRoleResults
-    .filter((item) => item.status === "NOT_TESTED_SEQUENTIAL_STOP")
-    .every((item) => item.attempts === 0 && item.holdoutCaseCount === 0));
+  assert.ok(result.attempts.every((attempt) => attempt.request.partition === "canary"));
   assert.ok(result.attempts.every((attempt) =>
     attempt.request.evidenceEnvelopeBytes === attempt.retainedEnvelopeBytes
       && attempt.request.evidenceEnvelopeBytesSha256 === attempt.retainedEnvelopeBytesSha256
       && attempt.receipt?.evidenceEnvelopeBytes === attempt.request.evidenceEnvelopeBytes));
+});
+
+test("IMP-24F semantic canary gate rejects 1/2 and permits holdout only at 2/2 for every role", async () => {
+  for (const role of ROLES) {
+    const oneWrongInput = freshInput();
+    retainOnly(oneWrongInput, role, 0);
+    const oneWrongKit = createImp24QualificationEvaluator(oneWrongInput.corpusBundle);
+    const wrongCanaryCaseId = oneWrongInput.corpusBundle[role].canary.cases[0].caseId;
+    const oneWrong = await runRoleQualificationV3(oneWrongInput, {
+      executor: async (request) => receipt(request, "completed", oneWrongKit.fixtureOutputByCaseId[request.caseId]!),
+      evaluateOutput: (args) => {
+        const evaluated = oneWrongKit.evaluateOutput(args);
+        return args.request.caseId === wrongCanaryCaseId
+          ? { ...evaluated, semanticCorrect: false }
+          : evaluated;
+      },
+      qualifiedAt: () => "2026-07-13T12:00:00.000Z",
+    });
+    const rejected = oneWrong.profileRoleResults.find((item) =>
+      item.role === role && item.candidateOrdinal === 0)!;
+    assert.equal(rejected.status, "NOT_QUALIFIED_CANARY", `${role} must reject a 1/2 semantic canary`);
+    assert.equal(rejected.canarySemanticCorrectCount, 1);
+    assert.equal(rejected.holdoutStarted, false);
+    assert.equal(rejected.holdoutCaseCount, 0);
+    assert.deepEqual(rejected.outcome.failedThresholds, ["semanticCanary"]);
+    assert.equal(oneWrong.totalAttempts, 2);
+    assert.ok(oneWrong.attempts.every((attempt) => attempt.request.partition === "canary"));
+
+    const bothCorrectInput = freshInput();
+    retainOnly(bothCorrectInput, role, 0);
+    const bothCorrectKit = createImp24QualificationEvaluator(bothCorrectInput.corpusBundle);
+    const bothCorrect = await runRoleQualificationV3(bothCorrectInput, {
+      executor: async (request) => receipt(request, "completed", bothCorrectKit.fixtureOutputByCaseId[request.caseId]!),
+      evaluateOutput: bothCorrectKit.evaluateOutput,
+      qualifiedAt: () => "2026-07-13T12:00:00.000Z",
+    });
+    const admitted = bothCorrect.profileRoleResults.find((item) =>
+      item.role === role && item.candidateOrdinal === 0)!;
+    assert.equal(admitted.canarySemanticCorrectCount, 2, `${role} fixture must prove the 2/2 positive control`);
+    assert.equal(admitted.holdoutStarted, true);
+    assert.equal(admitted.holdoutCaseCount, IMP24_CORPUS_EXPECTED_COUNTS[role].holdout);
+    assert.equal(bothCorrect.attempts.filter((attempt) =>
+      attempt.request.role === role && attempt.request.partition === "holdout").length,
+    IMP24_CORPUS_EXPECTED_COUNTS[role].holdout);
+  }
+});
+
+test("IMP-24F real evaluator stops on reader scale, source distinction, and quiz distinction errors", async () => {
+  const scenarios: Array<{
+    role: "reader" | "source" | "quiz";
+    mutate: (raw: string) => string;
+  }> = [
+    {
+      role: "reader",
+      mutate: (raw) => {
+        const output = JSON.parse(raw) as { scores: Record<string, number> };
+        for (const factor of Object.keys(output.scores)) output.scores[factor] = 4.4;
+        return JSON.stringify(output);
+      },
+    },
+    {
+      role: "source",
+      mutate: (raw) => {
+        const output = JSON.parse(raw) as { assessments: Array<Record<string, unknown>> };
+        output.assessments[0] = {
+          ...output.assessments[0],
+          supportStatus: "UNSUPPORTED",
+          visibleRegister: "presented_as_fact",
+          findings: [{
+            primaryCategory: "invented_detail",
+            secondaryCategories: [],
+            severity: "blocker",
+            explanation: "Schema-valid but semantically wrong clean/defect distinction.",
+            chapterEvidenceRefIds: ["CH-U001-001"],
+            sourceEvidenceRefIds: ["SRC-U001-CLAIM-001"],
+          }],
+        };
+        return JSON.stringify(output);
+      },
+    },
+    {
+      role: "quiz",
+      mutate: (raw) => {
+        const output = JSON.parse(raw) as { items: Array<Record<string, unknown>> };
+        output.items[0] = {
+          ...output.items[0],
+          keyCorrect: "correct",
+          defensibleAnswerIndices: [2],
+          rationale: "Schema-valid but semantically wrong key-mismatch distinction.",
+        };
+        return JSON.stringify(output);
+      },
+    },
+  ];
+
+  for (const scenario of scenarios) {
+    const input = freshInput();
+    retainOnly(input, scenario.role, 0);
+    const kit = createImp24QualificationEvaluator(input.corpusBundle);
+    const firstCanaryId = input.corpusBundle[scenario.role].canary.cases[0].caseId;
+    const result = await runRoleQualificationV3(input, {
+      executor: async (request) => {
+        const fixture = kit.fixtureOutputByCaseId[request.caseId]!;
+        return receipt(request, "completed", request.caseId === firstCanaryId ? scenario.mutate(fixture) : fixture);
+      },
+      evaluateOutput: kit.evaluateOutput,
+      qualifiedAt: () => "2026-07-13T12:00:00.000Z",
+    });
+    const rejected = result.profileRoleResults.find((item) =>
+      item.role === scenario.role && item.candidateOrdinal === 0)!;
+    assert.equal(rejected.status, "NOT_QUALIFIED_CANARY", scenario.role);
+    assert.equal(rejected.canaryProtocolPassed, true, `${scenario.role} wrong judgment remains protocol-valid`);
+    assert.equal(rejected.canarySemanticCorrectCount, 1, scenario.role);
+    assert.equal(rejected.holdoutStarted, false, scenario.role);
+    assert.equal(rejected.holdoutCaseCount, 0, scenario.role);
+    assert.equal(result.totalAttempts, 2, `${scenario.role} ledger must stop at the exact two canaries`);
+    assert.ok(result.attempts.every((attempt) => attempt.request.partition === "canary"), scenario.role);
+  }
 });
 
 test("IMP-24 V3 fatal retention latch bounds concurrency and prevents later base calls or replay", async () => {

@@ -58,6 +58,7 @@ import {
 } from "./quizDerivation.js";
 import { echoTellChapter } from "../metrics/cardQualityGates.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
+import { renderQuizIntegritySemanticRules } from "./quizIntegritySemanticRules.js";
 
 // ── lane version + schema id ─────────────────────────────────────────────────
 
@@ -105,28 +106,20 @@ export type QuizIntegrityAdjudicationV1 = {
  *  quiz-integrity-adjudication-v1 superset (WOULD bind the WP-A3 output-schema
  *  at spawn time; NO spawn occurs in this package). */
 export function buildQuizIntegrityAdjudicationTask(docRelPath: string): string {
-  return `QUIZ KEY ADJUDICATION (integrity superset) — you compare a committed blind derivation against the stored answer key and additionally report distractor defensibility and mechanism support.
+  return [`QUIZ KEY ADJUDICATION (integrity superset) — you compare a committed blind derivation against the stored answer key and additionally report distractor defensibility and mechanism support.
 
 The adjudication document is at: ${docRelPath}
 Read ONLY this file. Do not write any files.
 
-It contains: the exact key-free phase-1 chapter evidence, the quiz questions and choices, a COMMITTED DERIVATION produced by an independent blind reader BEFORE any key access (immutable — copy its values verbatim), and the stored ANSWER KEY with explanations.
-
-For EVERY question judge the KEY itself:
-- "correct": the keyed answer is the one the questions/choices genuinely support and no other choice is equally defensible;
-- "ambiguous": two or more choices are defensible readings (or the wording under-determines the answer) — say which and why;
-- "wrong": the keyed answer is not the best-supported choice — name the choice that is.
-The blind derivation is EVIDENCE, not authority: a derivation that disagrees with a sound key does not make the key wrong, and agreement does not make an ambiguous key sound.
-
-Also report, per question:
-- "defensibleAnswerIndices": every 0-based choice index that is a genuinely defensible answer given ONLY the question and its choices. For a uniquely-correct key this is exactly the keyed index. For an ambiguous key it is two or more indices.
-- "keyedMechanismSupported": true when the keyed answer's stated mechanism or causal justification is actually supported by the key-free phase-1 chapter evidence plus the question and choices; true for a question that makes no mechanism/causal claim; false when the key asserts a mechanism/cause those materials do not support.
+It contains: the exact key-free phase-1 chapter evidence, the quiz questions and choices, a COMMITTED DERIVATION produced by an independent blind reader BEFORE any key access (immutable — copy its values verbatim), and the stored ANSWER KEY with explanations.`,
+  renderQuizIntegritySemanticRules(),
+  `FILE EVIDENCE TRANSPORT: Use exact evidence from the adjudication document. Copy the committed derivation values verbatim; do not rewrite them.
 
 FINAL RESPONSE: emit only the JSON object required by the bound output schema. Do not wrap it in markdown fences and do not add prose before or after it:
 {
   "schema": "${QUIZ_INTEGRITY_ADJUDICATION_SCHEMA}",
   "items": [{"itemId": "<copy>", "keyedAnswerIndex": 0, "derivedAnswerIndex": 0, "agreement": true, "keyCorrect": "correct|ambiguous|wrong", "rationale": "<one line>", "defensibleAnswerIndices": [0], "keyedMechanismSupported": true}]
-}`;
+}`].join("\n\n");
 }
 
 // ── parse (raw JSON, with fenced compatibility fallback) ─────────────────────
