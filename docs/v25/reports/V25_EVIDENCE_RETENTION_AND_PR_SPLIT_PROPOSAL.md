@@ -50,3 +50,10 @@ SEPARATE from the code PR (owner approval required before any move):
 1. Owner reviews this proposal and approves/edits the boundary.
 2. Evidence relocation (if approved) happens as its own PR(s) with tree-hash proof, BEFORE PR #401 is un-drafted, so #401 shrinks to the reviewable ~305-file code change.
 3. Until then, PR #401 remains a draft; nothing merges with the boundary unresolved.
+
+## 6. EXECUTION RECORD (2026-07-15, plan v2 P4 — appended)
+
+- Evidence branch `evidence/v25-retained-2026-07-15` @ `4bbd16eee` pushed; **draft PR #405** opened (5,028 files; byte-identity vs `d6c383bb0` proven — only diff is the approved duplicate-zip drop).
+- Duplicate zip dropped on BOTH sides (survivor `chapterflow-book-evaluator-full-content.zip`, sha1 `f256a2549210f8bfc6ac9003503c3d4ebfa77e2f`).
+- Tree anchors recorded in the evidence commit: s16-v3-envelope-final `7d85f513…`, 140-evaluation `ba96cbb0…`.
+- REMAINING (owner + follow-up): (1) owner merges PR #405; (2) merge main forward into `feat/v25-pipeline-live` (normal merge — no history rewrite); (3) PR #401's merge-base advances → diff shrinks to the ~305-file code change; (4) #401 un-drafts on owner sign-off. Until then #401 stays draft.
