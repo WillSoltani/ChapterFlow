@@ -838,6 +838,15 @@ export function assertNativeContractBundle(bundle: NativeContractBundle): void {
       throw new Error(`${operation.id} full coverage must include its error contract`);
     }
     if (operation.fixtures.success.payload.kind === "json") {
+      if (operation.id === "book-state.get") {
+        const body = operation.fixtures.success.payload.value;
+        const stateStatus = isRecord(body) ? body.stateStatus : undefined;
+        if (stateStatus !== "started" && stateStatus !== "not_started") {
+          throw new Error(
+            "book-state.get synthetic success stateStatus must be started or not_started"
+          );
+        }
+      }
       for (const pointer of operation.fixtures.success.requiredAuthorityFields) {
         if (!hasJsonPointer(operation.fixtures.success.payload.value, pointer)) {
           throw new Error(`${operation.id} synthetic success is missing authority field ${pointer}`);
