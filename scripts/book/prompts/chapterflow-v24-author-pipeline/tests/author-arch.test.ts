@@ -582,7 +582,7 @@ test("IMP-05: block versioning + composition hash are stable and stamp every con
   assert.equal(comp.versions.invariants, "invariants-v2", "invariants carry the BEGINNER ENTRY line");
   assert.equal(comp.versions.premium, "premium-v3", "premium carries SAFEGUARDS + NON-SHAMING + CENTRAL MODEL");
   assert.equal(comp.versions.selfVerify, "self-verify-v4", "self-verify carries the full F-1..F-8 write-time evidence block");
-  assert.equal(comp.versions.formatV25, "format-v25-v1", "the D8 format contract is version-stamped");
+  assert.equal(comp.versions.formatV25, "format-v25-v2", "the D8 format contract is version-stamped");
   assert.equal(comp.versions.schemaHint, "schema-hint-v2", "schema hint carries the F-2 feedback fields");
   assert.equal(comp.versions.dataEnvelope, UNTRUSTED_ARTIFACT_RENDERER_VERSION, "data-envelope version tracks IMP-03");
   assert.equal(comp.controlSha256.length, 64, "composition hash is a full sha256");

@@ -293,7 +293,7 @@ test("the writer card carries the Format v25 contract, version-stamped", () => {
   assert.match(AUTHOR_FORMAT_V25_BLOCK, /SELF-CONTAINED TIERS/);
   assert.match(AUTHOR_FORMAT_V25_BLOCK, /QUIZ FEEDBACK \[GATED\]/);
   assert.match(AUTHOR_FORMAT_V25_BLOCK, /exactly ONE read tier/);
-  assert.equal(CARD_BLOCK_VERSIONS.formatV25, "format-v25-v1");
+  assert.equal(CARD_BLOCK_VERSIONS.formatV25, "format-v25-v2");
   assert.equal(CARD_BLOCK_VERSIONS.schemaHint, "schema-hint-v2");
   assert.equal(CARD_BLOCK_VERSIONS.selfVerify, "self-verify-v4");
   const hint = authorSchemaHint("zz-format-fixture", 3);
@@ -307,7 +307,7 @@ test("the writer card carries the Format v25 contract, version-stamped", () => {
   for (const f of ["F-3", "F-4", "F-5", "F-6", "F-7", "F-8"]) assert.ok(sv.includes(f), `self-verify carries ${f}`);
   // The control hash includes the format block — card drift stays detectable.
   const composition = authorCardComposition();
-  assert.equal(composition.versions.formatV25, "format-v25-v1");
+  assert.equal(composition.versions.formatV25, "format-v25-v2");
 });
 
 // The D1 policy-threading validation (readerDecisionPolicy is V2-protocol-only)
