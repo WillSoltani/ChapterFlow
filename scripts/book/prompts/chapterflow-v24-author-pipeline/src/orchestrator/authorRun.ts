@@ -402,7 +402,7 @@ export const AUTHOR_PREMIUM_BLOCK =
  */
 export const AUTHOR_FORMAT_V25_BLOCK =
   "CHAPTER FORMAT v25 (the app shows a reader exactly ONE read tier — write every tier to stand alone):\n" +
-  "1. SELF-CONTAINED TIERS [SCORED]: each read tier is a complete rendition of the core lesson at its depth — its own opening context, every person and object introduced in-tier, no reference to other tiers or to the examples below (no \"as we saw\", no opening on a name the tier never introduced). Deeper = more mechanism, boundaries, misuse — restated in fresh words, never a continuation.\n" +
+  "1. SELF-CONTAINED TIERS [SCORED]: each read tier is a complete rendition of the core lesson at its depth — its own opening context, every person and object introduced in-tier, no reference to other tiers or to the examples below (no \"as we saw\", no opening on a name the tier never introduced). Deeper = more mechanism, boundaries, misuse — restated in fresh words, never a continuation. Each tier's FIRST SENTENCE is its own wording: copying another tier's opening sentence verbatim is a blocker (E2).\n" +
   "2. QUIZ FEEDBACK [GATED]: every question carries choiceRationales (one per choice: why the key is right; the misconception each distractor encodes) and revisit {component, ref} naming the reader-facing component that reteaches the idea (Fast/Deep/Full read, Example N, Card N, Implementation plan, ...).\n" +
   "3. ECONOMY [SCORED]: restage a case at most once; no two examples stage the same demonstration; every prop carries decision weight.\n" +
   "4. EVIDENCE BRIDGE [SCORED]: every named study or statistic states what was observed vs inferred plus one boundary, at the point of use.\n" +
@@ -463,7 +463,7 @@ export const ROUND_TIMER_MINUTES = new Set<number>(ROUND_TIMER_MINUTES_LIST);
 export const CARD_BLOCK_VERSIONS = {
   precedence: "precedence-v1",
   invariants: "invariants-v2",     // v2 = content-excellence BEGINNER ENTRY invariant (D2.2)
-  formatV25: "format-v25-v1",      // D8 — Chapter Format v25 (plan v2)
+  formatV25: "format-v25-v2",      // v2 = F-1 explicit distinct-opener rule (E2 tension found live 2026-07-15)
   qualityBar: "quality-bar-v3",    // v3 = content-excellence MECHANISM + STAGED PROGRESS (D3.2/D7.2)
   premium: "premium-v3",           // v3 = content-excellence SAFEGUARDS + NON-SHAMING + CENTRAL MODEL (D1.4/D7.3/D9)
   schemaHint: "schema-hint-v2",    // v2 = F-2 feedback block + self-contained tiers
