@@ -16,7 +16,6 @@
  */
 
 import { existsSync, readFileSync, readdirSync, statSync } from "fs";
-import { homedir } from "node:os";
 import { relative, resolve } from "path";
 import { runPilotRoleReadinessCampaign } from "../../orchestrator/forwardPilotRoleReadinessCampaign.js";
 
@@ -1162,6 +1161,7 @@ async function runImp24RoleQualificationV3Subverb(
 
 async function runPilotRoleReadinessCampaignSubverb(
   flags: Record<string, string | boolean>,
+  deps: Imp24RoleQualificationCliDepsV3 = {},
 ): Promise<number> {
   // The literal barrier is intentionally the first operation. In dry mode no
   // auth, environment, cache, artifact, gate, report, or campaign path is read
@@ -1191,14 +1191,21 @@ async function runPilotRoleReadinessCampaignSubverb(
     console.error("pilot-role-readiness-campaign: --timeout-ms must be an integer >= 1000");
     return 2;
   }
+  // Spec-driven, never ambient: the models cache path comes from the flag or
+  // the OUTER CLI's runtime context (which resolves the Codex home at its own
+  // boundary) — this module never reads the ambient environment.
   const requestedModelsCachePath = typeof flags["models-cache"] === "string"
     ? flags["models-cache"].trim()
-    : resolve(process.env.CODEX_HOME ?? resolve(homedir(), ".codex"), "models_cache.json");
+    : (deps.modelsCachePath ?? "").trim();
+  if (!requestedModelsCachePath) {
+    console.error("pilot-role-readiness-campaign: models cache path must be supplied by --models-cache or the outer CLI runtime context");
+    return 2;
+  }
   const campaign = await runPilotRoleReadinessCampaign({
     executeLive: true,
     expectedHeadSha,
     workflowRunId,
-    repositoryRoot: resolve(PIPELINE_DIR, "../../../.."),
+    repositoryRoot: resolve(deps.repositoryRoot ?? resolve(PIPELINE_DIR, "../../../..")),
     modelsCachePath: resolve(requestedModelsCachePath),
     preflight: {},
     ...(timeoutMs !== undefined ? { timeoutMs } : {}),
@@ -1257,7 +1264,7 @@ async function runLiveQualificationSubverb(
     return runImp24RoleQualificationV3Subverb(flags, imp24Deps);
   }
   if (subverb === "pilot-role-readiness-campaign") {
-    return runPilotRoleReadinessCampaignSubverb(flags);
+    return runPilotRoleReadinessCampaignSubverb(flags, imp24Deps);
   }
   console.error(USAGE);
   return 2;
