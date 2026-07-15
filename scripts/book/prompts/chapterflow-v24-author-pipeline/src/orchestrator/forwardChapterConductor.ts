@@ -110,9 +110,13 @@ import {
   type ProductionSourcePartitionV2,
 } from "../review/forwardProductionReviewV2.js";
 import {
+  READER_DECISION_POLICY_V2,
+  READER_DECISION_POLICY_V3,
+  deriveReaderDecisionCategory,
   deriveReaderDecisionCategoryV2,
   reviewProtocolFileAccessFailureV2,
   reviewProtocolHasProhibitedConductorEchoV2,
+  type ReaderDecisionPolicyVersion,
 } from "../review/reviewProtocolV2.js";
 import {
   commitPreparedAuthorCandidate,
@@ -150,6 +154,10 @@ export type ForwardFrozenReviewConfigV1 = {
   /** Explicit opt-in for future production review. Absence preserves the
    * immutable legacy V1 path and its retained fixtures/evidence. */
   reviewProtocolVersion?: typeof FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2;
+  /** D1 (owner-ratified 2026-07-15): versioned reader decision policy for the
+   * V2 protocol path ONLY. Absence = reader-decision-policy-v2, byte-identical
+   * legacy semantics — closed identities and the V1 path never re-score. */
+  readerDecisionPolicy?: ReaderDecisionPolicyVersion;
   /** Optional only for legacy fixtures. IMP-22 role-freeze output always carries
    * this exact, hash-bound panel policy and therefore activates backup reads. */
   panelPolicy?: ForwardPanelReviewPolicyV1;
@@ -428,6 +436,13 @@ function assertFrozenConfig(frozen: ForwardFrozenReviewConfigV1): void {
     requireCondition(nonEmpty(value), `forward review: empty frozen ${name}`);
   }
   requireCondition(Number.isFinite(frozen.readerBar) && frozen.readerBar >= 0 && frozen.readerBar <= 100, "forward review: readerBar must be in [0,100]");
+  if (frozen.readerDecisionPolicy !== undefined) {
+    requireCondition(
+      frozen.readerDecisionPolicy === READER_DECISION_POLICY_V2 || frozen.readerDecisionPolicy === READER_DECISION_POLICY_V3,
+      "forward review: unknown readerDecisionPolicy");
+    requireCondition(frozen.reviewProtocolVersion !== undefined,
+      "forward review: readerDecisionPolicy requires the V2 review protocol — the legacy V1 path never re-scores");
+  }
   assertJudge("readerPrimary", frozen.roleAssignment.readerPrimary);
   assertJudge("sourcePrimary", frozen.roleAssignment.sourcePrimary);
   assertJudge("quizAdjudicator", frozen.roleAssignment.quizAdjudicator);
@@ -990,17 +1005,21 @@ export async function runForwardChapterConductor(
       return { review, executionId: executed.executionId };
     };
 
+    // D1: the V2 path derives categories under the frozen config's versioned
+    // policy; absence keeps the exact v2 predicate (closed identities replay
+    // byte-identically). The V1 path below never consults this.
+    const readerPolicy = input.frozen.readerDecisionPolicy ?? READER_DECISION_POLICY_V2;
     const primaryReader = await runBoundReaderV2("readerPrimary");
     authoritative.reader = primaryReader.review;
     reader = adaptReaderExperienceReviewV2ToV1(primaryReader.review);
-    panel.readerPrimaryCategory = deriveReaderDecisionCategoryV2(primaryReader.review, input.frozen.readerBar);
+    panel.readerPrimaryCategory = deriveReaderDecisionCategory(readerPolicy, primaryReader.review, input.frozen.readerBar);
     if (panel.readerAuditSelected) {
       assertFrozenConfig(input.frozen);
       assertInputsFresh(input, hashes);
       const audit = await runBoundReaderV2("readerAudit");
       authoritative.readerAudit = audit.review;
       panel.readerAudit = adaptReaderExperienceReviewV2ToV1(audit.review);
-      panel.readerAuditCategory = deriveReaderDecisionCategoryV2(audit.review, input.frozen.readerBar);
+      panel.readerAuditCategory = deriveReaderDecisionCategory(readerPolicy, audit.review, input.frozen.readerBar);
       panel.readerAuditDisagreement = panel.readerAuditCategory !== panel.readerPrimaryCategory;
       if (panel.readerAuditDisagreement) {
         panel.adjustmentReasons.push(
@@ -1231,6 +1250,7 @@ export async function runForwardChapterConductor(
       expectedSourceSchemaSha256: input.frozen.instrumentManifest.sourceSchemaSha256,
       expectedQuizSchemaSha256: input.frozen.instrumentManifest.quizAdjudicationSchemaSha256,
       requiredSourceUnitIds: computeRequiredSourceUnitIds(input.prepared.plan!),
+      readerDecisionPolicy: readerPolicy,
     });
     const aggregateErrors = validateAggregatedChapterReview(aggregate);
     requireCondition(aggregateErrors.length === 0, `forward review: invalid V2 aggregate projection (${aggregateErrors.join("; ")})`);

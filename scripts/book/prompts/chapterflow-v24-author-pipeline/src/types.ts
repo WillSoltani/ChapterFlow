@@ -633,6 +633,19 @@ export type QuizV21 = {
     explanation: string;                 // 120–300 chars
     bloomsLevel: "remember" | "understand" | "apply" | "analyze" | "evaluate" | "create";
     depthLevel: "simple" | "standard" | "deep";
+    /** Chapter Format v25 (F-2) feedback block — optional in the schema so the
+     *  shipped v21 corpus still parses; REQUIRED of new authoring by the
+     *  format-v25 ship-gate check. One rationale PER CHOICE, in choice order:
+     *  why the key is right, why each distractor specifically fails (the
+     *  misconception it encodes). */
+    choiceRationales?: string[];         // exactly choices.length when present
+    /** F-2: where a reader who missed this question re-learns the idea. */
+    revisit?: {
+      component: string;                 // reader-facing component name, e.g. "Deep read", "Example 2", "Card 3"
+      ref: string;                       // one plain sentence locating the reteach
+    };
+    /** F-2: optional pre-answer confidence prompt (app adoption later). */
+    confidencePrompt?: string;
   }>;
 };
 

@@ -525,7 +525,7 @@ test("author card: brief md verbatim + writer projection + schema hint + self-ve
   // IMP-05: the precedence contract rides the always-sent card.
   assert.ok(card.includes(AUTHOR_PRECEDENCE), "the precedence order is embedded");
   assert.ok(card.length <= AUTHOR_CARD_MAX_CHARS, `card must be <= ${AUTHOR_CARD_MAX_CHARS} chars, got ${card.length}`);
-  assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 900, "self-verify stays <= 900 chars (IMP-05 diet)");
+  assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 1200, "self-verify stays <= 1200 chars (IMP-05 diet + Format v25 check 5)");
   console.log(`  [measure] author card on the golden fixture packet: ${card.length} chars`);
 });
 
@@ -561,18 +561,24 @@ test("IMP-05: the diet actually shrank the card; instruction count fell; budget 
   // (pin 15,000). IMP-04 instruction 4 adds the CAST role-label default + the
   // constructed-lead first-entry framing to the brief render (~230 chars on this
   // fixture, already tightened once) — a required register addition, so the pin
-  // moves 15,000 → 15,200. The diet ratchet stands: ~4.7k under the pre-diet card.
-  assert.ok(m.chars <= 15200, `dieted card must be <= 15,200 chars, got ${m.chars} (was 19,924 after IMP-03)`);
-  assert.ok(m.controlChars <= 4600, `control blocks must be <= 4,600 chars, got ${m.controlChars} (was ~10,900)`);
+  // moved 15,000 → 15,200. Chapter Format v25 (D8, plan v2) adds the owner-
+  // ratified format contract (tier independence + quiz feedback block + F-2
+  // schema hint + self-verify check 5): +~1.9k on this fixture, so the pin
+  // moves 15,200 → 17,300. The diet ratchet still stands ~2.6k under the
+  // pre-diet card; any further growth needs the same explicit justification.
+  assert.ok(m.chars <= 17300, `dieted card must be <= 17,300 chars, got ${m.chars} (was 19,924 after IMP-03)`);
+  assert.ok(m.controlChars <= 6200, `control blocks must be <= 6,200 chars, got ${m.controlChars} (was ~10,900)`);
   // Rule-count dilution signal: the control blocks carry far fewer directive lines.
-  assert.ok(m.instructions <= 40, `directive-line count stays low, got ${m.instructions}`);
+  assert.ok(m.instructions <= 50, `directive-line count stays low, got ${m.instructions}`);
   console.log(`  [measure] IMP-05 dieted card: ${m.chars} chars, ${m.instructions} directive lines, control ${m.controlChars}`);
 });
 
 test("IMP-05: block versioning + composition hash are stable and stamp every control block", () => {
   const comp = authorCardComposition();
   assert.equal(comp.versions.qualityBar, "quality-bar-v2", "quality bar is at the IMP-05 diet version");
-  assert.equal(comp.versions.selfVerify, "self-verify-v2", "self-verify is at the IMP-05 diet version");
+  assert.equal(comp.versions.selfVerify, "self-verify-v3", "self-verify carries the Format v25 check 5");
+  assert.equal(comp.versions.formatV25, "format-v25-v1", "the D8 format contract is version-stamped");
+  assert.equal(comp.versions.schemaHint, "schema-hint-v2", "schema hint carries the F-2 feedback fields");
   assert.equal(comp.versions.dataEnvelope, UNTRUSTED_ARTIFACT_RENDERER_VERSION, "data-envelope version tracks IMP-03");
   assert.equal(comp.controlSha256.length, 64, "composition hash is a full sha256");
   assert.equal(authorCardComposition().controlSha256, comp.controlSha256, "composition hash is deterministic");

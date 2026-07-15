@@ -333,7 +333,9 @@ async function prepareStandardForwardTypedRepair(args: {
   const bytes = `${JSON.stringify(applied.chapter, null, 2)}\n`;
   writeFileAtomic(attempt.candidatePath, bytes);
   const canonicalPath = resolve(PIPELINE_DIR, "state", "chapters", candidateName);
-  const gate = await prepared.io.gateCandidate(applied.chapter, canonicalPath, `forward-repair-${prepared.bookId}-ch${nn}`);
+  // A repaired forward chapter keeps meeting Chapter Format v25 (D8) — repair
+  // may never regress the format the original write was gated on.
+  const gate = await prepared.io.gateCandidate(applied.chapter, canonicalPath, `forward-repair-${prepared.bookId}-ch${nn}`, { formatV25: true });
   if (gate.code !== 0 || !/Gate verdict: PASS/.test(`${gate.stdout}\n${gate.stderr}`)) {
     finalizeAttempt(attempt, "validation_failed", "typed repair candidate failed deterministic gate");
     return { ok: false, reason: `ch${nn}: typed repair candidate failed deterministic gate`, failureDisposition: "REPAIR_CONTENT_FAILURE" };

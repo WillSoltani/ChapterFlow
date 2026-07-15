@@ -25,6 +25,11 @@ You are operating in one role only. Never mix roles.
 - Read `agent-prompts/STEP-2-WRITE-CHAPTERS.md`.
 - Read the chapter's source-v2 sidecar.
 - Use only the dealt name/shape/pedagogy/venue/exemplar plan.
+- Chapter Format v25 (docs/v25/CHAPTER_FORMAT_V25.md) applies to every new
+  chapter: each read tier stands alone (the app shows a reader exactly one);
+  every quiz question carries choiceRationales (one per choice) and a revisit
+  pointer to a real component. The gate blocks a missing feedback block
+  (F25.quiz_feedback).
 - Save the chapter.
 - Run author-check and gate-chapter until both are clean.
 - Never run qc-attest, key-derive, sweep-attest, or promote-book.

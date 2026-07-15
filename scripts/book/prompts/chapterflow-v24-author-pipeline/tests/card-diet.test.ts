@@ -111,21 +111,25 @@ test("full-artifact: the diet never makes a product field optional — completen
 
 // ── self-verify diet (instruction 10) ─────────────────────────────────────────
 
-test("self-verify is the ordered high-risk set (4 checks, <= 900 chars), not a restatement of the whole prompt", () => {
+test("self-verify is the ordered high-risk set (5 checks, <= 1200 chars), not a restatement of the whole prompt", () => {
+  // Check 5 added by Chapter Format v25 (D8) — tier independence + quiz
+  // feedback are the rubric-audit campaign's converged top defects; the char
+  // budget was raised 900 -> 1200 for exactly this one addition.
   const sv = authorSelfVerify("zz-diet", 3);
-  assert.ok(sv.length <= 900, `self-verify <= 900 chars, got ${sv.length}`);
-  assert.deepEqual((sv.match(/^\d+\./gm) ?? []).map((s) => s.trim()), ["1.", "2.", "3.", "4."], "exactly four ordered checks");
+  assert.ok(sv.length <= 1200, `self-verify <= 1200 chars, got ${sv.length}`);
+  assert.deepEqual((sv.match(/^\d+\./gm) ?? []).map((s) => s.trim()), ["1.", "2.", "3.", "4.", "5."], "exactly five ordered checks");
   assert.match(sv, /1\. KEYS/, "highest-risk KEYS first");
   assert.match(sv, /2\. FACTS/, "FACTS second");
   assert.match(sv, /3\. SCAFFOLD/, "SCAFFOLD third");
-  assert.match(sv, /4\. COMPLETE/, "COMPLETE last");
+  assert.match(sv, /4\. COMPLETE/, "COMPLETE fourth");
+  assert.match(sv, /5\. TIERS & FEEDBACK/, "Format v25 tiers+feedback last");
 });
 
 // ── versioning (instruction 13) ───────────────────────────────────────────────
 
 test("card composition is version-stamped per block and hashes deterministically", () => {
   const comp = authorCardComposition();
-  const blocks = ["precedence", "invariants", "qualityBar", "premium", "schemaHint", "selfVerify", "dataEnvelope"] as const;
+  const blocks = ["precedence", "invariants", "formatV25", "qualityBar", "premium", "schemaHint", "selfVerify", "dataEnvelope"] as const;
   for (const b of blocks) assert.ok(typeof comp.versions[b] === "string" && comp.versions[b].length > 0, `${b} is version-stamped`);
   assert.equal(comp.controlSha256, authorCardComposition().controlSha256, "deterministic hash");
 });

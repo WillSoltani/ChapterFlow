@@ -56,6 +56,7 @@ import { checkBeatVocabularyEcho } from "./beatVocabularyEcho.js";
 import { checkCitationDateDoorway } from "./citationDateDoorway.js";
 import { checkLineageKeyQuiz } from "./lineageKeyQuiz.js";
 import { checkApparatusLeakage } from "./apparatusLeakage.js";
+import { checkFormatV25 } from "./formatV25.js";
 import { checkOutcomeVariety } from "./outcomeVariety.js";
 import { checkGroundedNumbers } from "./groundedNumbers.js";
 import { checkInventedWitness } from "./evidenceWitness.js";
@@ -138,6 +139,12 @@ function allocatedNamesForChapter(chapter: ChapterV21): Set<string> {
 }
 
 const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
+  // Chapter Format v25 (F25) — D8. Only the schema-crisp feedback block gates;
+  // the semantic F-1/F-3 heuristics are advisory (STIER-2: lexical gates on
+  // semantic properties invert). Run only when ShipGateOptions.formatV25.
+  "F25.quiz_feedback": "blocker",
+  "F25.duplicate_example": "minor",
+  "F25.tier_serial_opener": "minor",
   // Schema (A)
   A1: "blocker",
   A2: "blocker",
@@ -794,6 +801,9 @@ export type ShipGateOptions = {
   /** Frozen source inputs used by every source-bound critic. */
   sourceSidecar?: unknown;
   sourceUsePlan?: SourceUsePlanV1 | null;
+  /** Chapter Format v25 (D8) enforcement. The production authoring path sets
+   *  this; gate-chapter replays of the shipped pre-v25 corpus leave it off. */
+  formatV25?: boolean;
 };
 
 export function runShipGate(chapter: ChapterV21, options: ShipGateOptions = {}): GateReport {
@@ -820,6 +830,11 @@ export function runShipGate(chapter: ChapterV21, options: ShipGateOptions = {}):
     }
     findings.push({ catalogId, severity, unit, message, evidence });
   };
+
+  // ── Chapter Format v25 (F25) — D8, opt-in for new authoring ──────────────
+  if (options.formatV25 === true) {
+    for (const f of checkFormatV25(chapter)) push(f.catalogId, f.unit, f.message, f.evidence);
+  }
 
   // ── Hook (B1, B2, B4, B5, A12, A13) ──────────────────────────────────────
   if (chapter.hook) {

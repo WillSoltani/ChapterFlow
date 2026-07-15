@@ -164,7 +164,7 @@ export type AuthorIo = {
    *  attempt-workspace draft) in process — never by exposing them at the
    *  canonical path. Tests that previously stubbed the `gate-chapter` /
    *  `rubric-metrics` runVerb calls override these two instead. */
-  gateCandidate: (candidate: ChapterV21, canonicalAbsPath: string, attemptKey: string) => Promise<{ code: number; stdout: string; stderr: string }>;
+  gateCandidate: (candidate: ChapterV21, canonicalAbsPath: string, attemptKey: string, extras?: { formatV25?: boolean }) => Promise<{ code: number; stdout: string; stderr: string }>;
   rubricWithCandidate: (bookId: string, chapterNumber: number, candidate: ChapterV21) => Promise<{ code: number; stdout: string; stderr: string }>;
   /** Root for per-attempt workspaces/evidence (.attempts by default; tests use
    *  tmp roots so unit runs never write the real pipeline tree). */
@@ -260,7 +260,10 @@ export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
     readLeadOverride: over?.readLeadOverride ?? readLeadOverrideFromDisk,
     writeLeadOverride: over?.writeLeadOverride ?? writeLeadOverrideToDisk,
     removeLeadOverride: over?.removeLeadOverride ?? ((bookId, n) => rmSync(leadOverridePath(normSlug(bookId), n), { force: true })),
-    gateCandidate: over?.gateCandidate ?? gateCandidate,
+    gateCandidate: over?.gateCandidate
+      ?? ((candidate, canonicalAbsPath, attemptKey, extras) => gateCandidate(
+        candidate, canonicalAbsPath, attemptKey,
+        extras?.formatV25 === true ? { shipGate: { formatV25: true } } : {})),
     rubricWithCandidate: over?.rubricWithCandidate
       ?? ((bookId, n, candidate) => rubricMetricsWithCandidate(bookId, n, candidate, loadChaptersResolved)),
     attemptsRoot: over?.attemptsRoot ?? (() => ATTEMPTS_ROOT),
@@ -375,24 +378,47 @@ export const AUTHOR_PREMIUM_BLOCK =
   "- VOICE: this book's voice, not a house voice — vary sentence length and rhythm; break long abstract runs with a person, scene, or object.\n" +
   "- QUIZZES: a chapter-skipper scores ~33%, not 60%; every explanation teaches why the tempting wrong answer fails, not only why the key is right.";
 
+/**
+ * CHAPTER FORMAT v25 (D8, plan v2) — the owner-ratified format contract derived
+ * from the rubric-v2 audit's converged defects (docs/v25/CHAPTER_FORMAT_V25.md).
+ * The load-bearing change is tier independence: the app shows a reader exactly
+ * ONE read tier (Guided=fast, Standard=deep, Challenge=full), and the shipped
+ * corpus wrote tiers as serial continuations — Standard/Challenge readers hit
+ * unresolved references. F-2 gates deterministically (F25.quiz_feedback);
+ * F-1/F-3 are reviewer-scored and rubric-audit-gated with advisory lints only.
+ * Version-stamped CARD_BLOCK_VERSIONS.formatV25.
+ */
+export const AUTHOR_FORMAT_V25_BLOCK =
+  "CHAPTER FORMAT v25 (the app shows a reader exactly ONE read tier — write every tier to stand alone):\n" +
+  "1. SELF-CONTAINED TIERS [SCORED]: each read tier is a complete rendition of the core lesson at its depth — its own opening context, every person and object introduced in-tier, no reference to other tiers or to the examples below (no \"as we saw\", no opening on a name the tier never introduced). Deeper = more mechanism, boundaries, misuse — restated in fresh words, never a continuation.\n" +
+  "2. QUIZ FEEDBACK [GATED]: every question carries choiceRationales (one per choice: why the key is right; the misconception each distractor encodes) and revisit {component, ref} naming the reader-facing component that reteaches the idea (Fast/Deep/Full read, Example N, Card N, Implementation plan, ...).\n" +
+  "3. ECONOMY [SCORED]: restage a case at most once; no two examples stage the same demonstration; every prop carries decision weight.\n" +
+  "4. EVIDENCE BRIDGE [SCORED]: every named study or statistic states what was observed vs inferred plus one boundary, at the point of use.\n" +
+  "5. LOOP CLOSURE [SCORED]: plans end with observe-evaluate-revise — what to watch, what counts as working, when to stop.\n" +
+  "6. ONE TAXONOMY [SCORED]: one category map; every re-listing uses identical labels.\n" +
+  "7. NAMED REFERENCES [SCORED]: one sentence of local context at first in-tier mention.\n" +
+  "8. AMBIGUITY [SCORED]: at least 2 examples are failure or boundary cases — the move misfires or the honest answer is to stop.";
+
 /** Compact ChapterV21 schema hint — field names + types only, one line, the same
  *  style sectionTasks.ts uses for section artifacts. */
 export function authorSchemaHint(bookId: string, chapterNumber: number): string {
   const chapterId = authorChapterId(bookId, chapterNumber);
-  return `{"schemaVersion":"chapterflow-v21-authored","chapterId":"${chapterId}","number":${chapterNumber},"title":"...","readingTimeMinutes":7,"hook":"...(60-120 chars)","counterintuition":"...(1-2 sentences)","tryThisNow":"...(80-220 chars)","keyTakeaway":"...(140-220 chars)","breakdown":{"fastRead":"...(~400-700 chars)","deepRead":"...(~1200-1800 chars)","fullRead":"...(~2500-3500 chars)"},"examples":[{"exampleId":"ex01","title":"...","tags":["..."],"planSpec":{"domain":"...","audience":"...","stakes":"...","format":"...","requiredBeat":"..."},"scenario":"...(280-520 chars)","whatToDo":"...(120-240 chars)","whyItMatters":"...(120-240 chars)"}],"quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...(120-300 chars; why the move works)","bloomsLevel":"apply","depthLevel":"standard"}]},"reviewCards":[{"cardId":"c01","front":"...(30-200 chars)","back":"...(80-400 chars)","difficulty":"medium"}],"implementationPlan":{"title":"...(2-5 word skill name)","coreSkill":"<skill name>. ...(2-4 sentences)","ifThenPlans":[{"context":"...","plan":"If X, then Y."}],"twentyFourHourChallenge":"...","weeklyPractice":"..."},"memorableLines":[{"text":"...(exact sentence from the chapter; >=1 carries the central image)","location":"breakdown.deepRead","why":"..."}]}`;
+  return `{"schemaVersion":"chapterflow-v21-authored","chapterId":"${chapterId}","number":${chapterNumber},"title":"...","readingTimeMinutes":7,"hook":"...(60-120 chars)","counterintuition":"...(1-2 sentences)","tryThisNow":"...(80-220 chars)","keyTakeaway":"...(140-220 chars)","breakdown":{"fastRead":"...(~400-700 chars; SELF-CONTAINED)","deepRead":"...(~1200-1800 chars; SELF-CONTAINED)","fullRead":"...(~2500-3500 chars; SELF-CONTAINED)"},"examples":[{"exampleId":"ex01","title":"...","tags":["..."],"planSpec":{"domain":"...","audience":"...","stakes":"...","format":"...","requiredBeat":"..."},"scenario":"...(280-520 chars)","whatToDo":"...(120-240 chars)","whyItMatters":"...(120-240 chars)"}],"quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...(120-300 chars; why the move works)","choiceRationales":["why choice a is right or which misconception it encodes","...b...","...c..."],"revisit":{"component":"Deep read|Example N|Card N","ref":"one sentence locating the reteach"},"bloomsLevel":"apply","depthLevel":"standard"}]},"reviewCards":[{"cardId":"c01","front":"...(30-200 chars)","back":"...(80-400 chars)","difficulty":"medium"}],"implementationPlan":{"title":"...(2-5 word skill name)","coreSkill":"<skill name>. ...(2-4 sentences)","ifThenPlans":[{"context":"...","plan":"If X, then Y."}],"twentyFourHourChallenge":"...","weeklyPractice":"..."},"memorableLines":[{"text":"...(exact sentence from the chapter; >=1 carries the central image)","location":"breakdown.deepRead","why":"..."}]}`;
 }
 
 /** SELF-VERIFY (IMP-05 instruction 10): the ordered HIGHEST-RISK checks whose
- *  answer is structured evidence, not a restatement of the whole prompt. Four
- *  checks; the rest of the old seven are owned by their gates/critics (see the
- *  ledger). Kept <= 900 chars — pinned by test. */
+ *  answer is structured evidence, not a restatement of the whole prompt. Five
+ *  checks (check 5 added by Chapter Format v25 — D8); the rest of the old seven
+ *  are owned by their gates/critics (see the ledger). Kept <= 1200 chars —
+ *  pinned by test. */
 export function authorSelfVerify(bookId: string, chapterNumber: number, outputRelPath?: string): string {
   const relPath = outputRelPath ?? authorChapterRelPath(bookId, chapterNumber);
   return `SELF-VERIFY before you exit — the conductor gates ${relPath} the moment you do, and a blocker costs a full rewrite:
 1. KEYS — derive every quiz answer from your prose alone, blind; each must hit the stored correctIndex and test a move, not a source. Mismatch: re-key or rewrite.
 2. FACTS — every claim, number, name, and case detail traces to the SOURCE PACKET and obeys the SOURCE-USE PLAN. Untraceable: delete or soften.
 3. SCAFFOLD — no reader-facing field carries scaffold vocabulary (slot/shape/beat labels, anchor ids, "Fact 2" numbering, page/section citations, " / " label seams) or names the machinery.
-4. COMPLETE — every required field present and full: hook, the three read tiers, the dealt example count, nine quiz questions, cards, the implementation plan (coreSkill opens with the skill name), memorable lines.`;
+4. COMPLETE — every required field present and full: hook, the three read tiers, the dealt example count, nine quiz questions, cards, the implementation plan (coreSkill opens with the skill name), memorable lines.
+5. TIERS & FEEDBACK — read each tier ALONE as its only reader will: no unresolved name or back-reference, core lesson complete at that depth; every quiz question carries one rationale per choice and a revisit target that exists.`;
 }
 
 /** STIER-2 D7/D9 — deterministic write-time contract checks that need the BRIEF in
@@ -414,10 +440,11 @@ export const ROUND_TIMER_MINUTES = new Set<number>(ROUND_TIMER_MINUTES_LIST);
 export const CARD_BLOCK_VERSIONS = {
   precedence: "precedence-v1",
   invariants: "invariants-v1",     // was AUTHOR_HOUSE_RULES
+  formatV25: "format-v25-v1",      // D8 — Chapter Format v25 (plan v2)
   qualityBar: "quality-bar-v2",    // v2 = IMP-05 diet
   premium: "premium-v2",           // v2 = IMP-05 diet
-  schemaHint: "schema-hint-v1",
-  selfVerify: "self-verify-v2",    // v2 = IMP-05 diet (7→4 checks)
+  schemaHint: "schema-hint-v2",    // v2 = F-2 feedback block + self-contained tiers
+  selfVerify: "self-verify-v3",    // v3 = Format v25 check 5 (tiers & feedback)
   dataEnvelope: UNTRUSTED_ARTIFACT_RENDERER_VERSION,
 } as const;
 
@@ -429,6 +456,7 @@ export function authorCardComposition(): { versions: typeof CARD_BLOCK_VERSIONS;
   const control = [
     AUTHOR_PRECEDENCE,
     AUTHOR_HOUSE_RULES,
+    AUTHOR_FORMAT_V25_BLOCK,
     AUTHOR_QUALITY_BAR,
     AUTHOR_PREMIUM_BLOCK,
     JSON.stringify(CARD_BLOCK_VERSIONS),
@@ -624,7 +652,8 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
   sections.push(
     "ROLE",
     `You are the AUTHOR of chapter ${nn} of ${bookId}. You own the whole chapter: hook, breakdown ` +
-    "(fastRead ⊂ deepRead ⊂ fullRead), 4-6 examples, a 9-question quiz, review cards, implementation plan " +
+    "(three SELF-CONTAINED read tiers — fastRead, deepRead, fullRead; the app shows a reader exactly ONE), " +
+    "4-6 examples, a 9-question quiz with per-choice feedback, review cards, implementation plan " +
     "(2-3 if-then plans + 24-hour challenge + weekly practice), memorable lines.",
   );
 
@@ -691,6 +720,9 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
     if (register) styleLines.push(`Register: ${register}`);
   }
   styleLines.push(AUTHOR_HOUSE_RULES);
+  // D8: the FORMAT contract rides with the invariants — tier independence and
+  // the quiz feedback block are product shape, not style.
+  styleLines.push("", AUTHOR_FORMAT_V25_BLOCK);
   // W1: the QUALITY BAR travels in the ALWAYS-SENT card so first drafts clear the
   // W2 preflight without a retry (the retry card carried these before, which is
   // why every first draft paid a rewrite).
@@ -867,6 +899,10 @@ export type AuthorWriteOneOpts = {
    * candidate without committing canonical state.  Only the forward review
    * conductor may later commit it, after split-lane aggregation returns PASS. */
   deferCommit?: boolean;
+  /** Chapter Format v25 (D8) gate enforcement. The production authoring path
+   * (runLocalAuthoringChapter) always sets this; legacy/replay callers that
+   * re-gate pre-v25 chapters leave it off. */
+  formatV25?: boolean;
 };
 
 export type CommitPreparedAuthorCandidateDeps = Pick<AutopilotDeps, "log"> & {
@@ -1369,7 +1405,7 @@ export async function authorWriteOneChapter(
       continue;
     }
 
-    const gate = await io.gateCandidate(candidate, canonicalAbs, relPath);
+    const gate = await io.gateCandidate(candidate, canonicalAbs, relPath, { formatV25: opts.formatV25 === true });
     if (gate.code === 0) {
       if (priorHash) {
         // IMP-01: the no-op check reads the CANDIDATE (the prior draft is still

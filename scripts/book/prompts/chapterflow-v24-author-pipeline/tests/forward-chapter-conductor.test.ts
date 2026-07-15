@@ -28,6 +28,7 @@ import type { PreparedAuthorCandidate } from "../src/orchestrator/authorRun.js";
 import {
   FORWARD_FROZEN_REVIEW_CONFIG_SCHEMA,
   FORWARD_REVIEW_EXECUTION_RESULT_SCHEMA,
+  assertForwardFrozenReviewConfig,
   runForwardChapterConductor,
   type ForwardChapterConductorInputV1,
   type ForwardFrozenReviewConfigV1,
@@ -1211,4 +1212,22 @@ test("stale panel-policy hashes fail before any reviewer spawn", async () => {
   } finally {
     fixture.cleanup();
   }
+});
+
+// ── D1 (plan v2 P2): readerDecisionPolicy threading is V2-protocol-only ──────
+
+test("frozen config accepts a versioned reader decision policy only on the V2 protocol path", () => {
+  const v2WithPolicy = { ...frozenConfigV2(), readerDecisionPolicy: "reader-decision-policy-v3" as const };
+  assertForwardFrozenReviewConfig(v2WithPolicy); // must not throw
+
+  const v2Explicit = { ...frozenConfigV2(), readerDecisionPolicy: "reader-decision-policy-v2" as const };
+  assertForwardFrozenReviewConfig(v2Explicit); // explicit v2 is the same legacy predicate
+
+  const legacyWithPolicy = { ...frozenConfig(), readerDecisionPolicy: "reader-decision-policy-v3" as const };
+  assert.throws(() => assertForwardFrozenReviewConfig(legacyWithPolicy),
+    /readerDecisionPolicy requires the V2 review protocol/,
+    "the legacy V1 path never re-scores under a new policy");
+
+  const unknownPolicy = { ...frozenConfigV2(), readerDecisionPolicy: "reader-decision-policy-v9" } as unknown as ForwardFrozenReviewConfigV1;
+  assert.throws(() => assertForwardFrozenReviewConfig(unknownPolicy), /unknown readerDecisionPolicy/);
 });

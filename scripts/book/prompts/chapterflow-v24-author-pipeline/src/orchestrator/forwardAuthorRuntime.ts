@@ -721,6 +721,10 @@ export async function runLocalAuthoringChapter(
     model: route.model,
     effort: route.effort,
     deferCommit: input.runtime.mode === "FORWARD_ACTIVE",
+    // Chapter Format v25 (D8): every chapter authored through the production
+    // runtime — BASELINE or ACTIVE — meets the new format; replay/regate paths
+    // of the shipped pre-v25 corpus never route through here.
+    formatV25: true,
   });
 
   if (input.runtime.mode === "BASELINE") {

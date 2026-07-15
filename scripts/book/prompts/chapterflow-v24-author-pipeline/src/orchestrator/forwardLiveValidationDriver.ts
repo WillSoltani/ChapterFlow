@@ -2326,7 +2326,7 @@ export function createExplicitExperimentAuthorDestination(args: {
     // Ignore authorRun's logical manifest outputRelPath here. The deterministic
     // gate's sibling context must be the actual experiment-local committed
     // output directory used by this complete AuthorIo.
-    gateCandidate: (candidate, _logicalCanonicalAbsPath, attemptKey) => {
+    gateCandidate: (candidate, _logicalCanonicalAbsPath, attemptKey, extras) => {
       syncGateSiblingContext();
       return (args.gateCandidateImpl ?? gateCandidate)(candidate, chapterOutputAbsPath, attemptKey, {
         gateAttemptStatePath: gateAttemptStateAbsPath,
@@ -2338,6 +2338,7 @@ export function createExplicitExperimentAuthorDestination(args: {
           exampleFloor: gateExampleFloor,
           sourceSidecar: gateSourceSidecar,
           sourceUsePlan: gateSourcePlan,
+          ...(extras?.formatV25 === true ? { formatV25: true } : {}),
         },
       });
     },
