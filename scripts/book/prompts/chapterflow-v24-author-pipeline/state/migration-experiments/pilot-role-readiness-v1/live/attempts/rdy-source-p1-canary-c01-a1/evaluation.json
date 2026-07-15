@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-canary-c01-a1",
+  "requestSha256": "31fe933333fb9dfe9084064439b9c4e89b0d0d9ad7bf179e827b3ce130b2710b",
+  "receiptSha256": "d516f5da6293b88efc1dc3e8aeb35e634160ec9e6431667a5d80be8837327dcd",
+  "executionEvidenceSha256": "6b8ba2086d8ab86c9fd05da332fa21e6dcebc7efab4d834bf7c7576c6e543f61",
+  "rawOutputSha256": "be3e15a132f66a3bf1d603376e1e4b6ed43249797ff26f923725e36781ce0a95",
+  "evaluationSha256": "734e6e2bfa6d00b2bd620131f42ffe6df32ae974aec4b6a7e905e38e9fc26263",
+  "parsedOutputSha256": "70d599ebab756c9c4e48819f236fe6bd4df4f3021525db91caf194d276f2934b",
+  "assembledReviewSha256": "60748a897af26caa32b0a17e6b348b4a6abc82deaaeec38a6f797d79fb410fe6",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly source-framed and matches the documented launch claim in SRC-U001-CLAIM-001 and the supported explanatory mechanism in SRC-U001-MECHANISM-001. The named device and year are supported by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012. Its explanatory strength remains within PLAN-U001's mechanistic ceiling, and no unsupported specific, prohibited invention, or framing defect appears."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "a555b78ef4ba2dc2140f17ef564f5b25cf68944ba7af173e56fd7c8c98702d0e",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "3c1e469f59859a2bc3dbd4cf6a2235b2a246e387ad74288eacbfa1dadd4889b4",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly source-framed and matches the documented launch claim in SRC-U001-CLAIM-001 and the supported explanatory mechanism in SRC-U001-MECHANISM-001. The named device and year are supported by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012. Its explanatory strength remains within PLAN-U001's mechanistic ceiling, and no unsupported specific, prohibited invention, or framing defect appears.",
+          "unitId": "unit.fact.ch01.fact.1",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is explicitly source-framed and matches the documented launch claim in SRC-U001-CLAIM-001 and the supported explanatory mechanism in SRC-U001-MECHANISM-001. The named device and year are supported by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012. Its explanatory strength remains within PLAN-U001's mechanistic ceiling, and no unsupported specific, prohibited invention, or framing defect appears."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "412d237982e7fdf50d416997085cb773427e3bd1dbcad092a94f8c1f68565d60"
+}
