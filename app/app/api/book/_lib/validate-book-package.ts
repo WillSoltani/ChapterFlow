@@ -96,6 +96,13 @@ const QUESTION_KEYS = new Set([
   "explanation",
   "bloomsLevel",
   "depthLevel",
+  // Chapter Format v25 (F-2) quiz feedback — optional, additive. Mirrored in
+  // the pipeline's quizQuality ALLOWED_QUESTION_KEYS; the two lists are the
+  // documented parity contract (a field allowed there must be accepted here or
+  // registration 422s on newly authored packages).
+  "choiceRationales",
+  "revisit",
+  "confidencePrompt",
 ]);
 const VARIANT_CONTENT_KEYS = new Set([
   "summaryBlocks",
@@ -1052,12 +1059,49 @@ function parseQuestion(
     explanation = toned?.direct || toned?.gentle || undefined;
   }
 
+  // Chapter Format v25 (F-2) quiz feedback — optional, additive; preserved so a
+  // registered package keeps the feedback surface the reader UI renders.
+  let choiceRationales: string[] | undefined;
+  if (questionRaw.choiceRationales != null) {
+    if (!Array.isArray(questionRaw.choiceRationales)) {
+      issues.push({ path: `${path}.choiceRationales`, message: "choiceRationales must be an array of strings." });
+    } else {
+      choiceRationales = questionRaw.choiceRationales.map((rationale, index) =>
+        readString(rationale, `${path}.choiceRationales[${index}]`, issues, { min: 1, max: 600 })
+      );
+      if (choices.length > 0 && choiceRationales.length !== choices.length) {
+        issues.push({
+          path: `${path}.choiceRationales`,
+          message: "choiceRationales must carry exactly one rationale per choice.",
+        });
+      }
+    }
+  }
+  let revisit: { component: string; ref: string } | undefined;
+  if (questionRaw.revisit != null) {
+    if (!isRecord(questionRaw.revisit)) {
+      issues.push({ path: `${path}.revisit`, message: "revisit must be an object with component and ref." });
+    } else {
+      revisit = {
+        component: readString(questionRaw.revisit.component, `${path}.revisit.component`, issues, { max: 120 }),
+        ref: readString(questionRaw.revisit.ref, `${path}.revisit.ref`, issues, { max: 400 }),
+      };
+    }
+  }
+  const confidencePrompt =
+    questionRaw.confidencePrompt != null
+      ? readString(questionRaw.confidencePrompt, `${path}.confidencePrompt`, issues, { min: 1, max: 300 })
+      : undefined;
+
   return {
     questionId: readString(questionRaw.questionId, `${path}.questionId`, issues, { max: 120 }),
     prompt: readString(questionRaw.prompt, `${path}.prompt`, issues, { max: 4000 }),
     choices,
     correctAnswerIndex,
     explanation,
+    ...(choiceRationales !== undefined ? { choiceRationales } : {}),
+    ...(revisit !== undefined ? { revisit } : {}),
+    ...(confidencePrompt !== undefined ? { confidencePrompt } : {}),
   };
 }
 
