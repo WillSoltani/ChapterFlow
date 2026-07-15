@@ -202,7 +202,13 @@ export type PilotReadinessCiGateV1 = {
 };
 
 /** Every path whose drift could change what this campaign executes or what
- * its frozen instruments were selected from. */
+ * its frozen instruments were selected from. The readiness experiment dir is
+ * deliberately narrowed to its two FROZEN inputs (corpus + plan): the
+ * campaign itself retains its gate/availability/live evidence under that dir
+ * while running, and a same-head crash-resume must not fail its own
+ * cleanliness check. Those retained artifacts are protected by create-once
+ * persistence, the executor's per-attempt validation, and the resume audit —
+ * not by this scan. */
 function readinessImplementationPaths(): string[] {
   return [
     `${PIPELINE_REL}/src`,
@@ -213,7 +219,8 @@ function readinessImplementationPaths(): string[] {
     `${PIPELINE_REL}/state/migration-experiments/contracts/imp24`,
     `${PIPELINE_REL}/state/migration-experiments/contracts/imp24f`,
     `${PIPELINE_REL}/state/migration-experiments/contracts/schemas`,
-    `${PIPELINE_REL}/state/migration-experiments/pilot-role-readiness-v1`,
+    `${PILOT_ROLE_READINESS_DIR_REL_PATH}/readiness-corpus.v1.json`,
+    `${PILOT_ROLE_READINESS_DIR_REL_PATH}/readiness-plan.v1.json`,
     `${PIPELINE_REL}/state/migration-experiments/reader-gold-dev-pool-v1`,
     "book-packages",
     IMP24_REQUIRED_WORKFLOW_FILE,
