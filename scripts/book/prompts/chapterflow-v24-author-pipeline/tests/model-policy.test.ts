@@ -205,6 +205,10 @@ test("static scan: no production source hardcodes the baseline model outside the
     // that must never silently re-point if BASELINE_MODEL later changes).
     "src/bakeoff/migration/recoveryExperiment.ts",
     "src/bakeoff/migration/layerNRetrospective.ts",
+    // P3 readiness instrument: the IMP-24G §5.6 owner-frozen candidate order —
+    // a literal record of the profiles under comparison (data, not a route)
+    // that must never silently re-point if BASELINE_MODEL later changes.
+    "src/bakeoff/migration/pilotRoleReadinessInstrument.ts",
   ]);
   const offenders: string[] = [];
   const walk = (dir: string): void => {
