@@ -1,0 +1,17 @@
+{
+  "schema": "route-result-v1",
+  "taskClass": "chapter-direct-read",
+  "profileName": "baseline-55",
+  "routePolicyVersion": "route-policy-v1.0",
+  "requestedModel": "gpt-5.6-sol",
+  "requestedEffort": "high",
+  "aliasOrSnapshot": "gpt-5.6-sol",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "cliVersion": "codex-cli 0.144.1",
+  "outcome": "content_completed",
+  "executionRoute": "codex_exec_chatgpt_subscription",
+  "authMode": "chatgpt",
+  "apiKeyPresent": false,
+  "apiFallbackAllowed": false,
+  "driftFingerprint": "db132c126ff597b5660bf8571b5d6a4d45ebb9274a909ffd2ed1f9f3e590f47a"
+}

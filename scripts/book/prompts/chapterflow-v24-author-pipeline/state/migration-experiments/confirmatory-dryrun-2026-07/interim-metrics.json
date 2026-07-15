@@ -1,0 +1,1550 @@
+{
+  "schema": "migration-metric-tables-v1",
+  "experimentId": "confirmatory-dryrun-2026-07",
+  "stage": "confirmatory",
+  "generatedAt": "2026-07-11T06:12:37.587Z",
+  "cells": [
+    {
+      "cellId": "55-H",
+      "scope": "pooled",
+      "n": {
+        "planned": 24,
+        "run": 16,
+        "committed": 16,
+        "reviewed": 16,
+        "reviewValid": 16
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 16,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1046,
+        "p95": 1092
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 16
+      },
+      "judgeAgreement": {
+        "doubleReads": 8,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "55-XH",
+      "scope": "pooled",
+      "n": {
+        "planned": 24,
+        "run": 16,
+        "committed": 16,
+        "reviewed": 16,
+        "reviewValid": 16
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 16,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1044,
+        "p95": 1095
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 16
+      },
+      "judgeAgreement": {
+        "doubleReads": 8,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-H",
+      "scope": "pooled",
+      "n": {
+        "planned": 24,
+        "run": 16,
+        "committed": 16,
+        "reviewed": 16,
+        "reviewValid": 16
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 16,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1043,
+        "p95": 1094
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 16
+      },
+      "judgeAgreement": {
+        "doubleReads": 8,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-XH",
+      "scope": "pooled",
+      "n": {
+        "planned": 24,
+        "run": 16,
+        "committed": 16,
+        "reviewed": 16,
+        "reviewValid": 16
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 16,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1047,
+        "p95": 1093
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 16
+      },
+      "judgeAgreement": {
+        "doubleReads": 8,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    }
+  ],
+  "byBook": [
+    {
+      "cellId": "55-H",
+      "scope": "book:start-with-why",
+      "n": {
+        "planned": 12,
+        "run": 8,
+        "committed": 8,
+        "reviewed": 8,
+        "reviewValid": 8
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 8,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1018,
+        "p95": 1046
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 8
+      },
+      "judgeAgreement": {
+        "doubleReads": 4,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "55-XH",
+      "scope": "book:start-with-why",
+      "n": {
+        "planned": 12,
+        "run": 8,
+        "committed": 8,
+        "reviewed": 8,
+        "reviewValid": 8
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 8,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1020,
+        "p95": 1044
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 8
+      },
+      "judgeAgreement": {
+        "doubleReads": 4,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-H",
+      "scope": "book:start-with-why",
+      "n": {
+        "planned": 12,
+        "run": 8,
+        "committed": 8,
+        "reviewed": 8,
+        "reviewValid": 8
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 8,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1022,
+        "p95": 1043
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 8
+      },
+      "judgeAgreement": {
+        "doubleReads": 4,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-XH",
+      "scope": "book:start-with-why",
+      "n": {
+        "planned": 12,
+        "run": 8,
+        "committed": 8,
+        "reviewed": 8,
+        "reviewValid": 8
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 8,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1023,
+        "p95": 1047
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 8
+      },
+      "judgeAgreement": {
+        "doubleReads": 4,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "55-H",
+      "scope": "book:radical-candor",
+      "n": {
+        "planned": 12,
+        "run": 8,
+        "committed": 8,
+        "reviewed": 8,
+        "reviewValid": 8
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 8,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1065,
+        "p95": 1092
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 8
+      },
+      "judgeAgreement": {
+        "doubleReads": 4,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "55-XH",
+      "scope": "book:radical-candor",
+      "n": {
+        "planned": 12,
+        "run": 8,
+        "committed": 8,
+        "reviewed": 8,
+        "reviewValid": 8
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 8,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1068,
+        "p95": 1095
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 8
+      },
+      "judgeAgreement": {
+        "doubleReads": 4,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-H",
+      "scope": "book:radical-candor",
+      "n": {
+        "planned": 12,
+        "run": 8,
+        "committed": 8,
+        "reviewed": 8,
+        "reviewValid": 8
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 8,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1071,
+        "p95": 1094
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 8
+      },
+      "judgeAgreement": {
+        "doubleReads": 4,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-XH",
+      "scope": "book:radical-candor",
+      "n": {
+        "planned": 12,
+        "run": 8,
+        "committed": 8,
+        "reviewed": 8,
+        "reviewValid": 8
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 8,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1070,
+        "p95": 1093
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 8
+      },
+      "judgeAgreement": {
+        "doubleReads": 4,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    }
+  ],
+  "byStratum": [
+    {
+      "cellId": "55-H",
+      "scope": "stratum:abstract-conceptual",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1018,
+        "p95": 1065
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "55-XH",
+      "scope": "stratum:abstract-conceptual",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1020,
+        "p95": 1068
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-H",
+      "scope": "stratum:abstract-conceptual",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1022,
+        "p95": 1071
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-XH",
+      "scope": "stratum:abstract-conceptual",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1023,
+        "p95": 1070
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "55-H",
+      "scope": "stratum:causal-quiz-sensitive",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1046,
+        "p95": 1092
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "55-XH",
+      "scope": "stratum:causal-quiz-sensitive",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1044,
+        "p95": 1095
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-H",
+      "scope": "stratum:causal-quiz-sensitive",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1043,
+        "p95": 1094
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-XH",
+      "scope": "stratum:causal-quiz-sensitive",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1047,
+        "p95": 1093
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "55-H",
+      "scope": "stratum:example-heavy",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1032,
+        "p95": 1083
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "55-XH",
+      "scope": "stratum:example-heavy",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1035,
+        "p95": 1080
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-H",
+      "scope": "stratum:example-heavy",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1028,
+        "p95": 1082
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-XH",
+      "scope": "stratum:example-heavy",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1034,
+        "p95": 1079
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "55-H",
+      "scope": "stratum:research-heavy",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1005,
+        "p95": 1056
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "55-XH",
+      "scope": "stratum:research-heavy",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1010,
+        "p95": 1057
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-H",
+      "scope": "stratum:research-heavy",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1007,
+        "p95": 1054
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    },
+    {
+      "cellId": "56S-XH",
+      "scope": "stratum:research-heavy",
+      "n": {
+        "planned": 6,
+        "run": 4,
+        "committed": 4,
+        "reviewed": 4,
+        "reviewValid": 4
+      },
+      "firstWritePassRate": 1,
+      "acceptanceRate": 1,
+      "providerOutcomes": {
+        "content_completed": 4,
+        "content_invalid": 0,
+        "infrastructure_failure": 0,
+        "timeout": 0,
+        "provider_safeguard_or_refusal": 0,
+        "provider_rate_or_capacity": 0,
+        "policy_preflight_failure": 0
+      },
+      "replays": 0,
+      "latencyMs": {
+        "p50": 1006,
+        "p95": 1049
+      },
+      "critics": {
+        "c37OverreachMean": 0,
+        "c37SceneCompletionMean": 0,
+        "c37GenericLeakMean": 0,
+        "registerAdvisoriesMean": 0,
+        "causalClaimsMean": 1
+      },
+      "diversityConcentration": [],
+      "exactCloneCollisions": 0,
+      "quizAdjudication": {
+        "unknown": 4
+      },
+      "judgeAgreement": {
+        "doubleReads": 2,
+        "verdictAgreementRate": 1,
+        "compositeMeanAbsDelta": 1
+      },
+      "reviewComposite": {
+        "mean": 85,
+        "min": 85
+      },
+      "keysCleanRate": 1,
+      "mustFixComplaintsMean": null,
+      "projectedRepairPerChapter": 0,
+      "tokens": null,
+      "costPerAcceptedChapterUsd": null,
+      "costUnavailableReason": "codex CLI exposes no token usage on this route (verified against codexAgent/cost-tracker) — cost is not estimated; the frozen price snapshot applies only when token capture exists (§16)"
+    }
+  ],
+  "missingCells": [
+    {
+      "cellId": "55-H",
+      "planned": 24,
+      "got": 16
+    },
+    {
+      "cellId": "55-XH",
+      "planned": 24,
+      "got": 16
+    },
+    {
+      "cellId": "56S-H",
+      "planned": 24,
+      "got": 16
+    },
+    {
+      "cellId": "56S-XH",
+      "planned": 24,
+      "got": 16
+    }
+  ],
+  "unavailableFields": [
+    "tokens",
+    "costPerAcceptedChapterUsd"
+  ]
+}

@@ -1,0 +1,263 @@
+{
+  "schema": "migration-sealed-manifest-v1",
+  "experimentId": "confirmatory-dryrun-2026-07",
+  "specSha256": "07cbb9ba3be9acac2511efafbeb1121c91382fe9af0f6651c96b22b2e86f3263",
+  "sealedAt": "2026-07-11T06:12:37.534Z",
+  "randomizationSeed": "s16-owner-pkg-96ff9e3da9e3",
+  "scheduleSha256": "996d4375c5cf205992d2371bddd26fe9c9917497bccfe31149456c798fefec2e",
+  "thresholdsSha256": "6a90acea1c94f124a5d14ba15d1dcab42ba0b8f64e9ef01df1cab7ca2dcc8c44",
+  "books": [
+    {
+      "bookId": "start-with-why",
+      "totalChapters": 14,
+      "frozen": {
+        "files": [
+          {
+            "relPath": "state/indexes/start-with-why.json",
+            "sha256": "21d343e2b15db214255e7f833abcc81c6499dcbbecadf09be6cc4c9f329a2266",
+            "bytes": 1705
+          },
+          {
+            "relPath": ".chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch04.source.json",
+            "sha256": "7fceb4e632ea618aa2ed4a8f0fea5f6f03a9f5a353f79dfdf67251528b715e2f",
+            "bytes": 9904
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/source-packets/ch04.source-packet.json",
+            "sha256": "31770c44daedbca9ad65e717f8c0f9454915b939f3f70bc1700d46f5e3f6d743",
+            "bytes": 25762
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch04.brief.json",
+            "sha256": "cfd8a6527647de4214af67ea00d37b3ec2c612643135d4e26fad2620c83dd394",
+            "bytes": 4685
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch04.brief.md",
+            "sha256": "0f32a9acbd4cdce45f1af31d4b817f56042760e0bcf9dba60cf0c0fb2d6297a8",
+            "bytes": 9713
+          },
+          {
+            "relPath": ".chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch03.source.json",
+            "sha256": "f927e4cb707c4ad454dcdc4a1be6b3a6b0b9c317de0e2a51609158b47a173e5f",
+            "bytes": 9180
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/source-packets/ch03.source-packet.json",
+            "sha256": "b9a307079c147b01884f3ac914601c6ec18d6c74c265437b0fe9c627b80a7f57",
+            "bytes": 25441
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch03.brief.json",
+            "sha256": "612b81693e48b09813181174102d2938b58eac76fca9262acbc79b82ea9185aa",
+            "bytes": 4333
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch03.brief.md",
+            "sha256": "06e6532f4cec8a8f2b636d17bb3c729cafd9b1a22365cf8984046aa9b41042d7",
+            "bytes": 9113
+          },
+          {
+            "relPath": ".chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch09.source.json",
+            "sha256": "f101ada20e67c5d7e6b7b92376706a0d4cdc3a34cc9a5cc7bc172aa28c3b305f",
+            "bytes": 9251
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/source-packets/ch09.source-packet.json",
+            "sha256": "9b5096136bc85bb024910dfd0a0d13a0e9f7ed00cf839fbd9a013a81349cafae",
+            "bytes": 24709
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch09.brief.json",
+            "sha256": "a14fcb86cdb9251bd35304a0a6fd9460b3c4cd160ac2c325278e4e175a9dbf99",
+            "bytes": 4315
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch09.brief.md",
+            "sha256": "5b6a49a50882b7eb3d56cb74f40b96c71a9154fbe6ea0bb2191e6a642e5c9344",
+            "bytes": 9229
+          },
+          {
+            "relPath": ".chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch07.source.json",
+            "sha256": "6d876a287d43694d16091fff2f8391fa148f51b479aafa09b8aa91c825c87485",
+            "bytes": 9876
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/source-packets/ch07.source-packet.json",
+            "sha256": "95f19897db078f19cb8fecc717d8b110bbaf11055c7f3fc66fcca480a296d2a4",
+            "bytes": 26194
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch07.brief.json",
+            "sha256": "7fad67cc78a089ac2a0289bf6eb25631cf16dae35510b3c928ab7685bc0c988b",
+            "bytes": 4646
+          },
+          {
+            "relPath": "state/books/start-with-why/runs/v23-current/briefs/ch07.brief.md",
+            "sha256": "25451aea722a1b9644d8f6afc1b26ad36efc0a8f5df33a5a1ae206fa0e3b6710",
+            "bytes": 9563
+          },
+          {
+            "relPath": "state/book-design/start-with-why.design.json",
+            "sha256": "bde687c3b1d08aa6c2581cb2e0bed3a78be541057bd034605993d122cbfc3edb",
+            "bytes": 12312
+          },
+          {
+            "relPath": "config/name-bank.json",
+            "sha256": "23d8ea9ff61c3e44ec3fb6543aab24110eea5cf50b2e1de93ff06a42b0d7ff5a",
+            "bytes": 7414
+          }
+        ],
+        "combinedSha256": "7f3b67690d09e2f587fbb23663a9c44ffdd8ce8baa7d956e7d933b6bc924a459"
+      }
+    },
+    {
+      "bookId": "radical-candor",
+      "totalChapters": 9,
+      "frozen": {
+        "files": [
+          {
+            "relPath": "state/indexes/radical-candor.json",
+            "sha256": "53a719b2b24ab98390c26c77950d75c4952241564f505862ae316dfbcf577120",
+            "bytes": 1084
+          },
+          {
+            "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch01.source.json",
+            "sha256": "2dc9c07336175c39dc7ace8012cd4433924a7f990d112c791e48b371d8c451e9",
+            "bytes": 10424
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch01.source-packet.json",
+            "sha256": "9f5695c57cf61dfddb8277d34a753da31f7ebcd57c9c844e734f50dbd699ac15",
+            "bytes": 26036
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch01.brief.json",
+            "sha256": "b01369dc472be64159f9c2ea73ef7447854c3de1998021e1ff5c39b70c98ee16",
+            "bytes": 4562
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch01.brief.md",
+            "sha256": "7c27670448f879d5286b54222bae47ec1de219c8371755590b9030ea4a4e1d96",
+            "bytes": 10226
+          },
+          {
+            "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch06.source.json",
+            "sha256": "ac009455b60f313919ac885164a762c94619fb18031392e75e1e96a1252f2558",
+            "bytes": 8842
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch06.source-packet.json",
+            "sha256": "36a3da6a60c4c6e04392ed1d5815c195cb7a75451b49d17f7df4c6e64aa453c6",
+            "bytes": 24454
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch06.brief.json",
+            "sha256": "31a6660b2fa1baf2e68c67bc9137fc55cf5a38e11e102ade062c4db2028e6abb",
+            "bytes": 4790
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch06.brief.md",
+            "sha256": "fdd242f27fe64ea38aeed6bff493eac6cb85acc7b76df03ba0e3326096ab1657",
+            "bytes": 10415
+          },
+          {
+            "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch02.source.json",
+            "sha256": "1bcd8e2b0729ff99acce0b911d9ea0f15acca48ee100994314ee8019c440e3d4",
+            "bytes": 9717
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch02.source-packet.json",
+            "sha256": "e738889b8e17f3dabc0b5243f9e847f137043ce82388f8de73be8cb221bb77b2",
+            "bytes": 24852
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch02.brief.json",
+            "sha256": "05156360c7aa19c80bff1769615c85329609321a1e26f94861a81c2a1b463e8f",
+            "bytes": 5023
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch02.brief.md",
+            "sha256": "29d16fa1a4cb0fd265297342aa76d0dc4d78b5496cb9d1b1c6e78de61de65e10",
+            "bytes": 10559
+          },
+          {
+            "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch04.source.json",
+            "sha256": "edf68e02c00d64e0d101324d96000538ca9677ee94967a9f90a91c3d0c5b4579",
+            "bytes": 9292
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch04.source-packet.json",
+            "sha256": "7639a7e3d1faf3b02215aeb6ee2d91170d932a48f43120cce03102069680bd47",
+            "bytes": 24917
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch04.brief.json",
+            "sha256": "025bcf15c2dcdc1befc087804341c0e7208346005a01c0385476fc569400aa7f",
+            "bytes": 4709
+          },
+          {
+            "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch04.brief.md",
+            "sha256": "fdf162131430be351290299da2946fc091754767732c92a0b1b52c4643fccef4",
+            "bytes": 10026
+          },
+          {
+            "relPath": "config/name-bank.json",
+            "sha256": "23d8ea9ff61c3e44ec3fb6543aab24110eea5cf50b2e1de93ff06a42b0d7ff5a",
+            "bytes": 7414
+          }
+        ],
+        "combinedSha256": "9fa1cf5c6cfab7925fbdd72f4d91be994b2b79bcde5e53b4be5f334158957be8"
+      }
+    }
+  ],
+  "stacks": [
+    {
+      "id": "sol-native-current",
+      "source": "current-builders",
+      "cardTemplateSha256": {
+        "start-with-why:ch04": "d582c0144956dfcd106ff35e9c1ae0358e2657e740a6622ad54a6bfe3047d744",
+        "start-with-why:ch03": "e162e8f23cd7e0c4726f7dbca99ce5d0eb72cc92abc0f38a94f511e413a9d9f7",
+        "start-with-why:ch09": "055954348caaaf13b0de26527630abee6dc66943dd11cc7beaba4acf5ad74822",
+        "start-with-why:ch07": "6e0cd5d4d81bc805ef44078929112c77c6f5b387738a70487e2cf2ee232dfcaa",
+        "radical-candor:ch01": "dddeef0698b3939ba68ffde29f314a8f4c17cd9da2d466abbbc85314378ab1dc",
+        "radical-candor:ch06": "5d191bfabd7a9c65219a7223f5b055cb72f5a5e1a9bdfd246c420fd455ac56af",
+        "radical-candor:ch02": "d18be0b1a9d78c8a548c186e8829be718a24ec73de499745148b62baae11e25e",
+        "radical-candor:ch04": "2ff9407f011f84553ef9c3669a7ec61a98fc4ccb1247cc2ba368b0681cf1f50d"
+      },
+      "combinedSha256": "f8c9bd5f3a9606857291dbb4d427fb87060b3b8e54eeae531e2bca12328f6adc"
+    }
+  ],
+  "instruments": {
+    "readerRubricVersion": "reader-rubric-v3-phase1",
+    "reviewDocHashVersion": "v3",
+    "authorChapterBar": 80,
+    "routePolicyVersion": "route-policy-v1.0",
+    "contractManifestSha256": "43f1e2dbc847ca1db981361f367186ca69be6c93397cf7c577b436fa91549ac0",
+    "repairProjectionVersion": "repair-projection-v1"
+  },
+  "judgePanel": [
+    {
+      "model": "gpt-5.5",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.5",
+      "effort": "xhigh"
+    }
+  ],
+  "priceSnapshot": {
+    "gpt-5.5": null,
+    "gpt-5.6-sol": null
+  },
+  "expectedCells": [
+    "55-H",
+    "55-XH",
+    "56S-H",
+    "56S-XH"
+  ]
+}

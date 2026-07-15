@@ -1,0 +1,308 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1",
+  "itemId": "LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1",
+  "kind": "quiz-key-mismatch",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "3583d15889cbc614",
+  "renderedDocSha256": "631e4c7e1556b5c190cd23e017057fbcd3198c0ffd8764dd6543935f706f5f33",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrh5r9ib-11",
+  "rawFinalMessageSha256": "831daf312dd2ba71c66828c23147c3570b792d6a02bfb4882bf40b91cb1c8ae3",
+  "rawFinalMessage": "```json\n{\n  \"schema\": \"quiz-adjudication-v1\",\n  \"derivationSha256\": \"62c866dc998521466a6d9932195d6b3d2ef68d93b2c383fdb49a1c0bd9647dff\",\n  \"documentSha256\": \"\",\n  \"reviewerSessionId\": \"\",\n  \"items\": [\n    {\n      \"itemId\": \"q01\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": false,\n      \"keyCorrect\": \"wrong\",\n      \"rationale\": \"Choice b is best supported: the calm, less painful finish can improve recall of the whole visit; keyed c contradicts the design lesson.\"\n    },\n    {\n      \"itemId\": \"q02\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b is uniquely supported because the welcome cart creates a vivid, tellable arrival moment despite an ordinary building.\"\n    },\n    {\n      \"itemId\": \"q03\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a fits moment-design logic by making the achievement public and witnessed at the threshold.\"\n    },\n    {\n      \"itemId\": \"q04\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c directly names the four ingredients: elevation, insight, pride, and connection.\"\n    },\n    {\n      \"itemId\": \"q05\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a matches the red-phone lesson that one visible object can signal a changed script without a full redesign.\"\n    },\n    {\n      \"itemId\": \"q06\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b is best because a request and reveal make the free cookies into a memorable event rather than a quiet perk.\"\n    },\n    {\n      \"itemId\": \"q07\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c uniquely reflects marking the shared threshold before the transition breaks into private logistics.\"\n    },\n    {\n      \"itemId\": \"q08\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a is the unsupported assumption because recall is shaped by peaks and endings, not equal averaging of every minute.\"\n    },\n    {\n      \"itemId\": \"q09\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c best diagnoses the problem: the mint is free but lacks a tellable format that would make it a guest story.\"\n    }\n  ]\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "3583d15889cbc614",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrh5r9ib-11",
+    "scores": {
+      "retention": 89,
+      "quizzes": 84,
+      "transfer": 78,
+      "practical": 86,
+      "summaries": 90,
+      "tone": 88,
+      "limits": 88,
+      "insight": 86,
+      "density": 82,
+      "beginner": 93
+    },
+    "composite": 86.3,
+    "ship84": true,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "a",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 8,
+      "of": 9,
+      "disagreements": [
+        "Q1: reader=b key=c"
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "A small peak can become the story of the whole stay.",
+        "why": "This is the chapter's cleanest memory hook and it carries the central move.",
+        "verified": true
+      },
+      {
+        "quote": "The 90-second trial did not become shorter because it ended less painfully.",
+        "why": "This keeps the lesson honest by separating remembered experience from actual discomfort.",
+        "verified": true
+      },
+      {
+        "quote": "Lift the mood, spark insight, honor effort, and help people meet.",
+        "why": "As a quiz option, this nearly gives away Q4 because it visibly lists the four ingredients.",
+        "verified": true
+      },
+      {
+        "quote": "The cold-water study gives her a different test: the 90-second trial with milder ending can be remembered better than the 60-second painful trial.",
+        "why": "The examples lean on the same study repeatedly, which narrows transfer.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "",
+      "Choice b is the only option framed as a positive design move; a and c are plainly inert.",
+      "",
+      "The stem asks for four ingredients, and choice c is the only four-part answer with all positive verbs.",
+      "Choice a closely repeats the chapter phrase about a visible object changing the script.",
+      "",
+      "Choice c closely echoes the chapter phrase about marking a threshold before private logistics.",
+      "",
+      "Choice c uses the chapter's own 'tellable' framing while the other choices are obviously weaker."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q4",
+        "problem": "The correct option is too telegraphed: the stem asks for four ingredients and the answer is the only four-part positive list.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q7",
+        "problem": "The correct option repeats the chapter's threshold phrasing closely enough to function as a wording tell.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The named student gives the scene specificity, but the example does not name an actual college choice or show a concrete consequence after the public announcement.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The mentor example repeats the cold-water study again instead of building transfer through a fresh decision and consequence.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The workshop threshold example mostly replays YES Prep's public-announcement pattern, so it is usable but thin as a distinct transfer case.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This chapter is shippable: the core idea is memorable, beginner-friendly, and bounded by useful cautions about not covering real harm with a pleasant ending. The quiz is mostly fair and derivable, with a few answer-shape tells rather than broken keys. The main weakness is transfer: several examples are competent but repetitive, especially where they recycle the cold-water study or YES Prep structure instead of showing more varied before-and-after decisions.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "47bbae470f919e949d38689343aaf37d5fe9423ffb37ba7848cceb14029e1994",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:13:22.044Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+    "quizAdjudication": {
+      "status": "adjudicated",
+      "derivationSha256": "62c866dc998521466a6d9932195d6b3d2ef68d93b2c383fdb49a1c0bd9647dff",
+      "phase2DocSha256": "45bb08c0d70018f1e2edf54a6b1f12d7bdf489d896fb0d823a09167df614ad44",
+      "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrh5suf0-12",
+      "items": [
+        {
+          "itemId": "q01",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 1,
+          "agreement": false,
+          "keyCorrect": "wrong",
+          "rationale": "Choice b is best supported: the calm, less painful finish can improve recall of the whole visit; keyed c contradicts the design lesson."
+        },
+        {
+          "itemId": "q02",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is uniquely supported because the welcome cart creates a vivid, tellable arrival moment despite an ordinary building."
+        },
+        {
+          "itemId": "q03",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a fits moment-design logic by making the achievement public and witnessed at the threshold."
+        },
+        {
+          "itemId": "q04",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c directly names the four ingredients: elevation, insight, pride, and connection."
+        },
+        {
+          "itemId": "q05",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a matches the red-phone lesson that one visible object can signal a changed script without a full redesign."
+        },
+        {
+          "itemId": "q06",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is best because a request and reveal make the free cookies into a memorable event rather than a quiet perk."
+        },
+        {
+          "itemId": "q07",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c uniquely reflects marking the shared threshold before the transition breaks into private logistics."
+        },
+        {
+          "itemId": "q08",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a is the unsupported assumption because recall is shaped by peaks and endings, not equal averaging of every minute."
+        },
+        {
+          "itemId": "q09",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c best diagnoses the problem: the mint is free but lacks a tellable format that would make it a guest story."
+        }
+      ],
+      "ambiguousCount": 0,
+      "keyWrongCount": 1
+    }
+  },
+  "phase2": {
+    "status": "adjudicated",
+    "derivationSha256": "62c866dc998521466a6d9932195d6b3d2ef68d93b2c383fdb49a1c0bd9647dff",
+    "phase2DocSha256": "45bb08c0d70018f1e2edf54a6b1f12d7bdf489d896fb0d823a09167df614ad44",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrh5suf0-12",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice b is best supported: the calm, less painful finish can improve recall of the whole visit; keyed c contradicts the design lesson."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is uniquely supported because the welcome cart creates a vivid, tellable arrival moment despite an ordinary building."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a fits moment-design logic by making the achievement public and witnessed at the threshold."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c directly names the four ingredients: elevation, insight, pride, and connection."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a matches the red-phone lesson that one visible object can signal a changed script without a full redesign."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is best because a request and reveal make the free cookies into a memorable event rather than a quiet perk."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c uniquely reflects marking the shared threshold before the transition breaks into private logistics."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a is the unsupported assumption because recall is shaped by peaks and endings, not equal averaging of every minute."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c best diagnoses the problem: the mint is free but lacks a tellable format that would make it a guest story."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "phase-1 keyCheck.disagreements + phase-2 quizAdjudication.items[].keyCorrect==='wrong'",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:12:08.290Z",
+  "durationMs": 0
+}

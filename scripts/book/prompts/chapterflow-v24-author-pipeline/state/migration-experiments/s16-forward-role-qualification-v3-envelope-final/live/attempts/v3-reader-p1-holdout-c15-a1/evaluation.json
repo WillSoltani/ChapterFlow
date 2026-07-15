@@ -1,0 +1,38 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-reader-p1-holdout-c15-a1",
+  "requestSha256": "131d7497c537e4d22a0b10ce41b43e1d496c878d39933c7eb5eb424fcbbe9229",
+  "receiptSha256": "1fc22b78fb1a776d4366ae719ea44348f70dfbd84742a10c5548f1ddc934d8b8",
+  "executionEvidenceSha256": "5485a650533f0e0ed334bf8f9e516402c5d6d33daea34de7be70e4e47d0c82cd",
+  "rawOutputSha256": "8c7f46d0c0cc1d57e58d8296e7ddc603f764f5caffd8d26624b53f5082e9ca39",
+  "evaluationSha256": "be82bd4268ef7f5ee63b28c5a9a4e55908090ef20fd7bfeba5265eb43efc7346",
+  "parsedOutputSha256": null,
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "bed5fa053e15e8fdec895699f4e5d7fd494f638c460847dc45d2470533cfc566",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": false,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": false,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "reader model output v2: reader-model-output-v2.quizDerivation.evidenceRefIds: length must equal answers length",
+    "metricObservations": {},
+    "parsedOutput": null,
+    "parseError": "reader model output v2: reader-model-output-v2.quizDerivation.evidenceRefIds: length must equal answers length",
+    "assembledReview": null,
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "NOT_APPLICABLE",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "c9dcd53f27dbceca6d2c9a326e9a18968edd50d017b75a1d6f9b22cb00ae53b9"
+}

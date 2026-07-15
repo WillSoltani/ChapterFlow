@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "ambiguity-decisive-ch1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "4e0ea4d7c5d37d78",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-decisive-ch1-mrgprj8d-35",
+  "scores": {
+    "retention": 90,
+    "quizzes": 72,
+    "transfer": 81,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 88,
+    "limits": 86,
+    "insight": 87,
+    "density": 83,
+    "beginner": 90
+  },
+  "composite": 84.7,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "c",
+      "b",
+      "a",
+      "c",
+      "a",
+      "a",
+      "b"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q4: reader=b key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "This is the chapter's strongest memorable line: concrete, compact, and tied to the core move.",
+      "verified": true
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "This cleanly explains confirmation bias as a mechanism rather than a label.",
+      "verified": true
+    },
+    {
+      "quote": "If the current feeling starts driving the call, then Name the Villain First and ask what will still matter after the mood cools.",
+      "why": "This supports Q4 option c, making the intended key less clean.",
+      "verified": true
+    },
+    {
+      "quote": "c) You should let the attachment speak, then ask what will still matter later.",
+      "why": "This quiz distractor is supported by the chapter's own implementation plan.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q1 b gives away itself by listing all four WRAP terms while the distractors are generic.",
+    "Q2 b, Q3 c, Q5 a, Q6 c, Q7 a, Q8 a, and Q9 b reuse the chapter's exact phrasing or near-phrasing, making several answers guessable by vocabulary matching.",
+    "Correct answers are often the most specific procedural option, while distractors are broad, extreme, or plainly contrary."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "STRUCTURALLY INVALID: the likely key is b because the stem mirrors Intel's outsider question, but c is also supported by the implementation plan's instruction to ask what will still matter after the mood cools.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct answers are easy to guess by matching exact chapter phrasing, so the quiz tests recognition more than derivation in places.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "Thin-but-usable example: it names the four villains but shows little concrete decision consequence beyond restating the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1-2",
+      "problem": "The two HopeLab examples overlap heavily, which weakens transfer variety even though both are on-topic and usable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong introductory chapter with a clear core model, memorable mechanism lines, good layering across fast/deep/full reads, and practical if-then guidance. Its biggest problem is quiz reliability: Q4 has two defensible answers from the prose, and several other items telegraph the correct choice by reusing the chapter's own phrases. I would not ship it yet against a professional bar until Q4 is repaired, but the prose itself is close.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "1bbfb1827db9cd01c4dccc102781eabd0d484fb172da4d330b4bc8b408a334fd",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-11T18:45:44.439Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "81be7a8ba5d0fdd2506cb93d2d9d943cfaa803d5e5c55cbca269b194cc0b2195",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "4f3ea92bcfd9df7900d89b435fa21185596b3a1605a3b6730ba8c66c61ec2656",
+    "phase2DocSha256": "4f3a7330fec70c112884b6b34f7dcd0b95182bd4b7743fd86d157129d137330e",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-decisive-ch1-mrgpt6yf-36",
+    "items": [
+      {
+        "itemId": "decisive-ch01-q01",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "WRAP is structurally four matched moves for four decision stages, so b is uniquely supported."
+      },
+      {
+        "itemId": "decisive-ch01-q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The approve-or-cancel setup is narrow framing, and adding alternatives before more data is the supported repair."
+      },
+      {
+        "itemId": "decisive-ch01-q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Confirmation bias is best countered by seeking evidence that could challenge the favored plan."
+      },
+      {
+        "itemId": "decisive-ch01-q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "ambiguous",
+        "rationale": "Both b and c are defensible distance moves: b directly addresses old-service attachment with the new-leader question, while c fits long-term emotional perspective-taking."
+      },
+      {
+        "itemId": "decisive-ch01-q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "A wider range of plausible outcomes directly counters overconfidence in a single forecast."
+      },
+      {
+        "itemId": "decisive-ch01-q06",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Steve Cole's logic supports parallel first passes so comparison happens before commitment."
+      },
+      {
+        "itemId": "decisive-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The outsider question is meant to create distance from legacy attachment, not to outsource technical judgment."
+      },
+      {
+        "itemId": "decisive-ch01-q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The four villains affect different decision stages and require distinct interventions, not one final review."
+      },
+      {
+        "itemId": "decisive-ch01-q09",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "WRAP improves decision odds under uncertainty but cannot guarantee a good outcome."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 0
+  }
+}

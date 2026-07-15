@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-quiz-1783906330170-15-775db7e4-33b0-44da-a836-96d1eca037ad",
+  "status": "completed",
+  "role": "quiz",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+  "rawOutput": "{\"schema\":\"quiz-integrity-adjudication-v1\",\"items\":[{\"itemId\":\"q01\",\"keyedAnswerIndex\":2,\"derivedAnswerIndex\":2,\"agreement\":true,\"keyCorrect\":\"ambiguous\",\"rationale\":\"Choices a and c are identical, so indices 0 and 2 are equally defensible even though the key selects c.\",\"defensibleAnswerIndices\":[0,2],\"keyedMechanismSupported\":true}]}"
+}

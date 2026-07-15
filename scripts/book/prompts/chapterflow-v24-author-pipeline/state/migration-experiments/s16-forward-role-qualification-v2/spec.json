@@ -1,0 +1,205 @@
+{
+  "schema": "imp22-role-qualification-spec-v1",
+  "experimentId": "s16-forward-role-qualification-v2",
+  "promptId": "IMP-23-CALIBRATION-CORRECTION-1",
+  "status": "FROZEN_PRE_CALIBRATION",
+  "frozenAt": "2026-07-13T01:52:50.000Z",
+  "supersedesExperimentId": "s16-forward-role-qualification-v1",
+  "correction": {
+    "ordinal": 1,
+    "scope": "calibration-instrument-only",
+    "invalidatedCalibrationSha256": "4cd4ad8254bf1a8cbfdcb528996554064d8058533568c9b1c69c2f08bbdfdf66",
+    "defects": [
+      "reader clean-control dispatch-risk phrase on the same Behave calibration coordinate",
+      "quiz phase-2 mechanism adjudication lacked the exact committed key-free chapter evidence",
+      "source qualification did not bind the target plan unit and its scorer fell back to the first returned unit",
+      "calibration validity did not require exact evidence spans",
+      "source qualification accepted BLOCK without a blocker-severity finding"
+    ],
+    "downstreamReadinessFixes": [
+      "pilot and gold must receive the explicit retained qualification spec and reject experiment-identity drift",
+      "local activation resolves the qualification spec from the retained qualification bundle instead of defaulting to v1"
+    ],
+    "holdoutCasesChanged": false,
+    "caseReplacementAfterOutput": false,
+    "goldRelabeling": false,
+    "thresholdChangeAfterOutput": false,
+    "additionalCorrectedRerunsAllowed": false
+  },
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "executionRoute": {
+    "provider": "codex exec",
+    "authMode": "chatgpt",
+    "apiAllowed": false,
+    "apiFallbackAllowed": false,
+    "directHttpOrSdkAllowed": false,
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "routePolicyVersion": "route-policy-v1.0"
+  },
+  "candidateOrder": {
+    "reader": [
+      { "profileId": "gpt-5.6-sol@high", "model": "gpt-5.6-sol", "effort": "high", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" },
+      { "profileId": "gpt-5.5@high", "model": "gpt-5.5", "effort": "high", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" },
+      { "profileId": "gpt-5.6-sol@xhigh", "model": "gpt-5.6-sol", "effort": "xhigh", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" },
+      { "profileId": "gpt-5.5@xhigh", "model": "gpt-5.5", "effort": "xhigh", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" }
+    ],
+    "source": [
+      { "profileId": "gpt-5.6-sol@xhigh", "model": "gpt-5.6-sol", "effort": "xhigh", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" },
+      { "profileId": "gpt-5.5@xhigh", "model": "gpt-5.5", "effort": "xhigh", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" },
+      { "profileId": "gpt-5.6-sol@high", "model": "gpt-5.6-sol", "effort": "high", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" },
+      { "profileId": "gpt-5.5@high", "model": "gpt-5.5", "effort": "high", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" }
+    ],
+    "quiz": [
+      { "profileId": "gpt-5.6-sol@xhigh", "model": "gpt-5.6-sol", "effort": "xhigh", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" },
+      { "profileId": "gpt-5.5@xhigh", "model": "gpt-5.5", "effort": "xhigh", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" },
+      { "profileId": "gpt-5.6-sol@high", "model": "gpt-5.6-sol", "effort": "high", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" },
+      { "profileId": "gpt-5.5@high", "model": "gpt-5.5", "effort": "high", "availability": "LOCAL_CACHE_DISCOVERY_REQUIRED" }
+    ]
+  },
+  "candidateAvailability": {
+    "path": "state/migration-experiments/contracts/imp22-candidate-availability-policy.v1.json",
+    "bytesSha256": "bd7cb35a9f15c3b7841a4cd4db763c511d4c7b418fa4eb5549bfb2c6afbc893c"
+  },
+  "requiredRoleSet": {
+    "reader": { "qualifiedPrimary": 1, "qualifiedAudit": 1 },
+    "source": { "qualifiedPrimary": 1, "qualifiedIndependentAdjudicator": 1 },
+    "quiz": { "deterministicChecker": true, "qualifiedSemanticAdjudicator": 1 }
+  },
+  "corpora": {
+    "reader": {
+      "path": "state/migration-experiments/contracts/reader-corpus.imp22-v2.json",
+      "bytesSha256": "efaf5a3d80cbf46bcae9511030fba8fc02fbcb4a055241ca867b8c0a1729ccbe",
+      "substantiveSha256": "sha256:5743b9acec5e71c6e536cd32cd9b518b75418eb34ac4f8a14073b5f82e531cc8",
+      "calibrationCases": 6,
+      "holdoutCases": 30
+    },
+    "source": {
+      "path": "state/migration-experiments/contracts/source-corpus.imp22-v2.json",
+      "bytesSha256": "0e3791580c0b2461622033e9369047f5752b7de70537e276af45794f4c2b6435",
+      "substantiveSha256": "sha256:f706bcf03e7d81bf2c435d52626f4e03632fa66e1b155c73b606b503ad4d0b91",
+      "calibrationCases": 10,
+      "holdoutCases": 40
+    },
+    "quiz": {
+      "path": "state/migration-experiments/contracts/quiz-corpus.imp22-v2.json",
+      "bytesSha256": "9d59ac17cdc79df71eac763a78450f32faea4b535136cf8ef944c63d9d470c4b",
+      "substantiveSha256": "sha256:bc7a9ede537e85394d7a794d09a62462bbfda2684df8426072b8a38ac25aadad",
+      "calibrationCases": 8,
+      "holdoutCases": 40
+    }
+  },
+  "thresholds": {
+    "path": "state/migration-experiments/contracts/imp22-role-thresholds.v1.json",
+    "bytesSha256": "ff87884b6669a319cb7e116b0b0c7afc92dc3bd2ee54e38875d3bc5444b6607a"
+  },
+  "instruments": {
+    "reader": {
+      "outputSchemaPath": "state/migration-experiments/contracts/schemas/reader-experience-review.schema.json",
+      "outputSchemaBytesSha256": "96be560b412f18eb33b67df3baf8f56b3ee466b0a706eb4ea89ab12250413fd3",
+      "promptSourcePath": "src/review/readerExperienceReview.ts",
+      "promptSourceBytesSha256": "2c8631eee28a0c308f112b21b59df773bbae6ae7d6988f11c6a944f1e490e734"
+    },
+    "source": {
+      "outputSchemaPath": "state/migration-experiments/contracts/schemas/source-integrity-review.schema.json",
+      "outputSchemaBytesSha256": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+      "promptSourcePath": "src/review/sourceIntegrityReview.ts",
+      "promptSourceBytesSha256": "397e69ed9cbeef3f5c272584550b847039a554d6d3bb2370db1f5956c03880bf",
+      "missingEvidenceProbe": {
+        "kind": "MODEL_FREE_RUNTIME_REFUSAL",
+        "calls": 0,
+        "requiredResult": "INCONCLUSIVE_OR_PRESPAWN_REFUSAL",
+        "qualificationMetric": "missingEvidenceInconclusive"
+      }
+    },
+    "quiz": {
+      "outputSchemaPath": "state/migration-experiments/contracts/schemas/quiz-integrity-adjudication.schema.json",
+      "outputSchemaBytesSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+      "promptSourcePath": "src/review/quizIntegrityReview.ts",
+      "promptSourceBytesSha256": "47de5f23c7eacfcf3e92fd409b200868239b07b02191af1c506cb88de6b3364d"
+    },
+    "aggregator": {
+      "sourcePath": "src/review/aggregateChapterReview.ts",
+      "sourceBytesSha256": "08b6826214531ab282606a487ac741707bbdff8e73fb8b435cbd8ff132cceec7"
+    },
+    "qualificationScorer": {
+      "sourcePath": "src/bakeoff/migration/roleQualificationRunner.ts",
+      "sourceBytesSha256": "4aef718fe4649e5263abeecbbcea48113bfb368c5c78b6f5eadd7e3a74788e64"
+    },
+    "reviewerExecutor": {
+      "sourcePath": "src/orchestrator/forwardReviewerExecutor.ts",
+      "sourceBytesSha256": "81460852f380dd7fb97017108cba2826b58adf096629fedf60652106869a95c1"
+    },
+    "liveBoundary": {
+      "sourcePath": "src/orchestrator/forwardRoleQualificationLive.ts",
+      "sourceBytesSha256": "89b7ae6f1ae351fde7ce37a3b7a78ddf23b86408247058e0b0066734190cadad"
+    }
+  },
+  "schedule": {
+    "seed": "imp22-role-qualification-balanced-v1",
+    "maxParallel": 2,
+    "interleaveProfiles": true,
+    "interleaveCaseFamilies": true,
+    "outputIndependent": true
+  },
+  "replayPolicy": {
+    "maxInfrastructureReplaysPerAttempt": 1,
+    "replayable": ["timeout", "provider_capacity", "transient_execution_failure"],
+    "notReplayable": ["bad_judgment", "low_score", "content_disagreement", "schema_valid_failure", "safeguard_or_refusal"]
+  },
+  "callBudget": {
+    "calibration": {
+      "expectedCalls": 24,
+      "maximumCallsBeforeInfrastructureReplays": 24,
+      "maximumInfrastructureReplays": 24
+    },
+    "qualification": {
+      "expectedCalls": 180,
+      "maximumCallsBeforeInfrastructureReplays": 440,
+      "maximumInfrastructureReplays": 440
+    },
+    "total": {
+      "expectedCalls": 204,
+      "hardMaximumCalls": 928
+    },
+    "maximumIsNotATarget": true,
+    "outputInformedBonusCalls": false
+  },
+  "instrumentCorrectionPolicy": {
+    "beforeHoldout": "permitted only for verified prompt/schema/rendering/scoring defects",
+    "afterHoldoutStarts": "terminate the role experiment id; one offline corrected experiment may be minted",
+    "maximumCorrectedRerunsPerRole": 1,
+    "holdoutRelabeling": false,
+    "caseReplacementAfterOutput": false,
+    "thresholdChangeAfterOutput": false
+  },
+  "candidateExclusion": {
+    "qualificationBooks": [
+      "behave",
+      "decisive",
+      "digital-minimalism",
+      "difficult-conversations",
+      "make-it-stick",
+      "peak",
+      "the-checklist-manifesto",
+      "the-power-of-moments",
+      "the-willpower-instinct"
+    ],
+    "pilotBooks": ["radical-candor", "start-with-why"],
+    "goldBook": "the-gifts-of-imperfection",
+    "overlap": []
+  },
+  "liveCallLedger": {
+    "calibrationCalls": 0,
+    "qualificationCalls": 0,
+    "qualificationInfrastructureReplays": 0,
+    "maxPlanCapacityEvents": 0,
+    "safeguardsOrRefusals": 0
+  },
+  "holdoutStarted": {
+    "reader": false,
+    "source": false,
+    "quiz": false
+  },
+  "apiCallsMade": 0
+}

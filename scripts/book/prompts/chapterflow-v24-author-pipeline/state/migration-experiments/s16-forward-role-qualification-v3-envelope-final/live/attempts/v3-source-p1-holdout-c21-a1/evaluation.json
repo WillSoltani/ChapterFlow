@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c21-a1",
+  "requestSha256": "d998a32e660fb122a2a01352fd6c3f81eae8884ec28198f0353acfa04979b5f1",
+  "receiptSha256": "ac275a2027f13839783a6d15aa00e9725bc06610da555f7834c11062a0b33940",
+  "executionEvidenceSha256": "ce76ce9c299f286055beb1c499494cd3657346cb6d20032d8a4f6dc58a766332",
+  "rawOutputSha256": "0576309ed281a3269fe16d0cacde186daf061fd5357e8fb05c3ed7c686205124",
+  "evaluationSha256": "e297e3562155d288845964e4c3c44d78707e9c6b106235b3c6af34b973a83fd0",
+  "parsedOutputSha256": "5331014bfcb9b0cbf4a3d9b8435d049aa5bbc5855a67a39d29d7c47d155d3ab1",
+  "assembledReviewSha256": "2f0225a0a99d5d4f362cdd0e4e8f65cfcd3b8ddcccfb0bb3ca99b4e962b9fc0a",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "The chapter presents the application as fictional and hypothetical, satisfying the required visible framing. Its generic role and action remain within the plan’s permitted constructed details and descriptive claim limit."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "188875e446339238ff6938887f6c6b439c58041139b33189e6faee1bca15612b",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "92d24f9a7033c72bac8291db0b60f9d140d2b2c1fba482bcc04d1b56b37ab199",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "The chapter presents the application as fictional and hypothetical, satisfying the required visible framing. Its generic role and action remain within the plan’s permitted constructed details and descriptive claim limit.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter presents the application as fictional and hypothetical, satisfying the required visible framing. Its generic role and action remain within the plan’s permitted constructed details and descriptive claim limit."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "ed7c081d744fec6a2ea78d0664710c669f57b3a37e3ce397bea48045318685bc"
+}

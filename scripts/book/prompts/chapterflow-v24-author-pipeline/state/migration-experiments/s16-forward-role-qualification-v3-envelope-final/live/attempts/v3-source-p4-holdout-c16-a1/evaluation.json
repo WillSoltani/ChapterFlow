@@ -1,0 +1,160 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c16-a1",
+  "requestSha256": "c5e8fb502f34929432b469a24cba387c7b4e1c1c5972075ed377dec526d024b2",
+  "receiptSha256": "f1a401f01cc75943d5ad61c51873c59cd9ee09571c1a96dda858f2337aeed5ab",
+  "executionEvidenceSha256": "27daea079de8f325f8575a54aa59c88a9accc6530dbe9a400fa3ae8f798caaf0",
+  "rawOutputSha256": "c1c8c5503d096ac7a09de7ecce3819da7f1199383fdf774a6ac4c247778d8b62",
+  "evaluationSha256": "09dd36c606e075b52a3839b462bca958716030984a5b36ee1d3fbf8f4b19078e",
+  "parsedOutputSha256": "f214ecb79d122e9ec4583e6107a88ec3ac13d15a04e691ac0b256b18bcbbfb90",
+  "assembledReviewSha256": "3dde774f2094deaa4ba5774a8bff1e727d82bcc7cb566895b95198a2864cc29c",
+  "evidenceReferenceResolutionSha256": "00939ae2c80ed284d8cc756f0586d298ee8a72ee35d4b8be74c71fb7818688ec",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=claim_strength_overreach",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "causalOverreachSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "missing_visible_framing"
+              ],
+              "severity": "major",
+              "explanation": "The source supports the general mechanism that frequent, measurable low-value checks can benefit attention companies, but the chapter escalates this into proof of an exceptionless causal outcome for every person. That guarantee exceeds the allowed mechanistic strength and conflicts with the packet warning against guaranteed outcomes.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017"
+              ]
+            }
+          ],
+          "rationale": "The core source-bound idea is present, but the final sentence adds an absolute, universal causal guarantee that is not supported by the source or plan."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "9a18e4658ecd40d5dfcb53d87c965faa987b5bea4b3330b93c93e46fc85a7385",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "5b7791410ccc9dd6ec0ba1e6c21a62e198a2fc80a3874d6797ef669b13c717b2",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "missing_visible_framing"
+              ],
+              "severity": "major",
+              "explanation": "The source supports the general mechanism that frequent, measurable low-value checks can benefit attention companies, but the chapter escalates this into proof of an exceptionless causal outcome for every person. That guarantee exceeds the allowed mechanistic strength and conflicts with the packet warning against guaranteed outcomes.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017"
+              ],
+              "findingId": "unit.fact.ch01.fact.5:source-finding:001",
+              "chapterEvidenceSpans": [
+                "This proves that attention companies benefit from low-value checking as long as it is frequent and measurable. always causes the stated outcome for every person, without exception."
+              ],
+              "sourceEvidenceSpans": [
+                "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+                "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "The core source-bound idea is present, but the final sentence adds an absolute, universal causal guarantee that is not supported by the source or plan.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit"
+      ],
+      "rationale": "U1: The core source-bound idea is present, but the final sentence adds an absolute, universal causal guarantee that is not supported by the source or plan."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "This proves that attention companies benefit from low-value checking as long as it is frequent and measurable. always causes the stated outcome for every person, without exception."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ATOMIC-017"
+          ],
+          "evidenceSpans": [
+            "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+            "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "e8f02fbf2dcdbefcf9a5fb5e762893e550eef413859242319edfb4a0a092a151"
+}

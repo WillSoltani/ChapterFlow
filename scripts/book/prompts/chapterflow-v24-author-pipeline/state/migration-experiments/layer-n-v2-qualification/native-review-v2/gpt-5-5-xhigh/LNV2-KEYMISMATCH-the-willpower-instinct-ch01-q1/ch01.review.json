@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "43b23cfa0700b3e1",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-mrh9x1i6-9",
+  "scores": {
+    "retention": 88,
+    "quizzes": 74,
+    "transfer": 79,
+    "practical": 86,
+    "summaries": 84,
+    "tone": 83,
+    "limits": 82,
+    "insight": 90,
+    "density": 82,
+    "beginner": 87
+  },
+  "composite": 83.2,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "a",
+      "a",
+      "b",
+      "b",
+      "b",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=c key=a"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower.",
+      "why": "The chapter's core correction is compact and memorable.",
+      "verified": true
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "This gives the mechanism behind the three-power method in one sentence.",
+      "verified": true
+    },
+    {
+      "quote": "Self-control costs the comfort of staying vague.",
+      "why": "Strong practical line: it makes the exercise feel like a real tradeoff.",
+      "verified": true
+    },
+    {
+      "quote": "Self-control sits outside the brain and reflects fixed personal character.",
+      "why": "This distractor is so implausible that it makes Q2 guessable without reading closely.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "The stem says 'three powers' and c is the only three-part option.",
+    "a is the only plausible brain-based answer; b and c are cartoonishly false.",
+    "a closely restates the stem plus the lesson; b and c are over-absolute.",
+    "b is the only option focused on the before-action moment emphasized by the chapter.",
+    "a and c are extreme claims, leaving b as the obvious social answer.",
+    "b mirrors the chapter's repeated 'choice point' mechanism; a and c use giveaway absolutes.",
+    "a is the only answer allowing mixed motives; b and c contradict the chapter's central line.",
+    "c is the only constructive experiment; a and b are plainly counterproductive.",
+    "c repeats the prefrontal-control wording from Q2; a and b are implausible extremes."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct answer is guessable because the stem names the three powers and only option c has a matching three-part structure.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q2/Q3/Q5/Q7/Q8/Q9",
+      "problem": "Several distractors are extreme or absurd rather than tempting misconceptions, so the quiz checks recognition more than understanding.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The pharmacy/family pickup thread recurs across the fast read, full read, and multiple examples, narrowing transfer breadth.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The phrase 'ride-list uncle' is unclear on first pass and briefly obscures who needs help.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The core skill says to add a small barrier, but the if-then steps mostly say to name or check the powers rather than specifying a barrier.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a clear, useful move: stop treating willpower as pure refusal and diagnose whether I will, I won't, or I want has gone quiet. Its mechanism is strong, beginner-friendly, and memorable, with good concrete lines and mostly usable practice steps. I would hold it just below ship because the quiz is too easy to game and the examples cluster around similar family/pharmacy/social-care scenes, which weakens transfer even though nothing is structurally broken.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "c412cf1d517372befed726feded2c9a6f655d199dca4e5736b7138dc087d359a",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T04:10:18.849Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "b0a2ea6f04553fa15fb131f77adf67e6d3a9108e16caa30ca82a86fbd327c58a",
+    "phase2DocSha256": "c9123aff797f22ad9f6a0a137b2253832a8843644430448f0c560330fbee9ab8",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-xhigh-LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-mrh9z8ma-10",
+    "items": [
+      {
+        "itemId": "the-willpower-instinct-ch01-q01",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 2,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice c is best because the three powers require naming what to start, what to stop, and what value to remember; choice a covers only refusal."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a correctly states that prefrontal control keeps goals active so they can bias attention and action under impulse competition."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a captures the supported takeaway that basic survival and speech can remain while frontal damage disrupts planning and restraint."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is supported because Amelia must notice the cue or urge before sending, while later regret cannot guide the choice point."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b best fits the social roots claim: self-control supports promises, trust, cooperation, and group life."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is correct because a sincere long-term goal still needs salience at the decision point to compete with a vivid cue."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a correctly treats both saving and sale motives as sincere and asks which one receives support in the moment."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q08",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c fits the method by using a concrete behavior, observing the trigger, and adjusting from feedback."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c is supported because prefrontal control is needed when routine action conflicts with the current goal."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-checklist-manifesto-ch01",
+  "itemId": "LNV2-CLEAN-the-checklist-manifesto-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "7ee8b9480874ea98",
+  "renderedDocSha256": "86d2dbffae55cc57a2877b0a28682e90e9d44c9eae6325b209319a7303b1201d",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "c78a21db52973cb45cc2e674b31ca1886e0a85c2d8d2351be4dd30d7bc43c295",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-checklist-manifesto-ch01-mrh8g2sg-42",
+  "rawFinalMessageSha256": "6d0077e73ab81d81997d60906f75ae4cd41858dfc6050c4d37438fad0ad9654c",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\", \"b\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines the recurring failure as an unowned transition between capable roles, not missing expertise or insufficient command.\",\n      \"The chapter's prescribed first move is to map the transition and give it a named owner before pressure arrives.\",\n      \"The postmortem guidance says to rebuild the entire path before blaming the last visible person.\",\n      \"Because the failure occurs when cues cross departments, the relevant seam is the explicit handoff between those departments.\",\n      \"The prose repeatedly says successful work within individual roles does not ensure reliability across their crossings.\",\n      \"The storm example specifically assigns one named owner to the cross-department timing point before peak load.\",\n      \"The chapter locates danger in dependencies between experts rather than in expertise or the hardest technical task.\",\n      \"Expertise cannot make ownership visible by memory alone, so excellent teams still need explicit handoff support.\",\n      \"Dependence on the leader shows that the transition remained in one person's memory instead of being carried by the system.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"The correct choice is uniquely longest by one character and repeats the chapter's phrase \\\"ownership thinned out.\\\"\",\n      \"The correct choice is uniquely longest and closely repeats the named-owner prescription.\",\n      \"The correct choice is uniquely longest and is the only option that investigates the whole path.\",\n      \"The correct choice is uniquely longest and repeats the chapter's handoff vocabulary.\",\n      \"Choice b is one character longer, so length does not reveal the key; however, a and b are obvious blame/centralization straw men.\",\n      \"The correct choice is uniquely longest and nearly restates Example 6.\",\n      \"The correct choice is uniquely longest; the distractors use giveaway absolutes such as \\\"every action\\\" and \\\"always.\\\"\",\n      \"The correct choice ties for longest; the two distractors' \\\"only when\\\" and \\\"only with\\\" absolutes make them easy to reject.\",\n      \"The correct choice is uniquely longest and uses the chapter's favored contrast between a person's head and the system.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 94,\n    \"quizzes\": 74,\n    \"transfer\": 88,\n    \"practical\": 94,\n    \"summaries\": 77,\n    \"tone\": 91,\n    \"limits\": 87,\n    \"insight\": 92,\n    \"density\": 86,\n    \"beginner\": 95\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The first move is simple and uncomfortable: find the seam. Point to the transition that everyone trusts and nobody owns. Name it before the next rush arrives.\",\n      \"why\": \"This is memorable, concrete, and immediately actionable.\"\n    },\n    {\n      \"quote\": \"Complexity does not excuse sloppy work. It simply changes what responsible work has to notice.\",\n      \"why\": \"This concise boundary prevents the systems argument from becoming an excuse for poor individual work.\"\n    },\n    {\n      \"quote\": \"The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.\",\n      \"why\": \"The alleged rescue appears without any prior description, leaving the deep read dependent on absent context.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"deep read\",\n      \"problem\": \"It invokes \\\"The Austrian drowning rescue\\\" even though no Austrian rescue is introduced or described anywhere in the chapter, so this supposedly standalone layer contains an unresolved external referent. Reserved category: STRUCTURALLY INVALID.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"Seven correct choices are uniquely longest, while many distractors use conspicuous blame, harder-work, central-command, or absolute-language straw men; the quiz is derivable but highly guessable.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The scenario stops at Emily's decision and prescribes an action without showing the action's observed consequence, so it lacks a full before-to-after demonstration.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The scenario identifies the missing owner but ends before showing whether assigning one prevents delay or shutdown.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"Ingrid reconstructs the path, but the example never identifies the actual failed crossing or the consequence of her diagnosis.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The launch is paused in the recommendation, but the narrative provides no resulting headcount correction or safety outcome.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The example recommends dependency statements but never shows the restarted move or whether the artifact's exposure is reduced.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"Hadiya labels and assigns the overlap in principle, but no subsequent storm outcome demonstrates that the intervention works.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"full read\",\n      \"problem\": \"The seam/ownership claim is restated several times with limited additional mechanism, slightly reducing density after the core idea is already clear.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"implementation plan\",\n      \"problem\": \"The title and opening of the Core skill repeat \\\"Learn to see the seam before you judge the people\\\" verbatim, creating avoidable scaffold-like repetition.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, beginner-friendly chapter built around a memorable and transferable diagnostic move: when capable people miss a step, inspect the handoff before blaming an individual. Its imagery, practical prompts, varied domains, explicit limits, and concise mechanism are professionally effective. The main craft weaknesses are a quiz whose keys are often exposed by length and straw-man distractors, plus six examples that prescribe decisions without showing observed consequences. More seriously, the deep read refers to an Austrian drowning rescue that the chapter never introduces, breaking that layer's standalone promise; because that structural defect remains on the page, I would not ship this version despite its otherwise high quality.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-checklist-manifesto-ch01",
+    "chapterNumber": 1,
+    "contentHash": "7ee8b9480874ea98",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-checklist-manifesto-ch01-mrh8g2sg-42",
+    "scores": {
+      "retention": 94,
+      "quizzes": 74,
+      "transfer": 88,
+      "practical": 94,
+      "summaries": 77,
+      "tone": 91,
+      "limits": 87,
+      "insight": 92,
+      "density": 86,
+      "beginner": 95
+    },
+    "composite": 87.4,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c",
+        "b",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The first move is simple and uncomfortable: find the seam. Point to the transition that everyone trusts and nobody owns. Name it before the next rush arrives.",
+        "why": "This is memorable, concrete, and immediately actionable.",
+        "verified": true
+      },
+      {
+        "quote": "Complexity does not excuse sloppy work. It simply changes what responsible work has to notice.",
+        "why": "This concise boundary prevents the systems argument from becoming an excuse for poor individual work.",
+        "verified": true
+      },
+      {
+        "quote": "The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.",
+        "why": "The alleged rescue appears without any prior description, leaving the deep read dependent on absent context.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "The correct choice is uniquely longest by one character and repeats the chapter's phrase \"ownership thinned out.\"",
+      "The correct choice is uniquely longest and closely repeats the named-owner prescription.",
+      "The correct choice is uniquely longest and is the only option that investigates the whole path.",
+      "The correct choice is uniquely longest and repeats the chapter's handoff vocabulary.",
+      "Choice b is one character longer, so length does not reveal the key; however, a and b are obvious blame/centralization straw men.",
+      "The correct choice is uniquely longest and nearly restates Example 6.",
+      "The correct choice is uniquely longest; the distractors use giveaway absolutes such as \"every action\" and \"always.\"",
+      "The correct choice ties for longest; the two distractors' \"only when\" and \"only with\" absolutes make them easy to reject.",
+      "The correct choice is uniquely longest and uses the chapter's favored contrast between a person's head and the system."
+    ],
+    "complaints": [
+      {
+        "unit": "deep read",
+        "problem": "It invokes \"The Austrian drowning rescue\" even though no Austrian rescue is introduced or described anywhere in the chapter, so this supposedly standalone layer contains an unresolved external referent. Reserved category: STRUCTURALLY INVALID.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "Seven correct choices are uniquely longest, while many distractors use conspicuous blame, harder-work, central-command, or absolute-language straw men; the quiz is derivable but highly guessable.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 1",
+        "problem": "The scenario stops at Emily's decision and prescribes an action without showing the action's observed consequence, so it lacks a full before-to-after demonstration.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The scenario identifies the missing owner but ends before showing whether assigning one prevents delay or shutdown.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 3",
+        "problem": "Ingrid reconstructs the path, but the example never identifies the actual failed crossing or the consequence of her diagnosis.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The launch is paused in the recommendation, but the narrative provides no resulting headcount correction or safety outcome.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The example recommends dependency statements but never shows the restarted move or whether the artifact's exposure is reduced.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "Hadiya labels and assigns the overlap in principle, but no subsequent storm outcome demonstrates that the intervention works.",
+        "mustFix": false
+      },
+      {
+        "unit": "full read",
+        "problem": "The seam/ownership claim is restated several times with limited additional mechanism, slightly reducing density after the core idea is already clear.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan",
+        "problem": "The title and opening of the Core skill repeat \"Learn to see the seam before you judge the people\" verbatim, creating avoidable scaffold-like repetition.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, beginner-friendly chapter built around a memorable and transferable diagnostic move: when capable people miss a step, inspect the handoff before blaming an individual. Its imagery, practical prompts, varied domains, explicit limits, and concise mechanism are professionally effective. The main craft weaknesses are a quiz whose keys are often exposed by length and straw-man distractors, plus six examples that prescribe decisions without showing observed consequences. More seriously, the deep read refers to an Austrian drowning rescue that the chapter never introduces, breaking that layer's standalone promise; because that structural defect remains on the page, I would not ship this version despite its otherwise high quality.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "ee4dd58b37427ffc6b81a9448407d3874938861dc90310d4e178e93bec10db57",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:29:03.768Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "c78a21db52973cb45cc2e674b31ca1886e0a85c2d8d2351be4dd30d7bc43c295",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:27:25.215Z",
+  "durationMs": 0
+}

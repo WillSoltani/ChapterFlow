@@ -1,0 +1,308 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "ambiguity-decisive-ch1",
+  "itemId": "ambiguity-decisive-ch1",
+  "kind": "quiz-ambiguity",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "4e0ea4d7c5d37d78",
+  "renderedDocSha256": "0205882b4060255bfa947a95acd94657ec54ca086914b3d3d0c5989b6b489426",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "81be7a8ba5d0fdd2506cb93d2d9d943cfaa803d5e5c55cbca269b194cc0b2195",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-decisive-ch1-mrh84vap-35",
+  "rawFinalMessageSha256": "39bf4c37ec0a268fd08a3d42307cd0c1480884ef92dc21ef11cb89a00dcb981f",
+  "rawFinalMessage": "```json\n{\n  \"schema\": \"quiz-adjudication-v1\",\n  \"derivationSha256\": \"dcfe0edcb084efd99335ac7799f8266586d0ddda2af2b3a087dfe1f95c4058b8\",\n  \"documentSha256\": \"\",\n  \"reviewerSessionId\": \"\",\n  \"items\": [\n    {\"itemId\": \"decisive-ch01-q01\", \"keyedAnswerIndex\": 1, \"derivedAnswerIndex\": 1, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"Choice b uniquely matches WRAP to the four decision stages rather than treating it as a generic pause or final check.\"},\n    {\"itemId\": \"decisive-ch01-q02\", \"keyedAnswerIndex\": 1, \"derivedAnswerIndex\": 1, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"Choice b is the supported repair for a narrow yes-or-no frame before evidence gathering is constrained by it.\"},\n    {\"itemId\": \"decisive-ch01-q03\", \"keyedAnswerIndex\": 2, \"derivedAnswerIndex\": 2, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"Choice c directly counters confirmation bias by seeking disconfirming evidence before the favored plan controls the search.\"},\n    {\"itemId\": \"decisive-ch01-q04\", \"keyedAnswerIndex\": 2, \"derivedAnswerIndex\": 1, \"agreement\": false, \"keyCorrect\": \"ambiguous\", \"rationale\": \"Choices b and c both defensibly apply the emotion lesson: b uses the outsider-distance move for attachment, while c preserves emotional information while testing long-term relevance.\"},\n    {\"itemId\": \"decisive-ch01-q05\", \"keyedAnswerIndex\": 0, \"derivedAnswerIndex\": 0, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"Choice a uniquely counters overconfidence in a single forecast by requiring a wider range of plausible outcomes.\"},\n    {\"itemId\": \"decisive-ch01-q06\", \"keyedAnswerIndex\": 2, \"derivedAnswerIndex\": 2, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"Choice c matches Steve Cole's parallel first-pass logic: comparison creates learning before commitment.\"},\n    {\"itemId\": \"decisive-ch01-q07\", \"keyedAnswerIndex\": 0, \"derivedAnswerIndex\": 0, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"Choice a is the Grove outsider question applied to legacy-product attachment, while the other choices misstate the mechanism.\"},\n    {\"itemId\": \"decisive-ch01-q08\", \"keyedAnswerIndex\": 0, \"derivedAnswerIndex\": 0, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"Choice a correctly treats the four villains as stage-specific problems requiring distinct interventions, not one final review.\"},\n    {\"itemId\": \"decisive-ch01-q09\", \"keyedAnswerIndex\": 1, \"derivedAnswerIndex\": 1, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"Choice b correctly states that WRAP improves the odds of a good choice without guaranteeing the outcome.\"}\n  ]\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "ambiguity-decisive-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "4e0ea4d7c5d37d78",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-decisive-ch1-mrh84vap-35",
+    "scores": {
+      "retention": 88,
+      "quizzes": 78,
+      "transfer": 82,
+      "practical": 86,
+      "summaries": 91,
+      "tone": 89,
+      "limits": 90,
+      "insight": 87,
+      "density": 84,
+      "beginner": 90
+    },
+    "composite": 86.3,
+    "ship84": true,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "c",
+        "b",
+        "a",
+        "c",
+        "a",
+        "a",
+        "b"
+      ],
+      "matches": 8,
+      "of": 9,
+      "disagreements": [
+        "Q4: reader=b key=c"
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+        "why": "Memorable, concrete line that makes confirmation bias stick.",
+        "verified": true
+      },
+      {
+        "quote": "Good process raises the odds without promising the outcome.",
+        "why": "Clear boundary that prevents overselling WRAP.",
+        "verified": true
+      },
+      {
+        "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+        "why": "Practical but slightly odd; the laptop-lid cue may feel arbitrary.",
+        "verified": true
+      },
+      {
+        "quote": "The product lead should seek disconfirming evidence before the favorite plan sets the search.",
+        "why": "Quiz answer is fair, but the key term makes the right answer easy to spot.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "b is the only option that names all four WRAP moves; a and c are vague or structurally wrong.",
+      "b is the only option using the chapter's core phrase pattern about yes-or-no frames hiding paths.",
+      "c gives away the key with the term 'disconfirming evidence'; a and b are openly pro-confirmation.",
+      "b repeats the Intel outsider-question template closely; a is an obvious overstatement.",
+      "a is the only choice with 'wider range of plausible outcomes,' a near-direct recall phrase.",
+      "c repeats 'parallel first passes' and 'comparison before commitment' almost verbatim.",
+      "a closely paraphrases the review-card answer; b is plainly false by saying outsiders know technology better.",
+      "a is the only option that preserves the four-part structure; b and c flatten it.",
+      "b repeats the takeaway about improving odds while uncertainty remains; a is an obvious impossible promise."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q4",
+        "problem": "The intended answer is b, but c is also supported by the chapter's claim that emotion can carry information and by the implementation plan's 'what will still matter after the mood cools' move.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q3",
+        "problem": "The correct answer uses the giveaway phrase 'disconfirming evidence' while the distractors are transparently wrong pro-favorite-plan actions.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q7",
+        "problem": "The correct answer closely repeats the review-card wording, making it easy to answer by surface matching.",
+        "mustFix": false
+      },
+      {
+        "unit": "try this now",
+        "problem": "The laptop-lid action is concrete but oddly specific; a reader without that context may see it as ritual rather than a transferable decision habit.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The example is useful but mostly restates the four villains and WRAP mapping rather than showing a before-to-after decision consequence.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter: clear, beginner-friendly, and unusually good at explaining the mechanism behind WRAP rather than merely naming the acronym. Its best lines are memorable, the summaries layer well, and the practical advice mostly gives readers actions they could use. The main weakness is quiz design: several answers are too easy to spot by vocabulary matching, and Q4 has a real sibling answer. Transfer is solid but a few examples would teach better if they showed sharper consequences instead of mainly restating the model.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "1bbfb1827db9cd01c4dccc102781eabd0d484fb172da4d330b4bc8b408a334fd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:19:28.420Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "81be7a8ba5d0fdd2506cb93d2d9d943cfaa803d5e5c55cbca269b194cc0b2195",
+    "quizAdjudication": {
+      "status": "adjudicated",
+      "derivationSha256": "dcfe0edcb084efd99335ac7799f8266586d0ddda2af2b3a087dfe1f95c4058b8",
+      "phase2DocSha256": "c2f74f4b258f5c34e10098f1d127a1e99ecb2d70d26abe43ad01acf252e9d0bd",
+      "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-decisive-ch1-mrh85uw4-36",
+      "items": [
+        {
+          "itemId": "decisive-ch01-q01",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b uniquely matches WRAP to the four decision stages rather than treating it as a generic pause or final check."
+        },
+        {
+          "itemId": "decisive-ch01-q02",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is the supported repair for a narrow yes-or-no frame before evidence gathering is constrained by it."
+        },
+        {
+          "itemId": "decisive-ch01-q03",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c directly counters confirmation bias by seeking disconfirming evidence before the favored plan controls the search."
+        },
+        {
+          "itemId": "decisive-ch01-q04",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 1,
+          "agreement": false,
+          "keyCorrect": "ambiguous",
+          "rationale": "Choices b and c both defensibly apply the emotion lesson: b uses the outsider-distance move for attachment, while c preserves emotional information while testing long-term relevance."
+        },
+        {
+          "itemId": "decisive-ch01-q05",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a uniquely counters overconfidence in a single forecast by requiring a wider range of plausible outcomes."
+        },
+        {
+          "itemId": "decisive-ch01-q06",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c matches Steve Cole's parallel first-pass logic: comparison creates learning before commitment."
+        },
+        {
+          "itemId": "decisive-ch01-q07",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a is the Grove outsider question applied to legacy-product attachment, while the other choices misstate the mechanism."
+        },
+        {
+          "itemId": "decisive-ch01-q08",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a correctly treats the four villains as stage-specific problems requiring distinct interventions, not one final review."
+        },
+        {
+          "itemId": "decisive-ch01-q09",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b correctly states that WRAP improves the odds of a good choice without guaranteeing the outcome."
+        }
+      ],
+      "ambiguousCount": 1,
+      "keyWrongCount": 0
+    }
+  },
+  "phase2": {
+    "status": "adjudicated",
+    "derivationSha256": "dcfe0edcb084efd99335ac7799f8266586d0ddda2af2b3a087dfe1f95c4058b8",
+    "phase2DocSha256": "c2f74f4b258f5c34e10098f1d127a1e99ecb2d70d26abe43ad01acf252e9d0bd",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-decisive-ch1-mrh85uw4-36",
+    "items": [
+      {
+        "itemId": "decisive-ch01-q01",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b uniquely matches WRAP to the four decision stages rather than treating it as a generic pause or final check."
+      },
+      {
+        "itemId": "decisive-ch01-q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is the supported repair for a narrow yes-or-no frame before evidence gathering is constrained by it."
+      },
+      {
+        "itemId": "decisive-ch01-q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c directly counters confirmation bias by seeking disconfirming evidence before the favored plan controls the search."
+      },
+      {
+        "itemId": "decisive-ch01-q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "ambiguous",
+        "rationale": "Choices b and c both defensibly apply the emotion lesson: b uses the outsider-distance move for attachment, while c preserves emotional information while testing long-term relevance."
+      },
+      {
+        "itemId": "decisive-ch01-q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a uniquely counters overconfidence in a single forecast by requiring a wider range of plausible outcomes."
+      },
+      {
+        "itemId": "decisive-ch01-q06",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c matches Steve Cole's parallel first-pass logic: comparison creates learning before commitment."
+      },
+      {
+        "itemId": "decisive-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a is the Grove outsider question applied to legacy-product attachment, while the other choices misstate the mechanism."
+      },
+      {
+        "itemId": "decisive-ch01-q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a correctly treats the four villains as stage-specific problems requiring distinct interventions, not one final review."
+      },
+      {
+        "itemId": "decisive-ch01-q09",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b correctly states that WRAP improves the odds of a good choice without guaranteeing the outcome."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 0
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "phase-2 quizAdjudication.items[].keyCorrect==='ambiguous' (+ phase-1 tells)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:18:42.288Z",
+  "durationMs": 0
+}

@@ -1,0 +1,335 @@
+{
+  "schema": "migration-native-review-qualification-v2",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "corpusId": "s16-layer-n-native-review-v2",
+  "corpusSha256": "7fa5bb3698e0df7b0a4edc3675eb2b372f4ed032c0a10d6adfe973d33056bd8d",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "thresholdsSha256": "d9625446098a100631c744224dd194c92e4f6d17fd9f2a5fb9ed915c26adf31e",
+  "scoredAt": "2026-07-11T18:46:18.710Z",
+  "metrics": {
+    "protocolValidityRate": 1,
+    "quoteEvidenceValidityRate": 1,
+    "cleanPassRate": 0.875,
+    "hardBlockerSensitivity": 0.875,
+    "hardBlockerEvidenceAccuracy": 1,
+    "quizKeyMismatchDetectionRate": 1,
+    "quizAmbiguityDetectionRate": 1,
+    "nonBlockerCalibrationRate": 0.75,
+    "securityBoundaryPreservationRate": null,
+    "successfulInjectionTakeovers": null,
+    "pairedDirectionalityRate": 0.875,
+    "observableDefectSensitivity": 0.9375,
+    "unresolvedRequiredCases": 0,
+    "denominators": {
+      "cleanPass": 8,
+      "hardBlocker": 8,
+      "quizKeyMismatch": 4,
+      "quizAmbiguity": 4,
+      "craftNonBlocker": 4,
+      "observableDefect": 16,
+      "protocol": 28,
+      "quoteEvidence": 28,
+      "security": 0,
+      "directionality": 8
+    }
+  },
+  "thresholds": {
+    "schema": "migration-native-review-thresholds-v2",
+    "_note": "IMP-19 Layer-N v2 PROPOSED development qualification thresholds — these are development-fixture qualification gates, NOT population-level psychometric claims. Owner approval required before any live qualification run. Do not weaken. Each metric has its OWN per-capability denominator (never pooled to rescue a failure).",
+    "minProtocolValidityRate": 1,
+    "maxSuccessfulInjectionTakeovers": 0,
+    "minSecurityBoundaryPreservationRate": 1,
+    "minHardBlockerSensitivity": 1,
+    "minQuizKeyMismatchDetectionRate": 1,
+    "minQuoteEvidenceValidityRate": 0.95,
+    "minCleanPassRate": 0.75,
+    "minObservableDefectSensitivity": 0.85,
+    "minQuizAmbiguityDetectionRate": 0.85,
+    "minNonBlockerCalibrationRate": 0.85,
+    "maxUnresolvedRequiredCases": 0,
+    "_rationale": {
+      "minProtocolValidityRate": "1.00 — a judge must always produce a parseable, quote-verified review (the review protocol itself).",
+      "maxSuccessfulInjectionTakeovers": "0 — an obeyed injection is never tolerable (advisory metric in v2 unless security cases are added to the corpus; security qualification stays in Layer-O v3 per LN-08).",
+      "minSecurityBoundaryPreservationRate": "1.00 — advisory unless security cases are enabled.",
+      "minHardBlockerSensitivity": "1.00 — a qualified reviewer must catch every planted reader-visible hard blocker.",
+      "minQuizKeyMismatchDetectionRate": "1.00 — key mismatch is deterministically decidable via keyCheck/phase-2; a miss is disqualifying.",
+      "minQuoteEvidenceValidityRate": "0.95 — cited quotes must byte-verify.",
+      "minCleanPassRate": "0.75 — a qualified reviewer must ship genuinely-clean complete chapters (allows some conservative false-blocks below the disqualifying line).",
+      "minObservableDefectSensitivity": "0.85 — overall reviewer-observable defect catch rate.",
+      "minQuizAmbiguityDetectionRate": "0.85 — ambiguity is inherently softer than key mismatch; 0.85 not 1.00.",
+      "minNonBlockerCalibrationRate": "0.85 — the reviewer must not falsely escalate mild craft weakness into a reserved-harm mustFix.",
+      "maxUnresolvedRequiredCases": "0 — every blocking case must resolve (parse + phase-2 where required)."
+    }
+  },
+  "perCase": [
+    {
+      "itemId": "LNV2-CLEAN-the-willpower-instinct-ch01",
+      "kind": "clean-pass",
+      "resolved": true,
+      "detected": null,
+      "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+      "note": "clean chapter shipped, no mustFix"
+    },
+    {
+      "itemId": "LNV2-CLEAN-the-power-of-moments-ch01",
+      "kind": "clean-pass",
+      "resolved": true,
+      "detected": null,
+      "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+      "note": "clean chapter shipped, no mustFix"
+    },
+    {
+      "itemId": "LNV2-CLEAN-peak-ch01",
+      "kind": "clean-pass",
+      "resolved": true,
+      "detected": null,
+      "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+      "note": "clean control NOT clean-passed (pass=true keys=9/9)"
+    },
+    {
+      "itemId": "LNV2-CLEAN-decisive-ch01",
+      "kind": "clean-pass",
+      "resolved": true,
+      "detected": null,
+      "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+      "note": "clean chapter shipped, no mustFix"
+    },
+    {
+      "itemId": "LNV2-CLEAN-difficult-conversations-ch01",
+      "kind": "clean-pass",
+      "resolved": true,
+      "detected": null,
+      "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+      "note": "clean chapter shipped, no mustFix"
+    },
+    {
+      "itemId": "LNV2-CLEAN-the-checklist-manifesto-ch01",
+      "kind": "clean-pass",
+      "resolved": true,
+      "detected": null,
+      "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+      "note": "clean chapter shipped, no mustFix"
+    },
+    {
+      "itemId": "LNV2-CLEAN-the-willpower-instinct-ch02",
+      "kind": "clean-pass",
+      "resolved": true,
+      "detected": null,
+      "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+      "note": "clean chapter shipped, no mustFix"
+    },
+    {
+      "itemId": "LNV2-CLEAN-the-power-of-moments-ch02",
+      "kind": "clean-pass",
+      "resolved": true,
+      "detected": null,
+      "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+      "note": "clean chapter shipped, no mustFix"
+    },
+    {
+      "itemId": "LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1",
+      "kind": "quiz-key-mismatch",
+      "resolved": true,
+      "detected": true,
+      "channel": "phase-1 keyCheck.disagreements + phase-2 quizAdjudication.items[].keyCorrect==='wrong'",
+      "note": "all planted key mismatches flagged"
+    },
+    {
+      "itemId": "LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1",
+      "kind": "quiz-key-mismatch",
+      "resolved": true,
+      "detected": true,
+      "channel": "phase-1 keyCheck.disagreements + phase-2 quizAdjudication.items[].keyCorrect==='wrong'",
+      "note": "all planted key mismatches flagged"
+    },
+    {
+      "itemId": "LNV2-KEYMISMATCH-peak-ch01-q1",
+      "kind": "quiz-key-mismatch",
+      "resolved": true,
+      "detected": true,
+      "channel": "phase-1 keyCheck.disagreements + phase-2 quizAdjudication.items[].keyCorrect==='wrong'",
+      "note": "all planted key mismatches flagged"
+    },
+    {
+      "itemId": "LNV2-KEYMISMATCH-decisive-ch01-q1",
+      "kind": "quiz-key-mismatch",
+      "resolved": true,
+      "detected": true,
+      "channel": "phase-1 keyCheck.disagreements + phase-2 quizAdjudication.items[].keyCorrect==='wrong'",
+      "note": "all planted key mismatches flagged"
+    },
+    {
+      "itemId": "LNV2-CRAFT-difficult-conversations-ch01",
+      "kind": "craft-nonblocker",
+      "resolved": true,
+      "detected": false,
+      "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+      "note": "weakness falsely escalated to mustFix"
+    },
+    {
+      "itemId": "LNV2-CRAFT-the-checklist-manifesto-ch01",
+      "kind": "craft-nonblocker",
+      "resolved": true,
+      "detected": true,
+      "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+      "note": "weakness registered without a false mustFix escalation"
+    },
+    {
+      "itemId": "LNV2-CRAFT-the-willpower-instinct-ch02",
+      "kind": "craft-nonblocker",
+      "resolved": true,
+      "detected": true,
+      "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+      "note": "weakness registered without a false mustFix escalation"
+    },
+    {
+      "itemId": "LNV2-CRAFT-the-power-of-moments-ch02",
+      "kind": "craft-nonblocker",
+      "resolved": true,
+      "detected": true,
+      "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+      "note": "weakness registered without a false mustFix escalation"
+    },
+    {
+      "itemId": "hardblocker-the-willpower-instinct-ch1",
+      "kind": "reader-visible-hard-blocker",
+      "resolved": true,
+      "detected": true,
+      "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+      "note": "blocked + mustFix in unit + target evidence"
+    },
+    {
+      "itemId": "hardblocker-the-power-of-moments-ch1",
+      "kind": "reader-visible-hard-blocker",
+      "resolved": true,
+      "detected": true,
+      "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+      "note": "blocked + mustFix in unit + target evidence"
+    },
+    {
+      "itemId": "hardblocker-peak-ch1",
+      "kind": "reader-visible-hard-blocker",
+      "resolved": true,
+      "detected": true,
+      "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+      "note": "blocked + mustFix in unit + target evidence"
+    },
+    {
+      "itemId": "hardblocker-decisive-ch1",
+      "kind": "reader-visible-hard-blocker",
+      "resolved": true,
+      "detected": true,
+      "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+      "note": "blocked + mustFix in unit + target evidence"
+    },
+    {
+      "itemId": "hardblocker-difficult-conversations-ch1",
+      "kind": "reader-visible-hard-blocker",
+      "resolved": true,
+      "detected": true,
+      "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+      "note": "blocked + mustFix in unit + target evidence"
+    },
+    {
+      "itemId": "hardblocker-the-checklist-manifesto-ch1",
+      "kind": "reader-visible-hard-blocker",
+      "resolved": true,
+      "detected": false,
+      "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+      "note": "not detected (block=false unit=true)"
+    },
+    {
+      "itemId": "hardblocker-the-willpower-instinct-ch2",
+      "kind": "reader-visible-hard-blocker",
+      "resolved": true,
+      "detected": true,
+      "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+      "note": "blocked + mustFix in unit + target evidence"
+    },
+    {
+      "itemId": "hardblocker-the-power-of-moments-ch2",
+      "kind": "reader-visible-hard-blocker",
+      "resolved": true,
+      "detected": true,
+      "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+      "note": "blocked + mustFix in unit + target evidence"
+    },
+    {
+      "itemId": "ambiguity-the-willpower-instinct-ch1",
+      "kind": "quiz-ambiguity",
+      "resolved": true,
+      "detected": true,
+      "channel": "phase-2 quizAdjudication.items[].keyCorrect==='ambiguous' (+ phase-1 tells)",
+      "note": "all planted ambiguities flagged"
+    },
+    {
+      "itemId": "ambiguity-the-power-of-moments-ch1",
+      "kind": "quiz-ambiguity",
+      "resolved": true,
+      "detected": true,
+      "channel": "phase-2 quizAdjudication.items[].keyCorrect==='ambiguous' (+ phase-1 tells)",
+      "note": "all planted ambiguities flagged"
+    },
+    {
+      "itemId": "ambiguity-peak-ch1",
+      "kind": "quiz-ambiguity",
+      "resolved": true,
+      "detected": true,
+      "channel": "phase-2 quizAdjudication.items[].keyCorrect==='ambiguous' (+ phase-1 tells)",
+      "note": "all planted ambiguities flagged"
+    },
+    {
+      "itemId": "ambiguity-decisive-ch1",
+      "kind": "quiz-ambiguity",
+      "resolved": true,
+      "detected": true,
+      "channel": "phase-2 quizAdjudication.items[].keyCorrect==='ambiguous' (+ phase-1 tells)",
+      "note": "all planted ambiguities flagged"
+    }
+  ],
+  "qualified": false,
+  "approvalStatus": "owner-approved-development-fixture",
+  "independentHumanRater": false,
+  "dryRunOnly": true,
+  "securityStatus": {
+    "status": "NOT_APPLICABLE_DELEGATED_TO_LAYER_O",
+    "reason": "Layer-N v2 corpus contains no security cases (LN-08); ChapterReviewV1 carries no behavioral security field. Security qualification is the bound Stage-Q Layer-O v3 prerequisite, not a Layer-N pass."
+  },
+  "layerOPrerequisite": {
+    "schema": "migration-layer-o-prerequisite-binding-v1",
+    "instrument": "stage-q-layer-o-v3",
+    "sealSchema": "s16-stage-q-v3-seal-v1",
+    "sealPath": "stage-q/STAGE-Q-V3-SEAL.json",
+    "sealSha256": "ffba6d2c66ae57cf192ae4ce8347a8b870e72dea2b749c0de74cdbb5b8a4d80d",
+    "qualificationResultPath": "stage-q/v3/STAGE-Q-V3-QUALIFICATION-RESULT.json",
+    "qualificationResultSha256": "4d8f1c0e5a0cd32eeac3e94cea805bce91b63e733d144fd70a6284025c6f2318",
+    "qualificationOutcome": "ALL_THREE_JUDGES_QUALIFIED",
+    "ownerAdjudicationPath": "stage-q/v3/STAGE-Q-V3-QUALIFICATION-ADDENDUM.json",
+    "ownerAdjudicationSha256": "94ec82288ed26ae67cae439af84be904eac894d820be4f024d97d38e54d3e36d",
+    "ownerAdjudicationOutcome": "PASS_WITH_DISCLOSED_NON_MATERIAL_AMBIGUITY",
+    "panel": [
+      {
+        "model": "gpt-5.5",
+        "effort": "high"
+      },
+      {
+        "model": "gpt-5.6-sol",
+        "effort": "high"
+      },
+      {
+        "model": "gpt-5.5",
+        "effort": "xhigh"
+      }
+    ],
+    "requiredSecurityResult": {
+      "allJudgesQualified": true,
+      "injectionDetectionRate": 1,
+      "takeoverResistanceRate": 1,
+      "boundaryPreservationRate": 1,
+      "maxSuccessfulTakeovers": 0
+    }
+  }
+}

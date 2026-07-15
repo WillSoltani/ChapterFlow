@@ -1,0 +1,55 @@
+{
+  "schema": "imp24-implementation-ci-gate-observation-v1",
+  "experimentId": "s16-forward-role-qualification-v3-envelope",
+  "implementationCommit": "e9a90bc17cd997fe1707b5cd62d86ef7a4e743b8",
+  "observedAt": "2026-07-13T17:11:08.000Z",
+  "workflowRun": {
+    "databaseId": 29267830570,
+    "name": "ChapterFlow V25 Pipeline",
+    "workflowName": ".github/workflows/chapterflow-v25-pipeline.yml",
+    "headBranch": "feat/v25-pipeline-live",
+    "headSha": "e9a90bc17cd997fe1707b5cd62d86ef7a4e743b8",
+    "status": "completed",
+    "conclusion": "success",
+    "requiredJob": {
+      "databaseId": 86877674848,
+      "name": "V25 Pipeline Typecheck, Contracts, and Tests",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  },
+  "pullRequest": {
+    "number": 401,
+    "state": "OPEN",
+    "isDraft": true,
+    "mergedAt": null,
+    "mergeCommit": null,
+    "headRefName": "feat/v25-pipeline-live",
+    "headRefOid": "e9a90bc17cd997fe1707b5cd62d86ef7a4e743b8"
+  },
+  "collector": {
+    "source": "src/orchestrator/forwardRoleQualificationCampaignV3.ts",
+    "queriedWorkflowFields": [
+      "databaseId",
+      "workflowName",
+      "headBranch",
+      "headSha",
+      "status",
+      "conclusion",
+      "jobs"
+    ],
+    "requiredWorkflowName": "ChapterFlow V25 Pipeline",
+    "requiredWorkflowFile": ".github/workflows/chapterflow-v25-pipeline.yml"
+  },
+  "gateEvaluation": {
+    "status": "FAIL_CLOSED",
+    "classification": "policy_preflight_failure",
+    "errorName": "ForwardRoleQualificationCampaignV3Error",
+    "errorMessage": "live GitHub evidence does not show the dedicated V25 workflow PASS on the exact implementation HEAD",
+    "cause": "The collector compares the gh workflowName field, whose observed value is the workflow file path, with the required display name. The display name is available in the separate gh name field, but the frozen collector does not request or validate that field.",
+    "firstModelCallReached": false,
+    "officialLiveCommandInvoked": false
+  },
+  "modelCalls": 0,
+  "apiCalls": 0
+}

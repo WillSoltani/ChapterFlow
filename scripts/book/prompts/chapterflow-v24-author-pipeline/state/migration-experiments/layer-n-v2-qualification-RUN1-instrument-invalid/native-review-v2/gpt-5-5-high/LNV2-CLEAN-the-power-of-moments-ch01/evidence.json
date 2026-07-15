@@ -1,0 +1,145 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-power-of-moments-ch01",
+  "itemId": "LNV2-CLEAN-the-power-of-moments-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "c5d9bbf8b745d098",
+  "renderedDocSha256": "631e4c7e1556b5c190cd23e017057fbcd3198c0ffd8764dd6543935f706f5f33",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-power-of-moments-ch01-mrgos54t-2",
+  "rawFinalMessageSha256": "90fea3af255e9e097d84078f405226b5b7cdd46347320b2689fc8bf4d799ac21",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"a\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The cold-water lesson says a milder ending can improve remembered experience even when the episode lasts longer.\",\n      \"The Magic Castle example shows a modest setting can create a memorable peak through a vivid object and tellable surprise.\",\n      \"YES Prep works by making a private achievement public so peers and adults witness the effort.\",\n      \"The prose names elevation, insight, pride, and connection as the four common ingredients.\",\n      \"The red phone is the model: one concrete visible object signals that the ordinary script has changed.\",\n      \"The popsicle matters because the request, phone, and tray turn a free snack into a small event.\",\n      \"The threshold logic says to mark the crossing before the next stage becomes private logistics.\",\n      \"The prose explicitly says memory does not average each minute and is shaped by the sharpest part and ending.\",\n      \"A quiet free mint is like a quiet free item, not a designed event with a story people retell.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice b is the only option aligned with the chapter's repeated calmer-ending lesson; a and c are directly contradicted.\",\n      \"Choice b uses giveaway wording: vivid, tellable, surprise, and ordinary arrival all echo the chapter's phrasing.\",\n      \"Choice a is much closer to the YES Prep wording than the distractors, which are easy negations.\",\n      \"Choice c simply lists the four ingredients in synonym form and is the uniquely comprehensive answer.\",\n      \"Choice a nearly restates the memorable line about a concrete object changing the script.\",\n      \"Choice b contains the giveaway phrase small event and the exact delivery mechanism from the prose.\",\n      \"Choice c repeats the chapter's threshold/private-logistics language almost directly.\",\n      \"The negative stem makes a the only false claim; b and c are both chapter teachings.\",\n      \"Choice c uses the chapter's tellable-story framing while a and b are contradicted by the red-phone lesson.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 82,\n    \"transfer\": 80,\n    \"practical\": 88,\n    \"summaries\": 91,\n    \"tone\": 89,\n    \"limits\": 92,\n    \"insight\": 87,\n    \"density\": 84,\n    \"beginner\": 93\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.\",\n      \"why\": \"This is the clearest, most memorable statement of the chapter's core mechanism.\"\n    },\n    {\n      \"quote\": \"A gentle final minute is not permission to make the first part careless.\",\n      \"why\": \"This gives the chapter useful ethical limits instead of overselling moment design.\"\n    },\n    {\n      \"quote\": \"Margaret must decide whether this is a snack or the story of the stay.\",\n      \"why\": \"The example is useful, but the named character feels staged and weakens the documentary feel.\"\n    },\n    {\n      \"quote\": \"The peak-end memory pattern forces duration to give up its claim as the only judge.\",\n      \"why\": \"Strong mechanism language, though the examples repeat this point enough that it starts to feel overworked.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"Several correct answers are signposted by near-verbatim chapter phrasing while distractors are direct contradictions, so a reader could often guess without fully reading.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The training close is usable but thin: it repeats the cold-water lesson without a concrete place, consequence, or before-after result beyond the role statement.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The mentor example is emotionally clear but overlaps heavily with the Full read Leah scene and does not add much new transfer beyond trimming advice and closing warmly.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"The workshop threshold example is on-topic but generic; it names no specific learner, stakes, or consequence after the ritual.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable chapter: the core move is clear, concrete, and memorable, with the red phone, cold-water trial, and YES Prep ceremony giving beginners enough handles to apply the idea. Its best strength is the boundary-setting around endings: it teaches memory design without excusing bad experiences. The main weakness is quiz and example polish. The quiz is fair but sometimes too easy to reverse-engineer from phrasing, and a few later examples are thin variations rather than fresh transfer cases. Still, the chapter meets a professional bar because the mechanism, limits, summaries, and practical actions are all coherent and usable.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-power-of-moments-ch01",
+    "chapterNumber": 1,
+    "contentHash": "c5d9bbf8b745d098",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-power-of-moments-ch01-mrgos54t-2",
+    "scores": {
+      "retention": 88,
+      "quizzes": 82,
+      "transfer": 80,
+      "practical": 88,
+      "summaries": 91,
+      "tone": 89,
+      "limits": 92,
+      "insight": 87,
+      "density": 84,
+      "beginner": 93
+    },
+    "composite": 87.1,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "a",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.",
+        "why": "This is the clearest, most memorable statement of the chapter's core mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "A gentle final minute is not permission to make the first part careless.",
+        "why": "This gives the chapter useful ethical limits instead of overselling moment design.",
+        "verified": true
+      },
+      {
+        "quote": "Margaret must decide whether this is a snack or the story of the stay.",
+        "why": "The example is useful, but the named character feels staged and weakens the documentary feel.",
+        "verified": true
+      },
+      {
+        "quote": "The peak-end memory pattern forces duration to give up its claim as the only judge.",
+        "why": "Strong mechanism language, though the examples repeat this point enough that it starts to feel overworked.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b is the only option aligned with the chapter's repeated calmer-ending lesson; a and c are directly contradicted.",
+      "Choice b uses giveaway wording: vivid, tellable, surprise, and ordinary arrival all echo the chapter's phrasing.",
+      "Choice a is much closer to the YES Prep wording than the distractors, which are easy negations.",
+      "Choice c simply lists the four ingredients in synonym form and is the uniquely comprehensive answer.",
+      "Choice a nearly restates the memorable line about a concrete object changing the script.",
+      "Choice b contains the giveaway phrase small event and the exact delivery mechanism from the prose.",
+      "Choice c repeats the chapter's threshold/private-logistics language almost directly.",
+      "The negative stem makes a the only false claim; b and c are both chapter teachings.",
+      "Choice c uses the chapter's tellable-story framing while a and b are contradicted by the red-phone lesson."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz overall",
+        "problem": "Several correct answers are signposted by near-verbatim chapter phrasing while distractors are direct contradictions, so a reader could often guess without fully reading.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The training close is usable but thin: it repeats the cold-water lesson without a concrete place, consequence, or before-after result beyond the role statement.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The mentor example is emotionally clear but overlaps heavily with the Full read Leah scene and does not add much new transfer beyond trimming advice and closing warmly.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The workshop threshold example is on-topic but generic; it names no specific learner, stakes, or consequence after the ritual.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter: the core move is clear, concrete, and memorable, with the red phone, cold-water trial, and YES Prep ceremony giving beginners enough handles to apply the idea. Its best strength is the boundary-setting around endings: it teaches memory design without excusing bad experiences. The main weakness is quiz and example polish. The quiz is fair but sometimes too easy to reverse-engineer from phrasing, and a few later examples are thin variations rather than fresh transfer cases. Still, the chapter meets a professional bar because the mechanism, limits, summaries, and practical actions are all coherent and usable.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "47bbae470f919e949d38689343aaf37d5fe9423ffb37ba7848cceb14029e1994",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:17:49.342Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:16:55.804Z",
+  "durationMs": 0
+}

@@ -1,0 +1,144 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-power-of-moments-ch01",
+  "itemId": "LNV2-CLEAN-the-power-of-moments-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "c5d9bbf8b745d098",
+  "renderedDocSha256": "631e4c7e1556b5c190cd23e017057fbcd3198c0ffd8764dd6543935f706f5f33",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-power-of-moments-ch01-mrh5gnwc-2",
+  "rawFinalMessageSha256": "845da2f3cee191aeae577ae4715126fe4cdb94122f47891ccbf16328d7cb173e",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"a\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The cold-water study says a milder ending can make a longer hard episode remembered better.\",\n      \"The Magic Castle example says a modest place can create one vivid, tellable peak through a changed arrival script.\",\n      \"YES Prep works by making a private achievement public so peers and adults witness it.\",\n      \"The prose names elevation, insight, pride, and connection as the four ingredients; choice c maps to all four.\",\n      \"The red-phone lesson is that one concrete visible object can signal that the ordinary script has changed.\",\n      \"The prose says the free item is not enough; the request, phone, and tray turn delivery into a small event.\",\n      \"The threshold idea says to mark the crossing before the next stage becomes private logistics.\",\n      \"The prose explicitly says memory does not average each minute; peak and ending carry unusual weight.\",\n      \"The mint vanishes because it is only a quiet free item, unlike a gift shaped into a tellable event.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Q4: the stem asks for four ingredients and choice c is the only four-part answer matching elevation, insight, pride, and connection.\",\n      \"Q7: the correct answer closely repeats the chapter's phrase about marking a transition before it becomes private logistics.\",\n      \"Q8: the negative wording makes a true lesson into the wrong answer, so the item partly tests noticing 'not assume'.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 82,\n    \"transfer\": 76,\n    \"practical\": 86,\n    \"summaries\": 91,\n    \"tone\": 90,\n    \"limits\": 92,\n    \"insight\": 86,\n    \"density\": 82,\n    \"beginner\": 92\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"A small peak can become the story of the whole stay.\",\n      \"why\": \"This is the chapter's clearest memorable compression of the main move.\"\n    },\n    {\n      \"quote\": \"The extra discomfort still happened.\",\n      \"why\": \"This keeps the peak-end lesson honest instead of turning it into manipulation.\"\n    },\n    {\n      \"quote\": \"A ceremony cannot replace real college support.\",\n      \"why\": \"This is a strong boundary condition that protects the lesson from overselling.\"\n    },\n    {\n      \"quote\": \"He thinks of the cold-water contrast: a 60-second painful trial can lose in memory to a 90-second trial with milder ending.\",\n      \"why\": \"This shows the main repetition problem: several examples lean on the same study instead of expanding transfer.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q4\",\n      \"problem\": \"The correct answer is too exposed because the stem asks for four ingredients and only one option gives a four-part mapping.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q7\",\n      \"problem\": \"The correct answer borrows the chapter's phrasing closely enough to be guessable without much comprehension.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples 3-5\",\n      \"problem\": \"Three examples in a row reuse the cold-water contrast, which narrows transfer and makes the section feel repetitive.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The named student is thinly specified; the example gives a public moment but little concrete decision, consequence, or personal texture.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"The workshop ritual is usable but a little theatrical; it would be stronger with a lower-friction variant for groups that would resist public cheering.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, shippable chapter. The core idea is memorable, the layered reads stand alone, the tone is plain, and the chapter is unusually good about limits: it repeatedly warns that a designed ending cannot cover harm or a broken base. The quiz is mostly fair and derivable, though a few items give away the pattern through near-matching phrasing. The main weakness is transfer: the examples are on-topic, but several lean on the same cold-water study or use lightly sketched characters instead of showing more varied before-to-after consequences.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-power-of-moments-ch01",
+    "chapterNumber": 1,
+    "contentHash": "c5d9bbf8b745d098",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-power-of-moments-ch01-mrh5gnwc-2",
+    "scores": {
+      "retention": 88,
+      "quizzes": 82,
+      "transfer": 76,
+      "practical": 86,
+      "summaries": 91,
+      "tone": 90,
+      "limits": 92,
+      "insight": 86,
+      "density": 82,
+      "beginner": 92
+    },
+    "composite": 86.3,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "a",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "A small peak can become the story of the whole stay.",
+        "why": "This is the chapter's clearest memorable compression of the main move.",
+        "verified": true
+      },
+      {
+        "quote": "The extra discomfort still happened.",
+        "why": "This keeps the peak-end lesson honest instead of turning it into manipulation.",
+        "verified": true
+      },
+      {
+        "quote": "A ceremony cannot replace real college support.",
+        "why": "This is a strong boundary condition that protects the lesson from overselling.",
+        "verified": true
+      },
+      {
+        "quote": "He thinks of the cold-water contrast: a 60-second painful trial can lose in memory to a 90-second trial with milder ending.",
+        "why": "This shows the main repetition problem: several examples lean on the same study instead of expanding transfer.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q4: the stem asks for four ingredients and choice c is the only four-part answer matching elevation, insight, pride, and connection.",
+      "Q7: the correct answer closely repeats the chapter's phrase about marking a transition before it becomes private logistics.",
+      "Q8: the negative wording makes a true lesson into the wrong answer, so the item partly tests noticing 'not assume'."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q4",
+        "problem": "The correct answer is too exposed because the stem asks for four ingredients and only one option gives a four-part mapping.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q7",
+        "problem": "The correct answer borrows the chapter's phrasing closely enough to be guessable without much comprehension.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples 3-5",
+        "problem": "Three examples in a row reuse the cold-water contrast, which narrows transfer and makes the section feel repetitive.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The named student is thinly specified; the example gives a public moment but little concrete decision, consequence, or personal texture.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The workshop ritual is usable but a little theatrical; it would be stronger with a lower-friction variant for groups that would resist public cheering.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, shippable chapter. The core idea is memorable, the layered reads stand alone, the tone is plain, and the chapter is unusually good about limits: it repeatedly warns that a designed ending cannot cover harm or a broken base. The quiz is mostly fair and derivable, though a few items give away the pattern through near-matching phrasing. The main weakness is transfer: the examples are on-topic, but several lean on the same cold-water study or use lightly sketched characters instead of showing more varied before-to-after consequences.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "47bbae470f919e949d38689343aaf37d5fe9423ffb37ba7848cceb14029e1994",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:04:57.627Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:03:53.722Z",
+  "durationMs": 0
+}

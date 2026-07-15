@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c23-a1",
+  "requestSha256": "cb0dd7b703abcbd7e0a203f85558a49b857b4b462be9dfb636e6550857551903",
+  "receiptSha256": "23a3066377fb9c82b5c2c71a548b210d3b66dde88f1f90a3ad73bf5aaa4585f4",
+  "executionEvidenceSha256": "4aa34b913ac2b9b7b43951afeb78bc8250ad3b7638b6a49e819a56bcc08a854b",
+  "rawOutputSha256": "ab8ae53223d2ce9ca18b0c9b763af63628e7dab8ba8b6249f53bad68fb06c94a",
+  "evaluationSha256": "571dba93ca38ad217cdd63b65353bec0e61613ad12d88a2d8a2f7a42683bb789",
+  "parsedOutputSha256": "eea924f822fad74606bc3d5d28cacdd375d96f00cdbc4d2a5446e474ea863dbc",
+  "assembledReviewSha256": "b7581fa8873272457f2f4b07b1fd61e304a32924ef721778ed1a92fd955ac160",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly framed as hypothetical and stays within PLAN-U001's constructed application scope, descriptive strength limit, and concept-only detail allowance."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "702359462e68c6eb5391f1162926151e10605ec348fbfb621e7cd387cf7e75cb",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9b03842e719fb56ff39c4b849893ba05156ecf19b1d7d80d0e0495274df93874",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly framed as hypothetical and stays within PLAN-U001's constructed application scope, descriptive strength limit, and concept-only detail allowance.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is visibly framed as hypothetical and stays within PLAN-U001's constructed application scope, descriptive strength limit, and concept-only detail allowance."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "d742a2d2d2ce034140de54b708745b8661b0bf43fdbfe8a106b5ca7430746ecd"
+}

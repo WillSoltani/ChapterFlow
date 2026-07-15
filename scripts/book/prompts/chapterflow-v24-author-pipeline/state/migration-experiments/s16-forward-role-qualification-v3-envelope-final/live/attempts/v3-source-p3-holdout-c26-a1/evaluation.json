@@ -1,0 +1,70 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c26-a1",
+  "requestSha256": "7c44685493103a5d51808cb2f5d24f9d5ac6a2b5ecb373121b47416b847d21af",
+  "receiptSha256": "cdd6b210a413e2c23996bd11fe77f502085d8867a4d9cb98a4ef857f462322bb",
+  "executionEvidenceSha256": "f7789bca4500884e26705b20a783db49b141f6b87e1e1cb5d95e616c261445e6",
+  "rawOutputSha256": "353d5531bf849854655b6f0ac5f76840031f7a515a93e08180777f003455393f",
+  "evaluationSha256": "e7162d97e2008e7ddeecd84313744619b3136b4232115413df8e6cbf9c64950a",
+  "parsedOutputSha256": "1172701f0b4f59a13d65d965ce1e52eb5176e07597a8ab111b89de03cb44cb4e",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "ce04c3fae755a64b807b9f4a44b17d361f59384fbcdd015d9fa629f6f9efc7b8",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "UNSUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "major",
+              "explanation": "The generic operational scenario introduces the named organization “Northstar Systems,” although named organizations are expressly forbidden and no anchor authorizes that specificity.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The role and observable action fit the permitted descriptive operational scenario, and no special framing is required. The unsupported named organization exceeds the generic, concept-only detail license."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "ReviewModelOutputV2Error",
+        "message": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+        "code": "INVALID_EVIDENCE",
+        "refId": null
+      }
+    }
+  },
+  "evaluationArtifactSha256": "841f859528a87ec82c0b28efc4c3e530f9ebdf03b343b54db4b459859a44a4ce"
+}

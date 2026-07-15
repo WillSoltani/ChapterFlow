@@ -1,0 +1,145 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-difficult-conversations-ch01",
+  "itemId": "LNV2-CLEAN-difficult-conversations-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "03c1136563a90916",
+  "renderedDocSha256": "313e9709c17fbe4c3f85b3c005a88e87e1afb920d51eda36d21898961078945d",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "1d63d23c67ec6de0b6d74a81023bc7cdc2f463f81e91d3948ad6013d87a45812",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-difficult-conversations-ch01-mrh8erq8-41",
+  "rawFinalMessageSha256": "e88761067267310afd8f846ec7fc12c0b83d22793e3a6e5ff0b678a21b293c75",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"a\", \"b\", \"c\", \"a\", \"b\", \"c\", \"c\", \"b\", \"a\"],\n    \"mechanisms\": [\n      \"Her fear concerns what the meeting says about her competence and authority, which the prose defines as the identity layer.\",\n      \"The prose says diagnosis must include the visible event, underlying feelings, and the family-role identity question.\",\n      \"The frame requires separating documented facts from residents' feelings and the board's competence threat.\",\n      \"The prose warns that a correct timeline can fail when an unacknowledged feeling such as mistrust is steering the exchange.\",\n      \"Hearing the question as a judgment about what kind of friend she is makes this an identity conversation.\",\n      \"Separating belonging from authorship prevents the visible dispute from concealing the identity threat.\",\n      \"The attendance facts have acquired meaning about the parent's adequacy, so repeating facts alone may increase defensiveness.\",\n      \"The prose says to use the frame privately first because labeling another person's identity layer can sound accusatory.\",\n      \"The recurring respect claim signals that the visible chore dispute and its deeper stake must be sorted into their respective layers.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice a is the longest and repeats the stem's competence-and-authority language.\",\n      \"Choice b is uniquely detailed and reproduces the chapter's three-layer structure.\",\n      \"Choice c is the longest and is the only option that acknowledges all three layers.\",\n      \"Choice a echoes the chapter's warning about facts failing while feelings steer the room.\",\n      \"Choice b is the longest and directly restates the chapter's definition of identity.\",\n      \"Choice c is the longest and uses the chapter's signature contrast between identity and the surface problem.\",\n      \"Choice c is much longer and more nuanced; the other choices use obvious straw-man claims.\",\n      \"Choice b is the longest and closely paraphrases the explicit private-diagnosis warning.\",\n      \"Choice a alone uses the chapter's layer vocabulary and invites diagnosis rather than avoidance or fact-counting.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 95,\n    \"quizzes\": 78,\n    \"transfer\": 91,\n    \"practical\": 94,\n    \"summaries\": 92,\n    \"tone\": 94,\n    \"limits\": 93,\n    \"insight\": 93,\n    \"density\": 88,\n    \"beginner\": 96\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The log is evidence. It is not the whole map.\",\n      \"why\": \"A compact, memorable image captures the chapter's core distinction.\"\n    },\n    {\n      \"quote\": \"A person who already feels exposed will rarely thank you for diagnosing their identity layer. They will hear a new accusation wearing thoughtful clothes.\",\n      \"why\": \"This gives the framework an important interpersonal limit in unusually clear language.\"\n    },\n    {\n      \"quote\": \"b) The feelings conversation, because anxiety is the only issue that matters now.\",\n      \"why\": \"The absolute phrase makes this distractor transparently wrong and weakens the quiz.\"\n    },\n    {\n      \"quote\": \"The three conversations are a diagnostic tool, not a script. They do not solve the exchange. They keep you from walking into the wrong one.\",\n      \"why\": \"This accurately states both the framework's value and its boundary.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"Correct choices are consistently the longest or most nuanced options and often repeat the chapter's signature vocabulary, allowing answer-pattern guessing without comprehension.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1, Q3, Q5, Q7, Q8\",\n      \"problem\": \"Several distractors rely on conspicuous absolutes or implausible advice such as \\\"only,\\\" \\\"always,\\\" \\\"never,\\\" and suppressing feelings, so they teach less than credible near-miss alternatives would.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples\",\n      \"problem\": \"Reusing Ingrid and Mathieu across unrelated family, healthcare, vendor, and academic scenarios creates avoidable character confusion.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"full read\",\n      \"problem\": \"The claim that the documentable layer is often the layer with the least power is rhetorically strong but insufficiently bounded; in safety, legal, or accountability disputes, documented facts may remain decisive.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, shippable chapter with a memorable core move, clear mechanisms, varied transfer contexts, low-friction practice, and unusually good boundaries around private diagnosis and the framework's inability to solve a conversation by itself. The prose is concrete, approachable, and well layered across reading depths. Its main weakness is assessment design: all nine correct answers are readily identifiable through length, nuance, and close reuse of chapter language, while several distractors are caricatures. Tightening those options and slightly qualifying the claim about documented facts would move an already professional chapter closer to excellent.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "difficult-conversations-ch01",
+    "chapterNumber": 1,
+    "contentHash": "03c1136563a90916",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-difficult-conversations-ch01-mrh8erq8-41",
+    "scores": {
+      "retention": 95,
+      "quizzes": 78,
+      "transfer": 91,
+      "practical": 94,
+      "summaries": 92,
+      "tone": 94,
+      "limits": 93,
+      "insight": 93,
+      "density": 88,
+      "beginner": 96
+    },
+    "composite": 91.2,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The log is evidence. It is not the whole map.",
+        "why": "A compact, memorable image captures the chapter's core distinction.",
+        "verified": true
+      },
+      {
+        "quote": "A person who already feels exposed will rarely thank you for diagnosing their identity layer. They will hear a new accusation wearing thoughtful clothes.",
+        "why": "This gives the framework an important interpersonal limit in unusually clear language.",
+        "verified": true
+      },
+      {
+        "quote": "b) The feelings conversation, because anxiety is the only issue that matters now.",
+        "why": "The absolute phrase makes this distractor transparently wrong and weakens the quiz.",
+        "verified": true
+      },
+      {
+        "quote": "The three conversations are a diagnostic tool, not a script. They do not solve the exchange. They keep you from walking into the wrong one.",
+        "why": "This accurately states both the framework's value and its boundary.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice a is the longest and repeats the stem's competence-and-authority language.",
+      "Choice b is uniquely detailed and reproduces the chapter's three-layer structure.",
+      "Choice c is the longest and is the only option that acknowledges all three layers.",
+      "Choice a echoes the chapter's warning about facts failing while feelings steer the room.",
+      "Choice b is the longest and directly restates the chapter's definition of identity.",
+      "Choice c is the longest and uses the chapter's signature contrast between identity and the surface problem.",
+      "Choice c is much longer and more nuanced; the other choices use obvious straw-man claims.",
+      "Choice b is the longest and closely paraphrases the explicit private-diagnosis warning.",
+      "Choice a alone uses the chapter's layer vocabulary and invites diagnosis rather than avoidance or fact-counting."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "Correct choices are consistently the longest or most nuanced options and often repeat the chapter's signature vocabulary, allowing answer-pattern guessing without comprehension.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1, Q3, Q5, Q7, Q8",
+        "problem": "Several distractors rely on conspicuous absolutes or implausible advice such as \"only,\" \"always,\" \"never,\" and suppressing feelings, so they teach less than credible near-miss alternatives would.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples",
+        "problem": "Reusing Ingrid and Mathieu across unrelated family, healthcare, vendor, and academic scenarios creates avoidable character confusion.",
+        "mustFix": false
+      },
+      {
+        "unit": "full read",
+        "problem": "The claim that the documentable layer is often the layer with the least power is rhetorically strong but insufficiently bounded; in safety, legal, or accountability disputes, documented facts may remain decisive.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, shippable chapter with a memorable core move, clear mechanisms, varied transfer contexts, low-friction practice, and unusually good boundaries around private diagnosis and the framework's inability to solve a conversation by itself. The prose is concrete, approachable, and well layered across reading depths. Its main weakness is assessment design: all nine correct answers are readily identifiable through length, nuance, and close reuse of chapter language, while several distractors are caricatures. Tightening those options and slightly qualifying the claim about documented facts would move an already professional chapter closer to excellent.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "cdb78dfc223e314de921b0af2ee04d555b2771dd4f79493f9b8a625f328980bd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:27:25.214Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "1d63d23c67ec6de0b6d74a81023bc7cdc2f463f81e91d3948ad6013d87a45812",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:26:24.223Z",
+  "durationMs": 0
+}

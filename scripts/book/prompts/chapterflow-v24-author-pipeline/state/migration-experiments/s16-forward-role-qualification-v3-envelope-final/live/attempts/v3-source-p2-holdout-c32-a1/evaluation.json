@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c32-a1",
+  "requestSha256": "dc5224b3cab769d408e5560ccc0736f767f4a9fd56a546ddc07e4168c61cb3fc",
+  "receiptSha256": "38a334d211a5a29d77843386bc30179bb0d593855df27b2d99858e4d601a890d",
+  "executionEvidenceSha256": "0d08296346a3be0ef83f8fc1c040f822046e0d2d2154f0dcd986bd62a63ecef4",
+  "rawOutputSha256": "7df4a304fb496fad0071c61974c22e7874532aa1c9563d49df9ad429253cb1e7",
+  "evaluationSha256": "130ced21fb2a0b6acb631543713bf98c9d2f14d4378ec9f7be93b13aebb11bd4",
+  "parsedOutputSha256": "0e3e51e98e2037abcfbba870739f80b44ea3f80515e2a5d5d249c25ae45425fc",
+  "assembledReviewSha256": "ef9241465ea9d27354777cfb32b014d6f67515d180f22bd201716bc1e273f90c",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter segment is a generic operational scenario matching the plan's allowed role/action/workflow detail types, stays descriptive, and introduces no named, dated, metric, historical, or source-specific details."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "3f10dac8a7a4a39199626bdb21c84635e3fb38a9bbcb702447ff3c9104032e38",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "20ac707d7a52de6bd2ed41ccc5144f60f43d657e6acf004c167f080e4a159fa9",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter segment is a generic operational scenario matching the plan's allowed role/action/workflow detail types, stays descriptive, and introduces no named, dated, metric, historical, or source-specific details.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter segment is a generic operational scenario matching the plan's allowed role/action/workflow detail types, stays descriptive, and introduces no named, dated, metric, historical, or source-specific details."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "0ab234afe9f57387c8f5454cd5969d7c492d68fed499d0c8001e1e51d1da6134"
+}

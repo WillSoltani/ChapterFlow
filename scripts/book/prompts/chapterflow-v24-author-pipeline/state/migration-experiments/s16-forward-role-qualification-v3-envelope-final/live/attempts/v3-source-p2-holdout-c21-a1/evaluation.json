@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c21-a1",
+  "requestSha256": "78dda148e1c8d65f497258367e7e92e3ad5a94ca86581e1faeecb62878e49481",
+  "receiptSha256": "c78879991e877919fa055470d6bb7bf7f0a1638a419ba55724f8fd600394a0a3",
+  "executionEvidenceSha256": "b7ec20964fdaedf8a31973349082f10311c32c76b1f570cf646fdff1d96089e2",
+  "rawOutputSha256": "cee8431fa49c64c219814c4907298f607ad4a4c91ae402309265670a0ea8f7f4",
+  "evaluationSha256": "b43ead5e41365d91469f72b25b24b6f22f4b4591e667dd73f082dc801a5309e6",
+  "parsedOutputSha256": "e26a2d4f743ab68a98275f0414634169d70321006ba250a7da302b3563dcd5af",
+  "assembledReviewSha256": "ef023447df8354ec07b0b6df8d520889b0c8828a7a8b24789baae3615116cac6",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter presents a fictional, hypothetical workshop scenario using only generic role and action details permitted by the constructed application plan; it remains descriptive and visibly framed."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "188875e446339238ff6938887f6c6b439c58041139b33189e6faee1bca15612b",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "92d24f9a7033c72bac8291db0b60f9d140d2b2c1fba482bcc04d1b56b37ab199",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter presents a fictional, hypothetical workshop scenario using only generic role and action details permitted by the constructed application plan; it remains descriptive and visibly framed.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter presents a fictional, hypothetical workshop scenario using only generic role and action details permitted by the constructed application plan; it remains descriptive and visibly framed."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "3c017f330ee209f079c69f927e3010d2fe8197223f2b4fa26be1537b1d83e6b8"
+}

@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "ambiguity-the-power-of-moments-ch1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "c50f093de42fb247",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-the-power-of-moments-ch1-mrgpn7of-31",
+  "scores": {
+    "retention": 90,
+    "quizzes": 72,
+    "transfer": 84,
+    "practical": 90,
+    "summaries": 91,
+    "tone": 90,
+    "limits": 93,
+    "insight": 88,
+    "density": 84,
+    "beginner": 94
+  },
+  "composite": 87.2,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "a",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "This is the chapter's core move in a compact, memorable line.",
+      "verified": true
+    },
+    {
+      "quote": "The move is not to excuse a bad process with a pretty finish.",
+      "why": "This cleanly states the ethical limit and prevents misuse.",
+      "verified": true
+    },
+    {
+      "quote": "A concrete object can tell people the script has changed.",
+      "why": "This makes the abstract design principle practical and portable.",
+      "verified": true
+    },
+    {
+      "quote": "   a) Make the achievement public so the group can witness the effort.\n   b) Mark the crossing into their next unit now, before the change turns into private logistics.",
+      "why": "These two Q3 choices are both supported by the chapter, making the item ambiguous.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "The stem repeats 'last few minutes are calm' and the keyed option repeats 'calmer finish.'",
+    "The wrong answers are broad negatives; b is the only constructive design action.",
+    "c is an extreme false choice, and a/b both sound chapter-aligned.",
+    "c is the only option listing four positive ingredients; a and b are implausible without reading.",
+    "a closely echoes the red-phone wording; b and c are absolute non-actions.",
+    "b contains the chapter's 'small event' language; a and c reduce the moment to cost or quiet availability.",
+    "c repeats the chapter phrase 'before ... private logistics.'",
+    "The 'not assume' framing makes the false averaging claim stand out.",
+    "c uses the chapter's tellable-story vocabulary; a and b are cost/fixture distractors."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "Two answers are defensible from the prose: a matches public witnessed pride, while b matches marking the threshold before private logistics. The item does not have a single forced key.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The distractors are so implausible that the answer can be guessed by choosing the only option with four positive lesson words.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The keyed option repeats the chapter's threshold phrasing almost verbatim, creating a giveaway.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong, memorable core: design one peak, mark thresholds, and give endings care without using polish to hide real harm. The red phone, cold-water study, and YES Prep examples make the mechanism clear and transferable, and the layered reads work well for beginners. I would not ship yet because Q3 is structurally ambiguous, but once that quiz item is fixed this is close to professional quality.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "9779626de7ddd1c6da5befa7f58455dab7e2177451e43e194d8ddb0d3e719ea4",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-11T18:42:20.830Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "29fa11f8cb76c6db91c6915f440cec43ddfd1a6dbe01006898c2f05f1638f3d9",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "cd0103f70ded8c5ee192c2db130c68c463d1693bff7897f991be2116e71142ec",
+    "phase2DocSha256": "947f14530849517aaec1bb776f7b5b851772f4f84ca21ac64e352884f29f2556",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-the-power-of-moments-ch1-mrgpotun-32",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The wording directly supports the peak-end memory lesson: a calmer finish can improve recall of the whole visit."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "A bright welcome cart is best understood as a vivid, tellable surprise rather than a luxury upgrade or quiet free value."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "ambiguous",
+        "rationale": "Both a and b are defensible because the ceremony publicly recognizes effort while naming the next unit also explicitly marks a threshold before logistics take over."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c names elevation, insight, pride, and connection, matching the four ingredients of memorable experiences."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The red-phone lesson is that one visible object can alter the expected script without a full redesign."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The gift becomes memorable when its delivery is staged as a small request-and-reveal event."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The threshold idea supports marking the shared crossing before the group disperses into private next-stage logistics."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The team should not assume equal averaging because recall can overweight the stressful peak and the ending."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The quiet mint disappears because it lacks a tellable format, not because it needs higher cost or better fixtures."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 0
+  }
+}

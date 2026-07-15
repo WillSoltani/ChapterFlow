@@ -1,0 +1,138 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-the-power-of-moments-ch02",
+  "itemId": "LNV2-CRAFT-the-power-of-moments-ch02",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "2a12a713d97681c9",
+  "renderedDocSha256": "7995288f3bfbce8de7ed6a00ef72bbcff4b0e9a4f88992c32360e2c5f7cb17ea",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "eb1a2a21e463911097767327303b99b73d256c74306e2fc87333dbc9426bcbde",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-xhigh-LNV2-CRAFT-the-power-of-moments-ch02-mrhaf7yc-20",
+  "rawFinalMessageSha256": "c3588c67b8fdf439009cd61ab395f45ae94d0c58af0d68af1ac8bc30308d6a11",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"c\", \"b\", \"b\", \"a\", \"c\", \"b\", \"a\", \"a\"],\n    \"mechanisms\": [\n      \"The prose says to look first at transitions, milestones, and pits; welcome, awards, and complaint calls map to those charged points.\",\n      \"The John Deere lesson says purpose should arrive before forms and routine tasks define the first day.\",\n      \"Mary Kay's Cadillac works because it makes a milestone public and visible.\",\n      \"Joshie shows that a found item is not enough; the recovery needs proof of care that changes the story.\",\n      \"The chapter directly contrasts thicker packets with tying the role to real users before procedure takes over.\",\n      \"The milestone lesson says progress needs a marker people can picture, not just a private or data-only count.\",\n      \"The pit lesson says a polished apology is insufficient if it does not create a concrete recovery story.\",\n      \"Eric's mistake shows that the busiest step is not necessarily where people assign meaning or retell the relationship.\",\n      \"The pit warning is that a practical fix may leave the painful memory intact unless the ending is changed.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"Choice a is partly defensible if the dashboard is public and memorable, but the prose distinguishes visible data from a marker people can picture.\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Correct answers often echo the chapter's exact positive vocabulary: purpose, visible marker, proof of care, changes the story.\",\n      \"Several distractors are exaggerated or inert, such as giving every step the same polish, keeping progress private, or moving on once the item is back.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 78,\n    \"transfer\": 82,\n    \"practical\": 88,\n    \"summaries\": 89,\n    \"tone\": 84,\n    \"limits\": 87,\n    \"insight\": 88,\n    \"density\": 80,\n    \"beginner\": 90\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Do not smooth every minute with equal care. Look first at transitions, milestones, and pits, since those points already have feeling in them.\",\n      \"why\": \"This is the chapter's core move in a memorable, actionable form.\"\n    },\n    {\n      \"quote\": \"A hidden milestone makes a thin memory.\",\n      \"why\": \"Strong compression of the milestone mechanism.\"\n    },\n    {\n      \"quote\": \"This method can go wrong when the signal is fake or too loud.\",\n      \"why\": \"The chapter gives a real boundary instead of overselling the technique.\"\n    },\n    {\n      \"quote\": \"In the end, this is the kind of move worth practicing until it feels routine.\",\n      \"why\": \"This is generic filler in an otherwise concrete example.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"The correct choices are often signposted by chapter vocabulary while distractors are visibly worse, so the quiz is fair but easy to game.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"The dashboard distractor is slightly under-specified because a dashboard could be a public marker if designed that way.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The final sentence turns generic and does not add to the Mary Kay milestone example.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"The action shifts toward writing thanks after a recovery rather than designing the recovery moment itself, so the transfer is less direct.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This chapter is shippable: the central scan for transitions, milestones, and pits is clear, memorable, and practical, with enough limits to keep it honest. The main weakness is quiz rigor: most answers can be guessed from the positive wording and echoed vocabulary. A few examples also repeat the anchor cases or drift into generic phrasing, but none of that blocks comprehension or use.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-the-power-of-moments-ch02-chapter",
+    "chapterNumber": 2,
+    "contentHash": "2a12a713d97681c9",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-xhigh-LNV2-CRAFT-the-power-of-moments-ch02-mrhaf7yc-20",
+    "scores": {
+      "retention": 90,
+      "quizzes": 78,
+      "transfer": 82,
+      "practical": 88,
+      "summaries": 89,
+      "tone": 84,
+      "limits": 87,
+      "insight": 88,
+      "density": 80,
+      "beginner": 90
+    },
+    "composite": 85.5,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "c",
+        "b",
+        "b",
+        "a",
+        "c",
+        "b",
+        "a",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Do not smooth every minute with equal care. Look first at transitions, milestones, and pits, since those points already have feeling in them.",
+        "why": "This is the chapter's core move in a memorable, actionable form.",
+        "verified": true
+      },
+      {
+        "quote": "A hidden milestone makes a thin memory.",
+        "why": "Strong compression of the milestone mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "This method can go wrong when the signal is fake or too loud.",
+        "why": "The chapter gives a real boundary instead of overselling the technique.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+        "why": "This is generic filler in an otherwise concrete example.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Correct answers often echo the chapter's exact positive vocabulary: purpose, visible marker, proof of care, changes the story.",
+      "Several distractors are exaggerated or inert, such as giving every step the same polish, keeping progress private, or moving on once the item is back."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz overall",
+        "problem": "The correct choices are often signposted by chapter vocabulary while distractors are visibly worse, so the quiz is fair but easy to game.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q6",
+        "problem": "The dashboard distractor is slightly under-specified because a dashboard could be a public marker if designed that way.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The final sentence turns generic and does not add to the Mary Kay milestone example.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The action shifts toward writing thanks after a recovery rather than designing the recovery moment itself, so the transfer is less direct.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This chapter is shippable: the central scan for transitions, milestones, and pits is clear, memorable, and practical, with enough limits to keep it honest. The main weakness is quiz rigor: most answers can be guessed from the positive wording and echoed vocabulary. A few examples also repeat the anchor cases or drift into generic phrasing, but none of that blocks comprehension or use.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "449c104f90936e661271751c5c6ae35543ec482151938e53e2f7af6ad6859ac2",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:24:09.062Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "eb1a2a21e463911097767327303b99b73d256c74306e2fc87333dbc9426bcbde",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:22:44.483Z",
+  "durationMs": 0
+}

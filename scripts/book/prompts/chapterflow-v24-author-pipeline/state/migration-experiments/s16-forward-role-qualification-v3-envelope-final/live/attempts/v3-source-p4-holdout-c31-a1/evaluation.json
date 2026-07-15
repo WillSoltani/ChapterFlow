@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c31-a1",
+  "requestSha256": "d8784d09949d33e9584ec88ae25a0aa97503f76e41fcf7422047b100b570029d",
+  "receiptSha256": "b4bc31dd922270f67e4b8d4cc1ad0c63c078cdb0059ed8d19290f8f0405dcda9",
+  "executionEvidenceSha256": "ce98ef9376c668fac3cb0b74bd3a67f099aff459632b16e27d0b469dccc8d3cf",
+  "rawOutputSha256": "ac68dcd4590e4baf960725ccf4b617343bbd6d8dda71e5677f26f3edfeff1454",
+  "evaluationSha256": "d444a12e59d7add6b3c87baa069417b9e314cb245c2a2f7a987b359d774d9f77",
+  "parsedOutputSha256": "e0021e096d1e769862ade01d66e1c8e523ac4c997785364c5b8da18611836bff",
+  "assembledReviewSha256": "e12cd8640c50ec483f5428d2e49e791256c32c7ce73657ced4da6e2a1dd90e1c",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter text stays within the generic operational-scenario license: it uses a role label, an observable action, and workflow context without named entities, dates, metrics, historical claims, or source-attributed specifics. Its descriptive strength and visible framing fit the packet-local plan."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "1dc05d07e8b6438d05613cb9c40c93e0a6169dac553c40045004d9fb530be088",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "4c485a1fb384ca452c34a61ebfbd17fe1008cab302d173ab9e26fe0e6cc89e82",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter text stays within the generic operational-scenario license: it uses a role label, an observable action, and workflow context without named entities, dates, metrics, historical claims, or source-attributed specifics. Its descriptive strength and visible framing fit the packet-local plan.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter text stays within the generic operational-scenario license: it uses a role label, an observable action, and workflow context without named entities, dates, metrics, historical claims, or source-attributed specifics. Its descriptive strength and visible framing fit the packet-local plan."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "ceaf49419a4789c8baf26849a6e3003b1de54dacae043a42a2a0cb8edb3c7ae1"
+}

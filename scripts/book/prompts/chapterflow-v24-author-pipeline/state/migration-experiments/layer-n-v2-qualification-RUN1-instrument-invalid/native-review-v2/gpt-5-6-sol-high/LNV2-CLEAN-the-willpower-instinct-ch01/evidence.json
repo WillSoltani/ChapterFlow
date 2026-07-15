@@ -1,0 +1,165 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-willpower-instinct-ch01",
+  "itemId": "LNV2-CLEAN-the-willpower-instinct-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "4984962de1bbbc93",
+  "renderedDocSha256": "9fdcea43132a18b37f66e10a6e5f0f334bb83db7bab2c3be3afdbb0a54512823",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-willpower-instinct-ch01-mrgptxek-37",
+  "rawFinalMessageSha256": "8e33661e4a637921ee62da60aaa65a5c8efb4b7700592613d21e3ab1a9289be2",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"a\", \"a\", \"b\", \"b\", \"b\", \"a\", \"c\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines willpower as starting a useful act, stopping a tempting act, and keeping the larger value visible.\",\n      \"Miller and Cohen are cited for the claim that prefrontal control keeps goals active and biases attention and action toward them.\",\n      \"Gage retained speech and basic ability while frontal injury altered planning, steadiness, and social restraint.\",\n      \"The chapter says change begins by noticing the cue, urge, or movement before the action hardens.\",\n      \"The prose connects self-control to promises, cooperation, shared resources, and conflict repair.\",\n      \"A real value can lose when it is quiet at the choice point, so the running goal must be made mentally present.\",\n      \"The chapter treats immediate relief and long-term saving as simultaneously sincere motives whose support affects which guides action.\",\n      \"Concrete behavior plus trigger observation and feedback is presented as more useful than a vague declaration.\",\n      \"Prefrontal control is described as biasing the next response when an automatic routine conflicts with the current goal.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"medium\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"The stem asks about willpower's evolutionary or historical 'roots,' but the prose establishes its social function, not its origin; no competing option is supported, though choice b slightly exceeds the evidence.\",\n      \"\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Choice c is the only option containing all three powers; a is refusal-only and b moralizes the lapse.\",\n      \"Choice a is the only mechanistic neuroscience answer, while b and c are categorical contradictions.\",\n      \"Choice a is nuanced; b and c use giveaway absolutes such as 'no value' and 'only.'\",\n      \"Choice b is the only before-action answer, while a and c focus on after-the-fact intensity or regret.\",\n      \"Choice b is the only prosocial answer; a and c are implausibly antisocial.\",\n      \"Choice b is qualified and mechanistic, while a and c use absolute claims such as 'whenever' and 'only.'\",\n      \"Choice a preserves both motives; b and c rely on giveaway claims that one motive must be fake or obeyed.\",\n      \"Choice c is the only option involving observation and feedback; a and b explicitly reject learning from evidence.\",\n      \"Choice c is conflict-sensitive, while a and b contain giveaway absolutes such as 'only' and 'every.'\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 92,\n    \"quizzes\": 78,\n    \"transfer\": 84,\n    \"practical\": 75,\n    \"summaries\": 63,\n    \"tone\": 81,\n    \"limits\": 76,\n    \"insight\": 89,\n    \"density\": 82,\n    \"beginner\": 88\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"A goal must be present to have power.\",\n      \"why\": \"This compresses the chapter's mechanism into a memorable, reusable line.\"\n    },\n    {\n      \"quote\": \"The loudest want is not always the deepest want.\",\n      \"why\": \"This plainly resolves the false assumption that temptation disproves a sincere long-term value.\"\n    },\n    {\n      \"quote\": \"For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check and compare which half made the next action clearer.\",\n      \"why\": \"This asks readers to preserve a potentially harmful failure pattern for several days merely to create a comparison.\"\n    },\n    {\n      \"quote\": \"That is why the three powers are not slogans.\",\n      \"why\": \"The deep read refers to the three powers without defining them, so it depends on the fast read.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"deep read\",\n      \"problem\": \"The section invokes 'the three powers' without naming or defining I will, I won't, and I want, so it fails the stated stand-alone summary standard. Reserved category: STRUCTURALLY INVALID.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"full read\",\n      \"problem\": \"The section assumes the reader already knows the three-power framework and never gives a compact definition of all three roles, so it does not stand alone. Reserved category: STRUCTURALLY INVALID.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"weekly practice\",\n      \"problem\": \"It directs readers to continue their usual all-or-nothing rule for half a week even though the chapter's examples include medication handling, spending, anger, and family care; deliberately preserving those defaults could cause avoidable harm. Reserved category: UNSAFE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q5\",\n      \"problem\": \"The phrase 'willpower's roots' asks about origins, while the prose demonstrates social uses and consequences rather than an evolutionary or historical origin.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Across most questions, the correct answer is the only qualified, mechanism-based choice, while distractors advertise themselves through absolutes such as 'only,' 'every,' 'must be fake,' and 'proves.'\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The scenario stops at Brooklyn naming the goal and supplies no observed behavioral consequence, so it is a thin-but-usable illustration rather than a demonstrated before-to-after transfer case.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"hook\",\n      \"problem\": \"The phrase 'your first habit is to call every lapse weak refusal' is syntactically compressed and less immediately intelligible than the otherwise beginner-friendly chapter.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples\",\n      \"problem\": \"The repeated attribution of nearly every scenario to the same control model adds little new explanation and gives the section a templated rhythm.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter has a strong, memorable core move: distinguish starting, stopping, and remembering the larger value, then make the missing power visible at the choice point. Its concrete cues, compact lines, and prefrontal-control mechanism support retention and transfer, and the quiz answers are derivable. However, the distractors are often guessable without reading, Q5 overstates what the prose establishes, and the supposedly layered deep and full reads depend on an earlier definition instead of standing alone. Most importantly, the weekly comparison exercise tells readers to retain a known all-or-nothing failure pattern for half a week across domains that include medication, money, anger, and caregiving. That unsafe instruction and the broken stand-alone summary structure keep an otherwise capable chapter below the shipping bar.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-willpower-instinct-ch01",
+    "chapterNumber": 1,
+    "contentHash": "4984962de1bbbc93",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-willpower-instinct-ch01-mrgptxek-37",
+    "scores": {
+      "retention": 92,
+      "quizzes": 78,
+      "transfer": 84,
+      "practical": 75,
+      "summaries": 63,
+      "tone": 81,
+      "limits": 76,
+      "insight": 89,
+      "density": 82,
+      "beginner": 88
+    },
+    "composite": 80.5,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "a",
+        "a",
+        "b",
+        "b",
+        "b",
+        "a",
+        "c",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "A goal must be present to have power.",
+        "why": "This compresses the chapter's mechanism into a memorable, reusable line.",
+        "verified": true
+      },
+      {
+        "quote": "The loudest want is not always the deepest want.",
+        "why": "This plainly resolves the false assumption that temptation disproves a sincere long-term value.",
+        "verified": true
+      },
+      {
+        "quote": "For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check and compare which half made the next action clearer.",
+        "why": "This asks readers to preserve a potentially harmful failure pattern for several days merely to create a comparison.",
+        "verified": true
+      },
+      {
+        "quote": "That is why the three powers are not slogans.",
+        "why": "The deep read refers to the three powers without defining them, so it depends on the fast read.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice c is the only option containing all three powers; a is refusal-only and b moralizes the lapse.",
+      "Choice a is the only mechanistic neuroscience answer, while b and c are categorical contradictions.",
+      "Choice a is nuanced; b and c use giveaway absolutes such as 'no value' and 'only.'",
+      "Choice b is the only before-action answer, while a and c focus on after-the-fact intensity or regret.",
+      "Choice b is the only prosocial answer; a and c are implausibly antisocial.",
+      "Choice b is qualified and mechanistic, while a and c use absolute claims such as 'whenever' and 'only.'",
+      "Choice a preserves both motives; b and c rely on giveaway claims that one motive must be fake or obeyed.",
+      "Choice c is the only option involving observation and feedback; a and b explicitly reject learning from evidence.",
+      "Choice c is conflict-sensitive, while a and b contain giveaway absolutes such as 'only' and 'every.'"
+    ],
+    "complaints": [
+      {
+        "unit": "deep read",
+        "problem": "The section invokes 'the three powers' without naming or defining I will, I won't, and I want, so it fails the stated stand-alone summary standard. Reserved category: STRUCTURALLY INVALID.",
+        "mustFix": true
+      },
+      {
+        "unit": "full read",
+        "problem": "The section assumes the reader already knows the three-power framework and never gives a compact definition of all three roles, so it does not stand alone. Reserved category: STRUCTURALLY INVALID.",
+        "mustFix": true
+      },
+      {
+        "unit": "weekly practice",
+        "problem": "It directs readers to continue their usual all-or-nothing rule for half a week even though the chapter's examples include medication handling, spending, anger, and family care; deliberately preserving those defaults could cause avoidable harm. Reserved category: UNSAFE.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q5",
+        "problem": "The phrase 'willpower's roots' asks about origins, while the prose demonstrates social uses and consequences rather than an evolutionary or historical origin.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz",
+        "problem": "Across most questions, the correct answer is the only qualified, mechanism-based choice, while distractors advertise themselves through absolutes such as 'only,' 'every,' 'must be fake,' and 'proves.'",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The scenario stops at Brooklyn naming the goal and supplies no observed behavioral consequence, so it is a thin-but-usable illustration rather than a demonstrated before-to-after transfer case.",
+        "mustFix": false
+      },
+      {
+        "unit": "hook",
+        "problem": "The phrase 'your first habit is to call every lapse weak refusal' is syntactically compressed and less immediately intelligible than the otherwise beginner-friendly chapter.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples",
+        "problem": "The repeated attribution of nearly every scenario to the same control model adds little new explanation and gives the section a templated rhythm.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a strong, memorable core move: distinguish starting, stopping, and remembering the larger value, then make the missing power visible at the choice point. Its concrete cues, compact lines, and prefrontal-control mechanism support retention and transfer, and the quiz answers are derivable. However, the distractors are often guessable without reading, Q5 overstates what the prose establishes, and the supposedly layered deep and full reads depend on an earlier definition instead of standing alone. Most importantly, the weekly comparison exercise tells readers to retain a known all-or-nothing failure pattern for half a week across domains that include medication, money, anger, and caregiving. That unsafe instruction and the broken stand-alone summary structure keep an otherwise capable chapter below the shipping bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c412cf1d517372befed726feded2c9a6f655d199dca4e5736b7138dc087d359a",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:47:41.085Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:46:18.715Z",
+  "durationMs": 0
+}

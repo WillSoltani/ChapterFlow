@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c11-a1",
+  "requestSha256": "32a10954d9b378843befd877617504cffa95c5235130a52e611c2db85793c912",
+  "receiptSha256": "9c376b389fd54885696bbda3c766c85d40b6cc90e47757751c5620da46b94f09",
+  "executionEvidenceSha256": "b56a4a724ba78bbbdf75fd4ccb5a161febf7029c93dbb77a4b5dd2e0d9f5ffae",
+  "rawOutputSha256": "bc1350899e028a64eb18177f433c520331ff5e1e87c590e1ac21910dcadf7ced",
+  "evaluationSha256": "2861b66a53e22c9ed3386a71bfd0e59743881fec6f662b28a7a9ea9412010c02",
+  "parsedOutputSha256": "61a2765d6749807061562bd6c27e706b22c01b328ecfcf95abeac615e05a88f7",
+  "assembledReviewSha256": "aa47450c938e23670ad2cb582769013859987fb60b757f4098f4e5e77e07f7c4",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is source-bound, visibly framed as describing the source, and matches the permitted mechanistic explanation without adding guaranteed outcomes, numbers, invented participants, or sibling-example leakage. The named Facebook Like button detail is grounded in the source evidence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "505efd394cad59602a5e21011f6ae83691a12692894d3f17ea4417d7933095a6",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "09fee59a491ce5aea4bb4068a6d5cbd393cb3f09ddd46ea9c66fa5b56e81b513",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is source-bound, visibly framed as describing the source, and matches the permitted mechanistic explanation without adding guaranteed outcomes, numbers, invented participants, or sibling-example leakage. The named Facebook Like button detail is grounded in the source evidence.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter claim is source-bound, visibly framed as describing the source, and matches the permitted mechanistic explanation without adding guaranteed outcomes, numbers, invented participants, or sibling-example leakage. The named Facebook Like button detail is grounded in the source evidence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "169ec603729c14a01cd0e96f681b53f83fbe52e97047cb3b068673c5cf293670"
+}

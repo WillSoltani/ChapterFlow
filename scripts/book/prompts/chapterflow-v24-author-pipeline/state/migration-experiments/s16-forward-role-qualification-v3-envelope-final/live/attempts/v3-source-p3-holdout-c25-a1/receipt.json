@@ -1,0 +1,20 @@
+{
+  "schema": "imp24-role-qualification-execution-receipt-v3",
+  "executionId": "imp24-v3-9b352060416a6ff2c0fd4d998483f2d8e601dbc8cbd9fa6a009dbc08bf13973f",
+  "status": "completed",
+  "requestSha256": "6ea58db77c5e62f2b286f8d02b4c99f093563403fff8ee8dce0b15ad5b369cd8",
+  "freezeSha256": "befc5902c41516b7b5e38240afb51d0b7dd0f556096ef39609c02a9910493a0e",
+  "certificationSha256": "ff4e1242fef13998196dbcba6ba92b3263fae44a36628d68fac88f9ded8b46b5",
+  "productionInstrumentSealSha256": "ca93638dd9594e0f0463fd03d7b2a67acf5b751c94548e778bdba5b1be17b310",
+  "role": "source",
+  "profileId": "gpt-5.6-sol@high",
+  "model": "gpt-5.6-sol",
+  "effort": "high",
+  "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+  "reviewProtocol": "review-evidence-envelope-v1",
+  "evidenceEnvelopeSha256": "93164de749a835cddafd15bf2104735e5bcc943fbe9900abd7f2f9c2083d5c32",
+  "evidenceEnvelopeBytesSha256": "8c34d68036f5ab78d832d7d18ccd2ae79c4e874d4baf3e85040cf5ee0607d10d",
+  "evidenceEnvelopeBytes": "{\"caseId\":\"SOURCE-V3-HOLDOUT-generic-operational-01-clean:U1\",\"envelopeId\":\"SOURCE-V3-HOLDOUT-generic-operational-01-clean:source:U1\",\"envelopeSha256\":\"93164de749a835cddafd15bf2104735e5bcc943fbe9900abd7f2f9c2083d5c32\",\"immutableBindings\":{\"chapterContentSha256\":\"00681555f17bc35713232f2b8d45ba6148ac20a2711741c82415c86efa2cb3d5\",\"chapterEvidenceSetSha256\":\"b1b7eb9e1688f65b9b65b91e532554e61e4441d4d3b58bc61da931637ea835c1\",\"partition\":{\"partitionCount\":1,\"partitionIndex\":0,\"partitionSetSha256\":\"1a10865c7723ce929a3731c41de7610badd7106426305c407413eab91287c3ee\",\"schema\":\"source-review-evidence-partition-v1\",\"targetRef\":\"U1\",\"visiblePlanMetadata\":{\"detailSufficiency\":\"concept_only\",\"formLicense\":\"operational_scenario\",\"framingRequired\":false,\"maximumClaimStrength\":\"descriptive\",\"originLicense\":\"generic\",\"targetRef\":\"U1\"}},\"sidecarSha256\":\"sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927\",\"sourcePacketSha256\":\"sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b\",\"sourceUsePlanSha256\":\"bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47\"},\"instrumentVersion\":\"imp24-inline-evidence-envelope-v1\",\"lane\":\"source\",\"schema\":\"review-evidence-envelope-v1\",\"segments\":[{\"kind\":\"chapter\",\"refId\":\"CH-U001-001\",\"sha256\":\"00681555f17bc35713232f2b8d45ba6148ac20a2711741c82415c86efa2cb3d5\",\"text\":\"A project manager can pause before opening a feed and compare the next action with the current task.\"},{\"kind\":\"plan\",\"refId\":\"PLAN-U001\",\"sha256\":\"2768c312e4a782f815b30e31da746a4f4ada415f9fbd8428251fe19d8ee36604\",\"text\":\"{\\n  \\\"targetRef\\\": \\\"U1\\\",\\n  \\\"originLicense\\\": \\\"generic\\\",\\n  \\\"formLicense\\\": \\\"operational_scenario\\\",\\n  \\\"maximumClaimStrength\\\": \\\"descriptive\\\",\\n  \\\"allowedDetailTypes\\\": [\\n    \\\"role_label\\\",\\n    \\\"observable_action\\\",\\n    \\\"constraint\\\",\\n    \\\"tradeoff\\\",\\n    \\\"workflow_step\\\"\\n  ],\\n  \\\"forbiddenDetailTypes\\\": [\\n    \\\"named_person\\\",\\n    \\\"named_organization\\\",\\n    \\\"date\\\",\\n    \\\"exact_metric\\\",\\n    \\\"credential\\\",\\n    \\\"biography\\\",\\n    \\\"historical_claim\\\"\\n  ],\\n  \\\"detailSufficiency\\\": \\\"concept_only\\\",\\n  \\\"framingRequired\\\": false,\\n  \\\"allowedAnchorRefs\\\": []\\n}\"}]}",
+  "rawOutput": "{\"schema\":\"source-integrity-model-output-v2\",\"assessments\":[{\"targetRef\":\"U1\",\"visibleRegister\":\"clearly_generic\",\"supportStatus\":\"SUPPORTED\",\"framingAdequate\":true,\"claimStrengthFit\":true,\"namedSpecificityAllowed\":true,\"findings\":[],\"rationale\":\"The chapter presents a generic operational scenario using an allowed role label and observable workflow action. It stays descriptive, introduces no forbidden named or historical specificity, and requires no source attribution or additional framing.\"}]}",
+  "receiptSha256": "ad8cdad273df9c12bbf29d146eeb0139b7b008d14c7dec64c61946b579209a3d"
+}

@@ -1,0 +1,211 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "3583d15889cbc614",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrh8ohj7-47",
+  "scores": {
+    "retention": 93,
+    "quizzes": 84,
+    "transfer": 80,
+    "practical": 92,
+    "summaries": 89,
+    "tone": 91,
+    "limits": 95,
+    "insight": 90,
+    "density": 83,
+    "beginner": 94
+  },
+  "composite": 89,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "a",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=b key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.",
+      "why": "This is a compact, memorable statement of the chapter's central mechanism.",
+      "verified": true
+    },
+    {
+      "quote": "A red phone cannot make an unsafe pool feel fine. A ceremony cannot replace real college support. A soft ending cannot make honest harm harmless.",
+      "why": "This sharply defines the idea's ethical and practical limits.",
+      "verified": true
+    },
+    {
+      "quote": "Parent Margaret expects a plain pool afternoon at the Magic Castle Hotel in Los Angeles.",
+      "why": "A named person is inserted into a real venue's story without being identified as hypothetical.",
+      "verified": true
+    },
+    {
+      "quote": "The cold-water study gives her a different test: the 90-second trial with milder ending can be remembered better than the 60-second painful trial.",
+      "why": "This presents an invented causal influence on Leah as though it occurred.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "",
+    "Choice b is the only constructive option; the others use conspicuous upscale-or-quiet misconceptions.",
+    "",
+    "Choice c nearly recites the four-item list, while the distractors do not plausibly engage all four ingredients.",
+    "",
+    "",
+    "Choice c repeats the distinctive phrase \"private logistics\" from the prose and is the longest option.",
+    "The absolute wording \"each minute...with equal weight\" makes choice a easy to reject without recalling much detail.",
+    "Choice c uses the chapter's favored word \"tellable\" and is the longest option."
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The text presents the named parent Margaret as participating in an event at a real hotel without identifying her as a hypothetical character; this is a fabricated or misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "The text presents Lorne as a participant at the real YES Prep network without identifying the person or scene as hypothetical; this is a fabricated or misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 4",
+      "problem": "The named trainer Tristan and his decision prompted by the cold-water study are narrated as events rather than clearly labeled illustration; this is a fabricated or misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 5",
+      "problem": "The chapter asserts that the cold-water study changes Leah's planning, an invented causal event not established by the earlier Leah vignette or labeled hypothetical; this is a fabricated or misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples 3-5",
+      "problem": "Three consecutive examples repeat the cold-water comparison, limiting the range of transfer situations and creating avoidable repetition.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct option reproduces all four named ingredients almost verbatim, while neither distractor seriously tests confusion about how those ingredients work.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct choice repeats the prose's distinctive phrase \"private logistics\" and is also the longest choice, creating an answer-position tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "review cards 2-3",
+      "problem": "The cards introduce the labels \"Popsicle Hotline\" and \"Senior Signing Day\" even though those names are not introduced in the chapter prose, creating minor terminology inconsistency.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a clear and memorable move: design peaks, thresholds, and endings because recall does not simply average an experience. Its red-phone image, cold-water mechanism, practical prompts, and unusually explicit limits are strong, approachable, and broadly useful. The quiz is fully derivable but sometimes signals its answers through copied language, absolute distractors, or option length. More seriously, several examples attach invented names and causal histories to scenes involving real institutions or research without labeling them hypothetical. Those misleading presentations should be corrected before publication; once they are, the chapter is comfortably above the professional bar.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "47bbae470f919e949d38689343aaf37d5fe9423ffb37ba7848cceb14029e1994",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T03:35:34.960Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "5b65a510eb15a3594fcd149975eb8c42344e75b7c1ef72ba01f2678be517f3d3",
+    "phase2DocSha256": "b7c47db0b574b400d0bce1c2476cbe4bddfa56c9ff9717aecbfdd62dda03be64",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrh8qkog-48",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice b is best supported because the calm, less painful ending can improve memory of the whole visit, whereas choice c contradicts that lesson."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b uniquely captures how a vivid, tellable surprise can transform an otherwise ordinary arrival."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a makes the achievement public and lets the group witness the nurses' effort at the transition."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c directly represents elevation, insight, pride, and connection, the four stated ingredients."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a applies the red-phone lesson by using one conspicuous object to signal a departure from the ordinary script."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b turns the gift's delivery into a staged, narratable experience instead of relying on price or quiet availability."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c marks the shared threshold while the group is still together, before the transition disperses into private logistics."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a is the unsupported assumption because remembered experience can overweight peaks and endings rather than average every minute equally."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c correctly diagnoses that the unceremonious mint lacks a distinctive, tellable format."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  }
+}

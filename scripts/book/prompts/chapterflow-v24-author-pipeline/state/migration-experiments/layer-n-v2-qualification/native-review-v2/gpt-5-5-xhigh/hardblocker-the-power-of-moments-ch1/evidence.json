@@ -1,0 +1,141 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-the-power-of-moments-ch1",
+  "itemId": "hardblocker-the-power-of-moments-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "e70bf662688410ec",
+  "renderedDocSha256": "cbc8ec485a82e82a0020207347839b48728985d738d6ca7647e33b313429f0b5",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "dd0ba045f7045c043b9d9b615ec1282fbc2955972c2b2a7fd376addd0d6a2658",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-hardblocker-the-power-of-moments-ch1-mrhajctw-22",
+  "rawFinalMessageSha256": "a4e489925ea7ee85c639b944ef0d3eb51ca07756fd91e69ad01746cb73e47e77",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"a\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The cold-water study and fast read say memory does not average minutes; a milder ending can improve later recall.\",\n      \"The red phone shows a modest place can create a vivid, tellable arrival peak through an object and delivery ritual.\",\n      \"YES Prep makes a private achievement public so peers and adults witness the effort.\",\n      \"The full read names elevation, insight, pride, and connection; choice c maps directly to those four ingredients.\",\n      \"The red-phone lesson says one concrete object can signal that the ordinary script has changed.\",\n      \"The popsicle works because the request and silver-tray delivery turn a free item into a small event.\",\n      \"The chapter says to mark doorways and thresholds before the next stage becomes private logistics.\",\n      \"The prose says memory does not average each minute and is shaped by the sharpest part and the ending.\",\n      \"The mint is only a quiet free item; the red-phone lesson requires a tellable format.\"\n    ],\n    \"confidence\": [\"medium\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"medium\", \"high\"],\n    \"ambiguities\": [\n      \"c is weakly defensible only because Example 3's What to do wrongly says to make every episode short and denies special weight to final moments; the main prose supports b.\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"b is weakly defensible as the thing not to assume if a reader follows the contradictory Example 3 line denying special weight to final moments; the main prose supports a.\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Q4: the correct answer is the only four-part positive list, making it guessable from the stem's phrase 'four ingredients'.\",\n      \"Q8: the negative stem makes choice a stand out because it mirrors the chapter's repeated 'does not average' claim.\",\n      \"No answer-pattern tell: the keys are evenly distributed across a, b, and c.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 74,\n    \"transfer\": 66,\n    \"practical\": 88,\n    \"summaries\": 91,\n    \"tone\": 87,\n    \"limits\": 86,\n    \"insight\": 85,\n    \"density\": 83,\n    \"beginner\": 91\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"A small peak can become the story of the whole stay.\",\n      \"why\": \"This is the chapter's clearest memorable compression of the core move.\"\n    },\n    {\n      \"quote\": \"The ending can rewrite the remembered weight.\",\n      \"why\": \"Strong mechanism line: short, concrete, and tied to the cold-water evidence.\"\n    },\n    {\n      \"quote\": \"This idea fails when the basic promise is broken.\",\n      \"why\": \"The chapter usefully names a boundary instead of overselling moment design.\"\n    },\n    {\n      \"quote\": \"The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight.\",\n      \"why\": \"This directly contradicts the chapter's central lesson and would mislead a reader.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"SOURCE-CONTRADICTORY: the What to do paragraph teaches the opposite of the cold-water lesson, saying memory records total duration and final moments have no special weight.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q4\",\n      \"problem\": \"The correct choice is a direct restatement of the four ingredients while the distractors are obviously off-lesson, so it tests recognition more than transfer.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q8\",\n      \"problem\": \"The negative wording plus the contradictory Example 3 sentence makes the item more fragile than it needs to be.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"implementation plan\",\n      \"problem\": \"The Core skill line repeats the title before giving the useful action steps, adding a little padding.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, readable chapter with a memorable central image, layered summaries that work, useful limits, and practical transfer prompts. I would not ship it yet because Example 3 contains a direct source-contradictory instruction that reverses the chapter's main mechanism and can contaminate the quiz logic. Fix that paragraph and tighten the most guessable quiz items, and the chapter is close to a professional bar.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-the-power-of-moments-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "e70bf662688410ec",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-hardblocker-the-power-of-moments-ch1-mrhajctw-22",
+    "scores": {
+      "retention": 90,
+      "quizzes": 74,
+      "transfer": 66,
+      "practical": 88,
+      "summaries": 91,
+      "tone": 87,
+      "limits": 86,
+      "insight": 85,
+      "density": 83,
+      "beginner": 91
+    },
+    "composite": 83.8,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "a",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "A small peak can become the story of the whole stay.",
+        "why": "This is the chapter's clearest memorable compression of the core move.",
+        "verified": true
+      },
+      {
+        "quote": "The ending can rewrite the remembered weight.",
+        "why": "Strong mechanism line: short, concrete, and tied to the cold-water evidence.",
+        "verified": true
+      },
+      {
+        "quote": "This idea fails when the basic promise is broken.",
+        "why": "The chapter usefully names a boundary instead of overselling moment design.",
+        "verified": true
+      },
+      {
+        "quote": "The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight.",
+        "why": "This directly contradicts the chapter's central lesson and would mislead a reader.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q4: the correct answer is the only four-part positive list, making it guessable from the stem's phrase 'four ingredients'.",
+      "Q8: the negative stem makes choice a stand out because it mirrors the chapter's repeated 'does not average' claim.",
+      "No answer-pattern tell: the keys are evenly distributed across a, b, and c."
+    ],
+    "complaints": [
+      {
+        "unit": "example 3",
+        "problem": "SOURCE-CONTRADICTORY: the What to do paragraph teaches the opposite of the cold-water lesson, saying memory records total duration and final moments have no special weight.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q4",
+        "problem": "The correct choice is a direct restatement of the four ingredients while the distractors are obviously off-lesson, so it tests recognition more than transfer.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q8",
+        "problem": "The negative wording plus the contradictory Example 3 sentence makes the item more fragile than it needs to be.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan",
+        "problem": "The Core skill line repeats the title before giving the useful action steps, adding a little padding.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, readable chapter with a memorable central image, layered summaries that work, useful limits, and practical transfer prompts. I would not ship it yet because Example 3 contains a direct source-contradictory instruction that reverses the chapter's main mechanism and can contaminate the quiz logic. Fix that paragraph and tighten the most guessable quiz items, and the chapter is close to a professional bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "30c6544b47e299bc1c021e42b9e0686a5a498242d9724d9b38110c44f307a0b0",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:27:44.336Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "dd0ba045f7045c043b9d9b615ec1282fbc2955972c2b2a7fd376addd0d6a2658",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:25:57.427Z",
+  "durationMs": 0
+}

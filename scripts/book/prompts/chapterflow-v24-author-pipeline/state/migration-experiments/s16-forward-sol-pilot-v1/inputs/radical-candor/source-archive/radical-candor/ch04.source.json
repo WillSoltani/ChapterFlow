@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 4,
+  "chapterTitle": "Drive Results Collaboratively",
+  "focus": "Results come from a collaborative cycle that moves ideas from listening through learning, with debate and decision separated so teams do not confuse speed with clarity.",
+  "coreClaim": "Driving results is not telling people what to do; it is stewarding the GSD Wheel so ideas get heard, tested, decided, executed, and learned from.",
+  "centralConcept": {
+    "id": "ch04.concept",
+    "name": "GSD Wheel",
+    "plainDefinition": "The Get Stuff Done Wheel is a seven-step cycle for collaborative execution: Listen, Clarify, Debate, Decide, Persuade, Execute, and Learn. It replaces boss-as-director habits with a process that lets ideas sharpen before action.",
+    "whyItMatters": "Teams move faster when collaboration is structured rather than endless. The wheel shows where work is stuck and prevents leaders from grabbing decisions too early."
+  },
+  "keyClaims": [
+    "The GSD Wheel has seven named steps.",
+    "Listening creates the raw material for collaborative work.",
+    "Clarifying protects early ideas from premature rejection.",
+    "Debate improves ideas before decisions are made.",
+    "Learning restarts the cycle after execution."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch04.ex.gsd-wheel",
+      "label": "GSD Wheel",
+      "summary": "The official glossary defines the GSD Wheel as seven steps: Listen, Clarify, Debate, Decide, Persuade, Execute, Learn. Ch. 4 pp. 82-109 provide the page span for the full cycle.",
+      "teachesWhat": "A visible cycle helps diagnose which collaboration step is missing.",
+      "hardSpecifics": [
+        "GSD Wheel",
+        "seven steps",
+        "Ch. 4 pp. 82-109",
+        "Listen Clarify Debate Decide Persuade Execute Learn"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.ex.steve-jobs-rock-tumbler",
+      "label": "Steve Jobs rock tumbler metaphor",
+      "summary": "The glossary links Debate to Steve Jobs's rock tumbler metaphor at Ch. 4 pp. 94-97. Ordinary rocks become polished through friction, which gives debate a concrete image without turning it into personal conflict.",
+      "teachesWhat": "Friction can improve ideas when ego is kept out of the process.",
+      "hardSpecifics": [
+        "Steve Jobs",
+        "rock tumbler",
+        "Ch. 4 pp. 94-97",
+        "Debate"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.ex.aristotle-persuasion",
+      "label": "Aristotle persuasion triad",
+      "summary": "The Persuade step is grounded in Aristotle three elements: emotion credibility logic. Ch. 4 pp. 101-105 connect the Persuade step to bringing people who were not in the earlier decision process on board.",
+      "teachesWhat": "Execution fails when people outside the decision path are not persuaded.",
+      "hardSpecifics": [
+        "Aristotle three elements",
+        "emotion credibility logic",
+        "Ch. 4 pp. 101-105",
+        "Persuade step"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The easy mistake is to celebrate collaboration while skipping the uncomfortable steps. The wheel only works if listening, debate, decision, persuasion, execution, and learning each get their own job.",
+  "voiceCues": [
+    "uses a named cycle",
+    "breaks collaboration into verbs",
+    "balances lively debate with execution discipline"
+  ],
+  "forbiddenLeakage": [
+    "Do not turn the Results tools from Part 2 into the main structure.",
+    "Do not use formal performance review mechanics."
+  ],
+  "paraphraseNotes": "The GSD Wheel is the whole local framework: Listen, Clarify, Debate, Decide, Persuade, Execute, Learn. The official glossary places the cycle across Ch. 4 pp. 82-109 and gives each step a distinct job. Listen gets ideas into the room, including quieter voices. Clarify helps a rough idea become understandable before criticism crushes it. Debate tests ideas rigorously, with Steve Jobs's rock tumbler metaphor giving a concrete image for productive friction at Ch. 4 pp. 94-97. Decide moves authority toward the facts and the people closest to them. Persuade matters because many executors were not present for the earlier thinking; Aristotle three elements, emotion credibility logic, and Ch. 4 pp. 101-105 give that step a real structure around the Persuade step. Execute means reducing collaboration tax so work can happen. Learn is the hardest step because people become attached to invested work. Do not collapse the cycle into meetings. The point is disciplined movement from idea to outcome.",
+  "testableFacts": [
+    {
+      "id": "ch04.fact.1",
+      "claim": "The GSD Wheel contains seven steps: Listen, Clarify, Debate, Decide, Persuade, Execute, and Learn.",
+      "becauseMechanism": "Because each step does a different job, skipping one creates a specific collaboration failure.",
+      "commonError": "Treating collaboration as one undifferentiated meeting habit.",
+      "errorIsWhy": "The seven verbs diagnose different bottlenecks.",
+      "derivedFrom": "ch04.ex.gsd-wheel"
+    },
+    {
+      "id": "ch04.fact.2",
+      "claim": "Listen is documented at Ch. 4 pp. 82-86 as giving quieter people a voice.",
+      "becauseMechanism": "Because the best idea may not come from the loudest person, leaders need a listening design.",
+      "commonError": "Letting whoever speaks first set the agenda.",
+      "errorIsWhy": "That loses information before debate begins.",
+      "derivedFrom": "ch04.ex.steve-jobs-rock-tumbler"
+    },
+    {
+      "id": "ch04.fact.3",
+      "claim": "Clarify is documented at Ch. 4 p. 82 as sharpening ideas before debate.",
+      "becauseMechanism": "Since rough ideas are fragile, clarity protects them from premature dismissal.",
+      "commonError": "Debating before the idea is understood.",
+      "errorIsWhy": "The team may reject a misunderstood version.",
+      "derivedFrom": "ch04.ex.aristotle-persuasion"
+    },
+    {
+      "id": "ch04.fact.4",
+      "claim": "Debate is documented at Ch. 4 pp. 94-97 with the Steve Jobs rock tumbler metaphor.",
+      "becauseMechanism": "Because friction can polish ideas, conflict over the work can be productive when ego stays out.",
+      "commonError": "Avoiding debate to preserve harmony.",
+      "errorIsWhy": "Harmony without testing leaves weak ideas intact.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.5",
+      "claim": "Decide is documented at Ch. 4 pp. 98-101 as pushing decisions into the facts.",
+      "becauseMechanism": "Because people closest to the facts often see constraints first, the boss should not grab every decision.",
+      "commonError": "Assuming authority should decide by default.",
+      "errorIsWhy": "That can separate the decision from the best information.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.6",
+      "claim": "Persuade is documented at Ch. 4 pp. 101-105 using emotion, credibility, and logic.",
+      "becauseMechanism": "Since executors may not have joined the debate, persuasion transfers understanding before action.",
+      "commonError": "Announcing a decision and expecting instant commitment.",
+      "errorIsWhy": "People need reasons, trust, and emotional acknowledgment.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.7",
+      "claim": "Execute is documented at Ch. 4 pp. 106-107 as reducing collaboration tax.",
+      "becauseMechanism": "Because coordination overhead consumes work time, leaders should protect execution space.",
+      "commonError": "Adding more meetings whenever execution stalls.",
+      "errorIsWhy": "More coordination can worsen the bottleneck.",
+      "derivedFrom": "ch04.ex.gsd-wheel"
+    },
+    {
+      "id": "ch04.fact.8",
+      "claim": "Learn is documented at Ch. 4 pp. 108-109 as restarting the wheel after results.",
+      "becauseMechanism": "Because attachment to past work blocks correction, learning needs deliberate review.",
+      "commonError": "Defending the old plan to look consistent.",
+      "errorIsWhy": "Consistency can become resistance to evidence.",
+      "derivedFrom": "ch04.ex.steve-jobs-rock-tumbler"
+    },
+    {
+      "id": "ch04.fact.9",
+      "claim": "The official guide asks managers whether they are quiet listeners or loud listeners.",
+      "becauseMechanism": "Because listening style changes whose ideas surface, managers need a method that offsets their default.",
+      "commonError": "Assuming personal style has no process cost.",
+      "errorIsWhy": "Unexamined style shapes participation.",
+      "derivedFrom": "ch04.ex.aristotle-persuasion"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "GSD Wheel",
+      "members": [
+        "Listen",
+        "Clarify",
+        "Debate",
+        "Decide",
+        "Persuade",
+        "Execute",
+        "Learn"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "GSD Wheel",
+    "seven steps",
+    "Ch. 4 pp. 82-109",
+    "Listen Clarify Debate Decide Persuade Execute Learn",
+    "Steve Jobs rock tumbler metaphor",
+    "Steve Jobs",
+    "rock tumbler",
+    "Ch. 4 pp. 94-97",
+    "Debate",
+    "Aristotle persuasion triad",
+    "Aristotle three elements",
+    "emotion credibility logic",
+    "Ch. 4 pp. 101-105",
+    "Persuade step"
+  ]
+}

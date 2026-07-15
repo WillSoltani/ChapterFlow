@@ -1,0 +1,45 @@
+{
+  "schema": "imp24-role-qualification-live-call-ledger-v4",
+  "experimentId": "s16-forward-role-qualification-v3-envelope-transport-smoke",
+  "freezeSha256": "5fdb5519de0f6cb2b27f803341eb7f473fa1d61241b7a9159b857e7663d42888",
+  "certificationSha256": "b7eb50d0700b824efd7bc126ba29331d36c78546edcfa865457f088d6049f15f",
+  "productionInstrumentSealSha256": "13c0e7cd05f38a0420765b2d9b36d788b2c5602ca80d3585d9aea009339e56a5",
+  "entries": [
+    {
+      "attemptId": "s16-forward-role-qualification-v3-envelope-transport-smoke-reader-canary-a1",
+      "scheduleId": "s16-forward-role-qualification-v3-envelope-transport-smoke-reader-canary",
+      "requestSha256": "a0bbee6350516bc8e318d8e513dee17af8f659b790863fce956848f296187ce5",
+      "evidenceEnvelopeSha256": "dc2e76b95c1249f7c2a8bb66b2bebf9d8c5e4bbd06c70b3a1c0e603403630907",
+      "evidenceEnvelopeBytesSha256": "5aa369d97e8923a03ab1fbc20e92752eec144fcbe65f850130d193febbbd57c4",
+      "receiptSha256": "0205498cde7d73478533910b1cf018be15d9b88e9b6edb0ac57a96d993fb2ba3",
+      "processDiagnosticsSha256": "d7c822da11e9576edab52e549d4c0bf382eba9f8b0093b4f6a300ce3da029817",
+      "executionEvidenceSha256": "3aa88a08c83d0dae92799668179ba3ce3bb5bb242d620738c90b622ab7f1acf3",
+      "evaluationArtifactSha256": "232dad6f47df78ee9897e00ebe9b7ee75bf3d121912190725eefb5cb55c2165e",
+      "status": "integrity_failure",
+      "cached": false,
+      "requestedAt": "2026-07-14T11:00:30.147Z",
+      "completedAt": "2026-07-14T11:00:37.611Z"
+    },
+    {
+      "attemptId": "s16-forward-role-qualification-v3-envelope-transport-smoke-source-canary-a1",
+      "scheduleId": "s16-forward-role-qualification-v3-envelope-transport-smoke-source-canary",
+      "requestSha256": "f45cc5ff0dda48d5eda75943a83d4b1222782da5d7856e55109ed85ace55cadd",
+      "evidenceEnvelopeSha256": "3c1e469f59859a2bc3dbd4cf6a2235b2a246e387ad74288eacbfa1dadd4889b4",
+      "evidenceEnvelopeBytesSha256": "8bc9434c415a4437ab7d3fae7e2c53f149b945508a666253bd20102ebdeb78d0",
+      "receiptSha256": "a62b0724f035c22955188f545046130b10f21cde1a8b71f07ab413945c3c4bae",
+      "processDiagnosticsSha256": "7b4236b0088d77f41ef789d0577244279703fe47cfaeebeaaebb1b5bba6d3a0b",
+      "executionEvidenceSha256": "70891b0b704bb248d6687dc325acf00a0be9641c6009ba59254eb4eb49769a01",
+      "evaluationArtifactSha256": "a48b66e69aad891db3ae751c70969dd75e3dc8178e2b9e655101900fee2ce8b6",
+      "status": "integrity_failure",
+      "cached": false,
+      "requestedAt": "2026-07-14T11:00:30.173Z",
+      "completedAt": "2026-07-14T11:00:38.045Z"
+    }
+  ],
+  "brokerRequests": 2,
+  "codexExecInvocations": 2,
+  "cachedReceipts": 0,
+  "infrastructureReplays": 0,
+  "maxPlanCapacityEvents": 0,
+  "apiCallsMade": 0
+}

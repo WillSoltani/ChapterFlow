@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-quiz-1783906097090-3-37aad0ac-ed84-4d44-a8b1-e092948db6ee",
+  "status": "completed",
+  "role": "quiz",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+  "rawOutput": "{\"schema\":\"quiz-integrity-adjudication-v1\",\"items\":[{\"itemId\":\"decisive-ch02-q01\",\"keyedAnswerIndex\":1,\"derivedAnswerIndex\":1,\"agreement\":true,\"keyCorrect\":\"ambiguous\",\"rationale\":\"Choices b and c are identical and both directly broaden the narrow frame by clarifying the problem and eliciting alternative paths.\",\"defensibleAnswerIndices\":[1,2],\"keyedMechanismSupported\":true}]}"
+}

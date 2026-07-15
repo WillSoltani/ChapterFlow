@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 8,
+  "chapterTitle": "Start with WHY, But Know HOW",
+  "focus": "Vision needs operators who can translate belief into methods, systems, and repeatable choices. A reader learns that a strong WHY without capable HOWs stays inspirational but underbuilt.",
+  "coreClaim": "Start with WHY, But Know HOW turns WHY and HOW partnership into a practical decision rule backed by named cases and checkable details.",
+  "centralConcept": {
+    "id": "ch08.concept",
+    "name": "WHY and HOW partnership",
+    "plainDefinition": "Vision needs operators who can translate belief into methods, systems, and repeatable choices.",
+    "whyItMatters": "A reader learns that a strong WHY without capable HOWs stays inspirational but underbuilt."
+  },
+  "keyClaims": [
+    "WHY and HOW partnership becomes usable only when tied to visible behavior.",
+    "Bill Gates and Paul Allen gives the first concrete anchor.",
+    "Walt Disney and Roy O. Disney creates contrast so the idea is not one anecdote.",
+    "Steve Jobs and Steve Wozniak adds a boundary case for application.",
+    "WHY-type, HOW-type, WHAT output keep the unit from collapsing into generic purpose talk."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch08.ex.bill-gates-and-paul-allen",
+      "label": "Bill Gates and Paul Allen",
+      "summary": "Bill Gates and Paul Allen founded Microsoft in 1975. The pair makes vision-plus-implementation concrete through Microsoft.",
+      "teachesWhat": "Bill Gates and Paul Allen turns Microsoft into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Bill Gates",
+        "Paul Allen",
+        "1975",
+        "Microsoft"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch08.ex.walt-disney-and-roy-o-disney",
+      "label": "Walt Disney and Roy O. Disney",
+      "summary": "Walt Disney and Roy O. Disney began Disney Brothers Studio in 1923. Walt Disney and Roy O. Disney show creative WHY and financial HOW working together.",
+      "teachesWhat": "Walt Disney and Roy O. Disney turns The Walt Disney Company into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Walt Disney",
+        "Roy O. Disney",
+        "1923",
+        "Disney Brothers Studio"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch08.ex.steve-jobs-and-steve-wozniak",
+      "label": "Steve Jobs and Steve Wozniak",
+      "summary": "Steve Jobs and Steve Wozniak founded Apple Inc. in 1976 around the Apple I. Their pairing shows belief needing engineering expression.",
+      "teachesWhat": "Steve Jobs and Steve Wozniak turns Apple Inc. into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Steve Jobs",
+        "Steve Wozniak",
+        "1976",
+        "Apple I"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to turn WHY and HOW partnership into a universal slogan and ignore the cases. The stricter reading keeps the claim tied to the specific examples and uses the framework only where the details support it.",
+  "voiceCues": [
+    "plain business language with short contrasts",
+    "case first, principle second",
+    "second-person diagnostic questions",
+    "simple framework names repeated sparingly"
+  ],
+  "forbiddenLeakage": [
+    "Do not collapse into communication symbols",
+    "Do not discuss WHY going fuzzy"
+  ],
+  "paraphraseNotes": "Start with WHY, But Know HOW works from WHY and HOW partnership: Vision needs operators who can translate belief into methods, systems, and repeatable choices. A reader learns that a strong WHY without capable HOWs stays inspirational but underbuilt. Bill Gates and Paul Allen founded Microsoft in 1975. The pair makes vision-plus-implementation concrete through Microsoft. Walt Disney and Roy O. Disney began Disney Brothers Studio in 1923. Walt Disney and Roy O. Disney show creative WHY and financial HOW working together. Steve Jobs and Steve Wozniak founded Apple Inc. in 1976 around the Apple I. Their pairing shows belief needing engineering expression. WHY-type starts the local logic for Start with WHY, But Know HOW; HOW-type, WHAT output complete the sequence. Keep Gates-Allen, Disney-Disney, and Jobs-Wozniak on complementary roles; product-market proof comes later.",
+  "testableFacts": [
+    {
+      "id": "ch08.fact.1",
+      "claim": "Bill Gates and Paul Allen makes WHY and HOW partnership concrete through Bill Gates and Paul Allen.",
+      "becauseMechanism": "Because Bill Gates gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Bill Gates and Paul Allen as colorful background.",
+      "errorIsWhy": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "derivedFrom": "ch08.ex.bill-gates-and-paul-allen"
+    },
+    {
+      "id": "ch08.fact.2",
+      "claim": "Walt Disney and Roy O. Disney adds a second anchor for WHY and HOW partnership with Walt Disney and Roy O. Disney.",
+      "becauseMechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "errorIsWhy": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "derivedFrom": "ch08.ex.walt-disney-and-roy-o-disney"
+    },
+    {
+      "id": "ch08.fact.3",
+      "claim": "Steve Jobs and Steve Wozniak supplies a third checkable scene using Steve Jobs and Steve Wozniak.",
+      "becauseMechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "errorIsWhy": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "derivedFrom": "ch08.ex.steve-jobs-and-steve-wozniak"
+    },
+    {
+      "id": "ch08.fact.4",
+      "claim": "WHY and HOW partnership depends on the sequence WHY-type before HOW-type.",
+      "becauseMechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "errorIsWhy": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "derivedFrom": "ch08.concept"
+    },
+    {
+      "id": "ch08.fact.5",
+      "claim": "WHY-type, HOW-type, WHAT output form the local framework for Start with WHY, But Know HOW.",
+      "becauseMechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "errorIsWhy": "Shortening removes the distinctions the quiz and examples need to test.",
+      "derivedFrom": "ch08.concept"
+    },
+    {
+      "id": "ch08.fact.6",
+      "claim": "1975 is a hard detail that should stay attached to Bill Gates and Paul Allen.",
+      "becauseMechanism": "Because hard specifics are portable only inside their case, moving 1975 to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "errorIsWhy": "A true detail becomes misleading when it is attached to the wrong case.",
+      "derivedFrom": "ch08.ex.bill-gates-and-paul-allen"
+    },
+    {
+      "id": "ch08.fact.7",
+      "claim": "1923 gives Walt Disney and Roy O. Disney a different factual token from Bill Gates and Paul Allen.",
+      "becauseMechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "errorIsWhy": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "derivedFrom": "ch08.ex.walt-disney-and-roy-o-disney"
+    },
+    {
+      "id": "ch08.fact.8",
+      "claim": "1976 helps mark the boundary of WHY and HOW partnership.",
+      "becauseMechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "errorIsWhy": "The mechanism changes by venue; boundary details keep the application honest.",
+      "derivedFrom": "ch08.ex.steve-jobs-and-steve-wozniak"
+    },
+    {
+      "id": "ch08.fact.9",
+      "claim": "Start with WHY, But Know HOW should teach WHY and HOW partnership through Bill Gates and Paul Allen, Walt Disney and Roy O. Disney, and Steve Jobs and Steve Wozniak, not through generic leadership advice.",
+      "becauseMechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "errorIsWhy": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "derivedFrom": "ch08.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Start with WHY, But Know HOW framework",
+      "members": [
+        "WHY-type",
+        "HOW-type",
+        "WHAT output"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Bill Gates",
+    "Paul Allen",
+    "Walt Disney",
+    "Roy O. Disney",
+    "Steve Jobs",
+    "Steve Wozniak"
+  ]
+}

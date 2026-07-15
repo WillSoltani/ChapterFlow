@@ -1,0 +1,68 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c20-a1",
+  "requestSha256": "1574f6b65943ae19f3da7b394de90acdc69f4efc99303e6e99d25169998f326d",
+  "receiptSha256": "92649574d9b5d362fb669e97613fbcdb2c29ad958d66bd86c92d1760dc1dbb78",
+  "executionEvidenceSha256": "90833f3cebd69f70288f64dd0dbdab79796cf7919703989930bd2e17b12874a8",
+  "rawOutputSha256": "c2e02888439a84afeaa016284b11d3b60c8f2205fc49628827ef60c249806240",
+  "evaluationSha256": "ce971c8d58306c06e94e706fb03fe865938158fdaf4d60e8f6a8fe9ff5c9bd93",
+  "parsedOutputSha256": "0176703782b2b28a0a5de8556ad96026ec0d87ca22c32565a0f4e2a9a8b96448",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "ce04c3fae755a64b807b9f4a44b17d361f59384fbcdd015d9fa629f6f9efc7b8",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [],
+              "severity": "major",
+              "explanation": "The passage presents the planned illustrative scenario as an event that actually occurred, without visibly signaling that it is constructed.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The scenario is consistent with the permitted concept and does not overstate an outcome, but its required illustrative framing is absent."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "ReviewModelOutputV2Error",
+        "message": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+        "code": "INVALID_EVIDENCE",
+        "refId": null
+      }
+    }
+  },
+  "evaluationArtifactSha256": "8bdcefeb96424fbaceb526cd7bf85bf645f6d7f61493d50939e3ec61d247fca3"
+}

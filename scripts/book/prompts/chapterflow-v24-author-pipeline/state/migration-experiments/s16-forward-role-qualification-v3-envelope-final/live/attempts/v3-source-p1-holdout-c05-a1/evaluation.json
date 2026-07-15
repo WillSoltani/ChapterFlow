@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c05-a1",
+  "requestSha256": "781314b873c7542930917c85129db09e7daf933c4670336a80175c2a6fbaba77",
+  "receiptSha256": "88d520420ffee6ed6ae9ef8a39a7b827145ca72c39ca9eb64d0f13d8028d3bdf",
+  "executionEvidenceSha256": "519ecf8866c1519d116c89dfd49f4817c8efbd124d1c063e2808c9f347af5d3d",
+  "rawOutputSha256": "a1e63a260b69088094071461e247a2809fcb57e696b293a612769c2076a1af12",
+  "evaluationSha256": "3fb7f78d02ada7227642aac30b5bda95caf30f6d17f8a2e92ccfe17cbc101060",
+  "parsedOutputSha256": "46a22ac5b52044aafeb03e6cca6851524beb5aec500298f1023405f59b7d429f",
+  "assembledReviewSha256": "d0ef68d81971016769db42c7aa445a9fe592c957ac24a0e0b2371873a5f1b259",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter explicitly attributes the claim to its source, and the claim matches the permitted source claim and mechanism without added specificity, contradiction, or overstatement."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "79c9173166286b81fa3ff0060f6ff886a87b1a5b2ceb745684cd9c68e21b5885",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "6cf787cf9c2ae9658dee66b05518c1b133c465ede6a8534182fef19a8e631260",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter explicitly attributes the claim to its source, and the claim matches the permitted source claim and mechanism without added specificity, contradiction, or overstatement.",
+          "unitId": "unit.fact.ch01.fact.4",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter explicitly attributes the claim to its source, and the claim matches the permitted source claim and mechanism without added specificity, contradiction, or overstatement."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "d7d252212df78d6af74d323cedb5d5beef9bbbcb3e6957d5e652ee02dc0da528"
+}

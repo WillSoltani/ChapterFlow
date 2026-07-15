@@ -1,0 +1,147 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-the-checklist-manifesto-ch1",
+  "itemId": "hardblocker-the-checklist-manifesto-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "530a73b9a54d4a56",
+  "renderedDocSha256": "72bdaa972013514d2c8b490c012ddf11d51ec6f635662429d49be73da04d1e54",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "b09cb8fdbfa65eb6d9431f0a0acd89fea6de9bd76a111452192a935b32f673b4",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-the-checklist-manifesto-ch1-mrgphx6i-26",
+  "rawFinalMessageSha256": "9b4c5f10ca1afe5d206e4022104979aff272114020443cf2709132c02c11189e",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\", \"b\", \"c\"],\n    \"mechanisms\": [\n      \"The prose says danger in expert systems lives between people when ownership blurs, not in lack of talent.\",\n      \"The lesson repeatedly says to map transitions by named owner before the rush or window begins.\",\n      \"The Ingrid example says not to blame the last visible person until the path across handoffs is rebuilt.\",\n      \"The chapter says dense work fails where cues or timing cross roles, so inspect explicit handoffs first.\",\n      \"The pharmacy example shows completed departmental tasks still failed at the crossings between departments.\",\n      \"The storm example directly recommends assigning the cross-department overlap to one named owner before peak load.\",\n      \"The museum example says the danger lives where separate readiness claims meet, not in each expert's own task.\",\n      \"The core reasoning is that excellent people still need visible ownership at role crossings.\",\n      \"The chapter says lone mastery is too small; the diagnostic is which transition lived in memory instead of structure.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice b uses the chapter's exact signature phrasing: handoff seam and ownership thinned out.\",\n      \"Choice c is the only option with the repeated answer pattern: named owner before the window.\",\n      \"Choice a echoes the Ingrid example almost verbatim: trace the order across the whole path.\",\n      \"Choice b is the only option using the chapter's core term handoffs.\",\n      \"Choice c is much more precise and chapter-specific than the moralizing distractors.\",\n      \"Choice a closely mirrors Example 6, including named owner and before the storm peaks.\",\n      \"Choice c is the only option that rejects both over-centralization and hardest-task assumptions.\",\n      \"Choice b repeats the core phrase make ownership visible where work crosses roles.\",\n      \"Choice c is the only option phrased in the chapter's system-over-memory frame.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 86,\n    \"transfer\": 84,\n    \"practical\": 88,\n    \"summaries\": 82,\n    \"tone\": 86,\n    \"limits\": 88,\n    \"insight\": 90,\n    \"density\": 83,\n    \"beginner\": 90\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Complexity changes the location of danger.\",\n      \"why\": \"This is the chapter's sharpest compressed mechanism and is easy to remember.\"\n    },\n    {\n      \"quote\": \"The mistake hides in the word moves. Movement creates seams, and seams create assumptions.\",\n      \"why\": \"A strong explanatory line that turns an abstract lesson into a repeatable diagnostic.\"\n    },\n    {\n      \"quote\": \"The save lives in the chain, not in one brilliant pair of hands.\",\n      \"why\": \"Memorable, but the wording is slightly awkward and may momentarily trip a beginner.\"\n    },\n    {\n      \"quote\": \"On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction.\",\n      \"why\": \"This reads like an accidental wrong-answer insert inside an example's action step.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The 'What to do' section gives the correct action, then adds an opposite 'On second thought' instruction that contradicts the chapter's core lesson and could confuse a reader applying the example.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"fast read\",\n      \"problem\": \"The sentence 'The save lives in the chain' is memorable but grammatically compressed enough to slow comprehension.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"deep read\",\n      \"problem\": \"The Austrian drowning rescue is invoked as important, but the chapter gives almost no concrete details about it, so the reference carries less teaching weight than the later invented scenarios.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Several correct answers are strongly signposted by exact chapter language such as 'named owner,' 'handoff seam,' and 'ownership changed hands,' making some items guessable by vocabulary matching.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong opening chapter: the core move is clear, memorable, practical, and transferable across medicine, rail, logistics, museums, storm response, and postmortems. The best lines explain the mechanism rather than merely naming it, and the quiz is fair and derivable. The main blocking issue is Example 1's contradictory 'On second thought' sentence, which reads like an accidental inserted wrong answer inside the advice. Fix that, and the chapter clears a professional ship bar comfortably.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-the-checklist-manifesto-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "530a73b9a54d4a56",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-the-checklist-manifesto-ch1-mrgphx6i-26",
+    "scores": {
+      "retention": 90,
+      "quizzes": 86,
+      "transfer": 84,
+      "practical": 88,
+      "summaries": 82,
+      "tone": 86,
+      "limits": 88,
+      "insight": 90,
+      "density": 83,
+      "beginner": 90
+    },
+    "composite": 86.6,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c",
+        "b",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Complexity changes the location of danger.",
+        "why": "This is the chapter's sharpest compressed mechanism and is easy to remember.",
+        "verified": true
+      },
+      {
+        "quote": "The mistake hides in the word moves. Movement creates seams, and seams create assumptions.",
+        "why": "A strong explanatory line that turns an abstract lesson into a repeatable diagnostic.",
+        "verified": true
+      },
+      {
+        "quote": "The save lives in the chain, not in one brilliant pair of hands.",
+        "why": "Memorable, but the wording is slightly awkward and may momentarily trip a beginner.",
+        "verified": true
+      },
+      {
+        "quote": "On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction.",
+        "why": "This reads like an accidental wrong-answer insert inside an example's action step.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b uses the chapter's exact signature phrasing: handoff seam and ownership thinned out.",
+      "Choice c is the only option with the repeated answer pattern: named owner before the window.",
+      "Choice a echoes the Ingrid example almost verbatim: trace the order across the whole path.",
+      "Choice b is the only option using the chapter's core term handoffs.",
+      "Choice c is much more precise and chapter-specific than the moralizing distractors.",
+      "Choice a closely mirrors Example 6, including named owner and before the storm peaks.",
+      "Choice c is the only option that rejects both over-centralization and hardest-task assumptions.",
+      "Choice b repeats the core phrase make ownership visible where work crosses roles.",
+      "Choice c is the only option phrased in the chapter's system-over-memory frame."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "The 'What to do' section gives the correct action, then adds an opposite 'On second thought' instruction that contradicts the chapter's core lesson and could confuse a reader applying the example.",
+        "mustFix": true
+      },
+      {
+        "unit": "fast read",
+        "problem": "The sentence 'The save lives in the chain' is memorable but grammatically compressed enough to slow comprehension.",
+        "mustFix": false
+      },
+      {
+        "unit": "deep read",
+        "problem": "The Austrian drowning rescue is invoked as important, but the chapter gives almost no concrete details about it, so the reference carries less teaching weight than the later invented scenarios.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz",
+        "problem": "Several correct answers are strongly signposted by exact chapter language such as 'named owner,' 'handoff seam,' and 'ownership changed hands,' making some items guessable by vocabulary matching.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong opening chapter: the core move is clear, memorable, practical, and transferable across medicine, rail, logistics, museums, storm response, and postmortems. The best lines explain the mechanism rather than merely naming it, and the quiz is fair and derivable. The main blocking issue is Example 1's contradictory 'On second thought' sentence, which reads like an accidental inserted wrong answer inside the advice. Fix that, and the chapter clears a professional ship bar comfortably.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "f2999965bad70cee0dd16bbe921675977490ec7242598a44f63e3ec66c3a3f17",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:37:38.915Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "b09cb8fdbfa65eb6d9431f0a0acd89fea6de9bd76a111452192a935b32f673b4",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": false,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:36:58.554Z",
+  "durationMs": 0
+}

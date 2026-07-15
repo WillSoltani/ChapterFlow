@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "LNV2-KEYMISMATCH-peak-ch01-q1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "ad36a7e6f63777e1",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-peak-ch01-q1-mrgp3nos-13",
+  "scores": {
+    "retention": 92,
+    "quizzes": 82,
+    "transfer": 89,
+    "practical": 92,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 93,
+    "insight": 91,
+    "density": 86,
+    "beginner": 94
+  },
+  "composite": 89.6,
+  "ship84": true,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "a",
+      "c",
+      "b",
+      "b",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=b key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "This is the chapter's strongest mnemonic: short, concrete, and mechanically accurate.",
+      "verified": true
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "This gives beginners a practical test for whether a practice goal is usable.",
+      "verified": true
+    },
+    {
+      "quote": "Some feedback is late. Some goals are chosen badly. Some days reveal that the problem you named is only a symptom of a different one.",
+      "why": "The chapter earns trust by naming failure modes instead of overselling the loop.",
+      "verified": true
+    },
+    {
+      "quote": "c) changes the next attempt while the mistake is still traceable",
+      "why": "This answer choice is fair but too close to the chapter's repeated phrasing, creating a quiz tell.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "b is the longest and only option with isolate-record-change mechanics.",
+    "a is the most procedural option and mirrors the chapter's correction-loop language.",
+    "c repeats the chapter's central contrast between whole performance and surviving weak point.",
+    "b is the only option with cue, feedback, and repeat-before-widening structure.",
+    "b uses giveaway terms: miss, next attempt, feedback.",
+    "b contains the most chapter-specific phrase, visible target.",
+    "c almost directly states the chapter's core rule about changing the next attempt.",
+    "a makes Plan B correct by explicitly naming soon-enough feedback.",
+    "c is the only concrete, measurable target and is also the longest."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "The intended answer appears to be b, but a is also supported by the prose's claim that comfort can leave the weak spot hidden, so the item is mildly under-determined.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Correct choices are often the most concrete, procedural, and chapter-phrased options, while distractors are visibly vague or passive; this weakens assessment even though the questions remain derivable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. The core move is memorable, concrete, and repeated through varied domains without becoming hard to follow: isolate the miss, create a short stretch rep, get immediate feedback, and change the next attempt. The layered reads, review cards, and implementation plan all stand on their own. The main weakness is quiz craft: most keys can be spotted by their feedback-loop language and richer procedural detail, and Q6 has a defensible competing answer. Those are polish issues, not blockers.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "b3b4beaefc9b929c60bd759336c9481b45aab3230b6ceb74d10b01cea6e780bd",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-11T18:26:58.794Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "e66562ab422364d6015c2fd9017e2ab3129c88dc8d10b6c5507f58d01d1a5dce",
+    "phase2DocSha256": "4b8104daf05ab497d65002ab2de60e6ccbfe8ee7cbb2b78349a3081c35306729",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-peak-ch01-q1-mrgp52ei-14",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice b, not c, isolates the recurring two-measure fault and uses feedback before the next attempt."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a turns the vague study goal into a focused redox drill with step-level feedback."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c names the defect: full-demo repetition lets the same weak slide survive."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b gives a specific cue, checks video feedback, and repeats before adding distance."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b captures the correction loop where each miss changes the next grouping strategy."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "ambiguous",
+        "rationale": "Choices a and b both plausibly state why repetition alone can leave uneven cuts unchanged, though b is more specific."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c states the necessary condition: feedback must alter the next attempt while the error is traceable."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a is stronger because feedback arrives soon enough to correct the next small batch."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c makes the target concrete, visible, and repeatable enough to practice."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 1
+  }
+}

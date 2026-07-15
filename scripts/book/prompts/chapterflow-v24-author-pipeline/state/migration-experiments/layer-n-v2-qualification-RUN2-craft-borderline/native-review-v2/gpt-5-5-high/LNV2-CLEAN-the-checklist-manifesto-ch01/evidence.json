@@ -1,0 +1,139 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-checklist-manifesto-ch01",
+  "itemId": "LNV2-CLEAN-the-checklist-manifesto-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "7ee8b9480874ea98",
+  "renderedDocSha256": "86d2dbffae55cc57a2877b0a28682e90e9d44c9eae6325b209319a7303b1201d",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "c78a21db52973cb45cc2e674b31ca1886e0a85c2d8d2351be4dd30d7bc43c295",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-checklist-manifesto-ch01-mrh5lu4t-6",
+  "rawFinalMessageSha256": "b88020d0c5dd481a32d9c88e027fe07d7cba79670615662281a0ebfa66b29a6f",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\", \"b\", \"c\"],\n    \"mechanisms\": [\n      \"The prose says misses in expert systems often live between people where ownership blurs, not in lack of talent.\",\n      \"The lesson repeatedly says to map the transition by named owner before pressure arrives.\",\n      \"The Ingrid example says to rebuild the path across every handoff before blaming the last visible person.\",\n      \"The chapter defines the risk as cues, timing, and handoffs crossing roles without explicit ownership.\",\n      \"The pharmacy example shows completed departmental tasks can still fail at crossings between departments.\",\n      \"The storm example says to mark the overlap and give the street a named owner before peak load.\",\n      \"The museum crate example says the danger lives where separate readiness claims meet.\",\n      \"The chapter says excellence does not make handoffs visible; ownership must be visible where work crosses roles.\",\n      \"The leader's presence likely held a transition in memory, while the chapter says reliability must be designed into the system.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Q1: choice b uses the chapter's exact phrase 'handoff seam where ownership thinned out,' making it easy to spot.\",\n      \"Q3: choice a is much more specific and chapter-shaped than the other two blame-oriented distractors.\",\n      \"Q6: choice a echoes the chapter's named-owner formula almost verbatim.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 86,\n    \"transfer\": 88,\n    \"practical\": 90,\n    \"summaries\": 78,\n    \"tone\": 84,\n    \"limits\": 86,\n    \"insight\": 89,\n    \"density\": 86,\n    \"beginner\": 88\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Complexity changes the location of danger.\",\n      \"why\": \"A compact, memorable line that captures the chapter's mechanism.\"\n    },\n    {\n      \"quote\": \"Movement creates seams, and seams create assumptions.\",\n      \"why\": \"Strong transfer sentence: it turns the idea into a reusable diagnostic.\"\n    },\n    {\n      \"quote\": \"The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.\",\n      \"why\": \"Worst clarity defect: this named rescue appears without enough setup in the chapter itself.\"\n    },\n    {\n      \"quote\": \"The save lives in the chain, not in one brilliant pair of hands.\",\n      \"why\": \"Memorable but syntactically awkward enough to slow comprehension.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"deep read\",\n      \"problem\": \"The 'Austrian drowning rescue' is invoked as if already established, but the chapter has not clearly introduced that specific event, so the section is slightly less standalone.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"fast read\",\n      \"problem\": \"The sentence 'The save lives in the chain' is grammatically strained and may briefly confuse beginners.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"The correct answer repeats the chapter's own wording very closely, creating a mild answer tell.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"The correct answer uses the chapter's named-owner formula almost verbatim while the distractors are plainly less aligned.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, shippable chapter. The core move is clear, memorable, and transferable: stop blaming the nearest person and inspect the seam where ownership thins out. The examples give enough range across medicine, rail, pharmacy, storms, museums, and logistics to make the concept portable, and the practical actions are low-friction. The main weaknesses are small craft issues: one unexplained rescue reference, one awkward memorable line, and a few quiz answers that echo the teaching language so closely that they become guessable. None of those defects prevents a reader from learning or applying the chapter.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-checklist-manifesto-ch01",
+    "chapterNumber": 1,
+    "contentHash": "7ee8b9480874ea98",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-checklist-manifesto-ch01-mrh5lu4t-6",
+    "scores": {
+      "retention": 90,
+      "quizzes": 86,
+      "transfer": 88,
+      "practical": 90,
+      "summaries": 78,
+      "tone": 84,
+      "limits": 86,
+      "insight": 89,
+      "density": 86,
+      "beginner": 88
+    },
+    "composite": 86.5,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c",
+        "b",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Complexity changes the location of danger.",
+        "why": "A compact, memorable line that captures the chapter's mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "Movement creates seams, and seams create assumptions.",
+        "why": "Strong transfer sentence: it turns the idea into a reusable diagnostic.",
+        "verified": true
+      },
+      {
+        "quote": "The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.",
+        "why": "Worst clarity defect: this named rescue appears without enough setup in the chapter itself.",
+        "verified": true
+      },
+      {
+        "quote": "The save lives in the chain, not in one brilliant pair of hands.",
+        "why": "Memorable but syntactically awkward enough to slow comprehension.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q1: choice b uses the chapter's exact phrase 'handoff seam where ownership thinned out,' making it easy to spot.",
+      "Q3: choice a is much more specific and chapter-shaped than the other two blame-oriented distractors.",
+      "Q6: choice a echoes the chapter's named-owner formula almost verbatim."
+    ],
+    "complaints": [
+      {
+        "unit": "deep read",
+        "problem": "The 'Austrian drowning rescue' is invoked as if already established, but the chapter has not clearly introduced that specific event, so the section is slightly less standalone.",
+        "mustFix": false
+      },
+      {
+        "unit": "fast read",
+        "problem": "The sentence 'The save lives in the chain' is grammatically strained and may briefly confuse beginners.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1",
+        "problem": "The correct answer repeats the chapter's own wording very closely, creating a mild answer tell.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q6",
+        "problem": "The correct answer uses the chapter's named-owner formula almost verbatim while the distractors are plainly less aligned.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, shippable chapter. The core move is clear, memorable, and transferable: stop blaming the nearest person and inspect the seam where ownership thins out. The examples give enough range across medicine, rail, pharmacy, storms, museums, and logistics to make the concept portable, and the practical actions are low-friction. The main weaknesses are small craft issues: one unexplained rescue reference, one awkward memorable line, and a few quiz answers that echo the teaching language so closely that they become guessable. None of those defects prevents a reader from learning or applying the chapter.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "ee4dd58b37427ffc6b81a9448407d3874938861dc90310d4e178e93bec10db57",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:08:33.354Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "c78a21db52973cb45cc2e674b31ca1886e0a85c2d8d2351be4dd30d7bc43c295",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:07:55.084Z",
+  "durationMs": 0
+}

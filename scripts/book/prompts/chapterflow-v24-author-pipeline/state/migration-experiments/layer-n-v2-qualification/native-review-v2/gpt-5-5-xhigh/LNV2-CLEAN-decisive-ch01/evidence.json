@@ -1,0 +1,144 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-decisive-ch01",
+  "itemId": "LNV2-CLEAN-decisive-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "69cecca544e01f6f",
+  "renderedDocSha256": "2473df4e347080e141b9f35b24151601de9122e5619e02df2eeaf1865e1c29a0",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-decisive-ch01-mrh9nkjc-4",
+  "rawFinalMessageSha256": "ecdf422d3653ae8c04d630bc028d407500bf27134eb7a3748c910caa7beae676",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"c\", \"c\", \"a\", \"c\", \"a\", \"a\", \"b\"],\n    \"mechanisms\": [\n      \"The prose defines WRAP as four named moves matched to four different decision dangers, not a general pause.\",\n      \"The vendor frame is a narrow yes-or-no frame, and the chapter says widening live options must happen before evidence decorates a cramped choice.\",\n      \"Confirmation bias is countered by Reality-testing: looking for evidence that can surprise or weaken the favorite plan.\",\n      \"The Intel passage says emotion can carry information, but distance should quiet short-term attachment so the long term can be judged.\",\n      \"Overconfidence is countered by naming a wider range of possible futures instead of trusting one neat forecast.\",\n      \"Steve Cole's HopeLab logic was to fund parallel first passes so comparison teaches before commitment.\",\n      \"Grove's outsider question asks what a fresh outsider would do without Intel's memory-chip attachment.\",\n      \"The four-villain idea says different dangers occur at framing, evidence, emotion, and forecasting, so each needs a different move.\",\n      \"The chapter says good process improves odds without promising the outcome because uncertainty remains.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Q1's correct option is the only one that names all four WRAP moves, making it guessable from acronym recognition.\",\n      \"Several distractors are plainly self-defeating, such as treating an upbeat forecast as proof or saving WRAP until after choosing.\",\n      \"Q9's correct option closely echoes the memorable line about improving odds while uncertainty remains.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 84,\n    \"transfer\": 82,\n    \"practical\": 81,\n    \"summaries\": 91,\n    \"tone\": 88,\n    \"limits\": 92,\n    \"insight\": 91,\n    \"density\": 87,\n    \"beginner\": 90\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"A live option set keeps a bad frame from feeling like fate.\",\n      \"why\": \"Strongest retention line: concrete, compact, and central to the chapter's first move.\"\n    },\n    {\n      \"quote\": \"Evidence gets crooked when the favorite answer hires the researcher.\",\n      \"why\": \"Best mechanism sentence: it explains confirmation bias without jargon.\"\n    },\n    {\n      \"quote\": \"Good process raises the odds without promising the outcome.\",\n      \"why\": \"Strong boundary: it prevents the reader from mistaking WRAP for certainty.\"\n    },\n    {\n      \"quote\": \"The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.\",\n      \"why\": \"Weakest practical moment: the action is concrete, but 'shortcut' is underdefined at this point.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"try this now\",\n      \"problem\": \"The exercise asks for a cue, shortcut, and likely villain, but 'shortcut' has not been clearly defined yet, so the immediate action is less self-contained.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"The correct choices often reuse the chapter's exact lesson language while distractors are extreme or obviously bad, which reduces diagnostic value.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The Yvonne forecast scenario is usable but thin: it shows the range move, yet gives no concrete consequence after the decision changes.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"The team-lead texting example mostly restates the process and does not show a before-to-after decision result.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"implementation plan\",\n      \"problem\": \"The title and Core skill repeat almost the same sentence, creating a slight scaffold smell.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This ships against an 80-point professional bar. The chapter is clear, memorable, and unusually honest about process limits: WRAP improves the decision before the outcome is known, but cannot make uncertainty disappear. The main weaknesses are craft-level rather than blocking defects: quiz distractors are too easy to eliminate, a few transfer examples are thin, and the immediate practice prompt uses one underexplained term.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "decisive-ch01",
+    "chapterNumber": 1,
+    "contentHash": "69cecca544e01f6f",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-decisive-ch01-mrh9nkjc-4",
+    "scores": {
+      "retention": 90,
+      "quizzes": 84,
+      "transfer": 82,
+      "practical": 81,
+      "summaries": 91,
+      "tone": 88,
+      "limits": 92,
+      "insight": 91,
+      "density": 87,
+      "beginner": 90
+    },
+    "composite": 87.3,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "c",
+        "c",
+        "a",
+        "c",
+        "a",
+        "a",
+        "b"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "A live option set keeps a bad frame from feeling like fate.",
+        "why": "Strongest retention line: concrete, compact, and central to the chapter's first move.",
+        "verified": true
+      },
+      {
+        "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+        "why": "Best mechanism sentence: it explains confirmation bias without jargon.",
+        "verified": true
+      },
+      {
+        "quote": "Good process raises the odds without promising the outcome.",
+        "why": "Strong boundary: it prevents the reader from mistaking WRAP for certainty.",
+        "verified": true
+      },
+      {
+        "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+        "why": "Weakest practical moment: the action is concrete, but 'shortcut' is underdefined at this point.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q1's correct option is the only one that names all four WRAP moves, making it guessable from acronym recognition.",
+      "Several distractors are plainly self-defeating, such as treating an upbeat forecast as proof or saving WRAP until after choosing.",
+      "Q9's correct option closely echoes the memorable line about improving odds while uncertainty remains."
+    ],
+    "complaints": [
+      {
+        "unit": "try this now",
+        "problem": "The exercise asks for a cue, shortcut, and likely villain, but 'shortcut' has not been clearly defined yet, so the immediate action is less self-contained.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "The correct choices often reuse the chapter's exact lesson language while distractors are extreme or obviously bad, which reduces diagnostic value.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The Yvonne forecast scenario is usable but thin: it shows the range move, yet gives no concrete consequence after the decision changes.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The team-lead texting example mostly restates the process and does not show a before-to-after decision result.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan",
+        "problem": "The title and Core skill repeat almost the same sentence, creating a slight scaffold smell.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This ships against an 80-point professional bar. The chapter is clear, memorable, and unusually honest about process limits: WRAP improves the decision before the outcome is known, but cannot make uncertainty disappear. The main weaknesses are craft-level rather than blocking defects: quiz distractors are too easy to eliminate, a few transfer examples are thin, and the immediate practice prompt uses one underexplained term.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "ec94fcd42d5c882fb154d0aa8d15cc70cba15e977e49362d66095fe60aef9ac2",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:02:47.730Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:01:14.423Z",
+  "durationMs": 0
+}

@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 5,
+  "chapterTitle": "Relationships",
+  "focus": "Trust with direct reports is built through ordinary, repeated signals: personal grounding, real one-to-one attention, and visible willingness to hear criticism.",
+  "coreClaim": "Relationships are operational infrastructure for management, not sentimental extras.",
+  "centralConcept": {
+    "id": "ch05.concept",
+    "name": "trust routines",
+    "plainDefinition": "Relationship-building becomes practical when managers create repeatable routines for trust: staying centered, making time for real conversations, and showing that power is not the only thing moving the relationship.",
+    "whyItMatters": "Tools for guidance and results fail when the relationship cannot carry them. Trust routines make future candor less surprising and less threatening."
+  },
+  "keyClaims": [
+    "Managers need practices that keep them centered enough to show up well.",
+    "Trust is built with direct reports before difficult guidance is needed.",
+    "Soliciting criticism is part of relationship work, not only feedback mechanics.",
+    "The order of operations begins the tools section by making the manager receive first.",
+    "Relationship routines prevent power from becoming the only force in the conversation."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch05.ex.order-of-operations-relationships",
+      "label": "Order of Operations in Relationships",
+      "summary": "The official glossary documents Order of Operations across Ch. 5-6: solicit feedback, give feedback to individuals, then encourage feedback between team members. Ch. 5 uses the first move as relationship work.",
+      "teachesWhat": "A manager builds trust by receiving criticism before giving it.",
+      "hardSpecifics": [
+        "Order of Operations",
+        "Ch. 5-6",
+        "solicit feedback",
+        "get before give"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch05.ex.book-club-relationships",
+      "label": "Relationships discussion prompts",
+      "summary": "The official guide lists Relationships as Ch. 5 and asks about staying centered, bringing one's best self to work, and building trust with direct reports. Those prompts anchor the unit in practical trust behavior.",
+      "teachesWhat": "Relationship advice becomes concrete when tied to repeated manager habits.",
+      "hardSpecifics": [
+        "Chapter 5: Relationships",
+        "stay centered",
+        "direct reports",
+        "build trust"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch05.ex.radical-candor-llc-training",
+      "label": "Radical Candor LLC training context",
+      "summary": "The official book page describes a global executive education company founded by Kim Scott and Jason Rosoff and states the work has been translated into 20 languages. Those details make the relationship routines part of a public management-training system.",
+      "teachesWhat": "The relationship tools are meant for repeated organizational practice, not private reflection only.",
+      "hardSpecifics": [
+        "Kim Scott",
+        "Jason Rosoff",
+        "20 languages",
+        "executive education company"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The surface mistake is to make relationship-building a personality trait. The practical point is routine: trust grows from repeatable behaviors a manager can choose before a crisis.",
+  "voiceCues": [
+    "shifts from philosophy to tools",
+    "uses reflective prompts",
+    "keeps manager behavior concrete"
+  ],
+  "forbiddenLeakage": [
+    "Do not teach HHIPP or SBI before Guidance.",
+    "Do not make Career Conversations the main tool."
+  ],
+  "paraphraseNotes": "Relationships starts the tools movement by asking what a manager actually does to create trust. The official guide's prompts are narrow and behavioral: stay centered, notice when the best self was unavailable, and identify how trust is built with direct reports. The Order of Operations entry connects this unit to the feedback system without letting feedback take over: solicit first, then give, then encourage peer-to-peer guidance. The Radical Candor LLC context matters only as scale: Kim Scott and Jason Rosoff built an executive education company around these practices, and the official page notes translation into 20 languages. Keep the unit grounded in routines: one-to-one attention, visible receptiveness, and self-management before hard conversations. The writer should avoid abstract claims that trust matters. The useful teaching is how trust becomes a practical prerequisite for later guidance, team growth, meetings, and reviews.",
+  "testableFacts": [
+    {
+      "id": "ch05.fact.1",
+      "claim": "The official guide identifies Relationships as Ch. 5 in Part 2 Tools and Techniques.",
+      "becauseMechanism": "Because the tools section begins with trust, later feedback methods are built on relationship capacity.",
+      "commonError": "Starting the tools section with scripts and tactics.",
+      "errorIsWhy": "Scripts fail when trust is absent.",
+      "derivedFrom": "ch05.ex.order-of-operations-relationships"
+    },
+    {
+      "id": "ch05.fact.2",
+      "claim": "Ch. 5 prompts managers to name activities that keep them centered.",
+      "becauseMechanism": "Since an uncentered manager reacts defensively, self-management protects the relationship.",
+      "commonError": "Treating composure as a private wellness issue only.",
+      "errorIsWhy": "Manager state affects team trust.",
+      "derivedFrom": "ch05.ex.book-club-relationships"
+    },
+    {
+      "id": "ch05.fact.3",
+      "claim": "Ch. 5 asks about times a manager could not bring a best self to work.",
+      "becauseMechanism": "Because self-awareness reveals predictable failure points, managers can design safeguards.",
+      "commonError": "Pretending leaders should always be unaffected.",
+      "errorIsWhy": "Unacknowledged strain leaks into management behavior.",
+      "derivedFrom": "ch05.ex.radical-candor-llc-training"
+    },
+    {
+      "id": "ch05.fact.4",
+      "claim": "Ch. 5 asks how trust is built with direct reports.",
+      "becauseMechanism": "Because trust depends on repeated evidence, managers need observable practices rather than intentions.",
+      "commonError": "Assuming direct reports trust a boss by default.",
+      "errorIsWhy": "Power makes trust something to earn.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.5",
+      "claim": "Order of Operations spans Ch. 5-6 and starts with soliciting feedback.",
+      "becauseMechanism": "Because receiving first lowers hierarchy, the manager shows candor is reciprocal.",
+      "commonError": "Demanding openness from employees before inviting it upward.",
+      "errorIsWhy": "That preserves one-way power.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.6",
+      "claim": "The official phrase get before give summarizes the first relationship move.",
+      "becauseMechanism": "Since the boss has more power, asking first makes later challenge less hypocritical.",
+      "commonError": "Opening with advice to others.",
+      "errorIsWhy": "The manager has not yet shown willingness to hear hard truth.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.7",
+      "claim": "Radical Candor LLC is described as a global executive education company founded by Kim Scott and Jason Rosoff.",
+      "becauseMechanism": "Because the practices are taught organizationally, relationship routines must be repeatable.",
+      "commonError": "Treating relationships as personal chemistry.",
+      "errorIsWhy": "Repeatable routines make the tool teachable.",
+      "derivedFrom": "ch05.ex.order-of-operations-relationships"
+    },
+    {
+      "id": "ch05.fact.8",
+      "claim": "The official page says the work has been translated into 20 languages.",
+      "becauseMechanism": "Because wide translation requires portable behaviors, the relationship advice should not depend on one office culture.",
+      "commonError": "Copying one Silicon Valley scene as universal.",
+      "errorIsWhy": "The portable mechanism is trust behavior.",
+      "derivedFrom": "ch05.ex.book-club-relationships"
+    },
+    {
+      "id": "ch05.fact.9",
+      "claim": "Relationship work comes before Guidance, Team, and Results tools.",
+      "becauseMechanism": "Because later tools create more pressure, trust must exist before conflict escalates.",
+      "commonError": "Trying to install candor only when performance problems appear.",
+      "errorIsWhy": "Crisis is a poor time to build the first trust signal.",
+      "derivedFrom": "ch05.ex.radical-candor-llc-training"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Relationship trust routine",
+      "members": [
+        "stay centered",
+        "solicit criticism",
+        "build direct-report trust"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Order of Operations in Relationships",
+    "Order of Operations",
+    "Ch. 5-6",
+    "solicit feedback",
+    "get before give",
+    "Relationships discussion prompts",
+    "Chapter 5: Relationships",
+    "stay centered",
+    "direct reports",
+    "build trust",
+    "Radical Candor LLC training context",
+    "Kim Scott",
+    "Jason Rosoff",
+    "20 languages",
+    "executive education company"
+  ]
+}

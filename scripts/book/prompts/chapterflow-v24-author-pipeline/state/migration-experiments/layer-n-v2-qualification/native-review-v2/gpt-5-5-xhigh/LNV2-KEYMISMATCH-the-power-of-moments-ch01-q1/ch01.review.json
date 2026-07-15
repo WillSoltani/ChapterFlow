@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "3583d15889cbc614",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrha01co-11",
+  "scores": {
+    "retention": 91,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 89,
+    "summaries": 93,
+    "tone": 88,
+    "limits": 92,
+    "insight": 88,
+    "density": 84,
+    "beginner": 92
+  },
+  "composite": 88.2,
+  "ship84": true,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "a",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=b key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "This is the cleanest memorable line and carries the chapter's core move.",
+      "verified": true
+    },
+    {
+      "quote": "The move is not to excuse a bad process with a pretty finish.",
+      "why": "This gives the lesson an important ethical boundary.",
+      "verified": true
+    },
+    {
+      "quote": "c) Mark the shared crossing now, before the next stage becomes private logistics.",
+      "why": "This quiz option is highly guessable because it repeats the chapter's threshold language.",
+      "verified": true
+    },
+    {
+      "quote": "The cold-water study gives her a different test: the 90-second trial with milder ending can be remembered better than the 60-second painful trial.",
+      "why": "The same study is reused heavily, which weakens example variety.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q2: choice b is the only vivid/tellable option and closely restates the chapter's language.",
+    "Q3: choice a repeats the public/witness logic from the YES Prep section.",
+    "Q4: choice c lists all four named ingredients while the other choices are obvious nonfits.",
+    "Q5: choice a directly echoes 'visible object' and 'script has changed.'",
+    "Q7: choice c repeats the threshold/private-logistics phrasing almost verbatim.",
+    "Q8: the negative stem adds test-taking friction, and choice a is keyed by the explicit 'average each minute' idea."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct answer is mostly a direct list of the four ingredients, while the distractors do not teach much.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct option repeats the chapter's 'threshold' and 'private logistics' phrasing, making it guessable.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The negative wording tests careful negation as much as it tests the memory principle.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 3-5",
+      "problem": "The cold-water comparison is reused several times in close succession, so transfer feels narrower than it could.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The training-close scenario is usable but thin; it has a generic named trainer and limited concrete consequence beyond restating the lesson.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter with a strong central image, clear layered summaries, fair derivable quiz keys, and unusually good limits around not using a nice ending to excuse a bad experience. Its main weakness is craft-level: several quiz answers are signposted by repeated language, and the examples lean too often on the same cold-water study instead of showing a wider range of decisions and consequences. Still, a beginner would understand and likely remember the core move.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "47bbae470f919e949d38689343aaf37d5fe9423ffb37ba7848cceb14029e1994",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T04:12:18.510Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "c59d90da55ae36462941c5085b0eae5deed2859ef895fd30870e8fdbdf2454d2",
+    "phase2DocSha256": "47133aaa03ef4d748c0e6bd9ea3009caf46faf676b48d3db773e8e456ef4a172",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-xhigh-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrha1sy7-12",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice b is best supported because the calmer, less painful ending improves remembered experience; choice c says to leave the finish alone."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The bright welcome cart is a vivid, tellable surprise that changes an ordinary arrival."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Publicly naming the next unit and receiving applause makes the achievement witnessed and meaningful."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c directly maps to elevation, insight, pride, and connection."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The red-phone lesson supports using one visible object to signal a changed script."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "A request and reveal turn a quiet free item into a memorable event."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The shared threshold should be marked before the group disperses into private logistics."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The unsupported assumption is that callers average all minutes equally rather than overweighting peak and end."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The mint vanishes because it lacks a tellable format, not because it is too cheap or the fixtures are inadequate."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  }
+}

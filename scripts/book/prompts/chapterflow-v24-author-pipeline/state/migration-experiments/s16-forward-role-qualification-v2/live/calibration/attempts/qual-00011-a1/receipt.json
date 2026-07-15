@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-source-1783911712480-12-657db75c-42c9-411f-9a32-89bf04065423",
+  "status": "completed",
+  "role": "source",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+  "rawOutput": "{\"schema\":\"source-integrity-review-v1\",\"units\":[{\"unitId\":\"unit.ch01.generic-scenario\",\"expectedOrigin\":\"generic\",\"expectedForm\":\"operational_scenario\",\"claimStrengthExpected\":\"descriptive\",\"visibleRegister\":\"presented_as_fact\",\"supportStatus\":\"PARTIALLY_SUPPORTED\",\"framingAdequate\":false,\"claimStrengthFit\":true,\"namedSpecificityAllowed\":false,\"chapterEvidenceSpans\":[\"At St. Mark's Hospital in Boston on March 12, 2019, project manager Elena Ruiz used a short check before opening a feed\",\"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\"],\"sourceEvidenceSpans\":[\"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\",\"allowedPlaces: []\",\"allowedNumbers: [\\\"2007\\\", \\\"1\\\", \\\"2\\\", \\\"2009\\\"]\"],\"findings\":[{\"category\":\"invented_detail\",\"severity\":\"blocker\",\"explanation\":\"The asserted historical event involving Elena Ruiz at St. Mark's Hospital in Boston on March 12, 2019 is absent from the source evidence. The person, organization, place, date, action, and event are therefore unsupported.\"},{\"category\":\"generic_specificity_leak\",\"severity\":\"blocker\",\"explanation\":\"The generic operational scenario uses a named person, named institution, place, exact date, and an asserted occurrence. These kinds of specificity are forbidden for the compiler-assigned generic origin.\"}]}],\"result\":\"BLOCK\",\"blockingFindingIds\":[\"unit.ch01.generic-scenario.finding.1\",\"unit.ch01.generic-scenario.finding.2\"],\"rationale\":\"The iPhone-launch claim is directly supported, but the surrounding named hospital scenario is presented as a real event without any source support and violates the generic unit's specificity limits.\"}"
+}

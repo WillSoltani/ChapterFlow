@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "ambiguity-the-willpower-instinct-ch1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "819266034f88c4e1",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-the-willpower-instinct-ch1-mrh6acn1-29",
+  "scores": {
+    "retention": 88,
+    "quizzes": 72,
+    "transfer": 83,
+    "practical": 82,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 82,
+    "insight": 86,
+    "density": 84,
+    "beginner": 89
+  },
+  "composite": 84,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "a",
+      "a",
+      "b",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q6: reader=a key=b"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower.",
+      "why": "This is the chapter's core correction in a compact, memorable line.",
+      "verified": true
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "Strong mechanism: it explains why values fail without becoming active at the choice point.",
+      "verified": true
+    },
+    {
+      "quote": "a) Being important is not the same as being vivid; a value can matter and still lose to a cue that feels louder right now.",
+      "why": "This quiz option is overlong and substantially duplicates another defensible answer.",
+      "verified": true
+    },
+    {
+      "quote": "For the first half of this week, use your usual all-or-nothing rule.",
+      "why": "The weekly practice asks the reader to spend half the week using the weaker method, which feels artificial.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several correct options are the longest and most mechanism-rich, while distractors use giveaway absolutes such as 'only,' 'no value,' 'fake,' and 'avoid cooperation.'",
+    "Q6 option a is uniquely long and overlaps heavily with option b, making both guessing and scoring easier/harder in the wrong ways."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Two answers are supported by the prose: option a says the value can matter but lose to a vivid cue, while option b says the goal needs attention at the choice point to compete. That makes the quiz item broken rather than merely difficult.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often longer and more qualified than distractors, while several distractors are extreme or cartoonish, weakening quiz fairness.",
+      "mustFix": false
+    },
+    {
+      "unit": "weekly practice",
+      "problem": "Asking readers to use their usual all-or-nothing rule for half the week is a clunky comparison exercise and less practical than simply applying the Three-Power Check immediately.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is clear, memorable, and unusually good at turning willpower from moral scolding into a concrete attention-and-goal-control move. The layered reads stand alone, the examples mostly transfer, and the practical frame is usable for beginners. I would not ship it yet because Q6 has two prose-supported answers, which breaks the quiz; after that fix, the remaining issues are craft polish around answer-choice tells and one awkward practice instruction.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "570732ff3ae770c6890f53327a9e4eb3668796a458d9736d1bac7b3be134baca",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T02:27:58.303Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "0e05bc5eafbd311205b2598c16867692005430c92cd61cd87a225485a38c45cd",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "58017a70d8baed3c79fa0a13f0cebb0f0c4ca69f4130e3da52cc949705608e99",
+    "phase2DocSha256": "fbadc3bf4fda13ae801a8c5ee3c3fdd2dcca190da881d041bc1cf9643449a816",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-the-willpower-instinct-ch1-mrh6bmjk-30",
+    "items": [
+      {
+        "itemId": "the-willpower-instinct-ch01-q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c uniquely captures all three powers: start, stop, and remembered value."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a best fits goal-biased attention and response selection under competing impulses."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a gives the supported lesson that frontal damage can spare basic abilities while impairing regulation."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is the only option aimed at noticing the cue or urge before the automatic action."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b matches the social-commitment framing of willpower's roots."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 0,
+        "agreement": false,
+        "keyCorrect": "ambiguous",
+        "rationale": "Choices a and b are both defensible: a states the salience lesson, while b states the needed choice-point attention."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a correctly treats both motives as sincere and asks which gets support."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q08",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c fits the three-power method by testing behavior, trigger, and feedback concretely."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c correctly limits prefrontal control to goal-conflict moments rather than all routines."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 0
+  }
+}

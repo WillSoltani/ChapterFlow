@@ -1,0 +1,52 @@
+{
+  "schema": "migration-sample-record-v1",
+  "experimentId": "confirmatory-dryrun-2026-07",
+  "stage": "confirmatory",
+  "blindSampleId": "cd5ba68055e1",
+  "cellId": "55-XH",
+  "bookId": "radical-candor",
+  "chapterNumber": 4,
+  "stratum": "causal-quiz-sensitive",
+  "sampleIndex": 3,
+  "executionOrder": 90,
+  "outcome": {
+    "providerOutcome": "content_completed",
+    "replayed": false,
+    "firstWriteDeterministicPass": true,
+    "durationMs": 1090,
+    "writerSessionIds": [
+      "dry-cd5ba68055e1"
+    ]
+  },
+  "artifact": {
+    "contentSha256": "579363404f9a748e",
+    "chapterRelPath": "samples/cd5ba68055e1/chapter.json"
+  },
+  "critics": {
+    "c37Overreach": 0,
+    "c37SceneCompletion": 0,
+    "c37GenericLeak": 0,
+    "registerAdvisories": 0,
+    "causalClaims": 1,
+    "diversity": {}
+  },
+  "review": {
+    "composite": 85,
+    "ship84": true,
+    "keyCheck": {
+      "matches": 5,
+      "of": 5
+    },
+    "keysClean": true,
+    "valid": true,
+    "pass": true,
+    "complaints": [],
+    "reviewerSessionId": "dry-rev-cd5ba68055e1"
+  },
+  "agreementReview": null,
+  "tokens": null,
+  "unavailableFields": [
+    "tokens",
+    "costPerAcceptedChapterUsd"
+  ]
+}

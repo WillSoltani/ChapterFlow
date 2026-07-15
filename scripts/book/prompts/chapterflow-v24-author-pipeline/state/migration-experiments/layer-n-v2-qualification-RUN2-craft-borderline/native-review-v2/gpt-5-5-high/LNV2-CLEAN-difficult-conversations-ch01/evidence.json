@@ -1,0 +1,134 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-difficult-conversations-ch01",
+  "itemId": "LNV2-CLEAN-difficult-conversations-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "03c1136563a90916",
+  "renderedDocSha256": "313e9709c17fbe4c3f85b3c005a88e87e1afb920d51eda36d21898961078945d",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "1d63d23c67ec6de0b6d74a81023bc7cdc2f463f81e91d3948ad6013d87a45812",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-difficult-conversations-ch01-mrh5kpoa-5",
+  "rawFinalMessageSha256": "502029540756d0097e061dadbd9f3a86c42c124eebd15a4094113969bae5de7c",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"a\", \"b\", \"c\", \"a\", \"b\", \"c\", \"c\", \"b\", \"a\"],\n    \"mechanisms\": [\n      \"Her fear that the meeting says something about her competence and authority is the chapter's identity layer.\",\n      \"The prose says to sort what happened, feelings, and identity; the promise, resentment, and responsible-child fear map exactly to those layers.\",\n      \"The diagnostic move is to separate documented facts from feelings and identity or reputation threats.\",\n      \"The chapter warns that the visible facts can be real while feelings such as trust still steer the exchange.\",\n      \"Hearing the question as a judgment about being a bad friend makes the surface dinner issue an identity threat.\",\n      \"Writing facts, feelings, and identity separately prevents the student from treating the authorship problem as only a factual dispute.\",\n      \"The attendance fact has become a parenting identity accusation, so repeating facts alone may increase defensiveness.\",\n      \"The prose says to use the frame privately first because labeling another person's layer can sound accusatory.\",\n      \"The repeated respect ending shows a separate layer beneath the dishes facts, so the first question is how those layers differ.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Across most questions, the correct option is the longest and most mechanism-rich choice.\",\n      \"Several distractors are weakened by absolute or obviously unhelpful wording such as 'only,' 'always,' 'save feelings,' or quick avoidance.\",\n      \"Correct answers often repeat chapter terms directly: identity conversation, layers, facts, feelings, diagnosis.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 91,\n    \"quizzes\": 80,\n    \"transfer\": 87,\n    \"practical\": 89,\n    \"summaries\": 92,\n    \"tone\": 90,\n    \"limits\": 93,\n    \"insight\": 90,\n    \"density\": 86,\n    \"beginner\": 91\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The log is evidence. It is not the whole map.\",\n      \"why\": \"A compact, memorable statement of the core move.\"\n    },\n    {\n      \"quote\": \"They will hear a new accusation wearing thoughtful clothes.\",\n      \"why\": \"Strong warning against misusing the frame on someone else.\"\n    },\n    {\n      \"quote\": \"The three conversations are a diagnostic tool, not a script.\",\n      \"why\": \"Clearly marks the boundary of the lesson.\"\n    },\n    {\n      \"quote\": \"because anxiety is the only issue that matters now.\",\n      \"why\": \"A quiz distractor is too plainly wrong because of its absolute phrasing.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"Correct answers are often the longest, most nuanced options, while distractors sometimes use absolutes or obviously poor tactics, creating answer tells.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples overall\",\n      \"problem\": \"The same names recur across unrelated roles, which may make some scenario tracking needlessly confusing for beginners.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"full read\",\n      \"problem\": \"The facts-feelings-identity mechanism is repeated in several close phrasings, slightly lowering density.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable chapter. The core distinction is clear, memorable, and repeatedly grounded in concrete situations; it also stays honest that diagnosis is preparation, not a full conversation script. The main weakness is quiz construction: the right answers are too often visibly longer and more chapter-shaped than the distractors. That lowers assessment quality but does not break the chapter.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "difficult-conversations-ch01",
+    "chapterNumber": 1,
+    "contentHash": "03c1136563a90916",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-difficult-conversations-ch01-mrh5kpoa-5",
+    "scores": {
+      "retention": 91,
+      "quizzes": 80,
+      "transfer": 87,
+      "practical": 89,
+      "summaries": 92,
+      "tone": 90,
+      "limits": 93,
+      "insight": 90,
+      "density": 86,
+      "beginner": 91
+    },
+    "composite": 88.7,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The log is evidence. It is not the whole map.",
+        "why": "A compact, memorable statement of the core move.",
+        "verified": true
+      },
+      {
+        "quote": "They will hear a new accusation wearing thoughtful clothes.",
+        "why": "Strong warning against misusing the frame on someone else.",
+        "verified": true
+      },
+      {
+        "quote": "The three conversations are a diagnostic tool, not a script.",
+        "why": "Clearly marks the boundary of the lesson.",
+        "verified": true
+      },
+      {
+        "quote": "because anxiety is the only issue that matters now.",
+        "why": "A quiz distractor is too plainly wrong because of its absolute phrasing.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Across most questions, the correct option is the longest and most mechanism-rich choice.",
+      "Several distractors are weakened by absolute or obviously unhelpful wording such as 'only,' 'always,' 'save feelings,' or quick avoidance.",
+      "Correct answers often repeat chapter terms directly: identity conversation, layers, facts, feelings, diagnosis."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz overall",
+        "problem": "Correct answers are often the longest, most nuanced options, while distractors sometimes use absolutes or obviously poor tactics, creating answer tells.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples overall",
+        "problem": "The same names recur across unrelated roles, which may make some scenario tracking needlessly confusing for beginners.",
+        "mustFix": false
+      },
+      {
+        "unit": "full read",
+        "problem": "The facts-feelings-identity mechanism is repeated in several close phrasings, slightly lowering density.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter. The core distinction is clear, memorable, and repeatedly grounded in concrete situations; it also stays honest that diagnosis is preparation, not a full conversation script. The main weakness is quiz construction: the right answers are too often visibly longer and more chapter-shaped than the distractors. That lowers assessment quality but does not break the chapter.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "cdb78dfc223e314de921b0af2ee04d555b2771dd4f79493f9b8a625f328980bd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:07:55.083Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "1d63d23c67ec6de0b6d74a81023bc7cdc2f463f81e91d3948ad6013d87a45812",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:07:02.649Z",
+  "durationMs": 0
+}

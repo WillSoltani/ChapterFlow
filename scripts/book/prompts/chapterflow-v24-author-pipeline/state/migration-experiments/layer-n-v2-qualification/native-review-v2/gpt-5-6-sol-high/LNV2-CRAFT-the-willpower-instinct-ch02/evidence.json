@@ -1,0 +1,165 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-the-willpower-instinct-ch02",
+  "itemId": "LNV2-CRAFT-the-willpower-instinct-ch02",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "161b0d6ef8647b78",
+  "renderedDocSha256": "d7a8844ad8d2b899083d05635491b10ae7fba3df9bfd074cc0600576f9f70ea7",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "d81503a00b8c89cb556ca98fa840629413cb472d8871af8236fbdc5f0d7b5afd",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-6-sol-high-LNV2-CRAFT-the-willpower-instinct-ch02-mrh8z4hg-55",
+  "rawFinalMessageSha256": "eb97d0d55205626e18c56dd8a5c0b7b671c7d8155fbc152f12751b903e2d833e",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"c\", \"a\", \"b\", \"b\", \"a\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines heart rate variability as adaptive beat-to-beat adjustment and links higher variability with stronger self-regulation.\",\n      \"The Trier task shows that silent social judgment can trigger a threat response without physical danger.\",\n      \"The chapter says stress narrows attention toward immediate comfort while obscuring the long-term goal.\",\n      \"Tang's training is presented as strengthening attention and reducing stress reactivity so an urge can be noticed before action.\",\n      \"The prose says slow breathing alters the bodily state supporting arousal, attention, and choice.\",\n      \"The pause-and-plan response requires reduced arousal so attention can widen and future consequences remain available.\",\n      \"The sleep section says tired attention can lose a planned goal when a louder cue competes with it.\",\n      \"The chapter says movement can improve mood, stress regulation, and executive function, reducing the load on later choices.\",\n      \"The chapter explicitly warns that waiting until a craving peaks denies the body the runway needed for pause-and-plan.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"medium\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"Choice a is also compatible with the observed log: fewer angry replies after breathing does not by itself distinguish direct regulation from distraction followed by mood change.\",\n      \"\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Choice b repeats the chapter's distinctive beat-to-beat flexibility language.\",\n      \"Choice c echoes the prose's social-judgment-without-physical-danger formulation.\",\n      \"Choice c is the only option using the chapter's linked vocabulary of stress, quick relief, and returning goals.\",\n      \"Choice a closely reproduces the stated meditation mechanism; the other choices use unsupported absolutes.\",\n      \"Choice b closely matches Review Card 5's wording about body signals, arousal, and attention.\",\n      \"Choice b repeats the chapter's room metaphor and goal-weighing mechanism.\",\n      \"Choice a nearly restates the sleep paragraph's tired-attention and competing-cue explanation.\",\n      \"Choice a reproduces the exact three benefits of movement listed in the prose.\",\n      \"Choice c repeats the chapter's signature wording about runway before the craving peaks.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 92,\n    \"quizzes\": 78,\n    \"transfer\": 74,\n    \"practical\": 84,\n    \"summaries\": 82,\n    \"tone\": 83,\n    \"limits\": 94,\n    \"insight\": 88,\n    \"density\": 73,\n    \"beginner\": 87\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"Panic is a poor coach. Calm gives the future a vote.\",\n      \"why\": \"A compact, memorable statement of both the problem and the core mechanism.\"\n    },\n    {\n      \"quote\": \"Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.\",\n      \"why\": \"This gives the method an unusually clear and useful boundary.\"\n    },\n    {\n      \"quote\": \"The visible cost buys Landon the flexible state Amelie will need when the pastry feels urgent.\",\n      \"why\": \"This misleadingly treats leaving a snack table as if it demonstrably produces the physiological flexibility discussed in the cited research.\"\n    },\n    {\n      \"quote\": \"In the end, this is the kind of move worth practicing until it feels routine.\",\n      \"why\": \"Generic closing language adds no mechanism, consequence, or transferable detail.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The example claims that paying a visible social cost buys a flexible physiological state, but the chapter only establishes that variability is associated with self-regulation; it does not show that leaving the table produces that state. This is a misleading example.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The scenario ends after calmer rehearsal and never shows the analyst update or any consequence, making it a thin-but-usable illustration rather than a demonstrated before-to-after transfer case.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"Sierra takes one breath and immediately 'sees the lesson,' but the example shows no later temptation, decision, or consequence; it largely restates the teaching.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Most correct choices closely reproduce distinctive phrases from the chapter while distractors rely on conspicuous absolutes or mechanisms never mentioned, allowing recognition and test-taking strategy to substitute for understanding.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q5\",\n      \"problem\": \"A simple day-level association between breathing and fewer angry replies cannot identify whether direct physiological regulation or temporary distraction caused the change, although the stem asks for the mechanism.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples\",\n      \"problem\": \"Six examples repeatedly perform the same calm-before-choice move, with several paragraphs devoted to a separate 'first cost' frame that is not established as part of this chapter's core mechanism.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"try this now\",\n      \"problem\": \"Sliding the chair back is concrete, but the exercise does not instruct the reader to slow breathing, restore the long goal, or complete the hard action, so it only partially rehearses the chapter's core sequence.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"review card 6\",\n      \"problem\": \"The card depends on unexplained Chapter 1 terminology ('I won't,' 'I will,' and 'I want'), so it is not approachable as a standalone review item for a cold reader.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter has a memorable core move, strong bodily metaphors, clear mechanisms, practical low-friction actions, and excellent limits around avoidance and emergencies. Its quiz is derivable but too often gives away the answers through near-verbatim wording, and Q5 overstates what its observational setup can establish. Transfer is weakened by repetitive scenarios, thin outcomes, and especially Example 1's unsupported causal leap from leaving a snack table to acquiring physiological flexibility. That misleading example blocks shipment despite otherwise professional teaching quality.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-the-willpower-instinct-ch02-chapter",
+    "chapterNumber": 2,
+    "contentHash": "161b0d6ef8647b78",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-6-sol-high-LNV2-CRAFT-the-willpower-instinct-ch02-mrh8z4hg-55",
+    "scores": {
+      "retention": 92,
+      "quizzes": 78,
+      "transfer": 74,
+      "practical": 84,
+      "summaries": 82,
+      "tone": 83,
+      "limits": 94,
+      "insight": 88,
+      "density": 73,
+      "beginner": 87
+    },
+    "composite": 83.5,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "c",
+        "a",
+        "b",
+        "b",
+        "a",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Panic is a poor coach. Calm gives the future a vote.",
+        "why": "A compact, memorable statement of both the problem and the core mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.",
+        "why": "This gives the method an unusually clear and useful boundary.",
+        "verified": true
+      },
+      {
+        "quote": "The visible cost buys Landon the flexible state Amelie will need when the pastry feels urgent.",
+        "why": "This misleadingly treats leaving a snack table as if it demonstrably produces the physiological flexibility discussed in the cited research.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+        "why": "Generic closing language adds no mechanism, consequence, or transferable detail.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b repeats the chapter's distinctive beat-to-beat flexibility language.",
+      "Choice c echoes the prose's social-judgment-without-physical-danger formulation.",
+      "Choice c is the only option using the chapter's linked vocabulary of stress, quick relief, and returning goals.",
+      "Choice a closely reproduces the stated meditation mechanism; the other choices use unsupported absolutes.",
+      "Choice b closely matches Review Card 5's wording about body signals, arousal, and attention.",
+      "Choice b repeats the chapter's room metaphor and goal-weighing mechanism.",
+      "Choice a nearly restates the sleep paragraph's tired-attention and competing-cue explanation.",
+      "Choice a reproduces the exact three benefits of movement listed in the prose.",
+      "Choice c repeats the chapter's signature wording about runway before the craving peaks."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "The example claims that paying a visible social cost buys a flexible physiological state, but the chapter only establishes that variability is associated with self-regulation; it does not show that leaving the table produces that state. This is a misleading example.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 2",
+        "problem": "The scenario ends after calmer rehearsal and never shows the analyst update or any consequence, making it a thin-but-usable illustration rather than a demonstrated before-to-after transfer case.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 3",
+        "problem": "Sierra takes one breath and immediately 'sees the lesson,' but the example shows no later temptation, decision, or consequence; it largely restates the teaching.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz",
+        "problem": "Most correct choices closely reproduce distinctive phrases from the chapter while distractors rely on conspicuous absolutes or mechanisms never mentioned, allowing recognition and test-taking strategy to substitute for understanding.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q5",
+        "problem": "A simple day-level association between breathing and fewer angry replies cannot identify whether direct physiological regulation or temporary distraction caused the change, although the stem asks for the mechanism.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples",
+        "problem": "Six examples repeatedly perform the same calm-before-choice move, with several paragraphs devoted to a separate 'first cost' frame that is not established as part of this chapter's core mechanism.",
+        "mustFix": false
+      },
+      {
+        "unit": "try this now",
+        "problem": "Sliding the chair back is concrete, but the exercise does not instruct the reader to slow breathing, restore the long goal, or complete the hard action, so it only partially rehearses the chapter's core sequence.",
+        "mustFix": false
+      },
+      {
+        "unit": "review card 6",
+        "problem": "The card depends on unexplained Chapter 1 terminology ('I won't,' 'I will,' and 'I want'), so it is not approachable as a standalone review item for a cold reader.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a memorable core move, strong bodily metaphors, clear mechanisms, practical low-friction actions, and excellent limits around avoidance and emergencies. Its quiz is derivable but too often gives away the answers through near-verbatim wording, and Q5 overstates what its observational setup can establish. Transfer is weakened by repetitive scenarios, thin outcomes, and especially Example 1's unsupported causal leap from leaving a snack table to acquiring physiological flexibility. That misleading example blocks shipment despite otherwise professional teaching quality.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "e8f31cd215f43aa35f893430e16d2e7d0350bef6944302889594aa16d7a6ba08",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:43:29.762Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "d81503a00b8c89cb556ca98fa840629413cb472d8871af8236fbdc5f0d7b5afd",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:42:13.875Z",
+  "durationMs": 0
+}

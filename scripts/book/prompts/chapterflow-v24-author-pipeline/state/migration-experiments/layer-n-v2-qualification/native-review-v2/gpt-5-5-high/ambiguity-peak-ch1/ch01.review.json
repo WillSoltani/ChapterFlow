@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "ambiguity-peak-ch1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "d6d96d66fb65cabe",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-peak-ch1-mrh82dtt-33",
+  "scores": {
+    "retention": 92,
+    "quizzes": 70,
+    "transfer": 89,
+    "practical": 91,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 88,
+    "insight": 90,
+    "density": 84,
+    "beginner": 91
+  },
+  "composite": 86.9,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "a",
+      "c",
+      "b",
+      "b",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=a key=b"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "Memorable, compact statement of the chapter's core mechanism.",
+      "verified": true
+    },
+    {
+      "quote": "Purposeful practice begins when effort stops being a count of repetitions and becomes a correction loop: one target, one stretch, one feedback signal, one changed next attempt.",
+      "why": "The key takeaway is accurate, complete, and standalone.",
+      "verified": true
+    },
+    {
+      "quote": "b) Slow the two-measure turn, record only that passage, and change fingering before the next attempt.",
+      "why": "This is also a valid purposeful-practice answer, making Q1 underdetermined.",
+      "verified": true
+    },
+    {
+      "quote": "a) Enjoyable repetition may build comfort while leaving size differences untouched.",
+      "why": "This overlaps with the likely Q6 key enough to weaken quiz fairness.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Choices a and b are near twins, which exposes the under-keying rather than helping a clean guess.",
+    "b and c use the condemned broad/full-work patterns, making a easy to spot.",
+    "c closely restates the chapter's core criticism.",
+    "a uses giveaway phrasing with 'hope'; b is the only option with cue plus feedback.",
+    "b contains the chapter keyword 'feedback'.",
+    "",
+    "c repeats the chapter's 'next attempt' language almost verbatim.",
+    "a is longest and contains the obvious feedback-loop wording.",
+    "c is uniquely concrete while a and b are vague/heroic."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "STRUCTURALLY INVALID: choices a and b both isolate the same two-measure fault, record feedback, and change the next attempt; the prose gives no basis to prefer hand motion over fingering.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "Distractor overlap: choice a also follows the chapter's comfort-leaves-the-weak-spot-hidden logic, though b is the better fit because it adds a visible size target.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several keys are guessable because the correct option alone uses the chapter's repeated feedback-loop wording while distractors say 'hope,' broad rereading, or full-volume practice.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear correction-loop model, memorable lines, varied domains, practical if-then transfer, and honest limits about late feedback and badly chosen goals. I would not ship it yet because Q1 is genuinely broken: two answers are supported by the prose. After that fix, the chapter is comfortably professional, with only minor quiz-tell and distractor-overlap cleanup needed.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "0101c54d532d766ca9f03ab698a6a406fef0e6434a0a0b6c8bc2167bd624f9ad",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T03:18:04.655Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "79e97290ba7d471fbc47e9d5f8132af25e0ab1aea4e6082154f75528dd784747",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "bcecee16b6861bbf3921d19807c73116f52b3d8dad3e58416a58d9f00613360d",
+    "phase2DocSha256": "6e7adb019ae11462e43cfb978b37916b6796c7675d57257709d18d5018167458",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-peak-ch1-mrh8429b-34",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 0,
+        "agreement": false,
+        "keyCorrect": "ambiguous",
+        "rationale": "Both a and b isolate the same two-measure fault, add recording feedback, and make a concrete next-attempt adjustment; the stem gives no basis to prefer fingering over hand motion."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a uniquely isolates the repeated redox error and uses step-level feedback to revise the first failing step."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c correctly identifies the flaw as whole-performance repetition that lets the same weak slide persist."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b uniquely supplies a targeted cue, feedback by video, and repeated correction before adding distance."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b captures the feedback loop in which each miss changes the next grouping strategy."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "ambiguous",
+        "rationale": "Choice b is stronger, but a is also defensible because it says repetition can build comfort while leaving the uneven cuts unchanged."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c is the only option that makes feedback useful by changing the next attempt while the error remains traceable."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a correctly favors the shorter practice loop where template feedback alters the next small batch."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c uniquely turns the vague goal into a specific, visible, repeatable target with clean feedback."
+      }
+    ],
+    "ambiguousCount": 2,
+    "keyWrongCount": 0
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-the-power-of-moments-ch2",
+  "itemId": "hardblocker-the-power-of-moments-ch2",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "224a97a6bd3fe60e",
+  "renderedDocSha256": "8216dd8f8e01d3cd28f1550ccad8e78c87c008d2b999919d1308331e4bb35daa",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "00d46373aa069a41448fa5a0731c8f876bc9a16f37e570ca47b0e086b0066843",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-high-hardblocker-the-power-of-moments-ch2-mrh69ho9-28",
+  "rawFinalMessageSha256": "5a3096b0547d16d1e79192394f339c5e39b8468bc773df4b3278afa2130b2b91",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"c\", \"b\", \"b\", \"a\", \"c\", \"b\", \"a\", \"a\"],\n    \"mechanisms\": [\n      \"The prose says to look first at transitions, milestones, and pits, which map to welcome, award, and complaint moments.\",\n      \"The John Deere lesson says the first-day ritual should link factory work to real users before routine tasks take over.\",\n      \"The Mary Kay example works because the pink Cadillac makes a sales milestone visible and public.\",\n      \"Joshie shows that finding the item is not enough; the repair needs proof of care that changes the story.\",\n      \"The chapter explicitly says more forms do not improve the first day; purpose has to arrive before procedure.\",\n      \"The prose says progress needs a marker before it becomes a memory, not just a private or data-only record.\",\n      \"The pit lesson says a practical fix plus a polished apology can still miss the moment unless care becomes concrete.\",\n      \"Eric's correction is to ask where meaning and memory are assigned, not to follow the busiest handoff automatically.\",\n      \"The chapter warns that a low point gets sticky unless the ending people carry away is changed.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Correct choice c lists welcome, award, complaint, visibly mapping to transition, milestone, pit.\",\n      \"Correct choice c repeats the chapter's distinctive 'customer purpose' phrasing.\",\n      \"Correct choice b repeats the chapter's visible/public milestone language.\",\n      \"Correct choice b uses the giveaway phrase 'proof of care.'\",\n      \"Correct choice a repeats 'purpose before the packet' from the prose.\",\n      \"Correct choice c is the only option with the chapter's marker/image logic.\",\n      \"Correct choice b repeats the chapter's 'care story' mechanism.\",\n      \"Correct choice a is the only option using the chapter's 'sum up the relationship' idea.\",\n      \"Correct choice a repeats the chapter's warning that a low point can harden.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 82,\n    \"transfer\": 70,\n    \"practical\": 84,\n    \"summaries\": 89,\n    \"tone\": 86,\n    \"limits\": 82,\n    \"insight\": 87,\n    \"density\": 84,\n    \"beginner\": 90\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The busy middle is not the whole story.\",\n      \"why\": \"This is the chapter's strongest memorable compression of the core move.\"\n    },\n    {\n      \"quote\": \"At a transition, frame the purpose; at a milestone, make progress visible; at a pit, repair the meaning.\",\n      \"why\": \"This gives a clear, transferable if-then structure.\"\n    },\n    {\n      \"quote\": \"Then again, he should move the circle back to the crowded handoff, since the busiest, highest-traffic step is exactly the moment people use to sum up the whole relationship.\",\n      \"why\": \"This directly contradicts the same example's lesson and the chapter's repeated warning.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The 'What to do' first says Eric should move attention from the crowded handoff to the first encounter, then says he should move it back because the busiest step is exactly what people use to sum up the relationship. This contradicts the chapter's own mechanism.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Several correct answers reuse exact chapter phrases, making some questions guessable without reading closely.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The chore-chart transfer is usable but thin: it gives a small before-after move without much consequence beyond restating that visible markers help progress.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter teaches a strong, memorable core move: scan for transitions, milestones, and pits instead of polishing the busy middle. The summaries layer well, the prose is beginner-friendly, and the practical prompts are concrete enough to use. The quiz is fair but somewhat over-signaled by repeated wording. The main blocker is Example 4, where the action step contradicts the chapter's central claim and would teach the wrong choice; with that fixed, this would likely clear a professional bar.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-the-power-of-moments-ch2-chapter",
+    "chapterNumber": 2,
+    "contentHash": "224a97a6bd3fe60e",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-high-hardblocker-the-power-of-moments-ch2-mrh69ho9-28",
+    "scores": {
+      "retention": 88,
+      "quizzes": 82,
+      "transfer": 70,
+      "practical": 84,
+      "summaries": 89,
+      "tone": 86,
+      "limits": 82,
+      "insight": 87,
+      "density": 84,
+      "beginner": 90
+    },
+    "composite": 84,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "c",
+        "b",
+        "b",
+        "a",
+        "c",
+        "b",
+        "a",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The busy middle is not the whole story.",
+        "why": "This is the chapter's strongest memorable compression of the core move.",
+        "verified": true
+      },
+      {
+        "quote": "At a transition, frame the purpose; at a milestone, make progress visible; at a pit, repair the meaning.",
+        "why": "This gives a clear, transferable if-then structure.",
+        "verified": true
+      },
+      {
+        "quote": "Then again, he should move the circle back to the crowded handoff, since the busiest, highest-traffic step is exactly the moment people use to sum up the whole relationship.",
+        "why": "This directly contradicts the same example's lesson and the chapter's repeated warning.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Correct choice c lists welcome, award, complaint, visibly mapping to transition, milestone, pit.",
+      "Correct choice c repeats the chapter's distinctive 'customer purpose' phrasing.",
+      "Correct choice b repeats the chapter's visible/public milestone language.",
+      "Correct choice b uses the giveaway phrase 'proof of care.'",
+      "Correct choice a repeats 'purpose before the packet' from the prose.",
+      "Correct choice c is the only option with the chapter's marker/image logic.",
+      "Correct choice b repeats the chapter's 'care story' mechanism.",
+      "Correct choice a is the only option using the chapter's 'sum up the relationship' idea.",
+      "Correct choice a repeats the chapter's warning that a low point can harden."
+    ],
+    "complaints": [
+      {
+        "unit": "example 4",
+        "problem": "The 'What to do' first says Eric should move attention from the crowded handoff to the first encounter, then says he should move it back because the busiest step is exactly what people use to sum up the relationship. This contradicts the chapter's own mechanism.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz",
+        "problem": "Several correct answers reuse exact chapter phrases, making some questions guessable without reading closely.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The chore-chart transfer is usable but thin: it gives a small before-after move without much consequence beyond restating that visible markers help progress.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter teaches a strong, memorable core move: scan for transitions, milestones, and pits instead of polishing the busy middle. The summaries layer well, the prose is beginner-friendly, and the practical prompts are concrete enough to use. The quiz is fair but somewhat over-signaled by repeated wording. The main blocker is Example 4, where the action step contradicts the chapter's central claim and would teach the wrong choice; with that fixed, this would likely clear a professional bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "d34e2478b0e69c8f68bfe3315a63c464c20884e393cabe4617ef1218772bf085",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:26:58.811Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "00d46373aa069a41448fa5a0731c8f876bc9a16f37e570ca47b0e086b0066843",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "Then again, he should move the circle back to the crowded handoff, since the busiest, highest-traffic step is exactly the moment people use to sum up the whole relationship."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:26:18.680Z",
+  "durationMs": 0
+}

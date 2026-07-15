@@ -1,0 +1,22 @@
+{
+  "schema": "codex-process-diagnostics-v1",
+  "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-reader-a1",
+  "requestSha256": "ead7400756501560641b3add6f2d2ad7460fe14f5745a39b670ccd5a7b9ed86a",
+  "sessionId": "imp24e-schema-probe-5ec36418243e980c7d6a63a4ed513460b96b982242d5ea9299194a22b1fb3dd9",
+  "invocation": "RUNNER_RETURNED",
+  "classification": "completed",
+  "failureKind": null,
+  "errorName": null,
+  "errorMessage": null,
+  "timedOut": false,
+  "exitCode": 0,
+  "stdoutBytes": 592,
+  "stderrBytes": 1867,
+  "stdoutSha256": "1dddd8c1ee40890234974147ddfbfa0fd2658973f44ba4ef536c3465a6a29cbd",
+  "stderrSha256": "69bf4ff817444fda947730038bee74192f17d9cbef3a7b9894847815b50fb83d",
+  "stdoutRetained": "{\"schema\":\"reader-experience-model-output-v2\",\"scores\":{\"retention\":50,\"quizzes\":50,\"transfer\":50,\"practical\":50,\"summaries\":50,\"tone\":50,\"limits\":50,\"insight\":50,\"density\":50,\"beginner\":50},\"quizDerivation\":{\"answers\":[\"a\"],\"mechanisms\":[\"synthetic mechanism\"],\"confidence\":[\"high\"],\"ambiguities\":[],\"tells\":[],\"evidenceRefIds\":[[\"probe.chapter.1\"]]},\"recommendation\":\"SHIP\",\"blockingFindings\":[],\"escalationSignals\":[],\"advisoryFindings\":[],\"strongestEvidenceRefIds\":[\"probe.chapter.1\"],\"weakestEvidenceRefIds\":[\"probe.chapter.1\"],\"oneParagraphVerdict\":\"Synthetic transport probe output.\"}\n",
+  "stderrRetained": "Reading additional input from stdin...\nOpenAI Codex v0.144.1\n--------\nworkdir: /private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-schema-probes/live/workspaces/reader\nmodel: gpt-5.6-sol\nprovider: openai\napproval: never\nsandbox: read-only\nreasoning effort: high\nreasoning summaries: none\nsession id: 019f6193-1d49-7301-8009-bba2b0199ed0\n--------\nuser\nIMP-24E reader transport-schema probe only.\nThis is synthetic and must not be treated as a review or qualification judgment.\nReturn exactly the following smallest valid JSON object and no prose:\n{\"advisoryFindings\":[],\"blockingFindings\":[],\"escalationSignals\":[],\"oneParagraphVerdict\":\"Synthetic transport probe output.\",\"quizDerivation\":{\"ambiguities\":[],\"answers\":[\"a\"],\"confidence\":[\"high\"],\"evidenceRefIds\":[[\"probe.chapter.1\"]],\"mechanisms\":[\"synthetic mechanism\"],\"tells\":[]},\"recommendation\":\"SHIP\",\"schema\":\"reader-experience-model-output-v2\",\"scores\":{\"beginner\":50,\"density\":50,\"insight\":50,\"limits\":50,\"practical\":50,\"quizzes\":50,\"retention\":50,\"summaries\":50,\"tone\":50,\"transfer\":50},\"strongestEvidenceRefIds\":[\"probe.chapter.1\"],\"weakestEvidenceRefIds\":[\"probe.chapter.1\"]}\ncodex\n{\"schema\":\"reader-experience-model-output-v2\",\"scores\":{\"retention\":50,\"quizzes\":50,\"transfer\":50,\"practical\":50,\"summaries\":50,\"tone\":50,\"limits\":50,\"insight\":50,\"density\":50,\"beginner\":50},\"quizDerivation\":{\"answers\":[\"a\"],\"mechanisms\":[\"synthetic mechanism\"],\"confidence\":[\"high\"],\"ambiguities\":[],\"tells\":[],\"evidenceRefIds\":[[\"probe.chapter.1\"]]},\"recommendation\":\"SHIP\",\"blockingFindings\":[],\"escalationSignals\":[],\"advisoryFindings\":[],\"strongestEvidenceRefIds\":[\"probe.chapter.1\"],\"weakestEvidenceRefIds\":[\"probe.chapter.1\"],\"oneParagraphVerdict\":\"Synthetic transport probe output.\"}\ntokens used\n14,253\n",
+  "stdoutTruncated": false,
+  "stderrTruncated": false,
+  "diagnosticsSha256": "3807b5c2ffc8c51bcb93d06c523f0c101ec3b7b693ec9dcd43b054122e0f2058"
+}

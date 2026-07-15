@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-quiz-1783911978230-19-e8f6fa8f-1371-43cd-8451-b1fe6222134b",
+  "status": "completed",
+  "role": "quiz",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+  "rawOutput": "{\"schema\":\"quiz-integrity-adjudication-v1\",\"items\":[{\"itemId\":\"ch02-q01\",\"keyedAnswerIndex\":0,\"derivedAnswerIndex\":1,\"agreement\":false,\"keyCorrect\":\"wrong\",\"rationale\":\"The chapter’s peak-end rule and duration neglect support choice 1, not keyed choice 0, so only index 1 is defensible.\",\"defensibleAnswerIndices\":[1],\"keyedMechanismSupported\":false}]}"
+}

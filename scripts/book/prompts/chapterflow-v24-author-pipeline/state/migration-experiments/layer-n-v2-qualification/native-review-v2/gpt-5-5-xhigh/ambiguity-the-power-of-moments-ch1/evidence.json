@@ -1,0 +1,292 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "ambiguity-the-power-of-moments-ch1",
+  "itemId": "ambiguity-the-power-of-moments-ch1",
+  "kind": "quiz-ambiguity",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "c50f093de42fb247",
+  "renderedDocSha256": "157ebb3678e4023b8a156ac8f5161d41fa1ef3b285d6be8962c595117ae90f11",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "29fa11f8cb76c6db91c6915f440cec43ddfd1a6dbe01006898c2f05f1638f3d9",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-ambiguity-the-power-of-moments-ch1-mrhb1147-31",
+  "rawFinalMessageSha256": "12be106ec68208567348c108a3970ecdaa6b09ab2245016affff28f745b1b634",
+  "rawFinalMessage": "```json\n{\n  \"schema\": \"quiz-adjudication-v1\",\n  \"derivationSha256\": \"a1e587685b688814cbe0b38a889ccc7b0c23f3e7c07243ad33d880cc3f38bf5e\",\n  \"documentSha256\": \"\",\n  \"reviewerSessionId\": \"\",\n  \"items\": [\n    {\n      \"itemId\": \"q01\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b is supported because the scenario isolates a calmer ending as improving remembered experience rather than total duration.\"\n    },\n    {\n      \"itemId\": \"q02\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b best captures making an ordinary arrival memorable through one vivid, tellable surprise.\"\n    },\n    {\n      \"itemId\": \"q03\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": false,\n      \"keyCorrect\": \"ambiguous\",\n      \"rationale\": \"Choices a and b are both defensible: the clapping supports public witnessing, while naming the next unit before departure supports threshold-marking.\"\n    },\n    {\n      \"itemId\": \"q04\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c directly names the four memorable-experience ingredients: elevation, insight, pride, and connection.\"\n    },\n    {\n      \"itemId\": \"q05\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a matches the red-phone lesson that a single visible object can signal a changed script.\"\n    },\n    {\n      \"itemId\": \"q06\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b is best because the gift becomes memorable through staged delivery, request, and reveal rather than cost or quiet availability.\"\n    },\n    {\n      \"itemId\": \"q07\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c is supported because the open hour should mark the shared threshold before assignments scatter into private logistics.\"\n    },\n    {\n      \"itemId\": \"q08\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a is the false assumption; the scenario points to peak-end effects rather than equal averaging of every minute.\"\n    },\n    {\n      \"itemId\": \"q09\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c best diagnoses that the free mint lacks a tellable format, unlike a staged memorable gift.\"\n    }\n  ]\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "ambiguity-the-power-of-moments-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "c50f093de42fb247",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-ambiguity-the-power-of-moments-ch1-mrhb1147-31",
+    "scores": {
+      "retention": 91,
+      "quizzes": 68,
+      "transfer": 82,
+      "practical": 87,
+      "summaries": 90,
+      "tone": 86,
+      "limits": 92,
+      "insight": 88,
+      "density": 82,
+      "beginner": 93
+    },
+    "composite": 85.5,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 8,
+      "of": 9,
+      "disagreements": [
+        "Q3: reader=b key=a"
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.",
+        "why": "This is the chapter's clearest, most memorable mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "A concrete object can tell people the script has changed.",
+        "why": "This compresses the red-phone lesson into a transferable rule.",
+        "verified": true
+      },
+      {
+        "quote": "New nurses finish a hard training course. The director can file their certificates or ask them to name their next unit before the team claps.",
+        "why": "This quiz setup activates both pride/public witnessing and threshold-marking, creating two defensible answers.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q2, Q5, Q6, Q7, and Q9 use giveaway chapter phrases such as 'tellable,' 'script has changed,' 'small event,' and 'private logistics.'",
+      "Several distractors are exaggerated absolutes or delays, such as 'leave the finish alone,' 'Plan no guest moments,' 'only later,' and 'higher cost.'",
+      "Q3 has two lesson-shaped positive answers, which makes the intended key under-determined rather than merely hard."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q3",
+        "problem": "Options a and b are both directly supported by the prose, so the question has no single derivable key.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz overall",
+        "problem": "Several correct options repeat exact lesson language while distractors use obvious overstatements, creating answer tells.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "Thin-but-usable example: the trainer scenario is generic and the consequence is asserted more than shown.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "Thin-but-usable example: it repeats the cold-water framing for Leah rather than adding a fresh before-to-after consequence.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter is strong on memory, clarity, and beginner access: the red phone, cold-water contrast, and YES Prep threshold give readers concrete handles they can remember and use. The summaries and limits are unusually solid, and the practical actions are low-friction. I would not ship it yet against a professional bar because Q3 is a broken quiz item with two defensible answers, and the quiz overall has some answer-spotting tells. Fixing that would likely move the chapter into ship range.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "9779626de7ddd1c6da5befa7f58455dab7e2177451e43e194d8ddb0d3e719ea4",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:41:23.821Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "29fa11f8cb76c6db91c6915f440cec43ddfd1a6dbe01006898c2f05f1638f3d9",
+    "quizAdjudication": {
+      "status": "adjudicated",
+      "derivationSha256": "a1e587685b688814cbe0b38a889ccc7b0c23f3e7c07243ad33d880cc3f38bf5e",
+      "phase2DocSha256": "4d454ce395554a61a9df1db1c776656f9f720620ac7ca064cfda4dd7fb7edd10",
+      "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-xhigh-ambiguity-the-power-of-moments-ch1-mrhb37n1-32",
+      "items": [
+        {
+          "itemId": "q01",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is supported because the scenario isolates a calmer ending as improving remembered experience rather than total duration."
+        },
+        {
+          "itemId": "q02",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b best captures making an ordinary arrival memorable through one vivid, tellable surprise."
+        },
+        {
+          "itemId": "q03",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 1,
+          "agreement": false,
+          "keyCorrect": "ambiguous",
+          "rationale": "Choices a and b are both defensible: the clapping supports public witnessing, while naming the next unit before departure supports threshold-marking."
+        },
+        {
+          "itemId": "q04",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c directly names the four memorable-experience ingredients: elevation, insight, pride, and connection."
+        },
+        {
+          "itemId": "q05",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a matches the red-phone lesson that a single visible object can signal a changed script."
+        },
+        {
+          "itemId": "q06",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is best because the gift becomes memorable through staged delivery, request, and reveal rather than cost or quiet availability."
+        },
+        {
+          "itemId": "q07",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c is supported because the open hour should mark the shared threshold before assignments scatter into private logistics."
+        },
+        {
+          "itemId": "q08",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a is the false assumption; the scenario points to peak-end effects rather than equal averaging of every minute."
+        },
+        {
+          "itemId": "q09",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c best diagnoses that the free mint lacks a tellable format, unlike a staged memorable gift."
+        }
+      ],
+      "ambiguousCount": 1,
+      "keyWrongCount": 0
+    }
+  },
+  "phase2": {
+    "status": "adjudicated",
+    "derivationSha256": "a1e587685b688814cbe0b38a889ccc7b0c23f3e7c07243ad33d880cc3f38bf5e",
+    "phase2DocSha256": "4d454ce395554a61a9df1db1c776656f9f720620ac7ca064cfda4dd7fb7edd10",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-xhigh-ambiguity-the-power-of-moments-ch1-mrhb37n1-32",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is supported because the scenario isolates a calmer ending as improving remembered experience rather than total duration."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b best captures making an ordinary arrival memorable through one vivid, tellable surprise."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "ambiguous",
+        "rationale": "Choices a and b are both defensible: the clapping supports public witnessing, while naming the next unit before departure supports threshold-marking."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c directly names the four memorable-experience ingredients: elevation, insight, pride, and connection."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a matches the red-phone lesson that a single visible object can signal a changed script."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is best because the gift becomes memorable through staged delivery, request, and reveal rather than cost or quiet availability."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c is supported because the open hour should mark the shared threshold before assignments scatter into private logistics."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a is the false assumption; the scenario points to peak-end effects rather than equal averaging of every minute."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c best diagnoses that the free mint lacks a tellable format, unlike a staged memorable gift."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 0
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "phase-2 quizAdjudication.items[].keyCorrect==='ambiguous' (+ phase-1 tells)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:39:42.053Z",
+  "durationMs": 0
+}

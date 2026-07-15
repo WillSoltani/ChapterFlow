@@ -1,0 +1,144 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-willpower-instinct-ch01",
+  "itemId": "LNV2-CLEAN-the-willpower-instinct-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "4984962de1bbbc93",
+  "renderedDocSha256": "9fdcea43132a18b37f66e10a6e5f0f334bb83db7bab2c3be3afdbb0a54512823",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-willpower-instinct-ch01-mrh6yiam-1",
+  "rawFinalMessageSha256": "827e42b6c27ea0f82178b9bdd0695a13e4f38707b6bbf0793aa5aa367fd763d1",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"a\", \"a\", \"b\", \"b\", \"b\", \"a\", \"c\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines willpower as I will, I won't, and I want, so the response must include starting, stopping, and remembering the value.\",\n      \"The Miller/Cohen explanation says prefrontal control keeps goals active and biases attention and action while cues compete.\",\n      \"The Gage passage says he survived and could speak, but steadiness, planning, and social restraint changed after frontal injury.\",\n      \"The self-awareness passage says change begins by noticing the moment before action, not regret after the lapse.\",\n      \"The chapter frames self-control as social: waiting turns, keeping promises, repairing conflict, and protecting trust.\",\n      \"The snack example says a real value can lose if it is quiet or absent at the cue, so it must be made present at choice time.\",\n      \"The chapter rejects hero/villain splitting and says both shorter relief and longer goals can be real; support determines which guides action.\",\n      \"The concrete-challenge section says specific actions reveal cues, barriers, values, and feedback for the next experiment.\",\n      \"The Amelia/form conflict shows prefrontal control biasing attention and response when an automatic routine clashes with the current goal.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Several wrong answers are guessable because they use absolutes or cartoon claims such as 'only,' 'fake,' 'no value,' and 'avoid cooperation.'\",\n      \"Q1's correct answer closely mirrors the chapter's exact three-part formula, while the distractors are narrower or moralizing.\",\n      \"No consistent uniquely-longest-choice tell appears.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 78,\n    \"transfer\": 82,\n    \"practical\": 81,\n    \"summaries\": 88,\n    \"tone\": 86,\n    \"limits\": 85,\n    \"insight\": 89,\n    \"density\": 84,\n    \"beginner\": 90\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Refusal is only one third of willpower. When a lapse repeats, ask which power went quiet before you call yourself weak.\",\n      \"why\": \"This is the chapter's clearest, most memorable reframing.\"\n    },\n    {\n      \"quote\": \"A goal must be present to have power.\",\n      \"why\": \"Short line that captures the mechanism behind the whole lesson.\"\n    },\n    {\n      \"quote\": \"Weekly practice: For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check and compare which half made the next action clearer.\",\n      \"why\": \"The comparison task is more artificial than the otherwise low-friction advice.\"\n    },\n    {\n      \"quote\": \"b) The saving goal must be fake whenever opening the sale tab feels relieving.\",\n      \"why\": \"This distractor is so extreme that it weakens the quiz as evidence of understanding.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"Several distractors are implausibly absolute or moralizing, letting a reader eliminate them without relying much on the prose.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"The correct option repeats the chapter's three-part formula almost verbatim, making the item easier than it needs to be.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"Thin-but-usable example: it names the cue and value but gives little before-to-after consequence after Brooklyn names the running goal.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples 2-6\",\n      \"problem\": \"The repeated Miller/Cohen explanation makes several transfer examples feel formulaic rather than distinct.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"weekly practice\",\n      \"problem\": \"Asking readers to spend half the week using the weaker all-or-nothing rule is a slightly theatrical comparison exercise, not the chapter's most practical move.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong opening chapter: the core move is memorable, concrete, and well explained through the three-power frame, with enough brain mechanism to make it feel grounded without becoming technical. The quizzes are fair and derivable, but too many distractors are obvious straw choices, so the assessment under-measures real comprehension. Transfer is usable across spending, food, anger, clinical work, and family obligations, though a few examples repeat the same explanatory beat. No must-fix reader-harming defects appear; it ships, with quiz sharpening as the main improvement.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-willpower-instinct-ch01",
+    "chapterNumber": 1,
+    "contentHash": "4984962de1bbbc93",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-the-willpower-instinct-ch01-mrh6yiam-1",
+    "scores": {
+      "retention": 90,
+      "quizzes": 78,
+      "transfer": 82,
+      "practical": 81,
+      "summaries": 88,
+      "tone": 86,
+      "limits": 85,
+      "insight": 89,
+      "density": 84,
+      "beginner": 90
+    },
+    "composite": 85.1,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "a",
+        "a",
+        "b",
+        "b",
+        "b",
+        "a",
+        "c",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Refusal is only one third of willpower. When a lapse repeats, ask which power went quiet before you call yourself weak.",
+        "why": "This is the chapter's clearest, most memorable reframing.",
+        "verified": true
+      },
+      {
+        "quote": "A goal must be present to have power.",
+        "why": "Short line that captures the mechanism behind the whole lesson.",
+        "verified": true
+      },
+      {
+        "quote": "Weekly practice: For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check and compare which half made the next action clearer.",
+        "why": "The comparison task is more artificial than the otherwise low-friction advice.",
+        "verified": true
+      },
+      {
+        "quote": "b) The saving goal must be fake whenever opening the sale tab feels relieving.",
+        "why": "This distractor is so extreme that it weakens the quiz as evidence of understanding.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Several wrong answers are guessable because they use absolutes or cartoon claims such as 'only,' 'fake,' 'no value,' and 'avoid cooperation.'",
+      "Q1's correct answer closely mirrors the chapter's exact three-part formula, while the distractors are narrower or moralizing.",
+      "No consistent uniquely-longest-choice tell appears."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "Several distractors are implausibly absolute or moralizing, letting a reader eliminate them without relying much on the prose.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1",
+        "problem": "The correct option repeats the chapter's three-part formula almost verbatim, making the item easier than it needs to be.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "Thin-but-usable example: it names the cue and value but gives little before-to-after consequence after Brooklyn names the running goal.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples 2-6",
+        "problem": "The repeated Miller/Cohen explanation makes several transfer examples feel formulaic rather than distinct.",
+        "mustFix": false
+      },
+      {
+        "unit": "weekly practice",
+        "problem": "Asking readers to spend half the week using the weaker all-or-nothing rule is a slightly theatrical comparison exercise, not the chapter's most practical move.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong opening chapter: the core move is memorable, concrete, and well explained through the three-power frame, with enough brain mechanism to make it feel grounded without becoming technical. The quizzes are fair and derivable, but too many distractors are obvious straw choices, so the assessment under-measures real comprehension. Transfer is usable across spending, food, anger, clinical work, and family obligations, though a few examples repeat the same explanatory beat. No must-fix reader-harming defects appear; it ships, with quiz sharpening as the main improvement.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c412cf1d517372befed726feded2c9a6f655d199dca4e5736b7138dc087d359a",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:47:12.926Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:45:45.883Z",
+  "durationMs": 0
+}

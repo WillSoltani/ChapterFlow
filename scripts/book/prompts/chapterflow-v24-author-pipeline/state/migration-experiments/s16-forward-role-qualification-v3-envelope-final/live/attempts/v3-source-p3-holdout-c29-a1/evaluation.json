@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c29-a1",
+  "requestSha256": "c11682f96237ddc16f4f92de9f403403eda8defb9852fa2a2f4f1f78fa29f374",
+  "receiptSha256": "37e107c808c40ee328a3a52eae6123fff0c3d6f6591ddd7bffe56993e62072df",
+  "executionEvidenceSha256": "382782501d782ee9139f6544315f60920a0569406462b155dfee6e9d6507ec87",
+  "rawOutputSha256": "438cb02a3109c9b8a53daee043d9abfaee896ede7960eeed2a7133a693c7b322",
+  "evaluationSha256": "9caa020442de340a94d991998f19719fdcb6cd65b47be8e25813aef9960271cf",
+  "parsedOutputSha256": "d82fbe564ca1cbddbffb296d1d4493540489377f58c160f202894d6eb0a25f66",
+  "assembledReviewSha256": "a6aaf2e36330dd3642504ca1caf4221f3d798726164654a0d4195490f9055465",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter presents a generic operational scenario using an allowed role label, observable action, constraint, and workflow step. It remains descriptive, introduces no forbidden specificity, and requires no source or additional framing under the plan."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "bfba21eedcdf8a8cdb9c68a81c9c8b84bf4a159e84af3f84e97757784ce9c954",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "dd1ad657bf39f09adbc91b0be919712b583e87a50ec64d4af2ac1cfb6ccf3ac3",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter presents a generic operational scenario using an allowed role label, observable action, constraint, and workflow step. It remains descriptive, introduces no forbidden specificity, and requires no source or additional framing under the plan.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter presents a generic operational scenario using an allowed role label, observable action, constraint, and workflow step. It remains descriptive, introduces no forbidden specificity, and requires no source or additional framing under the plan."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "593b69dc664e27382ce545779e804a625783fc413eb8aad624f4c23da8cb1dbc"
+}

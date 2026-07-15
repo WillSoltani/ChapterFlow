@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-quiz-1783906213542-9-20becbec-e88c-416b-a1b8-152a377f99e1",
+  "status": "completed",
+  "role": "quiz",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+  "rawOutput": "{\"schema\":\"quiz-integrity-adjudication-v1\",\"items\":[{\"itemId\":\"imp22-decisive-ch02-q01-arousal-pause-overreach-cal-01\",\"keyedAnswerIndex\":0,\"derivedAnswerIndex\":1,\"agreement\":false,\"keyCorrect\":\"wrong\",\"rationale\":\"Choice b is best supported because the evidence permits a bounded may-help mechanism, whereas choice a makes an unsupported guarantee that the key's own explanation rejects.\",\"defensibleAnswerIndices\":[1],\"keyedMechanismSupported\":false}]}"
+}

@@ -1,0 +1,172 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-the-power-of-moments-ch1",
+  "itemId": "hardblocker-the-power-of-moments-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "e70bf662688410ec",
+  "renderedDocSha256": "cbc8ec485a82e82a0020207347839b48728985d738d6ca7647e33b313429f0b5",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "dd0ba045f7045c043b9d9b615ec1282fbc2955972c2b2a7fd376addd0d6a2658",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-hardblocker-the-power-of-moments-ch1-mrh93662-58",
+  "rawFinalMessageSha256": "1aa50564fbd6815de12fcfcf8199d96c5d4572f3c79b7179d693dfbe33750342",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"a\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The cold-water study shows that a milder ending can improve recall even when the total episode is longer.\",\n      \"The red phone demonstrates that a vivid, tellable delivery can turn an ordinary setting into a memorable experience.\",\n      \"YES Prep makes achievement meaningful by letting peers and adults publicly witness students' effort.\",\n      \"The prose explicitly names elevation, insight, pride, and connection as the four ingredients.\",\n      \"The red phone is the chapter's model for using a concrete object to announce a changed script.\",\n      \"The popsicle becomes memorable because the request, phone, and tray turn delivery into an event.\",\n      \"The chapter says to mark thresholds before the next stage dissolves into private logistics.\",\n      \"The prose says memory does not average every minute; it disproportionately retains the peak and ending.\",\n      \"The chapter contrasts a tellable delivery with a quiet free item that leaves no story.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"\",\n      \"Choice b alone uses the chapter's signature ideas of a vivid surprise and changing an ordinary script.\",\n      \"Choice a echoes the prose's distinctive language about making effort visible and witnessed.\",\n      \"Choice c simply enumerates all four named ingredients, while the distractors plainly omit them.\",\n      \"Choice a repeats the memorable line about a visible object changing the script.\",\n      \"Choice b is the only option describing an event rather than merely offering an item.\",\n      \"Choice c is the most specific and repeats the chapter's phrase about private logistics.\",\n      \"The negative stem makes a the only false statement; b and c are conspicuously accurate summaries.\",\n      \"Choice c is the longest and repeats the chapter's distinctive contrast between a tellable experience and a quiet free item.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 91,\n    \"quizzes\": 80,\n    \"transfer\": 62,\n    \"practical\": 92,\n    \"summaries\": 90,\n    \"tone\": 88,\n    \"limits\": 95,\n    \"insight\": 89,\n    \"density\": 78,\n    \"beginner\": 94\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"A small peak can become the story of the whole stay.\",\n      \"why\": \"This compact, concrete line makes the chapter's central move easy to remember.\"\n    },\n    {\n      \"quote\": \"This idea fails when the basic promise is broken.\",\n      \"why\": \"The chapter clearly limits moment design instead of presenting it as a substitute for sound fundamentals.\"\n    },\n    {\n      \"quote\": \"The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight.\",\n      \"why\": \"This directly reverses both the cold-water finding and the surrounding explanation.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"Margaret is presented as a specific parent having an observed experience, but the chapter provides no indication that she is real or labels her as hypothetical; this makes the example misleadingly factual.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"Lorne is presented as a specific YES Prep student in an actual-seeming event without being identified as a hypothetical or composite, creating a fabricated/misleading example.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"The invented trainer wrapper is presented as an actual scenario rather than being clearly labeled hypothetical.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"Its 'What to do' section says memory records total duration and gives final moments no special weight, directly contradicting the study, the chapter's core mechanism, and the example's own 'Why it matters' section.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"Trainer Tristan and his training session are presented as a concrete occurrence without being labeled hypothetical, making the example fabricated/misleading.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"Leah and her mentoring situation are narrated as concrete events without any disclosure that the character is hypothetical or composite.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"The community workshop ritual is narrated as an event that occurred, although no real organizer or workshop is identified and the scenario is not labeled hypothetical.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"examples 3-5\",\n      \"problem\": \"The cold-water comparison is repeated at length across three consecutive examples, reducing density without adding three meaningfully different mechanisms.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q4\",\n      \"problem\": \"The correct option reproduces all four named ingredients, while neither distractor is remotely plausible, so recognition requires almost no understanding.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q8\",\n      \"problem\": \"The negative stem leaves two options that plainly restate the chapter as true, making the remaining false option easy to select by elimination.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter has a strong, memorable core: design a truthful peak, mark a threshold, and give endings deliberate care without using them to conceal a broken experience. Its red-phone image, cold-water mechanism, practical challenge, layered summaries, and unusually clear limits make it approachable and useful. The quiz is fully derivable but often too easy because correct choices repeat signature wording and distractors are implausible. More seriously, Example 3 explicitly teaches the opposite of the chapter's central finding, and several named illustrative scenarios are written as factual occurrences without being labeled hypothetical or composite. Those reader-harming defects block shipment despite otherwise professional teaching and prose.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-the-power-of-moments-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "e70bf662688410ec",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-hardblocker-the-power-of-moments-ch1-mrh93662-58",
+    "scores": {
+      "retention": 91,
+      "quizzes": 80,
+      "transfer": 62,
+      "practical": 92,
+      "summaries": 90,
+      "tone": 88,
+      "limits": 95,
+      "insight": 89,
+      "density": 78,
+      "beginner": 94
+    },
+    "composite": 85.6,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "a",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "A small peak can become the story of the whole stay.",
+        "why": "This compact, concrete line makes the chapter's central move easy to remember.",
+        "verified": true
+      },
+      {
+        "quote": "This idea fails when the basic promise is broken.",
+        "why": "The chapter clearly limits moment design instead of presenting it as a substitute for sound fundamentals.",
+        "verified": true
+      },
+      {
+        "quote": "The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight.",
+        "why": "This directly reverses both the cold-water finding and the surrounding explanation.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "",
+      "Choice b alone uses the chapter's signature ideas of a vivid surprise and changing an ordinary script.",
+      "Choice a echoes the prose's distinctive language about making effort visible and witnessed.",
+      "Choice c simply enumerates all four named ingredients, while the distractors plainly omit them.",
+      "Choice a repeats the memorable line about a visible object changing the script.",
+      "Choice b is the only option describing an event rather than merely offering an item.",
+      "Choice c is the most specific and repeats the chapter's phrase about private logistics.",
+      "The negative stem makes a the only false statement; b and c are conspicuously accurate summaries.",
+      "Choice c is the longest and repeats the chapter's distinctive contrast between a tellable experience and a quiet free item."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "Margaret is presented as a specific parent having an observed experience, but the chapter provides no indication that she is real or labels her as hypothetical; this makes the example misleadingly factual.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 2",
+        "problem": "Lorne is presented as a specific YES Prep student in an actual-seeming event without being identified as a hypothetical or composite, creating a fabricated/misleading example.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 3",
+        "problem": "The invented trainer wrapper is presented as an actual scenario rather than being clearly labeled hypothetical.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 3",
+        "problem": "Its 'What to do' section says memory records total duration and gives final moments no special weight, directly contradicting the study, the chapter's core mechanism, and the example's own 'Why it matters' section.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 4",
+        "problem": "Trainer Tristan and his training session are presented as a concrete occurrence without being labeled hypothetical, making the example fabricated/misleading.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 5",
+        "problem": "Leah and her mentoring situation are narrated as concrete events without any disclosure that the character is hypothetical or composite.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 6",
+        "problem": "The community workshop ritual is narrated as an event that occurred, although no real organizer or workshop is identified and the scenario is not labeled hypothetical.",
+        "mustFix": true
+      },
+      {
+        "unit": "examples 3-5",
+        "problem": "The cold-water comparison is repeated at length across three consecutive examples, reducing density without adding three meaningfully different mechanisms.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q4",
+        "problem": "The correct option reproduces all four named ingredients, while neither distractor is remotely plausible, so recognition requires almost no understanding.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q8",
+        "problem": "The negative stem leaves two options that plainly restate the chapter as true, making the remaining false option easy to select by elimination.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a strong, memorable core: design a truthful peak, mark a threshold, and give endings deliberate care without using them to conceal a broken experience. Its red-phone image, cold-water mechanism, practical challenge, layered summaries, and unusually clear limits make it approachable and useful. The quiz is fully derivable but often too easy because correct choices repeat signature wording and distractors are implausible. More seriously, Example 3 explicitly teaches the opposite of the chapter's central finding, and several named illustrative scenarios are written as factual occurrences without being labeled hypothetical or composite. Those reader-harming defects block shipment despite otherwise professional teaching and prose.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "30c6544b47e299bc1c021e42b9e0686a5a498242d9724d9b38110c44f307a0b0",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:46:40.334Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "dd0ba045f7045c043b9d9b615ec1282fbc2955972c2b2a7fd376addd0d6a2658",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:45:22.681Z",
+  "durationMs": 0
+}

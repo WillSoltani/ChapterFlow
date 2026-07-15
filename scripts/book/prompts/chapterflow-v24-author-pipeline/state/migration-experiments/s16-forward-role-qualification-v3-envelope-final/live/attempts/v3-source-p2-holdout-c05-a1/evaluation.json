@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c05-a1",
+  "requestSha256": "f1fc8155c79a081360d8266c5b73def577a00b466acbf15390f68c38ed8a2fb8",
+  "receiptSha256": "c467d147855062f55ffd74701cebda855159a82b7f4d795a1679973709d6fd18",
+  "executionEvidenceSha256": "f151b53e05be1a3ec1bc217a08037508a69cb3fbb5f6f679fc56737f5b48f2fa",
+  "rawOutputSha256": "5339898dbe1382d147166d0f477ebccd647db5a9f1044f83ec45ae2b5eecc242",
+  "evaluationSha256": "d4d05266632c137670735885c6fe18c55c8fab3a808af05cb4d6a6ed863b84a6",
+  "parsedOutputSha256": "fec1b975fb1a03be0a3cc7f55a421418ecb0640653b2914abff7b1d6f57f99c1",
+  "assembledReviewSha256": "5b54d0d6d3a4b5a6ac7ce3d7cb82157013d3b329d1a12313f2fd2778eda9a528",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is visibly attributed to the chapter source and directly matches the packet-local source claim, with mechanism evidence supporting the stated shift from pull-based use to interruption-based use."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "79c9173166286b81fa3ff0060f6ff886a87b1a5b2ceb745684cd9c68e21b5885",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "6cf787cf9c2ae9658dee66b05518c1b133c465ede6a8534182fef19a8e631260",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is visibly attributed to the chapter source and directly matches the packet-local source claim, with mechanism evidence supporting the stated shift from pull-based use to interruption-based use.",
+          "unitId": "unit.fact.ch01.fact.4",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter claim is visibly attributed to the chapter source and directly matches the packet-local source claim, with mechanism evidence supporting the stated shift from pull-based use to interruption-based use."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "d7022005cc7cc6a13890aa24cbb7f62080463c0ee7a71ce40edfbeb25767d2c7"
+}

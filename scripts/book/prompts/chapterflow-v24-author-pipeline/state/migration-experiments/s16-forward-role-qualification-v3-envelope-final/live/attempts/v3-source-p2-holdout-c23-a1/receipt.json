@@ -1,0 +1,20 @@
+{
+  "schema": "imp24-role-qualification-execution-receipt-v3",
+  "executionId": "imp24-v3-c9eebd76ca66ccd5149d3af636a5726f1867101139331e67c0e656981de50f3a",
+  "status": "completed",
+  "requestSha256": "cb0dd7b703abcbd7e0a203f85558a49b857b4b462be9dfb636e6550857551903",
+  "freezeSha256": "befc5902c41516b7b5e38240afb51d0b7dd0f556096ef39609c02a9910493a0e",
+  "certificationSha256": "ff4e1242fef13998196dbcba6ba92b3263fae44a36628d68fac88f9ded8b46b5",
+  "productionInstrumentSealSha256": "ca93638dd9594e0f0463fd03d7b2a67acf5b751c94548e778bdba5b1be17b310",
+  "role": "source",
+  "profileId": "gpt-5.5@xhigh",
+  "model": "gpt-5.5",
+  "effort": "xhigh",
+  "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+  "reviewProtocol": "review-evidence-envelope-v1",
+  "evidenceEnvelopeSha256": "9b03842e719fb56ff39c4b849893ba05156ecf19b1d7d80d0e0495274df93874",
+  "evidenceEnvelopeBytesSha256": "9a76ead5b7213522fb71c25e1c49dc668c6439a1023cf9a6e4122dbcb64a7874",
+  "evidenceEnvelopeBytes": "{\"caseId\":\"SOURCE-V3-HOLDOUT-constructed-application-04-clean:U1\",\"envelopeId\":\"SOURCE-V3-HOLDOUT-constructed-application-04-clean:source:U1\",\"envelopeSha256\":\"9b03842e719fb56ff39c4b849893ba05156ecf19b1d7d80d0e0495274df93874\",\"immutableBindings\":{\"chapterContentSha256\":\"702359462e68c6eb5391f1162926151e10605ec348fbfb621e7cd387cf7e75cb\",\"chapterEvidenceSetSha256\":\"d720c675a6e32fffcd74ff576fe113169b287532798e735fdc401d26b1a57e0a\",\"partition\":{\"partitionCount\":1,\"partitionIndex\":0,\"partitionSetSha256\":\"255ab621e7280753bd71918c6152c4257f22acfce8797f611fa16a01653065f8\",\"schema\":\"source-review-evidence-partition-v1\",\"targetRef\":\"U1\",\"visiblePlanMetadata\":{\"detailSufficiency\":\"concept_only\",\"formLicense\":\"application\",\"framingRequired\":true,\"maximumClaimStrength\":\"descriptive\",\"originLicense\":\"constructed\",\"targetRef\":\"U1\"}},\"sidecarSha256\":\"sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927\",\"sourcePacketSha256\":\"sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b\",\"sourceUsePlanSha256\":\"bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47\"},\"instrumentVersion\":\"imp24-inline-evidence-envelope-v1\",\"lane\":\"source\",\"schema\":\"review-evidence-envelope-v1\",\"segments\":[{\"kind\":\"chapter\",\"refId\":\"CH-U001-001\",\"sha256\":\"702359462e68c6eb5391f1162926151e10605ec348fbfb621e7cd387cf7e75cb\",\"text\":\"In a hypothetical example, a service team tries grouping routine checks into one scheduled window.\"},{\"kind\":\"plan\",\"refId\":\"PLAN-U001\",\"sha256\":\"b1b819e37c73d6227381dad11f340c54c56afc8982289a5cab133fdad3300130\",\"text\":\"{\\n  \\\"targetRef\\\": \\\"U1\\\",\\n  \\\"originLicense\\\": \\\"constructed\\\",\\n  \\\"formLicense\\\": \\\"application\\\",\\n  \\\"maximumClaimStrength\\\": \\\"descriptive\\\",\\n  \\\"allowedDetailTypes\\\": [\\n    \\\"fictional_name\\\",\\n    \\\"role_label\\\",\\n    \\\"concrete_action\\\",\\n    \\\"hypothetical_consequence\\\"\\n  ],\\n  \\\"forbiddenDetailTypes\\\": [\\n    \\\"real_person\\\",\\n    \\\"real_organization\\\",\\n    \\\"fabricated_statistic\\\",\\n    \\\"fabricated_date\\\",\\n    \\\"fabricated_credential\\\",\\n    \\\"fabricated_citation\\\",\\n    \\\"historical_claim\\\",\\n    \\\"outcome_reported_as_fact\\\"\\n  ],\\n  \\\"detailSufficiency\\\": \\\"concept_only\\\",\\n  \\\"framingRequired\\\": true,\\n  \\\"allowedAnchorRefs\\\": []\\n}\"}]}",
+  "rawOutput": "{\"schema\":\"source-integrity-model-output-v2\",\"assessments\":[{\"targetRef\":\"U1\",\"visibleRegister\":\"clearly_constructed\",\"supportStatus\":\"SUPPORTED\",\"framingAdequate\":true,\"claimStrengthFit\":true,\"namedSpecificityAllowed\":true,\"findings\":[],\"rationale\":\"CH-U001-001 is visibly framed as hypothetical and stays within PLAN-U001's constructed application scope, descriptive strength limit, and concept-only detail allowance.\"}]}",
+  "receiptSha256": "23a3066377fb9c82b5c2c71a548b210d3b66dde88f1f90a3ad73bf5aaa4585f4"
+}

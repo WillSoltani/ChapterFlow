@@ -1,0 +1,142 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-decisive-ch1",
+  "itemId": "hardblocker-decisive-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "014b37f7d9443b91",
+  "renderedDocSha256": "8b8121496052b92a92964a0602a61c36f6a94a7158b0c24cf36ecb99a46033ee",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "caffd90cb670ab2f7c9df262666c638b353c991435a7e8162151fd383a218c8f",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-decisive-ch1-mrgpf5fg-24",
+  "rawFinalMessageSha256": "2dd727755e452700289a85fcf619626069fc16e82f191b4b4442834987c1874f",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"c\", \"c\", \"a\", \"c\", \"a\", \"a\", \"b\"],\n    \"mechanisms\": [\n      \"The prose defines WRAP as four specific repairs matched to four dangers, not a generic slowdown.\",\n      \"The narrow-frame villain is fixed first by widening options before evidence decorates a yes-or-no choice.\",\n      \"Reality-testing asks for evidence that can surprise or weaken the favorite answer.\",\n      \"The Intel passage says emotion can carry information, but distance quiets short-term attachment.\",\n      \"Prepare to be wrong means naming better, worse, or different futures instead of trusting one neat forecast.\",\n      \"Cole's HopeLab move was parallel first passes so the team could learn before committing.\",\n      \"Grove's outsider question asks what a fresh outsider would do without Intel's memory-chip attachment.\",\n      \"The four-villain model requires different repairs at framing, evidence, emotion, and forecast stages.\",\n      \"The prose says good process raises the odds without promising the outcome.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice b is the only answer that names all four WRAP moves, making it guessable from acronym recognition.\",\n      \"Choice b echoes the chapter's yes-or-no frame language; a and c are plainly backwards.\",\n      \"Choice c contains the giveaway phrase 'disconfirming evidence'; a and b are obvious confirmation-bias traps.\",\n      \"Choice c is the only non-absolute answer; a and b overstate by saying ignore emotion or wait indefinitely.\",\n      \"Choice a directly says 'wider range of plausible outcomes,' the exact overconfidence repair.\",\n      \"Choice c repeats 'parallel first passes' and 'before commitment,' making it strongly signposted.\",\n      \"Choice a is nearly a restatement of the Intel example; b adds an unsupported reason outsiders know better.\",\n      \"Choice a uniquely maps the four stages, while b and c flatten the model into generic care.\",\n      \"Choice b echoes the memorable line about odds and uncertainty; a and c are clearly contradicted.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 82,\n    \"transfer\": 70,\n    \"practical\": 84,\n    \"summaries\": 90,\n    \"tone\": 86,\n    \"limits\": 89,\n    \"insight\": 87,\n    \"density\": 82,\n    \"beginner\": 88\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"A live option set keeps a bad frame from feeling like fate.\",\n      \"why\": \"This is the chapter's strongest memorable compression of the core move.\"\n    },\n    {\n      \"quote\": \"Good process raises the odds without promising the outcome.\",\n      \"why\": \"It clearly states the process boundary and protects against outcome-result confusion.\"\n    },\n    {\n      \"quote\": \"On reflection, gather only the evidence that supports the plan you already favor, because disconfirming views just add noise and slow the decision down.\",\n      \"why\": \"This directly contradicts the confirmation-bias lesson inside an example's action step.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The What to do section first recommends disconfirming evidence, then tells the reader to gather only supporting evidence because disconfirming views add noise. This contradicts the chapter's own confirmation-bias teaching.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"The keyed choice is fair, but it is easy to guess because it uniquely lists the four formal WRAP moves.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q3\",\n      \"problem\": \"The keyed choice is fair, but 'disconfirming evidence' is a giveaway phrase while the distractors are obviously biased behaviors.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q7\",\n      \"problem\": \"The keyed choice is almost a restatement of the prose, so the distractors do little teaching work.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, readable chapter with a clear core model, good layering, memorable lines, and honest limits. The quiz is mostly fair and derivable, though several questions are signposted by exact model language. The major blocker is Example 4: it contains a reader-harming contradiction in the action advice, telling readers to do the opposite of reality-testing. Fix that before shipping; after that, the chapter is close to a professional bar.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-decisive-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "014b37f7d9443b91",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-decisive-ch1-mrgpf5fg-24",
+    "scores": {
+      "retention": 88,
+      "quizzes": 82,
+      "transfer": 70,
+      "practical": 84,
+      "summaries": 90,
+      "tone": 86,
+      "limits": 89,
+      "insight": 87,
+      "density": 82,
+      "beginner": 88
+    },
+    "composite": 84.4,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "c",
+        "c",
+        "a",
+        "c",
+        "a",
+        "a",
+        "b"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "A live option set keeps a bad frame from feeling like fate.",
+        "why": "This is the chapter's strongest memorable compression of the core move.",
+        "verified": true
+      },
+      {
+        "quote": "Good process raises the odds without promising the outcome.",
+        "why": "It clearly states the process boundary and protects against outcome-result confusion.",
+        "verified": true
+      },
+      {
+        "quote": "On reflection, gather only the evidence that supports the plan you already favor, because disconfirming views just add noise and slow the decision down.",
+        "why": "This directly contradicts the confirmation-bias lesson inside an example's action step.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b is the only answer that names all four WRAP moves, making it guessable from acronym recognition.",
+      "Choice b echoes the chapter's yes-or-no frame language; a and c are plainly backwards.",
+      "Choice c contains the giveaway phrase 'disconfirming evidence'; a and b are obvious confirmation-bias traps.",
+      "Choice c is the only non-absolute answer; a and b overstate by saying ignore emotion or wait indefinitely.",
+      "Choice a directly says 'wider range of plausible outcomes,' the exact overconfidence repair.",
+      "Choice c repeats 'parallel first passes' and 'before commitment,' making it strongly signposted.",
+      "Choice a is nearly a restatement of the Intel example; b adds an unsupported reason outsiders know better.",
+      "Choice a uniquely maps the four stages, while b and c flatten the model into generic care.",
+      "Choice b echoes the memorable line about odds and uncertainty; a and c are clearly contradicted."
+    ],
+    "complaints": [
+      {
+        "unit": "example 4",
+        "problem": "The What to do section first recommends disconfirming evidence, then tells the reader to gather only supporting evidence because disconfirming views add noise. This contradicts the chapter's own confirmation-bias teaching.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q1",
+        "problem": "The keyed choice is fair, but it is easy to guess because it uniquely lists the four formal WRAP moves.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q3",
+        "problem": "The keyed choice is fair, but 'disconfirming evidence' is a giveaway phrase while the distractors are obviously biased behaviors.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q7",
+        "problem": "The keyed choice is almost a restatement of the prose, so the distractors do little teaching work.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, readable chapter with a clear core model, good layering, memorable lines, and honest limits. The quiz is mostly fair and derivable, though several questions are signposted by exact model language. The major blocker is Example 4: it contains a reader-harming contradiction in the action advice, telling readers to do the opposite of reality-testing. Fix that before shipping; after that, the chapter is close to a professional bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "20233580a3318bee3dc980f9d6690cbb8ae27bcdba0f5cb73967355ac5e222dd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:35:28.223Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "caffd90cb670ab2f7c9df262666c638b353c991435a7e8162151fd383a218c8f",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "On reflection, gather only the evidence that supports the plan you already favor, because disconfirming views just add noise and slow the decision down."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:34:49.275Z",
+  "durationMs": 0
+}

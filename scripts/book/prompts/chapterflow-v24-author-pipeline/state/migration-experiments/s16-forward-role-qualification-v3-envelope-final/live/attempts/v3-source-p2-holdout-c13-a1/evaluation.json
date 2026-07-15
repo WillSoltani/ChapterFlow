@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c13-a1",
+  "requestSha256": "56cca03d710c9043a24fe060e0322895699c554e1b3c514ef90c3b5641ff7cb3",
+  "receiptSha256": "77b465c7c73fe2fabcf81b135b9aa5fe83a3beda15db22b015acc979ca525a13",
+  "executionEvidenceSha256": "be1ac9a11178998384198685b1779fac9ba2d28d1b269f5419dcfc8eaf2c8fdf",
+  "rawOutputSha256": "af4be2e14c207f81f42d8e5262faa9710395ee02ac89e671007ff3753cc52abe",
+  "evaluationSha256": "d8f3288729365ff8f95785e4e965fa4b1e7874a8a04ae553f7f2b81911d9f23e",
+  "parsedOutputSha256": "59fc8bf9e473e8a90906b56d372bf73fa11445432f60110e9198892302479e0d",
+  "assembledReviewSha256": "cb965ae292533a1164261df88bb20e70980ceeee95a2290d35979ea0021cc920",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is supported by the cited source claim and mechanism, stays within the plan's mechanistic ceiling, and includes cautious source-described framing without adding quantified effects, guaranteed outcomes, invented participants, or sibling-example leakage."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "3e8cfc22d47b27719bcef430332deb41c891069f374131d43b4a6697cc7067e0",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "27c1a5de928fb2b9c45879eb7fe6665163596904a2af3c7ab3d2779b616a41b7",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is supported by the cited source claim and mechanism, stays within the plan's mechanistic ceiling, and includes cautious source-described framing without adding quantified effects, guaranteed outcomes, invented participants, or sibling-example leakage.",
+          "unitId": "unit.fact.ch01.fact.4",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter claim is supported by the cited source claim and mechanism, stays within the plan's mechanistic ceiling, and includes cautious source-described framing without adding quantified effects, guaranteed outcomes, invented participants, or sibling-example leakage."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "479a5cba7ff37cc072507c72bcb06f0f1c6d775704dd2e15996e434289d5e9b0"
+}

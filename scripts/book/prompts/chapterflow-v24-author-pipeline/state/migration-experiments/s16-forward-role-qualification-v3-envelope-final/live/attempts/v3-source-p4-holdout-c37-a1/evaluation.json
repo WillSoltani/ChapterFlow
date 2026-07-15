@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c37-a1",
+  "requestSha256": "7ff1e0f7238aa7f9baec91ce445ce77e2c30a616ebcdd833a68e4fa1c62520ba",
+  "receiptSha256": "45997dc005d3122591f9984d6b75775b0d5a884d223f2fdd63583e485a525f90",
+  "executionEvidenceSha256": "fb171b67bea36e150b894578552f41046ab687a578a7241a335e3ac0506c716d",
+  "rawOutputSha256": "2a753b86d2c979ab16a649751a192b10e0671ef71a9a0f9e20d1bc7015408af1",
+  "evaluationSha256": "f727451c0adafcd35bb374edd7e045aecb57b66dcbca3f37e1cd029873011cee",
+  "parsedOutputSha256": "781ea607d4eee8c857644a113963d500648c39993e7cee799f263ccaab64deed",
+  "assembledReviewSha256": "6cad056de7147e7bee4e7edf2be9f014ec3ec90d1815c947a0c1df7b7402aaef",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is directly supported by the allowed source claim and mechanism for ch01.fact.4, stays within mechanistic/concept-level detail, and adds no unsupported specifics, quantified effects, invented scenes, or forbidden sibling-source leakage."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d56267d7e67893e61ddf8b687320cc6a3b21659cc6e1f0837b18b5f52b1e99a4",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "ba87bec3799c4298016c7a5099527ba4822bbecd87d6912109e83f5ac78062fb",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is directly supported by the allowed source claim and mechanism for ch01.fact.4, stays within mechanistic/concept-level detail, and adds no unsupported specifics, quantified effects, invented scenes, or forbidden sibling-source leakage.",
+          "unitId": "unit.fact.ch01.fact.4",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter claim is directly supported by the allowed source claim and mechanism for ch01.fact.4, stays within mechanistic/concept-level detail, and adds no unsupported specifics, quantified effects, invented scenes, or forbidden sibling-source leakage."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "7f7195279d17a5e363e7a014b8e372a248c0630216e13ae1e8f447622f95bc7b"
+}

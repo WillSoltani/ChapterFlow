@@ -1,0 +1,69 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c26-a1",
+  "requestSha256": "81005e6854e682ab9843cd7e2375f5857f8656590eabe5e727ac729ddc24cc13",
+  "receiptSha256": "7c01e7f13c39c8d379b2a880a4b7bf3a4ca80eefb8dbbf9028f46a938e986fb3",
+  "executionEvidenceSha256": "4f8d031fec519ee26bd2ee751fcf966877f65eccd40de5cfda7f5edb0216020d",
+  "rawOutputSha256": "7b0d2e99151190e41e8d8dbeb2677f12733cdf5c666d64e4dae9f657aaa69edb",
+  "evaluationSha256": "30451375e3bd67049704cf9fea87693e7b02b426b13e7c91d6944a06c4325c03",
+  "parsedOutputSha256": "f0b1142616fb67e6085b591605bc4de1084b4c0eba5133aaf3852a19b25ef73e",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "ambiguous",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [],
+              "severity": "major",
+              "explanation": "The operational scenario is generically licensed, but it introduces a named organization even though named organizations are expressly forbidden and no anchor permits that specificity.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The role, observable pause, and task comparison fit the licensed generic operational scenario and descriptive strength. The organization name exceeds the permitted specificity, so the target is only partially supported."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "fe4acf463295a8cf928c1dc401788dd5af7b41013f12e3a62e79782da34dfaaa"
+}

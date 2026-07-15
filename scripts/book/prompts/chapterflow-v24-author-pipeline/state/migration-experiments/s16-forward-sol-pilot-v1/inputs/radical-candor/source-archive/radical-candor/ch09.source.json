@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 9,
+  "chapterTitle": "A Radically Candid Performance Review",
+  "focus": "The bonus performance-review unit applies Radical Candor to formal review systems, emphasizing development conversations, measurement limits, and behavior-specific evidence.",
+  "coreClaim": "A formal review should never be the first place someone hears important guidance.",
+  "centralConcept": {
+    "id": "ch09.concept",
+    "name": "development-centered review",
+    "plainDefinition": "A performance review becomes radically candid when it preserves development conversations, uses specific behavior evidence, and avoids letting ratings replace guidance. The formal process should summarize and support ongoing feedback, not substitute for it.",
+    "whyItMatters": "Formal reviews often become backward-looking scorekeeping. A candid review system keeps growth, evidence, and next steps visible so people are not surprised or reduced to a number."
+  },
+  "keyClaims": [
+    "The official guide treats the performance-review material as a bonus unit after Results.",
+    "Development conversations must remain regular rather than reserved for review season.",
+    "The measurement problem separates development from management.",
+    "CORE and SBI supply behavior evidence for review conversations.",
+    "A review process should reduce surprises rather than create them."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch09.ex.bonus-performance-review",
+      "label": "Bonus performance review unit",
+      "summary": "The official guide lists Bonus Chapter: A Radically Candid Performance Review after Ch. 8. The guide asks about formal performance review elements, whether they work, and regular development conversations.",
+      "teachesWhat": "Formal review should be connected to the ongoing candor system.",
+      "hardSpecifics": [
+        "Bonus Chapter",
+        "A Radically Candid Performance Review",
+        "formal performance review",
+        "development conversations"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch09.ex.measurement-problem",
+      "label": "The Measurement Problem",
+      "summary": "The official guide links the bonus unit to The Measurement Problem: Development Versus Management. Development, management, measurement, and review process make the review risk concrete.",
+      "teachesWhat": "The act of measuring performance can crowd out the developmental conversation if managers are not careful.",
+      "hardSpecifics": [
+        "The Measurement Problem",
+        "Development Versus Management",
+        "measurement",
+        "management"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch09.ex.core-sbi-review-evidence",
+      "label": "CORE and SBI review evidence",
+      "summary": "The official glossary defines SBI as Situation, Behavior, Impact and CORE as Context, Observation, Result, Explore. These frameworks provide behavior-specific evidence that can feed a review without turning it into character judgment.",
+      "teachesWhat": "Review evidence should be observable, impact-linked, and open to dialogue.",
+      "hardSpecifics": [
+        "SBI",
+        "CORE",
+        "Situation Behavior Impact",
+        "Context Observation Result Explore"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The surface mistake is to make reviews more candid by making ratings harsher. The useful move is to make reviews less surprising and more developmental by grounding them in prior, specific guidance.",
+  "voiceCues": [
+    "extends earlier tools to formal systems",
+    "questions measurement habits",
+    "keeps development separate from rating mechanics"
+  ],
+  "forbiddenLeakage": [
+    "Do not introduce new career frameworks beyond the bonus review context.",
+    "Do not restage Ch. 8 meeting architecture."
+  ],
+  "paraphraseNotes": "The official guide marks A Radically Candid Performance Review as a Bonus Chapter after Results, so the pipeline carries it as the ninth source unit. The discussion prompts focus on formal review elements, whether those elements work, and whether regular development conversations are happening with everyone. That framing is important: performance reviews should not become the first real guidance a person receives. The Measurement Problem: Development Versus Management names the tension between rating and developing. Use CORE and SBI as evidence tools for review language: Situation, Behavior, Impact; Context, Observation, Result, Explore. Those frameworks keep review claims tied to observed behavior and invite dialogue about next steps. The hard edge is surprise. A review that reveals a major issue for the first time is evidence that the guidance system failed earlier. Keep the unit practical: reduce surprise, preserve development conversations, use observable evidence, and do not let measurement replace management.",
+  "testableFacts": [
+    {
+      "id": "ch09.fact.1",
+      "claim": "The official guide lists A Radically Candid Performance Review as a Bonus Chapter after Ch. 8.",
+      "becauseMechanism": "Because it is separated from the eight numbered units, the material extends the tools into formal review systems.",
+      "commonError": "Dropping the bonus unit as optional fluff.",
+      "errorIsWhy": "The guide gives it distinct discussion prompts.",
+      "derivedFrom": "ch09.ex.bonus-performance-review"
+    },
+    {
+      "id": "ch09.fact.2",
+      "claim": "The bonus prompts ask about formal performance review elements.",
+      "becauseMechanism": "Since review systems vary, managers must inspect the actual process before applying candor.",
+      "commonError": "Assuming one review template fits every organization.",
+      "errorIsWhy": "The process itself shapes behavior.",
+      "derivedFrom": "ch09.ex.measurement-problem"
+    },
+    {
+      "id": "ch09.fact.3",
+      "claim": "The bonus prompts ask whether current review elements are working.",
+      "becauseMechanism": "Because broken review mechanics can distort feedback, candid managers evaluate the system as well as the employee.",
+      "commonError": "Blaming only individuals for poor reviews.",
+      "errorIsWhy": "System design can block useful guidance.",
+      "derivedFrom": "ch09.ex.core-sbi-review-evidence"
+    },
+    {
+      "id": "ch09.fact.4",
+      "claim": "The bonus prompts ask whether regular development conversations happen with everyone.",
+      "becauseMechanism": "Since development should be ongoing, reviews should summarize rather than surprise.",
+      "commonError": "Saving development talk for review season.",
+      "errorIsWhy": "Late conversations cannot guide earlier work.",
+      "derivedFrom": "ch09.concept"
+    },
+    {
+      "id": "ch09.fact.5",
+      "claim": "The Measurement Problem contrasts Development Versus Management.",
+      "becauseMechanism": "Because measurement can narrow attention to ratings, managers must protect developmental learning.",
+      "commonError": "Equating a score with development.",
+      "errorIsWhy": "A score alone does not teach next behavior.",
+      "derivedFrom": "ch09.concept"
+    },
+    {
+      "id": "ch09.fact.6",
+      "claim": "SBI provides Situation, Behavior, and Impact for review evidence.",
+      "becauseMechanism": "Because observable evidence reduces character judgment, reviews become more actionable.",
+      "commonError": "Writing reviews as personality summaries.",
+      "errorIsWhy": "Personality labels are hard to verify or change.",
+      "derivedFrom": "ch09.concept"
+    },
+    {
+      "id": "ch09.fact.7",
+      "claim": "CORE provides Context, Observation, Result, and Explore for review dialogue.",
+      "becauseMechanism": "Since Explore invites the employee into next steps, the review can become collaborative.",
+      "commonError": "Treating the review as a one-way verdict.",
+      "errorIsWhy": "One-way reviews miss context and ownership.",
+      "derivedFrom": "ch09.ex.bonus-performance-review"
+    },
+    {
+      "id": "ch09.fact.8",
+      "claim": "A radically candid review should not be the first place major guidance appears.",
+      "becauseMechanism": "Because delayed feedback removes the chance to improve before evaluation, surprise undermines trust.",
+      "commonError": "Holding hard feedback until the formal meeting.",
+      "errorIsWhy": "That turns a development opportunity into a verdict.",
+      "derivedFrom": "ch09.ex.measurement-problem"
+    },
+    {
+      "id": "ch09.fact.9",
+      "claim": "Development conversations and management decisions need different handling.",
+      "becauseMechanism": "Since coaching and compensation decisions carry different stakes, mixing them carelessly can reduce honesty.",
+      "commonError": "Pretending every review conversation has the same purpose.",
+      "errorIsWhy": "People respond differently to learning and evaluation stakes.",
+      "derivedFrom": "ch09.ex.core-sbi-review-evidence"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Radically candid review system",
+      "members": [
+        "ongoing guidance",
+        "development conversations",
+        "behavior evidence",
+        "measurement caution",
+        "no surprises"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Bonus performance review unit",
+    "Bonus Chapter",
+    "A Radically Candid Performance Review",
+    "formal performance review",
+    "development conversations",
+    "The Measurement Problem",
+    "Development Versus Management",
+    "measurement",
+    "management",
+    "CORE and SBI review evidence",
+    "SBI",
+    "CORE",
+    "Situation Behavior Impact",
+    "Context Observation Result Explore"
+  ]
+}

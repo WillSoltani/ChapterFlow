@@ -1,0 +1,180 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-power-of-moments-ch01",
+  "itemId": "LNV2-CLEAN-the-power-of-moments-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "c5d9bbf8b745d098",
+  "renderedDocSha256": "631e4c7e1556b5c190cd23e017057fbcd3198c0ffd8764dd6543935f706f5f33",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-power-of-moments-ch01-mrh88edt-38",
+  "rawFinalMessageSha256": "363eadfb7afe76906be4ba2967446b5988c8733e7aa83c674a19af1e028bef22",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"a\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The cold-water comparison shows that a calmer, less painful ending can improve memory of an episode even when it lasts longer.\",\n      \"The red phone demonstrates that a vivid, tellable surprise can create a peak in an otherwise modest setting.\",\n      \"The YES Prep ceremony makes effort visible and turns a private transition into publicly witnessed pride.\",\n      \"The prose names elevation, insight, pride, and connection as the four common ingredients.\",\n      \"The hotel example says a concrete visible object can signal that the ordinary script has changed.\",\n      \"The popsicle becomes memorable because its request and silver-tray delivery turn the gift into an event.\",\n      \"The chapter advises marking thresholds before the next stage dissolves into private logistics.\",\n      \"The prose explicitly says memory does not average every minute equally, while peaks and endings affect recall.\",\n      \"The quiet mint lacks the vivid, structured, tellable delivery that makes a small gift into a story.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice b is the only nuanced option; a and c reduce the lesson to duration alone.\",\n      \"Choice b is the only constructive option, while a delays action and c deliberately removes ceremony.\",\n      \"Choice a closely echoes the prose's language about public achievement and witnessed effort.\",\n      \"Choice c reproduces all four named ingredients almost verbatim.\",\n      \"Choice a repeats the distinctive 'visible object' and changed-script language.\",\n      \"Choice b directly echoes the prose's claim that delivery turns a gift into an event.\",\n      \"Choice c repeats the distinctive threshold and private-logistics phrasing.\",\n      \"The negative stem makes a the only contradicted statement; b and c plainly restate the chapter.\",\n      \"Choice c uses the chapter's favored word 'tellable,' while a and b offer implausible expense-based diagnoses.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 94,\n    \"quizzes\": 79,\n    \"transfer\": 62,\n    \"practical\": 90,\n    \"summaries\": 91,\n    \"tone\": 84,\n    \"limits\": 95,\n    \"insight\": 89,\n    \"density\": 74,\n    \"beginner\": 95\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"A red phone by a pool can outshine a whole hotel stay when it gives guests a story.\",\n      \"why\": \"A compact, concrete image makes the chapter's core move unusually memorable.\"\n    },\n    {\n      \"quote\": \"This idea fails when the basic promise is broken. A red phone cannot make an unsafe pool feel fine. A ceremony cannot replace real college support.\",\n      \"why\": \"This is an excellent boundary: moment design cannot compensate for unsafe or inadequate fundamentals.\"\n    },\n    {\n      \"quote\": \"Parent Margaret expects a plain pool afternoon at the Magic Castle Hotel in Los Angeles.\",\n      \"why\": \"A seemingly factual named guest is introduced without sourcing or any indication that the vignette is hypothetical.\"\n    },\n    {\n      \"quote\": \"Lorne waits at YES Prep, a Houston public charter network, during its college acceptance celebration.\",\n      \"why\": \"Another apparently invented named participant is inserted into a real institution and event without disclosure.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"FABRICATED / MISLEADING EXAMPLE: Margaret, her expectations, and her supposed decision are presented inside a real hotel example without being identified as hypothetical or supported by the chapter.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"FABRICATED / MISLEADING EXAMPLE: Lorne is presented as a participant in a real YES Prep celebration, complete with internal experience, without being identified as hypothetical or sourced.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"FABRICATED / MISLEADING EXAMPLE: An unnamed trainer is said to compare the cold-water trials while planning practice, blending a constructed application scenario with the reported study as though it happened.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"FABRICATED / MISLEADING EXAMPLE: Trainer Tristan and his specific volunteer-training revision are narrated as an event without a hypothetical marker.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"full read and example 5\",\n      \"problem\": \"FABRICATED / MISLEADING EXAMPLE: Leah's named mentoring vignette and internal editing process are presented as events without being labeled illustrative; the same unsupported story is then repeated.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"FABRICATED / MISLEADING EXAMPLE: The workshop organizer's signing-and-cheering event is narrated as an occurrence without being identified as a hypothetical application.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The claim that one peak can outweigh an average service rating moves beyond the chapter's evidence about remembered stories into an unsupported claim about formal ratings.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples section\",\n      \"problem\": \"Several examples largely repeat the hotel, YES Prep, cold-water, and Leah material instead of supplying distinct before-to-after transfer cases, reducing density and breadth.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"Although every answer is derivable, many distractors are absolute, passive, or obviously contrary to the chapter, while correct choices reuse signature wording; readers could often answer by tone matching.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q4\",\n      \"problem\": \"The correct choice lists the four ingredients nearly verbatim, making this primarily a phrase-recognition item rather than a meaningful application test.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"implementation plan\",\n      \"problem\": \"The title and core-skill sentence repeat the same wording, adding visible scaffold-like redundancy.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter teaches a clear, memorable move through the red phone, the threshold ceremony, and the peak-end mechanism, then converts it into unusually practical, low-friction actions while giving strong warnings against using a polished ending to conceal harm. Its summaries are layered and accessible, and all nine quiz answers are securely derivable. However, the quiz distractors frequently advertise the intended answer, the examples repeat rather than broaden the material, and six application vignettes present invented people or events without labeling them hypothetical. Those misleading examples are reader-harming must-fix defects, so this otherwise strong chapter should not ship until they are disclosed as constructed scenarios or replaced with verified cases.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-power-of-moments-ch01",
+    "chapterNumber": 1,
+    "contentHash": "c5d9bbf8b745d098",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-power-of-moments-ch01-mrh88edt-38",
+    "scores": {
+      "retention": 94,
+      "quizzes": 79,
+      "transfer": 62,
+      "practical": 90,
+      "summaries": 91,
+      "tone": 84,
+      "limits": 95,
+      "insight": 89,
+      "density": 74,
+      "beginner": 95
+    },
+    "composite": 85.1,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "a",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "A red phone by a pool can outshine a whole hotel stay when it gives guests a story.",
+        "why": "A compact, concrete image makes the chapter's core move unusually memorable.",
+        "verified": true
+      },
+      {
+        "quote": "This idea fails when the basic promise is broken. A red phone cannot make an unsafe pool feel fine. A ceremony cannot replace real college support.",
+        "why": "This is an excellent boundary: moment design cannot compensate for unsafe or inadequate fundamentals.",
+        "verified": true
+      },
+      {
+        "quote": "Parent Margaret expects a plain pool afternoon at the Magic Castle Hotel in Los Angeles.",
+        "why": "A seemingly factual named guest is introduced without sourcing or any indication that the vignette is hypothetical.",
+        "verified": true
+      },
+      {
+        "quote": "Lorne waits at YES Prep, a Houston public charter network, during its college acceptance celebration.",
+        "why": "Another apparently invented named participant is inserted into a real institution and event without disclosure.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b is the only nuanced option; a and c reduce the lesson to duration alone.",
+      "Choice b is the only constructive option, while a delays action and c deliberately removes ceremony.",
+      "Choice a closely echoes the prose's language about public achievement and witnessed effort.",
+      "Choice c reproduces all four named ingredients almost verbatim.",
+      "Choice a repeats the distinctive 'visible object' and changed-script language.",
+      "Choice b directly echoes the prose's claim that delivery turns a gift into an event.",
+      "Choice c repeats the distinctive threshold and private-logistics phrasing.",
+      "The negative stem makes a the only contradicted statement; b and c plainly restate the chapter.",
+      "Choice c uses the chapter's favored word 'tellable,' while a and b offer implausible expense-based diagnoses."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "FABRICATED / MISLEADING EXAMPLE: Margaret, her expectations, and her supposed decision are presented inside a real hotel example without being identified as hypothetical or supported by the chapter.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 2",
+        "problem": "FABRICATED / MISLEADING EXAMPLE: Lorne is presented as a participant in a real YES Prep celebration, complete with internal experience, without being identified as hypothetical or sourced.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 3",
+        "problem": "FABRICATED / MISLEADING EXAMPLE: An unnamed trainer is said to compare the cold-water trials while planning practice, blending a constructed application scenario with the reported study as though it happened.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 4",
+        "problem": "FABRICATED / MISLEADING EXAMPLE: Trainer Tristan and his specific volunteer-training revision are narrated as an event without a hypothetical marker.",
+        "mustFix": true
+      },
+      {
+        "unit": "full read and example 5",
+        "problem": "FABRICATED / MISLEADING EXAMPLE: Leah's named mentoring vignette and internal editing process are presented as events without being labeled illustrative; the same unsupported story is then repeated.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 6",
+        "problem": "FABRICATED / MISLEADING EXAMPLE: The workshop organizer's signing-and-cheering event is narrated as an occurrence without being identified as a hypothetical application.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 1",
+        "problem": "The claim that one peak can outweigh an average service rating moves beyond the chapter's evidence about remembered stories into an unsupported claim about formal ratings.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples section",
+        "problem": "Several examples largely repeat the hotel, YES Prep, cold-water, and Leah material instead of supplying distinct before-to-after transfer cases, reducing density and breadth.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "Although every answer is derivable, many distractors are absolute, passive, or obviously contrary to the chapter, while correct choices reuse signature wording; readers could often answer by tone matching.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q4",
+        "problem": "The correct choice lists the four ingredients nearly verbatim, making this primarily a phrase-recognition item rather than a meaningful application test.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan",
+        "problem": "The title and core-skill sentence repeat the same wording, adding visible scaffold-like redundancy.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter teaches a clear, memorable move through the red phone, the threshold ceremony, and the peak-end mechanism, then converts it into unusually practical, low-friction actions while giving strong warnings against using a polished ending to conceal harm. Its summaries are layered and accessible, and all nine quiz answers are securely derivable. However, the quiz distractors frequently advertise the intended answer, the examples repeat rather than broaden the material, and six application vignettes present invented people or events without labeling them hypothetical. Those misleading examples are reader-harming must-fix defects, so this otherwise strong chapter should not ship until they are disclosed as constructed scenarios or replaced with verified cases.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "47bbae470f919e949d38689343aaf37d5fe9423ffb37ba7848cceb14029e1994",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:23:26.503Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:21:26.992Z",
+  "durationMs": 0
+}

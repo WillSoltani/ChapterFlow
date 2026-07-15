@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c11-a1",
+  "requestSha256": "8f27ee8a115081868547972fd8e3308b4c291000805e12d1a2c4477fdea884ad",
+  "receiptSha256": "53ecdecd523d123ce2f2d7b25606acd6a228a0079815c79b3d7d4439aec94949",
+  "executionEvidenceSha256": "8444261d229bf2c2492c7437d32eef551932e016a91f0291e82e4fb04491a8c4",
+  "rawOutputSha256": "5e4848298fb6a6eebf399b41b48bc16e0bf10ae251f7a73ce60bbe7ec12fd823",
+  "evaluationSha256": "1b7c73c84bce23ef4aaf0911a3d2686be44a4c7d974284ee288e97e1354278b1",
+  "parsedOutputSha256": "2db76d4fe326f780e64fb873d4079501d2ce24a26d6094e8ffdd9379c83320f3",
+  "assembledReviewSha256": "8a2ba013a8c8f0ce6fe5e9983fa220acb7d81f6d74f87c3e8dccb69575bc946b",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter accurately presents the supported Like-button mechanism, explicitly avoids a universal guarantee, and introduces no unsupported attribution, specificity, or detail."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "505efd394cad59602a5e21011f6ae83691a12692894d3f17ea4417d7933095a6",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "09fee59a491ce5aea4bb4068a6d5cbd393cb3f09ddd46ea9c66fa5b56e81b513",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter accurately presents the supported Like-button mechanism, explicitly avoids a universal guarantee, and introduces no unsupported attribution, specificity, or detail.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter accurately presents the supported Like-button mechanism, explicitly avoids a universal guarantee, and introduces no unsupported attribution, specificity, or detail."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "696129ecdff1cfde9d798a69d3fc7334b6791896f6310a179aaddfacee72e363"
+}

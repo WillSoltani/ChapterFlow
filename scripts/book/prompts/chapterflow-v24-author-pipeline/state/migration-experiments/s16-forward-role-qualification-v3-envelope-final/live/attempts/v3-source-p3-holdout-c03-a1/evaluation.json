@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c03-a1",
+  "requestSha256": "3745b9c3212ee0b527d2571b12cb3a6ed3c37651109b6cd135e71e4d4b7c22a4",
+  "receiptSha256": "00bf52e6f92a5d02d464fd7348e54bc1d0f63269d637a4f8902aeb975e5b12ff",
+  "executionEvidenceSha256": "0dfcc95c6a57211089952bd57d3dd96e37d76e1ab11a1a0e328575fb13d42c5b",
+  "rawOutputSha256": "9532380fb84a674af64794cbd1bec8685ebb627dffc8d42dcbb5e1c3b8a2240f",
+  "evaluationSha256": "f9665da98d02876aa1907553c98f1564b317e3f8a3d62bc37f3a2fefd39da562",
+  "parsedOutputSha256": "ea845682ad86026c8429bc47056082349202b3e8aa56c919f30560a773fc90a2",
+  "assembledReviewSha256": "35025b90f7f3cb7c0d39bae4bd58c554f9a71d4b90121306d59f75c25962b765",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter explicitly attributes the claim to the source and closely matches the supported source claim. Its mechanistic strength and named specificity remain within the plan and anchor evidence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "2652f4539ba6ded9bf28fd74ce665071656d1ace75f8037f4b8a8d113cbba66e",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "ce8f89c6643cd01b6c9bcebd5d0e95d13670700968306fd8d57715d89cce91a7",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter explicitly attributes the claim to the source and closely matches the supported source claim. Its mechanistic strength and named specificity remain within the plan and anchor evidence.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter explicitly attributes the claim to the source and closely matches the supported source claim. Its mechanistic strength and named specificity remain within the plan and anchor evidence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "935a4d706c5512cdaf4d91726b52d4c656c6f54d96780d789a01f0be1b5c9780"
+}

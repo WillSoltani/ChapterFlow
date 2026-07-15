@@ -1,0 +1,20 @@
+{
+  "schema": "imp24-role-qualification-execution-receipt-v3",
+  "executionId": "imp24-v3-7899ad1926d74c5a727b8916c490e82aa5adeff33b791b900d5299dc107e2aaa",
+  "status": "completed",
+  "requestSha256": "78dda148e1c8d65f497258367e7e92e3ad5a94ca86581e1faeecb62878e49481",
+  "freezeSha256": "befc5902c41516b7b5e38240afb51d0b7dd0f556096ef39609c02a9910493a0e",
+  "certificationSha256": "ff4e1242fef13998196dbcba6ba92b3263fae44a36628d68fac88f9ded8b46b5",
+  "productionInstrumentSealSha256": "ca93638dd9594e0f0463fd03d7b2a67acf5b751c94548e778bdba5b1be17b310",
+  "role": "source",
+  "profileId": "gpt-5.5@xhigh",
+  "model": "gpt-5.5",
+  "effort": "xhigh",
+  "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+  "reviewProtocol": "review-evidence-envelope-v1",
+  "evidenceEnvelopeSha256": "92d24f9a7033c72bac8291db0b60f9d140d2b2c1fba482bcc04d1b56b37ab199",
+  "evidenceEnvelopeBytesSha256": "eef55e6b301093a4e722567d96e5a5f83f524e7f81c283265188056ff1536e15",
+  "evidenceEnvelopeBytes": "{\"caseId\":\"SOURCE-V3-HOLDOUT-constructed-application-03-clean:U1\",\"envelopeId\":\"SOURCE-V3-HOLDOUT-constructed-application-03-clean:source:U1\",\"envelopeSha256\":\"92d24f9a7033c72bac8291db0b60f9d140d2b2c1fba482bcc04d1b56b37ab199\",\"immutableBindings\":{\"chapterContentSha256\":\"188875e446339238ff6938887f6c6b439c58041139b33189e6faee1bca15612b\",\"chapterEvidenceSetSha256\":\"acbae65b5b67af38b9e7cf78669a4bbbaee38a72a317de7151ac0a7c02a4f697\",\"partition\":{\"partitionCount\":1,\"partitionIndex\":0,\"partitionSetSha256\":\"753c8b987af6863a2804377711bb21bdda3c7b5c5d019e984d48ac8116db983a\",\"schema\":\"source-review-evidence-partition-v1\",\"targetRef\":\"U1\",\"visiblePlanMetadata\":{\"detailSufficiency\":\"concept_only\",\"formLicense\":\"application\",\"framingRequired\":true,\"maximumClaimStrength\":\"descriptive\",\"originLicense\":\"constructed\",\"targetRef\":\"U1\"}},\"sidecarSha256\":\"sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927\",\"sourcePacketSha256\":\"sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b\",\"sourceUsePlanSha256\":\"bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47\"},\"instrumentVersion\":\"imp24-inline-evidence-envelope-v1\",\"lane\":\"source\",\"schema\":\"review-evidence-envelope-v1\",\"segments\":[{\"kind\":\"chapter\",\"refId\":\"CH-U001-001\",\"sha256\":\"188875e446339238ff6938887f6c6b439c58041139b33189e6faee1bca15612b\",\"text\":\"Suppose a fictional workshop facilitator asks a hypothetical group to pause before choosing its next task.\"},{\"kind\":\"plan\",\"refId\":\"PLAN-U001\",\"sha256\":\"b1b819e37c73d6227381dad11f340c54c56afc8982289a5cab133fdad3300130\",\"text\":\"{\\n  \\\"targetRef\\\": \\\"U1\\\",\\n  \\\"originLicense\\\": \\\"constructed\\\",\\n  \\\"formLicense\\\": \\\"application\\\",\\n  \\\"maximumClaimStrength\\\": \\\"descriptive\\\",\\n  \\\"allowedDetailTypes\\\": [\\n    \\\"fictional_name\\\",\\n    \\\"role_label\\\",\\n    \\\"concrete_action\\\",\\n    \\\"hypothetical_consequence\\\"\\n  ],\\n  \\\"forbiddenDetailTypes\\\": [\\n    \\\"real_person\\\",\\n    \\\"real_organization\\\",\\n    \\\"fabricated_statistic\\\",\\n    \\\"fabricated_date\\\",\\n    \\\"fabricated_credential\\\",\\n    \\\"fabricated_citation\\\",\\n    \\\"historical_claim\\\",\\n    \\\"outcome_reported_as_fact\\\"\\n  ],\\n  \\\"detailSufficiency\\\": \\\"concept_only\\\",\\n  \\\"framingRequired\\\": true,\\n  \\\"allowedAnchorRefs\\\": []\\n}\"}]}",
+  "rawOutput": "{\"schema\":\"source-integrity-model-output-v2\",\"assessments\":[{\"targetRef\":\"U1\",\"visibleRegister\":\"clearly_constructed\",\"supportStatus\":\"SUPPORTED\",\"framingAdequate\":true,\"claimStrengthFit\":true,\"namedSpecificityAllowed\":true,\"findings\":[],\"rationale\":\"The chapter presents a fictional, hypothetical workshop scenario using only generic role and action details permitted by the constructed application plan; it remains descriptive and visibly framed.\"}]}",
+  "receiptSha256": "c78879991e877919fa055470d6bb7bf7f0a1638a419ba55724f8fd600394a0a3"
+}

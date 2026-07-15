@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "LNV2-KEYMISMATCH-peak-ch01-q1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "ad36a7e6f63777e1",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-KEYMISMATCH-peak-ch01-q1-mrha2i30-13",
+  "scores": {
+    "retention": 92,
+    "quizzes": 82,
+    "transfer": 86,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 86,
+    "insight": 87,
+    "density": 84,
+    "beginner": 88
+  },
+  "composite": 87.3,
+  "ship84": true,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "a",
+      "c",
+      "b",
+      "b",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=b key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "A compact, memorable line that captures the chapter's core mechanism.",
+      "verified": true
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "This gives beginners a usable test for whether a practice target is specific enough.",
+      "verified": true
+    },
+    {
+      "quote": "The limit is important. Purposeful practice is not the full gold standard of a mature field with expert coaches and proven training systems.",
+      "why": "The chapter honestly bounds the method instead of overselling it.",
+      "verified": true
+    },
+    {
+      "quote": "a) Enjoyable repetition may build comfort while leaving size differences untouched.\n   b) Uneven cuts can become fluent unless a visible size target guides the next cut.",
+      "why": "These two Q6 answers are both partly supported, making the item less clean than the rest.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct choice b is the most chapter-coded option: isolate passage, record feedback, change before next attempt.",
+    "Correct choice a contains the whole loop and is the only redox-specific answer.",
+    "Correct choice c reuses the chapter's 'whole performance' versus 'weak point' contrast.",
+    "Correct choice b is the only option with cue, feedback, and repeat-before-volume structure.",
+    "Correct choice b closely paraphrases the Faloon paragraph.",
+    "Correct choice b is somewhat telegraphed by 'visible size target' and 'next cut.'",
+    "Correct choice c is a near giveaway because it repeats the key-takeaway idea of changing the next attempt.",
+    "Correct choice a explains itself with the chapter's short-loop language.",
+    "Correct choice c is the only concrete, measurable option."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "The intended answer is probably b, but a is also supported by the prose's point that comfort can leave weak spots hidden.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct option closely repeats the key-takeaway wording, making it guessable without much reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples section",
+      "problem": "Several examples follow the same isolate-the-miss pattern so closely that transfer is broad but a little repetitive.",
+      "mustFix": false
+    },
+    {
+      "unit": "weekly practice",
+      "problem": "The instruction to delete any routine without visible correction is more absolute than the limits paragraph; some full-task routines may still serve integration or maintenance.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter. The central move is clear, memorable, and repeatedly shown through concrete short-loop examples: isolate the miss, stretch slightly, get immediate feedback, and change the next attempt. The layered reads and review cards stand alone well, the tone is plain, and the limits paragraph keeps the method honest. The main weakness is quiz polish: Q6 has a plausible competing answer, and a few correct options are telegraphed by chapter-keyword phrasing. Those are quality issues, not blockers.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "b3b4beaefc9b929c60bd759336c9481b45aab3230b6ceb74d10b01cea6e780bd",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T04:14:31.048Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "0871eb1f976f564159233c55812be7800ad09cb849c032a0ea4178d9ce33859b",
+    "phase2DocSha256": "5ad17e444eef839d4f4b5b6c148d3a92530dd4e9ad3dc780c07d6808102f5913",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-xhigh-LNV2-KEYMISMATCH-peak-ch01-q1-mrha4n7t-14",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Keyed c avoids the weak passage; choice b is the supported purposeful-practice change and is even described by the key explanation."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a isolates the repeated redox error with step-level feedback; b and c stay too broad or delayed."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c names the core flaw: full-performance repetition lets the same weak slide survive."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b uses a specific cue, immediate video feedback, and short repeats aimed at the visible crossover fault."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b captures the feedback loop: each miss changes the next grouping strategy."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "ambiguous",
+        "rationale": "Choices a and b both directly reject repetition alone; a says comfort can leave size differences, while b adds visible target feedback."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c states the needed condition for feedback: it must change the next attempt while the error is traceable."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a is best because Plan B shortens the feedback loop enough to alter the next small batch."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c turns the vague goal into visible, countable, correctable actions across repeated turns."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 1
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "migration-sample-record-v1",
+  "experimentId": "diagnostic-stack-dryrun-2026-07",
+  "stage": "diagnostic",
+  "blindSampleId": "e864ccda5e67",
+  "cellId": "55-XH-L",
+  "bookId": "start-with-why",
+  "chapterNumber": 7,
+  "stratum": "causal-quiz-sensitive",
+  "sampleIndex": 2,
+  "executionOrder": 45,
+  "outcome": {
+    "providerOutcome": "content_completed",
+    "replayed": false,
+    "firstWriteDeterministicPass": true,
+    "durationMs": 1045,
+    "writerSessionIds": [
+      "dry-e864ccda5e67"
+    ]
+  },
+  "artifact": {
+    "contentSha256": "f6a6a12263be7f1c",
+    "chapterRelPath": "samples/e864ccda5e67/chapter.json"
+  },
+  "critics": {
+    "c37Overreach": 0,
+    "c37SceneCompletion": 0,
+    "c37GenericLeak": 0,
+    "registerAdvisories": 0,
+    "causalClaims": 1,
+    "diversity": {}
+  },
+  "review": {
+    "composite": 85,
+    "ship84": true,
+    "keyCheck": {
+      "matches": 5,
+      "of": 5
+    },
+    "keysClean": true,
+    "valid": true,
+    "pass": true,
+    "complaints": [],
+    "reviewerSessionId": "dry-rev-e864ccda5e67"
+  },
+  "agreementReview": null,
+  "tokens": null,
+  "unavailableFields": [
+    "tokens",
+    "costPerAcceptedChapterUsd"
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-the-power-of-moments-ch02",
+  "itemId": "LNV2-CRAFT-the-power-of-moments-ch02",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "366979d53b62f77e",
+  "renderedDocSha256": "b5347d5a87643bd8e237d2deed9c263643f1cb0daeee880fd76e10fcbc4b6c71",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "a6e2e61c896f506a4119851a180adf26595accbaca06eb346160e54f1f3f95ab",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CRAFT-the-power-of-moments-ch02-mrgpaid6-20",
+  "rawFinalMessageSha256": "873a38bc7b108092adc3a20841efa10529adb1531954fb7e99dbc6ceacf93826",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"c\", \"b\", \"b\", \"a\", \"c\", \"b\", \"a\", \"a\"],\n    \"mechanisms\": [\n      \"The prose says to look first at transitions, milestones, and pits; welcome, awards, and complaints are those categories.\",\n      \"The John Deere lesson is that purpose should arrive before forms and routine tasks define the job.\",\n      \"Mary Kay's pink Cadillac works because it makes a private sales milestone visible and public.\",\n      \"The Joshie recovery repaired the meaning of the loss with proof of care, not just the returned object.\",\n      \"The chapter directly says more forms do not improve the first day; purpose tied to real users must come before the packet.\",\n      \"The leader should check whether the achievement has a visible marker people can picture, not just private data.\",\n      \"The clinic has completed the practical fix and apology, but the pit lesson requires a concrete care story around recovery.\",\n      \"Eric's correction is to ask where meaning and later retelling happen before following the busiest step.\",\n      \"The pit lesson warns that a practical fix is not enough if the low point still defines the memory.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"The correct answer maps almost verbatim to the chapter's three named categories through welcome/award/complaint.\",\n      \"The correct answer repeats the chapter phrase 'customer purpose at the start'; the other choices are direct reversals.\",\n      \"The correct answer repeats the chapter's visible/public marker language.\",\n      \"The correct answer uses the giveaway phrase 'proof of care' from the Joshie section.\",\n      \"The correct answer repeats 'purpose before the packet' almost exactly.\",\n      \"The correct answer repeats 'marker people can picture,' a near-summary of the Mary Kay point.\",\n      \"The correct answer is the only one that mentions a story around recovery, matching the chapter's pit vocabulary.\",\n      \"The correct answer uses the chapter's 'sum up the relationship' framing; distractors are obvious process-first mistakes.\",\n      \"The correct answer repeats 'low point hardens,' a distinctive phrase from the prose.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 89,\n    \"quizzes\": 88,\n    \"transfer\": 82,\n    \"practical\": 88,\n    \"summaries\": 91,\n    \"tone\": 81,\n    \"limits\": 86,\n    \"insight\": 88,\n    \"density\": 83,\n    \"beginner\": 92\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The busy middle is not the whole story.\",\n      \"why\": \"This is the chapter's strongest memorable compression of the core move.\"\n    },\n    {\n      \"quote\": \"At a transition, frame the purpose; at a milestone, make progress visible; at a pit, repair the meaning.\",\n      \"why\": \"This cleanly turns the concept into three usable actions.\"\n    },\n    {\n      \"quote\": \"In the end, it really just comes down to paying attention to this instead of overcomplicating things.\",\n      \"why\": \"This is filler that weakens an otherwise concrete example.\"\n    },\n    {\n      \"quote\": \"Title: Practice finding the part of a process that already has feeling in it\\nCore skill: Practice finding the part of a process that already has feeling in it.\",\n      \"why\": \"The implementation plan briefly shows scaffold repetition.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The final sentence is generic filler and does not add mechanism, consequence, or transfer value.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The chore-chart example is thin: it has a plausible action but little before-to-after consequence beyond restating that visible progress matters.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"implementation plan\",\n      \"problem\": \"The title and core-skill line repeat the same wording, creating a mild template/scaffold smell.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"Most correct choices reuse distinctive chapter phrases, so a test-wise reader could often choose by phrase matching rather than reasoning through the scenarios.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable chapter: the core move is clear, memorable, and practical, with strong layering from fast read through full read and review cards. The quizzes are fair and derivable, though somewhat easy because the right answers often echo the prose too directly. The main weaknesses are craft-level: a few examples repeat the same cases rather than widening transfer, one example contains obvious filler, and the implementation plan has a small scaffold smell. None of that blocks learning, but tightening those spots would make the chapter feel more professional.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-the-power-of-moments-ch02-chapter",
+    "chapterNumber": 2,
+    "contentHash": "366979d53b62f77e",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CRAFT-the-power-of-moments-ch02-mrgpaid6-20",
+    "scores": {
+      "retention": 89,
+      "quizzes": 88,
+      "transfer": 82,
+      "practical": 88,
+      "summaries": 91,
+      "tone": 81,
+      "limits": 86,
+      "insight": 88,
+      "density": 83,
+      "beginner": 92
+    },
+    "composite": 86.8,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "c",
+        "b",
+        "b",
+        "a",
+        "c",
+        "b",
+        "a",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The busy middle is not the whole story.",
+        "why": "This is the chapter's strongest memorable compression of the core move.",
+        "verified": true
+      },
+      {
+        "quote": "At a transition, frame the purpose; at a milestone, make progress visible; at a pit, repair the meaning.",
+        "why": "This cleanly turns the concept into three usable actions.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, it really just comes down to paying attention to this instead of overcomplicating things.",
+        "why": "This is filler that weakens an otherwise concrete example.",
+        "verified": true
+      },
+      {
+        "quote": "Title: Practice finding the part of a process that already has feeling in it\nCore skill: Practice finding the part of a process that already has feeling in it.",
+        "why": "The implementation plan briefly shows scaffold repetition.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "The correct answer maps almost verbatim to the chapter's three named categories through welcome/award/complaint.",
+      "The correct answer repeats the chapter phrase 'customer purpose at the start'; the other choices are direct reversals.",
+      "The correct answer repeats the chapter's visible/public marker language.",
+      "The correct answer uses the giveaway phrase 'proof of care' from the Joshie section.",
+      "The correct answer repeats 'purpose before the packet' almost exactly.",
+      "The correct answer repeats 'marker people can picture,' a near-summary of the Mary Kay point.",
+      "The correct answer is the only one that mentions a story around recovery, matching the chapter's pit vocabulary.",
+      "The correct answer uses the chapter's 'sum up the relationship' framing; distractors are obvious process-first mistakes.",
+      "The correct answer repeats 'low point hardens,' a distinctive phrase from the prose."
+    ],
+    "complaints": [
+      {
+        "unit": "example 2",
+        "problem": "The final sentence is generic filler and does not add mechanism, consequence, or transfer value.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The chore-chart example is thin: it has a plausible action but little before-to-after consequence beyond restating that visible progress matters.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan",
+        "problem": "The title and core-skill line repeat the same wording, creating a mild template/scaffold smell.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "Most correct choices reuse distinctive chapter phrases, so a test-wise reader could often choose by phrase matching rather than reasoning through the scenarios.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter: the core move is clear, memorable, and practical, with strong layering from fast read through full read and review cards. The quizzes are fair and derivable, though somewhat easy because the right answers often echo the prose too directly. The main weaknesses are craft-level: a few examples repeat the same cases rather than widening transfer, one example contains obvious filler, and the implementation plan has a small scaffold smell. None of that blocks learning, but tightening those spots would make the chapter feel more professional.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "3eb39fd14d4b5a1b7169ee74acf462715cca6de6c0b0c48dec5d595ab97e270b",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:32:21.760Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "a6e2e61c896f506a4119851a180adf26595accbaca06eb346160e54f1f3f95ab",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:31:12.761Z",
+  "durationMs": 0
+}

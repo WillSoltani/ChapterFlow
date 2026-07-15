@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 2,
+  "chapterTitle": "Carrots and Sticks",
+  "focus": "Price cuts, fear, novelty, peer pressure, and promotions can trigger behavior without creating durable loyalty. A reader learns why a spike in sales or attention is not the same as belief-driven preference.",
+  "coreClaim": "Carrots and Sticks turns manipulation versus inspiration into a practical decision rule backed by named cases and checkable details.",
+  "centralConcept": {
+    "id": "ch02.concept",
+    "name": "manipulation versus inspiration",
+    "plainDefinition": "Price cuts, fear, novelty, peer pressure, and promotions can trigger behavior without creating durable loyalty.",
+    "whyItMatters": "A reader learns why a spike in sales or attention is not the same as belief-driven preference."
+  },
+  "keyClaims": [
+    "manipulation versus inspiration becomes usable only when tied to visible behavior.",
+    "General Motors employee-discount promotions gives the first concrete anchor.",
+    "MCI Friends & Family creates contrast so the idea is not one anecdote.",
+    "TiVo early adoption problem adds a boundary case for application.",
+    "Price, Promotion, Fear, Aspiration, Peer pressure, Novelty keep the unit from collapsing into generic purpose talk."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch02.ex.general-motors-employee-discount-promotion",
+      "label": "General Motors employee-discount promotions",
+      "summary": "General Motors used employee-discount style promotions in 2005, and the Detroit case shows how a sales lever can move volume without creating preference.",
+      "teachesWhat": "General Motors employee-discount promotions turns General Motors into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "General Motors",
+        "2005",
+        "employee discount",
+        "Detroit"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.ex.mci-friends-and-family",
+      "label": "MCI Friends & Family",
+      "summary": "MCI and its 1991 Friends & Family program show peer-pressure marketing in long-distance calling. MCI, Friends & Family, 1991, and long-distance calling are the hard tokens.",
+      "teachesWhat": "MCI Friends & Family turns MCI Inc. into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "MCI",
+        "Friends & Family",
+        "1991",
+        "long-distance calling"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.ex.tivo-early-adoption-problem",
+      "label": "TiVo early adoption problem",
+      "summary": "TiVo launched a digital video recorder service in 1999 around time shifting. The TiVo case warns that novelty can be impressive while the buying reason remains unclear.",
+      "teachesWhat": "TiVo early adoption problem turns TiVo into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "TiVo",
+        "1999",
+        "digital video recorder",
+        "time shifting"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to turn manipulation versus inspiration into a universal slogan and ignore the cases. The stricter reading keeps the claim tied to the specific examples and uses the framework only where the details support it.",
+  "voiceCues": [
+    "plain business language with short contrasts",
+    "case first, principle second",
+    "second-person diagnostic questions",
+    "simple framework names repeated sparingly"
+  ],
+  "forbiddenLeakage": [
+    "Do not teach biological brain regions yet",
+    "Do not frame trust as the main output yet"
+  ],
+  "paraphraseNotes": "Carrots and Sticks works from manipulation versus inspiration: Price cuts, fear, novelty, peer pressure, and promotions can trigger behavior without creating durable loyalty. A reader learns why a spike in sales or attention is not the same as belief-driven preference. General Motors used employee-discount style promotions in 2005, and the Detroit case shows how a sales lever can move volume without creating preference. MCI and its 1991 Friends & Family program show peer-pressure marketing in long-distance calling. MCI, Friends & Family, 1991, and long-distance calling are the hard tokens. TiVo launched a digital video recorder service in 1999 around time shifting. The TiVo case warns that novelty can be impressive while the buying reason remains unclear. Price starts the local logic for Carrots and Sticks; Promotion, Fear, Aspiration, Peer pressure, Novelty complete the sequence. Keep the incentive examples transactional; do not let promotions become proof of loyalty or trust.",
+  "testableFacts": [
+    {
+      "id": "ch02.fact.1",
+      "claim": "General Motors employee-discount promotions makes manipulation versus inspiration concrete through General Motors and 2005.",
+      "becauseMechanism": "Because General Motors gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat General Motors employee-discount promotions as colorful background.",
+      "errorIsWhy": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "derivedFrom": "ch02.ex.general-motors-employee-discount-promotion"
+    },
+    {
+      "id": "ch02.fact.2",
+      "claim": "MCI Friends & Family adds a second anchor for manipulation versus inspiration with MCI and Friends & Family.",
+      "becauseMechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "errorIsWhy": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "derivedFrom": "ch02.ex.mci-friends-and-family"
+    },
+    {
+      "id": "ch02.fact.3",
+      "claim": "TiVo early adoption problem supplies a third checkable scene using TiVo and 1999.",
+      "becauseMechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "errorIsWhy": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "derivedFrom": "ch02.ex.tivo-early-adoption-problem"
+    },
+    {
+      "id": "ch02.fact.4",
+      "claim": "manipulation versus inspiration depends on the sequence Price before Promotion.",
+      "becauseMechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "errorIsWhy": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.5",
+      "claim": "Price, Promotion, Fear, Aspiration, Peer pressure, Novelty form the local framework for Carrots and Sticks.",
+      "becauseMechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "errorIsWhy": "Shortening removes the distinctions the quiz and examples need to test.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.6",
+      "claim": "employee discount is a hard detail that should stay attached to General Motors employee-discount promotions.",
+      "becauseMechanism": "Because hard specifics are portable only inside their case, moving employee discount to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "errorIsWhy": "A true detail becomes misleading when it is attached to the wrong case.",
+      "derivedFrom": "ch02.ex.general-motors-employee-discount-promotion"
+    },
+    {
+      "id": "ch02.fact.7",
+      "claim": "1991 gives MCI Friends & Family a different factual token from General Motors employee-discount promotions.",
+      "becauseMechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "errorIsWhy": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "derivedFrom": "ch02.ex.mci-friends-and-family"
+    },
+    {
+      "id": "ch02.fact.8",
+      "claim": "digital video recorder helps mark the boundary of manipulation versus inspiration.",
+      "becauseMechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "errorIsWhy": "The mechanism changes by venue; boundary details keep the application honest.",
+      "derivedFrom": "ch02.ex.tivo-early-adoption-problem"
+    },
+    {
+      "id": "ch02.fact.9",
+      "claim": "Carrots and Sticks should teach manipulation versus inspiration through General Motors employee-discount promotions, MCI Friends & Family, and TiVo early adoption problem, not through generic leadership advice.",
+      "becauseMechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "errorIsWhy": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "derivedFrom": "ch02.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Carrots and Sticks framework",
+      "members": [
+        "Price",
+        "Promotion",
+        "Fear",
+        "Aspiration",
+        "Peer pressure",
+        "Novelty"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "General Motors employee-discount promotions",
+    "MCI Friends & Family",
+    "TiVo early adoption problem"
+  ]
+}

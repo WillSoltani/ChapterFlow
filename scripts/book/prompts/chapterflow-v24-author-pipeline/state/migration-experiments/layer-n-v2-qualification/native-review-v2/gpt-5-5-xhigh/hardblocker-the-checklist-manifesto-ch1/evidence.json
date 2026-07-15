@@ -1,0 +1,131 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-the-checklist-manifesto-ch1",
+  "itemId": "hardblocker-the-checklist-manifesto-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "530a73b9a54d4a56",
+  "renderedDocSha256": "72bdaa972013514d2c8b490c012ddf11d51ec6f635662429d49be73da04d1e54",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "b09cb8fdbfa65eb6d9431f0a0acd89fea6de9bd76a111452192a935b32f673b4",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-hardblocker-the-checklist-manifesto-ch1-mrhaqqvv-26",
+  "rawFinalMessageSha256": "d430374907537b282e729e074c61ec37c6e2036fe2b8bb3c848659fd1afed540",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\", \"b\", \"c\"],\n    \"mechanisms\": [\n      \"The prose says danger in expert rooms often lives in handoffs where ownership blurs, not in lack of talent.\",\n      \"The lesson says to find the transition everyone trusts and nobody owns before the rush/window begins.\",\n      \"Ingrid's example shows the right first move is rebuilding the path across every handoff before blaming the last visible person.\",\n      \"The chapter says movement creates seams, so a failure when cues cross departments points first to explicit handoffs.\",\n      \"The transplant/cold-chain example says separate completed tasks can still fail at the crossings between departments.\",\n      \"Hadiya's storm example says to mark the overlap before peak load and give it a named owner.\",\n      \"The museum example and core thesis say the exposed point can be the dependency between experts.\",\n      \"The prose says expertise cannot make every handoff visible by memory; ownership must be made visible where roles cross.\",\n      \"The chapter warns against relying on one mind to hold crowded work; the diagnostic question is which transition lived only in the leader's head.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Several correct options reuse chapter vocabulary such as handoff seam, ownership, crossing, and named owner.\",\n      \"Many distractors are caricatures of blame or command, with words like always, only, replace, punish, or work harder.\",\n      \"Q1 and Q7 are especially guessable because the correct choices carry the chapter's abstract phrasing while the alternatives sound extreme.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 83,\n    \"transfer\": 74,\n    \"practical\": 78,\n    \"summaries\": 84,\n    \"tone\": 86,\n    \"limits\": 88,\n    \"insight\": 90,\n    \"density\": 84,\n    \"beginner\": 88\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"Movement creates seams, and seams create assumptions.\",\n      \"why\": \"This is the chapter's core mechanism in a compact, memorable line.\"\n    },\n    {\n      \"quote\": \"The last person on the screen had touched the order, but the failure had lived in the crossings.\",\n      \"why\": \"Strongly explains why blame can misdiagnose complex work.\"\n    },\n    {\n      \"quote\": \"On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction.\",\n      \"why\": \"This appears inside a What to do section but directly contradicts the lesson.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The What to do section gives a second instruction that says to leave the warm-fluid setup unassigned and trust competence; this is SOURCE-CONTRADICTORY because it teaches the opposite of the chapter's core move.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Correct answers often use the chapter's signature vocabulary while distractors lean on obvious blame, hero-command, or inexperience framings, making some answers guessable without reading closely.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"deep read\",\n      \"problem\": \"The Austrian drowning rescue is invoked as support but is not concretely identified or shown with a before-to-after decision path, so it is thinner than the surrounding medical, rail, and pharmacy examples.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter has a clear, memorable core move: in dense expert work, inspect the seam where ownership thins before blaming the people. The prose is approachable, the mechanism is repeated without becoming too padded, and the quiz is mostly fair and derivable. I would not ship this version because Example 1's What to do section contains a direct contradictory instruction that could teach the wrong behavior; after fixing that, the remaining issues are craft-level improvements around quiz tells and one under-specified supporting example.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-the-checklist-manifesto-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "530a73b9a54d4a56",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-hardblocker-the-checklist-manifesto-ch1-mrhaqqvv-26",
+    "scores": {
+      "retention": 90,
+      "quizzes": 83,
+      "transfer": 74,
+      "practical": 78,
+      "summaries": 84,
+      "tone": 86,
+      "limits": 88,
+      "insight": 90,
+      "density": 84,
+      "beginner": 88
+    },
+    "composite": 84.2,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c",
+        "b",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Movement creates seams, and seams create assumptions.",
+        "why": "This is the chapter's core mechanism in a compact, memorable line.",
+        "verified": true
+      },
+      {
+        "quote": "The last person on the screen had touched the order, but the failure had lived in the crossings.",
+        "why": "Strongly explains why blame can misdiagnose complex work.",
+        "verified": true
+      },
+      {
+        "quote": "On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction.",
+        "why": "This appears inside a What to do section but directly contradicts the lesson.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Several correct options reuse chapter vocabulary such as handoff seam, ownership, crossing, and named owner.",
+      "Many distractors are caricatures of blame or command, with words like always, only, replace, punish, or work harder.",
+      "Q1 and Q7 are especially guessable because the correct choices carry the chapter's abstract phrasing while the alternatives sound extreme."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "The What to do section gives a second instruction that says to leave the warm-fluid setup unassigned and trust competence; this is SOURCE-CONTRADICTORY because it teaches the opposite of the chapter's core move.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz",
+        "problem": "Correct answers often use the chapter's signature vocabulary while distractors lean on obvious blame, hero-command, or inexperience framings, making some answers guessable without reading closely.",
+        "mustFix": false
+      },
+      {
+        "unit": "deep read",
+        "problem": "The Austrian drowning rescue is invoked as support but is not concretely identified or shown with a before-to-after decision path, so it is thinner than the surrounding medical, rail, and pharmacy examples.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a clear, memorable core move: in dense expert work, inspect the seam where ownership thins before blaming the people. The prose is approachable, the mechanism is repeated without becoming too padded, and the quiz is mostly fair and derivable. I would not ship this version because Example 1's What to do section contains a direct contradictory instruction that could teach the wrong behavior; after fixing that, the remaining issues are craft-level improvements around quiz tells and one under-specified supporting example.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "f2999965bad70cee0dd16bbe921675977490ec7242598a44f63e3ec66c3a3f17",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:32:58.610Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "b09cb8fdbfa65eb6d9431f0a0acd89fea6de9bd76a111452192a935b32f673b4",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:31:42.234Z",
+  "durationMs": 0
+}

@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c25-a1",
+  "requestSha256": "c5f361d5715e951aaa1359a3502efe88a23670c68908e12d9e83fa33e207951b",
+  "receiptSha256": "3c68d45fef4f6615221a5fd4f9a132346b86c57c4e91a21ecc159a5b845993b5",
+  "executionEvidenceSha256": "7449bc753aa84709706bb6a8974c7a44bfd130ce8ba9abe71356dc639ef92910",
+  "rawOutputSha256": "3dddb7e3cc871596e0f282a38548bc47f8cf57173e258f79f53f986dd4f8729d",
+  "evaluationSha256": "809dba9dad4196f30e1b20e81d900a832464556d95ab83ff43b21238fac6ddce",
+  "parsedOutputSha256": "d5144f1e3a423b98104036b50b0f6cdada39b973aaba4c4f3c30a273291c522e",
+  "assembledReviewSha256": "c3e67abf705d1a1450aeaa656ce1204bace28789a6a9ae26d05becbabe3c74a4",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The target stays within the packet plan: it uses a generic role and observable workflow actions, remains descriptive and conceptual, includes no forbidden named or historical specifics, and does not require visible source framing."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "00681555f17bc35713232f2b8d45ba6148ac20a2711741c82415c86efa2cb3d5",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "93164de749a835cddafd15bf2104735e5bcc943fbe9900abd7f2f9c2083d5c32",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The target stays within the packet plan: it uses a generic role and observable workflow actions, remains descriptive and conceptual, includes no forbidden named or historical specifics, and does not require visible source framing.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The target stays within the packet plan: it uses a generic role and observable workflow actions, remains descriptive and conceptual, includes no forbidden named or historical specifics, and does not require visible source framing."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "42af354c5a4a6ceb86aa0ba09b349e8e0da1110f33c31a247bc973287ffd04a6"
+}

@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c09-a1",
+  "requestSha256": "722dd8fec10228917626317e3684f052754d2a716bb6961a16d36dcf97aa7c1a",
+  "receiptSha256": "10faf4a1bf86a0a8e63b946e82dc6897c3ef7c1354d4a32ad767b1cc07bf746b",
+  "executionEvidenceSha256": "7a7a526335e1d2bbe793e0dd1c826085417259d49235f2ffc8b754e83784794c",
+  "rawOutputSha256": "cbbbb115484e6e501afe78c8a8e3306caa28eb2c861aac179af04e18c2466097",
+  "evaluationSha256": "a8629ac6bdd17ad7a45d625aa49839ba8eb110a11f92e742153f3547926f3179",
+  "parsedOutputSha256": "6e5eca0f0859eed2dee4ab355e4e0d18bada6d33b801ed3d38df1a0f358a547d",
+  "assembledReviewSha256": "693df05b82f298b4abf4e8fe43a76a3d08a3e94c036b5e541fea63efcd5c2db6",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "The chapter accurately presents the source claim and mechanism as a non-universal possibility. Its wording stays within the permitted mechanistic strength, adds no unsupported specificity, and is fully supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "80fc7b7a08a60027d4288eb00ca852f54f3ca95932e7df50dd3f6e0324c84637",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "5a29850fdc1bcae5f69edd262527e29cd720c3bd222022bde7e15791f861f167",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "The chapter accurately presents the source claim and mechanism as a non-universal possibility. Its wording stays within the permitted mechanistic strength, adds no unsupported specificity, and is fully supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter accurately presents the source claim and mechanism as a non-universal possibility. Its wording stays within the permitted mechanistic strength, adds no unsupported specificity, and is fully supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "02635684f694644ede4becb9dec1d02a6e073c41fb560ab40691e251497fd3c4"
+}

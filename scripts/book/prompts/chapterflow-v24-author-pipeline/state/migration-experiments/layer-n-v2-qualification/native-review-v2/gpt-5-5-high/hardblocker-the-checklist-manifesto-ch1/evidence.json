@@ -1,0 +1,124 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-the-checklist-manifesto-ch1",
+  "itemId": "hardblocker-the-checklist-manifesto-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "530a73b9a54d4a56",
+  "renderedDocSha256": "72bdaa972013514d2c8b490c012ddf11d51ec6f635662429d49be73da04d1e54",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "b09cb8fdbfa65eb6d9431f0a0acd89fea6de9bd76a111452192a935b32f673b4",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-the-checklist-manifesto-ch1-mrh7t8bb-26",
+  "rawFinalMessageSha256": "b16fbd24de30b6e92378a3e9e9a146bec6cbc8660e0eb4ceac023dab8d872a3c",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\", \"b\", \"c\"],\n    \"mechanisms\": [\n      \"The prose says danger in expert systems often lives between people, where ownership blurs at handoffs.\",\n      \"The lesson says to map the transition by named owner before the rush or window arrives.\",\n      \"The Ingrid example explicitly rejects blaming the last visible person and rebuilds the path across handoffs.\",\n      \"The chapter names crossings between roles as the exposed point, so cross-department cues are the first place to inspect.\",\n      \"The transplant example shows each department can complete its part while the failure lives in the crossings.\",\n      \"The storm example says to mark overlap before peak load and give the cross-department point a named owner.\",\n      \"The museum crate example shows experts can each be ready while the dependency between them exposes the object.\",\n      \"The core reasoning is that excellence does not make ownership visible across role crossings.\",\n      \"The chapter says memory and command cannot reliably hold crowded work, so the transition must be moved into the system.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\"The correct answer appears to be the uniquely longest option in every quiz item, which creates a strong guessing tell without reading.\"]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 72,\n    \"transfer\": 86,\n    \"practical\": 78,\n    \"summaries\": 86,\n    \"tone\": 84,\n    \"limits\": 88,\n    \"insight\": 91,\n    \"density\": 86,\n    \"beginner\": 89\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"Complexity changes the location of danger.\",\n      \"why\": \"This is the chapter's clearest, most memorable compression of the mechanism.\"\n    },\n    {\n      \"quote\": \"Movement creates seams, and seams create assumptions.\",\n      \"why\": \"A strong transfer line that turns the lesson into a reusable diagnostic.\"\n    },\n    {\n      \"quote\": \"On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction.\",\n      \"why\": \"This appears inside 'What to do' and directly contradicts the chapter's instruction.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The 'What to do' section gives the correct action, then adds opposite advice to leave the warm-fluid setup unassigned and trust competence. This is SOURCE-CONTRADICTORY and could teach the wrong move.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"The keyed option is consistently the uniquely longest answer, creating a visible test-taking tell.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter has a strong central move: in complex expert work, stop blaming the nearest person and inspect the seam where ownership thinned out. It is memorable, concrete, and transfers well across medicine, rail, pharmacy, weather, logistics, and museum work. The main blocker is Example 1, where the action guidance contradicts itself inside the 'What to do' field. The quiz is derivable and fair from the prose, but the repeated longest-correct-option pattern weakens it. Fix the contradictory example before shipping.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-the-checklist-manifesto-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "530a73b9a54d4a56",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-the-checklist-manifesto-ch1-mrh7t8bb-26",
+    "scores": {
+      "retention": 90,
+      "quizzes": 72,
+      "transfer": 86,
+      "practical": 78,
+      "summaries": 86,
+      "tone": 84,
+      "limits": 88,
+      "insight": 91,
+      "density": 86,
+      "beginner": 89
+    },
+    "composite": 84.6,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c",
+        "b",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Complexity changes the location of danger.",
+        "why": "This is the chapter's clearest, most memorable compression of the mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "Movement creates seams, and seams create assumptions.",
+        "why": "A strong transfer line that turns the lesson into a reusable diagnostic.",
+        "verified": true
+      },
+      {
+        "quote": "On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction.",
+        "why": "This appears inside 'What to do' and directly contradicts the chapter's instruction.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "The correct answer appears to be the uniquely longest option in every quiz item, which creates a strong guessing tell without reading."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "The 'What to do' section gives the correct action, then adds opposite advice to leave the warm-fluid setup unassigned and trust competence. This is SOURCE-CONTRADICTORY and could teach the wrong move.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz",
+        "problem": "The keyed option is consistently the uniquely longest answer, creating a visible test-taking tell.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a strong central move: in complex expert work, stop blaming the nearest person and inspect the seam where ownership thinned out. It is memorable, concrete, and transfers well across medicine, rail, pharmacy, weather, logistics, and museum work. The main blocker is Example 1, where the action guidance contradicts itself inside the 'What to do' field. The quiz is derivable and fair from the prose, but the repeated longest-correct-option pattern weakens it. Fix the contradictory example before shipping.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "f2999965bad70cee0dd16bbe921675977490ec7242598a44f63e3ec66c3a3f17",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:10:32.833Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "b09cb8fdbfa65eb6d9431f0a0acd89fea6de9bd76a111452192a935b32f673b4",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:09:39.286Z",
+  "durationMs": 0
+}

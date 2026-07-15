@@ -1,0 +1,145 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-difficult-conversations-ch01",
+  "itemId": "LNV2-CRAFT-difficult-conversations-ch01",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "0c13e56939e7dd87",
+  "renderedDocSha256": "8c4e9a886312eca012c60524c9b0542e9d918c6aef9f81e4ecc154387462d992",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "576ed96da88522b4a10710dfe9e42e86a2fd36bf0a1650fd30287eac1642685a",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CRAFT-difficult-conversations-ch01-mrh7hlbd-17",
+  "rawFinalMessageSha256": "42a905a48e19a7246a3af2c64065a3c83287d0c970210878a64bd37eb29c7f96",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"a\", \"b\", \"c\", \"a\", \"b\", \"c\", \"c\", \"b\", \"a\"],\n    \"mechanisms\": [\n      \"Her fear of seeming too junior is a competence/authority self-question, which the prose defines as the identity layer.\",\n      \"The prose says to sort what happened, feelings, and identity; the promise, resentment, and responsible-child fear map directly onto those three layers.\",\n      \"Residents' ignored feeling and the board's negligent-image fear show that repair facts alone are not the whole conversation.\",\n      \"The chapter warns that the visible deadline or timeline can be real while feelings about trust steer the exchange.\",\n      \"Hearing the question as 'you are a bad friend' turns the missed dinner into a judgment about what kind of person she is.\",\n      \"The preparation separates facts, feelings, and identity, preventing the belonging question from being treated as only an authorship dispute.\",\n      \"The attendance fact has become a parenting-identity threat, so simply repeating facts may increase defensiveness.\",\n      \"The prose says the frame works best as private diagnosis and can sound accusatory when pasted onto someone else.\",\n      \"The dishes are the visible issue, while respect is the deeper feelings/identity layer that keeps driving the argument.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"medium\"],\n    \"ambiguities\": [\n      \"b is superficially defensible because anxiety is a feeling, but the phrase 'too junior to challenge him' makes competence and authority the controlling issue.\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"b is also part of good diagnosis because dishes facts still matter; however, the best first diagnostic question must sort layers, not only audit chores.\"\n    ],\n    \"tells\": [\n      \"a is the longest and contains the prose keywords 'competence and authority.'\",\n      \"b is much longer and lists all three layers, while a and c are narrow single-layer moves.\",\n      \"c is the only option that names facts, feelings, and identity/reputation together.\",\n      \"a is the only option that mentions the hidden trust feeling; c is a comic weak distractor.\",\n      \"b repeats the stem's 'bad friend' identity cue; c overreaches with 'always.'\",\n      \"c is the only option that preserves the diagnostic purpose; a incorrectly says script and b overclaims proof.\",\n      \"c is much longer and uses the chapter's exact warning that more facts alone may fail.\",\n      \"b closely paraphrases the chapter's warning about private diagnosis and labels sounding like verdicts.\",\n      \"a is the only option using the chapter's layer vocabulary.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 74,\n    \"transfer\": 84,\n    \"practical\": 86,\n    \"summaries\": 90,\n    \"tone\": 82,\n    \"limits\": 91,\n    \"insight\": 88,\n    \"density\": 84,\n    \"beginner\": 90\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The log is evidence. It is not the whole map.\",\n      \"why\": \"A compact, memorable statement of the chapter's core move.\"\n    },\n    {\n      \"quote\": \"Diagnosis is not a cure.\",\n      \"why\": \"Keeps the skill bounded and prevents overselling.\"\n    },\n    {\n      \"quote\": \"The three-conversation frame loses much of its usefulness when it becomes a label you paste onto someone else.\",\n      \"why\": \"Strong practical limit that protects readers from misusing the concept.\"\n    },\n    {\n      \"quote\": \"In the end, this is the kind of move worth practicing until it feels routine.\",\n      \"why\": \"This sentence has generic courseware smell and weakens an otherwise concrete example.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"Correct answers are often the longest and most layered option, while distractors frequently use giveaway absolutes or obviously bad behavior, making several answers guessable without reading closely.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"The stem asks what layer she has found, but the word 'terrified' gives a plausible feelings-layer distractor even though the competence/authority content points to identity.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q9\",\n      \"problem\": \"The best answer is derivable, but the question could also warrant checking the chore facts because the chapter says facts still matter; the distractor makes that legitimate step too narrow.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The final sentence turns generic and instructional instead of staying inside the concrete before-to-after moment.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a clear, usable chapter with a strong central distinction, memorable boundary lines, and practical transfer across work, family, community, and creative settings. The prose does a good job showing that facts, feelings, and identity can all be true at once, and it is especially strong on warning readers not to weaponize the frame. I would not ship it yet against a professional 80+ bar because the quiz design is too guessable: correct choices repeatedly announce themselves by being the longest, most complete, and closest to the chapter language, while distractors often caricature bad practice.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-difficult-conversations-ch01-chapter",
+    "chapterNumber": 1,
+    "contentHash": "0c13e56939e7dd87",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CRAFT-difficult-conversations-ch01-mrh7hlbd-17",
+    "scores": {
+      "retention": 88,
+      "quizzes": 74,
+      "transfer": 84,
+      "practical": 86,
+      "summaries": 90,
+      "tone": 82,
+      "limits": 91,
+      "insight": 88,
+      "density": 84,
+      "beginner": 90
+    },
+    "composite": 85.4,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The log is evidence. It is not the whole map.",
+        "why": "A compact, memorable statement of the chapter's core move.",
+        "verified": true
+      },
+      {
+        "quote": "Diagnosis is not a cure.",
+        "why": "Keeps the skill bounded and prevents overselling.",
+        "verified": true
+      },
+      {
+        "quote": "The three-conversation frame loses much of its usefulness when it becomes a label you paste onto someone else.",
+        "why": "Strong practical limit that protects readers from misusing the concept.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+        "why": "This sentence has generic courseware smell and weakens an otherwise concrete example.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "a is the longest and contains the prose keywords 'competence and authority.'",
+      "b is much longer and lists all three layers, while a and c are narrow single-layer moves.",
+      "c is the only option that names facts, feelings, and identity/reputation together.",
+      "a is the only option that mentions the hidden trust feeling; c is a comic weak distractor.",
+      "b repeats the stem's 'bad friend' identity cue; c overreaches with 'always.'",
+      "c is the only option that preserves the diagnostic purpose; a incorrectly says script and b overclaims proof.",
+      "c is much longer and uses the chapter's exact warning that more facts alone may fail.",
+      "b closely paraphrases the chapter's warning about private diagnosis and labels sounding like verdicts.",
+      "a is the only option using the chapter's layer vocabulary."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz overall",
+        "problem": "Correct answers are often the longest and most layered option, while distractors frequently use giveaway absolutes or obviously bad behavior, making several answers guessable without reading closely.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1",
+        "problem": "The stem asks what layer she has found, but the word 'terrified' gives a plausible feelings-layer distractor even though the competence/authority content points to identity.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q9",
+        "problem": "The best answer is derivable, but the question could also warrant checking the chore facts because the chapter says facts still matter; the distractor makes that legitimate step too narrow.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The final sentence turns generic and instructional instead of staying inside the concrete before-to-after moment.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a clear, usable chapter with a strong central distinction, memorable boundary lines, and practical transfer across work, family, community, and creative settings. The prose does a good job showing that facts, feelings, and identity can all be true at once, and it is especially strong on warning readers not to weaponize the frame. I would not ship it yet against a professional 80+ bar because the quiz design is too guessable: correct choices repeatedly announce themselves by being the longest, most complete, and closest to the chapter language, while distractors often caricature bad practice.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "7553eb2cb9f85dd63a64d8de290977244ae835a2279e324b7a1bb3f634798c01",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:01:34.367Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "576ed96da88522b4a10710dfe9e42e86a2fd36bf0a1650fd30287eac1642685a",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:00:36.264Z",
+  "durationMs": 0
+}

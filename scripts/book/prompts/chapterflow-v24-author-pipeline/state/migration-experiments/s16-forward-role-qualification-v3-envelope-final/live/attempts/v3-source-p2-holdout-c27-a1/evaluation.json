@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c27-a1",
+  "requestSha256": "4ca18a8896dac48cf78538496d75c8d0f23b6f501aa477ae39bc2a3e63341ae3",
+  "receiptSha256": "c38ce9b0420863a3b376c8183ee98fd69ef5b6b4d5899ab232ce3e3c61e1aca8",
+  "executionEvidenceSha256": "67b447b6226663a456a515ccce16f7a484cbc88c6c0e46541401a559ffe2563c",
+  "rawOutputSha256": "8a71ef0b1cc047eb26fc84dbaa07549e8e993562a5c4812472cbd82e6747912a",
+  "evaluationSha256": "049202e1c45076e5d93cc84ca2bd62386656c95d3e83fb5f7e34d95f0ca924c1",
+  "parsedOutputSha256": "5925dc69297beb4376e5de05064a8d10139fa70af825449a9bd73828c74eae16",
+  "assembledReviewSha256": "28cde6020492460e061910fce20121ca1fa6c7ff57a8ce2416eed72de481c091",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The target stays within the packet plan for a generic operational scenario: it uses only a generic role and observable workflow action, does not add forbidden named or factual specifics, and does not require visible source framing."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "456067d780eacad8b5c429129447df8e88dcfa01ea17702005bf51276ae406de",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "587a977f29d24ebba3e03e4f05417f1c3e6d4fd2aa48c3ea0903e95586ccba07",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The target stays within the packet plan for a generic operational scenario: it uses only a generic role and observable workflow action, does not add forbidden named or factual specifics, and does not require visible source framing.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The target stays within the packet plan for a generic operational scenario: it uses only a generic role and observable workflow action, does not add forbidden named or factual specifics, and does not require visible source framing."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "538a24f163a6bbce70b2019d16d19b3c61de86375e114681b52f1b466869d575"
+}

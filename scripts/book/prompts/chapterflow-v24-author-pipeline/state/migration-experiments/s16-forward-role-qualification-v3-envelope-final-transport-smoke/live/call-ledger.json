@@ -1,0 +1,45 @@
+{
+  "schema": "imp24-role-qualification-live-call-ledger-v4",
+  "experimentId": "s16-forward-role-qualification-v3-envelope-final-transport-smoke",
+  "freezeSha256": "befc5902c41516b7b5e38240afb51d0b7dd0f556096ef39609c02a9910493a0e",
+  "certificationSha256": "ff4e1242fef13998196dbcba6ba92b3263fae44a36628d68fac88f9ded8b46b5",
+  "productionInstrumentSealSha256": "ca93638dd9594e0f0463fd03d7b2a67acf5b751c94548e778bdba5b1be17b310",
+  "entries": [
+    {
+      "attemptId": "s16-forward-role-qualification-v3-envelope-final-transport-smoke-reader-canary-a1",
+      "scheduleId": "s16-forward-role-qualification-v3-envelope-final-transport-smoke-reader-canary",
+      "requestSha256": "5dd7038b070ec97edae16b7748c31498c5d743340bc19eb456f58f6435b5ac58",
+      "evidenceEnvelopeSha256": "dc2e76b95c1249f7c2a8bb66b2bebf9d8c5e4bbd06c70b3a1c0e603403630907",
+      "evidenceEnvelopeBytesSha256": "5aa369d97e8923a03ab1fbc20e92752eec144fcbe65f850130d193febbbd57c4",
+      "receiptSha256": "25aaae17775970fca7035d1e54e14dd4c16066702e66d5589177473cfa21d127",
+      "processDiagnosticsSha256": "cc0a6ce0195f89acc4a0c401389903bf118967e26e2c458436fc11514cc62e11",
+      "executionEvidenceSha256": "4e4749e63e59086069b39d36f81e7c5eca33dd6d957ba60fc98b3065523580cf",
+      "evaluationArtifactSha256": "4c88b472ec41fd386b61bec74dca34922a09dcdc8628a1aa9987c1d16f02a088",
+      "status": "completed",
+      "cached": false,
+      "requestedAt": "2026-07-14T17:01:41.188Z",
+      "completedAt": "2026-07-14T17:02:38.498Z"
+    },
+    {
+      "attemptId": "s16-forward-role-qualification-v3-envelope-final-transport-smoke-source-canary-a1",
+      "scheduleId": "s16-forward-role-qualification-v3-envelope-final-transport-smoke-source-canary",
+      "requestSha256": "cbf866bc194770f0d8ad7016fb080d650b5a791211fcc94e185cfd7196c69b62",
+      "evidenceEnvelopeSha256": "3c1e469f59859a2bc3dbd4cf6a2235b2a246e387ad74288eacbfa1dadd4889b4",
+      "evidenceEnvelopeBytesSha256": "8bc9434c415a4437ab7d3fae7e2c53f149b945508a666253bd20102ebdeb78d0",
+      "receiptSha256": "e973ee78d6c6b6749aad38ad9436d899edc9ab6d89bea7fe3cae73df87690fbb",
+      "processDiagnosticsSha256": "dfa9a97f80fdb551758194bc15bc6e84fbd31decd772c42962e03e86823a5e97",
+      "executionEvidenceSha256": "f6becbb264f1446dd467b1f07c3e4adfca944868f893dfef4b9e7baabc4f9384",
+      "evaluationArtifactSha256": "47eac3d9108549c410713634e31f7dc77e08a74d15fa1a7744ad8baba7f7280d",
+      "status": "completed",
+      "cached": false,
+      "requestedAt": "2026-07-14T17:01:41.215Z",
+      "completedAt": "2026-07-14T17:02:04.684Z"
+    }
+  ],
+  "brokerRequests": 2,
+  "codexExecInvocations": 2,
+  "cachedReceipts": 0,
+  "infrastructureReplays": 0,
+  "maxPlanCapacityEvents": 0,
+  "apiCallsMade": 0
+}

@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 9,
+  "chapterTitle": "Know WHY. Know HOW. Then WHAT?",
+  "focus": "Products and services become evidence after WHY and HOW are clear; WHAT should prove the belief, not substitute for it. A reader learns to judge offers by alignment instead of assuming any expansion is strategic.",
+  "coreClaim": "Know WHY. Know HOW. Then WHAT? turns product as proof into a practical decision rule backed by named cases and checkable details.",
+  "centralConcept": {
+    "id": "ch09.concept",
+    "name": "product as proof",
+    "plainDefinition": "Products and services become evidence after WHY and HOW are clear; WHAT should prove the belief, not substitute for it.",
+    "whyItMatters": "A reader learns to judge offers by alignment instead of assuming any expansion is strategic."
+  },
+  "keyClaims": [
+    "product as proof becomes usable only when tied to visible behavior.",
+    "Apple iPod gives the first concrete anchor.",
+    "Dell DJ creates contrast so the idea is not one anecdote.",
+    "Volkswagen Phaeton adds a boundary case for application.",
+    "WHY first, HOW proof, WHAT evidence keep the unit from collapsing into generic purpose talk."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch09.ex.apple-ipod",
+      "label": "Apple iPod",
+      "summary": "Apple Inc. introduced the iPod in 2001 as a digital music player. The iPod worked as WHAT because it fit the challenger-design WHY and HOW.",
+      "teachesWhat": "Apple iPod turns Apple Inc. into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "iPod",
+        "2001",
+        "Apple Inc.",
+        "digital music player"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch09.ex.dell-dj",
+      "label": "Dell DJ",
+      "summary": "Dell released the Dell DJ digital audio player in 2003. The Dell DJ case shows a technically plausible WHAT that did not carry the same belief signal.",
+      "teachesWhat": "Dell DJ turns Dell DJ into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Dell DJ",
+        "2003",
+        "digital audio player",
+        "Dell"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch09.ex.volkswagen-phaeton",
+      "label": "Volkswagen Phaeton",
+      "summary": "Volkswagen introduced the Phaeton luxury car in 2002 and built it in Dresden. The case warns that an impressive WHAT can confuse existing meaning.",
+      "teachesWhat": "Volkswagen Phaeton turns Volkswagen Phaeton into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Volkswagen Phaeton",
+        "2002",
+        "luxury car",
+        "Dresden"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to turn product as proof into a universal slogan and ignore the cases. The stricter reading keeps the claim tied to the specific examples and uses the framework only where the details support it.",
+  "voiceCues": [
+    "plain business language with short contrasts",
+    "case first, principle second",
+    "second-person diagnostic questions",
+    "simple framework names repeated sparingly"
+  ],
+  "forbiddenLeakage": [
+    "Do not use the celery test as the organizing device",
+    "Do not shift to succession after success"
+  ],
+  "paraphraseNotes": "Know WHY. Know HOW. Then WHAT? works from product as proof: Products and services become evidence after WHY and HOW are clear; WHAT should prove the belief, not substitute for it. A reader learns to judge offers by alignment instead of assuming any expansion is strategic. Apple Inc. introduced the iPod in 2001 as a digital music player. The iPod worked as WHAT because it fit the challenger-design WHY and HOW. Dell released the Dell DJ digital audio player in 2003. The Dell DJ case shows a technically plausible WHAT that did not carry the same belief signal. Volkswagen introduced the Phaeton luxury car in 2002 and built it in Dresden. The case warns that an impressive WHAT can confuse existing meaning. WHY first starts the local logic for Know WHY. Know HOW. Then WHAT?; HOW proof, WHAT evidence complete the sequence. Keep iPod, Dell DJ, and Phaeton on WHAT as proof or confusion; communication symbols belong in the next unit.",
+  "testableFacts": [
+    {
+      "id": "ch09.fact.1",
+      "claim": "Apple iPod makes product as proof concrete through iPod and 2001.",
+      "becauseMechanism": "Because iPod gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Apple iPod as colorful background.",
+      "errorIsWhy": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "derivedFrom": "ch09.ex.apple-ipod"
+    },
+    {
+      "id": "ch09.fact.2",
+      "claim": "Dell DJ adds a second anchor for product as proof with Dell DJ and 2003.",
+      "becauseMechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "errorIsWhy": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "derivedFrom": "ch09.ex.dell-dj"
+    },
+    {
+      "id": "ch09.fact.3",
+      "claim": "Volkswagen Phaeton supplies a third checkable scene using Volkswagen Phaeton and 2002.",
+      "becauseMechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "errorIsWhy": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "derivedFrom": "ch09.ex.volkswagen-phaeton"
+    },
+    {
+      "id": "ch09.fact.4",
+      "claim": "product as proof depends on the sequence WHY first before HOW proof.",
+      "becauseMechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "errorIsWhy": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "derivedFrom": "ch09.concept"
+    },
+    {
+      "id": "ch09.fact.5",
+      "claim": "WHY first, HOW proof, WHAT evidence form the local framework for Know WHY. Know HOW. Then WHAT?.",
+      "becauseMechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "errorIsWhy": "Shortening removes the distinctions the quiz and examples need to test.",
+      "derivedFrom": "ch09.concept"
+    },
+    {
+      "id": "ch09.fact.6",
+      "claim": "Apple Inc. is a hard detail that should stay attached to Apple iPod.",
+      "becauseMechanism": "Because hard specifics are portable only inside their case, moving Apple Inc. to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "errorIsWhy": "A true detail becomes misleading when it is attached to the wrong case.",
+      "derivedFrom": "ch09.ex.apple-ipod"
+    },
+    {
+      "id": "ch09.fact.7",
+      "claim": "digital audio player gives Dell DJ a different factual token from Apple iPod.",
+      "becauseMechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "errorIsWhy": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "derivedFrom": "ch09.ex.dell-dj"
+    },
+    {
+      "id": "ch09.fact.8",
+      "claim": "luxury car helps mark the boundary of product as proof.",
+      "becauseMechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "errorIsWhy": "The mechanism changes by venue; boundary details keep the application honest.",
+      "derivedFrom": "ch09.ex.volkswagen-phaeton"
+    },
+    {
+      "id": "ch09.fact.9",
+      "claim": "Know WHY. Know HOW. Then WHAT? should teach product as proof through Apple iPod, Dell DJ, and Volkswagen Phaeton, not through generic leadership advice.",
+      "becauseMechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "errorIsWhy": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "derivedFrom": "ch09.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Know WHY. Know HOW. Then WHAT? framework",
+      "members": [
+        "WHY first",
+        "HOW proof",
+        "WHAT evidence"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Apple iPod",
+    "Dell DJ",
+    "Volkswagen Phaeton"
+  ]
+}
