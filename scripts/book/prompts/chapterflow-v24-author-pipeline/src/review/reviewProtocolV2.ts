@@ -39,6 +39,38 @@ export function deriveReaderDecisionCategoryV2(
   return "PASS";
 }
 
+export const READER_DECISION_POLICY_V2 = "reader-decision-policy-v2" as const;
+export const READER_DECISION_POLICY_V3 = "reader-decision-policy-v3" as const;
+export type ReaderDecisionPolicyVersion =
+  | typeof READER_DECISION_POLICY_V2
+  | typeof READER_DECISION_POLICY_V3;
+
+/** Owner-ratified decision policy v3 (D1, 2026-07-15 — see
+ * docs/v25/reports/V25_PILOT_READINESS_OWNER_RATIFICATION.md): advisory
+ * findings and origin-ambiguity escalations are retained evidence and
+ * telemetry, never gates. Every real control carries advisories, so under V2
+ * an ACTIVE pipeline could never commit a first write. Blockers and the exact
+ * reader bar are unchanged. Closed identities and their retained evidence stay
+ * scored under V2 — history is never re-scored with a successor policy. */
+export function deriveReaderDecisionCategoryV3(
+  review: ReaderDecisionInputV2,
+  readerBar: number,
+): ReaderDecisionCategoryV2 {
+  if (review.blockingFindings.length > 0) return "BLOCK";
+  if (computeReaderComposite(review.scores) < readerBar) return "REVISE";
+  return "PASS";
+}
+
+export function deriveReaderDecisionCategory(
+  policy: ReaderDecisionPolicyVersion,
+  review: ReaderDecisionInputV2,
+  readerBar: number,
+): ReaderDecisionCategoryV2 {
+  return policy === READER_DECISION_POLICY_V3
+    ? deriveReaderDecisionCategoryV3(review, readerBar)
+    : deriveReaderDecisionCategoryV2(review, readerBar);
+}
+
 export type ReviewProtocolFreshnessLaneV2 = ReviewEvidenceLane | "aggregate";
 
 /**

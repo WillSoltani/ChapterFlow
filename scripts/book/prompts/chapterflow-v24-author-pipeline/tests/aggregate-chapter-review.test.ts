@@ -393,3 +393,67 @@ test("aggregate: every produced output validates + binds the lane result shas", 
     assert.equal(r.deterministicCriticBundleSha256, inp.deterministic.bundleSha256);
   }
 });
+
+// ── reader-decision-policy-v3 (owner-ratified D1, 2026-07-15) ───────────────
+// Advisory-class signals (reader advisories, origin-ambiguity-with-source-PASS,
+// quiz answer-tells) become escalation annotations under v3; REVISE is reserved
+// for composite-below-bar (and source clarifications). Default v2 behavior is
+// pinned above and MUST NOT change — closed identities replay under v2.
+
+const V3 = "reader-decision-policy-v3" as const;
+
+test("v3: advisory finding at composite 90 → PASS with the advisory retained as an annotation", () => {
+  const reader = mkReader({
+    advisoryFindings: [
+      { category: "thin_example", unit: "examples", problem: "second example underdeveloped", evidenceSpans: ["for instance"] },
+    ],
+  });
+  const v2 = aggregateChapterReview(mkInput({ reader }));
+  assert.equal(v2.finalStatus, "REVISE", "v2 default must keep gating advisories (closed-identity replay)");
+  const r = aggregateChapterReview(mkInput({ reader, readerDecisionPolicy: V3 }));
+  assert.equal(r.finalStatus, "PASS");
+  assert.deepEqual(r.revisionReasons, []);
+  assert.ok(r.escalationReasons.some((x) => x.includes("thin_example")), "advisory retained as telemetry");
+});
+
+test("v3: origin-ambiguity while source PASS → PASS; the register note is an annotation, not a gate", () => {
+  const reader = mkReader({
+    escalationSignals: [
+      { category: "origin_ambiguous_to_reader", unit: "hook", problem: "reads as factual, status unclear", evidenceSpans: ["the study found"] },
+    ],
+  });
+  const r = aggregateChapterReview(mkInput({ reader, readerDecisionPolicy: V3 }));
+  assert.equal(r.finalStatus, "PASS");
+  assert.deepEqual(r.revisionReasons, []);
+  assert.ok(r.escalationReasons.filter((x) => x.includes("origin_ambiguous_to_reader")).length >= 1);
+});
+
+test("v3: quiz answer-tell → PASS with the tell retained as an annotation (STIER-2: tells are telemetry)", () => {
+  const quiz = mkQuiz({ questions: [mkQuizQuestion({ tellDetected: true })] });
+  const r = aggregateChapterReview(mkInput({ quiz, readerDecisionPolicy: V3 }));
+  assert.equal(r.finalStatus, "PASS");
+  assert.deepEqual(r.revisionReasons, []);
+  assert.ok(r.escalationReasons.some((x) => x.includes("answer-tell")));
+});
+
+test("v3: hard gates unchanged — blockers still BLOCK and composite below bar still REVISEs", () => {
+  const blocked = aggregateChapterReview(mkInput({
+    reader: mkReader({
+      blockingFindings: [
+        { category: "internal_contradiction", unit: "deep read", problem: "contradicts the hook", evidenceSpans: ["however"] },
+      ],
+      advisoryFindings: [
+        { category: "thin_example", unit: "examples", problem: "also thin", evidenceSpans: ["e.g."] },
+      ],
+    }),
+    readerDecisionPolicy: V3,
+  }));
+  assert.equal(blocked.finalStatus, "BLOCK", "v3 never touches blocking findings");
+
+  const belowBar = aggregateChapterReview(mkInput({
+    reader: mkReader({ scores: mkScores(70) }),
+    readerDecisionPolicy: V3,
+  }));
+  assert.equal(belowBar.finalStatus, "REVISE", "the exact 80 bar is unchanged under v3");
+  assert.ok(belowBar.revisionReasons.some((x) => x.includes("below the bar")));
+});

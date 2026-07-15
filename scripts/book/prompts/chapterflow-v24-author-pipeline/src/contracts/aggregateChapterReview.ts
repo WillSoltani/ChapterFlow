@@ -69,6 +69,13 @@ export type AggregateChapterReviewInputV1 = {
   /** unitIds a source result MUST resolve (source_bound + anchored); an
    *  INCONCLUSIVE source verdict on one of these forces BLOCK, not REVISE. */
   requiredSourceUnitIds: string[];
+  /** Reader decision policy (owner-ratified D1, 2026-07-15). Omitted/v2 =
+   *  historical behavior: reader advisories, origin-ambiguity-with-source-PASS,
+   *  and quiz answer-tells force REVISE. v3 = those three advisory-class
+   *  signals are carried in escalationReasons (annotations, never a gate);
+   *  REVISE is reserved for composite-below-bar and source clarifications.
+   *  Closed identities and retained evidence are always evaluated under v2. */
+  readerDecisionPolicy?: "reader-decision-policy-v2" | "reader-decision-policy-v3";
 };
 
 // ── validation ─────────────────────────────────────────────────────────────

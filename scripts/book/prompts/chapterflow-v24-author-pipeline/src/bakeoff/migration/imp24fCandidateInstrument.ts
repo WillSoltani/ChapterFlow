@@ -48,7 +48,11 @@ const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
 const PREDECESSOR_FINAL_RESULT_REL_PATH = "docs/v25/reports/ROLE_QUALIFICATION_V3_FINAL_LIVE_RESULT.json";
 
 export const IMP24F_CANDIDATE_INSTRUMENT_MANIFEST_SCHEMA = "imp24f-candidate-instrument-manifest-v1" as const;
-export const IMP24F_CANDIDATE_INSTRUMENT_GENERATION = "imp24f-semantic-repair-1" as const;
+/** Generation lineage: imp24f-semantic-repair-1 (IMP-24F semantic repair,
+ * superseded in place with zero live evidence) → imp24g-reader-policy-v3-1
+ * (owner-ratified D1 reader decision policy v3, 2026-07-15). Candidate
+ * generations re-mint in place until one is frozen into a campaign. */
+export const IMP24F_CANDIDATE_INSTRUMENT_GENERATION = "imp24g-reader-policy-v3-1" as const;
 export const IMP24F_CANDIDATE_STANDING_BLOCKER = "BLOCKED_NEEDS_INDEPENDENT_GOLD" as const;
 export const IMP24F_PREDECESSOR_DISPOSITION = "ROLE_SET_NOT_READY" as const;
 

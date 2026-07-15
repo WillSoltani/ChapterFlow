@@ -80,6 +80,10 @@ export function computeReaderComposite(scores: Record<ReviewFactor, number>): nu
 export function aggregateChapterReview(input: AggregateChapterReviewInputV1): AggregatedChapterReviewV1 {
   const { reader, source, quiz, deterministic } = input;
   const readerBar = input.readerBar;
+  // Owner-ratified D1 (2026-07-15): under v3 the advisory-class signals below
+  // are annotations (escalationReasons), never gates. Default v2 preserves the
+  // historical behavior for closed identities and retained-evidence replay.
+  const advisoriesGate = (input.readerDecisionPolicy ?? "reader-decision-policy-v2") !== "reader-decision-policy-v3";
 
   // Four SEPARATE severity buckets drive the precedence decision. The output
   // shape carries only three reason arrays, so the "cannot-certify" bucket is
@@ -189,10 +193,13 @@ export function aggregateChapterReview(input: AggregateChapterReviewInputV1): Ag
   } else if (quiz.result === "INCONCLUSIVE") {
     inconclusiveReasons.push("quiz lane INCONCLUSIVE (adjudication unavailable)");
   }
-  // Answer-tell is advisory (deterministic heuristic) → REVISE, never a hard block.
+  // Answer-tell is advisory (deterministic heuristic) → never a hard block.
+  // v2: forces REVISE; v3: annotation only (STIER-2 standing rule — lexical
+  // tell heuristics are telemetry, not gates).
   const tellItems = quiz.questions.filter((q) => q.tellDetected);
   if (tellItems.length > 0) {
-    revisionReasons.push(`quiz answer-tell(s) detected: ${tellItems.map((q) => q.itemId).join(", ")}`);
+    (advisoriesGate ? revisionReasons : escalationReasons)
+      .push(`quiz answer-tell(s) detected: ${tellItems.map((q) => q.itemId).join(", ")}`);
   }
 
   // ── 6. Reader quality bar + origin-ambiguity + non-blocking craft defects. ──
@@ -205,12 +212,16 @@ export function aggregateChapterReview(input: AggregateChapterReviewInputV1): Ag
   if (hasOriginAmbiguity && sourceSound) {
     // A reader-undecidable "reads as factual but status unclear" while the source
     // lane found nothing wrong → the register needs clarifying, not a block.
-    revisionReasons.push("reader flagged origin_ambiguous_to_reader while the source lane PASSED — register clarification needed");
+    // v3: the source lane owns register truth — this is an annotation.
+    (advisoriesGate ? revisionReasons : escalationReasons)
+      .push("reader flagged origin_ambiguous_to_reader while the source lane PASSED — register clarification needed");
   }
   // Usable-with-non-blocking-defects: the reader's non-blocking craft findings
-  // keep the chapter usable but off a clean PASS.
+  // keep the chapter usable. v2: off a clean PASS (forces REVISE); v3: retained
+  // as annotations/telemetry — craft polish never gates an at-bar chapter.
   for (const f of reader.advisoryFindings) {
-    revisionReasons.push(`reader craft defect [${f.category}] @ ${f.unit}: ${f.problem}`);
+    (advisoriesGate ? revisionReasons : escalationReasons)
+      .push(`reader craft defect [${f.category}] @ ${f.unit}: ${f.problem}`);
   }
 
   // ── 7. Final status — precedence BLOCK ▸ INCONCLUSIVE ▸ REVISE ▸ PASS. ──
