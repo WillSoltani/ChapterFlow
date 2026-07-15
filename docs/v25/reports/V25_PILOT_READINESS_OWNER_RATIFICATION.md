@@ -20,6 +20,21 @@ Owner is open to `gpt-5.6-terra@{medium,high,xhigh}` and `gpt-5.6-luna@{high,xhi
 4. **Authoring:** the pilot authors with the frozen SOL routes (unconfounded first-write evidence). A Terra/Luna AUTHORING bakeoff (blinded, judged — the existing model-bakeoff harness pattern) is deferred until after the pilot, and only if reviewer-side parity shows promise.
 5. Probe results are labeled `COST_CANDIDATE_PROBE`, development-grade, non-qualifying, retained with the same evidence discipline.
 
+## D3 spot-check outcome (2026-07-15, appended)
+
+**REJECTED — SYSTEMIC.** The owner audited the 3 spot-check controls under the
+ChapterFlow Evidence, Learning, and Reader Experience Rubric v2.0 (blind pair +
+adjudicator; evidence at `docs/v25/rubric-audit-2026-07-15/`): 67.7 / 68.8 / 70.8
+against internal agreed composites 89.95 / 87.10 / 86.95, and independently found the
+Fast/Deep/Full read layers written as a serial sequence instead of independent depth
+renditions (verified systemic — 5/5 sampled docs; the live app renders one layer at a
+time). The pre-agreed single-chapter fallback is moot. **Corpus freeze WITHHELD**;
+`reader-acceptable-controls.v1.json` stays retained evidence, not a gold anchor.
+Phase 3 is PAUSED pending ratification of amendments **D7–D10** proposed in
+`V25_OWNER_RUBRIC_RECONCILIATION.md` (gold bar = rubric ≥85 on app-faithful
+renderings; v25 authoring format upgrades incl. layer independence and quiz feedback
+blocks; Phase-3 corpus re-scope; shipped-corpus exposure decision).
+
 ## Standing constraints (unchanged)
 
 Zero API calls; no threshold weakening beyond the ratified v3 policy versioning; closed identities immutable; no gold book or activation without the separate go/no-go; publish/promote/deploy/upload remain false; PR #401 stays draft until D4 executes; `BLOCKED_NEEDS_INDEPENDENT_GOLD` is superseded in scope by D2/D3 for DEVELOPMENT purposes only — publication-grade certification still requires independent gold.

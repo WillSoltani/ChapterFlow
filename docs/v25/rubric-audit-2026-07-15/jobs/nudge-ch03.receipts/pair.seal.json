@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "chapterflow_blind_pair_seal",
+  "issuer": "chapterflow_evaluation_orchestrator",
+  "pair_id": "nudge-ch03-pair-20260715T110908Z",
+  "sealed_at_utc": "2026-07-15T11:32:24Z",
+  "run_id": "20260715T110908Z",
+  "book_id": "nudge-ch03",
+  "source_hash": "5561431cdd87978ec2bd4def5cf4e2fc7ab53d8379f48e0eaaf7327a9dcaeda7",
+  "inventory_sha256": "db824e64e528df3c5ed6f3a0f145f4997f1aedaf182351be6b2833cf330990d1",
+  "workers": {
+    "primary": {
+      "job_id": "nudge-ch03-primary-20260715T110908Z",
+      "worker_task_id": "/root/nudge_primary",
+      "worker_session_id": "/root/nudge_primary@20260715T110908Z",
+      "dispatch_receipt_sha256": "5efab2b9f107da7f0d850353dd86da7345e77aa3b577c8ad4a36f67f653b32da",
+      "result_canonical_sha256": "41da10b09069f3148d5c4e9515faa1ec2b65e73f9a4805a073f3b19ffa28b94d",
+      "judgment_sha256": "fa21d58d23f8106acf58363686bdfe51d82f833537c722cb8481b43995e5a274"
+    },
+    "verification": {
+      "job_id": "nudge-ch03-verification-20260715T110908Z",
+      "worker_task_id": "/root/nudge_verification",
+      "worker_session_id": "/root/nudge_verification@20260715T110908Z",
+      "dispatch_receipt_sha256": "88b6f25bcaf39ec022802f653f1920283fd869ef7631e193ef6a2c27db91ed22",
+      "result_canonical_sha256": "1c21d1e675519368956ca3bd58c40bc4470d1c353526421f90eab3a6b72224bb",
+      "judgment_sha256": "f16c9ed1027b47411eade052d3811fdbe68a4fbbd278e97291087c625d913606"
+    }
+  },
+  "binding_sha256": "bdd2daff67b0fb5d6485d4fe87eaf4a3bc12320df79d32aa656725e7a3fee44d"
+}

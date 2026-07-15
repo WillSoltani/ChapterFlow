@@ -1,0 +1,563 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "chapterflow_standalone_chapter_rating",
+  "run_id": "20260715T110908Z",
+  "job_id": "made-to-stick-ch04-primary-20260715T110908Z",
+  "rater_role": "primary",
+  "worker_task_id": "/root/stick_primary",
+  "worker_session_id": "/root/stick_primary@20260715T110908Z",
+  "worker_dispatch_receipt_sha256": "5e21d17c7cabdfe948aa690afa0b515bedd725a75563bc1bd7d92c7672f50787",
+  "book": {
+    "book_id": "made-to-stick-ch04",
+    "source_book_title": "Made to Stick"
+  },
+  "source_hash": "9a20a3afd9612faf43ea26575e0f471401c180f58fdef2bcaceedd4a54194120",
+  "chapter": {
+    "chapter_id": "ch04",
+    "number": 4,
+    "title": "Credible",
+    "source_path": "/Users/radinsoltani/Desktop/made-to-stick-ch04.md",
+    "heading_inventory_sha256": "e05cc2761e5694f26ac53556f840520122a0abf3c1041358af1a0ff420a2d31f",
+    "read_status": "full",
+    "section_inventory": [
+      {"order": 1, "level": 2, "title": "Hook", "locator": "lines 5-6"},
+      {"order": 2, "level": 2, "title": "Counterintuition", "locator": "lines 8-9"},
+      {"order": 3, "level": 2, "title": "Fast read", "locator": "lines 11-16"},
+      {"order": 4, "level": 2, "title": "Deep read", "locator": "lines 18-31"},
+      {"order": 5, "level": 2, "title": "Full read", "locator": "lines 33-54"},
+      {"order": 6, "level": 2, "title": "Examples", "locator": "lines 56-86"},
+      {"order": 7, "level": 3, "title": "Example 1: Rachel Sets the Catch Log Beside the Cod", "locator": "lines 57-60"},
+      {"order": 8, "level": 3, "title": "Example 2: Lars Translates Vibration into Bolts", "locator": "lines 62-65"},
+      {"order": 9, "level": 3, "title": "Example 3: Chiara Tests the Sunscreen Claim", "locator": "lines 67-70"},
+      {"order": 10, "level": 3, "title": "Example 4: David Brings the Parent to the Goalpost", "locator": "lines 72-75"},
+      {"order": 11, "level": 3, "title": "Example 5: Chidi Lets the Draft Appear", "locator": "lines 77-80"},
+      {"order": 12, "level": 3, "title": "Example 6: Anke Pairs Attendance with the Essay Draft", "locator": "lines 82-85"},
+      {"order": 13, "level": 2, "title": "Quiz (answer key withheld)", "locator": "lines 87-140"},
+      {"order": 14, "level": 3, "title": "Question 1", "locator": "lines 88-92"},
+      {"order": 15, "level": 3, "title": "Question 2", "locator": "lines 94-98"},
+      {"order": 16, "level": 3, "title": "Question 3", "locator": "lines 100-104"},
+      {"order": 17, "level": 3, "title": "Question 4", "locator": "lines 106-110"},
+      {"order": 18, "level": 3, "title": "Question 5", "locator": "lines 112-116"},
+      {"order": 19, "level": 3, "title": "Question 6", "locator": "lines 118-122"},
+      {"order": 20, "level": 3, "title": "Question 7", "locator": "lines 124-128"},
+      {"order": 21, "level": 3, "title": "Question 8", "locator": "lines 130-134"},
+      {"order": 22, "level": 3, "title": "Question 9", "locator": "lines 136-140"},
+      {"order": 23, "level": 2, "title": "Review cards", "locator": "lines 142-161"},
+      {"order": 24, "level": 3, "title": "Card 1", "locator": "lines 143-145"},
+      {"order": 25, "level": 3, "title": "Card 2", "locator": "lines 147-149"},
+      {"order": 26, "level": 3, "title": "Card 3", "locator": "lines 151-153"},
+      {"order": 27, "level": 3, "title": "Card 4", "locator": "lines 155-157"},
+      {"order": 28, "level": 3, "title": "Card 5", "locator": "lines 159-161"},
+      {"order": 29, "level": 2, "title": "Implementation plan", "locator": "lines 163-170"},
+      {"order": 30, "level": 2, "title": "Try this now", "locator": "lines 172-173"},
+      {"order": 31, "level": 2, "title": "Key takeaway", "locator": "lines 175-176"},
+      {"order": 32, "level": 2, "title": "Memorable lines", "locator": "lines 178-181"}
+    ]
+  },
+  "scope": {
+    "scope_type": "standalone_chapter_audit",
+    "actual_book_inventory_complete": false,
+    "full_book_score": null,
+    "full_book_certification": "unevaluable",
+    "domain_9": "unassessable"
+  },
+  "evaluation_construct": {
+    "audience": "Ordinary interested non-expert adults who need other people to assess a claim in work, civic, consumer, or everyday settings.",
+    "assumed_prior_knowledge": "No formal statistics, communication, marketing, or evidence-evaluation training is required.",
+    "nonfiction_type": "Practical communication and applied learning-design chapter.",
+    "purpose": "Teach readers to move credibility away from confident assertion and toward evidence an audience can inspect, a relevant witness, or a truthful human-scale translation.",
+    "intended_outcomes": [
+      "Recognize when confidence or authority is substituting for support.",
+      "Match a claim with checkable proof, a relevant witness, or a human-scale translation.",
+      "Keep material conditions and limitations attached to the claim.",
+      "Identify obvious misuse of photographs, testimonials, and translated statistics.",
+      "Apply the credibility model to one current claim and audit additional claims during the week."
+    ],
+    "contexts": [
+      "sales and purchasing",
+      "public policy and budgets",
+      "training and safety communication",
+      "product claims",
+      "home services",
+      "nonprofit and education reporting"
+    ],
+    "exclusions": [
+      "External factual verification of named people, studies, or claims is outside this isolated audit.",
+      "The chapter does not provide a full method for research appraisal, sampling, causal inference, legal substantiation, or high-stakes professional evidence review.",
+      "No judgment is made about the unseen chapters or the actual book as a whole."
+    ],
+    "default_reader_fit": "The default ordinary interested non-expert reader is a strong fit, although the audience and prerequisite burden are inferred rather than explicitly declared."
+  },
+  "gates": {
+    "chapter_artifact_completeness": {
+      "status": "pass",
+      "rationale": "The assigned 181-line artifact was readable in full, its source hash matched, and all 32 H2/H3 reader-facing sections were inspected in exact order."
+    },
+    "epistemic_instructional_safety": {
+      "status": "pass",
+      "rationale": "The central instruction is internally coherent and explicitly warns that cropped images, selected testimonials, distorted translations, and hidden conditions can mislead. The lack of quiz feedback and the shallow treatment of evidence quality are learning-design limitations, not a serious internally unsafe teaching defect."
+    },
+    "ethics_reader_autonomy": {
+      "status": "pass",
+      "rationale": "The chapter promotes inspectable evidence and independent audience judgment, avoids shame and coercion, and explicitly rejects making belief easier by weakening judgment."
+    },
+    "purpose_audience_declaration": {
+      "status": "conditional",
+      "rationale": "Purpose and likely audience are defensibly inferable from the examples, implementation plan, and direct-address prompts, but the artifact does not explicitly declare audience, prerequisite knowledge, or exclusions."
+    },
+    "external_accuracy": {
+      "status": "not_assessed",
+      "rationale": "External factual verification was intentionally excluded from this isolated chapter audit."
+    },
+    "actual_book_completeness": {
+      "status": "unevaluable",
+      "rationale": "Only chapter 4 was supplied, so the actual book inventory, full-book score, certification, and whole-book coherence cannot be evaluated."
+    }
+  },
+  "domains": {
+    "epistemic_integrity": {
+      "weight": 15,
+      "subcriteria": {
+        "claim_support_fit": {
+          "rating": 3,
+          "rationale": "The chapter strongly and repeatedly distinguishes evidence that bears on a claim from confident assertion or merely dramatic material, with only limited gaps around how much support is sufficient.",
+          "evidence": [
+            {"locator": "Deep read, lines 25-29", "paraphrase": "The fish thermometer is credited because temperature is part of the freshness claim, while an atmospheric pier story is rejected as charming but non-probative."},
+            {"locator": "Full read, lines 42-46", "paraphrase": "The sunscreen condition must travel with the claim, and the chapter warns that photos, testimonials, and translated statistics can be manipulated."}
+          ]
+        },
+        "uncertainty_limitations": {
+          "rating": 3,
+          "rationale": "Material limitations appear near the teaching they qualify, especially the need to preserve claim conditions and avoid distorted evidence, though representativeness and alternative explanations receive little depth.",
+          "evidence": [
+            {"locator": "Full read, line 42", "paraphrase": "A laboratory result is treated as insufficient for the public claim while its water-resistance condition remains hidden."},
+            {"locator": "Full read, lines 46 and 54", "paraphrase": "The chapter names three ways proof can be abused and frames legitimate doubt as checking logs, samples, or work products rather than accepting a vague promise."}
+          ]
+        },
+        "internal_consistency_qa": {
+          "rating": 3,
+          "rationale": "The claim-to-proof model and terminology remain aligned across read layers, examples, questions, cards, and practice prompts; a few quiz choices are less discriminating and no answer explanations are available.",
+          "evidence": [
+            {"locator": "Fast read, lines 12-16; Key takeaway, lines 175-176", "paraphrase": "The opening case and final summary express the same model: belief should rest on inspectable support rather than the speaker's confidence."},
+            {"locator": "Quiz Question 5, lines 112-116", "paraphrase": "The intended lived-cost answer is present, but another option about proximity to the audience partly overlaps and could blur the distinction without feedback."}
+          ]
+        },
+        "misuse_safeguards": {
+          "rating": 3,
+          "rationale": "Safeguards are integrated into the lesson through claim-support fit, visible conditions, and explicit warnings against deceptive cropping, testimonial selection, and overtranslation; procedural verification safeguards remain brief.",
+          "evidence": [
+            {"locator": "Full read, lines 42-46", "paraphrase": "The chapter refuses a bold sunscreen claim without its condition and explicitly identifies ways apparently credible proof can be made deceptive."},
+            {"locator": "Review Card 4, lines 155-157", "paraphrase": "Readers are prompted to distinguish a photo that proves a claim from one that merely creates emotion."}
+          ]
+        }
+      },
+      "domain_score": 3.0,
+      "weighted_points": 11.25,
+      "strengths": [
+        {"locator": "Deep read, lines 25-29", "paraphrase": "A concrete contrast teaches that relevance, not vividness alone, determines evidential value."},
+        {"locator": "Full read, lines 42-46", "paraphrase": "Conditions and misuse risks are attached directly to the central credibility instruction."}
+      ],
+      "limitations": [
+        {"locator": "Deep read, lines 21-23; Full read, lines 44-46", "paraphrase": "Named historical and witness examples receive little scrutiny of representativeness, corroboration, or alternative explanations."}
+      ],
+      "within_chapter_pattern": "Nearly every section relocates credibility from speaker confidence to support the audience can inspect, while the more demanding question of whether that support is sufficient is treated more lightly.",
+      "rationale": "A strong 3 anchor is supported by consistent claim-support calibration, local caveats, and explicit misuse warnings, with limited but repairable depth gaps.",
+      "scope_note": "This rating concerns internal chapter-local epistemic design only; external accuracy and the treatment of evidence elsewhere in the book are not assessed."
+    },
+    "audience_fit": {
+      "weight": 12,
+      "subcriteria": {
+        "language_clarity": {
+          "rating": 3,
+          "rationale": "The prose is concrete, economical, and accessible across most sections, with metaphors consistently tied back to the central idea.",
+          "evidence": [
+            {"locator": "Counterintuition, lines 8-9", "paraphrase": "The abstract problem is stated plainly as proof remaining trapped in the speaker versus becoming testable by the audience."},
+            {"locator": "Implementation plan, lines 163-170", "paraphrase": "The skill is restated in direct language and converted into concise if-then rules."}
+          ]
+        },
+        "beginner_onboarding": {
+          "rating": 3,
+          "rationale": "The hook, fast read, deep read, and full read build from an observable case to terminology and applications, although named people appear without enough context for a new reader.",
+          "evidence": [
+            {"locator": "Hook through Fast read, lines 5-16", "paraphrase": "A concrete fish-sale scene introduces inspectability before the chapter asks the reader to handle abstract categories."},
+            {"locator": "Deep read, lines 21-23; Review Card 5, lines 159-161", "paraphrase": "Barry Marshall, Robin Warren, and Pam Laffin are invoked without explaining their stories, leaving novices to infer why those names carry the lesson."}
+          ]
+        },
+        "signal_noise_framework_load": {
+          "rating": 3,
+          "rationale": "One compact framework organizes the chapter and most repetition changes context or task, though the example templates contain some decorative timing and setting details.",
+          "evidence": [
+            {"locator": "Key takeaway, lines 175-176", "paraphrase": "The chapter compresses its teaching into three memorable credibility routes without adding competing acronyms or frameworks."},
+            {"locator": "Examples 1-6, lines 57-85", "paraphrase": "The cases reinforce the model across settings, but several timestamps, room descriptions, and props do not materially affect the decision."}
+          ]
+        },
+        "audience_context_accessibility": {
+          "rating": 3,
+          "rationale": "Examples span commercial, civic, safety, consumer, home-service, and education contexts and explain specialist material in ordinary terms, with a mild workplace and institutional tilt.",
+          "evidence": [
+            {"locator": "Examples 1-3, lines 57-70", "paraphrase": "Fish purchasing, transit budgeting, and sunscreen packaging demonstrate the same model without requiring specialist knowledge."},
+            {"locator": "Examples 4-6, lines 72-85", "paraphrase": "Youth sports, home retrofits, and library programs extend the lesson to safety, household, and public-service settings."}
+          ]
+        }
+      },
+      "domain_score": 3.0,
+      "weighted_points": 9.0,
+      "strengths": [
+        {"locator": "Hook through Fast read, lines 5-16", "paraphrase": "The chapter enters through a concrete, low-prerequisite scene before naming the principle."},
+        {"locator": "Examples 1-6, lines 57-85", "paraphrase": "Wide context variation gives non-experts multiple routes into the model."}
+      ],
+      "limitations": [
+        {"locator": "Deep read, lines 21-23; Review Card 5, lines 159-161", "paraphrase": "Unexplained named references interrupt otherwise strong novice onboarding, and some staged details add avoidable load."}
+      ],
+      "within_chapter_pattern": "The chapter repeatedly translates abstraction into inspectable objects and short decisions, maintaining clarity despite a small amount of unexplained provenance and decorative specificity.",
+      "rationale": "The chapter meets the strong 3 anchor across clarity, onboarding, economy, and contextual reach, with limited repairable friction rather than exceptional near-frictionless accessibility.",
+      "scope_note": "Audience fit is inferred from this chapter alone because the actual book's audience declaration and prerequisite framing were not supplied."
+    },
+    "mental_model_coherence": {
+      "weight": 15,
+      "subcriteria": {
+        "central_model": {
+          "rating": 3,
+          "rationale": "A stable, memorable model links credibility to inspectable proof, relevant witnesses, and truthful human-scale translation across the chapter.",
+          "evidence": [
+            {"locator": "Full read, lines 50-54", "paraphrase": "Credibility is defined as letting the audience see why belief is warranted and what fair doubt can test."},
+            {"locator": "Implementation plan and Key takeaway, lines 163-176", "paraphrase": "The chapter consolidates its routes into a reusable claim-to-support model and restates the governing principle."}
+          ]
+        },
+        "mechanism_causal_explanation": {
+          "rating": 3,
+          "rationale": "The chapter explains how checkability changes the audience's cognitive and social task and how human-scale evidence makes abstraction judgeable; some psychological claims remain asserted rather than unpacked.",
+          "evidence": [
+            {"locator": "Deep read, lines 19 and 29-31", "paraphrase": "Inspectable evidence removes the need to judge the speaker's trustworthiness and lowers the social cost of revising belief."},
+            {"locator": "Full read, lines 38-40", "paraphrase": "Human-scale translation is explained as giving a large number a familiar place to stand while avoiding both bare authority and incomprehensible data volume."}
+          ]
+        },
+        "cross_concept_integration": {
+          "rating": 3,
+          "rationale": "Proof, witness credibility, human-scale statistics, visible conditions, and misuse safeguards are combined into one explanatory system rather than presented as unrelated tips.",
+          "evidence": [
+            {"locator": "Full read, lines 38-54", "paraphrase": "The text moves from scale to conditions to witnesses to abuse and then synthesizes them as ways for evidence to remain testable after the speaker stops."},
+            {"locator": "Review Cards 1-4, lines 143-157", "paraphrase": "The cards consolidate distinct credibility routes while returning each to claim-support fit."}
+          ]
+        },
+        "nuance_diagnostic_power": {
+          "rating": 3,
+          "rationale": "Readers learn to distinguish authority from inspectability, evidence from theater, accurate data from understandable scale, and legitimate translation from distortion, though sufficiency and representativeness remain underdeveloped.",
+          "evidence": [
+            {"locator": "Deep read, lines 25-27", "paraphrase": "A relevant thermometer is distinguished from a vivid but non-probative story."},
+            {"locator": "Full read, lines 42-46; Quiz Question 8, lines 130-134", "paraphrase": "The reader must keep conditions visible and reject an emotional anecdote that lacks enough checkable structure for a broader claim."}
+          ]
+        }
+      },
+      "domain_score": 3.0,
+      "weighted_points": 11.25,
+      "strengths": [
+        {"locator": "Deep read, lines 19-31", "paraphrase": "The chapter explains both cognitive and social mechanisms behind inspectable evidence."},
+        {"locator": "Full read, lines 38-54", "paraphrase": "Multiple credibility routes and failure modes are integrated into a compact, reusable model."}
+      ],
+      "limitations": [
+        {"locator": "Full read, lines 44-46", "paraphrase": "The text identifies testimonial and statistical abuse but offers only limited diagnosis of sample quality, corroboration, causal alternatives, or evidence sufficiency."}
+      ],
+      "within_chapter_pattern": "Each successive read layer expands the same core model from a single object-level test to scale, witnesses, conditions, misuse, and fair doubt.",
+      "rationale": "The chapter satisfies the strong 3 anchor through a coherent central model, explicit mechanisms, concept integration, and useful distinctions, while leaving difficult evidential cases open to material improvement.",
+      "scope_note": "Cross-concept integration and coherence are judged only across this chapter's sections; integration with unsupplied chapters is unassessable."
+    },
+    "learning_architecture": {
+      "weight": 12,
+      "subcriteria": {
+        "sequencing_scaffolding": {
+          "rating": 3,
+          "rationale": "The artifact deliberately progresses from attention and a simple case through explanation, varied application, retrieval, consolidation, and immediate practice.",
+          "evidence": [
+            {"locator": "Hook through Full read, lines 5-54", "paraphrase": "The sequence expands from an image and counterintuitive claim to a worked model with limitations and multiple mechanisms."},
+            {"locator": "Examples through Try this now, lines 56-173", "paraphrase": "Application cases are followed by questions, cards, a plan, and an immediate task."}
+          ]
+        },
+        "worked_examples_contrasts": {
+          "rating": 3,
+          "rationale": "Six worked scenarios show what to do and why, and several contrast the chosen support with a weaker assertion, authority cue, or decorative substitute; ambiguity and failure analysis remain limited.",
+          "evidence": [
+            {"locator": "Examples 1-3, lines 57-70", "paraphrase": "Each case exposes a decision, specifies the evidence move, and explains its relationship to the claim."},
+            {"locator": "Example 5, lines 77-80; Quiz Questions 1-4, lines 88-110", "paraphrase": "A visible test and several scenario questions contrast inspectable proof with slogans, authority, repetition, or spectacle."}
+          ]
+        },
+        "active_processing": {
+          "rating": 3,
+          "rationale": "Nine scenario questions, review-card prompts, a claim audit, and an immediate application require discrimination and use rather than passive rereading, though most quiz items remain multiple choice.",
+          "evidence": [
+            {"locator": "Quiz, lines 87-140", "paraphrase": "Readers choose among evidence strategies in nine new contexts rather than merely recall labels."},
+            {"locator": "Implementation plan and Try this now, lines 163-173", "paraphrase": "Readers must classify three real claims, repair one unsupported claim, and add support to a current claim."}
+          ]
+        },
+        "feedback_metacognitive_calibration": {
+          "rating": 1,
+          "rationale": "The quiz explicitly withholds its answer key and supplies no explanations, so readers cannot reliably diagnose errors or calibrate confidence; review cards provide model answers but no discriminating feedback loop.",
+          "evidence": [
+            {"locator": "Quiz heading and Questions 1-9, lines 87-140", "paraphrase": "All nine questions are presented without an answer key, correctness signal, explanation, confidence prompt, or revision guidance."},
+            {"locator": "Review cards, lines 142-161", "paraphrase": "Front/back cards permit basic self-checking but do not explain common wrong models or help readers compare confidence with performance."}
+          ]
+        }
+      },
+      "domain_score": 2.5,
+      "weighted_points": 7.5,
+      "strengths": [
+        {"locator": "Hook through Full read, lines 5-54", "paraphrase": "The chapter uses a defensible problem-to-model-to-boundary sequence."},
+        {"locator": "Quiz through Try this now, lines 87-173", "paraphrase": "The reader is repeatedly asked to discriminate and apply the model in new cases and personal work."}
+      ],
+      "limitations": [
+        {"locator": "Quiz, lines 87-140", "paraphrase": "Withholding every answer and explanation removes the chapter's main opportunity for error diagnosis and calibrated revision."}
+      ],
+      "within_chapter_pattern": "Scaffolding and productive tasks are strong, but the learning loop stops after response generation rather than closing with explanatory feedback.",
+      "rationale": "Strong sequencing, examples, and active processing are offset by weak feedback, yielding a mixed 2.5 domain score rather than a consistently strong learning architecture.",
+      "scope_note": "Sequencing is rated across this artifact's internal section order only; its place in the actual book's curriculum cannot be judged."
+    },
+    "retention_retrieval": {
+      "weight": 10,
+      "subcriteria": {
+        "meaningful_retrieval_cues": {
+          "rating": 3,
+          "rationale": "Compact phrases and concrete objects cue the model semantically, and the proof-witness-human-scale categories remain tied to function rather than arbitrary acronyms.",
+          "evidence": [
+            {"locator": "Full read, line 50; Memorable lines, lines 178-181", "paraphrase": "The confidence-versus-visibility contrast gives readers a concise cue for the central distinction."},
+            {"locator": "Implementation plan, lines 163-170", "paraphrase": "Proof, witness, human scale, and unsupported operate as meaningful categories for auditing claims."}
+          ]
+        },
+        "cumulative_reinforcement": {
+          "rating": 3,
+          "rationale": "Within the supplied chapter, the same model recurs through increasingly varied cases, questions, cards, and action prompts rather than simple verbatim restatement.",
+          "evidence": [
+            {"locator": "Fast read through Full read, lines 11-54", "paraphrase": "The opening fish proof is expanded into scale, conditions, witnesses, misuse, and fair doubt."},
+            {"locator": "Examples through Review cards, lines 56-161", "paraphrase": "The model is reinforced in varied domains and then compressed into retrieval prompts."}
+          ]
+        },
+        "quiz_retrieval_depth": {
+          "rating": 2,
+          "rationale": "The questions cover core distinctions and transfer them to new scenarios, but they are recognition-based, often contain visibly weak distractors, and provide no answers or explanatory feedback.",
+          "evidence": [
+            {"locator": "Quiz Questions 1-9, lines 88-140", "paraphrase": "All items ask readers to choose among scenario responses, providing useful local transfer but no free recall or cumulative construction."},
+            {"locator": "Quiz Questions 1, 3, 7, and 9, lines 88-104 and 124-140", "paraphrase": "Several distractors are slogans or authority claims that are easy to reject from surface wording, reducing retrieval difficulty."}
+          ]
+        },
+        "interference_control_consolidation": {
+          "rating": 3,
+          "rationale": "The chapter repeatedly contrasts proof with authority, spectacle, vague claims, and misleading translation, then consolidates the routes in cards and practice labels; overlaps among proof types could be mapped more explicitly.",
+          "evidence": [
+            {"locator": "Deep read, lines 25-31; Full read, lines 38-46", "paraphrase": "Contrasts separate relevant evidence from theater and human-scale translation from data dumping or distortion."},
+            {"locator": "Review Cards 1-4 and Implementation plan, lines 143-170", "paraphrase": "Retrieval prompts and a four-label claim audit consolidate the chapter's categories."}
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 6.875,
+      "strengths": [
+        {"locator": "Full read, line 50; Memorable lines, lines 178-181", "paraphrase": "Concise, semantically meaningful contrasts make the central model easy to recover."},
+        {"locator": "Examples through Review cards, lines 56-161", "paraphrase": "Varied applications and front/back prompts reinforce distinctions rather than merely repeat prose."}
+      ],
+      "limitations": [
+        {"locator": "Quiz, lines 87-140", "paraphrase": "Recognition-heavy questions with obvious distractors and no feedback constrain retrieval depth and consolidation."}
+      ],
+      "within_chapter_pattern": "The artifact creates strong cues and repeated varied exposure, but effortful retrieval and error-correcting consolidation are weaker than recognition and restatement.",
+      "rationale": "Three chapter-local retention functions reach the strong 3 anchor, while quiz depth remains adequate at 2, producing a 2.75 domain score.",
+      "scope_note": "Cumulative reinforcement is interpreted only within this artifact; interchapter spacing, delayed retrieval, and book-wide interference control are unassessable."
+    },
+    "transfer_action_judgment": {
+      "weight": 15,
+      "subcriteria": {
+        "concrete_actions": {
+          "rating": 3,
+          "rationale": "The chapter gives observable, feasible moves and defines what a competent first attempt looks like across examples and practice prompts.",
+          "evidence": [
+            {"locator": "Examples 1-6, lines 57-85", "paraphrase": "Every scenario specifies an action such as placing a log beside a claim, translating a reading, surfacing a condition, or running a visible test."},
+            {"locator": "Implementation plan and Try this now, lines 163-173", "paraphrase": "If-then rules, a 24-hour challenge, a weekly audit, and an immediate task convert the model into next steps."}
+          ]
+        },
+        "cross_context_transfer": {
+          "rating": 3,
+          "rationale": "The deep structure of inspectability is made explicit and applied across multiple roles and near/far contexts, with enough variation for readers to recognize analogies.",
+          "evidence": [
+            {"locator": "Examples 1-6, lines 57-85", "paraphrase": "The same principle appears in food purchasing, infrastructure, product labeling, sports safety, home repair, and public-program funding."},
+            {"locator": "Quiz Questions 1-9, lines 88-140", "paraphrase": "Additional bakery, public-health, software, wildfire, smoking, charity, customer-service, school, and repair cases require new-context selection."}
+          ]
+        },
+        "implementation_feedback_support": {
+          "rating": 2,
+          "rationale": "The artifact supplies cues, actions, and repeated-practice prompts but offers little observation, feedback, barrier handling, outcome checking, or revision guidance after implementation.",
+          "evidence": [
+            {"locator": "Implementation plan, lines 163-170", "paraphrase": "The 24-hour and weekly tasks specify when and what to do but not how to test audience interpretation, record results, or revise weak evidence."},
+            {"locator": "Try this now, lines 172-173", "paraphrase": "The immediate task ends once support is added, without a check for whether the support actually fits or changes justified belief."}
+          ]
+        },
+        "boundaries_adaptation_tradeoffs": {
+          "rating": 3,
+          "rationale": "The chapter teaches readers to adapt support to scale, distrust, and claim conditions and warns when vividness or translation becomes misleading, while offering limited guidance for high-stakes or ambiguous evidence choices.",
+          "evidence": [
+            {"locator": "Full read, lines 38-46", "paraphrase": "Readers are told to choose evidence an audience can judge, keep conditions attached, and avoid cropped photos, selected testimonials, or false translation."},
+            {"locator": "Quiz Question 8, lines 130-134; Review Card 4, lines 155-157", "paraphrase": "The activities distinguish emotionally strong material from evidence adequate to a broader claim."}
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 10.3125,
+      "strengths": [
+        {"locator": "Examples 1-6, lines 57-85", "paraphrase": "Concrete actions are modeled across six genuinely different settings."},
+        {"locator": "Quiz and Implementation plan, lines 87-170", "paraphrase": "Readers practice recognizing transfer and receive compact if-then cues for applying the model to their own claims."}
+      ],
+      "limitations": [
+        {"locator": "Implementation plan and Try this now, lines 163-173", "paraphrase": "The action path lacks an observe-feedback-revise loop and does not help readers resolve borderline evidence sufficiency."}
+      ],
+      "within_chapter_pattern": "Recognition and first-action guidance are strong across contexts, while follow-through and evidence-quality feedback stop short of a complete implementation loop.",
+      "rationale": "Concrete action, transfer, and boundaries reach the strong 3 anchor; implementation feedback remains adequate but incomplete at 2.",
+      "scope_note": "Transfer support is judged from the scenarios and prompts in this chapter; actual behavior change and use across unsupplied chapters are not measured or inferred."
+    },
+    "motivation_autonomy": {
+      "weight": 8,
+      "subcriteria": {
+        "personal_relevance": {
+          "rating": 3,
+          "rationale": "The artifact repeatedly links the model to consequential claims and ends by asking readers to select a claim they personally need believed.",
+          "evidence": [
+            {"locator": "Examples 1-6, lines 57-85", "paraphrase": "The cases connect credibility to purchases, budgets, safety, consumer decisions, and program survival."},
+            {"locator": "Try this now, lines 172-173", "paraphrase": "Readers choose their own live claim and the most relevant type of checkable support."}
+          ]
+        },
+        "achievable_progress": {
+          "rating": 3,
+          "rationale": "The chapter offers small, time-bounded, feasible practices rather than demanding wholesale personality change.",
+          "evidence": [
+            {"locator": "Implementation plan, lines 169-170", "paraphrase": "A one-claim 24-hour challenge and a three-claim weekly audit provide manageable starting points and visible completion markers."},
+            {"locator": "Try this now, lines 172-173", "paraphrase": "The immediate exercise narrows practice to adding one nearby piece of support."}
+          ]
+        },
+        "autonomy_non_shaming_tone": {
+          "rating": 3,
+          "rationale": "The tone respects audience judgment and reader choice, frames weak claims as repairable, and avoids moralizing or blaming.",
+          "evidence": [
+            {"locator": "Deep read, lines 29-31", "paraphrase": "The goal is to let an audience change its mind without feeling socially pressured or talked into the claim."},
+            {"locator": "Weekly practice and Try this now, lines 170-173", "paraphrase": "Readers are invited to choose and repair their own claims through experimentation rather than admonition."}
+          ]
+        },
+        "calibrated_confidence": {
+          "rating": 2,
+          "rationale": "The chapter tempers confidence with misuse warnings, but readers receive no scored practice, explanatory feedback, or standard for knowing when their evidence is sufficient.",
+          "evidence": [
+            {"locator": "Full read, lines 46 and 54", "paraphrase": "Readers are warned that apparently vivid proof can lie and that legitimate doubt should remain possible."},
+            {"locator": "Quiz, lines 87-140; Try this now, lines 172-173", "paraphrase": "Readers are asked to answer and act without feedback that could reveal overconfidence or a poor claim-support match."}
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 5.5,
+      "strengths": [
+        {"locator": "Deep read, lines 29-31", "paraphrase": "The credibility model explicitly preserves audience autonomy and lowers social pressure."},
+        {"locator": "Implementation plan and Try this now, lines 163-173", "paraphrase": "Small reader-chosen tasks make progress feel feasible and personally relevant."}
+      ],
+      "limitations": [
+        {"locator": "Quiz and Implementation plan, lines 87-170", "paraphrase": "No feedback or sufficiency standard lets readers calibrate confidence in their evidence choices."}
+      ],
+      "within_chapter_pattern": "The chapter motivates through concrete relevance, agency, and manageable practice while relying on the reader to judge competence without much calibration support.",
+      "rationale": "Relevance, progress, and autonomy reach strong 3 anchors, but confidence calibration remains mixed at 2, giving a 2.75 domain score.",
+      "scope_note": "This score concerns motivational and autonomy support observable in the supplied chapter, not measured motivation, behavior change, or completion."
+    },
+    "engagement_momentum": {
+      "weight": 8,
+      "subcriteria": {
+        "curiosity_momentum": {
+          "rating": 3,
+          "rationale": "A sensory hook and a counterintuitive proposition create immediate stakes, and the sequence expands the question through mechanisms, risks, cases, and practice.",
+          "evidence": [
+            {"locator": "Hook and Counterintuition, lines 5-9", "paraphrase": "The opening pairs concrete objects with the surprising idea that confident delivery can weaken belief."},
+            {"locator": "Fast read through Full read, lines 11-54", "paraphrase": "Each layer adds a new reason, scale, witness route, misuse risk, or implication rather than abandoning the opening problem."}
+          ]
+        },
+        "narrative_example_vividness": {
+          "rating": 2,
+          "rationale": "The cases are clear, varied, and memorable, but recurring staged timestamps, room details, and props make several examples feel formulaic rather than naturally evidential.",
+          "evidence": [
+            {"locator": "Fast read, lines 12-16; Full read, lines 34-40", "paraphrase": "Cold fish, a thermometer, a trembling table, and loose bolts make abstract credibility and scale tangible."},
+            {"locator": "Examples 1-6, lines 57-85", "paraphrase": "Every case uses the same scenario-action-why template and includes details such as meeting times, room types, folders, stickers, or highlights that often do not alter the decision."}
+          ]
+        },
+        "emotional_relevance": {
+          "rating": 3,
+          "rationale": "Human stakes support attention and judgment across safety, health, household, and education examples without displacing the evidence lesson.",
+          "evidence": [
+            {"locator": "Full read, lines 42-48", "paraphrase": "A parent-facing sunscreen condition, a concussion witness, and a student's revision trail connect credibility to consequential choices."},
+            {"locator": "Quiz Questions 5, 6, and 8, lines 112-134", "paraphrase": "Lung damage, hunger, and a parent's distress create emotional stakes while questions still ask what support is missing or warranted."}
+          ]
+        },
+        "instructional_alignment": {
+          "rating": 2,
+          "rationale": "Most engagement devices clarify the model, but noticeable decorative specificity and repeated scene staging consume attention without improving diagnosis or transfer.",
+          "evidence": [
+            {"locator": "Deep read, lines 27-31; Full read, lines 34-40", "paraphrase": "The best sensory details directly distinguish evidential fit or translate abstraction to human scale."},
+            {"locator": "Examples 1-6, lines 57-85", "paraphrase": "Menu times, binder movements, glass rooms, helmet stickers, building type, folder position, and highlight color frequently decorate otherwise straightforward decisions."}
+          ]
+        }
+      },
+      "domain_score": 2.5,
+      "weighted_points": 5.0,
+      "strengths": [
+        {"locator": "Hook through Full read, lines 5-54", "paraphrase": "The chapter sustains attention through a strong counterintuitive question and increasingly consequential applications."},
+        {"locator": "Full read, lines 42-48; Quiz, lines 112-134", "paraphrase": "Human stakes in safety, health, and education remain tied to evidential judgment."}
+      ],
+      "limitations": [
+        {"locator": "Examples 1-6, lines 57-85", "paraphrase": "Formulaic scene construction and decorative timestamps and props reduce authenticity and instructional economy."}
+      ],
+      "within_chapter_pattern": "The central question and human stakes create solid momentum, but the most templated examples trade some authenticity and alignment for surface vividness.",
+      "rationale": "Curiosity and emotional relevance reach strong 3 anchors, while vividness and alignment remain mixed at 2 because of formulaic decorative load.",
+      "scope_note": "Momentum is assessed across this chapter's sections only; reading momentum across the actual book is unassessable."
+    }
+  },
+  "chapter_diagnostic_score": 70.19736842105263,
+  "diagnostic_band": "Chapter diagnostic: valuable but materially uneven; targeted redesign needed",
+  "strongest_qualities": [
+    "A compact claim-to-support mental model is explained through inspectability, witnesses, human-scale translation, visible conditions, and fair doubt.",
+    "Varied cases and scenario questions make the same deep structure recognizable across commercial, civic, safety, consumer, household, and education settings.",
+    "The chapter protects audience autonomy by replacing social pressure and confident assertion with evidence people can examine for themselves."
+  ],
+  "weakest_qualities": [
+    "The nine-question quiz withholds all answers and explanations, preventing error diagnosis and confidence calibration.",
+    "The implementation plan ends at choosing or adding evidence and does not close the loop through observation, audience feedback, revision, or a sufficiency check.",
+    "Some historical references lack novice context, and several examples add formulaic timestamps and props that do not strengthen the lesson."
+  ],
+  "engagement_curve": {
+    "opening": "High: the sensory hook and paradox about confidence create immediate curiosity.",
+    "development": "High and coherent: fast, deep, and full reads progressively add mechanism, scale, witnesses, conditions, and misuse risks.",
+    "examples": "Moderately high: context variety sustains relevance, but repeated scenario-action-why formatting and decorative props become predictable.",
+    "practice": "Moderate: nine scenarios sustain activity, yet the absent answer key removes payoff and diagnostic tension.",
+    "close": "Strong for action: cards, if-then rules, and a one-claim task provide a concise finish, though no feedback loop follows."
+  },
+  "comprehension_retention_analysis": "The chapter supports comprehension through a clear central contrast, layered explanations, relevant object-level evidence, and repeated cross-context examples. Retention support is strongest in semantic cues, review cards, varied reinforcement, and a compact claim audit; it is materially weakened by recognition-heavy questions, obvious distractors, no answer explanations, no confidence checks, and no delayed or interchapter evidence in the supplied scope.",
+  "practical_use_judgment_analysis": "A reader is likely to leave knowing how to add an inspectable log, sample, test, witness, condition, or human-scale translation to a claim and can recognize several forms of evidence theater. Practical judgment is less complete for deciding whether a sample is representative, how much evidence is enough, when a witness needs corroboration, how to handle competing explanations, and how to collect audience feedback and revise the proof.",
+  "best_fit_readers": [
+    "Non-expert professionals preparing a sales, budget, policy, training, product, or program claim.",
+    "Readers who benefit from concrete scenarios and want a fast first method for replacing assertion with inspectable support.",
+    "Facilitators who can supply discussion, answer explanations, and feedback after the chapter's questions and exercises."
+  ],
+  "struggling_readers": [
+    "Readers who need a rigorous method for research appraisal, causal inference, sampling, or legal and scientific substantiation.",
+    "Independent learners who rely on answer explanations to diagnose misconceptions or calibrate confidence.",
+    "Readers unfamiliar with the named historical witnesses, who receive too little context to learn from those references."
+  ],
+  "improvements": [
+    {
+      "order": 1,
+      "action": "Add an answer key with explanations for every quiz option, including why each distractor fails, plus a confidence prompt and a specific section to revisit after an error.",
+      "rationale": "This would close the largest learning-design gap by turning nine recognition choices into diagnostic feedback and metacognitive calibration.",
+      "local_locators": ["Quiz (answer key withheld), lines 87-140"]
+    },
+    {
+      "order": 2,
+      "action": "Extend the implementation plan into a proof-quality loop: state the claim, choose support, predict what it establishes, test it with one audience member, record doubt or misinterpretation, and revise or withdraw the claim.",
+      "rationale": "The current plan prompts action but gives no method for checking fit, sufficiency, audience interpretation, or improvement after use.",
+      "local_locators": ["Implementation plan, lines 163-170", "Try this now, lines 172-173"]
+    },
+    {
+      "order": 3,
+      "action": "Replace unexplained named references and decorative scenario props with one worked borderline case that compares relevant-but-insufficient evidence, representative evidence, corroboration, and a justified decision not to make the claim.",
+      "rationale": "This would improve novice onboarding, evidential nuance, diagnostic power, and instructional economy while showing that checkability alone does not guarantee adequate support.",
+      "local_locators": ["Deep read, lines 21-23", "Examples 1-6, lines 57-85", "Review Card 5, lines 159-161"]
+    }
+  ],
+  "verdict": "As a standalone chapter, Credible provides a strong, accessible mental model for moving belief from speaker confidence to support an audience can inspect, and it transfers that model across many useful contexts. Its chapter diagnostic is materially constrained by absent quiz feedback, an incomplete implementation loop, and limited treatment of evidence sufficiency, so this result must not be read as a score or certification for Made to Stick as a whole."
+}

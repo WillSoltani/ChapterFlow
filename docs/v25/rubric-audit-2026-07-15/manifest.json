@@ -1,0 +1,31 @@
+{
+  "run_id": "20260715T110908Z",
+  "rubric_version": "2.0",
+  "scope": "standalone_chapter_audit",
+  "sources": [
+    {
+      "book_id": "nudge",
+      "chapter_id": "ch03",
+      "title": "Following the Herd",
+      "path": "/Users/radinsoltani/Desktop/nudge-ch03.md",
+      "source_sha256": "5561431cdd87978ec2bd4def5cf4e2fc7ab53d8379f48e0eaaf7327a9dcaeda7",
+      "heading_inventory_sha256": "3debb840203d2e441a169c4cdc8efc3f2ce1f614aef00367937c6aa752471bf7"
+    },
+    {
+      "book_id": "the-happiness-hypothesis",
+      "chapter_id": "ch06",
+      "title": "Love and attachments",
+      "path": "/Users/radinsoltani/Desktop/the-happiness-hypothesis-ch06.md",
+      "source_sha256": "98fb3e50e070ca44543881613f39dbaf5c478bfff7e2aea838688f2b3d0e5dd2",
+      "heading_inventory_sha256": "9fe9c1352e5f75908305a66edac1d60131adc707e096d9f826eb67b1cf5c4a7f"
+    },
+    {
+      "book_id": "made-to-stick",
+      "chapter_id": "ch04",
+      "title": "Credible",
+      "path": "/Users/radinsoltani/Desktop/made-to-stick-ch04.md",
+      "source_sha256": "9a20a3afd9612faf43ea26575e0f471401c180f58fdef2bcaceedd4a54194120",
+      "heading_inventory_sha256": "e05cc2761e5694f26ac53556f840520122a0abf3c1041358af1a0ff420a2d31f"
+    }
+  ]
+}

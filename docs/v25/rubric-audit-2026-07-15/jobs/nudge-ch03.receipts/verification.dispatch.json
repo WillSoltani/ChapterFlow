@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "chapterflow_worker_dispatch_receipt",
+  "issuer": "chapterflow_evaluation_orchestrator",
+  "pair_id": "nudge-ch03-pair-20260715T110908Z",
+  "issued_at_utc": "2026-07-15T11:11:46Z",
+  "run_id": "20260715T110908Z",
+  "book_id": "nudge-ch03",
+  "source_hash": "5561431cdd87978ec2bd4def5cf4e2fc7ab53d8379f48e0eaaf7327a9dcaeda7",
+  "inventory_sha256": "db824e64e528df3c5ed6f3a0f145f4997f1aedaf182351be6b2833cf330990d1",
+  "role": "verification",
+  "job_id": "nudge-ch03-verification-20260715T110908Z",
+  "worker_task_id": "/root/nudge_verification",
+  "worker_session_id": "/root/nudge_verification@20260715T110908Z",
+  "binding_sha256": "56161d729113a75a79d59be8b80117f283791007416771f64561898d3e38c679"
+}
