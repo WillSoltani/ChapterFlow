@@ -59,6 +59,7 @@ import {
   discoverInstructionChain,
   ExecPreflightError,
   hermeticExecArgv,
+  type HermeticEnvMap,
   persistEffectiveContextManifest,
   persistExecResult,
   persistRouteResult,
@@ -79,7 +80,7 @@ export type CodexRunnerArgs = {
   bin: string;
   argv: string[];
   cwd: string;
-  env: NodeJS.ProcessEnv;
+  env: HermeticEnvMap;
   timeoutMs: number;
 };
 
@@ -304,7 +305,9 @@ export const defaultCodexRunner: CodexRunner = ({ bin, argv, cwd, env, timeoutMs
   new Promise((resolvePromise, rejectPromise) => {
     let child: ReturnType<typeof spawn>;
     try {
-      child = spawn(bin, argv, { cwd, env, stdio: ["ignore", "pipe", "pipe"] });
+      // Node accepts an allowlist-built env map at runtime; the cast is needed
+      // only because the root web-app program requires NODE_ENV on ProcessEnv.
+      child = spawn(bin, argv, { cwd, env: env as NodeJS.ProcessEnv, stdio: ["ignore", "pipe", "pipe"] });
     } catch (error) {
       const detail = error instanceof Error ? error : new Error(String(error));
       rejectPromise(new CodexRunnerProcessError({
@@ -428,7 +431,7 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
     // Injected-runner test double without a role: legacy path, byte-for-byte
     // pre-IMP-00 behavior so conductor tests keep exercising unchanged logic.
     const argv = codexExecArgv(opts.task, sandbox, opts.writableRoots, opts.skipGitRepoCheck, opts.reasoningEffort, opts.model);
-    const env: NodeJS.ProcessEnv = {
+    const env: HermeticEnvMap = {
       ...process.env,
       ...(opts.env ?? {}),
       ...STRICT_AGENT_ENV,

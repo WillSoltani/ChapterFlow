@@ -40,7 +40,7 @@ test("the hermetic env allowlist drops every hostile ambient variable and forces
   try {
     const h = buildHostileHome(roots.homeRoot);
     // A parent env polluted with the hostile channels PLUS a couple allowlisted vars.
-    const pollutedBase = { ...h.env, PATH: "/usr/bin", LANG: "en_US.UTF-8" } as NodeJS.ProcessEnv;
+    const pollutedBase = { ...h.env, PATH: "/usr/bin", LANG: "en_US.UTF-8" };
     const { env, envKeys } = buildHermeticEnv({
       profile: EXECUTION_PROFILES["author-writer"],
       codexHomeDir: join(roots.base, "isolated-codex"),
@@ -72,7 +72,7 @@ test("HOME may pass the allowlist but CODEX_HOME override wins — a hostile HOM
       profile: EXECUTION_PROFILES["chapter-reviewer"],
       codexHomeDir: join(roots.base, "iso"),
       sessionId: "s",
-      baseEnv: { HOME: h.home, PATH: "/usr/bin" } as NodeJS.ProcessEnv,
+      baseEnv: { HOME: h.home, PATH: "/usr/bin" },
     });
     // HOME is a legitimate allowlisted var, but codex reads CODEX_HOME, which is forced.
     assert.equal(env.HOME, h.home, "HOME rides the allowlist (legitimate)");

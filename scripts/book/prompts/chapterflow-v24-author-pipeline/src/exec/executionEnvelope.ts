@@ -268,6 +268,13 @@ export function buildIsolatedSession(opts: {
   };
 }
 
+/** A hermetic child environment is allowlist-built and intentionally carries
+ *  ONLY allowlisted/forced keys — NODE_ENV included only if allowlisted. The
+ *  root web-app program augments NodeJS.ProcessEnv to require NODE_ENV, which
+ *  an allowlist-built map cannot promise, so hermetic env values use this
+ *  local map type instead of NodeJS.ProcessEnv. */
+export type HermeticEnvMap = Record<string, string | undefined>;
+
 /** Allowlist-built child environment. Order of precedence (later wins):
  *  allowlisted parent vars → caller env (explicit, recorded) → forced
  *  CODEX_HOME → strict pipeline invariants → per-spawn session id. */
@@ -276,10 +283,10 @@ export function buildHermeticEnv(opts: {
   codexHomeDir: string;
   sessionId: string;
   callerEnv?: Record<string, string>;
-  baseEnv?: NodeJS.ProcessEnv;
-}): { env: NodeJS.ProcessEnv; envKeys: string[]; callerEnvKeys: string[]; strictEnv: Record<string, string> } {
+  baseEnv?: HermeticEnvMap;
+}): { env: HermeticEnvMap; envKeys: string[]; callerEnvKeys: string[]; strictEnv: Record<string, string> } {
   const base = opts.baseEnv ?? process.env;
-  const env: NodeJS.ProcessEnv = {};
+  const env: HermeticEnvMap = {};
   for (const name of opts.profile.envAllowlist) {
     if (base[name] !== undefined) env[name] = base[name];
   }
