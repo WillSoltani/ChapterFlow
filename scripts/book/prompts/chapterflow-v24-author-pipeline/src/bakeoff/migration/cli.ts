@@ -76,6 +76,7 @@ import {
   verifyHistoricalImp24InstrumentIdentity,
   verifyImp24fCandidateInstrument,
 } from "./imp24fCandidateInstrument.js";
+import { materializeReaderGoldDevPoolSelection } from "./readerGoldDevPool.js";
 import {
   buildGoldArtifacts,
   buildPilotArtifacts,
@@ -283,6 +284,7 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "imp24-materialize-final-attestation",
   "imp24d-materialize-final-attestation",
   "imp24-materialize-forward-inputs",
+  "reader-gold-dev-pool",
   "role-qualification-freeze",
   "forward-materialize-pilot-artifacts",
   "forward-materialize-gold-artifacts",
@@ -1499,6 +1501,16 @@ function runLocalForwardSubverb(
       : materializeImp24GoldV2Envelope(flags.write === true);
     console.log(flags.json === true ? JSON.stringify(out, null, 2)
       : `[migration] ${subverb}: manifest=${out.manifestSha256} targets=${out.targetCount} written=${out.written} model/api calls=0`);
+    return 0;
+  }
+  if (subverb === "reader-gold-dev-pool") {
+    // Prose-blind frozen selection of the development reader-gold candidate
+    // pool (owner-ratified D2/D3). Dry = deterministic rebuild + byte-compare
+    // against any retained manifest; --write = create-once materialization.
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const out = materializeReaderGoldDevPoolSelection({ repositoryRoot, write: flags.write === true });
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] ${out.poolId}: selection=${out.selectionSha256} chapters=${out.totalSelected} written=${String(out.written)} model/api calls=0`);
     return 0;
   }
   if (subverb === "imp24-materialize-thresholds") {

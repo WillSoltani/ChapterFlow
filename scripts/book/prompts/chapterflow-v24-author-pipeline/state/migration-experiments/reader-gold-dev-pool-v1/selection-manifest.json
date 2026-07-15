@@ -1,0 +1,160 @@
+{
+  "adjudication": {
+    "aSideCallBudget": {
+      "base": 24,
+      "hardMaximum": 48
+    },
+    "aSideFamily": "gpt-5.6-sol (codex exec, ChatGPT-authenticated)",
+    "bSideFamily": "claude (session-isolated subagent, zero codex calls)",
+    "method": "dual-context-isolated-mixed-family-with-arbitration",
+    "ownerSpotCheckControls": 3
+  },
+  "books": [
+    {
+      "bookId": "factfulness",
+      "chapterCount": 11,
+      "packageBytesSha256": "ff23d32ed53e4dd84a505f7cdb274e903bbf65b7fb97f27d952bfaa7eca698ca",
+      "packagePath": "book-packages/factfulness.v21.json",
+      "quota": 5,
+      "selectedChapters": [
+        {
+          "chapterNumber": 1,
+          "positionStratum": "early"
+        },
+        {
+          "chapterNumber": 4,
+          "positionStratum": "middle"
+        },
+        {
+          "chapterNumber": 6,
+          "positionStratum": "middle"
+        },
+        {
+          "chapterNumber": 9,
+          "positionStratum": "late"
+        },
+        {
+          "chapterNumber": 11,
+          "positionStratum": "late"
+        }
+      ]
+    },
+    {
+      "bookId": "made-to-stick",
+      "chapterCount": 6,
+      "packageBytesSha256": "e404a117fb5c6332179bbb7ccf8c337521267b1c0913af549fac58b0002dc968",
+      "packagePath": "book-packages/made-to-stick.v21.json",
+      "quota": 6,
+      "selectedChapters": [
+        {
+          "chapterNumber": 1,
+          "positionStratum": "early"
+        },
+        {
+          "chapterNumber": 2,
+          "positionStratum": "early"
+        },
+        {
+          "chapterNumber": 3,
+          "positionStratum": "middle"
+        },
+        {
+          "chapterNumber": 4,
+          "positionStratum": "middle"
+        },
+        {
+          "chapterNumber": 5,
+          "positionStratum": "late"
+        },
+        {
+          "chapterNumber": 6,
+          "positionStratum": "late"
+        }
+      ]
+    },
+    {
+      "bookId": "nudge",
+      "chapterCount": 18,
+      "packageBytesSha256": "5a6c69c64868da32c7054058dd09af917335ad41a611bfefe526b680d0f557f7",
+      "packagePath": "book-packages/nudge.v21.json",
+      "quota": 8,
+      "selectedChapters": [
+        {
+          "chapterNumber": 1,
+          "positionStratum": "early"
+        },
+        {
+          "chapterNumber": 3,
+          "positionStratum": "early"
+        },
+        {
+          "chapterNumber": 6,
+          "positionStratum": "early"
+        },
+        {
+          "chapterNumber": 8,
+          "positionStratum": "middle"
+        },
+        {
+          "chapterNumber": 11,
+          "positionStratum": "middle"
+        },
+        {
+          "chapterNumber": 13,
+          "positionStratum": "late"
+        },
+        {
+          "chapterNumber": 16,
+          "positionStratum": "late"
+        },
+        {
+          "chapterNumber": 18,
+          "positionStratum": "late"
+        }
+      ]
+    },
+    {
+      "bookId": "the-happiness-hypothesis",
+      "chapterCount": 11,
+      "packageBytesSha256": "db1c2ee846f7b88294caa70020747dfd1192f8c2d1fea79653b4cb7b16c774b9",
+      "packagePath": "book-packages/the-happiness-hypothesis.v21.json",
+      "quota": 5,
+      "selectedChapters": [
+        {
+          "chapterNumber": 1,
+          "positionStratum": "early"
+        },
+        {
+          "chapterNumber": 4,
+          "positionStratum": "middle"
+        },
+        {
+          "chapterNumber": 6,
+          "positionStratum": "middle"
+        },
+        {
+          "chapterNumber": 9,
+          "positionStratum": "late"
+        },
+        {
+          "chapterNumber": 11,
+          "positionStratum": "late"
+        }
+      ]
+    }
+  ],
+  "poolId": "reader-gold-dev-pool-v1",
+  "ratification": {
+    "candidateOutputsUsedForLabels": false,
+    "document": "docs/v25/reports/V25_PILOT_READINESS_OWNER_RATIFICATION.md",
+    "independentHumanRater": false,
+    "ownerApprovedForDevelopmentBakeoff": true,
+    "publicationCertification": false,
+    "selectionFrozenBeforeProseInspection": true
+  },
+  "schema": "reader-gold-dev-pool-selection-manifest-v1",
+  "selectionRule": "lexicographic books; target 24; full-take books with count <= floor(target/books); largest-remainder proportional quotas for the rest; within a book, 1-based chapters round(i*(N-1)/(k-1))+1 — arithmetic over chapter counts only, no prose input",
+  "selectionSha256": "01db84371fcda8e125cdd319326f4a32207df4b8bbcd18aea8b5bcc2dfb3a633",
+  "targetTotal": 24,
+  "totalSelected": 24
+}
