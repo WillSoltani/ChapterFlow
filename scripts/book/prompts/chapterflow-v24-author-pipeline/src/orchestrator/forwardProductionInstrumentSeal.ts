@@ -27,6 +27,11 @@ export const FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH =
   `${PIPELINE_REL}/state/migration-experiments/contracts/imp22/forward-production-instrument-seal.json` as const;
 export const IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH =
   `${PIPELINE_REL}/state/migration-experiments/contracts/imp24/forward-production-instrument-seal.json` as const;
+/** ACTIVE CANDIDATE generation (IMP-24F semantic repair). The imp22/imp24
+ * artifacts above are retained by their completed campaigns and are verified
+ * as history; only this candidate seal is compared against current bytes. */
+export const IMP24F_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH =
+  `${PIPELINE_REL}/state/migration-experiments/contracts/imp24f/forward-production-instrument-seal.json` as const;
 const INVENTORY_ROOTS = [
   `${PIPELINE_REL}/src`,
   `${PIPELINE_REL}/config`,
@@ -223,6 +228,64 @@ export function materializeForwardProductionInstrumentSeal(args: {
     modelCalls: 0,
     apiCalls: 0,
   };
+}
+
+export type ForwardProductionInstrumentSealHistoricalVerificationV1 = {
+  schema: "forward-production-instrument-seal-historical-verification-v1";
+  outputPath: string;
+  sealSha256: string;
+  fileCount: number;
+  artifactBytesSha256: string;
+  comparedToCurrentBytes: false;
+  verified: true;
+  modelCalls: 0;
+  apiCalls: 0;
+};
+
+/** Historical verification of a seal retained by a CLOSED identity. After an
+ * authorized successor changes the instrument, a retained seal can never again
+ * match current bytes — and must not be asked to. This proves schema,
+ * capability, and self-hash integrity plus an optional recorded-binding pin,
+ * and deliberately never rebuilds an inventory from the checkout. */
+export function verifyHistoricalForwardProductionInstrumentSeal(args: {
+  outputPath: string;
+  expectedSealSha256?: string;
+}): ForwardProductionInstrumentSealHistoricalVerificationV1 {
+  const outputPath = resolve(args.outputPath);
+  requireCondition(existsSync(outputPath), `retained historical production instrument seal is missing: ${outputPath}`);
+  const bytes = readFileSync(outputPath);
+  let parsed: unknown;
+  try { parsed = JSON.parse(bytes.toString("utf8")); }
+  catch (error) { throw new ForwardProductionInstrumentSealError(`cannot parse retained historical production seal: ${(error as Error).message}`); }
+  requireCondition(parsed !== null && typeof parsed === "object" && !Array.isArray(parsed),
+    "historical production instrument seal must be an object");
+  const retained = parsed as ForwardProductionInstrumentSealV1;
+  requireCondition(retained.schema === FORWARD_PRODUCTION_INSTRUMENT_SEAL_SCHEMA
+    && retained.version === FORWARD_PRODUCTION_INSTRUMENT_SEAL_VERSION,
+  "historical production instrument seal schema/version mismatch");
+  requireCondition(retained.sealSha256 === computeForwardProductionInstrumentSealSha256(retained),
+    "historical production instrument seal self hash mismatch");
+  requireCondition(retained.capabilities.publish === false && retained.capabilities.promote === false
+    && retained.capabilities.deploy === false && retained.capabilities.upload === false && retained.capabilities.api === false,
+  "historical production instrument seal exposes a prohibited capability");
+  requireCondition(Array.isArray(retained.files) && retained.files.length > 0
+    && retained.files.every((file) => typeof file.relativePath === "string" && /^[a-f0-9]{64}$/.test(file.bytesSha256)),
+  "historical production instrument seal inventory is malformed");
+  if (args.expectedSealSha256 !== undefined) {
+    requireCondition(retained.sealSha256 === args.expectedSealSha256,
+      "historical production instrument seal does not match its recorded binding");
+  }
+  return deepFreeze({
+    schema: "forward-production-instrument-seal-historical-verification-v1",
+    outputPath,
+    sealSha256: retained.sealSha256,
+    fileCount: retained.files.length,
+    artifactBytesSha256: sha256Hex(bytes),
+    comparedToCurrentBytes: false,
+    verified: true,
+    modelCalls: 0,
+    apiCalls: 0,
+  });
 }
 
 /** Fail-closed verification of an already retained seal. Unlike dry

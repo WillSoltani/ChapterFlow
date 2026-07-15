@@ -23,6 +23,7 @@ import {
 } from "../src/bakeoff/migration/imp24Corpus.js";
 import {
   createImp24QualificationEvaluator,
+  loadRetainedImp24RolePromptSourceHashes,
   prepareImp24QualificationCases,
 } from "../src/bakeoff/migration/imp24InstrumentCertification.js";
 import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
@@ -110,9 +111,17 @@ function writeHistoricalCorrectionSources(
 }
 
 function prepareHistoricalSmokeInput(input: HistoricalUnpreparedSmokeInputV3) {
+  // Historical R2-identity replay: stamp the prompt-source hashes RETAINED by
+  // the closed V3 campaign. The authorized IMP-24F successor changed prompt
+  // bytes and the hash recipe, so re-deriving from the current checkout would
+  // (correctly) refuse the retained certification this replay is bound to.
   const prepared = prepareImp24QualificationCases({
     repositoryRoot: REPOSITORY_ROOT,
     corpusBundle: input.corpusBundle,
+    retainedPromptSourceHashes: loadRetainedImp24RolePromptSourceHashes({
+      repositoryRoot: REPOSITORY_ROOT,
+      certification: input.certification,
+    }),
   });
   const preparedInput = {
     ...input,

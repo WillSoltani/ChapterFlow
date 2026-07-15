@@ -458,6 +458,41 @@ function rolePromptSourceHashes(repositoryRoot: string): Record<Imp24ReviewRole,
   return buildImp24RolePromptSourceHashes({ moduleSha256: sha256Hex(readFileSync(modulePath)) });
 }
 
+export const IMP24_RETAINED_PROMPT_BUNDLE_REL_PATHS: Record<Imp24ReviewRole, string> = Object.freeze({
+  reader: `${PIPELINE_REL}/state/migration-experiments/contracts/imp24/prompts/reader-prompt-bundle.v3-envelope.json`,
+  source: `${PIPELINE_REL}/state/migration-experiments/contracts/imp24/prompts/source-prompt-bundle.v3-envelope.json`,
+  quiz: `${PIPELINE_REL}/state/migration-experiments/contracts/imp24/prompts/quiz-prompt-bundle.v3-envelope.json`,
+});
+
+/** Load the per-role prompt-source hashes RETAINED by the closed V3 identity
+ * from its committed prompt-bundle sidecars. After an authorized successor
+ * changes the prompt recipe or bytes, historical replay must stamp these
+ * retained values — re-deriving from current checkout would compare closed
+ * evidence against an instrument that never ran it. When the retained
+ * certification binding is supplied, the loaded set is pinned to its
+ * promptBundleSha256 so a tampered sidecar fails closed. */
+export function loadRetainedImp24RolePromptSourceHashes(args: {
+  repositoryRoot: string;
+  certification?: Pick<Imp24InstrumentCertificationBinding, "promptBundleSha256">;
+}): Record<Imp24ReviewRole, string> {
+  const hashes = Object.fromEntries((Object.keys(IMP24_RETAINED_PROMPT_BUNDLE_REL_PATHS) as Imp24ReviewRole[])
+    .map((role) => {
+      const path = resolve(args.repositoryRoot, IMP24_RETAINED_PROMPT_BUNDLE_REL_PATHS[role]);
+      const sidecar = JSON.parse(readFileSync(path, "utf8")) as { role?: string; promptSourceSha256?: string };
+      if (sidecar.role !== role || typeof sidecar.promptSourceSha256 !== "string"
+        || !/^[a-f0-9]{64}$/.test(sidecar.promptSourceSha256)) {
+        throw new Imp24InstrumentCertificationError(`retained ${role} prompt bundle sidecar is malformed: ${path}`);
+      }
+      return [role, sidecar.promptSourceSha256];
+    })) as Record<Imp24ReviewRole, string>;
+  if (args.certification !== undefined && hashCanonical(hashes) !== args.certification.promptBundleSha256) {
+    throw new Imp24InstrumentCertificationError(
+      "retained prompt-bundle sidecars do not reproduce the retained certification promptBundleSha256",
+    );
+  }
+  return hashes;
+}
+
 /**
  * The sole prepared-case builder consumed by both certification and the live
  * runner.  It retains exact canonical envelope bytes and their bare SHA-256.
@@ -465,6 +500,11 @@ function rolePromptSourceHashes(repositoryRoot: string): Record<Imp24ReviewRole,
 export function prepareImp24QualificationCases(args: {
   repositoryRoot: string;
   corpusBundle: Imp24CorpusBundle;
+  /** Historical-identity replay ONLY: stamp the prompt-source hashes retained
+   * by a closed identity (see loadRetainedImp24RolePromptSourceHashes) instead
+   * of re-deriving them from current checkout bytes. Never pass this for an
+   * active-candidate certification. */
+  retainedPromptSourceHashes?: Record<Imp24ReviewRole, string>;
 }): Imp24PreparedQualificationInstrument {
   const schemaPaths = schemaPathByRole(args.repositoryRoot);
   const schemaHashes: Record<Imp24ReviewRole, string> = {
@@ -472,7 +512,7 @@ export function prepareImp24QualificationCases(args: {
     source: sha256Hex(readFileSync(schemaPaths.source)),
     quiz: sha256Hex(readFileSync(schemaPaths.quiz)),
   };
-  const promptSourceHashes = rolePromptSourceHashes(args.repositoryRoot);
+  const promptSourceHashes = args.retainedPromptSourceHashes ?? rolePromptSourceHashes(args.repositoryRoot);
   const preparedCases = {
     reader: { canary: [], holdout: [] },
     source: { canary: [], holdout: [] },

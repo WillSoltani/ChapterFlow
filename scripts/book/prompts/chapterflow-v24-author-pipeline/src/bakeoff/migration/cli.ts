@@ -67,9 +67,15 @@ import {
 import {
   FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH,
   IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH,
+  IMP24F_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH,
   materializeForwardProductionInstrumentSeal,
   verifyRetainedForwardProductionInstrumentSeal,
 } from "../../orchestrator/forwardProductionInstrumentSeal.js";
+import {
+  materializeImp24fCandidateInstrument,
+  verifyHistoricalImp24InstrumentIdentity,
+  verifyImp24fCandidateInstrument,
+} from "./imp24fCandidateInstrument.js";
 import {
   buildGoldArtifacts,
   buildPilotArtifacts,
@@ -1519,22 +1525,28 @@ function runLocalForwardSubverb(
     return 0;
   }
   if (subverb === "imp24-certify-instrument") {
+    // Instrument-certification lifecycle with EXPLICIT identities (V25
+    // recovery): the retained imp24 (predecessor) generation is verified as
+    // HISTORY — self-hashes and internal pins only, never against current
+    // bytes — while the imp24f ACTIVE CANDIDATE generation is recomputed from
+    // and compared against current checkout bytes. --write mints the candidate
+    // generation into contracts/imp24f/ and never writes imp22/imp24 paths.
     const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
     if (flags.write === true) {
-      const out = materializeImp24InstrumentCertification({ repositoryRoot });
+      const out = materializeImp24fCandidateInstrument({ repositoryRoot });
       console.log(flags.json === true ? JSON.stringify(out, null, 2)
-        : `[migration] IMP-24 instrument ${out.status}: binding=${out.binding.certificationSha256} outputs=${Object.keys(out.outputs).length} model/api calls=0`);
+        : `[migration] IMP-24F candidate instrument minted: generation=${out.instrumentGeneration} seal=${out.candidateSealSha256} binding=${out.candidateCertificationSha256} model/api calls=0`);
     } else {
-      const out = certifyImp24Instrument({ repositoryRoot });
+      const historical = verifyHistoricalImp24InstrumentIdentity({ repositoryRoot });
+      const candidate = verifyImp24fCandidateInstrument({ repositoryRoot });
       console.log(flags.json === true ? JSON.stringify({
-        status: out.report.status,
-        binding: out.report.binding,
-        exactCaseCounts: out.report.exactCaseCounts,
-        checks: out.report.checks,
+        status: "VERIFIED_INSTRUMENT_CERTIFICATION_LIFECYCLE",
+        historicalPredecessor: historical,
+        activeCandidate: candidate,
         written: false,
         modelCalls: 0,
         apiCalls: 0,
-      }, null, 2) : `[migration] IMP-24 instrument ${out.report.status}: binding=${out.report.binding.certificationSha256} cases=${out.report.exactCaseCounts.total} DRY (pass --write)`);
+      }, null, 2) : `[migration] instrument certification lifecycle VERIFIED — historical imp24 binding=${historical.certificationSha256} (self-hash only); candidate ${candidate.instrumentGeneration} binding=${candidate.candidateCertificationSha256} (current bytes) DRY (pass --write to mint the candidate)`);
     }
     return 0;
   }
@@ -1786,21 +1798,45 @@ function runLocalForwardSubverb(
     return 0;
   }
   if (subverb === "forward-verify-production-instrument-seal-v2") {
-    const outputPath = typeof flags.output === "string" ? resolve(flags.output) : undefined;
-    const out = verifyRetainedForwardProductionInstrumentSeal({ ...(outputPath ? { outputPath } : {}) });
+    // Seal lifecycle with EXPLICIT identities (V25 recovery). With --output,
+    // verify exactly that artifact against current bytes (fixture flows).
+    // Otherwise verify BOTH generations by name: the imp24f ACTIVE CANDIDATE
+    // seal against current checkout bytes, and the retained imp24 HISTORICAL
+    // seal by self-hash + its recorded certification pin only.
+    if (typeof flags.output === "string") {
+      const out = verifyRetainedForwardProductionInstrumentSeal({ outputPath: resolve(flags.output) });
+      console.log(flags.json === true
+        ? JSON.stringify(out, null, 2)
+        : `[migration] production instrument seal verified against current bytes: sha256=${out.sealSha256} files=${out.fileCount} path=${out.outputPath}`);
+      return 0;
+    }
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const candidate = verifyRetainedForwardProductionInstrumentSeal({
+      repositoryRoot,
+      outputPath: resolve(repositoryRoot, IMP24F_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH),
+    });
+    const historical = verifyHistoricalImp24InstrumentIdentity({ repositoryRoot });
     console.log(flags.json === true
-      ? JSON.stringify(out, null, 2)
-      : `[migration] IMP-24 production instrument seal verified: sha256=${out.sealSha256} files=${out.fileCount} path=${out.outputPath}`);
+      ? JSON.stringify({
+        status: "VERIFIED_PRODUCTION_INSTRUMENT_SEAL_LIFECYCLE",
+        activeCandidate: candidate,
+        historicalPredecessor: historical,
+        modelCalls: 0,
+        apiCalls: 0,
+      }, null, 2)
+      : `[migration] production instrument seal lifecycle VERIFIED — candidate imp24f sha256=${candidate.sealSha256} files=${candidate.fileCount} (current bytes); historical imp24 sha256=${historical.sealSha256} (self-hash only)`);
     return 0;
   }
   if (subverb === "forward-materialize-production-instrument-seal-v2") {
+    // Default output is the imp24f ACTIVE CANDIDATE seal. The retained imp24
+    // seal belongs to the closed final campaign and is never written.
     const outputPath = typeof flags.output === "string"
       ? resolve(flags.output)
-      : resolve(PIPELINE_DIR, "state/migration-experiments/contracts/imp24/forward-production-instrument-seal.json");
+      : resolve(PIPELINE_DIR, "state/migration-experiments/contracts/imp24f/forward-production-instrument-seal.json");
     const out = materializeForwardProductionInstrumentSeal({ outputPath, write: flags.write === true });
     console.log(flags.json === true
       ? JSON.stringify(out, null, 2)
-      : `[migration] IMP-24 production instrument seal: sha256=${out.sealSha256} files=${out.fileCount} path=${out.outputPath} written=${String(out.written)}`);
+      : `[migration] IMP-24F candidate production instrument seal: sha256=${out.sealSha256} files=${out.fileCount} path=${out.outputPath} written=${String(out.written)}`);
     return 0;
   }
   if (subverb !== "forward-materialize-production-instrument-seal") return 2;
