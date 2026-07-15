@@ -82,6 +82,31 @@ jobs:
       - name: Build OpenNext (includes Next.js build)
         run: npx open-next build
 
+      # Raw Cognito subject IDs exist only in this process environment. The
+      # helper validates canonical UUIDs and writes one-way SHA-256 values to
+      # GITHUB_ENV; CDK/CloudFormation/Lambda configuration never receive raw
+      # account identifiers. Error output is code-only.
+      - name: Derive protected TestFlight QA subject hashes
+        env:
+          APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED: ${{ vars.APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED || '0' }}
+          APPLE_IAP_TESTFLIGHT_QA_USER_IDS: ${{ vars.APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED == '1' && secrets.APPLE_IAP_TESTFLIGHT_QA_USER_IDS || '' }}
+        run: |
+          set -euo pipefail
+          case "$APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED" in
+            1)
+              HASHES="$(node --import tsx scripts/ci/hash-apple-testflight-qa-users.ts)"
+              echo "::add-mask::$HASHES"
+              echo "APPLE_IAP_TESTFLIGHT_QA_USER_HASHES=$HASHES" >> "$GITHUB_ENV"
+              ;;
+            0|"")
+              echo "APPLE_IAP_TESTFLIGHT_QA_USER_HASHES=" >> "$GITHUB_ENV"
+              ;;
+            *)
+              echo "::error::E_APPLE_IAP_TESTFLIGHT_FLAG_INVALID"
+              exit 1
+              ;;
+          esac
+
       # The server reads authored book packages from S3 at runtime (quiz/audio/ask)
       # instead of bundling all ~37.6 MB into the ServerFn (which would exceed
       # Lambda's 250 MiB unzipped limit). The packages live at
@@ -101,6 +126,7 @@ jobs:
           CDK_DEFAULT_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
           CHAPTERFLOW_ENV: ${{ env.CHAPTERFLOW_ENV }}
           CHAPTERFLOW_COMMIT_SHA: ${{ github.sha }}
+          CHAPTERFLOW_VALIDATE_APPLE_IAP_CONFIG: '1'
           # App + domain
           CHAPTERFLOW_APP_BASE_URL: ${{ secrets.CHAPTERFLOW_APP_BASE_URL }}
           CHAPTERFLOW_DOMAIN_NAME: ${{ secrets.CHAPTERFLOW_DOMAIN_NAME }}
@@ -113,6 +139,15 @@ jobs:
           COGNITO_LOGOUT_REDIRECT_URI: ${{ secrets.COGNITO_LOGOUT_REDIRECT_URI }}
           AUTH_STATE_SECRET: ${{ secrets.AUTH_STATE_SECRET }}
           AUTH_COOKIE_DOMAIN: ${{ secrets.AUTH_COOKIE_DOMAIN }}
+          # StoreKit / native mobile configuration (nonsecret, environment-bound)
+          APPLE_IAP_BUNDLE_ID: ${{ vars.APPLE_IAP_BUNDLE_ID }}
+          APPLE_IAP_APP_APPLE_ID: ${{ vars.APPLE_IAP_APP_APPLE_ID }}
+          APPLE_IAP_SUBSCRIPTION_GROUP_ID: ${{ vars.APPLE_IAP_SUBSCRIPTION_GROUP_ID }}
+          IOS_STOREKIT_PRODUCT_IDS: ${{ vars.IOS_STOREKIT_PRODUCT_IDS }}
+          IOS_APP_STORE_URL: ${{ vars.IOS_APP_STORE_URL }}
+          APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED: ${{ vars.APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED || '0' }}
+          # APPLE_IAP_TESTFLIGHT_QA_USER_HASHES is inherited from GITHUB_ENV
+          # after the one-way derivation step; raw subjects never cross CDK.
           # Stripe
           BOOK_STRIPE_SECRET_KEY: ${{ secrets.BOOK_STRIPE_SECRET_KEY }}
           BOOK_STRIPE_WEBHOOK_SECRET: ${{ secrets.BOOK_STRIPE_WEBHOOK_SECRET }}
@@ -145,8 +180,13 @@ jobs:
 
       - name: Invalidate CloudFront cache
         run: |
-          aws cloudfront create-invalidation \
-            --distribution-id "${{ steps.cf.outputs.distribution_id }}" --paths "/*"
+          set -euo pipefail
+          INVALIDATION_ID=$(aws cloudfront create-invalidation \
+            --distribution-id "${{ steps.cf.outputs.distribution_id }}" --paths "/*" \
+            --query 'Invalidation.Id' --output text)
+          aws cloudfront wait invalidation-completed \
+            --distribution-id "${{ steps.cf.outputs.distribution_id }}" \
+            --id "${INVALIDATION_ID}"
 
       # BLOCKING health gate — a non-2xx on any critical surface fails the deploy.
       - name: Health gate
@@ -156,7 +196,7 @@ jobs:
           echo "Health-checking ${APP_URL} (allowing warm-up)..."
           sleep 10
           fail=0
-          for p in "/" "/pricing" "/api/health"; do
+          for p in "/" "/pricing" "/api/health" "/app/api/book/config/ios"; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 \
               --retry 4 --retry-delay 10 --retry-all-errors "${APP_URL}${p}")
             echo "  ${p} -> HTTP ${code}"

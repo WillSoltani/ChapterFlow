@@ -5,6 +5,10 @@ import * as cdk from "aws-cdk-lib";
 import { ChapterFlowBackendStack } from "../lib/chapterflow-backend-stack";
 import { ChapterFlowFrontendStack } from "../lib/chapterflow-frontend-stack";
 import { resolveEnvConfig } from "../lib/env-config";
+import {
+  assertAppleIapDeploymentConfig,
+  shouldAssertAppleIapDeploymentConfig,
+} from "../lib/apple-iap-config";
 
 const app = new cdk.App();
 
@@ -12,6 +16,17 @@ const app = new cdk.App();
 // prod maps to the existing unsuffixed stacks/resources (zero-diff); dev and
 // staging stand up as independent suffixed stacks in the same account.
 const cfg = resolveEnvConfig(app);
+
+// Native purchase/config identity is required in every deployed environment.
+// Run this before constructing either stack so `cdk deploy` cannot mutate AWS
+// and only then discover that the runtime routes will fail closed.
+if (
+  shouldAssertAppleIapDeploymentConfig(
+    process.env.CHAPTERFLOW_VALIDATE_APPLE_IAP_CONFIG,
+  )
+) {
+  assertAppleIapDeploymentConfig(cfg.env, process.env);
+}
 
 const env = {
   account: process.env.CDK_DEFAULT_ACCOUNT,
@@ -98,7 +113,7 @@ if (!skipFrontend && openNextExists) {
   // price IDs, logout redirect, cookie domain, and ElevenLabs stay optional —
   // they degrade gracefully.)
   if (cfg.env === "prod") {
-    const requiredSecrets = [
+    const requiredConfiguration = [
       "BOOK_STRIPE_SECRET_KEY",
       "BOOK_STRIPE_WEBHOOK_SECRET",
       "BOOK_STRIPE_PRICE_ID",
@@ -111,8 +126,15 @@ if (!skipFrontend && openNextExists) {
       "AUTH_STATE_SECRET",
       "CHAPTERFLOW_APP_BASE_URL",
       "ANTHROPIC_API_KEY",
+      "APPLE_IAP_BUNDLE_ID",
+      "APPLE_IAP_APP_APPLE_ID",
+      "APPLE_IAP_SUBSCRIPTION_GROUP_ID",
+      "IOS_STOREKIT_PRODUCT_IDS",
+      "IOS_APP_STORE_URL",
     ];
-    const missing = requiredSecrets.filter((key) => !process.env[key]?.trim());
+    const missing = requiredConfiguration.filter(
+      (key) => !process.env[key]?.trim(),
+    );
     if (missing.length > 0) {
       throw new Error(
         "Refusing to synth the prod ChapterFlowFrontend stack — launch-critical " +
@@ -227,6 +249,33 @@ if (!skipFrontend && openNextExists) {
       }),
       ...(process.env.IOS_APP_BUNDLE_ID && {
         IOS_APP_BUNDLE_ID: process.env.IOS_APP_BUNDLE_ID,
+      }),
+      // Native StoreKit verification and force-update destination. These are
+      // nonsecret identifiers, but production synth requires every value so a
+      // deploy cannot silently weaken receipt policy or fabricate a listing.
+      ...(process.env.APPLE_IAP_BUNDLE_ID && {
+        APPLE_IAP_BUNDLE_ID: process.env.APPLE_IAP_BUNDLE_ID,
+      }),
+      ...(process.env.APPLE_IAP_APP_APPLE_ID && {
+        APPLE_IAP_APP_APPLE_ID: process.env.APPLE_IAP_APP_APPLE_ID,
+      }),
+      ...(process.env.APPLE_IAP_SUBSCRIPTION_GROUP_ID && {
+        APPLE_IAP_SUBSCRIPTION_GROUP_ID:
+          process.env.APPLE_IAP_SUBSCRIPTION_GROUP_ID,
+      }),
+      ...(process.env.IOS_STOREKIT_PRODUCT_IDS && {
+        IOS_STOREKIT_PRODUCT_IDS: process.env.IOS_STOREKIT_PRODUCT_IDS,
+      }),
+      ...(process.env.IOS_APP_STORE_URL && {
+        IOS_APP_STORE_URL: process.env.IOS_APP_STORE_URL,
+      }),
+      ...(process.env.APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED && {
+        APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED:
+          process.env.APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED,
+      }),
+      ...(process.env.APPLE_IAP_TESTFLIGHT_QA_USER_HASHES && {
+        APPLE_IAP_TESTFLIGHT_QA_USER_HASHES:
+          process.env.APPLE_IAP_TESTFLIGHT_QA_USER_HASHES,
       }),
     },
   });

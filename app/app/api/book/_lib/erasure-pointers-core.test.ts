@@ -4,8 +4,10 @@ import {
   buildRiskEventPointer,
   buildReferralCodePointer,
   buildPairInvitePointer,
+  buildAppleTransactionPointer,
   targetKeyFromPointer,
   targetKeysFromUserItems,
+  mainPartitionKeysAfterPointerCleanup,
   isErasurePointerEntity,
 } from "./erasure-pointers-core";
 import {
@@ -16,6 +18,8 @@ import {
   referralCodeSk,
   pairInvitePk,
   pairInviteSk,
+  appleOriginalTransactionPk,
+  appleOriginalTransactionSk,
 } from "./keys";
 
 const USER = "user-sub-123";
@@ -87,6 +91,38 @@ test("pair-invite pointer: target key == pairInvitePk/Sk", () => {
   });
 });
 
+test("Apple transaction pointer reaches the externally keyed ownership map", () => {
+  const originalTransactionId = "1000000987654321";
+  const ptr = buildAppleTransactionPointer(USER, originalTransactionId);
+  assert.equal(ptr.PK, bookUserPk(USER));
+  assert.equal(ptr.entity, "BOOK_APPLE_TXN_POINTER");
+  assert.deepEqual(targetKeyFromPointer(ptr), {
+    PK: appleOriginalTransactionPk(originalTransactionId),
+    SK: appleOriginalTransactionSk(),
+  });
+});
+
+test("Sandbox Apple pointer is isolated and remains reachable by erasure", () => {
+  const originalTransactionId = "1000000987654321";
+  const ptr = buildAppleTransactionPointer(
+    USER,
+    originalTransactionId,
+    "TestFlightSandbox",
+  );
+  assert.equal(ptr.appleStorageLane, "TestFlightSandbox");
+  assert.deepEqual(targetKeyFromPointer(ptr), {
+    PK: appleOriginalTransactionPk(
+      originalTransactionId,
+      "TestFlightSandbox",
+    ),
+    SK: appleOriginalTransactionSk(),
+  });
+  assert.notEqual(
+    ptr.targetPK,
+    appleOriginalTransactionPk(originalTransactionId, "Primary"),
+  );
+});
+
 // ─── targetKeyFromPointer / targetKeysFromUserItems behavior ──────────────────
 
 test("non-pointer items yield no target", () => {
@@ -113,21 +149,55 @@ test("targetKeysFromUserItems collects all pointer targets and dedupes", () => {
   });
   const ptrB = buildReferralCodePointer(USER, "CODE1");
   const ptrC = buildPairInvitePointer(USER, "INVITE1");
+  const ptrD = buildAppleTransactionPointer(USER, "1000000987654321");
   const noise = { entity: "BOOK_PROGRESS", PK: bookUserPk(USER), SK: "PROGRESS#x" };
 
-  const keys = targetKeysFromUserItems([ptrA, ptrB, ptrC, noise, { ...ptrA }]);
-  assert.equal(keys.length, 3, "duplicate ptrA collapsed");
+  const keys = targetKeysFromUserItems([ptrA, ptrB, ptrC, ptrD, noise, { ...ptrA }]);
+  assert.equal(keys.length, 4, "duplicate ptrA collapsed");
   assert.ok(keys.some((k) => k.PK === ptrA.targetPK && k.SK === ptrA.targetSK));
   assert.ok(keys.some((k) => k.PK === ptrB.targetPK && k.SK === ptrB.targetSK));
   assert.ok(keys.some((k) => k.PK === ptrC.targetPK && k.SK === ptrC.targetSK));
+  assert.ok(keys.some((k) => k.PK === ptrD.targetPK && k.SK === ptrD.targetSK));
+});
+
+test("main-partition keys are retained until pointer targets are confirmed gone", () => {
+  const pointer = buildAppleTransactionPointer(USER, "1000000987654321");
+  const progress = {
+    PK: bookUserPk(USER),
+    SK: "PROGRESS#book#chapter",
+    entity: "BOOK_PROGRESS",
+  };
+  const tombstone = {
+    PK: bookUserPk(USER),
+    SK: "ACCOUNT_STATUS",
+    entity: "BOOK_ACCOUNT_STATUS",
+    status: "deleted",
+  };
+  assert.deepEqual(
+    mainPartitionKeysAfterPointerCleanup(
+      [pointer, progress, tombstone],
+      false,
+    ),
+    [],
+    "failed target cleanup preserves both pointer and personal rows for retry",
+  );
+  assert.deepEqual(
+    mainPartitionKeysAfterPointerCleanup([pointer, progress, tombstone], true),
+    [
+      { PK: pointer.PK, SK: pointer.SK },
+      { PK: progress.PK, SK: progress.SK },
+    ],
+    "successful target cleanup deletes pointers/data but retains tombstone",
+  );
 });
 
 // ─── isErasurePointerEntity (C7 — single source of truth for pointer entities) ─
 
-test("isErasurePointerEntity: recognizes all three pointer entities, rejects others", () => {
+test("isErasurePointerEntity recognizes every pointer entity and rejects others", () => {
   assert.equal(isErasurePointerEntity("BOOK_RISK_EVENT_POINTER"), true);
   assert.equal(isErasurePointerEntity("BOOK_REFERRAL_CODE_POINTER"), true);
   assert.equal(isErasurePointerEntity("BOOK_PAIR_INVITE_POINTER"), true);
+  assert.equal(isErasurePointerEntity("BOOK_APPLE_TXN_POINTER"), true);
   // A real pair invite / referral item (non-pointer) and noise must be rejected,
   // so the legacy inviteCode harvest does NOT skip genuine legacy items.
   assert.equal(isErasurePointerEntity("BOOK_USER_PAIR"), false);
@@ -142,4 +212,10 @@ test("the built pointers all report as pointer entities (keeps the harvest skip 
   }).entity), true);
   assert.equal(isErasurePointerEntity(buildReferralCodePointer(USER, "CODE1").entity), true);
   assert.equal(isErasurePointerEntity(buildPairInvitePointer(USER, "INVITE1").entity), true);
+  assert.equal(
+    isErasurePointerEntity(
+      buildAppleTransactionPointer(USER, "1000000987654321").entity,
+    ),
+    true,
+  );
 });

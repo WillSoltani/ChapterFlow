@@ -18,11 +18,11 @@ import { MAX_SYNC_RECIPIENTS } from "@/app/app/api/book/admin/segments/notify-li
 export const runtime = "nodejs";
 
 // MAX_SYNC_RECIPIENTS (imported above) caps synchronous fan-out FAR below what a
-// 30s Lambda can safely flush: each recipient costs a settings read + an in-app
+// 45s Lambda can safely flush: each recipient costs a settings read + an in-app
 // write and, when enabled, a CASL/CAN-SPAM-compliant SES send and a per-device
 // push Query. Anything larger must run through an async worker (see the H9 handoff
 // note): OpenNext ignores Next's `maxDuration` export, so the single default
-// ServerFn's 30s timeout (infra/lib/chapterflow-frontend-stack.ts) is a hard wall.
+// ServerFn's 45s timeout (infra/lib/chapterflow-frontend-stack.ts) is a hard wall.
 
 // How many sends run concurrently. Bounded so we don't open hundreds of
 // simultaneous DynamoDB/SES sockets, but high enough to clear the capped

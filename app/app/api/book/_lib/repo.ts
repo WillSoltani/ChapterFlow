@@ -9,7 +9,11 @@ import {
   TransactWriteCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { BookApiError, transactionCancellationReasons } from "./errors";
+import {
+  BookApiError,
+  isTransactionConditionFailedAt,
+  transactionCancellationReasons,
+} from "./errors";
 import { batchDeleteKeys } from "./ddb-batch-delete";
 import { isBookCompleted } from "./book-completion-core";
 import { paginateQuery } from "./query-pagination-core";
@@ -53,8 +57,6 @@ import {
   settingsSk,
   stripeCustomerPk,
   stripeCustomerSk,
-  appleOriginalTransactionPk,
-  appleOriginalTransactionSk,
   webhookPk,
   webhookSk,
   emailSuppressionPk,
@@ -72,6 +74,7 @@ import {
   shareEventSk,
   ttlEpochSeconds,
   RETENTION_DAYS_18_MONTHS,
+  type AppleStorageLane,
 } from "./keys";
 import type {
   BookCatalogItem,
@@ -113,13 +116,23 @@ import {
   resolveProgressConflictRetry,
 } from "./progress-write-core";
 import { buildRiskEventPointer } from "./erasure-pointers-core";
+import {
+  buildAppleTransactionClaimRead,
+  buildAppleTransactionClaimWrite,
+} from "./apple-transaction-claim-core";
+import { isStoredProGrantExpired } from "./entitlement-expiry-core";
+import {
+  isAppleTestFlightSandboxUserAllowedFromEnv,
+  type AppleStoreEnvironment,
+} from "./apple-purchase-policy-core";
+import { selectAppleTestFlightEntitlement } from "./apple-testflight-entitlement-core";
 import { isAddressSuppressed } from "./email-compliance-core";
 import {
   buildEntitlementUpdateFromStripe,
   buildDisputeMarkerUpdate,
 } from "./stripe-entitlement-write-core";
 import {
-  buildEntitlementUpdateFromApple,
+  buildAppleEntitlementTransactWrite,
   type AppleEntitlementWriteParams,
 } from "./apple-entitlement-write-core";
 import {
@@ -736,20 +749,10 @@ export async function getIngestionJob(tableName: string, jobId: string): Promise
   return (res.Item as Record<string, unknown> | undefined) ?? null;
 }
 
-export async function getUserEntitlement(
-  tableName: string,
-  userId: string
-): Promise<BookUserEntitlement | null> {
-  const res = await ddbDoc.send(
-    new GetCommand({
-      TableName: tableName,
-      Key: {
-        PK: bookUserPk(userId),
-        SK: entitlementSk(),
-      },
-    })
-  );
-  const item = res.Item;
+function decodeUserEntitlementItem(
+  userId: string,
+  item: Record<string, unknown> | undefined,
+): BookUserEntitlement | null {
   if (!item) return null;
 
   const proSource =
@@ -770,28 +773,27 @@ export async function getUserEntitlement(
   const licenseExpiresAt = readStr(item.licenseExpiresAt);
   const currentPeriodEnd = readStr(item.currentPeriodEnd);
 
-  // Compute effective plan for time-limited grants inline. license expires via
-  // licenseExpiresAt; flow_points and gift_code passes expire via
-  // currentPeriodEnd. (stripe is driven by webhooks and never expired here.)
+  // Compute effective plan for time-limited grants. Apple also fails closed at
+  // currentPeriodEnd so a delayed/lost terminal notification cannot leave Pro
+  // active forever; a signed grace event advances that date before this read.
   const storedPlan = item.plan === "PRO" ? "PRO" : "FREE";
-  const grantExpired =
-    storedPlan === "PRO" &&
-    ((proSource === "license" &&
-      licenseExpiresAt != null &&
-      new Date(licenseExpiresAt) < new Date()) ||
-      ((proSource === "flow_points" || proSource === "gift_code") &&
-        currentPeriodEnd != null &&
-        new Date(currentPeriodEnd) < new Date()));
+  const grantExpired = isStoredProGrantExpired({
+    storedPlan,
+    proSource,
+    licenseExpiresAt,
+    currentPeriodEnd,
+    nowMs: Date.now(),
+  });
   const plan: "FREE" | "PRO" = grantExpired ? "FREE" : storedPlan;
   const proStatus =
     grantExpired
       ? "inactive"
       : item.proStatus === "active" ||
-        item.proStatus === "past_due" ||
-        item.proStatus === "canceled" ||
-        item.proStatus === "inactive"
-      ? item.proStatus
-      : undefined;
+          item.proStatus === "past_due" ||
+          item.proStatus === "canceled" ||
+          item.proStatus === "inactive"
+        ? item.proStatus
+        : undefined;
 
   return {
     userId,
@@ -802,16 +804,90 @@ export async function getUserEntitlement(
     unlockedBookIds: parseStringArray(item.unlockedBookIds),
     stripeCustomerId: readStr(item.stripeCustomerId),
     stripeSubscriptionId: readStr(item.stripeSubscriptionId),
+    stripePriceId: readStr(item.stripePriceId),
+    subscriptionInterval: readStr(item.subscriptionInterval),
     currentPeriodEnd,
     cancelAtPeriodEnd: item.cancelAtPeriodEnd === true,
     licenseKey,
     licenseExpiresAt,
+    discountCouponId: readStr(item.discountCouponId),
     lastStripeEventAt: readNum(item.lastStripeEventAt),
     appleOriginalTransactionId: readStr(item.appleOriginalTransactionId),
     appleProductId: readStr(item.appleProductId),
     lastAppleSignedDate: readNum(item.lastAppleSignedDate),
     updatedAt: readStr(item.updatedAt) || "",
   };
+}
+
+async function getUserEntitlementForStorageLane(
+  tableName: string,
+  userId: string,
+  storageLane: AppleStorageLane,
+  consistentRead: boolean,
+): Promise<BookUserEntitlement | null> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: {
+        PK: bookUserPk(userId),
+        SK: entitlementSk(storageLane),
+      },
+      ConsistentRead: consistentRead,
+    })
+  );
+  return decodeUserEntitlementItem(
+    userId,
+    res.Item as Record<string, unknown> | undefined,
+  );
+}
+
+export async function getUserEntitlement(
+  tableName: string,
+  userId: string,
+  options?: {
+    consistentRead?: boolean;
+    appleStorageLane?: AppleStorageLane;
+  },
+): Promise<BookUserEntitlement | null> {
+  const consistentRead = options?.consistentRead === true;
+  if (options?.appleStorageLane) {
+    return getUserEntitlementForStorageLane(
+      tableName,
+      userId,
+      options.appleStorageLane,
+      consistentRead,
+    );
+  }
+
+  const primary = await getUserEntitlementForStorageLane(
+    tableName,
+    userId,
+    "Primary",
+    consistentRead,
+  );
+  const sandboxAllowed = isAppleTestFlightSandboxUserAllowedFromEnv(
+    {
+      CHAPTERFLOW_ENV: process.env.CHAPTERFLOW_ENV,
+      APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED:
+        process.env.APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED,
+      APPLE_IAP_TESTFLIGHT_QA_USER_HASHES:
+        process.env.APPLE_IAP_TESTFLIGHT_QA_USER_HASHES,
+    },
+    userId,
+  );
+  if (!sandboxAllowed) return primary;
+
+  const sandbox = await getUserEntitlementForStorageLane(
+    tableName,
+    userId,
+    "TestFlightSandbox",
+    consistentRead,
+  );
+  return selectAppleTestFlightEntitlement({
+    production: primary,
+    sandbox,
+    sandboxAllowed,
+  });
 }
 
 function isNullSetValidationError(error: unknown): boolean {
@@ -2064,7 +2140,7 @@ export type StripeWebhookClaim = "claimed" | "done" | "in_progress";
  * never permanently mark an event processed.
  *
  * LEASE >> RUNTIME INVARIANT: the default 900s lease is far longer than the
- * server Lambda's 30s timeout, so a lease can only expire AFTER its worker is
+ * server Lambda's 45s timeout, so a lease can only expire AFTER its worker is
  * dead. A reclaim therefore never races a still-running original worker, and a
  * "zombie" completing another worker's lease is structurally impossible. The
  * webhook side effects are independently idempotent anyway (guarded entitlement
@@ -2156,7 +2232,7 @@ export async function completeStripeWebhookEvent(
         // Defense-in-depth: only flip a marker that is STILL PROCESSING, so an
         // already-DONE or swept marker is a no-op rather than a clobber. The
         // PRIMARY guarantee that this worker still holds the lease is the
-        // lease(900s) >> ServerFn timeout(30s) invariant (a reclaim can't race a
+        // lease(900s) >> ServerFn timeout(45s) invariant (a reclaim can't race a
         // live worker) — this condition does not arbitrate concurrent holders.
         ConditionExpression: "attribute_exists(PK) AND #status = :processing",
       })
@@ -2494,46 +2570,66 @@ export async function getUserIdByStripeCustomer(
 export async function claimAppleTransactionForUser(
   tableName: string,
   originalTransactionId: string,
-  userId: string
+  userId: string,
+  accountBindingVersion?: string,
+  storageLane: AppleStorageLane = "Primary",
+  storeEnvironment?: AppleStoreEnvironment,
 ): Promise<boolean> {
   try {
     await ddbDoc.send(
-      new PutCommand({
-        TableName: tableName,
-        Item: {
-          PK: appleOriginalTransactionPk(originalTransactionId),
-          SK: appleOriginalTransactionSk(),
-          entity: "BOOK_APPLE_TXN_MAP",
+      new TransactWriteCommand(
+        buildAppleTransactionClaimWrite({
+          tableName,
           originalTransactionId,
           userId,
           updatedAt: nowIso(),
-        },
-        ConditionExpression: "attribute_not_exists(PK) OR userId = :userId",
-        ExpressionAttributeValues: { ":userId": userId },
-      })
+          accountBindingVersion,
+          storageLane,
+          storeEnvironment,
+        }),
+      ),
     );
     return true;
   } catch (error: unknown) {
-    if (isConditionalCheckFailed(error)) return false;
+    if (isTransactionConditionFailedAt(error, 0)) return false;
+    if (isTransactionConditionFailedAt(error, 2)) {
+      throw new BookApiError(
+        403,
+        "account_deleted",
+        "This account has been deleted and is no longer accessible.",
+      );
+    }
     throw error;
   }
 }
 
-export async function getUserIdByAppleOriginalTransaction(
+export type AppleTransactionClaim = {
+  userId: string;
+  accountBindingVersion?: string;
+  environment: "Production" | "Sandbox";
+};
+
+export async function getAppleTransactionClaim(
   tableName: string,
-  originalTransactionId: string
-): Promise<string | null> {
+  originalTransactionId: string,
+  storageLane: AppleStorageLane = "Primary",
+): Promise<AppleTransactionClaim | null> {
   const res = await ddbDoc.send(
-    new GetCommand({
-      TableName: tableName,
-      Key: {
-        PK: appleOriginalTransactionPk(originalTransactionId),
-        SK: appleOriginalTransactionSk(),
-      },
-    })
+    new GetCommand(
+      buildAppleTransactionClaimRead({
+        tableName,
+        originalTransactionId,
+        storageLane,
+      }),
+    ),
   );
   const userId = readStr(res.Item?.userId);
-  return userId || null;
+  if (!userId) return null;
+  return {
+    userId,
+    accountBindingVersion: readStr(res.Item?.accountBindingVersion),
+    environment: res.Item?.environment === "Sandbox" ? "Sandbox" : "Production",
+  };
 }
 
 /**
@@ -2548,26 +2644,26 @@ export async function getUserIdByAppleOriginalTransaction(
  */
 export async function updateUserEntitlementFromApple(
   tableName: string,
-  params: AppleEntitlementWriteParams & { userId: string }
+  params: AppleEntitlementWriteParams & { userId: string },
+  storageLane: AppleStorageLane = "Primary",
 ): Promise<boolean> {
-  const built = buildEntitlementUpdateFromApple(params, nowIso());
+  const transaction = buildAppleEntitlementTransactWrite({
+    tableName,
+    userId: params.userId,
+    params,
+    updatedAtIso: nowIso(),
+    storageLane,
+  });
   try {
     await ddbDoc.send(
-      new UpdateCommand({
-        TableName: tableName,
-        Key: {
-          PK: bookUserPk(params.userId),
-          SK: entitlementSk(),
-        },
-        ConditionExpression: built.conditionExpression,
-        UpdateExpression: built.updateExpression,
-        ExpressionAttributeNames: built.expressionAttributeNames,
-        ExpressionAttributeValues: built.expressionAttributeValues,
-      })
+      new TransactWriteCommand(transaction),
     );
     return true;
   } catch (error: unknown) {
-    if (isConditionalCheckFailed(error)) {
+    if (
+      isTransactionConditionFailedAt(error, 0) ||
+      isTransactionConditionFailedAt(error, 1)
+    ) {
       return false;
     }
     throw error;
