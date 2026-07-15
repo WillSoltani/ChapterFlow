@@ -340,7 +340,10 @@ export const AUTHOR_HOUSE_RULES =
   "- FACTUAL: obey the SOURCE-USE PLAN; every claim, number, name, and case detail traces to the SOURCE PACKET — invent connective narration, never facts. Hedge any below-robust claim; never state it as settled.\n" +
   "- QUIZ: every key is derivable from your prose alone and tests a MOVE the reader makes, not a source; each distractor is the key warped by one of the brief's dealt failure modes; follow the brief's answer-key pattern exactly.\n" +
   "- IDENTITY: the reader never meets the machinery — no scaffold vocabulary (slot, shape, or beat labels, anchor ids, \"Fact 2\" numbering), no internal artifact or beat label as an acting subject, no drafting narration. Write the beat, not its name.\n" +
-  "- PLAIN & DENSE: Flesch ease 72-84 on the breakdown; short words, one idea per sentence; every paragraph adds new information; be honest about where the move fails.";
+  "- PLAIN & DENSE: Flesch ease 72-84 on the breakdown; short words, one idea per sentence; every paragraph adds new information; be honest about where the move fails.\n" +
+  // Content-excellence (D2.2 beginner entry): a chapter that opens mid-framework loses the
+  // reader it exists for. The fastRead must meet the naive model before replacing it.
+  "- BEGINNER ENTRY: the fastRead opens from the reader's existing naive model — the wrong-but-natural way they already picture the problem — then replaces it with the move; never open in mid-framework.";
 
 /**
  * CRAFT TARGETS (was the W1 QUALITY BAR) — IMP-05 diet. The first-draft craft aims
@@ -359,7 +362,11 @@ export const AUTHOR_QUALITY_BAR =
   "2. PRACTICE [GATED floor]. tryThisNow and the 24-hour challenge each name one action with a number or a timebox, concrete enough to start within a minute; the FORM is your dealt practice shape, not a fixed ritual, and never an \"a, b, or c\" menu.\n" +
   "3. EXAMPLES [SCORED]. Each example dramatizes a decision and its completed consequence in the scene's own voice, advances THIS chapter's job through a distinct facet, and carries whoever the CONTENT DEVICES deal assigns — never a default proxy. An arc that never lands is unfinished. Review cards drill the reusable move, not source trivia.\n" +
   "4. HOOK [SCORED]. Make the stake visible in plain words — who loses, pays, or misses what — before the first abstract term. FAIL: \"The team maps functions to shared standards.\" PASS: \"It shipped late because no one owned the date.\"\n" +
-  "5. TAKE-HOME [SCORED]. coreSkill opens with a 2-5 word skill name (imperative verb + concrete object, never a virtue noun); at least one memorable line carries this chapter's central image.";
+  "5. TAKE-HOME [SCORED]. coreSkill opens with a 2-5 word skill name (imperative verb + concrete object, never a virtue noun); at least one memorable line carries this chapter's central image.\n" +
+  // Content-excellence (D3.2 mechanism-why): the top band always says WHY, not only THAT.
+  "6. MECHANISM [SCORED]. The deepRead or fullRead states WHY the move works in one explicit causal-chain sentence (this causes that, which produces the result) — not only THAT it works; asserting the move without its mechanism is a depth defect.\n" +
+  // Content-excellence (D7.2 staged progress): a plan a single lapse breaks is not a plan.
+  "7. STAGED PROGRESS [SCORED]. The implementation plan frames a first achievable win the reader can reach today, plus one line on recovering after a missed day — never an all-or-nothing routine.";
 
 /**
  * WHAT THE REVIEWERS SCORE (was AUTHOR_PREMIUM_BLOCK) — IMP-05 diet. The blinded
@@ -376,7 +383,12 @@ export const AUTHOR_PREMIUM_BLOCK =
   "- PLAIN WORDS: unpack every load-bearing term, coined or inherited, in plain words at first use; action fields carry zero coined shorthand.\n" +
   "- READER AGENCY: someone with no title power can run the move today — at least one example applies it to the reader's own choices, not only to people they manage.\n" +
   "- VOICE: this book's voice, not a house voice — vary sentence length and rhythm; break long abstract runs with a person, scene, or object.\n" +
-  "- QUIZZES: a chapter-skipper scores ~33%, not 60%; every explanation teaches why the tempting wrong answer fails, not only why the key is right.";
+  "- QUIZZES: a chapter-skipper scores ~33%, not 60%; every explanation teaches why the tempting wrong answer fails, not only why the key is right.\n" +
+  // Content-excellence (D1.4 boundaries/misuse; D7.3 non-shaming; D9 central-model composition):
+  // safeguards + tone + coherence are top-band separators the card never named before.
+  "- SAFEGUARDS: every technique names when NOT to use it, and — where it acts on other people — one misuse, power, or consent risk, stated at the point of use, never appended as a footer.\n" +
+  "- NON-SHAMING: name the reader's likely failure without blame, and never call a hard thing easy; shaming or breezy \"just do it\" framing is a scored defect.\n" +
+  "- CENTRAL MODEL: one sentence ties this chapter's move to the book's central framework — how it composes into that whole — without re-teaching the framework.";
 
 /**
  * CHAPTER FORMAT v25 (D8, plan v2) — the owner-ratified format contract derived
@@ -406,19 +418,30 @@ export function authorSchemaHint(bookId: string, chapterNumber: number): string 
   return `{"schemaVersion":"chapterflow-v21-authored","chapterId":"${chapterId}","number":${chapterNumber},"title":"...","readingTimeMinutes":7,"hook":"...(60-120 chars)","counterintuition":"...(1-2 sentences)","tryThisNow":"...(80-220 chars)","keyTakeaway":"...(140-220 chars)","breakdown":{"fastRead":"...(~400-700 chars; SELF-CONTAINED)","deepRead":"...(~1200-1800 chars; SELF-CONTAINED)","fullRead":"...(~2500-3500 chars; SELF-CONTAINED)"},"examples":[{"exampleId":"ex01","title":"...","tags":["..."],"planSpec":{"domain":"...","audience":"...","stakes":"...","format":"...","requiredBeat":"..."},"scenario":"...(280-520 chars)","whatToDo":"...(120-240 chars)","whyItMatters":"...(120-240 chars)"}],"quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...(120-300 chars; why the move works)","choiceRationales":["why choice a is right or which misconception it encodes","...b...","...c..."],"revisit":{"component":"Deep read|Example N|Card N","ref":"one sentence locating the reteach"},"bloomsLevel":"apply","depthLevel":"standard"}]},"reviewCards":[{"cardId":"c01","front":"...(30-200 chars)","back":"...(80-400 chars)","difficulty":"medium"}],"implementationPlan":{"title":"...(2-5 word skill name)","coreSkill":"<skill name>. ...(2-4 sentences)","ifThenPlans":[{"context":"...","plan":"If X, then Y."}],"twentyFourHourChallenge":"...","weeklyPractice":"..."},"memorableLines":[{"text":"...(exact sentence from the chapter; >=1 carries the central image)","location":"breakdown.deepRead","why":"..."}]}`;
 }
 
-/** SELF-VERIFY (IMP-05 instruction 10): the ordered HIGHEST-RISK checks whose
- *  answer is structured evidence, not a restatement of the whole prompt. Five
- *  checks (check 5 added by Chapter Format v25 — D8); the rest of the old seven
- *  are owned by their gates/critics (see the ledger). Kept <= 1200 chars —
- *  pinned by test. */
+/** SELF-VERIFY (IMP-05 instruction 10): the ordered HIGHEST-RISK checks (1-4, the
+ *  gate/critic-adjacent set) followed by the full Chapter Format v25 write-time
+ *  evidence block (F-1..F-8, each a PASS/FAIL + one-line evidence) per
+ *  docs/v25/CHAPTER_FORMAT_V25.md — a failed self-check is a write-time revision
+ *  trigger, not a reviewer discovery. Was 5 checks; the D8 tiers-and-feedback
+ *  check split into the per-requirement F-1..F-8 block (self-verify-v4). Kept
+ *  <= 2200 chars — pinned by test. */
 export function authorSelfVerify(bookId: string, chapterNumber: number, outputRelPath?: string): string {
   const relPath = outputRelPath ?? authorChapterRelPath(bookId, chapterNumber);
-  return `SELF-VERIFY before you exit — the conductor gates ${relPath} the moment you do, and a blocker costs a full rewrite:
+  return `SELF-VERIFY before you exit — the conductor gates ${relPath} the moment you do, and a blocker costs a full rewrite. A FAIL below is a rewrite trigger now, not a reviewer's discovery later.
+HIGH-RISK (fix before you emit):
 1. KEYS — derive every quiz answer from your prose alone, blind; each must hit the stored correctIndex and test a move, not a source. Mismatch: re-key or rewrite.
 2. FACTS — every claim, number, name, and case detail traces to the SOURCE PACKET and obeys the SOURCE-USE PLAN. Untraceable: delete or soften.
 3. SCAFFOLD — no reader-facing field carries scaffold vocabulary (slot/shape/beat labels, anchor ids, "Fact 2" numbering, page/section citations, " / " label seams) or names the machinery.
 4. COMPLETE — every required field present and full: hook, the three read tiers, the dealt example count, nine quiz questions, cards, the implementation plan (coreSkill opens with the skill name), memorable lines.
-5. TIERS & FEEDBACK — read each tier ALONE as its only reader will: no unresolved name or back-reference, core lesson complete at that depth; every quiz question carries one rationale per choice and a revisit target that exists.`;
+FORMAT v25 EVIDENCE — emit PASS/FAIL + one line of evidence for EACH:
+F-1 LAYERS — each read tier stands alone: its own opening, every name introduced in-tier, no cross-tier back-reference; the core claim and its mechanism appear in all three.
+F-2 QUIZ FEEDBACK — every question carries one rationale per choice and a revisit target that resolves to a real component.
+F-3 ECONOMY — no case restaged more than once; no two examples stage the same demonstration; every prop earns its place.
+F-4 EVIDENCE BRIDGE — every named study/statistic states what was observed vs inferred plus one boundary, at the point of use.
+F-5 LOOP CLOSURE — every if-then plan ends with observe→evaluate→revise: what to watch, what counts as working, when to stop.
+F-6 TAXONOMY — one category map; every re-listing uses identical labels.
+F-7 NAMED CONTEXT — every real-world reference gets one sentence of local context at first mention in each tier it appears.
+F-8 AMBIGUITY — at least 2 worked cases are failure, mixed-signal, or boundary cases, not clean wins.`;
 }
 
 /** STIER-2 D7/D9 — deterministic write-time contract checks that need the BRIEF in
@@ -439,12 +462,12 @@ export const ROUND_TIMER_MINUTES = new Set<number>(ROUND_TIMER_MINUTES_LIST);
  *  matching version whenever a block's text changes. */
 export const CARD_BLOCK_VERSIONS = {
   precedence: "precedence-v1",
-  invariants: "invariants-v1",     // was AUTHOR_HOUSE_RULES
+  invariants: "invariants-v2",     // v2 = content-excellence BEGINNER ENTRY invariant (D2.2)
   formatV25: "format-v25-v1",      // D8 — Chapter Format v25 (plan v2)
-  qualityBar: "quality-bar-v2",    // v2 = IMP-05 diet
-  premium: "premium-v2",           // v2 = IMP-05 diet
+  qualityBar: "quality-bar-v3",    // v3 = content-excellence MECHANISM + STAGED PROGRESS (D3.2/D7.2)
+  premium: "premium-v3",           // v3 = content-excellence SAFEGUARDS + NON-SHAMING + CENTRAL MODEL (D1.4/D7.3/D9)
   schemaHint: "schema-hint-v2",    // v2 = F-2 feedback block + self-contained tiers
-  selfVerify: "self-verify-v3",    // v3 = Format v25 check 5 (tiers & feedback)
+  selfVerify: "self-verify-v4",    // v4 = full F-1..F-8 write-time evidence block (was 5-check summary)
   dataEnvelope: UNTRUSTED_ARTIFACT_RENDERER_VERSION,
 } as const;
 
@@ -494,19 +517,23 @@ export function authorWriteContractFindings(
 ): string[] {
   const complaints: string[] = [];
 
-  // B15 — the dealt example count is EXACT (v3 briefs only). The A16 gate floor
-  // honors the dealt count; this contract closes the other side — 5/8 round-1
-  // writers padded a 4/5-deal up to 6 examples (the gate loop coached them to),
-  // and the padded slots carried NO dealt arc: the house pattern leaking back in
-  // through exactly the lever built to stop it.
+  // B15 — the dealt example count binds as a RANGE dealt-1..dealt (v3 briefs only).
+  // Content-excellence: a writer may drop ONE dealt slot when the teaching does not
+  // fill it — a FIXED template quantity is itself the rubric's "template bloat" defect
+  // (9.3). Padding PAST the deal stays a hard complaint (5/8 round-1 writers padded a
+  // 4/5-deal up to 6, and the padded slots carried NO dealt arc — the house pattern
+  // leaking back in through exactly the lever built to stop it); dropping more than one
+  // slot signals a partial generation, so it still complains. The A16 gate floor is
+  // aligned to dealt-1 for the same reason (finalGate.dealtExampleFloor).
   if (typeof brief?.exampleCount === "number" && brief.rotationSchemaVersion) {
+    const dealt = brief.exampleCount;
     const wrote = chapter.examples?.length ?? 0;
-    if (wrote !== brief.exampleCount) {
+    if (wrote > dealt || wrote < dealt - 1) {
       complaints.push(
-        `example count: your brief deals EXACTLY ${brief.exampleCount} examples — you wrote ${wrote}. ` +
-        (wrote > brief.exampleCount
-          ? `Cut ${wrote - brief.exampleCount}: fold any teaching they carry into the dealt slots (extra examples have no dealt arc and read as padding — the density defect).`
-          : `Add ${brief.exampleCount - wrote}, following the dealt arc rows for those slots.`),
+        `example count: your brief deals ${dealt} examples (${dealt - 1}-${dealt} permitted) — you wrote ${wrote}. ` +
+        (wrote > dealt
+          ? `Cut ${wrote - dealt}: fold any teaching they carry into the dealt slots (extra examples have no dealt arc and read as padding — the density defect).`
+          : `Add ${dealt - 1 - wrote} to reach at least ${dealt - 1}, following the dealt arc rows for those slots.`),
       );
     }
   }

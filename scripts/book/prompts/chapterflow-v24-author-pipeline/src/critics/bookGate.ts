@@ -19,6 +19,7 @@ import {
 import { checkKeyedChoiceDuplication } from "./quizCorrectness.js";
 import { checkBookQuizPromptTemplates } from "./antiSalting.js";
 import { checkArchitectureMonoculture } from "./architectureMonoculture.js";
+import { resolveStructuralSamenessMode, type StructuralSamenessMode } from "./structuralSamenessMode.js";
 import { checkContentMachinery } from "./contentMachinery.js";
 import { checkBookBeatVocabularyEcho } from "./beatVocabularyEcho.js";
 import { loadBannedPhrases } from "./shared.js";
@@ -104,6 +105,16 @@ export type BookGateOptions = {
   requirePlanArtifacts?: boolean;
   /** Defaults to true, matching production source-alignment diagnostics. */
   checkSourceAlignment?: boolean;
+  /**
+   * Structural-sameness enforcement for the ARCH0 monoculture aggregate (F-06 +
+   * content-excellence Track B 2026-07-15). Follows the ShipGateOptions.formatV25
+   * opt-in pattern: the NEW-authoring path (generateBook, after a fresh write)
+   * passes `"enforce"` so a SEVERE architecture monoculture becomes a hard
+   * blocker at authoring time; replay/gold/repair/promotion callers omit it and
+   * inherit the env-resolved default (advisory), keeping the gold-corpus gate
+   * byte-identical. When omitted, resolves from CHAPTERFLOW_STRUCTURAL_SAMENESS.
+   */
+  structuralSamenessMode?: StructuralSamenessMode;
 };
 
 /**
@@ -615,7 +626,11 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
   // book-acceptance panel rejects. Advisory (major, surfaced): the semantic panel
   // is the true gate; this makes the sameness deterministically visible + names
   // the chapters the book-sameness repair lane should diversify. Never blocks.
-  for (const f of checkArchitectureMonoculture(chapters)) {
+  // Mode: the caller may force `enforce` on the NEW-authoring path (see
+  // BookGateOptions.structuralSamenessMode); otherwise the env resolver decides
+  // (advisory default), so replay/gold/repair/promotion behavior is unchanged.
+  const samenessMode = options.structuralSamenessMode ?? resolveStructuralSamenessMode();
+  for (const f of checkArchitectureMonoculture(chapters, undefined, samenessMode)) {
     findings.push({
       catalogId: f.catalogId,
       severity: f.severity,

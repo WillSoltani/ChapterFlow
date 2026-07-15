@@ -26,6 +26,7 @@ import { makeChapter, makeGateCleanChapter, goldChapterFiles, STATE_CHAPTERS } f
 import {
   findCrossTierContentOverlap,
   checkCrossTierContentOverlap,
+  checkBreakdownCrossTierVerbatim,
 } from "../src/critics/intraBookFieldSimilarity.js";
 import { runShipGate } from "../src/critics/finalGate.js";
 import type { ChapterV21 } from "../src/types.js";
@@ -112,6 +113,64 @@ test("B15: the ship gate surfaces a planted restate as a MINOR (wiring + severit
   // It is advisory only — it must NOT show up as a blocker or major.
   assert.ok(!report.blockers.some((b) => b.catalogId === "B15.cross_tier_paraphrase"), "B15 must never block");
   assert.ok(!report.majors.some((m) => m.catalogId === "B15.cross_tier_paraphrase"), "B15 must never be a major");
+});
+
+// ── Re-orientation exemption (content-excellence Track B 2026-07-15) ──────────
+// The app renders ONE read tier per mode, so a deeper tier may OPEN by
+// re-orienting the reader with a standalone context sentence — even one that
+// echoes the tier above. The cross-tier verbatim (BP24) + overlap (B15) MASS
+// measures exempt exactly the FIRST sentence of deepRead and of fullRead;
+// fastRead is never exempt, and a NON-first duplicate still trips.
+
+// A single ≥150-char sentence, used both as a fastRead line and as a deeper
+// tier's leading re-orientation sentence.
+const REORIENT_LINE =
+  "When the intake record drifts from the signed handoff note, the nearest owner pauses to compare both mismatched versions, verifies the divergence early, repairs the single record, and writes the reason so the following decision trail stays trustworthy for everyone downstream.";
+
+test("BP24 exemption: a deepRead whose FIRST sentence re-states fastRead verbatim does NOT trip; the SAME block non-first still trips", () => {
+  assert.ok(REORIENT_LINE.length >= 150, `re-orientation line must exceed the 150-char verbatim floor; was ${REORIENT_LINE.length}`);
+  const fast = `A quick harbor lantern swings over the quay before the tide turns. ${REORIENT_LINE}`;
+  // Exempt: the verbatim block is deepRead's leading (re-orientation) sentence.
+  const exempt = withTiers(
+    fast,
+    `${REORIENT_LINE} Then a second workshop scene shows torque logs and pallet batches diverging before one owner traces the fault.`,
+    "A wholly separate glacier expedition ropes across the crevasse toward the summit cairn while the descent window narrows for the season.",
+  );
+  assert.equal(
+    checkBreakdownCrossTierVerbatim(exempt).filter((f) => /fastRead.*deepRead/.test(f.message)).length,
+    0,
+    "a deeper tier's leading re-orientation sentence is exempt from the cross-tier verbatim gate",
+  );
+  // Non-first: the SAME verbatim block sits AFTER a distinct first sentence → not exempt → trips.
+  const tripped = withTiers(
+    fast,
+    `A distinct dawn workshop opens the deeper pass with its own scene. ${REORIENT_LINE}`,
+    "A wholly separate glacier expedition ropes across the crevasse toward the summit cairn while the descent window narrows for the season.",
+  );
+  assert.ok(
+    checkBreakdownCrossTierVerbatim(tripped).some((f) => /fastRead.*deepRead/.test(f.message)),
+    "a duplicated verbatim block that is NOT the leading sentence still trips BP24",
+  );
+});
+
+test("B15 exemption: a paraphrase concentrated in each deeper tier's FIRST sentence does NOT trip; the SAME sentence non-first still trips", () => {
+  const SHARED_A = "When the intake record drifts from the signed handoff note, the nearest owner pauses to compare the two mismatched versions, verifies the divergence early, repairs the single record, names the reviewer, and writes the reason so the following decision trail stays trustworthy for everyone downstream.";
+  const SHARED_B = "If the intake record diverges from the signed handoff note, the closest owner stops to compare the two mismatched versions, verifies the divergence early, repairs the single record, names the reviewer, and writes the reason so the next decision trail remains trustworthy for everybody downstream.";
+  const TAIL_D = "Elsewhere a glacier expedition ropes across the crevasse toward the summit cairn.";
+  const TAIL_F = "Nearby a desert caravan charts the shifting dune ridge toward the dusk oasis.";
+  const fast = "A quick harbor lantern swings over the quay while the crane lowers one pallet before the tide turns.";
+  // Exempt: the restated sentence LEADS both deepRead and fullRead → both leads stripped → silent.
+  const exempt = withTiers(fast, `${SHARED_A} ${TAIL_D}`, `${SHARED_B} ${TAIL_F}`);
+  assert.equal(
+    findCrossTierContentOverlap(exempt).length, 0,
+    "a re-orientation paraphrase carried by each deeper tier's leading sentence is exempt from B15",
+  );
+  // Non-first: the SAME restated sentence sits AFTER a distinct first sentence → not exempt → trips.
+  const tripped = withTiers(fast, `${TAIL_D} ${SHARED_A}`, `${TAIL_F} ${SHARED_B}`);
+  assert.ok(
+    findCrossTierContentOverlap(tripped).some((h) => h.tierA === "deepRead" && h.tierB === "fullRead"),
+    "the SAME paraphrase as a NON-leading sentence still trips B15",
+  );
 });
 
 // ── Gold-corpus zero-FP calibration ───────────────────────────────────────────

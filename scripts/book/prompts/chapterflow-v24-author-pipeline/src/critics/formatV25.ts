@@ -15,7 +15,11 @@
 import type { ChapterV21 } from "../types.js";
 
 export type FormatV25Finding = {
-  catalogId: "F25.quiz_feedback" | "F25.duplicate_example" | "F25.tier_serial_opener";
+  catalogId:
+    | "F25.quiz_feedback"
+    | "F25.duplicate_example"
+    | "F25.tier_serial_opener"
+    | "F25.loop_closure";
   unit: string;
   message: string;
   evidence?: string;
@@ -149,11 +153,87 @@ export function checkFormatV25TierSerialOpeners(chapter: ChapterV21): FormatV25F
   return findings;
 }
 
+// ── F25.loop_closure — implementation-loop closure + boundary presence (D6.3/6.4)
+
+/**
+ * A boundary CUE marks where the idea does NOT apply — a "when not", a cost, a
+ * tradeoff, a misuse warning. The rubric's D6.4 rewards a chapter that draws
+ * that line; its absence is the "uniform-success / no-downside" texture the
+ * top-band books avoid. Exact, deterministic cue set (case-insensitive); the
+ * list is intentionally generous — a longer cue list makes the critic fire LESS,
+ * which is the safe direction for a zero-FP shadow check.
+ */
+const BOUNDARY_CUE_RX =
+  /\bwhen not\b|\bonly when\b|\bonly if\b|\bnot always\b|\bnot every\b|\bnot a (substitute|replacement|cure|fix|rule)\b|\bexcept when\b|\bexcept if\b|\bunless\b|\bdon['’]?t use\b|\bdo not use\b|\bavoid this when\b|\bmisus\w+|\boverus\w+|\boverdo\w*|\btoo (much|far|many|often|hard|fast|long)\b|\bthe cost\b|\ba cost\b|\bcosts? you\b|\btrade-?off\b|\btrade off\b|\bdownside\b|\bat the expense\b|\bsacrific\w+|\bbackfire\w*|\bfail\w*|\bmistak\w*|\bkeeps? you from\b|\bfails? when\b|\bbreaks? down\b|\bgoes? wrong\b|\bthe trap\b|\bpitfall\w*|\bharm\w*|\bdamag\w+|\bdanger\w*|\brisk\w*|\bboundary\b|\blimit\w*|\bstop when\b|\bwhen to stop\b|\bwarning sign\b|\bbeware\b|\bcaveat\w*|\bcareful\b|\bwatch (out|for)\b|\bif you slip\b|\bwhen you slip\b|\bget back on track\b|\brelaps\w+/i;
+
+/**
+ * A contingency / barrier form in an if-then names a FAILURE or OBSTACLE the
+ * reader will actually hit ("if you slip", "if the plan is delayed", "if you
+ * catch yourself…") and pairs it with a recovery move — this is D6.3 loop
+ * closure, the difference between a plan that only tells you how to START and one
+ * that also tells you what to do when it breaks. Broad, failure/obstacle-semantic
+ * vocabulary: matching MORE plans as already-closing the loop makes the critic
+ * fire LESS (the safe direction for a zero-FP shadow check). Both cue lists were
+ * calibrated to ZERO false positives across the 140-package gold corpus
+ * (1903 chapters) — see the calibration test in tests/format-v25.test.ts.
+ */
+const CONTINGENCY_BARRIER_RX =
+  /\b(fail(s|ed|ing|ure)?|slip(s|ped|ping)?|lapse[ds]?|relaps\w*|backslid\w*|forget|forgot|forgetting|miss(es|ed|ing)?|skip(s|ped|ping)?|struggl\w+|stuck|tempt\w*|distract\w*|interrupt\w*|overwhelm\w*|procrastinat\w*|derail\w*|setback|obstacle|barrier|block\w*|clos(e|es|ed)|delay\w*|disappoint\w*|constraint\w*|resist\w*|urge[ds]?|crav\w+|excuse[ds]?|off track|fall (off|behind)|no time|too (busy|tired|hard|difficult)|can['’]?t|cannot|won['’]?t|drop(s|ped|ping)?|damag\w+|overload\w*|warning|breaks?|shrink\w*|stops? when|starts? (to|producing)|find yourself|catch yourself|notice yourself|feels? too|looks? too|don['’]?t feel)\b/i;
+
+/** Reader-facing prose collector, self-contained (no heavy readerBudgets import):
+ *  every string field recursively, EXCLUDING the authoring audit payload. Used
+ *  for the whole-chapter boundary-cue scan. */
+function collectProseStrings(value: unknown, out: string[]): void {
+  if (typeof value === "string") { out.push(value); return; }
+  if (Array.isArray(value)) { for (const item of value) collectProseStrings(item, out); return; }
+  if (value && typeof value === "object") {
+    for (const [key, item] of Object.entries(value)) {
+      if (key === "authoring") continue;
+      collectProseStrings(item, out);
+    }
+  }
+}
+
+function renderedProse(chapter: ChapterV21): string {
+  const out: string[] = [];
+  collectProseStrings(chapter, out);
+  return out.join(" \n ");
+}
+
+/**
+ * F25.loop_closure (ADVISORY / SHADOW, D6.3+D6.4). Flags a chapter that has
+ * concrete implementation action steps (if-then plans) but never closes the loop
+ * OR draws a boundary: its if-then plans name NO failure/obstacle contingency
+ * AND its full rendered prose carries ZERO boundary cue. Such a chapter teaches
+ * only the happy path — how to start, never what to do when it breaks or when
+ * NOT to apply it — which is the uniform-success texture the top-band rubric
+ * penalizes. SHADOW: `major`, never in ENFORCED_MAJOR (STIER-2 — a lexical proxy
+ * for a semantic property must not gate). Calibrated zero-FP across the gold
+ * corpus (tests/format-v25.test.ts scans book-packages/*.v21.json).
+ */
+export function checkFormatV25LoopClosure(chapter: ChapterV21): FormatV25Finding[] {
+  const plans = chapter.implementationPlan?.ifThenPlans ?? [];
+  const actionPlans = plans.filter((p) => typeof p?.plan === "string" && p.plan.trim().length > 0);
+  // No if-then action steps → no implementation loop to close; not this check's job.
+  if (actionPlans.length === 0) return [];
+  const hasContingency = actionPlans.some((p) =>
+    CONTINGENCY_BARRIER_RX.test(`${p.context ?? ""} ${p.plan}`));
+  if (hasContingency) return [];
+  if (BOUNDARY_CUE_RX.test(renderedProse(chapter))) return [];
+  return [{
+    catalogId: "F25.loop_closure",
+    unit: "implementationPlan.ifThenPlans",
+    message:
+      "the chapter teaches only the happy path: its if-then plans name no failure/obstacle contingency (nothing for when the reader slips, forgets, or hits resistance) AND the prose never marks a boundary (no when-not / cost / tradeoff / misuse cue). Add a loop-closing if-then (\"If you slip/forget…, then…\") or a boundary line (when this does NOT apply, or its cost) — D6.3/6.4.",
+  }];
+}
+
 /** All Format v25 deterministic findings for the ship gate. */
 export function checkFormatV25(chapter: ChapterV21): FormatV25Finding[] {
   return [
     ...checkFormatV25QuizFeedback(chapter),
     ...checkFormatV25DuplicateExamples(chapter),
     ...checkFormatV25TierSerialOpeners(chapter),
+    ...checkFormatV25LoopClosure(chapter),
   ];
 }

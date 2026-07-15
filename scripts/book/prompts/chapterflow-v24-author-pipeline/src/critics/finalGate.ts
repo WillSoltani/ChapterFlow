@@ -145,6 +145,11 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "F25.quiz_feedback": "blocker",
   "F25.duplicate_example": "minor",
   "F25.tier_serial_opener": "minor",
+  // F25.loop_closure (D6.3/6.4, content-excellence Track B 2026-07-15) — happy-
+  // path-only implementation plan + zero boundary cue. SHADOW major: never in
+  // ENFORCED_MAJOR (a lexical proxy for a semantic property must not gate —
+  // STIER-2), zero-FP-calibrated on the gold corpus. Surfaces as QC debt only.
+  "F25.loop_closure": "major",
   // Schema (A)
   A1: "blocker",
   A2: "blocker",
@@ -689,8 +694,15 @@ function checkTierLengthFloors(chapter: ChapterV21): CriticFinding[] {
  *  writers dealt 4-5 into padding up to 6 (5/8 chapters shipped 6-on-a-4/5-deal,
  *  re-minting the example-padding density defect), and circuit-broke the ONE writer
  *  who obeyed (ch09). Unreadable/absent/unstamped brief or out-of-range count →
- *  the historical floor 6 (fail-closed: A16's partial-generation purpose stands;
- *  the EXACT-count contract is enforced write-side in authorWriteContractFindings). */
+ *  the historical floor 6 (fail-closed: A16's partial-generation purpose stands).
+ *
+ *  Content-excellence (aligned with authorWriteContractFindings): the floor is the
+ *  dealt count MINUS ONE. A fixed template quantity is itself the rubric's "template
+ *  bloat" defect (9.3), and a writer may legitimately drop one dealt slot when the
+ *  teaching does not fill it. The write-time contract permits dealt-1..dealt; this
+ *  ship-gate floor matches its LOW edge (dealt-1) so a chapter the write contract
+ *  accepted never fails the ship gate on example count. This only LOWERS the floor
+ *  (strictly more permissive), so no gold chapter that passed can newly fail. */
 /** The historical/default A16 examples floor — binds legacy and non-v3 chapters, and
  *  every fail-closed fallback below. Docs-contract source-scans this name. */
 export const A16_EXAMPLES_DEFAULT_FLOOR = 6;
@@ -704,7 +716,7 @@ export function dealtExampleFloor(chapter: ChapterV21, stateRoot?: string): numb
     const count = brief?.exampleCount;
     if (typeof brief?.rotationSchemaVersion === "string" && brief.rotationSchemaVersion.length > 0 &&
         typeof count === "number" && Number.isInteger(count) && count >= 4 && count <= 6) {
-      return count;
+      return count - 1; // dealt-1: the write contract's low edge; a dropped slot is not a partial generation
     }
   } catch { /* no readable brief → historical floor */ }
   return A16_EXAMPLES_DEFAULT_FLOOR;
@@ -737,7 +749,7 @@ function checkSupportCountFloors(chapter: ChapterV21, explicitExampleFloor?: num
     findings.push(finding(
       "A16.examples_count_floor" as any,
       "blocker",
-      `examples has ${exampleCount} entries (floor ${exampleFloor}${exampleFloor !== 6 ? ", the brief's dealt count" : ""}). Chapter is missing examples — likely a partial generation.`,
+      `examples has ${exampleCount} entries (floor ${exampleFloor}${exampleFloor !== 6 ? ", the brief's dealt count minus one" : ""}). Chapter is missing examples — likely a partial generation.`,
       `${exampleCount}/${exampleFloor}`,
     ));
   }

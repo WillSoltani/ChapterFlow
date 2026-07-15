@@ -136,7 +136,13 @@ export async function generateBook(
   }
 
   log(`\n=== Book gate (${succeeded.length} chapters succeeded, ${failed.length} failed) ===`);
-  const bookGate = runBookGate(book.bookId, succeeded);
+  // Content-excellence Track B (2026-07-15): this is the NEW-authoring book gate
+  // (runBookGate on freshly written chapters). Force structural-sameness
+  // enforcement here so a SEVERE architecture monoculture (all-4-axes mold)
+  // becomes a hard blocker that halts auto-promotion of a fresh book — the
+  // pipeline should never first-ship a one-mold book. Replay/gold/repair and
+  // promoteBook re-gates omit the option and stay advisory (gold corpus unchanged).
+  const bookGate = runBookGate(book.bookId, succeeded, { structuralSamenessMode: "enforce" });
   log(formatBookGateReport(bookGate));
 
   // Persist book gate report

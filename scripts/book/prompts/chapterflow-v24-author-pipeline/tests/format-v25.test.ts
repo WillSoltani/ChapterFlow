@@ -8,16 +8,21 @@
  * the V2 protocol path. */
 
 import assert from "node:assert/strict";
+import { existsSync, readdirSync, readFileSync } from "fs";
+import { resolve } from "path";
 
-import { test } from "./harness.js";
+import { test, xenv } from "./harness.js";
+import { PIPELINE_DIR } from "./helpers.js";
 import type { ChapterV21 } from "../src/types.js";
 import { validateChapterV21 } from "../src/runtimeSchemas.js";
 import {
   checkFormatV25DuplicateExamples,
   checkFormatV25QuizFeedback,
   checkFormatV25TierSerialOpeners,
+  checkFormatV25LoopClosure,
+  checkFormatV25,
 } from "../src/critics/formatV25.js";
-import { runShipGate } from "../src/critics/finalGate.js";
+import { runShipGate, ENFORCED_MAJOR } from "../src/critics/finalGate.js";
 import {
   AUTHOR_FORMAT_V25_BLOCK,
   CARD_BLOCK_VERSIONS,
@@ -173,6 +178,115 @@ test("F25 advisories fire on duplicate staging and serial tier openers, as minor
     "serial-opener heuristics are ADVISORY (STIER-2: semantic properties never gate lexically)");
 });
 
+// ── F25.loop_closure (D6.3/6.4) — shadow loop-closure/boundary critic ─────────
+
+/** A minimal happy-path chapter: concrete if-then action steps that name NO
+ *  failure/obstacle, and prose with ZERO boundary cue. Cast for the unit checks
+ *  (checkFormatV25LoopClosure reads only implementationPlan + string fields). */
+function happyPathSynthetic(): ChapterV21 {
+  return {
+    hook: "Name one clear aim before the day opens.",
+    breakdown: {
+      fastRead: "Momentum grows the moment you write the day's aim where your eye lands first.",
+      deepRead: "A second pass shows the aim compounding into a rhythm you can feel by the weekend.",
+      fullRead: "A third pass widens that rhythm across a full week of clean starts and steady wins.",
+    },
+    implementationPlan: {
+      ifThenPlans: [{ context: "morning", plan: "If you sit at your desk, then open the planner and write the day's single aim." }],
+      coreSkill: "Write one concrete aim where you will see it, then begin.",
+      twentyFourHourChallenge: "Today, write one aim on a sticky note and place it on your screen.",
+      weeklyPractice: "Each week, review the aims you wrote and keep the phrasing that pulled you forward.",
+    },
+  } as unknown as ChapterV21;
+}
+
+test("F25.loop_closure fires on an initiation-only plan with no boundary cue", () => {
+  const hits = checkFormatV25LoopClosure(happyPathSynthetic());
+  assert.equal(hits.length, 1, "a happy-path chapter (no contingency if-then, no boundary cue) fires");
+  assert.equal(hits[0].catalogId, "F25.loop_closure");
+  assert.equal(hits[0].unit, "implementationPlan.ifThenPlans");
+});
+
+test("F25.loop_closure is silent when the loop is closed OR a boundary is drawn", () => {
+  // (a) a single boundary cue anywhere in prose silences it.
+  const withCue = happyPathSynthetic();
+  withCue.keyTakeaway = "This routine is not a substitute for real rest.";
+  assert.equal(checkFormatV25LoopClosure(withCue).length, 0, "a boundary cue in the prose silences the critic");
+
+  // (b) an if-then that names a failure/obstacle contingency silences it.
+  const withContingency = happyPathSynthetic();
+  withContingency.implementationPlan.ifThenPlans = [
+    { context: "recovery", plan: "If you slip and skip a day, then shrink the aim and restart the next morning." },
+  ];
+  assert.equal(checkFormatV25LoopClosure(withContingency).length, 0, "a contingency if-then closes the loop");
+
+  // (c) no if-then action steps → nothing to close; the critic is not this check's job.
+  const noPlans = happyPathSynthetic();
+  noPlans.implementationPlan.ifThenPlans = [];
+  assert.equal(checkFormatV25LoopClosure(noPlans).length, 0, "no action steps → no finding");
+});
+
+test("F25.loop_closure is wired into checkFormatV25 and ships SHADOW (major, never enforced/blocking)", () => {
+  // Wiring: the aggregate carries the loop-closure finding.
+  const ch = happyPathValidChapter();
+  assert.ok(checkFormatV25LoopClosure(ch).length === 1, "fixture must fire the unit check");
+  assert.ok(checkFormatV25(ch).some((f) => f.catalogId === "F25.loop_closure"), "checkFormatV25 includes the loop-closure finding");
+
+  // Severity: surfaced as a MAJOR under enforcement, never a blocker, never enforced.
+  const gated = runShipGate(ch, { isolationMode: "experiment", allocatedNames: [], exampleFloor: 2, sourceSidecar: {}, sourceUsePlan: null, formatV25: true });
+  assert.ok(gated.majors.some((f) => f.catalogId === "F25.loop_closure"), "F25.loop_closure surfaces as a major");
+  assert.ok(gated.blockers.every((f) => f.catalogId !== "F25.loop_closure"), "F25.loop_closure never blocks (STIER-2 shadow)");
+  assert.equal(ENFORCED_MAJOR.has("F25.loop_closure"), false, "F25.loop_closure is NOT in ENFORCED_MAJOR");
+
+  // And it never fires when formatV25 enforcement is off (shipped-corpus replay safety).
+  const replay = runShipGate(ch, { isolationMode: "experiment", allocatedNames: [], exampleFloor: 2, sourceSidecar: {}, sourceUsePlan: null });
+  assert.ok([...replay.blockers, ...replay.majors, ...replay.minors].every((f) => f.catalogId !== "F25.loop_closure"), "no F25 without formatV25");
+});
+
+// A schema-valid happy-path chapter (preV25 base, breakdown/plan scrubbed of every
+// boundary cue) so the gate wiring + severity can be exercised end-to-end.
+function happyPathValidChapter(): ChapterV21 {
+  const ch = preV25Chapter();
+  ch.breakdown.deepRead = long("A second self-contained pass explains the mechanism with fresh context and one named study bridged to a second worked case.", 1300);
+  ch.breakdown.fullRead = long("A third self-contained pass adds a fresh scene, a second domain, and integration with its own opening context and a complete core lesson.", 2600);
+  ch.memorableLines = [{ text: "A second self-contained pass explains the mechanism with fresh context", location: "breakdown.deepRead", why: "carries the mechanism image" }];
+  ch.implementationPlan = {
+    title: "Show the proof",
+    coreSkill: "Put a checkable support beside every claim you make, then note which one the audience opens first.",
+    ifThenPlans: [{ context: "standup", plan: "If you state a number in the meeting, then paste the source link beside it before you move on." }],
+    twentyFourHourChallenge: "Within a day, attach one source link to one claim you already made and post it in the channel.",
+    weeklyPractice: "Each week, pick three claims you shared and add one inspectable support to each.",
+  };
+  return ch;
+}
+
+// Zero-FP calibration on the gold corpus: the loop-closure critic must NOT fire on
+// any shipped reference chapter (calibrated 2026-07-15 across 140 packages).
+const BOOK_PACKAGES_DIR = resolve(PIPELINE_DIR, "../../../../book-packages");
+function goldPackageFiles(): string[] {
+  return existsSync(BOOK_PACKAGES_DIR)
+    ? readdirSync(BOOK_PACKAGES_DIR).filter((f) => f.endsWith(".v21.json"))
+    : [];
+}
+xenv(
+  "F25.loop_closure: ZERO false positives across the gold book-packages corpus",
+  "no gold corpus at book-packages/*.v21.json on this checkout",
+  () => goldPackageFiles().length > 0,
+  () => {
+    const offenders: string[] = [];
+    let chapters = 0;
+    for (const f of goldPackageFiles()) {
+      const pkg = JSON.parse(readFileSync(resolve(BOOK_PACKAGES_DIR, f), "utf8")) as { chapters?: ChapterV21[] };
+      for (const ch of pkg.chapters ?? []) {
+        chapters += 1;
+        for (const hit of checkFormatV25LoopClosure(ch)) offenders.push(`${f} ${ch.chapterId ?? ch.number}: ${hit.message.slice(0, 80)}`);
+      }
+    }
+    assert.ok(chapters > 1000, `expected the full gold corpus; only scanned ${chapters} chapters`);
+    assert.equal(offenders.length, 0, `F25.loop_closure false positives on gold (miscalibrated):\n${offenders.slice(0, 30).join("\n")}`);
+  },
+);
+
 // ── Writer card ───────────────────────────────────────────────────────────────
 
 test("the writer card carries the Format v25 contract, version-stamped", () => {
@@ -181,10 +295,16 @@ test("the writer card carries the Format v25 contract, version-stamped", () => {
   assert.match(AUTHOR_FORMAT_V25_BLOCK, /exactly ONE read tier/);
   assert.equal(CARD_BLOCK_VERSIONS.formatV25, "format-v25-v1");
   assert.equal(CARD_BLOCK_VERSIONS.schemaHint, "schema-hint-v2");
-  assert.equal(CARD_BLOCK_VERSIONS.selfVerify, "self-verify-v3");
+  assert.equal(CARD_BLOCK_VERSIONS.selfVerify, "self-verify-v4");
   const hint = authorSchemaHint("zz-format-fixture", 3);
   assert.ok(hint.includes("choiceRationales") && hint.includes("revisit") && hint.includes("SELF-CONTAINED"));
-  assert.match(authorSelfVerify("zz-format-fixture", 3), /5\. TIERS & FEEDBACK/);
+  // The write-time self-check carries the full F-1..F-8 evidence block (F-1 layer
+  // independence + F-2 quiz feedback lead it), each a PASS/FAIL + one-line evidence.
+  const sv = authorSelfVerify("zz-format-fixture", 3);
+  assert.match(sv, /FORMAT v25 EVIDENCE/);
+  assert.match(sv, /F-1 LAYERS/);
+  assert.match(sv, /F-2 QUIZ FEEDBACK/);
+  for (const f of ["F-3", "F-4", "F-5", "F-6", "F-7", "F-8"]) assert.ok(sv.includes(f), `self-verify carries ${f}`);
   // The control hash includes the format block — card drift stays detectable.
   const composition = authorCardComposition();
   assert.equal(composition.versions.formatV25, "format-v25-v1");

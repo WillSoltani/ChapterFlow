@@ -492,14 +492,17 @@ function checkLengthBudget(
   const findings: BudgetFinding[] = [];
   const lo = budget.renderedChars * (1 - budget.tolerance);
   const hi = budget.renderedChars * (1 + budget.tolerance);
-  // Publish calibration (2026-07-04, plan §B): severity BANDS instead of a hard
-  // edge — a 1.6% overflow halted a 9×85+ book and cost 3 sessions to trim 309
-  // chars. Within tolerance: pass. Out by <=10 percentage points beyond
-  // tolerance (i.e. 20-30% off a 16k budget): ADVISORY — scored, listed, never
-  // halts. Beyond that: BLOCKER with the existing repair routing ("readers
-  // rejected ~40% inflation" stays comfortably protected at the 30% edge).
-  const hardLo = budget.renderedChars * (1 - budget.tolerance - 0.1);
-  const hardHi = budget.renderedChars * (1 + budget.tolerance + 0.1);
+  // Publish calibration (2026-07-04, plan §B; content-excellence Track B
+  // 2026-07-15): severity BANDS instead of a hard edge — a 1.6% overflow halted
+  // a 9×85+ book and cost 3 sessions to trim 309 chars. Within tolerance: pass.
+  // Out by <=20 percentage points beyond tolerance (i.e. 20-40% off a 16k
+  // budget): ADVISORY — scored, listed, never halts. The margin widened from
+  // +0.1 to +0.2 so the ceiling stops amputating the deepest mechanism prose the
+  // rubric rewards (D3): a mildly-long chapter is a polish note, not a halt.
+  // Beyond that: BLOCKER with the existing repair routing ("readers rejected
+  // ~40% inflation" stays protected at the 40% edge).
+  const hardLo = budget.renderedChars * (1 - budget.tolerance - 0.2);
+  const hardHi = budget.renderedChars * (1 + budget.tolerance + 0.2);
   for (const chapter of chapters) {
     const estimated = estimatedRenderedChars(chapter);
     if (estimated >= lo && estimated <= hi) continue;
@@ -1700,7 +1703,7 @@ export function buildBudgetRepairComplaints(chapters: ChapterV21[], blockers: Bu
       // chapter byte-identical. Ship the measurement command IN the complaint.
       const chapterId = ordered.find((c) => c.number === f.chapterNumber)?.chapterId ?? "";
       const relPath = `state/chapters/${chapterId}.v21-native.chapter.json`;
-      add(f.chapterNumber as number, `length budget: this chapter renders ~${estimated} chars; the HARD ceiling is ${hi} and a re-check above it halts the whole book. You MUST edit the file — returning it unchanged fails the round. Land the chapter at ${hi - 800}–${hi - 300} chars: delete whole sentences that restate a point already made, starting with the longest breakdown tier; never compress into fragments, never touch the quiz keys or the dealt structure. VERIFY before you finish (the number must print between ${hi - 800} and ${hi - 300}): npx tsx -e "const{estimatedRenderedChars}=require('./src/critics/readerBudgets.ts');console.log(estimatedRenderedChars(JSON.parse(require('fs').readFileSync('${relPath}','utf8'))))"`);
+      add(f.chapterNumber as number, `length budget: this chapter renders ~${estimated} chars; the HARD ceiling is ${hi} and a re-check above it halts the whole book. You MUST edit the file — returning it unchanged fails the round. Land the chapter at ${hi - 800}–${hi - 300} chars: delete whole sentences that RESTATE a point already made — in ANY tier or section, not just the longest one. PROTECT the mechanism sentences (the why / because / "this works by…" causal-chain prose that explains HOW the idea operates) and the evidence-bridge sentences (the ones that tie a named study, number, or example to the claim) — those carry the depth the reader is paying for; never cut them to hit the number. Cut duplication and filler instead. Never compress into fragments, never touch the quiz keys or the dealt structure. VERIFY before you finish (the number must print between ${hi - 800} and ${hi - 300}): npx tsx -e "const{estimatedRenderedChars}=require('./src/critics/readerBudgets.ts');console.log(estimatedRenderedChars(JSON.parse(require('fs').readFileSync('${relPath}','utf8'))))"`);
     } else if (estimated < lo) {
       add(f.chapterNumber as number, `length budget: this chapter renders ~${estimated} chars against a floor of ${lo} — add ~${lo - estimated + 200} chars of TEACHING (a concrete beat inside an existing example or breakdown tier), never filler or restatement.`);
     }

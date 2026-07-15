@@ -654,6 +654,9 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       shellRegister: (rotations.get(n) ?? fallbackRotation(n)).shellRegister,
       leadThread,
       ...(adjacentJobs ? { adjacentJobs } : {}),
+      // Content-excellence (D9): carried so the writer card can render the ch1
+      // DEFINE-THE-MODEL and final-chapter SYNTHESIS directives (final iff n === totalChapters).
+      totalChapters,
     });
   }
 
@@ -689,6 +692,18 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
       if (next) owns.push(`next ch owns "${next}"`);
       const tail = owns.length ? ` NOT THIS CHAPTER: ${owns.join("; ")} — mention only in passing, never re-teach.` : "";
       lines.push(`- THIS CHAPTER'S JOB: ${job} — serve it through a DIFFERENT facet per example.${tail}`);
+      // Content-excellence (D3.3/D5.2/D9): the never-re-teach ban above is now TWO-SIDED —
+      // pair it with a CONNECT instruction so chapters COMPOSE instead of standing alone.
+      // The prior chapter's anchor concept is its coreMove (adjacentJobs.prev).
+      if (prev) {
+        lines.push(`- CONNECT: in ONE sentence, name how this chapter's move builds on the prior chapter's anchor — "${prev}" — composing the two; that is the ONLY re-teach exception (name it, do not re-explain it).`);
+      }
+      // Whole-book coherence (D9.4): ch1 names the central model; the final chapter assembles it.
+      if (brief.chapterNumber === 1) {
+        lines.push(`- DEFINE THE MODEL: this is chapter 1 — name the book's central framework once, memorably (a short repeatable handle a reader carries into every later chapter), then teach THIS chapter's move as its first application.`);
+      } else if (typeof brief.totalChapters === "number" && brief.chapterNumber === brief.totalChapters) {
+        lines.push(`- SYNTHESIS: this is the FINAL chapter — close the book: assemble the earlier chapters' moves into the ONE central model, and leave the reader a complete transfer plan (where to start, what to practice first, how to keep going after a setback).`);
+      }
     }
   }
   lines.push(
@@ -831,7 +846,9 @@ export function renderBriefMd(brief: ChapterBriefV1): string {
   lines.push("");
   lines.push("## NOT YOURS");
   if (brief.notYours.length) {
-    lines.push("Other chapters own these — never scene them; at most one passing mention:");
+    // Content-excellence: two-sided ban — never re-teach their CASES, but you MAY name a
+    // prior chapter's MOVE to compose with it (see CONNECT in VARIETY). Composition ≠ re-teaching.
+    lines.push("Other chapters own these cases — never scene them; at most one passing mention. You MAY name a prior chapter's move to COMPOSE with it (see CONNECT above); the ban is on re-teaching their cases, not on building on their moves:");
     for (const label of brief.notYours) lines.push(`- ${label}`);
   } else {
     lines.push("(nothing reserved by other chapters)");

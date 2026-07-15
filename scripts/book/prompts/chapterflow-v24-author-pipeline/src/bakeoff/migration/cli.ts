@@ -86,6 +86,13 @@ import {
   verifyOwnerRubricAuditRun,
   type RubricAuditBatchManifestV1,
 } from "./rubricAuditInstrument.js";
+import {
+  ingestAdjudicationRecord,
+  ingestRaterRecord,
+  renderRaterTaskDocument,
+  summarizeAudit,
+} from "./rubricAuditHarness.js";
+import { assembleAuditPackage } from "../auditPackageAssembler.js";
 import { materializePilotRoleReadiness } from "./pilotRoleReadinessInstrument.js";
 import {
   buildGoldArtifacts,
@@ -301,6 +308,10 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "rubric-audit-batch",
   "rubric-audit-report",
   "rubric-verify-owner-run",
+  "rubric-audit-render-task",
+  "rubric-audit-ingest",
+  "rubric-audit-status",
+  "assemble-audit-package",
   "pilot-role-readiness",
   "role-qualification-freeze",
   "forward-materialize-pilot-artifacts",
@@ -1669,6 +1680,69 @@ function runLocalForwardSubverb(
     console.log(flags.json === true ? JSON.stringify(report, null, 2)
       : `[migration] rubric-audit ${auditId}: verdict=${report.summary.verdict} mean=${report.summary.mean.toFixed(2)} min=${report.summary.min.toFixed(2)} calibrationΔ=${report.calibration.absDelta.toFixed(2)} model/api calls=0`);
     return report.summary.verdict === "PASS" ? 0 : 1;
+  }
+  if (subverb === "rubric-audit-render-task" || subverb === "rubric-audit-ingest" || subverb === "rubric-audit-status") {
+    // Track C rater harness: render one self-contained rater/adjudicator task,
+    // fail-closed ingest a returned record through the EXISTING validators, or
+    // summarize per-unit progress. Zero model/api calls; all inputs via flags.
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const auditId = typeof flags["audit-id"] === "string" ? flags["audit-id"] : "";
+    if (auditId === "") throw new Error(`${subverb} requires --audit-id`);
+    const manifestPath = resolve(repositoryRoot, `${rubricAuditDirRelPath(auditId)}/batch-manifest.json`);
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as RubricAuditBatchManifestV1;
+
+    if (subverb === "rubric-audit-status") {
+      const status = summarizeAudit({ repositoryRoot, manifest });
+      console.log(flags.json === true ? JSON.stringify(status, null, 2)
+        : `[migration] rubric-audit ${auditId}: allComplete=${String(status.allComplete)} ${status.units.map((u) => `${u.unit}[${u.missing.length === 0 ? "complete" : `missing ${u.missing.join(",")}`}]`).join(" ")}`);
+      return status.allComplete ? 0 : 1;
+    }
+
+    const unit = typeof flags.unit === "string" ? flags.unit : "";
+    const role = typeof flags.role === "string" ? flags.role : "";
+    if (unit === "" || (role !== "primary" && role !== "verification" && role !== "adjudicator")) {
+      throw new Error(`${subverb} requires --unit U and --role <primary|verification|adjudicator>`);
+    }
+
+    if (subverb === "rubric-audit-render-task") {
+      console.log(renderRaterTaskDocument({ repositoryRoot, manifest, unit, role }));
+      return 0;
+    }
+
+    const file = typeof flags.file === "string" ? flags.file : "";
+    if (file === "") throw new Error("rubric-audit-ingest requires --file <json path>");
+    const recordText = readFileSync(resolve(file), "utf8");
+    try {
+      const out = role === "adjudicator"
+        ? ingestAdjudicationRecord({ repositoryRoot, manifest, unit, recordText })
+        : ingestRaterRecord({ repositoryRoot, manifest, unit, role, recordText });
+      console.log(flags.json === true ? JSON.stringify(out, null, 2)
+        : `[migration] rubric-audit ${auditId}: ingested ${unit} ${role} → ${out.persistedPath} sealed=${String(out.sealed)} model/api calls=0`);
+      return 0;
+    } catch (error) {
+      console.error(`rubric-audit-ingest: ${(error as Error).message}`);
+      return 1;
+    }
+  }
+  if (subverb === "assemble-audit-package") {
+    // Build a temporary rubric-audit-ready package from the CURRENT canonical
+    // chapter state of an unpublished book (read-only; fail-closed on missing
+    // quiz keys/explanations) so it can be passed to rubric-audit-batch --package.
+    const bookId = typeof flags.book === "string" ? flags.book : "";
+    const out = typeof flags.out === "string" ? flags.out : "";
+    if (bookId === "" || out === "") throw new Error("assemble-audit-package requires --book <id> --out <path>");
+    try {
+      const pkg = assembleAuditPackage({ bookId });
+      const outPath = resolve(out);
+      writeFileAtomic(outPath, JSON.stringify(pkg, null, 2) + "\n");
+      const summary = { schema: "assemble-audit-package-v1", bookId: pkg.book.id, chapters: pkg.chapters.length, outPath, modelCalls: 0, apiCalls: 0 };
+      console.log(flags.json === true ? JSON.stringify(summary, null, 2)
+        : `[migration] assemble-audit-package ${pkg.book.id}: chapters=${pkg.chapters.length} → ${outPath} model/api calls=0`);
+      return 0;
+    } catch (error) {
+      console.error(`assemble-audit-package: ${(error as Error).message}`);
+      return 1;
+    }
   }
   if (subverb === "pilot-role-readiness") {
     // s16-forward-pilot-role-readiness-v1 (plan v2 P3): deterministic corpus

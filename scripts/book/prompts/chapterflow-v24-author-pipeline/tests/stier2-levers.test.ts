@@ -462,31 +462,39 @@ test("lineage: an UNSTAMPED (v2) brief under the v3 binary reproduces the v2-era
 
 // ── B15: the dealt example count binds BOTH sides (live-caught, rerun round 2) ──
 
-test("B15: A16's example floor honors the brief's dealt count; write contract enforces it exactly", async () => {
+test("B15: A16's example floor is dealt-1; write contract permits dealt-1..dealt, still bans padding", async () => {
   const { dealtExampleFloor } = await import("../src/critics/finalGate.js");
   const root = mkdtempSync(join(tmpdir(), "stier2-b15-"));
   try {
     const chapter = makeChapter(BOOK, 3);
     // No brief on disk → the historical floor 6 (fail-closed for partial generation).
     assert.equal(dealtExampleFloor(chapter, root), 6, "absent brief → floor 6");
-    // A v3-stamped brief dealing 4 → the floor is the dealt design, not the pad target.
+    // A v3-stamped brief dealing 4 → the floor is dealt-1 (content-excellence: a writer
+    // may drop ONE slot; a FIXED template quantity is itself the template-bloat defect).
     writeJsonFile(chapterBriefPath(BOOK, 3, { stateRoot: root }), { rotationSchemaVersion: ROTATION_SCHEMA_VERSION, exampleCount: 4 });
-    assert.equal(dealtExampleFloor(chapter, root), 4, "dealt count wins for v3 briefs");
+    assert.equal(dealtExampleFloor(chapter, root), 3, "floor is dealt-1 for v3 briefs");
     // An UNSTAMPED brief never lowers the floor (v2 briefs have no count deal).
     writeJsonFile(chapterBriefPath(BOOK, 3, { stateRoot: root }), { exampleCount: 4 });
     assert.equal(dealtExampleFloor(chapter, root), 6, "unstamped brief → floor 6");
 
-    // Write contract: EXACT count — padding past the deal is the density defect.
+    // Write contract: dealt-1..dealt permitted; padding PAST the deal is the density defect.
     const brief = mkV3Brief(5);
     brief.leadThread = undefined;
     const packet = mkPacket(5, {});
     const ch = makeChapter(BOOK, 5);
     const dealt = brief.exampleCount!;
     while ((ch.examples?.length ?? 0) > dealt) ch.examples!.pop();
-    assert.equal(authorWriteContractFindings(ch, brief, packet).filter((c) => c.startsWith("example count")).length, 0, "exact count is clean");
-    ch.examples = [...ch.examples!, { ...ch.examples![0], exampleId: "ex-extra" }];
-    const over = authorWriteContractFindings(ch, brief, packet).filter((c) => c.startsWith("example count"));
-    assert.ok(over.length === 1 && over[0].includes(`EXACTLY ${dealt}`), "padding past the deal complains with the cut instruction");
+    const countCx = (examples: typeof ch.examples) =>
+      authorWriteContractFindings({ ...ch, examples }, brief, packet).filter((c) => c.startsWith("example count"));
+    assert.equal(countCx(ch.examples).length, 0, "exact dealt count is clean");
+    // dealt-1: a writer legitimately drops one slot — clean under the new tolerance.
+    assert.equal(countCx(ch.examples!.slice(0, dealt - 1)).length, 0, "dealt-1 is within tolerance (one dropped slot is not a defect)");
+    // dealt-2: too few — complains with the add instruction.
+    const under = countCx(ch.examples!.slice(0, dealt - 2));
+    assert.ok(under.length === 1 && under[0].includes(`deals ${dealt} examples`) && /Add /.test(under[0]), "dropping more than one slot complains with the add instruction");
+    // dealt+1: padding — complains with the cut instruction.
+    const over = countCx([...ch.examples!, { ...ch.examples![0], exampleId: "ex-extra" }]);
+    assert.ok(over.length === 1 && over[0].includes(`deals ${dealt} examples`) && /Cut /.test(over[0]), "padding past the deal complains with the cut instruction");
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

@@ -525,7 +525,7 @@ test("author card: brief md verbatim + writer projection + schema hint + self-ve
   // IMP-05: the precedence contract rides the always-sent card.
   assert.ok(card.includes(AUTHOR_PRECEDENCE), "the precedence order is embedded");
   assert.ok(card.length <= AUTHOR_CARD_MAX_CHARS, `card must be <= ${AUTHOR_CARD_MAX_CHARS} chars, got ${card.length}`);
-  assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 1200, "self-verify stays <= 1200 chars (IMP-05 diet + Format v25 check 5)");
+  assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 2200, "self-verify stays <= 2200 chars (IMP-05 diet + full F-1..F-8 write-time evidence block)");
   console.log(`  [measure] author card on the golden fixture packet: ${card.length} chars`);
 });
 
@@ -564,9 +564,12 @@ test("IMP-05: the diet actually shrank the card; instruction count fell; budget 
   // moved 15,000 → 15,200. Chapter Format v25 (D8, plan v2) adds the owner-
   // ratified format contract (tier independence + quiz feedback block + F-2
   // schema hint + self-verify check 5): +~1.9k on this fixture, so the pin
-  // moves 15,200 → 17,300. The diet ratchet still stands ~2.6k under the
+  // moves 15,200 → 17,300. Content-excellence (Track A) adds the MECHANISM/STAGED/
+  // SAFEGUARDS/NON-SHAMING/CENTRAL MODEL/BEGINNER ENTRY card lines + the full
+  // F-1..F-8 write-time self-verify block: +~2.1k on this fixture (control 5,423,
+  // self-verify 2,013), so the pin moves 17,300 → 19,800. Still ~2.3k under the
   // pre-diet card; any further growth needs the same explicit justification.
-  assert.ok(m.chars <= 17300, `dieted card must be <= 17,300 chars, got ${m.chars} (was 19,924 after IMP-03)`);
+  assert.ok(m.chars <= 19800, `card must be <= 19,800 chars, got ${m.chars} (was 19,924 after IMP-03)`);
   assert.ok(m.controlChars <= 6200, `control blocks must be <= 6,200 chars, got ${m.controlChars} (was ~10,900)`);
   // Rule-count dilution signal: the control blocks carry far fewer directive lines.
   assert.ok(m.instructions <= 50, `directive-line count stays low, got ${m.instructions}`);
@@ -575,8 +578,10 @@ test("IMP-05: the diet actually shrank the card; instruction count fell; budget 
 
 test("IMP-05: block versioning + composition hash are stable and stamp every control block", () => {
   const comp = authorCardComposition();
-  assert.equal(comp.versions.qualityBar, "quality-bar-v2", "quality bar is at the IMP-05 diet version");
-  assert.equal(comp.versions.selfVerify, "self-verify-v3", "self-verify carries the Format v25 check 5");
+  assert.equal(comp.versions.qualityBar, "quality-bar-v3", "quality bar carries the content-excellence MECHANISM + STAGED PROGRESS lines");
+  assert.equal(comp.versions.invariants, "invariants-v2", "invariants carry the BEGINNER ENTRY line");
+  assert.equal(comp.versions.premium, "premium-v3", "premium carries SAFEGUARDS + NON-SHAMING + CENTRAL MODEL");
+  assert.equal(comp.versions.selfVerify, "self-verify-v4", "self-verify carries the full F-1..F-8 write-time evidence block");
   assert.equal(comp.versions.formatV25, "format-v25-v1", "the D8 format contract is version-stamped");
   assert.equal(comp.versions.schemaHint, "schema-hint-v2", "schema hint carries the F-2 feedback fields");
   assert.equal(comp.versions.dataEnvelope, UNTRUSTED_ARTIFACT_RENDERER_VERSION, "data-envelope version tracks IMP-03");
@@ -620,6 +625,26 @@ test("IMP-05: schema hint (unchanged) carries the take-home + memorable-line sha
   assert.match(AUTHOR_QUALITY_BAR, /coreSkill opens with a 2-5 word skill name/i, "take-home craft target present");
   // D9 round-timer contract untouched (enforcement owner unchanged).
   for (const m of [5, 10, 15, 20, 25, 30, 45, 60]) assert.ok(ROUND_TIMER_MINUTES.has(m), `D9 round-timer set still contains ${m}`);
+});
+
+test("content-excellence (Track A): mechanism / boundaries+non-shaming / beginner-entry / staged-progress / central-model lines ride the always-sent card", () => {
+  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd: renderBriefMd(brief), packet: GOLDEN_PACKET, voice: null });
+  // 1a mechanism-why (quality bar): state WHY the move works, not only THAT.
+  assert.match(AUTHOR_QUALITY_BAR, /MECHANISM \[SCORED\]\..*WHY the move works in one explicit causal-chain sentence/i, "mechanism-why craft target present");
+  // 1c beginner entry (invariants / PLAIN & DENSE area).
+  assert.match(AUTHOR_HOUSE_RULES, /BEGINNER ENTRY:.*fastRead opens from the reader's existing naive model/i, "beginner-entry invariant present");
+  // 1d staged progress (quality bar): first achievable win + recover-after-a-missed-day.
+  assert.match(AUTHOR_QUALITY_BAR, /STAGED PROGRESS \[SCORED\]\..*first achievable win.*recovering after a missed day/i, "staged-progress craft target present");
+  // 1b boundaries/misuse safeguard + non-shaming tone (premium).
+  assert.match(AUTHOR_PREMIUM_BLOCK, /SAFEGUARDS:.*when NOT to use it.*misuse, power, or consent risk.*point of use/i, "boundaries/misuse safeguard axis present");
+  assert.match(AUTHOR_PREMIUM_BLOCK, /NON-SHAMING:.*without blame.*never call a hard thing easy/i, "non-shaming tone rule present");
+  // 1e central model composition (premium).
+  assert.match(AUTHOR_PREMIUM_BLOCK, /CENTRAL MODEL:.*book's central framework.*without re-teaching/i, "central-model composition axis present");
+  // All ride the ALWAYS-SENT card (first draft, not a retry).
+  for (const needle of ["MECHANISM [SCORED]", "STAGED PROGRESS [SCORED]", "BEGINNER ENTRY:", "SAFEGUARDS:", "NON-SHAMING:", "CENTRAL MODEL:"]) {
+    assert.ok(card.includes(needle), `"${needle}" rides the always-sent card`);
+  }
 });
 
 test("author card: renders the W4 brief-derived VARIETY instructions (opener / 24h-frame / practice) when the machine brief is passed", () => {

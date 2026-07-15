@@ -396,6 +396,40 @@ test("CF-C: each brief carries its neighbours' learning jobs (adjacentJobs) and 
   });
 });
 
+test("content-excellence: two-sided channel — CONNECT + ch1 DEFINE-THE-MODEL + final SYNTHESIS; totalChapters carried", () => {
+  withBook("cfd-connect", (roots) => {
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    const byN = new Map(briefs.map((b) => [b.chapterNumber, b]));
+    // totalChapters is compiled onto every brief (D9 whole-book coherence).
+    for (const b of briefs) assert.equal(b.totalChapters, 3, `ch${b.chapterNumber} carries totalChapters`);
+
+    const md1 = renderBriefMd(byN.get(1)!);
+    const md2 = renderBriefMd(byN.get(2)!);
+    const md3 = renderBriefMd(byN.get(3)!);
+
+    // ch1 (first): DEFINE THE MODEL, no CONNECT (no prior chapter), no SYNTHESIS.
+    assert.match(md1, /DEFINE THE MODEL:/, "ch1 names the book's central framework");
+    assert.ok(!md1.includes("- CONNECT:"), "ch1 has no prior chapter to connect to");
+    assert.ok(!md1.includes("- SYNTHESIS:"), "ch1 is not the final chapter");
+
+    // ch2 (middle): CONNECT to the prior chapter's move; never re-teach it. No DEFINE/SYNTHESIS.
+    assert.match(md2, /- CONNECT: in ONE sentence, name how this chapter's move builds on the prior chapter's anchor/, "middle chapter connects to the prior chapter's move");
+    assert.ok(md2.includes(byN.get(1)!.coreMove.slice(0, 24)), "CONNECT names the prior chapter's actual anchor concept");
+    assert.ok(!md2.includes("DEFINE THE MODEL:"), "a middle chapter does not define the model");
+    assert.ok(!md2.includes("- SYNTHESIS:"), "a middle chapter is not the final chapter");
+    // The never-re-teach ban is KEPT (the channel is two-sided, not one-sided-removed).
+    assert.match(md2, /NOT THIS CHAPTER:/, "the never-re-teach ban remains");
+
+    // ch3 (final): SYNTHESIS + CONNECT (it has a prior); no DEFINE.
+    assert.match(md3, /- SYNTHESIS: this is the FINAL chapter/, "the final chapter closes the book");
+    assert.match(md3, /- CONNECT:/, "the final chapter still connects to its prior chapter");
+    assert.ok(!md3.includes("DEFINE THE MODEL:"), "the final chapter does not re-define the model");
+
+    // The ## NOT YOURS section is two-sided (compose-with-prior note), never one-sided ban.
+    assert.match(md2, /You MAY name a prior chapter's move to COMPOSE with it/, "NOT YOURS section is two-sided");
+  });
+});
+
 test("CF-C: LJ1 fires (advisory, not blocker) when adjacent chapters declare near-duplicate learning jobs", () => {
   withBook(
     "cfd-lj1",

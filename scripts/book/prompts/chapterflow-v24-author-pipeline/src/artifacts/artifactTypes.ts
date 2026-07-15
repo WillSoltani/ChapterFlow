@@ -264,6 +264,13 @@ export type ChapterBriefV1 = {
    *  packets, so a recompile is byte-derivable (F-1 sidecar invariant). Optional —
    *  omitted for a single-chapter book and absent on briefs compiled before CF-C. */
   adjacentJobs?: { prev?: string; next?: string };
+  /** Content-excellence (D9 whole-book coherence): the book's total chapter count,
+   *  carried so the single-brief writer card can render the ch1 DEFINE-THE-MODEL and
+   *  final-chapter SYNTHESIS directives (final iff chapterNumber === totalChapters).
+   *  Compiled deterministically (index.chapters.length), so a recompile is byte-stable.
+   *  Optional — absent on briefs compiled before this field; NOT part of the regen
+   *  lineage (authorRegenLedger allowlists rotation fields only). */
+  totalChapters?: number;
 };
 
 /** v24 W4 rotation vocabularies — mirrored from src/compiler/briefRotation.ts (kept here as string

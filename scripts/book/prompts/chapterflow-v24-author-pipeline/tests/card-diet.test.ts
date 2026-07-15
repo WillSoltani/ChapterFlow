@@ -111,18 +111,23 @@ test("full-artifact: the diet never makes a product field optional — completen
 
 // ── self-verify diet (instruction 10) ─────────────────────────────────────────
 
-test("self-verify is the ordered high-risk set (5 checks, <= 1200 chars), not a restatement of the whole prompt", () => {
-  // Check 5 added by Chapter Format v25 (D8) — tier independence + quiz
-  // feedback are the rubric-audit campaign's converged top defects; the char
-  // budget was raised 900 -> 1200 for exactly this one addition.
+test("self-verify is 4 high-risk checks + the full F-1..F-8 write-time evidence block (<= 2200 chars)", () => {
+  // Content-excellence: the old 5-check summary's Format v25 check split into the
+  // per-requirement F-1..F-8 write-time evidence block (self-verify-v4, per
+  // CHAPTER_FORMAT_V25.md). The char budget rose 1200 -> 2200 for the eight F items.
   const sv = authorSelfVerify("zz-diet", 3);
-  assert.ok(sv.length <= 1200, `self-verify <= 1200 chars, got ${sv.length}`);
-  assert.deepEqual((sv.match(/^\d+\./gm) ?? []).map((s) => s.trim()), ["1.", "2.", "3.", "4.", "5."], "exactly five ordered checks");
+  assert.ok(sv.length <= 2200, `self-verify <= 2200 chars, got ${sv.length}`);
+  assert.deepEqual((sv.match(/^\d+\./gm) ?? []).map((s) => s.trim()), ["1.", "2.", "3.", "4."], "exactly four ordered high-risk checks");
   assert.match(sv, /1\. KEYS/, "highest-risk KEYS first");
   assert.match(sv, /2\. FACTS/, "FACTS second");
   assert.match(sv, /3\. SCAFFOLD/, "SCAFFOLD third");
   assert.match(sv, /4\. COMPLETE/, "COMPLETE fourth");
-  assert.match(sv, /5\. TIERS & FEEDBACK/, "Format v25 tiers+feedback last");
+  // The Chapter Format v25 write-time evidence block: F-1..F-8, each PASS/FAIL + evidence.
+  assert.match(sv, /FORMAT v25 EVIDENCE/, "the per-requirement evidence block is present");
+  assert.match(sv, /PASS\/FAIL/, "each F item asks for a PASS/FAIL + one-line evidence");
+  for (const f of ["F-1", "F-2", "F-3", "F-4", "F-5", "F-6", "F-7", "F-8"]) {
+    assert.ok(sv.includes(f), `self-verify carries ${f}`);
+  }
 });
 
 // ── versioning (instruction 13) ───────────────────────────────────────────────
@@ -140,8 +145,10 @@ test("card metrics report chars + directive-line count for representative chapte
   const rich = card();
   const m = authorCardMetrics(rich);
   assert.equal(m.chars, rich.length, "chars = card length");
-  assert.ok(m.instructions > 0 && m.instructions <= 40, "directive-line count is bounded");
-  assert.ok(m.controlChars < 4600, "control blocks stay dieted");
+  // Pins raised for the content-excellence lines (MECHANISM/STAGED/SAFEGUARDS/NON-SHAMING/
+  // CENTRAL MODEL/BEGINNER ENTRY): +1 directive line (41), controlChars 4286 -> 5423.
+  assert.ok(m.instructions > 0 && m.instructions <= 42, "directive-line count is bounded");
+  assert.ok(m.controlChars < 5600, "control blocks stay dieted");
 });
 
 // ── root-instruction dedup (instruction 14) ───────────────────────────────────
