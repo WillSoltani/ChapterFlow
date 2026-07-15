@@ -111,13 +111,16 @@ export function validateImp24fCandidateInstrumentManifest(value: unknown): strin
   if (manifest.schema !== IMP24F_CANDIDATE_INSTRUMENT_MANIFEST_SCHEMA) issues.push("manifest schema mismatch");
   if (manifest.protocolId !== IMP24_ROLE_QUALIFICATION_PROTOCOL_ID) issues.push("manifest protocol identity mismatch");
   if (manifest.instrumentGeneration !== IMP24F_CANDIDATE_INSTRUMENT_GENERATION) issues.push("manifest generation identity mismatch");
-  for (const [label, sha] of Object.entries({ ...(manifest.candidate ?? {}) })) {
+  for (const label of ["sealSha256", "certificationSha256", "promptBundleSha256", "schemaBundleSha256",
+    "thresholdsSha256", "productionQualificationParitySha256", "scorerSha256"] as const) {
+    const sha = manifest.candidate?.[label];
     if (typeof sha !== "string" || !SHA256.test(sha)) issues.push(`candidate.${label} is not a bare lowercase SHA-256`);
   }
-  if (manifest.candidate?.corpusBundleSha256 !== undefined
-    && !/^[a-f0-9]{64}$/.test(manifest.candidate.corpusBundleSha256)
-    && !/^sha256:[a-f0-9]{64}$/.test(manifest.candidate.corpusBundleSha256)) {
-    issues.push("candidate.corpusBundleSha256 is malformed");
+  // The corpus identity is retained in its self-hashed `sha256:<hex>` form
+  // (the exact format the certification binding pins).
+  if (typeof manifest.candidate?.corpusBundleSha256 !== "string"
+    || !/^sha256:[a-f0-9]{64}$/.test(manifest.candidate.corpusBundleSha256)) {
+    issues.push("candidate.corpusBundleSha256 is not the self-hashed corpus identity");
   }
   if (manifest.sharedFrozenInputs?.corpusBundlePath !== IMP24_CERTIFICATION_ARTIFACT_PATHS.corpusBundle
     || manifest.sharedFrozenInputs?.thresholdsPath !== IMP24_CERTIFICATION_ARTIFACT_PATHS.thresholds) {

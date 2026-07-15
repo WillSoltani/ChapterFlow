@@ -1,0 +1,35 @@
+{
+  "candidate": {
+    "certificationSha256": "01c75bb7545df7899be0753ef0825f29be237fdf60974154ae287bfd1ee5f98d",
+    "corpusBundleSha256": "sha256:4501809686161a541ad776bdbfea9c716ec402d89ef397a072f93143ce28fcac",
+    "productionQualificationParitySha256": "a90d217a0e340e53592a4db073797bb9707c4f48f2b75674a50c2c2598a741fb",
+    "promptBundleSha256": "8f39d721cc8f319ae50e4ae7b3cabfedf5f68dde8dfc689f0da2f87dd02eace2",
+    "schemaBundleSha256": "7e73469d522429deb2d55232e0dbba95725e15ca067da2b8213c10dc43fa6613",
+    "scorerSha256": "1002d427e3c9cee23b1391cae393b2b1014322cf9910a5cdc5ef4ee1b9963c3d",
+    "sealSha256": "1c429b8c339b3be96909ed199164106a4fa855ea35f5fc629d5cb1957bc1d2d2",
+    "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa"
+  },
+  "instrumentGeneration": "imp24f-semantic-repair-1",
+  "liveEvidence": {
+    "apiCalls": 0,
+    "holdoutCalls": 0,
+    "modelCalls": 0,
+    "pilotCalls": 0
+  },
+  "manifestSha256": "1d70fe9523d4b4b080c75481ba602e147663e7e68a5487be587b5008866d3d15",
+  "predecessor": {
+    "certificationSha256": "ff4e1242fef13998196dbcba6ba92b3263fae44a36628d68fac88f9ded8b46b5",
+    "disposition": "ROLE_SET_NOT_READY",
+    "experimentId": "s16-forward-role-qualification-v3-envelope-final",
+    "mayQualifySuccessor": false,
+    "sealSha256": "ca93638dd9594e0f0463fd03d7b2a67acf5b751c94548e778bdba5b1be17b310",
+    "superseded": true
+  },
+  "protocolId": "s16-forward-role-qualification-v3-envelope",
+  "schema": "imp24f-candidate-instrument-manifest-v1",
+  "sharedFrozenInputs": {
+    "corpusBundlePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/role-qualification-corpus-bundle.v3-envelope.json",
+    "thresholdsPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/imp24/role-thresholds.v3-envelope.json"
+  },
+  "standingBlocker": "BLOCKED_NEEDS_INDEPENDENT_GOLD"
+}

@@ -113,7 +113,7 @@ function plausibleManifest(): Imp24fCandidateInstrumentManifestV1 {
       promptBundleSha256: SHA,
       schemaBundleSha256: SHA,
       thresholdsSha256: SHA,
-      corpusBundleSha256: SHA,
+      corpusBundleSha256: `sha256:${SHA}`,
       productionQualificationParitySha256: SHA,
       scorerSha256: SHA,
     },
