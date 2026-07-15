@@ -85,6 +85,7 @@ import {
   verifyOwnerRubricAuditRun,
   type RubricAuditBatchManifestV1,
 } from "./rubricAuditInstrument.js";
+import { materializePilotRoleReadiness } from "./pilotRoleReadinessInstrument.js";
 import {
   buildGoldArtifacts,
   buildPilotArtifacts,
@@ -297,6 +298,7 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "rubric-audit-batch",
   "rubric-audit-report",
   "rubric-verify-owner-run",
+  "pilot-role-readiness",
   "role-qualification-freeze",
   "forward-materialize-pilot-artifacts",
   "forward-materialize-gold-artifacts",
@@ -1584,6 +1586,21 @@ function runLocalForwardSubverb(
     console.log(flags.json === true ? JSON.stringify(report, null, 2)
       : `[migration] rubric-audit ${auditId}: verdict=${report.summary.verdict} mean=${report.summary.mean.toFixed(2)} min=${report.summary.min.toFixed(2)} calibrationΔ=${report.calibration.absDelta.toFixed(2)} model/api calls=0`);
     return report.summary.verdict === "PASS" ? 0 : 1;
+  }
+  if (subverb === "pilot-role-readiness") {
+    // s16-forward-pilot-role-readiness-v1 (plan v2 P3): deterministic corpus
+    // selection from FROZEN inputs (create-once) + the campaign plan (minted
+    // only at launch with --mint-plan --write; bind-once to the candidate
+    // instrument). Dry = rebuild + byte-compare. Zero model calls.
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const out = materializePilotRoleReadiness({
+      repositoryRoot,
+      write: flags.write === true,
+      mintPlan: flags["mint-plan"] === true,
+    });
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] ${out.experimentId}: corpus=${out.corpusSha256} plan=${out.planSha256 ?? "UNMINTED"} written=${String(out.written)} model/api calls=0`);
+    return 0;
   }
   if (subverb === "rubric-verify-owner-run") {
     // Re-validate the sealed 2026-07-15 owner audit end-to-end with the TS
