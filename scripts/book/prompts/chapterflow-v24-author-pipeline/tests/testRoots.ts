@@ -59,8 +59,20 @@ export function mkTestRoots(prefix = "cf-test"): TestRoots {
     // maxRetries/retryDelay: under full-suite parallel load, rmdir of a tree
     // whose files are still being finalized (git object dirs especially) can
     // race to ENOTEMPTY/EBUSY — the documented F-018-adjacent flake class that
-    // has hit CI on baseline files. Node retries those codes natively.
-    dispose: () => rmSync(base, { recursive: true, force: true, maxRetries: 8, retryDelay: 100 }),
+    // has hit CI on baseline files. Node retries those codes natively; when a
+    // background writer (e.g. a fixture repo's detached git maintenance)
+    // outlasts the retries, residual debris is the OS tmpdir's problem per
+    // this contract's backstop — cleanup success is not a test-correctness
+    // property and must never fail a suite.
+    dispose: () => {
+      try {
+        rmSync(base, { recursive: true, force: true, maxRetries: 8, retryDelay: 100 });
+      } catch (error) {
+        const code = (error as NodeJS.ErrnoException).code;
+        if (code !== "ENOTEMPTY" && code !== "EBUSY" && code !== "EPERM") throw error;
+        console.error(`[testRoots] dispose left residual tmp debris (${code}): ${base} — OS tmpdir backstop applies`);
+      }
+    },
   };
   for (const dir of [roots.stateRoot, roots.attemptsRoot, roots.evidenceRoot, roots.execLogRoot, roots.workspacesRoot, roots.homeRoot, roots.bakeoffRoot, roots.reviewsRoot]) {
     mkdirSync(dir, { recursive: true });
