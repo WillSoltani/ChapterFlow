@@ -1,0 +1,331 @@
+{
+  "schema": "reader-gold-dev-adjudication-run-record-v1",
+  "adjudicator": "claude-b-side",
+  "run": 2,
+  "judgedDocsManifestSha256": "10fb9bc18e7930f2a547c3d19cb5def2b19a52f4716a4919390dcac0111c626d",
+  "disposition": "AUTHORITATIVE_B_SIDE",
+  "policy": "reader-decision-policy-v3",
+  "summary": {
+    "eligible": 23,
+    "belowBar": [
+      "factfulness-ch11.md"
+    ],
+    "blocking": 0,
+    "structurallyWrongQuizzes": 0,
+    "corruption": 0
+  },
+  "note": "Full per-chapter scores/findings recorded by the isolated Claude adjudicator (run 2, corrected docs). Stored verbatim below.",
+  "chapters": [
+    {
+      "doc": "factfulness-ch01.md",
+      "composite": 80.3,
+      "eligible": true,
+      "confidence": "medium",
+      "blocking": 0,
+      "advisories": [
+        "tone:templated example scaffold",
+        "other_craft:Q5 never-introduced persona 'Isabelle'",
+        "other_craft:Q6 rich-country poverty lines not on-page"
+      ],
+      "escalations": [
+        "possible_real_world_claim:Sweden 1869-1946 mortality figures"
+      ]
+    },
+    {
+      "doc": "factfulness-ch04.md",
+      "composite": 82.5,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "tone:templated scaffold",
+        "other_craft:scaffold vocabulary in why-it-matters openers"
+      ],
+      "escalations": [
+        "possible_real_world_claim:Fukushima no-confirmed-direct-deaths claim"
+      ]
+    },
+    {
+      "doc": "factfulness-ch06.md",
+      "composite": 82.4,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "tone:templated scaffold, ungrammatical location phrase"
+      ],
+      "escalations": [
+        "possible_real_world_claim:Monrovia-Mombasa 3,555 miles"
+      ]
+    },
+    {
+      "doc": "factfulness-ch09.md",
+      "composite": 80.1,
+      "eligible": true,
+      "confidence": "medium",
+      "blocking": 0,
+      "advisories": [
+        "other_craft:Q9 Danish-Jews 7,220 fact not on-page",
+        "tone:inline citation style",
+        "tone:'Senge operations room' scaffold"
+      ],
+      "escalations": [
+        "possible_attribution_issue:Senge Fifth Discipline",
+        "possible_real_world_claim:Dr. Mosoka Fallah Ebola"
+      ]
+    },
+    {
+      "doc": "factfulness-ch11.md",
+      "composite": 77.5,
+      "eligible": false,
+      "confidence": "medium",
+      "blocking": 0,
+      "advisories": [
+        "other_craft:dangling pronoun",
+        "tone:name-year citation style",
+        "density:name-heavy listing",
+        "other_craft:Q7 Stockholm detail not established",
+        "tone:scaffold"
+      ],
+      "escalations": [
+        "possible_attribution_issue:Berners-Lee TED 2009"
+      ]
+    },
+    {
+      "doc": "made-to-stick-ch01.md",
+      "composite": 87.1,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "tone:missing apostrophe 'Commanders Intent'"
+      ],
+      "escalations": []
+    },
+    {
+      "doc": "made-to-stick-ch02.md",
+      "composite": 86.5,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "tone:missing apostrophe 'JFKs'",
+        "other_craft:Q5 distractor (a) nearly competitive"
+      ],
+      "escalations": []
+    },
+    {
+      "doc": "made-to-stick-ch03.md",
+      "composite": 87.1,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "tone:missing apostrophe 'Aesops'"
+      ],
+      "escalations": [
+        "possible_real_world_claim:Jane Elliott classroom"
+      ]
+    },
+    {
+      "doc": "made-to-stick-ch04.md",
+      "composite": 86.4,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [],
+      "escalations": [
+        "possible_attribution_issue:Marshall/Warren"
+      ]
+    },
+    {
+      "doc": "made-to-stick-ch05.md",
+      "composite": 87.0,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [],
+      "escalations": [
+        "possible_real_world_claim:Floyd Lee Iraq dining room"
+      ]
+    },
+    {
+      "doc": "made-to-stick-ch06.md",
+      "composite": 86.8,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [],
+      "escalations": []
+    },
+    {
+      "doc": "nudge-ch01.md",
+      "composite": 80.3,
+      "eligible": true,
+      "confidence": "medium",
+      "blocking": 0,
+      "advisories": [
+        "tone:numeral hook",
+        "other_craft:Q7 optimism content not on-page",
+        "other_craft:pen-moving ritual"
+      ],
+      "escalations": [
+        "possible_attribution_issue:Kahneman/Tversky"
+      ]
+    },
+    {
+      "doc": "nudge-ch03.md",
+      "composite": 80.9,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "repetition:try-this-now duplicates 24h challenge",
+        "tone:first-person voice slip"
+      ],
+      "escalations": [
+        "origin_ambiguous_to_reader:fictional 'Marlowe' inside Asch/Milgram staging"
+      ]
+    },
+    {
+      "doc": "nudge-ch06.md",
+      "composite": 81.5,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "other_craft:'do not keep a daily log' leaked constraint",
+        "other_craft:Q6 citation meta-question"
+      ],
+      "escalations": []
+    },
+    {
+      "doc": "nudge-ch08.md",
+      "composite": 81.0,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "other_craft:Q6-7 source-anchor meta-questions"
+      ],
+      "escalations": []
+    },
+    {
+      "doc": "nudge-ch11.md",
+      "composite": 83.1,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "other_craft:Q6-7 anchor meta-pattern"
+      ],
+      "escalations": [
+        "possible_real_world_claim:presumed-consent policy claim"
+      ]
+    },
+    {
+      "doc": "nudge-ch13.md",
+      "composite": 81.1,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "other_craft:Q6-7 anchor meta-pattern",
+        "tone:numeral hook"
+      ],
+      "escalations": [
+        "possible_attribution_issue:Hoxby school-choice"
+      ]
+    },
+    {
+      "doc": "nudge-ch16.md",
+      "composite": 82.3,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "other_craft:Q6 dangling 'airport story' reference"
+      ],
+      "escalations": []
+    },
+    {
+      "doc": "nudge-ch18.md",
+      "composite": 81.1,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "other_craft:Q6-7 journal-citation trivia",
+        "repetition:article titles in 4/6 examples"
+      ],
+      "escalations": []
+    },
+    {
+      "doc": "the-happiness-hypothesis-ch01.md",
+      "composite": 82.5,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "tone:numerals in prose",
+        "other_craft:'Paige' reused for different people",
+        "other_craft:cue-ranking-pass instruction unclear"
+      ],
+      "escalations": [
+        "possible_real_world_claim:Arch Neurol 2002 case"
+      ]
+    },
+    {
+      "doc": "the-happiness-hypothesis-ch04.md",
+      "composite": 85.3,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "tone:numeral style"
+      ],
+      "escalations": [
+        "origin_ambiguous_to_reader:fictional participants in Batson lab staging"
+      ]
+    },
+    {
+      "doc": "the-happiness-hypothesis-ch06.md",
+      "composite": 83.9,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "other_craft:cup-moving ritual"
+      ],
+      "escalations": [
+        "origin_ambiguous_to_reader:fictional 'Chloe' in Harlow nursery staging"
+      ]
+    },
+    {
+      "doc": "the-happiness-hypothesis-ch09.md",
+      "composite": 82.4,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "other_craft:'low-value block' no referent",
+        "tone:cryptic numeral hook"
+      ],
+      "escalations": [
+        "possible_attribution_issue:Rozin/Haidt/McCauley"
+      ]
+    },
+    {
+      "doc": "the-happiness-hypothesis-ch11.md",
+      "composite": 83.5,
+      "eligible": true,
+      "confidence": "high",
+      "blocking": 0,
+      "advisories": [
+        "other_craft:staged-rehearsal challenge theatrical"
+      ],
+      "escalations": []
+    }
+  ],
+  "fullPerFactorScoresRetained": "in the session transcript (run-2 agent result); this artifact records composites, eligibility, and finding synopses for arbitration"
+}
