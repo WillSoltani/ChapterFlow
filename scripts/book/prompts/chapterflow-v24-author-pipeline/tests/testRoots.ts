@@ -56,7 +56,11 @@ export function mkTestRoots(prefix = "cf-test"): TestRoots {
     homeRoot: join(base, "home"),
     bakeoffRoot: join(base, "bakeoff"),
     reviewsRoot: join(base, "reviews"),
-    dispose: () => rmSync(base, { recursive: true, force: true }),
+    // maxRetries/retryDelay: under full-suite parallel load, rmdir of a tree
+    // whose files are still being finalized (git object dirs especially) can
+    // race to ENOTEMPTY/EBUSY — the documented F-018-adjacent flake class that
+    // has hit CI on baseline files. Node retries those codes natively.
+    dispose: () => rmSync(base, { recursive: true, force: true, maxRetries: 8, retryDelay: 100 }),
   };
   for (const dir of [roots.stateRoot, roots.attemptsRoot, roots.evidenceRoot, roots.execLogRoot, roots.workspacesRoot, roots.homeRoot, roots.bakeoffRoot, roots.reviewsRoot]) {
     mkdirSync(dir, { recursive: true });
