@@ -569,7 +569,7 @@ test("IMP-05: the diet actually shrank the card; instruction count fell; budget 
   // F-1..F-8 write-time self-verify block: +~2.1k on this fixture (control 5,423,
   // self-verify 2,013), so the pin moves 17,300 → 19,800. Still ~2.3k under the
   // pre-diet card; any further growth needs the same explicit justification.
-  assert.ok(m.chars <= 19800, `card must be <= 19,800 chars, got ${m.chars} (was 19,924 after IMP-03)`);
+  assert.ok(m.chars <= 20300, `card must be <= 20,300 chars, got ${m.chars} (19,800->20,300: readability levers + key-paraphrase + distinct-opener lines, live validation findings 2026-07-15)`);
   assert.ok(m.controlChars <= 6200, `control blocks must be <= 6,200 chars, got ${m.controlChars} (was ~10,900)`);
   // Rule-count dilution signal: the control blocks carry far fewer directive lines.
   assert.ok(m.instructions <= 50, `directive-line count stays low, got ${m.instructions}`);
@@ -578,8 +578,8 @@ test("IMP-05: the diet actually shrank the card; instruction count fell; budget 
 
 test("IMP-05: block versioning + composition hash are stable and stamp every control block", () => {
   const comp = authorCardComposition();
-  assert.equal(comp.versions.qualityBar, "quality-bar-v3", "quality bar carries the content-excellence MECHANISM + STAGED PROGRESS lines");
-  assert.equal(comp.versions.invariants, "invariants-v2", "invariants carry the BEGINNER ENTRY line");
+  assert.equal(comp.versions.qualityBar, "quality-bar-v4", "quality bar carries MECHANISM + STAGED PROGRESS + key-paraphrase lines");
+  assert.equal(comp.versions.invariants, "invariants-v3", "invariants carry BEGINNER ENTRY + concrete readability levers");
   assert.equal(comp.versions.premium, "premium-v3", "premium carries SAFEGUARDS + NON-SHAMING + CENTRAL MODEL");
   assert.equal(comp.versions.selfVerify, "self-verify-v4", "self-verify carries the full F-1..F-8 write-time evidence block");
   assert.equal(comp.versions.formatV25, "format-v25-v2", "the D8 format contract is version-stamped");

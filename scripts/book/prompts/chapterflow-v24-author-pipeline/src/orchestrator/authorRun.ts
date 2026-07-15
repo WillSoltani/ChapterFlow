@@ -340,7 +340,7 @@ export const AUTHOR_HOUSE_RULES =
   "- FACTUAL: obey the SOURCE-USE PLAN; every claim, number, name, and case detail traces to the SOURCE PACKET — invent connective narration, never facts. Hedge any below-robust claim; never state it as settled.\n" +
   "- QUIZ: every key is derivable from your prose alone and tests a MOVE the reader makes, not a source; each distractor is the key warped by one of the brief's dealt failure modes; follow the brief's answer-key pattern exactly.\n" +
   "- IDENTITY: the reader never meets the machinery — no scaffold vocabulary (slot, shape, or beat labels, anchor ids, \"Fact 2\" numbering), no internal artifact or beat label as an acting subject, no drafting narration. Write the beat, not its name.\n" +
-  "- PLAIN & DENSE: Flesch ease 72-84 on the breakdown; short words, one idea per sentence; every paragraph adds new information; be honest about where the move fails.\n" +
+  "- PLAIN & DENSE: Flesch ease 72-84 on the breakdown — a HARD preflight; you cannot compute Flesch, so obey its levers: breakdown sentences AVERAGE under ~15 words (split anything past ~20), and prefer the short word (use over utilize, why over rationale, prove over demonstrate). Depth comes from mechanism and boundaries, NEVER from longer sentences or latinate nouns. One idea per sentence; every paragraph adds new information; be honest about where the move fails.\n" +
   // Content-excellence (D2.2 beginner entry): a chapter that opens mid-framework loses the
   // reader it exists for. The fastRead must meet the naive model before replacing it.
   "- BEGINNER ENTRY: the fastRead opens from the reader's existing naive model — the wrong-but-natural way they already picture the problem — then replaces it with the move; never open in mid-framework.";
@@ -383,7 +383,7 @@ export const AUTHOR_PREMIUM_BLOCK =
   "- PLAIN WORDS: unpack every load-bearing term, coined or inherited, in plain words at first use; action fields carry zero coined shorthand.\n" +
   "- READER AGENCY: someone with no title power can run the move today — at least one example applies it to the reader's own choices, not only to people they manage.\n" +
   "- VOICE: this book's voice, not a house voice — vary sentence length and rhythm; break long abstract runs with a person, scene, or object.\n" +
-  "- QUIZZES: a chapter-skipper scores ~33%, not 60%; every explanation teaches why the tempting wrong answer fails, not only why the key is right.\n" +
+  "- QUIZZES: a chapter-skipper scores ~33%, not 60%; every explanation teaches why the tempting wrong answer fails, not only why the key is right. PARAPHRASE every key: a correct choice that reuses 5+ consecutive words from the chapter is an answer tell (echo-tell preflight) — say it in new words.\n" +
   // Content-excellence (D1.4 boundaries/misuse; D7.3 non-shaming; D9 central-model composition):
   // safeguards + tone + coherence are top-band separators the card never named before.
   "- SAFEGUARDS: every technique names when NOT to use it, and — where it acts on other people — one misuse, power, or consent risk, stated at the point of use, never appended as a footer.\n" +
@@ -462,9 +462,9 @@ export const ROUND_TIMER_MINUTES = new Set<number>(ROUND_TIMER_MINUTES_LIST);
  *  matching version whenever a block's text changes. */
 export const CARD_BLOCK_VERSIONS = {
   precedence: "precedence-v1",
-  invariants: "invariants-v2",     // v2 = content-excellence BEGINNER ENTRY invariant (D2.2)
+  invariants: "invariants-v3",     // v3 = concrete readability levers for the ease-band preflight (live E3 finding 2026-07-15)
   formatV25: "format-v25-v2",      // v2 = F-1 explicit distinct-opener rule (E2 tension found live 2026-07-15)
-  qualityBar: "quality-bar-v3",    // v3 = content-excellence MECHANISM + STAGED PROGRESS (D3.2/D7.2)
+  qualityBar: "quality-bar-v4",    // v4 = key-paraphrase echo-tell rule (live finding 2026-07-15)
   premium: "premium-v3",           // v3 = content-excellence SAFEGUARDS + NON-SHAMING + CENTRAL MODEL (D1.4/D7.3/D9)
   schemaHint: "schema-hint-v2",    // v2 = F-2 feedback block + self-contained tiers
   selfVerify: "self-verify-v4",    // v4 = full F-1..F-8 write-time evidence block (was 5-check summary)

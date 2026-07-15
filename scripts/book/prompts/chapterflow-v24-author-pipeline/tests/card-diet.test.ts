@@ -148,7 +148,7 @@ test("card metrics report chars + directive-line count for representative chapte
   // Pins raised for the content-excellence lines (MECHANISM/STAGED/SAFEGUARDS/NON-SHAMING/
   // CENTRAL MODEL/BEGINNER ENTRY): +1 directive line (41), controlChars 4286 -> 5423.
   assert.ok(m.instructions > 0 && m.instructions <= 42, "directive-line count is bounded");
-  assert.ok(m.controlChars < 5600, "control blocks stay dieted");
+  assert.ok(m.controlChars < 6000, "control blocks stay dieted (5600->6000: concrete readability levers + key-paraphrase rule, live findings 2026-07-15)");
 });
 
 // ── root-instruction dedup (instruction 14) ───────────────────────────────────
