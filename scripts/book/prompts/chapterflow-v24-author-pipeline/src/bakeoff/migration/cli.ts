@@ -79,6 +79,13 @@ import {
 import { materializeReaderGoldDevPoolSelection } from "./readerGoldDevPool.js";
 import { materializeReaderGoldDevDocs } from "./readerGoldDevDocs.js";
 import {
+  buildRubricAuditReport,
+  materializeRubricAuditBatch,
+  rubricAuditDirRelPath,
+  verifyOwnerRubricAuditRun,
+  type RubricAuditBatchManifestV1,
+} from "./rubricAuditInstrument.js";
+import {
   buildGoldArtifacts,
   buildPilotArtifacts,
   buildQualificationAndRoleFreezeArtifacts,
@@ -287,6 +294,9 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "imp24-materialize-forward-inputs",
   "reader-gold-dev-pool",
   "reader-gold-dev-docs",
+  "rubric-audit-batch",
+  "rubric-audit-report",
+  "rubric-verify-owner-run",
   "role-qualification-freeze",
   "forward-materialize-pilot-artifacts",
   "forward-materialize-gold-artifacts",
@@ -1522,6 +1532,67 @@ function runLocalForwardSubverb(
     const out = materializeReaderGoldDevDocs({ repositoryRoot, write: flags.write === true });
     console.log(flags.json === true ? JSON.stringify(out, null, 2)
       : `[migration] ${out.poolId} reader docs: manifest=${out.manifestSha256} docs=${out.docCount} written=${String(out.written)} model/api calls=0`);
+    return 0;
+  }
+  if (subverb === "rubric-audit-batch") {
+    // D7 gate instrument (s16-rubric-audit-v1): app-faithful audit documents +
+    // per-layer docs + frozen batch manifest with the hidden calibration item.
+    // Dry = rebuild + byte-compare; --write = create-once. Zero model calls.
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const auditId = typeof flags["audit-id"] === "string" ? flags["audit-id"] : "";
+    const packagePath = typeof flags.package === "string" ? flags.package : "";
+    const chaptersFlag = typeof flags.chapters === "string" ? flags.chapters : "";
+    const purpose = typeof flags.purpose === "string" ? flags.purpose : "";
+    const calibrationUnit = typeof flags.calibration === "string" ? flags.calibration : "";
+    if (auditId === "" || packagePath === "" || chaptersFlag === "" || purpose === "" || calibrationUnit === "") {
+      throw new Error("rubric-audit-batch requires --audit-id --package --chapters --purpose --calibration");
+    }
+    const chapterNumbers = chaptersFlag.split(",").map((token) => Number(token.trim()));
+    const out = materializeRubricAuditBatch({
+      repositoryRoot, auditId, purpose, packagePath, chapterNumbers, calibrationUnit,
+      write: flags.write === true,
+    });
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] rubric-audit ${out.auditId}: manifest=${out.manifestSha256} chapters=${out.chapterCount} written=${String(out.written)} model/api calls=0`);
+    return 0;
+  }
+  if (subverb === "rubric-audit-report") {
+    // Deterministic D7 verdict from retained adjudications: bar (mean/min/core
+    // domains/gates/layer independence) + the ±tolerance calibration guard.
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const auditId = typeof flags["audit-id"] === "string" ? flags["audit-id"] : "";
+    if (auditId === "") throw new Error("rubric-audit-report requires --audit-id");
+    const auditDir = resolve(repositoryRoot, rubricAuditDirRelPath(auditId));
+    const manifest = JSON.parse(readFileSync(resolve(auditDir, "batch-manifest.json"), "utf8")) as RubricAuditBatchManifestV1;
+    const adjudications = new Map<string, Record<string, unknown>>();
+    for (const chapter of manifest.chapters) {
+      adjudications.set(chapter.unit,
+        JSON.parse(readFileSync(resolve(auditDir, `raw/adjudicated/${chapter.unit}.json`), "utf8")) as Record<string, unknown>);
+    }
+    const calibrationAdjudication = JSON.parse(readFileSync(
+      resolve(auditDir, `calibration/${manifest.calibration.unit}.adjudicated.json`), "utf8")) as Record<string, unknown>;
+    const report = buildRubricAuditReport({ manifest, adjudications, calibrationAdjudication });
+    const reportPath = resolve(auditDir, "report.json");
+    const reportBytes = canonicalPretty(report);
+    if (existsSync(reportPath)) {
+      if (readFileSync(reportPath, "utf8") !== reportBytes) {
+        throw new Error("retained rubric-audit report differs from the deterministic rebuild");
+      }
+    } else if (flags.write === true) {
+      writeFileAtomic(reportPath, reportBytes);
+    }
+    console.log(flags.json === true ? JSON.stringify(report, null, 2)
+      : `[migration] rubric-audit ${auditId}: verdict=${report.summary.verdict} mean=${report.summary.mean.toFixed(2)} min=${report.summary.min.toFixed(2)} calibrationΔ=${report.calibration.absDelta.toFixed(2)} model/api calls=0`);
+    return report.summary.verdict === "PASS" ? 0 : 1;
+  }
+  if (subverb === "rubric-verify-owner-run") {
+    // Re-validate the sealed 2026-07-15 owner audit end-to-end with the TS
+    // port (fixture surface for the ±3.0 calibration chain of custody).
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const out = verifyOwnerRubricAuditRun({ repositoryRoot });
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] rubric owner-run ${out.runId}: allValid=${String(out.allValid)} units=${out.units.length} model/api calls=0`);
+    if (!out.allValid) throw new Error("owner rubric-audit run failed TS re-validation");
     return 0;
   }
   if (subverb === "imp24-materialize-thresholds") {
