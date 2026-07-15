@@ -35,6 +35,23 @@ Phase 3 is PAUSED pending ratification of amendments **D7–D10** proposed in
 renderings; v25 authoring format upgrades incl. layer independence and quiz feedback
 blocks; Phase-3 corpus re-scope; shipped-corpus exposure decision).
 
+## D7–D10 ratification (2026-07-15, appended)
+
+Owner delegated: *"Use your best judgement. Make a comprehensive and complete plan
+on how you're going to address all the issues."* — D7–D10 are RATIFIED BY DELEGATED
+JUDGEMENT with final parameters in `V25_SEAMLESS_PIPELINE_PLAN_V2.md` (governing
+plan, supersedes Phase 3–7 sequencing) and `../CHAPTER_FORMAT_V25.md` (D8 spec).
+Summary: **D7** rubric-v2 gate — pilot mean ≥85 / min ≥80, gold book every chapter
+≥85 + book CDS ≥85, cert pass, core domains ≥3.0, app-faithful renderings,
+layer-independence hard gate, ±3.0 hidden-calibration fail-closed, Claude-side
+(zero codex). **D8** Format v25: F-1..F-8 layered enforcement (writer self-check +
+crisp-only hard lints + advisory semantics + rubric gate). **D9** readiness corpus
+re-labeled `pipeline-internal`; owner-audited chapters become sealed craft ground
+truth; owner-bar anchors deferred to Format-v25 exemplars. **D10** shipped-catalog
+fix is app-side progressive rendering (Standard = fast+deep, Challenge = all three),
+separate web-app PR; no catalog regeneration. Budgets remain the D5/D6 envelopes;
+the staged pilot + one bounded refinement round live inside the pilot envelope.
+
 ## Standing constraints (unchanged)
 
 Zero API calls; no threshold weakening beyond the ratified v3 policy versioning; closed identities immutable; no gold book or activation without the separate go/no-go; publish/promote/deploy/upload remain false; PR #401 stays draft until D4 executes; `BLOCKED_NEEDS_INDEPENDENT_GOLD` is superseded in scope by D2/D3 for DEVELOPMENT purposes only — publication-grade certification still requires independent gold.
