@@ -1,0 +1,140 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-checklist-manifesto-ch01",
+  "itemId": "LNV2-CLEAN-the-checklist-manifesto-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "7ee8b9480874ea98",
+  "renderedDocSha256": "86d2dbffae55cc57a2877b0a28682e90e9d44c9eae6325b209319a7303b1201d",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "c78a21db52973cb45cc2e674b31ca1886e0a85c2d8d2351be4dd30d7bc43c295",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-the-checklist-manifesto-ch01-mrh9r2fo-6",
+  "rawFinalMessageSha256": "d0fc1dae3400c52d824c19eac37d0f36bf00de42739999b984d2d7fc639a1e70",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\", \"b\", \"c\"],\n    \"mechanisms\": [\n      \"The antibiotic miss is not knowledge failure; it happens between roles because ownership was assumed.\",\n      \"The release has several capable leads but no named final handoff owner, so the lesson points to mapping that transition.\",\n      \"The prose warns against blaming the last visible actor and says to rebuild the path across handoffs first.\",\n      \"The failure occurs when cues cross departments, which matches the chapter's seam/transition risk.\",\n      \"The prose shows that completed specialist pieces can still fail where departments meet.\",\n      \"The hill road is an overlap without owner, so the aligned move is to name one owner before peak load.\",\n      \"The crate example says experts can each be ready while the exposed point is their dependency.\",\n      \"The core reasoning is that excellent people still need visible ownership at role crossings.\",\n      \"The leader was carrying a transition in memory, so the diagnostic question is which transition needs to live in the system.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Q1: correct choice repeats giveaway chapter terms, especially 'handoff seam' and 'ownership thinned out.'\",\n      \"Q2: correct choice is the most concrete and echoes 'named owner before the window'; b is an obvious anti-lesson straw choice.\",\n      \"Q3: correct choice uses the chapter's 'trace the path' language while the other choices narrow blame too plainly.\",\n      \"Q4: correct choice contains the key term 'handoffs'; the wrong choices are generic experience/warning distractors.\",\n      \"Q5: correct choice restates the stem's department-completion setup and is longer than the distractors.\",\n      \"Q6: correct choice mirrors the Hadiya example almost directly with 'named owner' and 'before the storm peaks.'\",\n      \"Q7: correct choice uses the chapter's expert-dependency logic; a and b use absolute phrasing that makes them easy to reject.\",\n      \"Q8: correct choice repeats 'ownership visible' and 'crosses roles,' both central chapter phrases.\",\n      \"Q9: correct choice is a near-slogan version of the lesson, contrasting memory in one leader with the system.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 78,\n    \"transfer\": 86,\n    \"practical\": 88,\n    \"summaries\": 82,\n    \"tone\": 86,\n    \"limits\": 84,\n    \"insight\": 89,\n    \"density\": 85,\n    \"beginner\": 90\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"When work becomes too dense for one mind to command, reliability starts by finding the seam where skill turns into assumption.\",\n      \"why\": \"Strongest compression of the chapter's core move.\"\n    },\n    {\n      \"quote\": \"Movement creates seams, and seams create assumptions.\",\n      \"why\": \"Memorable, portable line that makes the abstract mechanism easy to retrieve.\"\n    },\n    {\n      \"quote\": \"The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.\",\n      \"why\": \"Weakest context point: the Austrian drowning rescue is invoked before the chapter has made it concrete.\"\n    },\n    {\n      \"quote\": \"b) The system has a handoff seam where ownership thinned out.\",\n      \"why\": \"Quiz defect: the right answer uses exact lesson vocabulary, making it guessable.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"deep read\",\n      \"problem\": \"The 'Austrian drowning rescue' is named as if already established, but the chapter has only shown a vague cold-exposure trauma-bay scene, so the referent is slightly dangling.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"Correct options repeatedly use the chapter's signature vocabulary while distractors often caricature blame, central command, or working harder, which makes several answers guessable without close reading.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"implementation plan\",\n      \"problem\": \"The title and core-skill sentence repeat the same phrase back-to-back, giving this section a mild scaffold/template feel.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable chapter with a clear, memorable core: complex work fails at ownership seams, not only inside individual competence. The best lines are sticky, the examples transfer across domains, and the practical move is concrete enough for a beginner to try. The main weakness is assessment quality: the quiz is fair but too easy to game because the keyed answers keep reusing the chapter's exact slogans while the wrong answers are often obvious anti-lessons. I would ship it, with a light revision pass on quiz distractors and the dangling Austrian rescue reference.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-checklist-manifesto-ch01",
+    "chapterNumber": 1,
+    "contentHash": "7ee8b9480874ea98",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-the-checklist-manifesto-ch01-mrh9r2fo-6",
+    "scores": {
+      "retention": 90,
+      "quizzes": 78,
+      "transfer": 86,
+      "practical": 88,
+      "summaries": 82,
+      "tone": 86,
+      "limits": 84,
+      "insight": 89,
+      "density": 85,
+      "beginner": 90
+    },
+    "composite": 85.6,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c",
+        "b",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "When work becomes too dense for one mind to command, reliability starts by finding the seam where skill turns into assumption.",
+        "why": "Strongest compression of the chapter's core move.",
+        "verified": true
+      },
+      {
+        "quote": "Movement creates seams, and seams create assumptions.",
+        "why": "Memorable, portable line that makes the abstract mechanism easy to retrieve.",
+        "verified": true
+      },
+      {
+        "quote": "The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.",
+        "why": "Weakest context point: the Austrian drowning rescue is invoked before the chapter has made it concrete.",
+        "verified": true
+      },
+      {
+        "quote": "b) The system has a handoff seam where ownership thinned out.",
+        "why": "Quiz defect: the right answer uses exact lesson vocabulary, making it guessable.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q1: correct choice repeats giveaway chapter terms, especially 'handoff seam' and 'ownership thinned out.'",
+      "Q2: correct choice is the most concrete and echoes 'named owner before the window'; b is an obvious anti-lesson straw choice.",
+      "Q3: correct choice uses the chapter's 'trace the path' language while the other choices narrow blame too plainly.",
+      "Q4: correct choice contains the key term 'handoffs'; the wrong choices are generic experience/warning distractors.",
+      "Q5: correct choice restates the stem's department-completion setup and is longer than the distractors.",
+      "Q6: correct choice mirrors the Hadiya example almost directly with 'named owner' and 'before the storm peaks.'",
+      "Q7: correct choice uses the chapter's expert-dependency logic; a and b use absolute phrasing that makes them easy to reject.",
+      "Q8: correct choice repeats 'ownership visible' and 'crosses roles,' both central chapter phrases.",
+      "Q9: correct choice is a near-slogan version of the lesson, contrasting memory in one leader with the system."
+    ],
+    "complaints": [
+      {
+        "unit": "deep read",
+        "problem": "The 'Austrian drowning rescue' is named as if already established, but the chapter has only shown a vague cold-exposure trauma-bay scene, so the referent is slightly dangling.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "Correct options repeatedly use the chapter's signature vocabulary while distractors often caricature blame, central command, or working harder, which makes several answers guessable without close reading.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan",
+        "problem": "The title and core-skill sentence repeat the same phrase back-to-back, giving this section a mild scaffold/template feel.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter with a clear, memorable core: complex work fails at ownership seams, not only inside individual competence. The best lines are sticky, the examples transfer across domains, and the practical move is concrete enough for a beginner to try. The main weakness is assessment quality: the quiz is fair but too easy to game because the keyed answers keep reusing the chapter's exact slogans while the wrong answers are often obvious anti-lessons. I would ship it, with a light revision pass on quiz distractors and the dangling Austrian rescue reference.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "ee4dd58b37427ffc6b81a9448407d3874938861dc90310d4e178e93bec10db57",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:05:41.019Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "c78a21db52973cb45cc2e674b31ca1886e0a85c2d8d2351be4dd30d7bc43c295",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:03:57.587Z",
+  "durationMs": 0
+}

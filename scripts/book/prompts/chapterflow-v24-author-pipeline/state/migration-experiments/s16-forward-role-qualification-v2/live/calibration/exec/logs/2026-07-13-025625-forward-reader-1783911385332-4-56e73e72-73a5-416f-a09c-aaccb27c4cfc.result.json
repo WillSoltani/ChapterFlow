@@ -1,0 +1,14 @@
+{
+  "schema": "exec-result-v1",
+  "sessionId": "forward-reader-1783911385332-4-56e73e72-73a5-416f-a09c-aaccb27c4cfc",
+  "exitCode": 1,
+  "ok": false,
+  "durationMs": 4565,
+  "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdoutBytes": 0,
+  "stderrSha256": "103e046fd0792714c3ed0bf94f57ece1170d839b1e3f118824599ee50aef932a",
+  "stderrBytes": 6324,
+  "finalMessageSource": "stdout-fallback",
+  "finalMessageSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "endedAtIso": "2026-07-13T02:56:29.899Z"
+}

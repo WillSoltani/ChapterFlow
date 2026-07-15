@@ -1,0 +1,68 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c22-a1",
+  "requestSha256": "51e0e9487bccaf476ab0e913c3dfced0a5baa24ba65602041ddafcd186dbf09d",
+  "receiptSha256": "90eac7a6e3faf7d41f49e72dfda815a9afbca6f25d3214f14e1408bb8f4fe8b2",
+  "executionEvidenceSha256": "365a35708983ff3233b369156393136150144d0d5034adf205997b727410188a",
+  "rawOutputSha256": "ff905a90e6c949b3634ec426b5523b10f4be99c0980b8101a8866c1411238531",
+  "evaluationSha256": "b0c918a61fbad572380ccc81fba042aa4f651d57d82d7c935c5f5288e0bbdc6d",
+  "parsedOutputSha256": "84fd06f5a226ea8592df01cce9252a2e979f453cedc0df0b88da90693131435f",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "ce04c3fae755a64b807b9f4a44b17d361f59384fbcdd015d9fa629f6f9efc7b8",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [],
+              "severity": "major",
+              "explanation": "The constructed application is narrated as an actual past event without visible hypothetical or fictional framing, despite the explicit framing requirement.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The facilitator scenario and concrete action are permitted constructed details, and the descriptive claim does not exceed the allowed strength. Its presentation as a factual occurrence, however, fails the required visible framing."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "ReviewModelOutputV2Error",
+        "message": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+        "code": "INVALID_EVIDENCE",
+        "refId": null
+      }
+    }
+  },
+  "evaluationArtifactSha256": "1d8205cf7a63887432683441805b2f3008db8e5dda24a9d75df912e036f6ca65"
+}

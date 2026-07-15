@@ -1,0 +1,172 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c40-a1",
+  "requestSha256": "a195e3582bc1db4a85ca49ee48708e6a4e3d298ffedbd02b20177b3d2688c755",
+  "receiptSha256": "57cb9d8c8a1eac7cc65d86ac5424c9fbabbc35a227eeff2b848b0c969971bdd4",
+  "executionEvidenceSha256": "e3f5b7e2eeb6d153a9b0f339bf954487dbb954243e6f15e4f2f43e5b3dc15c59",
+  "rawOutputSha256": "82758575742ce6a72808762083e0718f64c5c672737658eaf8c9b3b1843e00ad",
+  "evaluationSha256": "44106bfc09bf8da4ea55f7f68a70247798731e254203613b65e445b420ca272b",
+  "parsedOutputSha256": "6525ba407dbf8dde8d95fd37f4562a0342a77e8c522d2869bf3e7a5530cbab1e",
+  "assembledReviewSha256": "0c84c8f8f957cd953496b6ffa240317fe55cecca98077a33b8d45e9ea6a13e20",
+  "evidenceReferenceResolutionSha256": "17d61670fde122c68d4aa0ccbd612445970f05bfdba87e3fb115216ade20f20d",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": false,
+      "fabricationSensitivity": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The chapter correctly attributes the core claim and mechanism to the source, but it also attributes a specific 2018 sample of exactly 47 participants to the chapter source. The provided source, mechanism, and anchors do not support that participant-sample detail.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017",
+                "SRC-U001-ATOMIC-018"
+              ]
+            }
+          ],
+          "rationale": "The first two chapter claims are supported by the source claim and mechanism. The added research-sample statement is source-attributed but absent from the packet evidence and introduces an unsupported specific participant detail."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "df9d5be86b5f99d7b5bf9547530b98018e6d28a6534ac75b2c002f207b09b837",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9e8f37ccf2145314b5a85aad57faaff5420d3f4ff487932ba51af56489640726",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The chapter correctly attributes the core claim and mechanism to the source, but it also attributes a specific 2018 sample of exactly 47 participants to the chapter source. The provided source, mechanism, and anchors do not support that participant-sample detail.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017",
+                "SRC-U001-ATOMIC-018"
+              ],
+              "findingId": "unit.fact.ch01.fact.5:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The source states: Attention companies benefit from low-value checking as long as it is frequent and measurable. Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person. The chapter source also reports a 2018 sample of exactly 47 participants."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"id\": \"ch01.fact.5\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"Attention companies benefit from low-value checking as long as it is frequent and measurable.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"Attention companies benefit from low-value checking as long as it is frequent and measurable. Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person. Only long binge sessions matter to the attention economy. Short checks matter at scale; their frequency creates habit, data, and ad inventory.\"\n}",
+                "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+                "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}",
+                "{\n  \"label\": \"packet.forbiddenClaims[1]\",\n  \"value\": \"Do not cast invented people as research subjects, participants, patients, or customers in a real case.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "The first two chapter claims are supported by the source claim and mechanism. The added research-sample statement is source-attributed but absent from the packet evidence and introduces an unsupported specific participant detail.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden"
+      ],
+      "rationale": "U1: The first two chapter claims are supported by the source claim and mechanism. The added research-sample statement is source-attributed but absent from the packet evidence and introduces an unsupported specific participant detail."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The source states: Attention companies benefit from low-value checking as long as it is frequent and measurable. Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person. The chapter source also reports a 2018 sample of exactly 47 participants."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ATOMIC-017",
+            "SRC-U001-ATOMIC-018"
+          ],
+          "evidenceSpans": [
+            "{\n  \"id\": \"ch01.fact.5\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"Attention companies benefit from low-value checking as long as it is frequent and measurable.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"Attention companies benefit from low-value checking as long as it is frequent and measurable. Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person. Only long binge sessions matter to the attention economy. Short checks matter at scale; their frequency creates habit, data, and ad inventory.\"\n}",
+            "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+            "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}",
+            "{\n  \"label\": \"packet.forbiddenClaims[1]\",\n  \"value\": \"Do not cast invented people as research subjects, participants, patients, or customers in a real case.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "a8b4e1099278c3d9df3e7a491e8fe4fdcc8109958325fed7a00713fcdbcdfae6"
+}

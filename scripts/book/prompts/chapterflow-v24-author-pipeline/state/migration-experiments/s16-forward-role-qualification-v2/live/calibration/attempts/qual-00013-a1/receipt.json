@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-reader-1783911742914-14-27950e32-8fe5-43b7-acef-b6e9d9b368c5",
+  "status": "completed",
+  "role": "reader",
+  "profileId": "gpt-5.6-sol@high",
+  "model": "gpt-5.6-sol",
+  "effort": "high",
+  "schemaSha256": "96be560b412f18eb33b67df3baf8f56b3ee466b0a706eb4ea89ab12250413fd3",
+  "rawOutput": "{\"schema\":\"reader-experience-review-v1\",\"scores\":{\"retention\":0,\"quizzes\":0,\"transfer\":0,\"practical\":0,\"summaries\":0,\"tone\":0,\"limits\":0,\"insight\":0,\"density\":0,\"beginner\":0},\"quizDerivation\":{\"answers\":[],\"mechanisms\":[],\"confidence\":[],\"ambiguities\":[],\"tells\":[]},\"recommendation\":\"BLOCK\",\"blockingFindings\":[],\"escalationSignals\":[],\"advisoryFindings\":[],\"strongestEvidence\":[],\"weakestEvidence\":[],\"oneParagraphVerdict\":\"The chapter could not be reviewed because the execution environment denied read access to the specified file. No page-level judgment, quiz derivation, evidence quotation, or finding can be made without inventing content; the zero scores and BLOCK recommendation indicate an uncompleted review, not an assessment of the chapter.\"}"
+}

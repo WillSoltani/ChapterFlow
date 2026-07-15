@@ -1,0 +1,133 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-power-of-moments-ch02",
+  "itemId": "LNV2-CLEAN-the-power-of-moments-ch02",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "5963208c5e349ab0",
+  "renderedDocSha256": "f4349dc00bfc8229868c69bbe6e7e617e7d71fe8d8b6b0b41971506165db33af",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "025f24b81c7bbc3f822f54bc1d38ec62e109ba5a196c070ad923e6c1cfc47fe9",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CLEAN-the-power-of-moments-ch02-mrh5od5o-8",
+  "rawFinalMessageSha256": "23008be5ff4a5cd868432e0fc7f8881b1f94684672518add01d28ba72efd1ffc",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"c\", \"b\", \"b\", \"a\", \"c\", \"b\", \"a\", \"a\"],\n    \"mechanisms\": [\n      \"The prose says to look first at transitions, milestones, and pits; welcome, awards, and complaints map to those.\",\n      \"The John Deere lesson says purpose should arrive before routine and forms define the day.\",\n      \"The Mary Kay lesson says progress becomes memorable when the milestone has a visible public marker.\",\n      \"The Joshie recovery repaired the meaning of the loss with concrete proof of care, not just the found item.\",\n      \"The chapter directly says more forms do not make a better first day and purpose should come before the packet.\",\n      \"The dashboard is only data unless the achievement has a marker others can picture and notice.\",\n      \"The pit lesson says a polished apology can miss the hurt; recovery needs a concrete care story.\",\n      \"Eric's correction is that the busiest process step is not always the one people retell.\",\n      \"The pit warning is that a practical fix is incomplete if the low point still defines the memory.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"Choice c names three possible starts rather than one first choice, but it is still the only answer matching the scan.\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Most correct options reuse the chapter's exact signal words: purpose, visible marker, proof of care, low point, relationship.\",\n      \"Several distractors are visibly anti-lesson choices, such as keeping progress private, assuming the practical fix is enough, or polishing everything equally.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 86,\n    \"transfer\": 84,\n    \"practical\": 88,\n    \"summaries\": 91,\n    \"tone\": 89,\n    \"limits\": 86,\n    \"insight\": 88,\n    \"density\": 87,\n    \"beginner\": 91\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The busy middle is not the whole story.\",\n      \"why\": \"Strongest memorable compression of the chapter's core move.\"\n    },\n    {\n      \"quote\": \"A transition may need purpose, a milestone may need a public sign, and a pit may need proof of care.\",\n      \"why\": \"Clean mechanism that turns the concept into a usable diagnostic.\"\n    },\n    {\n      \"quote\": \"This method can go wrong when the signal is fake or too loud.\",\n      \"why\": \"Good limits section that prevents overuse and false ceremony.\"\n    },\n    {\n      \"quote\": \"Start with the welcome, award, or complaint moment.\",\n      \"why\": \"Slight quiz imprecision: the stem asks for a first choice, but the answer names three possible targets.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"The stem asks for one first choice, but the keyed option gives a category bundle: welcome, award, or complaint. It is still derivable, but less clean than the other items.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"Correct answers often contain the chapter's exact vocabulary while distractors are openly opposite to the lesson, making some questions guessable without close reading.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The chore-chart example is usable but thinner than the main cases because the concrete before-after consequence is modest and the family milestone remains generic.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This chapter ships. It has a clear core move, strong repetition without much padding, and practical transfer: scan for transitions, milestones, and pits, then choose purpose, visibility, or repair. The quiz is fair and strongly derivable, though a little too easy because the correct choices often carry the chapter's exact language. No must-fix reader-harming defect appears on the page.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-power-of-moments-ch02",
+    "chapterNumber": 2,
+    "contentHash": "5963208c5e349ab0",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-high-LNV2-CLEAN-the-power-of-moments-ch02-mrh5od5o-8",
+    "scores": {
+      "retention": 90,
+      "quizzes": 86,
+      "transfer": 84,
+      "practical": 88,
+      "summaries": 91,
+      "tone": 89,
+      "limits": 86,
+      "insight": 88,
+      "density": 87,
+      "beginner": 91
+    },
+    "composite": 88,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "c",
+        "b",
+        "b",
+        "a",
+        "c",
+        "b",
+        "a",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The busy middle is not the whole story.",
+        "why": "Strongest memorable compression of the chapter's core move.",
+        "verified": true
+      },
+      {
+        "quote": "A transition may need purpose, a milestone may need a public sign, and a pit may need proof of care.",
+        "why": "Clean mechanism that turns the concept into a usable diagnostic.",
+        "verified": true
+      },
+      {
+        "quote": "This method can go wrong when the signal is fake or too loud.",
+        "why": "Good limits section that prevents overuse and false ceremony.",
+        "verified": true
+      },
+      {
+        "quote": "Start with the welcome, award, or complaint moment.",
+        "why": "Slight quiz imprecision: the stem asks for a first choice, but the answer names three possible targets.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Most correct options reuse the chapter's exact signal words: purpose, visible marker, proof of care, low point, relationship.",
+      "Several distractors are visibly anti-lesson choices, such as keeping progress private, assuming the practical fix is enough, or polishing everything equally."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q1",
+        "problem": "The stem asks for one first choice, but the keyed option gives a category bundle: welcome, award, or complaint. It is still derivable, but less clean than the other items.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz overall",
+        "problem": "Correct answers often contain the chapter's exact vocabulary while distractors are openly opposite to the lesson, making some questions guessable without close reading.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The chore-chart example is usable but thinner than the main cases because the concrete before-after consequence is modest and the family milestone remains generic.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This chapter ships. It has a clear core move, strong repetition without much padding, and practical transfer: scan for transitions, milestones, and pits, then choose purpose, visibility, or repair. The quiz is fair and strongly derivable, though a little too easy because the correct choices often carry the chapter's exact language. No must-fix reader-harming defect appears on the page.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c14c3f1db3e945b7224eb21579f7d65b2d9edd4a2cf4b4eba42d5cd820112c22",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:10:30.272Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "025f24b81c7bbc3f822f54bc1d38ec62e109ba5a196c070ad923e6c1cfc47fe9",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:09:53.050Z",
+  "durationMs": 0
+}

@@ -1,0 +1,164 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c08-a1",
+  "requestSha256": "d4137b0fc517de9c54be766876cfa2fa8bb9094054e06c4f95ad756f484db21e",
+  "receiptSha256": "e492abd8811061bec66e30a7bb1bbabf4cfe89985ab20875ec08bfd82342965c",
+  "executionEvidenceSha256": "6dae64e85b13368b5f68279031fbadcd10b75db9d4b7172b37ad2e3f06dfdaaa",
+  "rawOutputSha256": "fdd68bca09801c057b34cf6c20e06619b1791320e06f943e2682c34e89bd187f",
+  "evaluationSha256": "aea778f307ec9e229a2198767070ba6fa117c2f55028cd96e6331104cd493ab0",
+  "parsedOutputSha256": "76f8510cf6cd8973e7fb7e67ef352e924cff378e40586337271a984b8de1da94",
+  "assembledReviewSha256": "2f7fdb2c83cd781560cbf75a64f83fde3fd6ce5eee152d931a6910f58542bfe9",
+  "evidenceReferenceResolutionSha256": "9ccc007680efeaf0bbc5ec4a4b61fe6514e91041e900e56678bbff489f76845b",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "claim_strength_overreach",
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The underlying attention-economy proposition is supported, but the named 2014 trial, institutional affiliation, and lead researcher have no support in the supplied evidence. Presenting the proposition as something this purported study established also exceeds the evidence’s mechanistic support.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ]
+            }
+          ],
+          "rationale": "The chapter combines a supported source-bound mechanism with unsupported research attribution and named historical details, all presented as factual. Those additions require evidence that the packet does not provide."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "1d120e2fb8f75e2e80e3c47b31f53dbafa6a623ba5212cbe77851e077f1d27b3",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "dac07096ce9186b650c59a28d6d9eb6b0e0189e54ef736ed8bf7d287e99376e2",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "claim_strength_overreach",
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The underlying attention-economy proposition is supported, but the named 2014 trial, institutional affiliation, and lead researcher have no support in the supplied evidence. Presenting the proposition as something this purported study established also exceeds the evidence’s mechanistic support.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ],
+              "findingId": "unit.fact.ch01.fact.5:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The 2014 Stanford Digital Autonomy Trial led by Dr. Elena Marquez established: Attention companies benefit from low-value checking as long as it is frequent and measurable."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"id\": \"ch01.fact.5\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"Attention companies benefit from low-value checking as long as it is frequent and measurable.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"Attention companies benefit from low-value checking as long as it is frequent and measurable. Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person. Only long binge sessions matter to the attention economy. Short checks matter at scale; their frequency creates habit, data, and ad inventory.\"\n}",
+                "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+                "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person."
+              ]
+            }
+          ],
+          "rationale": "The chapter combines a supported source-bound mechanism with unsupported research attribution and named historical details, all presented as factual. Those additions require evidence that the packet does not provide.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit",
+        "U1:named-specificity-forbidden"
+      ],
+      "rationale": "U1: The chapter combines a supported source-bound mechanism with unsupported research attribution and named historical details, all presented as factual. Those additions require evidence that the packet does not provide."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The 2014 Stanford Digital Autonomy Trial led by Dr. Elena Marquez established: Attention companies benefit from low-value checking as long as it is frequent and measurable."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"id\": \"ch01.fact.5\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"Attention companies benefit from low-value checking as long as it is frequent and measurable.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"Attention companies benefit from low-value checking as long as it is frequent and measurable. Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person. Only long binge sessions matter to the attention economy. Short checks matter at scale; their frequency creates habit, data, and ad inventory.\"\n}",
+            "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+            "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person."
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "ac45d01c725dc4ccc58ab16f18bf522685b6fc25d7672ebf44d47a6cf24bcea7"
+}

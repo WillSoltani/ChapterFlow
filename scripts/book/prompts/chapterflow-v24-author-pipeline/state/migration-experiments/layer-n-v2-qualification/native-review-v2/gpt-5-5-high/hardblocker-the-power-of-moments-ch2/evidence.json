@@ -1,0 +1,147 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-the-power-of-moments-ch2",
+  "itemId": "hardblocker-the-power-of-moments-ch2",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "224a97a6bd3fe60e",
+  "renderedDocSha256": "8216dd8f8e01d3cd28f1550ccad8e78c87c008d2b999919d1308331e4bb35daa",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "00d46373aa069a41448fa5a0731c8f876bc9a16f37e570ca47b0e086b0066843",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-high-hardblocker-the-power-of-moments-ch2-mrh7wan6-28",
+  "rawFinalMessageSha256": "fd349661c3af9a5027ab5b2fd98bd94be82f221d2f76dcc8de911a56ee84652c",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"c\", \"b\", \"b\", \"a\", \"c\", \"b\", \"a\", \"a\"],\n    \"mechanisms\": [\n      \"The prose says to look first at transitions, milestones, and pits; welcome, awards, and complaint calls map to those charged points.\",\n      \"The John Deere lesson says purpose should arrive before forms and routine tasks define the job.\",\n      \"The Mary Kay example works because the pink Cadillac makes a milestone publicly visible and nameable.\",\n      \"The Joshie recovery shows that returning the item is not enough; proof of care must change the story carried away.\",\n      \"The prose says more forms do not improve the first day; purpose tied to real users should come before the packet.\",\n      \"The leader should check whether the achievement has a visible marker people can picture, not just private/dashboard data.\",\n      \"The pit lesson says a polished apology can miss the hurt; recovery needs a concrete care story around the returned item.\",\n      \"The chapter warns that the busiest step is not always what people retell, so first ask where the relationship will be summed up.\",\n      \"The prose says a low point can harden into the whole story unless the ending is changed after the practical fix.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"medium\", \"high\"],\n    \"ambiguities\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"c is not supported as the best test, but the contradictory sentence in Example 4 says the busiest step is exactly the relationship-summing moment, which could confuse the intended key.\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Choice c names the exact chapter trio, making it easy to spot without deep reading.\",\n      \"Choice c is the only option with the chapter's positive language: customer purpose at the start.\",\n      \"Choice b repeats the visible-marker lesson; a and c are plainly anti-recognition.\",\n      \"Choice b repeats the proof-of-care/change-the-story phrasing; a and c are obvious under-repairs.\",\n      \"Choice a repeats the chapter's purpose-before-packet formula.\",\n      \"Choice c uses the phrase 'marker people can picture,' close to the chapter language.\",\n      \"Choice b is the only answer with the chapter's concrete-care/recovery-story frame.\",\n      \"Choice a uses the more abstract chapter wording; b and c are broadly disfavored by the prose.\",\n      \"Choice a repeats 'low point hardens'; b and c are obvious false closures.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 78,\n    \"transfer\": 68,\n    \"practical\": 80,\n    \"summaries\": 88,\n    \"tone\": 86,\n    \"limits\": 86,\n    \"insight\": 84,\n    \"density\": 82,\n    \"beginner\": 90\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The busy middle is not the whole story.\",\n      \"why\": \"Strong memorable compression of the chapter's core move.\"\n    },\n    {\n      \"quote\": \"At a transition, frame the purpose; at a milestone, make progress visible; at a pit, repair the meaning.\",\n      \"why\": \"Clear, transferable action map for the three moment types.\"\n    },\n    {\n      \"quote\": \"If you add a ritual to every step, people stop trusting the cue.\",\n      \"why\": \"Good limit statement that prevents over-application.\"\n    },\n    {\n      \"quote\": \"Then again, he should move the circle back to the crowded handoff, since the busiest, highest-traffic step is exactly the moment people use to sum up the whole relationship.\",\n      \"why\": \"This directly contradicts the chapter's central warning about not defaulting to the busiest step.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The 'What to do' section first tells Eric to move from the crowded handoff to the first encounter, then reverses itself and says the busiest step is exactly the relationship-summing moment. This contradicts the chapter's own principle and makes the example teach the wrong action.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q8\",\n      \"problem\": \"The intended answer is derivable from the main prose, but Example 4's contradiction makes the competing busy-step interpretation defensible for a careful reader.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"The example shifts from designing a recovery to writing a thank-you note after receiving one, so it is thinner as transfer practice for readers who own an experience.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"Several correct choices echo the exact chapter phrasing while distractors are plainly anti-lesson, so the quiz is fair but somewhat guessable.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter has a strong, memorable core: do not polish the whole busy middle; find transitions, milestones, and pits, then match the intervention to the feeling already present. The summaries are layered well, the tone is plain, and the limits section usefully warns against fake or excessive ceremony. I would not ship it as-is because Example 4 contains a direct source-contradictory reversal that undermines the central transfer lesson and also muddies Q8. Fix that contradiction and tighten the guessable quiz wording, and the chapter would be close to the professional bar.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-the-power-of-moments-ch2-chapter",
+    "chapterNumber": 2,
+    "contentHash": "224a97a6bd3fe60e",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-high-hardblocker-the-power-of-moments-ch2-mrh7wan6-28",
+    "scores": {
+      "retention": 88,
+      "quizzes": 78,
+      "transfer": 68,
+      "practical": 80,
+      "summaries": 88,
+      "tone": 86,
+      "limits": 86,
+      "insight": 84,
+      "density": 82,
+      "beginner": 90
+    },
+    "composite": 82.7,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "c",
+        "b",
+        "b",
+        "a",
+        "c",
+        "b",
+        "a",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The busy middle is not the whole story.",
+        "why": "Strong memorable compression of the chapter's core move.",
+        "verified": true
+      },
+      {
+        "quote": "At a transition, frame the purpose; at a milestone, make progress visible; at a pit, repair the meaning.",
+        "why": "Clear, transferable action map for the three moment types.",
+        "verified": true
+      },
+      {
+        "quote": "If you add a ritual to every step, people stop trusting the cue.",
+        "why": "Good limit statement that prevents over-application.",
+        "verified": true
+      },
+      {
+        "quote": "Then again, he should move the circle back to the crowded handoff, since the busiest, highest-traffic step is exactly the moment people use to sum up the whole relationship.",
+        "why": "This directly contradicts the chapter's central warning about not defaulting to the busiest step.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice c names the exact chapter trio, making it easy to spot without deep reading.",
+      "Choice c is the only option with the chapter's positive language: customer purpose at the start.",
+      "Choice b repeats the visible-marker lesson; a and c are plainly anti-recognition.",
+      "Choice b repeats the proof-of-care/change-the-story phrasing; a and c are obvious under-repairs.",
+      "Choice a repeats the chapter's purpose-before-packet formula.",
+      "Choice c uses the phrase 'marker people can picture,' close to the chapter language.",
+      "Choice b is the only answer with the chapter's concrete-care/recovery-story frame.",
+      "Choice a uses the more abstract chapter wording; b and c are broadly disfavored by the prose.",
+      "Choice a repeats 'low point hardens'; b and c are obvious false closures."
+    ],
+    "complaints": [
+      {
+        "unit": "example 4",
+        "problem": "The 'What to do' section first tells Eric to move from the crowded handoff to the first encounter, then reverses itself and says the busiest step is exactly the relationship-summing moment. This contradicts the chapter's own principle and makes the example teach the wrong action.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q8",
+        "problem": "The intended answer is derivable from the main prose, but Example 4's contradiction makes the competing busy-step interpretation defensible for a careful reader.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The example shifts from designing a recovery to writing a thank-you note after receiving one, so it is thinner as transfer practice for readers who own an experience.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz overall",
+        "problem": "Several correct choices echo the exact chapter phrasing while distractors are plainly anti-lesson, so the quiz is fair but somewhat guessable.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a strong, memorable core: do not polish the whole busy middle; find transitions, milestones, and pits, then match the intervention to the feeling already present. The summaries are layered well, the tone is plain, and the limits section usefully warns against fake or excessive ceremony. I would not ship it as-is because Example 4 contains a direct source-contradictory reversal that undermines the central transfer lesson and also muddies Q8. Fix that contradiction and tighten the guessable quiz wording, and the chapter would be close to the professional bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "d34e2478b0e69c8f68bfe3315a63c464c20884e393cabe4617ef1218772bf085",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:13:08.003Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "00d46373aa069a41448fa5a0731c8f876bc9a16f37e570ca47b0e086b0066843",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "Then again, he should move the circle back to the crowded handoff, since the busiest, highest-traffic step is exactly the moment people use to sum up the whole relationship."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:12:02.273Z",
+  "durationMs": 0
+}

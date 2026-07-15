@@ -1,0 +1,64 @@
+{
+  "schema": "migration-sample-record-v1",
+  "experimentId": "confirmatory-dryrun-2026-07",
+  "stage": "confirmatory",
+  "blindSampleId": "b31c61eb8529",
+  "cellId": "56S-XH",
+  "bookId": "radical-candor",
+  "chapterNumber": 1,
+  "stratum": "research-heavy",
+  "sampleIndex": 1,
+  "executionOrder": 48,
+  "outcome": {
+    "providerOutcome": "content_completed",
+    "replayed": false,
+    "firstWriteDeterministicPass": true,
+    "durationMs": 1048,
+    "writerSessionIds": [
+      "dry-b31c61eb8529"
+    ]
+  },
+  "artifact": {
+    "contentSha256": "88c860abc7b4e1c1",
+    "chapterRelPath": "samples/b31c61eb8529/chapter.json"
+  },
+  "critics": {
+    "c37Overreach": 0,
+    "c37SceneCompletion": 0,
+    "c37GenericLeak": 0,
+    "registerAdvisories": 0,
+    "causalClaims": 1,
+    "diversity": {}
+  },
+  "review": {
+    "composite": 85,
+    "ship84": true,
+    "keyCheck": {
+      "matches": 5,
+      "of": 5
+    },
+    "keysClean": true,
+    "valid": true,
+    "pass": true,
+    "complaints": [],
+    "reviewerSessionId": "dry-rev-b31c61eb8529"
+  },
+  "agreementReview": {
+    "composite": 84,
+    "ship84": true,
+    "keyCheck": {
+      "matches": 5,
+      "of": 5
+    },
+    "keysClean": true,
+    "valid": true,
+    "pass": true,
+    "complaints": [],
+    "reviewerSessionId": "dry-agree-b31c61eb8529"
+  },
+  "tokens": null,
+  "unavailableFields": [
+    "tokens",
+    "costPerAcceptedChapterUsd"
+  ]
+}

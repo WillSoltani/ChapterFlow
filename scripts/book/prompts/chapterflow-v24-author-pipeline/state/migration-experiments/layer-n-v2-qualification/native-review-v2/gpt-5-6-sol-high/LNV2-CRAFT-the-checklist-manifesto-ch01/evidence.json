@@ -1,0 +1,160 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-the-checklist-manifesto-ch01",
+  "itemId": "LNV2-CRAFT-the-checklist-manifesto-ch01",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "bcae6f82c79349f9",
+  "renderedDocSha256": "6ebe946c5be8ade4e2d69fd70b68f6d9bc98cbe890720fc17b911a113050bb58",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "027edd859f78a02a00a3f593db98d561de98ea08ee25627807651a4c6ab357bc",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CRAFT-the-checklist-manifesto-ch01-mrh8xali-54",
+  "rawFinalMessageSha256": "c8d071a88b2514634f49251efe568ea279ecf31d6c7f3c262e8dc8e982d33eed",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\", \"b\", \"c\"],\n    \"mechanisms\": [\n      \"The prose locates danger between capable roles when ownership becomes assumed, not in missing expertise.\",\n      \"The prescribed move is to map a critical transition to a named owner before pressure arrives.\",\n      \"The Ingrid example says to reconstruct every crossing before blaming the last visible person.\",\n      \"The chapter identifies cross-role transitions, rather than specialist competence, as the first inspection point.\",\n      \"It explicitly argues that success within separate roles does not ensure reliability across their seams.\",\n      \"The storm example directs the reader to assign one owner to the cross-department overlap before peak load.\",\n      \"The museum example shows that separate expert readiness can still leave dependencies exposed.\",\n      \"The chapter says expertise cannot make handoffs visible by memory alone, so ownership checks remain necessary.\",\n      \"Reliability must be designed into the system instead of depending on one leader holding transitions in memory.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice b is the only option using the chapter's signature ownership-seam language; the others are obvious blame or command strawmen.\",\n      \"Choice c nearly repeats the implementation-plan wording, while the alternatives prescribe conspicuously excessive effort or executive control.\",\n      \"Choice a is the only process-level response and is also the most specific, fully developed choice.\",\n      \"Choice b alone mentions handoffs; the other choices retreat to expertise or warnings.\",\n      \"Choice c restates the chapter's thesis, while the alternatives use negatively coded reminders and centralization.\",\n      \"Choice a is the only preventive action; the distractors are clearly delayed bureaucracy or wholesale replacement.\",\n      \"Choice c alone describes dependencies between experts and closely echoes the museum example.\",\n      \"Choice b repeats the memorable phrase about making ownership visible; a and c make implausibly absolute claims.\",\n      \"Choice c directly contrasts leader-held memory with a system, while the distractors rely on punishment or retraining.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 92,\n    \"quizzes\": 76,\n    \"transfer\": 89,\n    \"practical\": 91,\n    \"summaries\": 78,\n    \"tone\": 84,\n    \"limits\": 74,\n    \"insight\": 89,\n    \"density\": 82,\n    \"beginner\": 94\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The save lives in the chain, not in one brilliant pair of hands.\",\n      \"why\": \"A compact, memorable statement of the chapter's central mechanism.\"\n    },\n    {\n      \"quote\": \"What would you inspect if you stopped asking who forgot and started asking where ownership thinned out?\",\n      \"why\": \"Turns the concept into a useful diagnostic question without jargon.\"\n    },\n    {\n      \"quote\": \"The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.\",\n      \"why\": \"Invokes a supposedly important rescue that the chapter never actually identifies or narrates.\"\n    },\n    {\n      \"quote\": \"In the end, this is the kind of move worth practicing until it feels routine.\",\n      \"why\": \"Generic scaffold language weakens an otherwise concrete example.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"fast read\",\n      \"problem\": \"\\\"That rescue story\\\" has an unclear antecedent because the preceding trauma-bay vignette never establishes the rescue or its circumstances.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"deep read\",\n      \"problem\": \"The Austrian drowning rescue is treated as known evidence but receives no identifying details or actual narrative, weakening the section's stand-alone clarity.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples 1-6\",\n      \"problem\": \"The examples transfer the lesson across domains, but nearly all resolve through the same named-owner move and do not test harder cases where ownership is explicit yet coordination still fails.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The closing sentence about practicing until the move feels routine is generic and adds no mechanism or consequence.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"The correct option almost always repeats ownership, seam, handoff, dependency, or system language, while most distractors are obvious blame, punishment, work-harder, or lone-commander strawmen; answer positions are balanced, but conceptual guessing remains easy.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"limits\",\n      \"problem\": \"The chapter briefly says complexity does not excuse sloppiness but does not explore when a named owner is insufficient, when shared authority is necessary, or when centralized command is appropriate.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"summaries\",\n      \"problem\": \"The fast and deep reads rely on lightly established characters and rescue references, so their stand-alone performance is weaker than the full read and key takeaway.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter teaches one strong, memorable move: diagnose the seam before blaming the people. Its imagery, cross-domain applications, concrete exercises, and repeated if-then guidance make the idea approachable and usable, and the mechanism is explained rather than merely asserted. It falls short of the professional shipping bar because the quiz mostly rewards recognition of signature vocabulary, the layered summaries contain underintroduced references, and the limits section does not test the named-owner prescription against meaningful failure cases. No defect is unsafe, factually demonstrable as wrong, app-breaking, or severe enough to make the lesson unusable, but the assessment and boundary work need another editorial pass.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-the-checklist-manifesto-ch01-chapter",
+    "chapterNumber": 1,
+    "contentHash": "bcae6f82c79349f9",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CRAFT-the-checklist-manifesto-ch01-mrh8xali-54",
+    "scores": {
+      "retention": 92,
+      "quizzes": 76,
+      "transfer": 89,
+      "practical": 91,
+      "summaries": 78,
+      "tone": 84,
+      "limits": 74,
+      "insight": 89,
+      "density": 82,
+      "beginner": 94
+    },
+    "composite": 84.8,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c",
+        "b",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The save lives in the chain, not in one brilliant pair of hands.",
+        "why": "A compact, memorable statement of the chapter's central mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "What would you inspect if you stopped asking who forgot and started asking where ownership thinned out?",
+        "why": "Turns the concept into a useful diagnostic question without jargon.",
+        "verified": true
+      },
+      {
+        "quote": "The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.",
+        "why": "Invokes a supposedly important rescue that the chapter never actually identifies or narrates.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+        "why": "Generic scaffold language weakens an otherwise concrete example.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b is the only option using the chapter's signature ownership-seam language; the others are obvious blame or command strawmen.",
+      "Choice c nearly repeats the implementation-plan wording, while the alternatives prescribe conspicuously excessive effort or executive control.",
+      "Choice a is the only process-level response and is also the most specific, fully developed choice.",
+      "Choice b alone mentions handoffs; the other choices retreat to expertise or warnings.",
+      "Choice c restates the chapter's thesis, while the alternatives use negatively coded reminders and centralization.",
+      "Choice a is the only preventive action; the distractors are clearly delayed bureaucracy or wholesale replacement.",
+      "Choice c alone describes dependencies between experts and closely echoes the museum example.",
+      "Choice b repeats the memorable phrase about making ownership visible; a and c make implausibly absolute claims.",
+      "Choice c directly contrasts leader-held memory with a system, while the distractors rely on punishment or retraining."
+    ],
+    "complaints": [
+      {
+        "unit": "fast read",
+        "problem": "\"That rescue story\" has an unclear antecedent because the preceding trauma-bay vignette never establishes the rescue or its circumstances.",
+        "mustFix": false
+      },
+      {
+        "unit": "deep read",
+        "problem": "The Austrian drowning rescue is treated as known evidence but receives no identifying details or actual narrative, weakening the section's stand-alone clarity.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples 1-6",
+        "problem": "The examples transfer the lesson across domains, but nearly all resolve through the same named-owner move and do not test harder cases where ownership is explicit yet coordination still fails.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The closing sentence about practicing until the move feels routine is generic and adds no mechanism or consequence.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "The correct option almost always repeats ownership, seam, handoff, dependency, or system language, while most distractors are obvious blame, punishment, work-harder, or lone-commander strawmen; answer positions are balanced, but conceptual guessing remains easy.",
+        "mustFix": false
+      },
+      {
+        "unit": "limits",
+        "problem": "The chapter briefly says complexity does not excuse sloppiness but does not explore when a named owner is insufficient, when shared authority is necessary, or when centralized command is appropriate.",
+        "mustFix": false
+      },
+      {
+        "unit": "summaries",
+        "problem": "The fast and deep reads rely on lightly established characters and rescue references, so their stand-alone performance is weaker than the full read and key takeaway.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter teaches one strong, memorable move: diagnose the seam before blaming the people. Its imagery, cross-domain applications, concrete exercises, and repeated if-then guidance make the idea approachable and usable, and the mechanism is explained rather than merely asserted. It falls short of the professional shipping bar because the quiz mostly rewards recognition of signature vocabulary, the layered summaries contain underintroduced references, and the limits section does not test the named-owner prescription against meaningful failure cases. No defect is unsafe, factually demonstrable as wrong, app-breaking, or severe enough to make the lesson unusable, but the assessment and boundary work need another editorial pass.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "1b57de6589d24048f32641e3dab358b67ec88eed749c16e18fe5cc2aa7644f68",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:42:13.874Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "027edd859f78a02a00a3f593db98d561de98ea08ee25627807651a4c6ab357bc",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:40:48.485Z",
+  "durationMs": 0
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "imp22-role-qualification-live-preflight-v1",
+  "experimentId": "s16-forward-role-qualification-v1",
+  "verifiedAt": "2026-07-13T01:27:57.879Z",
+  "specRelPath": "state/migration-experiments/s16-forward-role-qualification-v1/spec.json",
+  "specBytesSha256": "7b3769003183f5d20fa87bebd7df5d4c502e09fbae7c06d59410b80e5531ebc7",
+  "corpusBytesSha256": {
+    "reader": "081bd230c47d4853b9e66656123c1a65a611ecc9424f6931f5d50d717eac55bd",
+    "source": "0e3791580c0b2461622033e9369047f5752b7de70537e276af45794f4c2b6435",
+    "quiz": "9d59ac17cdc79df71eac763a78450f32faea4b535136cf8ef944c63d9d470c4b"
+  },
+  "corpusSubstantiveSha256": {
+    "reader": "sha256:492222ffc2d896e6dfade40cf21045ab96edab8e1c930db1b96a4f58de48c7c3",
+    "source": "sha256:f706bcf03e7d81bf2c435d52626f4e03632fa66e1b155c73b606b503ad4d0b91",
+    "quiz": "sha256:bc7a9ede537e85394d7a794d09a62462bbfda2684df8426072b8a38ac25aadad"
+  },
+  "thresholdBytesSha256": "ff87884b6669a319cb7e116b0b0c7afc92dc3bd2ee54e38875d3bc5444b6607a",
+  "schemaBytesSha256": {
+    "reader": "96be560b412f18eb33b67df3baf8f56b3ee466b0a706eb4ea89ab12250413fd3",
+    "source": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+    "quiz": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365"
+  },
+  "promptSourceBytesSha256": {
+    "reader": "2c8631eee28a0c308f112b21b59df773bbae6ae7d6988f11c6a944f1e490e734",
+    "source": "7059f32e22538957acfe8463c09f82ece798ca327f2f804118070b1b08d543ff",
+    "quiz": "4e036f96c514f6767b81752beff06e06d55e886403909b984742b1ce653327a3"
+  },
+  "candidateAvailabilityPolicyBytesSha256": "bd7cb35a9f15c3b7841a4cd4db763c511d4c7b418fa4eb5549bfb2c6afbc893c",
+  "candidateAvailabilitySha256": "ee89e2a522e43eab093a020e55512ba3202fff19f9b23930ae924d1a1fa34930",
+  "candidateAvailabilitySourceBytesSha256": "5e6f52003cf793910e72236379e3369d42944d22e07dff1a5802a36318415956",
+  "candidateAvailabilitySourceFetchedAt": "2026-07-13T01:27:57.354Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "routePolicyVersion": "route-policy-v1.0",
+  "cliVersion": "codex-cli 0.144.1",
+  "cliBinary": "codex",
+  "authMode": "chatgpt",
+  "apiKeyPresent": false,
+  "apiFallbackAllowed": false,
+  "forbiddenProviderEnvKeysPresent": [],
+  "maxParallel": 2,
+  "expectedCalibrationCalls": 24,
+  "expectedQualificationCalls": 180,
+  "hardMaximumCalls": 928
+}

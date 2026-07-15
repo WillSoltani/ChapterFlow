@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-reader-1783911493459-8-50ebc567-e11f-45c7-bf4c-d9e54c1e1595",
+  "status": "completed",
+  "role": "reader",
+  "profileId": "gpt-5.6-sol@high",
+  "model": "gpt-5.6-sol",
+  "effort": "high",
+  "schemaSha256": "96be560b412f18eb33b67df3baf8f56b3ee466b0a706eb4ea89ab12250413fd3",
+  "rawOutput": "{\"schema\":\"reader-experience-review-v1\",\"scores\":{\"retention\":0,\"quizzes\":0,\"transfer\":0,\"practical\":0,\"summaries\":0,\"tone\":0,\"limits\":0,\"insight\":0,\"density\":0,\"beginner\":0},\"quizDerivation\":{\"answers\":[],\"mechanisms\":[],\"confidence\":[],\"ambiguities\":[],\"tells\":[]},\"recommendation\":\"BLOCK\",\"blockingFindings\":[],\"escalationSignals\":[],\"advisoryFindings\":[],\"strongestEvidence\":[],\"weakestEvidence\":[],\"oneParagraphVerdict\":\"The requested review could not be performed because the workspace sandbox failed whenever the specified file was opened, returning “sandbox-exec: sandbox_apply: Operation not permitted.” The zero scores are therefore placeholders, not judgments about the chapter, and no findings or evidence spans have been invented.\"}"
+}

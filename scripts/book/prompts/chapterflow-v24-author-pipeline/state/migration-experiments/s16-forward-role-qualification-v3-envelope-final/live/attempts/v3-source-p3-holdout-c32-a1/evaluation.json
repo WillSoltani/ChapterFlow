@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c32-a1",
+  "requestSha256": "7049f7e3a23146921452ba7a3a54964319a22855e4e8ecc4b5f430af6ef56e7e",
+  "receiptSha256": "d03abe24db60f9d79e348f91320bb251e9d6e0f12d23c65947653e65c02f4e43",
+  "executionEvidenceSha256": "00ee2da1e180a7c641cbac33ef5fe4fedb05c75756b7c6c0bb60d6aebb4efd72",
+  "rawOutputSha256": "4adf85d2ecb22c344aa4475434f5e5f6928a200fd2a13643cb22467182bb0742",
+  "evaluationSha256": "a6c855d7b05e96e1a230ea30aaa7ea966bab07cc0ea5efe95b320413810ad199",
+  "parsedOutputSha256": "6d0cf8f168f00415e20459f677d3e61933a9b888dbfef1db7287705239ef31b0",
+  "assembledReviewSha256": "5818513b1eabe4adfb36dc1e07689599c68c12958ac14dcef0f570cf893e54a8",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The target is visibly generic and stays within the permitted operational-scenario details and descriptive claim strength. It introduces no named specificity, prohibited detail, attribution, or source-dependent claim."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "3f10dac8a7a4a39199626bdb21c84635e3fb38a9bbcb702447ff3c9104032e38",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "20ac707d7a52de6bd2ed41ccc5144f60f43d657e6acf004c167f080e4a159fa9",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The target is visibly generic and stays within the permitted operational-scenario details and descriptive claim strength. It introduces no named specificity, prohibited detail, attribution, or source-dependent claim.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The target is visibly generic and stays within the permitted operational-scenario details and descriptive claim strength. It introduces no named specificity, prohibited detail, attribution, or source-dependent claim."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "15b2970b006dacd7849c1577033dbdadac837740048f995127061c1c4bb17f0d"
+}

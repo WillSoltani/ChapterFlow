@@ -1,0 +1,188 @@
+{
+  "schema": "imp24e-schema-probe-cycle-v1",
+  "cycle": 1,
+  "executionId": "s16-forward-role-qualification-v3-envelope-schema-probes",
+  "implementationCommit": "a2cda54222c5931d0c2e90ced968194f6200988f",
+  "workflowRunId": 29351112643,
+  "implementationCiGateSha256": "542e9a3d0364444d38e2b6b94b946c019c80e41257626bbfb305bf5817dbffe7",
+  "preflightSha256": "5e94442056b28eff1670124aaf3e0c16adb62bafa732b6170d9e125c621b1299",
+  "results": [
+    {
+      "schema": "imp24e-schema-probe-result-v1",
+      "cycle": 1,
+      "executionId": "s16-forward-role-qualification-v3-envelope-schema-probes",
+      "role": "reader",
+      "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-reader-a1",
+      "requestSha256": "ead7400756501560641b3add6f2d2ad7460fe14f5745a39b670ccd5a7b9ed86a",
+      "profileId": "gpt-5.6-sol@high",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "processDiagnosticsSha256": "3807b5c2ffc8c51bcb93d06c523f0c101ec3b7b693ec9dcd43b054122e0f2058",
+      "runnerBoundaryCrossed": true,
+      "schemaBoundAtRunner": true,
+      "chatgptAuthVerified": true,
+      "apiCalls": 0,
+      "finalMessageSource": "output-file",
+      "authoritativeOutputFileProduced": true,
+      "authoritativeOutputRelPath": "live/attempts/s16-forward-role-qualification-v3-envelope-schema-probes-reader-a1/authoritative-output.json",
+      "rawOutput": "{\"schema\":\"reader-experience-model-output-v2\",\"scores\":{\"retention\":50,\"quizzes\":50,\"transfer\":50,\"practical\":50,\"summaries\":50,\"tone\":50,\"limits\":50,\"insight\":50,\"density\":50,\"beginner\":50},\"quizDerivation\":{\"answers\":[\"a\"],\"mechanisms\":[\"synthetic mechanism\"],\"confidence\":[\"high\"],\"ambiguities\":[],\"tells\":[],\"evidenceRefIds\":[[\"probe.chapter.1\"]]},\"recommendation\":\"SHIP\",\"blockingFindings\":[],\"escalationSignals\":[],\"advisoryFindings\":[],\"strongestEvidenceRefIds\":[\"probe.chapter.1\"],\"weakestEvidenceRefIds\":[\"probe.chapter.1\"],\"oneParagraphVerdict\":\"Synthetic transport probe output.\"}",
+      "rawOutputSha256": "2e00417ede9bdcb9d5dc517af0f661cefa6fc5b93a0f28c1d1ab318a1cf9da5a",
+      "rawOutputBytes": 591,
+      "parsedJson": true,
+      "deterministicValidatorPassed": true,
+      "sidecars": [
+        {
+          "kind": "effective-context-manifest",
+          "relPath": "live/exec/logs/2026-07-14-170058-imp24e-schema-probe-5ec36418243e980c7d6a63a4ed513460b96b982242d5ea9299194a22b1fb.manifest.json",
+          "bytes": 3472,
+          "bytesSha256": "ce9f0beadb11490a11d7325e5a0da07a9c59ad63ee96b3358392c6fe35c9a68f"
+        },
+        {
+          "kind": "route",
+          "relPath": "live/exec/logs/2026-07-14-170058-imp24e-schema-probe-5ec36418243e980c7d6a63a4ed513460b96b982242d5ea9299194a22b1fb.route.json",
+          "bytes": 641,
+          "bytesSha256": "480b3e9ca442f521001d4827a8dc646d67c2b290b7ed0ace6e46b9ffe2692096"
+        },
+        {
+          "kind": "structured-output",
+          "relPath": "live/exec/logs/2026-07-14-170058-imp24e-schema-probe-5ec36418243e980c7d6a63a4ed513460b96b982242d5ea9299194a22b1fb.structured.json",
+          "bytes": 598,
+          "bytesSha256": "69d99373b73a2d41e102d27a1e6859cf5be0c97244be3aafb4a8ee0002ad0d5e"
+        },
+        {
+          "kind": "exec-result",
+          "relPath": "live/exec/logs/2026-07-14-170058-imp24e-schema-probe-5ec36418243e980c7d6a63a4ed513460b96b982242d5ea9299194a22b1fb.result.json",
+          "bytes": 581,
+          "bytesSha256": "197d53771f50c6e066a4a6f7792685ae849dca3c1ee0e49a2adad75251e56523"
+        }
+      ],
+      "missingRequiredSidecars": [],
+      "qualificationMetricsIncluded": false,
+      "passed": true,
+      "failureClassification": null,
+      "failureDetail": null,
+      "resultSha256": "17d11d3f40875075bbf21b52d4e2c37856ac8ed6e83bee79a5a101043aabb164"
+    },
+    {
+      "schema": "imp24e-schema-probe-result-v1",
+      "cycle": 1,
+      "executionId": "s16-forward-role-qualification-v3-envelope-schema-probes",
+      "role": "source",
+      "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-source-a1",
+      "requestSha256": "b9fae6757398a123f030cedfb2ad28dc5e96211742309a556d1b22fb50ab7623",
+      "profileId": "gpt-5.6-sol@xhigh",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "processDiagnosticsSha256": "30fcfb38a43b86a768a8ede9cb991a991b70992887e1f69e77eda8f131ef3491",
+      "runnerBoundaryCrossed": true,
+      "schemaBoundAtRunner": true,
+      "chatgptAuthVerified": true,
+      "apiCalls": 0,
+      "finalMessageSource": "output-file",
+      "authoritativeOutputFileProduced": true,
+      "authoritativeOutputRelPath": "live/attempts/s16-forward-role-qualification-v3-envelope-schema-probes-source-a1/authoritative-output.json",
+      "rawOutput": "{\"schema\":\"source-integrity-model-output-v2\",\"assessments\":[{\"targetRef\":\"probe.target.1\",\"visibleRegister\":\"clearly_generic\",\"supportStatus\":\"NOT_APPLICABLE\",\"framingAdequate\":null,\"claimStrengthFit\":null,\"namedSpecificityAllowed\":null,\"findings\":[],\"rationale\":\"Synthetic transport probe output.\"}]}",
+      "rawOutputSha256": "5595fedb7a69b474c4d3d0b2d70eb9ac465df1d444e4c7f9391dd9732ed073e1",
+      "rawOutputBytes": 301,
+      "parsedJson": true,
+      "deterministicValidatorPassed": true,
+      "sidecars": [
+        {
+          "kind": "effective-context-manifest",
+          "relPath": "live/exec/logs/2026-07-14-170106-imp24e-schema-probe-6a8da15d9411495a2fc2c2bd5116544cdc9f3092d7cd6ace354425b35b75.manifest.json",
+          "bytes": 3473,
+          "bytesSha256": "8c3795eded466f761744ce704f0a53971f9eafb8b977e1f718bf5cee5a55b1f3"
+        },
+        {
+          "kind": "route",
+          "relPath": "live/exec/logs/2026-07-14-170106-imp24e-schema-probe-6a8da15d9411495a2fc2c2bd5116544cdc9f3092d7cd6ace354425b35b75.route.json",
+          "bytes": 642,
+          "bytesSha256": "347a1261367b737fb0798fe19438d2d9fe8c8f396d379e5bca2d0a47eea8fec3"
+        },
+        {
+          "kind": "structured-output",
+          "relPath": "live/exec/logs/2026-07-14-170106-imp24e-schema-probe-6a8da15d9411495a2fc2c2bd5116544cdc9f3092d7cd6ace354425b35b75.structured.json",
+          "bytes": 597,
+          "bytesSha256": "8f4e96b60872f07d450af2df1386f7baf4bd7b2fc17b9e815785cef01b288ec5"
+        },
+        {
+          "kind": "exec-result",
+          "relPath": "live/exec/logs/2026-07-14-170106-imp24e-schema-probe-6a8da15d9411495a2fc2c2bd5116544cdc9f3092d7cd6ace354425b35b75.result.json",
+          "bytes": 581,
+          "bytesSha256": "d37f977afc04cc1c3bc40961b24edc45c93c5e5ca2f5df5a1635b29645b0ccc5"
+        }
+      ],
+      "missingRequiredSidecars": [],
+      "qualificationMetricsIncluded": false,
+      "passed": true,
+      "failureClassification": null,
+      "failureDetail": null,
+      "resultSha256": "734e7cd1b1583564ba49c9d9ad31118c86f9f6829e1a835f5abef95bd562c7d1"
+    },
+    {
+      "schema": "imp24e-schema-probe-result-v1",
+      "cycle": 1,
+      "executionId": "s16-forward-role-qualification-v3-envelope-schema-probes",
+      "role": "quiz",
+      "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-quiz-a1",
+      "requestSha256": "59febfb4ff3022ef263a0dc64827f14e99c082d38018a9cd28683e3d57ba90cb",
+      "profileId": "gpt-5.6-sol@xhigh",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "processDiagnosticsSha256": "5546a3a3a4b3afeafc7dc1806c9aaa9fb2ff29a41ccaaea8ee8c40949fb55329",
+      "runnerBoundaryCrossed": true,
+      "schemaBoundAtRunner": true,
+      "chatgptAuthVerified": true,
+      "apiCalls": 0,
+      "finalMessageSource": "output-file",
+      "authoritativeOutputFileProduced": true,
+      "authoritativeOutputRelPath": "live/attempts/s16-forward-role-qualification-v3-envelope-schema-probes-quiz-a1/authoritative-output.json",
+      "rawOutput": "{\"schema\":\"quiz-integrity-model-output-v2\",\"items\":[{\"questionRef\":\"probe.question.1\",\"keyCorrect\":\"correct\",\"defensibleAnswerIndices\":[0],\"keyedMechanismSupported\":true,\"rationale\":\"Synthetic transport probe output.\",\"evidenceRefIds\":[\"probe.question.1\"]}]}",
+      "rawOutputSha256": "9a7652fb057fb18d2b9abceb848282ceecc902fc29d03120c188c391ddca4dda",
+      "rawOutputBytes": 258,
+      "parsedJson": true,
+      "deterministicValidatorPassed": true,
+      "sidecars": [
+        {
+          "kind": "effective-context-manifest",
+          "relPath": "live/exec/logs/2026-07-14-170114-imp24e-schema-probe-9a94140c459183f20ff7b0209317449c2df73b20e5c39aca1bd5991b51b9.manifest.json",
+          "bytes": 3467,
+          "bytesSha256": "2f9634a10714301d4149a870a55574dc78e2713a16e5f8dd7fae5442d0354a9e"
+        },
+        {
+          "kind": "route",
+          "relPath": "live/exec/logs/2026-07-14-170114-imp24e-schema-probe-9a94140c459183f20ff7b0209317449c2df73b20e5c39aca1bd5991b51b9.route.json",
+          "bytes": 642,
+          "bytesSha256": "347a1261367b737fb0798fe19438d2d9fe8c8f396d379e5bca2d0a47eea8fec3"
+        },
+        {
+          "kind": "structured-output",
+          "relPath": "live/exec/logs/2026-07-14-170114-imp24e-schema-probe-9a94140c459183f20ff7b0209317449c2df73b20e5c39aca1bd5991b51b9.structured.json",
+          "bytes": 595,
+          "bytesSha256": "b735ba29a5d2cf7da2c0ab60b38caec73ba931db49f2d5f3f11ce1e06c6f4fcd"
+        },
+        {
+          "kind": "exec-result",
+          "relPath": "live/exec/logs/2026-07-14-170114-imp24e-schema-probe-9a94140c459183f20ff7b0209317449c2df73b20e5c39aca1bd5991b51b9.result.json",
+          "bytes": 581,
+          "bytesSha256": "3b06be0021d1e88fa6303b27ca5258e8368c8577e7cee0ce19229edd14937d40"
+        }
+      ],
+      "missingRequiredSidecars": [],
+      "qualificationMetricsIncluded": false,
+      "passed": true,
+      "failureClassification": null,
+      "failureDetail": null,
+      "resultSha256": "716d7991ae3b7a9dee78a24f8d910cd0a220094824e5bfffcb6e6f7efc1e22f4"
+    }
+  ],
+  "brokerRequests": 3,
+  "codexExecInvocations": 3,
+  "apiCalls": 0,
+  "qualificationMetricsIncluded": false,
+  "qualificationArtifactsCreated": false,
+  "status": "PASS",
+  "startedAt": "2026-07-14T17:00:58.231Z",
+  "completedAt": "2026-07-14T17:01:21.165Z",
+  "cycleSha256": "2319ffc7f1dcebaff900d53062cbbc327fb6623f8abe85254bb86f9fb901e621"
+}

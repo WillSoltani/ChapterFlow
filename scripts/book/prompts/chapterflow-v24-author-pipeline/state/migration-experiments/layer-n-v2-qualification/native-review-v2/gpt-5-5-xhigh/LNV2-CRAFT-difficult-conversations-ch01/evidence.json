@@ -1,0 +1,140 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-difficult-conversations-ch01",
+  "itemId": "LNV2-CRAFT-difficult-conversations-ch01",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "0c13e56939e7dd87",
+  "renderedDocSha256": "8c4e9a886312eca012c60524c9b0542e9d918c6aef9f81e4ecc154387462d992",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "576ed96da88522b4a10710dfe9e42e86a2fd36bf0a1650fd30287eac1642685a",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CRAFT-difficult-conversations-ch01-mrha9b5z-17",
+  "rawFinalMessageSha256": "93094adcbe3ef8936b76eedb2fdbe74b2a72bc39be0a53554e2a05dbb8175464",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"a\", \"b\", \"c\", \"a\", \"b\", \"c\", \"c\", \"b\", \"a\"],\n    \"mechanisms\": [\n      \"The prose defines identity as questions about competence, authority, respect, or worth; her fear of seeming too junior is that layer.\",\n      \"The prose says to sort what happened, feelings, and identity; the promise, resentment, and responsible-child fear map exactly to those layers.\",\n      \"The chapter says facts, feelings, and identity truths coexist; repair facts must be separated from dismissal feelings and competence fears.\",\n      \"The chapter warns that the visible argument is not the whole argument; trust feelings can steer tone beneath a deadline dispute.\",\n      \"Hearing the question as 'You are a bad friend' makes the issue about what kind of person she is, which the prose names as identity.\",\n      \"Private sorting prevents treating an identity threat as only a facts problem; the prose also says the frame is not a script.\",\n      \"The prose says more facts can fail when evidence has entered an identity conversation; the attendance record now touches parenting identity.\",\n      \"The prose says the frame works best as private diagnosis because labeling someone else's layer can sound like an accusation.\",\n      \"The diagnostic move is to separate the visible issue from the respect layer that keeps driving the fight.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"Competing choice b has a surface hook because she feels anxiety, but the prose makes competence/authority an identity question.\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"No defensible competing answer, but the stem under-specifies whether 'respect' is mainly a feeling layer or an identity/respect threat.\"\n    ],\n    \"tells\": [\n      \"Q1: a is the longest option and uses the chapter's exact 'identity conversation' framing.\",\n      \"Q2: b is much fuller than the distractors and lists the three-layer structure.\",\n      \"Q3: c is the only non-caricatured response and mirrors the chapter's diagnostic vocabulary.\",\n      \"Q4: a is the only option that names the hidden feeling driving the visible timeline.\",\n      \"Q5: b gives away the key with 'what kind of friend she is.'\",\n      \"Q6: c is the only option that matches the chapter's 'not only a facts problem' move.\",\n      \"Q7: c is uniquely long and imports the chapter phrase 'more facts alone.'\",\n      \"Q8: b closely paraphrases the prose about private diagnosis and labels sounding like verdicts.\",\n      \"Q9: a is the only option using the layer language.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 82,\n    \"transfer\": 86,\n    \"practical\": 91,\n    \"summaries\": 89,\n    \"tone\": 87,\n    \"limits\": 94,\n    \"insight\": 91,\n    \"density\": 86,\n    \"beginner\": 88\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The log is evidence. It is not the whole map.\",\n      \"why\": \"Strong, memorable compression of the core move.\"\n    },\n    {\n      \"quote\": \"Here is the uncomfortable part: the layer you can document is often the layer with the least power.\",\n      \"why\": \"Gives the chapter real insight beyond a naming framework.\"\n    },\n    {\n      \"quote\": \"The three conversations are a diagnostic tool, not a script.\",\n      \"why\": \"Clear boundary that prevents overselling the technique.\"\n    },\n    {\n      \"quote\": \"In the end, this is the kind of move worth practicing until it feels routine.\",\n      \"why\": \"Generic filler line in an otherwise concrete example.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Several correct choices are uniquely long and reuse the chapter's exact vocabulary, while distractors are often obviously unhelpful.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The final sentence is generic and does not add a concrete consequence beyond restating that the move should be practiced.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The example names the identity layer but stops before showing the changed next sentence or consequence, making transfer thinner than the stronger examples.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This chapter clears the ship bar. The core distinction is memorable, practical, and bounded: sort facts, feelings, and identity before choosing words, but do not mistake diagnosis for repair. The prose is especially strong on mechanism and limits. The main weakness is quiz craft: the answers are fair, but many can be guessed from length and chapter vocabulary, so the quiz is less diagnostic than the prose.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-difficult-conversations-ch01-chapter",
+    "chapterNumber": 1,
+    "contentHash": "0c13e56939e7dd87",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CRAFT-difficult-conversations-ch01-mrha9b5z-17",
+    "scores": {
+      "retention": 90,
+      "quizzes": 82,
+      "transfer": 86,
+      "practical": 91,
+      "summaries": 89,
+      "tone": 87,
+      "limits": 94,
+      "insight": 91,
+      "density": 86,
+      "beginner": 88
+    },
+    "composite": 88.3,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The log is evidence. It is not the whole map.",
+        "why": "Strong, memorable compression of the core move.",
+        "verified": true
+      },
+      {
+        "quote": "Here is the uncomfortable part: the layer you can document is often the layer with the least power.",
+        "why": "Gives the chapter real insight beyond a naming framework.",
+        "verified": true
+      },
+      {
+        "quote": "The three conversations are a diagnostic tool, not a script.",
+        "why": "Clear boundary that prevents overselling the technique.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+        "why": "Generic filler line in an otherwise concrete example.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q1: a is the longest option and uses the chapter's exact 'identity conversation' framing.",
+      "Q2: b is much fuller than the distractors and lists the three-layer structure.",
+      "Q3: c is the only non-caricatured response and mirrors the chapter's diagnostic vocabulary.",
+      "Q4: a is the only option that names the hidden feeling driving the visible timeline.",
+      "Q5: b gives away the key with 'what kind of friend she is.'",
+      "Q6: c is the only option that matches the chapter's 'not only a facts problem' move.",
+      "Q7: c is uniquely long and imports the chapter phrase 'more facts alone.'",
+      "Q8: b closely paraphrases the prose about private diagnosis and labels sounding like verdicts.",
+      "Q9: a is the only option using the layer language."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz",
+        "problem": "Several correct choices are uniquely long and reuse the chapter's exact vocabulary, while distractors are often obviously unhelpful.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The final sentence is generic and does not add a concrete consequence beyond restating that the move should be practiced.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The example names the identity layer but stops before showing the changed next sentence or consequence, making transfer thinner than the stronger examples.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This chapter clears the ship bar. The core distinction is memorable, practical, and bounded: sort facts, feelings, and identity before choosing words, but do not mistake diagnosis for repair. The prose is especially strong on mechanism and limits. The main weakness is quiz craft: the answers are fair, but many can be guessed from length and chapter vocabulary, so the quiz is less diagnostic than the prose.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "7553eb2cb9f85dd63a64d8de290977244ae835a2279e324b7a1bb3f634798c01",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:19:32.471Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "576ed96da88522b4a10710dfe9e42e86a2fd36bf0a1650fd30287eac1642685a",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:18:08.710Z",
+  "durationMs": 0
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-peak-ch01",
+  "itemId": "LNV2-CLEAN-peak-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "7b893b35e30e2832",
+  "renderedDocSha256": "84ce1b4e707d10349924b9cc7d8855a7843eb2bf507e432526446e16d94d38a2",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-peak-ch01-mrh5i17h-3",
+  "rawFinalMessageSha256": "eadbf33011acf2b2e397dd3e65805ffd359f9256f1434f4153960e92d3b4fb0f",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"a\", \"c\", \"b\", \"b\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose says purposeful practice isolates the fault, uses immediate feedback, and changes the next attempt, which matches slowing/recording only the bad two measures and changing fingering.\",\n      \"The chapter repeatedly says a vague whole-task effort should become a narrow drill around the exact error with immediate comparison and correction.\",\n      \"The prose identifies naive practice as repeating the whole performance while the same weak spot remains hidden.\",\n      \"The swim plan uses a visible cue, short rep, video feedback, and repetition before widening, matching the target-attempt-signal-adjust loop.\",\n      \"Faloon is used to show that each miss told the next attempt where to work, so recall improved through feedback-driven redesign rather than blind repetition.\",\n      \"The claim is wrong because repetition without a visible target can make the uneven action fluent while leaving the underlying size error intact.\",\n      \"The chapter says feedback matters when it arrives close enough to change the next attempt while the miss is still traceable.\",\n      \"Plan B is stronger because its feedback is immediate enough to alter the next small batch.\",\n      \"The prose says useful targets can be seen, counted, compared, or corrected before the next attempt, which the chalk-line/pedal target does.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"medium\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"a is also defensible because the prose says comfort can leave the weak spot hidden; b is stronger because it names the visible target needed for the next cut.\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Correct choices are often the most specific option with the full loop vocabulary: isolate, check, adjust, repeat.\",\n      \"Several correct choices are also the longest or most concrete option, especially Q1, Q2, Q4, Q8, and Q9.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 91,\n    \"quizzes\": 86,\n    \"transfer\": 88,\n    \"practical\": 92,\n    \"summaries\": 90,\n    \"tone\": 89,\n    \"limits\": 88,\n    \"insight\": 90,\n    \"density\": 87,\n    \"beginner\": 93\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The miss is the map because it tells the next rep where to aim.\",\n      \"why\": \"This is the chapter's strongest memorable compression of the core move.\"\n    },\n    {\n      \"quote\": \"A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.\",\n      \"why\": \"It gives beginners a practical test for whether their practice target is usable.\"\n    },\n    {\n      \"quote\": \"There is a temptation to make this tidy. Pick a weakness, drill it, improve forever. Real practice is messier.\",\n      \"why\": \"This usefully limits the advice and prevents overselling the loop.\"\n    },\n    {\n      \"quote\": \"Enjoyable repetition may build comfort while leaving size differences untouched.\",\n      \"why\": \"This quiz distractor is close enough to the keyed idea in Q6 that it creates mild ambiguity.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"Two choices are substantially defensible: a matches the chapter's comfort-can-hide-the-weak-spot claim, while b adds the visible size target and is the better key.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"Correct answers are frequently the most concrete and loop-shaped options, which creates a guessable pattern for readers who notice the test style.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, shippable chapter. The core idea is memorable, concrete, and repeatedly transferred across study, work, sport, service, and coding without becoming abstract. The practical loop is clear enough for a beginner to use immediately, and the chapter is honest about limits and messy feedback. The main weakness is quiz construction: most right answers carry the same specific correction-loop shape, and Q6 has a mild competing answer. Those are craft issues, not blockers.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "peak-ch01",
+    "chapterNumber": 1,
+    "contentHash": "7b893b35e30e2832",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-peak-ch01-mrh5i17h-3",
+    "scores": {
+      "retention": 91,
+      "quizzes": 86,
+      "transfer": 88,
+      "practical": 92,
+      "summaries": 90,
+      "tone": 89,
+      "limits": 88,
+      "insight": 90,
+      "density": 87,
+      "beginner": 93
+    },
+    "composite": 89.3,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "a",
+        "c",
+        "b",
+        "b",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The miss is the map because it tells the next rep where to aim.",
+        "why": "This is the chapter's strongest memorable compression of the core move.",
+        "verified": true
+      },
+      {
+        "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+        "why": "It gives beginners a practical test for whether their practice target is usable.",
+        "verified": true
+      },
+      {
+        "quote": "There is a temptation to make this tidy. Pick a weakness, drill it, improve forever. Real practice is messier.",
+        "why": "This usefully limits the advice and prevents overselling the loop.",
+        "verified": true
+      },
+      {
+        "quote": "Enjoyable repetition may build comfort while leaving size differences untouched.",
+        "why": "This quiz distractor is close enough to the keyed idea in Q6 that it creates mild ambiguity.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Correct choices are often the most specific option with the full loop vocabulary: isolate, check, adjust, repeat.",
+      "Several correct choices are also the longest or most concrete option, especially Q1, Q2, Q4, Q8, and Q9."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q6",
+        "problem": "Two choices are substantially defensible: a matches the chapter's comfort-can-hide-the-weak-spot claim, while b adds the visible size target and is the better key.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz overall",
+        "problem": "Correct answers are frequently the most concrete and loop-shaped options, which creates a guessable pattern for readers who notice the test style.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, shippable chapter. The core idea is memorable, concrete, and repeatedly transferred across study, work, sport, service, and coding without becoming abstract. The practical loop is clear enough for a beginner to use immediately, and the chapter is honest about limits and messy feedback. The main weakness is quiz construction: most right answers carry the same specific correction-loop shape, and Q6 has a mild competing answer. Those are craft issues, not blockers.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "b3b4beaefc9b929c60bd759336c9481b45aab3230b6ceb74d10b01cea6e780bd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:05:37.192Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:04:57.628Z",
+  "durationMs": 0
+}

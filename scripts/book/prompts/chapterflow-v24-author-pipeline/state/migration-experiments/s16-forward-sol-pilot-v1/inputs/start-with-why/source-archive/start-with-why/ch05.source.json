@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 5,
+  "chapterTitle": "Clarity, Discipline and Consistency",
+  "focus": "A clear WHY needs disciplined HOWs and consistent WHATs so outsiders can recognize the same belief in repeated behavior. A reader learns that purpose becomes credible only when choices, offers, and language line up over time.",
+  "coreClaim": "Clarity, Discipline and Consistency turns alignment discipline into a practical decision rule backed by named cases and checkable details.",
+  "centralConcept": {
+    "id": "ch05.concept",
+    "name": "alignment discipline",
+    "plainDefinition": "A clear WHY needs disciplined HOWs and consistent WHATs so outsiders can recognize the same belief in repeated behavior.",
+    "whyItMatters": "A reader learns that purpose becomes credible only when choices, offers, and language line up over time."
+  },
+  "keyClaims": [
+    "alignment discipline becomes usable only when tied to visible behavior.",
+    "Southwest Airlines gives the first concrete anchor.",
+    "Herb Kelleher creates contrast so the idea is not one anecdote.",
+    "Apple design consistency adds a boundary case for application.",
+    "Clarity of WHY, Discipline of HOW, Consistency of WHAT keep the unit from collapsing into generic purpose talk."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch05.ex.southwest-airlines",
+      "label": "Southwest Airlines",
+      "summary": "Southwest Airlines began service in 1971 from Dallas and became a low-fare carrier. The case shows operational consistency as a belief made visible.",
+      "teachesWhat": "Southwest Airlines turns Southwest Airlines into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Southwest Airlines",
+        "1971",
+        "Dallas",
+        "low-fare carrier"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch05.ex.herb-kelleher",
+      "label": "Herb Kelleher",
+      "summary": "Herb Kelleher, a Southwest Airlines cofounder, makes the leadership side concrete: the 1971 airline identity was reinforced through choices, humor, and hiring.",
+      "teachesWhat": "Herb Kelleher turns Herb Kelleher into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Herb Kelleher",
+        "Southwest Airlines",
+        "cofounder",
+        "1971"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch05.ex.apple-design-consistency",
+      "label": "Apple design consistency",
+      "summary": "Apple Inc. in Cupertino carried a recognizable challenger-and-design posture across the 1998 iMac and 2001 iPod products. The point is consistency across WHATs, not one product.",
+      "teachesWhat": "Apple design consistency turns Apple Inc. into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Apple Inc.",
+        "Cupertino",
+        "1998 iMac",
+        "2001 iPod"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to turn alignment discipline into a universal slogan and ignore the cases. The stricter reading keeps the claim tied to the specific examples and uses the framework only where the details support it.",
+  "voiceCues": [
+    "plain business language with short contrasts",
+    "case first, principle second",
+    "second-person diagnostic questions",
+    "simple framework names repeated sparingly"
+  ],
+  "forbiddenLeakage": [
+    "Do not use tipping-point percentages",
+    "Do not make founder succession the focus"
+  ],
+  "paraphraseNotes": "Clarity, Discipline and Consistency works from alignment discipline: A clear WHY needs disciplined HOWs and consistent WHATs so outsiders can recognize the same belief in repeated behavior. A reader learns that purpose becomes credible only when choices, offers, and language line up over time. Southwest Airlines began service in 1971 from Dallas and became a low-fare carrier. The case shows operational consistency as a belief made visible. Herb Kelleher, a Southwest Airlines cofounder, makes the leadership side concrete: the 1971 airline identity was reinforced through choices, humor, and hiring. Apple Inc. in Cupertino carried a recognizable challenger-and-design posture across the 1998 iMac and 2001 iPod products. The point is consistency across WHATs, not one product. Clarity of WHY starts the local logic for Clarity, Discipline and Consistency; Discipline of HOW, Consistency of WHAT complete the sequence. Keep Southwest, Kelleher, and Apple on alignment discipline; do not turn the material into a founder-succession warning.",
+  "testableFacts": [
+    {
+      "id": "ch05.fact.1",
+      "claim": "Southwest Airlines makes alignment discipline concrete through Southwest Airlines and 1971.",
+      "becauseMechanism": "Because Southwest Airlines gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Southwest Airlines as colorful background.",
+      "errorIsWhy": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "derivedFrom": "ch05.ex.southwest-airlines"
+    },
+    {
+      "id": "ch05.fact.2",
+      "claim": "Herb Kelleher adds a second anchor for alignment discipline with Herb Kelleher and Southwest Airlines.",
+      "becauseMechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "errorIsWhy": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "derivedFrom": "ch05.ex.herb-kelleher"
+    },
+    {
+      "id": "ch05.fact.3",
+      "claim": "Apple design consistency supplies a third checkable scene using Apple Inc. and Cupertino.",
+      "becauseMechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "errorIsWhy": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "derivedFrom": "ch05.ex.apple-design-consistency"
+    },
+    {
+      "id": "ch05.fact.4",
+      "claim": "alignment discipline depends on the sequence Clarity of WHY before Discipline of HOW.",
+      "becauseMechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "errorIsWhy": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.5",
+      "claim": "Clarity of WHY, Discipline of HOW, Consistency of WHAT form the local framework for Clarity, Discipline and Consistency.",
+      "becauseMechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "errorIsWhy": "Shortening removes the distinctions the quiz and examples need to test.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.6",
+      "claim": "Dallas is a hard detail that should stay attached to Southwest Airlines.",
+      "becauseMechanism": "Because hard specifics are portable only inside their case, moving Dallas to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "errorIsWhy": "A true detail becomes misleading when it is attached to the wrong case.",
+      "derivedFrom": "ch05.ex.southwest-airlines"
+    },
+    {
+      "id": "ch05.fact.7",
+      "claim": "cofounder gives Herb Kelleher a different factual token from Southwest Airlines.",
+      "becauseMechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "errorIsWhy": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "derivedFrom": "ch05.ex.herb-kelleher"
+    },
+    {
+      "id": "ch05.fact.8",
+      "claim": "1998 iMac helps mark the boundary of alignment discipline.",
+      "becauseMechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "errorIsWhy": "The mechanism changes by venue; boundary details keep the application honest.",
+      "derivedFrom": "ch05.ex.apple-design-consistency"
+    },
+    {
+      "id": "ch05.fact.9",
+      "claim": "Clarity, Discipline and Consistency should teach alignment discipline through Southwest Airlines, Herb Kelleher, and Apple design consistency, not through generic leadership advice.",
+      "becauseMechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "errorIsWhy": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "derivedFrom": "ch05.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Clarity, Discipline and Consistency framework",
+      "members": [
+        "Clarity of WHY",
+        "Discipline of HOW",
+        "Consistency of WHAT"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Southwest Airlines",
+    "Herb Kelleher",
+    "Apple design consistency"
+  ]
+}

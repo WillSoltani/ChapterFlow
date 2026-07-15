@@ -1,0 +1,150 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-decisive-ch01",
+  "itemId": "LNV2-CLEAN-decisive-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "69cecca544e01f6f",
+  "renderedDocSha256": "2473df4e347080e141b9f35b24151601de9122e5619e02df2eeaf1865e1c29a0",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-decisive-ch01-mrgoubal-4",
+  "rawFinalMessageSha256": "814f4f7ff56e5dd34a3f5dacf2bc3410d77f563bcc99f33000d2b5a31fb126d8",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"c\", \"c\", \"a\", \"c\", \"a\", \"a\", \"b\"],\n    \"mechanisms\": [\n      \"The prose defines WRAP as four named moves that each meet a different decision danger.\",\n      \"The chapter says narrow framing makes a rich problem look like yes or no, so the first repair is adding live paths.\",\n      \"Reality-testing asks for evidence that can surprise or hurt the favorite answer.\",\n      \"The Intel section says emotion can carry information, but distance quiets short-term attachment so long-term matters can be judged.\",\n      \"Prepare to be wrong means naming a wider range of plausible futures instead of trusting one neat forecast.\",\n      \"HopeLab used parallel first passes so comparison could teach the team before commitment got expensive.\",\n      \"Grove's move was to ask what a fresh outsider would do without Intel's memory-chip attachment.\",\n      \"The four villains affect framing, evidence, emotion, and forecasting, and each needs a different WRAP move.\",\n      \"The chapter says good process raises the odds without promising the outcome.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Q1: correct choice uniquely spells out all four WRAP moves, making it guessable by acronym recognition.\",\n      \"Q3: correct choice is the only one with the obvious technical cue 'disconfirming evidence'; the other two are openly pro-bias.\",\n      \"Q8: correct choice is the only one that names all four decision domains, while the distractors are vague final-review cautions.\",\n      \"Q9: wrong choices use extreme promises or abandonment, making the balanced middle answer easy to infer.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 82,\n    \"transfer\": 78,\n    \"practical\": 82,\n    \"summaries\": 87,\n    \"tone\": 88,\n    \"limits\": 91,\n    \"insight\": 86,\n    \"density\": 80,\n    \"beginner\": 89\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"A live option set keeps a bad frame from feeling like fate.\",\n      \"why\": \"Strongest compact statement of the chapter's core move.\"\n    },\n    {\n      \"quote\": \"Evidence gets crooked when the favorite answer hires the researcher.\",\n      \"why\": \"Memorable mechanism for confirmation bias, not just a label.\"\n    },\n    {\n      \"quote\": \"If the building is on fire, nobody should pause to build a vendor horse race, invite dissenting evidence, and map three futures.\",\n      \"why\": \"Clear boundary condition that keeps the process from being oversold.\"\n    },\n    {\n      \"quote\": \"The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.\",\n      \"why\": \"The action is concrete but a little under-explained and ritual-like.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"try this now\",\n      \"problem\": \"The instruction uses 'shortcut' before making clear what shortcut the reader should use, so the quick exercise is less standalone than the surrounding summaries.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"The correct answer is made unusually visible because it is the only option that names all four WRAP moves.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q3\",\n      \"problem\": \"The distractors are too obviously wrong because both recommend strengthening advocacy for the favorite plan.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q5\",\n      \"problem\": \"The stem's 'Intel reviewer' and 'launch board' mix the Intel example with launch-forecast language, which is mildly distracting even though the answer remains derivable.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"The example is thin-but-usable: Yvonne has no role or context, and the scene mostly restates the forecast-range lesson without a before-to-after consequence.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples section\",\n      \"problem\": \"Several examples stay inside product, prototype, vendor, and strategy-review settings, so transfer beyond business decisions is narrower than the implementation plan implies.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable chapter with a strong central model, memorable mechanism lines, fair quiz keys, and unusually good limits around uncertainty and emergencies. Its main weakness is transfer breadth: the examples are coherent but clustered in similar organizational settings, and one forecast example feels like a light placeholder. The quiz is derivable, but several correct answers are telegraphed by exact model terms while distractors are plainly foolish. No must-fix reader-harming defect appears on the page.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "decisive-ch01",
+    "chapterNumber": 1,
+    "contentHash": "69cecca544e01f6f",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-decisive-ch01-mrgoubal-4",
+    "scores": {
+      "retention": 88,
+      "quizzes": 82,
+      "transfer": 78,
+      "practical": 82,
+      "summaries": 87,
+      "tone": 88,
+      "limits": 91,
+      "insight": 86,
+      "density": 80,
+      "beginner": 89
+    },
+    "composite": 85,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "c",
+        "c",
+        "a",
+        "c",
+        "a",
+        "a",
+        "b"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "A live option set keeps a bad frame from feeling like fate.",
+        "why": "Strongest compact statement of the chapter's core move.",
+        "verified": true
+      },
+      {
+        "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+        "why": "Memorable mechanism for confirmation bias, not just a label.",
+        "verified": true
+      },
+      {
+        "quote": "If the building is on fire, nobody should pause to build a vendor horse race, invite dissenting evidence, and map three futures.",
+        "why": "Clear boundary condition that keeps the process from being oversold.",
+        "verified": true
+      },
+      {
+        "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+        "why": "The action is concrete but a little under-explained and ritual-like.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q1: correct choice uniquely spells out all four WRAP moves, making it guessable by acronym recognition.",
+      "Q3: correct choice is the only one with the obvious technical cue 'disconfirming evidence'; the other two are openly pro-bias.",
+      "Q8: correct choice is the only one that names all four decision domains, while the distractors are vague final-review cautions.",
+      "Q9: wrong choices use extreme promises or abandonment, making the balanced middle answer easy to infer."
+    ],
+    "complaints": [
+      {
+        "unit": "try this now",
+        "problem": "The instruction uses 'shortcut' before making clear what shortcut the reader should use, so the quick exercise is less standalone than the surrounding summaries.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1",
+        "problem": "The correct answer is made unusually visible because it is the only option that names all four WRAP moves.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q3",
+        "problem": "The distractors are too obviously wrong because both recommend strengthening advocacy for the favorite plan.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q5",
+        "problem": "The stem's 'Intel reviewer' and 'launch board' mix the Intel example with launch-forecast language, which is mildly distracting even though the answer remains derivable.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "The example is thin-but-usable: Yvonne has no role or context, and the scene mostly restates the forecast-range lesson without a before-to-after consequence.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples section",
+        "problem": "Several examples stay inside product, prototype, vendor, and strategy-review settings, so transfer beyond business decisions is narrower than the implementation plan implies.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter with a strong central model, memorable mechanism lines, fair quiz keys, and unusually good limits around uncertainty and emergencies. Its main weakness is transfer breadth: the examples are coherent but clustered in similar organizational settings, and one forecast example feels like a light placeholder. The quiz is derivable, but several correct answers are telegraphed by exact model terms while distractors are plainly foolish. No must-fix reader-harming defect appears on the page.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "ec94fcd42d5c882fb154d0aa8d15cc70cba15e977e49362d66095fe60aef9ac2",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:19:26.298Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:18:37.100Z",
+  "durationMs": 0
+}

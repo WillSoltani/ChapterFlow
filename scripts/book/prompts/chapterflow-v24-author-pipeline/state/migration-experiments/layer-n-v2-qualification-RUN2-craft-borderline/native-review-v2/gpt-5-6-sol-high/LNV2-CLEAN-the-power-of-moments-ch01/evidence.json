@@ -1,0 +1,165 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-power-of-moments-ch01",
+  "itemId": "LNV2-CLEAN-the-power-of-moments-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "c5d9bbf8b745d098",
+  "renderedDocSha256": "631e4c7e1556b5c190cd23e017057fbcd3198c0ffd8764dd6543935f706f5f33",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-power-of-moments-ch01-mrh6k6kz-38",
+  "rawFinalMessageSha256": "195b91861478c2b46ce296150b98869261caa8d323ad6764dd02fc2b3987d044",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"a\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The cold-water study shows that a milder ending can improve recall even when the episode lasts longer.\",\n      \"The red-phone example shows that one vivid, tellable surprise can elevate an otherwise modest setting.\",\n      \"YES Prep makes effort visible before peers and adults, combining pride with connection.\",\n      \"The prose explicitly names elevation, insight, pride, and connection as the four common ingredients.\",\n      \"The chapter says a concrete object can signal that the ordinary script has changed.\",\n      \"The popsicle becomes memorable because its request and silver-tray delivery turn the gift into an event.\",\n      \"The chapter advises marking a threshold before the next stage dissolves into private logistics.\",\n      \"The peak-end account explicitly says memory does not average every minute equally.\",\n      \"The quiet mint lacks the vivid, structured delivery that would make it an easy story to retell.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice b closely echoes the chapter's central peak-end claim; a and c conspicuously dismiss endings.\",\n      \"Choice b is the only vivid, affirmative design action, while a uses the giveaway absolute “no guest moments.”\",\n      \"Choice a restates the YES Prep example; b and c defer recognition without support.\",\n      \"Choice c simply enumerates all four ingredients from the prose, making retrieval nearly automatic.\",\n      \"Choice a nearly quotes a memorable line, while b uses the giveaway absolute “all changes.”\",\n      \"Choice b is the only option that describes an event; a reduces memory to price and c preserves the stated problem.\",\n      \"Choice c closely paraphrases the threshold passage; a and b both postpone or avoid the chapter's move.\",\n      \"Choice a directly negates the sentence that memory does not average each minute; b and c are plainly endorsed claims.\",\n      \"Choice c is substantially more explanatory and chapter-specific than the two distractors.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 92,\n    \"quizzes\": 80,\n    \"transfer\": 72,\n    \"practical\": 90,\n    \"summaries\": 92,\n    \"tone\": 90,\n    \"limits\": 96,\n    \"insight\": 89,\n    \"density\": 78,\n    \"beginner\": 95\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"A small peak can become the story of the whole stay.\",\n      \"why\": \"This compact line makes the chapter's core move memorable and portable.\"\n    },\n    {\n      \"quote\": \"A gentle final minute is not permission to make the first part careless.\",\n      \"why\": \"This states the ethical limit of peak-end design clearly and without hedging.\"\n    },\n    {\n      \"quote\": \"Parent Margaret expects a plain pool afternoon at the Magic Castle Hotel in Los Angeles.\",\n      \"why\": \"The chapter presents a named person inside a real venue without identifying her as hypothetical or sourced.\"\n    },\n    {\n      \"quote\": \"Lorne waits at YES Prep, a Houston public charter network, during its college acceptance celebration.\",\n      \"why\": \"This similarly inserts an apparently factual named participant into a real organization's event without support or disclosure.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 1\",\n      \"problem\": \"The example invents a named guest, Margaret, and presents her experience at a real hotel as an event without labeling it hypothetical or providing support; this is a FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The example invents a named YES Prep student, Lorne, and places him in a real organization's celebration without labeling the scenario hypothetical or providing support; this is a FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The example presents the named trainer Tristan and his volunteer session as a concrete event without indicating that the person and event are hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"full read and example 5\",\n      \"problem\": \"Leah is presented as a named mentor making a concrete decision, then reused as evidence-like material, without being identified as fictional or hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"The trainer scenario mostly restates the cold-water finding and supplies no observed before-to-after consequence, so it adds little transfer evidence beyond the preceding explanation.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"The unnamed community-workshop scenario has no specific place, person, result, or consequence and therefore reads as a thin but usable slot-filler.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples 3-5\",\n      \"problem\": \"The cold-water comparison is repeated across three consecutive examples, reducing density without adding substantially different mechanisms or failure cases.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Many correct choices closely paraphrase memorable lines while distractors rely on conspicuous absolutes, delay, or inaction, making several answers guessable without reading closely.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter teaches a clear, memorable move: design peaks, thresholds, and endings without using them to conceal a broken underlying experience. Its red phone, cold-water contrast, practical prompts, layered summaries, and unusually explicit limits make it approachable and useful. The quiz is fully derivable but often too easy because correct choices echo the prose while distractors are obvious strawmen. Transfer and density suffer from repetitive examples, and the named invented participants placed inside real institutions are materially misleading unless clearly labeled as hypothetical or replaced with sourced cases. I would ship after fixing those fabricated presentations, but not at the professional bar in its current form.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-power-of-moments-ch01",
+    "chapterNumber": 1,
+    "contentHash": "c5d9bbf8b745d098",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-power-of-moments-ch01-mrh6k6kz-38",
+    "scores": {
+      "retention": 92,
+      "quizzes": 80,
+      "transfer": 72,
+      "practical": 90,
+      "summaries": 92,
+      "tone": 90,
+      "limits": 96,
+      "insight": 89,
+      "density": 78,
+      "beginner": 95
+    },
+    "composite": 87.2,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "a",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "A small peak can become the story of the whole stay.",
+        "why": "This compact line makes the chapter's core move memorable and portable.",
+        "verified": true
+      },
+      {
+        "quote": "A gentle final minute is not permission to make the first part careless.",
+        "why": "This states the ethical limit of peak-end design clearly and without hedging.",
+        "verified": true
+      },
+      {
+        "quote": "Parent Margaret expects a plain pool afternoon at the Magic Castle Hotel in Los Angeles.",
+        "why": "The chapter presents a named person inside a real venue without identifying her as hypothetical or sourced.",
+        "verified": true
+      },
+      {
+        "quote": "Lorne waits at YES Prep, a Houston public charter network, during its college acceptance celebration.",
+        "why": "This similarly inserts an apparently factual named participant into a real organization's event without support or disclosure.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b closely echoes the chapter's central peak-end claim; a and c conspicuously dismiss endings.",
+      "Choice b is the only vivid, affirmative design action, while a uses the giveaway absolute “no guest moments.”",
+      "Choice a restates the YES Prep example; b and c defer recognition without support.",
+      "Choice c simply enumerates all four ingredients from the prose, making retrieval nearly automatic.",
+      "Choice a nearly quotes a memorable line, while b uses the giveaway absolute “all changes.”",
+      "Choice b is the only option that describes an event; a reduces memory to price and c preserves the stated problem.",
+      "Choice c closely paraphrases the threshold passage; a and b both postpone or avoid the chapter's move.",
+      "Choice a directly negates the sentence that memory does not average each minute; b and c are plainly endorsed claims.",
+      "Choice c is substantially more explanatory and chapter-specific than the two distractors."
+    ],
+    "complaints": [
+      {
+        "unit": "example 1",
+        "problem": "The example invents a named guest, Margaret, and presents her experience at a real hotel as an event without labeling it hypothetical or providing support; this is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 2",
+        "problem": "The example invents a named YES Prep student, Lorne, and places him in a real organization's celebration without labeling the scenario hypothetical or providing support; this is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 4",
+        "problem": "The example presents the named trainer Tristan and his volunteer session as a concrete event without indicating that the person and event are hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "full read and example 5",
+        "problem": "Leah is presented as a named mentor making a concrete decision, then reused as evidence-like material, without being identified as fictional or hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 3",
+        "problem": "The trainer scenario mostly restates the cold-water finding and supplies no observed before-to-after consequence, so it adds little transfer evidence beyond the preceding explanation.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The unnamed community-workshop scenario has no specific place, person, result, or consequence and therefore reads as a thin but usable slot-filler.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples 3-5",
+        "problem": "The cold-water comparison is repeated across three consecutive examples, reducing density without adding substantially different mechanisms or failure cases.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz",
+        "problem": "Many correct choices closely paraphrase memorable lines while distractors rely on conspicuous absolutes, delay, or inaction, making several answers guessable without reading closely.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter teaches a clear, memorable move: design peaks, thresholds, and endings without using them to conceal a broken underlying experience. Its red phone, cold-water contrast, practical prompts, layered summaries, and unusually explicit limits make it approachable and useful. The quiz is fully derivable but often too easy because correct choices echo the prose while distractors are obvious strawmen. Transfer and density suffer from repetitive examples, and the named invented participants placed inside real institutions are materially misleading unless clearly labeled as hypothetical or replaced with sourced cases. I would ship after fixing those fabricated presentations, but not at the professional bar in its current form.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "47bbae470f919e949d38689343aaf37d5fe9423ffb37ba7848cceb14029e1994",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:35:48.498Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:34:37.522Z",
+  "durationMs": 0
+}

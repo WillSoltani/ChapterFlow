@@ -1,0 +1,291 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1",
+  "itemId": "LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1",
+  "kind": "quiz-key-mismatch",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "43b23cfa0700b3e1",
+  "renderedDocSha256": "9fdcea43132a18b37f66e10a6e5f0f334bb83db7bab2c3be3afdbb0a54512823",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-mrgp0d6p-9",
+  "rawFinalMessageSha256": "0504a6ddae232b6f0c391e99404eb4d4a067aa7d89276f3a9d9e5c80759c43a5",
+  "rawFinalMessage": "```json\n{\n  \"schema\": \"quiz-adjudication-v1\",\n  \"derivationSha256\": \"aee4e93ff810cd2788d8b0b878f5892449f91b69986c9a8eb701a5f46b8906ec\",\n  \"documentSha256\": \"\",\n  \"reviewerSessionId\": \"\",\n  \"items\": [\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q01\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": false,\n      \"keyCorrect\": \"wrong\",\n      \"rationale\": \"Choice c is best because the three powers require naming what to start, what to stop, and the value to remember; choice a is only refusal.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q02\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a matches the claim that prefrontal control keeps goals active and biases attention and responses during impulse conflict.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q03\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a captures the useful Gage takeaway: basic survival and speech can remain while frontal damage disrupts planning and restraint.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q04\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b is supported because Amelia needs awareness of the cue or urge before the automatic action, not later regret.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q05\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b fits the social-root framing: self-control supports commitments and trust that allow group life to work.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q06\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b is best because a real long-term goal must be salient at the choice point to compete with a vivid cue.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q07\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a correctly treats both motives as sincere and focuses on which one receives support in the moment.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q08\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c follows the method by using a concrete behavior, trigger observation, and feedback instead of a broad declaration.\"\n    },\n    {\n      \"itemId\": \"the-willpower-instinct-ch01-q09\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c matches prefrontal control's role in biasing attention and response when routine action conflicts with the current goal.\"\n    }\n  ]\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "43b23cfa0700b3e1",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-mrgp0d6p-9",
+    "scores": {
+      "retention": 90,
+      "quizzes": 78,
+      "transfer": 84,
+      "practical": 90,
+      "summaries": 88,
+      "tone": 87,
+      "limits": 84,
+      "insight": 89,
+      "density": 86,
+      "beginner": 91
+    },
+    "composite": 86.5,
+    "ship84": true,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "a",
+        "a",
+        "b",
+        "b",
+        "b",
+        "a",
+        "c",
+        "c"
+      ],
+      "matches": 8,
+      "of": 9,
+      "disagreements": [
+        "Q1: reader=c key=a"
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "Refusal is only one third of willpower.",
+        "why": "This is the chapter's cleanest memorable compression of the core move.",
+        "verified": true
+      },
+      {
+        "quote": "A goal must be present to have power.",
+        "why": "Strong mechanism in plain language; it explains why the method works.",
+        "verified": true
+      },
+      {
+        "quote": "Earl K. Miller's 2001 control account helps explain why the want needs attention.",
+        "why": "The citation phrasing becomes repetitive across examples and starts to feel like a template slot.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Correct answers are often the most mechanism-rich option, while distractors use extreme giveaway words such as 'only,' 'fake,' 'proof,' and 'avoid cooperation.'",
+      "Q1, Q2, and Q7 especially signal the right answer by making it the broad, balanced, chapter-language choice."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz overall",
+        "problem": "Several distractors are too easy because they use extreme claims the prose clearly rejects, reducing diagnostic value for readers who did not fully read.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q1",
+        "problem": "The correct option is the only one that mirrors the chapter's three-part formula, making it guessable.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The example is usable but thin: it restates that the long-term goal needs attention without much before-to-after consequence beyond naming the want.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples 4-6",
+        "problem": "The repeated Miller/Cohen attribution in the why-it-matters lines feels mechanical and adds little new transfer value each time.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter: the core distinction is clear, memorable, practical, and well layered across fast, deep, and full reads. The best line, 'Refusal is only one third of willpower,' gives beginners a durable handle, and the examples usually show the mechanism in action. The main weakness is quiz craft: the correct answers often sound like the chapter's balanced thesis while distractors sound obviously extreme, so the quiz checks recognition more than understanding. A few examples also lean on repeated explanatory citation instead of fresh consequence, but these are polish issues rather than blocking defects.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c412cf1d517372befed726feded2c9a6f655d199dca4e5736b7138dc087d359a",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:23:55.942Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+    "quizAdjudication": {
+      "status": "adjudicated",
+      "derivationSha256": "aee4e93ff810cd2788d8b0b878f5892449f91b69986c9a8eb701a5f46b8906ec",
+      "phase2DocSha256": "c8baa31c09d88f5b0f586d8ef64dede5b6cd2236f27138d0f9a23f8777447139",
+      "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-mrgp15bb-10",
+      "items": [
+        {
+          "itemId": "the-willpower-instinct-ch01-q01",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 2,
+          "agreement": false,
+          "keyCorrect": "wrong",
+          "rationale": "Choice c is best because the three powers require naming what to start, what to stop, and the value to remember; choice a is only refusal."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q02",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a matches the claim that prefrontal control keeps goals active and biases attention and responses during impulse conflict."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q03",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a captures the useful Gage takeaway: basic survival and speech can remain while frontal damage disrupts planning and restraint."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q04",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is supported because Amelia needs awareness of the cue or urge before the automatic action, not later regret."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q05",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b fits the social-root framing: self-control supports commitments and trust that allow group life to work."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q06",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is best because a real long-term goal must be salient at the choice point to compete with a vivid cue."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q07",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a correctly treats both motives as sincere and focuses on which one receives support in the moment."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q08",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c follows the method by using a concrete behavior, trigger observation, and feedback instead of a broad declaration."
+        },
+        {
+          "itemId": "the-willpower-instinct-ch01-q09",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c matches prefrontal control's role in biasing attention and response when routine action conflicts with the current goal."
+        }
+      ],
+      "ambiguousCount": 0,
+      "keyWrongCount": 1
+    }
+  },
+  "phase2": {
+    "status": "adjudicated",
+    "derivationSha256": "aee4e93ff810cd2788d8b0b878f5892449f91b69986c9a8eb701a5f46b8906ec",
+    "phase2DocSha256": "c8baa31c09d88f5b0f586d8ef64dede5b6cd2236f27138d0f9a23f8777447139",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-willpower-instinct-ch01-q1-mrgp15bb-10",
+    "items": [
+      {
+        "itemId": "the-willpower-instinct-ch01-q01",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 2,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice c is best because the three powers require naming what to start, what to stop, and the value to remember; choice a is only refusal."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a matches the claim that prefrontal control keeps goals active and biases attention and responses during impulse conflict."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a captures the useful Gage takeaway: basic survival and speech can remain while frontal damage disrupts planning and restraint."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is supported because Amelia needs awareness of the cue or urge before the automatic action, not later regret."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b fits the social-root framing: self-control supports commitments and trust that allow group life to work."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is best because a real long-term goal must be salient at the choice point to compete with a vivid cue."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a correctly treats both motives as sincere and focuses on which one receives support in the moment."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q08",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c follows the method by using a concrete behavior, trigger observation, and feedback instead of a broad declaration."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c matches prefrontal control's role in biasing attention and response when routine action conflicts with the current goal."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "phase-1 keyCheck.disagreements + phase-2 quizAdjudication.items[].keyCorrect==='wrong'",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:23:19.488Z",
+  "durationMs": 0
+}

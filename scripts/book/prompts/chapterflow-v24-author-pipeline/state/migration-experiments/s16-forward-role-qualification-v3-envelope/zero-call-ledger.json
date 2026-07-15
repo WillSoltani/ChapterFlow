@@ -1,0 +1,18 @@
+{
+  "schema": "imp24-role-qualification-zero-call-ledger-v1",
+  "experimentId": "s16-forward-role-qualification-v3-envelope",
+  "implementationCommit": "e9a90bc17cd997fe1707b5cd62d86ef7a4e743b8",
+  "qualificationFreezeSha256": "7ecde290cdab149b2ceb84e3bbd2becdd0e9fcc4d9b392d7ca94a793350a8887",
+  "certificationSha256": "0870c20df24fbda8d5376723edc6a5c1a84a7fe8bce0e3095aa28ef46f01289e",
+  "productionInstrumentSealSha256": "8ee638990c927fd9c6e15be8754512c0774da0065ce793851927eecde88f4187",
+  "entries": [],
+  "canaryCalls": 0,
+  "holdoutCalls": 0,
+  "brokerRequests": 0,
+  "codexExecInvocations": 0,
+  "cachedReceipts": 0,
+  "infrastructureReplays": 0,
+  "maxPlanEvents": 0,
+  "apiCallsMade": 0,
+  "terminalReason": "IMPLEMENTATION_CI_GATE_WORKFLOW_IDENTITY_MISMATCH"
+}

@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 14,
+  "chapterTitle": "The New Competition",
+  "focus": "The most useful competition is against yesterday's version of the organization or person, because WHY is measured by fidelity rather than category dominance. A reader learns to use rivals as information without letting them define the purpose.",
+  "coreClaim": "The New Competition turns self-referenced competition into a practical decision rule backed by named cases and checkable details.",
+  "centralConcept": {
+    "id": "ch14.concept",
+    "name": "self-referenced competition",
+    "plainDefinition": "The most useful competition is against yesterday's version of the organization or person, because WHY is measured by fidelity rather than category dominance.",
+    "whyItMatters": "A reader learns to use rivals as information without letting them define the purpose."
+  },
+  "keyClaims": [
+    "self-referenced competition becomes usable only when tied to visible behavior.",
+    "Apple and Dell contrast gives the first concrete anchor.",
+    "Microsoft long-run rivalry creates contrast so the idea is not one anecdote.",
+    "Southwest Airlines operating benchmark adds a boundary case for application.",
+    "External rival, Internal benchmark, Purpose fidelity, Continuous improvement keep the unit from collapsing into generic purpose talk."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch14.ex.apple-and-dell-contrast",
+      "label": "Apple and Dell contrast",
+      "summary": "Apple Inc. and Dell make the external-rival contrast concrete through the 2001 iPod and 2003 Dell DJ.",
+      "teachesWhat": "Apple and Dell contrast turns Apple Inc. into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Apple Inc.",
+        "Dell",
+        "2001 iPod",
+        "2003 Dell DJ"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch14.ex.microsoft-long-run-rivalry",
+      "label": "Microsoft long-run rivalry",
+      "summary": "Microsoft's 1975 founding, software company identity, and Redmond headquarters show how category rivalry can distract from purpose if winning becomes the only measure.",
+      "teachesWhat": "Microsoft long-run rivalry turns Microsoft into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Microsoft",
+        "1975 founding",
+        "software company",
+        "Redmond headquarters"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch14.ex.southwest-airlines-operating-benchmark",
+      "label": "Southwest Airlines operating benchmark",
+      "summary": "Southwest Airlines, 1971, Dallas, and low-fare carrier ground the idea of improving against an operating standard instead of copying rivals.",
+      "teachesWhat": "Southwest Airlines operating benchmark turns Southwest Airlines into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Southwest Airlines",
+        "1971",
+        "Dallas",
+        "low-fare carrier"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to turn self-referenced competition into a universal slogan and ignore the cases. The stricter reading keeps the claim tied to the specific examples and uses the framework only where the details support it.",
+  "voiceCues": [
+    "plain business language with short contrasts",
+    "case first, principle second",
+    "second-person diagnostic questions",
+    "simple framework names repeated sparingly"
+  ],
+  "forbiddenLeakage": [
+    "Do not introduce new discovery steps",
+    "Do not add publish or action-plan material"
+  ],
+  "paraphraseNotes": "The New Competition works from self-referenced competition: The most useful competition is against yesterday's version of the organization or person, because WHY is measured by fidelity rather than category dominance. A reader learns to use rivals as information without letting them define the purpose. Apple Inc. and Dell make the external-rival contrast concrete through the 2001 iPod and 2003 Dell DJ. Microsoft's 1975 founding, software company identity, and Redmond headquarters show how category rivalry can distract from purpose if winning becomes the only measure. Southwest Airlines, 1971, Dallas, and low-fare carrier ground the idea of improving against an operating standard instead of copying rivals. External rival starts the local logic for The New Competition; Internal benchmark, Purpose fidelity, Continuous improvement complete the sequence. Keep Apple-Dell, Microsoft, and Southwest on self-benchmarking; do not introduce new discovery exercises.",
+  "testableFacts": [
+    {
+      "id": "ch14.fact.1",
+      "claim": "Apple and Dell contrast makes self-referenced competition concrete through Apple Inc. and Dell.",
+      "becauseMechanism": "Because Apple Inc. gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Apple and Dell contrast as colorful background.",
+      "errorIsWhy": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "derivedFrom": "ch14.ex.apple-and-dell-contrast"
+    },
+    {
+      "id": "ch14.fact.2",
+      "claim": "Microsoft long-run rivalry adds a second anchor for self-referenced competition with Microsoft and 1975 founding.",
+      "becauseMechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "errorIsWhy": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "derivedFrom": "ch14.ex.microsoft-long-run-rivalry"
+    },
+    {
+      "id": "ch14.fact.3",
+      "claim": "Southwest Airlines operating benchmark supplies a third checkable scene using Southwest Airlines and 1971.",
+      "becauseMechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "errorIsWhy": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "derivedFrom": "ch14.ex.southwest-airlines-operating-benchmark"
+    },
+    {
+      "id": "ch14.fact.4",
+      "claim": "self-referenced competition depends on the sequence External rival before Internal benchmark.",
+      "becauseMechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "errorIsWhy": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "derivedFrom": "ch14.concept"
+    },
+    {
+      "id": "ch14.fact.5",
+      "claim": "External rival, Internal benchmark, Purpose fidelity, Continuous improvement form the local framework for The New Competition.",
+      "becauseMechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "errorIsWhy": "Shortening removes the distinctions the quiz and examples need to test.",
+      "derivedFrom": "ch14.concept"
+    },
+    {
+      "id": "ch14.fact.6",
+      "claim": "2001 iPod is a hard detail that should stay attached to Apple and Dell contrast.",
+      "becauseMechanism": "Because hard specifics are portable only inside their case, moving 2001 iPod to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "errorIsWhy": "A true detail becomes misleading when it is attached to the wrong case.",
+      "derivedFrom": "ch14.ex.apple-and-dell-contrast"
+    },
+    {
+      "id": "ch14.fact.7",
+      "claim": "software company gives Microsoft long-run rivalry a different factual token from Apple and Dell contrast.",
+      "becauseMechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "errorIsWhy": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "derivedFrom": "ch14.ex.microsoft-long-run-rivalry"
+    },
+    {
+      "id": "ch14.fact.8",
+      "claim": "Dallas helps mark the boundary of self-referenced competition.",
+      "becauseMechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "errorIsWhy": "The mechanism changes by venue; boundary details keep the application honest.",
+      "derivedFrom": "ch14.ex.southwest-airlines-operating-benchmark"
+    },
+    {
+      "id": "ch14.fact.9",
+      "claim": "The New Competition should teach self-referenced competition through Apple and Dell contrast, Microsoft long-run rivalry, and Southwest Airlines operating benchmark, not through generic leadership advice.",
+      "becauseMechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "errorIsWhy": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "derivedFrom": "ch14.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "The New Competition framework",
+      "members": [
+        "External rival",
+        "Internal benchmark",
+        "Purpose fidelity",
+        "Continuous improvement"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Apple",
+    "Dell contrast",
+    "Microsoft long-run rivalry",
+    "Southwest Airlines operating benchmark"
+  ]
+}

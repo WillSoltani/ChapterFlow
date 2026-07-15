@@ -1,0 +1,165 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c10-a1",
+  "requestSha256": "8ef5d302ebdaf0951a8d3273684f27513afc801a42345ac0fe9a4fca20a6b427",
+  "receiptSha256": "ca4e87e48e7823cac8010c4956dd8afc365367f7412fd71fd851c8bd567c0c97",
+  "executionEvidenceSha256": "01e21734b106bdd8640d591152a842605d9cc465e2d7e5b2c98826dd87017fdb",
+  "rawOutputSha256": "63d099b30102f1e07648d5f0f317e78aab43356dfa61f36d15db007d22ffa414",
+  "evaluationSha256": "9413aabc5a97fac04140d04935d06ab2b8922975ff87bdbfc027aeae3171d9dd",
+  "parsedOutputSha256": "3d12c235d2f71537ede04dc51d855ab8b55fe3655b66ba6d69d0fa85ebca4ead",
+  "assembledReviewSha256": "e0187fbd495ea0ee0e40cebc0acb69788b027306aa1698f3b61222225035b02e",
+  "evidenceReferenceResolutionSha256": "7679f7b0923b8a13d267f38b9857caad18a21c5ca896e4fbd0bb5d1ed211ff75",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=source_contradiction",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "causalOverreachSensitivity": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "source_contradiction",
+              "secondaryCategories": [
+                "claim_strength_overreach"
+              ],
+              "severity": "major",
+              "explanation": "The supported possibility is converted into proof of an exceptionless causal outcome for every person. That universal guarantee conflicts with the source’s qualified proposition and exceeds both the permitted strength and the explicit prohibition on guaranteed outcomes.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-ATOMIC-015"
+              ]
+            }
+          ],
+          "rationale": "The chapter preserves the source-backed core idea that convenience and disproportionate attention extraction can coexist, but adds proof language and an absolute universal outcome that the evidence does not support."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "c2e241d5ad2f6e907530f1e190b9b99de984d2e26299e3aa46c8e4cbaf791e32",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9414cd061501de5f68f1a6d81ee6fa628b97a5e59916ddfff7d86d25982d9c11",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "source_contradiction",
+              "secondaryCategories": [
+                "claim_strength_overreach"
+              ],
+              "severity": "major",
+              "explanation": "The supported possibility is converted into proof of an exceptionless causal outcome for every person. That universal guarantee conflicts with the source’s qualified proposition and exceeds both the permitted strength and the explicit prohibition on guaranteed outcomes.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-ATOMIC-015"
+              ],
+              "findingId": "unit.fact.ch01.fact.2:source-finding:001",
+              "chapterEvidenceSpans": [
+                "This proves that a platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. always causes the stated outcome for every person, without exception."
+              ],
+              "sourceEvidenceSpans": [
+                "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+                "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time.",
+                "{\n  \"id\": \"ch01.fact.2\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "The chapter preserves the source-backed core idea that convenience and disproportionate attention extraction can coexist, but adds proof language and an absolute universal outcome that the evidence does not support.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit"
+      ],
+      "rationale": "U1: The chapter preserves the source-backed core idea that convenience and disproportionate attention extraction can coexist, but adds proof language and an absolute universal outcome that the evidence does not support."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "This proves that a platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. always causes the stated outcome for every person, without exception."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-ATOMIC-015"
+          ],
+          "evidenceSpans": [
+            "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+            "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time.",
+            "{\n  \"id\": \"ch01.fact.2\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "854976f824773ff0d45d519374cc800ec63abf6a9a63942168b083a135dac3d4"
+}

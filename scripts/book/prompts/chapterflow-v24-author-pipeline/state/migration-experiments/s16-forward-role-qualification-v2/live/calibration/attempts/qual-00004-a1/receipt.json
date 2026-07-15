@@ -1,0 +1,12 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "failed-exec-qual-00004-a1",
+  "status": "provider_capacity",
+  "role": "reader",
+  "profileId": "gpt-5.6-sol@high",
+  "model": "gpt-5.6-sol",
+  "effort": "high",
+  "schemaSha256": "96be560b412f18eb33b67df3baf8f56b3ee466b0a706eb4ea89ab12250413fd3",
+  "rawOutput": null,
+  "failureDetail": "forward reviewer: codex exec failed (ok=false, exitCode=1, outcome=provider_rate_or_capacity)"
+}

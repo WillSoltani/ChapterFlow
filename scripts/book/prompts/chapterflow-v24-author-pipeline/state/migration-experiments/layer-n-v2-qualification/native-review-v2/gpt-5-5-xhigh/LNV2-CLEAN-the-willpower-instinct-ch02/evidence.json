@@ -1,0 +1,144 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-willpower-instinct-ch02",
+  "itemId": "LNV2-CLEAN-the-willpower-instinct-ch02",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "e87d5da1e9601d67",
+  "renderedDocSha256": "22ff85767028d6a0ccdf64056f8a1cdb01b4440ca19c5ae701b1ed4ddfa3a558",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "cf7b09ac3bcc41d64910549c09164796639f2bb485848d0244fbed692d52c6fc",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-the-willpower-instinct-ch02-mrh9ta8u-7",
+  "rawFinalMessageSha256": "e4e3d0e5042a3e34751d6b15b6e43486747d26367fd3210c5a078a25ac2ad1b7",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"c\", \"a\", \"b\", \"b\", \"a\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines heart rate variability as beat-to-beat rhythm shifting with demand and links higher variability to self-regulation.\",\n      \"The Trier description says public speaking/arithmetic under social judgment can make the body react without being chased or injured.\",\n      \"The prose says stress narrows attention and makes fast comfort feel like shelter after tense moments.\",\n      \"Tang's training is presented as brief practice that steadies attention and softens stress reactivity before the urge peaks.\",\n      \"Slow breathing is framed as changing the body state that feeds arousal, attention, and choice, not as mere delay.\",\n      \"Pause-and-plan questions treating arousal as readiness because panic narrows the room for weighing goals.\",\n      \"The sleep passage says tired attention loses its grip and lets loud cues displace the intended care task.\",\n      \"The movement passage says activity can improve mood, stress regulation, and executive function, lowering the next choice load.\",\n      \"The chapter repeatedly says waiting until the craving peaks is unfair because the body needs runway before the hardest moment.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Q2's correct option uniquely repeats the chapter's source phrase about social judgment and low control.\",\n      \"Q4's wrong options use giveaway absolutes like mainly and only.\",\n      \"Q9's correct option repeats the chapter's key wording about runway before the craving peaked.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 86,\n    \"transfer\": 84,\n    \"practical\": 88,\n    \"summaries\": 90,\n    \"tone\": 87,\n    \"limits\": 94,\n    \"insight\": 91,\n    \"density\": 84,\n    \"beginner\": 89\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Panic is a poor coach. Calm gives the future a vote.\",\n      \"why\": \"This is the chapter's strongest compressed statement of the mechanism.\"\n    },\n    {\n      \"quote\": \"A slower body can also become a hiding place. You may breathe before a reply and then never send the apology.\",\n      \"why\": \"This gives the advice an honest boundary and prevents misuse.\"\n    },\n    {\n      \"quote\": \"c) The state change came too late; the body needed runway before the craving peaked.\",\n      \"why\": \"This quiz option is fair but gives itself away by echoing the chapter's exact phrasing.\"\n    },\n    {\n      \"quote\": \"The object carries the attention Yi-Yuan Tang trained through return practice.\",\n      \"why\": \"This stretches the source tie; the object cue is useful, but the research linkage feels overclaimed.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q2\",\n      \"problem\": \"The keyed answer is made easy by uniquely reusing the chapter's social-judgment/low-control phrasing while the distractors are obviously narrower.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q9\",\n      \"problem\": \"The keyed answer repeats the chapter's runway-before-peak language, creating a phrasing tell.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"The example is thin-but-usable: it shows a learner's realization but little concrete before-to-after consequence beyond restating the lesson.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The final source connection overreaches slightly by tying a visible pill-bottle cue directly to Tang's attention training.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"review card 6\",\n      \"problem\": \"It depends on Ch 1 terminology, so it is less approachable cold than the other cards.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable chapter. The core move is memorable, bodily, and practical: calm the state before asking willpower to decide. The best sections explain mechanism rather than moralizing, and the limits section is unusually good. The main weaknesses are craft-level quiz tells and a few examples that lean harder on named research than on observed consequence, but there is no concrete reader-harming defect.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-willpower-instinct-ch02",
+    "chapterNumber": 2,
+    "contentHash": "e87d5da1e9601d67",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-the-willpower-instinct-ch02-mrh9ta8u-7",
+    "scores": {
+      "retention": 90,
+      "quizzes": 86,
+      "transfer": 84,
+      "practical": 88,
+      "summaries": 90,
+      "tone": 87,
+      "limits": 94,
+      "insight": 91,
+      "density": 84,
+      "beginner": 89
+    },
+    "composite": 88.2,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "c",
+        "a",
+        "b",
+        "b",
+        "a",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Panic is a poor coach. Calm gives the future a vote.",
+        "why": "This is the chapter's strongest compressed statement of the mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "A slower body can also become a hiding place. You may breathe before a reply and then never send the apology.",
+        "why": "This gives the advice an honest boundary and prevents misuse.",
+        "verified": true
+      },
+      {
+        "quote": "c) The state change came too late; the body needed runway before the craving peaked.",
+        "why": "This quiz option is fair but gives itself away by echoing the chapter's exact phrasing.",
+        "verified": true
+      },
+      {
+        "quote": "The object carries the attention Yi-Yuan Tang trained through return practice.",
+        "why": "This stretches the source tie; the object cue is useful, but the research linkage feels overclaimed.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Q2's correct option uniquely repeats the chapter's source phrase about social judgment and low control.",
+      "Q4's wrong options use giveaway absolutes like mainly and only.",
+      "Q9's correct option repeats the chapter's key wording about runway before the craving peaked."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q2",
+        "problem": "The keyed answer is made easy by uniquely reusing the chapter's social-judgment/low-control phrasing while the distractors are obviously narrower.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q9",
+        "problem": "The keyed answer repeats the chapter's runway-before-peak language, creating a phrasing tell.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 3",
+        "problem": "The example is thin-but-usable: it shows a learner's realization but little concrete before-to-after consequence beyond restating the lesson.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The final source connection overreaches slightly by tying a visible pill-bottle cue directly to Tang's attention training.",
+        "mustFix": false
+      },
+      {
+        "unit": "review card 6",
+        "problem": "It depends on Ch 1 terminology, so it is less approachable cold than the other cards.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter. The core move is memorable, bodily, and practical: calm the state before asking willpower to decide. The best sections explain mechanism rather than moralizing, and the limits section is unusually good. The main weaknesses are craft-level quiz tells and a few examples that lean harder on named research than on observed consequence, but there is no concrete reader-harming defect.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c1320c5b181a6623a6c868f57da9a3c04ee342748465aad71da4875b33539296",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:07:14.524Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "cf7b09ac3bcc41d64910549c09164796639f2bb485848d0244fbed692d52c6fc",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:05:41.021Z",
+  "durationMs": 0
+}

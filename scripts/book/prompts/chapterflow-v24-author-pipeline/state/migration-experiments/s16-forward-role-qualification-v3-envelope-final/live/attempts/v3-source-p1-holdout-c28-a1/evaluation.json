@@ -1,0 +1,70 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c28-a1",
+  "requestSha256": "d7b9ef310f375a20bf91c6c1239824aebce641b80d0474ddd655712fd8927fd7",
+  "receiptSha256": "84b641817209493bf469f88aea66cf6c48dd8276739bfe1916123ab89e67065b",
+  "executionEvidenceSha256": "e200592a55344f3bfe1cd6dcac4e1ee0df1bdbe72997d6409f41f69c3e67f4b5",
+  "rawOutputSha256": "8c59983d90ab0976e4cb29b99c397338913b518c7e34a46b20ed3cda233c761a",
+  "evaluationSha256": "877ca65b4f59cc061254f196b59c317bef4182bde56f748ce5035edcd9bfcbc4",
+  "parsedOutputSha256": "4f50d5dac64c9899ec2bfb153bad2845946e1afd77272e688608503e077e003f",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "ce04c3fae755a64b807b9f4a44b17d361f59384fbcdd015d9fa629f6f9efc7b8",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "major",
+              "explanation": "The generic operational scenario adds a precise calendar date despite the plan expressly forbidding dates and supplying only concept-level support.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The role and workflow action fit the permitted generic descriptive scenario, but the unsupported exact date introduces disallowed specificity and makes the sentence appear factually anchored."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "ReviewModelOutputV2Error",
+        "message": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+        "code": "INVALID_EVIDENCE",
+        "refId": null
+      }
+    }
+  },
+  "evaluationArtifactSha256": "8b77dbda23ae81042ee55b4a10a9be820a4543867679dc089205448b3ca19a42"
+}

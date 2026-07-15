@@ -1,0 +1,56 @@
+{
+  "schema": "imp24e-schema-probe-result-v1",
+  "cycle": 1,
+  "executionId": "s16-forward-role-qualification-v3-envelope-schema-probes",
+  "role": "source",
+  "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-source-a1",
+  "requestSha256": "b9fae6757398a123f030cedfb2ad28dc5e96211742309a556d1b22fb50ab7623",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "processDiagnosticsSha256": "30fcfb38a43b86a768a8ede9cb991a991b70992887e1f69e77eda8f131ef3491",
+  "runnerBoundaryCrossed": true,
+  "schemaBoundAtRunner": true,
+  "chatgptAuthVerified": true,
+  "apiCalls": 0,
+  "finalMessageSource": "output-file",
+  "authoritativeOutputFileProduced": true,
+  "authoritativeOutputRelPath": "live/attempts/s16-forward-role-qualification-v3-envelope-schema-probes-source-a1/authoritative-output.json",
+  "rawOutput": "{\"schema\":\"source-integrity-model-output-v2\",\"assessments\":[{\"targetRef\":\"probe.target.1\",\"visibleRegister\":\"clearly_generic\",\"supportStatus\":\"NOT_APPLICABLE\",\"framingAdequate\":null,\"claimStrengthFit\":null,\"namedSpecificityAllowed\":null,\"findings\":[],\"rationale\":\"Synthetic transport probe output.\"}]}",
+  "rawOutputSha256": "5595fedb7a69b474c4d3d0b2d70eb9ac465df1d444e4c7f9391dd9732ed073e1",
+  "rawOutputBytes": 301,
+  "parsedJson": true,
+  "deterministicValidatorPassed": true,
+  "sidecars": [
+    {
+      "kind": "effective-context-manifest",
+      "relPath": "live/exec/logs/2026-07-14-170106-imp24e-schema-probe-6a8da15d9411495a2fc2c2bd5116544cdc9f3092d7cd6ace354425b35b75.manifest.json",
+      "bytes": 3473,
+      "bytesSha256": "8c3795eded466f761744ce704f0a53971f9eafb8b977e1f718bf5cee5a55b1f3"
+    },
+    {
+      "kind": "route",
+      "relPath": "live/exec/logs/2026-07-14-170106-imp24e-schema-probe-6a8da15d9411495a2fc2c2bd5116544cdc9f3092d7cd6ace354425b35b75.route.json",
+      "bytes": 642,
+      "bytesSha256": "347a1261367b737fb0798fe19438d2d9fe8c8f396d379e5bca2d0a47eea8fec3"
+    },
+    {
+      "kind": "structured-output",
+      "relPath": "live/exec/logs/2026-07-14-170106-imp24e-schema-probe-6a8da15d9411495a2fc2c2bd5116544cdc9f3092d7cd6ace354425b35b75.structured.json",
+      "bytes": 597,
+      "bytesSha256": "8f4e96b60872f07d450af2df1386f7baf4bd7b2fc17b9e815785cef01b288ec5"
+    },
+    {
+      "kind": "exec-result",
+      "relPath": "live/exec/logs/2026-07-14-170106-imp24e-schema-probe-6a8da15d9411495a2fc2c2bd5116544cdc9f3092d7cd6ace354425b35b75.result.json",
+      "bytes": 581,
+      "bytesSha256": "d37f977afc04cc1c3bc40961b24edc45c93c5e5ca2f5df5a1635b29645b0ccc5"
+    }
+  ],
+  "missingRequiredSidecars": [],
+  "qualificationMetricsIncluded": false,
+  "passed": true,
+  "failureClassification": null,
+  "failureDetail": null,
+  "resultSha256": "734e7cd1b1583564ba49c9d9ad31118c86f9f6829e1a835f5abef95bd562c7d1"
+}

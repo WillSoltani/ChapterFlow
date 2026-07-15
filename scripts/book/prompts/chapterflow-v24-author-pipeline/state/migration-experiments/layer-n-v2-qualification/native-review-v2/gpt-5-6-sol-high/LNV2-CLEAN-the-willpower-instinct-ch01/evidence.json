@@ -1,0 +1,155 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-the-willpower-instinct-ch01",
+  "itemId": "LNV2-CLEAN-the-willpower-instinct-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "4984962de1bbbc93",
+  "renderedDocSha256": "9fdcea43132a18b37f66e10a6e5f0f334bb83db7bab2c3be3afdbb0a54512823",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-willpower-instinct-ch01-mrh86l2j-37",
+  "rawFinalMessageSha256": "40a770bed4fbebfcebdfecce83ea4f1f72cc2dba881e605a06d2ac1f2c546145",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"a\", \"a\", \"b\", \"b\", \"b\", \"a\", \"c\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines willpower as starting a useful act, stopping a tempting act, and keeping the larger value visible.\",\n      \"Miller and Cohen are cited for the claim that prefrontal control keeps goals active and biases attention and action.\",\n      \"Gage retained speech and basic ability while planning and social restraint changed after frontal injury.\",\n      \"The chapter says change begins by noticing the cue, urge, or movement before the action hardens.\",\n      \"The prose explicitly connects self-control with promises, shared resources, conflict repair, and functioning group life.\",\n      \"A genuine value can lose when it is quiet at the choice point, so the running goal must be made active.\",\n      \"The shorter and longer wants can both be real; attention, preparation, and support determine which guides action.\",\n      \"The method favors a concrete behavior, an observable trigger, and feedback over a vague declaration.\",\n      \"Prefrontal control is described as biasing the response when an automatic routine conflicts with the current goal.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Choice c is the only option containing all three powers and largely repeats the chapter title and central formula.\",\n      \"Choice a is the only neurologically plausible option; b and c use plainly contradictory claims.\",\n      \"Choice a restates the stem's contrast, while b and c contain giveaway absolutes such as \\\"no value\\\" and \\\"only.\\\"\",\n      \"Choice b is the only option focused on the moment before action; a and c conspicuously occur afterward.\",\n      \"Choice b is the only cooperative answer; a and c use implausible anti-social absolutes.\",\n      \"Choice b is the only nonabsolute option; a declares the value false and c says the cue must be fully removed.\",\n      \"Choice a is uniquely nuanced, while b and c use \\\"must be fake\\\" and \\\"should be obeyed.\\\"\",\n      \"Choice c is the only option involving observation or feedback; a and b explicitly reject learning from evidence.\",\n      \"Choice c mirrors the prose, while a and b are exaggerated claims using \\\"only\\\" and \\\"every.\\\"\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 91,\n    \"quizzes\": 76,\n    \"transfer\": 72,\n    \"practical\": 82,\n    \"summaries\": 78,\n    \"tone\": 84,\n    \"limits\": 82,\n    \"insight\": 88,\n    \"density\": 76,\n    \"beginner\": 90\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The loudest want is not always the deepest want.\",\n      \"why\": \"A compact, memorable distinction that captures the chapter's central mechanism.\"\n    },\n    {\n      \"quote\": \"A goal must be present to have power.\",\n      \"why\": \"This turns the neuroscience into a portable rule a reader can recall at the choice point.\"\n    },\n    {\n      \"quote\": \"'I thought you saw it,' someone says through the screen door after dinner, and Warren checks the family thread from the back porch step.\",\n      \"why\": \"The detailed quotation and scene are presented without being identified as hypothetical or sourced.\"\n    },\n    {\n      \"quote\": \"For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check and compare which half made the next action clearer.\",\n      \"why\": \"The exercise deliberately preserves a known-unhelpful rule for half a week and produces a weak, confounded comparison.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"examples 1-6\",\n      \"problem\": \"The named characters, detailed events, and direct quotations are presented as concrete cases without being labeled hypothetical or attributed to a source. This makes invented instructional vignettes look like reported events, a FABRICATED / MISLEADING EXAMPLE defect.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q1-Q9\",\n      \"problem\": \"Most distractors rely on conspicuous absolutes or positions the prose directly ridicules, so test-wise readers can identify the consistently nuanced answer without understanding the mechanism.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The scene ends after Brooklyn states the goal and supplies no resulting choice or consequence, so it lacks a complete before-to-after demonstration.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"implementation plan — Weekly practice\",\n      \"problem\": \"The reader is told to retain an all-or-nothing rule for half the week; the two halves are not comparable, and the exercise needlessly delays use of the chapter's method.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"examples\",\n      \"problem\": \"Several examples repeat the same goal-must-be-active explanation with only a changed setting, lowering transfer value and density instead of testing meaningful boundary cases.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"Hook\",\n      \"problem\": \"The opening sentence is compressed and syntactically awkward, so it is less approachable and less standalone than the strong fast-read explanation that follows.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter has a strong, teachable core: willpower is not merely refusal but the coordination of an action to start, an action to stop, and a larger value that must remain mentally active. Its best lines are memorable, the neuroscience is translated clearly, the Gage caveat shows restraint, and the central exercise is concrete enough for beginners. The quiz is fully derivable but too easy to game because correct choices are consistently nuanced while distractors are implausibly absolute. Transfer is also weakened by repetitive scenarios and, more seriously, by detailed named and quoted vignettes that are not disclosed as hypothetical or sourced. With those examples clearly framed and the quiz distractors strengthened, the chapter would be close to a professional shipping standard.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "the-willpower-instinct-ch01",
+    "chapterNumber": 1,
+    "contentHash": "4984962de1bbbc93",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-CLEAN-the-willpower-instinct-ch01-mrh86l2j-37",
+    "scores": {
+      "retention": 91,
+      "quizzes": 76,
+      "transfer": 72,
+      "practical": 82,
+      "summaries": 78,
+      "tone": 84,
+      "limits": 82,
+      "insight": 88,
+      "density": 76,
+      "beginner": 90
+    },
+    "composite": 81.7,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "a",
+        "a",
+        "b",
+        "b",
+        "b",
+        "a",
+        "c",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The loudest want is not always the deepest want.",
+        "why": "A compact, memorable distinction that captures the chapter's central mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "A goal must be present to have power.",
+        "why": "This turns the neuroscience into a portable rule a reader can recall at the choice point.",
+        "verified": true
+      },
+      {
+        "quote": "'I thought you saw it,' someone says through the screen door after dinner, and Warren checks the family thread from the back porch step.",
+        "why": "The detailed quotation and scene are presented without being identified as hypothetical or sourced.",
+        "verified": true
+      },
+      {
+        "quote": "For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check and compare which half made the next action clearer.",
+        "why": "The exercise deliberately preserves a known-unhelpful rule for half a week and produces a weak, confounded comparison.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice c is the only option containing all three powers and largely repeats the chapter title and central formula.",
+      "Choice a is the only neurologically plausible option; b and c use plainly contradictory claims.",
+      "Choice a restates the stem's contrast, while b and c contain giveaway absolutes such as \"no value\" and \"only.\"",
+      "Choice b is the only option focused on the moment before action; a and c conspicuously occur afterward.",
+      "Choice b is the only cooperative answer; a and c use implausible anti-social absolutes.",
+      "Choice b is the only nonabsolute option; a declares the value false and c says the cue must be fully removed.",
+      "Choice a is uniquely nuanced, while b and c use \"must be fake\" and \"should be obeyed.\"",
+      "Choice c is the only option involving observation or feedback; a and b explicitly reject learning from evidence.",
+      "Choice c mirrors the prose, while a and b are exaggerated claims using \"only\" and \"every.\""
+    ],
+    "complaints": [
+      {
+        "unit": "examples 1-6",
+        "problem": "The named characters, detailed events, and direct quotations are presented as concrete cases without being labeled hypothetical or attributed to a source. This makes invented instructional vignettes look like reported events, a FABRICATED / MISLEADING EXAMPLE defect.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q1-Q9",
+        "problem": "Most distractors rely on conspicuous absolutes or positions the prose directly ridicules, so test-wise readers can identify the consistently nuanced answer without understanding the mechanism.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The scene ends after Brooklyn states the goal and supplies no resulting choice or consequence, so it lacks a complete before-to-after demonstration.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan — Weekly practice",
+        "problem": "The reader is told to retain an all-or-nothing rule for half the week; the two halves are not comparable, and the exercise needlessly delays use of the chapter's method.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples",
+        "problem": "Several examples repeat the same goal-must-be-active explanation with only a changed setting, lowering transfer value and density instead of testing meaningful boundary cases.",
+        "mustFix": false
+      },
+      {
+        "unit": "Hook",
+        "problem": "The opening sentence is compressed and syntactically awkward, so it is less approachable and less standalone than the strong fast-read explanation that follows.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a strong, teachable core: willpower is not merely refusal but the coordination of an action to start, an action to stop, and a larger value that must remain mentally active. Its best lines are memorable, the neuroscience is translated clearly, the Gage caveat shows restraint, and the central exercise is concrete enough for beginners. The quiz is fully derivable but too easy to game because correct choices are consistently nuanced while distractors are implausibly absolute. Transfer is also weakened by repetitive scenarios and, more seriously, by detailed named and quoted vignettes that are not disclosed as hypothetical or sourced. With those examples clearly framed and the quiz distractors strengthened, the chapter would be close to a professional shipping standard.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "c412cf1d517372befed726feded2c9a6f655d199dca4e5736b7138dc087d359a",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:21:26.991Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "f23ea31c549ec07eb34e037ba7978860e8937ba38857c84036f0f4787b5a7f40",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:20:02.346Z",
+  "durationMs": 0
+}

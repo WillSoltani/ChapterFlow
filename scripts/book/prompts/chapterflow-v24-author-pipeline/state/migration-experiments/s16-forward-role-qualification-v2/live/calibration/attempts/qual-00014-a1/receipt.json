@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-source-1783911823025-15-05723947-3961-4d14-8c10-14843b9c340c",
+  "status": "completed",
+  "role": "source",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+  "rawOutput": "{\"schema\":\"source-integrity-review-v1\",\"units\":[{\"unitId\":\"unit.ch01.generic-scenario\",\"expectedOrigin\":\"generic\",\"expectedForm\":\"operational_scenario\",\"claimStrengthExpected\":\"descriptive\",\"visibleRegister\":\"presented_as_fact\",\"supportStatus\":\"SUPPORTED\",\"framingAdequate\":null,\"claimStrengthFit\":true,\"namedSpecificityAllowed\":false,\"chapterEvidenceSpans\":[\"A project manager can use a short check before opening a feed: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\"],\"sourceEvidenceSpans\":[\"ch01.fact.1: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\"],\"findings\":[{\"category\":\"generic_specificity_leak\",\"severity\":\"blocker\",\"explanation\":\"The historical iPhone claim is source-supported, but this compiler-owned generic operational scenario forbids dates, named products or organizations, and historical claims. The unit imports the documented 2007 iPhone launch into a lane limited to anonymous roles and observable operations.\"}]}],\"result\":\"BLOCK\",\"blockingFindingIds\":[\"unit.ch01.generic-scenario.findings[0]\"],\"rationale\":\"The factual statement matches ch01.fact.1, so its substance is supported and remains descriptive. It nevertheless violates the binding generic-scenario detail permissions by presenting named, dated historical specificity as part of the operational scenario.\"}"
+}

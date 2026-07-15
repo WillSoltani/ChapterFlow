@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 8,
+  "chapterTitle": "Results",
+  "focus": "Results practices make collaboration operational through 1:1s, idea meetings, staff meetings, big debates, big decisions, and meeting discipline.",
+  "coreClaim": "The manager's job is to design meetings around the work they serve, then prevent meeting creep from stealing execution time.",
+  "centralConcept": {
+    "id": "ch08.concept",
+    "name": "meeting architecture",
+    "plainDefinition": "Results tools convert the GSD cycle into meeting routines and decision practices. One-to-ones, idea nurturing, staff meetings, debate meetings, and decision meetings each protect a different kind of work.",
+    "whyItMatters": "Without meeting architecture, collaboration expands until it consumes execution time. Clear meeting types let managers preserve listening, debate, decision, and doing without mixing them into one crowded agenda."
+  },
+  "keyClaims": [
+    "Results tools translate collaboration into specific meeting types.",
+    "1:1 meetings are a recurring venue for direct-report priorities.",
+    "Big Debate and Big Decision meetings separate idea testing from choice.",
+    "Staff meetings should not swallow every collaboration job.",
+    "Meeting creep is a threat to execution."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch08.ex.results-book-club-prompts",
+      "label": "Results discussion prompts",
+      "summary": "The official guide lists Results as Ch. 8 and asks about 1:1 meetings, nurturing new ideas, staff meetings, Big Debate, Big Decision, number of meetings, and meeting creep. Those items define the meeting architecture.",
+      "teachesWhat": "Different meeting types should serve different collaboration jobs.",
+      "hardSpecifics": [
+        "Chapter 8: Results",
+        "1:1 meetings",
+        "Big Debate",
+        "Big Decision"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch08.ex.one-to-one-meetings",
+      "label": "1:1 meeting practice",
+      "summary": "The official guide ties Ch. 8 to Creating Effective 1:1 Meetings and Meet Like a Boss material. 1:1 meetings give direct reports a protected recurring channel rather than a manager-only status ritual.",
+      "teachesWhat": "Regular individual meetings keep listening and guidance close to the work.",
+      "hardSpecifics": [
+        "1:1 meetings",
+        "Creating Effective 1:1 Meetings",
+        "Meet Like a Boss",
+        "direct reports"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch08.ex.meeting-creep",
+      "label": "Meeting creep",
+      "summary": "The official guide names meeting creep as the risk that meetings take over time needed for execution. Meeting creep, execution time, staff meetings, and number of meetings anchor the results unit in calendar discipline.",
+      "teachesWhat": "Collaboration must leave enough protected time for doing the work.",
+      "hardSpecifics": [
+        "meeting creep",
+        "execution",
+        "staff meetings",
+        "number of meetings"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The common mistake is to add meetings for every collaboration problem. The results lesson is design and subtraction: each meeting needs a job, and execution time must be protected.",
+  "voiceCues": [
+    "turns collaboration into calendar design",
+    "uses practical meeting names",
+    "keeps speed tied to process clarity"
+  ],
+  "forbiddenLeakage": [
+    "Do not reteach the full Part 1 GSD Wheel as if new.",
+    "Do not shift into formal performance-review calibration."
+  ],
+  "paraphraseNotes": "Results takes the GSD logic into the calendar. The official guide's Ch. 8 prompts are unusually concrete: 1:1 meetings, nurturing new ideas, staff meetings, Big Debate, Big Decision, the number of meetings, and preventing meeting creep. Treat these as meeting architecture rather than a list of tips. A 1:1 should protect the direct report's priorities and surface guidance close to the work. Idea-nurturing spaces help clarify before debate. Staff meetings should not become the container for every unresolved issue. Big Debate and Big Decision meetings separate testing from choosing so debate does not get cut short by authority or drift forever without commitment. Meeting creep is the hard edge: collaboration that consumes execution time defeats the results goal. Keep the prose focused on managerial design choices: which meeting exists, what job it serves, who needs to be there, and what work time it protects.",
+  "testableFacts": [
+    {
+      "id": "ch08.fact.1",
+      "claim": "The official guide identifies Results as Ch. 8 in Part 2 Tools and Techniques.",
+      "becauseMechanism": "Because Results follows the philosophy and team tools, it turns collaboration into operating routines.",
+      "commonError": "Treating results as pressure after relationship work.",
+      "errorIsWhy": "The unit designs how work gets done.",
+      "derivedFrom": "ch08.ex.results-book-club-prompts"
+    },
+    {
+      "id": "ch08.fact.2",
+      "claim": "Ch. 8 asks managers how they approach 1:1 meetings.",
+      "becauseMechanism": "Since 1:1s are recurring direct-report time, they should serve the employee's work and priorities.",
+      "commonError": "Using 1:1s only for manager status updates.",
+      "errorIsWhy": "That loses the protected listening channel.",
+      "derivedFrom": "ch08.ex.one-to-one-meetings"
+    },
+    {
+      "id": "ch08.fact.3",
+      "claim": "Ch. 8 asks how managers nurture new ideas.",
+      "becauseMechanism": "Because early ideas are fragile, they need a venue before full debate.",
+      "commonError": "Judging new ideas in the same meeting where decisions are made.",
+      "errorIsWhy": "Premature judgment can crush useful ideas.",
+      "derivedFrom": "ch08.ex.meeting-creep"
+    },
+    {
+      "id": "ch08.fact.4",
+      "claim": "Ch. 8 asks whether staff meetings match the recommended approach.",
+      "becauseMechanism": "Since staff meetings can become catch-all rituals, managers need a clear purpose for them.",
+      "commonError": "Letting staff meetings absorb every collaboration need.",
+      "errorIsWhy": "A catch-all meeting blurs listening, debate, and decisions.",
+      "derivedFrom": "ch08.concept"
+    },
+    {
+      "id": "ch08.fact.5",
+      "claim": "Ch. 8 names Big Debate meetings.",
+      "becauseMechanism": "Because debate tests ideas before commitment, separating it protects intellectual friction.",
+      "commonError": "Trying to decide before debate has done its work.",
+      "errorIsWhy": "The team may commit to an untested idea.",
+      "derivedFrom": "ch08.concept"
+    },
+    {
+      "id": "ch08.fact.6",
+      "claim": "Ch. 8 names Big Decision meetings.",
+      "becauseMechanism": "Since decisions need closure, a separate decision forum prevents endless debate.",
+      "commonError": "Keeping debate open to avoid accountability.",
+      "errorIsWhy": "Without decision, execution cannot start.",
+      "derivedFrom": "ch08.concept"
+    },
+    {
+      "id": "ch08.fact.7",
+      "claim": "Ch. 8 asks about the number of meetings suggested.",
+      "becauseMechanism": "Because meeting load competes with work time, collaboration has to be designed economically.",
+      "commonError": "Assuming more meetings mean more alignment.",
+      "errorIsWhy": "Too many meetings can reduce execution.",
+      "derivedFrom": "ch08.ex.results-book-club-prompts"
+    },
+    {
+      "id": "ch08.fact.8",
+      "claim": "Ch. 8 names meeting creep as a risk.",
+      "becauseMechanism": "Since calendar expansion steals execution time, managers must remove or redesign meetings.",
+      "commonError": "Solving overload with another recurring meeting.",
+      "errorIsWhy": "That may deepen the execution bottleneck.",
+      "derivedFrom": "ch08.ex.one-to-one-meetings"
+    },
+    {
+      "id": "ch08.fact.9",
+      "claim": "Results tools include impromptu feedback frequency alongside meeting design.",
+      "becauseMechanism": "Because feedback close to the work reduces review surprises, results improve before formal cycles.",
+      "commonError": "Waiting for formal reviews to guide performance.",
+      "errorIsWhy": "Late guidance cannot shape current execution.",
+      "derivedFrom": "ch08.ex.meeting-creep"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Results meeting architecture",
+      "members": [
+        "1:1 meetings",
+        "idea nurturing",
+        "staff meetings",
+        "Big Debate",
+        "Big Decision",
+        "execution protection"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Results discussion prompts",
+    "Chapter 8: Results",
+    "1:1 meetings",
+    "Big Debate",
+    "Big Decision",
+    "1:1 meeting practice",
+    "Creating Effective 1:1 Meetings",
+    "Meet Like a Boss",
+    "direct reports",
+    "Meeting creep",
+    "meeting creep",
+    "execution",
+    "staff meetings",
+    "number of meetings"
+  ]
+}

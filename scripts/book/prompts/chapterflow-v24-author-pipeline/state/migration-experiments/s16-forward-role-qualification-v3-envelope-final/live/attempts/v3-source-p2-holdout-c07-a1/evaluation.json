@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c07-a1",
+  "requestSha256": "cd8f32f63d38729a00d93ec90c486b0c703fa518a1ed9d3988ad9c0ae19e6568",
+  "receiptSha256": "b18069ee9e732495a2c49b0895155db800ba34df90e0dd9245f79978c2c876dd",
+  "executionEvidenceSha256": "f54e23c672fe84182334127ac4db48eb14cdbea44bd179b879a73aacd342b6ab",
+  "rawOutputSha256": "e888132484f4e413130520be6e305301ec0d1b48017f13419bfa9ca130a6a0ea",
+  "evaluationSha256": "18bef15b718a5c86c62f742175ee5b782222516efa41492f47bb73d402d42100",
+  "parsedOutputSha256": "aebee7c24e7f367b8e4270ab435f9568c21cb906fda868ef13473a83671e7e09",
+  "assembledReviewSha256": "86dc73dfebb03fd1b2a835a5292b5a581d1bbbfef6e20605153dd46c6cad7d34",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is explicitly framed as source-derived and matches the allowed source claim for the permitted anchor. The mechanism and claim strength stay within the plan, with no imported sibling specifics, invented details, or unsupported quantified effects."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "a9a3fed7fba6082e1b3c1f0f0e713733b52b3d6b68258d2533752db66151d73f",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "1ef888b5f6a11f9fab8ef9e782a8bb994008bbd04fad9b789137774126f70b72",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is explicitly framed as source-derived and matches the allowed source claim for the permitted anchor. The mechanism and claim strength stay within the plan, with no imported sibling specifics, invented details, or unsupported quantified effects.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter claim is explicitly framed as source-derived and matches the allowed source claim for the permitted anchor. The mechanism and claim strength stay within the plan, with no imported sibling specifics, invented details, or unsupported quantified effects."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "6536449870758d2b764a09da6a30e4210dfdf3038ddb7040b823c910b0796614"
+}

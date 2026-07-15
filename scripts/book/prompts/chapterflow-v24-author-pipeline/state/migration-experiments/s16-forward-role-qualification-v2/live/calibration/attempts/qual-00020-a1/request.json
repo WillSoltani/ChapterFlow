@@ -1,0 +1,33 @@
+{
+  "schema": "imp22-role-qualification-request-record-v1",
+  "requestSha256": "7c97152e2386a918f79a7d9d0dd110f47fbae44e4cd104cccbaeed3622ada891",
+  "request": {
+    "schema": "imp22-role-qualification-execution-request-v1",
+    "scheduleId": "qual-00020",
+    "attemptId": "qual-00020-a1",
+    "replayOfAttemptId": null,
+    "attemptNumber": 1,
+    "role": "quiz",
+    "partition": "calibration",
+    "caseId": "QUIZ-V2-CALIBRATION-mechanism-causal-key-power-of-moments-ch02-q01",
+    "family": "mechanism-causal-key",
+    "profileId": "gpt-5.6-sol@xhigh",
+    "model": "gpt-5.6-sol",
+    "effort": "xhigh",
+    "schemaSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+    "promptSha256": "2d43a203da698cac708272327af7773e5423907fdc4c776423a736b829923a25",
+    "freezeSha256": "0d25f7ddeb0c7dea1f50498ad7f819f46434e6040b175678e53f125dc25a7456",
+    "task": {
+      "sha256": "2d43a203da698cac708272327af7773e5423907fdc4c776423a736b829923a25",
+      "bytes": 2209
+    },
+    "artifacts": [
+      {
+        "kind": "phase2-doc",
+        "relPath": "quiz/QUIZ-V2-CALIBRATION-mechanism-causal-key-power-of-moments-ch02-q01.phase2.md",
+        "sha256": "9b7fe1a698dbf1edb738497162bb4574bf4d70fbf56c9e5de42f8391f130c518",
+        "bytes": 13290
+      }
+    ]
+  }
+}

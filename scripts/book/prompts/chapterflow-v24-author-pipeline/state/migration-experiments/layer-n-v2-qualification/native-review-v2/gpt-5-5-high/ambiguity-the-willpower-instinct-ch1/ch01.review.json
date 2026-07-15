@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "ambiguity-the-willpower-instinct-ch1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "819266034f88c4e1",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-the-willpower-instinct-ch1-mrh7xpd1-29",
+  "scores": {
+    "retention": 88,
+    "quizzes": 72,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 82,
+    "insight": 87,
+    "density": 80,
+    "beginner": 89
+  },
+  "composite": 83.8,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "a",
+      "a",
+      "b",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q6: reader=a key=b"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower. When a lapse repeats, ask which power went quiet before you call yourself weak.",
+      "why": "The core move is memorable, concrete, and corrects the reader's likely starting mistake.",
+      "verified": true
+    },
+    {
+      "quote": "Self-command is not a halo over character. It depends on control systems that can be disrupted or supported.",
+      "why": "This is the chapter's strongest mechanism: it moves willpower from moral scolding to trainable control.",
+      "verified": true
+    },
+    {
+      "quote": "A value can be real and still lose if it is absent at the cue.",
+      "why": "Strong line, but it also supports both Q6 options, creating the quiz ambiguity.",
+      "verified": true
+    },
+    {
+      "quote": "b) The long-term goal needs attention at the choice point to compete.",
+      "why": "This answer is marked as a distractor by position, but the prose makes it defensible.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "c is the only option that names all three powers and is the most complete formulation.",
+    "a repeats distinctive prose language about prefrontal control, goals, attention, and response.",
+    "a alone preserves the stem's survival/speech/planning/restraint structure; b and c use extreme dismissive claims.",
+    "b is the only before-action answer; a and c point to after-the-fact intensity or regret.",
+    "b is the only socially constructive answer; a and c are implausible absolutes.",
+    "a is uniquely long and polished, and b is also prose-supported.",
+    "a is the only answer allowing both motives to be sincere; b and c contain giveaway absolutes.",
+    "c is the only answer with experiment and feedback language; a and b reject the evidence in the stem.",
+    "c repeats the chapter's exact prefrontal-control mechanism; a and b are exaggerated negatives."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Two answer choices are supported by the prose: a states that vivid cues can beat real values, while b states that the long-term goal needs attention at the choice point. This makes the quiz item broken rather than merely difficult.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The likely keyed answer is also uniquely long and polished, creating a guessable test-taking tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 2, 5, 6",
+      "problem": "Several transfer examples reuse the same family/pharmacy/message setting, which narrows the sense of application beyond the chapter's own recurring scenario.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook",
+      "problem": "The opening line is compressed enough to be cryptic on a cold read; it hints at the lesson but does not yet give a clear image or stakes.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, teachable chapter with a clear core distinction, useful mechanisms, and practical actions a beginner could try the same day. The best lines make willpower feel less like character judgment and more like keeping the right goal active at the right moment. I would not ship it yet because Q6 has two defensible answers, which is a concrete quiz defect; after fixing that, the chapter is likely over the professional bar, though the repeated pharmacy/family examples should be diversified to improve transfer.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "570732ff3ae770c6890f53327a9e4eb3668796a458d9736d1bac7b3be134baca",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T03:14:19.975Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "0e05bc5eafbd311205b2598c16867692005430c92cd61cd87a225485a38c45cd",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "47c1fe5edcf94c437022b96b4e0ea9dcdead1aa95c372c62ff93c39dfbcff23f",
+    "phase2DocSha256": "ee4eb5a29950a6ca917fdf932158452cb2e39b3b8ae61eb2226f793a157bfd2c",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-the-willpower-instinct-ch1-mrh7z8w8-30",
+    "items": [
+      {
+        "itemId": "the-willpower-instinct-ch01-q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c uniquely captures all three powers: the act to start, the act to stop, and the value to remember."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a is the only option matching the brain-control claim that active goals bias attention and response under conflict."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a best states the useful Gage takeaway: preserved basic abilities can coexist with impaired planning and restraint."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is uniquely supported because catching the cue or urge before action is what can change Amelia's behavior."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b fits the social-root claim that self-control supports commitments and cooperation."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 0,
+        "agreement": false,
+        "keyCorrect": "ambiguous",
+        "rationale": "Choices a and b are both defensible: a states the salience lesson, while b states the needed attention at the choice point."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a correctly treats both motives as sincere and rejects the fake-value and obey-relief readings."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q08",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c uniquely follows from replacing a vague declaration with a concrete behavior-trigger-feedback experiment."
+      },
+      {
+        "itemId": "the-willpower-instinct-ch01-q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c matches the role of prefrontal control when routine action conflicts with the current goal."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 0
+  }
+}

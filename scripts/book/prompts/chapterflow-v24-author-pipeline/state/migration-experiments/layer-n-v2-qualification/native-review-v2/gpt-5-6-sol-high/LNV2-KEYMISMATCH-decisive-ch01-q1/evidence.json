@@ -1,0 +1,333 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-KEYMISMATCH-decisive-ch01-q1",
+  "itemId": "LNV2-KEYMISMATCH-decisive-ch01-q1",
+  "kind": "quiz-key-mismatch",
+  "judge": {
+    "model": "gpt-5.6-sol",
+    "effort": "high"
+  },
+  "chapterContentSha256": "2ac9db15cf42069b",
+  "renderedDocSha256": "2473df4e347080e141b9f35b24151601de9122e5619e02df2eeaf1865e1c29a0",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-decisive-ch01-q1-mrh8tcx9-51",
+  "rawFinalMessageSha256": "777616489aca658a2e955a0215a3dd48c2f1e40a6aafc0103a5614746d22ef06",
+  "rawFinalMessage": "```json\n{\n  \"schema\": \"quiz-adjudication-v1\",\n  \"derivationSha256\": \"6b2cb236ffb9cec5f0dad67353013dce94e3b9bc135f1417cb373c5f73b63be4\",\n  \"documentSha256\": \"\",\n  \"reviewerSessionId\": \"\",\n  \"items\": [\n    {\n      \"itemId\": \"decisive-ch01-q01\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": false,\n      \"keyCorrect\": \"wrong\",\n      \"rationale\": \"Choice b best reflects WRAP as four matched interventions, whereas keyed choice c incorrectly confines WRAP to a final review after commitment.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q02\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b directly counters narrow framing by expanding the alternatives before evidence gathering begins.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q03\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c uniquely guards against confirmation bias by seeking evidence that could challenge the favored plan.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q04\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c acknowledges the attachment while creating distance through attention to what will matter over the longer term.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q05\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a most directly counters overconfidence by replacing a single certain forecast with a range of plausible outcomes.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q06\",\n      \"keyedAnswerIndex\": 2,\n      \"derivedAnswerIndex\": 2,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice c follows Cole's logic by funding parallel exploration so comparison can inform commitment.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q07\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a correctly uses the outsider question to remove legacy attachment without outsourcing the decision.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q08\",\n      \"keyedAnswerIndex\": 0,\n      \"derivedAnswerIndex\": 0,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice a recognizes that the four distinct decision flaws require interventions at their respective stages.\"\n    },\n    {\n      \"itemId\": \"decisive-ch01-q09\",\n      \"keyedAnswerIndex\": 1,\n      \"derivedAnswerIndex\": 1,\n      \"agreement\": true,\n      \"keyCorrect\": \"correct\",\n      \"rationale\": \"Choice b correctly distinguishes improving decision odds from guaranteeing a favorable outcome.\"\n    }\n  ]\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-KEYMISMATCH-decisive-ch01-q1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "2ac9db15cf42069b",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-decisive-ch01-q1-mrh8tcx9-51",
+    "scores": {
+      "retention": 92,
+      "quizzes": 75,
+      "transfer": 68,
+      "practical": 80,
+      "summaries": 89,
+      "tone": 84,
+      "limits": 95,
+      "insight": 91,
+      "density": 82,
+      "beginner": 92
+    },
+    "composite": 84.3,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "c",
+        "c",
+        "a",
+        "c",
+        "a",
+        "a",
+        "b"
+      ],
+      "matches": 8,
+      "of": 9,
+      "disagreements": [
+        "Q1: reader=b key=c"
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "A live option set keeps a bad frame from feeling like fate.",
+        "why": "A compact, memorable expression of the chapter's central framing mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "Good process raises the odds without promising the outcome.",
+        "why": "This cleanly states the essential boundary between decision quality and outcome quality.",
+        "verified": true
+      },
+      {
+        "quote": "Yvonne pins one clean launch forecast on the board, and the room expects the WRAP four villains to be done once the number looks careful.",
+        "why": "The unsupported named scene is presented as an event, and \"WRAP four villains\" confusingly conflates the repair process with the distortions.",
+        "verified": true
+      },
+      {
+        "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+        "why": "The action is low-friction, but \"shortcut\" is undefined and the instruction does not say to apply the matching WRAP move.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Choice b uniquely spells out the complete WRAP acronym and is the most technically specific option.",
+      "Choice b is the only option that challenges the stated yes-or-no frame; choice c openly endorses the diagnosed villain.",
+      "Choice c repeats the chapter's signature phrase \"disconfirming evidence,\" while a and b explicitly advocate bias.",
+      "Choice c is the only nuanced option; a and b use giveaway absolutes such as \"all emotion\" and \"before any budget work.\"",
+      "Choice a nearly repeats \"wider range of futures\" verbatim, while the distractors treat confidence or mood as proof.",
+      "Choice c echoes \"parallel\" work and \"before commitment\" almost word for word.",
+      "Choice a restates the outsider-question mechanism; b makes the explicitly rejected claim that outsiders know better.",
+      "Choice a alone names all four decision locations, whereas b and c reduce the model to the approaches the chapter rejects.",
+      "Choice b directly reproduces the memorable line about improving odds; a promises certainty and c abandons process."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q1",
+        "problem": "The keyed choice calls the four WRAP interventions \"choice stages,\" a taxonomy the prose never establishes; it describes four dangers and corresponding repairs.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz",
+        "problem": "Most distractors openly recommend the diagnosed bias, certainty, or inaction, while correct choices repeat signature wording from the prose; this makes the quiz highly guessable.",
+        "mustFix": false
+      },
+      {
+        "unit": "Try this now",
+        "problem": "The reader is told to record an undefined \"shortcut\" and identify a villain but is not told to perform the chapter's core move of selecting the matching WRAP response.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 1",
+        "problem": "FABRICATED / MISLEADING EXAMPLE: an unverified HopeLab planner, project-room scene, silence, and internal thoughts are presented as concrete narrative without being marked hypothetical.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 2",
+        "problem": "FABRICATED / MISLEADING EXAMPLE: a prototype planner, Monday meeting, budget wall, and deliberation are invented around the HopeLab case without a hypothetical label.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 3",
+        "problem": "FABRICATED / MISLEADING EXAMPLE: an Intel reviewer, strategy meeting, folder contents, and personal conflict are presented as a specific event unsupported by the chapter's factual Intel account.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 4",
+        "problem": "FABRICATED / MISLEADING EXAMPLE: the late review call, evidence folder, friendly-user finding, and direct quotation are narrated as events without being identified as a constructed scenario.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 5",
+        "problem": "FABRICATED / MISLEADING EXAMPLE and SOURCE-CONTRADICTORY wording: the named person and forecast-board reveal are unsupported, while \"WRAP four villains\" blurs the chapter's explicit distinction between four villains and four repair moves.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 6",
+        "problem": "FABRICATED / MISLEADING EXAMPLE: the train-platform exchange includes invented direct quotations and an event presented without a hypothetical label.",
+        "mustFix": true
+      },
+      {
+        "unit": "Examples",
+        "problem": "The examples repeatedly recycle HopeLab, Intel, or generic product-team scenes, so they demonstrate limited transfer to personal, civic, hiring, or other materially different decisions.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter teaches a clear, memorable mechanism: identify whether framing, evidence, emotion, or forecasting is distorting the choice, then apply the matching WRAP move. Its layered reads, strong aphorisms, practical if-then rules, and unusually honest limits make the core lesson accessible and durable. The quiz is derivable but too easy to game because correct options echo the prose while distractors often endorse obviously bad behavior. More seriously, all six examples add unsupported people, scenes, thoughts, events, or quotations without marking them as hypothetical, making them misleading under the review standard; they also remain clustered around the same organizational settings. The underlying instruction is strong, but the fabricated presentation of the examples prevents shipment until those scenarios are labeled as hypothetical or replaced with verified cases.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "ec94fcd42d5c882fb154d0aa8d15cc70cba15e977e49362d66095fe60aef9ac2",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:39:13.122Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+    "quizAdjudication": {
+      "status": "adjudicated",
+      "derivationSha256": "6b2cb236ffb9cec5f0dad67353013dce94e3b9bc135f1417cb373c5f73b63be4",
+      "phase2DocSha256": "c42bd802fde1b8f71ceb2420ed815e6ea6317bc3db31313811fee66102c61df1",
+      "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-decisive-ch01-q1-mrh8v90j-52",
+      "items": [
+        {
+          "itemId": "decisive-ch01-q01",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 1,
+          "agreement": false,
+          "keyCorrect": "wrong",
+          "rationale": "Choice b best reflects WRAP as four matched interventions, whereas keyed choice c incorrectly confines WRAP to a final review after commitment."
+        },
+        {
+          "itemId": "decisive-ch01-q02",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b directly counters narrow framing by expanding the alternatives before evidence gathering begins."
+        },
+        {
+          "itemId": "decisive-ch01-q03",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c uniquely guards against confirmation bias by seeking evidence that could challenge the favored plan."
+        },
+        {
+          "itemId": "decisive-ch01-q04",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c acknowledges the attachment while creating distance through attention to what will matter over the longer term."
+        },
+        {
+          "itemId": "decisive-ch01-q05",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a most directly counters overconfidence by replacing a single certain forecast with a range of plausible outcomes."
+        },
+        {
+          "itemId": "decisive-ch01-q06",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c follows Cole's logic by funding parallel exploration so comparison can inform commitment."
+        },
+        {
+          "itemId": "decisive-ch01-q07",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a correctly uses the outsider question to remove legacy attachment without outsourcing the decision."
+        },
+        {
+          "itemId": "decisive-ch01-q08",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a recognizes that the four distinct decision flaws require interventions at their respective stages."
+        },
+        {
+          "itemId": "decisive-ch01-q09",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b correctly distinguishes improving decision odds from guaranteeing a favorable outcome."
+        }
+      ],
+      "ambiguousCount": 0,
+      "keyWrongCount": 1
+    }
+  },
+  "phase2": {
+    "status": "adjudicated",
+    "derivationSha256": "6b2cb236ffb9cec5f0dad67353013dce94e3b9bc135f1417cb373c5f73b63be4",
+    "phase2DocSha256": "c42bd802fde1b8f71ceb2420ed815e6ea6317bc3db31313811fee66102c61df1",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-6-sol-high-LNV2-KEYMISMATCH-decisive-ch01-q1-mrh8v90j-52",
+    "items": [
+      {
+        "itemId": "decisive-ch01-q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice b best reflects WRAP as four matched interventions, whereas keyed choice c incorrectly confines WRAP to a final review after commitment."
+      },
+      {
+        "itemId": "decisive-ch01-q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b directly counters narrow framing by expanding the alternatives before evidence gathering begins."
+      },
+      {
+        "itemId": "decisive-ch01-q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c uniquely guards against confirmation bias by seeking evidence that could challenge the favored plan."
+      },
+      {
+        "itemId": "decisive-ch01-q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c acknowledges the attachment while creating distance through attention to what will matter over the longer term."
+      },
+      {
+        "itemId": "decisive-ch01-q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a most directly counters overconfidence by replacing a single certain forecast with a range of plausible outcomes."
+      },
+      {
+        "itemId": "decisive-ch01-q06",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c follows Cole's logic by funding parallel exploration so comparison can inform commitment."
+      },
+      {
+        "itemId": "decisive-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a correctly uses the outsider question to remove legacy attachment without outsourcing the decision."
+      },
+      {
+        "itemId": "decisive-ch01-q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a recognizes that the four distinct decision flaws require interventions at their respective stages."
+      },
+      {
+        "itemId": "decisive-ch01-q09",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b correctly distinguishes improving decision odds from guaranteeing a favorable outcome."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "phase-1 keyCheck.disagreements + phase-2 quizAdjudication.items[].keyCorrect==='wrong'",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:37:44.876Z",
+  "durationMs": 0
+}

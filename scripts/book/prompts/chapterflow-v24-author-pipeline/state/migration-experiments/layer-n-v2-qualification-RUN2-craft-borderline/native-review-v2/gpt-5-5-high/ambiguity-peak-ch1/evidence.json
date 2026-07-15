@@ -1,0 +1,298 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "ambiguity-peak-ch1",
+  "itemId": "ambiguity-peak-ch1",
+  "kind": "quiz-ambiguity",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "d6d96d66fb65cabe",
+  "renderedDocSha256": "cfa282dae4c752e2c4284235e9c4b763569fc780cd758d11e0ddfe5f00b3b1f7",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "79e97290ba7d471fbc47e9d5f8132af25e0ab1aea4e6082154f75528dd784747",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-peak-ch1-mrh6ert0-33",
+  "rawFinalMessageSha256": "6e4c991a27cf909d1a3ab9fe1a0db0349dff6991573acff55f20119873674461",
+  "rawFinalMessage": "```json\n{\n  \"schema\": \"quiz-adjudication-v1\",\n  \"derivationSha256\": \"2a3819045b3af96aaaa465558d0dd699836c79e1f0a49ea2ec87ff4eb90d7ce8\",\n  \"documentSha256\": \"\",\n  \"reviewerSessionId\": \"\",\n  \"items\": [\n    {\"itemId\": \"q01\", \"keyedAnswerIndex\": 1, \"derivedAnswerIndex\": 0, \"agreement\": false, \"keyCorrect\": \"ambiguous\", \"rationale\": \"Both a and b isolate the same two-measure fault, record it, and make a concrete correction before the next attempt; the wording does not justify fingering over hand motion.\"},\n    {\"itemId\": \"q02\", \"keyedAnswerIndex\": 0, \"derivedAnswerIndex\": 0, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"The redox-only set with step checking and correction directly converts vague study into targeted feedback-driven practice.\"},\n    {\"itemId\": \"q03\", \"keyedAnswerIndex\": 2, \"derivedAnswerIndex\": 2, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"The problem is whole-demo repetition preserving a known weak slide instead of isolating and correcting it.\"},\n    {\"itemId\": \"q04\", \"keyedAnswerIndex\": 1, \"derivedAnswerIndex\": 1, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"The lane-line cue plus short attempt and video review targets the visible crossover fault before adding distance.\"},\n    {\"itemId\": \"q05\", \"keyedAnswerIndex\": 1, \"derivedAnswerIndex\": 1, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"The improvement comes from using each failure to redesign the next grouping strategy, not from mere scoring or reduced context.\"},\n    {\"itemId\": \"q06\", \"keyedAnswerIndex\": 1, \"derivedAnswerIndex\": 1, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"The visible size target and next-cut correction best identify why repetition alone can make uneven cuts fluent rather than fixed.\"},\n    {\"itemId\": \"q07\", \"keyedAnswerIndex\": 2, \"derivedAnswerIndex\": 2, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"Feedback matters in purposeful practice only when it changes the next attempt while the error remains traceable.\"},\n    {\"itemId\": \"q08\", \"keyedAnswerIndex\": 0, \"derivedAnswerIndex\": 0, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"Plan B is stronger because its short feedback loop lets the trainee compare and adjust before repeating the error many times.\"},\n    {\"itemId\": \"q09\", \"keyedAnswerIndex\": 2, \"derivedAnswerIndex\": 2, \"agreement\": true, \"keyCorrect\": \"correct\", \"rationale\": \"The outside-pedal and chalk-line target is visible, repeatable, and correctable, unlike vague feeling or added risk.\"}\n  ]\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "ambiguity-peak-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "d6d96d66fb65cabe",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-peak-ch1-mrh6ert0-33",
+    "scores": {
+      "retention": 90,
+      "quizzes": 75,
+      "transfer": 88,
+      "practical": 91,
+      "summaries": 93,
+      "tone": 88,
+      "limits": 90,
+      "insight": 88,
+      "density": 86,
+      "beginner": 91
+    },
+    "composite": 87.8,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "a",
+        "c",
+        "b",
+        "b",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 8,
+      "of": 9,
+      "disagreements": [
+        "Q1: reader=a key=b"
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "The miss is the map because it tells the next rep where to aim.",
+        "why": "Strongest retention line: concrete, short, and it compresses the chapter's whole mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "Comfort is a poor coach because it lets the weak spot stay hidden.",
+        "why": "Strong mechanism line that explains why naive repetition fails.",
+        "verified": true
+      },
+      {
+        "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+        "why": "Best practical test: it gives beginners a usable standard for designing reps.",
+        "verified": true
+      },
+      {
+        "quote": "b) Slow the two-measure turn, record only that passage, and change fingering before the next attempt.",
+        "why": "Worst quiz defect: this is also purposeful practice, so Q1 does not have a uniquely derivable answer.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "c is obviously non-purposeful; a and b are near twins, so the item is not guessable to a unique answer.",
+      "The stem says repeated redox error, and only a says redox-only; b and c are broad-work foils.",
+      "c repeats the stem's 'same' weak-point logic while a and b are generic more-practice foils.",
+      "a uses 'hope' and c uses an unsupported fatigue escape; b is the only feedback-loop option.",
+      "The stem already says reviewing breaks and changing strategy; b restates that mechanism.",
+      "",
+      "c is the only option that says the next attempt changes.",
+      "The stem describes Plan B's feedback loop, and a simply names it.",
+      "c is uniquely concrete, measurable, and bounded."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q1",
+        "problem": "Options a and b both isolate the same passage, use recording as feedback, and change the next attempt; the prose does not establish why hand motion is correct while fingering is wrong. Category: STRUCTURALLY INVALID broken quiz.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q6",
+        "problem": "Options a and b are both supported by the chapter's comfort-versus-visible-target logic, though b is somewhat more specific to the knife-cut stem.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz overall",
+        "problem": "Several items are answerable by test-taking pattern alone: choose the narrow, immediate-feedback, next-attempt option and reject whole-task, hope, confidence, or volume foils.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong chapter with a clear correction-loop model, memorable lines, honest limits, concrete examples, and practical transfer across study, work, sport, and craft. The main blocker is quiz quality: Q1 is genuinely underdetermined because two choices satisfy the chapter's own mechanism, and several other items have obvious foil patterns. I would not ship until the broken quiz item is fixed, but the prose itself is above the professional bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "0101c54d532d766ca9f03ab698a6a406fef0e6434a0a0b6c8bc2167bd624f9ad",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:31:45.976Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "79e97290ba7d471fbc47e9d5f8132af25e0ab1aea4e6082154f75528dd784747",
+    "quizAdjudication": {
+      "status": "adjudicated",
+      "derivationSha256": "2a3819045b3af96aaaa465558d0dd699836c79e1f0a49ea2ec87ff4eb90d7ce8",
+      "phase2DocSha256": "6d1e9f6d64458dd536307b62e7efe391184ee90115a8383c0385c8af8113bdce",
+      "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-peak-ch1-mrh6gi7s-34",
+      "items": [
+        {
+          "itemId": "q01",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 0,
+          "agreement": false,
+          "keyCorrect": "ambiguous",
+          "rationale": "Both a and b isolate the same two-measure fault, record it, and make a concrete correction before the next attempt; the wording does not justify fingering over hand motion."
+        },
+        {
+          "itemId": "q02",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "The redox-only set with step checking and correction directly converts vague study into targeted feedback-driven practice."
+        },
+        {
+          "itemId": "q03",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "The problem is whole-demo repetition preserving a known weak slide instead of isolating and correcting it."
+        },
+        {
+          "itemId": "q04",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "The lane-line cue plus short attempt and video review targets the visible crossover fault before adding distance."
+        },
+        {
+          "itemId": "q05",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "The improvement comes from using each failure to redesign the next grouping strategy, not from mere scoring or reduced context."
+        },
+        {
+          "itemId": "q06",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "The visible size target and next-cut correction best identify why repetition alone can make uneven cuts fluent rather than fixed."
+        },
+        {
+          "itemId": "q07",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Feedback matters in purposeful practice only when it changes the next attempt while the error remains traceable."
+        },
+        {
+          "itemId": "q08",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Plan B is stronger because its short feedback loop lets the trainee compare and adjust before repeating the error many times."
+        },
+        {
+          "itemId": "q09",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "The outside-pedal and chalk-line target is visible, repeatable, and correctable, unlike vague feeling or added risk."
+        }
+      ],
+      "ambiguousCount": 1,
+      "keyWrongCount": 0
+    }
+  },
+  "phase2": {
+    "status": "adjudicated",
+    "derivationSha256": "2a3819045b3af96aaaa465558d0dd699836c79e1f0a49ea2ec87ff4eb90d7ce8",
+    "phase2DocSha256": "6d1e9f6d64458dd536307b62e7efe391184ee90115a8383c0385c8af8113bdce",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-peak-ch1-mrh6gi7s-34",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 0,
+        "agreement": false,
+        "keyCorrect": "ambiguous",
+        "rationale": "Both a and b isolate the same two-measure fault, record it, and make a concrete correction before the next attempt; the wording does not justify fingering over hand motion."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The redox-only set with step checking and correction directly converts vague study into targeted feedback-driven practice."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The problem is whole-demo repetition preserving a known weak slide instead of isolating and correcting it."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The lane-line cue plus short attempt and video review targets the visible crossover fault before adding distance."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The improvement comes from using each failure to redesign the next grouping strategy, not from mere scoring or reduced context."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The visible size target and next-cut correction best identify why repetition alone can make uneven cuts fluent rather than fixed."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Feedback matters in purposeful practice only when it changes the next attempt while the error remains traceable."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Plan B is stronger because its short feedback loop lets the trainee compare and adjust before repeating the error many times."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The outside-pedal and chalk-line target is visible, repeatable, and correctable, unlike vague feeling or added risk."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 0
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "phase-2 quizAdjudication.items[].keyCorrect==='ambiguous' (+ phase-1 tells)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:30:25.091Z",
+  "durationMs": 0
+}

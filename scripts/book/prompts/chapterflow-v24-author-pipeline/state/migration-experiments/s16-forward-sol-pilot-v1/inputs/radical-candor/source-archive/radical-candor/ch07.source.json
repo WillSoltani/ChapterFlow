@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 7,
+  "chapterTitle": "Team",
+  "focus": "Team tools connect motivation to staffing decisions through Career Conversations, growth modes, and candid hiring or firing choices.",
+  "coreClaim": "A manager develops a team by matching people to growth paths and having hard conversations when the match is wrong.",
+  "centralConcept": {
+    "id": "ch07.concept",
+    "name": "career conversation system",
+    "plainDefinition": "Team development depends on knowing what people want, which roles fit their growth mode, and when a hard personnel decision is required. Career Conversations turn care into structured discovery rather than guessing.",
+    "whyItMatters": "Managers avoid both boredom and burnout when they understand motivation, growth mode, and next learning steps. People are less likely to be over-promoted, under-challenged, or left in the wrong role."
+  },
+  "keyClaims": [
+    "Career Conversations are a structured series of three roughly 45-minute conversations.",
+    "Life Story identifies motivational patterns through key transitions.",
+    "Dreams explores three to five possible career visions.",
+    "The Eighteen-Month Plan identifies learning needed in the next six to eighteen months.",
+    "Hiring and firing choices must connect to growth and role fit."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch07.ex.russ-laraway-career-conversations",
+      "label": "Russ Laraway Career Conversations",
+      "summary": "The official glossary credits Career Conversations to Russ Laraway and documents three roughly 45-minute conversations. Russ Laraway, Ch. 7 pp. 177-182, and three conversations anchor the team-development tool.",
+      "teachesWhat": "A structured conversation system prevents managers from guessing motivation.",
+      "hardSpecifics": [
+        "Russ Laraway",
+        "Career Conversations",
+        "three ~45-minute conversations",
+        "Ch. 7 pp. 177-182"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch07.ex.life-story-dreams-plan",
+      "label": "Life Story, Dreams, Eighteen-Month Plan",
+      "summary": "Career Conversations include Life Story, Dreams, and Eighteen-Month Plan. Dreams asks for 3-5 visions, and the plan covers the next 6-18 months of learning.",
+      "teachesWhat": "The sequence moves from past motivation to future aspiration to near-term learning.",
+      "hardSpecifics": [
+        "Life Story",
+        "Dreams",
+        "3-5 visions",
+        "6-18 months"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch07.ex.team-book-club-prompts",
+      "label": "Team discussion prompts",
+      "summary": "The official guide lists Team as Ch. 7 and asks about Career Conversations, balance of rock stars and superstars, and hiring and firing suggestions. Those prompts tie development to concrete staffing choices.",
+      "teachesWhat": "Team development includes role fit and hard personnel decisions, not only coaching.",
+      "hardSpecifics": [
+        "Chapter 7: Team",
+        "Career Conversations",
+        "rock stars and superstars",
+        "hiring and firing"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The easy mistake is to turn development into cheerleading. The harder lesson is fit: caring personally may require stretch, stability, role redesign, or a candid exit conversation.",
+  "voiceCues": [
+    "uses structured conversation sequences",
+    "keeps career ambition plural",
+    "pairs care with hard personnel calls"
+  ],
+  "forbiddenLeakage": [
+    "Do not repeat Ch. 3 as abstract growth-trajectory theory.",
+    "Do not import 1:1 meeting design from Results."
+  ],
+  "paraphraseNotes": "Team moves from understanding motivation to developing people through structure. Russ Laraway's Career Conversations are the central tool, documented at Ch. 7 pp. 177-182. The structure is three roughly 45-minute conversations. Life Story looks backward at choices and transitions to identify motivational patterns. Dreams looks forward and asks for 3-5 visions so the manager does not reduce aspiration to one corporate ladder. The Eighteen-Month Plan converts aspiration into learning over the next 6-18 months. The official guide's Team prompts keep the unit tied to practice: begin Career Conversations, know the balance of rock stars and superstars, and consider hiring and firing suggestions. Use rock-star and superstar language only as support for team design; the main teaching here is the conversation sequence and the hard choices that follow. Avoid sentimental development language. Caring personally may mean a better assignment, a clearer path, or a candid conclusion that the current role is wrong.",
+  "testableFacts": [
+    {
+      "id": "ch07.fact.1",
+      "claim": "Career Conversations are credited to Russ Laraway and documented at Ch. 7 pp. 177-182.",
+      "becauseMechanism": "Because the tool has a named designer and page span, it should be taught as a specific sequence.",
+      "commonError": "Treating career development as casual encouragement.",
+      "errorIsWhy": "The source gives a structured method.",
+      "derivedFrom": "ch07.ex.russ-laraway-career-conversations"
+    },
+    {
+      "id": "ch07.fact.2",
+      "claim": "The Career Conversations sequence uses three roughly 45-minute conversations.",
+      "becauseMechanism": "Since each meeting has a distinct purpose, combining them can flatten motivation into a checklist.",
+      "commonError": "Doing one quick career chat and calling it complete.",
+      "errorIsWhy": "One chat cannot cover past, future, and plan well.",
+      "derivedFrom": "ch07.ex.life-story-dreams-plan"
+    },
+    {
+      "id": "ch07.fact.3",
+      "claim": "Life Story examines choices at key transitions.",
+      "becauseMechanism": "Because repeated choices reveal motivation, the manager learns what has actually energized the person.",
+      "commonError": "Starting by asking what promotion the person wants.",
+      "errorIsWhy": "That assumes the career ladder before understanding motivation.",
+      "derivedFrom": "ch07.ex.team-book-club-prompts"
+    },
+    {
+      "id": "ch07.fact.4",
+      "claim": "Dreams asks for 3-5 different visions.",
+      "becauseMechanism": "Since multiple visions loosen narrow corporate assumptions, the person can name aspirations beyond one role.",
+      "commonError": "Forcing a single five-year plan.",
+      "errorIsWhy": "One plan may hide real motivation.",
+      "derivedFrom": "ch07.concept"
+    },
+    {
+      "id": "ch07.fact.5",
+      "claim": "The Eighteen-Month Plan covers learning in the next 6-18 months.",
+      "becauseMechanism": "Because near-term skills connect dreams to action, development becomes concrete.",
+      "commonError": "Ending with inspiration but no learning plan.",
+      "errorIsWhy": "Motivation without skill steps does not change trajectory.",
+      "derivedFrom": "ch07.concept"
+    },
+    {
+      "id": "ch07.fact.6",
+      "claim": "The official guide links Team to the balance of rock stars and superstars.",
+      "becauseMechanism": "Because team health needs both stability and stretch, managers should examine mix rather than idolize one mode.",
+      "commonError": "Optimizing the whole team for promotion speed.",
+      "errorIsWhy": "That weakens continuity and expertise.",
+      "derivedFrom": "ch07.concept"
+    },
+    {
+      "id": "ch07.fact.7",
+      "claim": "The official guide links Team to hiring and firing suggestions.",
+      "becauseMechanism": "Since role fit can fail despite effort, team development includes hard decisions.",
+      "commonError": "Avoiding firing because caring means keeping everyone.",
+      "errorIsWhy": "Care can require clarity about mismatch.",
+      "derivedFrom": "ch07.ex.russ-laraway-career-conversations"
+    },
+    {
+      "id": "ch07.fact.8",
+      "claim": "Career Conversations are a way of caring personally.",
+      "becauseMechanism": "Because they ask about a person's own motivations and dreams, they make care concrete.",
+      "commonError": "Claiming care without learning what the person wants.",
+      "errorIsWhy": "Generic concern does not guide development.",
+      "derivedFrom": "ch07.ex.life-story-dreams-plan"
+    },
+    {
+      "id": "ch07.fact.9",
+      "claim": "Career Conversations help map career trajectories.",
+      "becauseMechanism": "Since trajectory is dynamic, the manager needs repeated discovery rather than old assumptions.",
+      "commonError": "Using last year's ambition as permanent truth.",
+      "errorIsWhy": "People's goals and constraints change.",
+      "derivedFrom": "ch07.ex.team-book-club-prompts"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Career Conversations",
+      "members": [
+        "Life Story",
+        "Dreams",
+        "Eighteen-Month Plan"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Russ Laraway Career Conversations",
+    "Russ Laraway",
+    "Career Conversations",
+    "three ~45-minute conversations",
+    "Ch. 7 pp. 177-182",
+    "Life Story, Dreams, Eighteen-Month Plan",
+    "Life Story",
+    "Dreams",
+    "3-5 visions",
+    "6-18 months",
+    "Team discussion prompts",
+    "Chapter 7: Team",
+    "rock stars and superstars",
+    "hiring and firing"
+  ]
+}

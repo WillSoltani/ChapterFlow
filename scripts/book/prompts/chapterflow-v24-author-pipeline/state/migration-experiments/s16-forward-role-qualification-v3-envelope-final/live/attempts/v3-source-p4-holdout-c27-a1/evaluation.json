@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c27-a1",
+  "requestSha256": "e2a08999e2276e9afa6e7adade2cb8abf7cabf6396a7ca0c10448f9c67d7464b",
+  "receiptSha256": "db612d472db93a026d2e89e37ffc9bfc08ae3d88b006b78aaf76356b2d6f9652",
+  "executionEvidenceSha256": "454010ca02e92827674f7e8a2f872df07bcb28944de92ad77ccd8225dce2d29e",
+  "rawOutputSha256": "4416bef2e1a5a188be7c71c6df8101dc0be34a853b51571ab6520a7fa1faf310",
+  "evaluationSha256": "9cc9df5c40b3d10efef08163d160377157ed1e3b12e7bd4e5d7ba6e80fc93778",
+  "parsedOutputSha256": "6a86c2cf75f3c4efd3bf043c1e614908199efc6621dce31a6f569699f5f3ec84",
+  "assembledReviewSha256": "f1d49f50f20ec7ac7733bb5df74cd760679c78d2d794abde993239447517ed4c",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter presents a generic operational scenario using only permitted role/action/workflow detail, stays within descriptive strength, and does not introduce named, dated, metric, or historical specifics. Framing is not required by the plan."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "456067d780eacad8b5c429129447df8e88dcfa01ea17702005bf51276ae406de",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "587a977f29d24ebba3e03e4f05417f1c3e6d4fd2aa48c3ea0903e95586ccba07",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter presents a generic operational scenario using only permitted role/action/workflow detail, stays within descriptive strength, and does not introduce named, dated, metric, or historical specifics. Framing is not required by the plan.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter presents a generic operational scenario using only permitted role/action/workflow detail, stays within descriptive strength, and does not introduce named, dated, metric, or historical specifics. Framing is not required by the plan."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "cf397715dc39e7ffb68082aa64d5638ce88bbd2dd5b5ad055fd9d67de2f11a01"
+}

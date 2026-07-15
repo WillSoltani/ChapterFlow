@@ -1,0 +1,134 @@
+{
+  "schema": "migration-experiment-spec-v1",
+  "experimentId": "diagnostic-stack-dryrun-2026-07",
+  "stage": "diagnostic",
+  "title": "NO-MODEL DRY RUN twin of diagnostic-stack-2026-07 (injected stages; zero live calls)",
+  "cells": [
+    {
+      "cellId": "55-XH-L",
+      "model": "gpt-5.5",
+      "effort": "xhigh",
+      "stackId": "legacy-v24"
+    },
+    {
+      "cellId": "55-XH-S",
+      "model": "gpt-5.5",
+      "effort": "xhigh",
+      "stackId": "sol-native-current"
+    },
+    {
+      "cellId": "56S-H-L",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "stackId": "legacy-v24"
+    },
+    {
+      "cellId": "56S-H-S",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "stackId": "sol-native-current"
+    },
+    {
+      "cellId": "56S-XH-L",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "stackId": "legacy-v24"
+    },
+    {
+      "cellId": "56S-XH-S",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "stackId": "sol-native-current"
+    }
+  ],
+  "stacks": [
+    {
+      "id": "legacy-v24",
+      "source": "snapshot",
+      "snapshotDirRelPath": "state/migration-experiments/_owner-inputs/legacy-v24-stack/v1",
+      "combinedSha256": "0264aa00addabe4a8aed87d3988d3288859bc6b596cd7cd6be036efbeb7dcec0"
+    },
+    {
+      "id": "sol-native-current",
+      "source": "current-builders"
+    }
+  ],
+  "books": [
+    {
+      "bookId": "start-with-why",
+      "chapters": [
+        {
+          "chapterNumber": 4,
+          "stratum": "research-heavy"
+        },
+        {
+          "chapterNumber": 3,
+          "stratum": "abstract-conceptual"
+        },
+        {
+          "chapterNumber": 9,
+          "stratum": "example-heavy"
+        },
+        {
+          "chapterNumber": 7,
+          "stratum": "causal-quiz-sensitive"
+        }
+      ]
+    }
+  ],
+  "samplesPerCell": 2,
+  "screening": {
+    "samplesPerCell": 2,
+    "expandWhen": [
+      "never-expand"
+    ],
+    "maxSamplesPerCell": 2
+  },
+  "randomizationSeed": "s16-owner-pkg-96ff9e3da9e3-diag-dryrun",
+  "judgePanel": [
+    {
+      "model": "gpt-5.5",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.5",
+      "effort": "xhigh"
+    }
+  ],
+  "thresholdsRelPath": "state/migration-experiments/_owner-inputs/thresholds.owner-frozen.v1.json",
+  "priceSnapshot": {
+    "gpt-5.5": null,
+    "gpt-5.6-sol": null
+  },
+  "precision": {
+    "primaryEndpoints": [
+      {
+        "id": "sourced-fabrication-upper",
+        "targetUpperBoundPct": 2,
+        "minIndependentUnits": 150
+      },
+      {
+        "id": "quiz-key-defect-upper",
+        "targetUpperBoundPct": 2,
+        "minIndependentUnits": 150
+      }
+    ]
+  },
+  "stopping": {
+    "rules": [
+      "never-expand"
+    ]
+  },
+  "infraReplay": {
+    "maxPerSample": 1,
+    "replayableOutcomes": [
+      "infrastructure_failure",
+      "timeout",
+      "provider_rate_or_capacity"
+    ]
+  }
+}

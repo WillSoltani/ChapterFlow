@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "ambiguity-peak-ch1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "d6d96d66fb65cabe",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-ambiguity-peak-ch1-mrhb44vp-33",
+  "scores": {
+    "retention": 90,
+    "quizzes": 72,
+    "transfer": 88,
+    "practical": 90,
+    "summaries": 89,
+    "tone": 88,
+    "limits": 84,
+    "insight": 88,
+    "density": 87,
+    "beginner": 90
+  },
+  "composite": 86.4,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "a",
+      "c",
+      "b",
+      "b",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=a key=b"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "Strong memorable line that compresses the whole mechanism.",
+      "verified": true
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "Gives beginners a practical test for whether their practice target is usable.",
+      "verified": true
+    },
+    {
+      "quote": "The limit is important. Purposeful practice is not the full gold standard of a mature field with expert coaches and proven training systems.",
+      "why": "The chapter honestly bounds the concept instead of overselling it.",
+      "verified": true
+    },
+    {
+      "quote": "b) Slow the two-measure turn, record only that passage, and change fingering before the next attempt.",
+      "why": "This is also purposeful practice, making Q1 under-determined.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Options a and b are near twins, so the surface form does not separate the intended key.",
+    "a is the only option with isolate-check-rewrite correction-loop structure.",
+    "c echoes the chapter's whole-performance/weak-point language and is the uniquely diagnostic phrasing.",
+    "b is the longest and contains the full cue-check-repeat-before-distance loop.",
+    "b closely echoes 'each miss told the next attempt where to work.'",
+    "b is the most visibly aligned with the chapter's 'visible target' and 'next attempt' language.",
+    "c gives away the chapter's key phrase, changing the next attempt.",
+    "The stem already makes Plan B sound like the taught method by naming compare and adjust.",
+    "c is the only concrete, measurable target and is much more specific than the others."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "Choices a and b both isolate the same weak passage, record it, and change the next attempt; the prose and stem do not uniquely force hand motion over fingering. Reserved category: STRUCTURALLY INVALID broken quiz.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz set",
+      "problem": "Several correct choices are telegraphed by chapter vocabulary or by being the only option with the full correction-loop sequence, especially Q3, Q4, Q7, Q8, and Q9.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "Choice a is a plausible sibling principle from the prose's comfort/weak-spot language, although b is the cleaner answer for uneven cuts.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Sarah appears once as an unexplained practice example, which slightly weakens the chapter's otherwise clean echo system.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is clear, memorable, and practical: it teaches one usable move, repeats it through concrete domains, and gives readers a low-friction way to try it within a day. The prose has real mechanism and honest limits. I would not ship it as-is only because Q1 has two defensible answers, which makes the quiz structurally broken; after that fix, the remaining issues are polish-level quiz tells and minor example cleanup.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "0101c54d532d766ca9f03ab698a6a406fef0e6434a0a0b6c8bc2167bd624f9ad",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-12T04:43:57.962Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "79e97290ba7d471fbc47e9d5f8132af25e0ab1aea4e6082154f75528dd784747",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "033b976955c8a087c40db4f53362057617d02391683e20cd52d0b34953060d27",
+    "phase2DocSha256": "51573b43912a7b6c636b798313ee72bbc7c1bc824516d4fe47135afbf3ed1f16",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-xhigh-ambiguity-peak-ch1-mrhb6ikq-34",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 0,
+        "agreement": false,
+        "keyCorrect": "ambiguous",
+        "rationale": "Choices a and b both isolate the same two-measure fault, record it, and alter the next attempt; the stem gives no basis to prefer fingering over hand motion."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a directly narrows the vague effort to the repeated redox error and uses step-level feedback to change the next attempt."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c identifies the core flaw: whole-demo repetition is preserving the recurring weak slide instead of isolating and correcting it."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b gives a visible cue, checks video feedback, and repeats the corrected movement before adding distance."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b captures the purposeful-practice mechanism: each miss reshapes the next grouping strategy rather than merely adding repetitions."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b best rebuts the claim by explaining that repetition can ingrain uneven cuts unless a visible size target guides correction."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c states the needed condition for feedback: it must affect the next attempt while the mistake can still be traced."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a is supported because Plan B shortens the feedback loop enough to adjust the next small batch."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c turns the vague goal into a specific, visible, repeatable target that can be corrected."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 0
+  }
+}

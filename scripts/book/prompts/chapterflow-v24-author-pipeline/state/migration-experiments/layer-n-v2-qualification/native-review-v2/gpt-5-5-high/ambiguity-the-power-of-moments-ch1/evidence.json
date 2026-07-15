@@ -1,0 +1,308 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "ambiguity-the-power-of-moments-ch1",
+  "itemId": "ambiguity-the-power-of-moments-ch1",
+  "kind": "quiz-ambiguity",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "c50f093de42fb247",
+  "renderedDocSha256": "157ebb3678e4023b8a156ac8f5161d41fa1ef3b285d6be8962c595117ae90f11",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "29fa11f8cb76c6db91c6915f440cec43ddfd1a6dbe01006898c2f05f1638f3d9",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-the-power-of-moments-ch1-mrh801yh-31",
+  "rawFinalMessageSha256": "6d5bdfefdfe0c5933a5ffe7ad44009a436bec700d829d160b3a2896428cf9c7d",
+  "rawFinalMessage": "```json\n{\n  \"schema\": \"quiz-adjudication-v1\",\n  \"derivationSha256\": \"ada6e5679ba9bdfbf5b2e2ef8cc50d805c187fccfb9652acf77e773456178782\",\n  \"documentSha256\": \"\",\n  \"reviewerSessionId\": \"\",\n  \"items\": [\n    {\"itemId\":\"q01\",\"keyedAnswerIndex\":1,\"derivedAnswerIndex\":1,\"agreement\":true,\"keyCorrect\":\"correct\",\"rationale\":\"Choice b is best because the calm ending directly invokes the peak-end lesson rather than total duration.\"},\n    {\"itemId\":\"q02\",\"keyedAnswerIndex\":1,\"derivedAnswerIndex\":1,\"agreement\":true,\"keyCorrect\":\"correct\",\"rationale\":\"Choice b is best because a vivid welcome cart creates a tellable arrival peak in an otherwise plain setting.\"},\n    {\"itemId\":\"q03\",\"keyedAnswerIndex\":0,\"derivedAnswerIndex\":1,\"agreement\":false,\"keyCorrect\":\"ambiguous\",\"rationale\":\"Choices a and b are both defensible: the clapping publicly honors effort, while naming the next unit marks a threshold before private logistics.\"},\n    {\"itemId\":\"q04\",\"keyedAnswerIndex\":2,\"derivedAnswerIndex\":2,\"agreement\":true,\"keyCorrect\":\"correct\",\"rationale\":\"Choice c explicitly matches elevation, insight, pride, and connection.\"},\n    {\"itemId\":\"q05\",\"keyedAnswerIndex\":0,\"derivedAnswerIndex\":0,\"agreement\":true,\"keyCorrect\":\"correct\",\"rationale\":\"Choice a captures the red-phone lesson that one visible object can alter the expected script.\"},\n    {\"itemId\":\"q06\",\"keyedAnswerIndex\":1,\"derivedAnswerIndex\":1,\"agreement\":true,\"keyCorrect\":\"correct\",\"rationale\":\"Choice b is best because the gift becomes memorable through staged delivery, request, and reveal.\"},\n    {\"itemId\":\"q07\",\"keyedAnswerIndex\":2,\"derivedAnswerIndex\":2,\"agreement\":true,\"keyCorrect\":\"correct\",\"rationale\":\"Choice c directly applies the threshold idea by marking the shared crossing before assignments scatter.\"},\n    {\"itemId\":\"q08\",\"keyedAnswerIndex\":0,\"derivedAnswerIndex\":0,\"agreement\":true,\"keyCorrect\":\"correct\",\"rationale\":\"Choice a is the false assumption because recall is not an equal-weight average of every minute.\"},\n    {\"itemId\":\"q09\",\"keyedAnswerIndex\":2,\"derivedAnswerIndex\":2,\"agreement\":true,\"keyCorrect\":\"correct\",\"rationale\":\"Choice c is best because the mint is free but lacks a vivid, narratable format.\"}\n  ]\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "ambiguity-the-power-of-moments-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "c50f093de42fb247",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-ambiguity-the-power-of-moments-ch1-mrh801yh-31",
+    "scores": {
+      "retention": 90,
+      "quizzes": 72,
+      "transfer": 82,
+      "practical": 88,
+      "summaries": 90,
+      "tone": 88,
+      "limits": 92,
+      "insight": 86,
+      "density": 84,
+      "beginner": 90
+    },
+    "composite": 85.9,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 8,
+      "of": 9,
+      "disagreements": [
+        "Q3: reader=b key=a"
+      ]
+    },
+    "quotes": [
+      {
+        "quote": "A small peak can become the story of the whole stay.",
+        "why": "This is the chapter's strongest memory hook and it echoes cleanly through the examples.",
+        "verified": true
+      },
+      {
+        "quote": "A gentle final minute is not permission to make the first part careless.",
+        "why": "This keeps the lesson honest and prevents the peak-end idea from becoming manipulative advice.",
+        "verified": true
+      },
+      {
+        "quote": "Q3. New nurses finish a hard training course. The director can file their certificates or ask them to name their next unit before the team claps.",
+        "why": "The stem supports both public recognition and threshold marking, creating a two-answer quiz item.",
+        "verified": true
+      },
+      {
+        "quote": "The four common ingredients are elevation, insight, pride, and connection.",
+        "why": "Clear, compressed framework statement, though later examples weight elevation, pride, and connection more than insight.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "No strong tell; the correct choice is not uniquely longest.",
+      "Choice b uses giveaway phrasing: vivid, tellable, changes the ordinary arrival.",
+      "Choice b repeats the distinctive phrase private logistics, but choice a is also strongly cued by team claps.",
+      "Choice c is the only positive, complete four-part answer; a and b are implausible.",
+      "Choice a repeats visible object and script changed almost verbatim.",
+      "Choice b is cued by small event, request, and reveal.",
+      "Choice c repeats before/private logistics phrasing from the chapter.",
+      "Choice a is giveaway phrasing because the chapter says memory does not average each minute.",
+      "Choice c gives away the red-phone contrast with tellable format."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q3",
+        "problem": "The item is underdetermined: b is forced by naming the next unit before logistics, but a is also supported by the team clapping and the prose about peers and adults seeing effort.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz",
+        "problem": "Several correct answers repeat distinctive chapter phrases, especially visible object, script changed, private logistics, and tellable format, making some items guessable without reading deeply.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q4",
+        "problem": "The distractors are too obviously wrong; only c contains the four positive ingredients, so the item tests recognition more than understanding.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The workshop threshold example is usable but thin: it borrows the YES Prep pattern without showing a concrete before-after consequence for a named learner or organizer.",
+        "mustFix": false
+      },
+      {
+        "unit": "examples",
+        "problem": "The later examples lean heavily on restating the cold-water and YES Prep lessons, so transfer is narrower than the chapter's general promise.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, teachable chapter with a memorable central image, clear layered reads, practical next actions, and unusually good limits around not using a better ending to excuse a bad experience. The main blocker is quiz Q3, which has two defensible answers from the prose. The transfer work is solid but somewhat repetitive, and several quiz choices are phrase-matched enough to be guessed. Fix Q3 and sharpen the weaker distractors, and this would clear a professional bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "9779626de7ddd1c6da5befa7f58455dab7e2177451e43e194d8ddb0d3e719ea4",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T03:16:13.926Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "29fa11f8cb76c6db91c6915f440cec43ddfd1a6dbe01006898c2f05f1638f3d9",
+    "quizAdjudication": {
+      "status": "adjudicated",
+      "derivationSha256": "ada6e5679ba9bdfbf5b2e2ef8cc50d805c187fccfb9652acf77e773456178782",
+      "phase2DocSha256": "550298d6c591d15628a6f40d2d6195062071d750d9c43d644c574418caa71c48",
+      "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-the-power-of-moments-ch1-mrh81otj-32",
+      "items": [
+        {
+          "itemId": "q01",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is best because the calm ending directly invokes the peak-end lesson rather than total duration."
+        },
+        {
+          "itemId": "q02",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is best because a vivid welcome cart creates a tellable arrival peak in an otherwise plain setting."
+        },
+        {
+          "itemId": "q03",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 1,
+          "agreement": false,
+          "keyCorrect": "ambiguous",
+          "rationale": "Choices a and b are both defensible: the clapping publicly honors effort, while naming the next unit marks a threshold before private logistics."
+        },
+        {
+          "itemId": "q04",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c explicitly matches elevation, insight, pride, and connection."
+        },
+        {
+          "itemId": "q05",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a captures the red-phone lesson that one visible object can alter the expected script."
+        },
+        {
+          "itemId": "q06",
+          "keyedAnswerIndex": 1,
+          "derivedAnswerIndex": 1,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice b is best because the gift becomes memorable through staged delivery, request, and reveal."
+        },
+        {
+          "itemId": "q07",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c directly applies the threshold idea by marking the shared crossing before assignments scatter."
+        },
+        {
+          "itemId": "q08",
+          "keyedAnswerIndex": 0,
+          "derivedAnswerIndex": 0,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice a is the false assumption because recall is not an equal-weight average of every minute."
+        },
+        {
+          "itemId": "q09",
+          "keyedAnswerIndex": 2,
+          "derivedAnswerIndex": 2,
+          "agreement": true,
+          "keyCorrect": "correct",
+          "rationale": "Choice c is best because the mint is free but lacks a vivid, narratable format."
+        }
+      ],
+      "ambiguousCount": 1,
+      "keyWrongCount": 0
+    }
+  },
+  "phase2": {
+    "status": "adjudicated",
+    "derivationSha256": "ada6e5679ba9bdfbf5b2e2ef8cc50d805c187fccfb9652acf77e773456178782",
+    "phase2DocSha256": "550298d6c591d15628a6f40d2d6195062071d750d9c43d644c574418caa71c48",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-ambiguity-the-power-of-moments-ch1-mrh81otj-32",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is best because the calm ending directly invokes the peak-end lesson rather than total duration."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is best because a vivid welcome cart creates a tellable arrival peak in an otherwise plain setting."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "ambiguous",
+        "rationale": "Choices a and b are both defensible: the clapping publicly honors effort, while naming the next unit marks a threshold before private logistics."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c explicitly matches elevation, insight, pride, and connection."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a captures the red-phone lesson that one visible object can alter the expected script."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b is best because the gift becomes memorable through staged delivery, request, and reveal."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c directly applies the threshold idea by marking the shared crossing before assignments scatter."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a is the false assumption because recall is not an equal-weight average of every minute."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c is best because the mint is free but lacks a vivid, narratable format."
+      }
+    ],
+    "ambiguousCount": 1,
+    "keyWrongCount": 0
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "phase-2 quizAdjudication.items[].keyCorrect==='ambiguous' (+ phase-1 tells)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:14:57.639Z",
+  "durationMs": 0
+}

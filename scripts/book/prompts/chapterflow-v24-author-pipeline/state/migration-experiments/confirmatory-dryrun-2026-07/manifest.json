@@ -1,0 +1,20 @@
+{
+  "schema": "migration-run-manifest-v1",
+  "experimentId": "confirmatory-dryrun-2026-07",
+  "createdAt": "2026-07-11T06:12:37.499Z",
+  "updatedAt": "2026-07-11T06:12:37.663Z",
+  "specSha256": "07cbb9ba3be9acac2511efafbeb1121c91382fe9af0f6651c96b22b2e86f3263",
+  "completedPhases": [
+    "seal",
+    "qualify",
+    "generate",
+    "review",
+    "metrics",
+    "analyze",
+    "unblind",
+    "decide",
+    "report"
+  ],
+  "metricTablesSha256": "f03b8c0ae1f45623ad7bc51e15facd740283146f178a61a78002c747cac761b1",
+  "unblindedAt": "2026-07-11T06:12:37.654Z"
+}

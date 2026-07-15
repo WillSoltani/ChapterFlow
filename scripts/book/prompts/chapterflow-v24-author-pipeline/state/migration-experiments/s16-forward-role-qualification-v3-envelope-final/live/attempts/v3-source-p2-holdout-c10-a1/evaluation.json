@@ -1,0 +1,165 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c10-a1",
+  "requestSha256": "5d2c84c2dc1573f7267ffec2adbda974bea7ce56684d4b74a9a5734fa82d262f",
+  "receiptSha256": "d3ab15e7ac7841315a1c069a316fca77a918ae7db956ff755733dbb8270c9140",
+  "executionEvidenceSha256": "2ff947fc9e8f24423475e7792165ea0c8821c980a72892f00c5dcf1d9a6b001a",
+  "rawOutputSha256": "36dcc82b89ff015524095773ec44b7629388093efd0c145e67fa2a20ce2f8cfc",
+  "evaluationSha256": "48372485da9dab479b0854b81d8cc9b92778b4a320a5b1a79ec90a11964628fb",
+  "parsedOutputSha256": "91639be3e2e0c6073bd5de693135d9a1f72b02e61d2d5941123d5cf15e21a479",
+  "assembledReviewSha256": "41213360a1030ae5d7d388c3a89d2bf85372842f00835e7f73d984b254de85c5",
+  "evidenceReferenceResolutionSha256": "b284e83ec979f7bdf764693c6743cb1f4fce9a4db1af2f7476e469d932d20aa7",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=claim_strength_overreach",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "causalOverreachSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "missing_visible_framing"
+              ],
+              "severity": "major",
+              "explanation": "The chapter includes the source-supported platform/convenience/attention claim, but then escalates it into a universal guaranteed causal outcome for every person. The source and mechanism support a conditional/mechanistic 'can' claim, not proof or exceptionless causation, and the packet explicitly bars guaranteed outcomes unless stated.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-015",
+                "PLAN-U001"
+              ]
+            }
+          ],
+          "rationale": "The target is partly grounded in the source claim, but its visible wording overstates the source's claim strength and lacks qualifying framing for the universal causal extension."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "c2e241d5ad2f6e907530f1e190b9b99de984d2e26299e3aa46c8e4cbaf791e32",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9414cd061501de5f68f1a6d81ee6fa628b97a5e59916ddfff7d86d25982d9c11",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "missing_visible_framing"
+              ],
+              "severity": "major",
+              "explanation": "The chapter includes the source-supported platform/convenience/attention claim, but then escalates it into a universal guaranteed causal outcome for every person. The source and mechanism support a conditional/mechanistic 'can' claim, not proof or exceptionless causation, and the packet explicitly bars guaranteed outcomes unless stated.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-015",
+                "PLAN-U001"
+              ],
+              "findingId": "unit.fact.ch01.fact.2:source-finding:001",
+              "chapterEvidenceSpans": [
+                "This proves that a platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. always causes the stated outcome for every person, without exception."
+              ],
+              "sourceEvidenceSpans": [
+                "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+                "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time.",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}",
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.2\"\n  ]\n}"
+              ]
+            }
+          ],
+          "rationale": "The target is partly grounded in the source claim, but its visible wording overstates the source's claim strength and lacks qualifying framing for the universal causal extension.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit"
+      ],
+      "rationale": "U1: The target is partly grounded in the source claim, but its visible wording overstates the source's claim strength and lacks qualifying framing for the universal causal extension."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "This proves that a platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. always causes the stated outcome for every person, without exception."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ATOMIC-015",
+            "PLAN-U001"
+          ],
+          "evidenceSpans": [
+            "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+            "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time.",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}",
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.2\"\n  ]\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "0a79d9548611fbadc63e329f56ce5e32af8d0232473146bc4166e6f770dd1e2d"
+}

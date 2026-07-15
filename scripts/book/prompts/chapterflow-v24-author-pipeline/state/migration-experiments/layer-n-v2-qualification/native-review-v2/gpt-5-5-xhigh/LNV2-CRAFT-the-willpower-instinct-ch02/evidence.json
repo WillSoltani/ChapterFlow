@@ -1,0 +1,150 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-the-willpower-instinct-ch02",
+  "itemId": "LNV2-CRAFT-the-willpower-instinct-ch02",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "161b0d6ef8647b78",
+  "renderedDocSha256": "d7a8844ad8d2b899083d05635491b10ae7fba3df9bfd074cc0600576f9f70ea7",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "d81503a00b8c89cb556ca98fa840629413cb472d8871af8236fbdc5f0d7b5afd",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-xhigh-LNV2-CRAFT-the-willpower-instinct-ch02-mrhad1h8-19",
+  "rawFinalMessageSha256": "782c066c6bbb7446d25f3e96754350513314dcb25a9b55762ef306fd9a1a9000",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"c\", \"a\", \"b\", \"b\", \"a\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines HRV as beat-to-beat rhythm shifting and links higher variability with self-regulation under demand.\",\n      \"The Trier description says public speaking, arithmetic, evaluators, social judgment, and low control can trigger stress without physical danger.\",\n      \"Stress is described as narrowing attention toward fast relief, making candy or sharp replies feel like shelter before goals return.\",\n      \"Tang's brief practice is tied to trained attention, softer stress reactivity, and noticing an urge before obeying it.\",\n      \"The chapter says slow exhaling keeps the choosing system online by changing the body state, not by proving the message trivial.\",\n      \"Pause-and-plan argues that extra arousal can make the body too loud for future consequences and long goals to be weighed.\",\n      \"The sleep section says tired attention loses grip, so stronger cues can crowd out the planned care task.\",\n      \"The movement section says activity can improve mood, stress regulation, and executive function, lowering the load on later choices.\",\n      \"The chapter repeatedly says waiting until the craving peaks is unfair because the body needs runway before the hardest moment.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"b has the only precise, non-absolute mechanism; a and c are visibly weaker.\",\n      \"c is the only answer framed as a general stress mechanism; a and b sound artificially narrow.\",\n      \"c is the only answer that does not blame character or isolate stress from the craving.\",\n      \"a is the only answer without an absolute or odd causal claim.\",\n      \"b is the only option with real mechanism language; a and c are dismissive.\",\n      \"b directly addresses the 'fired up' detail; a and c dodge the stem.\",\n      \"a repeats the stem's sleep/cue structure; b and c dismiss sleep too bluntly.\",\n      \"a copies the prose's three-item list; b and c use giveaway 'only/mostly' framing.\",\n      \"c repeats the chapter's runway/before-peak language; a and b introduce unsupported fixes.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 91,\n    \"quizzes\": 82,\n    \"transfer\": 86,\n    \"practical\": 92,\n    \"summaries\": 89,\n    \"tone\": 86,\n    \"limits\": 94,\n    \"insight\": 88,\n    \"density\": 84,\n    \"beginner\": 91\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Panic is a poor coach. Calm gives the future a vote.\",\n      \"why\": \"Strong, memorable compression of the chapter's core move.\"\n    },\n    {\n      \"quote\": \"Use the opposite move when speed protects life, health, or trust.\",\n      \"why\": \"Excellent limits language; it prevents the pause technique from becoming universal advice.\"\n    },\n    {\n      \"quote\": \"In the end, this is the kind of move worth practicing until it feels routine.\",\n      \"why\": \"Weakest tonal moment: generic wrap-up that could fit almost any chapter.\"\n    },\n    {\n      \"quote\": \"The object carries the attention Yi-Yuan Tang trained through return practice.\",\n      \"why\": \"The source linkage feels stretched; the practical move is good, but the attribution is ornamental.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz set\",\n      \"problem\": \"Several distractors are too easy because they use blunt dismissal or absolutes while the keyed answer uses balanced mechanism language.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q8\",\n      \"problem\": \"The correct option repeats the exact prose list of mood, stress regulation, and executive function, making it more recognition than transfer.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q9\",\n      \"problem\": \"The correct option closely echoes the chapter's 'runway before the craving peaked' phrasing, creating a mild giveaway.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The final sentence is generic and lowers density after an otherwise specific scenario.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The Tang connection is overextended; moving a pill bottle into view is practical, but the source reference does not add much mechanism.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable chapter: the core move is clear, memorable, practical, and bounded by useful failure cases. The best material turns willpower into a body-state problem without making calm into a moral performance, and the examples mostly show concrete before-to-after choices. The main weakness is quiz construction: the keyed answers are fair, but too often easier by tone and copied mechanism language than by genuine reasoning. No must-fix defects surfaced.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-the-willpower-instinct-ch02-chapter",
+    "chapterNumber": 2,
+    "contentHash": "161b0d6ef8647b78",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-xhigh-LNV2-CRAFT-the-willpower-instinct-ch02-mrhad1h8-19",
+    "scores": {
+      "retention": 91,
+      "quizzes": 82,
+      "transfer": 86,
+      "practical": 92,
+      "summaries": 89,
+      "tone": 86,
+      "limits": 94,
+      "insight": 88,
+      "density": 84,
+      "beginner": 91
+    },
+    "composite": 88.2,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "c",
+        "a",
+        "b",
+        "b",
+        "a",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Panic is a poor coach. Calm gives the future a vote.",
+        "why": "Strong, memorable compression of the chapter's core move.",
+        "verified": true
+      },
+      {
+        "quote": "Use the opposite move when speed protects life, health, or trust.",
+        "why": "Excellent limits language; it prevents the pause technique from becoming universal advice.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+        "why": "Weakest tonal moment: generic wrap-up that could fit almost any chapter.",
+        "verified": true
+      },
+      {
+        "quote": "The object carries the attention Yi-Yuan Tang trained through return practice.",
+        "why": "The source linkage feels stretched; the practical move is good, but the attribution is ornamental.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "b has the only precise, non-absolute mechanism; a and c are visibly weaker.",
+      "c is the only answer framed as a general stress mechanism; a and b sound artificially narrow.",
+      "c is the only answer that does not blame character or isolate stress from the craving.",
+      "a is the only answer without an absolute or odd causal claim.",
+      "b is the only option with real mechanism language; a and c are dismissive.",
+      "b directly addresses the 'fired up' detail; a and c dodge the stem.",
+      "a repeats the stem's sleep/cue structure; b and c dismiss sleep too bluntly.",
+      "a copies the prose's three-item list; b and c use giveaway 'only/mostly' framing.",
+      "c repeats the chapter's runway/before-peak language; a and b introduce unsupported fixes."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz set",
+        "problem": "Several distractors are too easy because they use blunt dismissal or absolutes while the keyed answer uses balanced mechanism language.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q8",
+        "problem": "The correct option repeats the exact prose list of mood, stress regulation, and executive function, making it more recognition than transfer.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q9",
+        "problem": "The correct option closely echoes the chapter's 'runway before the craving peaked' phrasing, creating a mild giveaway.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The final sentence is generic and lowers density after an otherwise specific scenario.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 4",
+        "problem": "The Tang connection is overextended; moving a pill bottle into view is practical, but the source reference does not add much mechanism.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter: the core move is clear, memorable, practical, and bounded by useful failure cases. The best material turns willpower into a body-state problem without making calm into a moral performance, and the examples mostly show concrete before-to-after choices. The main weakness is quiz construction: the keyed answers are fair, but too often easier by tone and copied mechanism language than by genuine reasoning. No must-fix defects surfaced.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "e8f31cd215f43aa35f893430e16d2e7d0350bef6944302889594aa16d7a6ba08",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:22:44.482Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "d81503a00b8c89cb556ca98fa840629413cb472d8871af8236fbdc5f0d7b5afd",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:21:02.779Z",
+  "durationMs": 0
+}

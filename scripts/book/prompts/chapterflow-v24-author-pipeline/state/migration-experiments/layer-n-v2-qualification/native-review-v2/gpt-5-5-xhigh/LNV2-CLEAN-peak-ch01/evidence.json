@@ -1,0 +1,145 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-peak-ch01",
+  "itemId": "LNV2-CLEAN-peak-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "7b893b35e30e2832",
+  "renderedDocSha256": "84ce1b4e707d10349924b9cc7d8855a7843eb2bf507e432526446e16d94d38a2",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-peak-ch01-mrh9lcta-3",
+  "rawFinalMessageSha256": "d28ddc5abc1aa59c6e4f69100936061540064b718c0fc475b6c6daff66434ad6",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"a\", \"c\", \"b\", \"b\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose says to stop replaying the whole performance, isolate the recurring fault, get feedback, and change the next attempt.\",\n      \"A repeated error should become a narrow drill around only that pattern, with the first failing step corrected.\",\n      \"The chapter warns that whole-task repetition lets one weak point survive inside apparent effort.\",\n      \"The plateau/video combination calls for a changed method, a visible cue, quick feedback, and repetition before adding distance.\",\n      \"The Faloon point is that each miss told the next attempt where to work, making recall a feedback loop.\",\n      \"The chapter requires a visible/countable target that guides the next rep, not nightly repetition that may preserve the error.\",\n      \"Feedback matters only when it shapes the next attempt while the mistake is still traceable.\",\n      \"Plan B gives immediate comparison and adjustment before the next small batch; Plan A delays the signal.\",\n      \"A useful target must be visible, countable, and correctable; the chalk-line/pedal target meets that test.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"medium\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"Choice a is also defensible because the chapter says comfort and enjoyable repetition can leave the weak spot hidden; b is stronger because it adds the visible target and next-cut correction.\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"b is the most concrete and stacks the chapter's giveaway markers: isolate, record, change before next attempt.\",\n      \"a telegraphs itself with 'redox-only', step checking, and rewriting the failing step.\",\n      \"c reuses the chapter's weak-point-survives-inside-whole-performance logic almost directly.\",\n      \"b is the only option with cue, feedback, and repeat-before-volume structure.\",\n      \"\",\n      \"\",\n      \"c closely echoes the review-card language about changing the next attempt while details are traceable.\",\n      \"a is longer and contains the obvious feedback-soon-enough rationale.\",\n      \"c is the only specific, measurable target, making it guessable from option shape.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 92,\n    \"quizzes\": 82,\n    \"transfer\": 90,\n    \"practical\": 91,\n    \"summaries\": 90,\n    \"tone\": 88,\n    \"limits\": 86,\n    \"insight\": 89,\n    \"density\": 84,\n    \"beginner\": 88\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The miss is the map because it tells the next rep where to aim.\",\n      \"why\": \"This is the strongest memory hook and captures the mechanism in one clean line.\"\n    },\n    {\n      \"quote\": \"Purposeful practice begins when effort stops being a count of repetitions and becomes a correction loop: one target, one stretch, one feedback signal, one changed next attempt.\",\n      \"why\": \"The key takeaway is accurate, portable, and complete as a standalone summary.\"\n    },\n    {\n      \"quote\": \"Q6. \\\"Nightly repetition will eventually fix uneven knife cuts.\\\" What is wrong with that claim?\",\n      \"why\": \"This is the weakest quiz item because two answer choices are supported by the chapter's own language.\"\n    },\n    {\n      \"quote\": \"c) changes the next attempt while the mistake is still traceable\",\n      \"why\": \"This answer is fair, but it also gives itself away by closely mirroring the chapter's repeated phrasing.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"The item is mildly underdetermined: b is the best answer, but a is also supported by the chapter's comfort-and-repetition warnings.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz set\",\n      \"problem\": \"Several correct answers are guessable from option shape because they are the most concrete and reuse the chapter's signature terms: only, feedback, weak point, and next attempt.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"deep read\",\n      \"problem\": \"Steve Faloon is named with minimal beginner context; the prose implies a memory-lab digit-span example but does not explain who he is.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"full read\",\n      \"problem\": \"The isolate-feedback-adjust loop is repeated across many examples with limited new nuance after the midpoint, which slightly lowers density.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, shippable chapter. The core move is memorable, concrete, and repeatedly transferred across work, study, sport, and craft without overselling the method. The practical loop is clear enough for a beginner to use within a day. The main weakness is quiz craft: most items are fair, but several answers are too easy to spot from specificity and repeated phrasing, and Q6 should be tightened to remove the a/b ambiguity.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "peak-ch01",
+    "chapterNumber": 1,
+    "contentHash": "7b893b35e30e2832",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CLEAN-peak-ch01-mrh9lcta-3",
+    "scores": {
+      "retention": 92,
+      "quizzes": 82,
+      "transfer": 90,
+      "practical": 91,
+      "summaries": 90,
+      "tone": 88,
+      "limits": 86,
+      "insight": 89,
+      "density": 84,
+      "beginner": 88
+    },
+    "composite": 88.2,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "a",
+        "c",
+        "b",
+        "b",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The miss is the map because it tells the next rep where to aim.",
+        "why": "This is the strongest memory hook and captures the mechanism in one clean line.",
+        "verified": true
+      },
+      {
+        "quote": "Purposeful practice begins when effort stops being a count of repetitions and becomes a correction loop: one target, one stretch, one feedback signal, one changed next attempt.",
+        "why": "The key takeaway is accurate, portable, and complete as a standalone summary.",
+        "verified": true
+      },
+      {
+        "quote": "Q6. \"Nightly repetition will eventually fix uneven knife cuts.\" What is wrong with that claim?",
+        "why": "This is the weakest quiz item because two answer choices are supported by the chapter's own language.",
+        "verified": true
+      },
+      {
+        "quote": "c) changes the next attempt while the mistake is still traceable",
+        "why": "This answer is fair, but it also gives itself away by closely mirroring the chapter's repeated phrasing.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "b is the most concrete and stacks the chapter's giveaway markers: isolate, record, change before next attempt.",
+      "a telegraphs itself with 'redox-only', step checking, and rewriting the failing step.",
+      "c reuses the chapter's weak-point-survives-inside-whole-performance logic almost directly.",
+      "b is the only option with cue, feedback, and repeat-before-volume structure.",
+      "",
+      "",
+      "c closely echoes the review-card language about changing the next attempt while details are traceable.",
+      "a is longer and contains the obvious feedback-soon-enough rationale.",
+      "c is the only specific, measurable target, making it guessable from option shape."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q6",
+        "problem": "The item is mildly underdetermined: b is the best answer, but a is also supported by the chapter's comfort-and-repetition warnings.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz set",
+        "problem": "Several correct answers are guessable from option shape because they are the most concrete and reuse the chapter's signature terms: only, feedback, weak point, and next attempt.",
+        "mustFix": false
+      },
+      {
+        "unit": "deep read",
+        "problem": "Steve Faloon is named with minimal beginner context; the prose implies a memory-lab digit-span example but does not explain who he is.",
+        "mustFix": false
+      },
+      {
+        "unit": "full read",
+        "problem": "The isolate-feedback-adjust loop is repeated across many examples with limited new nuance after the midpoint, which slightly lowers density.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, shippable chapter. The core move is memorable, concrete, and repeatedly transferred across work, study, sport, and craft without overselling the method. The practical loop is clear enough for a beginner to use within a day. The main weakness is quiz craft: most items are fair, but several answers are too easy to spot from specificity and repeated phrasing, and Q6 should be tightened to remove the a/b ambiguity.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "b3b4beaefc9b929c60bd759336c9481b45aab3230b6ceb74d10b01cea6e780bd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:01:14.422Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T03:59:31.101Z",
+  "durationMs": 0
+}

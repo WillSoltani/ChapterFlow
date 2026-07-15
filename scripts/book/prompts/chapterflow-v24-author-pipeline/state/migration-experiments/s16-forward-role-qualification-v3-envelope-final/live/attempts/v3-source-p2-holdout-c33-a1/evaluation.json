@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c33-a1",
+  "requestSha256": "4df169e9b07a2133f8a1b8a420f1f4550f5d2621e618d8d156587ab8d3891f9b",
+  "receiptSha256": "2050b60e640527ee1627799ae4712023c0207811305d90accbc0701b48199831",
+  "executionEvidenceSha256": "c09f4bad8a34d0f19efab326a98865ba2e2fb3f6d922b176694e6a03269eade8",
+  "rawOutputSha256": "5785ed9d8fc10b3dac05855057d1039666a73adc91ad1b04a5bec66b1c5c6918",
+  "evaluationSha256": "8807d6dc4153ee2f74fef098867850290c01d178547d7e657ea04b2bdbd5ad69",
+  "parsedOutputSha256": "c78189bc419ef92fc7f1048c8ba99bf2c8bc0e07cfc0d51321ec3ef158569f52",
+  "assembledReviewSha256": "8ca4d15a4beeb97bf8d9de3d5c53eda701a65722179487cee873f3325ed083cc",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly framed as sourced and stays within the source claim and mechanism supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001. Its strength and detail level fit PLAN-U001, and it adds no unsupported named specifics or quantified effects."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "e3aa4cb292ea577b81496091fb02fba73460409e0fcb7474f457b766860580e7",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9909d27c42ec5d6045cd022d3d7c49e67e1c1e5b1f5e5b6781b58ba4ffe938d1",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly framed as sourced and stays within the source claim and mechanism supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001. Its strength and detail level fit PLAN-U001, and it adds no unsupported named specifics or quantified effects.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is explicitly framed as sourced and stays within the source claim and mechanism supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001. Its strength and detail level fit PLAN-U001, and it adds no unsupported named specifics or quantified effects."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "953cb13448d414a6451cfee78f14c6c012d1e3fdff1df73239e1faa374bbd03f"
+}

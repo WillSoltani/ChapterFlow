@@ -1,0 +1,142 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-the-willpower-instinct-ch1",
+  "itemId": "hardblocker-the-willpower-instinct-ch1",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "d97067e80cad2d3c",
+  "renderedDocSha256": "3b39587f07cb2dc45aad8573b2947b4b649be3b25b755b364195091db10dcbab",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "4b08c39a81028c5ee9218ebcc58ac411a2a4527b8c75bbfd21a8a96e60f1a79f",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-the-willpower-instinct-ch1-mrh61vyx-21",
+  "rawFinalMessageSha256": "05a8a77bd8637b75e09ec4d60a58787f39957ec2fc57a4b20c9e11ee5afd77a9",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"c\", \"a\", \"a\", \"b\", \"b\", \"b\", \"a\", \"c\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines willpower as three powers: I will starts useful action, I won't blocks tempting action, and I want keeps the larger value awake.\",\n      \"Miller and Cohen are used to explain prefrontal control as keeping goals active so they bias attention and action when cues compete.\",\n      \"The Gage passage says he survived and could speak, but steadiness, planning, and social restraint did not return in the same way.\",\n      \"The self-awareness section says change begins by noticing the moment before the action hardens, not by explaining regret afterward.\",\n      \"The family ride passage says self-control supports waiting, promises, shared resources, softened anger, and repaired conflict.\",\n      \"The chapter repeatedly says a real long-term value can lose if it is quiet at the cue and must be made present at the choice point.\",\n      \"The prose rejects hero/villain splitting: relief-now and the deeper goal can both be real, with support deciding which guides action.\",\n      \"The practical section says concrete behaviors give feedback about start cues, barriers, and whether the value is present at choice.\",\n      \"The Amelia material says control biases the next response when an automatic routine meets a conflicting current goal.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"medium\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"Example 4 contains a contradictory sentence saying the safer move is to keep the run goal out of mind because making the larger want present strengthens craving; no option cleanly states that, but it undercuts b.\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Most correct answers are the only balanced, mechanism-shaped choices, while distractors use giveaway absolutes such as 'fake,' 'only,' 'outside the brain,' 'avoid cooperation,' and 'proof.'\",\n      \"Q1's correct choice is the only one that names all three chapter terms.\",\n      \"Q2, Q3, and Q9 have distractors that are obviously anti-neuroscience or overclaiming even without the prose.\",\n      \"Q6 is contaminated by Example 4's contradiction, so a careful reader may distrust the intended key.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 72,\n    \"transfer\": 70,\n    \"practical\": 84,\n    \"summaries\": 86,\n    \"tone\": 88,\n    \"limits\": 82,\n    \"insight\": 87,\n    \"density\": 84,\n    \"beginner\": 90\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"Refusal is only one third of willpower. When a lapse repeats, ask which power went quiet before you call yourself weak.\",\n      \"why\": \"This is the chapter's core move in a memorable, testable form.\"\n    },\n    {\n      \"quote\": \"A goal must be present to have power.\",\n      \"why\": \"Strong compression of the mechanism behind the chapter.\"\n    },\n    {\n      \"quote\": \"The safer move is to keep the run goal out of mind at the wrapper, because making a larger want present only strengthens the craving.\",\n      \"why\": \"This directly contradicts the chapter's central advice and damages Example 4 and Q6.\"\n    },\n    {\n      \"quote\": \"Self-control costs the comfort of staying vague. In return, the next choice becomes visible before it becomes another apology.\",\n      \"why\": \"A strong practical line that explains both cost and payoff.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 4\",\n      \"problem\": \"The final What to do sentence says to keep the run goal out of mind because making the larger want present strengthens craving, which contradicts the chapter's core claim that the larger want must become visible at the cue.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"The intended answer is b, but the Brooklyn example contains source-contradictory advice pointing away from making the run goal present, so the local evidence undermines the key.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"Several distractors are too easy to eliminate because they use extreme or strawman wording such as fixed character, fake goals, obeying urges, or avoiding cooperation.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"implementation plan\",\n      \"problem\": \"The if-then items duplicate their own bracket labels in the sentence body, creating a visible scaffold smell.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter has a clear, useful core: willpower is not just refusal, but a three-part check of what to start, what to stop, and what larger value to keep visible. The prose is beginner-friendly, concrete, and often memorable, with good layering across fast, deep, and full reads. The blocking issue is Example 4, which inserts advice opposite to the chapter's mechanism and contaminates a related quiz question. Fix that contradiction and tighten the quiz distractors, and this is close to a professional ship bar.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-the-willpower-instinct-ch1-chapter",
+    "chapterNumber": 1,
+    "contentHash": "d97067e80cad2d3c",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-hardblocker-the-willpower-instinct-ch1-mrh61vyx-21",
+    "scores": {
+      "retention": 88,
+      "quizzes": 72,
+      "transfer": 70,
+      "practical": 84,
+      "summaries": 86,
+      "tone": 88,
+      "limits": 82,
+      "insight": 87,
+      "density": 84,
+      "beginner": 90
+    },
+    "composite": 82.6,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "c",
+        "a",
+        "a",
+        "b",
+        "b",
+        "b",
+        "a",
+        "c",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Refusal is only one third of willpower. When a lapse repeats, ask which power went quiet before you call yourself weak.",
+        "why": "This is the chapter's core move in a memorable, testable form.",
+        "verified": true
+      },
+      {
+        "quote": "A goal must be present to have power.",
+        "why": "Strong compression of the mechanism behind the chapter.",
+        "verified": true
+      },
+      {
+        "quote": "The safer move is to keep the run goal out of mind at the wrapper, because making a larger want present only strengthens the craving.",
+        "why": "This directly contradicts the chapter's central advice and damages Example 4 and Q6.",
+        "verified": true
+      },
+      {
+        "quote": "Self-control costs the comfort of staying vague. In return, the next choice becomes visible before it becomes another apology.",
+        "why": "A strong practical line that explains both cost and payoff.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Most correct answers are the only balanced, mechanism-shaped choices, while distractors use giveaway absolutes such as 'fake,' 'only,' 'outside the brain,' 'avoid cooperation,' and 'proof.'",
+      "Q1's correct choice is the only one that names all three chapter terms.",
+      "Q2, Q3, and Q9 have distractors that are obviously anti-neuroscience or overclaiming even without the prose.",
+      "Q6 is contaminated by Example 4's contradiction, so a careful reader may distrust the intended key."
+    ],
+    "complaints": [
+      {
+        "unit": "example 4",
+        "problem": "The final What to do sentence says to keep the run goal out of mind because making the larger want present strengthens craving, which contradicts the chapter's core claim that the larger want must become visible at the cue.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz Q6",
+        "problem": "The intended answer is b, but the Brooklyn example contains source-contradictory advice pointing away from making the run goal present, so the local evidence undermines the key.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz overall",
+        "problem": "Several distractors are too easy to eliminate because they use extreme or strawman wording such as fixed character, fake goals, obeying urges, or avoiding cooperation.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan",
+        "problem": "The if-then items duplicate their own bracket labels in the sentence body, creating a visible scaffold smell.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a clear, useful core: willpower is not just refusal, but a three-part check of what to start, what to stop, and what larger value to keep visible. The prose is beginner-friendly, concrete, and often memorable, with good layering across fast, deep, and full reads. The blocking issue is Example 4, which inserts advice opposite to the chapter's mechanism and contaminates a related quiz question. Fix that contradiction and tighten the quiz distractors, and this is close to a professional ship bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "b2fb36f0f7a2be9fef473218e012f96a725b23acff65f8805d8752f03766a31b",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:21:23.808Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "4b08c39a81028c5ee9218ebcc58ac411a2a4527b8c75bbfd21a8a96e60f1a79f",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "The safer move is to keep the run goal out of mind at the wrapper, because making a larger want present only strengthens the craving."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:20:23.959Z",
+  "durationMs": 0
+}

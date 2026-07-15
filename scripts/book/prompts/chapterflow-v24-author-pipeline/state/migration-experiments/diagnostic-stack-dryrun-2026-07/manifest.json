@@ -1,0 +1,20 @@
+{
+  "schema": "migration-run-manifest-v1",
+  "experimentId": "diagnostic-stack-dryrun-2026-07",
+  "createdAt": "2026-07-11T05:32:17.240Z",
+  "updatedAt": "2026-07-11T05:32:17.352Z",
+  "specSha256": "91ea0e746d643f907ff66c8ce05b2830ef88335284172218b78ad0f894982b20",
+  "completedPhases": [
+    "seal",
+    "qualify",
+    "generate",
+    "review",
+    "metrics",
+    "analyze",
+    "unblind",
+    "decide",
+    "report"
+  ],
+  "metricTablesSha256": "39f62b01610504d0f5de2f4008d8638057c149edf4d8522fa4872409fd47051a",
+  "unblindedAt": "2026-07-11T05:32:17.346Z"
+}

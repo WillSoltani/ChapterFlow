@@ -1,0 +1,149 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c30-a1",
+  "requestSha256": "7c219bed22fc20b5071045dad1039ae1338da3f66aadc10d0d728805e3461c34",
+  "receiptSha256": "e97970d59faef3574b34302ecde58b8873ed6737e941e8fff0205e37e1e7fb01",
+  "executionEvidenceSha256": "0bcfe8a49e7a1cf740059f3bac06b7278214cf590e9d431e58f45ff4338e299d",
+  "rawOutputSha256": "4245897fecd1cc4b7bccb6033933035c9b3b730a569ca8226ddd94fb60dc36f6",
+  "evaluationSha256": "fb13c917d5fbcfdcf92bc3bde3429f515c7a8dc4b6538341a86b29397a7ad60c",
+  "parsedOutputSha256": "124b536fa8abaecabc4a007ca40da26ee5efb04c402980570650019c3e473fb6",
+  "assembledReviewSha256": "3445ce5cbe9d3416dcbf3e81f27d94e4f6b9c62736de2524b568ac965fbcd556",
+  "evidenceReferenceResolutionSha256": "0e3a1f060ea5356b736ad62d0cd8bc5438f763b246934b3549ecd681a39454d2",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=generic_specificity_leak",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "major",
+              "explanation": "The chapter uses a generic operational scenario but adds an arbitrary exact duration, while the plan permits only concept-level generic details and forbids exact metrics. The general workflow action is allowed, but the precise metric is not packet-supported.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ]
+            }
+          ],
+          "rationale": "The target fits the allowed generic scenario form and descriptive strength overall, but its precise duration exceeds the plan's concept-only detail license."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "b1995361044629afe541b8a0fde288bc4a753a25cbe81070342d2080f337ce1a",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "926bd98a6deb1fe4bdcd80ecc3429dcbd14c72e51e0947dc39d015db66baf298",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "major",
+              "explanation": "The chapter uses a generic operational scenario but adds an arbitrary exact duration, while the plan permits only concept-level generic details and forbids exact metrics. The general workflow action is allowed, but the precise metric is not packet-supported.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ],
+              "findingId": "unit.ch01.generic-scenario:source-finding:001",
+              "chapterEvidenceSpans": [
+                "A team member can mute a nonessential alert for exactly 47 minutes while completing one focused step."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"generic\",\n  \"formLicense\": \"operational_scenario\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"role_label\",\n    \"observable_action\",\n    \"constraint\",\n    \"tradeoff\",\n    \"workflow_step\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"named_person\",\n    \"named_organization\",\n    \"date\",\n    \"exact_metric\",\n    \"credential\",\n    \"biography\",\n    \"historical_claim\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": []\n}"
+              ]
+            }
+          ],
+          "rationale": "The target fits the allowed generic scenario form and descriptive strength overall, but its precise duration exceeds the plan's concept-only detail license.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden"
+      ],
+      "rationale": "U1: The target fits the allowed generic scenario form and descriptive strength overall, but its precise duration exceeds the plan's concept-only detail license."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "A team member can mute a nonessential alert for exactly 47 minutes while completing one focused step."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"generic\",\n  \"formLicense\": \"operational_scenario\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"role_label\",\n    \"observable_action\",\n    \"constraint\",\n    \"tradeoff\",\n    \"workflow_step\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"named_person\",\n    \"named_organization\",\n    \"date\",\n    \"exact_metric\",\n    \"credential\",\n    \"biography\",\n    \"historical_claim\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": []\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "888fc20cfaac62d8deaa20ee97a13127508c38ed090d690aea93ee4469c38fca"
+}

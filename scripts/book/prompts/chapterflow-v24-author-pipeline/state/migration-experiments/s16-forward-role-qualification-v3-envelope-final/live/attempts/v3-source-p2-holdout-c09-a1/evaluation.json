@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c09-a1",
+  "requestSha256": "130c14e218b8ce2ef69e5d4370a060c8f92871ed0df26dffeda8aad24e359287",
+  "receiptSha256": "0d3c9b7cbaa718aee106a66fbf1466f1f2c1ccaede5a81ffa7ae961ff6abf403",
+  "executionEvidenceSha256": "d62b706fca7eff23d1341d3bf602f505ee38fa80ea493c6bf8a44c574ee5849f",
+  "rawOutputSha256": "330a60388f7d37ca18c1378483cbbff757a18af75241f77985f707b36d5d2aa2",
+  "evaluationSha256": "96daef34c9f6e89adb8718ec23cd3c4c6e90691437dee8f010c98a2fb7f9a32f",
+  "parsedOutputSha256": "593391f11fbc385288179afcec5360f5ca764999fb25e98166ed1cdcec08caaa",
+  "assembledReviewSha256": "4a36666233031a81139857d85df8fd98a9c887efabad9370c64df62294488f05",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly source-framed, stays within the mechanistic strength allowed by PLAN-U001, and is supported by SRC-U001-ANCHOR-001, SRC-U001-CLAIM-001, and SRC-U001-MECHANISM-001. No unsupported specificity, contradiction, or overreach is present."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "80fc7b7a08a60027d4288eb00ca852f54f3ca95932e7df50dd3f6e0324c84637",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "5a29850fdc1bcae5f69edd262527e29cd720c3bd222022bde7e15791f861f167",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly source-framed, stays within the mechanistic strength allowed by PLAN-U001, and is supported by SRC-U001-ANCHOR-001, SRC-U001-CLAIM-001, and SRC-U001-MECHANISM-001. No unsupported specificity, contradiction, or overreach is present.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is explicitly source-framed, stays within the mechanistic strength allowed by PLAN-U001, and is supported by SRC-U001-ANCHOR-001, SRC-U001-CLAIM-001, and SRC-U001-MECHANISM-001. No unsupported specificity, contradiction, or overreach is present."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "1fbe6d12f5024b3a7d09fabf47d190829f25348597ebbfda0b22f5e6808daad4"
+}

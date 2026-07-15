@@ -1,0 +1,144 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-the-checklist-manifesto-ch01",
+  "itemId": "LNV2-CRAFT-the-checklist-manifesto-ch01",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "bcae6f82c79349f9",
+  "renderedDocSha256": "6ebe946c5be8ade4e2d69fd70b68f6d9bc98cbe890720fc17b911a113050bb58",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "027edd859f78a02a00a3f593db98d561de98ea08ee25627807651a4c6ab357bc",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CRAFT-the-checklist-manifesto-ch01-mrhab3st-18",
+  "rawFinalMessageSha256": "2cd7f5e5e14e5c6a92cd944f84e31a57dd886367f69755320f2f1b7b1e463bc4",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"a\", \"b\", \"c\", \"a\", \"c\", \"b\", \"c\"],\n    \"mechanisms\": [\n      \"The prose says danger in expert systems lives between people when ownership blurs, not in missing medical knowledge.\",\n      \"The implementation plan says that when specialists say their pieces are ready, map the final transition by named owner before approving the window.\",\n      \"The Ingrid example explicitly rebuilds the path across nursing-like handoffs before blaming the last visible person.\",\n      \"The chapter says failures hide where cues, timing, and handoffs cross roles, so the first inspection is the department handoff.\",\n      \"The pharmacy example shows each department can complete its part while reliability fails at the crossings.\",\n      \"The Hadiya example says to give the overlap across plow, police, and ambulance access a named owner before peak load.\",\n      \"The Sofia example says the danger lives where separate readiness claims meet, not inside any single expert task.\",\n      \"The core reasoning is that excellent people still need ownership made visible where work crosses roles.\",\n      \"The chapter rejects lone mastery and asks what transition was being carried by memory or command instead of the system.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Many correct choices repeat the chapter's exact vocabulary: handoff, ownership, transition, named owner, crossing.\",\n      \"Several correct choices are the most specific or longest option, especially Q3, Q4, Q6, Q7, and Q9.\",\n      \"Distractors often use blunt straw moves such as work harder, blame the person, or appoint one commander.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 82,\n    \"transfer\": 84,\n    \"practical\": 87,\n    \"summaries\": 88,\n    \"tone\": 85,\n    \"limits\": 86,\n    \"insight\": 89,\n    \"density\": 82,\n    \"beginner\": 90\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"Complexity changes the location of danger.\",\n      \"why\": \"This is the chapter's strongest compressed mechanism.\"\n    },\n    {\n      \"quote\": \"Movement creates seams, and seams create assumptions.\",\n      \"why\": \"Memorable, transferable, and easy to retrieve later.\"\n    },\n    {\n      \"quote\": \"The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.\",\n      \"why\": \"The rescue is invoked as evidence but not concretely developed on the page.\"\n    },\n    {\n      \"quote\": \"In the end, this is the kind of move worth practicing until it feels routine.\",\n      \"why\": \"This line feels generic and less tied to the rail example than the surrounding prose.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"deep read\",\n      \"problem\": \"The Austrian drowning rescue is named as important evidence, but the chapter gives too little concrete detail about it for the reference to carry much weight.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz set\",\n      \"problem\": \"Correct options are often signaled by exact chapter vocabulary and higher specificity, while several distractors are obvious blame-or-command straw choices.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The final sentence is generic practice-language rather than a rail-specific consequence or decision outcome.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 6\",\n      \"problem\": \"The storm example identifies the seam clearly but gives less before-to-after consequence than the strongest examples.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"implementation plan\",\n      \"problem\": \"The title and core skill repeat the same phrase, giving this section a slight template feel.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a shippable chapter. The core move is clear, memorable, and practical: stop blaming isolated competence first and inspect the seam where ownership thins out. The prose has strong mechanisms, layered summaries, useful if-then transfer, and fair quizzes. Its main weaknesses are craft-level rather than blocking: some quiz answers are too easy to spot by vocabulary, one cited rescue is under-grounded, and a few examples repeat the same shape without adding much consequence.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-the-checklist-manifesto-ch01-chapter",
+    "chapterNumber": 1,
+    "contentHash": "bcae6f82c79349f9",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-xhigh-LNV2-CRAFT-the-checklist-manifesto-ch01-mrhab3st-18",
+    "scores": {
+      "retention": 90,
+      "quizzes": 82,
+      "transfer": 84,
+      "practical": 87,
+      "summaries": 88,
+      "tone": 85,
+      "limits": 86,
+      "insight": 89,
+      "density": 82,
+      "beginner": 90
+    },
+    "composite": 86.3,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "a",
+        "c",
+        "b",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Complexity changes the location of danger.",
+        "why": "This is the chapter's strongest compressed mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "Movement creates seams, and seams create assumptions.",
+        "why": "Memorable, transferable, and easy to retrieve later.",
+        "verified": true
+      },
+      {
+        "quote": "The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.",
+        "why": "The rescue is invoked as evidence but not concretely developed on the page.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+        "why": "This line feels generic and less tied to the rail example than the surrounding prose.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Many correct choices repeat the chapter's exact vocabulary: handoff, ownership, transition, named owner, crossing.",
+      "Several correct choices are the most specific or longest option, especially Q3, Q4, Q6, Q7, and Q9.",
+      "Distractors often use blunt straw moves such as work harder, blame the person, or appoint one commander."
+    ],
+    "complaints": [
+      {
+        "unit": "deep read",
+        "problem": "The Austrian drowning rescue is named as important evidence, but the chapter gives too little concrete detail about it for the reference to carry much weight.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz set",
+        "problem": "Correct options are often signaled by exact chapter vocabulary and higher specificity, while several distractors are obvious blame-or-command straw choices.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "The final sentence is generic practice-language rather than a rail-specific consequence or decision outcome.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 6",
+        "problem": "The storm example identifies the seam clearly but gives less before-to-after consequence than the strongest examples.",
+        "mustFix": false
+      },
+      {
+        "unit": "implementation plan",
+        "problem": "The title and core skill repeat the same phrase, giving this section a slight template feel.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a shippable chapter. The core move is clear, memorable, and practical: stop blaming isolated competence first and inspect the seam where ownership thins out. The prose has strong mechanisms, layered summaries, useful if-then transfer, and fair quizzes. Its main weaknesses are craft-level rather than blocking: some quiz answers are too easy to spot by vocabulary, one cited rescue is under-grounded, and a few examples repeat the same shape without adding much consequence.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "1b57de6589d24048f32641e3dab358b67ec88eed749c16e18fe5cc2aa7644f68",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:21:02.777Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "027edd859f78a02a00a3f593db98d561de98ea08ee25627807651a4c6ab357bc",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:19:32.476Z",
+  "durationMs": 0
+}

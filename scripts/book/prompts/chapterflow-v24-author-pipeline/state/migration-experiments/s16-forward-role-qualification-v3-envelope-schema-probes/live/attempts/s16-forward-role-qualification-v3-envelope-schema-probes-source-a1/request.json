@@ -1,0 +1,19 @@
+{
+  "schema": "imp24e-schema-probe-request-v1",
+  "cycle": 1,
+  "executionId": "s16-forward-role-qualification-v3-envelope-schema-probes",
+  "role": "source",
+  "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-source-a1",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaRelPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/source-integrity-model-output-v2.schema.json",
+  "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+  "task": "IMP-24E source transport-schema probe only.\nThis is synthetic and must not be treated as a review or qualification judgment.\nReturn exactly the following smallest valid JSON object and no prose:\n{\"assessments\":[{\"claimStrengthFit\":null,\"findings\":[],\"framingAdequate\":null,\"namedSpecificityAllowed\":null,\"rationale\":\"Synthetic transport probe output.\",\"supportStatus\":\"NOT_APPLICABLE\",\"targetRef\":\"probe.target.1\",\"visibleRegister\":\"clearly_generic\"}],\"schema\":\"source-integrity-model-output-v2\"}",
+  "taskSha256": "aecb1e2d445c26eb5b38335228c1a9c6f8def325d153cde410cefe134542da89",
+  "expectedMinimumOutputSha256": "0c767981027e472c8c7834a17ab39fb5f608cde6e1b2f0685ca85bf518871215",
+  "timeoutMs": 300000,
+  "qualificationMetricsIncluded": false,
+  "apiCalls": 0,
+  "requestSha256": "b9fae6757398a123f030cedfb2ad28dc5e96211742309a556d1b22fb50ab7623"
+}

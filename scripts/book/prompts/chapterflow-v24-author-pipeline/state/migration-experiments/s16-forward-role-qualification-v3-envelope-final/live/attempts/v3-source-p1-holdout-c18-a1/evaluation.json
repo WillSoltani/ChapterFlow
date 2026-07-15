@@ -1,0 +1,68 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c18-a1",
+  "requestSha256": "329c7a29eec87862b4bc8ec8f90bb9259acb8a81fe19f06c69b47f502fcd3802",
+  "receiptSha256": "e2ef01fd97101b9e67b3558bd8fb8584eef185458c3e65d383166363e9a41961",
+  "executionEvidenceSha256": "69ed4ba33c21c4bca9fd4518e3f4c2592979b203a9405344d5d66c0c7548b32b",
+  "rawOutputSha256": "698770bc3da33d9ad97492b7f99b68a0cd7e103d58c3e1d7e9c9accbd87d61f1",
+  "evaluationSha256": "faee2a552874b1dfd99c50b8199267130f706ea3a1e7bc5793adc49cfc0d7938",
+  "parsedOutputSha256": "d153ddc82c00cd602473237d31072c24a9f09172e35257f21ba9b2e5a85deae6",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "ce04c3fae755a64b807b9f4a44b17d361f59384fbcdd015d9fa629f6f9efc7b8",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [],
+              "severity": "major",
+              "explanation": "The application is licensed as constructed and its generic role and concrete action are permitted, but the chapter presents the scenario as an actual event without visible hypothetical or constructed framing.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The chapter stays within descriptive claim strength and uses no prohibited named specificity, but it does not visibly frame the constructed application as required by the plan."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "ReviewModelOutputV2Error",
+        "message": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+        "code": "INVALID_EVIDENCE",
+        "refId": null
+      }
+    }
+  },
+  "evaluationArtifactSha256": "a9caed9289d4ead1b3ab7f323852ddb9a78a19851d8f329ffd398d8d409145a3"
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-source-1783906250891-11-0561fc54-1037-4608-9b79-d0ac1d1ef28b",
+  "status": "completed",
+  "role": "source",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+  "rawOutput": "{\"schema\":\"source-integrity-review-v1\",\"units\":[{\"unitId\":\"ch01.fact.1\",\"expectedOrigin\":\"source_bound\",\"expectedForm\":\"explanation\",\"claimStrengthExpected\":\"mechanistic\",\"visibleRegister\":\"presented_as_fact\",\"supportStatus\":\"PARTIALLY_SUPPORTED\",\"framingAdequate\":null,\"claimStrengthFit\":true,\"namedSpecificityAllowed\":false,\"chapterEvidenceSpans\":[\"At St. Mark's Hospital in Boston on March 12, 2019, project manager Elena Ruiz used a short check before opening a feed\",\"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\"],\"sourceEvidenceSpans\":[\"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\"],\"findings\":[{\"category\":\"invented_detail\",\"severity\":\"blocker\",\"explanation\":\"The source evidence supports the statement about the 2007 iPhone launch, but it contains no St. Mark's Hospital, Boston setting, March 12, 2019 date, project manager Elena Ruiz, feed-opening action, or event connecting those details to the supported claim.\"}]}],\"result\":\"BLOCK\",\"blockingFindingIds\":[\"ch01.fact.1.finding.1\"],\"rationale\":\"The iPhone-launch claim is directly supported, but the sentence presents an unsupported named person, organization, place, exact date, and action as a real event. The supplied source evidence proves no basis for those specifics.\"}"
+}

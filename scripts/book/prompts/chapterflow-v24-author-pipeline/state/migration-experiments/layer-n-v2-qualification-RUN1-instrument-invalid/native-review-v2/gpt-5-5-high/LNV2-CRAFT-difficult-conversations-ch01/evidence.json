@@ -1,0 +1,124 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CRAFT-difficult-conversations-ch01",
+  "itemId": "LNV2-CRAFT-difficult-conversations-ch01",
+  "kind": "craft-nonblocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "f7bd5e005bdda6a7",
+  "renderedDocSha256": "149939f313fa029638c290d9d66ef847a9eb8060cc4ee34cb3421dd00f45d850",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "fa8e5e83a83fdac0bc27c9a7ba48a08dc921675f0e782985e78b9e6e5c337d61",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CRAFT-difficult-conversations-ch01-mrgp7eqc-17",
+  "rawFinalMessageSha256": "786b663892971e30f1e8dccd7bfcf2f49f99750f4793ff9a9a18eed6430a1e3d",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"a\", \"b\", \"c\", \"a\", \"b\", \"c\", \"c\", \"b\", \"a\"],\n    \"mechanisms\": [\n      \"The prose defines the identity layer as questions about being competent, good, loyal, or respected; her fear is about authority and competence.\",\n      \"The chapter says to sort what happened, feelings, and identity rather than treating a grief-soaked family fight as logistics only.\",\n      \"The diagnostic move is to separate documented facts from feelings and identity/reputation fears in the room.\",\n      \"The prose warns that the visible timeline can be real while feelings about trust steer the exchange.\",\n      \"The reaction grew because the question seemed to judge what kind of friend she was, which matches the identity layer.\",\n      \"Writing facts, feelings, and identity separately prevents the student from mistaking a belonging threat for only a factual authorship dispute.\",\n      \"The chapter says adding facts can fail when the record has begun carrying an identity question.\",\n      \"The prose explicitly warns that pasting the frame onto another person can sound like a new accusation or verdict.\",\n      \"The first diagnostic question is to separate the visible issue from the respect/identity layer driving the repeated fight.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"The correct answer is usually the longest, most nuanced option.\",\n      \"Many distractors are easy eliminations because they contain absolute or dismissive wording such as \\\"only,\\\" \\\"always,\\\" \\\"never,\\\" or obviously bad advice.\",\n      \"Correct choices often repeat the chapter vocabulary directly: facts, feelings, identity, diagnosis, private, verdict.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 88,\n    \"quizzes\": 68,\n    \"transfer\": 72,\n    \"practical\": 86,\n    \"summaries\": 89,\n    \"tone\": 82,\n    \"limits\": 90,\n    \"insight\": 88,\n    \"density\": 83,\n    \"beginner\": 91\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"The log is evidence. It is not the whole map.\",\n      \"why\": \"This is the chapter's core move in a compact, memorable line.\"\n    },\n    {\n      \"quote\": \"The three conversations are a diagnostic tool, not a script.\",\n      \"why\": \"It states the boundary of the method clearly and prevents overselling.\"\n    },\n    {\n      \"quote\": \"In the end, it really just comes down to doing the sensible thing here instead of overcomplicating it.\",\n      \"why\": \"This undermines the chapter's own lesson by making the layered diagnosis sound like overcomplication.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The final sentence contradicts the chapter's central claim that the text chain is not merely a scheduling puzzle and that grief and identity layers must be sorted; this is SOURCE-CONTRADICTORY.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"quiz overall\",\n      \"problem\": \"Correct answers are often the longest and most chapter-shaped option, while distractors are frequently caricatures, so a testwise reader could guess without fully deriving from the prose.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong, approachable chapter with a memorable diagnostic frame, clear boundaries, and practical transfer prompts. The prose teaches the core move well: sort facts, feelings, and identity before scripting a hard conversation. It should not ship yet because Example 2 contains a sentence that directly undercuts the lesson, and the quiz is too guessable even though the keyed answers are derivable and fair.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "LNV2-CRAFT-difficult-conversations-ch01-chapter",
+    "chapterNumber": 1,
+    "contentHash": "f7bd5e005bdda6a7",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CRAFT-difficult-conversations-ch01-mrgp7eqc-17",
+    "scores": {
+      "retention": 88,
+      "quizzes": 68,
+      "transfer": 72,
+      "practical": 86,
+      "summaries": 89,
+      "tone": 82,
+      "limits": 90,
+      "insight": 88,
+      "density": 83,
+      "beginner": 91
+    },
+    "composite": 83.1,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "a",
+        "b",
+        "c",
+        "a",
+        "b",
+        "c",
+        "c",
+        "b",
+        "a"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The log is evidence. It is not the whole map.",
+        "why": "This is the chapter's core move in a compact, memorable line.",
+        "verified": true
+      },
+      {
+        "quote": "The three conversations are a diagnostic tool, not a script.",
+        "why": "It states the boundary of the method clearly and prevents overselling.",
+        "verified": true
+      },
+      {
+        "quote": "In the end, it really just comes down to doing the sensible thing here instead of overcomplicating it.",
+        "why": "This undermines the chapter's own lesson by making the layered diagnosis sound like overcomplication.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "The correct answer is usually the longest, most nuanced option.",
+      "Many distractors are easy eliminations because they contain absolute or dismissive wording such as \"only,\" \"always,\" \"never,\" or obviously bad advice.",
+      "Correct choices often repeat the chapter vocabulary directly: facts, feelings, identity, diagnosis, private, verdict."
+    ],
+    "complaints": [
+      {
+        "unit": "example 2",
+        "problem": "The final sentence contradicts the chapter's central claim that the text chain is not merely a scheduling puzzle and that grief and identity layers must be sorted; this is SOURCE-CONTRADICTORY.",
+        "mustFix": true
+      },
+      {
+        "unit": "quiz overall",
+        "problem": "Correct answers are often the longest and most chapter-shaped option, while distractors are frequently caricatures, so a testwise reader could guess without fully deriving from the prose.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong, approachable chapter with a memorable diagnostic frame, clear boundaries, and practical transfer prompts. The prose teaches the core move well: sort facts, feelings, and identity before scripting a hard conversation. It should not ship yet because Example 2 contains a sentence that directly undercuts the lesson, and the quiz is too guessable even though the keyed answers are derivable and fair.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "fadce7e5c6fec633b66418de92e8afde546ce4a1777a48aabee4d3f6049f2654",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:29:34.705Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "fa8e5e83a83fdac0bc27c9a7ba48a08dc921675f0e782985e78b9e6e5c337d61",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": false,
+    "channel": "target weakness lowers scores but is NOT escalated to a reserved-harm mustFix",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:28:48.083Z",
+  "durationMs": 0
+}

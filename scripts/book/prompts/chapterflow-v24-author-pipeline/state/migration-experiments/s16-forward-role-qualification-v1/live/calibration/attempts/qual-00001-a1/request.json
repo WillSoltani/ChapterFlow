@@ -1,0 +1,33 @@
+{
+  "schema": "imp22-role-qualification-request-record-v1",
+  "requestSha256": "cacdc58c75ba9f986eb2ef87adabded97738d05e03f8b6572b5b28aca274f836",
+  "request": {
+    "schema": "imp22-role-qualification-execution-request-v1",
+    "scheduleId": "qual-00001",
+    "attemptId": "qual-00001-a1",
+    "replayOfAttemptId": null,
+    "attemptNumber": 1,
+    "role": "reader",
+    "partition": "calibration",
+    "caseId": "READER-V2-CALIBRATION-clean-behave-ch02",
+    "family": "clean",
+    "profileId": "gpt-5.6-sol@high",
+    "model": "gpt-5.6-sol",
+    "effort": "high",
+    "schemaSha256": "96be560b412f18eb33b67df3baf8f56b3ee466b0a706eb4ea89ab12250413fd3",
+    "promptSha256": "b9b9416fcd85ba4169a9fcad74a7bd5f65b701e40d6dfd431ccf38bd90e31c7f",
+    "freezeSha256": "5400e52da484aa31a6617aa379f8efe3b09cc91ebc4178e1f60a05f9eed7bbda",
+    "task": {
+      "sha256": "b9b9416fcd85ba4169a9fcad74a7bd5f65b701e40d6dfd431ccf38bd90e31c7f",
+      "bytes": 5819
+    },
+    "artifacts": [
+      {
+        "kind": "phase1-doc",
+        "relPath": "reader/READER-V2-CALIBRATION-clean-behave-ch02.phase1.md",
+        "sha256": "7f09ef4130f989d7987a60d1bd4332a86dbdd6f8aa762e51b45b6fee11d1b89d",
+        "bytes": 16917
+      }
+    ]
+  }
+}

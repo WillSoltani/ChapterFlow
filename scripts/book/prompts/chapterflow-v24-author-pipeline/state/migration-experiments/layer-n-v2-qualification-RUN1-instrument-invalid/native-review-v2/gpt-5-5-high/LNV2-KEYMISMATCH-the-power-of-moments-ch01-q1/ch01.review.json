@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "3583d15889cbc614",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrgp1t4x-11",
+  "scores": {
+    "retention": 91,
+    "quizzes": 88,
+    "transfer": 84,
+    "practical": 89,
+    "summaries": 92,
+    "tone": 87,
+    "limits": 91,
+    "insight": 90,
+    "density": 86,
+    "beginner": 93
+  },
+  "composite": 89,
+  "ship84": true,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "a",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=b key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.",
+      "why": "This is the chapter's core mechanism in memorable, plain language.",
+      "verified": true
+    },
+    {
+      "quote": "The move is not to excuse a bad process with a pretty finish. It is to see that a finish has power, so it deserves design.",
+      "why": "Strong boundary-setting keeps the lesson from becoming manipulative.",
+      "verified": true
+    },
+    {
+      "quote": "Core skill: Practice finding the moment people will carry away. Look for a peak, a threshold, or an ending that is now blank.",
+      "why": "The implementation plan is useful, though the repeated title/core-skill phrasing has a template feel.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "Negative wording makes the key the only option that contradicts the chapter's thesis.",
+    ""
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q8",
+      "problem": "The negative stem makes the item partly a polarity test; the correct answer is the only false assumption rather than a richer application choice.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The training scenario is usable but thin: it names a trainer and action, yet shows little concrete before-to-after consequence beyond people leaving with roles.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The cold-water study is used as Leah's trigger again, but the mentorship situation is not strongly connected to pain, duration, or recall beyond the general ending lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The title and core skill repeat the same phrase, which creates a mild scaffold/template smell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: the central idea is clear, memorable, and responsibly bounded, with strong images in the red phone, the cold-water study, and YES Prep's public threshold. The quiz is mostly fair and derivable, and the practical moves are low-friction enough for a beginner to try. The main weakness is transfer polish: a few later examples feel like generic reenactments of the lesson rather than fully observed cases with concrete consequences. That lowers richness, but it does not block shipping.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "47bbae470f919e949d38689343aaf37d5fe9423ffb37ba7848cceb14029e1994",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-11T18:25:25.292Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "e70a3dd07b47a2860c69de52c0616e7b0e35e50ec5493b70d3556a10d2c0a237",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "58c4e361d64e7b29118bd14024705ac41aeef858fa230810534a302e0c62d0df",
+    "phase2DocSha256": "c0e0eab843abb45466abffde0ec04b9cbfb80020365c7ccfa8ce49713bbf06e1",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-the-power-of-moments-ch01-q1-mrgp3299-12",
+    "items": [
+      {
+        "itemId": "q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "The question asks which memory lesson fits a calmer, less painful finish, which supports b; c says to leave the finish alone and conflicts with the premise."
+      },
+      {
+        "itemId": "q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "A bright welcome cart with drinks is a vivid, tellable arrival surprise, while waiting for luxury or quiet value misses the moment-design point."
+      },
+      {
+        "itemId": "q03",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Having nurses name their next unit before applause makes the achievement public and witnessed, matching the stated moment-design logic."
+      },
+      {
+        "itemId": "q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c directly maps to elevation, insight, pride, and connection, the four ingredients of memorable experiences."
+      },
+      {
+        "itemId": "q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The red-phone lesson is that one visible object can signal a changed service script without requiring a full redesign."
+      },
+      {
+        "itemId": "q06",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Turning the cookie delivery into a request-and-reveal event makes the gift narratable rather than merely free or quietly available."
+      },
+      {
+        "itemId": "q07",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The open hour before assignments is the threshold moment to mark the shared crossing before the transition becomes private logistics."
+      },
+      {
+        "itemId": "q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "The team should not assume equal averaging because recall is strongly shaped by the peak and ending."
+      },
+      {
+        "itemId": "q09",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "A quiet mint lacks a tellable format, so customers treat it as a minor free item rather than a memorable story."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  }
+}

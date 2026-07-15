@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c27-a1",
+  "requestSha256": "79758704ea2063624bb53d2a5021606f9266395b6e835491b26fc9ae72a4feac",
+  "receiptSha256": "b0209bae10a6de6ac343ae03f0c693587a5455ff93dd47115ebc48960bb078b4",
+  "executionEvidenceSha256": "fc885a6e42678c3f1d551b88e77509c16856b2a0f295338a42099b209e382a86",
+  "rawOutputSha256": "b0faeb9ccaeac5f724c4eb70e089148cd20cabea6e8f97eb6caa41be245b3045",
+  "evaluationSha256": "01d6449b32a22cad30f19594ac35bcf7be062dedf68a54db90ad0e32a2116433",
+  "parsedOutputSha256": "a5924cd4b0e0fa984712f30b051c4972105fa25df54e88c498507352e9cc9f55",
+  "assembledReviewSha256": "fb7bc4bbe693472e77c492414d9da3ce4863646bdc8fa1b91040ba1d79b857aa",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter presents a generic operational possibility at descriptive strength, using only an allowed role label, observable action, and workflow step. It introduces no named, historical, metric, or other source-dependent specificity, and the plan does not require special framing or anchor evidence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "456067d780eacad8b5c429129447df8e88dcfa01ea17702005bf51276ae406de",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "587a977f29d24ebba3e03e4f05417f1c3e6d4fd2aa48c3ea0903e95586ccba07",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter presents a generic operational possibility at descriptive strength, using only an allowed role label, observable action, and workflow step. It introduces no named, historical, metric, or other source-dependent specificity, and the plan does not require special framing or anchor evidence.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter presents a generic operational possibility at descriptive strength, using only an allowed role label, observable action, and workflow step. It introduces no named, historical, metric, or other source-dependent specificity, and the plan does not require special framing or anchor evidence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "9326718863f72dc456c0385c0e31be858967b5c33182a5c0c3a3c337aaeb3cb6"
+}

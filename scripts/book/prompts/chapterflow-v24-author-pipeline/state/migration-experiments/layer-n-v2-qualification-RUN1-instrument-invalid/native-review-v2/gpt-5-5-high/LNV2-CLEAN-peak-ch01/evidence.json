@@ -1,0 +1,130 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-peak-ch01",
+  "itemId": "LNV2-CLEAN-peak-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "7b893b35e30e2832",
+  "renderedDocSha256": "84ce1b4e707d10349924b9cc7d8855a7843eb2bf507e432526446e16d94d38a2",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-peak-ch01-mrgotag1-3",
+  "rawFinalMessageSha256": "c8379c05f594e6ee91809c2bb54a27a276cf0372cd1d6aa0b3daf48a502c555f",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"a\", \"c\", \"b\", \"b\", \"b\", \"c\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines purposeful practice as isolating the recurring weak spot, getting close feedback, and changing the next attempt.\",\n      \"A redox-only set with step checks turns vague study into a narrow correction loop around the repeated error.\",\n      \"The chapter says whole-task repetition lets the weak spot survive by hiding it inside the full performance.\",\n      \"The swim plan uses a visible cue, immediate video feedback, and repeated adjustment before returning to distance.\",\n      \"Faloon improves because each miss tells the next attempt where to work, making recall a feedback loop.\",\n      \"A visible size target is needed so the next knife cut can change instead of repetition becoming comfortable fluency.\",\n      \"The chapter says feedback matters when it is close enough to change the next attempt while the miss is still traceable.\",\n      \"Plan B creates short batches with immediate template comparison, so feedback can alter the next batch.\",\n      \"The useful target is visible, concrete, countable, and correctable before the next attempt.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"medium\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"\",\n      \"Choice a is also defensible: the chapter repeatedly says comfort and broad repetition can leave the weak spot untouched. Choice b is more specific because it supplies the visible target.\",\n      \"\",\n      \"\",\n      \"\"\n    ],\n    \"tells\": [\n      \"Correct choice b is the most concrete and includes the chapter's exact loop elements: isolate, record, change before next attempt.\",\n      \"Correct choice a is the only option with a narrow error set and a rewritten failing step.\",\n      \"Correct choice c echoes the chapter's recurring wording about whole performance and one weak point surviving.\",\n      \"Correct choice b is the only option that uses the available feedback source named in the stem.\",\n      \"Correct choice b closely mirrors the memorable phrasing that each miss redesigns the next attempt.\",\n      \"Choices a and b are both chapter-shaped, so the tell is weak; b is slightly more measurable.\",\n      \"Correct choice c is the only option that says feedback changes the next attempt.\",\n      \"Correct choice a restates the obvious contrast embedded in the stem: short batch plus compare plus adjust.\",\n      \"Correct choice c is uniquely concrete, measurable, and longest.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 93,\n    \"quizzes\": 80,\n    \"transfer\": 91,\n    \"practical\": 92,\n    \"summaries\": 94,\n    \"tone\": 90,\n    \"limits\": 88,\n    \"insight\": 91,\n    \"density\": 89,\n    \"beginner\": 92\n  },\n  \"ship84\": true,\n  \"quotes\": [\n    {\n      \"quote\": \"The miss is the map because it tells the next rep where to aim.\",\n      \"why\": \"Strongest retention line: short, concrete, and tied directly to the mechanism.\"\n    },\n    {\n      \"quote\": \"Comfort is a poor coach because it lets the weak spot stay hidden.\",\n      \"why\": \"A memorable explanation of why ordinary repetition fails.\"\n    },\n    {\n      \"quote\": \"Purposeful practice begins when effort stops being a count of repetitions and becomes a correction loop: one target, one stretch, one feedback signal, one changed next attempt.\",\n      \"why\": \"The key takeaway is complete and standalone.\"\n    },\n    {\n      \"quote\": \"Nightly repetition will eventually fix uneven knife cuts.\",\n      \"why\": \"This quiz stem creates a mild ambiguity because two answer choices are supported by the chapter.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"Two choices are reasonably derivable from the prose: a says repetition can build comfort while leaving the weak spot untouched, while b says visible targets are needed to guide correction. The intended key is probably b, but a is also supported.\",\n      \"mustFix\": true\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong chapter. The core move is clear, memorable, and repeated through varied concrete domains without feeling padded: isolate the miss, stretch slightly, get close feedback, and change the next attempt. The summaries and implementation plan stand alone well, the examples mostly show before-to-after decisions, and the tone stays plain. The main defect is quiz Q6, where two answers are defensible from the prose; that should be tightened before release, but the chapter otherwise clears a professional bar.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "peak-ch01",
+    "chapterNumber": 1,
+    "contentHash": "7b893b35e30e2832",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-peak-ch01-mrgotag1-3",
+    "scores": {
+      "retention": 93,
+      "quizzes": 80,
+      "transfer": 91,
+      "practical": 92,
+      "summaries": 94,
+      "tone": 90,
+      "limits": 88,
+      "insight": 91,
+      "density": 89,
+      "beginner": 92
+    },
+    "composite": 89.9,
+    "ship84": true,
+    "pass": true,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "a",
+        "c",
+        "b",
+        "b",
+        "b",
+        "c",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "The miss is the map because it tells the next rep where to aim.",
+        "why": "Strongest retention line: short, concrete, and tied directly to the mechanism.",
+        "verified": true
+      },
+      {
+        "quote": "Comfort is a poor coach because it lets the weak spot stay hidden.",
+        "why": "A memorable explanation of why ordinary repetition fails.",
+        "verified": true
+      },
+      {
+        "quote": "Purposeful practice begins when effort stops being a count of repetitions and becomes a correction loop: one target, one stretch, one feedback signal, one changed next attempt.",
+        "why": "The key takeaway is complete and standalone.",
+        "verified": true
+      },
+      {
+        "quote": "Nightly repetition will eventually fix uneven knife cuts.",
+        "why": "This quiz stem creates a mild ambiguity because two answer choices are supported by the chapter.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Correct choice b is the most concrete and includes the chapter's exact loop elements: isolate, record, change before next attempt.",
+      "Correct choice a is the only option with a narrow error set and a rewritten failing step.",
+      "Correct choice c echoes the chapter's recurring wording about whole performance and one weak point surviving.",
+      "Correct choice b is the only option that uses the available feedback source named in the stem.",
+      "Correct choice b closely mirrors the memorable phrasing that each miss redesigns the next attempt.",
+      "Choices a and b are both chapter-shaped, so the tell is weak; b is slightly more measurable.",
+      "Correct choice c is the only option that says feedback changes the next attempt.",
+      "Correct choice a restates the obvious contrast embedded in the stem: short batch plus compare plus adjust.",
+      "Correct choice c is uniquely concrete, measurable, and longest."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q6",
+        "problem": "Two choices are reasonably derivable from the prose: a says repetition can build comfort while leaving the weak spot untouched, while b says visible targets are needed to guide correction. The intended key is probably b, but a is also supported.",
+        "mustFix": true
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong chapter. The core move is clear, memorable, and repeated through varied concrete domains without feeling padded: isolate the miss, stretch slightly, get close feedback, and change the next attempt. The summaries and implementation plan stand alone well, the examples mostly show before-to-after decisions, and the tone stays plain. The main defect is quiz Q6, where two answers are defensible from the prose; that should be tightened before release, but the chapter otherwise clears a professional bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "b3b4beaefc9b929c60bd759336c9481b45aab3230b6ceb74d10b01cea6e780bd",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-11T18:18:37.098Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "5eb0d18e92b1d1364e12b6c781b04be97348a94ca5281688603364f5268e6ec2",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-11T18:17:49.344Z",
+  "durationMs": 0
+}

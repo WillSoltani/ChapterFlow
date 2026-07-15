@@ -1,0 +1,35 @@
+{
+  "schema": "imp24e-schema-probe-call-ledger-v1",
+  "cycle": 1,
+  "executionId": "s16-forward-role-qualification-v3-envelope-schema-probes",
+  "entries": [
+    {
+      "role": "reader",
+      "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-reader-a1",
+      "requestSha256": "ead7400756501560641b3add6f2d2ad7460fe14f5745a39b670ccd5a7b9ed86a",
+      "status": "PASS",
+      "processDiagnosticsSha256": "3807b5c2ffc8c51bcb93d06c523f0c101ec3b7b693ec9dcd43b054122e0f2058",
+      "resultSha256": "17d11d3f40875075bbf21b52d4e2c37856ac8ed6e83bee79a5a101043aabb164"
+    },
+    {
+      "role": "source",
+      "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-source-a1",
+      "requestSha256": "b9fae6757398a123f030cedfb2ad28dc5e96211742309a556d1b22fb50ab7623",
+      "status": "PASS",
+      "processDiagnosticsSha256": "30fcfb38a43b86a768a8ede9cb991a991b70992887e1f69e77eda8f131ef3491",
+      "resultSha256": "734e7cd1b1583564ba49c9d9ad31118c86f9f6829e1a835f5abef95bd562c7d1"
+    },
+    {
+      "role": "quiz",
+      "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-quiz-a1",
+      "requestSha256": "59febfb4ff3022ef263a0dc64827f14e99c082d38018a9cd28683e3d57ba90cb",
+      "status": "PASS",
+      "processDiagnosticsSha256": "5546a3a3a4b3afeafc7dc1806c9aaa9fb2ff29a41ccaaea8ee8c40949fb55329",
+      "resultSha256": "716d7991ae3b7a9dee78a24f8d910cd0a220094824e5bfffcb6e6f7efc1e22f4"
+    }
+  ],
+  "brokerRequests": 3,
+  "codexExecInvocations": 3,
+  "apiCalls": 0,
+  "qualificationMetricsIncluded": false
+}

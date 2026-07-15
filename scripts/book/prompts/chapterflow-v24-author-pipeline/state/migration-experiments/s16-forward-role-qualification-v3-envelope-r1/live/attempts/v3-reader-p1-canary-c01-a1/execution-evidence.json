@@ -1,0 +1,42 @@
+{
+  "schema": "imp24-role-qualification-live-execution-evidence-v3",
+  "attemptId": "v3-reader-p1-canary-c01-a1",
+  "requestSha256": "f88add9406802f9726b05d1e155f533aa55c63804ce90830652c95282164041a",
+  "receiptSha256": "77ba3bf0d7a43e83a997a1bbc145a898ccd64c67b545ff34b51578a0523e8f99",
+  "invocation": "RUNNER_RETURNED",
+  "evidenceComplete": true,
+  "sessionId": "imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61",
+  "schemaRequested": true,
+  "schemaBoundAtRunner": true,
+  "finalMessageSource": "stdout-fallback",
+  "responseProduced": true,
+  "rawFinalOutputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "rawFinalOutputBytes": 0,
+  "effectiveContextManifest": {
+    "kind": "effective-context-manifest",
+    "relPath": "exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.manifest.json",
+    "bytes": 2973,
+    "bytesSha256": "0f1badf7d7c61853fe6249ef924b2bc0301e44684c4bd4f7ab701c86fcf4d82f"
+  },
+  "routeSidecar": {
+    "kind": "route",
+    "relPath": "exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.route.json",
+    "bytes": 646,
+    "bytesSha256": "7fcef34a2d0627e46943fade96c38f656d44b4e5ad10dff4cf8432a035b61d44"
+  },
+  "structuredOutputSidecar": {
+    "kind": "structured-output",
+    "relPath": "exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.structured.json",
+    "bytes": 634,
+    "bytesSha256": "58c10867564af4a33a5c11c3f321ffdb578bd180f5f1e065f8d9001633efb244"
+  },
+  "resultSidecar": {
+    "kind": "exec-result",
+    "relPath": "exec/logs/2026-07-14-063537-imp24-v3-766ecae23d292d028c66345bf80ff8d550b1fda69539cd9a61694ce464592c61.result.json",
+    "bytes": 574,
+    "bytesSha256": "e9534eef113666c8f60df0b638ddb2f5676a5ace255ce4179a359c11e77992b5"
+  },
+  "missingRequiredSidecars": [],
+  "unexpectedSidecarRelPaths": [],
+  "executionEvidenceSha256": "e8fd15bd4b0479ca28cabb55748eb9b17281484aabef2c2d3bfc41804ac0e575"
+}

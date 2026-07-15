@@ -1,0 +1,160 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c16-a1",
+  "requestSha256": "c3410b68a86ce3ddc6e3c30232b205d2fd3023cf63aa50e6fcaef3fc09ee97c7",
+  "receiptSha256": "7a731ac2ab4b66f27912b7170b824622eabec529961c1244d956e6fc1f9b2a97",
+  "executionEvidenceSha256": "e868911471633471c6b65700a8dcfdd71214190c388d630b3149bfbb585c7068",
+  "rawOutputSha256": "14425124351f224b6cd683956a363cdf2fe8f80ae5b6ad9a28c18432e5209259",
+  "evaluationSha256": "71906cbab287ccce52f29b62e9ab5505ff14a795b57a1b231e8c16ce04ef6bf1",
+  "parsedOutputSha256": "af56c64766a358b0f36f9c2e2424dd673ae894e68550f7f58ef170800af7ea54",
+  "assembledReviewSha256": "e6a3e9885b9858aaa48ad4f9cecfc460dcbfc8513d4276eb969963237122e59a",
+  "evidenceReferenceResolutionSha256": "00939ae2c80ed284d8cc756f0586d298ee8a72ee35d4b8be74c71fb7818688ec",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=claim_strength_overreach",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "causalOverreachSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The underlying statement about attention companies benefiting from frequent, measurable low-value checking is supported, but the chapter escalates it into proof and an exceptionless causal guarantee for every person. The evidence supplies a general platform-level mechanism and explicitly disallows guaranteed outcomes; it does not establish universal individual causation.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017"
+              ]
+            }
+          ],
+          "rationale": "The source supports the core platform-benefit proposition and its aggregation mechanism, so the target is not wholly unsupported. Its certainty and universal scope materially exceed the available evidence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "9a18e4658ecd40d5dfcb53d87c965faa987b5bea4b3330b93c93e46fc85a7385",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "5b7791410ccc9dd6ec0ba1e6c21a62e198a2fc80a3874d6797ef669b13c717b2",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The underlying statement about attention companies benefiting from frequent, measurable low-value checking is supported, but the chapter escalates it into proof and an exceptionless causal guarantee for every person. The evidence supplies a general platform-level mechanism and explicitly disallows guaranteed outcomes; it does not establish universal individual causation.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-017"
+              ],
+              "findingId": "unit.fact.ch01.fact.5:source-finding:001",
+              "chapterEvidenceSpans": [
+                "This proves that attention companies benefit from low-value checking as long as it is frequent and measurable. always causes the stated outcome for every person, without exception."
+              ],
+              "sourceEvidenceSpans": [
+                "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+                "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "The source supports the core platform-benefit proposition and its aggregation mechanism, so the target is not wholly unsupported. Its certainty and universal scope materially exceed the available evidence.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit"
+      ],
+      "rationale": "U1: The source supports the core platform-benefit proposition and its aggregation mechanism, so the target is not wholly unsupported. Its certainty and universal scope materially exceed the available evidence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "This proves that attention companies benefit from low-value checking as long as it is frequent and measurable. always causes the stated outcome for every person, without exception."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ATOMIC-017"
+          ],
+          "evidenceSpans": [
+            "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+            "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "e9f13c3566f6fe919fe3f89e7b1610158b9350b1de1c6b8ff17f4ab1f99fff0a"
+}

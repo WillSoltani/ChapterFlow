@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "LNV2-KEYMISMATCH-decisive-ch01-q1-chapter",
+  "chapterNumber": 1,
+  "contentHash": "2ac9db15cf42069b",
+  "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-decisive-ch01-q1-mrgp5rjc-15",
+  "scores": {
+    "retention": 88,
+    "quizzes": 80,
+    "transfer": 83,
+    "practical": 78,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 91,
+    "insight": 86,
+    "density": 84,
+    "beginner": 89
+  },
+  "composite": 85.4,
+  "ship84": true,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "c",
+      "c",
+      "a",
+      "c",
+      "a",
+      "a",
+      "b"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=b key=c"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strongest retention line: short, concrete, and it captures the chapter's central move.",
+      "verified": true
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Strong mechanism line: it makes confirmation bias memorable without jargon.",
+      "verified": true
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "Strong limits line: it prevents the method from being oversold.",
+      "verified": true
+    },
+    {
+      "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+      "why": "Weakest practical moment: concrete, but the laptop-lid cue feels arbitrary and the 'shortcut' wording is under-explained here.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q1: correct choice uniquely names all four WRAP moves, while the distractors are generic or obviously wrong.",
+    "Q2: correct choice repeats the chapter's yes-or-no/narrow-frame language.",
+    "Q3: correct choice uses the giveaway phrase 'disconfirming evidence'.",
+    "Q4: distractors are extreme absolutes, making c guessable.",
+    "Q5: correct choice closely echoes 'wider range of futures'.",
+    "Q6: correct choice repeats 'parallel first passes' and 'comparison before commitment'.",
+    "Q7: correct choice is almost a restatement of the Grove paragraph.",
+    "Q8: correct choice lists the four stages, while other choices flatten the model.",
+    "Q9: correct choice repeats the memorable line about improving odds while uncertainty remains."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct answers are easy to identify from giveaway phrasing because they echo the chapter's exact language while distractors are broad, delayed, or extreme.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The action is low-friction, but 'touch your laptop lid' feels like a ritual cue rather than a naturally motivated decision practice, and 'shortcut' is not yet named clearly in that section.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The example is usable but thin: it mostly restates the four villains and matching moves without a concrete decision consequence or before-to-after outcome.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: clear, memorable, beginner-friendly, and honest about the limits of process. Its strongest move is turning WRAP from a slogan into a sequence tied to four specific failure modes. The main weakness is that the quiz is fair but too transparent, with many correct choices carrying the chapter's exact language while distractors are plainly wrong. A few practice moments could feel less staged, but there are no reader-harming defects or structural breaks.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "ec94fcd42d5c882fb154d0aa8d15cc70cba15e977e49362d66095fe60aef9ac2",
+  "hashVersion": "v3",
+  "phase1DocVersion": "phase1-v1",
+  "rubricVersion": "reader-rubric-v3-phase1",
+  "reviewedAt": "2026-07-11T18:28:20.628Z",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+  "quizAdjudication": {
+    "status": "adjudicated",
+    "derivationSha256": "3c28a821cc2bba3718607a4cf1dbf81dc26ff0d0abb847b9cee03fe58443d719",
+    "phase2DocSha256": "879ae61c35478d1e8a1776bab1a4aad7cb69d11cdcf812e64101c8265b9fff2b",
+    "reviewerSessionId": "auto-author-quizadj-ch01-lnv2-gpt-5-5-high-LNV2-KEYMISMATCH-decisive-ch01-q1-mrgp6tjp-16",
+    "items": [
+      {
+        "itemId": "decisive-ch01-q01",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 1,
+        "agreement": false,
+        "keyCorrect": "wrong",
+        "rationale": "Choice b is best supported because WRAP's structure matches Widen, Reality-test, Attain distance, and Prepare to distinct decision stages; the key's explanation itself describes b, not c."
+      },
+      {
+        "itemId": "decisive-ch01-q02",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b directly repairs narrow framing by adding real alternatives before a yes-or-no frame controls later evidence review."
+      },
+      {
+        "itemId": "decisive-ch01-q03",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c is the only option that seeks disconfirming evidence before preference-driven search confirms the favored plan."
+      },
+      {
+        "itemId": "decisive-ch01-q04",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c uses distance from short-term attachment while still allowing emotion to inform what may matter later."
+      },
+      {
+        "itemId": "decisive-ch01-q05",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a most directly counters overconfidence by replacing one confident forecast with a wider range of plausible outcomes."
+      },
+      {
+        "itemId": "decisive-ch01-q06",
+        "keyedAnswerIndex": 2,
+        "derivedAnswerIndex": 2,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice c follows Steve Cole's parallel first-pass logic by buying comparison before committing to one design path."
+      },
+      {
+        "itemId": "decisive-ch01-q07",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a captures the outsider question by creating distance from legacy-product attachment rather than outsourcing technical judgment."
+      },
+      {
+        "itemId": "decisive-ch01-q08",
+        "keyedAnswerIndex": 0,
+        "derivedAnswerIndex": 0,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice a fits the four-villain model because different decision flaws arise at different stages and need different interventions."
+      },
+      {
+        "itemId": "decisive-ch01-q09",
+        "keyedAnswerIndex": 1,
+        "derivedAnswerIndex": 1,
+        "agreement": true,
+        "keyCorrect": "correct",
+        "rationale": "Choice b correctly states that WRAP improves decision odds under uncertainty without guaranteeing a good outcome."
+      }
+    ],
+    "ambiguousCount": 0,
+    "keyWrongCount": 1
+  }
+}

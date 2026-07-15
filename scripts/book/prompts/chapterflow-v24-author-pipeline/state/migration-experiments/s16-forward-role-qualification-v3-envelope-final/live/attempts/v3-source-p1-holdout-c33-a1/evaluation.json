@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c33-a1",
+  "requestSha256": "7ba2ba75e73f167963d9554aa46783ced20fc667e2611635c24960615a7d124a",
+  "receiptSha256": "60b62552a3656bf622b88fffa31cd63922a13368debed47f6771caf5cb2b0d53",
+  "executionEvidenceSha256": "8a2ec310426a8914eefdeb77e5f8c9e60cd99a682b90cf68dba6d7a5d690928c",
+  "rawOutputSha256": "82b185e61e3e0e7e7c67b80ddd8738b9f0afddf39628e43b06cabdce0b8ffbaf",
+  "evaluationSha256": "e9a743d8db72ffd3ff243ecd0bac2cc641cd88906fc81f44e33e0b7ff9fb73c6",
+  "parsedOutputSha256": "1e02fe7e924191ee7b2bb99c169bbded79ab8508d8046dfe12c4225508e8ba9f",
+  "assembledReviewSha256": "a043d18e5e8e84b64b750dd72ab2b731f6d683bbcb5def07ace31bd39f394b6b",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "The chapter claim and mechanism are directly supported by the permitted anchor, source claim, and source mechanism, remain within the planned mechanistic ceiling, and are visibly attributed to the source."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "e3aa4cb292ea577b81496091fb02fba73460409e0fcb7474f457b766860580e7",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9909d27c42ec5d6045cd022d3d7c49e67e1c1e5b1f5e5b6781b58ba4ffe938d1",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "The chapter claim and mechanism are directly supported by the permitted anchor, source claim, and source mechanism, remain within the planned mechanistic ceiling, and are visibly attributed to the source.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter claim and mechanism are directly supported by the permitted anchor, source claim, and source mechanism, remain within the planned mechanistic ceiling, and are visibly attributed to the source."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "b74c73e626815765908cd54c1ffb7ee163ab82954787d8465a2635f5b0178123"
+}

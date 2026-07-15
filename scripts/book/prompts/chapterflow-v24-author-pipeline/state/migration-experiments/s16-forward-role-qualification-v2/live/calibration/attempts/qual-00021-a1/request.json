@@ -1,0 +1,45 @@
+{
+  "schema": "imp22-role-qualification-request-record-v1",
+  "requestSha256": "6d19e4dfb5acf8aa06d76169b63bbeecdd6cd8b338dae896d87936a773685769",
+  "request": {
+    "schema": "imp22-role-qualification-execution-request-v1",
+    "scheduleId": "qual-00021",
+    "attemptId": "qual-00021-a1",
+    "replayOfAttemptId": null,
+    "attemptNumber": 1,
+    "role": "source",
+    "partition": "calibration",
+    "caseId": "SOURCE-CALIBRATION-source-bound-detail-ch01-fact-1-defect",
+    "family": "unsupported-invented",
+    "profileId": "gpt-5.6-sol@xhigh",
+    "model": "gpt-5.6-sol",
+    "effort": "xhigh",
+    "schemaSha256": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+    "promptSha256": "5fde81a30daf61e1e866c962269b810b9ec893ef4f3f5270719d5eb4850b43b8",
+    "freezeSha256": "0d25f7ddeb0c7dea1f50498ad7f819f46434e6040b175678e53f125dc25a7456",
+    "task": {
+      "sha256": "5fde81a30daf61e1e866c962269b810b9ec893ef4f3f5270719d5eb4850b43b8",
+      "bytes": 60640
+    },
+    "artifacts": [
+      {
+        "kind": "phase1-doc",
+        "relPath": "source/SOURCE-CALIBRATION-source-bound-detail-ch01-fact-1-defect.unit.txt",
+        "sha256": "4740b33d317185ba7e72af2e1b19ed09c0e68713ae67e6f574e3d1b9bde33d74",
+        "bytes": 407
+      },
+      {
+        "kind": "source-evidence",
+        "relPath": "source/SOURCE-CALIBRATION-source-bound-detail-ch01-fact-1-defect.evidence.json",
+        "sha256": "f029101cf87c22a1d1f675ce623e08d41085a934363464ab8e5063a8dbf90df9",
+        "bytes": 43956
+      },
+      {
+        "kind": "source-plan",
+        "relPath": "source/SOURCE-CALIBRATION-source-bound-detail-ch01-fact-1-defect.plan.txt",
+        "sha256": "6b6f7a6a786d96a2b724f7b0b7420a0fdfa9aea1e333db389e1e91f79b18a115",
+        "bytes": 3177
+      }
+    ]
+  }
+}

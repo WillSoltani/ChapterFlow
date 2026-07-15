@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c05-a1",
+  "requestSha256": "ecce6318e31b153196696dd346bc6776ae7dec171edb78a82895937c1edd6e53",
+  "receiptSha256": "b027284a53f675dde07d9203519c5aa598811e788dd4f5a0432e3914c6bb647a",
+  "executionEvidenceSha256": "a2857d467ace07db7e7f09e5a4947a1fd1b55308762afb981b8902bd27a42c0a",
+  "rawOutputSha256": "829e90c6b4be96f64a3b050f77fa892c23db46e503adfb5ce414b2c8cbc0eb45",
+  "evaluationSha256": "3ff4d21dec650c7413540fbdac9d4094defbdecafa832e07fe929f0ad9856ce7",
+  "parsedOutputSha256": "a2a9577f8accdeda99c4c7fc3cf7fdbf871e53609b774d54f20da6de0e556546",
+  "assembledReviewSha256": "2fd74857b0fbdf91f808af291a60b3579dbd6ec5bbaa1519bc1ab3366cf33eb3",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter target is a direct source-attributed restatement of the allowed anchor claim and is supported by the source claim and mechanism evidence. It does not add unsupported specificity, quantified effects, invented examples, or stronger causation than the plan permits."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "79c9173166286b81fa3ff0060f6ff886a87b1a5b2ceb745684cd9c68e21b5885",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "6cf787cf9c2ae9658dee66b05518c1b133c465ede6a8534182fef19a8e631260",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter target is a direct source-attributed restatement of the allowed anchor claim and is supported by the source claim and mechanism evidence. It does not add unsupported specificity, quantified effects, invented examples, or stronger causation than the plan permits.",
+          "unitId": "unit.fact.ch01.fact.4",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter target is a direct source-attributed restatement of the allowed anchor claim and is supported by the source claim and mechanism evidence. It does not add unsupported specificity, quantified effects, invented examples, or stronger causation than the plan permits."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "312dd83a75eb99b8645a79b940d97cda9ce65fe3143f0abafd8e6cba006df6d9"
+}

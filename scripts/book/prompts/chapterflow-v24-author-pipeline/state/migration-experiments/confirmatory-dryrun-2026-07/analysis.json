@@ -1,0 +1,140 @@
+{
+  "effects": [
+    {
+      "effect": "model",
+      "metric": "first-write-pass",
+      "cells": "56S-XH − 55-XH",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 8,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(sol)",
+      "metric": "first-write-pass",
+      "cells": "56S-XH − 56S-H",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 8,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(5.5)",
+      "metric": "first-write-pass",
+      "cells": "55-XH − 55-H",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 8,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "model",
+      "metric": "acceptance",
+      "cells": "56S-XH − 55-XH",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 8,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(sol)",
+      "metric": "acceptance",
+      "cells": "56S-XH − 56S-H",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 8,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(5.5)",
+      "metric": "acceptance",
+      "cells": "55-XH − 55-H",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 8,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "model",
+      "metric": "composite",
+      "cells": "56S-XH − 55-XH",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 8,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(sol)",
+      "metric": "composite",
+      "cells": "56S-XH − 56S-H",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 8,
+      "missingBlocks": 0
+    },
+    {
+      "effect": "effort(5.5)",
+      "metric": "composite",
+      "cells": "55-XH − 55-H",
+      "point": 0,
+      "ciLower": 0,
+      "ciUpper": 0,
+      "blocks": 8,
+      "missingBlocks": 0
+    }
+  ],
+  "effectiveSample": {
+    "samples": 96,
+    "blocks": 8,
+    "books": 2,
+    "missingCells": []
+  },
+  "precision": [
+    {
+      "endpointId": "56S-H::sourced-fabrication-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 8,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 37.5,
+      "supported": false,
+      "classification": "inconclusive"
+    },
+    {
+      "endpointId": "56S-H::quiz-key-defect-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 8,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 37.5,
+      "supported": false,
+      "classification": "inconclusive"
+    },
+    {
+      "endpointId": "56S-XH::sourced-fabrication-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 8,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 37.5,
+      "supported": false,
+      "classification": "inconclusive"
+    },
+    {
+      "endpointId": "56S-XH::quiz-key-defect-upper",
+      "targetUpperBoundPct": 2,
+      "independentUnits": 8,
+      "observedEvents": 0,
+      "achievedUpperBoundPct": 37.5,
+      "supported": false,
+      "classification": "inconclusive"
+    }
+  ],
+  "precisionStatement": "Zero events in 36 independent units gives an approximate one-sided 95% upper bound near 8.3%; roughly 150 zero-event units are needed for about 2%, and 300 for about 1%, before clustering adjustments.",
+  "overlapItemIds": []
+}

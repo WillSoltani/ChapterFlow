@@ -1,0 +1,967 @@
+{
+  "schema": "migration-sample-schedule-v1",
+  "experimentId": "confirmatory-sol-2026-07",
+  "randomizationSeed": "s16-owner-pkg-96ff9e3da9e3",
+  "entries": [
+    {
+      "blindSampleId": "409f88d97a6b",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 0
+    },
+    {
+      "blindSampleId": "cfcb9c50db24",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 1
+    },
+    {
+      "blindSampleId": "4c9c20e64eed",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 2
+    },
+    {
+      "blindSampleId": "6d06149f1ef7",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 3
+    },
+    {
+      "blindSampleId": "1b51dcef9d84",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 4
+    },
+    {
+      "blindSampleId": "9cd36c2c024a",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 5
+    },
+    {
+      "blindSampleId": "5e58cdad6268",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 6
+    },
+    {
+      "blindSampleId": "6d33dcf6462e",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 7
+    },
+    {
+      "blindSampleId": "1e5b8603fd81",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 8
+    },
+    {
+      "blindSampleId": "c8258bf3eff8",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 9
+    },
+    {
+      "blindSampleId": "b897a96187a7",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 10
+    },
+    {
+      "blindSampleId": "58dc0c4bdd0b",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 4,
+      "stratum": "research-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 11
+    },
+    {
+      "blindSampleId": "b20f6a3571ac",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 12
+    },
+    {
+      "blindSampleId": "e4cd6a60900d",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 13
+    },
+    {
+      "blindSampleId": "821303bb80b0",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 14
+    },
+    {
+      "blindSampleId": "c10b25e03f4c",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 15
+    },
+    {
+      "blindSampleId": "dbe549e4412e",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 16
+    },
+    {
+      "blindSampleId": "15ca0860c43e",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 17
+    },
+    {
+      "blindSampleId": "c1bcd79c616f",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 18
+    },
+    {
+      "blindSampleId": "2c1d9d0c5a3f",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 19
+    },
+    {
+      "blindSampleId": "35893ce51c5e",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 20
+    },
+    {
+      "blindSampleId": "4f05ee04b891",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 21
+    },
+    {
+      "blindSampleId": "d593dc9255d6",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 22
+    },
+    {
+      "blindSampleId": "dd9f8934b1dd",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 3,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 23
+    },
+    {
+      "blindSampleId": "124f59498898",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 24
+    },
+    {
+      "blindSampleId": "5a0ddec5dd23",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 25
+    },
+    {
+      "blindSampleId": "b0cbacdd0a4c",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 26
+    },
+    {
+      "blindSampleId": "3987251d244d",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 27
+    },
+    {
+      "blindSampleId": "9f20bb5717d8",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 28
+    },
+    {
+      "blindSampleId": "3902175248fb",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 29
+    },
+    {
+      "blindSampleId": "10188b9a3a46",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 30
+    },
+    {
+      "blindSampleId": "7428769751b2",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 31
+    },
+    {
+      "blindSampleId": "fcd3522ed013",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 32
+    },
+    {
+      "blindSampleId": "3cddb7929cfb",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 33
+    },
+    {
+      "blindSampleId": "bbf31be231e9",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 34
+    },
+    {
+      "blindSampleId": "ba29df22067c",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 9,
+      "stratum": "example-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 35
+    },
+    {
+      "blindSampleId": "5629538d5393",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 36
+    },
+    {
+      "blindSampleId": "4e5112ae4e50",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 37
+    },
+    {
+      "blindSampleId": "481679af7440",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 38
+    },
+    {
+      "blindSampleId": "313a3f804a41",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 39
+    },
+    {
+      "blindSampleId": "3e61e975b5b8",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 40
+    },
+    {
+      "blindSampleId": "aefa19194652",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 41
+    },
+    {
+      "blindSampleId": "3e5e0a418043",
+      "cellId": "55-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 42
+    },
+    {
+      "blindSampleId": "d9e6f1bb37ea",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 43
+    },
+    {
+      "blindSampleId": "2903cfdc905b",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 44
+    },
+    {
+      "blindSampleId": "3cec4d44252d",
+      "cellId": "55-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 45
+    },
+    {
+      "blindSampleId": "8576f8ee2201",
+      "cellId": "56S-H",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 46
+    },
+    {
+      "blindSampleId": "3d17b18155cb",
+      "cellId": "56S-XH",
+      "bookId": "start-with-why",
+      "chapterNumber": 7,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 47
+    },
+    {
+      "blindSampleId": "1c23f4ec1a4c",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 48
+    },
+    {
+      "blindSampleId": "9dbc021e4a94",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 49
+    },
+    {
+      "blindSampleId": "be848b245aa4",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 50
+    },
+    {
+      "blindSampleId": "21242d6b2802",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 51
+    },
+    {
+      "blindSampleId": "e39de508231d",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 52
+    },
+    {
+      "blindSampleId": "ab8222a64342",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 53
+    },
+    {
+      "blindSampleId": "e1d5d76c3611",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 54
+    },
+    {
+      "blindSampleId": "28dee6f9f9c5",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 55
+    },
+    {
+      "blindSampleId": "258792a52d35",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 56
+    },
+    {
+      "blindSampleId": "dab95d256ff3",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 57
+    },
+    {
+      "blindSampleId": "36f98dfbce68",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 58
+    },
+    {
+      "blindSampleId": "46fc3579e3ac",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 1,
+      "stratum": "research-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 59
+    },
+    {
+      "blindSampleId": "4e1dcefbd85a",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 60
+    },
+    {
+      "blindSampleId": "6ec9a2375999",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 61
+    },
+    {
+      "blindSampleId": "7c4858d49376",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 62
+    },
+    {
+      "blindSampleId": "3bbbe08a807a",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 63
+    },
+    {
+      "blindSampleId": "5abe5e890d4e",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 64
+    },
+    {
+      "blindSampleId": "7199243bd33c",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 65
+    },
+    {
+      "blindSampleId": "7c24bcf40879",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 66
+    },
+    {
+      "blindSampleId": "a9524f9f433e",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 67
+    },
+    {
+      "blindSampleId": "1e8f5221aa8f",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 68
+    },
+    {
+      "blindSampleId": "ac7bc0ef6940",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 69
+    },
+    {
+      "blindSampleId": "fd0cce721c6d",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 70
+    },
+    {
+      "blindSampleId": "dc682237a65b",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 6,
+      "stratum": "abstract-conceptual",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 71
+    },
+    {
+      "blindSampleId": "46a0e5c1d4dc",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 72
+    },
+    {
+      "blindSampleId": "555dc3cbd9ed",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 73
+    },
+    {
+      "blindSampleId": "3289d9150359",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 74
+    },
+    {
+      "blindSampleId": "f2f9a78e762e",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 75
+    },
+    {
+      "blindSampleId": "3390a796679c",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 76
+    },
+    {
+      "blindSampleId": "ccf3c5405b71",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 77
+    },
+    {
+      "blindSampleId": "df47a43025b1",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 78
+    },
+    {
+      "blindSampleId": "9c2d49de971d",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 79
+    },
+    {
+      "blindSampleId": "c8f4a69d13d0",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 80
+    },
+    {
+      "blindSampleId": "8e23efcca33f",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 81
+    },
+    {
+      "blindSampleId": "f9a7519c817c",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 82
+    },
+    {
+      "blindSampleId": "14d2a10a67bd",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 2,
+      "stratum": "example-heavy",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 83
+    },
+    {
+      "blindSampleId": "87301760c0bd",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 84
+    },
+    {
+      "blindSampleId": "cda645da7363",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 85
+    },
+    {
+      "blindSampleId": "d9a90e49bc5b",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 86
+    },
+    {
+      "blindSampleId": "2c905e4c05eb",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 87
+    },
+    {
+      "blindSampleId": "e9fabb44aad0",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 88
+    },
+    {
+      "blindSampleId": "ff82ddcbd652",
+      "cellId": "56S-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 89
+    },
+    {
+      "blindSampleId": "dce338c637f6",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 90
+    },
+    {
+      "blindSampleId": "49f5158691f8",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 91
+    },
+    {
+      "blindSampleId": "c7aa8e1b3472",
+      "cellId": "56S-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 92
+    },
+    {
+      "blindSampleId": "430bf883bfda",
+      "cellId": "55-H",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 3,
+      "expansion": true,
+      "executionOrder": 93
+    },
+    {
+      "blindSampleId": "53816df628dd",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 1,
+      "expansion": false,
+      "executionOrder": 94
+    },
+    {
+      "blindSampleId": "d56c0d19a4bf",
+      "cellId": "55-XH",
+      "bookId": "radical-candor",
+      "chapterNumber": 4,
+      "stratum": "causal-quiz-sensitive",
+      "sampleIndex": 2,
+      "expansion": false,
+      "executionOrder": 95
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c22-a1",
+  "requestSha256": "840c9b30ee12077bd8666dafc5a2d9c7f6b05fe5ffffdd0125be077f3d0ddd99",
+  "receiptSha256": "c746d948beffbb4544ba792e8e175b5ebd9b3710aa6af384ba83ae9f808433ca",
+  "executionEvidenceSha256": "89526ff40589f1a2eefac6ae8d97a5012d7eb52e83e7d54e7abf579c0b66a30d",
+  "rawOutputSha256": "81582c932d36dce3906ff925ea1dd142d0bddcb9278f965f8a55a626544045bc",
+  "evaluationSha256": "bb6d5dc8fce360cbcc3836058c1dc8d032a96a214392caaf4205ef261387a3ef",
+  "parsedOutputSha256": "77d843a478ef06edcfffe5a4b765333682cd282da008c605a5444dca6119698f",
+  "assembledReviewSha256": "01db9cc9fde6f03d9408826d6470f6e28479511fb995ac31f7abffa7df78b473",
+  "evidenceReferenceResolutionSha256": "0757007782f7ab7cacc8c6710b555dcfd274d148208a3e386cc5b2452fc5b509",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=missing_visible_framing",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [],
+              "severity": "major",
+              "explanation": "The plan permits a constructed application but requires visible framing; the chapter presents the facilitator scenario as a factual event rather than as a constructed or hypothetical example.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ]
+            }
+          ],
+          "rationale": "The content stays within allowed generic role/action detail and does not exceed descriptive strength, but the required visible framing for constructed material is absent."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "fb97bcc6cff11e5e73021f708cf02351a8b58980f2eedc8a3f3946969f036263",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "fe70b33bc9c42d1f6489e4419aac7562c48704ea7b96f1b3701b6f7f20b7fbdb",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [],
+              "severity": "major",
+              "explanation": "The plan permits a constructed application but requires visible framing; the chapter presents the facilitator scenario as a factual event rather than as a constructed or hypothetical example.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ],
+              "findingId": "unit.ch01.constructed-application:source-finding:001",
+              "chapterEvidenceSpans": [
+                "A workshop facilitator asked a group to pause before choosing its next task."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"constructed\",\n  \"formLicense\": \"application\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"fictional_name\",\n    \"role_label\",\n    \"concrete_action\",\n    \"hypothetical_consequence\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"real_person\",\n    \"real_organization\",\n    \"fabricated_statistic\",\n    \"fabricated_date\",\n    \"fabricated_credential\",\n    \"fabricated_citation\",\n    \"historical_claim\",\n    \"outcome_reported_as_fact\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": true,\n  \"allowedAnchorRefs\": []\n}"
+              ]
+            }
+          ],
+          "rationale": "The content stays within allowed generic role/action detail and does not exceed descriptive strength, but the required visible framing for constructed material is absent.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:visible-framing",
+        "U1:visible-register-incompatible"
+      ],
+      "rationale": "U1: The content stays within allowed generic role/action detail and does not exceed descriptive strength, but the required visible framing for constructed material is absent."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "A workshop facilitator asked a group to pause before choosing its next task."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"constructed\",\n  \"formLicense\": \"application\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"fictional_name\",\n    \"role_label\",\n    \"concrete_action\",\n    \"hypothetical_consequence\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"real_person\",\n    \"real_organization\",\n    \"fabricated_statistic\",\n    \"fabricated_date\",\n    \"fabricated_credential\",\n    \"fabricated_citation\",\n    \"historical_claim\",\n    \"outcome_reported_as_fact\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": true,\n  \"allowedAnchorRefs\": []\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "d24760d68509137329812301c139e182b0bfdc66850cd273a8075fb651af08dd"
+}

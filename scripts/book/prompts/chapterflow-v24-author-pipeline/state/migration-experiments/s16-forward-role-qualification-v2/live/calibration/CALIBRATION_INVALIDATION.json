@@ -1,0 +1,42 @@
+{
+  "schema": "imp23-corrected-calibration-invalidation-v1",
+  "experimentId": "s16-forward-role-qualification-v2",
+  "decision": "BLOCKED_CALIBRATION_INVALID",
+  "specBytesSha256": "ebf799376a22627c5f7b1fedc5cc8b40b383e2c1353010c0ca466b30f1261106",
+  "calibrationSha256": "f52c247feaeb67864e5dbcb3e2ac396ec359b01811bc11578f55c5a84ec5b9d5",
+  "scheduledCases": 24,
+  "attempts": 25,
+  "completedOutputs": 24,
+  "codexExecInvocations": 25,
+  "infrastructureReplays": 1,
+  "maxPlanCapacityEvents": 1,
+  "safeguardsOrRefusals": 0,
+  "cachedReceipts": 0,
+  "apiCallsMade": 0,
+  "holdoutStarted": false,
+  "routeValidAttempts": 25,
+  "roleProtocolValid": {
+    "reader": false,
+    "source": false,
+    "quiz": false
+  },
+  "roleEvidence": {
+    "reader": {
+      "completed": 6,
+      "protocolValid": 6,
+      "exactEvidenceValid": 0
+    },
+    "source": {
+      "completed": 10,
+      "protocolValid": 8,
+      "exactEvidenceValid": 3
+    },
+    "quiz": {
+      "completed": 8,
+      "protocolValid": 0,
+      "exactEvidenceValid": 0
+    }
+  },
+  "attestationWritten": false,
+  "furtherCorrectedRerunAllowed": false
+}

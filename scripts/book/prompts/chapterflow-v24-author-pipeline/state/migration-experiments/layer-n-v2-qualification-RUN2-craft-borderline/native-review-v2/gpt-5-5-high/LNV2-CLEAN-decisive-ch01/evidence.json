@@ -1,0 +1,155 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "LNV2-CLEAN-decisive-ch01",
+  "itemId": "LNV2-CLEAN-decisive-ch01",
+  "kind": "clean-pass",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "high"
+  },
+  "chapterContentSha256": "69cecca544e01f6f",
+  "renderedDocSha256": "2473df4e347080e141b9f35b24151601de9122e5619e02df2eeaf1865e1c29a0",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+  "routeSidecarRef": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-decisive-ch01-mrh5ivqi-4",
+  "rawFinalMessageSha256": "da1c5b74161d17485570f7acd2a1b49c31f43ed3071d568dad163b46364c2fdb",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"b\", \"c\", \"c\", \"a\", \"c\", \"a\", \"a\", \"b\"],\n    \"mechanisms\": [\n      \"The prose defines WRAP as four named repairs that match four distinct decision dangers, not as a vague pause.\",\n      \"The chapter says narrow framing makes a rich problem look like yes/no, so the first repair is to widen live options.\",\n      \"Reality-testing asks for evidence that can surprise or hurt the favorite answer, which is disconfirming evidence.\",\n      \"The Intel passage says emotion can carry information but short-term attachment needs distance and a longer view.\",\n      \"Overconfidence is countered by naming better, worse, or different futures instead of trusting one neat line.\",\n      \"Steve Cole's logic was to keep multiple design firms in the first lap so comparison could teach before commitment.\",\n      \"Grove's outsider question asks what a fresh outsider would do without the memory-chip attachment.\",\n      \"The four-villain model assigns separate repairs to framing, evidence, emotion, and forecasting rather than one final catch-all.\",\n      \"The chapter says good process raises the odds without promising the outcome because uncertainty remains.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Correct option is the only one that names all four WRAP moves and is the most formal.\",\n      \"Correct option repeats the chapter's yes-or-no frame language; distractors are visibly anti-WRAP.\",\n      \"Only the correct option uses disconfirming evidence, making the key obvious.\",\n      \"Correct option is the only nuanced choice; the other two use extreme all-or-nothing phrasing.\",\n      \"Correct option says wider range and forecast, directly echoing the overconfidence section.\",\n      \"Correct option nearly restates comparison before commitment.\",\n      \"Correct option gives the outsider question almost verbatim.\",\n      \"Correct option is the only one mapping four villains to four different moves.\",\n      \"Correct option repeats improving odds while uncertainty remains; distractors overpromise or discard the process.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 90,\n    \"quizzes\": 76,\n    \"transfer\": 77,\n    \"practical\": 82,\n    \"summaries\": 93,\n    \"tone\": 88,\n    \"limits\": 90,\n    \"insight\": 89,\n    \"density\": 84,\n    \"beginner\": 91\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"A live option set keeps a bad frame from feeling like fate.\",\n      \"why\": \"Strong, memorable compression of the chapter's core move.\"\n    },\n    {\n      \"quote\": \"Evidence gets crooked when the favorite answer hires the researcher.\",\n      \"why\": \"Explains confirmation bias with a concrete mechanism rather than a label.\"\n    },\n    {\n      \"quote\": \"Good process raises the odds without promising the outcome.\",\n      \"why\": \"Clearly states the boundary of WRAP and prevents outcome-based overclaiming.\"\n    },\n    {\n      \"quote\": \"The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.\",\n      \"why\": \"The action is concrete, but 'shortcut' is under-explained at this point.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"quiz Q1\",\n      \"problem\": \"The correct answer is telegraphed because it alone lists the formal WRAP sequence while the distractors are generic.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q3\",\n      \"problem\": \"The correct answer is too easy to guess because it is the only option containing disconfirming evidence, the obvious antidote to confirmation bias.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz Q6\",\n      \"problem\": \"The correct answer closely echoes the chapter's phrasing about comparison before commitment, weakening the distractors.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"Thin-but-usable example: it repeats the HopeLab first-lap lesson from example 1 with little new decision consequence.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"example 5\",\n      \"problem\": \"Thin-but-usable example: Yvonne's forecast scene is on-topic but generic, with no clear before-to-after consequence beyond restating the lesson.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"try this now\",\n      \"problem\": \"The prompt asks the reader to record a 'shortcut' before that term is made concrete, so the immediate action is slightly under-specified.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"This is a strong opening chapter with clean layering, memorable mechanism lines, and unusually honest limits around uncertainty and emergency tempo. I would not ship it against a strict professional >=80 bar yet because the quiz answers are often guessable from giveaway phrasing, and transfer leans too heavily on HopeLab/Intel/product-review variants rather than showing the move travel into more distinct real contexts. No must-fix reserved-category defect appears on the page, but the chapter needs stronger distractors and a few richer transfer examples before it feels professionally finished.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "decisive-ch01",
+    "chapterNumber": 1,
+    "contentHash": "69cecca544e01f6f",
+    "reviewerSessionId": "auto-author-review-ch01-lnv2-gpt-5-5-high-LNV2-CLEAN-decisive-ch01-mrh5ivqi-4",
+    "scores": {
+      "retention": 90,
+      "quizzes": 76,
+      "transfer": 77,
+      "practical": 82,
+      "summaries": 93,
+      "tone": 88,
+      "limits": 90,
+      "insight": 89,
+      "density": 84,
+      "beginner": 91
+    },
+    "composite": 85.7,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "b",
+        "c",
+        "c",
+        "a",
+        "c",
+        "a",
+        "a",
+        "b"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "A live option set keeps a bad frame from feeling like fate.",
+        "why": "Strong, memorable compression of the chapter's core move.",
+        "verified": true
+      },
+      {
+        "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+        "why": "Explains confirmation bias with a concrete mechanism rather than a label.",
+        "verified": true
+      },
+      {
+        "quote": "Good process raises the odds without promising the outcome.",
+        "why": "Clearly states the boundary of WRAP and prevents outcome-based overclaiming.",
+        "verified": true
+      },
+      {
+        "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+        "why": "The action is concrete, but 'shortcut' is under-explained at this point.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Correct option is the only one that names all four WRAP moves and is the most formal.",
+      "Correct option repeats the chapter's yes-or-no frame language; distractors are visibly anti-WRAP.",
+      "Only the correct option uses disconfirming evidence, making the key obvious.",
+      "Correct option is the only nuanced choice; the other two use extreme all-or-nothing phrasing.",
+      "Correct option says wider range and forecast, directly echoing the overconfidence section.",
+      "Correct option nearly restates comparison before commitment.",
+      "Correct option gives the outsider question almost verbatim.",
+      "Correct option is the only one mapping four villains to four different moves.",
+      "Correct option repeats improving odds while uncertainty remains; distractors overpromise or discard the process."
+    ],
+    "complaints": [
+      {
+        "unit": "quiz Q1",
+        "problem": "The correct answer is telegraphed because it alone lists the formal WRAP sequence while the distractors are generic.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q3",
+        "problem": "The correct answer is too easy to guess because it is the only option containing disconfirming evidence, the obvious antidote to confirmation bias.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz Q6",
+        "problem": "The correct answer closely echoes the chapter's phrasing about comparison before commitment, weakening the distractors.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 2",
+        "problem": "Thin-but-usable example: it repeats the HopeLab first-lap lesson from example 1 with little new decision consequence.",
+        "mustFix": false
+      },
+      {
+        "unit": "example 5",
+        "problem": "Thin-but-usable example: Yvonne's forecast scene is on-topic but generic, with no clear before-to-after consequence beyond restating the lesson.",
+        "mustFix": false
+      },
+      {
+        "unit": "try this now",
+        "problem": "The prompt asks the reader to record a 'shortcut' before that term is made concrete, so the immediate action is slightly under-specified.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "This is a strong opening chapter with clean layering, memorable mechanism lines, and unusually honest limits around uncertainty and emergency tempo. I would not ship it against a strict professional >=80 bar yet because the quiz answers are often guessable from giveaway phrasing, and transfer leans too heavily on HopeLab/Intel/product-review variants rather than showing the move travel into more distinct real contexts. No must-fix reserved-category defect appears on the page, but the chapter needs stronger distractors and a few richer transfer examples before it feels professionally finished.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "ec94fcd42d5c882fb154d0aa8d15cc70cba15e977e49362d66095fe60aef9ac2",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T02:07:02.647Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "0e15886e37286e85ea4829d17604cd6e736a9a5f8ad00716f2e5d1a76587f264",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": null,
+    "channel": "ship-decision (valid && pass && keys clean && no mustFix)",
+    "acceptedEvidenceSpansMatched": [],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T02:05:37.193Z",
+  "durationMs": 0
+}

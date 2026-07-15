@@ -1,0 +1,140 @@
+{
+  "schema": "migration-native-review-item-evidence-v2",
+  "blindItemId": "hardblocker-the-willpower-instinct-ch2",
+  "itemId": "hardblocker-the-willpower-instinct-ch2",
+  "kind": "reader-visible-hard-blocker",
+  "judge": {
+    "model": "gpt-5.5",
+    "effort": "xhigh"
+  },
+  "chapterContentSha256": "14995e4f0ad8e16b",
+  "renderedDocSha256": "afbe5c9e2f2436be0be2afb0a49ba4bca173accc2dabaad6ce535168d34267cc",
+  "readerTaskSha256": "df73b345d31eedd18918b821143d87433250f2b602c15f2285eef0dc8302b46c",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "workspaceManifestSha256": "fc4078aaeebfad8ac85a595394913c13858c0c18578e47695d902a3f1a4064a7",
+  "routeSidecarRef": "auto-author-review-ch02-lnv2-gpt-5-5-xhigh-hardblocker-the-willpower-instinct-ch2-mrhasdtg-27",
+  "rawFinalMessageSha256": "7c7a53fc4dd02ea615f31ecd8710c741471fd55eba4071becbd1c6a22b422678",
+  "rawFinalMessage": "```json\n{\n  \"quizDerivation\": {\n    \"answers\": [\"b\", \"c\", \"c\", \"a\", \"b\", \"b\", \"a\", \"a\", \"c\"],\n    \"mechanisms\": [\n      \"The prose defines heart rate variability as beat-to-beat rhythm shifting and links higher variability with stronger self-regulation.\",\n      \"The Trier description says public speaking and arithmetic under evaluators create social judgment, so injury is not required.\",\n      \"The prose says stress makes fast relief feel like shelter and narrows attention before the long goal returns.\",\n      \"Tang's training is described as brief practice that steadies attention and softens stress reactivity before urges peak.\",\n      \"The chapter frames slow breathing as a body-state change that keeps choice online, not as mere delay.\",\n      \"The pause-and-plan response slows the body so arousal does not crowd out goal comparison.\",\n      \"The sleep section says tired attention loses its grip and loud cues can beat the intended goal.\",\n      \"The movement section says activity can improve mood, stress regulation, and executive function.\",\n      \"The chapter says waiting until the craving peaks is unfair because the body needs runway before the hardest moment.\"\n    ],\n    \"confidence\": [\"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\", \"high\"],\n    \"ambiguities\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"],\n    \"tells\": [\n      \"Several correct answers use the chapter's exact mechanism language while distractors overstate with words like only, mainly, proved, or separate.\",\n      \"Q4 and Q8 are especially guessable by keyword match because the correct choices directly echo attention stability and mood, stress regulation, and executive function.\"\n    ]\n  },\n  \"scores\": {\n    \"retention\": 89,\n    \"quizzes\": 84,\n    \"transfer\": 72,\n    \"practical\": 82,\n    \"summaries\": 91,\n    \"tone\": 87,\n    \"limits\": 94,\n    \"insight\": 88,\n    \"density\": 83,\n    \"beginner\": 90\n  },\n  \"ship84\": false,\n  \"quotes\": [\n    {\n      \"quote\": \"Calm gives the future a vote.\",\n      \"why\": \"This is the chapter's core move in a memorable, portable line.\"\n    },\n    {\n      \"quote\": \"A slower body can also become a hiding place.\",\n      \"why\": \"This is a strong limit that prevents the technique from becoming avoidance.\"\n    },\n    {\n      \"quote\": \"When delay is the danger, the willpower move is to move now.\",\n      \"why\": \"The boundary condition is clear, practical, and reader-protective.\"\n    },\n    {\n      \"quote\": \"Actually, the stronger move is to pump himself up and chase that panic before speaking, because a spike of adrenaline right at the peak is what proves the body is ready.\",\n      \"why\": \"This directly contradicts the chapter's body-first advice.\"\n    }\n  ],\n  \"complaints\": [\n    {\n      \"unit\": \"example 2\",\n      \"problem\": \"The What to do section first tells Adam to lower arousal, then says the stronger move is to chase panic and prove readiness with an adrenaline spike. This is SOURCE-CONTRADICTORY.\",\n      \"mustFix\": true\n    },\n    {\n      \"unit\": \"example 3\",\n      \"problem\": \"The meditation example is thin-but-usable: it shows a classroom realization more than a before-to-after decision with a real consequence.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"quiz\",\n      \"problem\": \"Some distractors are too visibly wrong because they rely on absolute or reductive claims, making several answers guessable without full reading.\",\n      \"mustFix\": false\n    },\n    {\n      \"unit\": \"deep read\",\n      \"problem\": \"The phrase fatigue tracking is introduced without enough plain-language explanation for a cold beginner.\",\n      \"mustFix\": false\n    }\n  ],\n  \"oneParagraphVerdict\": \"The chapter has a clear, memorable core: willpower is partly a body-state problem, and readers should calm the body before asking it to choose. The layered reads, limits, and practical if-then plan are strong. I would not ship it yet because example 2 contains a direct contradiction that teaches the opposite behavior at the exact point where readers expect instruction. Fix that, sharpen a few quiz distractors, and the chapter is close to a professional bar.\"\n}\n```",
+  "parsedReview": {
+    "schemaVersion": "chapterflow-review-v1",
+    "chapterId": "hardblocker-the-willpower-instinct-ch2-chapter",
+    "chapterNumber": 2,
+    "contentHash": "14995e4f0ad8e16b",
+    "reviewerSessionId": "auto-author-review-ch02-lnv2-gpt-5-5-xhigh-hardblocker-the-willpower-instinct-ch2-mrhasdtg-27",
+    "scores": {
+      "retention": 89,
+      "quizzes": 84,
+      "transfer": 72,
+      "practical": 82,
+      "summaries": 91,
+      "tone": 87,
+      "limits": 94,
+      "insight": 88,
+      "density": 83,
+      "beginner": 90
+    },
+    "composite": 85.7,
+    "ship84": false,
+    "pass": false,
+    "valid": true,
+    "keyCheck": {
+      "derived": [
+        "b",
+        "c",
+        "c",
+        "a",
+        "b",
+        "b",
+        "a",
+        "a",
+        "c"
+      ],
+      "matches": 9,
+      "of": 9,
+      "disagreements": []
+    },
+    "quotes": [
+      {
+        "quote": "Calm gives the future a vote.",
+        "why": "This is the chapter's core move in a memorable, portable line.",
+        "verified": true
+      },
+      {
+        "quote": "A slower body can also become a hiding place.",
+        "why": "This is a strong limit that prevents the technique from becoming avoidance.",
+        "verified": true
+      },
+      {
+        "quote": "When delay is the danger, the willpower move is to move now.",
+        "why": "The boundary condition is clear, practical, and reader-protective.",
+        "verified": true
+      },
+      {
+        "quote": "Actually, the stronger move is to pump himself up and chase that panic before speaking, because a spike of adrenaline right at the peak is what proves the body is ready.",
+        "why": "This directly contradicts the chapter's body-first advice.",
+        "verified": true
+      }
+    ],
+    "tells": [
+      "Several correct answers use the chapter's exact mechanism language while distractors overstate with words like only, mainly, proved, or separate.",
+      "Q4 and Q8 are especially guessable by keyword match because the correct choices directly echo attention stability and mood, stress regulation, and executive function."
+    ],
+    "complaints": [
+      {
+        "unit": "example 2",
+        "problem": "The What to do section first tells Adam to lower arousal, then says the stronger move is to chase panic and prove readiness with an adrenaline spike. This is SOURCE-CONTRADICTORY.",
+        "mustFix": true
+      },
+      {
+        "unit": "example 3",
+        "problem": "The meditation example is thin-but-usable: it shows a classroom realization more than a before-to-after decision with a real consequence.",
+        "mustFix": false
+      },
+      {
+        "unit": "quiz",
+        "problem": "Some distractors are too visibly wrong because they rely on absolute or reductive claims, making several answers guessable without full reading.",
+        "mustFix": false
+      },
+      {
+        "unit": "deep read",
+        "problem": "The phrase fatigue tracking is introduced without enough plain-language explanation for a cold beginner.",
+        "mustFix": false
+      }
+    ],
+    "oneParagraphVerdict": "The chapter has a clear, memorable core: willpower is partly a body-state problem, and readers should calm the body before asking it to choose. The layered reads, limits, and practical if-then plan are strong. I would not ship it yet because example 2 contains a direct contradiction that teaches the opposite behavior at the exact point where readers expect instruction. Fix that, sharpen a few quiz distractors, and the chapter is close to a professional bar.",
+    "structuralScreen": {
+      "claimsScanned": 0,
+      "decisions": []
+    },
+    "bar": 80,
+    "docHash": "9c3a31084426ff82c6d93185e875ad8435c470aa64855ad2acffc394cd9c9e9c",
+    "hashVersion": "v3",
+    "phase1DocVersion": "phase1-v1",
+    "rubricVersion": "reader-rubric-v3-phase1",
+    "reviewedAt": "2026-07-12T04:34:40.243Z",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "workspaceManifestSha256": "fc4078aaeebfad8ac85a595394913c13858c0c18578e47695d902a3f1a4064a7",
+    "quizAdjudication": {
+      "status": "skipped-extra-read",
+      "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+    }
+  },
+  "phase2": {
+    "status": "skipped-extra-read",
+    "reason": "non-persisting tiebreak/second-opinion read — adjudication rides the persisted primary"
+  },
+  "matcherDecision": {
+    "resolved": true,
+    "detected": true,
+    "channel": "mustFix complaint in a target unit + verified evidence (quote or complaint) intersecting the mutation span",
+    "acceptedEvidenceSpansMatched": [
+      "Actually, the stronger move is to pump himself up and chase that panic before speaking, because a spike of adrenaline right at the peak is what proves the body is ready."
+    ],
+    "rejectedReasons": []
+  },
+  "attempt": 1,
+  "replayOf": null,
+  "startedAt": "2026-07-12T04:32:58.611Z",
+  "durationMs": 0
+}

@@ -1,0 +1,33 @@
+{
+  "schema": "imp22-role-qualification-request-record-v1",
+  "requestSha256": "ee6de43d00e0a3ef6ce13b898d806b0d1b54dfda4247e54e46c78edda409c8f9",
+  "request": {
+    "schema": "imp22-role-qualification-execution-request-v1",
+    "scheduleId": "qual-00016",
+    "attemptId": "qual-00016-a1",
+    "replayOfAttemptId": null,
+    "attemptNumber": 1,
+    "role": "reader",
+    "partition": "calibration",
+    "caseId": "READER-V2-CALIBRATION-reader-visible-hard-blocker-make-it-stick-ch02",
+    "family": "reader-visible-hard-blocker",
+    "profileId": "gpt-5.6-sol@high",
+    "model": "gpt-5.6-sol",
+    "effort": "high",
+    "schemaSha256": "96be560b412f18eb33b67df3baf8f56b3ee466b0a706eb4ea89ab12250413fd3",
+    "promptSha256": "7f32603c1502e9b7a3ecf1f6a55b279bf8ca3986c898b0a59e384bee571a23d9",
+    "freezeSha256": "0d25f7ddeb0c7dea1f50498ad7f819f46434e6040b175678e53f125dc25a7456",
+    "task": {
+      "sha256": "7f32603c1502e9b7a3ecf1f6a55b279bf8ca3986c898b0a59e384bee571a23d9",
+      "bytes": 5848
+    },
+    "artifacts": [
+      {
+        "kind": "phase1-doc",
+        "relPath": "reader/READER-V2-CALIBRATION-reader-visible-hard-blocker-make-it-stick-ch02.phase1.md",
+        "sha256": "43217e5d0c94d5f80d7a89cea0cc7bee1cd72aa5e5f383fb44762fe60e9f0ac5",
+        "bytes": 17006
+      }
+    ]
+  }
+}

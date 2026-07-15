@@ -1,0 +1,147 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c30-a1",
+  "requestSha256": "e595f00ec040dfe639a663e173979b10faf15c3fff09680c43aad26f41761d58",
+  "receiptSha256": "535ed5dc25208e1a01bed0c97cee00965d7d75eb59ea2afabc1e3183e95cdbc7",
+  "executionEvidenceSha256": "fcfc9f404c11ce9599c3994663074e450328ec4527edb04735c74e5eec0baa4c",
+  "rawOutputSha256": "33479390ce43a182be4a52977c20a41f732b47e48c0a132b3966aadeb7e52460",
+  "evaluationSha256": "3541d9b12587db0a6a95bbaaa04b7a26c2f5444d88136feedb9968dbbb198383",
+  "parsedOutputSha256": "6d23a1137b385173dfc1da7ae514e6e94908b38b0aebb24227c4eb224a66041f",
+  "assembledReviewSha256": "d63a1542ff71ee88c3e14a263d4d36032c298702800204d3542bade47a674f0d",
+  "evidenceReferenceResolutionSha256": "0e3a1f060ea5356b736ad62d0cd8bc5438f763b246934b3549ecd681a39454d2",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "REVISE; primary=generic_specificity_leak",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "major",
+              "explanation": "The generic operational scenario includes an exact quantitative constraint even though the plan permits only concept-level detail and expressly forbids exact metrics.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ]
+            }
+          ],
+          "rationale": "The generic role, action, and workflow context fit the licensed scenario, but the exact quantitative detail exceeds the permitted specificity."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "b1995361044629afe541b8a0fde288bc4a753a25cbe81070342d2080f337ce1a",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "926bd98a6deb1fe4bdcd80ecc3429dcbd14c72e51e0947dc39d015db66baf298",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "major",
+              "explanation": "The generic operational scenario includes an exact quantitative constraint even though the plan permits only concept-level detail and expressly forbids exact metrics.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ],
+              "findingId": "unit.ch01.generic-scenario:source-finding:001",
+              "chapterEvidenceSpans": [
+                "A team member can mute a nonessential alert for exactly 47 minutes while completing one focused step."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"generic\",\n  \"formLicense\": \"operational_scenario\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"role_label\",\n    \"observable_action\",\n    \"constraint\",\n    \"tradeoff\",\n    \"workflow_step\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"named_person\",\n    \"named_organization\",\n    \"date\",\n    \"exact_metric\",\n    \"credential\",\n    \"biography\",\n    \"historical_claim\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": []\n}"
+              ]
+            }
+          ],
+          "rationale": "The generic role, action, and workflow context fit the licensed scenario, but the exact quantitative detail exceeds the permitted specificity.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "REVISE",
+      "blockingFindingIds": [],
+      "rationale": "U1: The generic role, action, and workflow context fit the licensed scenario, but the exact quantitative detail exceeds the permitted specificity."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "A team member can mute a nonessential alert for exactly 47 minutes while completing one focused step."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"generic\",\n  \"formLicense\": \"operational_scenario\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"role_label\",\n    \"observable_action\",\n    \"constraint\",\n    \"tradeoff\",\n    \"workflow_step\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"named_person\",\n    \"named_organization\",\n    \"date\",\n    \"exact_metric\",\n    \"credential\",\n    \"biography\",\n    \"historical_claim\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": []\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "8698b2f3f763ae92a0b4bebc885169a9ed67d85d73745d369bdee6af6a59a888"
+}

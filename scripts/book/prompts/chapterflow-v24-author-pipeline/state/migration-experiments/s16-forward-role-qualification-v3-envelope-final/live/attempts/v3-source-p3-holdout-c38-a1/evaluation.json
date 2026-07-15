@@ -1,0 +1,162 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c38-a1",
+  "requestSha256": "0662c7e79a9656c25c76b38a2006f4a1d9cc30f2e2ea43b92cc4c76c5cd39b6e",
+  "receiptSha256": "382df605823973050537a103f5a7deeef84c2eb660274d87d8b3784f3ebcfb97",
+  "executionEvidenceSha256": "2e2135892c3682cbdb1ff274a0d0094124092cc60cab8dfa4c6d297883f64cf1",
+  "rawOutputSha256": "e9a55779159cc64305808ed74b698e44441f963fc3f85879555182e18fea764f",
+  "evaluationSha256": "dfbed92d5a1e75a662e08f880d5728d02af2dc910f9fabf55e1d2cd0b35d940b",
+  "parsedOutputSha256": "4a1bfec6bde4d0a8e2b000f37e4eaaa74330cdcb8ddaffb97e699cc01789f52b",
+  "assembledReviewSha256": "bdfe1d029195c89a5ff609ec1631b6c2046bedbfa8bfad72b2d51d959026b047",
+  "evidenceReferenceResolutionSha256": "626b4e22ef24fbf88dcf7eada8d6faa98cb0a37aa296340211c14844bd6a613e",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": false,
+      "fabricationSensitivity": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The interruption-based-use mechanism is supported, but the attributed 2018 sample of exactly 47 participants appears nowhere in the permitted source evidence. The date, sample, and participant count are therefore unsupported source-specific details requiring documentary evidence.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ]
+            }
+          ],
+          "rationale": "The chapter accurately reproduces the supported claim and mechanism, then adds a precise research attribution and number absent from the source packet. This makes the target partially supported overall, with unsupported attribution taking precedence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "dc77387eb1dbcd2c5c2dee89909fdef78f366550b3f6ac9e02476ca5418e2757",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "7d37a00de677d686575847072c21e7b892eecdea0fd5da4c336bb7ede038f4e6",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "major",
+              "explanation": "The interruption-based-use mechanism is supported, but the attributed 2018 sample of exactly 47 participants appears nowhere in the permitted source evidence. The date, sample, and participant count are therefore unsupported source-specific details requiring documentary evidence.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ],
+              "findingId": "unit.fact.ch01.fact.4:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The source states: Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. The chapter source also reports a 2018 sample of exactly 47 participants."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"id\": \"ch01.fact.4\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. Notifications are neutral reminders that merely save people from forgetting useful information. Many reminders are optimized for return visits, not user priority, so they impose someone else's timing.\"\n}",
+                "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+                "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing."
+              ]
+            }
+          ],
+          "rationale": "The chapter accurately reproduces the supported claim and mechanism, then adds a precise research attribution and number absent from the source packet. This makes the target partially supported overall, with unsupported attribution taking precedence.",
+          "unitId": "unit.fact.ch01.fact.4",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden"
+      ],
+      "rationale": "U1: The chapter accurately reproduces the supported claim and mechanism, then adds a precise research attribution and number absent from the source packet. This makes the target partially supported overall, with unsupported attribution taking precedence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The source states: Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. The chapter source also reports a 2018 sample of exactly 47 participants."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"id\": \"ch01.fact.4\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. Notifications are neutral reminders that merely save people from forgetting useful information. Many reminders are optimized for return visits, not user priority, so they impose someone else's timing.\"\n}",
+            "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+            "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing."
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "63d8338c45b10b32764905477255ca2203539aae0ed8aa0cc39706a71a97830e"
+}
