@@ -158,10 +158,10 @@ Back: Ask what someone can do differently after retelling it. If the action cue 
 
 ## Implementation plan
 Core skill: You learn to turn a rule into a sequence people can retell. The skill is choosing the right plot engine and putting the lesson inside the choice, turn, and consequence.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (training): If a rule keeps being forgotten, then build a short story where missing the rule changes what happens next.
+If-then (leadership): If a value sounds abstract, then choose a connection, challenge, or creativity plot that shows the value changing a decision.
+If-then (coaching): If someone retells the wrong part of your story, then replace it with a sequence where the intended action is the turning point.
+If-then (teaching): If your story needs a long moral afterward, then rewrite the plot so the consequence teaches the lesson directly.
 24-hour challenge: Before tomorrow ends, turn one rule into three beats: the choice, the turn, and the consequence. Cut the moral if the beats teach it.
 Weekly practice: Once this week, listen to one story people retell in your team or family. Write the action cue it carries, then decide whether to keep, repair, or retire it.
 

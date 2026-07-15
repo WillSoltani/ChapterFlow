@@ -161,10 +161,10 @@ Back: Use a hard rule when refusal, safety, or consent cannot be protected by a 
 
 ## Implementation plan
 Core skill: Practice checking a choice setup before you praise it as free. Use Check Refusal Before Praise: name the easy path, name whose welfare it serves, then check whether refusal is visible and practical. If any part is missing, the design needs repair before it earns trust.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (If a form has a prefilled box): If the box is already chosen, then use Check Refusal Before Praise. Name what happens if you do nothing and where the refusal path sits.
+If-then (If a menu leaves you tired before you choose): If the menu drains your attention, then use Check Refusal Before Praise. Ask which fact must move beside the choice so comparison is possible.
+If-then (If someone praises a default for better numbers): If the numbers sound good, then use Check Refusal Before Praise. Ask whether the chooser gains by their own lights and can still leave cheaply.
+If-then (If disclosure arrives as a long separate file): If the key fact is off to the side, then use Check Refusal Before Praise. Move the cost, deadline, or exit instruction to the live decision.
 24-hour challenge: The next time you open a form or menu, find the working exit before you continue. If exit takes a call, fee, mailed form, or hidden page, mark the setup as pressure, not free choice.
 Weekly practice: This week, teach one person Check Refusal Before Praise in your own words. Use a real form or menu and explain easy path, chooser welfare, and opt-out.
 

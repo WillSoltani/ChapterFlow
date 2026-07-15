@@ -148,10 +148,10 @@ Back: Mandated choice asks for a yes or no and records that answer. Opt-out star
 
 ## Implementation plan
 Core skill: Practice finding the answer that gets recorded when no one acts. Test the Recorded Default means you look for the preset path, then check whether refusal is easy enough to use. The skill matters when a form looks fair but one answer has a head start.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (If a form offers a preselected answer): If a form offers a preselected answer, then Test the Recorded Default by naming what happens if you stop and where the exit sits.
+If-then (If a group praises a policy only by its higher count): If a group praises a policy only by its higher count, then Test the Recorded Default by asking whose welfare the count is meant to serve.
+If-then (If a hard choice is easy to postpone): If a hard choice is easy to postpone, then Test the Recorded Default by marking the answer that delay will select.
+If-then (If someone calls a default harmless): If someone calls a default harmless, then Test the Recorded Default by walking through the refusal path as if a tired person had to use it.
 24-hour challenge: For one day, count the first five defaults you meet in ordinary forms or apps. Beside each, write the answer that wins if you do nothing.
 Weekly practice: Keep a daily three-column log for a week: form or app, recorded default, exit path. At week's end, circle the default you trusted least and why.
 

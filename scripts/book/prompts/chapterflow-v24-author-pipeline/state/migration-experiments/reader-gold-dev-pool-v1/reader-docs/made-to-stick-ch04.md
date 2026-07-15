@@ -162,10 +162,10 @@ Back: Proof can force a stubborn room to re-evaluate what habit has taught it to
 
 ## Implementation plan
 Core skill: You learn to move belief away from your confidence and toward evidence the audience can judge. The skill is matching the claim with the right proof, witness, test, detail, or scale.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (sales): If a buyer doubts a claim, then put the log, test, or sample beside the claim before adding another promise.
+If-then (public policy): If a number feels too large to grasp, then translate it into a map, route, household count, or familiar local unit.
+If-then (training): If authority language is bouncing off the room, then bring in a witness whose lived cost matches the risk.
+If-then (product claims): If a claim depends on conditions, then put the condition next to the proof wherever the customer will judge it.
 24-hour challenge: Before tomorrow ends, choose one claim you plan to make and add one piece of proof your audience can inspect without needing to trust your confidence.
 Weekly practice: Once this week, review three claims in your work. Label each one proof, witness, human scale, or unsupported, then repair the unsupported one first.
 

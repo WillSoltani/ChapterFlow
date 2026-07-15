@@ -170,10 +170,10 @@ Back: Graham's hand near the Milgram switch box is the moment. He needs a precho
 
 ## Implementation plan
 Core skill: Practice asking what the visible crowd is really telling you. Before you copy, name whether the signal is information, approval, authority, or hidden fear. Then decide whether to follow it, question it, or make a better cue visible.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (If a group choice starts to feel like proof because many people picked it): If the crowd may know something you do not, then ask what evidence they can see. Follow the signal only if it adds real information.
+If-then (If a meeting goes quiet around a shaky norm): If silence is being read as support, then say one plain concern out loud. Make hidden dissent visible before the group mistakes quiet for approval.
+If-then (If you are writing a warning about bad behavior): If the warning makes the bad act sound common, then rewrite it around the approved behavior. Show the norm you want people to copy.
+If-then (If you use a peer comparison to encourage a better choice): If the peer group feels distant, then narrow the comparison to nearby people. A relevant crowd gives the cue more force.
 24-hour challenge: During your next conversation about what others are doing, pause before responding. Name whether the crowd cue is information, approval, authority, or hidden fear, then explain that read to one person.
 Weekly practice: Once this week, rehearse the move in a real group conversation. Before you answer, name the visible cue and teach one person what it might be hiding.
 

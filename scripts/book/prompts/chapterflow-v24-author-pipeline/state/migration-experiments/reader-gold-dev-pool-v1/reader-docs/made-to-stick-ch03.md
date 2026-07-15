@@ -156,10 +156,10 @@ Back: Sensory detail can hijack attention if it does not help people understand 
 
 ## Implementation plan
 Core skill: You learn to replace slippery language with shared reference. The skill is choosing a concrete detail that makes the same meaning visible to everyone without letting the detail take over.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (team planning): If a word like quality, speed, or ownership is causing nods but no agreement, then put one actual example of it on the table.
+If-then (teaching): If students can repeat the term but not use it, then build a small demo they can manipulate before asking for the definition again.
+If-then (public explanation): If a number feels distant, then translate it into an object, wait, distance, or routine people already know.
+If-then (service design): If customers misread an instruction, then turn the instruction into a path, icon, or physical sorting step they can follow.
 24-hour challenge: Before tomorrow ends, find one abstract noun in a message you use often and replace it with a visible thing, action, or comparison.
 Weekly practice: Once this week, watch for a word that makes people nod too fast. Ask each person what they picture, then create one shared reference for the next conversation.
 

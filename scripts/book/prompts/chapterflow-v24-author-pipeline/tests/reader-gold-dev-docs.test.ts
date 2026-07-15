@@ -36,7 +36,12 @@ const CHAPTER = {
     }],
   },
   reviewCards: [{ front: "F", back: "B" }],
-  implementationPlan: { coreSkill: "C", ifThenPlans: ["if x then y"], twentyFourHourChallenge: "24h", weeklyPractice: "weekly" },
+  implementationPlan: {
+    coreSkill: "C",
+    ifThenPlans: [{ context: "commute", plan: "if x then y" }],
+    twentyFourHourChallenge: "24h",
+    weeklyPractice: "weekly",
+  },
   memorableLines: [{ text: "memorable" }],
 };
 
@@ -47,6 +52,22 @@ test("key-free rendering: prompts and choices present, key surface and explanati
   assert.ok(!doc.includes("SECRET-KEY-RATIONALE"), "quiz key explanation must never reach a reader document");
   assert.ok(!doc.includes("correctIndex"));
   assert.ok(doc.includes("## Review cards") && doc.includes("Back: B"), "review cards are reader-visible content");
+  assert.ok(doc.includes("If-then (commute): if x then y"), "if-then plans render context and plan text");
+});
+
+test("serialization-leak regression (Adjudicator B, 2026-07-15): object interpolation fails closed", () => {
+  const corrupted = structuredClone(CHAPTER) as unknown as {
+    memorableLines: Array<{ text: unknown }>;
+  };
+  corrupted.memorableLines = [{ text: { nested: "object" } }];
+  assert.throws(
+    () => renderKeyFreeReaderDocument({ bookId: "test-book", chapter: corrupted as never }),
+    /serialization leak/,
+    "a non-string field reaching the template must fail the build, never ship [object Object]");
+  const realDocs = buildReaderGoldDevDocs({ repositoryRoot: REPOSITORY_ROOT });
+  for (const [relPath, document] of realDocs.documents) {
+    assert.ok(!document.includes("[object Object]"), `${relPath} contains a serialization leak`);
+  }
 });
 
 test("docs bind the REAL frozen selection: 24 docs, per-doc hashes, selection pin", () => {

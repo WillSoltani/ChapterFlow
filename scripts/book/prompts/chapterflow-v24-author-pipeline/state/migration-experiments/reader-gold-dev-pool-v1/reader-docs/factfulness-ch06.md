@@ -158,10 +158,10 @@ Back: Split a broad group, compare across the border, and replace the category w
 
 ## Implementation plan
 Core skill: Practice testing a label before you let it steer your conclusion. Run Category Hygiene by asking whether to split the group, compare across the border, or replace the label. The skill keeps categories useful without letting them become stereotypes.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (When a country label explains a home too quickly): If the claim starts with a country, then run Category Hygiene by asking whether income level explains the object better.
+If-then (When a continent name has to carry a whole claim): If the label is continent-sized, then run Category Hygiene by checking distance and health-wealth spread before you accept it.
+If-then (When one data point seems to describe all demand): If a single rate stands for family planning, then run Category Hygiene by splitting met need from unmet need.
+If-then (When expert advice arrives as one broad rule): If a professional rule sounds complete, then run Category Hygiene by asking what evidence would let the rule travel safely.
 24-hour challenge: Catch yourself at one task transition today and grab the most category-heavy note in reach. Do exactly one thing to it: split a label, compare it across groups, or replace it.
 Weekly practice: For seven days, keep a daily log with three columns: label heard, hidden split, and better comparison. Use one row per day from news, work, or home.
 

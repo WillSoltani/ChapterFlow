@@ -165,10 +165,10 @@ Back: It may overfocus on consent papers and miss timing. Give More Tomorrow use
 
 ## Implementation plan
 Core skill: Practice placing the choice cue where the decision happens. The cue may be a form, pledge note, deadline, correction link, or exit step. Place The Choice Cue works only when the person can still say no.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (If a good task keeps vanishing after you postpone it): If delay keeps winning, then Place The Choice Cue by putting the form on the surface you touch before starting the task.
+If-then (If a later cost is hard to picture): If the future result feels foggy, then Place The Choice Cue by writing the later amount beside today's choice.
+If-then (If a default is already selected for you): If the default is checked, then Place The Choice Cue by putting the exit step next to the accept button before you proceed.
+If-then (If the designer's preferred outcome looks too convenient): If the screen seems to serve the designer first, then Place The Choice Cue by asking what fact would help you choose by your own lights.
 24-hour challenge: In the next 24 hours, before you start your next paperwork task, create one calendar block for it and move the needed form onto your keyboard.
 Weekly practice: For one week, tally each time delay picks for you because a form, deadline, or exit step was out of sight. Read the total at week's end.
 

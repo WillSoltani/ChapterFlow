@@ -144,10 +144,10 @@ Back: The four levers are defaults, automatic enrollment, future escalation, and
 
 ## Implementation plan
 Core skill: Practice checking whether a helpful path is still easy to refuse. Use Test the Exit before you praise a default, copy a preset option, or ask someone to accept automatic escalation. The move is one question: can the person say no without a fight?
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (If a default looks harmless because everyone can technically change it): If the default looks harmless, then Test the Exit by walking the refusal path yourself before you defend the design.
+If-then (If a choice depends on a future benefit that is hard to picture): If the future benefit feels fuzzy, then Test the Exit and rewrite the choice so today's action maps to the later consequence.
+If-then (If someone praises a nudge only because the average result improved): If the result looks better, then Test the Exit by asking whether refusal stayed cheap, visible, and socially easy.
+If-then (If your preferred outcome starts sounding like the chooser's best interest): If your own goal gets loud, then Test the Exit by asking what the chooser would want under clearer conditions.
 24-hour challenge: Before one real response about money in the next day, run one rehearsal. Stand where you will answer, ask "Could I refuse this without hassle?" and change one word if the answer is no.
 Weekly practice: At the end of this week, review one choice you made easier for someone else. Name what changed about your skill at testing the exit, and do not keep a daily log.
 

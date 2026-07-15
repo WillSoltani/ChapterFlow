@@ -150,9 +150,9 @@ Back: It shows closeness can be built by exchange. Two people share truth at a b
 
 ## Implementation plan
 Core skill: Practice the Reach-Back Rule: when your first urge is to vanish, reach back with one clear signal before you take space. Name the attachment need in plain words. Then ask for a form of contact that another person can actually give.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (When a late reply makes you anxious.): If silence starts to feel like proof, then send one plain check-in instead of a test. Ask for a time or a return signal.
+If-then (When you need distance after conflict.): If you need to step away, then say when you will come back. Give the bond a safe base before you leave.
+If-then (When you feel embarrassed by needing someone.): If shame calls your need weak, then name one normal need for care. Ask for support without turning it into a demand.
 24-hour challenge: Within the next 24 hours, the first time a bid for closeness makes you pull back, move one object near your hand as a cue. Count three body signals, then use the Reach-Back Rule: one clear ask before distance.
 Weekly practice: This week, ask one trusted person to flag when they see you vanish, test, or over-explain instead of asking directly. Compare notes once and choose one Reach-Back Rule sentence for next time.
 

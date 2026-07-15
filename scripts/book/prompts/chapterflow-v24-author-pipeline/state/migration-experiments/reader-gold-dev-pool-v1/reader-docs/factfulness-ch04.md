@@ -154,10 +154,10 @@ Back: Intent and drama make rare events easy to picture and report. Media salien
 
 ## Implementation plan
 Core skill: Practice a Risk Check before you answer a frightening claim. Write the actual words that ask for danger, exposure, probability, and scale. The skill is not calmness for show; it is giving the numbers a turn before fear sets the order.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (When a fear list or poll gets treated as a danger list): If a ranked fear list appears in a reply thread, then write: "This ranks fear; what death or exposure data would rank risk?"
+If-then (When a disaster headline makes the world feel less safe): If the headline makes danger feel obvious, then ask for both raw deaths and deaths per million before you answer.
+If-then (When one feared agent gets blamed for a whole event): If the reply names one villain too fast, then write the full harm pathway before you agree or object.
+If-then (When airtime feels like proof of priority): If the story is everywhere, then ask whether news attention is measuring deaths, exposure, or only salience.
 24-hour challenge: Draft the sentence now, while you are calm ("What are the danger, exposure, probability, and scale?"), so the next frightening claim meets a question, not a reflex.
 Weekly practice: This week, teach Risk Check to one other person in your own words. Use the Gallup, EM-DAT, or Fukushima case, then ask them to explain it back.
 

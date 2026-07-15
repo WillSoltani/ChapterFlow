@@ -158,10 +158,10 @@ Back: The plan may break, but the mission core must still travel. A simple messa
 
 ## Implementation plan
 Core skill: You learn to turn a crowded message into a decision rule. The skill is not trimming for elegance. It is choosing the priority that should survive when people cannot honor every detail.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (team briefing): If your update has more than three priorities, then name the one tradeoff the team will face today and say which side wins.
+If-then (customer message): If your customer copy lists every benefit, then choose the benefit that should drive the next action and move the rest below it.
+If-then (family logistics): If a plan has too many moving parts, then state the one thing that must not fail and let that govern schedule changes.
+If-then (teaching): If students remember facts but miss the point, then write the one question those facts should help them answer.
 24-hour challenge: Before tomorrow ends, take one message you plan to send and rewrite it as the tradeoff it settles. Send only the version that makes the next choice easier.
 Weekly practice: Once this week, collect three messages you wrote in a rush. For each one, mark the sentence that actually guides action. Rewrite any message where no such sentence exists.
 

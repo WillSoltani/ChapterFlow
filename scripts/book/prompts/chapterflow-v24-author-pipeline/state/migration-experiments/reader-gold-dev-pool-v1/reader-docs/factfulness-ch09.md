@@ -156,10 +156,10 @@ Back: The single perspective instinct leans on one favored tool; the blame insti
 
 ## Implementation plan
 Core skill: Practice pausing at the first name your anger or praise wants to choose. Ask What Made This Possible by naming the person, then listing the rule, incentive, route, or routine that made the result likely. The skill keeps responsibility while finding causes that can be changed.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (When the same problem returns with a new person attached): If the same failure has a new face, then Ask What Made This Possible by sketching the loop before naming fault.
+If-then (When a good result makes one person sound like the whole cause): If praise narrows to one hero, then Ask What Made This Possible by naming the tender, route, worker, or routine behind the result.
+If-then (When a visible wrongdoer makes the story feel finished): If the culprit seems obvious, then Ask What Made This Possible by checking which rules shaped the available choices.
+If-then (When someone says system talk lets people off the hook): If responsibility gets confused with diagnosis, then Ask What Made This Possible and say which task you are doing first.
 24-hour challenge: When a bad result makes one name jump out, slow down and write a repeatable cause beside it; let that, not the name, decide where responsibility sits.
 Weekly practice: For one week, put the news app or bookmark you open first inside a folder named "What made this possible?" Watch whether the folder name changes the first cause you name.
 

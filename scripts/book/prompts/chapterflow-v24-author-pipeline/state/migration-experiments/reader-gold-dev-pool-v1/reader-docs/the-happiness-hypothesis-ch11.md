@@ -148,10 +148,10 @@ Back: Acceptance alone can become passivity. Striving alone can become restlessn
 
 ## Implementation plan
 Core skill: Practice the Balance Handoff. When a tradeoff feels stuck, write the short note a wiser future self would need: what each side protects, what each side risks, and which truth should lead now. The skill is not staying neutral; it is choosing with both truths still visible.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (When a debate starts to sound like one side must erase the other): If the room wants a winner, then write a Balance Handoff naming the good in each pole before you pick the lead action.
+If-then (When discipline starts to look like needless self-punishment): If the move hurts just to prove seriousness, then use the Balance Handoff to name the middle way and the extreme you are avoiding.
+If-then (When two duties both feel morally real): If both claims deserve respect, then write what each one protects before you decide what loss you can honestly accept.
+If-then (When your first fix is to split the difference): If halfway feels too easy, then write the Balance Handoff and choose which side leads in this exact case.
 24-hour challenge: During your next conversation about a hard tradeoff, stage one Balance Handoff once: stand where you will talk, read a two-line note naming what each side protects, then say which side leads first.
 Weekly practice: Teach the Balance Handoff to one other person this week in your own words. Use one real tension they name, and show how the note keeps both goods visible.
 

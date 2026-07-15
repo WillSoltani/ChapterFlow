@@ -154,10 +154,10 @@ Back: Tim Berners-Lee TED 2009 points to checking as a public habit. When a read
 
 ## Implementation plan
 Core skill: Practice catching a stale assumption while it is still small. Ask one real person what fact you may be treating as settled, count the assumption you hear in your own reply, then update one sentence before it travels.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (When a correction feels like it needs only one clear explanation): If one explanation feels sufficient, then Ask, Count, Update by asking for a first guess and counting how many old answers appear.
+If-then (When a market plan uses West and Rest as the map): If the map splits rich sellers from poorer buyers, then Ask, Count, Update by counting which income levels now hold skills, wages, and customers.
+If-then (When a bad story makes context sound like denial): If context feels like softening the truth, then Ask, Count, Update by adding one trend or base rate beside the hard event.
+If-then (When a fact check from last month feels permanently settled): If the old correction feels done forever, then Ask, Count, Update by checking one source date before repeating the claim.
 24-hour challenge: Listen to your own wording on your next reply about a fact, and count the stale assumptions hiding inside it. Tally them, then rewrite a single sentence to match what is true now.
 Weekly practice: For one week, keep a running list of claims that lean on an old map, a single scary story, or a fixed country label. At the end, pick the pattern you saw most and rewrite one example of it in your own words.
 

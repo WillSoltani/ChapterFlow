@@ -160,10 +160,10 @@ Back: It can sharpen your attack on other people's bias while leaving your own s
 
 ## Implementation plan
 Core skill: Practice distrusting your first innocence story. The Beam Check is simple: before you correct someone else, write the fact your anger wants to skip. Then compare your excuse with the excuse you would deny them.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (If a fair-looking rule gives you the better result): If the process helps you, then name the benefit before defending the rule. Ask who else can see the same evidence.
+If-then (If every reason supports your first view): If your notes all point one way, then write the strongest reason your side could be wrong before adding another support point.
+If-then (If the other person seems purely cruel): If pure evil feels obvious, then write the pressure or grievance they would name. Keep harm and context in the same frame.
+If-then (If a hard conversation is about to start): If you are about to blame, then fill this line first: "My story leaves out ____." Bring that line into the conversation.
 24-hour challenge: Today, catch one blame story in writing. Add one Beam Check line that names your missing benefit, pressure, first move, or silence.
 Weekly practice: For seven days, keep a three-column daily log: fault I saw, pressure I ignored, my part. At week's end, review which column stayed thinnest.
 

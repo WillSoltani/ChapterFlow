@@ -1,0 +1,9 @@
+{
+  "schema": "reader-gold-dev-adjudication-run-record-v1",
+  "adjudicator": "claude-b-side",
+  "run": 1,
+  "judgedDocsManifestSha256": "2af62ee89504",
+  "disposition": "INVALIDATED_BY_RENDERER_DEFECT",
+  "note": "Run 1 judged the FIRST doc mint (commit 48757f6db), in which every document carried 'If-then: [object Object]' — a serialization defect in readerGoldDevDocs.ts (ifThenPlans typed string[] but the v21 packages carry {context, plan} objects). The adjudicator correctly flagged the corruption as a blocking finding in all 24 docs, which is what surfaced the defect. Scores are stale against the corrected docs (transfer/practical were depressed by the unreadable implementation plans) and MUST NOT be used for control selection. Content findings unrelated to the corruption (quality bands: made-to-stick 84-86 > happiness-hypothesis/nudge 79-83 > factfulness 74-78; factfulness template/persona/non-derivable-quiz advisories; nudge 'real anchor' meta-question pattern; zero structurally wrong quizzes) remain diagnostically informative but carry no gold authority. Run 2 re-judges the corrected docs independently.",
+  "fullRun1OutputRetained": "in the session transcript and summarized above; per-chapter numeric scores deliberately not restated here to prevent accidental reuse as labels"
+}

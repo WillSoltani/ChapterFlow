@@ -58,7 +58,12 @@ type V21Chapter = {
   examples: Array<{ title: string; scenario: string; whatToDo: string; whyItMatters: string }>;
   quiz: { questions: Array<{ prompt: string; choices: string[]; correctIndex: number; explanation: string }> };
   reviewCards: Array<{ front: string; back: string }>;
-  implementationPlan: { coreSkill: string; ifThenPlans: string[]; twentyFourHourChallenge: string; weeklyPractice: string };
+  implementationPlan: {
+    coreSkill: string;
+    ifThenPlans: Array<{ context: string; plan: string }>;
+    twentyFourHourChallenge: string;
+    weeklyPractice: string;
+  };
   memorableLines: Array<{ text: string }>;
 };
 
@@ -115,7 +120,7 @@ export function renderKeyFreeReaderDocument(args: {
   lines.push(
     "## Implementation plan",
     `Core skill: ${chapter.implementationPlan.coreSkill}`,
-    ...chapter.implementationPlan.ifThenPlans.map((plan) => `If-then: ${plan}`),
+    ...chapter.implementationPlan.ifThenPlans.map((plan) => `If-then (${plan.context}): ${plan.plan}`),
     `24-hour challenge: ${chapter.implementationPlan.twentyFourHourChallenge}`,
     `Weekly practice: ${chapter.implementationPlan.weeklyPractice}`,
     "",
@@ -133,6 +138,11 @@ export function renderKeyFreeReaderDocument(args: {
   for (const marker of KEY_LEAK_MARKERS) {
     requireCondition(!document.includes(marker), `key-free reader document leaks "${marker}"`);
   }
+  // Serialization-leak guard: interpolating a non-string package field renders
+  // "[object Object]" — a mechanical corruption that invalidated the first doc
+  // mint (caught by Adjudicator B, 2026-07-15). Fail closed at build time.
+  requireCondition(!document.includes("[object Object]"),
+    "reader document contains a raw serialization leak ([object Object])");
   for (const question of chapter.quiz.questions) {
     requireCondition(question.explanation.length === 0 || !document.includes(question.explanation),
       "key-free reader document leaks a quiz key explanation");

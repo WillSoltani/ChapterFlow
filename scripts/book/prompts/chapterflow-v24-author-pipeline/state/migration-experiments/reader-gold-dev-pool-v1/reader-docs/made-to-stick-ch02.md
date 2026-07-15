@@ -158,10 +158,10 @@ Back: It is bold and unexpected, but it carries a destination. The scale wakes a
 
 ## Implementation plan
 Core skill: You learn to disturb a useful expectation. The skill is to give people enough context to predict, break that prediction, and then use their curiosity to pull them toward the core.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (presentation): If your opening slide states the conclusion, then replace it with a question the audience can answer wrongly for a useful reason.
+If-then (training): If learners already know the rule, then begin with the moment where their casual version of the rule fails.
+If-then (public message): If people are tired of the topic, then find the local assumption they trust and show the one detail that breaks it.
+If-then (incident review): If the timeline feels familiar, then start with the safe-looking signal that misled the team and reveal what it hid.
 24-hour challenge: Before tomorrow ends, rewrite one opener as a prediction and reveal. Make sure the reveal answers a question tied to your core, not just a surprising aside.
 Weekly practice: Once this week, save three openings that caught your attention. For each one, write the expectation it broke and whether the gap led somewhere useful.
 

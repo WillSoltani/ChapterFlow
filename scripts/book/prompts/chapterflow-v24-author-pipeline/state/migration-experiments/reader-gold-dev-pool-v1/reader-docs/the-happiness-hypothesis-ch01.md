@@ -148,9 +148,9 @@ Back: Respect the elephant's momentum. Find the cue that starts the pull, change
 
 ## Implementation plan
 Core skill: Practice ranking cues before you scold yourself. The skill is to ask which trigger moves the elephant first, then make that trigger easier, smaller, or less tempting. This gives the rider a path it can actually steer.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (When an impulse arrives before you can explain it): If the pull shows up first, then name the cue in one plain sentence and delay the story until after the next action.
+If-then (When one insight has not changed a habit): If insight fades by the next trigger, then repeat one cue change for the same situation until the first move feels easier.
+If-then (When self-criticism becomes the main response): If you start berating the elephant, then rank the cues by pull and change the strongest one before asking for effort.
 24-hour challenge: For the next day, attach the cue ranking pass to your laptop lid. Each time the lid opens and you feel a pull you dislike, rank 3 nearby cues and change the strongest one.
 Weekly practice: For this week, replace one scolding habit with one cue change. Use the first half of the week as usual, then swap in cue ranking for the second half and compare which side made action easier.
 

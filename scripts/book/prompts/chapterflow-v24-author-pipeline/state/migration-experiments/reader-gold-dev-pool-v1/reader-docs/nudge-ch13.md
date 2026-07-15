@@ -162,10 +162,10 @@ Back: The levers are search support, clear data, ranked choice, and default assi
 
 ## Implementation plan
 Core skill: Practice reading the real menu, not just the school list. Put odds, deadlines, travel, fit, and exit in one place before you accept a ranking, a default, or a recommendation. The skill is to ask what the family can actually use at the decision point.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (If a school list has many options but scattered facts): If the list looks rich but hard to use, then Read the Real Menu by putting quality, odds, deadline, travel, and exit on one page.
+If-then (If the application keeps getting postponed): If the form waits because the facts are scattered, then Read the Real Menu by naming which missing fact would make the next ranking possible.
+If-then (If a default assignment is already selected): If a default is already in place, then Read the Real Menu by checking whether the exit date, form, and contact route are visible now.
+If-then (If a recommendation serves an official goal): If the screen seems to serve the designer first, then Read the Real Menu by asking how the option fits the family's own reasons.
 24-hour challenge: Before you send your next school-related response, pre-write the exact ask: "Can you send the odds, deadline, commute, fit, and exit steps in one place?"
 Weekly practice: This week, ask one other person to flag it when you accept a school list without checking odds, travel, deadlines, and exit. Compare notes once.
 

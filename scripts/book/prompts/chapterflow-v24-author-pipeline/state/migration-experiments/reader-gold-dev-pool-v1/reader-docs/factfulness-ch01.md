@@ -150,9 +150,9 @@ Back: Find the Middle asks where people actually cluster before judging. It does
 
 ## Implementation plan
 Core skill: Practice catching a two-box story before it becomes your map. Use Find the Middle: locate the largest group, check movement over time, then ask whether an old label still fits the data.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (Dramatic examples): If a report opens with the poorest and richest cases, then ask where most people sit before you treat either end as normal.
+If-then (Official wording): If a speech or memo uses a familiar global label, then check whether the distribution has changed since that label became common.
+If-then (Country averages): If one national number seems to explain everyone, then look for households on different income levels inside the country.
 24-hour challenge: Pick the next chart, headline, or map that crosses your desk and find its middle first; swap one broad label for a level, a trend, or a distribution.
 Weekly practice: At the end of this week, review one conversation where you used Find the Middle. Name what changed about your map: the largest group, the time trend, or the label you dropped.
 

@@ -154,10 +154,10 @@ Back: Both ideas say a formal menu is not enough: investing needs legible divers
 
 ## Implementation plan
 Core skill: Practice turning scattered credit terms into one sentence you can compare. Write the Total Cost Line by naming the APR, the fee most likely to hit, and when that fee would arrive. The skill is not doing finance like an expert. It is refusing to let the easiest number stand for the whole price.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (If an offer leads with a low payment): If the payment is the first number you notice, then write the Total Cost Line before reading the pitch again.
+If-then (If a fee appears after several pages): If the fee is buried, then move it into the Total Cost Line and ask when it could hit your account.
+If-then (If two offers use different words for charges): If the terms do not match, then rewrite both charges in the same plain words before comparing them.
+If-then (If leaving the recommended option feels hard): If refusal takes a call, penalty, or delay, then add that cost to the Total Cost Line before calling the design a nudge.
 24-hour challenge: Within the next day, at one credit or subscription choice, write one line: "The cost I can compare is ___, and the fee that could surprise me is ___."
 Weekly practice: For one week, swap your first credit-check habit. Instead of scanning for the lowest payment, write the Total Cost Line first. Compare the first half and second half of the week.
 

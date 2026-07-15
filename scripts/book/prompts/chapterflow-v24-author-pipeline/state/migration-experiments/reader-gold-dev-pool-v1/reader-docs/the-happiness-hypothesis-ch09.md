@@ -152,10 +152,10 @@ Back: The same feeling that lifts self-control or reverence can also stigmatize 
 
 ## Implementation plan
 Core skill: Practice reading the vertical pull before you obey it. Name whether the moment gives you disgust, elevation, or awe, then ask what action the feeling is asking for. The skill is not to flatten the feeling or worship it. It is to check whether the pull will make you more humane.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (If a person or practice makes you recoil): If disgust rises, then name the concrete boundary first. Ask whether the feeling points to harm, contamination, difference, or a person you are lowering.
+If-then (If you witness moral beauty): If elevation lifts you, then copy one small part of the act within the next task transition. Let the feeling become conduct before it fades.
+If-then (If awe makes your plans feel small): If awe arrives, then pause before filling the space with chatter. Ask what frame needs to grow, not what fact merely surprised you.
+If-then (If sacred language starts targeting outsiders): If purity talk turns toward people as dirty, then separate the protected value from the person being lowered. Keep the boundary without feeding contempt.
 24-hour challenge: Before the next handoff between tasks, pre-write the words you will use when disgust, elevation, or awe shows up: "This feeling is asking me to..." Then use the line once.
 Weekly practice: For one week, tally each time you feel disgust, elevation, or awe strongly enough to change your next action. At week's end, read the 3 totals and protect the one pull that made you kinder.
 

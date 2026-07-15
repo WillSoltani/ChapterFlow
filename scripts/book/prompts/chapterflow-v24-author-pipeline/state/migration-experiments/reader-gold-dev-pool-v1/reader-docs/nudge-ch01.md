@@ -148,10 +148,10 @@ Back: The error repeats in a pattern. Once the pattern is visible, the choice se
 
 ## Implementation plan
 Core skill: Practice finding the cue that reaches your mind before careful thought does. The cue might be a first number, a loud story, a checked box, or a loss frame. Move one object into the path of the task so you remember to ask what is steering the choice.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (If a number appears before an estimate): If a number appears before an estimate, then write anchor beside it before you answer. This keeps the starting point visible.
+If-then (If a vivid story starts shaping a risk call): If a vivid story starts shaping a risk call, then ask for the base rate before the group settles on the warning.
+If-then (If a default box is already checked): If a default box is already checked, then ask who stays there by effort and who stays there by choice.
+If-then (If a short streak looks like proof): If a short streak looks like proof, then mark sample too small before you change the next plan.
 24-hour challenge: For the next day, at one task handoff, move one small object beside the work surface. Use it as the cue to write: What got here first?
 Weekly practice: Practice the cue check three times this week with widening gaps. First, mark a clear anchor. Later, check a vivid story against a base rate. Last, inspect a default before anyone uses it.
 

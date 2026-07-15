@@ -162,10 +162,10 @@ Back: Dignity can be the emotional engine. Meaning and morale often move people 
 
 ## Implementation plan
 Core skill: You learn to make significance felt without manipulating the audience. The skill is finding the true person, identity, dignity, or meaningful cost that the abstract message is protecting.
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
-If-then: [object Object]
+If-then (fundraising): If your appeal opens with a total, then find the one true slot, service, or person that shows what the total protects.
+If-then (workplace safety): If the rule feels like nuisance, then connect it to a voice, role, or future ability people already value.
+If-then (civic action): If a citywide percentage feels distant, then show the bus stop, route, room, or routine where the cost appears.
+If-then (student support): If paperwork feels bureaucratic, then connect the step to the semester, job, lab, or credential it preserves.
 24-hour challenge: Before tomorrow ends, revise one abstract message so the human stake appears before the statistic, while keeping the statistic nearby to protect scale.
 Weekly practice: Once this week, audit three messages for emotional honesty. Mark whether each uses true stake, flattery, pity, or empty urgency, then repair the weakest one.
 
