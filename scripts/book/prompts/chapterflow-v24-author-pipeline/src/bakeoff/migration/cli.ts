@@ -77,6 +77,7 @@ import {
   verifyImp24fCandidateInstrument,
 } from "./imp24fCandidateInstrument.js";
 import { materializeReaderGoldDevPoolSelection } from "./readerGoldDevPool.js";
+import { materializeReaderGoldDevDocs } from "./readerGoldDevDocs.js";
 import {
   buildGoldArtifacts,
   buildPilotArtifacts,
@@ -285,6 +286,7 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "imp24d-materialize-final-attestation",
   "imp24-materialize-forward-inputs",
   "reader-gold-dev-pool",
+  "reader-gold-dev-docs",
   "role-qualification-freeze",
   "forward-materialize-pilot-artifacts",
   "forward-materialize-gold-artifacts",
@@ -1511,6 +1513,15 @@ function runLocalForwardSubverb(
     const out = materializeReaderGoldDevPoolSelection({ repositoryRoot, write: flags.write === true });
     console.log(flags.json === true ? JSON.stringify(out, null, 2)
       : `[migration] ${out.poolId}: selection=${out.selectionSha256} chapters=${out.totalSelected} written=${String(out.written)} model/api calls=0`);
+    return 0;
+  }
+  if (subverb === "reader-gold-dev-docs") {
+    // Deterministic key-free reader documents for the frozen pool selection.
+    // Dry = rebuild + byte-compare against retained docs; --write = create-once.
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const out = materializeReaderGoldDevDocs({ repositoryRoot, write: flags.write === true });
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] ${out.poolId} reader docs: manifest=${out.manifestSha256} docs=${out.docCount} written=${String(out.written)} model/api calls=0`);
     return 0;
   }
   if (subverb === "imp24-materialize-thresholds") {

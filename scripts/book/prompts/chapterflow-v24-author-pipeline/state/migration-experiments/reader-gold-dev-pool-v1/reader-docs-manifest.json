@@ -1,0 +1,200 @@
+{
+  "docs": [
+    {
+      "bookId": "factfulness",
+      "bytes": 14765,
+      "chapterNumber": 1,
+      "chapterTitle": "The Gap Instinct",
+      "readerDocumentSha256": "d048fc6a128573221d9b46f28986afc629f18ef4cb79da63166bd3f5710817d5",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/factfulness-ch01.md"
+    },
+    {
+      "bookId": "factfulness",
+      "bytes": 14263,
+      "chapterNumber": 4,
+      "chapterTitle": "The Fear Instinct",
+      "readerDocumentSha256": "71964a2bb710d3c5f5c076c1c07e0630f17ad3b7cd1ffd0595cbc49aab1283cc",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/factfulness-ch04.md"
+    },
+    {
+      "bookId": "factfulness",
+      "bytes": 14389,
+      "chapterNumber": 6,
+      "chapterTitle": "The Generalization Instinct",
+      "readerDocumentSha256": "290a046e6204f03447c1f4d350a76ead144a94b90c53af0649b7d680426cc7e3",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/factfulness-ch06.md"
+    },
+    {
+      "bookId": "factfulness",
+      "bytes": 15060,
+      "chapterNumber": 9,
+      "chapterTitle": "The Blame Instinct",
+      "readerDocumentSha256": "6d5d558ffb4eb74696a800ff91d964c0e71591f241648070e39e135f786a2411",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/factfulness-ch09.md"
+    },
+    {
+      "bookId": "factfulness",
+      "bytes": 15044,
+      "chapterNumber": 11,
+      "chapterTitle": "Factfulness in Practice",
+      "readerDocumentSha256": "338f0502de38436a6b077ff2c7a3ee759bc9a8e741c07767f887209bbd9579f6",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/factfulness-ch11.md"
+    },
+    {
+      "bookId": "made-to-stick",
+      "bytes": 16517,
+      "chapterNumber": 1,
+      "chapterTitle": "Simple",
+      "readerDocumentSha256": "75e058c7e7992745929037ea16012139931eedce860edb7246db4c0c5a352cb0",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/made-to-stick-ch01.md"
+    },
+    {
+      "bookId": "made-to-stick",
+      "bytes": 16149,
+      "chapterNumber": 2,
+      "chapterTitle": "Unexpected",
+      "readerDocumentSha256": "17c27c816db71bc1acd40f9c69c50fba7b17e4d8d24ebdc8dadaa6638a24f4a2",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/made-to-stick-ch02.md"
+    },
+    {
+      "bookId": "made-to-stick",
+      "bytes": 15685,
+      "chapterNumber": 3,
+      "chapterTitle": "Concrete",
+      "readerDocumentSha256": "a5b06d986e55d942f10c153ae76097dbc557abb76fa3858d9ad310564aee070b",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/made-to-stick-ch03.md"
+    },
+    {
+      "bookId": "made-to-stick",
+      "bytes": 15908,
+      "chapterNumber": 4,
+      "chapterTitle": "Credible",
+      "readerDocumentSha256": "bd0c92357ad17075cadffab50b70107b23077fb78cedd61f6b2d2ad8d9378160",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/made-to-stick-ch04.md"
+    },
+    {
+      "bookId": "made-to-stick",
+      "bytes": 15242,
+      "chapterNumber": 5,
+      "chapterTitle": "Emotional",
+      "readerDocumentSha256": "873964bfbf4943d914fec594fc3d3210c355fe650f02bdeaa563deae278322f6",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/made-to-stick-ch05.md"
+    },
+    {
+      "bookId": "made-to-stick",
+      "bytes": 15665,
+      "chapterNumber": 6,
+      "chapterTitle": "Stories",
+      "readerDocumentSha256": "2a2026a65f9833b58e8390b3edddd820ea097216d585f1d3675ef17d9a669b5a",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/made-to-stick-ch06.md"
+    },
+    {
+      "bookId": "nudge",
+      "bytes": 15741,
+      "chapterNumber": 1,
+      "chapterTitle": "Biases and Blunders",
+      "readerDocumentSha256": "ec2780fa048e21d700120dc03c5193cc6b5a356a8271394fa6f0f40dca15ade6",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/nudge-ch01.md"
+    },
+    {
+      "bookId": "nudge",
+      "bytes": 15403,
+      "chapterNumber": 3,
+      "chapterTitle": "Following the Herd",
+      "readerDocumentSha256": "0cdb22e593059460b049723d9a1826356e5509d45c06c1525b36c577a5475612",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/nudge-ch03.md"
+    },
+    {
+      "bookId": "nudge",
+      "bytes": 15185,
+      "chapterNumber": 6,
+      "chapterTitle": "Save More Tomorrow",
+      "readerDocumentSha256": "a532d33aa7bd85c6a09f466085c166cd2bf346da59aea19dd16fc7d0b89753d0",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/nudge-ch06.md"
+    },
+    {
+      "bookId": "nudge",
+      "bytes": 16281,
+      "chapterNumber": 8,
+      "chapterTitle": "Credit Markets",
+      "readerDocumentSha256": "365d96981641bc2a97916523c88b15616335fa76101f524a35aca6eb8ed95db9",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/nudge-ch08.md"
+    },
+    {
+      "bookId": "nudge",
+      "bytes": 15912,
+      "chapterNumber": 11,
+      "chapterTitle": "How to Increase Organ Donations",
+      "readerDocumentSha256": "8cf311ece036f6217eabb0ebce3800e31a1d4accc78299143b674561df6fbc85",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/nudge-ch11.md"
+    },
+    {
+      "bookId": "nudge",
+      "bytes": 16287,
+      "chapterNumber": 13,
+      "chapterTitle": "Improving School Choices",
+      "readerDocumentSha256": "906f5af9479ff50569fd4bf9c1d6252167f0759b1d1171acea155815794e961b",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/nudge-ch13.md"
+    },
+    {
+      "bookId": "nudge",
+      "bytes": 15479,
+      "chapterNumber": 16,
+      "chapterTitle": "A Dozen Nudges",
+      "readerDocumentSha256": "04c47945c20a231cf173a2b0185a68777ec960ae9e05f02c932ce59b4dfed33a",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/nudge-ch16.md"
+    },
+    {
+      "bookId": "nudge",
+      "bytes": 16105,
+      "chapterNumber": 18,
+      "chapterTitle": "The Real Third Way",
+      "readerDocumentSha256": "11a0f47a55afc58757f207e538f6c7ce5cd90b818b6fa4c263801fc2d064cc67",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/nudge-ch18.md"
+    },
+    {
+      "bookId": "the-happiness-hypothesis",
+      "bytes": 14532,
+      "chapterNumber": 1,
+      "chapterTitle": "The divided self",
+      "readerDocumentSha256": "afa7befacf4ce422fa39a173d066b1b7f11fd32cbe238c3c6ed87b848c395da9",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/the-happiness-hypothesis-ch01.md"
+    },
+    {
+      "bookId": "the-happiness-hypothesis",
+      "bytes": 15646,
+      "chapterNumber": 4,
+      "chapterTitle": "The faults of others",
+      "readerDocumentSha256": "f6c81f6d3f2265a2df28190bbe24af671a7d5b865901c5995e973f3db5e3b0c5",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/the-happiness-hypothesis-ch04.md"
+    },
+    {
+      "bookId": "the-happiness-hypothesis",
+      "bytes": 15702,
+      "chapterNumber": 6,
+      "chapterTitle": "Love and attachments",
+      "readerDocumentSha256": "5a383e26534745c405d2bcb72de75551bee64cb1dbf57e5f97840db32b8263ec",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/the-happiness-hypothesis-ch06.md"
+    },
+    {
+      "bookId": "the-happiness-hypothesis",
+      "bytes": 15421,
+      "chapterNumber": 9,
+      "chapterTitle": "Divinity with or without God",
+      "readerDocumentSha256": "c8b8a6499cb0564918b9d79d7e431dc81f43e945ed0fac2a19eae426e3fc04ec",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/the-happiness-hypothesis-ch09.md"
+    },
+    {
+      "bookId": "the-happiness-hypothesis",
+      "bytes": 15637,
+      "chapterNumber": 11,
+      "chapterTitle": "On balance",
+      "readerDocumentSha256": "5f62952e64cb35b3f9c99e1f44144aa268adee170d0a65fb99fadbb06643e8e6",
+      "relPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/the-happiness-hypothesis-ch11.md"
+    }
+  ],
+  "manifestSha256": "2af62ee895045e9a4f33d3f0a8c52fb52eab58bbe0f7a27a362ec14719f0b067",
+  "poolId": "reader-gold-dev-pool-v1",
+  "schema": "reader-gold-dev-docs-manifest-v1",
+  "selectionSha256": "01db84371fcda8e125cdd319326f4a32207df4b8bbcd18aea8b5bcc2dfb3a633"
+}
