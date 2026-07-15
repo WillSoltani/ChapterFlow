@@ -401,7 +401,7 @@ export type Imp24PreparedQualificationInstrument = {
   preparedCases: PreparedQualificationCasesV3;
 };
 
-function schemaPathByRole(repositoryRoot: string): Record<Imp24ReviewRole, string> {
+export function schemaPathByRole(repositoryRoot: string): Record<Imp24ReviewRole, string> {
   return {
     reader: resolve(repositoryRoot, SCHEMA_RELATIVE_PATHS[0]),
     source: resolve(repositoryRoot, SCHEMA_RELATIVE_PATHS[1]),
@@ -453,7 +453,7 @@ export function buildImp24RolePromptSourceHashes(args: {
   };
 }
 
-function rolePromptSourceHashes(repositoryRoot: string): Record<Imp24ReviewRole, string> {
+export function rolePromptSourceHashes(repositoryRoot: string): Record<Imp24ReviewRole, string> {
   const modulePath = resolve(repositoryRoot, `${PIPELINE_REL}/src/review/reviewModelOutputV2.ts`);
   return buildImp24RolePromptSourceHashes({ moduleSha256: sha256Hex(readFileSync(modulePath)) });
 }
@@ -795,7 +795,7 @@ export type Imp24QualificationEvaluator = {
   fixtureOutputByCaseId: Readonly<Record<string, string>>;
 };
 
-function invalidEvaluation(args: {
+export function invalidEvaluation(args: {
   envelopeBound: boolean;
   fileAccessFailure: boolean;
   prohibitedConductorEcho: boolean;
@@ -847,7 +847,7 @@ function emptyReferenceResolution(): EvidenceReferenceResolutionV3 {
   };
 }
 
-function failedReferenceResolution(error: unknown): EvidenceReferenceResolutionV3 {
+export function failedReferenceResolution(error: unknown): EvidenceReferenceResolutionV3 {
   return {
     status: "FAILED",
     bindings: [],
@@ -860,7 +860,7 @@ function failedReferenceResolution(error: unknown): EvidenceReferenceResolutionV
 /** Preserve an explicit, stable projection of the resolver's conductor-owned
  * output. The assembled review remains authoritative; this projection makes
  * each ref-id -> exact inline span resolution independently inspectable. */
-function projectEvidenceReferenceResolution(assembled: unknown): EvidenceReferenceResolutionV3 {
+export function projectEvidenceReferenceResolution(assembled: unknown): EvidenceReferenceResolutionV3 {
   const bindings: EvidenceReferenceResolutionBindingV3[] = [];
   const unresolvedTargetRefs: string[] = [];
   const unresolvedQuestionRefs: string[] = [];

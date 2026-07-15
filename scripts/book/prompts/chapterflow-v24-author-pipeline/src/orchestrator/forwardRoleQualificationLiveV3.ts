@@ -72,6 +72,10 @@ import {
   IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID,
   type Imp24ReviewRole,
 } from "../bakeoff/migration/imp24Corpus.js";
+import {
+  PILOT_READINESS_BUDGET,
+  PILOT_ROLE_READINESS_EXPERIMENT_ID,
+} from "../bakeoff/migration/pilotRoleReadinessInstrument.js";
 import { qualifyRole } from "../bakeoff/migration/roleQualification.js";
 import {
   createImp24QualificationEvaluator,
@@ -128,14 +132,18 @@ export const IMP24E_TRANSPORT_SMOKE_R2_EXECUTION_ID =
 /** Control-plane identities that may use the exact live reviewer boundary.
  * The smoke identities are diagnostic-only and are never accepted by the
  * qualification runner. The explicit R2 identity is retained only so immutable
- * historical evidence can still be validated; active/default paths use final. */
+ * historical evidence can still be validated; active/default paths use final.
+ * The pilot-role-readiness identity (plan v2 P5) reuses this exact retained
+ * executor under its own owner-ratified 84/168 ceilings — see
+ * liveCallCeilingsForExecutionIdentityV3. */
 export type Imp24LiveExecutionIdentityV3 =
   | typeof IMP24_ROLE_QUALIFICATION_EXECUTION_ID
   | typeof IMP24_ROLE_QUALIFICATION_R2_EXECUTION_ID
   | typeof IMP24D_TRANSPORT_SMOKE_EXECUTION_ID
   | typeof IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID
   | typeof IMP24E_TRANSPORT_SMOKE_EXECUTION_ID
-  | typeof IMP24E_TRANSPORT_SMOKE_R2_EXECUTION_ID;
+  | typeof IMP24E_TRANSPORT_SMOKE_R2_EXECUTION_ID
+  | typeof PILOT_ROLE_READINESS_EXPERIMENT_ID;
 
 const IMP24_LIVE_EXECUTION_IDENTITIES = new Set<string>([
   IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
@@ -144,7 +152,28 @@ const IMP24_LIVE_EXECUTION_IDENTITIES = new Set<string>([
   IMP24D_TRANSPORT_SMOKE_R2_EXECUTION_ID,
   IMP24E_TRANSPORT_SMOKE_EXECUTION_ID,
   IMP24E_TRANSPORT_SMOKE_R2_EXECUTION_ID,
+  PILOT_ROLE_READINESS_EXPERIMENT_ID,
 ]);
+
+/** Identity-keyed live call ceilings. Every IMP-24 qualification/smoke
+ * identity keeps the frozen 464/928 pair; the pilot-role-readiness identity
+ * runs under the owner-ratified 84/168 pair (IMP-24G §5.7 / D5). The pair is
+ * data-derived from the frozen readiness budget — never caller-supplied — so
+ * no boundary can widen a ceiling by passing a different number. */
+export function liveCallCeilingsForExecutionIdentityV3(
+  executionId: Imp24LiveExecutionIdentityV3,
+): { baseMaximumCalls: number; hardMaximumCalls: number } {
+  if (executionId === PILOT_ROLE_READINESS_EXPERIMENT_ID) {
+    return {
+      baseMaximumCalls: PILOT_READINESS_BUDGET.baseMaximumCalls,
+      hardMaximumCalls: PILOT_READINESS_BUDGET.hardMaximumCalls,
+    };
+  }
+  return {
+    baseMaximumCalls: IMP24_BASE_MAXIMUM_CALLS,
+    hardMaximumCalls: IMP24_HARD_MAXIMUM_CALLS,
+  };
+}
 
 function requireImp24LiveExecutionIdentityV3(
   executionId: string,
@@ -269,8 +298,11 @@ export type LiveQualificationPreflightV3 = {
   apiFallbackAllowed: false;
   directHttpOrSdkAllowed: false;
   forbiddenProviderEnvKeysPresent: [];
-  baseMaximumCalls: typeof IMP24_BASE_MAXIMUM_CALLS;
-  hardMaximumCalls: typeof IMP24_HARD_MAXIMUM_CALLS;
+  /** Exact identity-keyed ceilings — IMP-24 identities 464/928, the
+   * pilot-role-readiness identity 84/168. Validation compares against
+   * liveCallCeilingsForExecutionIdentityV3, never a caller-supplied pair. */
+  baseMaximumCalls: number;
+  hardMaximumCalls: number;
   preflightSha256: string;
 };
 
@@ -334,8 +366,8 @@ export function validateLiveQualificationPreflightArtifactV3(
       && preflight.directHttpOrSdkAllowed === false
       && Array.isArray(preflight.forbiddenProviderEnvKeysPresent)
       && preflight.forbiddenProviderEnvKeysPresent.length === 0
-      && preflight.baseMaximumCalls === IMP24_BASE_MAXIMUM_CALLS
-      && preflight.hardMaximumCalls === IMP24_HARD_MAXIMUM_CALLS,
+      && preflight.baseMaximumCalls === liveCallCeilingsForExecutionIdentityV3(expectedExecutionId).baseMaximumCalls
+      && preflight.hardMaximumCalls === liveCallCeilingsForExecutionIdentityV3(expectedExecutionId).hardMaximumCalls,
   "live V3 retained preflight is not the exact ChatGPT-only CLI route");
 }
 
@@ -2012,6 +2044,7 @@ export function createLiveQualificationExecutorV3(
   controlExecutor: (request: LiveQualificationExecutionRequestV3) => Promise<QualificationExecutionReceiptV3>;
   retainAttemptEvaluation: (attempt: QualificationAttemptV3) => void;
   auditResume: (args: LiveQualificationResumeAuditInputV3) => void;
+  markTerminalResultBound: () => void;
   ledger: LiveCallLedgerV3;
   ledgerPath: string;
 } {
@@ -2461,6 +2494,14 @@ export function createLiveQualificationExecutorV3(
     entry.evaluationArtifactSha256 = artifact.evaluationArtifactSha256;
     writeJson(ledgerPath, ledger);
   };
+  /** Bind the fresh-judgment barrier to the retained terminal result. The
+   * IMP-24 auditResume calls this after its own whole-phase audit; a non-IMP-24
+   * campaign (pilot-role-readiness) MUST run its own complete resume audit
+   * first and then call this — it only arms the "no new judgment for an absent
+   * attempt once a terminal result exists" barrier, it audits nothing itself. */
+  const markTerminalResultBound = (): void => {
+    terminalResultBoundByResumeAudit = existsSync(resolve(phaseDir, "qualification-result.json"));
+  };
   const auditResume = (auditArgs: LiveQualificationResumeAuditInputV3): void => {
     auditLiveQualificationResumeV3({
       ...auditArgs,
@@ -2469,8 +2510,8 @@ export function createLiveQualificationExecutorV3(
       ledgerPath,
       ledger,
     });
-    terminalResultBoundByResumeAudit = existsSync(resolve(phaseDir, "qualification-result.json"));
+    markTerminalResultBound();
   };
   const executor: QualificationExecutorV3 = (request) => controlExecutor(request);
-  return { executor, controlExecutor, retainAttemptEvaluation, auditResume, ledger, ledgerPath };
+  return { executor, controlExecutor, retainAttemptEvaluation, auditResume, markTerminalResultBound, ledger, ledgerPath };
 }

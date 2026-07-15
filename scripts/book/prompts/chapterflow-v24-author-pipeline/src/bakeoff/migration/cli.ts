@@ -16,7 +16,9 @@
  */
 
 import { existsSync, readFileSync, readdirSync, statSync } from "fs";
+import { homedir } from "node:os";
 import { relative, resolve } from "path";
+import { runPilotRoleReadinessCampaign } from "../../orchestrator/forwardPilotRoleReadinessCampaign.js";
 
 import { validateExperimentSpec } from "./spec.js";
 import { buildSampleSchedule } from "./schedule.js";
@@ -212,6 +214,7 @@ const USAGE =
   `         imp24-transport-smoke-v3-r2 --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--json]\n` +
   `         imp24-materialize-transport-correction-diagnosis --write --defect-class CLASS --rationale TEXT [--json]\n` +
   `         imp24-role-qualification-v3 --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--timeout-ms N] [--json]\n` +
+  `         pilot-role-readiness-campaign --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--timeout-ms N] [--json]\n` +
   `         imp24-pilot-v2-envelope       run the exact fresh eight-chapter pilot\n` +
   `         imp24-gold-v2-envelope        run the exact fresh 13-chapter gold book\n` +
   `       Closed IMP-22 transition/live subverbs always fail with\n` +
@@ -263,6 +266,7 @@ const LIVE_QUALIFICATION_SUBVERBS: ReadonlySet<string> = new Set([
   "imp24e-transport-smoke",
   "imp24e-transport-smoke-r2",
   "imp24-role-qualification-v3",
+  "pilot-role-readiness-campaign",
 ]);
 
 const IMP24E_SCHEMA_PROBE_SUBVERBS: ReadonlySet<string> = new Set([
@@ -1156,6 +1160,75 @@ async function runImp24RoleQualificationV3Subverb(
   return summary.roleSetReady ? 0 : 1;
 }
 
+async function runPilotRoleReadinessCampaignSubverb(
+  flags: Record<string, string | boolean>,
+): Promise<number> {
+  // The literal barrier is intentionally the first operation. In dry mode no
+  // auth, environment, cache, artifact, gate, report, or campaign path is read
+  // and no file/model/API operation is possible.
+  if (flags["execute-live"] !== true) {
+    console.error("pilot-role-readiness-campaign: refusing to make model calls without the literal --execute-live flag");
+    return 2;
+  }
+  const expectedHeadSha = typeof flags["head-sha"] === "string" ? flags["head-sha"].trim() : "";
+  const workflowRunId = typeof flags["workflow-run-id"] === "string" ? Number(flags["workflow-run-id"]) : NaN;
+  if (!/^[a-f0-9]{40}$/.test(expectedHeadSha) || !Number.isSafeInteger(workflowRunId) || workflowRunId <= 0) {
+    console.error("pilot-role-readiness-campaign: --head-sha <40 lowercase hex> and --workflow-run-id <positive integer> are required");
+    return 2;
+  }
+  if (flags["models-cache"] !== undefined && typeof flags["models-cache"] !== "string") {
+    console.error("pilot-role-readiness-campaign: --models-cache requires a path value");
+    return 2;
+  }
+  for (const forbiddenOverride of ["auth-json", "codex-binary", "qualification-cache-dir"] as const) {
+    if (flags[forbiddenOverride] !== undefined) {
+      console.error(`pilot-role-readiness-campaign: --${forbiddenOverride} is not an authorized operator override`);
+      return 2;
+    }
+  }
+  const timeoutMs = typeof flags["timeout-ms"] === "string" ? Number(flags["timeout-ms"]) : undefined;
+  if (timeoutMs !== undefined && (!Number.isInteger(timeoutMs) || timeoutMs < 1_000)) {
+    console.error("pilot-role-readiness-campaign: --timeout-ms must be an integer >= 1000");
+    return 2;
+  }
+  const requestedModelsCachePath = typeof flags["models-cache"] === "string"
+    ? flags["models-cache"].trim()
+    : resolve(process.env.CODEX_HOME ?? resolve(homedir(), ".codex"), "models_cache.json");
+  const campaign = await runPilotRoleReadinessCampaign({
+    executeLive: true,
+    expectedHeadSha,
+    workflowRunId,
+    repositoryRoot: resolve(PIPELINE_DIR, "../../../.."),
+    modelsCachePath: resolve(requestedModelsCachePath),
+    preflight: {},
+    ...(timeoutMs !== undefined ? { timeoutMs } : {}),
+  });
+  if (!campaign.executed) throw new Error("pilot-role-readiness-campaign: live campaign unexpectedly returned a dry result");
+  const summary = {
+    schema: "pilot-role-readiness-campaign-cli-result-v1",
+    experimentId: campaign.result.experimentId,
+    implementationHeadSha: expectedHeadSha,
+    workflowRunId,
+    status: campaign.result.terminalState,
+    blockedReason: campaign.result.blockedReason,
+    selected: campaign.result.selected,
+    qualifiers: campaign.result.qualifiers,
+    baseCallsAttempted: campaign.result.baseCallsAttempted,
+    infrastructureReplays: campaign.result.infrastructureReplays,
+    maxPlanEvents: campaign.callLedger.maxPlanCapacityEvents,
+    totalAttempts: campaign.result.totalAttempts,
+    codexExecInvocations: campaign.callLedger.codexExecInvocations,
+    cachedReceipts: campaign.callLedger.cachedReceipts,
+    roleFreezeSha256: campaign.roleFreeze?.freezeSha256 ?? null,
+    modelCalls: campaign.modelCalls,
+    apiCalls: campaign.apiCalls,
+    paths: campaign.paths,
+  };
+  console.log(flags.json === true ? JSON.stringify(summary, null, 2)
+    : `[migration] pilot-role-readiness: ${summary.status} baseCalls=${summary.baseCallsAttempted} replays=${summary.infrastructureReplays} codexExec=${summary.codexExecInvocations} cached=${summary.cachedReceipts} api=${summary.apiCalls}${summary.blockedReason ? ` — ${summary.blockedReason}` : ""}`);
+  return campaign.code;
+}
+
 async function runLiveQualificationSubverb(
   subverb: string,
   flags: Record<string, string | boolean>,
@@ -1182,6 +1255,9 @@ async function runLiveQualificationSubverb(
   }
   if (subverb === "imp24-role-qualification-v3") {
     return runImp24RoleQualificationV3Subverb(flags, imp24Deps);
+  }
+  if (subverb === "pilot-role-readiness-campaign") {
+    return runPilotRoleReadinessCampaignSubverb(flags);
   }
   console.error(USAGE);
   return 2;
