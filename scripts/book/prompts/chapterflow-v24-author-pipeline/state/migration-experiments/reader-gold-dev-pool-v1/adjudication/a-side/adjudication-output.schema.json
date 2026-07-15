@@ -1,0 +1,166 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scores",
+    "composite",
+    "blockingFindings",
+    "advisoryFindings",
+    "escalationSignals",
+    "structurallyWrongQuiz",
+    "wrongQuizDetail",
+    "acceptableControlEligible",
+    "confidence"
+  ],
+  "properties": {
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "retention",
+        "quizzes",
+        "transfer",
+        "practical",
+        "summaries",
+        "tone",
+        "limits",
+        "insight",
+        "density",
+        "beginner"
+      ],
+      "properties": {
+        "retention": {
+          "type": "number"
+        },
+        "quizzes": {
+          "type": "number"
+        },
+        "transfer": {
+          "type": "number"
+        },
+        "practical": {
+          "type": "number"
+        },
+        "summaries": {
+          "type": "number"
+        },
+        "tone": {
+          "type": "number"
+        },
+        "limits": {
+          "type": "number"
+        },
+        "insight": {
+          "type": "number"
+        },
+        "density": {
+          "type": "number"
+        },
+        "beginner": {
+          "type": "number"
+        }
+      }
+    },
+    "composite": {
+      "type": "number"
+    },
+    "blockingFindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "category",
+          "unit",
+          "problem",
+          "evidence"
+        ],
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "problem": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "advisoryFindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "category",
+          "unit",
+          "problem",
+          "evidence"
+        ],
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "problem": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "escalationSignals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "category",
+          "unit",
+          "problem",
+          "evidence"
+        ],
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "problem": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "structurallyWrongQuiz": {
+      "type": "boolean"
+    },
+    "wrongQuizDetail": {
+      "type": "string"
+    },
+    "acceptableControlEligible": {
+      "type": "boolean"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    }
+  }
+}
