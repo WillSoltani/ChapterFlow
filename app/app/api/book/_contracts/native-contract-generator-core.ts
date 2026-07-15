@@ -39,9 +39,9 @@ export type NativeContractBuildOptions =
       trustedMainRef: string;
     };
 
-export const BACKEND_SOURCE_REVISION = "968ff67ecafbed7e8e1d4c7b77badf507cfc5aee";
-export const BACKEND_BEHAVIOR_SOURCE_TIMESTAMP = "2026-07-11T22:16:03-03:00";
-export const ARTIFACT_GENERATED_AT = "2026-07-13T02:27:09-03:00";
+export const BACKEND_SOURCE_REVISION = "6a792cf2572f585e56ce5dbb181307955c1896a8";
+export const BACKEND_BEHAVIOR_SOURCE_TIMESTAMP = "2026-07-13T23:19:13-03:00";
+export const ARTIFACT_GENERATED_AT = "2026-07-15T03:48:02-03:00";
 
 const GENERATOR_SOURCE_PATHS = [
   "app/app/api/book/_contracts/native-contract-types.ts",

@@ -28,6 +28,7 @@ import {
   toChapterIdKeyedApplicationStates,
 } from "@/app/app/api/book/_lib/commitment-application";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { buildBookStateGetResponse } from "@/app/app/api/book/_lib/book-state-status-core";
 import type {
   BookManifest,
   BookUserBookStateItem,
@@ -117,9 +118,17 @@ export async function GET(
     );
     const applicationStates: Record<string, ChapterApplicationState> =
       toChapterIdKeyedApplicationStates(appByNumber, chapterIdByNumber);
+    const statusPresence = {
+      hasBookState: bookState !== null,
+      hasProgress: progress !== null,
+    };
 
     if (bookState) {
-      return bookOk({ state: bookState, applicationStates });
+      return bookOk(buildBookStateGetResponse({
+        state: bookState,
+        applicationStates,
+        ...statusPresence,
+      }));
     }
 
     const firstChapterId = chapters[0]?.chapterId ?? "";
@@ -153,7 +162,11 @@ export async function GET(
       updatedAt: progress?.updatedAt ?? nowIso(),
     };
 
-    return bookOk({ state: fallbackState, applicationStates });
+    return bookOk(buildBookStateGetResponse({
+      state: fallbackState,
+      applicationStates,
+      ...statusPresence,
+    }));
   });
 }
 

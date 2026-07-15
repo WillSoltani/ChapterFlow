@@ -11,6 +11,7 @@ import type {
   NativeContractResponsePayload,
   NativeContractSourceFileDefinition,
 } from "./native-contract-types";
+import { buildBookStateGetResponse } from "../_lib/book-state-status-core";
 
 type RequestSeed = {
   producer: string;
@@ -3147,7 +3148,8 @@ nativeContractOperationDefinitions.push(
     iosModels: ["BookStateResponse", "BookStateResponseEnvelope", "BookUserBookState"],
     cacheNotes: "Private state belongs in an account-scoped cache; current client has an anonymous fallback risk.",
     idempotencyNotes: "Safe authenticated read.",
-    responseBody: json({
+    optionality: "stateStatus is required on canonical GET success; older deployed responses may omit it until this additive contract is deployed.",
+    responseBody: json(buildBookStateGetResponse({
       state: {
         bookId: "book-synthetic",
         completedChapterIds: [],
@@ -3159,16 +3161,58 @@ nativeContractOperationDefinitions.push(
         updatedAt: "2026-01-01T00:00:00.000Z",
       },
       applicationStates: {},
-    }),
+      hasBookState: true,
+      hasProgress: false,
+    })),
     responseSources: [
+      {
+        path: "app/app/api/book/_lib/book-state-status-core.ts",
+        role: "response_builder",
+      },
+      {
+        path: "app/app/api/book/_lib/content-service.ts",
+        role: "response_builder",
+      },
       { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/progress-write-core.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/types.ts", role: "schema" },
     ],
+    serializerProof: {
+      kind: "executed_pure_builder",
+      module: "app/app/api/book/_lib/book-state-status-core.ts",
+      exportedSymbol: "buildBookStateGetResponse",
+      fixtureId: "book-state.get:success",
+    },
     authority: {
       classification: "private_data",
-      pointers: ["/state/bookId", "/state/unlockedChapterIds"],
+      pointers: ["/stateStatus", "/state/bookId", "/state/unlockedChapterIds"],
     },
+    additionalErrorFixtures: [
+      {
+        status: 404,
+        code: "book_not_found",
+        headers: [],
+        body: {
+          error: {
+            code: "book_not_found",
+            message: "Published book not found.",
+            requestId: "req_synthetic_book_state_get_missing_book",
+          },
+        },
+      },
+      {
+        status: 404,
+        code: "book_version_not_found",
+        headers: [],
+        body: {
+          error: {
+            code: "book_version_not_found",
+            message: "Published version not found.",
+            requestId: "req_synthetic_book_state_get_missing_version",
+          },
+        },
+      },
+    ],
   }),
   matched({
     id: "commitments.get",

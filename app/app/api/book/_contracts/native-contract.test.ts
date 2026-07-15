@@ -760,6 +760,79 @@ test("mobile config golden is produced by the actual pure backend builder", () =
   );
 });
 
+test("book-state success requires an authoritative closed stateStatus", () => {
+  const bundle = buildBundle();
+  const operation = bundle.operations.find(
+    (candidate) => candidate.id === "book-state.get"
+  );
+  assert.ok(operation?.fixtures?.success.payload.kind === "json");
+  const body = operation.fixtures.success.payload.value as Record<string, unknown>;
+
+  assert.equal(body.stateStatus, "started");
+  assert.deepEqual(Object.keys(body).sort(), [
+    "applicationStates",
+    "state",
+    "stateStatus",
+  ]);
+  assert.equal(operation.coverage, "partial");
+  assert.equal(operation.idempotency.class, "safe_read");
+  assert.deepEqual(operation.backend?.serializerProof, {
+    kind: "executed_pure_builder",
+    module: "app/app/api/book/_lib/book-state-status-core.ts",
+    exportedSymbol: "buildBookStateGetResponse",
+    fixtureId: "book-state.get:success",
+  });
+  assert.ok(operation.authority.expectedRequiredPointers.includes("/stateStatus"));
+  assert.ok(
+    operation.backend?.sourceFiles.some(
+      (source) =>
+        source.path === "app/app/api/book/_lib/book-state-status-core.ts" &&
+        source.role === "response_builder"
+    )
+  );
+  assert.ok(
+    operation.backend?.sourceFiles.some(
+      (source) =>
+        source.path === "app/app/api/book/_lib/content-service.ts" &&
+        source.role === "response_builder"
+    )
+  );
+  assert.deepEqual(
+    operation.fixtures.errors
+      .filter((error) => error.status === 404)
+      .map((error) => error.code)
+      .sort(),
+    ["book_not_found", "book_version_not_found"]
+  );
+  assert.equal(bundle.inventory.uniqueOperationCount, 83);
+  assert.equal(bundle.inventory.nativeProducerCount, 93);
+  assert.equal(bundle.inventory.matrixRowCount, 29);
+
+  const missing = structuredClone(bundle);
+  const missingOperation = missing.operations.find(
+    (candidate) => candidate.id === "book-state.get"
+  );
+  assert.ok(missingOperation?.fixtures?.success.payload.kind === "json");
+  delete (missingOperation.fixtures.success.payload.value as Record<string, unknown>)
+    .stateStatus;
+  assert.throws(
+    () => assertNativeContractBundle(missing),
+    /book-state\.get.*stateStatus/
+  );
+
+  const invalid = structuredClone(bundle);
+  const invalidOperation = invalid.operations.find(
+    (candidate) => candidate.id === "book-state.get"
+  );
+  assert.ok(invalidOperation?.fixtures?.success.payload.kind === "json");
+  (invalidOperation.fixtures.success.payload.value as Record<string, unknown>)
+    .stateStatus = "maybe";
+  assert.throws(
+    () => assertNativeContractBundle(invalid),
+    /book-state\.get.*stateStatus/
+  );
+});
+
 test("all covered operations disclose selected-source, request-factory, and error-coverage gaps", () => {
   const covered = buildBundle().operations.filter((operation) => operation.coverage !== "blocked");
   assert.ok(covered.length > 0);
