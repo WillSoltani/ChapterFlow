@@ -67,10 +67,12 @@ export type AuthorRegenLedger = {
   legacyMigratedAt?: string;
   /** chapterNumber → the lineage its legacy count was migrated onto (forensics). */
   legacyMigratedTo?: Record<string, string>;
-  /** Repair lane (plan docs/v24/REPAIR-LANE-PLAN-2026-07-04.md R6):
+  /** Repair lane (plan docs/v24/REPAIR-LANE-PLAN-2026-07-04.md R6; cap raised
+   *  1→2 by WP-404 per the target architecture's "typed repair ≤2/chapter"):
    *  `<chapterNumber>@<lineage12>` → surgical repairs consumed against that
-   *  design (cap 1; rejected/failed/no-op repairs count too). Optional so v2
-   *  ledgers written before the lane load unchanged (absent = 0). */
+   *  design (cap AUTHOR_REPAIR_ROUND_CAP, see authorReview.ts; rejected/
+   *  failed/no-op repairs count too). Optional so v2 ledgers written before
+   *  the lane load unchanged (absent = 0). */
   repairConsumed?: Record<string, number>;
   /** F4: reader-budget repair writes consumed, keyed `${chapter}@${lineage}` —
    *  additive to v2 (absent = 0 everywhere). */

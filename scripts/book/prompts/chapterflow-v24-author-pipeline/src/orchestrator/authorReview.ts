@@ -165,6 +165,14 @@ const PIPELINE_DIR = resolve(__dirname, "../..");
 /** Total write attempts per chapter across write+review: the original authoring
  *  + ONE review-complaint regeneration. */
 export const AUTHOR_REGEN_CAP = 2;
+/** WP-404 (target architecture §5, "typed repair ≤2/chapter"): the author-first
+ *  ship path's typed-repair-round cap — at most this many surgical repair
+ *  ATTEMPTS per chapter (durable, lineage-keyed via authorRegenLedger's repair
+ *  lane) before the repair lane defers to the regen fallback below. Distinct
+ *  from the LEGACY compiler/autopilot loop's `maxRepairRounds` (default 4,
+ *  WP-207 scope, untouched here) — that loop re-converges deterministic-gate/
+ *  QC blockers on the pre-author-first path and is a different mechanism. */
+export const AUTHOR_REPAIR_ROUND_CAP = 2;
 /** Book-acceptance rejection: at most this many chapters get the targeted regen. */
 export const AUTHOR_BOOK_REGEN_CHAPTER_CAP = 3;
 /** Independent book-level readers per acceptance round. THREE (Q5, owner
@@ -1763,24 +1771,29 @@ async function doAuthorReviewInner(
   //    the regen budget exhausted AND the repair lane spent (or disabled),
   //    cannot progress without a byte change — halt before spending reads. ─────
   {
-    const deadEnds: Array<{ n: number; composite: number }> = [];
+    const deadEnds: Array<{ n: number; composite: number; repairNote: string }> = [];
     for (const chapter of chapters) {
       if (io.regenConsumedFor(bookId, chapter.number) < (AUTHOR_REGEN_CAP - 1)) continue;
       let repairSpent = !reviewRepairEnabled();
+      let repairNote = repairSpent ? "repair lane disabled" : "";
       if (!repairSpent) {
-        try { repairSpent = io.repairConsumedFor(bookId, chapter.number) >= 1; } catch { repairSpent = true; } // unreadable ledger → fail closed
+        try {
+          const rc = io.repairConsumedFor(bookId, chapter.number);
+          repairSpent = rc >= AUTHOR_REPAIR_ROUND_CAP;
+          repairNote = `repair rounds ${rc}/${AUTHOR_REPAIR_ROUND_CAP}${repairSpent ? " exhausted" : ""}`;
+        } catch { repairSpent = true; repairNote = "repair ledger unreadable (fail-closed)"; } // unreadable ledger → fail closed
       }
       if (!repairSpent) continue;
       try {
         const p = reviewHistoryPath(bookId, chapter.number, chapterContentHash(chapter));
         if (!existsSync(p)) continue;
         const rec = JSON.parse(readFileSync(p, "utf8")) as ChapterReviewV1;
-        if (rec && rec.valid !== false && rec.pass === false) deadEnds.push({ n: chapter.number, composite: rec.composite ?? 0 });
+        if (rec && rec.valid !== false && rec.pass === false) deadEnds.push({ n: chapter.number, composite: rec.composite ?? 0, repairNote });
       } catch { /* unreadable history — a fresh read is legitimate */ }
     }
     if (deadEnds.length > 0) {
-      const table = deadEnds.map((d) => `  ch${String(d.n).padStart(2, "0")} — persisted review FAIL (composite ${d.composite}) on the exact current bytes; regen + repair budgets exhausted`).join("\n");
-      return halt(bookId, "content", `author review: ${deadEnds.length} chapter(s) are DEAD-ENDED — their current bytes already failed a durable review and every write budget is spent; spawning fresh readers would only re-roll noise (F5):\n${table}`);
+      const table = deadEnds.map((d) => `  ch${String(d.n).padStart(2, "0")} — persisted review FAIL (composite ${d.composite}) on the exact current bytes; regen budget exhausted, ${d.repairNote}`).join("\n");
+      return halt(bookId, "content", `author review: ${deadEnds.length} chapter(s) are DEAD-ENDED [REPAIR_EXHAUSTED-class] — their current bytes already failed a durable review and every write budget is spent; spawning fresh readers would only re-roll noise (F5):\n${table}`);
     }
   }
 
@@ -1826,6 +1839,10 @@ async function doAuthorReviewInner(
   //    surface, instead of a ~14-minute regen + a consumed durable cap. ────────
   const tiebreakExtraComplaints = new Map<number, string[]>();
   const tiebreakReadEvidence = new Map<number, { readSets: string[][]; composites: number[] }>();
+  // WP-404: per-chapter typed-repair round history THIS entry (round outcomes,
+  // most-recent-last) — surfaced in any content halt that follows so the halt
+  // reason names the REPAIR_EXHAUSTED-class history, not just "regen spent".
+  const repairRoundHistory = new Map<number, string[]>();
   {
     const flips = chapters.filter((chapter) => {
       const r = reviews.get(chapter.number)!;
@@ -1876,12 +1893,26 @@ async function doAuthorReviewInner(
     if (exhaustedFailing.length > 0) {
       const table = exhaustedFailing
         .sort((a, b) => a.number - b.number)
-        .map((c) => `  ch${String(c.number).padStart(2, "0")} — ${complaintsOf(reviews.get(c.number)!).join("; ").slice(0, 400)}`)
+        .map((c) => {
+          let repairNote = "";
+          try {
+            const rc = io.repairConsumedFor(bookId, c.number);
+            repairNote = ` [repair rounds ${rc}/${AUTHOR_REPAIR_ROUND_CAP}${rc >= AUTHOR_REPAIR_ROUND_CAP ? " — REPAIR_EXHAUSTED-class" : ""}]`;
+          } catch { /* ledger unreadable — the regen exhaustion still halts on its own */ }
+          return `  ch${String(c.number).padStart(2, "0")} — ${complaintsOf(reviews.get(c.number)!).join("; ").slice(0, 400)}${repairNote}`;
+        })
         .join("\n");
       return halt(bookId, "content", `author review: ${exhaustedFailing.length} chapter(s) fail independent review and have ALREADY consumed their durable regen budget across prior entries (cap ${AUTHOR_REGEN_CAP} write attempts/chapter, global):\n${table}`);
     }
     deps.log(`[autopilot] author review: ${failing.length} chapter(s) failed independent review — regenerating with complaints (1 regen each; ${AUTHOR_REGEN_CAP} total attempts/chapter, durable ledger loaded)`);
     const stillFailing: Array<{ chapterNumber: number; summary: string }> = [];
+    // WP-404: append this chapter's repair-round history (if any rounds ran
+    // this entry) to a stillFailing summary — every content halt below traces
+    // back to what the repair lane actually tried, not just "regen spent".
+    const withRepairHistory = (n: number, summary: string): string => {
+      const h = repairRoundHistory.get(n);
+      return h?.length ? `${summary} [repair: ${h.join(" | ")}]` : summary;
+    };
     await mapPool(failing, opts.maxParallel, async (chapter) => {
       heartbeat();
       const nn = String(chapter.number).padStart(2, "0");
@@ -1891,65 +1922,91 @@ async function doAuthorReviewInner(
         ...complaintsOf(reviews.get(chapter.number)!),
         ...(tiebreakExtraComplaints.get(chapter.number) ?? []),
       ])];
-      // ── Repair lane (plan docs/v24/REPAIR-LANE-PLAN-2026-07-04.md): when the
-      //    upheld tiebreak's must-fixes CONVERGE on field scopes, try ONE
-      //    surgical repair before spending the regen. The confirming read is
-      //    the normal repair-unaware review of the new content hash; a
-      //    withheld confirm falls through to regen with the CONFIRM round's
-      //    complaints (hash-scoped — pre-repair complaints about fixed
-      //    defects never reach the regen writer). ─────────────────────────────
-      const evidence = tiebreakReadEvidence.get(chapter.number);
-      // Classify FIRST (pure); consult the durable cap only for eligible
-      // chapters, and treat an uncomputable lineage as "lane unavailable" —
-      // the regen path owns the infra-halt semantics for that case.
-      let repairCapFree = false;
-      const cls = reviewRepairEnabled() && evidence ? classifyRepairEligibility(evidence.readSets, evidence.composites) : undefined;
-      if (cls?.eligible) {
-        try { repairCapFree = io.repairConsumedFor(bookId, chapter.number) === 0; } catch { repairCapFree = false; }
-      }
-      if (cls && evidence) {
-        if (cls.eligible && repairCapFree) {
-          deps.log(`[autopilot] author review ch${nn}: repair lane ENGAGED (${cls.reason}) — one surgical repair before any regen`);
-          io.recordRepairConsumed(bookId, chapter.number);
-          const rep = await doRepairOneChapter(bookId, chapter.number, deps, { io, scopes: cls.scopes, complaints });
-          if (rep.ok) {
-            const repaired = io.loadChapters(bookId).find((c) => c.number === chapter.number);
-            if (repaired) {
-              let confirm = await reviewOneChapter(bookId, repaired, deps, io, bar, "-repair");
-              if (!confirm.pass && isNearBar(confirm, bar, noiseBand)) {
-                const tb = await tiebreakNearBarVerdict(bookId, repaired, confirm, deps, io, bar);
-                confirm = tb.review;
-                tiebreakExtraComplaints.set(chapter.number, tb.extraComplaints);
-              }
-              reviews.set(chapter.number, confirm);
-              if (confirm.pass) {
-                deps.log(`[autopilot] author review ch${nn}: repair CONFIRMED by a fresh read (${confirm.composite}) — no regen spent`);
-                return;
-              }
-              deps.log(`[autopilot] author review ch${nn}: repair confirm withheld (${confirm.composite}) — escalating to regen with the confirm round's complaints`);
-              complaints = [...new Set([
-                ...complaintsOf(confirm),
-                ...(tiebreakExtraComplaints.get(chapter.number) ?? []),
-              ])];
-            }
-          } else {
-            if (rep.restoreFailed) {
-              // F6: disk holds unreviewed repair bytes and the original could not
-              // be restored — routing on as if bytes matched the persisted review
-              // would let a regen-exhausted book halt "content" over divergent
-              // state. Infra halt; the operator restores from git/state history.
-              throw new RepairRestoreError(`ch${nn}: repair rejected (${rep.reason ?? "unknown"}) AND the original bytes could not be restored — disk no longer matches the persisted review; halting before any further routing`);
-            }
-            deps.log(`[autopilot] author review ch${nn}: repair rejected (${rep.reason ?? "unknown"}) — regen proceeds`);
-          }
-        } else {
+      // ── Repair lane (plan docs/v24/REPAIR-LANE-PLAN-2026-07-04.md; WP-404
+      //    establishes the bounded ROUND cap): when the upheld tiebreak's
+      //    must-fixes CONVERGE on field scopes, try a typed surgical repair
+      //    before spending the regen — up to AUTHOR_REPAIR_ROUND_CAP (2) rounds
+      //    per chapter. Each round's confirming read is the normal repair-
+      //    unaware review of the new content hash; a withheld confirm that is
+      //    itself near-bar earns a fresh tiebreak, and CONVERGENT evidence from
+      //    THAT tiebreak can spend a second round. An ineligible classification,
+      //    a rejected patch, an unreadable ledger, or a cap already at 2/2 all
+      //    fall through to regen with the LATEST round's complaints (hash-
+      //    scoped — pre-repair complaints about fixed defects never reach the
+      //    regen writer). ─────────────────────────────────────────────────────
+      let repairEvidence = tiebreakReadEvidence.get(chapter.number);
+      while (reviewRepairEnabled() && repairEvidence) {
+        const evidence = repairEvidence;
+        const cls = classifyRepairEligibility(evidence.readSets, evidence.composites);
+        if (!cls.eligible) {
           deps.log(`[autopilot] author review ch${nn}: repair lane not eligible (${cls.reason}) — regen proceeds`);
+          break;
         }
+        let consumed = 0;
+        let ledgerReadable = true;
+        try { consumed = io.repairConsumedFor(bookId, chapter.number); } catch { ledgerReadable = false; }
+        if (!ledgerReadable) {
+          deps.log(`[autopilot] author review ch${nn}: repair ledger unreadable — regen proceeds (fail-closed, no repair spent)`);
+          break;
+        }
+        if (consumed >= AUTHOR_REPAIR_ROUND_CAP) {
+          const history = repairRoundHistory.get(chapter.number) ?? [];
+          history.push(`repair cap ${AUTHOR_REPAIR_ROUND_CAP}/${AUTHOR_REPAIR_ROUND_CAP} reached`);
+          repairRoundHistory.set(chapter.number, history);
+          deps.log(`[autopilot] author review ch${nn}: repair round cap (${AUTHOR_REPAIR_ROUND_CAP}) reached — regen proceeds`);
+          break;
+        }
+        const round = consumed + 1;
+        deps.log(`[autopilot] author review ch${nn}: repair lane ENGAGED round ${round}/${AUTHOR_REPAIR_ROUND_CAP} (${cls.reason})`);
+        io.recordRepairConsumed(bookId, chapter.number);
+        const rep = await doRepairOneChapter(bookId, chapter.number, deps, { io, scopes: cls.scopes, complaints });
+        if (!rep.ok) {
+          if (rep.restoreFailed) {
+            // F6: disk holds unreviewed repair bytes and the original could not
+            // be restored — routing on as if bytes matched the persisted review
+            // would let a regen-exhausted book halt "content" over divergent
+            // state. Infra halt; the operator restores from git/state history.
+            throw new RepairRestoreError(`ch${nn}: repair round ${round} rejected (${rep.reason ?? "unknown"}) AND the original bytes could not be restored — disk no longer matches the persisted review; halting before any further routing`);
+          }
+          const history = repairRoundHistory.get(chapter.number) ?? [];
+          history.push(`round ${round}/${AUTHOR_REPAIR_ROUND_CAP}: rejected (${rep.reason ?? "unknown"})`);
+          repairRoundHistory.set(chapter.number, history);
+          deps.log(`[autopilot] author review ch${nn}: repair round ${round} rejected (${rep.reason ?? "unknown"}) — regen proceeds`);
+          break;
+        }
+        const repaired = io.loadChapters(bookId).find((c) => c.number === chapter.number);
+        if (!repaired) {
+          const history = repairRoundHistory.get(chapter.number) ?? [];
+          history.push(`round ${round}/${AUTHOR_REPAIR_ROUND_CAP}: committed but the chapter is unreadable post-repair`);
+          repairRoundHistory.set(chapter.number, history);
+          break;
+        }
+        let confirm = await reviewOneChapter(bookId, repaired, deps, io, bar, round > 1 ? `-repair-r${round}` : "-repair");
+        repairEvidence = undefined; // only a fresh near-bar tiebreak on THIS round's confirm re-arms the loop
+        if (!confirm.pass && isNearBar(confirm, bar, noiseBand)) {
+          const tb = await tiebreakNearBarVerdict(bookId, repaired, confirm, deps, io, bar);
+          confirm = tb.review;
+          tiebreakExtraComplaints.set(chapter.number, tb.extraComplaints);
+          if (tb.upheldReadSets) repairEvidence = { readSets: tb.upheldReadSets, composites: tb.upheldComposites ?? [] };
+        }
+        reviews.set(chapter.number, confirm);
+        if (confirm.pass) {
+          deps.log(`[autopilot] author review ch${nn}: repair round ${round} CONFIRMED by a fresh read (${confirm.composite}) — no regen spent`);
+          return;
+        }
+        const history = repairRoundHistory.get(chapter.number) ?? [];
+        history.push(`round ${round}/${AUTHOR_REPAIR_ROUND_CAP}: confirm withheld (composite ${confirm.composite})`);
+        repairRoundHistory.set(chapter.number, history);
+        deps.log(`[autopilot] author review ch${nn}: repair round ${round} confirm withheld (${confirm.composite})${repairEvidence ? " — convergent evidence on the new bytes, retrying repair" : " — escalating to regen with the confirm round's complaints"}`);
+        complaints = [...new Set([
+          ...complaintsOf(confirm),
+          ...(tiebreakExtraComplaints.get(chapter.number) ?? []),
+        ])];
       }
       if (regenExhausted(chapter.number)) {
         // The repair path consumed wall-clock; re-check the durable budget
         // before spending a regen (another conductor could have moved it).
-        stillFailing.push({ chapterNumber: chapter.number, summary: `ch${nn}: regen budget exhausted after repair path` });
+        stillFailing.push({ chapterNumber: chapter.number, summary: withRepairHistory(chapter.number, `ch${nn}: regen budget exhausted after repair path [REPAIR_EXHAUSTED-class]`) });
         return;
       }
       regenerated.add(chapter.number);
@@ -1976,12 +2033,12 @@ async function doAuthorReviewInner(
           } catch { /* unparseable prior bytes / provenance write — non-fatal */ }
           deps.log(`[autopilot] author review ch${nn}: regen write failed — restored prior reviewed bytes (the failed draft never reached review and must not replace reviewed content).`);
         }
-        stillFailing.push({ chapterNumber: chapter.number, summary: regen.reason });
+        stillFailing.push({ chapterNumber: chapter.number, summary: withRepairHistory(chapter.number, regen.reason) });
         return;
       }
       const fresh = io.loadChapters(bookId).find((c) => c.number === chapter.number);
       if (!fresh) {
-        stillFailing.push({ chapterNumber: chapter.number, summary: `ch${nn}: regenerated file missing after write` });
+        stillFailing.push({ chapterNumber: chapter.number, summary: withRepairHistory(chapter.number, `ch${nn}: regenerated file missing after write`) });
         return;
       }
       let review = await reviewOneChapter(bookId, fresh, deps, io, bar, "-regen");
@@ -1991,7 +2048,7 @@ async function doAuthorReviewInner(
         review = (await tiebreakNearBarVerdict(bookId, fresh, review, deps, io, bar)).review;
       }
       reviews.set(chapter.number, review);
-      if (!review.pass) stillFailing.push({ chapterNumber: chapter.number, summary: complaintsOf(review).join("; ").slice(0, 400) });
+      if (!review.pass) stillFailing.push({ chapterNumber: chapter.number, summary: withRepairHistory(chapter.number, complaintsOf(review).join("; ").slice(0, 400)) });
     });
     if (stillFailing.length > 0) {
       const table = stillFailing

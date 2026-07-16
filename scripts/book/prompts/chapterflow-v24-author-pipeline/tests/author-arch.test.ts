@@ -46,8 +46,11 @@ import {
 } from "../src/orchestrator/authorRun.js";
 import { UNTRUSTED_ARTIFACT_RENDERER_VERSION } from "../src/exec/untrustedArtifact.js";
 import { questionKeysOnLineage } from "../src/critics/lineageKeyQuiz.js";
+import { sha256Hex } from "../src/contracts/contractUtil.js";
+import { LEGACY_NO_PLAN_HASH, patchValueHash } from "../src/orchestrator/repairPatch.js";
 import {
   AUTHOR_REGEN_CAP,
+  AUTHOR_REPAIR_ROUND_CAP,
   acceptanceRecordPath,
   acceptanceRoundSegment,
   complaintsOf,
@@ -2079,18 +2082,135 @@ test("F5: a dead-ended chapter (exact bytes already FAILed, regen+repair spent) 
   writeFileSync(p, JSON.stringify({ chapterNumber: 1, contentHash: hash, valid: true, pass: false, composite: 81 }), "utf8");
   try {
     const { deps, spawns } = mkDeps(happyScript);
+    // WP-404: the repair-round cap is AUTHOR_REPAIR_ROUND_CAP (2) — "spent" now
+    // truthfully means 2/2 consumed, not the pre-cap-alignment 1.
     const io = mkIo({
       regenConsumedFor: () => 1, // >= AUTHOR_REGEN_CAP - 1
-      repairConsumedFor: () => 1,
+      repairConsumedFor: () => AUTHOR_REPAIR_ROUND_CAP,
       recordRepairConsumed: () => {},
     });
     const r = await doAuthorReview("zz", deps, { maxParallel: 3, io });
     assert.ok(r && r.status === "halt" && r.category === "content", "dead end halts as content");
     assert.match(r.reason, /DEAD-ENDED/);
+    assert.match(r.reason, /REPAIR_EXHAUSTED-class/, "the halt names the REPAIR_EXHAUSTED taxonomy");
+    assert.match(r.reason, new RegExp(`repair rounds ${AUTHOR_REPAIR_ROUND_CAP}/${AUTHOR_REPAIR_ROUND_CAP}`), "the halt surfaces the per-chapter repair round history");
     assert.equal(spawns.filter((s) => s.sessionId.includes("author-review-ch")).length, 0, "no chapter readers spawned");
     assert.equal(bookReaderSpawns(spawns), 0, "no acceptance panel spawned");
   } finally {
     rmSync(p, { force: true });
+  }
+});
+
+test("F5: a chapter with only 1/2 repair rounds consumed is NOT dead-ended — cap alignment truthfully reflects 2, not 1", async () => {
+  // WP-404 cap-alignment regression guard: before this WP, ANY repairConsumedFor
+  // >= 1 counted as "spent" (cap was silently 1). At cap 2, a chapter that has
+  // only spent its FIRST repair round must still be considered live — the F5
+  // pre-check must not treat it as dead-ended.
+  const hash = chapterContentHash(CH1);
+  const p = reviewHistoryPath("zz", 1, hash);
+  mkdirSync(dirname(p), { recursive: true });
+  writeFileSync(p, JSON.stringify({ chapterNumber: 1, contentHash: hash, valid: true, pass: false, composite: 81 }), "utf8");
+  try {
+    const { deps, spawns } = mkDeps(happyScript);
+    const io = mkIo({
+      regenConsumedFor: () => 1, // >= AUTHOR_REGEN_CAP - 1
+      repairConsumedFor: () => 1, // 1/2 — NOT exhausted under the cap-2 architecture
+      recordRepairConsumed: () => {},
+    });
+    const r = await doAuthorReview("zz", deps, { maxParallel: 3, io });
+    // The F5 pre-check must not fire; the run proceeds to spawn fresh readers
+    // (happyScript resolves them PASS, so the run accepts cleanly).
+    if (r && r.status === "halt") {
+      assert.doesNotMatch(r.reason, /DEAD-ENDED/, "1/2 repair rounds consumed must not read as dead-ended");
+    }
+    assert.ok(spawns.filter((s) => s.sessionId.includes("author-review-ch")).length > 0, "fresh chapter readers spawned — the chapter is still live");
+  } finally {
+    rmSync(p, { force: true });
+  }
+});
+
+test("doAuthorReview (WP-404): the author-first repair lane engages at most AUTHOR_REPAIR_ROUND_CAP (2) rounds per chapter — a 3rd round never spawns, and the eventual halt surfaces the per-chapter repair history", async () => {
+  // Scenario: ch01 fails review NEAR the bar with a convergent, quiz-scoped
+  // must-fix complaint on EVERY read (original + both tiebreak reads + both
+  // post-repair confirm reads use the identical complaint, so classification
+  // stays convergent/eligible round after round). Round 1's typed patch is
+  // built against the TRUE base hash and commits; its confirming read still
+  // fails near-bar, earning round 2. Round 2's spawn deliberately replays the
+  // SAME patch object — now stale against the round-1-committed base — so it
+  // is rejected without any hash gymnastics. The cap (2) must stop the loop
+  // there: no 3rd repair spawn, ever. ch02 passes cleanly on its first read so
+  // the whole scenario stays scoped to ch01.
+  // Reserved-harm-classed (BLOCK_PATTERNS "key-defect": correct answer + contradicts)
+  // so complaintNamesReservedHarm stays true and the tiebreak's median-≥bar
+  // no-mustFix conversion path (authorReview.ts tiebreakNearBarVerdict) never
+  // fires — the FAIL must stay UPHELD for the repair lane to engage at all.
+  const QUIZ_COMPLAINT = { unit: "quiz", problem: "Q2's correct answer contradicts the deep-read explanation, and the key reads as confusing next to the distractors.", mustFix: true };
+  const originalBytes = JSON.stringify(CH1, null, 2) + "\n";
+  const staticPatch = {
+    schema: "chapter-patch-v1",
+    chapterId: CH1.chapterId,
+    expectedBaseHash: sha256Hex(originalBytes),
+    sourcePlanHash: LEGACY_NO_PLAN_HASH,
+    findingIds: ["review.must-fix#0"],
+    operations: [{
+      path: "quiz.questions[1].prompt",
+      expectedOldValueHash: patchValueHash(CH1.quiz.questions[1].prompt).slice(0, 16),
+      replacement: "Chapter 1 Q2, repaired: why does the mechanism survive low-motivation days?",
+      dependencyUnitIds: [],
+    }],
+  };
+
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.includes("auto-author-repair")) {
+      // Both rounds drop the IDENTICAL patch.json — round 1 matches the true
+      // base and commits; round 2 replays it against the NOW-CHANGED base, so
+      // it is rejected as stale (never rebased) without needing a fresh hash.
+      if (o.cwd) writeFileSync(join(o.cwd, "patch.json"), JSON.stringify(staticPatch, null, 2) + "\n");
+      return { finalMessage: "done" };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      const n = Number(m[1]);
+      if (n === 1) return { finalMessage: reviewReply(CH1, { ship84: false, score: 90, complaints: [QUIZ_COMPLAINT] }) };
+      return { finalMessage: reviewReply(CH2, { ship84: true, score: 92 }) };
+    }
+    return {};
+  });
+
+  const repairLedger = new Map<number, number>();
+  let io!: ReturnType<typeof mkIo>;
+  io = mkIo({
+    // NOTE: keep the default readBrief (mkBrief) — ensureReaderBudgetsClean's
+    // length-budget calibration depends on it (mkBrief's lengthBudget is sized
+    // to FIXTURE_CHAPTERS); a null brief falls back to the production-sized
+    // DEFAULT_LENGTH_BUDGET_CHARS and spuriously blocks these tiny fixtures on
+    // reader budgets before the review phase ever starts. authorWriteContract-
+    // Findings is unaffected either way: mkBrief carries no exampleCount/
+    // rotationSchemaVersion/leadThread, so its example-count and lead-thread
+    // checks are gated off by construction, and the round-1/2 patches here only
+    // touch a quiz prompt (no practice-timer or label-family surface).
+    repairConsumedFor: (_b, n) => repairLedger.get(n) ?? 0,
+    recordRepairConsumed: (_b, n) => { repairLedger.set(n, (repairLedger.get(n) ?? 0) + 1); },
+    // The default loadChapters returns the STATIC FIXTURE_CHAPTERS array — this
+    // scenario needs it to reflect the round-1-committed (patched) bytes so the
+    // confirming read genuinely reviews the repaired content.
+    loadChapters: () => [1, 2].map((n) => {
+      const bytes = io.chapterBytes.get(`zz:${n}`);
+      if (bytes) return JSON.parse(bytes) as ChapterV21;
+      return n === 1 ? CH1 : CH2;
+    }),
+  });
+  io.chapterBytes.set("zz:1", originalBytes);
+
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io });
+
+  const repairSpawns = spawns.filter((s) => s.sessionId.includes("auto-author-repair"));
+  assert.equal(repairSpawns.length, AUTHOR_REPAIR_ROUND_CAP, `exactly ${AUTHOR_REPAIR_ROUND_CAP} repair round(s) spawned — a 3rd round never runs`);
+  assert.equal(repairLedger.get(1), AUTHOR_REPAIR_ROUND_CAP, "the durable repair ledger shows the cap fully consumed, not exceeded");
+  assert.ok(result && result.status === "halt" && result.category === "content", "repair (cap 2) then regen (cap 1) both spend out to a content halt");
+  if (result && result.status === "halt") {
+    assert.match(result.reason, /round 1\/2: confirm withheld/, "round 1's outcome is surfaced in the halt");
+    assert.match(result.reason, /round 2\/2: rejected/, "round 2's rejection is surfaced in the halt");
   }
 });
 
