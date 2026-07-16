@@ -18,6 +18,11 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "fs";
 import { relative, resolve } from "path";
 import { runPilotRoleReadinessCampaign } from "../../orchestrator/forwardPilotRoleReadinessCampaign.js";
+import {
+  SOL_PILOT_STAGE1_EXECUTE_LIVE,
+  mintSolPilotStage1Artifacts,
+  runSolPilotStage1Campaign,
+} from "../../orchestrator/forwardSolPilotStage1Campaign.js";
 
 import { validateExperimentSpec } from "./spec.js";
 import { buildSampleSchedule } from "./schedule.js";
@@ -221,6 +226,8 @@ const USAGE =
   `         imp24-materialize-transport-correction-diagnosis --write --defect-class CLASS --rationale TEXT [--json]\n` +
   `         imp24-role-qualification-v3 --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--timeout-ms N] [--json]\n` +
   `         pilot-role-readiness-campaign --execute-live --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--timeout-ms N] [--json]\n` +
+  `         sol-pilot-stage1-mint [--write] [--json]\n` +
+  `         sol-pilot-stage1 --execute-live --head-sha SHA --workflow-run-id ID [--json]\n` +
   `         imp24-pilot-v2-envelope       run the exact fresh eight-chapter pilot\n` +
   `         imp24-gold-v2-envelope        run the exact fresh 13-chapter gold book\n` +
   `       Closed IMP-22 transition/live subverbs always fail with\n` +
@@ -303,6 +310,7 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "imp24-materialize-final-attestation",
   "imp24d-materialize-final-attestation",
   "imp24-materialize-forward-inputs",
+  "sol-pilot-stage1-mint",
   "reader-gold-dev-pool",
   "reader-gold-dev-docs",
   "rubric-audit-batch",
@@ -2099,6 +2107,25 @@ function runLocalForwardSubverb(
     }
     return 0;
   }
+  if (subverb === "sol-pilot-stage1-mint") {
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const minted = mintSolPilotStage1Artifacts({ repositoryRoot, write: flags.write === true });
+    const out = {
+      schema: "sol-pilot-stage1-mint-result-v1",
+      instrumentSnapshotSha256: minted.snapshot.snapshotSha256,
+      stagePlanSha256: minted.plan.planSha256,
+      qualificationExperimentId: minted.plan.qualificationExperimentId,
+      pilotRoleFreezeSha256: minted.plan.pilotRoleFreezeSha256,
+      stagePolicyId: minted.plan.stagePolicyId,
+      stage1CallCeiling: minted.plan.stage1CallCeiling,
+      written: minted.written,
+      modelCalls: 0,
+      apiCalls: 0,
+    };
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] sol-pilot-stage1-mint: snapshot=${out.instrumentSnapshotSha256.slice(0, 12)}… plan=${out.stagePlanSha256.slice(0, 12)}… written=${String(out.written)}`);
+    return 0;
+  }
   if (subverb === "imp24-materialize-forward-inputs") {
     const stateRoot = typeof flags["state-root"] === "string"
       ? resolve(flags["state-root"])
@@ -2190,6 +2217,54 @@ function runLocalForwardSubverb(
   return 0;
 }
 
+async function runSolPilotStage1Subverb(
+  flags: Record<string, string | boolean>,
+): Promise<number> {
+  // The literal barrier is intentionally the first operation. In dry mode no
+  // auth, gate, artifact, or campaign path is read and no call is possible.
+  if (flags["execute-live"] !== true) {
+    console.error("sol-pilot-stage1: refusing to make model calls without the literal --execute-live flag");
+    return 2;
+  }
+  const expectedHeadSha = typeof flags["head-sha"] === "string" ? flags["head-sha"].trim() : "";
+  const workflowRunId = typeof flags["workflow-run-id"] === "string" ? Number(flags["workflow-run-id"]) : NaN;
+  if (!/^[a-f0-9]{40}$/.test(expectedHeadSha) || !Number.isSafeInteger(workflowRunId) || workflowRunId <= 0) {
+    console.error("sol-pilot-stage1: --head-sha <40 lowercase hex> and --workflow-run-id <positive integer> are required");
+    return 2;
+  }
+  // Frozen roles from the readiness-v6 pilot role freeze: no availability
+  // discovery, no models cache, and no artifact/route substitution flags.
+  for (const forbiddenOverride of [
+    "auth-json", "codex-binary", "models-cache", "state-root", "phase-dir", "manifest",
+    "input-freeze", "input-materialization", "role-freeze", "qualification-result", "timeout-ms", "max-parallel",
+  ] as const) {
+    if (flags[forbiddenOverride] !== undefined) {
+      console.error(`sol-pilot-stage1: --${forbiddenOverride} is not an authorized operator override`);
+      return 2;
+    }
+  }
+  const { report } = await runSolPilotStage1Campaign({
+    repositoryRoot: resolve(PIPELINE_DIR, "../../../.."),
+    executeLive: SOL_PILOT_STAGE1_EXECUTE_LIVE,
+    headSha: expectedHeadSha,
+    workflowRunId,
+  });
+  const summary = {
+    schema: "sol-pilot-stage1-cli-result-v1",
+    status: report.status,
+    blockedReason: report.blockedReason,
+    executeChapterKeys: report.executeChapterKeys,
+    chapterOutcomes: report.chapterOutcomes,
+    manifestSha256: report.manifestSha256,
+    qualificationProofSha256: report.qualificationProofSha256,
+    callCounts: report.callCounts,
+    d7RubricGate: report.d7RubricGate,
+  };
+  console.log(flags.json === true ? JSON.stringify(summary, null, 2)
+    : `[migration] sol-pilot-stage1: ${summary.status} ledger=${summary.callCounts.ledgerEntries}/${summary.callCounts.stageCallCeiling} codexExec=${summary.callCounts.codexExecInvocations} api=0${summary.blockedReason ? ` — ${summary.blockedReason}` : ""}`);
+  return report.status === "STAGE1_CHAPTERS_COMMITTED" ? 0 : 1;
+}
+
 export async function runMigrationBakeoffCli(
   args: string[],
   flags: Record<string, string | boolean>,
@@ -2213,6 +2288,9 @@ export async function runMigrationBakeoffCli(
   }
   if (LIVE_QUALIFICATION_SUBVERBS.has(subverb)) {
     return runLiveQualificationSubverb(subverb, flags, deps.imp24RoleQualificationV3);
+  }
+  if (subverb === "sol-pilot-stage1") {
+    return runSolPilotStage1Subverb(flags);
   }
   if (LIVE_FORWARD_SUBVERBS.has(subverb)) {
     return runLiveForwardSubverb(subverb, flags);

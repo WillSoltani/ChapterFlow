@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 4,
+  "chapterTitle": "This Is Not Opinion, This Is Biology",
+  "focus": "The model maps WHAT language to analytical processing and WHY language to feeling, trust, and choice. A reader learns why facts can be accurate yet fail to move a decision when they do not connect to felt value.",
+  "coreClaim": "This Is Not Opinion, This Is Biology turns biological decision language into a practical decision rule backed by named cases and checkable details.",
+  "centralConcept": {
+    "id": "ch04.concept",
+    "name": "biological decision language",
+    "plainDefinition": "The model maps WHAT language to analytical processing and WHY language to feeling, trust, and choice.",
+    "whyItMatters": "A reader learns why facts can be accurate yet fail to move a decision when they do not connect to felt value."
+  },
+  "keyClaims": [
+    "biological decision language becomes usable only when tied to visible behavior.",
+    "Neocortex gives the first concrete anchor.",
+    "Limbic system creates contrast so the idea is not one anecdote.",
+    "Antonio Damasio / Descartes' Error adds a boundary case for application.",
+    "Neocortex, Limbic system, Language, Feeling keep the unit from collapsing into generic purpose talk."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch04.ex.neocortex",
+      "label": "Neocortex",
+      "summary": "The neocortex within the cerebral cortex is tied to higher sensory processing and language. Neocortex, cerebral cortex, sensory processing, and language anchor the WHAT side.",
+      "teachesWhat": "Neocortex turns Cerebral cortex into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "neocortex",
+        "cerebral cortex",
+        "sensory processing",
+        "language"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.ex.limbic-system",
+      "label": "Limbic system",
+      "summary": "The limbic system is associated with emotion processing, memory processing, and motivation circuits. Limbic system, emotion processing, memory processing, and motivation circuits anchor the WHY side.",
+      "teachesWhat": "Limbic system turns Limbic system into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "limbic system",
+        "emotion processing",
+        "memory processing",
+        "motivation circuits"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.ex.antonio-damasio-descartes-error",
+      "label": "Antonio Damasio / Descartes' Error",
+      "summary": "Antonio Damasio's 1994 Descartes' Error is a public reference point for emotion and reason working together in decision-making.",
+      "teachesWhat": "Antonio Damasio / Descartes' Error turns Antonio Damasio into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Antonio Damasio",
+        "Descartes' Error",
+        "1994",
+        "emotion and reason"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to turn biological decision language into a universal slogan and ignore the cases. The stricter reading keeps the claim tied to the specific examples and uses the framework only where the details support it.",
+  "voiceCues": [
+    "plain business language with short contrasts",
+    "case first, principle second",
+    "second-person diagnostic questions",
+    "simple framework names repeated sparingly"
+  ],
+  "forbiddenLeakage": [
+    "Do not make trust the main unit",
+    "Do not introduce market diffusion categories"
+  ],
+  "paraphraseNotes": "This Is Not Opinion, This Is Biology works from biological decision language: The model maps WHAT language to analytical processing and WHY language to feeling, trust, and choice. A reader learns why facts can be accurate yet fail to move a decision when they do not connect to felt value. The neocortex within the cerebral cortex is tied to higher sensory processing and language. Neocortex, cerebral cortex, sensory processing, and language anchor the WHAT side. The limbic system is associated with emotion processing, memory processing, and motivation circuits. Limbic system, emotion processing, memory processing, and motivation circuits anchor the WHY side. Antonio Damasio's 1994 Descartes' Error is a public reference point for emotion and reason working together in decision-making. Neocortex starts the local logic for This Is Not Opinion, This Is Biology; Limbic system, Language, Feeling complete the sequence. Keep neocortex, limbic system, and Damasio as decision-language support; do not overclaim neuroscience beyond a practical heuristic.",
+  "testableFacts": [
+    {
+      "id": "ch04.fact.1",
+      "claim": "Neocortex makes biological decision language concrete through neocortex and cerebral cortex.",
+      "becauseMechanism": "Because neocortex gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Neocortex as colorful background.",
+      "errorIsWhy": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "derivedFrom": "ch04.ex.neocortex"
+    },
+    {
+      "id": "ch04.fact.2",
+      "claim": "Limbic system adds a second anchor for biological decision language with limbic system and emotion processing.",
+      "becauseMechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "errorIsWhy": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "derivedFrom": "ch04.ex.limbic-system"
+    },
+    {
+      "id": "ch04.fact.3",
+      "claim": "Antonio Damasio / Descartes' Error supplies a third checkable scene using Antonio Damasio and Descartes' Error.",
+      "becauseMechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "errorIsWhy": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "derivedFrom": "ch04.ex.antonio-damasio-descartes-error"
+    },
+    {
+      "id": "ch04.fact.4",
+      "claim": "biological decision language depends on the sequence Neocortex before Limbic system.",
+      "becauseMechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "errorIsWhy": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.5",
+      "claim": "Neocortex, Limbic system, Language, Feeling form the local framework for This Is Not Opinion, This Is Biology.",
+      "becauseMechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "errorIsWhy": "Shortening removes the distinctions the quiz and examples need to test.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.6",
+      "claim": "sensory processing is a hard detail that should stay attached to Neocortex.",
+      "becauseMechanism": "Because hard specifics are portable only inside their case, moving sensory processing to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "errorIsWhy": "A true detail becomes misleading when it is attached to the wrong case.",
+      "derivedFrom": "ch04.ex.neocortex"
+    },
+    {
+      "id": "ch04.fact.7",
+      "claim": "memory processing gives Limbic system a different factual token from Neocortex.",
+      "becauseMechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "errorIsWhy": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "derivedFrom": "ch04.ex.limbic-system"
+    },
+    {
+      "id": "ch04.fact.8",
+      "claim": "1994 helps mark the boundary of biological decision language.",
+      "becauseMechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "errorIsWhy": "The mechanism changes by venue; boundary details keep the application honest.",
+      "derivedFrom": "ch04.ex.antonio-damasio-descartes-error"
+    },
+    {
+      "id": "ch04.fact.9",
+      "claim": "This Is Not Opinion, This Is Biology should teach biological decision language through Neocortex, Limbic system, and Antonio Damasio / Descartes' Error, not through generic leadership advice.",
+      "becauseMechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "errorIsWhy": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "derivedFrom": "ch04.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "This Is Not Opinion, This Is Biology framework",
+      "members": [
+        "Neocortex",
+        "Limbic system",
+        "Language",
+        "Feeling"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Neocortex",
+    "Limbic system",
+    "Antonio Damasio",
+    "Descartes' Error"
+  ]
+}

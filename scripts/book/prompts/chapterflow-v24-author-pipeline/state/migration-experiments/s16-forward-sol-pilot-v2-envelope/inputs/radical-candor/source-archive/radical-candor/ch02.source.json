@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 2,
+  "chapterTitle": "Get, Give, and Encourage Guidance",
+  "focus": "Feedback becomes useful when managers solicit it first, give specific praise and criticism, and encourage peers to speak to one another instead of routing every truth through the boss.",
+  "coreClaim": "A guidance culture starts with get before give, then turns praise and criticism into humble, helpful, timely information.",
+  "centralConcept": {
+    "id": "ch02.concept",
+    "name": "guidance culture",
+    "plainDefinition": "Guidance means praise and criticism moving in all directions: toward the manager, from the manager, and among peers. The order matters because leaders need to invite criticism before expecting others to receive it.",
+    "whyItMatters": "A team gets safer and sharper when guidance becomes normal, specific, and two-way. Managers stop saving feedback for formal moments and start correcting course while the work can still improve."
+  },
+  "keyClaims": [
+    "The feedback order of operations starts with soliciting criticism of the manager.",
+    "Ruinous Empathy is the common failure mode when managers avoid uncomfortable truths.",
+    "Obnoxious Aggression names direct feedback that lacks care.",
+    "Manipulative Insincerity names evasive or political feedback behavior.",
+    "Specific praise matters because vague approval cannot be repeated."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch02.ex.sheryl-sandberg-feedback",
+      "label": "Sheryl Sandberg direct feedback",
+      "summary": "The public Sandberg connection gives a concrete senior-leader setting for direct feedback in a Google-era management relationship. Sheryl Sandberg, Kim Scott, Google, and 2017 anchor the example as a real workplace relationship rather than a generic boss story.",
+      "teachesWhat": "Candid guidance can be both personal and performance-oriented when the relationship is strong enough.",
+      "hardSpecifics": [
+        "Sheryl Sandberg",
+        "Kim Scott",
+        "Google",
+        "2017"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.ex.bob-juice-software",
+      "label": "Bob at Juice Software",
+      "summary": "Bob is the recurring Radical Candor cautionary example for delayed criticism in an early company setting. Bob, Juice Software, delayed criticism, and firing ground the Ruinous Empathy risk: avoiding discomfort can cost the employee and the team.",
+      "teachesWhat": "Withholding clear criticism can be more damaging than having the hard conversation early.",
+      "hardSpecifics": [
+        "Bob",
+        "Juice Software",
+        "delayed criticism",
+        "firing"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.ex.order-of-operations-feedback",
+      "label": "Order of Operations feedback sequence",
+      "summary": "The official glossary documents the order as solicit feedback, give feedback to individuals, then encourage feedback between team members. Ch. 5-6 and get before give make the sequence checkable.",
+      "teachesWhat": "Leaders earn standing to give guidance by first showing they can receive it.",
+      "hardSpecifics": [
+        "solicit feedback",
+        "give feedback to individuals",
+        "encourage feedback between team members",
+        "Ch. 5-6"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to build a feedback culture by telling everyone to be more honest. The stronger move starts with managerial vulnerability: ask for criticism, reward it, and only then expect others to absorb guidance.",
+  "voiceCues": [
+    "uses quadrant labels as diagnosis",
+    "turns awkward feedback into operational sequence",
+    "keeps praise and criticism paired"
+  ],
+  "forbiddenLeakage": [
+    "Do not shift into Career Conversations from Team.",
+    "Do not make performance reviews the main venue for guidance."
+  ],
+  "paraphraseNotes": "Guidance is broader than criticism. The local movement is get, give, and encourage: first solicit criticism as the manager, then give clear praise and criticism to individuals, then create conditions for people to speak directly with one another. The Sheryl Sandberg connection keeps guidance tied to a real senior-leader relationship at Google, where the directness can be demanding without becoming contemptuous. Bob at Juice Software anchors the opposite risk: delayed criticism can feel kind in the moment but become unfair when the person never receives useful information soon enough to change. The official order-of-operations entry supplies the exact sequence and page range across Ch. 5-6. Keep the four quadrants available as diagnostic vocabulary: Ruinous Empathy for care without challenge, Obnoxious Aggression for challenge without care, Manipulative Insincerity for neither, and Radical Candor for both. The writer should not turn the lesson into a call for more honesty in general. The mechanism is behavioral order, specificity, and reciprocity.",
+  "testableFacts": [
+    {
+      "id": "ch02.fact.1",
+      "claim": "The feedback order of operations begins by soliciting feedback before giving it.",
+      "becauseMechanism": "Because get before give demonstrates humility, later criticism has more credibility.",
+      "commonError": "Starting a candor rollout by criticizing everyone else.",
+      "errorIsWhy": "That skips the leader's first proof of receptiveness.",
+      "derivedFrom": "ch02.ex.sheryl-sandberg-feedback"
+    },
+    {
+      "id": "ch02.fact.2",
+      "claim": "Ruinous Empathy appears at Ch. 2 p. 33 as care without direct challenge.",
+      "becauseMechanism": "Because short-term comfort can hide needed information, the employee loses a chance to improve.",
+      "commonError": "Equating niceness with kindness.",
+      "errorIsWhy": "Kindness includes timely truth when performance is at stake.",
+      "derivedFrom": "ch02.ex.bob-juice-software"
+    },
+    {
+      "id": "ch02.fact.3",
+      "claim": "Obnoxious Aggression appears at Ch. 2 pp. 25-27 as direct challenge without care.",
+      "becauseMechanism": "Since the care signal is missing, accurate criticism can still damage trust.",
+      "commonError": "Assuming correct feedback is automatically useful.",
+      "errorIsWhy": "Delivery and relationship change whether the feedback can be used.",
+      "derivedFrom": "ch02.ex.order-of-operations-feedback"
+    },
+    {
+      "id": "ch02.fact.4",
+      "claim": "Manipulative Insincerity appears at Ch. 2 pp. 41-42 as neither care nor direct challenge.",
+      "becauseMechanism": "Because the person protects image or advantage, feedback becomes political instead of helpful.",
+      "commonError": "Thinking silence is neutral.",
+      "errorIsWhy": "Evasion and back-channel criticism actively corrode trust.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.5",
+      "claim": "Bob at Juice Software illustrates delayed criticism leading toward firing.",
+      "becauseMechanism": "Because unclear feedback postponed the real conversation, the problem grew harder for everyone.",
+      "commonError": "Avoiding discomfort to protect the employee.",
+      "errorIsWhy": "The employee is harmed when useful information arrives too late.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.6",
+      "claim": "Sheryl Sandberg and Kim Scott provide a real Google-era relationship for direct guidance.",
+      "becauseMechanism": "Because trust already exists, a hard observation can land as help rather than humiliation.",
+      "commonError": "Copying the blunt words without the relationship base.",
+      "errorIsWhy": "The relationship is part of the mechanism.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.7",
+      "claim": "Specific praise is part of guidance, not a soft extra.",
+      "becauseMechanism": "Because specific praise tells someone what to repeat, it improves future work more than vague approval.",
+      "commonError": "Saving specificity only for criticism.",
+      "errorIsWhy": "Positive guidance also needs observable behavior.",
+      "derivedFrom": "ch02.ex.sheryl-sandberg-feedback"
+    },
+    {
+      "id": "ch02.fact.8",
+      "claim": "The sequence ends by encouraging feedback between team members.",
+      "becauseMechanism": "Since peers often see the work first, routing every issue through the manager slows learning.",
+      "commonError": "Making the boss the clearinghouse for all hard truths.",
+      "errorIsWhy": "That creates dependency and delays correction.",
+      "derivedFrom": "ch02.ex.bob-juice-software"
+    },
+    {
+      "id": "ch02.fact.9",
+      "claim": "A go-to question helps solicit criticism from direct reports.",
+      "becauseMechanism": "Because a repeated question lowers the cost of speaking up, employees can prepare honest input.",
+      "commonError": "Waiting for spontaneous upward feedback.",
+      "errorIsWhy": "Power differences make uninvited criticism unlikely.",
+      "derivedFrom": "ch02.ex.order-of-operations-feedback"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Feedback order of operations",
+      "members": [
+        "solicit feedback",
+        "give feedback to individuals",
+        "encourage feedback between team members"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Sheryl Sandberg direct feedback",
+    "Sheryl Sandberg",
+    "Kim Scott",
+    "Google",
+    "2017",
+    "Bob at Juice Software",
+    "Bob",
+    "Juice Software",
+    "delayed criticism",
+    "firing",
+    "Order of Operations feedback sequence",
+    "solicit feedback",
+    "give feedback to individuals",
+    "encourage feedback between team members",
+    "Ch. 5-6"
+  ]
+}

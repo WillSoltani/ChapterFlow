@@ -738,6 +738,24 @@ export type ForwardValidationCampaignResultV1 = {
   accepted: boolean;
   capabilitiesUsed: typeof FORWARD_VALIDATION_CAPABILITIES;
   persistenceReceipts: ForwardPersistenceReceiptV1[];
+  /** Present only for an explicitly stage-scoped run. A partial scope always
+   * records its staged-out chapters as hard failures, so a partial result can
+   * never satisfy `accepted` and can never be consumed as a full pilot. */
+  stageScope?: {
+    policyId: string;
+    executeChapterKeys: string[];
+    stagedOutChapterKeys: string[];
+  };
+};
+
+/** Explicit, owner-visible execution scope for a staged campaign over a FULL
+ * frozen manifest. The manifest identity (all eight pilot coordinates, hashes,
+ * routes) stays intact; only which targets are attempted now is narrowed. The
+ * staged-out remainder resumes later on the SAME manifest via
+ * `loadPreservedAttempt`, so completed chapters replay at zero model cost. */
+export type ForwardCampaignStageScopeV1 = {
+  policyId: string;
+  executeChapterKeys: string[];
 };
 
 export type ForwardValidationCampaignDeps = {
@@ -780,6 +798,9 @@ export type ForwardValidationCampaignDeps = {
     target: ForwardValidationTargetV1;
     stage: ForwardCandidateStage;
   }) => Promise<ForwardValidationAttemptRecordV1 | null> | ForwardValidationAttemptRecordV1 | null;
+  /** Optional staged execution over the full frozen manifest (pilot only).
+   * Absence runs every target — byte-identical legacy behavior. */
+  stageScope?: ForwardCampaignStageScopeV1;
   evaluateGoldBook?: (args: {
     manifest: Readonly<ForwardGoldManifestV1>;
     finalByChapter: Readonly<Record<string, ForwardValidationAttemptRecordV1>>;
@@ -1441,6 +1462,28 @@ export async function runForwardValidationCampaign(
       && typeof deps.readPersistedEvidence === "function",
     "campaign requires durable evidence sinks with read-back",
   );
+  const stageScope = deps.stageScope ?? null;
+  const scopedTargets = stageScope === null
+    ? manifest.targets
+    : manifest.targets.filter((target) => stageScope.executeChapterKeys.includes(chapterKey(target)));
+  if (stageScope !== null) {
+    requireCondition(manifest.kind === "pilot", "stage-scoped execution is a pilot-only capability");
+    requireCondition(typeof stageScope.policyId === "string" && /^[a-z0-9][a-z0-9-]{2,63}$/.test(stageScope.policyId),
+      "stage scope requires a canonical policy id");
+    requireCondition(Array.isArray(stageScope.executeChapterKeys) && stageScope.executeChapterKeys.length > 0,
+      "stage scope cannot be empty");
+    requireCondition(new Set(stageScope.executeChapterKeys).size === stageScope.executeChapterKeys.length,
+      "stage scope chapter keys must be unique");
+    const manifestKeys = new Set(manifest.targets.map(chapterKey));
+    for (const key of stageScope.executeChapterKeys) {
+      requireCondition(manifestKeys.has(key), `stage scope chapter key is outside the frozen manifest: ${key}`);
+    }
+    requireCondition(hashCanonical(scopedTargets.map(chapterKey)) === hashCanonical(stageScope.executeChapterKeys),
+      "stage scope must list its chapters in frozen manifest order");
+  }
+  const stagedOutChapterKeys = stageScope === null
+    ? []
+    : manifest.targets.map(chapterKey).filter((key) => !stageScope.executeChapterKeys.includes(key));
 
   const attempts: ForwardValidationAttemptRecordV1[] = [];
   const first: ForwardValidationAttemptRecordV1[] = [];
@@ -1545,7 +1588,7 @@ export async function runForwardValidationCampaign(
   };
 
   // Phase one: no finalization may run inside this loop.
-  for (const target of manifest.targets) {
+  for (const target of scopedTargets) {
     const record = await runOrResume({ target, stage: "first-write", previous: null });
     first.push(record);
     finalByChapter[record.chapterKey] = record;
@@ -1559,7 +1602,7 @@ export async function runForwardValidationCampaign(
   // Phase two: one bounded route per failed chapter. A typed patch is not a
   // second authoring candidate; the only permitted repair→regen sequence is the
   // explicit wrong-route/whole-chapter exception.
-  for (const target of manifest.targets) {
+  for (const target of scopedTargets) {
     const key = chapterKey(target);
     const firstRecord = finalByChapter[key];
     if (firstRecord.pass) continue;
@@ -1606,6 +1649,11 @@ export async function runForwardValidationCampaign(
     catch (error) { hardFailures.push(`gold evidence binding failed: ${(error as Error).message}`); }
   }
   hardFailures.push(...acceptanceProblems(manifest, account, finalByChapter, goldEvaluation));
+  // A partial stage is never a completed pilot: the staged-out remainder is a
+  // hard failure by construction, not a pass-rate accounting artifact.
+  if (stagedOutChapterKeys.length > 0) {
+    hardFailures.push(`stage scope ${stageScope!.policyId}: chapters staged out (not attempted): ${stagedOutChapterKeys.join(", ")}`);
+  }
   const uniqueHardFailures = sortedUnique(hardFailures);
   return {
     schema: FORWARD_VALIDATION_RESULT_SCHEMA,
@@ -1622,6 +1670,13 @@ export async function runForwardValidationCampaign(
     accepted: uniqueHardFailures.length === 0,
     capabilitiesUsed: FORWARD_VALIDATION_CAPABILITIES,
     persistenceReceipts,
+    ...(stageScope === null ? {} : {
+      stageScope: {
+        policyId: stageScope.policyId,
+        executeChapterKeys: [...stageScope.executeChapterKeys],
+        stagedOutChapterKeys,
+      },
+    }),
   };
 }
 

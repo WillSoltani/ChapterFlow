@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 3,
+  "chapterTitle": "Understand What Motivates Each Person on Your Team",
+  "focus": "Growth management replaces generic talent ranking with individual motivation, using rock-star and superstar modes to match roles, challenge, and stability to the person.",
+  "coreClaim": "The key management move is to understand each person's current growth trajectory and adapt support without ranking one trajectory above the other.",
+  "centralConcept": {
+    "id": "ch03.concept",
+    "name": "growth trajectory matching",
+    "plainDefinition": "People need different roles and support depending on whether they are in a steep-growth season or a gradual-growth season. The manager's job is to understand motivation well enough to match opportunity, stability, and challenge to the person.",
+    "whyItMatters": "A manager who sees growth trajectory avoids treating every ambitious person as superior and every steady expert as stagnant. The team gets both continuity and change without forcing one career script on everyone."
+  },
+  "keyClaims": [
+    "Growth Management shifts attention from abstract talent to current trajectory.",
+    "Rock Star Mode means gradual growth, mastery, and stability rather than low ambition.",
+    "Superstar Mode means steep growth, rapid learning, and appetite for stretch.",
+    "A team needs both steady experts and fast climbers.",
+    "Misreading trajectory creates micromanagement, neglect, or mismatched roles."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch03.ex.growth-management-glossary",
+      "label": "Growth Management",
+      "summary": "The official glossary locates Growth Management at Ch. 3 pp. 47-48. It shifts the manager's attention from talent labels to each person's growth trajectory, role fit, and hard conversations.",
+      "teachesWhat": "Managing growth requires diagnosis before assignment.",
+      "hardSpecifics": [
+        "Growth Management",
+        "Ch. 3 pp. 47-48",
+        "growth trajectory",
+        "role fit"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.ex.rock-star-mode",
+      "label": "Rock Star Mode",
+      "summary": "Rock Star Mode is documented at Ch. 3 pp. 49-50 as gradual growth, mastery, stability, and accumulated expertise. The label describes a mode, not a lower-value employee type.",
+      "teachesWhat": "Steady experts are essential when roles require depth and continuity.",
+      "hardSpecifics": [
+        "Rock Star Mode",
+        "Ch. 3 pp. 49-50",
+        "gradual growth",
+        "mastery"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.ex.superstar-mode",
+      "label": "Superstar Mode",
+      "summary": "Superstar Mode is documented at Ch. 3 pp. 49-50 as steep growth, rapid learning, stretch challenges, and restlessness in stable roles. The label describes a current trajectory rather than a permanent identity.",
+      "teachesWhat": "Fast-growth people need challenge or they will stall, churn, or distort the role.",
+      "hardSpecifics": [
+        "Superstar Mode",
+        "Ch. 3 pp. 49-50",
+        "steep growth",
+        "stretch challenges"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The common mistake is to rank superstars above rock stars. The useful distinction is fit: gradual growth and steep growth both create value, and the wrong role can harm either person.",
+  "voiceCues": [
+    "uses memorable people labels with cautions",
+    "corrects status assumptions",
+    "turns motivation into role design"
+  ],
+  "forbiddenLeakage": [
+    "Do not use the three Career Conversations as the main method yet.",
+    "Do not import formal performance-review calibration."
+  ],
+  "paraphraseNotes": "Growth trajectory is the local engine. Growth Management is documented at Ch. 3 pp. 47-48 and reframes management away from vague talent judgments. The rock-star and superstar labels are easy to misuse, so the sidecar must keep them as modes rather than rankings. Rock Star Mode, at Ch. 3 pp. 49-50, describes gradual growth, mastery, stability, and accumulated expertise; it is often exactly what a role needs. Superstar Mode, from the same page range, describes steep growth, fast learning, stretch appetite, and restlessness when a role has become too stable. The concrete teaching work is matching: a gradual-growth expert may need recognition, autonomy, and protection from being pushed into unwanted promotion; a steep-growth person may need larger scope before boredom turns into exit risk. The manager also has to notice personal motivation rather than projecting a single ambition story onto everyone. Keep the hard edge sharp: equal respect does not mean identical management.",
+  "testableFacts": [
+    {
+      "id": "ch03.fact.1",
+      "claim": "Growth Management is documented at Ch. 3 pp. 47-48 as supporting each person's trajectory.",
+      "becauseMechanism": "Because trajectory changes over time, management must diagnose current motivation instead of assigning fixed talent labels.",
+      "commonError": "Sorting people permanently into high and low potential.",
+      "errorIsWhy": "That confuses a current growth mode with worth.",
+      "derivedFrom": "ch03.ex.growth-management-glossary"
+    },
+    {
+      "id": "ch03.fact.2",
+      "claim": "Rock Star Mode appears at Ch. 3 pp. 49-50 as gradual growth and mastery.",
+      "becauseMechanism": "Since some roles require accumulated expertise, gradual growth can be central to team performance.",
+      "commonError": "Assuming gradual growth means complacency.",
+      "errorIsWhy": "Mastery and stability can be a deliberate strength.",
+      "derivedFrom": "ch03.ex.rock-star-mode"
+    },
+    {
+      "id": "ch03.fact.3",
+      "claim": "Superstar Mode appears at Ch. 3 pp. 49-50 as steep growth and rapid learning.",
+      "becauseMechanism": "Because steep-growth people need stretch, stable roles may underuse or frustrate them.",
+      "commonError": "Assuming fast growth is always better.",
+      "errorIsWhy": "The value depends on role fit and timing.",
+      "derivedFrom": "ch03.ex.superstar-mode"
+    },
+    {
+      "id": "ch03.fact.4",
+      "claim": "Rock Star Mode is not a personality label.",
+      "becauseMechanism": "Because people's life circumstances and ambitions change, the same person may need a different mode later.",
+      "commonError": "Branding someone permanently as steady or slow.",
+      "errorIsWhy": "A mode describes a season, not identity.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.5",
+      "claim": "Superstar Mode is not a promotion entitlement.",
+      "becauseMechanism": "Since stretch must serve the work, managers still need fit, readiness, and team context.",
+      "commonError": "Giving every restless person a bigger title.",
+      "errorIsWhy": "Challenge without fit can create churn or failure.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.6",
+      "claim": "A balanced team needs both gradual-growth and steep-growth contributors.",
+      "becauseMechanism": "Because continuity and change solve different problems, overloading one mode weakens the whole system.",
+      "commonError": "Building only around fast climbers.",
+      "errorIsWhy": "That drains expertise and reliability.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.7",
+      "claim": "Underestimating employees who are not seeking promotion is a named risk in the official guide.",
+      "becauseMechanism": "Because ambition can point toward craft rather than hierarchy, managers can misread contribution.",
+      "commonError": "Equating ambition with promotion hunger.",
+      "errorIsWhy": "People may care deeply while choosing stability.",
+      "derivedFrom": "ch03.ex.growth-management-glossary"
+    },
+    {
+      "id": "ch03.fact.8",
+      "claim": "Clipping the wings of steep-growth employees is a named risk in the official guide.",
+      "becauseMechanism": "Because delayed scope can turn learning energy into frustration, the manager may lose a strong contributor.",
+      "commonError": "Keeping high-growth people comfortable for the manager's convenience.",
+      "errorIsWhy": "The person may need stretch before the manager feels ready.",
+      "derivedFrom": "ch03.ex.rock-star-mode"
+    },
+    {
+      "id": "ch03.fact.9",
+      "claim": "Micromanagement and absentee management are both trajectory failures.",
+      "becauseMechanism": "Because people need different support levels, the same managerial habit can over-control one person and abandon another.",
+      "commonError": "Using one default management style for everyone.",
+      "errorIsWhy": "Trajectory fit changes the right level of involvement.",
+      "derivedFrom": "ch03.ex.superstar-mode"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Growth trajectory modes",
+      "members": [
+        "Rock Star Mode",
+        "Superstar Mode",
+        "Growth Management"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Growth Management",
+    "Ch. 3 pp. 47-48",
+    "growth trajectory",
+    "role fit",
+    "Rock Star Mode",
+    "Ch. 3 pp. 49-50",
+    "gradual growth",
+    "mastery",
+    "Superstar Mode",
+    "steep growth",
+    "stretch challenges"
+  ]
+}

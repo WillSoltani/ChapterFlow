@@ -112,8 +112,20 @@ import {
   type ForwardGoldManifestV1,
   type ForwardValidationCampaignDeps,
   type ForwardValidationCampaignResultV1,
+  type ForwardCampaignStageScopeV1,
+  type ForwardPilotManifestV1,
   type FrozenForwardValidationManifestV1,
 } from "./forwardValidationCampaign.js";
+import {
+  assertSolPilotStage1QualificationProofFresh,
+  buildSolPilotStage1Scope,
+  composeSolPilotBoundReviewConfig,
+  type SolPilotBoundReviewConfigV1,
+  type SolPilotReadinessChainV1,
+  type SolPilotStage1QualificationProofV2,
+} from "./forwardSolPilotStage1Binding.js";
+import type { FixedRoleAssignmentV1 } from "../bakeoff/migration/reviewLaneTypes.js";
+import type { ForwardPanelReviewPolicyV1 } from "./forwardReviewPolicy.js";
 import type { AuthorIo, PreparedAuthorCandidate } from "./authorRun.js";
 import {
   validateForwardProductionInstrumentSeal,
@@ -1644,9 +1656,17 @@ export function createProductionLedgeredForwardGoldEvaluator(args: {
   return evaluator;
 }
 
+/** Minimal role binding the campaign core consumes: which judge serves which
+ * panel slot, and the frozen panel policy for the call budget. Both V1/V3
+ * role-assignment freezes and the SOL pilot review config satisfy it. */
+export type ForwardCampaignRoleBindingV1 = {
+  roleAssignment: FixedRoleAssignmentV1;
+  panelPolicy: ForwardPanelReviewPolicyV1;
+};
+
 function panelRoleFor(
   request: Readonly<ForwardReviewExecutionRequestV1>,
-  freeze: ForwardRoleAssignmentFreezeV1 | ForwardRoleAssignmentFreezeV3,
+  freeze: ForwardCampaignRoleBindingV1,
 ): ForwardPanelRole {
   const assignment = freeze.roleAssignment;
   if (request.lane === "quiz") return "quizSemanticAdjudicator";
@@ -1722,11 +1742,12 @@ export type RunForwardLiveCampaignV3Args = Omit<ForwardLiveCampaignExecutionArgs
 
 async function runForwardLiveCampaignCore<Schema extends string, Preflight>(
   args: ForwardLiveCampaignExecutionArgs & {
-    roleFreeze: ForwardRoleAssignmentFreezeV1 | ForwardRoleAssignmentFreezeV3;
+    roleFreeze: ForwardRoleAssignmentFreezeV1 | ForwardRoleAssignmentFreezeV3 | ForwardCampaignRoleBindingV1;
   },
   preflight: Preflight,
   resultSchema: Schema,
   beforeModelCall?: () => void,
+  stageScope?: ForwardCampaignStageScopeV1,
 ): Promise<RunForwardLiveCampaignResultBase<Schema, Preflight>> {
   const budget = buildForwardLivePhaseBudget({
     manifest: args.manifest,
@@ -1811,6 +1832,7 @@ async function runForwardLiveCampaignCore<Schema extends string, Preflight>(
     readPersistedEvidence: args.readPersistedEvidence,
     ...(args.loadPreservedAttempt ? { loadPreservedAttempt: args.loadPreservedAttempt } : {}),
     ...(goldEvaluator ? { evaluateGoldBook: goldEvaluator } : {}),
+    ...(stageScope ? { stageScope } : {}),
   });
   await args.assertFinalFreshness?.(campaign);
   const result: RunForwardLiveCampaignResultBase<Schema, Preflight> = {
@@ -1869,6 +1891,202 @@ export async function runForwardLiveCampaignV3(
     "V3 route/proof drift immediately before model call");
   };
   return runForwardLiveCampaignCore(args, preflight, FORWARD_LIVE_CAMPAIGN_RESULT_V3_SCHEMA, assertQualificationFresh);
+}
+
+export const FORWARD_LIVE_CAMPAIGN_PREFLIGHT_SOL_PILOT_SCHEMA =
+  "forward-live-campaign-preflight-sol-pilot-stage1-v1" as const;
+export const FORWARD_LIVE_CAMPAIGN_RESULT_SOL_PILOT_SCHEMA =
+  "forward-live-campaign-driver-result-sol-pilot-stage1-v1" as const;
+
+export type ForwardLiveCampaignPreflightSolPilotV1 = {
+  schema: typeof FORWARD_LIVE_CAMPAIGN_PREFLIGHT_SOL_PILOT_SCHEMA;
+  kind: "pilot";
+  experimentId: typeof PILOT_ENVELOPE_EXPERIMENT_ID;
+  manifestSha256: string;
+  stageScopePolicyId: string;
+  stageScopeSha256: string;
+  executeChapterKeys: string[];
+  inputFreezeSha256: string;
+  inputMaterializationSha256: string;
+  productionInstrumentSealSha256: string;
+  qualificationExperimentId: SolPilotStage1QualificationProofV2["qualificationExperimentId"];
+  qualificationResultSha256: string;
+  pilotRoleFreezeSha256: string;
+  instrumentSnapshotSha256: string;
+  qualificationProofSha256: string;
+  reviewConfigSha256: string;
+  roleAssignmentSha256: string;
+  reviewProtocolVersion: typeof FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2;
+  readerDecisionPolicy: SolPilotBoundReviewConfigV1["readerDecisionPolicy"];
+  executionProfileHash: string;
+  routePolicyVersion: string;
+  executionRoute: "codex_exec_chatgpt_subscription";
+  authMode: "chatgpt";
+  apiKeyPresent: false;
+  apiFallbackAllowed: false;
+  directHttpOrSdkAllowed: false;
+  forbiddenProviderEnvKeysPresent: [];
+  apiCallsMade: 0;
+  maxParallel: 2;
+  externalCapabilities: { publish: false; promote: false; deploy: false; upload: false };
+  preflightSha256: string;
+};
+
+export type RunForwardLiveCampaignSolPilotStage1Args = Omit<ForwardLiveCampaignExecutionArgs, "route"> & {
+  chain: SolPilotReadinessChainV1;
+  proof: SolPilotStage1QualificationProofV2;
+  reviewConfig: SolPilotBoundReviewConfigV1;
+  reviewConfigSha256: string;
+  stageScope: ForwardCampaignStageScopeV1;
+  route: ForwardNoApiChatgptRouteProofV3;
+  /** Additive external-byte reread supplied by the campaign adapter. The
+   * built-in readiness-chain recomposition always runs as well. */
+  beforePilotModelCall?: () => void;
+};
+
+export type RunForwardLiveCampaignResultSolPilotV1 = RunForwardLiveCampaignResultBase<
+  typeof FORWARD_LIVE_CAMPAIGN_RESULT_SOL_PILOT_SCHEMA,
+  ForwardLiveCampaignPreflightSolPilotV1
+>;
+
+/** Model-free final barrier for the P6 stage-1 SOL pilot. It accepts no IMP-24
+ * qualification identity: the judge roles are proven by the retained
+ * pilot-role-readiness-v6 chain, recomposed here and again before every call. */
+export function preflightForwardLiveCampaignSolPilotStage1(args: {
+  manifest: FrozenForwardValidationManifestV1;
+  inputFreeze: ForwardInputFreezeV1;
+  chain: SolPilotReadinessChainV1;
+  proof: SolPilotStage1QualificationProofV2;
+  reviewConfig: SolPilotBoundReviewConfigV1;
+  reviewConfigSha256: string;
+  stageScope: ForwardCampaignStageScopeV1;
+  route: ForwardNoApiChatgptRouteProofV3;
+  verifiedInputMaterializationSha256: string;
+  verifiedProductionInstrumentSealSha256: string;
+}): ForwardLiveCampaignPreflightSolPilotV1 {
+  assertManifest(args.manifest.manifest);
+  requireCondition(hashCanonical(args.manifest.manifest) === args.manifest.manifestSha256,
+    "sol-pilot live campaign manifest hash drift");
+  requireCondition(args.manifest.manifest.kind === "pilot"
+    && args.manifest.manifest.experimentId === PILOT_ENVELOPE_EXPERIMENT_ID,
+  "sol-pilot stage 1 requires the exact fresh envelope pilot manifest");
+  const pilotManifest = args.manifest as FrozenForwardValidationManifestV1<ForwardPilotManifestV1>;
+  const expectedScope = buildSolPilotStage1Scope(pilotManifest);
+  requireCondition(args.stageScope.policyId === expectedScope.policyId
+      && hashCanonical(args.stageScope.executeChapterKeys) === hashCanonical(expectedScope.executeChapterKeys),
+    "sol-pilot stage scope is not the ratified first-two-targets policy");
+  assertForwardInputFreezeFresh(args.inputFreeze);
+  assertSolPilotStage1QualificationProofFresh({
+    proof: args.proof,
+    chain: args.chain,
+    roleAssignment: args.reviewConfig.roleAssignment,
+  });
+  const recomposed = composeSolPilotBoundReviewConfig({
+    chain: args.chain,
+    roleAssignment: args.reviewConfig.roleAssignment,
+    executionProfileHash: args.route.executionProfileHash,
+    routePolicyVersion: args.route.routePolicyVersion,
+  });
+  requireCondition(recomposed.configSha256 === args.reviewConfigSha256
+      && hashCanonical(args.reviewConfig) === args.reviewConfigSha256,
+    "sol-pilot bound review config does not recompose from the retained readiness chain");
+  requireCondition(args.manifest.manifest.roleAssignmentSha256 === args.proof.roleAssignmentSha256
+      && args.manifest.manifest.instrumentManifestSha256 === args.reviewConfig.instrumentManifestSha256
+      && args.manifest.manifest.thresholdsSha256 === args.reviewConfig.instrumentManifest.thresholdsSha256,
+    "sol-pilot manifest is not bound to the exact frozen role assignment/instrument manifest");
+  requireCondition(SHA256.test(args.verifiedInputMaterializationSha256)
+      && args.verifiedInputMaterializationSha256 === args.manifest.manifest.inputMaterializationSha256,
+    "sol-pilot input materialization is unverified or bound to another manifest");
+  requireCondition(SHA256.test(args.verifiedProductionInstrumentSealSha256)
+      && args.verifiedProductionInstrumentSealSha256 === args.manifest.manifest.productionInstrumentSealSha256
+      && args.verifiedProductionInstrumentSealSha256 === args.proof.currentProductionInstrumentSealSha256
+      && args.verifiedProductionInstrumentSealSha256 === args.reviewConfig.currentProductionInstrumentSealSha256,
+    "sol-pilot production instrument seal disagrees with the manifest, proof, or review config");
+  requireCondition(args.route.executionRoute === "codex_exec_chatgpt_subscription"
+      && args.route.authMode === "chatgpt"
+      && args.route.apiKeyPresent === false
+      && args.route.apiFallbackAllowed === false
+      && args.route.directHttpOrSdkAllowed === false
+      && args.route.apiCallsMade === 0
+      && args.route.forbiddenProviderEnvKeysPresent.length === 0
+      && args.route.maxParallel === 2
+      && args.route.executionProfileHash === args.reviewConfig.executionProfileHash
+      && args.route.routePolicyVersion === args.reviewConfig.routePolicyVersion,
+    "sol-pilot route proof fails the ChatGPT-only no-API barrier");
+  const core: Omit<ForwardLiveCampaignPreflightSolPilotV1, "preflightSha256"> = {
+    schema: FORWARD_LIVE_CAMPAIGN_PREFLIGHT_SOL_PILOT_SCHEMA,
+    kind: "pilot",
+    experimentId: PILOT_ENVELOPE_EXPERIMENT_ID,
+    manifestSha256: args.manifest.manifestSha256,
+    stageScopePolicyId: args.stageScope.policyId,
+    stageScopeSha256: hashCanonical(args.stageScope),
+    executeChapterKeys: [...args.stageScope.executeChapterKeys],
+    inputFreezeSha256: args.inputFreeze.freezeSha256,
+    inputMaterializationSha256: args.verifiedInputMaterializationSha256,
+    productionInstrumentSealSha256: args.verifiedProductionInstrumentSealSha256,
+    qualificationExperimentId: args.proof.qualificationExperimentId,
+    qualificationResultSha256: args.proof.readinessResultSha256,
+    pilotRoleFreezeSha256: args.proof.pilotRoleFreezeSha256,
+    instrumentSnapshotSha256: args.proof.instrumentSnapshotSha256,
+    qualificationProofSha256: args.proof.proofSha256,
+    reviewConfigSha256: args.reviewConfigSha256,
+    roleAssignmentSha256: args.proof.roleAssignmentSha256,
+    reviewProtocolVersion: FORWARD_PRODUCTION_REVIEW_PROTOCOL_V2,
+    readerDecisionPolicy: args.reviewConfig.readerDecisionPolicy,
+    executionProfileHash: args.route.executionProfileHash,
+    routePolicyVersion: args.route.routePolicyVersion,
+    executionRoute: "codex_exec_chatgpt_subscription",
+    authMode: "chatgpt",
+    apiKeyPresent: false,
+    apiFallbackAllowed: false,
+    directHttpOrSdkAllowed: false,
+    forbiddenProviderEnvKeysPresent: [],
+    apiCallsMade: 0,
+    maxParallel: 2,
+    externalCapabilities: { publish: false, promote: false, deploy: false, upload: false },
+  };
+  return { ...core, preflightSha256: hashCanonical(core) };
+}
+
+/** P6 stage-1 entrypoint. Reuses the exact inner campaign core (ledger,
+ * reviewer wrapper, conductor, evidence discipline) with the readiness-v6
+ * qualification chain re-asserted before every model call and execution
+ * stage-scoped to the ratified first two pilot targets. */
+export async function runForwardLiveCampaignSolPilotStage1(
+  args: RunForwardLiveCampaignSolPilotStage1Args,
+): Promise<RunForwardLiveCampaignResultSolPilotV1> {
+  const preflight = preflightForwardLiveCampaignSolPilotStage1(args);
+  const assertPilotQualificationFresh = (): void => {
+    args.beforePilotModelCall?.();
+    assertSolPilotStage1QualificationProofFresh({
+      proof: args.proof,
+      chain: args.chain,
+      roleAssignment: args.reviewConfig.roleAssignment,
+    });
+    requireCondition(args.route.executionProfileHash === args.reviewConfig.executionProfileHash
+      && args.route.routePolicyVersion === args.reviewConfig.routePolicyVersion
+      && args.route.executionRoute === "codex_exec_chatgpt_subscription"
+      && args.route.authMode === "chatgpt"
+      && args.route.apiKeyPresent === false
+      && args.route.apiFallbackAllowed === false
+      && args.route.directHttpOrSdkAllowed === false
+      && args.route.apiCallsMade === 0
+      && args.route.forbiddenProviderEnvKeysPresent.length === 0,
+    "sol-pilot route/proof drift immediately before model call");
+  };
+  return runForwardLiveCampaignCore(
+    {
+      ...args,
+      roleFreeze: {
+        roleAssignment: args.reviewConfig.roleAssignment,
+        panelPolicy: args.reviewConfig.panelPolicy,
+      },
+    },
+    preflight,
+    FORWARD_LIVE_CAMPAIGN_RESULT_SOL_PILOT_SCHEMA,
+    assertPilotQualificationFresh,
+    args.stageScope,
+  );
 }
 
 /** Small reusable durable sink for production and injected tests. */
