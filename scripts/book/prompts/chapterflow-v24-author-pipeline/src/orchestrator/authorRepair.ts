@@ -8,11 +8,15 @@
  *  - patch-apply: the harness SPLICES only the allowed scopes from the repair
  *    session's output into the original bytes — out-of-scope drift is discarded
  *    by construction, never policed;
- *  - one repair per lineage (durable ledger), no repair retries; failure or
- *    no-op leaves the ORIGINAL canonical bytes UNTOUCHED (IMP-01: the repair
- *    session edits a seeded COPY inside an isolated attempt workspace — only a
- *    fully validated splice ever commits, via compare-and-swap) and falls
- *    through to the regen path;
+ *  - up to AUTHOR_REPAIR_ROUND_CAP repairs per lineage (durable ledger; WP-404
+ *    raised the author-first ship-path cap from 1 to 2 rounds per the target
+ *    architecture's "typed repair ≤2/chapter" — the caller in authorReview.ts
+ *    owns the round loop and its cap check, this module runs ONE repair
+ *    attempt per call); failure or no-op leaves the ORIGINAL canonical bytes
+ *    UNTOUCHED (IMP-01: the repair session edits a seeded COPY inside an
+ *    isolated attempt workspace — only a fully validated splice ever commits,
+ *    via compare-and-swap) and falls through to the regen path (after the
+ *    round cap is exhausted);
  *  - the confirming read is just the next normal review of the new content
  *    hash — no "confirm the fix" mode exists to rubber-stamp.
  */

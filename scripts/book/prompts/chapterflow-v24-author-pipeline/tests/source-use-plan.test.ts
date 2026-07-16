@@ -661,3 +661,62 @@ test("repair path: a STALE plan refuses before any spawn; a clean scoped repair 
   const committed = JSON.parse(fresh.writes[0]) as { quiz: { questions: Array<{ prompt: string }> } };
   assert.equal(committed.quiz.questions[1].prompt, "Q2, sharpened without any relabel?", "the patched leaf landed");
 });
+
+// ── WP-404: untouched-UNIT (sibling chapter) isolation ────────────────────────
+
+test("WP-404: a committed repair on ch01 leaves a SIBLING chapter's canonical file BYTE-IDENTICAL — untouched-unit isolation holds at the book level, not just within the repaired chapter", async () => {
+  const original = mkRepairChapter();
+  const sibling: ChapterV21 = {
+    ...mkRepairChapter(),
+    chapterId: "zz-plan-ch02",
+    number: 2,
+    title: "A Completely Different Chapter",
+  } as ChapterV21;
+  const packet = mkPacket();
+  const { plan } = compileSourceUsePlan(packet);
+
+  const files = new Map<number, string>([
+    [1, JSON.stringify(original, null, 2) + "\n"],
+    [2, JSON.stringify(sibling, null, 2) + "\n"],
+  ]);
+  const writesByChapter = new Map<number, number>();
+  const io = resolveAuthorIo({
+    chapterExists: (_b, n) => files.has(n),
+    readChapterFile: (_b, n) => files.get(n) ?? null,
+    writeChapterFile: (_b, n, bytes) => {
+      writesByChapter.set(n, (writesByChapter.get(n) ?? 0) + 1);
+      files.set(n, bytes);
+    },
+    removeChapterFile: (_b, n) => { files.delete(n); },
+    readBriefMd: () => "# brief\n",
+    readBrief: () => null,
+    readPacket: () => packet,
+    readSourcePlan: () => plan,
+    loadChapters: () => [...files.entries()].sort((a, b) => a[0] - b[0]).map(([, f]) => JSON.parse(f)),
+    nameBankOk: () => true,
+    voiceCard: () => null,
+    ...memoryProvenanceIo(),
+    readLeadOverride: () => null,
+    writeLeadOverride: () => {},
+    attemptsRoot: () => join(TMP, "attempts-repair-sibling"),
+    gateCandidate: async () => ({ code: 0, stdout: "Gate verdict: PASS — 0 blockers", stderr: "" }),
+    rubricWithCandidate: async () => ({ code: 0, stdout: "ch01: PASS", stderr: "" }),
+  });
+  const siblingBefore = files.get(2)!;
+
+  const patch = mkRepairPatch(original, plan, [{
+    path: "quiz.questions[1].prompt",
+    expectedOldValueHash: patchValueHash((original as { quiz: { questions: Array<{ prompt: string }> } }).quiz.questions[1].prompt).slice(0, 16),
+    replacement: "Q2, sharpened without touching any other chapter?",
+    dependencyUnitIds: [],
+  }]);
+  const spawns: Array<{ cwd?: string }> = [];
+  const r = await doRepairOneChapter("zz-plan", 1, mkRepairDeps(patch, spawns), {
+    io, scopes: ["quiz"], complaints: ["quiz Q2: x"],
+  });
+
+  assert.ok(r.ok, `clean typed patch on ch01 commits: ${r.reason ?? ""}`);
+  assert.equal(writesByChapter.get(1), 1, "exactly one canonical write landed, for the repaired chapter");
+  assert.equal(writesByChapter.get(2) ?? 0, 0, "the repair NEVER writes the sibling chapter's canonical file");
+  assert.equal(files.get(2), siblingBefore, "sibling ch02's bytes are BYTE-IDENTICAL before/after the ch01 repair (book-level untouched-unit isolation)");
+});
