@@ -1,0 +1,68 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p3-holdout-c07-a1",
+  "requestSha256": "6a1b5b0b509c60bfdcda8f7795b79124168959c8947ca6fc535552922931af04",
+  "receiptSha256": "f9a0924590e6b64a6c2ac8dfb63b73ae906484fe5c8d6fd605eedf02dcb4fd83",
+  "executionEvidenceSha256": "b8edee3b3a54906142ba9ada531517c2ca4c647f90925b806ddaf7191f6ad31b",
+  "rawOutputSha256": "125e5a70e75465a66fdc07687f4516f3c43986fe3b622cdb00ba963b334ad89a",
+  "evaluationSha256": "746a074b05f5668eb95ead433093bd6dd87c25e95bdc1321f85df8e9f2afd502",
+  "parsedOutputSha256": "21a88a9498b7a14276fed26e24916f93028945a1e8bd45b9ea8d9a2fbbd58df7",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "ce04c3fae755a64b807b9f4a44b17d361f59384fbcdd015d9fa629f6f9efc7b8",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The generic operational scenario names “Northstar Systems,” while the compiler-owned plan forbids named organizations and permits only role labels and observable operations.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The sentence is phrased as a generic possibility and remains descriptive, so no hypothetical framing or external source support is required. However, its named organization exceeds the generic operational license."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "ReviewModelOutputV2Error",
+        "message": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+        "code": "INVALID_EVIDENCE",
+        "refId": null
+      }
+    }
+  },
+  "evaluationArtifactSha256": "66aa36b6b8d8401617d91965a147e9314740116f0b9cbe0b54c254ab5c78e6d7"
+}

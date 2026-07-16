@@ -1,0 +1,160 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c12-a1",
+  "requestSha256": "0936e90068b9a0c30778f3715823875e3a16be7829cf4b123389412d637880cf",
+  "receiptSha256": "5ca01314e6d1fac1cf001b85f929b319559a78b6c18ac2ccfe0d517c1692d30c",
+  "executionEvidenceSha256": "ad2fa7b9b9c89234dab8f65f7f1929f8a9f52b454523baf71f047a7c36fd1d5f",
+  "rawOutputSha256": "f51d24fcc0212d37ef4d477f166e9f68171502ce00f7d6ad578dab1e9646019e",
+  "evaluationSha256": "c354f2d3fd65d79843e54adc6b1234bf6c2b16a4ce1101efbc86ba80bc5fb16d",
+  "parsedOutputSha256": "727f9ab9d08fcb047462c7d672515587f6fb3c9d0d1289544b407ae8a6e6d161",
+  "assembledReviewSha256": "9a3c5111aaae0339454e46a58e315a14a831a09e579b95dd83df383191ae7d98",
+  "evidenceReferenceResolutionSha256": "e70e8e3bcfff84a436ee72826114ad0d590297f18714378d3a861ecc225bc7a1",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportRegisterAccuracy": false,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "CH-U001-001 attributes the supported Like-button claim to a named 2014 Stanford trial and named researcher. The supplied source evidence supports the Like-button claim and mechanism but provides no support for that trial, date, institution, or researcher; those specifics also exceed the concept-only sufficiency licensed by PLAN-U001.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 presents the attribution as an established source fact. SRC-U001-CLAIM-001 directly supports the sentence about the Facebook Like button, while SRC-U001-ANCHOR-001 and SRC-U001-MECHANISM-001 support its explanatory mechanism. None supports the named trial, year, institution, or researcher. PLAN-U001 requires no special framing and permits mechanistic explanation, so framing and underlying claim strength fit, but the unsupported named attribution makes the target only partially supported."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "fcd3231fccda820d9256803c15f420c955950155a7bf2daf7c234fc833b00ec7",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "cc536dbfaec645cb244744f84e78009d91211b574efc2aa0b34744ff686ae777",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "CH-U001-001 attributes the supported Like-button claim to a named 2014 Stanford trial and named researcher. The supplied source evidence supports the Like-button claim and mechanism but provides no support for that trial, date, institution, or researcher; those specifics also exceed the concept-only sufficiency licensed by PLAN-U001.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ],
+              "findingId": "unit.fact.ch01.fact.3:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The 2014 Stanford Digital Autonomy Trial led by Dr. Elena Marquez established: The Facebook Like button turned social approval into a quick, measurable feedback signal."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"id\": \"ch01.fact.3\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status.\"\n}",
+                "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+                "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions."
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 presents the attribution as an established source fact. SRC-U001-CLAIM-001 directly supports the sentence about the Facebook Like button, while SRC-U001-ANCHOR-001 and SRC-U001-MECHANISM-001 support its explanatory mechanism. None supports the named trial, year, institution, or researcher. PLAN-U001 requires no special framing and permits mechanistic explanation, so framing and underlying claim strength fit, but the unsupported named attribution makes the target only partially supported.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden",
+        "unit.fact.ch01.fact.3:source-finding:001"
+      ],
+      "rationale": "U1: CH-U001-001 presents the attribution as an established source fact. SRC-U001-CLAIM-001 directly supports the sentence about the Facebook Like button, while SRC-U001-ANCHOR-001 and SRC-U001-MECHANISM-001 support its explanatory mechanism. None supports the named trial, year, institution, or researcher. PLAN-U001 requires no special framing and permits mechanistic explanation, so framing and underlying claim strength fit, but the unsupported named attribution makes the target only partially supported."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The 2014 Stanford Digital Autonomy Trial led by Dr. Elena Marquez established: The Facebook Like button turned social approval into a quick, measurable feedback signal."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"id\": \"ch01.fact.3\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status.\"\n}",
+            "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+            "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions."
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "67163351f0981266e782ace57093a038e2fdbcd4f44a0174590ad37002e4d947"
+}

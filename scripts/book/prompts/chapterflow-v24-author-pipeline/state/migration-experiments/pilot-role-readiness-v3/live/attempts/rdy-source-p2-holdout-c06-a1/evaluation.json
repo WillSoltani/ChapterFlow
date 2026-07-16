@@ -1,0 +1,151 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-holdout-c06-a1",
+  "requestSha256": "1a6ddfb17aff1533cd83b69e75878a6dbd469ede69a1463d16ea177cef722156",
+  "receiptSha256": "dfa78994cb10134ddcd819754e692d49593a29414cda55b732e4be4bd9329474",
+  "executionEvidenceSha256": "84d67578a78aefa6c5db76a51460282a2e5b20e95c43073c7a9f37f2cb0bf7b0",
+  "rawOutputSha256": "bcd75c8b65e3f7c1f18170a9999acf4f0a72ed050244a928e2d36294af0dc0d2",
+  "evaluationSha256": "bdd1d2c424af8100ebecaece5917c2294e2daaf0b1bb6865041e8ff7becd1785",
+  "parsedOutputSha256": "a83fd5ba47a783e454ae62bab4e20528d0658a82327967dcca01792a8fabe37e",
+  "assembledReviewSha256": "b1f193d83048e3f976d104ff0de3f39465e2baac8cccd989006a618655687be7",
+  "evidenceReferenceResolutionSha256": "94b5ad9d543c9d813dd5b249e1ed9c5ec1cb2e7d60324c957daa7c7593486dba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=missing_visible_framing",
+    "metricObservations": {
+      "supportRegisterAccuracy": false,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "UNSUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "The plan requires constructed-application framing, but the chapter presents the project-team example as an event that occurred rather than visibly introducing it as hypothetical.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ]
+            }
+          ],
+          "rationale": "U1 is licensed as a constructed application with framing required. The chapter uses an unframed past-tense scenario, so the descriptive strength is within ceiling, but the required hypothetical framing is missing."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "962f17215fd76f898a62885a46e28381149456386ab2be234e8dace5cae8e836",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "10987a736414553d60e548897944790fbde0ab7d7195288282e54b87379b3cde",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "UNSUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "The plan requires constructed-application framing, but the chapter presents the project-team example as an event that occurred rather than visibly introducing it as hypothetical.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ],
+              "findingId": "unit.ch01.constructed-application:source-finding:001",
+              "chapterEvidenceSpans": [
+                "A project team tried a visible decision log during a product-planning exercise."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"constructed\",\n  \"formLicense\": \"application\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"fictional_name\",\n    \"role_label\",\n    \"concrete_action\",\n    \"hypothetical_consequence\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"real_person\",\n    \"real_organization\",\n    \"fabricated_statistic\",\n    \"fabricated_date\",\n    \"fabricated_credential\",\n    \"fabricated_citation\",\n    \"historical_claim\",\n    \"outcome_reported_as_fact\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": true,\n  \"allowedAnchorRefs\": []\n}"
+              ]
+            }
+          ],
+          "rationale": "U1 is licensed as a constructed application with framing required. The chapter uses an unframed past-tense scenario, so the descriptive strength is within ceiling, but the required hypothetical framing is missing.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:visible-framing",
+        "U1:visible-register-incompatible",
+        "unit.ch01.constructed-application:source-finding:001"
+      ],
+      "rationale": "U1: U1 is licensed as a constructed application with framing required. The chapter uses an unframed past-tense scenario, so the descriptive strength is within ceiling, but the required hypothetical framing is missing."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "A project team tried a visible decision log during a product-planning exercise."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"constructed\",\n  \"formLicense\": \"application\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"fictional_name\",\n    \"role_label\",\n    \"concrete_action\",\n    \"hypothetical_consequence\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"real_person\",\n    \"real_organization\",\n    \"fabricated_statistic\",\n    \"fabricated_date\",\n    \"fabricated_credential\",\n    \"fabricated_citation\",\n    \"historical_claim\",\n    \"outcome_reported_as_fact\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": true,\n  \"allowedAnchorRefs\": []\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "086193ba2fb9dc79eae407d011a735f4f536fb715d68b725a0b22af6733534ec"
+}

@@ -1,0 +1,173 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p3-holdout-c11-a1",
+  "requestSha256": "bf9d48a731f8b7b4082abdf16593d0f636ff74779fcb4ec4b9f87037674f4534",
+  "receiptSha256": "85e8804982285d89f4a082dba09d46c762ba9dbbd0eb62433e780147c1a57627",
+  "executionEvidenceSha256": "3b0a15c6f5bbc97f403ed0c0fb7d6c43a0c65b13c33a1c45a4f0623fd38ae9c6",
+  "rawOutputSha256": "19f4d8e38dd2aea77307f9a0b129def0da61f741ecef1fbea02036786c1e1795",
+  "evaluationSha256": "bc1515c0545c33c6f4bbe0dcd36d78d7a02731d7416063a7fcd60c6f9f500a32",
+  "parsedOutputSha256": "f36557cc1cca5da94feb4e733f74d1171786a664cf58f2c1ca02471be5d092be",
+  "assembledReviewSha256": "31e6d26fe17d80e9ed991833c768e64e7fffbee52aa2d7e239c20eb3b4024256",
+  "evidenceReferenceResolutionSha256": "7c31cb2498a26eb9708f6e8b41d814e32a1566fb98d2ddf503a49f47075005ca",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "BLOCK; primary=source_contradiction",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "UNSUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "source_contradiction",
+              "secondaryCategories": [
+                "unsupported_attribution",
+                "claim_strength_overreach",
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter presents the proposition as a finding established by a named 2014 Stanford trial, but the supplied source identifies that proposition as the common error and explicitly says it is wrong. The source also provides no support for the trial, institution, date, or named researcher, while the plan permits only concepts and documented specifics or numbers.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001",
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-ATOMIC-001",
+                "SRC-U001-ATOMIC-002"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 is stated as fact and attributes an asserted conclusion to a specific study and researcher. PLAN-U001 requires a source-bound explanation using only supported concepts or documented details and does not require hypothetical framing, so framing is adequate in form. However, SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-001 classify the quoted proposition as the common error, while SRC-U001-ATOMIC-002 supplies the contrary correction. Thus the substantive claim, attribution, named specificity, and assertion that the trial established it are unsupported, and the claim strength does not fit the evidence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "c176c32ed89650335f488c7df0167fd65027f6ebb285e716b124170dba67faca",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "3a726d2bc440d1d5038c100b2ca6de5b1747dcd1e57bae6c0b7b9a35555d0652",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "UNSUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "source_contradiction",
+              "secondaryCategories": [
+                "unsupported_attribution",
+                "claim_strength_overreach",
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter presents the proposition as a finding established by a named 2014 Stanford trial, but the supplied source identifies that proposition as the common error and explicitly says it is wrong. The source also provides no support for the trial, institution, date, or named researcher, while the plan permits only concepts and documented specifics or numbers.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001",
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-ATOMIC-001",
+                "SRC-U001-ATOMIC-002"
+              ],
+              "findingId": "unit.fact.ch01.fact.2:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The 2014 Stanford Digital Autonomy Trial led by Dr. Elena Marquez established: If a tool is useful for one purpose, frequent use of the whole platform is justified."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.2\"\n  ]\n}",
+                "{\n  \"id\": \"ch01.fact.2\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}",
+                "{\n  \"label\": \"fact.ch01.fact.2.commonError\",\n  \"value\": \"If a tool is useful for one purpose, frequent use of the whole platform is justified.\"\n}",
+                "{\n  \"label\": \"fact.ch01.fact.2.whyWrong\",\n  \"value\": \"Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 is stated as fact and attributes an asserted conclusion to a specific study and researcher. PLAN-U001 requires a source-bound explanation using only supported concepts or documented details and does not require hypothetical framing, so framing is adequate in form. However, SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-001 classify the quoted proposition as the common error, while SRC-U001-ATOMIC-002 supplies the contrary correction. Thus the substantive claim, attribution, named specificity, and assertion that the trial established it are unsupported, and the claim strength does not fit the evidence.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit",
+        "U1:named-specificity-forbidden",
+        "U1:required-source-support",
+        "unit.fact.ch01.fact.2:source-finding:001"
+      ],
+      "rationale": "U1: CH-U001-001 is stated as fact and attributes an asserted conclusion to a specific study and researcher. PLAN-U001 requires a source-bound explanation using only supported concepts or documented details and does not require hypothetical framing, so framing is adequate in form. However, SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-001 classify the quoted proposition as the common error, while SRC-U001-ATOMIC-002 supplies the contrary correction. Thus the substantive claim, attribution, named specificity, and assertion that the trial established it are unsupported, and the claim strength does not fit the evidence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The 2014 Stanford Digital Autonomy Trial led by Dr. Elena Marquez established: If a tool is useful for one purpose, frequent use of the whole platform is justified."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001",
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-ATOMIC-001",
+            "SRC-U001-ATOMIC-002"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.2\"\n  ]\n}",
+            "{\n  \"id\": \"ch01.fact.2\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}",
+            "{\n  \"label\": \"fact.ch01.fact.2.commonError\",\n  \"value\": \"If a tool is useful for one purpose, frequent use of the whole platform is justified.\"\n}",
+            "{\n  \"label\": \"fact.ch01.fact.2.whyWrong\",\n  \"value\": \"Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "1bcb1d0b0c820c8273086919e269afae0b7259dc8db8c422437b9d5c7364847d"
+}

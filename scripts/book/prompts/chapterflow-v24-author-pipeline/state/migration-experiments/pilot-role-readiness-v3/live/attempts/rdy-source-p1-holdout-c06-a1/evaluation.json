@@ -1,0 +1,70 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c06-a1",
+  "requestSha256": "25c2b7014847df67953651d6dcb734d196bfbc863393234a3329d905044d8890",
+  "receiptSha256": "9ba09dae9fdb60b56b727126598a15d171e21692ebb719f1150d6099007681dc",
+  "executionEvidenceSha256": "e78afb3ed61e9db1088ed0e17bfe22475cce9b52e3628bb2418bd3a850c333fa",
+  "rawOutputSha256": "61ff4ffdd234f4e1c5d8db0c685b9edd4a6526320b2ce63750b0b4607b44548f",
+  "evaluationSha256": "fcfdce2998e66a6c9bc7766279de39406ba5b1e2a5746aaa271f0eaf700ce26a",
+  "parsedOutputSha256": "93620d07d3a3bc17c4788f0029a8639859119550f65cca84ac8f2add9e8b1999",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "ce04c3fae755a64b807b9f4a44b17d361f59384fbcdd015d9fa629f6f9efc7b8",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "CH-U001-001 presents the constructed project-team exercise as an event that occurred, while PLAN-U001 requires visible hypothetical framing and forbids historical claims or constructed outcomes reported as fact.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "CH-U001-001 uses unqualified past-tense factual framing. Under PLAN-U001, this constructed application requires hypothetical framing at first entry. Its claim remains descriptive, and it contains no named specific requiring a specificity judgment."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "ReviewModelOutputV2Error",
+        "message": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+        "code": "INVALID_EVIDENCE",
+        "refId": null
+      }
+    }
+  },
+  "evaluationArtifactSha256": "bc94db9be1f48ad141f56406cf8ade6dbb8d75fe2aa6516dfad437cfe5dd9843"
+}

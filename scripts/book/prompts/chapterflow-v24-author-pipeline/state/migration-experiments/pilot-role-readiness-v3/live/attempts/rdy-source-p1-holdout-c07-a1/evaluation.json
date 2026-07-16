@@ -1,0 +1,68 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c07-a1",
+  "requestSha256": "fd8b1b8e12b52c566fc612d0983c589573a7b892f65e2370ec6c852b4a2be616",
+  "receiptSha256": "695224c0260e5b6ca423ba1932924b4a07cff5d45a79f136d1f42c2fc234506a",
+  "executionEvidenceSha256": "65a1fbbf98b4cac840c5ae35211d920073171a22a064ad461fe5ebe6289fe718",
+  "rawOutputSha256": "08ec74c8e8d9f7ed405fc40fc6466d6ba8e100743f91de3bb17e7d94951a361f",
+  "evaluationSha256": "ce514a7af9ef1006c9ba0e6a63d9e9994c0fdfe864cd5c06c1aa96395b6d6c96",
+  "parsedOutputSha256": "ca38525caf34d550176b61c733cc0f5f653ffe9b8de90fa11c1bd46bac6f2875",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "ce04c3fae755a64b807b9f4a44b17d361f59384fbcdd015d9fa629f6f9efc7b8",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "CH-U001-001 introduces a named organization in an operational scenario whose generic license in PLAN-U001 permits role labels and observable actions but forbids named organizations.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "CH-U001-001 is visibly phrased as a generic operational possibility and stays within descriptive claim strength, but its organization name violates the specificity restrictions established by PLAN-U001. No source-support determination is applicable to the otherwise generic operation."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "ReviewModelOutputV2Error",
+        "message": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+        "code": "INVALID_EVIDENCE",
+        "refId": null
+      }
+    }
+  },
+  "evaluationArtifactSha256": "b37e1b562e813a1952cfbb8b970eeb1de1ab7552e7fd9df11971d7b59a1d6ac8"
+}

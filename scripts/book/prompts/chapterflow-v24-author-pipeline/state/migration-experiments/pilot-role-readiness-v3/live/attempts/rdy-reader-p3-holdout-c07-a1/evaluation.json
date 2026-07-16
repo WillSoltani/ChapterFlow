@@ -1,0 +1,15 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-reader-p3-holdout-c07-a1",
+  "requestSha256": "bc2cb388cc6b49a7e678d937d65d21c4c0c41a1f0d67e4a81962d469a43fc050",
+  "receiptSha256": "ae67427eb1aa50033455ddc918f510e6578ae90a140ce463332b6513313d3bb1",
+  "executionEvidenceSha256": "6db0a48e0dfe3635877e22a3315dc1789c66535b768b1f4849143ce2526ddb1d",
+  "rawOutputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "evaluationSha256": null,
+  "parsedOutputSha256": null,
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": null,
+  "terminalReason": "provider_capacity: forward reviewer: codex exec failed (ok=false, exitCode=1, outcome=provider_rate_or_capacity)",
+  "evaluation": null,
+  "evaluationArtifactSha256": "c0e387d8b03e76a23728ea2f40b84868823b70dab3770ddd0be08eb17b2cbe08"
+}

@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c02-a1",
+  "requestSha256": "812bb344a8ff7a05bd43496997b33e8aeba79fec341d26a19cc280873b31129e",
+  "receiptSha256": "fcfc96f0ec3c21f5aba7b80a7e3b1765da1344f8bc255d3b0510559cc7907f34",
+  "executionEvidenceSha256": "905d16a63eb01eee7067168dde975a52b42b5e7eb3f12e3e51664f3580eee072",
+  "rawOutputSha256": "c3d422d2c4e6001b54ae3cafbd8ad3e6d30daeb38fe9c516d8193ea47779349e",
+  "evaluationSha256": "f4c2d5e5a45611f81306400f9d79cfed038d9ac31c8c87f52dc8df9a5dd69e5e",
+  "parsedOutputSha256": "e4c81efbd498f379d35f41bf63f8df264975174697b9c867f2a71a2315966042",
+  "assembledReviewSha256": "f48c3f8df9c8528533275a2197de54e21e8d47fafabe857270691e75429cf219",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 explicitly presents the passage as sourced and reproduces both the documented Facebook Like-button claim in SRC-U001-CLAIM-001 and the supported feedback mechanism in SRC-U001-MECHANISM-001. The named specificity is also anchored by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012. The prose stays within the mechanistic ceiling and contains no unsupported detail."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d85c3523c2ab2c8c4ef5830e8ee5ba46dd586ef1718cd54cc684e31b6ceea50d",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "aefd5ed84707636c88ec1588230e15e725ff842155ec162f873d9f988a43ff1d",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 explicitly presents the passage as sourced and reproduces both the documented Facebook Like-button claim in SRC-U001-CLAIM-001 and the supported feedback mechanism in SRC-U001-MECHANISM-001. The named specificity is also anchored by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012. The prose stays within the mechanistic ceiling and contains no unsupported detail.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 explicitly presents the passage as sourced and reproduces both the documented Facebook Like-button claim in SRC-U001-CLAIM-001 and the supported feedback mechanism in SRC-U001-MECHANISM-001. The named specificity is also anchored by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012. The prose stays within the mechanistic ceiling and contains no unsupported detail."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "4df99f24ddc9319338f483f680dea3ec10823a9d1222fb6c9b84a1ed9bcd7540"
+}

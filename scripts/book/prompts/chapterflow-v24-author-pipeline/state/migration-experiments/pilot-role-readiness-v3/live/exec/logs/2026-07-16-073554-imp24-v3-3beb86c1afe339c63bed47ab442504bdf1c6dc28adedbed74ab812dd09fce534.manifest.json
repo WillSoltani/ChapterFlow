@@ -1,0 +1,84 @@
+{
+  "schema": "effective-context-manifest-v1",
+  "manifestVersion": 1,
+  "sessionId": "imp24-v3-3beb86c1afe339c63bed47ab442504bdf1c6dc28adedbed74ab812dd09fce534",
+  "role": "chapter-reviewer",
+  "profileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "bin": {
+    "path": "codex",
+    "version": "codex-cli 0.144.1"
+  },
+  "argv": [
+    "exec",
+    "--sandbox",
+    "read-only",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "-c",
+    "project_doc_max_bytes=0",
+    "-c",
+    "model=gpt-5.5",
+    "-c",
+    "model_reasoning_effort=xhigh",
+    "--output-schema",
+    "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/source-integrity-model-output-v2.schema.json",
+    "--output-last-message",
+    "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/pilot-role-readiness-v3/live/exec/sessions/cf-exec-session-cXsWNr/last-message.txt",
+    "<task-sha256:42363dbe3f7f1d2045c759508160e68928b0bbd7d1e34ff0b786515c24ed7bac>"
+  ],
+  "cwd": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-source-verifier-PqPb3R",
+  "cwdPolicy": "isolated-workspace",
+  "envKeys": [
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE",
+    "CHAPTERFLOW_NO_API_CODEX_QC",
+    "CHAPTERFLOW_SESSION_ID",
+    "CODEX_HOME",
+    "HOME",
+    "LANG",
+    "LOGNAME",
+    "PATH",
+    "SHELL",
+    "TMPDIR",
+    "USER"
+  ],
+  "callerEnvKeys": [],
+  "strictEnv": {
+    "CHAPTERFLOW_NO_API_CODEX_QC": "1",
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE": "1"
+  },
+  "codexHome": {
+    "dir": "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/pilot-role-readiness-v3/live/exec/sessions/cf-exec-session-cXsWNr/codex-home",
+    "authMaterial": "auth.json",
+    "authSourcePath": "/Users/radinsoltani/.codex/auth.json"
+  },
+  "instructionSources": [],
+  "workspace": {
+    "dir": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-source-verifier-PqPb3R",
+    "files": [
+      {
+        "relPath": "evidence/RDY-SOURCE-V3-HOLDOUT-claim-strength-ch01-fact-3-defect.review-evidence-envelope-v1.json",
+        "sha256": "2525e0b43595bdb4575fa063f0a0aec06087b27da9caa5c5de3f3fa85eeef018",
+        "bytes": 9904
+      }
+    ]
+  },
+  "model": "gpt-5.5",
+  "reasoningEffort": "xhigh",
+  "sandbox": "read-only",
+  "timeoutMs": 900000,
+  "taskSha256": "42363dbe3f7f1d2045c759508160e68928b0bbd7d1e34ff0b786515c24ed7bac",
+  "taskBytes": 14175,
+  "qualification": {
+    "cliVersion": "codex-cli 0.144.1",
+    "flagsRequired": [
+      "--sandbox",
+      "-c",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--output-last-message"
+    ],
+    "synthetic": false
+  },
+  "createdAtIso": "2026-07-16T07:35:54.279Z"
+}

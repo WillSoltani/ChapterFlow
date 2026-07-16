@@ -1,0 +1,172 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c09-a1",
+  "requestSha256": "9f1198e29efd2681a532d5244524e783b8ab85fffc2ec9a742ebd5d83082171d",
+  "receiptSha256": "c66b03de2d688258f62b027f95ac152185930c38c50fb5c8b619babe45875078",
+  "executionEvidenceSha256": "3e4e408a45423697774b6c229e1894486b20140710e3a0111027b72a8d7e7b62",
+  "rawOutputSha256": "ff3fb33be42e2aec3067de8421f6e044d5af856a79ad188590ef646794d64e89",
+  "evaluationSha256": "f5c5b8c438eb0c6878b89f5fce9b15b79929bf53ca8e8340affe6df54bd0939f",
+  "parsedOutputSha256": "d2fb40b21f3d984f9220359b356f1bf9933d6774911a52b53e2e5fd13baa7bf5",
+  "assembledReviewSha256": "8d2b83003a8d64da6f83dedd5aa2f72a44655605b5686cb43d2399a6613cef99",
+  "evidenceReferenceResolutionSha256": "2fe677d31ea7e7c3fed9fbdb3e93011ea1534f35531382e47468dafef1841884",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=claim_strength_overreach",
+    "metricObservations": {
+      "supportRegisterAccuracy": false,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The supported proposition is converted into conclusive proof and an exceptionless causal outcome for every person. The supplied evidence supports a possible platform-level mechanism, not guaranteed universal causation, and expressly forbids guaranteed outcomes without explicit support.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001",
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-ATOMIC-015",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 contains a source-supported core proposition but presents it as conclusively proven and adds an absolute causal guarantee. SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001 support only the platform proposition, while SRC-U001-MECHANISM-001 describes a non-universal mechanism. PLAN-U001 sets a mechanistic ceiling, and SRC-U001-ATOMIC-015 prohibits guaranteed outcomes absent explicit evidence. Framing is adequate because PLAN-U001 does not require hypothetical framing. Named-specificity review is not applicable because CH-U001-001 contains no named person, organization, place, or date."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "c2e241d5ad2f6e907530f1e190b9b99de984d2e26299e3aa46c8e4cbaf791e32",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9414cd061501de5f68f1a6d81ee6fa628b97a5e59916ddfff7d86d25982d9c11",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": null,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The supported proposition is converted into conclusive proof and an exceptionless causal outcome for every person. The supplied evidence supports a possible platform-level mechanism, not guaranteed universal causation, and expressly forbids guaranteed outcomes without explicit support.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001",
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-ATOMIC-015",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ],
+              "findingId": "unit.fact.ch01.fact.2:source-finding:001",
+              "chapterEvidenceSpans": [
+                "This proves that a platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. always causes the stated outcome for every person, without exception."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.2\"\n  ]\n}",
+                "{\n  \"id\": \"ch01.fact.2\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}",
+                "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+                "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time."
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 contains a source-supported core proposition but presents it as conclusively proven and adds an absolute causal guarantee. SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001 support only the platform proposition, while SRC-U001-MECHANISM-001 describes a non-universal mechanism. PLAN-U001 sets a mechanistic ceiling, and SRC-U001-ATOMIC-015 prohibits guaranteed outcomes absent explicit evidence. Framing is adequate because PLAN-U001 does not require hypothetical framing. Named-specificity review is not applicable because CH-U001-001 contains no named person, organization, place, or date.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit",
+        "unit.fact.ch01.fact.2:source-finding:001"
+      ],
+      "rationale": "U1: CH-U001-001 contains a source-supported core proposition but presents it as conclusively proven and adds an absolute causal guarantee. SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001 support only the platform proposition, while SRC-U001-MECHANISM-001 describes a non-universal mechanism. PLAN-U001 sets a mechanistic ceiling, and SRC-U001-ATOMIC-015 prohibits guaranteed outcomes absent explicit evidence. Framing is adequate because PLAN-U001 does not require hypothetical framing. Named-specificity review is not applicable because CH-U001-001 contains no named person, organization, place, or date."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "This proves that a platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. always causes the stated outcome for every person, without exception."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001",
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-ATOMIC-015",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.2\"\n  ]\n}",
+            "{\n  \"id\": \"ch01.fact.2\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}",
+            "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+            "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time."
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "20fa550ce5c7f3ed94055eabcbedda4d4f8b15d63b2b94706cf6832ecde40468"
+}
