@@ -193,7 +193,9 @@ test("committed candidate generation binds current bytes with a fresh identity o
     "the imp24f candidate manifest must be committed (minted after the last instrument byte change)");
   const verified = verifyImp24fCandidateInstrument({ repositoryRoot: REPOSITORY_ROOT });
   assert.equal(verified.verified, true);
-  assert.equal(verified.comparedToCurrentBytes, true);
+  // Default mode proves retained-artifact integrity only (L-16); the
+  // current-bytes binding is the campaign-flag strict path.
+  assert.equal(verified.comparedToCurrentBytes, campaignInstrumentChecksEnabled());
   assert.equal(verified.modelCalls, 0);
   assert.equal(verified.apiCalls, 0);
 

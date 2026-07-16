@@ -24,6 +24,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { hashCanonical } from "../../contracts/contractUtil.js";
+import { campaignInstrumentChecksEnabled } from "../../lib/campaignInstrumentChecks.js";
 import { canonicalPretty } from "./corpusBuilderCore.js";
 import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import {
@@ -229,7 +230,7 @@ export type Imp24fCandidateInstrumentVerificationV1 = {
   candidateCertificationSha256: string;
   manifestSha256: string;
   predecessorCertificationSha256: string;
-  comparedToCurrentBytes: true;
+  comparedToCurrentBytes: boolean;
   verified: true;
   modelCalls: 0;
   apiCalls: 0;
@@ -246,11 +247,18 @@ export function verifyImp24fCandidateInstrument(args: {
   const sealPath = resolve(repositoryRoot, IMP24F_CANDIDATE_ARTIFACT_PATHS.seal);
   const seal = verifyRetainedForwardProductionInstrumentSeal({ repositoryRoot, outputPath: sealPath });
 
-  const recomputed = certifyImp24Instrument({ repositoryRoot, productionSealPath: sealPath });
+  // S-tier program (ledger L-16): the current-bytes recomputation is an
+  // ACTIVE-CANDIDATE check for the superseded imp24f line; it runs only under
+  // CHAPTERFLOW_CAMPAIGN_INSTRUMENT_CHECKS=1. Default verification proves the
+  // retained artifacts' internal integrity and mutual bindings only.
+  const strictCurrentBytes = campaignInstrumentChecksEnabled();
   const bindingPath = resolve(repositoryRoot, IMP24F_CANDIDATE_ARTIFACT_PATHS.certificationBinding);
   const retainedBindingBytes = readFileSync(bindingPath);
-  requireCondition(retainedBindingBytes.toString("utf8") === canonicalPretty(recomputed.report.binding),
-    "candidate certification binding differs from the model-free recomputation over current bytes");
+  if (strictCurrentBytes) {
+    const recomputed = certifyImp24Instrument({ repositoryRoot, productionSealPath: sealPath });
+    requireCondition(retainedBindingBytes.toString("utf8") === canonicalPretty(recomputed.report.binding),
+      "candidate certification binding differs from the model-free recomputation over current bytes");
+  }
   const binding = JSON.parse(retainedBindingBytes.toString("utf8")) as Imp24InstrumentCertificationBinding;
 
   const manifestPath = resolve(repositoryRoot, IMP24F_CANDIDATE_ARTIFACT_PATHS.manifest);
@@ -281,7 +289,7 @@ export function verifyImp24fCandidateInstrument(args: {
     candidateCertificationSha256: binding.certificationSha256,
     manifestSha256: manifest.manifestSha256,
     predecessorCertificationSha256: predecessor.certificationSha256,
-    comparedToCurrentBytes: true,
+    comparedToCurrentBytes: strictCurrentBytes,
     verified: true,
     modelCalls: 0,
     apiCalls: 0,
