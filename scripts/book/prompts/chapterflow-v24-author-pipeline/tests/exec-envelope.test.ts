@@ -64,11 +64,15 @@ async function hermeticSpawn(overrides: Partial<Parameters<typeof spawnCodexAgen
   return { result, captured, sink };
 }
 
-test("every declared role resolves to a valid profile with an explicit baseline model", () => {
+test("every declared role resolves to a valid profile with an explicit 5.6 default model", () => {
   for (const role of AGENT_ROLES) {
     const { profile, profileHash } = resolveExecutionProfile(role);
     assert.equal(profile.role, role);
-    assert.equal(profile.defaultModel, BASELINE_MODEL, `${role} must pin the qualified baseline, never ambient`);
+    // WP-302: profile defaults resolve through modelPolicy — the 5.6 provisional
+    // default, never ambient and never gpt-5.5 (directive-1).
+    assert.equal(profile.defaultModel, BASELINE_MODEL, `${role} must pin the policy default, never ambient`);
+    assert.ok(profile.defaultModel.startsWith("gpt-5.6"), `${role} default must be a 5.6 model`);
+    assert.notEqual(profile.defaultModel, "gpt-5.5", `${role} must not default to the void gpt-5.5`);
     assert.equal(profileHash.length, 64);
   }
   assert.equal(EXECUTION_PROFILES["author-writer"].defaultReasoningEffort, "xhigh");
@@ -97,12 +101,14 @@ test("hermetic argv carries isolation, neutralization, explicit model/effort, an
 });
 
 test("explicit call-site model/effort override the profile default and are recorded", async () => {
-  const { captured, sink } = await hermeticSpawn({ role: "author-writer", sandbox: "workspace-write", model: "gpt-5.5", reasoningEffort: "xhigh" });
+  // A call-explicit override with a DIFFERENT 5.6 candidate proves the pinned
+  // value (not the provisional gpt-5.6-sol default) reaches argv + manifest.
+  const { captured, sink } = await hermeticSpawn({ role: "author-writer", sandbox: "workspace-write", model: "gpt-5.6-terra", reasoningEffort: "xhigh" });
   const argv = captured.args!.argv;
-  assert.ok(argv.join(" ").includes("model=gpt-5.5"));
+  assert.ok(argv.join(" ").includes("model=gpt-5.6-terra"));
   assert.ok(argv.join(" ").includes("model_reasoning_effort=xhigh"));
   const manifest = readManifest(sink);
-  assert.equal(manifest.model, "gpt-5.5");
+  assert.equal(manifest.model, "gpt-5.6-terra");
   assert.equal(manifest.reasoningEffort, "xhigh");
 });
 

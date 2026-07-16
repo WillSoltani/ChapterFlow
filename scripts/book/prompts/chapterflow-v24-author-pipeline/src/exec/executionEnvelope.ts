@@ -9,13 +9,15 @@
  * `-o` last-message capture file, and the immutable effective-context manifest
  * persisted BEFORE the process starts.
  *
- * Baseline-model note (recorded live finding, 2026-07-10): at rollback time the
+ * Ambient-config note (recorded live finding, 2026-07-10): at rollback time the
  * operator's personal `~/.codex/config.toml` said `model = "gpt-5.6-sol"`, so
  * every model-unpinned v24 call site (chapter reviewers, acceptance readers,
  * research, evidence) was silently running SOL high while the code read as
- * "baseline". The profiles below pin the QUALIFIED GPT-5.5 baseline explicitly
- * for every role; IMP-02's central policy supersedes these defaults, and no SOL
- * route may return before the plan's bakeoff/canary gates authorize it.
+ * "baseline". The profiles below carry an EXPLICIT model for every role, so no
+ * call can be ambient — the model value is resolved through IMP-02's central
+ * policy (`modelPolicy.resolveRoute`), the ONE decision table. WP-302 cut that
+ * table over to a 5.6-only production matrix (directive-1: GPT-5.5 removed);
+ * the provisional default is gpt-5.6-sol pending the WP-705 bakeoff decision.
  */
 
 import { chmodSync, copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, writeFileSync } from "fs";
@@ -53,9 +55,10 @@ export function defaultManifestSink(): string {
   return join(EXEC_PIPELINE_ROOT, "logs", "exec");
 }
 
-/** The qualified baseline model — OWNED by modelPolicy since IMP-02; re-exported
- *  here for envelope consumers. Profile defaults below resolve through the
- *  policy so the decision table lives in exactly one module. */
+/** The normal-profile production model — OWNED by modelPolicy since IMP-02;
+ *  re-exported here for envelope consumers. Its value is the provisional 5.6
+ *  default (WP-302; was gpt-5.5, removed per directive-1). Profile defaults
+ *  below resolve through the policy so the decision table lives in one module. */
 export { BASELINE_MODEL } from "../orchestrator/modelPolicy.js";
 import { resolveRoute as policyResolveRoute } from "../orchestrator/modelPolicy.js";
 
