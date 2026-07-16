@@ -68,10 +68,14 @@ import type {
 } from "./roleQualificationRunnerV3.js";
 import { renderKeyFreeReaderDocument } from "./readerGoldDevDocs.js";
 import {
-  PILOT_ROLE_READINESS_EXPERIMENT_ID,
-  type PilotRoleReadinessCorpusV1,
+  PILOT_ROLE_READINESS_V2_CORPUS_SCHEMA,
+  PILOT_ROLE_READINESS_V2_EXPERIMENT_ID,
+  READINESS_CANARY_GOLD_ADJUDICATIONS_V1,
+  type PilotRoleReadinessCorpusV2,
   type ReadinessCaseV1,
 } from "./pilotRoleReadinessInstrument.js";
+
+type ReadinessGoldAdjudications = typeof READINESS_CANARY_GOLD_ADJUDICATIONS_V1;
 
 /** Reader decision bar (plan bindings: reader-decision-policy-v3 at bar 80). */
 export const READINESS_READER_BAR = 80 as const;
@@ -151,11 +155,48 @@ function isBundleOrigin(entry: ReadinessCaseV1): boolean {
   return entry.origin.source === "imp24-v3-bundle";
 }
 
+/** Apply the owner-adjudicated canary gold overlay (v2). The payload stays
+ * verbatim (caseSha256 binds bundle lineage); only the EFFECTIVE gold the
+ * instrument compares against changes, and it is hash-bound into goldSha256
+ * and therefore into every live request. */
+function effectiveGold(
+  entry: ReadinessCaseV1,
+  bundleGold: unknown,
+  adjudications: ReadinessGoldAdjudications | undefined,
+): unknown {
+  if (!adjudications) return bundleGold;
+  const payloadCaseId = String((entry.payload as { caseId?: unknown }).caseId ?? "");
+  if (entry.role === "reader" && payloadCaseId === adjudications.reader.caseId) {
+    return {
+      ...(bundleGold as Record<string, unknown>),
+      acceptedBlockingCategories: [...adjudications.reader.acceptedBlockingCategories],
+    };
+  }
+  if (entry.role === "source" && payloadCaseId === adjudications.source.caseId) {
+    return {
+      ...(bundleGold as Record<string, unknown>),
+      supportStatus: adjudications.source.adjudicatedSupportStatus,
+      visibleRegister: adjudications.source.adjudicatedVisibleRegister,
+      acceptedPrimaryCategories: [...adjudications.source.acceptedPrimaryCategories],
+    };
+  }
+  if (entry.role === "quiz" && entry.category === adjudications.quiz.kind) {
+    return {
+      ...(bundleGold as Record<string, unknown>),
+      keyedMechanismComparison: adjudications.quiz.ruling,
+    };
+  }
+  return bundleGold;
+}
+
 /** Compile one frozen readiness case into its exact inline instrument. Pure
  * and deterministic; both the prepared-case builder and the evaluator call
  * this same function, so a prepared artifact that drifts from the compiler
  * output is always detected at evaluation time. */
-export function compilePilotReadinessCaseInstrument(entry: ReadinessCaseV1): CompiledReadinessCaseV1 {
+export function compilePilotReadinessCaseInstrument(
+  entry: ReadinessCaseV1,
+  adjudications?: ReadinessGoldAdjudications,
+): CompiledReadinessCaseV1 {
   requireCondition(hashCanonical(entry.payload) === entry.caseSha256,
     `${entry.caseId}: frozen payload no longer matches its corpus caseSha256`);
   if (entry.role === "reader" && !isBundleOrigin(entry)) {
@@ -190,7 +231,7 @@ export function compilePilotReadinessCaseInstrument(entry: ReadinessCaseV1): Com
       envelope: compiled.envelope,
       evidenceEnvelopeBytes: compiled.envelopeBytes,
       task: compiled.task,
-      gold: payload.expected,
+      gold: effectiveGold(entry, payload.expected, adjudications),
       sourceCaseSha256: entry.caseSha256,
       chapterContentSha256: chapterContentHash(chapter),
       readerDocumentSha256: compiled.readerDocumentSha256,
@@ -214,7 +255,7 @@ export function compilePilotReadinessCaseInstrument(entry: ReadinessCaseV1): Com
       envelope,
       evidenceEnvelopeBytes: serializeReviewEvidenceEnvelope(envelope),
       task: buildReaderExperienceInlineReviewTask(envelope),
-      gold: item.expected,
+      gold: effectiveGold(entry, item.expected, adjudications),
       sourceCaseSha256: substantive,
       chapterContentSha256: item.provenance.variantContentSha256,
       readerDocumentSha256: completeKeyFreeReaderDocumentSha256V2(item.chapter),
@@ -233,7 +274,7 @@ export function compilePilotReadinessCaseInstrument(entry: ReadinessCaseV1): Com
       envelope: partition.envelope,
       evidenceEnvelopeBytes: serializeReviewEvidenceEnvelope(partition.envelope),
       task: partition.task,
-      gold: deriveImp24SourceSemantics(item),
+      gold: effectiveGold(entry, deriveImp24SourceSemantics(item), adjudications),
       sourceCaseSha256: substantive,
       chapterContentSha256: null,
       readerDocumentSha256: null,
@@ -251,7 +292,7 @@ export function compilePilotReadinessCaseInstrument(entry: ReadinessCaseV1): Com
     envelope: instrument.compiled.envelope,
     evidenceEnvelopeBytes: serializeReviewEvidenceEnvelope(instrument.compiled.envelope),
     task: instrument.compiled.task,
-    gold: item.expected,
+    gold: effectiveGold(entry, item.expected, adjudications),
     sourceCaseSha256: substantive,
     chapterContentSha256: null,
     readerDocumentSha256: null,
@@ -261,7 +302,7 @@ export function compilePilotReadinessCaseInstrument(entry: ReadinessCaseV1): Com
   };
 }
 
-export function everyReadinessCase(corpus: PilotRoleReadinessCorpusV1): ReadinessCaseV1[] {
+export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV2, "reader" | "source" | "quiz">): ReadinessCaseV1[] {
   const cases: ReadinessCaseV1[] = [];
   for (const role of ["reader", "source", "quiz"] as const) {
     for (const partition of ["canary", "holdout"] as const) {
@@ -275,15 +316,17 @@ export function everyReadinessCase(corpus: PilotRoleReadinessCorpusV1): Readines
  * IMP-24 evaluator's protocol/freshness/authority handling exactly; only the
  * metric identities and the reader decision policy differ (v3, per D1). */
 export function createPilotRoleReadinessEvaluator(
-  corpus: PilotRoleReadinessCorpusV1,
+  corpus: PilotRoleReadinessCorpusV2,
 ): QualificationOutputEvaluatorV3 {
-  requireCondition(corpus.schema === "pilot-role-readiness-corpus-v1"
-      && corpus.experimentId === PILOT_ROLE_READINESS_EXPERIMENT_ID,
-    "readiness evaluator requires the exact frozen readiness corpus");
+  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V2_CORPUS_SCHEMA
+      && corpus.experimentId === PILOT_ROLE_READINESS_V2_EXPERIMENT_ID,
+    "readiness evaluator requires the exact frozen v2 readiness corpus");
+  requireCondition(hashCanonical(corpus.goldAdjudications) === hashCanonical(READINESS_CANARY_GOLD_ADJUDICATIONS_V1),
+    "readiness corpus gold adjudications differ from the frozen owner-authorized record");
   const byCaseId = new Map<string, { entry: ReadinessCaseV1; compiled: CompiledReadinessCaseV1 }>();
   for (const entry of everyReadinessCase(corpus)) {
     requireCondition(!byCaseId.has(entry.caseId), `duplicate readiness case ${entry.caseId}`);
-    byCaseId.set(entry.caseId, { entry, compiled: compilePilotReadinessCaseInstrument(entry) });
+    byCaseId.set(entry.caseId, { entry, compiled: compilePilotReadinessCaseInstrument(entry, corpus.goldAdjudications) });
   }
   requireCondition(byCaseId.size === 42, `readiness evaluator requires all 42 frozen cases, got ${byCaseId.size}`);
 
@@ -417,8 +460,10 @@ function evaluateReader(args: LaneEvaluationArgs): CaseEvaluationV3 {
     const observations: Record<string, boolean> = {};
     let semanticCorrect = false;
     if (entry.category === "reader-visible-hard-blocker") {
-      const expectedCategory = String((compiled.gold as { expectedBlockingCategory?: unknown }).expectedBlockingCategory);
-      observations.hardBlockerSensitivity = result === "BLOCK" && blockingCategories.includes(expectedCategory as never);
+      const gold = compiled.gold as { expectedBlockingCategory?: unknown; acceptedBlockingCategories?: string[] };
+      const accepted = gold.acceptedBlockingCategories ?? [String(gold.expectedBlockingCategory)];
+      observations.hardBlockerSensitivity = result === "BLOCK"
+        && blockingCategories.some((category) => accepted.includes(category));
       semanticCorrect = observations.hardBlockerSensitivity;
     } else if (entry.category === "acceptable-control") {
       const minComposite = Number((compiled.gold as { minComposite?: unknown }).minComposite ?? READINESS_READER_BAR);
@@ -480,7 +525,11 @@ function evaluateSource(args: LaneEvaluationArgs): CaseEvaluationV3 {
     primaryCategory: string | null;
     supportStatus: string;
     visibleRegister: string;
+    acceptedPrimaryCategories?: string[];
   };
+  const acceptedPrimary = gold.primaryCategory === null
+    ? null
+    : gold.acceptedPrimaryCategories ?? [gold.primaryCategory];
   let parsed: ReturnType<typeof parseSourceIntegrityModelOutputV2>;
   try {
     parsed = parseSourceIntegrityModelOutputV2(rawOutput);
@@ -512,9 +561,9 @@ function evaluateSource(args: LaneEvaluationArgs): CaseEvaluationV3 {
       supportRegisterAccuracy: unit?.supportStatus === gold.supportStatus
         && unit?.visibleRegister === gold.visibleRegister,
     };
-    if (gold.primaryCategory !== null) {
+    if (acceptedPrimary !== null) {
       observations.highSeverityDefectSensitivity = assembled.result === "BLOCK"
-        && categories.includes(gold.primaryCategory as never);
+        && categories.some((category) => acceptedPrimary.includes(category));
     } else {
       observations.falseHighSeverityBlockerFreeOnClean = assembled.result !== "BLOCK"
         && !unit?.findings.some((finding) => finding.severity === "blocker");
@@ -523,7 +572,7 @@ function evaluateSource(args: LaneEvaluationArgs): CaseEvaluationV3 {
     const semanticCorrect = complete
       && assembled.result === gold.result
       && observations.supportRegisterAccuracy
-      && (gold.primaryCategory === null || categories.includes(gold.primaryCategory as never));
+      && (acceptedPrimary === null || categories.some((category) => acceptedPrimary.includes(category)));
     return {
       schemaValid: true,
       envelopeBound: args.envelopeBound,
@@ -593,10 +642,12 @@ function evaluateQuiz(args: LaneEvaluationArgs): CaseEvaluationV3 {
         && question?.keyedMechanismSupported === item.expected.keyedMechanismSupported;
     }
     const complete = assembled.unresolvedQuestionRefs.length === 0 && assembled.questions.length === 1;
+    const mechanismExcluded = (compiled.gold as { keyedMechanismComparison?: unknown }).keyedMechanismComparison
+      === "excluded-from-semantic-comparison";
     const semanticCorrect = complete
       && assembled.result === item.expected.goldResult
       && question?.keyCorrect === item.expected.keyCorrect
-      && question?.keyedMechanismSupported === item.expected.keyedMechanismSupported;
+      && (mechanismExcluded || question?.keyedMechanismSupported === item.expected.keyedMechanismSupported);
     return {
       schemaValid: true,
       envelopeBound: args.envelopeBound,

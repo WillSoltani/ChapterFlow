@@ -65,15 +65,21 @@ import {
 import {
   compilePilotReadinessCaseInstrument,
 } from "./pilotRoleReadinessEvaluator.js";
+// The runner executes the v2 successor identity end-to-end (owner directive
+// "Proceed with A"): the closed v1 campaign's evidence validates by its own
+// self-hashes on the evidence branch and is never re-run by this module.
 import {
   PILOT_READINESS_BUDGET,
   PILOT_READINESS_CANDIDATE_ORDERS,
   PILOT_READINESS_METRIC_SEMANTICS,
   PILOT_READINESS_STOPPING,
   PILOT_READINESS_THRESHOLDS,
-  PILOT_ROLE_READINESS_EXPERIMENT_ID,
-  type PilotRoleReadinessCorpusV1,
-  type PilotRoleReadinessPlanV1,
+  PILOT_ROLE_READINESS_V2_CORPUS_SCHEMA,
+  PILOT_ROLE_READINESS_V2_EXPERIMENT_ID as PILOT_ROLE_READINESS_EXPERIMENT_ID,
+  PILOT_ROLE_READINESS_V2_PLAN_SCHEMA,
+  READINESS_CANARY_GOLD_ADJUDICATIONS_V1,
+  type PilotRoleReadinessCorpusV2 as PilotRoleReadinessCorpusV1,
+  type PilotRoleReadinessPlanV2 as PilotRoleReadinessPlanV1,
   type ReadinessCaseV1,
   type ReadinessCountBar,
   type ReadinessProfile,
@@ -220,7 +226,7 @@ export function preparePilotReadinessCases(args: {
       for (const entry of args.corpus[role][partition]) {
         requireCondition(entry.role === role && entry.partition === partition,
           `${entry.caseId}: corpus role/partition binding mismatch`);
-        const compiled = compilePilotReadinessCaseInstrument(entry);
+        const compiled = compilePilotReadinessCaseInstrument(entry, args.corpus.goldAdjudications);
         assertReadinessTask(compiled.task, compiled.evidenceEnvelopeBytes, entry.caseId);
         preparedCases[role][partition].push({
           role,
@@ -366,10 +372,12 @@ export function buildPilotReadinessSchedule(
 }
 
 function validateCorpus(corpus: PilotRoleReadinessCorpusV1): void {
-  requireCondition(corpus.schema === "pilot-role-readiness-corpus-v1"
+  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V2_CORPUS_SCHEMA
       && corpus.experimentId === PILOT_ROLE_READINESS_EXPERIMENT_ID
       && corpus.objective === "PILOT_ROLE_READINESS",
     "readiness corpus identity mismatch");
+  requireCondition(hashCanonical(corpus.goldAdjudications) === hashCanonical(READINESS_CANARY_GOLD_ADJUDICATIONS_V1),
+    "readiness corpus gold adjudications differ from the frozen owner-authorized record");
   const { corpusSha256, ...core } = corpus;
   requireCondition(hashCanonical(core) === corpusSha256, "readiness corpus self hash mismatch");
   const categoryCounts = (cases: ReadinessCaseV1[]): Map<string, number> => {
@@ -398,10 +406,12 @@ function validateCorpus(corpus: PilotRoleReadinessCorpusV1): void {
 
 function validatePlan(input: RunPilotRoleReadinessInputV1): void {
   const plan = input.plan;
-  requireCondition(plan.schema === "pilot-role-readiness-plan-v1"
+  requireCondition(plan.schema === PILOT_ROLE_READINESS_V2_PLAN_SCHEMA
       && plan.experimentId === PILOT_ROLE_READINESS_EXPERIMENT_ID
       && plan.objective === "PILOT_ROLE_READINESS",
     "readiness plan identity mismatch");
+  requireCondition(plan.goldAdjudicationsSha256 === hashCanonical(READINESS_CANARY_GOLD_ADJUDICATIONS_V1),
+    "readiness plan gold-adjudication binding drifted");
   const { planSha256, ...core } = plan;
   requireCondition(hashCanonical(core) === planSha256, "readiness plan self hash mismatch");
   requireSha(input.planBytesSha256, "retained plan bytes hash");
@@ -471,7 +481,7 @@ function validatePreparedAgainstCorpus(input: RunPilotRoleReadinessInputV1): voi
         const entry = corpusCases[index];
         requireCondition(item.caseId === entry.caseId && item.family === entry.category,
           `${role} ${partition} prepared case ${index} differs from frozen corpus order`);
-        const compiled = compilePilotReadinessCaseInstrument(entry);
+        const compiled = compilePilotReadinessCaseInstrument(entry, input.corpus.goldAdjudications);
         requireCondition(item.sourceCaseSha256 === compiled.sourceCaseSha256,
           `${item.caseId}: prepared source-case binding mismatch`);
         requireCondition(item.goldSha256 === hashCanonical(compiled.gold),

@@ -93,7 +93,7 @@ import {
   summarizeAudit,
 } from "./rubricAuditHarness.js";
 import { assembleAuditPackage } from "../auditPackageAssembler.js";
-import { materializePilotRoleReadiness } from "./pilotRoleReadinessInstrument.js";
+import { materializePilotRoleReadiness, materializePilotRoleReadinessV2 } from "./pilotRoleReadinessInstrument.js";
 import {
   buildGoldArtifacts,
   buildPilotArtifacts,
@@ -313,6 +313,7 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "rubric-audit-status",
   "assemble-audit-package",
   "pilot-role-readiness",
+  "pilot-role-readiness-v2",
   "role-qualification-freeze",
   "forward-materialize-pilot-artifacts",
   "forward-materialize-gold-artifacts",
@@ -1751,6 +1752,20 @@ function runLocalForwardSubverb(
     // instrument). Dry = rebuild + byte-compare. Zero model calls.
     const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
     const out = materializePilotRoleReadiness({
+      repositoryRoot,
+      write: flags.write === true,
+      mintPlan: flags["mint-plan"] === true,
+    });
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] ${out.experimentId}: corpus=${out.corpusSha256} plan=${out.planSha256 ?? "UNMINTED"} written=${String(out.written)} model/api calls=0`);
+    return 0;
+  }
+  if (subverb === "pilot-role-readiness-v2") {
+    // v2 successor (owner directive "Proceed with A"): the byte-stable v1
+    // selection re-identified with the frozen canary-gold adjudication
+    // overlay embedded. Same create-once / bind-once discipline as v1.
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const out = materializePilotRoleReadinessV2({
       repositoryRoot,
       write: flags.write === true,
       mintPlan: flags["mint-plan"] === true,

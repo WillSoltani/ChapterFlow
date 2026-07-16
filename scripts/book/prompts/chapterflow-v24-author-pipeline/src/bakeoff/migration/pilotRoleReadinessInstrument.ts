@@ -39,6 +39,52 @@ export const PILOT_ROLE_READINESS_DIR_REL_PATH =
 export const PILOT_ROLE_READINESS_CORPUS_SCHEMA = "pilot-role-readiness-corpus-v1" as const;
 export const PILOT_ROLE_READINESS_PLAN_SCHEMA = "pilot-role-readiness-plan-v1" as const;
 
+/** v2 successor identity (owner directive "Proceed with A", 2026-07-15): the
+ * v1 campaign is CLOSED (BLOCKED_ROLE_READINESS @ 36 calls, evidence branch
+ * 2af264d43); v2 = v1 corpus selection + the three owner-authorized canary
+ * gold adjudications below. The imp24 bundle stays byte-immutable — every
+ * correction lives in this readiness-level overlay. */
+export const PILOT_ROLE_READINESS_V2_EXPERIMENT_ID = "s16-forward-pilot-role-readiness-v2" as const;
+export const PILOT_ROLE_READINESS_V2_DIR_REL_PATH =
+  `${PIPELINE_REL}/state/migration-experiments/pilot-role-readiness-v2` as const;
+export const PILOT_ROLE_READINESS_V2_CORPUS_SCHEMA = "pilot-role-readiness-corpus-v2" as const;
+export const PILOT_ROLE_READINESS_V2_PLAN_SCHEMA = "pilot-role-readiness-plan-v2" as const;
+
+/** Canary-gold adjudication record (owner: "Proceed with A"). Basis for each
+ * ruling: unanimous model divergence across TWO independent campaigns (this
+ * run 4/4 profiles + the archived IMP-24 attempts) on a single secondary
+ * field per case, with the VERDICT correct everywhere; full evidence in
+ * docs/v25/reports/V25_P5_READINESS_CAMPAIGN_RESULT_AND_CANARY_ADJUDICATION.md.
+ * Scope limits: craft weakness->category map UNCHANGED, semantic-rules text
+ * UNCHANGED, holdout hard-blocker gold UNCHANGED (Option B not exercised). */
+export const READINESS_CANARY_GOLD_ADJUDICATIONS_V1 = Object.freeze({
+  schema: "pilot-readiness-canary-gold-adjudications-v1",
+  ownerDirective: "Proceed with A (2026-07-15)",
+  reader: Object.freeze({
+    caseId: "READER-V3-CANARY-reader-visible-hard-blocker-make-it-stick-ch02",
+    field: "expectedBlockingCategory",
+    bundleValue: "unusable",
+    acceptedBlockingCategories: Object.freeze(["unusable", "internal_contradiction"]),
+    rationale: "The /tryThisNow mutation is simultaneously operationally vacuous (unusable) and contradicts the chapter's retrieval-with-feedback teaching (internal_contradiction); both categories identify the one planted defect.",
+  }),
+  source: Object.freeze({
+    caseId: "SOURCE-V3-CANARY-source-bound-detail-ch01-fact-1-defect",
+    adjudicatedSupportStatus: "PARTIALLY_SUPPORTED",
+    bundleSupportStatus: "UNSUPPORTED",
+    adjudicatedVisibleRegister: "clearly_sourced",
+    bundleVisibleRegister: "presented_as_fact",
+    acceptedPrimaryCategories: Object.freeze(["unsupported_attribution", "invented_detail"]),
+    bundlePrimaryCategory: "invented_detail",
+    rationale: "The unit contains one source-backed claim plus one invented claim under explicit 'the source states/reports' attribution: whole-unit support is PARTIALLY_SUPPORTED, the surface register is clearly_sourced, and the written category precedence makes unsupported_attribution the controlling label (both coherent applications accepted).",
+  }),
+  quiz: Object.freeze({
+    kind: "key-mismatch",
+    field: "keyedMechanismSupported",
+    ruling: "excluded-from-semantic-comparison",
+    rationale: "The rule's two prongs ('true for an item that makes no mechanism claim' vs 'false when the key asserts an unsupported mechanism') collide exactly on wrong-key non-mechanism items; 5/5 model attempts across two campaigns resolved the collision opposite to gold. The key-mismatch construct is BLOCK + keyCorrect=wrong; the underdetermined field no longer gates it. Mechanism-item gold is untouched and no holdout metric reads this field on key-mismatch cases.",
+  }),
+});
+
 /** Immutable inputs (raw-byte pins — any drift fails closed). */
 export const IMP24_V3_BUNDLE_REL_PATH =
   `${PIPELINE_REL}/state/migration-experiments/contracts/imp24/role-qualification-corpus-bundle.v3-envelope.json` as const;
@@ -493,6 +539,123 @@ export function buildPilotRoleReadinessCorpus(args: { repositoryRoot: string }):
     quiz: { canary: quizCanaries, holdout: quizHoldout },
   };
   return { ...core, corpusSha256: hashCanonical(core) };
+}
+
+// ── v2 corpus (v1 selection + owner-adjudicated canary gold overlay) ─────────
+
+export type PilotRoleReadinessCorpusV2 = Omit<PilotRoleReadinessCorpusV1, "schema" | "experimentId"> & {
+  schema: typeof PILOT_ROLE_READINESS_V2_CORPUS_SCHEMA;
+  experimentId: typeof PILOT_ROLE_READINESS_V2_EXPERIMENT_ID;
+  goldAdjudications: typeof READINESS_CANARY_GOLD_ADJUDICATIONS_V1;
+};
+
+/** v2 = the byte-stable v1 selection re-identified under the successor id
+ * with the frozen adjudication record embedded (hash-bound into corpusSha256,
+ * hence into the freeze and every live request). Payloads stay verbatim. */
+export function buildPilotRoleReadinessCorpusV2(args: { repositoryRoot: string }): PilotRoleReadinessCorpusV2 {
+  const v1 = buildPilotRoleReadinessCorpus(args);
+  const { corpusSha256: _v1Sha256, ...v1Core } = v1;
+  const core = {
+    ...v1Core,
+    schema: PILOT_ROLE_READINESS_V2_CORPUS_SCHEMA,
+    experimentId: PILOT_ROLE_READINESS_V2_EXPERIMENT_ID,
+    goldAdjudications: READINESS_CANARY_GOLD_ADJUDICATIONS_V1,
+  };
+  return { ...core, corpusSha256: hashCanonical(core) };
+}
+
+export type PilotRoleReadinessPlanV2 = Omit<PilotRoleReadinessPlanV1, "schema" | "experimentId"> & {
+  schema: typeof PILOT_ROLE_READINESS_V2_PLAN_SCHEMA;
+  experimentId: typeof PILOT_ROLE_READINESS_V2_EXPERIMENT_ID;
+  goldAdjudicationsSha256: string;
+};
+
+export function buildPilotRoleReadinessPlanV2(args: {
+  repositoryRoot: string;
+  corpus: PilotRoleReadinessCorpusV2;
+}): PilotRoleReadinessPlanV2 {
+  const repositoryRoot = resolve(args.repositoryRoot);
+  const sealBytes = readFileSync(resolve(repositoryRoot, CANDIDATE_INSTRUMENT_SEAL_REL_PATH));
+  const certBytes = readFileSync(resolve(repositoryRoot, CANDIDATE_INSTRUMENT_CERT_REL_PATH));
+  const core: Omit<PilotRoleReadinessPlanV2, "planSha256"> = {
+    schema: PILOT_ROLE_READINESS_V2_PLAN_SCHEMA,
+    experimentId: PILOT_ROLE_READINESS_V2_EXPERIMENT_ID,
+    objective: PILOT_ROLE_READINESS_OBJECTIVE,
+    corpusSha256: args.corpus.corpusSha256,
+    goldAdjudicationsSha256: hashCanonical(READINESS_CANARY_GOLD_ADJUDICATIONS_V1),
+    thresholds: PILOT_READINESS_THRESHOLDS,
+    thresholdsSha256: hashCanonical(PILOT_READINESS_THRESHOLDS),
+    metricSemantics: PILOT_READINESS_METRIC_SEMANTICS,
+    candidateOrders: PILOT_READINESS_CANDIDATE_ORDERS,
+    candidateOrdersSha256: hashCanonical(PILOT_READINESS_CANDIDATE_ORDERS),
+    stopping: PILOT_READINESS_STOPPING,
+    budget: PILOT_READINESS_BUDGET,
+    costCandidateProbe: PILOT_READINESS_COST_PROBE,
+    canaryGate: {
+      requiredCorrect: 2,
+      rule: "both canaries protocol-valid AND semantically correct before any holdout call; a canary failure means zero holdout calls for that profile-role",
+    },
+    bindings: {
+      candidateSealRawSha256: sha256Hex(sealBytes),
+      candidateCertificationRawSha256: sha256Hex(certBytes),
+      readerDecisionPolicy: "reader-decision-policy-v3",
+      aggregatePolicy: "aggregate-chapter-review-policy-v2",
+    },
+    terminalStates: PILOT_READINESS_TERMINAL_STATES,
+  };
+  return { ...core, planSha256: hashCanonical(core) };
+}
+
+export type PilotRoleReadinessMaterializationV2 = Omit<PilotRoleReadinessMaterializationV1, "schema" | "experimentId"> & {
+  schema: "pilot-role-readiness-materialization-v2";
+  experimentId: typeof PILOT_ROLE_READINESS_V2_EXPERIMENT_ID;
+};
+
+export function materializePilotRoleReadinessV2(args: {
+  repositoryRoot: string;
+  write?: boolean;
+  mintPlan?: boolean;
+}): PilotRoleReadinessMaterializationV2 {
+  const repositoryRoot = resolve(args.repositoryRoot);
+  const corpus = buildPilotRoleReadinessCorpusV2({ repositoryRoot });
+  const corpusPath = resolve(repositoryRoot, `${PILOT_ROLE_READINESS_V2_DIR_REL_PATH}/readiness-corpus.v2.json`);
+  const corpusBytes = canonicalPretty(corpus);
+  if (existsSync(corpusPath)) {
+    requireCondition(readFileSync(corpusPath, "utf8") === corpusBytes,
+      "retained v2 readiness corpus differs from the deterministic rebuild — the corpus is frozen at creation");
+  } else if (args.write === true) {
+    writeFileAtomic(corpusPath, corpusBytes);
+    requireCondition(readFileSync(corpusPath, "utf8") === corpusBytes, "v2 readiness corpus read-back drift");
+  }
+  const planPath = resolve(repositoryRoot, `${PILOT_ROLE_READINESS_V2_DIR_REL_PATH}/readiness-plan.v2.json`);
+  let planSha256: string | null = null;
+  let planWritten = false;
+  if (existsSync(planPath)) {
+    const retained = JSON.parse(readFileSync(planPath, "utf8")) as PilotRoleReadinessPlanV2;
+    requireCondition(retained.corpusSha256 === corpus.corpusSha256, "retained v2 plan is bound to a different corpus");
+    const rebuilt = buildPilotRoleReadinessPlanV2({ repositoryRoot, corpus });
+    requireCondition(rebuilt.planSha256 === retained.planSha256,
+      "retained v2 readiness plan no longer matches the current inputs (candidate re-minted since plan freeze?) — mint a fresh plan identity");
+    planSha256 = retained.planSha256;
+    planWritten = true;
+  } else if (args.mintPlan === true && args.write === true) {
+    const plan = buildPilotRoleReadinessPlanV2({ repositoryRoot, corpus });
+    writeFileAtomic(planPath, canonicalPretty(plan));
+    planSha256 = plan.planSha256;
+    planWritten = true;
+  }
+  return {
+    schema: "pilot-role-readiness-materialization-v2",
+    experimentId: PILOT_ROLE_READINESS_V2_EXPERIMENT_ID,
+    corpusPath,
+    corpusSha256: corpus.corpusSha256,
+    planPath,
+    planSha256,
+    planWritten,
+    written: args.write === true || existsSync(corpusPath),
+    modelCalls: 0,
+    apiCalls: 0,
+  };
 }
 
 // ── Plan (binds the then-current candidate instrument at campaign launch) ────

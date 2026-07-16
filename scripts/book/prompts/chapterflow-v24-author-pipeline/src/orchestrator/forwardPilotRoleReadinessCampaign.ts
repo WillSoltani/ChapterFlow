@@ -75,16 +75,18 @@ import {
   type InstrumentCertificationBindingV3,
 } from "../bakeoff/migration/roleQualificationRunnerV3.js";
 import { QUIZ_DETERMINISTIC_CHECKER_VERSION } from "../bakeoff/migration/reviewerRoleAssignment.js";
+// The campaign executes the v2 successor identity (owner directive "Proceed
+// with A"); the closed v1 campaign's evidence lives on the evidence branch.
 import {
   CANDIDATE_INSTRUMENT_CERT_REL_PATH,
   CANDIDATE_INSTRUMENT_SEAL_REL_PATH,
   PILOT_READINESS_BUDGET,
   PILOT_READINESS_STOPPING,
-  PILOT_ROLE_READINESS_DIR_REL_PATH,
-  PILOT_ROLE_READINESS_EXPERIMENT_ID,
-  materializePilotRoleReadiness,
-  type PilotRoleReadinessCorpusV1,
-  type PilotRoleReadinessPlanV1,
+  PILOT_ROLE_READINESS_V2_DIR_REL_PATH as PILOT_ROLE_READINESS_DIR_REL_PATH,
+  PILOT_ROLE_READINESS_V2_EXPERIMENT_ID as PILOT_ROLE_READINESS_EXPERIMENT_ID,
+  materializePilotRoleReadinessV2 as materializePilotRoleReadiness,
+  type PilotRoleReadinessCorpusV2 as PilotRoleReadinessCorpusV1,
+  type PilotRoleReadinessPlanV2 as PilotRoleReadinessPlanV1,
 } from "../bakeoff/migration/pilotRoleReadinessInstrument.js";
 import { createPilotRoleReadinessEvaluator } from "../bakeoff/migration/pilotRoleReadinessEvaluator.js";
 import {
@@ -219,8 +221,8 @@ function readinessImplementationPaths(): string[] {
     `${PIPELINE_REL}/state/migration-experiments/contracts/imp24`,
     `${PIPELINE_REL}/state/migration-experiments/contracts/imp24f`,
     `${PIPELINE_REL}/state/migration-experiments/contracts/schemas`,
-    `${PILOT_ROLE_READINESS_DIR_REL_PATH}/readiness-corpus.v1.json`,
-    `${PILOT_ROLE_READINESS_DIR_REL_PATH}/readiness-plan.v1.json`,
+    `${PILOT_ROLE_READINESS_DIR_REL_PATH}/readiness-corpus.v2.json`,
+    `${PILOT_ROLE_READINESS_DIR_REL_PATH}/readiness-plan.v2.json`,
     `${PIPELINE_REL}/state/migration-experiments/reader-gold-dev-pool-v1`,
     "book-packages",
     IMP24_REQUIRED_WORKFLOW_FILE,
@@ -929,7 +931,7 @@ export async function runPilotRoleReadinessCampaign(
   //    a candidate re-mint after the plan freeze).
   const materialized = materializePilotRoleReadiness({ repositoryRoot });
   requireCondition(materialized.planWritten && materialized.planSha256 !== null,
-    "readiness plan is not minted — mint it with pilot-role-readiness --write --mint-plan AFTER the final candidate re-mint");
+    "readiness plan is not minted — mint it with pilot-role-readiness-v2 --write --mint-plan AFTER the final candidate re-mint");
   const corpus = parseJson<PilotRoleReadinessCorpusV1>(materialized.corpusPath, "readiness corpus");
   const planBytes = readFileSync(materialized.planPath);
   const plan = JSON.parse(planBytes.toString("utf8")) as PilotRoleReadinessPlanV1;
