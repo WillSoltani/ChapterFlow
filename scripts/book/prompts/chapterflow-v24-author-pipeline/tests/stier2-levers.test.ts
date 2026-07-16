@@ -393,12 +393,14 @@ test("D9: timer contract — odd invented timers complain, packet numbers exempt
 
 // ── M-lane: model pin ──────────────────────────────────────────────────────────
 
-test("M-lane: author writers pin gpt-5.5 @ xhigh with a 60-min timeout; argv carries -c model= before effort", () => {
-  assert.equal(AUTHOR_WRITER_MODEL, "gpt-5.5");
+test("M-lane: author writers pin gpt-5.6-sol @ xhigh with a 60-min timeout; argv carries -c model= before effort", () => {
+  // WP-501/WP-302: the live author writer route is the provisional 5.6 default
+  // (was gpt-5.5, void per directive-1). AUTHOR_WRITER_MODEL rides BASELINE_MODEL.
+  assert.equal(AUTHOR_WRITER_MODEL, "gpt-5.6-sol");
   assert.equal(AUTHOR_WRITER_EFFORT, "xhigh");
   assert.equal(AUTHOR_WRITE_TIMEOUT_MS, 3_600_000);
-  const argv = codexExecArgv("do the thing", "workspace-write", [], false, "xhigh", "gpt-5.5");
-  const modelIdx = argv.indexOf("model=gpt-5.5");
+  const argv = codexExecArgv("do the thing", "workspace-write", [], false, "xhigh", "gpt-5.6-sol");
+  const modelIdx = argv.indexOf("model=gpt-5.6-sol");
   const effortIdx = argv.indexOf("model_reasoning_effort=xhigh");
   assert.ok(modelIdx > 0 && argv[modelIdx - 1] === "-c", "-c model= present");
   assert.ok(effortIdx > 0 && argv[effortIdx - 1] === "-c", "-c effort present");
