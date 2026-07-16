@@ -133,6 +133,10 @@ function makeWorld(draftBody = CONFIDENT_DRAFT, compositesBySlot: Record<string,
     draftPath,
     runId: "bo-test",
     models: MODELS,
+    // WP-501: the judge model is REQUIRED and explicit — no silent writer default.
+    // Pinned to a 5.6 id here (directive-1: gpt-5.5 is void); the fixed judging
+    // instrument is a caller decision, never inherited from BASELINE_MODEL.
+    judgeModel: "gpt-5.6-sol",
     publish: false,
     deps: bundle.deps,
     stateRoot,
@@ -158,9 +162,10 @@ test("conductor happy path (PUBLISH=false): shared research reused, blinded sele
 
   // 3. shared research reused: expectedChapterNumbers → [1] means NO research spawn.
   assert.equal(w.bundle.spawns.filter((s) => s.task.includes("RESEARCH")).length, 0, "no research session — existing research shared");
-  // Preflight probed all 3 candidates + the judge, each with a pinned model.
+  // Preflight probed all 3 candidates + the explicit judge, each with a pinned
+  // model (WP-501: the judge is required, not the silent writer default).
   const probes = w.bundle.spawns.filter((s) => s.task === "Reply with exactly: MODEL-OK");
-  assert.deepEqual(probes.map((p) => p.model).sort(), [...MODELS, "gpt-5.5"].sort());
+  assert.deepEqual(probes.map((p) => p.model).sort(), [...MODELS, "gpt-5.6-sol"].sort());
 
   // 7. blind labels randomized once and persisted; mapping covers all models.
   const manifest = manifestOf(w);

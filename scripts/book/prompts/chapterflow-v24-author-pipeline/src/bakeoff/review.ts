@@ -13,9 +13,10 @@
  * a forbidden-token list (model ids, slugs, slots, price/tier words) BEFORE any
  * reviewer spawn — a leak is a fail-closed error, never a warning.
  *
- * The judging instrument is FIXED across candidates: one judge model + effort
- * (default gpt-5.5 @ high), pinned on every spawn through the judge deps
- * wrapper. A candidate model never judges the primary selection.
+ * The judging instrument is FIXED across candidates: one explicit judge model +
+ * effort (REQUIRED — no default, never the writer/baseline model; WP-501),
+ * pinned on every spawn through the judge deps wrapper. A candidate model never
+ * judges the primary selection.
  */
 
 import { mkdirSync } from "fs";
