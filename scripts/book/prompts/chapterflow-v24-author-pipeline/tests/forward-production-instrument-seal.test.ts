@@ -113,11 +113,13 @@ test("production-seal CLI subverb stays dry unless --write is explicit", async (
   const outputPath = resolve(root, "seal.json");
   try {
     assert.equal(await runMigrationBakeoffCli(["forward-materialize-production-instrument-seal"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       output: outputPath,
       json: true,
     }), 0);
     assert.equal(existsSync(outputPath), false);
     assert.equal(await runMigrationBakeoffCli(["forward-materialize-production-instrument-seal"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       output: outputPath,
       write: true,
       json: true,
@@ -139,6 +141,7 @@ test("IMP-24 retained-seal verification fails closed on missing or drifted artif
     assert.equal(verified.modelCalls, 0);
     assert.equal(verified.apiCalls, 0);
     assert.equal(await runMigrationBakeoffCli(["forward-verify-production-instrument-seal-v2"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       output: outputPath,
       json: true,
     }), 0);
@@ -204,11 +207,13 @@ test("IMP-24 threshold CLI writes only the exact frozen model-free artifact", as
   const outputPath = resolve(root, "role-thresholds.json");
   try {
     assert.equal(await runMigrationBakeoffCli(["imp24-materialize-thresholds"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       output: outputPath,
       json: true,
     }), 0);
     assert.equal(existsSync(outputPath), false);
     assert.equal(await runMigrationBakeoffCli(["imp24-materialize-thresholds"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       output: outputPath,
       write: true,
       json: true,
@@ -216,6 +221,7 @@ test("IMP-24 threshold CLI writes only the exact frozen model-free artifact", as
     assert.equal(hashCanonical(JSON.parse(readFileSync(outputPath, "utf8"))), hashCanonical(IMP24_FROZEN_ROLE_THRESHOLDS));
     writeFileSync(outputPath, "{}\n");
     await assert.rejects(() => runMigrationBakeoffCli(["imp24-materialize-thresholds"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       output: outputPath,
       json: true,
     }), /thresholds differ/);

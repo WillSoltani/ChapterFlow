@@ -328,7 +328,7 @@ xenv(
       console.error = (...args: unknown[]) => { stderr.push(args.map(String).join(" ")); };
       let code: number;
       try {
-        code = await runMigrationBakeoffCli([`build-${role}-corpus-v2`], { json: true });
+        code = await runMigrationBakeoffCli([`build-${role}-corpus-v2`], { campaign: true, json: true });
       } finally {
         console.log = originalLog;
         console.error = originalError;

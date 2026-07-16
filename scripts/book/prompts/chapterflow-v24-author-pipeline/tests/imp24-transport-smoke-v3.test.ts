@@ -940,6 +940,7 @@ test("IMP-24D fixed smoke CLI rejects timeout/profile/case overrides before any 
     ];
     for (const forbidden of forbiddenFlags) {
       const code = await runMigrationBakeoffCli(["imp24-transport-smoke-v3"], {
+        campaign: true, // WP-202: un-gate the quarantined subverb
         "execute-live": true,
         "head-sha": HEAD,
         "workflow-run-id": "24",

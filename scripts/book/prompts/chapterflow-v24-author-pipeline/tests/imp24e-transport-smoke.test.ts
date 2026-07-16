@@ -325,10 +325,12 @@ test("IMP-24E smoke CLI dry and override barriers precede the injected campaign"
   console.log = () => undefined;
   try {
     assert.equal(await runMigrationBakeoffCli(["imp24e-transport-smoke"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       "head-sha": HEAD_1,
       "workflow-run-id": "25001",
     }, deps), 2);
     assert.equal(await runMigrationBakeoffCli(["imp24e-transport-smoke"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       "execute-live": true,
       "head-sha": HEAD_1,
       "workflow-run-id": "25001",
@@ -336,6 +338,7 @@ test("IMP-24E smoke CLI dry and override barriers precede the injected campaign"
     }, deps), 2);
     assert.equal(touched, 0);
     assert.equal(await runMigrationBakeoffCli(["imp24e-transport-smoke-r2"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       "execute-live": true,
       "head-sha": HEAD_2,
       "workflow-run-id": "25002",

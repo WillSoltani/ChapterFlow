@@ -236,10 +236,12 @@ test("IMP-24E schema-probe CLI dry barrier and fixed flags precede the injected 
   console.error = () => undefined;
   try {
     assert.equal(await runMigrationBakeoffCli(["imp24e-schema-probes"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       "head-sha": HEAD_1,
       "workflow-run-id": "24001",
     }, deps), 2);
     assert.equal(await runMigrationBakeoffCli(["imp24e-schema-probes"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       "execute-live": true,
       "head-sha": HEAD_1,
       "workflow-run-id": "24001",

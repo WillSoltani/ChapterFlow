@@ -194,6 +194,12 @@ const USAGE =
   `       No-publish migration harness (Stage Q/D/C). Never promotes, never\n` +
   `       repairs, never touches canonical state; activation is IMP-13's package.\n` +
   `\n` +
+  `       WP-202 QUARANTINE: every readiness/qualification/attestation/forward-campaign\n` +
+  `       subverb below is RETIRED from the ship path (S-tier ledger L-16/L-15) and fails\n` +
+  `       closed (exit 2) unless you pass the explicit --campaign opt-in flag.\n` +
+  `       plan|seal|qualify|run|analyze|decide|status, close-legacy-campaign, retrospective,\n` +
+  `       and the rubric-audit verbs are NOT gated.\n` +
+  `\n` +
   `       IMP-20 split-lane / §16-recovery subverbs (all no-model, no-write by\n` +
   `       default; pass --write to persist committed artifacts):\n` +
   `         close-legacy-campaign         verify the mechanical §16 closure freeze\n` +
@@ -329,6 +335,77 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "forward-activate-local",
   "forward-verify-local-activation",
 ]);
+
+// ── WP-202: campaign-verb quarantine ─────────────────────────────────────────
+// The pilot-readiness / role-qualification / forward-attestation stack is retired
+// from the ship path by the S-tier program (ledger L-15 froze the v6 role set at
+// d54cc753; L-16 records the quarantine direction). Every subverb that mints or
+// runs a qualification/readiness/attestation campaign now fails closed unless the
+// operator opts in with the explicit `--campaign` flag. This mints NO new identity
+// by default; physical source deletion is the Phase-8 gate (WP-804).
+// See docs/v25/implementation/CAMPAIGN_QUARANTINE.md for the un-gate procedure.
+
+/** The exact quarantine notice printed (to stderr) when a gated campaign subverb
+ *  is invoked without the opt-in. Asserted verbatim by the WP-202 refusal tests. */
+export const CAMPAIGN_QUARANTINE_NOTICE =
+  "retired from the ship path by the S-tier program (ledger L-16/L-15); " +
+  "the frozen v6 role set is advisory-lane seeding; formal deletion at the Phase-8 gate";
+
+/** SPLIT_LANE subverbs that stay callable WITHOUT `--campaign`: read-only closure
+ *  verification and the static retrospective re-projection (they mint nothing). */
+const CAMPAIGN_UNGATED_SPLIT_LANE: ReadonlySet<string> = new Set([
+  "close-legacy-campaign",
+  "retrospective",
+]);
+
+/** The D7 rubric-audit instrument verbs. These live in LOCAL_FORWARD_SUBVERBS but
+ *  belong to the ACTIVE rubric-audit family (WP-401 owns them); WP-202 does NOT gate
+ *  them — quarantining is scoped to the readiness/qualification/attestation stack. */
+const RUBRIC_AUDIT_SUBVERBS: ReadonlySet<string> = new Set([
+  "reader-gold-dev-pool",
+  "reader-gold-dev-docs",
+  "rubric-audit-batch",
+  "rubric-audit-report",
+  "rubric-verify-owner-run",
+  "rubric-audit-render-task",
+  "rubric-audit-ingest",
+  "rubric-audit-status",
+  "assemble-audit-package",
+]);
+
+/** Every readiness/qualification/attestation/forward-campaign subverb gated behind
+ *  `--campaign`. Computed from the existing families so it never drifts: all of the
+ *  live/local qualification + forward + schema-probe sets, the campaign-seeding /
+ *  recovery split-lane builders, MINUS the two read-only split-lane verbs and the
+ *  rubric-audit (WP-401) verbs. `plan|seal|qualify|run|analyze|decide|status` (the
+ *  core migration-experiment harness) are NOT in any of these sets and stay ungated. */
+export const CAMPAIGN_GATED_SUBVERBS: ReadonlySet<string> = new Set<string>([
+  ...[...SPLIT_LANE_SUBVERBS].filter((s) => !CAMPAIGN_UNGATED_SPLIT_LANE.has(s)),
+  ...LIVE_QUALIFICATION_SUBVERBS,
+  ...IMP24E_SCHEMA_PROBE_SUBVERBS,
+  ...LIVE_FORWARD_SUBVERBS,
+  ...LOCAL_QUALIFICATION_SUBVERBS,
+  ...[...LOCAL_FORWARD_SUBVERBS].filter((s) => !RUBRIC_AUDIT_SUBVERBS.has(s)),
+]);
+
+/** The campaign opt-in: the explicit `--campaign` flag. Flag-only by design — the
+ *  migration module is spec/argv-driven and reads NO ambient environment (a hard,
+ *  statically-enforced invariant; see tests/migration-guards.test.ts). The opt-in
+ *  therefore travels as an explicit flag, never as an ambient variable. */
+function campaignVerbsEnabled(flags: Record<string, string | boolean>): boolean {
+  return flags["campaign"] === true;
+}
+
+/** Fail-closed refusal for a gated campaign subverb invoked without the opt-in.
+ *  Prints the quarantine notice to stderr and returns exit code 2. No side effects,
+ *  no model call, no identity minted. */
+function refuseQuarantinedCampaignSubverb(subverb: string): 2 {
+  console.error(
+    `${subverb}: ${CAMPAIGN_QUARANTINE_NOTICE}. ` +
+      `Pass the explicit --campaign flag to re-enable this subverb for archaeology.`,
+  );
+  return 2;
+}
 
 const IMP24_CLOSED_QUALIFICATION_DISPOSITIONS = Object.freeze({
   "s16-forward-role-qualification-v1": "INVALID_INSTRUMENT_DO_NOT_ATTEST",
@@ -2197,6 +2274,22 @@ export async function runMigrationBakeoffCli(
 ): Promise<number> {
   const json = flags["json"] === true;
   const subverb = args[0] ?? "";
+  // WP-202: quarantine gate. Every readiness/qualification/attestation/forward-campaign
+  // subverb fails closed (exit 2, zero side effects, nothing minted) unless the operator
+  // opts in with the explicit --campaign flag. This is the FIRST check so a
+  // gated subverb never reaches its handler, its writers, or any (would-be) model call.
+  // The core migration-experiment verbs, `status`, `close-legacy-campaign`, `retrospective`,
+  // and the rubric-audit (WP-401) verbs are NOT gated (see CAMPAIGN_GATED_SUBVERBS).
+  if (CAMPAIGN_GATED_SUBVERBS.has(subverb) && !campaignVerbsEnabled(flags)) {
+    return refuseQuarantinedCampaignSubverb(subverb);
+  }
+  // The `--campaign` opt-in is a GATE-level control, not a subverb flag. Consume it here
+  // so the strict per-subverb flag allowlists (which refuse any unrecognized override) see
+  // the exact original flag set — un-gating restores byte-for-byte prior behavior.
+  if (flags["campaign"] === true) {
+    flags = { ...flags };
+    delete flags["campaign"];
+  }
   // IMP-20 split-lane / §16-recovery subverbs are their own no-model branches;
   // they do NOT take --experiment (the recovery id is fixed) and never spawn.
   if (SPLIT_LANE_SUBVERBS.has(subverb)) {

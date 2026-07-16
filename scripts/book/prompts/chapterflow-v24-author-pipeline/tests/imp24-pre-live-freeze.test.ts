@@ -364,20 +364,22 @@ test("IMP-24C dedicated model-free CI commands preserve every checkout byte", ()
   });
   const before = status();
   const smokeReportPath = resolve(REPOSITORY_ROOT, "docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.json");
+  // WP-202: these forward/attestation verification verbs are quarantined; un-gate them with
+  // the explicit --campaign opt-in (byte-preservation behaviour is unchanged by the gate).
   const observabilityVerificationArgs = existsSync(smokeReportPath)
     ? [
-        "migration-bakeoff", "imp24-materialize-observability-freeze", "--verify-historical",
+        "migration-bakeoff", "imp24-materialize-observability-freeze", "--campaign", "--verify-historical",
         "--observability-commit",
         String((JSON.parse(readFileSync(smokeReportPath, "utf8")) as Record<string, unknown>)
           .observabilityImplementationCommit ?? ""),
         "--json",
       ]
-    : ["migration-bakeoff", "imp24-materialize-observability-freeze", "--verify", "--json"];
+    : ["migration-bakeoff", "imp24-materialize-observability-freeze", "--campaign", "--verify", "--json"];
   for (const args of [
-    ["migration-bakeoff", "imp24-materialize-thresholds", "--json"],
-    ["migration-bakeoff", "imp24-certify-instrument", "--json"],
+    ["migration-bakeoff", "imp24-materialize-thresholds", "--campaign", "--json"],
+    ["migration-bakeoff", "imp24-certify-instrument", "--campaign", "--json"],
     observabilityVerificationArgs,
-    ["migration-bakeoff", "forward-verify-production-instrument-seal-v2", "--json"],
+    ["migration-bakeoff", "forward-verify-production-instrument-seal-v2", "--campaign", "--json"],
   ]) {
     execFileSync(process.execPath, ["--import", "tsx", "src/cli.ts", ...args], {
       cwd: PIPELINE_ROOT,

@@ -135,6 +135,7 @@ test("IMP-24 CLI first-barrier closes every V2 pilot/gold transition and exposes
       "forward-gold",
     ]) {
       const code = await runMigrationBakeoffCli([subverb], {
+        campaign: true, // WP-202: un-gate so the CLOSED-experiment disposition still refuses
         "execute-live": true,
         write: true,
         experiment: "s16-forward-role-qualification-v2",
@@ -147,9 +148,10 @@ test("IMP-24 CLI first-barrier closes every V2 pilot/gold transition and exposes
         && line.includes("BLOCKED_CALIBRATION_INVALID")), `${subverb} must print the exact retained disposition`);
     }
     for (const subverb of ["imp24-pilot-v2-envelope", "imp24-gold-v2-envelope"]) {
-      assert.equal(await runMigrationBakeoffCli([subverb], {}), 2);
+      assert.equal(await runMigrationBakeoffCli([subverb], { campaign: true }), 2);
       assert.ok(errors.some((line) => line.includes("executeLive must be the literal true value")));
       assert.equal(await runMigrationBakeoffCli([subverb], {
+        campaign: true, // WP-202: un-gate to exercise the artifact/route-substitution refusal
         "execute-live": true,
         "phase-dir": "/must-not-be-read",
       }), 2);
@@ -157,6 +159,7 @@ test("IMP-24 CLI first-barrier closes every V2 pilot/gold transition and exposes
     }
     for (const subverb of ["imp24-materialize-pilot-v2-envelope", "imp24-materialize-gold-v2-envelope"]) {
       assert.equal(await runMigrationBakeoffCli([subverb], {
+        campaign: true, // WP-202: un-gate to exercise the artifact-substitution refusal
         write: true,
         "state-root": "/must-not-be-written",
       }), 2);

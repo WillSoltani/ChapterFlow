@@ -3326,13 +3326,14 @@ test("self-hashed synthetic full-suite PASS is rejected when retained harness ou
 
 test("legacy V2 activation commands are closed and the V3 suite recorder has a literal dry barrier", async () => {
   assert.equal(await runMigrationBakeoffCli(["forward-activate-local"], {
+    campaign: true, // WP-202: un-gate so the closed V2 activation command still refuses
     "activate-local": true,
     "local-tests-pass": true,
     "activated-at": "2026-07-13T12:00:00.000Z",
     "head-sha": "a".repeat(40),
     "dedicated-ci-url": "https://github.com/example/example/actions/runs/1",
   }), 2);
-  assert.equal(await runMigrationBakeoffCli(["forward-verify-local-activation"], {}), 2);
+  assert.equal(await runMigrationBakeoffCli(["forward-verify-local-activation"], { campaign: true }), 2);
   const dry = recordImp24ActivationFullSuiteV3(false, "");
   assert.equal(dry.code, 2);
   assert.equal(dry.executed, false);
