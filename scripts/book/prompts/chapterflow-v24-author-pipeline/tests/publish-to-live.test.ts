@@ -257,6 +257,45 @@ test("--commit against a non-git outerRoot fails closed (before any copy)", asyn
   }
 });
 
+test("--commit against an outerRoot that is a SUBDIRECTORY of a larger git repo (not the toplevel) fails closed before any copy (real temp repo)", async () => {
+  // V25-14 / WP-104: publishToLive's own `rev-parse --show-toplevel` guard
+  // (never publishFinal's separate preflight check) refuses to treat a nested
+  // directory as the repo root — this would otherwise let --commit land a
+  // publish commit into an ENCLOSING repo instead of the intended checkout.
+  // Real git, real tmp repo — never REPO_ROOT, never the live worktree branch.
+  const root = tmpRoot("nested-toplevel");
+  const sandbox = resolve(root, "sandbox");
+  const enclosingRepo = resolve(root, "enclosing-repo");
+  const nestedOuter = resolve(enclosingRepo, "nested", "outer");
+  try {
+    mkdirSync(sandbox, { recursive: true });
+    mkdirSync(nestedOuter, { recursive: true });
+    const localPkg = resolve(sandbox, `${BOOK}.v21.json`);
+    writeFileSync(localPkg, PKG_CONTENT);
+
+    git(enclosingRepo, ["init", "-q"]);
+    git(enclosingRepo, ["config", "user.name", "fixture"]);
+    git(enclosingRepo, ["config", "user.email", "fixture@test"]);
+    writeFileSync(resolve(enclosingRepo, "README.md"), "enclosing repo — outerRoot is nested inside this, not its toplevel\n");
+    git(enclosingRepo, ["add", "README.md"]);
+    git(enclosingRepo, ["commit", "-q", "-m", "init enclosing repo"]);
+
+    const destPkg = resolve(nestedOuter, "book-packages", `${BOOK}.v21.json`);
+    const result = await publishToLive(BOOK, {
+      localPackagePath: localPkg,
+      outerRoot: nestedOuter,
+      commit: true,
+      verify: () => true,
+    });
+    assert.equal(result.ok, false, "a nested (non-toplevel) outerRoot must refuse --commit");
+    assert.match(result.error ?? "", /not the git toplevel/);
+    assert.match(result.error ?? "", /refusing to commit into an enclosing repo/);
+    assert.equal(existsSync(destPkg), false, "commit-mode preflight failure must abort before the copy");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test("probe-path FIX (v24 F1): the registry is app/book/data/bookPackages.ts — a lib/bookPackages.ts is IGNORED", async () => {
   // No app/ registry (registry:null) but a legacy lib/bookPackages.ts that DOES name the book.
   // The old probe checked lib/ and would have printed FOUND; the fixed probe checks app/book/data
