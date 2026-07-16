@@ -1,0 +1,47 @@
+{
+  "schema": "sealed-baseline-corpus-v1",
+  "purpose": "WP-303 (+701a) sealed-baseline packet: frozen, hash-pinned pointers to the owner-audited D7 calibration run for the three fixed bakeoff-corpus chapters. Read-only references only — retained evidence bytes are NEVER copied here, only relPath + sha256. sealedChapterDiagnostic is cross-validated against src/bakeoff/migration/rubricAuditInstrument.ts RUBRIC_CALIBRATION_REFERENCES (the arithmetic single source of truth) by tests/sealed-baseline-corpus.test.ts — this file adds the chapter/package pointers that instrument does not carry. A hash change on any referenced path requires an explicit re-seal note (WP-701 convention); never silently update a pin.",
+  "ownerRunId": "20260715T110908Z",
+  "ownerRunRelPath": "docs/v25/rubric-audit-2026-07-15",
+  "units": [
+    {
+      "unit": "nudge-ch03",
+      "bookId": "nudge",
+      "chapterNumber": 3,
+      "chapterTitle": "Following the Herd",
+      "readerDocRelPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/nudge-ch03.md",
+      "readerDocSha256": "5561431cdd87978ec2bd4def5cf4e2fc7ab53d8379f48e0eaaf7327a9dcaeda7",
+      "sealedAdjudicatedRecordRelPath": "docs/v25/rubric-audit-2026-07-15/raw/adjudicated/nudge-ch03.json",
+      "sealedAdjudicatedRecordSha256": "db0d0db45fbe5195e8b5f226e898aa87666fa8112af0c624ca0a753b5eaca277",
+      "sealedChapterDiagnostic": 70.75657894736842,
+      "publishedPackageRelPath": "book-packages/nudge.v21.json",
+      "publishedPackageSha256": "5a6c69c64868da32c7054058dd09af917335ad41a611bfefe526b680d0f557f7"
+    },
+    {
+      "unit": "the-happiness-hypothesis-ch06",
+      "bookId": "the-happiness-hypothesis",
+      "chapterNumber": 6,
+      "chapterTitle": "Love and attachments",
+      "readerDocRelPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/the-happiness-hypothesis-ch06.md",
+      "readerDocSha256": "98fb3e50e070ca44543881613f39dbaf5c478bfff7e2aea838688f2b3d0e5dd2",
+      "sealedAdjudicatedRecordRelPath": "docs/v25/rubric-audit-2026-07-15/raw/adjudicated/the-happiness-hypothesis-ch06.json",
+      "sealedAdjudicatedRecordSha256": "3ae3ad5bb0284df53f4a3840d3a592ef7cdfc8e60783a1db6daec165288aa722",
+      "sealedChapterDiagnostic": 68.8157894736842,
+      "publishedPackageRelPath": "book-packages/the-happiness-hypothesis.v21.json",
+      "publishedPackageSha256": "db1c2ee846f7b88294caa70020747dfd1192f8c2d1fea79653b4cb7b16c774b9"
+    },
+    {
+      "unit": "made-to-stick-ch04",
+      "bookId": "made-to-stick",
+      "chapterNumber": 4,
+      "chapterTitle": "Credible",
+      "readerDocRelPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/made-to-stick-ch04.md",
+      "readerDocSha256": "9a20a3afd9612faf43ea26575e0f471401c180f58fdef2bcaceedd4a54194120",
+      "sealedAdjudicatedRecordRelPath": "docs/v25/rubric-audit-2026-07-15/raw/adjudicated/made-to-stick-ch04.json",
+      "sealedAdjudicatedRecordSha256": "66982e03651b6110c3ff767b4803f8ac83799876a2af9b638cb35467c7cf7686",
+      "sealedChapterDiagnostic": 67.66447368421052,
+      "publishedPackageRelPath": "book-packages/made-to-stick.v21.json",
+      "publishedPackageSha256": "e404a117fb5c6332179bbb7ccf8c337521267b1c0913af549fac58b0002dc968"
+    }
+  ]
+}
