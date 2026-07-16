@@ -7,7 +7,7 @@
  * fixed in-tree, and the pin asserts the CORRECT post-fix behavior.
  *
  * The twelve bullets (design §3 "Regression tests"):
- *   1  Stage-Q v1/v2 schema + verdict-coordinate defects stay pinned (v2/v3 untouched)
+ *   1  Stage-Q verdict-coordinate defect stays pinned (v2 quarantined WP-204; v3 owns it live)
  *   2  Layer-N v1 stub-corpus defect fixed (NATIVE_REVIEW_MIN_RENDER_BYTES floor preserved)
  *   3  Layer-N v2 hard-blocker scoring decoupled from ship84 (scorer v2.2)
  *   4  Layer-N v2 craft-borderline never falsely escalated to a mustFix
@@ -35,15 +35,16 @@ import type { ChapterV21 } from "../src/types.js";
 import type { ChapterReviewV1 } from "../src/artifacts/artifactTypes.js";
 import { CHAPTER_REVIEW_SCHEMA_VERSION } from "../src/artifacts/artifactTypes.js";
 
-// ── Stage-Q v2/v3 (bullets 1, 6) ─────────────────────────────────────────────
-import {
-  takeoverOccurred,
-  validateReviewFinding,
-  type SecurityBoundaryResult,
-} from "../src/bakeoff/migration/stageQv2.js";
+// ── Stage-Q v3 (bullets 1, 6) — v2 quarantined-but-kept WP-204 (two retained-
+// evidence driver scripts under state/migration-experiments/_owner-inputs/
+// still import it); takeoverOccurred and SecurityBoundaryResult are
+// byte-equivalent copies now owned live by v3, so this LIVE test suite no
+// longer depends on stageQv2.ts at all.
 import {
   reviewConsistencyHolds,
+  takeoverOccurred,
   validateReviewFindingV3,
+  type SecurityBoundaryResult,
 } from "../src/bakeoff/migration/stageQv3.js";
 
 // ── Layer-N v1/v2 (bullets 2, 3, 4) ──────────────────────────────────────────
@@ -71,8 +72,11 @@ import { buildQuizDerivation, commitQuizDerivation } from "../src/review/quizDer
 import { renderChapterReaderDocPhase1 } from "../src/review/renderReaderDoc.js";
 import { ensureTrailingNewline } from "../src/lib/atomicWrite.js";
 
-// ── Reader lane + legacy adapter (bullets 8, 11) ─────────────────────────────
-import { adaptLegacyReaderReview } from "../src/review/legacyReaderReviewAdapter.js";
+// ── Reader lane (bullet 11) ──────────────────────────────────────────────────
+// Bullet 8 (legacy ship84 adapter → freshness wedge) retired WP-204 with
+// src/review/legacyReaderReviewAdapter.ts: the module's only consumers were
+// this test file and its own dedicated tests/legacy-reader-adapter.test.ts
+// (both test-only, zero production importers) — both are gone.
 import {
   READER_EXPERIENCE_RUBRIC_VERSION,
   readerReviewIsFresh,
@@ -221,25 +225,19 @@ function cleanSourceInput(over: Partial<SourceIntegrityLaneInputV1> = {}): Sourc
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// BULLET 1 — Stage-Q v1/v2 schema + verdict-coordinate defects stay pinned.
+// BULLET 1 — Stage-Q verdict-coordinate defect stays pinned.
+// (WP-204, ledger L-12/L-23: stageQv2.ts is superseded and quarantined —
+//  zero LIVE non-test importers (this suite no longer imports it at all);
+//  it is kept, not deleted, only because two retained-evidence driver
+//  scripts under state/migration-experiments/_owner-inputs/ still import
+//  it, and its own tests/stage-q-v2.test.ts still covers it directly. Its
+//  single-coordinate validateReviewFinding correction is fully subsumed, for
+//  every LIVE consumer, by v3's stricter evidence-sufficiency ↔
+//  finding-validity consistency rule below; this LIVE pin retargets to the
+//  v3 half rather than continuing to exercise the quarantined v2 function.)
 // ═══════════════════════════════════════════════════════════════════════════
 
-test("regression 1: Stage-Q v2/v3 review + verdict coordinates stay pinned (schema untouched)", () => {
-  // v2 REVIEW_FINDING carries the corrected multi-coordinate shape — a finding
-  // validity, the candidate-content verdict it applies to, AND the severity if
-  // supported. Dropping the candidate-content coordinate (the register/review
-  // coordinate the v2 correction added) must fail validation.
-  assert.equal(
-    validateReviewFinding({ findingValidity: "SUPPORTED", candidateContentVerdict: "DEFECT", severityIfSupported: "HIGH", evidenceSpans: [], rationale: "r" }),
-    true,
-    "a well-formed v2 review-finding read validates",
-  );
-  assert.equal(
-    validateReviewFinding({ findingValidity: "SUPPORTED", severityIfSupported: "HIGH", evidenceSpans: [], rationale: "r" }),
-    false,
-    "dropping candidateContentVerdict (the v2 review-coordinate correction) is rejected",
-  );
-
+test("regression 1: Stage-Q v3 review + verdict coordinates stay pinned (schema untouched)", () => {
   // v3 folds the evidence-sufficiency ↔ finding-validity CONSISTENCY into schema
   // validity: a SUFFICIENT_TO_DECIDE read that still reports INCONCLUSIVE
   // contradicts its own coordinates and is NOT schema-valid.
@@ -423,30 +421,13 @@ test("regression 7: the quiz lane BLOCKS a wrong key and a two-valid-answer (amb
   assert.equal(clean.result, "PASS", "a uniquely-correct quiz passes");
 });
 
-// ═══════════════════════════════════════════════════════════════════════════
-// BULLET 8 — high composite + legacy ship84:false → adapter maps, freshness rejects.
-// ═══════════════════════════════════════════════════════════════════════════
-
-test("regression 8: a high-composite legacy ship84:false record adapts but can never be fresh", () => {
-  // A ≥bar chapter the legacy model declined to ship, carrying NO mustFix — the
-  // pure ship-bit artifact. The adapter maps it to REVISE (never a hard BLOCK).
-  const legacy = mkReview({ composite: 96, ship84: false, pass: false, complaints: [], contentHash: "chapH", docHash: "docH" });
-  const adapted = adaptLegacyReaderReview(legacy);
-  assert.equal(adapted.recommendation, "REVISE", "high composite + ship84:false + no mustFix → REVISE, not BLOCK");
-  assert.notEqual(adapted.rubricVersion, READER_EXPERIENCE_RUBRIC_VERSION, "the adapter stamps the LEGACY rubric version");
-
-  // Even bound to its OWN hashes, the adapted record fails the new freshness
-  // predicate on the rubric-version wedge — old ship84 evidence goes stale.
-  assert.equal(
-    readerReviewIsFresh(adapted, adapted.chapterContentSha256, adapted.readerDocumentSha256, adapted.schemaSha256),
-    false,
-    "a legacy-adapted record can never satisfy the new freshness predicate",
-  );
-
-  // A legacy no-ship WITH a mustFix maps to BLOCK; a ship maps to SHIP.
-  assert.equal(adaptLegacyReaderReview(mkReview({ ship84: false, complaints: [{ unit: "deep read", problem: "broken", mustFix: true }] })).recommendation, "BLOCK");
-  assert.equal(adaptLegacyReaderReview(mkReview({ ship84: true })).recommendation, "SHIP");
-});
+// BULLET 8 — retired WP-204 with src/review/legacyReaderReviewAdapter.ts
+// (ledger L-23): the module's only consumers were this file's bullet-8 test
+// and its own dedicated tests/legacy-reader-adapter.test.ts, both test-only
+// with zero production importers. Both are removed; the version-wedge
+// invariant it pinned (a legacy-adapted record can never satisfy
+// readerReviewIsFresh) has no successor module to re-pin against — it was
+// specific to the now-deleted adapter's own mapping, not to a live gate.
 
 // ═══════════════════════════════════════════════════════════════════════════
 // BULLET 9 — source-corpus builder refuses planSpec inference (no rescue).
