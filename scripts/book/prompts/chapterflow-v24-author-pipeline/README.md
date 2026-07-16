@@ -1,4 +1,4 @@
-# ChapterFlow v22 Optimized Autonomous
+# ChapterFlow v24 Author Pipeline
 
 ## Optimized autonomous pipeline
 
@@ -20,7 +20,7 @@ Policies:
 See `docs/v22/PIPELINE-ARCHITECTURE.md` and `agent-prompts/V22-SUBAGENT-CONTRACT.md`.
 
 
-Code-first book-generation pipeline. v22 is the cost-optimized autonomous successor to the v21 authored pipeline and v13 Autonomous.
+Code-first book-generation pipeline. This is the **v24 author pipeline** (current V25-program line), successor to the v22 cost-optimized-autonomous path, the v21 authored pipeline, and v13 Autonomous.
 
 ## Why v21 exists
 
@@ -83,7 +83,7 @@ below). v21 supports three providers behind a single interface. Switch by env va
 sudo npm install -g @anthropic-ai/claude-code
 claude /login
 # default; no env needed
-npx tsx scripts/book/prompts/chapterflow-v22-optimized-autonomous/src/cli.ts ping
+npx tsx scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts ping
 ```
 
 ### 2. Anthropic API (mass production, paid)
@@ -119,7 +119,7 @@ include usage/latency metadata for validation.
 
 ## Package and CI contract
 
-The v22 optimized artifact is a standalone npm package. The root
+The v24 author pipeline artifact is a standalone npm package. The root
 `package-lock.json` is the single dependency lockfile; do not add a second
 lockfile under this directory.
 
@@ -199,7 +199,7 @@ the full catalog of v13 issues and how v21 enforces against them.
 ## Repo layout
 
 ```
-chapterflow-v22-optimized-autonomous/
+chapterflow-v24-author-pipeline/
 ├── README.md                   (this file)
 ├── src/
 │   ├── types.ts                typed contracts between agents
@@ -240,7 +240,7 @@ chapterflow-v22-optimized-autonomous/
 Every model call replaced by the Claude session running this CLI: read the playbook, produce the artifact, save to the printed path, run the validator. The deterministic critics + ship gate + book gate enforce S-tier quality.
 
 ```bash
-CLI=scripts/book/prompts/chapterflow-v22-optimized-autonomous/src/cli.ts
+CLI=scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts
 
 # 1. Ask the helper what to produce next; loop until "all done"
 npx tsx $CLI next-task atomic-habits
