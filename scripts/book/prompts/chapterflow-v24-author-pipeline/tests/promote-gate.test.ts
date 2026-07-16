@@ -26,6 +26,7 @@ import {
 } from "../src/qc/majorDisposition.js";
 import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
 import { firstMachineryExampleTag, isMachineryExampleTag } from "../src/lib/readerContent.js";
+import { sha256Hex } from "../src/contracts/contractUtil.js";
 import { RUBRIC_AUDIT_BAR_D7 } from "../src/bakeoff/migration/rubricAuditInstrument.js";
 import {
   CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV,
@@ -34,6 +35,7 @@ import {
   d7ShipGateReceiptPath,
   deriveCurrentD7Content,
   sealD7ShipGateReceipt,
+  type D7ShipGateCustody,
   type D7ShipGateReceiptV1,
   type D7ShipGateVerdict,
 } from "../src/critics/d7ShipGate.js";
@@ -1159,7 +1161,20 @@ function withRequireD7<T>(fn: () => T): T {
 
 /** Seal a fixture D7 receipt for `bookId` bound to its CURRENT canonical content,
  *  and write it to the state-side path the gate resolves. `staleUnit` deliberately
- *  breaks one content hash to exercise the stale-content path. */
+ *  breaks one content hash to exercise the stale-content path. The custody block is
+ *  non-empty + well-formed (audit_id `zz-d7-fixture` has no retained dir, so the
+ *  gate re-verifies 'retained-absent' and enforces only the seal + custody shape —
+ *  see d7-ship-gate.test.ts for the mint-time real-artifact validation). */
+function fixtureCustody(units: string[]): D7ShipGateCustody[] {
+  return units.map((unit) => ({
+    unit,
+    primaryDispatchSha256: sha256Hex(Buffer.from(`${unit}-primary-dispatch`, "utf8")),
+    verificationDispatchSha256: sha256Hex(Buffer.from(`${unit}-verification-dispatch`, "utf8")),
+    pairSealSha256: sha256Hex(Buffer.from(`${unit}-pair-seal`, "utf8")),
+    adjudicationCanonicalSha256: sha256Hex(Buffer.from(`${unit}-adjudication`, "utf8")),
+  }));
+}
+
 function writeFixtureD7Receipt(bookId: string, opts: { verdict: D7ShipGateVerdict; round?: number; staleUnit?: string }): void {
   const content = deriveCurrentD7Content({ bookId });
   const pass = opts.verdict === "PASS";
@@ -1194,7 +1209,7 @@ function writeFixtureD7Receipt(bookId: string, opts: { verdict: D7ShipGateVerdic
     },
     calibration: { unit: "cal", expected: 67.66, observed: 67.66, abs_delta: 0, tolerance: 3, pass: true },
     chapters,
-    custody: [],
+    custody: fixtureCustody(chapters.map((chapter) => chapter.unit)),
     report_sha256: "0".repeat(64),
   });
   mkdirSync(D7_STATE_BOOKS_DIR, { recursive: true });

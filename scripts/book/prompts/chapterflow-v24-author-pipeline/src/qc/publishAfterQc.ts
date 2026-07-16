@@ -438,6 +438,7 @@ function noApiPreflightChecks(bookId: string): PreflightCheck[] {
       const d7 = safe("d7-ship-gate", () => evaluateD7ShipGateForPreflight({
         bookId,
         stateBooksDir: resolve(PIPELINE_DIR, "state", "books"),
+        repositoryRoot: resolve(PIPELINE_DIR, "../../../.."),
         require: process.env[CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV] === "1",
       }).blockers.map((b) => `d7-ship-gate ${b}`));
       return { check: "d7-ship-gate", blockers: d7 };

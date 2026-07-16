@@ -41,6 +41,11 @@ import { hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import { assembleAuditPackage } from "../bakeoff/auditPackageAssembler.js";
 import { artifactSha256FromText } from "../bakeoff/migration/rubricAuditCanonical.js";
+import {
+  loadRecord,
+  validatePairChain,
+  type RubricInspection,
+} from "../bakeoff/migration/rubricAuditReceipts.js";
 import { rubricAuditDirRelPath } from "../bakeoff/migration/rubricAuditInstrument.js";
 import {
   RUBRIC_AUDIT_BAR_D7,
@@ -79,8 +84,25 @@ export const D7_REAUTHOR_BUDGET_PER_AUDIT = 1 as const;
 
 export const CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV = "CHAPTERFLOW_REQUIRE_D7_SHIP_GATE" as const;
 
+/** A lowercase SHA-256 digest (the shape every custody artifact hash must take). */
+const SHA256_RE = /^[0-9a-f]{64}$/;
+
 export type D7ShipGateVerdict = "PASS" | "FAIL" | "VOID_CALIBRATION";
 export type D7ShipGateDecision = "exempt" | "pass" | "advisory-skip" | "block";
+
+/** Result of re-verifying a receipt's chain-of-custody against the RETAINED audit
+ *  artifacts on disk.
+ *   - `verified`        — the audit dir is present and every custody hash matched
+ *                          the retained bytes AND every blind-pair chain validated.
+ *   - `retained-absent` — no retained audit dir for `audit_id` on disk (e.g. a
+ *                          fresh worktree consuming a sealed receipt); the
+ *                          MINT-TIME pair-chain check is the load-bearing one,
+ *                          gate-time re-verification is best-effort.
+ *   - `failed`          — a custody hash or blind-pair chain did not verify;
+ *                          `blockers` carries the D7.custody_mismatch /
+ *                          D7.pair_chain_invalid reasons (fail-closed). */
+export type D7CustodyVerifyStatus = "verified" | "retained-absent" | "failed";
+export type D7CustodyVerification = { status: D7CustodyVerifyStatus; blockers: string[] };
 
 // ── Receipt shape ─────────────────────────────────────────────────────────────
 
@@ -314,17 +336,49 @@ export function mintD7ShipGateReceiptFromAudit(args: {
     },
   ]));
 
-  const custody: D7ShipGateCustody[] = manifest.chapters.map((chapter) => ({
-    unit: chapter.unit,
-    primaryDispatchSha256: artifactSha256FromText(
-      readFileSync(resolve(auditDir, `jobs/${chapter.unit}.receipts/primary.dispatch.json`), "utf8")),
-    verificationDispatchSha256: artifactSha256FromText(
-      readFileSync(resolve(auditDir, `jobs/${chapter.unit}.receipts/verification.dispatch.json`), "utf8")),
-    pairSealSha256: artifactSha256FromText(
-      readFileSync(resolve(auditDir, `jobs/${chapter.unit}.receipts/pair.seal.json`), "utf8")),
-    adjudicationCanonicalSha256: artifactSha256FromText(
-      readFileSync(resolve(auditDir, `raw/adjudicated/${chapter.unit}.json`), "utf8")),
-  }));
+  // Custody + integrity: for EVERY audited chapter, VALIDATE the retained blind-
+  // pair chain (dispatch/result/pair-seal against the frozen source inspection)
+  // and only then bind its artifact hashes. A missing artifact or any chain error
+  // REFUSES the mint — a sealed PASS receipt can only be minted from a real,
+  // tamper-consistent rating run, never conjured from nothing (rt-401).
+  const custody: D7ShipGateCustody[] = [];
+  for (const chapter of manifest.chapters) {
+    const unit = chapter.unit;
+    const readArtifact = (relPath: string): string => {
+      const abs = resolve(auditDir, relPath);
+      if (!existsSync(abs)) {
+        throw new D7ShipGateError(
+          `cannot mint a D7 ship-gate receipt: missing retained audit artifact '${relPath}' for ${unit} — the audit is incomplete or tampered.`);
+      }
+      return readFileSync(abs, "utf8");
+    };
+    const inspectionRaw = readArtifact(`jobs/${unit}.inspection.json`);
+    const primaryRaw = readArtifact(`raw/primary/${unit}.json`);
+    const verificationRaw = readArtifact(`raw/verification/${unit}.json`);
+    const primaryDispatchRaw = readArtifact(`jobs/${unit}.receipts/primary.dispatch.json`);
+    const verificationDispatchRaw = readArtifact(`jobs/${unit}.receipts/verification.dispatch.json`);
+    const pairSealRaw = readArtifact(`jobs/${unit}.receipts/pair.seal.json`);
+    const adjudicationRaw = readArtifact(`raw/adjudicated/${unit}.json`);
+    const chainErrors = validatePairChain({
+      primary: loadRecord(primaryRaw),
+      verification: loadRecord(verificationRaw),
+      primaryDispatch: loadRecord(primaryDispatchRaw),
+      verificationDispatch: loadRecord(verificationDispatchRaw),
+      pairSeal: loadRecord(pairSealRaw),
+      inspection: loadRecord(inspectionRaw).value as RubricInspection,
+    });
+    if (chainErrors.length > 0) {
+      throw new D7ShipGateError(
+        `cannot mint a D7 ship-gate receipt: the retained blind-pair chain for ${unit} is invalid — ${chainErrors.join("; ")}`);
+    }
+    custody.push({
+      unit,
+      primaryDispatchSha256: artifactSha256FromText(primaryDispatchRaw),
+      verificationDispatchSha256: artifactSha256FromText(verificationDispatchRaw),
+      pairSealSha256: artifactSha256FromText(pairSealRaw),
+      adjudicationCanonicalSha256: artifactSha256FromText(adjudicationRaw),
+    });
+  }
 
   const core = buildD7ShipGateReceiptCore({
     bookId,
@@ -377,6 +431,80 @@ export function deriveCurrentD7Content(args: { bookId: string; chaptersDir?: str
   return out;
 }
 
+// ── Custody re-verification (defense-in-depth; reads retained artifacts) ──────
+
+/** Re-verify a receipt's chain-of-custody against the RETAINED audit artifacts on
+ *  disk. When the audit directory for `receipt.audit_id` is present, every custody
+ *  hash is recomputed from the retained bytes and compared, and every chapter's
+ *  blind-pair chain is re-run through `validatePairChain` — a mismatch/error is a
+ *  fail-closed BLOCK. When the directory is ABSENT (fresh worktree consuming a
+ *  sealed receipt), nothing can be re-verified, so this reports `retained-absent`
+ *  honestly: the MINT-TIME pair-chain check is the load-bearing one, and the pure
+ *  evaluation still enforces the seal + a non-empty, well-formed custody shape. */
+export function verifyRetainedD7Custody(args: {
+  repositoryRoot: string;
+  receipt: D7ShipGateReceiptV1;
+}): D7CustodyVerification {
+  const auditDir = resolve(args.repositoryRoot, rubricAuditDirRelPath(args.receipt.audit_id));
+  // The batch manifest is the canonical "a real audit was retained here" signal.
+  if (!existsSync(resolve(auditDir, "batch-manifest.json"))) {
+    return { status: "retained-absent", blockers: [] };
+  }
+  const custodyByUnit = new Map(args.receipt.custody.map((entry) => [entry.unit, entry]));
+  const blockers: string[] = [];
+  for (const chapter of args.receipt.chapters) {
+    const unit = chapter.unit;
+    const custody = custodyByUnit.get(unit);
+    if (custody === undefined) {
+      blockers.push(`D7.custody_mismatch: the receipt carries no custody entry for retained-audited unit '${unit}'.`);
+      continue;
+    }
+    try {
+      const readArtifact = (relPath: string): string => {
+        const abs = resolve(auditDir, relPath);
+        if (!existsSync(abs)) {
+          throw new D7ShipGateError(`retained audit artifact '${relPath}' for ${unit} is missing`);
+        }
+        return readFileSync(abs, "utf8");
+      };
+      const inspectionRaw = readArtifact(`jobs/${unit}.inspection.json`);
+      const primaryRaw = readArtifact(`raw/primary/${unit}.json`);
+      const verificationRaw = readArtifact(`raw/verification/${unit}.json`);
+      const primaryDispatchRaw = readArtifact(`jobs/${unit}.receipts/primary.dispatch.json`);
+      const verificationDispatchRaw = readArtifact(`jobs/${unit}.receipts/verification.dispatch.json`);
+      const pairSealRaw = readArtifact(`jobs/${unit}.receipts/pair.seal.json`);
+      const adjudicationRaw = readArtifact(`raw/adjudicated/${unit}.json`);
+
+      const retained: Record<keyof Omit<D7ShipGateCustody, "unit">, string> = {
+        primaryDispatchSha256: artifactSha256FromText(primaryDispatchRaw),
+        verificationDispatchSha256: artifactSha256FromText(verificationDispatchRaw),
+        pairSealSha256: artifactSha256FromText(pairSealRaw),
+        adjudicationCanonicalSha256: artifactSha256FromText(adjudicationRaw),
+      };
+      for (const key of Object.keys(retained) as Array<keyof typeof retained>) {
+        if (custody[key] !== retained[key]) {
+          blockers.push(
+            `D7.custody_mismatch: ${unit} ${key} in the receipt (${String(custody[key]).slice(0, 12)}…) does not match the retained artifact (${retained[key].slice(0, 12)}…).`);
+        }
+      }
+      const chainErrors = validatePairChain({
+        primary: loadRecord(primaryRaw),
+        verification: loadRecord(verificationRaw),
+        primaryDispatch: loadRecord(primaryDispatchRaw),
+        verificationDispatch: loadRecord(verificationDispatchRaw),
+        pairSeal: loadRecord(pairSealRaw),
+        inspection: loadRecord(inspectionRaw).value as RubricInspection,
+      });
+      if (chainErrors.length > 0) {
+        blockers.push(`D7.pair_chain_invalid: the retained blind-pair chain for ${unit} does not validate — ${chainErrors.join("; ")}.`);
+      }
+    } catch (error) {
+      blockers.push(`D7.pair_chain_invalid: cannot re-verify the retained audit chain for ${unit} — ${(error as Error).message}.`);
+    }
+  }
+  return { status: blockers.length > 0 ? "failed" : "verified", blockers };
+}
+
 // ── Halt record ───────────────────────────────────────────────────────────────
 
 function buildHaltRecord(receipt: D7ShipGateReceiptV1, bookId: string): D7ShipGateHaltV1 {
@@ -414,6 +542,11 @@ export type D7ShipGateResult = {
   blockers: string[];
   verdict: D7ShipGateVerdict | null;
   halt: D7ShipGateHaltV1 | null;
+  /** How the receipt's chain-of-custody was checked against the retained audit
+   *  artifacts: `verified` (re-verified on disk), `retained-absent` (no retained
+   *  audit dir; seal + custody-shape only — mint-time is load-bearing), or
+   *  `failed` (a custody hash / blind-pair chain did not verify). */
+  custodyVerified: D7CustodyVerifyStatus;
   reason: string;
 };
 
@@ -428,6 +561,11 @@ export function evaluateD7ShipGate(input: {
   /** True when a receipt file EXISTS on disk but could not be parsed. */
   receiptCorrupt?: boolean;
   currentContent: D7CurrentContent | null;
+  /** Defense-in-depth re-verification of the receipt's custody against the
+   *  retained audit artifacts (from `verifyRetainedD7Custody`). When omitted, no
+   *  retained artifacts were re-verified and the decision records
+   *  `retained-absent` — the seal + custody-shape checks still hold. */
+  custodyVerification?: D7CustodyVerification;
   require: boolean;
 }): D7ShipGateResult {
   const bookId = normSlug(input.bookId);
@@ -439,6 +577,7 @@ export function evaluateD7ShipGate(input: {
       blockers: [],
       verdict: null,
       halt: null,
+      custodyVerified: "retained-absent",
       reason: "D7 ship gate: candidate package is byte-identical to the already-shipped corpus package — no-retroactivity exemption (rt-D3).",
     };
   }
@@ -450,6 +589,7 @@ export function evaluateD7ShipGate(input: {
       blockers: ["D7.receipt_corrupt: a D7 ship-gate receipt file exists but is not valid JSON — fail-closed (re-mint from the audit)."],
       verdict: null,
       halt: null,
+      custodyVerified: "retained-absent",
       reason: "D7 ship gate BLOCKED: the receipt file is present but unreadable.",
     };
   }
@@ -462,6 +602,7 @@ export function evaluateD7ShipGate(input: {
         blockers: [`D7.receipt_missing: no sealed D7 ship-gate receipt for new/changed book '${bookId}'. Run: assemble-audit-package -> rubric-audit-batch -> (rate, external) -> rubric-audit-ingest -> rubric-audit-report -> rubric-audit-mint-ship-receipt.`],
         verdict: null,
         halt: null,
+        custodyVerified: "retained-absent",
         reason: "D7 ship gate BLOCKED: a fresh D7 PASS receipt is required and none is present.",
       };
     }
@@ -470,6 +611,7 @@ export function evaluateD7ShipGate(input: {
       blockers: [],
       verdict: null,
       halt: null,
+      custodyVerified: "retained-absent",
       reason: `D7 ship gate: no receipt present; advisory (set ${CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV}=1 to require a sealed PASS bound to the shipped bytes).`,
     };
   }
@@ -492,6 +634,37 @@ export function evaluateD7ShipGate(input: {
   }
   if (normSlug(receipt.book_id) !== bookId) {
     blockers.push(`D7.book_mismatch: receipt book_id '${receipt.book_id}' does not match the book being promoted '${bookId}'.`);
+  }
+
+  // Chain-of-custody: a receipt minted from nothing (or with a forged/garbage
+  // custody block) can never ship. The custody shape is enforced UNCONDITIONALLY
+  // (both retained modes); the retained artifacts, when present, are additionally
+  // re-verified (custody hashes + blind-pair chains) by the caller and folded in.
+  const custodyStatus: D7CustodyVerifyStatus = input.custodyVerification?.status ?? "retained-absent";
+  const custody = Array.isArray(receipt.custody) ? receipt.custody : [];
+  if (custody.length === 0) {
+    blockers.push("D7.custody_empty: the receipt carries no chain-of-custody entries — a D7 receipt must bind the retained rater/adjudication artifacts for every audited chapter (a receipt cannot be minted from nothing).");
+  } else {
+    const custodyUnits = new Set(custody.map((entry) => entry.unit));
+    const chapterUnits = new Set(receipt.chapters.map((chapter) => chapter.unit));
+    const sameSet = custodyUnits.size === chapterUnits.size
+      && [...chapterUnits].every((unit) => custodyUnits.has(unit));
+    if (!sameSet) {
+      blockers.push(
+        `D7.custody_shape: custody covers {${[...custodyUnits].sort().join(", ")}} but the audited chapters are {${[...chapterUnits].sort().join(", ")}} — every audited chapter needs a custody entry.`);
+    }
+    for (const entry of custody) {
+      const wellFormed = [entry.primaryDispatchSha256, entry.verificationDispatchSha256, entry.pairSealSha256, entry.adjudicationCanonicalSha256]
+        .every((hash) => SHA256_RE.test(String(hash ?? "")));
+      if (!wellFormed) {
+        blockers.push(`D7.custody_shape: custody entry for '${entry.unit}' has a malformed artifact hash (every custody hash must be a lowercase SHA-256 digest).`);
+      }
+    }
+  }
+  // Defense-in-depth: retained custody/pair-chain re-verification (best-effort;
+  // no-op when the audit dir is absent). Any mismatch/error is a fail-closed BLOCK.
+  if (custodyStatus === "failed") {
+    blockers.push(...(input.custodyVerification?.blockers ?? []));
   }
 
   // Content binding: every shipped chapter must be covered by the receipt at the
@@ -531,6 +704,7 @@ export function evaluateD7ShipGate(input: {
       blockers,
       verdict,
       halt,
+      custodyVerified: custodyStatus,
       reason: `D7 ship gate BLOCKED: ${blockers.join(" ")}`,
     };
   }
@@ -539,7 +713,8 @@ export function evaluateD7ShipGate(input: {
     blockers: [],
     verdict,
     halt: null,
-    reason: `D7 ship gate PASS: verdict PASS bound to the shipped bytes (book CDS ${receipt.book_cds.toFixed(2)}, min ${receipt.summary.min.toFixed(2)}).`,
+    custodyVerified: custodyStatus,
+    reason: `D7 ship gate PASS: verdict PASS bound to the shipped bytes (book CDS ${receipt.book_cds.toFixed(2)}, min ${receipt.summary.min.toFixed(2)}; custody ${custodyStatus}).`,
   };
 }
 
@@ -557,6 +732,8 @@ export function runD7ShipGate(args: {
   packagePath: string;
   /** The state/books dir where the receipt sidecar lives. */
   stateBooksDir: string;
+  /** Git repo root — resolves the retained audit dir for custody re-verification. */
+  repositoryRoot: string;
   /** Canonical chapters dir override (test seam); defaults to CHAPTERS_DIR. */
   chaptersDir?: string;
   require: boolean;
@@ -587,15 +764,18 @@ export function runD7ShipGate(args: {
     }
   }
 
-  // Current content is only needed when a receipt is present (a missing receipt
-  // is decided by the require flag; a corrupt one blocks regardless).
+  // Current content + custody re-verification are only needed when a receipt is
+  // present (a missing receipt is decided by the require flag; a corrupt one
+  // blocks regardless).
   let currentContent: D7CurrentContent | null = null;
+  let custodyVerification: D7CustodyVerification | undefined;
   if (receipt !== null) {
     try {
       currentContent = deriveCurrentD7Content({ bookId, chaptersDir: args.chaptersDir });
     } catch {
       currentContent = null;
     }
+    custodyVerification = verifyRetainedD7Custody({ repositoryRoot: args.repositoryRoot, receipt });
   }
 
   return evaluateD7ShipGate({
@@ -605,6 +785,7 @@ export function runD7ShipGate(args: {
     receipt,
     receiptCorrupt,
     currentContent,
+    custodyVerification,
     require: args.require,
   });
 }
@@ -625,6 +806,8 @@ function readTextIfExists(path: string): string | null {
 export function evaluateD7ShipGateForPreflight(args: {
   bookId: string;
   stateBooksDir: string;
+  /** Git repo root — resolves the retained audit dir for custody re-verification. */
+  repositoryRoot: string;
   chaptersDir?: string;
   require: boolean;
 }): D7ShipGateResult {
@@ -640,12 +823,14 @@ export function evaluateD7ShipGateForPreflight(args: {
     }
   }
   let currentContent: D7CurrentContent | null = null;
+  let custodyVerification: D7CustodyVerification | undefined;
   if (receipt !== null) {
     try {
       currentContent = deriveCurrentD7Content({ bookId, chaptersDir: args.chaptersDir });
     } catch {
       currentContent = null;
     }
+    custodyVerification = verifyRetainedD7Custody({ repositoryRoot: args.repositoryRoot, receipt });
   }
   return evaluateD7ShipGate({
     bookId,
@@ -654,6 +839,7 @@ export function evaluateD7ShipGateForPreflight(args: {
     receipt,
     receiptCorrupt,
     currentContent,
+    custodyVerification,
     require: args.require,
   });
 }

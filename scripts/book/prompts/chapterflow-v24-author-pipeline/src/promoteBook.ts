@@ -78,6 +78,10 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE = resolve(__dirname, "../state");
 const REPO_ROOT = resolve(__dirname, "..");
+/** The git repo root (REPO_ROOT is the extractable-package root, i.e. the pipeline
+ *  dir). The retained rubric-audit dir the D7 gate re-verifies custody against is
+ *  addressed relative to the git root. */
+const REPOSITORY_ROOT = resolve(REPO_ROOT, "../../../..");
 const BOOK_PACKAGES_DIR = resolve(REPO_ROOT, "book-packages");
 const QUARANTINE_DIR = resolve(STATE, "books", "_blocked");
 const PROMOTION_TX_DIR = resolve(STATE, "books", "_transactions");
@@ -875,6 +879,7 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
       candidatePackageBytes: JSON.stringify(candidatePackage, null, 2),
       packagePath,
       stateBooksDir: resolve(STATE, "books"),
+      repositoryRoot: REPOSITORY_ROOT,
       require: requireD7,
     });
     d7ShipGateBlockerCount = d7Result.blockers.length;
