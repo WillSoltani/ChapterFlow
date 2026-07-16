@@ -34,7 +34,9 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 501 | integrated | wp-501-55-purge | 478a5212f | afaa478ea | red-team PASS-WITH-NOTES + rt501 MEDIUM fixed (1bbd27638); merged @ a0fea3193 |
 | 208 (NEW, L-16) | integrated | wp-208-seal-lifecycle | bb50d1dcf | 42ac60a9a | implementation-complete; merged first @ 1134adfee; default-suite collision defused |
 | 301 | integrated | wp-301-author-route | e8b1ec1ce | 30a184400 | rt PASS-WITH-NOTES; merged |
-| 201 | in progress | wp-201-default-flip | (merge SHA) | — | dispatched: opus-4.8@xhigh |
+| 201 | integrated | wp-201-default-flip | ed8cb64cc | b25c8f4fd | rt PASS-WITH-NOTES; merged; V25-04 closed |
+| 202 | in progress | wp-202-campaign-quarantine | (post-201) | — | dispatched: opus-4.8@xhigh |
+| 402 | in progress | wp-402-threshold-reconcile | (post-201) | — | dispatched: opus-4.8@xhigh |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
