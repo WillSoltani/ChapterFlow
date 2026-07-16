@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c01-a1",
+  "requestSha256": "ab81a20ffba866b05415841f23a24237abc93bdd32f89536621d66cd44001779",
+  "receiptSha256": "fcb017fd3aa6813db8d6820b80a63dd77d981d609e4958beb11789e2cd6cc5ce",
+  "executionEvidenceSha256": "3d688b92e1e7eb2a4b4701c9d16c19d10757828da7a03c5bc59b6e044bc909f8",
+  "rawOutputSha256": "d91f4139e9a2eaf8e445ae75c882976b2bf068c20656ed267bcf699d74b45a60",
+  "evaluationSha256": "6425c14206801abc3549b4535d8708c085c7fb182cf73d0eaf4edd0b0c79d4b3",
+  "parsedOutputSha256": "27d586db5da988e31268878e271f3071b1f43735509387e6bfdc0a06ec809079",
+  "assembledReviewSha256": "8410d16afea119cc3dec86a29a8a175e599833aad616de42387679fa5fd00f55",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "CH-U001-001 explicitly identifies the passage as source-derived and reproduces both the supported claim in SRC-U001-CLAIM-001 and the mechanism in SRC-U001-MECHANISM-001. The mechanistic wording remains within the ceiling recorded by PLAN-U001. No named specific appears, so named-specificity permission is not applicable."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "e3aa4cb292ea577b81496091fb02fba73460409e0fcb7474f457b766860580e7",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9909d27c42ec5d6045cd022d3d7c49e67e1c1e5b1f5e5b6781b58ba4ffe938d1",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "CH-U001-001 explicitly identifies the passage as source-derived and reproduces both the supported claim in SRC-U001-CLAIM-001 and the mechanism in SRC-U001-MECHANISM-001. The mechanistic wording remains within the ceiling recorded by PLAN-U001. No named specific appears, so named-specificity permission is not applicable.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 explicitly identifies the passage as source-derived and reproduces both the supported claim in SRC-U001-CLAIM-001 and the mechanism in SRC-U001-MECHANISM-001. The mechanistic wording remains within the ceiling recorded by PLAN-U001. No named specific appears, so named-specificity permission is not applicable."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "70ff630c85f4aa23b3f98fd8384b8a53e9ad7a5586f86afee1b9c07a040e8767"
+}

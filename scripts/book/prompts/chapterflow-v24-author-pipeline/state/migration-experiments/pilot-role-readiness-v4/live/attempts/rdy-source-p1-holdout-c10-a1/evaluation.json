@@ -1,0 +1,167 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c10-a1",
+  "requestSha256": "5da1a5c0f3eeaea36a5e2b9c9773f6c6fc2d0b219c67048e487af969cfc60e2a",
+  "receiptSha256": "1fbf1f891f63e8f532cf273f66ae51f256513ae986c9b1958915082741164e91",
+  "executionEvidenceSha256": "1e11cd765a36b5d05609a2dd98cd2ea2546c79c69f46fd85c5e6c85bf608cbb0",
+  "rawOutputSha256": "926d358428a1eda425016d55b1ec5c2dcac9faa67e14f9e1470169f7dfb1012b",
+  "evaluationSha256": "715f5a2f2f782dfc1cd71808a7464109321121fcfaf1272c3a1393edbea473fd",
+  "parsedOutputSha256": "c237ec42127fe5296f4878bd6f21e3bf5153da2551c81b09d735a5a60a7bd7c6",
+  "assembledReviewSha256": "e40ba2025176f6044ee9a08a5c09705bdcadee84d7650ec8abb7d3a7dcaad1ec",
+  "evidenceReferenceResolutionSha256": "e4997b7e722fd428ef9e1a0c7a0a8c3a025136af2022de9f8b8f90328d051ef4",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "BLOCK; primary=claim_strength_overreach",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "CH-U001-001 restates the supported Facebook Like-button claim but then converts it into proof of an outcome that always occurs for every person without exception. PLAN-U001 permits no more than mechanistic strength, while SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001 support the feedback-signal description and a reason users may post or return, not a universal guaranteed outcome. SRC-U001-ATOMIC-016 expressly forbids guaranteed outcomes without explicit source support.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-016"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 is presented as factual and names only the source-supported Facebook Like button, as confirmed by SRC-U001-CLAIM-001 and SRC-U001-ATOMIC-012. Its opening feedback-signal proposition is supported, but its absolute causal guarantee exceeds the mechanistic ceiling in PLAN-U001 and lacks support under SRC-U001-MECHANISM-001; SRC-U001-ATOMIC-016 specifically disallows that guarantee. PLAN-U001 requires no hypothetical framing, so the framing is adequate despite the claim-strength defect."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "48d7168a09c6890402db5f2758faeb5bca8e8cc150ae2bcf2e71432767573708",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "dc3112a6dcd32dbe9e89a6f10b7aa2c03b8de329166bcee7f6805f46b641246c",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "CH-U001-001 restates the supported Facebook Like-button claim but then converts it into proof of an outcome that always occurs for every person without exception. PLAN-U001 permits no more than mechanistic strength, while SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001 support the feedback-signal description and a reason users may post or return, not a universal guaranteed outcome. SRC-U001-ATOMIC-016 expressly forbids guaranteed outcomes without explicit source support.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-016"
+              ],
+              "findingId": "unit.fact.ch01.fact.3:source-finding:001",
+              "chapterEvidenceSpans": [
+                "This proves that the Facebook Like button turned social approval into a quick, measurable feedback signal. always causes the stated outcome for every person, without exception."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.3\"\n  ]\n}",
+                "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+                "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions.",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 is presented as factual and names only the source-supported Facebook Like button, as confirmed by SRC-U001-CLAIM-001 and SRC-U001-ATOMIC-012. Its opening feedback-signal proposition is supported, but its absolute causal guarantee exceeds the mechanistic ceiling in PLAN-U001 and lacks support under SRC-U001-MECHANISM-001; SRC-U001-ATOMIC-016 specifically disallows that guarantee. PLAN-U001 requires no hypothetical framing, so the framing is adequate despite the claim-strength defect.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit",
+        "unit.fact.ch01.fact.3:source-finding:001"
+      ],
+      "rationale": "U1: CH-U001-001 is presented as factual and names only the source-supported Facebook Like button, as confirmed by SRC-U001-CLAIM-001 and SRC-U001-ATOMIC-012. Its opening feedback-signal proposition is supported, but its absolute causal guarantee exceeds the mechanistic ceiling in PLAN-U001 and lacks support under SRC-U001-MECHANISM-001; SRC-U001-ATOMIC-016 specifically disallows that guarantee. PLAN-U001 requires no hypothetical framing, so the framing is adequate despite the claim-strength defect."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "This proves that the Facebook Like button turned social approval into a quick, measurable feedback signal. always causes the stated outcome for every person, without exception."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ATOMIC-016"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.3\"\n  ]\n}",
+            "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+            "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions.",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "d079b7e2933586494cad28199b161ca8c2369c0f29c65c365cc06d22c2585e4d"
+}

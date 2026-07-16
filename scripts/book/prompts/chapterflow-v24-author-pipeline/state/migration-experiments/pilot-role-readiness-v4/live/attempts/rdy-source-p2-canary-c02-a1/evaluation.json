@@ -1,0 +1,77 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-canary-c02-a1",
+  "requestSha256": "7c3e1a02aca7b34ec274141b703f109d56753960d02519a6954988cf8240a01f",
+  "receiptSha256": "78420c4e35520978785ee50c0f2a93acfb21e759a7132fd19b30996bb353e232",
+  "executionEvidenceSha256": "b03f23afb335a82c3a82f886d144347cb9a03c4f11317d277dba2df321add6c0",
+  "rawOutputSha256": "b1792ce7ffe96861c2ae43edc7be4b89785f9264011927e43c5642566edc45a2",
+  "evaluationSha256": "08da575c426d8cd670c79324218215948434ee14e4f275595ab177e420cef7e5",
+  "parsedOutputSha256": "1070c1d7d52eba99f5e9f550e05238f6066154c3dd114029425f177d1f7af153",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "The first two chapter claims are supported by the allowed source claim and mechanism, but the chapter also attributes a 2018 sample of exactly 47 participants to the source. The supplied source evidence supports the 2007 iPhone framing and mechanism only, with 2007 as the grounded number; it does not support the named date, exact participant count, or participant sample attribution.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-012",
+                "SRC-U001-ATOMIC-014",
+                "SRC-U001-ATOMIC-015"
+              ]
+            }
+          ],
+          "rationale": "The chapter's sourced explanation about the 2007 iPhone launch and later feed-checking mutation is supported by the supplied claim and mechanism evidence. The additional sourced statement about a 2018 sample of exactly 47 participants is not supported by any supplied source evidence and introduces named specifics beyond the documented anchor."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "97cab5d3d56146e533ba645cdaeb4f4a5956f86ab7d2708f3aad37f6471ce3fa"
+}

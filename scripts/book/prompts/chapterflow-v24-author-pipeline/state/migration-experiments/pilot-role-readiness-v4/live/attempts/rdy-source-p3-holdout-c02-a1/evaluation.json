@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p3-holdout-c02-a1",
+  "requestSha256": "ba956bbb803e0cedf809eb7bff9ce06b801d5639797ac9042d27cf91f43c425d",
+  "receiptSha256": "c4b7f7aabf042e2421760f6ae45ea5e3cfd3cf3e0be4b1fdc3693999f838037a",
+  "executionEvidenceSha256": "005797ee9cc3f47f43898877ea9121f6ee0dff0ac58660dacdbc4c1991c3b350",
+  "rawOutputSha256": "2dc6f83ab3894433c7c55803387c4369a200fcad5ab91b0e3e5de978cbc7710f",
+  "evaluationSha256": "35d50f3d16bf94dc1eb72c5175b8d8f2b1e0a6552edfa9f7695664876f6dad0f",
+  "parsedOutputSha256": "977c8958485f0cd34808c3c02a7b568f60a9951f8ea91c712c085a5ab609dfcd",
+  "assembledReviewSha256": "9230f91fa4d8832cd25d27ba29c0c2f0e4d5d03a9ba6fed0ba418e7051ac4c96",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 explicitly presents the passage as sourced. Its named specific and descriptive claim are supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, while its mechanistic explanation is supported by SRC-U001-MECHANISM-001. The mechanistic strength is within PLAN-U001, and no additional framing is required under PLAN-U001."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d85c3523c2ab2c8c4ef5830e8ee5ba46dd586ef1718cd54cc684e31b6ceea50d",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "aefd5ed84707636c88ec1588230e15e725ff842155ec162f873d9f988a43ff1d",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 explicitly presents the passage as sourced. Its named specific and descriptive claim are supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, while its mechanistic explanation is supported by SRC-U001-MECHANISM-001. The mechanistic strength is within PLAN-U001, and no additional framing is required under PLAN-U001.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 explicitly presents the passage as sourced. Its named specific and descriptive claim are supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, while its mechanistic explanation is supported by SRC-U001-MECHANISM-001. The mechanistic strength is within PLAN-U001, and no additional framing is required under PLAN-U001."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "a80eda11d33eb7779c2c0fde1816547e903c2a516df414961fd313e8b6068ec2"
+}

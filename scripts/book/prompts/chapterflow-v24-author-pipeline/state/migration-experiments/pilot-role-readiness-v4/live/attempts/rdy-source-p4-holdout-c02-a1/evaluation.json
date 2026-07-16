@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p4-holdout-c02-a1",
+  "requestSha256": "0e009192408e3f741593800ffc6e2f7b1a0fd9cc3f8721eb96f4b5acc4d93fae",
+  "receiptSha256": "c046461cdbe2b12f3169a16731eac3b8bb8f57bbb532970f5f5b6ee913c335be",
+  "executionEvidenceSha256": "d2c38ffc06502be151ccc031e6316e5f2a160261dfc2eb3fe41166b1676872e0",
+  "rawOutputSha256": "d8bafdd78a15b75aa20b619ea079a3d8a90b60976cd89b09b16aea1d650ad1b2",
+  "evaluationSha256": "d5ec9814a88cdd1acd1eacddc51c494a3fc554320e6cd62506a782dcdb9f22ab",
+  "parsedOutputSha256": "d095f00e52d0f849c53a87884399c796bab328e0284c248283a442155644b853",
+  "assembledReviewSha256": "2f4b91210cac219ea2fd67052e57e3cd73c602f3d91e3b6dfee2c449bf82c495",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is framed as sourced and matches the allowed source-bound explanation plan in PLAN-U001. Its named specific and mechanism are supported by SRC-U001-ANCHOR-001, SRC-U001-CLAIM-001, and SRC-U001-MECHANISM-001. The mechanistic strength stays within the compiler-owned ceiling in PLAN-U001, and no required hypothetical framing is missing."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d85c3523c2ab2c8c4ef5830e8ee5ba46dd586ef1718cd54cc684e31b6ceea50d",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "aefd5ed84707636c88ec1588230e15e725ff842155ec162f873d9f988a43ff1d",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is framed as sourced and matches the allowed source-bound explanation plan in PLAN-U001. Its named specific and mechanism are supported by SRC-U001-ANCHOR-001, SRC-U001-CLAIM-001, and SRC-U001-MECHANISM-001. The mechanistic strength stays within the compiler-owned ceiling in PLAN-U001, and no required hypothetical framing is missing.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is framed as sourced and matches the allowed source-bound explanation plan in PLAN-U001. Its named specific and mechanism are supported by SRC-U001-ANCHOR-001, SRC-U001-CLAIM-001, and SRC-U001-MECHANISM-001. The mechanistic strength stays within the compiler-owned ceiling in PLAN-U001, and no required hypothetical framing is missing."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "2315eba59cb1b60f88fe9e0410be9d7b943bd98d1927a571cdf06fc38e11985b"
+}
