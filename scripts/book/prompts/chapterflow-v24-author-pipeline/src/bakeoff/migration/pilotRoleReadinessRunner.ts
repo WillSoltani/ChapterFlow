@@ -74,14 +74,14 @@ import {
   PILOT_READINESS_METRIC_SEMANTICS,
   PILOT_READINESS_STOPPING,
   PILOT_READINESS_THRESHOLDS,
-  PILOT_ROLE_READINESS_V5_CORPUS_SCHEMA,
-  PILOT_ROLE_READINESS_V5_EXPERIMENT_ID as PILOT_ROLE_READINESS_EXPERIMENT_ID,
-  PILOT_ROLE_READINESS_V5_PLAN_SCHEMA,
+  PILOT_ROLE_READINESS_V6_CORPUS_SCHEMA,
+  PILOT_ROLE_READINESS_V6_EXPERIMENT_ID as PILOT_ROLE_READINESS_EXPERIMENT_ID,
+  PILOT_ROLE_READINESS_V6_PLAN_SCHEMA,
   READINESS_CANARY_GOLD_ADJUDICATIONS_V1,
   READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2,
   READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2,
-  type PilotRoleReadinessCorpusV5 as PilotRoleReadinessCorpusV1,
-  type PilotRoleReadinessPlanV5 as PilotRoleReadinessPlanV1,
+  type PilotRoleReadinessCorpusV6 as PilotRoleReadinessCorpusV1,
+  type PilotRoleReadinessPlanV6 as PilotRoleReadinessPlanV1,
   type ReadinessCaseV1,
   type ReadinessCountBar,
   type ReadinessProfile,
@@ -381,7 +381,7 @@ export function buildPilotReadinessSchedule(
 }
 
 function validateCorpus(corpus: PilotRoleReadinessCorpusV1): void {
-  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V5_CORPUS_SCHEMA
+  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V6_CORPUS_SCHEMA
       && corpus.experimentId === PILOT_ROLE_READINESS_EXPERIMENT_ID
       && corpus.objective === "PILOT_ROLE_READINESS",
     "readiness corpus identity mismatch");
@@ -421,7 +421,7 @@ function validateCorpus(corpus: PilotRoleReadinessCorpusV1): void {
 
 function validatePlan(input: RunPilotRoleReadinessInputV1): void {
   const plan = input.plan;
-  requireCondition(plan.schema === PILOT_ROLE_READINESS_V5_PLAN_SCHEMA
+  requireCondition(plan.schema === PILOT_ROLE_READINESS_V6_PLAN_SCHEMA
       && plan.experimentId === PILOT_ROLE_READINESS_EXPERIMENT_ID
       && plan.objective === "PILOT_ROLE_READINESS",
     "readiness plan identity mismatch");

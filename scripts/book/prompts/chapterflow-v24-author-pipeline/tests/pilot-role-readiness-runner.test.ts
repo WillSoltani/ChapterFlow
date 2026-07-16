@@ -27,13 +27,13 @@ import {
   CANDIDATE_INSTRUMENT_SEAL_REL_PATH,
   IMP24_V3_BUNDLE_REL_PATH,
   PILOT_READINESS_BUDGET,
-  PILOT_ROLE_READINESS_V5_EXPERIMENT_ID,
+  PILOT_ROLE_READINESS_V6_EXPERIMENT_ID,
   READINESS_CANARY_GOLD_ADJUDICATIONS_V1,
   READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2,
   READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2,
-  buildPilotRoleReadinessCorpusV5,
-  buildPilotRoleReadinessPlanV5,
-  type PilotRoleReadinessCorpusV5,
+  buildPilotRoleReadinessCorpusV6,
+  buildPilotRoleReadinessPlanV6,
+  type PilotRoleReadinessCorpusV6,
 } from "../src/bakeoff/migration/pilotRoleReadinessInstrument.js";
 import {
   READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES,
@@ -75,7 +75,7 @@ const INPUTS_PRESENT = existsSync(resolve(REPOSITORY_ROOT, IMP24_V3_BUNDLE_REL_P
 
 type Ctx = {
   input: RunPilotRoleReadinessInputV1;
-  corpus: PilotRoleReadinessCorpusV5;
+  corpus: PilotRoleReadinessCorpusV6;
   evaluate: QualificationOutputEvaluatorV3;
   goldOutputs: Map<string, string>;
 };
@@ -214,13 +214,13 @@ function goldRawOutput(compiled: CompiledReadinessCaseV1, payload: Record<string
 
 function ctx(): Ctx {
   if (ctxMemo) return ctxMemo;
-  const corpus = buildPilotRoleReadinessCorpusV5({ repositoryRoot: REPOSITORY_ROOT });
-  const plan = buildPilotRoleReadinessPlanV5({ repositoryRoot: REPOSITORY_ROOT, corpus });
+  const corpus = buildPilotRoleReadinessCorpusV6({ repositoryRoot: REPOSITORY_ROOT });
+  const plan = buildPilotRoleReadinessPlanV6({ repositoryRoot: REPOSITORY_ROOT, corpus });
   const sealBytes = readFileSync(resolve(REPOSITORY_ROOT, CANDIDATE_INSTRUMENT_SEAL_REL_PATH));
   const certBytes = readFileSync(resolve(REPOSITORY_ROOT, CANDIDATE_INSTRUMENT_CERT_REL_PATH));
   const prepared = preparePilotReadinessCases({ repositoryRoot: REPOSITORY_ROOT, corpus });
   const input: RunPilotRoleReadinessInputV1 = {
-    experimentId: PILOT_ROLE_READINESS_V5_EXPERIMENT_ID,
+    experimentId: PILOT_ROLE_READINESS_V6_EXPERIMENT_ID,
     corpus,
     plan,
     planBytesSha256: sha256Hex(Buffer.from(canonicalPretty(plan), "utf8")),

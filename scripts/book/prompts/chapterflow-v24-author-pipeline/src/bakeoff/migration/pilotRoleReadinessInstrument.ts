@@ -174,6 +174,27 @@ export const READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2 = Object.freeze({
       : item)),
 });
 
+/** v6 identity (2026-07-16): v5 closed BLOCKED @84 with ONE qualifier per
+ * role (source sol@xhigh = FIRST source qualifier). 6 of 7 v5 invalid
+ * outputs shared one cause: the model's own PLAN citation misfiled in
+ * chapterEvidenceRefIds. v6 = v5 + the readiness-scoped re-slot ruling. */
+export const PILOT_ROLE_READINESS_V6_EXPERIMENT_ID = "s16-forward-pilot-role-readiness-v6" as const;
+export const PILOT_ROLE_READINESS_V6_DIR_REL_PATH =
+  `${PIPELINE_REL}/state/migration-experiments/pilot-role-readiness-v6` as const;
+export const PILOT_ROLE_READINESS_V6_CORPUS_SCHEMA = "pilot-role-readiness-corpus-v6" as const;
+export const PILOT_ROLE_READINESS_V6_PLAN_SCHEMA = "pilot-role-readiness-plan-v6" as const;
+
+/** Packet-E ruling (same class as C1; readiness-evaluator-only; production
+ * assembly untouched): a finding ref that resolves to a plan/source_claim
+ * segment but was misfiled in chapterEvidenceRefIds is RE-SLOTTED to
+ * sourceEvidenceRefIds pre-assembly. The model's citations are preserved
+ * verbatim — only the field placement is corrected deterministically. */
+export const READINESS_ASSEMBLY_RESLOT_RULING_V1 = Object.freeze({
+  schema: "pilot-readiness-assembly-reslot-ruling-v1",
+  scope: "readiness-evaluator-only",
+  rule: "plan/source refs misfiled in chapterEvidenceRefIds are re-slotted to sourceEvidenceRefIds pre-assembly",
+});
+
 /** Immutable inputs (raw-byte pins — any drift fails closed). */
 export const IMP24_V3_BUNDLE_REL_PATH =
   `${PIPELINE_REL}/state/migration-experiments/contracts/imp24/role-qualification-corpus-bundle.v3-envelope.json` as const;
@@ -1020,6 +1041,101 @@ export function materializePilotRoleReadinessV5(args: {
   return {
     schema: "pilot-role-readiness-materialization-v5",
     experimentId: PILOT_ROLE_READINESS_V5_EXPERIMENT_ID,
+    corpusPath,
+    corpusSha256: corpus.corpusSha256,
+    planPath,
+    planSha256,
+    planWritten,
+    written: args.write === true || existsSync(corpusPath),
+    modelCalls: 0,
+    apiCalls: 0,
+  };
+}
+
+// ── v6 corpus (v5 + assembly re-slot ruling) ─────────────────────────────────
+
+export type PilotRoleReadinessCorpusV6 = Omit<PilotRoleReadinessCorpusV5, "schema" | "experimentId"> & {
+  schema: typeof PILOT_ROLE_READINESS_V6_CORPUS_SCHEMA;
+  experimentId: typeof PILOT_ROLE_READINESS_V6_EXPERIMENT_ID;
+  assemblyReslotRuling: typeof READINESS_ASSEMBLY_RESLOT_RULING_V1;
+};
+
+export function buildPilotRoleReadinessCorpusV6(args: { repositoryRoot: string }): PilotRoleReadinessCorpusV6 {
+  const v5 = buildPilotRoleReadinessCorpusV5(args);
+  const { corpusSha256: _v5Sha256, ...v5Core } = v5;
+  const core = {
+    ...v5Core,
+    schema: PILOT_ROLE_READINESS_V6_CORPUS_SCHEMA,
+    experimentId: PILOT_ROLE_READINESS_V6_EXPERIMENT_ID,
+    assemblyReslotRuling: READINESS_ASSEMBLY_RESLOT_RULING_V1,
+  };
+  return { ...core, corpusSha256: hashCanonical(core) };
+}
+
+export type PilotRoleReadinessPlanV6 = Omit<PilotRoleReadinessPlanV5, "schema" | "experimentId"> & {
+  schema: typeof PILOT_ROLE_READINESS_V6_PLAN_SCHEMA;
+  experimentId: typeof PILOT_ROLE_READINESS_V6_EXPERIMENT_ID;
+  assemblyReslotRulingSha256: string;
+};
+
+export function buildPilotRoleReadinessPlanV6(args: {
+  repositoryRoot: string;
+  corpus: PilotRoleReadinessCorpusV6;
+}): PilotRoleReadinessPlanV6 {
+  const v5Style = buildPilotRoleReadinessPlanV5({
+    repositoryRoot: args.repositoryRoot,
+    corpus: args.corpus as unknown as PilotRoleReadinessCorpusV5,
+  });
+  const { planSha256: _v5PlanSha256, ...v5Core } = v5Style;
+  const core = {
+    ...v5Core,
+    schema: PILOT_ROLE_READINESS_V6_PLAN_SCHEMA,
+    experimentId: PILOT_ROLE_READINESS_V6_EXPERIMENT_ID,
+    corpusSha256: args.corpus.corpusSha256,
+    assemblyReslotRulingSha256: hashCanonical(READINESS_ASSEMBLY_RESLOT_RULING_V1),
+  };
+  return { ...core, planSha256: hashCanonical(core) };
+}
+
+export function materializePilotRoleReadinessV6(args: {
+  repositoryRoot: string;
+  write?: boolean;
+  mintPlan?: boolean;
+}): Omit<PilotRoleReadinessMaterializationV2, "schema" | "experimentId"> & {
+  schema: "pilot-role-readiness-materialization-v6";
+  experimentId: typeof PILOT_ROLE_READINESS_V6_EXPERIMENT_ID;
+} {
+  const repositoryRoot = resolve(args.repositoryRoot);
+  const corpus = buildPilotRoleReadinessCorpusV6({ repositoryRoot });
+  const corpusPath = resolve(repositoryRoot, `${PILOT_ROLE_READINESS_V6_DIR_REL_PATH}/readiness-corpus.v6.json`);
+  const corpusBytes = canonicalPretty(corpus);
+  if (existsSync(corpusPath)) {
+    requireCondition(readFileSync(corpusPath, "utf8") === corpusBytes,
+      "retained v6 readiness corpus differs from the deterministic rebuild");
+  } else if (args.write === true) {
+    writeFileAtomic(corpusPath, corpusBytes);
+    requireCondition(readFileSync(corpusPath, "utf8") === corpusBytes, "v6 readiness corpus read-back drift");
+  }
+  const planPath = resolve(repositoryRoot, `${PILOT_ROLE_READINESS_V6_DIR_REL_PATH}/readiness-plan.v6.json`);
+  let planSha256: string | null = null;
+  let planWritten = false;
+  if (existsSync(planPath)) {
+    const retained = JSON.parse(readFileSync(planPath, "utf8")) as PilotRoleReadinessPlanV6;
+    requireCondition(retained.corpusSha256 === corpus.corpusSha256, "retained v6 plan is bound to a different corpus");
+    const rebuilt = buildPilotRoleReadinessPlanV6({ repositoryRoot, corpus });
+    requireCondition(rebuilt.planSha256 === retained.planSha256,
+      "retained v6 readiness plan no longer matches the current inputs — mint a fresh plan identity");
+    planSha256 = retained.planSha256;
+    planWritten = true;
+  } else if (args.mintPlan === true && args.write === true) {
+    const plan = buildPilotRoleReadinessPlanV6({ repositoryRoot, corpus });
+    writeFileAtomic(planPath, canonicalPretty(plan));
+    planSha256 = plan.planSha256;
+    planWritten = true;
+  }
+  return {
+    schema: "pilot-role-readiness-materialization-v6",
+    experimentId: PILOT_ROLE_READINESS_V6_EXPERIMENT_ID,
     corpusPath,
     corpusSha256: corpus.corpusSha256,
     planPath,

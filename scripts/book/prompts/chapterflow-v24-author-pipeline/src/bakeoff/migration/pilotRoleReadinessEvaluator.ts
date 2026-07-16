@@ -68,12 +68,12 @@ import type {
 } from "./roleQualificationRunnerV3.js";
 import { renderKeyFreeReaderDocument } from "./readerGoldDevDocs.js";
 import {
-  PILOT_ROLE_READINESS_V5_CORPUS_SCHEMA,
-  PILOT_ROLE_READINESS_V5_EXPERIMENT_ID,
+  PILOT_ROLE_READINESS_V6_CORPUS_SCHEMA,
+  PILOT_ROLE_READINESS_V6_EXPERIMENT_ID,
   READINESS_CANARY_GOLD_ADJUDICATIONS_V1,
   READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2,
   READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2,
-  type PilotRoleReadinessCorpusV5,
+  type PilotRoleReadinessCorpusV6,
   type ReadinessCaseV1,
 } from "./pilotRoleReadinessInstrument.js";
 
@@ -332,7 +332,7 @@ export function compilePilotReadinessCaseInstrument(
   };
 }
 
-export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV5, "reader" | "source" | "quiz">): ReadinessCaseV1[] {
+export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV6, "reader" | "source" | "quiz">): ReadinessCaseV1[] {
   const cases: ReadinessCaseV1[] = [];
   for (const role of ["reader", "source", "quiz"] as const) {
     for (const partition of ["canary", "holdout"] as const) {
@@ -346,11 +346,11 @@ export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV5, "rea
  * IMP-24 evaluator's protocol/freshness/authority handling exactly; only the
  * metric identities and the reader decision policy differ (v3, per D1). */
 export function createPilotRoleReadinessEvaluator(
-  corpus: PilotRoleReadinessCorpusV5,
+  corpus: PilotRoleReadinessCorpusV6,
 ): QualificationOutputEvaluatorV3 {
-  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V5_CORPUS_SCHEMA
-      && corpus.experimentId === PILOT_ROLE_READINESS_V5_EXPERIMENT_ID,
-    "readiness evaluator requires the exact frozen v5 readiness corpus");
+  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V6_CORPUS_SCHEMA
+      && corpus.experimentId === PILOT_ROLE_READINESS_V6_EXPERIMENT_ID,
+    "readiness evaluator requires the exact frozen v6 readiness corpus");
   requireCondition(hashCanonical(corpus.sourceHoldoutGoldAdjudications)
       === hashCanonical(READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2),
     "readiness corpus source-holdout adjudications differ from the frozen owner-authorized record");
@@ -592,26 +592,44 @@ function evaluateSource(args: LaneEvaluationArgs): CaseEvaluationV3 {
     // deterministic plan-segment ref (context, not model judgment) so the
     // shared production assembly rule can bind it. Production is untouched.
     let effectiveRawOutput = rawOutput;
-    if (entry.category === "constructed-application" || entry.category === "generic-operational"
-      || entry.category.startsWith("unframed-") || entry.category.startsWith("generic-")) {
+    {
       const planRef = partition.envelope.segments.find((segment) => segment.kind === "plan")?.refId;
-      if (planRef) {
-        try {
-          const reparsed = JSON.parse(rawOutput) as { assessments?: Array<{ findings?: Array<Record<string, unknown>> }> };
-          let augmented = false;
-          for (const assessment of reparsed.assessments ?? []) {
-            for (const finding of assessment.findings ?? []) {
+      const nonChapterRefIds = new Set(partition.envelope.segments
+        .filter((segment) => segment.kind !== "chapter")
+        .map((segment) => segment.refId));
+      try {
+        const reparsed = JSON.parse(rawOutput) as { assessments?: Array<{ findings?: Array<Record<string, unknown>> }> };
+        let changed = false;
+        for (const assessment of reparsed.assessments ?? []) {
+          for (const finding of assessment.findings ?? []) {
+            // Packet-E re-slot (READINESS_ASSEMBLY_RESLOT_RULING_V1): the
+            // model's own plan/source citations misfiled in
+            // chapterEvidenceRefIds move to sourceEvidenceRefIds verbatim.
+            const chapterRefs = finding.chapterEvidenceRefIds;
+            if (Array.isArray(chapterRefs)) {
+              const misfiled = chapterRefs.filter((ref) => nonChapterRefIds.has(String(ref)));
+              if (misfiled.length > 0) {
+                finding.chapterEvidenceRefIds = chapterRefs.filter((ref) => !nonChapterRefIds.has(String(ref)));
+                const src = Array.isArray(finding.sourceEvidenceRefIds) ? finding.sourceEvidenceRefIds as unknown[] : [];
+                finding.sourceEvidenceRefIds = [...src, ...misfiled.filter((ref) => !src.includes(ref))];
+                changed = true;
+              }
+            }
+            // C1 augmentation (constructed/generic families): an empty
+            // sourceEvidenceRefIds gains the deterministic plan ref.
+            if ((entry.category === "constructed-application" || entry.category === "generic-operational"
+              || entry.category.startsWith("unframed-") || entry.category.startsWith("generic-")) && planRef) {
               const refs = finding.sourceEvidenceRefIds;
               if (Array.isArray(refs) && refs.length === 0) {
                 finding.sourceEvidenceRefIds = [planRef];
-                augmented = true;
+                changed = true;
               }
             }
           }
-          if (augmented) effectiveRawOutput = JSON.stringify(reparsed);
-        } catch {
-          // fall through to normal assembly on unparseable output
         }
+        if (changed) effectiveRawOutput = JSON.stringify(reparsed);
+      } catch {
+        // fall through to normal assembly on unparseable output
       }
     }
     const assembled = assembleProductionSourcePartitionReviewV2({
