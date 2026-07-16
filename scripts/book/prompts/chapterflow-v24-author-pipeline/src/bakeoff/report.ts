@@ -174,7 +174,7 @@ export function buildReportMd(inputs: ReportInputs): string {
     lines.push(`- The top candidates scored inside the ±${sel.tieBand} noise band of the blinded rubric: treat the quality result as a TIE; the winner was chosen on retries/latency.`);
   }
   lines.push("- Blinded reads are stochastic instruments (the pipeline's own acceptance machinery treats ±3.7 composite as noise). Chapter-level differences smaller than that band are not meaningful.");
-  lines.push(`- **Recommendation**: before changing ChapterFlow's permanent default author model${winner ? ` to \`${winner}\`` : ""}, run at least 2–3 more bake-offs on different books/genres and compare formal QC repair burden, not just first-pass scores. The permanent default (\`CHAPTERFLOW_AUTHOR_MODEL\`, currently gpt-5.5) was intentionally NOT changed by this run.`);
+  lines.push(`- **Recommendation**: before changing ChapterFlow's permanent default author model${winner ? ` to \`${winner}\`` : ""}, run at least 2–3 more bake-offs on different books/genres and compare formal QC repair burden, not just first-pass scores. The permanent default (\`CHAPTERFLOW_AUTHOR_MODEL\`, currently the provisional gpt-5.6-sol pending WP-705) was intentionally NOT changed by this run.`);
   lines.push("");
 
   if (m.promotion) {

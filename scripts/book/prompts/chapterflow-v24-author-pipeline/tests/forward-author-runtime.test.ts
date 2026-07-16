@@ -74,6 +74,7 @@ import {
 } from "../src/orchestrator/forwardAuthorRuntime.js";
 import {
   FORWARD_AUTHOR_RISK_POLICY_VERSION,
+  ROUTE_POLICY_VERSION,
   RoutePreflightError,
   classifyForwardAuthoringRisk,
   type ForwardAuthoringRiskSignalsV1,
@@ -126,7 +127,11 @@ function runtimeBinding(over: {
   };
   const roleAssignmentSha256 = hashCanonical(roleAssignment);
   const executionProfileHash = sha("1");
-  const routePolicyVersion = "route-policy-v1.0";
+  // WP-302 bumped ROUTE_POLICY_VERSION (v1.0 → v2.0) for the 5.6 cutover; the
+  // ACTIVE-policy fixtures must carry the CURRENT central version or the runtime
+  // fails them closed as stale. Track the live constant so future bumps don't
+  // silently re-stale this fixture.
+  const routePolicyVersion = ROUTE_POLICY_VERSION;
   const schemas = { reader: sha("2"), source: sha("3"), quiz: sha("4") };
   const manifest = {
     schema: SPLIT_LANE_INSTRUMENT_MANIFEST_SCHEMA,
@@ -437,7 +442,9 @@ test("no activation policy preserves the explicit central baseline and never ent
     },
   });
   assert.equal(result.mode, "BASELINE");
-  assert.equal(seen?.model, "gpt-5.5");
+  // WP-501/WP-302: the central baseline route is the provisional 5.6 default
+  // (was gpt-5.5, void per directive-1).
+  assert.equal(seen?.model, "gpt-5.6-sol");
   assert.equal(seen?.effort, "xhigh");
   assert.equal(seen?.deferCommit, false);
   assert.equal(reviewCalled, false);

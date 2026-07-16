@@ -19,7 +19,7 @@ import { validateSourceIntegrityReview } from "../../contracts/sourceIntegrityRe
 import type { QuizIntegrityResultV1 } from "../../contracts/quizIntegrityReview.js";
 import { ensureTrailingNewline } from "../../lib/atomicWrite.js";
 import type { ChapterV21, SourceAnchorForPrompt } from "../../types.js";
-import { BASELINE_MODEL } from "../../orchestrator/modelPolicy.js";
+import { HISTORICAL_BASELINE_55 } from "./experimentTypes.js";
 import {
   assembleReaderExperienceReview,
   buildReaderExperienceTask,
@@ -128,9 +128,9 @@ const profile = (model: string, effort: EffortLevelV1): QualificationProfileV1 =
 });
 
 export const DEFAULT_IMP22_ROLE_CANDIDATE_ORDER: Record<ReviewLaneRole, readonly QualificationProfileV1[]> = {
-  reader: [profile("gpt-5.6-sol", "high"), profile(BASELINE_MODEL, "high"), profile("gpt-5.6-sol", "xhigh"), profile(BASELINE_MODEL, "xhigh")],
-  source: [profile("gpt-5.6-sol", "xhigh"), profile(BASELINE_MODEL, "xhigh"), profile("gpt-5.6-sol", "high"), profile(BASELINE_MODEL, "high")],
-  quiz: [profile("gpt-5.6-sol", "xhigh"), profile(BASELINE_MODEL, "xhigh"), profile("gpt-5.6-sol", "high"), profile(BASELINE_MODEL, "high")],
+  reader: [profile("gpt-5.6-sol", "high"), profile(HISTORICAL_BASELINE_55, "high"), profile("gpt-5.6-sol", "xhigh"), profile(HISTORICAL_BASELINE_55, "xhigh")],
+  source: [profile("gpt-5.6-sol", "xhigh"), profile(HISTORICAL_BASELINE_55, "xhigh"), profile("gpt-5.6-sol", "high"), profile(HISTORICAL_BASELINE_55, "high")],
+  quiz: [profile("gpt-5.6-sol", "xhigh"), profile(HISTORICAL_BASELINE_55, "xhigh"), profile("gpt-5.6-sol", "high"), profile(HISTORICAL_BASELINE_55, "high")],
 };
 
 export type RoleQualificationCorporaV2 = {

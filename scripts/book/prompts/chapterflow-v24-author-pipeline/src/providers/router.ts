@@ -18,7 +18,7 @@
  * Or with OpenAI:
  *   export CHAPTERFLOW_PROVIDER=openai-api
  *   export OPENAI_API_KEY=...
- *   export CHAPTERFLOW_WRITER_MODEL=gpt-5.5
+ *   export CHAPTERFLOW_WRITER_MODEL=gpt-5.6-sol
  *   export CHAPTERFLOW_CRITIC_MODEL=gpt-4o-mini
  */
 

@@ -13,14 +13,13 @@ import {
   DEFAULT_BAKEOFF_EFFORT,
   DEFAULT_BAKEOFF_MODELS,
   DEFAULT_JUDGE_EFFORT,
-  DEFAULT_JUDGE_MODEL,
   runBakeoff,
 } from "./runBakeoff.js";
 
 const USAGE =
   `Usage: model-bakeoff [<bookId>] --draft <path.md|.txt|.pdf|.docx>\n` +
   `         [--models ${DEFAULT_BAKEOFF_MODELS.join(",")}] [--effort ${DEFAULT_BAKEOFF_EFFORT}]\n` +
-  `         [--judge-model ${DEFAULT_JUDGE_MODEL}] [--judge-effort ${DEFAULT_JUDGE_EFFORT}]\n` +
+  `         --judge-model <id> [--judge-effort ${DEFAULT_JUDGE_EFFORT}]  (judge model is REQUIRED — no default; never the writer model)\n` +
   `         [--title "..."] [--author "..."] [--book-id id] [--run-id id]\n` +
   `         [--chapters 1,2,3] [--max-parallel 3] [--chapter-parallel 2]\n` +
   `         [--publish|--no-publish] [--plan] [--force] [--status] [--json]\n` +
@@ -56,6 +55,14 @@ export async function runModelBakeoffCli(args: string[], flags: Record<string, s
   const judgeEffort = effortFlag(flags, "judge-effort", DEFAULT_JUDGE_EFFORT);
   if (!effort || !judgeEffort) {
     console.error(`model-bakeoff: --effort/--judge-effort must be one of ${[...EFFORTS].join("|")}`);
+    return 2;
+  }
+  // WP-501: the judge model is REQUIRED and explicit — no default, never the
+  // silent writer/baseline model (evaluator independence), and the 5.5 baseline is void.
+  const judgeModel = typeof flags["judge-model"] === "string" ? flags["judge-model"].trim() : "";
+  if (!judgeModel) {
+    console.error(USAGE);
+    console.error("model-bakeoff: --judge-model is required (the judge instrument must be explicit, never the writer model).");
     return 2;
   }
   const models = typeof flags["models"] === "string"
@@ -101,7 +108,7 @@ export async function runModelBakeoffCli(args: string[], flags: Record<string, s
     runId: typeof flags["run-id"] === "string" ? flags["run-id"] : undefined,
     models,
     effort,
-    judgeModel: typeof flags["judge-model"] === "string" ? flags["judge-model"] : undefined,
+    judgeModel,
     judgeEffort,
     maxParallel: typeof flags["max-parallel"] === "string" ? parseInt(flags["max-parallel"], 10) || undefined : undefined,
     chapterParallel: typeof flags["chapter-parallel"] === "string" ? parseInt(flags["chapter-parallel"], 10) || undefined : undefined,

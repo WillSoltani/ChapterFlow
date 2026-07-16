@@ -25,10 +25,10 @@ import { existsSync, readFileSync, readdirSync } from "fs";
 
 import type { AutopilotDeps } from "../../orchestrator/autopilot.js";
 import { resolveDeps } from "../../orchestrator/autopilot.js";
-import { BASELINE_MODEL } from "../../orchestrator/modelPolicy.js";
 import { BAKEOFF_NOISE_BAND } from "../review.js";
 import { sha256Hex } from "../paths.js";
 import {
+  HISTORICAL_BASELINE_55,
   MIGRATION_MANIFEST_SCHEMA,
   type ExperimentSpecV1,
   type MigrationManifestV1,
@@ -72,7 +72,10 @@ import {
 } from "./thresholds.js";
 import type { AuthorIo } from "../../orchestrator/authorRun.js";
 
-const BASELINE_CELL_MODEL = BASELINE_MODEL;
+// The confirmatory baseline cell is the HISTORICAL 5.5 arm (55-XH,
+// HISTORICAL_BASELINE_55), frozen so it never tracks the live baseline after the
+// WP-302 flip (WP-501 Part 3).
+const BASELINE_CELL_MODEL = HISTORICAL_BASELINE_55;
 const BASELINE_CELL_ID = "55-XH";
 
 /** Optional §16 human-adjudication input (human reviewers fill this OUTSIDE

@@ -3,7 +3,7 @@
  * a specific SDK so it can run against:
  *   - Anthropic Code CLI (Max subscription, free at usage)
  *   - Anthropic API (Sonnet 4.6, Haiku 4.5, Opus 4.7) — for mass production
- *   - OpenAI API (gpt-4o, gpt-5.5, etc.) — for mass production
+ *   - OpenAI API (gpt-4o, etc.) — for mass production
  *
  * Critics are deterministic code, so they're provider-agnostic by definition.
  * Only writer/researcher calls flow through this layer.

@@ -27,7 +27,6 @@
  * autopilot/publish path does after it.
  */
 
-import { BASELINE_MODEL } from "../orchestrator/modelPolicy.js";
 import { execFileSync } from "child_process";
 import { existsSync, mkdirSync, readFileSync } from "fs";
 import { resolve } from "path";
@@ -71,7 +70,12 @@ import { writeReports, type ReportInputs } from "./report.js";
 
 export const DEFAULT_BAKEOFF_MODELS = ["gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"];
 export const DEFAULT_BAKEOFF_EFFORT: ReasoningEffort = "xhigh";
-export const DEFAULT_JUDGE_MODEL = BASELINE_MODEL; // IMP-02: judge default rides the policy baseline until IMP-11 qualification
+// WP-501: the bakeoff judge model has NO default. directive-1 removed the
+// prior 5.5 default, and a judge must never SILENTLY inherit BASELINE_MODEL (the
+// writer/candidate model) — that is self-review, not independent judgement. The
+// judge model is REQUIRED and explicit (`judgeModel` below / `--judge-model`).
+// The target judge is the Claude-side D7 rubric-audit instrument; WP-702 rewires
+// the harness to it. Only the effort keeps a default.
 export const DEFAULT_JUDGE_EFFORT: ReasoningEffort = "high";
 const RESEARCH_TIMEOUT_MS = 45 * 60 * 1000;
 const PREFLIGHT_TIMEOUT_MS = 5 * 60 * 1000;
@@ -161,7 +165,11 @@ export type RunBakeoffOptions = {
   runId?: string;
   models?: string[];
   effort?: ReasoningEffort;
-  judgeModel?: string;
+  /** REQUIRED and explicit (WP-501): the fixed judging-instrument model. It has
+   *  NO default — it must never silently inherit BASELINE_MODEL (the writer),
+   *  and the prior 5.5 baseline is void per directive-1. Callers pass an explicit
+   *  judge id (the CLI requires `--judge-model`). */
+  judgeModel: string;
   judgeEffort?: ReasoningEffort;
   maxParallel?: number;
   /** Concurrent chapter writers WITHIN one candidate. */
@@ -253,7 +261,15 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
   const models = (opts.models?.length ? opts.models : DEFAULT_BAKEOFF_MODELS).map((m) => m.trim()).filter(Boolean);
   if (new Set(models).size !== models.length) throw new Error("duplicate model ids in --models");
   const effort = opts.effort ?? DEFAULT_BAKEOFF_EFFORT;
-  const judge = { model: opts.judgeModel ?? DEFAULT_JUDGE_MODEL, effort: opts.judgeEffort ?? DEFAULT_JUDGE_EFFORT };
+  const judgeModel = opts.judgeModel?.trim();
+  if (!judgeModel) {
+    throw new Error(
+      "model-bakeoff: an explicit judge model is required (no default). The judge must not " +
+        "silently inherit the writer/baseline model (evaluator independence), and the prior 5.5 baseline " +
+        "is void per directive-1. Pass --judge-model; the target judge is the D7 rubric-audit instrument (WP-702).",
+    );
+  }
+  const judge = { model: judgeModel, effort: opts.judgeEffort ?? DEFAULT_JUDGE_EFFORT };
   const overrides = opts.overrides ?? {};
 
   // Identity + run root. Default run id is DERIVED FROM THE DRAFT HASH so a

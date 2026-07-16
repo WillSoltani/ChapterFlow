@@ -23,13 +23,14 @@ import { resolve } from "path";
 import { ensureTrailingNewline } from "../../lib/atomicWrite.js";
 import { voiceCard } from "../../lib/voiceCard.js";
 import { buildAuthorCard, resolveAuthorIo } from "../../orchestrator/authorRun.js";
-import { BASELINE_MODEL, ROUTE_POLICY_VERSION } from "../../orchestrator/modelPolicy.js";
+import { ROUTE_POLICY_VERSION } from "../../orchestrator/modelPolicy.js";
 import { AUTHOR_CHAPTER_BAR, READER_RUBRIC_VERSION, REVIEW_DOC_HASH_VERSION } from "../../review/readerReview.js";
 import { CARD_OUTPUT_PLACEHOLDER, collectSharedInputPaths } from "../freeze.js";
 import { PIPELINE_DIR, combineHashes, pipelineRel, sha256Hex } from "../paths.js";
 import type { FrozenFileV1 } from "../types.js";
 import {
   CHAPTER_STRATA,
+  HISTORICAL_BASELINE_55,
   MIGRATION_SEALED_SCHEMA,
   MIGRATION_SPEC_SCHEMA,
   REPAIR_PROJECTION_VERSION,
@@ -47,9 +48,14 @@ export class SealError extends Error {
   }
 }
 
+// The confirmatory four-way design. The `55-H`/`55-XH` cells are the HISTORICAL
+// 5.5 comparison arm (HISTORICAL_BASELINE_55) — a frozen data identity, NOT
+// the live baseline. They MUST stay distinct from the `56S-*` SOL cells; aliasing
+// them to BASELINE_MODEL silently collapsed the design (55-H == 56S-H) once the
+// live baseline flipped to gpt-5.6-sol (WP-302). Frozen per WP-501 Part 3.
 const CONFIRMATORY_CELLS: Array<{ cellId: string; model: string; effort: string }> = [
-  { cellId: "55-H", model: BASELINE_MODEL, effort: "high" },
-  { cellId: "55-XH", model: BASELINE_MODEL, effort: "xhigh" },
+  { cellId: "55-H", model: HISTORICAL_BASELINE_55, effort: "high" },
+  { cellId: "55-XH", model: HISTORICAL_BASELINE_55, effort: "xhigh" },
   { cellId: "56S-H", model: "gpt-5.6-sol", effort: "high" },
   { cellId: "56S-XH", model: "gpt-5.6-sol", effort: "xhigh" },
 ];
@@ -89,10 +95,12 @@ export function validateExperimentSpec(spec: ExperimentSpecV1): string[] {
     if ((spec.books ?? []).length < 2) problems.push("confirmatory design requires at least two books (inst. 8)");
   } else {
     // Inst. 5: the minimum diagnostic factorial — 55-XH on both stacks, SOL
-    // high/xhigh on both stacks (6 cells; 55-H cells optional).
+    // high/xhigh on both stacks (6 cells; 55-H cells optional). The 55-XH arm is
+    // the HISTORICAL 5.5 baseline (HISTORICAL_BASELINE_55), frozen so it stays
+    // distinct from the SOL arms after the live baseline flip (WP-501 Part 3).
     if (stackIds.size < 2) problems.push("diagnostic design compares at least two stacks (legacy vs SOL-native)");
     const need: Array<{ model: string; effort: string }> = [
-      { model: BASELINE_MODEL, effort: "xhigh" },
+      { model: HISTORICAL_BASELINE_55, effort: "xhigh" },
       { model: "gpt-5.6-sol", effort: "high" },
       { model: "gpt-5.6-sol", effort: "xhigh" },
     ];
