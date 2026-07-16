@@ -1,6 +1,6 @@
 # V25 S-Tier Program — Execution Status
 
-**Program state:** PLANNING COMPLETE — awaiting owner approval (master plan §16). No implementation started.
+**Program state:** EXECUTING — Phase 1 / Wave A dispatched 2026-07-16T08:05-0300 (owner approved; ledger L-14). Live calls remain forbidden until Phase-6 written authorization (D-3).
 
 ## Branch / worktree registry
 
@@ -20,7 +20,13 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | WP | Status | Branch | Start SHA | End SHA | Evidence |
 |---|---|---|---|---|---|
 | 001–004 | complete-pending-approval / blocked-on-D1,D4 | plan/v25-s-tier-implementation | 97b78bf71 | — | this directory |
-| 101–804 | not started | — | — | — | — |
+| 102 | in progress | wp-102-contract-freeze | 58a8c84e0 | — | dispatched: opus-4.8@xhigh |
+| 103 | in progress | wp-103-runstate-resume | 58a8c84e0 | — | dispatched: sonnet-5@xhigh |
+| 104 | in progress | wp-104-boundary-proof | 58a8c84e0 | — | dispatched: sonnet-5@xhigh |
+| 206 | in progress | wp-206-hygiene-sweep | 58a8c84e0 | — | dispatched: sonnet-5@xhigh |
+| 405 | in progress | wp-405-d10-progressive-render | 58a8c84e0 | — | dispatched: opus-4.8@xhigh (separate web-app PR lane) |
+| 101, 302, 501 | queued (batch 2/3) | — | 58a8c84e0 | — | 101+302 after 102; 501 after 302 |
+| others | not started | — | — | — | — |
 
 ## Conventions (binding)
 
@@ -34,3 +40,4 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | Date | Event | Assessment |
 |---|---|---|
 | 2026-07-16 | Planning base fixed at 97b78bf71 (v6 ruling). Live branch may advance (v6 execution) during approval window. | Re-fetch at Phase-1 entry; if feat/v25-pipeline-live advanced, rebase plan branch or record divergence rationale before first dispatch. |
+| 2026-07-16T08:03 | Live advanced 97b78bf71 → 8224f079a: P5 v6 PILOT_ROLE_SET_READY (freeze artifacts only: docs/v25/reports + state/migration-experiments). | Zero overlap with Phase-1 WP files — Wave A proceeds on base 58a8c84e0; reconcile (merge/rebase onto live head) assessed at gate G1. Ledger L-15. |
