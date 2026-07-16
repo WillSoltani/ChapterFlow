@@ -39,8 +39,10 @@
  * this WP's (out of scope: "changing the default architecture (WP-201)").
  *
  * All state is in-memory (injectable io) + a tmp attempts root — no real
- * state/ writes, and no dependency on WP-201 (author-first is exercised here
- * exactly as it runs today, default-flip or not).
+ * state/ writes: the reader-budget check receives a briefLookup built on the
+ * injected io (WP-103 red-team NOTE 1 fix), so the CHB6 opener check never
+ * touches the canonical artifact store. No dependency on WP-201 (author-first
+ * is exercised here exactly as it runs today, default-flip or not).
  */
 
 import assert from "node:assert/strict";

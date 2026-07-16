@@ -1650,6 +1650,7 @@ export function runBudgetsCapturingWarn(
   chapters: ChapterV21[],
   packets: Map<number, SourcePacketV1>,
   lengthBudget: { renderedChars: number; tolerance: number },
+  briefLookup?: (bookId: string, chapterNumber: number) => unknown,
 ): { findings: BudgetFinding[]; nameBankWarn: string | null } {
   let nameBankWarn: string | null = null;
   const realWarn = console.warn;
@@ -1659,7 +1660,7 @@ export function runBudgetsCapturingWarn(
     realWarn.apply(console, warnArgs);
   };
   try {
-    const findings = checkReaderBudgets(chapters, { packets, lengthBudget });
+    const findings = checkReaderBudgets(chapters, { packets, lengthBudget, briefLookup });
     return { findings, nameBankWarn };
   } finally {
     console.warn = realWarn;
@@ -1842,7 +1843,7 @@ export async function ensureReaderBudgetsClean(
     deps.log(`[autopilot] ${opts.label}: ${passLocked.size} chapter(s) hold a durable PASS at bar ${opts.bar} — protected from full re-author (${[...passLocked].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")})`);
   }
 
-  let { findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget);
+  let { findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget, (b, n) => io.readBrief(b, n));
   if (nameBankWarn) {
     return haltHere("infra", `${opts.label}: readerBudgets reported the name bank unavailable (CHB3 silently disabled): ${nameBankWarn}. Fix config/name-bank.json; refusing to skip the check.`);
   }
@@ -1974,7 +1975,7 @@ export async function ensureReaderBudgetsClean(
         return haltHere("infra", `${opts.label}: REGRESSION GUARD — ch${String(n).padStart(2, "0")} held a durable PASS at bar ${opts.bar} but its content hash CHANGED (${before}→${after}) across the budget-repair round. A passing chapter was modified; refusing to advance a possibly-regressed PASS.`);
       }
     }
-    ({ findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget));
+    ({ findings, nameBankWarn } = runBudgetsCapturingWarn(chapters, packets, lengthBudget, (b, n) => io.readBrief(b, n)));
     if (nameBankWarn) {
       return haltHere("infra", `${opts.label}: readerBudgets reported the name bank unavailable after repair: ${nameBankWarn}.`);
     }

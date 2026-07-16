@@ -215,6 +215,12 @@ export type ReaderBudgetOptions = {
   lengthBudget?: { renderedChars: number; tolerance: number };
   /** CHB1 per-chapter mention cap for a case's distinctive token (default 6). */
   repCap?: number;
+  /** CHB6 brief source. When present, dealtOpenerType reads the chapter brief
+   *  through this lookup instead of the canonical artifact-store path — the
+   *  direct path read has a write side effect (ensureCompilerRun mints
+   *  current-run.json), which breaks hermetic callers that inject io
+   *  (WP-103 red-team NOTE 1). Absent → legacy direct read stands. */
+  briefLookup?: (bookId: string, chapterNumber: number) => unknown;
 };
 
 export const DEFAULT_REP_CAP = 6;
@@ -767,12 +773,14 @@ export function classifyOpener(text: string): OpenerClass {
  *  (readers named the claim-opener monoculture directly). Dual-shape via asText. */
 /** Dealt opener mode from the chapter's brief, or null when no valid v-rotation brief exists
  *  (legacy books, missing briefs — fail-open to pure lexical classification). */
-function dealtOpenerType(chapter: ChapterV21): string | null {
+function dealtOpenerType(chapter: ChapterV21, briefLookup?: ReaderBudgetOptions["briefLookup"]): string | null {
   try {
     const parsed = parseChapterId(chapter.chapterId ?? "");
     if (!parsed) return null;
-    const raw = readFileSync(chapterBriefPath(parsed.bookId, parsed.num), "utf8");
-    const brief = JSON.parse(raw) as { rotationSchemaVersion?: unknown; openerType?: unknown };
+    const brief = (briefLookup
+      ? briefLookup(parsed.bookId, parsed.num)
+      : JSON.parse(readFileSync(chapterBriefPath(parsed.bookId, parsed.num), "utf8"))) as
+      { rotationSchemaVersion?: unknown; openerType?: unknown } | null;
     if (typeof brief?.rotationSchemaVersion === "string" && brief.rotationSchemaVersion.length > 0 &&
         typeof brief?.openerType === "string" && brief.openerType.length > 0) {
       return brief.openerType;
@@ -781,7 +789,7 @@ function dealtOpenerType(chapter: ChapterV21): string | null {
   return null;
 }
 
-function checkOpenerClassBudget(chapters: ChapterV21[]): BudgetFinding[] {
+function checkOpenerClassBudget(chapters: ChapterV21[], briefLookup?: ReaderBudgetOptions["briefLookup"]): BudgetFinding[] {
   const n = chapters.length;
   if (n === 0) return [];
   const cap = CEIL_TWO_THIRDS(n);
@@ -798,7 +806,7 @@ function checkOpenerClassBudget(chapters: ChapterV21[]): BudgetFinding[] {
       let cls: OpenerClass = classifyOpener(text);
       // v4 deal-aware re-bucket: a dealt tension-thesis hook is lexically a claim; obeying
       // the deal must not overflow the claim budget (D8, FINAL-HARDENING-PLAN 2026-07-04).
-      if (cls === "claim" && dealtOpenerType(chapter) === "tension-thesis") cls = "tension-thesis";
+      if (cls === "claim" && dealtOpenerType(chapter, briefLookup) === "tension-thesis") cls = "tension-thesis";
       const list = byClass.get(cls) ?? [];
       list.push(chapter.number);
       byClass.set(cls, list);
@@ -1796,7 +1804,7 @@ export function checkReaderBudgets(chapters: ChapterV21[], opts?: ReaderBudgetOp
     ...checkCastDisjoint(ordered, opts?.packets),
     ...checkOpenerSignature(ordered),
     ...checkPracticeFormat(ordered),
-    ...checkOpenerClassBudget(ordered),
+    ...checkOpenerClassBudget(ordered, opts?.briefLookup),
     ...checkScaffoldAndPhraseSpread(ordered, opts?.packets),
     ...checkTellDistribution(ordered, opts?.packets),
     ...checkPracticeBudgets(ordered),
