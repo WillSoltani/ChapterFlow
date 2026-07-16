@@ -35,8 +35,10 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 208 (NEW, L-16) | integrated | wp-208-seal-lifecycle | bb50d1dcf | 42ac60a9a | implementation-complete; merged first @ 1134adfee; default-suite collision defused |
 | 301 | integrated | wp-301-author-route | e8b1ec1ce | 30a184400 | rt PASS-WITH-NOTES; merged |
 | 201 | integrated | wp-201-default-flip | ed8cb64cc | b25c8f4fd | rt PASS-WITH-NOTES; merged; V25-04 closed |
-| 202 | in progress | wp-202-campaign-quarantine | (post-201) | — | dispatched: opus-4.8@xhigh |
-| 402 | in progress | wp-402-threshold-reconcile | (post-201) | — | dispatched: opus-4.8@xhigh |
+| 202 | integrated | wp-202-campaign-quarantine | a79474aeb | 2ae7deefb | rt PASS-WITH-NOTES; merged |
+| 203 | in progress | wp-203-materializer-thinning | (post-202) | — | dispatched: opus-4.8@xhigh |
+| 204 | in progress | wp-204-instrument-deletion | (post-202) | — | dispatched: sonnet-5@xhigh |
+| 402 | integrated | wp-402-threshold-reconcile | a79474aeb | 1b22290d5 | rt PASS-WITH-NOTES; merged; V25-11 closed |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
