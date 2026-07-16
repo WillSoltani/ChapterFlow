@@ -17,9 +17,11 @@ import {
   materializeImp24InstrumentCertification,
 } from "../src/bakeoff/migration/imp24InstrumentCertification.js";
 import {
+  IMP24C_FROZEN_CONTRACT_COUNT,
   IMP24C_PRE_LIVE_ARTIFACT_PATHS,
   IMP24C_STARTING_HEAD,
   IMP24C_DEDICATED_WORKFLOW_REL,
+  assertImp24cFrozenContractCount,
   buildImp24BPreLiveFreeze,
   materializeImp24BPreLiveFreeze,
   validateImp24CDedicatedWorkflowBinding,
@@ -28,7 +30,8 @@ import {
   type Imp24BPreLiveFreeze,
 } from "../src/bakeoff/migration/imp24PreLiveFreeze.js";
 import { IMP24_FROZEN_ROLE_THRESHOLDS } from "../src/bakeoff/migration/roleQualificationRunnerV3.js";
-import { test } from "./harness.js";
+import { campaignInstrumentChecksEnabled, CAMPAIGN_INSTRUMENT_CHECKS_SKIP_REASON } from "../src/lib/campaignInstrumentChecks.js";
+import { test, xenv } from "./harness.js";
 import { walkRootManifest } from "./productionLeakGuard.js";
 import { mkTestRoots } from "./testRoots.js";
 
@@ -190,7 +193,11 @@ test("IMP-24C materializes a byte-reproducible, self-hashed, zero-call pre-live 
       .map(({ name, version }) => [name, version] as const)
       .sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0));
     assert.deepEqual(report.contractVersions, expectedContractVersions);
-    assert.equal(Object.keys(report.contractVersions).length, 16);
+    // Dynamic against the live manifest so a later WP's additive contract does
+    // not break this retained-integrity assertion (the exact-count pin is a
+    // CLOSED campaign check gated behind CHAPTERFLOW_CAMPAIGN_INSTRUMENT_CHECKS=1;
+    // ledger L-16).
+    assert.equal(Object.keys(report.contractVersions).length, contractManifest.contracts.length);
     assert.equal(report.contractVersions["review-evidence-envelope"], 1);
     assert.equal(report.contractVersions["review-model-output-v2"], 2);
     assert.deepEqual(report.filesChanged, [...new Set(report.filesChanged)].sort());
@@ -381,3 +388,24 @@ test("IMP-24C dedicated model-free CI commands preserve every checkout byte", ()
   }
   assert.equal(status(), before, "dedicated CI verification commands must not modify the checkout");
 });
+
+// CLOSED campaign instrument (decision ledger L-16; formal retirement in
+// WP-202/203/204). The exact-contract-count pin against the CURRENT manifest
+// runs ONLY under the campaign opt-in, so by default this reports xenv
+// (skip-with-reason) and an additive contract from a later WP cannot break the
+// default suite. With CHAPTERFLOW_CAMPAIGN_INSTRUMENT_CHECKS=1 it proves the
+// strict assertion: exactly the frozen count passes; any drift fails.
+xenv(
+  "[campaign] pre-live freeze pins the current manifest at the frozen contract count (CHAPTERFLOW_CAMPAIGN_INSTRUMENT_CHECKS=1)",
+  CAMPAIGN_INSTRUMENT_CHECKS_SKIP_REASON,
+  () => campaignInstrumentChecksEnabled(),
+  () => {
+    const contract = (name: string, version: number) => ({ name, version, ownerPrompt: "IMP-24", hash: "0".repeat(64) });
+    const frozen = { contracts: Array.from({ length: IMP24C_FROZEN_CONTRACT_COUNT }, (_v, i) => contract(`c${i}`, 1)) };
+    assert.equal(frozen.contracts.length, IMP24C_FROZEN_CONTRACT_COUNT);
+    assert.doesNotThrow(() => assertImp24cFrozenContractCount(frozen));
+    const additive = { contracts: [...frozen.contracts, contract("c-additive", 1)] };
+    assert.throws(() => assertImp24cFrozenContractCount(additive),
+      new RegExp(`exactly ${IMP24C_FROZEN_CONTRACT_COUNT} contracts`));
+  },
+);
