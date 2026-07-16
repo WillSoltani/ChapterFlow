@@ -1,6 +1,6 @@
 # V25 S-Tier Program — Execution Status
 
-**Program state:** EXECUTING — Phases 1–2 COMPLETE (G1 @ f3b83a4fe, G2 @ ef41abe57). Phase 3 in progress. Live calls remain forbidden until Phase-6 written authorization (D-3; incl. the deferred WP-701 corpus freeze per L-25).
+**Program state:** EXECUTING — Phases 1–3 COMPLETE (G1/G2/G3 all passed). Phase 4 in progress (D7 ship gate). Live calls remain forbidden until Phase-6 written authorization (D-3; incl. the deferred WP-701 corpus freeze per L-25).
 
 ## Branch / worktree registry
 
@@ -16,6 +16,7 @@ Integration SHAs will be appended per gate (G1–G8) after approval.
 | Gate | SHA | Result | Evidence |
 |---|---|---|---|
 | G1 | f3b83a4fe | **PASS** — suite 3032/0/12xenv/39skip (detached); root typecheck+build green; contract-validate PASS | g1-gate-final.log, ledger L-20 |
+| G3 | f8c74a760 | **PASS** — suite 3107/0/12xenv/39skip (detached); root green; Phase 3 CLOSED | g3-gate2.log, L-27 |
 | G2 | ef41abe57 | **PASS** — suite 3058/0/12xenv/39skip (detached); root typecheck+build green; contract-validate PASS; Phase 2 CLOSED | g2-gate-final.log, ledger L-25 |
 
 ## Work-package status
