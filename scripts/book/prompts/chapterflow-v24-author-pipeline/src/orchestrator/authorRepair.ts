@@ -24,7 +24,8 @@ import { CANONICAL_STATE, chapterFileName } from "../lib/chapterPaths.js";
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import type { AutopilotDeps } from "./autopilot.js";
 import type { AuthorIo } from "./authorRun.js";
-import { AUTHOR_WRITER_EFFORT, AUTHOR_WRITER_MODEL, authorWriteContractFindings, readLeadOverrideFromDisk } from "./authorRun.js";
+import { authorWriteContractFindings, readLeadOverrideFromDisk } from "./authorRun.js";
+import { resolveRoute } from "./modelPolicy.js";
 import { applyLeadThreadOverride } from "../compiler/chapterBrief.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { registerAdvisoryFixLines } from "../critics/registerAdvisories.js";
@@ -441,7 +442,13 @@ export async function doRepairOneChapter(
     seedBytes: originalBytes,
     attemptsRoot: opts.io.attemptsRoot(),
   });
-  deps.log(`[autopilot] author repair ch${nn}: surgical editor working (scopes ${opts.scopes.join(",")}, card ${card.length} chars, ${AUTHOR_WRITER_MODEL} @ ${AUTHOR_WRITER_EFFORT}, timeout ${Math.round(REPAIR_TIMEOUT_MS / 60000)}min)`);
+  // WP-301: the repair session derives model+effort from the central policy
+  // (resolveRoute author-repair → routine-repair cell, tier="normal-profile").
+  // Resolved here for the log line ONLY; the spawn omits model/reasoningEffort so
+  // its own resolveRoute consults the same matrix cell and records the honest tier
+  // (no env/module-const pin — the V25-04 bypass this WP removes).
+  const repairRoute = resolveRoute({ role: "author-repair" });
+  deps.log(`[autopilot] author repair ch${nn}: surgical editor working (scopes ${opts.scopes.join(",")}, card ${card.length} chars, ${repairRoute.model} @ ${repairRoute.effort}, timeout ${Math.round(REPAIR_TIMEOUT_MS / 60000)}min)`);
   try {
     const r = await deps.spawn({
       task: card,
@@ -450,8 +457,6 @@ export async function doRepairOneChapter(
       cwd: chAttempt.workspaceDir,
       sandbox: "workspace-write",
       skipGitRepoCheck: true,
-      model: AUTHOR_WRITER_MODEL,
-      reasoningEffort: AUTHOR_WRITER_EFFORT,
       timeoutMs: REPAIR_TIMEOUT_MS,
     });
     try { deps.logSession(bookId, `author-repair-ch${nn}`, r); } catch { /* best-effort */ }

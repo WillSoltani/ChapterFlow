@@ -88,7 +88,7 @@ import { recordAttemptObject, recordSpawnEvidence } from "../evidence/attemptRec
 import { recordChapterDiversity } from "../telemetry/diversityLedger.js";
 import { hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
-import { BASELINE_MODEL } from "./modelPolicy.js";
+import { resolveRoute } from "./modelPolicy.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -496,16 +496,17 @@ export function authorCardMetrics(card: string): { chars: number; instructions: 
   return { chars: card.length, instructions, controlChars };
 }
 
-/** STIER-2 M-lane (owner-directed): the author WRITE/REGEN sessions are pinned to an
- *  explicit model + reasoning effort instead of inheriting whatever the operator's
- *  ~/.codex/config.toml says that day. xhigh = the top codex tier — one level above
- *  the reviewers' pinned "high", thinking at maximum. HONESTY (plan §A RC5): the
- *  halted run's ambient default was very likely already xhigh, so NO content gain is
- *  booked to this pin — it buys provenance, reproducibility, and timeout headroom.
- *  Reviewers/readers/QC/research stay untouched (instrument stability). */
-export const AUTHOR_WRITER_MODEL = process.env.CHAPTERFLOW_AUTHOR_MODEL ?? BASELINE_MODEL;
-export const AUTHOR_WRITER_EFFORT = (process.env.CHAPTERFLOW_AUTHOR_EFFORT ?? "xhigh") as
-  "minimal" | "low" | "medium" | "high" | "xhigh";
+/** WP-301 (V25-04 fix): the author WRITE/REPAIR model + reasoning effort are no
+ *  longer an env/module-const pin. Production authoring derives both from the ONE
+ *  central authority — `resolveRoute({ role: "author-writer" | "author-repair" })`
+ *  — which returns the NORMAL 5.6 profile cell (author-first-write → xhigh) and
+ *  records tier="normal-profile" in the per-spawn route sidecar. The deleted
+ *  `CHAPTERFLOW_AUTHOR_MODEL`/`CHAPTERFLOW_AUTHOR_EFFORT` env surface was a parallel
+ *  routing-decision that rode ABOVE the matrix as a call-explicit override, so the
+ *  policy cell was never consulted for production. Explicit per-call overrides
+ *  survive ONLY as the `opts.model`/`opts.effort` function parameters (tests +
+ *  bakeoff candidate writes), which record tier="call-explicit" by construction.
+ *  Reviewers/readers/QC/research were always policy-routed and stay untouched. */
 /** xhigh whole-chapter writes need headroom over the 30-min codex default; the same-host
  *  run lock is PID-liveness-based, so a long session cannot cause a lock steal. */
 export const AUTHOR_WRITE_TIMEOUT_MS = 3_600_000;
@@ -906,8 +907,9 @@ export type AuthorWriteOneOpts = {
    *  file hooks to the same location. Omitted → canonical path, exactly as before. */
   outputRelPath?: string;
   /** Model-bakeoff candidate pinning: override the author model / reasoning effort
-   *  for THIS call only. Omitted → the production pins (CHAPTERFLOW_AUTHOR_MODEL /
-   *  CHAPTERFLOW_AUTHOR_EFFORT, defaults unchanged). */
+   *  for THIS call only (recorded tier="call-explicit"). Omitted → the central model
+   *  policy resolves it (resolveRoute author-writer cell, tier="normal-profile").
+   *  WP-301 deleted the CHAPTERFLOW_AUTHOR_MODEL/EFFORT env surface. */
   model?: string;
   effort?: "minimal" | "low" | "medium" | "high" | "xhigh";
   /** IMP-11 migration-experiment seam: exactly ONE first-write attempt — no gate
@@ -1134,8 +1136,15 @@ export async function authorWriteOneChapter(
   const nn = String(chapterNumber).padStart(2, "0");
   const chapterId = authorChapterId(bookId, chapterNumber);
   const relPath = opts.outputRelPath ?? authorChapterRelPath(bookId, chapterNumber);
-  const writerModel = opts.model ?? AUTHOR_WRITER_MODEL;
-  const writerEffort = opts.effort ?? AUTHOR_WRITER_EFFORT;
+  // WP-301: resolve the effective write route for the log line ONLY. The RAW
+  // opts.model/opts.effort are passed to the spawn (below) so its own resolveRoute
+  // records the honest tier — undefined (production) → normal-profile matrix cell;
+  // an explicit opts pin (bakeoff/tests) → call-explicit. Passing the resolved
+  // model back into the spawn would wrongly re-stamp production as call-explicit
+  // (the V25-04 bug this WP removes).
+  const writeRoute = resolveRoute({ role: "author-writer", requestedModel: opts.model, requestedEffort: opts.effort });
+  const writerModel = writeRoute.model;
+  const writerEffort = writeRoute.effort;
 
   const briefMd = io.readBriefMd(bookId, chapterNumber);
   if (!briefMd) return { ok: false, reason: `ch${nn}: no rendered brief (chNN.brief.md) — run compile-chapter-briefs first`, failureKind: "STATE_OR_PROVENANCE" };
@@ -1344,8 +1353,11 @@ export async function authorWriteOneChapter(
         cwd: chAttempt.workspaceDir,
         sandbox: "workspace-write",
         skipGitRepoCheck: true,
-        model: writerModel,
-        reasoningEffort: writerEffort,
+        // WP-301: pass the RAW opts (undefined for production) so the spawn's
+        // resolveRoute consults the normal-profile matrix and records tier
+        // "normal-profile"; an explicit bakeoff/test pin rides as call-explicit.
+        model: opts.model,
+        reasoningEffort: opts.effort,
         timeoutMs: AUTHOR_WRITE_TIMEOUT_MS,
       });
     } catch (err) {
