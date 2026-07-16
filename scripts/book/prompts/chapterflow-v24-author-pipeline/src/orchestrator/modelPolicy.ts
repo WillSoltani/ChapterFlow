@@ -11,8 +11,12 @@
  *
  *   role → task class → (profile matrix) → requested model + effort
  *   call-site explicit values ride ABOVE the matrix (recorded as their tier)
- *   the NORMAL profile is `baseline-55` and cannot change here — activation
- *   is IMP-13's package, gated on §16 bakeoff + §17–§19 evidence.
+ *   the NORMAL profile is `provisional-56` — a 5.6-only production matrix
+ *   (directive-1: GPT-5.5 removed as writer/reviewer/repair/fallback/baseline).
+ *   Its model is the owner-ratified provisional default gpt-5.6-sol (D-9(b),
+ *   ledger L-14), flagged PROVISIONAL_PENDING_WP-705 until the WP-705 bakeoff
+ *   decision replaces it. Changing the winner is a one-line config edit here,
+ *   never a matrix rewrite.
  *
  * Provider outcomes are DISJOINT (frozen taxonomy): a timeout is not a content
  * failure; a safeguard/refusal is never replayed-until-pass; a preflight
@@ -26,29 +30,58 @@ import type { AgentRole, EffortLevelV1 } from "../contracts/executionProfile.js"
 import type { ChatgptAuthProofV1, ProviderOutcomeV1, RouteResultV1, TaskClassV1 } from "../contracts/routeContracts.js";
 
 /** Bumped on ANY change to the matrices/mapping below — part of the drift
- *  fingerprint, so a policy edit stales prior qualification evidence. */
-export const ROUTE_POLICY_VERSION = "route-policy-v1.0";
+ *  fingerprint, so a policy edit stales prior qualification evidence. WP-302
+ *  bumped v1.0 → v2.0 for the GPT-5.5 → 5.6 matrix cutover (directive-1); this
+ *  intentionally stales all prior route qualification LOUDLY (WP-004 reconciles
+ *  the stale campaign evidence). Typed `string` (not the narrow literal) so a
+ *  future bump does not fracture the `typeof ROUTE_POLICY_VERSION` consumers. */
+export const ROUTE_POLICY_VERSION: string = "route-policy-v2.0";
 
-/** The qualified baseline model (the ONLY production route until IMP-13). */
-export const BASELINE_MODEL = "gpt-5.5";
+/** WP-705 owns the final production model decision (bakeoff evidence). Until its
+ *  decision file lands, owner-ratified D-9(b) (ledger L-14) sets the provisional
+ *  default. This marker is LOAD-BEARING: a test fails if it is removed before a
+ *  WP-705 decision file replaces the constant below. */
+export const PROVISIONAL_PENDING_WP705 = "PROVISIONAL_PENDING_WP-705" as const;
 
-/** Named routing profiles (plan §IMP-02 item 2). Only `baseline-55` may serve
+/** The winning model + decision status for the NORMAL profile — the ONE place a
+ *  WP-705 config edit changes the production default (WP-302 scope item 2).
+ *  directive-1 removed GPT-5.5 as writer/reviewer/repair/fallback/baseline; the
+ *  provisional winner is gpt-5.6-sol (D-9(b)). Every normal-profile cell reads
+ *  its model from `.model`, so changing the winner is a one-line edit here. */
+export const NORMAL_PROFILE_MODEL: { readonly model: string; readonly status: string } = {
+  model: "gpt-5.6-sol",
+  status: PROVISIONAL_PENDING_WP705,
+};
+
+/** The normal-profile production model. Kept as the `BASELINE_MODEL` export for
+ *  import stability across the pipeline; its VALUE is now the provisional 5.6
+ *  default (was gpt-5.5, deleted per directive-1). Typed `string` (not a literal)
+ *  so consumers do not couple to a specific model id. WP-501 owns any rename of
+ *  this symbol during the repo-wide 5.5-literal purge. */
+export const BASELINE_MODEL: string = NORMAL_PROFILE_MODEL.model;
+
+/** Named routing profiles (plan §IMP-02 item 2). Only `provisional-56` may serve
  *  as the NORMAL profile in this package; the others exist so evaluation and
- *  (later, authorized) activation are configuration, not code edits. */
+ *  (later, authorized) activation are configuration, not code edits. The 5.6
+ *  candidate profiles are DATA for the WP-703/704 bakeoff — naming one here does
+ *  NOT route through it (directive-2: candidates gpt-5.6-sol/terra/luna). */
 export type RouteProfileName =
-  | "baseline-55"            // the qualified production default (normal)
-  | "sol-high-candidate"     // evaluation candidate: SOL @ high
-  | "sol-xhigh-candidate"    // evaluation candidate: SOL @ xhigh
+  | "provisional-56"         // the provisional 5.6 production default (NORMAL; gpt-5.6-sol, PENDING WP-705)
+  | "sol-high-candidate"     // bakeoff candidate: gpt-5.6-sol @ high (confirmed capability)
+  | "sol-xhigh-candidate"    // bakeoff candidate: gpt-5.6-sol @ xhigh (confirmed capability)
+  | "terra-candidate"        // bakeoff candidate: gpt-5.6-terra — capability UNCONFIRMED (WP-502); call-explicit
+  | "luna-candidate"         // bakeoff candidate: gpt-5.6-luna — capability UNCONFIRMED (WP-502); call-explicit
   | "legacy-stack-diagnostic"   // Stage-D cell: legacy prompts (stack pinned elsewhere)
   | "sol-stack-diagnostic"      // Stage-D cell: SOL-native prompts
   | "confirmatory-explicit"  // Stage-C cells: model/effort pinned per cell spec
   | "judge-qualified"        // qualified judge panel routes (IMP-11)
-  | "last-qualified-sol"     // rollback target once a SOL profile qualifies
+  | "last-qualified-sol"     // rollback target once a 5.6 profile qualifies (WP-705)
   | "experimental-explicit"; // anything else, always call-site explicit
 
-/** The one normal profile. A different default requires IMP-13's authorized
- *  activation path — never an edit here (static-pinned by tests). */
-export const NORMAL_PROFILE: RouteProfileName = "baseline-55";
+/** The one normal profile. A different default (or a WP-705-selected winner)
+ *  requires the authorized activation path — never an edit here (static-pinned
+ *  by tests). */
+export const NORMAL_PROFILE: RouteProfileName = "provisional-56";
 
 /** Role → task class (17-class union frozen in route contracts). */
 export const ROLE_TASK_CLASS: Record<AgentRole, TaskClassV1> = {
@@ -76,12 +109,15 @@ export const ROLE_TASK_CLASS: Record<AgentRole, TaskClassV1> = {
 
 type RouteCell = { model: string; effort: EffortLevelV1 };
 
-/** The baseline matrix encodes TODAY's behavior exactly (plan item 3): the
- *  efforts each call site pins, with the qualified baseline model everywhere —
- *  no ambient inheritance, no silent low/medium lane changes before evaluation.
- *  Call-site explicit values (writer xhigh pin, evidence per-lane efforts,
- *  bakeoff specs) override per call and are recorded at their tier. */
-const BASELINE_55: Record<TaskClassV1, RouteCell> = {
+/** The NORMAL 5.6 production matrix (WP-302). The class→effort SHAPE is preserved
+ *  byte-for-byte from the retired baseline-55 matrix (author write xhigh; direct
+ *  read / acceptance / verification / research high; key-derivation low;
+ *  sweep / scout medium) — WP-302 changed the MODEL (5.5 → provisional 5.6),
+ *  never the effort assignments. The model comes from `BASELINE_MODEL`
+ *  (= `NORMAL_PROFILE_MODEL.model`), so the winner stays a single config value,
+ *  not a literal buried per cell. Call-site explicit values (writer xhigh pin,
+ *  evidence per-lane efforts, bakeoff specs) override per call at their tier. */
+const NORMAL_56: Record<TaskClassV1, RouteCell> = {
   "research-synthesis": { model: BASELINE_MODEL, effort: "high" },
   "source-repair": { model: BASELINE_MODEL, effort: "high" },
   "author-first-write": { model: BASELINE_MODEL, effort: "xhigh" },
@@ -101,37 +137,60 @@ const BASELINE_55: Record<TaskClassV1, RouteCell> = {
   "bakeoff-judge": { model: BASELINE_MODEL, effort: "high" },
 };
 
+/** The 5.6 candidate family set for the WP-703/704 bakeoff (directive-2). DATA
+ *  only — naming a candidate here does NOT route through it. `gpt-5.6-sol` is the
+ *  confirmed provisional default; terra/luna capability is UNCONFIRMED and gated
+ *  on WP-502 — the bakeoff must not treat them as a live matrix cell until then
+ *  (their profiles below are `call-explicit`, never an asserted matrix). */
+export const CANDIDATE_MODELS: readonly { readonly family: string; readonly capability: "confirmed" | "unconfirmed-pending-WP-502" }[] = [
+  { family: "gpt-5.6-sol", capability: "confirmed" },
+  { family: "gpt-5.6-terra", capability: "unconfirmed-pending-WP-502" },
+  { family: "gpt-5.6-luna", capability: "unconfirmed-pending-WP-502" },
+];
+
 /** Candidate/rollback matrices are DATA for later authorized use — nothing in
- *  this package routes through them (the normal profile is pinned). SOL cells
- *  carry the split the plan hypothesizes (high ordinary / xhigh source-adjacent)
- *  purely as the starting spec the bakeoff must confirm or replace. */
+ *  this package routes through them (the normal profile is pinned). The SOL
+ *  candidate cells carry the split the plan hypothesizes (high ordinary / xhigh
+ *  source-adjacent) purely as the starting spec the bakeoff must confirm or
+ *  replace. terra/luna carry no asserted matrix until WP-502 confirms them. */
 const SOL_HIGH: Record<TaskClassV1, RouteCell> = Object.fromEntries(
-  (Object.keys(BASELINE_55) as TaskClassV1[]).map((t) => [t, { model: "gpt-5.6-sol", effort: "high" as EffortLevelV1 }]),
+  (Object.keys(NORMAL_56) as TaskClassV1[]).map((t) => [t, { model: "gpt-5.6-sol", effort: "high" as EffortLevelV1 }]),
 ) as Record<TaskClassV1, RouteCell>;
 
 const SOL_XHIGH: Record<TaskClassV1, RouteCell> = Object.fromEntries(
-  (Object.keys(BASELINE_55) as TaskClassV1[]).map((t) => [t, { model: "gpt-5.6-sol", effort: "xhigh" as EffortLevelV1 }]),
+  (Object.keys(NORMAL_56) as TaskClassV1[]).map((t) => [t, { model: "gpt-5.6-sol", effort: "xhigh" as EffortLevelV1 }]),
 ) as Record<TaskClassV1, RouteCell>;
 
 const PROFILE_MATRICES: Record<RouteProfileName, Record<TaskClassV1, RouteCell> | "call-explicit"> = {
-  "baseline-55": BASELINE_55,
+  "provisional-56": NORMAL_56,
   "sol-high-candidate": SOL_HIGH,
   "sol-xhigh-candidate": SOL_XHIGH,
+  "terra-candidate": "call-explicit", // gpt-5.6-terra capability pending WP-502; bakeoff pins explicitly
+  "luna-candidate": "call-explicit",  // gpt-5.6-luna capability pending WP-502; bakeoff pins explicitly
   "legacy-stack-diagnostic": "call-explicit",
   "sol-stack-diagnostic": "call-explicit",
   "confirmatory-explicit": "call-explicit",
   "judge-qualified": "call-explicit",
-  "last-qualified-sol": "call-explicit", // becomes a concrete matrix only when IMP-13 qualifies one
+  "last-qualified-sol": "call-explicit", // becomes a concrete matrix only when WP-705 qualifies one
   "experimental-explicit": "call-explicit",
 };
 
-/** Rollback order (plan item 20): last-qualified SOL first, then the baseline
- *  as TEMPORARY emergency routing. Data only — selection is an IMP-13 decision. */
-export const ROLLBACK_ORDER: readonly RouteProfileName[] = ["last-qualified-sol", "baseline-55"];
+/** Read-only view of a named profile's matrix (or `"call-explicit"`). For
+ *  docs/tests/bakeoff wiring: candidate profiles are DATA, never the normal
+ *  route (`resolveRoute` resolves ONLY the NORMAL_PROFILE matrix). */
+export function profileMatrix(name: RouteProfileName): Record<TaskClassV1, RouteCell> | "call-explicit" {
+  return PROFILE_MATRICES[name];
+}
+
+/** Rollback order: the last-qualified 5.6 profile first, then the provisional
+ *  normal profile as the emergency floor. directive-1: NO GPT-5.5 fallback may
+ *  appear here (the retired `baseline-55` entry is gone). Data only — selection
+ *  is a WP-705/authorized-activation decision. */
+export const ROLLBACK_ORDER: readonly RouteProfileName[] = ["last-qualified-sol", NORMAL_PROFILE];
 
 /**
  * IMP-22's pre-authoring risk decision is deliberately separate from the
- * baseline route matrix above.  It is consulted only after a qualified local
+ * NORMAL route matrix above.  It is consulted only after a qualified local
  * forward policy has been validated, and it chooses between that policy's two
  * explicit SOL writer pins.  Keeping the classifier here makes risk routing a
  * central deterministic decision instead of an author-card or environment
@@ -220,7 +279,7 @@ export function classifyForwardAuthoringRisk(value: ForwardAuthoringRiskSignalsV
   };
 }
 
-/** Baseline-exactness overrides (plan item 3: encode existing behavior EXACTLY).
+/** Effort-exactness overrides (plan item 3: encode existing behavior EXACTLY).
  *  Three roles share a task class with a different pre-IMP-02 default effort —
  *  the matrix would silently change their cost/behavior, so the role-level
  *  value wins here until the bakeoff earns a change:

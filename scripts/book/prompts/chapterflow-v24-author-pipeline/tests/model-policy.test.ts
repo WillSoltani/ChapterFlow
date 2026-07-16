@@ -13,12 +13,17 @@ import { test } from "./harness.js";
 import { PIPELINE_DIR, TMP_DIR } from "./helpers.js";
 import {
   BASELINE_MODEL,
+  CANDIDATE_MODELS,
   NORMAL_PROFILE,
+  NORMAL_PROFILE_MODEL,
+  PROVISIONAL_PENDING_WP705,
+  ROLLBACK_ORDER,
   ROUTE_POLICY_VERSION,
   RoutePreflightError,
   buildRouteResult,
   classifyProviderOutcome,
   normalRouteMatrix,
+  profileMatrix,
   resolveRoute,
   routeDriftFingerprint,
   SAFEGUARD_MARKERS,
@@ -27,37 +32,101 @@ import { AGENT_ROLES } from "../src/contracts/executionProfile.js";
 import { validateRouteResult } from "../src/contracts/routeContracts.js";
 import { spawnCodexAgent, type CodexRunnerArgs } from "../src/orchestrator/codexAgent.js";
 
-test("the NORMAL profile is baseline-55 and every role resolves to the qualified baseline model", () => {
-  assert.equal(NORMAL_PROFILE, "baseline-55", "activation is IMP-13's package — never an edit here");
+test("the NORMAL profile is provisional-56 and every role resolves to the 5.6 default (no gpt-5.5 reachable)", () => {
+  assert.equal(NORMAL_PROFILE, "provisional-56", "a WP-705-selected winner requires the authorized path — never an edit here");
+  // directive-1: GPT-5.5 removed as writer/reviewer/repair/fallback/baseline.
+  assert.equal(BASELINE_MODEL, "gpt-5.6-sol", "provisional default is gpt-5.6-sol (D-9(b), ledger L-14)");
+  assert.ok(BASELINE_MODEL.startsWith("gpt-5.6"), "the normal profile is 5.6-only");
+  assert.notEqual(BASELINE_MODEL, "gpt-5.5", "gpt-5.5 is void per directive-1");
   const matrix = normalRouteMatrix();
   assert.equal(matrix.length, AGENT_ROLES.length, "every role has a route");
-  for (const row of matrix) assert.equal(row.model, BASELINE_MODEL, `${row.role} must route to the baseline`);
+  for (const row of matrix) {
+    assert.equal(row.model, BASELINE_MODEL, `${row.role} must route to the 5.6 default`);
+    assert.ok(!row.model.startsWith("gpt-5.5"), `${row.role}: NO normal-profile route may return gpt-5.5`);
+  }
 });
 
-test("the baseline matrix encodes TODAY's efforts exactly (incl. the three role-level overrides)", () => {
-  const efforts = Object.fromEntries(normalRouteMatrix().map((r) => [r.role, r.effort]));
-  assert.deepEqual(efforts, {
-    "research": "high",
-    "source-repair": "high",
-    "source-verify": "high",
-    "source-compiler": "high",
-    "compiler-polish": "medium",       // role override (routine-repair cell is xhigh)
-    "autopilot-repair": "high",        // role override
-    "autopilot-scout": "medium",
-    "qc-reviewer": "high",
-    "author-writer": "xhigh",
-    "author-repair": "xhigh",
-    "chapter-reviewer": "high",
-    "book-acceptance-reader": "high",
-    "author-evidence": "low",
-    "shipped-control": "high",
-    "eval-reader": "high",
-    "eval-book": "high",
-    "bakeoff-candidate": "medium",
-    "bakeoff-judge": "high",
-    "bakeoff-aux": "medium",
-    "cli-adhoc": "high",               // role override (scout cell is medium)
+test("resolveRoute author-writer returns gpt-5.6 @ xhigh at the normal-profile tier", () => {
+  const r = resolveRoute({ role: "author-writer" });
+  assert.ok(r.model.startsWith("gpt-5.6"), "author writer routes to a 5.6 model");
+  assert.equal(r.model, "gpt-5.6-sol");
+  assert.equal(r.effort, "xhigh", "author-first-write keeps the xhigh effort shape");
+  assert.equal(r.tier, "normal-profile", "an unpinned author call rides the normal matrix, not a call-explicit pin");
+  assert.equal(r.taskClass, "author-first-write");
+  assert.equal(r.profileName, "provisional-56");
+});
+
+test("ROUTE_POLICY_VERSION is bumped for the 5.6 cutover (stales prior qualification loudly)", () => {
+  assert.equal(ROUTE_POLICY_VERSION, "route-policy-v2.0", "WP-302 bumped v1.0 → v2.0");
+  assert.notEqual(ROUTE_POLICY_VERSION, "route-policy-v1.0", "prior route qualification evidence must stale");
+});
+
+// The exact NORMAL matrix pinned with teeth: model AND effort per role. The
+// class→effort SHAPE is preserved from the retired baseline-55 matrix; only the
+// MODEL changed (5.5 → provisional 5.6). A silent lane/model change fails here.
+test("the NORMAL matrix pins model+effort exactly (effort shape preserved; model = 5.6 default)", () => {
+  const matrix = Object.fromEntries(normalRouteMatrix().map((r) => [r.role, { model: r.model, effort: r.effort }]));
+  const m = BASELINE_MODEL; // gpt-5.6-sol
+  assert.deepEqual(matrix, {
+    "research": { model: m, effort: "high" },
+    "source-repair": { model: m, effort: "high" },
+    "source-verify": { model: m, effort: "high" },
+    "source-compiler": { model: m, effort: "high" },
+    "compiler-polish": { model: m, effort: "medium" },       // role override (routine-repair cell is xhigh)
+    "autopilot-repair": { model: m, effort: "high" },        // role override
+    "autopilot-scout": { model: m, effort: "medium" },
+    "qc-reviewer": { model: m, effort: "high" },
+    "author-writer": { model: m, effort: "xhigh" },
+    "author-repair": { model: m, effort: "xhigh" },
+    "chapter-reviewer": { model: m, effort: "high" },
+    "book-acceptance-reader": { model: m, effort: "high" },
+    "author-evidence": { model: m, effort: "low" },
+    "shipped-control": { model: m, effort: "high" },
+    "eval-reader": { model: m, effort: "high" },
+    "eval-book": { model: m, effort: "high" },
+    "bakeoff-candidate": { model: m, effort: "medium" },
+    "bakeoff-judge": { model: m, effort: "high" },
+    "bakeoff-aux": { model: m, effort: "medium" },
+    "cli-adhoc": { model: m, effort: "high" },               // role override (scout cell is medium)
   });
+});
+
+test("5.6 candidate profiles exist as data but are inert (never the normal route; terra/luna unasserted pending WP-502)", () => {
+  // The normal profile is NOT a candidate.
+  assert.equal(NORMAL_PROFILE, "provisional-56");
+  assert.notEqual(profileMatrix(NORMAL_PROFILE), "call-explicit", "the normal profile MUST have a concrete matrix so unpinned calls don't throw");
+  // SOL candidate matrices are concrete DATA (confirmed capability) — the bakeoff's starting spec.
+  const solHigh = profileMatrix("sol-high-candidate");
+  const solXhigh = profileMatrix("sol-xhigh-candidate");
+  assert.notEqual(solHigh, "call-explicit");
+  assert.notEqual(solXhigh, "call-explicit");
+  if (solHigh !== "call-explicit") assert.deepEqual(solHigh["author-first-write"], { model: "gpt-5.6-sol", effort: "high" });
+  if (solXhigh !== "call-explicit") assert.deepEqual(solXhigh["author-first-write"], { model: "gpt-5.6-sol", effort: "xhigh" });
+  // terra/luna capability is UNCONFIRMED — no asserted matrix before WP-502 (red-team gate).
+  assert.equal(profileMatrix("terra-candidate"), "call-explicit", "terra must not be an asserted matrix cell before WP-502");
+  assert.equal(profileMatrix("luna-candidate"), "call-explicit", "luna must not be an asserted matrix cell before WP-502");
+  // The candidate family set names the three (directive-2); terra/luna are gated.
+  assert.deepEqual([...CANDIDATE_MODELS], [
+    { family: "gpt-5.6-sol", capability: "confirmed" },
+    { family: "gpt-5.6-terra", capability: "unconfirmed-pending-WP-502" },
+    { family: "gpt-5.6-luna", capability: "unconfirmed-pending-WP-502" },
+  ]);
+});
+
+test("the provisional default carries the WP-705 marker, and no rollback path returns gpt-5.5", () => {
+  // Load-bearing PROVISIONAL flag: must remain until a WP-705 decision file replaces the constant.
+  assert.equal(PROVISIONAL_PENDING_WP705, "PROVISIONAL_PENDING_WP-705");
+  assert.equal(NORMAL_PROFILE_MODEL.status, PROVISIONAL_PENDING_WP705, "the normal-profile model is flagged provisional pending WP-705");
+  assert.equal(NORMAL_PROFILE_MODEL.model, "gpt-5.6-sol");
+  // ROLLBACK_ORDER carries NO gpt-5.5 profile (the retired baseline-55 is gone).
+  assert.ok(!ROLLBACK_ORDER.includes("baseline-55" as never), "no gpt-5.5 baseline in rollback (directive-1)");
+  assert.ok(ROLLBACK_ORDER.includes(NORMAL_PROFILE), "the provisional normal profile is the emergency floor");
+  for (const name of ROLLBACK_ORDER) {
+    const mtx = profileMatrix(name);
+    if (mtx !== "call-explicit") {
+      for (const cell of Object.values(mtx)) assert.ok(!cell.model.startsWith("gpt-5.5"), `${name} must not route to gpt-5.5`);
+    }
+  }
 });
 
 test("precedence: call-site explicit values win and are recorded at their tier; partial explicitness falls per-field", () => {
@@ -91,7 +160,8 @@ test("drift fingerprint: stable for identical inputs; any field change re-finger
   const base = { model: BASELINE_MODEL, effort: "high", taskClass: "chapter-direct-read" as const, routePolicyVersion: ROUTE_POLICY_VERSION, executionProfileHash: "p1", cliVersion: "codex-cli 0.144.1" };
   const fp = routeDriftFingerprint(base);
   assert.equal(routeDriftFingerprint({ ...base }), fp, "deterministic");
-  for (const change of [{ model: "gpt-5.6-sol" }, { effort: "xhigh" }, { cliVersion: "codex-cli 0.145.0" }, { executionProfileHash: "p2" }, { routePolicyVersion: "route-policy-v1.1" }] as const) {
+  // base.model is now the 5.6 default; use a DIFFERENT candidate model so the change actually differs.
+  for (const change of [{ model: "gpt-5.6-terra" }, { effort: "xhigh" }, { cliVersion: "codex-cli 0.145.0" }, { executionProfileHash: "p2" }, { routePolicyVersion: "route-policy-v3.0" }] as const) {
     assert.notEqual(routeDriftFingerprint({ ...base, ...change }), fp, `${Object.keys(change)[0]} change must re-fingerprint`);
   }
 });
@@ -160,7 +230,7 @@ test("spawn writes a route sidecar with content_completed and the resolved route
   assert.equal(rr.outcome, "content_completed");
   assert.equal(rr.requestedModel, BASELINE_MODEL);
   assert.equal(rr.requestedEffort, "high");
-  assert.equal(rr.profileName, "baseline-55");
+  assert.equal(rr.profileName, "provisional-56");
 });
 
 test("a timed-out spawn still writes its route sidecar (outcome=timeout) and rethrows", async () => {
