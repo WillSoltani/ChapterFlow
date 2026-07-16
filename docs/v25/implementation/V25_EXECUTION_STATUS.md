@@ -26,8 +26,8 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 206 | integrated | wp-206-hygiene-sweep | 58a8c84e0 | 314ab6248 | red-team PASS-WITH-NOTES; merged @ 1134adfee |
 | 405 | integrated | wp-405-d10-progressive-render | 58a8c84e0 | 6e8ec4f26 | red-team PASS-WITH-NOTES; merged @ 1134adfee; owner UX sign-off still required before web-app PR merge (D-6) |
 | 101 | integrated | wp-101-fresh-emit | 02f936eb2 | e1a37419e | red-team PASS-WITH-NOTES; merged |
-| 302 | verification complete — HELD unmerged (L-18 sequencing) | wp-302-56-profiles | 02f936eb2 | 478a5212f | merges together with 501 |
-| 501 | in progress | wp-501-55-purge (stacked on wp-302 @ 478a5212f) | 478a5212f | — | dispatched: opus-4.8@xhigh, expanded charter per L-18 |
+| 302 | integrated | wp-302-56-profiles | 02f936eb2 | 478a5212f | merged with 501 @ a0fea3193 |
+| 501 | integrated | wp-501-55-purge | 478a5212f | afaa478ea | red-team PASS-WITH-NOTES + rt501 MEDIUM fixed (1bbd27638); merged @ a0fea3193 |
 | 208 (NEW, L-16) | integrated | wp-208-seal-lifecycle | bb50d1dcf | 42ac60a9a | implementation-complete; merged first @ 1134adfee; default-suite collision defused |
 | others | not started | — | — | — | — |
 
