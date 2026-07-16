@@ -6,7 +6,7 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, readdirSync, readFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 import { test } from "./harness.js";
@@ -264,32 +264,69 @@ test("an invalid explicit effort fails the spawn preflight BEFORE any process (p
   );
 });
 
-test("static scan: no production source hardcodes the baseline model outside the policy (pricing table excepted)", () => {
-  const allow = new Set([
-    "src/orchestrator/modelPolicy.ts",   // the owner
-    "src/providers/openai-api.ts",       // pricing table keyed by model id (data, not a route)
-    // IMP-20 §16 migration/bakeoff DATA — the frozen candidate/judge identities
-    // UNDER comparison (not a production route). recoveryExperiment names the
-    // fixed recovery candidate-profile set; layerNRetrospective names the
-    // HISTORICAL Layer-N v2 judge families of a preserved run (a literal record
-    // that must never silently re-point if BASELINE_MODEL later changes).
-    "src/bakeoff/migration/recoveryExperiment.ts",
-    "src/bakeoff/migration/layerNRetrospective.ts",
-    // P3 readiness instrument: the IMP-24G §5.6 owner-frozen candidate order —
-    // a literal record of the profiles under comparison (data, not a route)
-    // that must never silently re-point if BASELINE_MODEL later changes.
-    "src/bakeoff/migration/pilotRoleReadinessInstrument.ts",
-  ]);
+// ── forbidden-model static gate (WP-501, directive-1) ─────────────────────────
+// gpt-5.5 is VOID for the target architecture: no writer/reviewer/repair/
+// fallback/benchmark/judge/default may reference it. The gate FAILS on ANY
+// `gpt-5.5` occurrence (quoted model-id literal OR unquoted prose) in a
+// non-allowlisted production `src/**` .ts file — so a file either legitimately
+// RECORDS the historical id (allowlisted, all-or-nothing) or contains none.
+const FORBIDDEN_MODEL_ID = /gpt-5\.5/;
+
+// The ONLY production-source files permitted to carry the gpt-5.5 token. Every
+// entry is a retained DATA record, never a live route (renaming an offending
+// file INTO this set cannot launder a real route — each reason is load-bearing):
+const FORBIDDEN_MODEL_ALLOWLIST = new Set([
+  // (a) historical-evidence instruments — the frozen candidate/judge identities
+  //     of preserved migration runs (a literal record that must never silently
+  //     re-point if BASELINE_MODEL changes). NOT a production route.
+  "src/bakeoff/migration/recoveryExperiment.ts",     // fixed recovery candidate-profile set
+  "src/bakeoff/migration/layerNRetrospective.ts",    // HISTORICAL Layer-N v2 judge families (preserved run)
+  "src/bakeoff/migration/pilotRoleReadinessInstrument.ts", // IMP-24G §5.6 owner-frozen candidate order
+  // (b) pricing data provider — a model-id-keyed price table (data, not a route).
+  "src/providers/openai-api.ts",
+  // (c) WP-501 Part-3 historical-identity freezes — HISTORICAL_BASELINE_55, the
+  //     frozen pre-migration gpt-5.5 baseline the migration bakeoff measured the
+  //     SOL candidate against. Decoupled from the live BASELINE_MODEL so the
+  //     historical `55` arm can never again re-point when the live baseline flips.
+  "src/bakeoff/migration/experimentTypes.ts",              // defines HISTORICAL_BASELINE_55
+  "src/orchestrator/forwardLocalActivationMaterializer.ts",   // baseline-55 rollback previousProfile
+  "src/orchestrator/forwardLocalActivationMaterializerV2.ts", // baseline-55 rollback previousProfile
+]);
+
+function scanForbiddenModelIds(baseDir: string, startSubdir: string, allow: Set<string>): string[] {
   const offenders: string[] = [];
   const walk = (dir: string): void => {
-    for (const entry of readdirSync(join(PIPELINE_DIR, dir), { withFileTypes: true })) {
+    for (const entry of readdirSync(join(baseDir, dir), { withFileTypes: true })) {
       const rel = join(dir, entry.name);
       if (entry.isDirectory()) walk(rel);
-      else if (entry.name.endsWith(".ts") && !allow.has(rel) && /"gpt-5\.5"/.test(readFileSync(join(PIPELINE_DIR, rel), "utf8"))) {
+      else if (entry.name.endsWith(".ts") && !allow.has(rel) && FORBIDDEN_MODEL_ID.test(readFileSync(join(baseDir, rel), "utf8"))) {
         offenders.push(rel);
       }
     }
   };
-  walk("src");
-  assert.deepEqual(offenders, [], `baseline-model literals outside the policy:\n${offenders.join("\n")}`);
+  walk(startSubdir);
+  return offenders;
+}
+
+test("forbidden-model gate: no production src references gpt-5.5 outside the historical/pricing/freeze allowlist (directive-1)", () => {
+  const offenders = scanForbiddenModelIds(PIPELINE_DIR, "src", FORBIDDEN_MODEL_ALLOWLIST);
+  assert.deepEqual(offenders, [], `gpt-5.5 in non-allowlisted production source — directive-1 forbids a live 5.5 route/judge/default:\n${offenders.join("\n")}`);
+});
+
+test("forbidden-model gate has TEETH: a NEW gpt-5.5 reference in a non-allowlisted file is reported; a 5.6 sibling is not; the allowlist genuinely exempts", () => {
+  const base = join(TMP_DIR, `forbidden-model-neg-${process.pid}-${seq++}`);
+  mkdirSync(join(base, "src", "nested"), { recursive: true });
+  // A planted production-path file reintroducing the void model id (in a TEMP
+  // tree — never under the repo's src/, so it neither trips the real gate nor
+  // gets committed; this is the standing form of the charter's scratch check).
+  writeFileSync(join(base, "src", "nested", "reintroduced.ts"), 'export const WRITER = "gpt-5.5";\n');
+  // A clean 5.6 sibling must NOT be flagged (the gate is specific to 5.5).
+  writeFileSync(join(base, "src", "nested", "clean.ts"), 'export const WRITER = "gpt-5.6-sol";\n');
+  assert.deepEqual(
+    scanForbiddenModelIds(base, "src", new Set()),
+    ["src/nested/reintroduced.ts"],
+    "the gate must flag the new gpt-5.5 reference and ONLY it",
+  );
+  // Allowlisting the planted file exempts it (all-or-nothing by file).
+  assert.deepEqual(scanForbiddenModelIds(base, "src", new Set(["src/nested/reintroduced.ts"])), []);
 });
