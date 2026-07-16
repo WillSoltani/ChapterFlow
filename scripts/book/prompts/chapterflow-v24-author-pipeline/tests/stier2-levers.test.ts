@@ -48,12 +48,11 @@ import { chapterBriefPath, sourcePacketPath, writeJsonFile } from "../src/artifa
 import {
   AUTHOR_PREMIUM_BLOCK,
   AUTHOR_QUALITY_BAR,
-  AUTHOR_WRITER_EFFORT,
-  AUTHOR_WRITER_MODEL,
   AUTHOR_WRITE_TIMEOUT_MS,
   authorWriteContractFindings,
   buildAuthorCard,
 } from "../src/orchestrator/authorRun.js";
+import { resolveRoute } from "../src/orchestrator/modelPolicy.js";
 import { codexExecArgv } from "../src/orchestrator/codexAgent.js";
 import { computeRegenLineage } from "../src/orchestrator/authorRegenLedger.js";
 import { checkReaderBudgets, measureQuizKeyEcho, measureStemOpenerMolds } from "../src/critics/readerBudgets.js";
@@ -393,11 +392,15 @@ test("D9: timer contract — odd invented timers complain, packet numbers exempt
 
 // ── M-lane: model pin ──────────────────────────────────────────────────────────
 
-test("M-lane: author writers pin gpt-5.6-sol @ xhigh with a 60-min timeout; argv carries -c model= before effort", () => {
-  // WP-501/WP-302: the live author writer route is the provisional 5.6 default
-  // (was gpt-5.5, void per directive-1). AUTHOR_WRITER_MODEL rides BASELINE_MODEL.
-  assert.equal(AUTHOR_WRITER_MODEL, "gpt-5.6-sol");
-  assert.equal(AUTHOR_WRITER_EFFORT, "xhigh");
+test("M-lane: author writers resolve gpt-5.6-sol @ xhigh via the central policy (tier normal-profile); argv carries -c model= before effort", () => {
+  // WP-301: the author writer model+effort come from the ONE central authority
+  // (resolveRoute author-writer cell), NOT the deleted AUTHOR_WRITER_MODEL/EFFORT
+  // env-pin consts. WP-501/WP-302 set the provisional 5.6 default (was gpt-5.5,
+  // void per directive-1). Production authoring records tier="normal-profile".
+  const writeRoute = resolveRoute({ role: "author-writer" });
+  assert.equal(writeRoute.model, "gpt-5.6-sol");
+  assert.equal(writeRoute.effort, "xhigh");
+  assert.equal(writeRoute.tier, "normal-profile");
   assert.equal(AUTHOR_WRITE_TIMEOUT_MS, 3_600_000);
   const argv = codexExecArgv("do the thing", "workspace-write", [], false, "xhigh", "gpt-5.6-sol");
   const modelIdx = argv.indexOf("model=gpt-5.6-sol");

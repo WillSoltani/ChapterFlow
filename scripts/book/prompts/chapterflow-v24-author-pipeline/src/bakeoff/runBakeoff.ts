@@ -591,13 +591,15 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
     if (!phaseDone(manifest, "qc")) {
       // Release OUR lock — book-autopilot takes its own on the same book.
       lock.release();
-      log(`[bakeoff] formal QC: delegating to book-autopilot ${bookId} --author${publishAuthorized ? "" : " --no-publish"} (winner ${winnerSpec.model} pinned as the repair author; reviewers stay independent)`);
+      // WP-301: the CHAPTERFLOW_AUTHOR_MODEL/EFFORT env surface was deleted — the
+      // production author (write + repair) now resolves from the central model
+      // policy (resolveRoute, tier="normal-profile"), so a cross-process env pin
+      // can no longer steer the delegated subprocess. Formal QC repairs therefore
+      // run the policy-resolved production author; the winner is still measured on
+      // its first-write candidate (candidates.ts pins opts.model per candidate).
+      log(`[bakeoff] formal QC: delegating to book-autopilot ${bookId} --author${publishAuthorized ? "" : " --no-publish"} (repairs authored by the central model policy; winner ${winnerSpec.model} measured on its first write; reviewers stay independent)`);
       const args = ["book-autopilot", bookId, "--author", ...(publishAuthorized ? [] : ["--no-publish"])];
-      const env = {
-        CHAPTERFLOW_AUTHOR_MODEL: winnerSpec.model,
-        CHAPTERFLOW_AUTHOR_EFFORT: winnerSpec.effort,
-      };
-      const r = await deps.delegate(args, env, (line) => log(line));
+      const r = await deps.delegate(args, {}, (line) => log(line));
       const tail = (r.stdout || r.stderr).trim().split("\n").slice(-12).join("\n");
       manifest.qc = {
         startedAt: new Date().toISOString(),
