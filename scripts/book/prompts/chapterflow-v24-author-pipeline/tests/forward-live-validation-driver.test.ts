@@ -653,10 +653,12 @@ test("generic live boundary is dry by default and legacy pilot/gold CLI identiti
   console.error = (...parts: unknown[]) => { errors.push(parts.map(String).join(" ")); };
   try {
     assert.equal(await runMigrationBakeoffCli(["forward-pilot"], {
+      campaign: true, // WP-202: un-gate so the CLOSED-experiment disposition still refuses
       "execute-live": true,
       "phase-dir": "/must-not-be-read",
     }), 2);
     assert.equal(await runMigrationBakeoffCli(["forward-gold"], {
+      campaign: true, // WP-202: un-gate so the CLOSED-experiment disposition still refuses
       "execute-live": true,
       "phase-dir": "/must-not-be-read",
       json: true,

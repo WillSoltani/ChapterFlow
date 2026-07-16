@@ -108,6 +108,7 @@ test("IMP-24 V3 qualification CLI literal dry barrier precedes every injected re
   };
   for (const executeLive of [undefined, "true"] as const) {
     const flags: Record<string, string | boolean> = {
+      campaign: true, // WP-202: un-gate the quarantined subverb to exercise its own dry barrier
       "head-sha": HEAD,
       "workflow-run-id": String(WORKFLOW_RUN_ID),
       ...(executeLive === undefined ? {} : { "execute-live": executeLive }),
@@ -121,6 +122,7 @@ test("IMP-24 V3 qualification CLI literal dry barrier precedes every injected re
 test("IMP-24 V3 qualification CLI requires argv or injected models-cache context before retained reads", async () => {
   let touched = 0;
   const captured = await captureErrors(() => runMigrationBakeoffCli(["imp24-role-qualification-v3"], {
+    campaign: true, // WP-202: un-gate the quarantined subverb
     "execute-live": true,
     "head-sha": HEAD,
     "workflow-run-id": String(WORKFLOW_RUN_ID),
@@ -192,6 +194,7 @@ test("IMP-24 V3 qualification CLI loads fresh artifacts, discovers local candida
   console.log = () => undefined;
   try {
     const code = await runMigrationBakeoffCli(["imp24-role-qualification-v3"], {
+      campaign: true, // WP-202: un-gate the quarantined subverb
       "execute-live": true,
       "head-sha": HEAD,
       "workflow-run-id": String(WORKFLOW_RUN_ID),
@@ -244,6 +247,7 @@ test("IMP-24D r2 CLI defers every artifact and models-cache read until the retai
   let availabilityReads = 0;
   let campaignCalls = 0;
   await assert.rejects(runMigrationBakeoffCli(["imp24-role-qualification-v3"], {
+    campaign: true, // WP-202: un-gate the quarantined subverb
     "execute-live": true,
     "head-sha": HEAD,
     "workflow-run-id": String(WORKFLOW_RUN_ID),
@@ -282,11 +286,13 @@ test("IMP-24 CLI cannot resume or attest immutable V1/V2 or closed zero-call V3 
     ] as const) {
       for (const subverb of ["role-qualification-calibrate", "role-qualification-holdout"] as const) {
         assert.equal(await runMigrationBakeoffCli([subverb], {
+          campaign: true, // WP-202: un-gate so the CLOSED-experiment disposition still refuses
           "execute-live": true,
           experiment,
         }), 2);
       }
       assert.equal(await runMigrationBakeoffCli(["role-qualification-attest-calibration"], {
+        campaign: true, // WP-202: un-gate so the CLOSED-experiment disposition still refuses
         experiment,
         inspector: "must-not-run",
         "confirm-calibration-sha": "a".repeat(64),

@@ -4118,21 +4118,15 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
     return 2;
   }
   const { runAutopilot, formatOutcome, architectureFromFlags, architectureSelectedBy, architectureLabel, hasExplicitArchitectureFlag } = await import("./orchestrator/autopilot.js");
-  const { resolveStandardForwardAutopilotControl } = await import("./orchestrator/forwardLocalAutopilot.js");
   const { guardResumeArchitecture } = await import("./orchestrator/runArchitectureMarker.js");
   const maxRepair = typeof flags["max-repair"] === "string" ? parseInt(flags["max-repair"], 10) : undefined;
   const maxParallel = typeof flags["max-parallel"] === "string" ? parseInt(flags["max-parallel"], 10) : undefined;
-  let forwardControl: ReturnType<typeof resolveStandardForwardAutopilotControl>;
-  try { forwardControl = resolveStandardForwardAutopilotControl(); }
-  catch (error) {
-    console.error(`forward local runtime preflight failed: ${(error as Error).message}`);
-    return 1;
-  }
-  // WP-201: architecture is decided SOLELY by the flags — FORWARD_ACTIVE no longer upgrades
-  // the arch. The default (no arch flag) is now v24 author. The forward stack stays dormant
-  // unless a policy genuinely activates it; its activation is out of scope here (WP-202).
+  // WP-202: the ship path is DECOUPLED from the forward readiness/qualification stack. WP-201
+  // made architecture flag-decided (default = v24 author); the FORWARD_ACTIVE runtime is no
+  // longer consulted here, and resolveStandardForwardAutopilotControl (which transitively loads
+  // the imp24*/roleQualification*/forward-attestation family) is no longer imported. The default
+  // author run resolves its writer through WP-301's central modelPolicy route.
   const architecture = architectureFromFlags(flags);
-  const forwardActive = forwardControl.runtime.mode === "FORWARD_ACTIVE";
   // Guardrail: state the resolved architecture AND the flag that selected it, up front.
   console.log(`[book-autopilot] architecture: ${architectureLabel(architecture)} (selected by ${architectureSelectedBy(flags)})`);
   // Resume guard: a book mid-run under a DIFFERENT architecture must not be silently switched
@@ -4150,16 +4144,10 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
     autoPublish: !("no-publish" in flags),
     regen: "regen" in flags,
     architecture,
-    // Author writer: the DEFAULT (dormant) author path resolves its writer through WP-301's
-    // central modelPolicy route — doAuthorWrite falls back to the module `authorWriteOneChapter`
-    // → resolveRoute({ role: "author-writer" }) at tier "normal-profile", NO env pin. Only a
-    // genuinely FORWARD_ACTIVE stack supplies the split-lane reviewer-gated writer + ACTIVE
-    // acceptance semantics; passing forwardControl.writeOneChapter for the default would re-pin
-    // model/effort as a call-explicit override (the V25-04 parallel routing surface).
-    ...(architecture === "author" && forwardActive ? {
-      authorWriteOneChapter: forwardControl.writeOneChapter,
-      forwardAutopilotControl: forwardControl,
-    } : {}),
+    // WP-202: no forwardAutopilotControl / authorWriteOneChapter is passed. The default author
+    // run resolves its writer through WP-301's central modelPolicy route (doAuthorWrite → module
+    // authorWriteOneChapter → resolveRoute author-writer, tier "normal-profile", NO env pin). The
+    // FORWARD_ACTIVE writer surface is retired from the ship path (S-tier ledger L-16/L-15).
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
   });

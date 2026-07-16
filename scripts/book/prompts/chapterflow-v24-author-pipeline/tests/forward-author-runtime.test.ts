@@ -1035,11 +1035,16 @@ test("runtime binding tamper and external capability enablement are unrepresenta
   assert.doesNotMatch(source, /process\.env|from ["'](?:node:)?fs["']|OPENAI_API_KEY|CODEX_API_KEY/);
   assert.doesNotMatch(source, /publish:\s*true|promotion:\s*true|deployment:\s*true|upload:\s*true|apiFallbackAllowed:\s*true/);
 
+  // WP-202: the ship path is DECOUPLED from the forward readiness/qualification stack.
+  // book-autopilot (cli.ts) and book-run (liveRun.ts) no longer resolve the standard
+  // forward factory, no longer consult FORWARD_ACTIVE, and no longer pass forward control
+  // into the conductor — the default author writer routes through modelPolicy (WP-301).
+  // These NEGATIVE assertions guard against re-introducing the retired ship-path wiring.
   const cli = readFileSync(resolve(PIPELINE_DIR, "src", "cli.ts"), "utf8");
   const liveRun = readFileSync(resolve(PIPELINE_DIR, "src", "orchestrator", "liveRun.ts"), "utf8");
   for (const [label, entrypoint] of [["book-autopilot", cli], ["book-run", liveRun]] as const) {
-    assert.match(entrypoint, /resolveStandardForwardAutopilotControl\(\)/, `${label} uses the standard local factory`);
-    assert.match(entrypoint, /forwardControl\.runtime\.mode === "FORWARD_ACTIVE"/, `${label} consumes ACTIVE as the local author default`);
-    assert.match(entrypoint, /forwardAutopilotControl: forwardControl/, `${label} passes ACTIVE semantics into the conductor`);
+    assert.doesNotMatch(entrypoint, /resolveStandardForwardAutopilotControl\(\)/, `${label} must not resolve the retired forward factory (WP-202)`);
+    assert.doesNotMatch(entrypoint, /forwardControl\.runtime\.mode === "FORWARD_ACTIVE"/, `${label} must not consult FORWARD_ACTIVE on the ship path (WP-202)`);
+    assert.doesNotMatch(entrypoint, /forwardAutopilotControl: forwardControl/, `${label} must not pass forward control into the conductor (WP-202)`);
   }
 });
