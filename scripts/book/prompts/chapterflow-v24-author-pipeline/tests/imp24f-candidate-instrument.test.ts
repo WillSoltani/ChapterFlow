@@ -21,6 +21,7 @@ import {
   verifyHistoricalForwardProductionInstrumentSeal,
   verifyRetainedForwardProductionInstrumentSeal,
 } from "../src/orchestrator/forwardProductionInstrumentSeal.js";
+import { campaignInstrumentChecksEnabled } from "../src/lib/campaignInstrumentChecks.js";
 import {
   IMP24_CERTIFICATION_ARTIFACT_PATHS,
   loadRetainedImp24RolePromptSourceHashes,
@@ -71,9 +72,18 @@ test("historical seal verification proves retained integrity WITHOUT comparing t
     // An authorized successor changes instrument bytes…
     writeFileSync(mutableSource, "export const successor = true;\n");
 
-    // …so current-bytes verification (correctly) refuses the retained seal…
-    assert.throws(() => verifyRetainedForwardProductionInstrumentSeal({ repositoryRoot: root, outputPath }),
-      /bytes drifted/);
+    // …so the current-bytes drift comparison (a CLOSED campaign instrument,
+    // ledger L-16) refuses the retained seal ONLY under the campaign opt-in. By
+    // default verifyRetained is retained-integrity only and never reads the
+    // checkout, so it still proves the (as-minted) retained seal whole.
+    if (campaignInstrumentChecksEnabled()) {
+      assert.throws(() => verifyRetainedForwardProductionInstrumentSeal({ repositoryRoot: root, outputPath }),
+        /bytes drifted/);
+    } else {
+      const retained = verifyRetainedForwardProductionInstrumentSeal({ repositoryRoot: root, outputPath });
+      assert.equal(retained.verified, true);
+      assert.equal(retained.sealSha256, minted.sealSha256);
+    }
 
     // …while HISTORICAL verification still proves the retained artifact whole.
     const historical = verifyHistoricalForwardProductionInstrumentSeal({
