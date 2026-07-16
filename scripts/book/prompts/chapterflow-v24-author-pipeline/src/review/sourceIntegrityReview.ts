@@ -41,6 +41,7 @@ import type {
   SourceIntegrityReviewUnitV1,
 } from "../contracts/sourceIntegrityReview.js";
 import { validateSourceIntegrityReview } from "../contracts/sourceIntegrityReview.js";
+import { assertSourceReviewPacketEquipped } from "../contracts/sourceProjectionBoundary.js";
 import type { DeterministicCriticSummaryV1 } from "../contracts/aggregateChapterReview.js";
 import type { DeterministicCriticBundleV1 } from "../bakeoff/migration/reviewLaneTypes.js";
 import { DETERMINISTIC_CRITIC_BUNDLE_SCHEMA } from "../bakeoff/migration/reviewLaneTypes.js";
@@ -495,6 +496,13 @@ export async function runSourceIntegrityReview(
     throw new SourceIntegrityLaneError("source lane requires an injected reviewer seam (deps.spawn); this package makes no live model call");
   }
   const reviewPacket = assembleSourceReviewPacket(chapter, plan, packet, sidecar, anchorCatalog);
+  // WP-403 item 2: fail-closed source-EQUIPPED enforcement. The reviewer must
+  // physically hold the FULL source substrate (packet case allowedUses/forbiddenUses,
+  // provenance, sidecar, anchor bodies) — never the writer's dieted projection or a
+  // source-blind reader doc. A wrong-surface input is REFUSED (SourceProjectionBoundaryError),
+  // never a silent PASS: this is the runtime that closes V25-10's source-blind
+  // false-positive class (cleanPass 0.125), the root cause of the sol false positives.
+  assertSourceReviewPacketEquipped(reviewPacket);
   const task = buildSourceIntegrityTask(reviewPacket, {
     outputSchemaRelPath: input.outputSchemaRelPath ?? "state/migration-experiments/contracts/schemas/source-integrity-review.schema.json",
     schemaSha256: input.schemaSha256,

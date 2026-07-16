@@ -27,6 +27,25 @@ import { REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js
  *  equal this string is NOT fresh (legacy `reader-rubric-v3-phase1` records fail). */
 export const READER_EXPERIENCE_RUBRIC_VERSION = "reader-experience-review-v1" as const;
 
+/**
+ * The SINGLE canonical numeric scale for EVERY score the advisory review lanes
+ * emit or compose — reader rubric factors AND the aggregator's `readerComposite`/
+ * `readerBar`. Declared ONCE here (WP-403 item 4) and imported everywhere a review
+ * number is validated, so no factor can be emitted on an ambiguous scale.
+ *
+ * WHY (V25-16): retained V3 reviewer outputs mixed 0-1 / 1-5 / 1-10 for the SAME
+ * factor, so a bare number was un-interpretable. Pinning one scale means a value
+ * off this range is a validation error, never a silently-accepted different scale.
+ */
+export const REVIEW_SCORE_SCALE = { min: 0, max: 100 } as const;
+
+/** True iff `v` is a finite number on the canonical review score scale [0,100].
+ *  The one predicate every review-numeric validator calls (reader factors + the
+ *  aggregate composite/bar), so the pinned range can never diverge across lanes. */
+export function isReviewScore(v: unknown): v is number {
+  return typeof v === "number" && Number.isFinite(v) && v >= REVIEW_SCORE_SCALE.min && v <= REVIEW_SCORE_SCALE.max;
+}
+
 /** On-page-decidable blocker categories ONLY. No external source-truth category
  *  (`fabricated`/`factually_wrong`/`source_contradictory`) exists here (E-01). */
 export const READER_BLOCKING_CATEGORIES = [
@@ -112,8 +131,10 @@ function noUnknownKeys(v: Record<string, unknown>, allowed: readonly string[], e
   }
 }
 
+/** Reader rubric factors are pinned to the single canonical review scale [0,100]
+ *  (`REVIEW_SCORE_SCALE`); a value off that range is a validation error (V25-16). */
 function isBoundedScore(v: unknown): boolean {
-  return typeof v === "number" && Number.isFinite(v) && v >= 0 && v <= 100;
+  return isReviewScore(v);
 }
 
 const FINDING_KEYS = ["category", "unit", "problem", "evidenceSpans"] as const;
