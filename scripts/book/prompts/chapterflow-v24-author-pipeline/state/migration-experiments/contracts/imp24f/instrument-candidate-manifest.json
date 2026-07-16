@@ -1,12 +1,12 @@
 {
   "candidate": {
-    "certificationSha256": "e61c3aaf543a45beef6838a03304dd8b39c0507c51b1b10053ec9398f8664178",
+    "certificationSha256": "80bba5108233dd5280285de0f350f7cac713405540e8ca5320e2e09ee13d2dd3",
     "corpusBundleSha256": "sha256:4501809686161a541ad776bdbfea9c716ec402d89ef397a072f93143ce28fcac",
     "productionQualificationParitySha256": "87032682eaaaff9656a9186ea4e9c544108dd0644110cb6b93518ab2e69bb3f8",
     "promptBundleSha256": "8f39d721cc8f319ae50e4ae7b3cabfedf5f68dde8dfc689f0da2f87dd02eace2",
     "schemaBundleSha256": "7e73469d522429deb2d55232e0dbba95725e15ca067da2b8213c10dc43fa6613",
     "scorerSha256": "f6e8b293420c3212c4d0275552bb5f615bff097d1fc157e0264f25348518ddc4",
-    "sealSha256": "dcb66e1ff51c32c2b3e1128798ff8a6843414ce0c682e961016ec88d9188febd",
+    "sealSha256": "2b684f0d1a9c1276d190099564b2e2df1df4f4464c87aada040483e9bc633d29",
     "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa"
   },
   "instrumentGeneration": "imp24g-reader-policy-v3-1",
@@ -16,7 +16,7 @@
     "modelCalls": 0,
     "pilotCalls": 0
   },
-  "manifestSha256": "c24314fd8780ab6778507999edaa800f7616d86422e63de8a5bfc8eb1dd4799e",
+  "manifestSha256": "def66db496e18514db068e02a30bc6597aa913e36359f99053bf8b4a17db3090",
   "predecessor": {
     "certificationSha256": "ff4e1242fef13998196dbcba6ba92b3263fae44a36628d68fac88f9ded8b46b5",
     "disposition": "ROLE_SET_NOT_READY",

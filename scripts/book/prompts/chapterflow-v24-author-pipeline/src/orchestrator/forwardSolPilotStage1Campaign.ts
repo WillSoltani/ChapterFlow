@@ -18,7 +18,7 @@
  */
 
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { resolve } from "node:path";
 
@@ -143,6 +143,20 @@ function persistExactJson(path: string, value: unknown, label: string): void {
   requireCondition(hashCanonical(retained) === hashCanonical(value), `${label} atomic read-back hash mismatch`);
 }
 
+/** Per-LAUNCH records (CI gate, route preflight, authorization, report) carry
+ * timestamps/CLI versions, so a fixed create-once path would wedge every
+ * legitimate relaunch. Each launch's record is retained immutably under its
+ * own content hash; the -latest pointer is a plain atomic overwrite. Chain-
+ * bound artifacts (proof/review-config/scope) stay on strict fixed paths. */
+function persistLaunchRecord(dir: string, baseName: string, value: unknown, label: string): string {
+  mkdirSync(dir, { recursive: true });
+  const recordSha = hashCanonical(value);
+  const path = resolve(dir, `${baseName}-${recordSha.slice(0, 12)}.json`);
+  persistExactJson(path, value, `${label} (launch record)`);
+  atomicJson(resolve(dir, `${baseName}-latest.json`), value);
+  return path;
+}
+
 // ── Paths ─────────────────────────────────────────────────────────────────────
 
 export type SolPilotStage1PathsV1 = {
@@ -154,13 +168,11 @@ export type SolPilotStage1PathsV1 = {
   liveCampaignDir: string;
   callLedger: string;
   stage1Dir: string;
-  implementationCiGate: string;
-  routePreflight: string;
+  /** Per-launch immutable records (gate/route/authorization), content-addressed. */
+  gatesDir: string;
   qualificationProof: string;
   reviewConfig: string;
   stageScope: string;
-  authorization: string;
-  stageReportJson: string;
   stageReportDocsJson: string;
   stageReportMarkdown: string;
   readinessPlanCommitted: string;
@@ -185,13 +197,10 @@ export function solPilotStage1Paths(repositoryRoot: string): SolPilotStage1Paths
     liveCampaignDir: resolve(envelopeDir, "live-campaign"),
     callLedger: resolve(envelopeDir, "live-campaign", "call-ledger.json"),
     stage1Dir,
-    implementationCiGate: resolve(stage1Dir, "implementation-ci-gate.json"),
-    routePreflight: resolve(stage1Dir, "route-preflight.json"),
+    gatesDir: resolve(stage1Dir, "launches"),
     qualificationProof: resolve(stage1Dir, "qualification-proof.json"),
     reviewConfig: resolve(stage1Dir, "review-config.json"),
     stageScope: resolve(stage1Dir, "stage-scope.json"),
-    authorization: resolve(stage1Dir, "authorization.json"),
-    stageReportJson: resolve(stage1Dir, "stage1-report.json"),
     stageReportDocsJson: resolve(reportDir, "SOL_PILOT_STAGE1_RESULT.json"),
     stageReportMarkdown: resolve(reportDir, "SOL_PILOT_STAGE1_RESULT.md"),
     readinessPlanCommitted: resolve(readinessDir, "readiness-plan.v6.json"),
@@ -502,7 +511,7 @@ export async function runSolPilotStage1Campaign(
   });
   requireCondition(solPilotFrozenInputsClean(root),
     "sol-pilot frozen envelope inputs (freeze/materialization/snapshot/plan/inputs) are not committed-clean");
-  persistExactJson(paths.implementationCiGate, gate, "sol-pilot implementation CI gate");
+  persistLaunchRecord(paths.gatesDir, "implementation-ci-gate", gate, "sol-pilot implementation CI gate");
 
   // 2. Retained readiness chain + current instrument identity.
   const { chain, stagePlan } = loadSolPilotReadinessChain(root);
@@ -512,7 +521,7 @@ export async function runSolPilotStage1Campaign(
     repositoryRoot: root,
     qualificationCacheDir: resolve(paths.liveCampaignDir, "execution", "qualification-preflight-cache"),
   });
-  persistExactJson(paths.routePreflight, route, "sol-pilot route preflight");
+  persistLaunchRecord(paths.gatesDir, "route-preflight", route, "sol-pilot route preflight");
 
   // 4. Frozen role assignment, review config, and qualification proof.
   const roleAssignment = buildSolPilotFixedRoleAssignment(chain.readinessResult, chain.roleFreeze);
@@ -589,7 +598,7 @@ export async function runSolPilotStage1Campaign(
     reviewConfigSha256: bound.configSha256,
     externalCapabilities: EXTERNAL_CAPABILITIES,
   };
-  persistExactJson(paths.authorization, {
+  persistLaunchRecord(paths.gatesDir, "authorization", {
     ...authorizationCore,
     authorizationSha256: hashCanonical(authorizationCore),
   }, "sol-pilot stage-1 authorization");
@@ -714,7 +723,7 @@ export async function runSolPilotStage1Campaign(
     completedAt: new Date().toISOString(),
   };
   const report: SolPilotStage1CampaignReportV1 = { ...reportCore, reportSha256: hashCanonical(reportCore) };
-  persistExactJson(paths.stageReportJson, report, "sol-pilot stage-1 report");
+  persistLaunchRecord(paths.stage1Dir, "stage1-report", report, "sol-pilot stage-1 report");
   atomicJson(paths.stageReportDocsJson, report);
   writeFileAtomic(paths.stageReportMarkdown, renderSolPilotStage1Markdown(report));
   return { report, campaign };
