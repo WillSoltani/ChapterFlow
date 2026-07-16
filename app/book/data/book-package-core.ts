@@ -138,6 +138,18 @@ export type BookPackage = {
   contentOwner: string;
   book: PackageBook;
   chapters: PackageChapter[];
+  /**
+   * D10 authoring marker. Pre-v25 v21 books author their read layers
+   * SERIALLY — `fastRead` is ~15% of the prose, `deepRead`/`fullRead` add
+   * complementary slices — so the reader composes them cumulatively
+   * (Standard = fast+deep, Challenge = all three) to recover the hidden prose.
+   *
+   * Books authored under D8 / Chapter-Format-v25 (F-1 layer independence) make
+   * each layer a self-contained superset; blind concatenation would DUPLICATE
+   * their content. Such books set `layerIndependent: true` so the reader keeps
+   * single-layer-per-mode rendering. Absent/false ⇒ serial-layer ⇒ compose.
+   */
+  layerIndependent?: boolean;
 };
 
 export type BookPackagePresentation = {

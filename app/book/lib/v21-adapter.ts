@@ -371,6 +371,10 @@ export function normalizeV21Package(raw: unknown): BookPackage {
     contentOwner: asStringOrUndefined(record.contentOwner) ?? "",
     book,
     chapters,
+    // D10 authoring marker (see BookPackage.layerIndependent). Only an explicit
+    // `true` opts a book OUT of cumulative rendering; every existing serial-layer
+    // package lacks the field ⇒ undefined ⇒ the reader composes its layers.
+    layerIndependent: record.layerIndependent === true,
   };
 }
 
