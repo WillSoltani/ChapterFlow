@@ -7,6 +7,18 @@
  * chapter conductor, and persists every request/receipt immediately.  A resumed
  * phase reuses an exact request-hash match; it never spends an output-informed
  * bonus call.
+ *
+ * SUPERSEDED-BY-S-TIER (V25 decision ledger L-16; WP-203). This IMP-22 base live
+ * role-qualification boundary is superseded for the active-candidate path by
+ * ./forwardRoleQualificationLiveV3.ts (IMP-24; the V2/V3 materializer survivors
+ * import the V3 boundary, never this base). It is NOT deleted here because its
+ * `LiveQualificationPreflightV1` type and its live-qualification surface remain
+ * referenced across the quarantined IMP-23 forward stack, the campaign CLI, and
+ * the role-qualification-live retained-evidence suite. This module is already
+ * inside the WP-202 quarantine family (tests/campaign-quarantine.test.ts
+ * `forward.*RoleQualification` FORBIDDEN_FAMILY), so the author-first ship path
+ * has ZERO runtime reach into it. Physical deletion is deferred to the Phase-8
+ * end-state deletion gate (WP-804 / decision D-5).
  */
 
 import { existsSync, mkdirSync, readFileSync } from "node:fs";

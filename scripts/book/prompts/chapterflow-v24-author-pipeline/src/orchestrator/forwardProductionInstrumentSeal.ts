@@ -8,6 +8,21 @@
  * into the role freeze and campaign manifest; live preflight rebuilds this
  * inventory from current bytes before any model call and again at every
  * author/reviewer/gold/final boundary.
+ *
+ * SUPERSEDED-BY-S-TIER (V25 decision ledger L-16; WP-203). Every runtime consumer
+ * of this seal is now a quarantined-but-restorable campaign verb reached only
+ * behind `--campaign` (WP-202): the author-first ship path has ZERO runtime reach
+ * into it (tests/campaign-quarantine.test.ts). The strict whole-src current-bytes
+ * drift comparison was gated behind CHAPTERFLOW_CAMPAIGN_INSTRUMENT_CHECKS
+ * (default-off) by WP-208; by default only historical/self-hash verification runs.
+ * The three retained artifact paths (imp22 / imp24 / imp24f) are DELIBERATELY LEFT
+ * INTACT: collapsing them to a single canonical path was assessed and rejected as
+ * over-engineering (directive 4) — the seal does not survive to the target
+ * architecture, so re-plumbing it now would (a) risk emitting a divergent seal
+ * hash (WP-203 stop condition — re-sealing retained evidence is an owner decision)
+ * and (b) add machinery to a module scheduled for wholesale removal. Physical
+ * deletion of the entire seal is deferred to the Phase-8 end-state deletion gate
+ * (WP-804 / decision D-5).
  */
 
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";

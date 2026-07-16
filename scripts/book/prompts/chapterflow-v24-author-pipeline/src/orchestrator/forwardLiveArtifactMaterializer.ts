@@ -5,6 +5,22 @@
  * publication capability.  Callers supply already-retained evidence; the
  * functions below validate and compose it through the existing qualification,
  * campaign, gold-instrument, and production-seal boundaries.
+ *
+ * SUPERSEDED-BY-S-TIER (V25 decision ledger L-16; WP-203). This IMP-23 base
+ * live-artifact materializer is superseded for the active-candidate path by
+ * ./forwardLiveArtifactMaterializerV3.ts (IMP-24). It is NOT deleted here
+ * because it is still referenced by: (a) the V3 successor, which re-imports the
+ * shared helpers `assertAcceptedForwardPilotResult` and
+ * `validateForwardInputMaterializationBinding` from it; (b) the quarantined-but-
+ * restorable campaign verbs — bakeoff/migration/cli.ts and imp24PilotGoldWorkflow.ts
+ * still consume its IMP-23 composition (buildQualificationAndRoleFreezeArtifacts /
+ * buildPilotArtifacts / buildGoldArtifacts / stableForwardArtifactJson); (c)
+ * forwardRoleAssignmentFreezeV3.ts (buildFixedForwardRoleFreezePolicies); and (d)
+ * retained-evidence verification suites (imp24-final-attestation, imp24-pilot-gold-
+ * workflow, forward-live-artifact-materializer). The author-first ship path has
+ * ZERO runtime reach into this module (tests/campaign-quarantine.test.ts, WP-202).
+ * Physical deletion + helper re-homing is deferred to the Phase-8 end-state
+ * deletion gate (WP-804 / decision D-5).
  */
 
 import { canonicalJson, hashCanonical, sha256Hex } from "../contracts/contractUtil.js";

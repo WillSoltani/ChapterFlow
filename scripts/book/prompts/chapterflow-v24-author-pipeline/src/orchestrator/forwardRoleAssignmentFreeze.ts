@@ -6,6 +6,18 @@
  * activation capability.  A caller must first seal a complete, role-ready
  * qualification result; only that immutable bundle can be converted into a
  * fixed production review configuration and the existing IMP-20 recovery seal.
+ *
+ * SUPERSEDED-BY-S-TIER (V25 decision ledger L-16; WP-203). This IMP-22 base role
+ * freeze is superseded for the active-candidate path by
+ * ./forwardRoleAssignmentFreezeV3.ts (IMP-24; the V2/V3 materializer survivors
+ * import the V3 freeze, never this base). It is NOT deleted here because its
+ * IMP-23 composition (`buildForwardRoleAssignmentFreeze`) and its V1 type
+ * vocabulary (ForwardRoleAssignmentFreezeV1 / ForwardQualificationInstrumentBindingV1
+ * / ForwardSealedQualificationBundleV1) remain referenced across the quarantined
+ * IMP-23 forward stack and the campaign CLI. This module is already inside the
+ * WP-202 quarantine family (tests/campaign-quarantine.test.ts FORBIDDEN_FAMILY),
+ * so the author-first ship path has ZERO runtime reach into it. Physical deletion
+ * is deferred to the Phase-8 end-state deletion gate (WP-804 / decision D-5).
  */
 
 import { validateJudgeCapabilityQualification } from "../contracts/judgeCapabilityQualification.js";
