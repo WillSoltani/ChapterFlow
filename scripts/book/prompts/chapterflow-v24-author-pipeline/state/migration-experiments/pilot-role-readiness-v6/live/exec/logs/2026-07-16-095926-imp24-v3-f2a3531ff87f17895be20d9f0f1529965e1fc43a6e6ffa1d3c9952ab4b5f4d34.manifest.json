@@ -1,0 +1,84 @@
+{
+  "schema": "effective-context-manifest-v1",
+  "manifestVersion": 1,
+  "sessionId": "imp24-v3-f2a3531ff87f17895be20d9f0f1529965e1fc43a6e6ffa1d3c9952ab4b5f4d34",
+  "role": "chapter-reviewer",
+  "profileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "bin": {
+    "path": "codex",
+    "version": "codex-cli 0.144.1"
+  },
+  "argv": [
+    "exec",
+    "--sandbox",
+    "read-only",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "-c",
+    "project_doc_max_bytes=0",
+    "-c",
+    "model=gpt-5.6-sol",
+    "-c",
+    "model_reasoning_effort=xhigh",
+    "--output-schema",
+    "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/quiz-integrity-model-output-v2.schema.json",
+    "--output-last-message",
+    "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/pilot-role-readiness-v6/live/exec/sessions/cf-exec-session-UUy62p/last-message.txt",
+    "<task-sha256:9afdb7aacfe6cefed320ede0d97f890cc3ddea25de51523c88af293ba5b3e468>"
+  ],
+  "cwd": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-quiz-adjudication-qJBD82",
+  "cwdPolicy": "isolated-workspace",
+  "envKeys": [
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE",
+    "CHAPTERFLOW_NO_API_CODEX_QC",
+    "CHAPTERFLOW_SESSION_ID",
+    "CODEX_HOME",
+    "HOME",
+    "LANG",
+    "LOGNAME",
+    "PATH",
+    "SHELL",
+    "TMPDIR",
+    "USER"
+  ],
+  "callerEnvKeys": [],
+  "strictEnv": {
+    "CHAPTERFLOW_NO_API_CODEX_QC": "1",
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE": "1"
+  },
+  "codexHome": {
+    "dir": "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/pilot-role-readiness-v6/live/exec/sessions/cf-exec-session-UUy62p/codex-home",
+    "authMaterial": "auth.json",
+    "authSourcePath": "/Users/radinsoltani/.codex/auth.json"
+  },
+  "instructionSources": [],
+  "workspace": {
+    "dir": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-quiz-adjudication-qJBD82",
+    "files": [
+      {
+        "relPath": "evidence/RDY-QUIZ-V3-CANARY-uniquely-correct-clean-decisive-ch02-q01.review-evidence-envelope-v1.json",
+        "sha256": "aab345e042637cc4fdbbbe0b4f7dccb3e5615d40fab594252d82a23af4cd50b6",
+        "bytes": 15478
+      }
+    ]
+  },
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "xhigh",
+  "sandbox": "read-only",
+  "timeoutMs": 900000,
+  "taskSha256": "9afdb7aacfe6cefed320ede0d97f890cc3ddea25de51523c88af293ba5b3e468",
+  "taskBytes": 17869,
+  "qualification": {
+    "cliVersion": "codex-cli 0.144.1",
+    "flagsRequired": [
+      "--sandbox",
+      "-c",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--output-last-message"
+    ],
+    "synthetic": false
+  },
+  "createdAtIso": "2026-07-16T09:59:26.468Z"
+}

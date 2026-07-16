@@ -1,0 +1,162 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c12-a1",
+  "requestSha256": "e8616d77559d5c43177ff415b9114bf4888f00afc8e394e99cab74cc9dde9e31",
+  "receiptSha256": "da436b483df5fb1275f1706a5edbc649e066c25ff3a2601cc80ff50c3086872a",
+  "executionEvidenceSha256": "0dd2b6dc0886a2bf0d58eac7db452fe04868a66aec882e2f5bea03e294790a11",
+  "rawOutputSha256": "35043f417aab892ddcab5f9e364265be4e75f0e7a67d62428b294d6e80b546f3",
+  "evaluationSha256": "99ec4780061e7d5d6710724f512cf44945670c6e3c80f2af4f395e01afe44638",
+  "parsedOutputSha256": "7f8f160526dd596c77b090fe7d34ee8f9503d93487dc02fbf422f5098822be7a",
+  "assembledReviewSha256": "5c2fd0eccb49d09de382f3099046edf5cc33e018c632385238e3fb20004c170f",
+  "evidenceReferenceResolutionSha256": "e70e8e3bcfff84a436ee72826114ad0d590297f18714378d3a861ecc225bc7a1",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The underlying Like-button claim is supported, but the chapter presents it as a finding of a named 2014 Stanford trial led by a named doctor. No supplied source evidence supports that trial, date, institution, person, or attribution.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ]
+            }
+          ],
+          "rationale": "The source directly supports the chapter's Like-button proposition and provides a compatible mechanism, so that portion fits the permitted strength. The prefatory research attribution and its named specifics are presented as fact but are absent from the allowed source evidence, making the target only partially supported and requiring a blocker."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "fcd3231fccda820d9256803c15f420c955950155a7bf2daf7c234fc833b00ec7",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "cc536dbfaec645cb244744f84e78009d91211b574efc2aa0b34744ff686ae777",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The underlying Like-button claim is supported, but the chapter presents it as a finding of a named 2014 Stanford trial led by a named doctor. No supplied source evidence supports that trial, date, institution, person, or attribution.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ],
+              "findingId": "unit.fact.ch01.fact.3:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The 2014 Stanford Digital Autonomy Trial led by Dr. Elena Marquez established: The Facebook Like button turned social approval into a quick, measurable feedback signal."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"id\": \"ch01.fact.3\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status.\"\n}",
+                "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+                "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions."
+              ]
+            }
+          ],
+          "rationale": "The source directly supports the chapter's Like-button proposition and provides a compatible mechanism, so that portion fits the permitted strength. The prefatory research attribution and its named specifics are presented as fact but are absent from the allowed source evidence, making the target only partially supported and requiring a blocker.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden",
+        "unit.fact.ch01.fact.3:source-finding:001"
+      ],
+      "rationale": "U1: The source directly supports the chapter's Like-button proposition and provides a compatible mechanism, so that portion fits the permitted strength. The prefatory research attribution and its named specifics are presented as fact but are absent from the allowed source evidence, making the target only partially supported and requiring a blocker."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The 2014 Stanford Digital Autonomy Trial led by Dr. Elena Marquez established: The Facebook Like button turned social approval into a quick, measurable feedback signal."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"id\": \"ch01.fact.3\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status.\"\n}",
+            "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+            "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions."
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "308d24f8c7a389a376bea11b39732ada8e32ae3131a0bb07636f9179221fa63c"
+}

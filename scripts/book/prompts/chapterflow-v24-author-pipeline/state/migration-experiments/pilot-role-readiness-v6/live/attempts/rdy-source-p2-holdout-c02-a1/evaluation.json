@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-holdout-c02-a1",
+  "requestSha256": "6aceae6d0fc4e7a70aa13a0a6b9e284ae47d9bf811179dc1c08d3d57aa747ee7",
+  "receiptSha256": "f876b1017d70e05554d7616064399ab40432522a0bd08da99150dd7810b198c8",
+  "executionEvidenceSha256": "69ea8525f23caa5bf4554f4ae4c9b7c2447a0dbf91ef1ad4afb56ca2901a1dce",
+  "rawOutputSha256": "d6177c887473227642b7ac028ba533090bbf8598b1041a4bd7131ec170289181",
+  "evaluationSha256": "3d6a9417b564b0c4c0253d6608fbd68b0cd85dba969fd4ca6f7b8ed8a7226ebe",
+  "parsedOutputSha256": "397b0951c76411bb532efe12bc3519df51fd7cfdfc80f4808e36e8c1528f4288",
+  "assembledReviewSha256": "74e8e357689ac11ce978ef08c27a4ec8add41acf8d81f76f6b328877a0d283c1",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly presented as sourced and stays within the source-bound explanation license in PLAN-U001. Its named specific and mechanism are supported by SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, and SRC-U001-ANCHOR-001; no unsupported named specifics, over-strengthened claims, or required framing issues are present."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d85c3523c2ab2c8c4ef5830e8ee5ba46dd586ef1718cd54cc684e31b6ceea50d",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "aefd5ed84707636c88ec1588230e15e725ff842155ec162f873d9f988a43ff1d",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly presented as sourced and stays within the source-bound explanation license in PLAN-U001. Its named specific and mechanism are supported by SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, and SRC-U001-ANCHOR-001; no unsupported named specifics, over-strengthened claims, or required framing issues are present.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is explicitly presented as sourced and stays within the source-bound explanation license in PLAN-U001. Its named specific and mechanism are supported by SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, and SRC-U001-ANCHOR-001; no unsupported named specifics, over-strengthened claims, or required framing issues are present."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "b5474a0f0b8259801770d9db2bac1783ce631d5679197e269d5461e87a6bc7ac"
+}

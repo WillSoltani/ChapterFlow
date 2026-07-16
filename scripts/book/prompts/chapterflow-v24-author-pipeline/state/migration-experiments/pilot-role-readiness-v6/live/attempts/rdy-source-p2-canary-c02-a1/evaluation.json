@@ -1,0 +1,160 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-canary-c02-a1",
+  "requestSha256": "573f7eb12a9e7399601548e39a60340877b30b0cef60366913ddf6901eb148bf",
+  "receiptSha256": "8acc77ff67880ea56a7237929035fd9da619e80c71b4731416f5be8fb2d40d71",
+  "executionEvidenceSha256": "88cb81b3de1a4878cc1ad06de7cd6d117caedcb77ad6121fab4e803c37cd5f6d",
+  "rawOutputSha256": "f868056bcd21d4e648764beb772b0ad480ea024f20ffbc60dec3b40f895fe1e2",
+  "evaluationSha256": "8c574d68087f1da26cce9682bba36c0a7e4b0d8a6332455459032c78e4600af1",
+  "parsedOutputSha256": "49e219c81ff1eb81ded5428f77aa38e7299230656299e5e7e3e0a52f88b69b8d",
+  "assembledReviewSha256": "a69de7e316ad6a2c75f7addc90e288a146d2bc6c6ba179e00507ed31c6125146",
+  "evidenceReferenceResolutionSha256": "9a79174a3ceae70326e4c8be0931b760b201c375c0fbc5b975b74b5205d4f2a1",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter attributes a 2018 sample of exactly 47 participants to the chapter source, but the supplied source evidence only supports the 2007 iPhone launch framing and the mechanism about later feed-checking behavior mutating after adoption. No supplied source evidence supports the 2018 date, the exact number 47, or participants.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ANCHOR-001"
+              ]
+            }
+          ],
+          "rationale": "The first two chapter claims are supported by the supplied claim, mechanism, and anchor evidence. The final sentence introduces unsupported sourced specifics, including a date, exact sample size, and participants, exceeding the source-bound explanation evidence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "4740b33d317185ba7e72af2e1b19ed09c0e68713ae67e6f574e3d1b9bde33d74",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "e038378f7cbd0e69af2897f110a75730f248830c03154233d480100af197a15c",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter attributes a 2018 sample of exactly 47 participants to the chapter source, but the supplied source evidence only supports the 2007 iPhone launch framing and the mechanism about later feed-checking behavior mutating after adoption. No supplied source evidence supports the 2018 date, the exact number 47, or participants.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ANCHOR-001"
+              ],
+              "findingId": "unit.fact.ch01.fact.1:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The source states: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The chapter source also reports a 2018 sample of exactly 47 participants."
+              ],
+              "sourceEvidenceSpans": [
+                "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+                "Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.",
+                "{\n  \"id\": \"ch01.fact.1\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The iPhone was introduced mainly as a social-media device, so later compulsive use was already the intended purpose. The early pitch centered on converged utility; social-feed dependence grew as apps and platforms reshaped use after adoption.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "The first two chapter claims are supported by the supplied claim, mechanism, and anchor evidence. The final sentence introduces unsupported sourced specifics, including a date, exact sample size, and participants, exceeding the source-bound explanation evidence.",
+          "unitId": "unit.fact.ch01.fact.1",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden",
+        "unit.fact.ch01.fact.1:source-finding:001"
+      ],
+      "rationale": "U1: The first two chapter claims are supported by the supplied claim, mechanism, and anchor evidence. The final sentence introduces unsupported sourced specifics, including a date, exact sample size, and participants, exceeding the source-bound explanation evidence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The source states: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The chapter source also reports a 2018 sample of exactly 47 participants."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ANCHOR-001"
+          ],
+          "evidenceSpans": [
+            "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+            "Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.",
+            "{\n  \"id\": \"ch01.fact.1\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The iPhone was introduced mainly as a social-media device, so later compulsive use was already the intended purpose. The early pitch centered on converged utility; social-feed dependence grew as apps and platforms reshaped use after adoption.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "0d6b042eea0cdf38f2575a7bb0554935e5c2007f3ca3d70b0a572db8f6853709"
+}
