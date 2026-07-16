@@ -1353,9 +1353,8 @@ export async function authorWriteOneChapter(
         cwd: chAttempt.workspaceDir,
         sandbox: "workspace-write",
         skipGitRepoCheck: true,
-        // WP-301: pass the RAW opts (undefined for production) so the spawn's
-        // resolveRoute consults the normal-profile matrix and records tier
-        // "normal-profile"; an explicit bakeoff/test pin rides as call-explicit.
+        // WP-301: raw opts (undefined in production) → the spawn's resolveRoute
+        // uses the normal-profile matrix; explicit pins ride as call-explicit.
         model: opts.model,
         reasoningEffort: opts.effort,
         timeoutMs: AUTHOR_WRITE_TIMEOUT_MS,
