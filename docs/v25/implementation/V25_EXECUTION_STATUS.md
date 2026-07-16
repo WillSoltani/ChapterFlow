@@ -40,6 +40,10 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 203 | integrated | wp-203-materializer-thinning | 6a1533c9f | 0bbc46898 | rt PASS-WITH-NOTES; comment-only supersession map; dedup→WP-804 |
 | 204 | integrated | wp-204-instrument-deletion | 6a1533c9f | f8fff9ce5 | rt PASS-WITH-NOTES; 1 hard delete + 2 quarantines |
 | 402 | integrated | wp-402-threshold-reconcile | a79474aeb | 1b22290d5 | rt PASS-WITH-NOTES; merged; V25-11 closed |
+| 303(+701a) | integrated | wp-303-excellence-anchors | 054ea43ce | 04d08409c | rt PASS |
+| 304 | integrated | wp-304-provider-envelope | 054ea43ce | 6b6bcd82e | rt PASS-WITH-NOTES |
+| 305 | integrated | wp-305-source-contracts | 054ea43ce | 42db0f5cd | rt PASS-WITH-NOTES; 18th contract |
+| 404 | integrated | wp-404-repair-verification | 054ea43ce | 9bff33f4a | rt PASS-WITH-NOTES; cap 2 |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
