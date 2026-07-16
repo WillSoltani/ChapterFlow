@@ -125,7 +125,7 @@ test("field-parity: examples, implementationPlan, reviewCards, hook survive BOTH
     assert.ok(serverChapter.implementationPlan, "server: implementationPlan must survive");
     // Server wraps prose in a tone-keyed {gentle,direct,competitive} object (all three
     // set to the same v21 canonical-voice string, since v21 books are tone-invariant).
-    assert.equal(serverChapter.implementationPlan!.coreSkill.direct, rawImpl.coreSkill, "server: implementationPlan.coreSkill");
+    assert.equal(serverChapter.implementationPlan!.coreSkill?.direct, rawImpl.coreSkill, "server: implementationPlan.coreSkill");
     assert.equal(serverChapter.reviewCards?.length, rawCards.length, "server: reviewCards count must round-trip");
     assert.ok(serverChapter.v21Extras?.hook, "server: v21Extras.hook must survive");
     assert.equal(serverChapter.v21Extras!.hook, raw.hook, "server: hook text must be unchanged");
