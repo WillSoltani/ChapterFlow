@@ -901,6 +901,135 @@ test("rt-401 finding A: an unsafe audit_id ('..' / '/') is BLOCKED at mint and g
   }
 });
 
+// ── rt-401 ROUND 3: gate-status binding (NOTE 1) ──────────────────────────────
+// The round-2 fix rebinds SCORES (arithmetic) + DOMAINS + agreement, but the frozen
+// validateChapterAdjudicationRecord leaves gate STATUS unbound (only shape-checked),
+// even though chapterResultFromAdjudication derives gatesPass/layerIndependencePass —
+// and thus the ship verdict — directly from gate statuses. So a one-field gate flip on
+// otherwise-genuine retained evidence (a genuinely-failing hard gate → pass, or a
+// passing gate → fail) minted/re-verified clean: runtime-proven the frozen validator
+// returns 0 errors on the flip. These pin the WP-401-layer closure — each adjudicated
+// gate status must match at least ONE blind rater's status for that gate.
+
+/** Flip ONLY a single adjudicated gate's status, leaving scores/domains/rationale/
+ *  everything else byte-for-byte intact. This is the NOTE 1 tamper: because gates are
+ *  not part of the score arithmetic or the agreement binding, the frozen validator
+ *  returns zero errors — the WP-layer gate binding is the sole catch. */
+function setAdjudicatedGateStatus(raw: string, gateKey: string, status: string): string {
+  const record = JSON.parse(raw) as Record<string, any>;
+  assert.ok(record.gates?.[gateKey], `fixture adjudication must carry gate '${gateKey}'`);
+  record.gates[gateKey].status = status;
+  return JSON.stringify(record, null, 2);
+}
+
+test("rt-401 NOTE 1: a gate-only flip that disagrees with BOTH raters REFUSES the mint (gate-status binding, not arithmetic)", () => {
+  const roots = mkTestRoots("wp401-gate-flip-mint");
+  try {
+    const auditId = "zz-gate-flip-mint";
+    materializeSealedFailAudit(roots, auditId);
+    // Both raters rate nudge-ch03 chapter_artifact_completeness = "pass"; flip ONLY the
+    // adjudicated status to "fail". Scores/domains are untouched → arithmetic passes.
+    const adjPath = resolve(roots.base, rubricAuditDirRelPath(auditId), `raw/adjudicated/${SEALED_UNITS[0].unit}.json`);
+    writeFileSync(adjPath, setAdjudicatedGateStatus(readFileSync(adjPath, "utf8"), "chapter_artifact_completeness", "fail"));
+    assert.throws(
+      () => mintD7ShipGateReceiptFromAudit({ repositoryRoot: roots.base, auditId }),
+      (err: Error) => {
+        assert.match(err.message, /retained adjudication for nudge-ch03 is invalid/);
+        assert.match(err.message, /D7\.adjudication_gate_mismatch/, "the catch is the gate-status binding");
+        assert.doesNotMatch(err.message, /arithmetic mismatch/, "the frozen arithmetic validator does NOT catch a gate-only flip");
+        return true;
+      },
+      "a gate-only flip that neither rater assigned must refuse the mint",
+    );
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("rt-401 NOTE 1: the GATE BLOCKS a forged PASS over a gate-only-flipped adjudication whose custody hash MATCHES — both modes", () => {
+  const roots = mkTestRoots("wp401-gate-flip-gate");
+  try {
+    const auditId = "zz-gate-flip-gate";
+    materializeSealedFailAudit(roots, auditId);
+    const auditDir = resolve(roots.base, rubricAuditDirRelPath(auditId));
+    // Ship-enabling direction (a genuinely-failing hard gate hand-edited to pass) AND
+    // the NOTE 1 example direction — flip a gate to a status NEITHER rater assigned.
+    // external_accuracy: both raters "not_assessed" → adjudicated forced to "pass".
+    // ethics_reader_autonomy: both raters "pass" → adjudicated forced to "fail".
+    const flips: Array<[string, string]> = [
+      ["external_accuracy", "pass"],
+      ["ethics_reader_autonomy", "fail"],
+    ];
+    for (const u of SEALED_UNITS) {
+      const p = resolve(auditDir, `raw/adjudicated/${u.unit}.json`);
+      let raw = readFileSync(p, "utf8");
+      for (const [gate, status] of flips) raw = setAdjudicatedGateStatus(raw, gate, status);
+      writeFileSync(p, raw);
+    }
+    // Forge a PASS receipt whose custody hashes MATCH the on-disk (flipped) bytes, so
+    // custody-hash re-verification and the pair chain BOTH pass — only the gate-status
+    // binding can catch it.
+    const content = forgedSealedContent();
+    const readArtifact = (rel: string) => readFileSync(resolve(auditDir, rel), "utf8");
+    const custody: D7ShipGateCustody[] = SEALED_UNITS.map((u) => ({
+      unit: u.unit,
+      primaryDispatchSha256: artifactSha256FromText(readArtifact(`jobs/${u.unit}.receipts/primary.dispatch.json`)),
+      verificationDispatchSha256: artifactSha256FromText(readArtifact(`jobs/${u.unit}.receipts/verification.dispatch.json`)),
+      pairSealSha256: artifactSha256FromText(readArtifact(`jobs/${u.unit}.receipts/pair.seal.json`)),
+      adjudicationCanonicalSha256: artifactSha256FromText(readArtifact(`raw/adjudicated/${u.unit}.json`)),
+    }));
+    const forged = forgePassReceipt({ bookId: "zz-sealed-baseline-book", auditId, content, custody });
+    const cv = verifyRetainedD7Custody({ repositoryRoot: roots.base, receipt: forged });
+    assert.equal(cv.status, "failed", cv.blockers.join("; "));
+    assert.ok(cv.blockers.some((b) => b.startsWith("D7.adjudication_invalid") && b.includes("D7.adjudication_gate_mismatch")), cv.blockers.join("; "));
+    // The custody hashes MATCH the on-disk bytes and the pair chain is untouched, so it
+    // is NOT a custody/pair-chain catch — the gate-status binding is load-bearing.
+    assert.ok(!cv.blockers.some((b) => b.startsWith("D7.custody_mismatch") || b.startsWith("D7.pair_chain_invalid")), `must be caught by the gate-status binding: ${cv.blockers.join("; ")}`);
+    for (const require of [true, false]) {
+      const gate = evaluateD7ShipGate({
+        bookId: "zz-sealed-baseline-book", candidatePackageBytes: "x", shippedPackageBytes: null,
+        receipt: forged, currentContent: content, custodyVerification: cv, require,
+      });
+      assert.equal(gate.decision, "block", `require=${require}`);
+      assert.ok(gate.blockers.some((b) => b.includes("D7.adjudication_gate_mismatch")), gate.blockers.join("; "));
+    }
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("rt-401 NOTE 1: genuine adjudication authority — an adjudicated gate that SIDES WITH ONE rater still passes (no over-block)", () => {
+  const roots = mkTestRoots("wp401-gate-authority");
+  try {
+    const auditId = "zz-gate-authority";
+    materializeSealedFailAudit(roots, auditId);
+    // 1) The GENUINE owner run already carries a divergent gate: happiness-ch06
+    //    epistemic_instructional_safety is primary "pass" / verification "conditional" /
+    //    adjudicated "pass" (the adjudicator sided with primary). The unmodified audit
+    //    mints + gate-re-verifies clean — proving the binding never over-blocks a
+    //    legitimate one-rater-match.
+    const minted = mintD7ShipGateReceiptFromAudit({ repositoryRoot: roots.base, auditId });
+    assert.equal(minted.verdict, "FAIL", "sealed baseline is sub-bar (67–70)");
+    let cv = verifyRetainedD7Custody({ repositoryRoot: roots.base, receipt: minted });
+    assert.equal(cv.status, "verified", cv.blockers.join("; "));
+    assert.ok(!cv.blockers.some((b) => b.startsWith("D7.adjudication_invalid")), "a genuine divergent gate is never falsely blocked");
+
+    // 2) Now flip the adjudicated happiness-ch06 epistemic gate the OTHER way — from
+    //    "pass" (siding with primary) to "conditional" (siding with verification). Still
+    //    a rater-assigned status, so the adjudicator's authority to pick EITHER rater is
+    //    honoured: mint still succeeds and re-verifies clean (no gate-mismatch).
+    const adjPath = resolve(roots.base, rubricAuditDirRelPath(auditId), "raw/adjudicated/the-happiness-hypothesis-ch06.json");
+    writeFileSync(adjPath, setAdjudicatedGateStatus(readFileSync(adjPath, "utf8"), "epistemic_instructional_safety", "conditional"));
+    const reminted = mintD7ShipGateReceiptFromAudit({ repositoryRoot: roots.base, auditId });
+    assert.equal(reminted.custody.length, 3, "siding with the OTHER rater still mints");
+    cv = verifyRetainedD7Custody({ repositoryRoot: roots.base, receipt: reminted });
+    assert.equal(cv.status, "verified", cv.blockers.join("; "));
+    assert.ok(!cv.blockers.some((b) => b.includes("D7.adjudication_gate_mismatch")), `siding with a rater is legitimate authority: ${cv.blockers.join("; ")}`);
+  } finally {
+    roots.dispose();
+  }
+});
+
 // ── Structural: the gate makes zero model/codex calls ─────────────────────────
 
 test("the D7 ship-gate module imports no model/codex runner (structurally model-free)", () => {

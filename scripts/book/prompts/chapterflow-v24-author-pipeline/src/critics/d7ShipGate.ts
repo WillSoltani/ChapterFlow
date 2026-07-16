@@ -348,6 +348,61 @@ function resolveAdjudicationSource(args: {
   return null;
 }
 
+/** Cross-check every adjudicated GATE status against the two blind raters' gate
+ *  records — the NOTE 1 closure (rt-401 round 3). The frozen instrument's
+ *  `validateChapterAdjudicationRecord` fully rebinds SCORES (arithmetic) and
+ *  DOMAINS, and binds the agreement metrics to the untampered blind pair, but it
+ *  never binds a gate's STATUS to content: `validateGates` only checks the status
+ *  enum + a non-empty rationale. Yet `chapterResultFromAdjudication` computes
+ *  `gatesPass`/`layerIndependencePass` — and thus the ship verdict — DIRECTLY from
+ *  those statuses. So a state-writing adversary could flip one adjudicated gate on
+ *  otherwise-genuine retained evidence (e.g. a genuinely-failing `external_accuracy`
+ *  / `epistemic_instructional_safety` / `layer_independence` → `pass`, or a passing
+ *  `chapter_artifact_completeness` → `fail`) and the arithmetic validator would
+ *  return zero errors (runtime-proven).
+ *
+ *  The blind-pair rater records (`raw/primary/<unit>.json`, `raw/verification/<unit>.json`)
+ *  carry a per-gate `{status, rationale}` for every gate key. An adjudicator has
+ *  genuine authority to SIDE WITH EITHER rater when they disagree (the owner run
+ *  itself does this: happiness-ch06 `epistemic_instructional_safety` is primary
+ *  `pass` / verification `conditional` / adjudicated `pass`). What it may NOT do is
+ *  invent a THIRD status that NEITHER blind rater assigned — that is precisely the
+ *  hand-edit signature. RULE: an adjudicated gate whose status matches neither
+ *  rater's status for that gate is a BINDING error. This binds gates the way scores
+ *  are bound to arithmetic and agreement is bound to the blind pair — a hand-edited
+ *  gate now breaks validation exactly as a hand-edited score does. (The gate schema
+ *  carries no dedicated override field beyond `{status, rationale}` — verified
+ *  against the real retained bytes — so siding-with-a-rater IS the only recorded
+ *  authority path, and it is honoured.) */
+function validateAdjudicationGateBinding(args: {
+  unit: string;
+  adjudicationRaw: string;
+  primaryRaw: string;
+  verificationRaw: string;
+}): string[] {
+  const gatesOf = (raw: string): Record<string, unknown> => {
+    const value = loadRecord(raw).value;
+    return (value.gates ?? {}) as Record<string, unknown>;
+  };
+  const statusOf = (gates: Record<string, unknown>, key: string): string =>
+    String(((gates[key] ?? {}) as Record<string, unknown>).status ?? "");
+  const adjGates = gatesOf(args.adjudicationRaw);
+  const primaryGates = gatesOf(args.primaryRaw);
+  const verificationGates = gatesOf(args.verificationRaw);
+  const errors: string[] = [];
+  for (const key of Object.keys(adjGates)) {
+    const adj = statusOf(adjGates, key);
+    if (adj === "") continue; // shape is the frozen validator's job; skip the empty case
+    const primary = statusOf(primaryGates, key);
+    const verification = statusOf(verificationGates, key);
+    if (adj !== primary && adj !== verification) {
+      errors.push(
+        `D7.adjudication_gate_mismatch: ${args.unit} gate '${key}' adjudicated status '${adj}' matches NEITHER blind rater (primary '${primary || "<absent>"}', verification '${verification || "<absent>"}') — a gate status the raters never assigned is a hand-edit and cannot ship.`);
+    }
+  }
+  return errors;
+}
+
 /** Re-validate a retained adjudication END-TO-END with the SAME validator the
  *  owner's ingest pipeline runs (`validateChapterAdjudicationRecord`): its blind-
  *  pair chain, its arithmetic (every `domain_score` / `chapter_diagnostic_score`
@@ -356,8 +411,11 @@ function resolveAdjudicationSource(args: {
  *  ADJUDICATION is the artifact whose scores SOLELY set the D7 verdict, yet the
  *  round-1 fix bound only the pair chain — so tampering the adjudication alone
  *  minted a shippable PASS with custody "verified" (rt-401 round 2, finding B).
- *  Binding it here closes that bypass. Returns `resolved:false` when the audit
- *  source could not be resolved (fail-closed at the call sites). */
+ *  Binding it here closes that bypass. The frozen validator leaves gate STATUS
+ *  unbound (it feeds the verdict yet is only shape-checked), so this ALSO cross-
+ *  checks every adjudicated gate status against the blind-pair rater gate records
+ *  (rt-401 round 3, NOTE 1). Returns `resolved:false` when the audit source could
+ *  not be resolved (fail-closed at the call sites). */
 function validateRetainedAdjudication(args: {
   repositoryRoot: string;
   manifest: RubricAuditBatchManifestV1;
@@ -389,7 +447,18 @@ function validateRetainedAdjudication(args: {
     sourceText: source.sourceText,
     profile: source.profile,
   });
-  return { resolved: true, errors };
+  // NOTE 1 closure (rt-401 round 3): the frozen validator rebinds scores/domains/
+  // agreement but leaves gate STATUS unbound, even though gate statuses set the
+  // ship verdict. Bind each adjudicated gate status to the blind-pair rater gate
+  // records so a hand-edited gate breaks validation exactly as a hand-edited score
+  // does. Additive — never removes a frozen-validator error.
+  errors.push(...validateAdjudicationGateBinding({
+    unit: args.unit,
+    adjudicationRaw: args.adjudicationRaw,
+    primaryRaw: args.primaryRaw,
+    verificationRaw: args.verificationRaw,
+  }));
+  return { resolved: true, errors: [...new Set(errors)].sort() };
 }
 
 /** Mint a sealed D7 ship-gate receipt from a COMPLETED audit directory (batch
