@@ -428,9 +428,13 @@ function assertChainInternallyBound(chain: SolPilotReadinessChainV1): void {
     && roleFreeze.bindings.readerDecisionPolicy === READER_DECISION_POLICY_V3,
   "pilot role freeze bindings do not rebuild from the retained chain");
   validateSolPilotInstrumentSnapshot(chain.instrumentSnapshot, plan);
-  requireCondition(hashCanonical(chain.instrumentSnapshot.certificationRecord) === freeze.certificationSha256,
+  // The readiness freeze binds each record's embedded self-hash (computed over
+  // the record WITHOUT that field), not a hash of the whole record. The
+  // snapshot's exact bytes are already pinned by the plan's raw-byte hashes,
+  // and continuity separately re-verifies the certification self-hash.
+  requireCondition(chain.instrumentSnapshot.certificationRecord.certificationSha256 === freeze.certificationSha256,
     "instrument snapshot certification is not the certification the readiness freeze qualified against");
-  requireCondition(hashCanonical(chain.instrumentSnapshot.sealRecord) === freeze.productionInstrumentSealSha256,
+  requireCondition(chain.instrumentSnapshot.sealRecord.sealSha256 === freeze.productionInstrumentSealSha256,
     "instrument snapshot seal is not the seal the readiness freeze qualified against");
   requireSha(chain.currentCertificationRawSha256, "currentCertificationRawSha256");
   requireSha(chain.currentSealRawSha256, "currentSealRawSha256");

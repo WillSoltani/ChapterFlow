@@ -163,10 +163,12 @@ function fixtureChain(overrides: FixtureOverrides = {}): SolPilotReadinessChainV
     budgetSha256: fakeSha("budget"),
     candidateAvailabilitySemanticSha256: fakeSha("availability-semantic"),
     candidateAvailabilitySnapshotSha256: fakeSha("availability-snapshot"),
-    certificationSha256: hashCanonical(certRecord),
+    // The real freeze binds each record's EMBEDDED self-hash, not a hash of
+    // the whole record (this exact distinction fail-closed the first launch).
+    certificationSha256: certRecord.certificationSha256,
     certificationSnapshotSha256: fakeSha("cert-snapshot"),
     certificationRawBytesSha256: certRawSha256,
-    productionInstrumentSealSha256: hashCanonical(sealRecord),
+    productionInstrumentSealSha256: sealRecord.sealSha256,
     productionInstrumentSealSnapshotSha256: fakeSha("seal-snapshot"),
     productionInstrumentSealRawBytesSha256: sealRawSha256,
     schemaHashesSha256: hashCanonical(ROLE_HASHES.schemaHashes),
