@@ -26,9 +26,10 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import type { ChapterV21 } from "../types.js";
-import { CANONICAL_STATE, checkChapterIdentity } from "../lib/chapterPaths.js";
-import { runShipGate, formatGateReport, type ShipGateOptions } from "./finalGate.js";
-import { loadSiblingChapters, runIntraBookChecks } from "./intraBook.js";
+import { CANONICAL_STATE } from "../lib/chapterPaths.js";
+import { formatGateReport, type ShipGateOptions } from "./finalGate.js";
+import { loadSiblingChapters } from "./intraBook.js";
+import { chapterFloorGate, chapterFloorIntra, chapterFloorIdentity } from "./deterministicFloor.js";
 
 export type ChapterGateCompositeResult = {
   /** 0 = PASS, 1 = BLOCK (or ship-gate crash on malformed chapter), 3 = circuit breaker. */
@@ -72,9 +73,12 @@ export async function runChapterGateComposite(
   const lines: string[] = [];
 
   // ── 1. Chapter-only ship gate (crash-guarded) ─────────────────────────────
+  // WP-205: the CAS-commit gate composes the deterministic floor through the ONE
+  // canonical entrypoint (chapterFloorGate/Intra/Identity) instead of importing
+  // runShipGate/runIntraBookChecks/checkChapterIdentity directly.
   let report;
   try {
-    report = runShipGate(chapter, options.shipGate);
+    report = chapterFloorGate(chapter, { shipGate: options.shipGate });
   } catch (err) {
     return {
       exitCode: 1,
@@ -90,7 +94,7 @@ export async function runChapterGateComposite(
   // ── 2. Intra-book quiz similarity (AS5/AS6 early detection) ───────────────
   const siblingLoad = loadSiblingChapters(chapter, siblingContextPath);
   if (siblingLoad.warning) lines.push(`  WARN: ${siblingLoad.warning}`);
-  const intraFindings = runIntraBookChecks(chapter, siblingLoad.siblings);
+  const intraFindings = chapterFloorIntra(chapter, siblingLoad.siblings);
   let extraBlockers = 0;
   let extraMajors = 0;
   if (intraFindings.length > 0) {
@@ -103,7 +107,7 @@ export async function runChapterGateComposite(
   }
 
   // ── 3. Identity guard (IDN) ───────────────────────────────────────────────
-  const identityFindings = checkChapterIdentity(chapter, siblingContextPath);
+  const identityFindings = chapterFloorIdentity(chapter, siblingContextPath);
   if (identityFindings.length > 0) {
     lines.push("");
     lines.push("Identity findings (chapterId vs filename):");

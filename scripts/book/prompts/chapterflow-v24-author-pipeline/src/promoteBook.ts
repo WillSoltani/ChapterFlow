@@ -37,9 +37,14 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { BookPackageV21, ChapterV21, V21_SCHEMA_VERSION } from "./types.js";
-import { runShipGate, GateReport, formatGateReport } from "./critics/finalGate.js";
-import { runBookGate, BookGateReport, formatBookGateReport } from "./critics/bookGate.js";
-import { runIntraBookChecks } from "./critics/intraBook.js";
+import { GateReport, formatGateReport } from "./critics/finalGate.js";
+import { BookGateReport, formatBookGateReport } from "./critics/bookGate.js";
+import {
+  chapterFloorGate,
+  bookFloorGate,
+  chapterFloorIntra,
+  createFloorLedger,
+} from "./critics/deterministicFloor.js";
 import { checkQcAttestation } from "./critics/qcAttestation.js";
 import { checkKeyJudge } from "./critics/quizKeyGate.js";
 import { resolveBookKeyEvidence } from "./critics/quizKeyEvidence.js";
@@ -595,9 +600,15 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   // Defense in depth: chapters in state/chapters/ should already have passed
   // the per-chapter ship gate at generation time, but re-validate before
   // letting them into the production library.
+  //
+  // WP-205: ONE floor ledger for this whole promote gate section. The ship gate
+  // computed here is memoized by content, so the major-policy scan below
+  // (evaluateMajorCleanliness → currentMajorFindings) reuses it instead of
+  // re-running runShipGate/runBookGate a second time on the identical bytes.
+  const floor = createFloorLedger();
   const perChapterGates: Array<{ chapter: number; report: GateReport }> = [];
   for (const ch of loadedChapters) {
-    perChapterGates.push({ chapter: ch.number, report: runShipGate(ch) });
+    perChapterGates.push({ chapter: ch.number, report: chapterFloorGate(ch, { ledger: floor }) });
   }
   const shipBlockerCount = perChapterGates.reduce((acc, g) => acc + g.report.blockers.length, 0);
   const shipMajorCount = perChapterGates.reduce((acc, g) => acc + g.report.majors.length, 0);
@@ -610,7 +621,7 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   // Priors-only so each pairwise collision reports exactly once, from the
   // later chapter (the finding messages read "matches prior Ch<N>").
   const intraFindings = loadedChapters.flatMap((ch) =>
-    runIntraBookChecks(ch, loadedChapters.filter((other) => other.number < ch.number)).map((f) => ({
+    chapterFloorIntra(ch, loadedChapters.filter((other) => other.number < ch.number), { ledger: floor }).map((f) => ({
       chapter: ch.number,
       ...f,
     })),
@@ -618,14 +629,14 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   const intraBlockerCount = intraFindings.filter((f) => f.severity === "blocker").length;
 
   // Step 3: Run book gate across all chapters.
-  const bookGate = runBookGate(bookId, loadedChapters);
+  const bookGate = bookFloorGate(bookId, loadedChapters, { ledger: floor });
   const bookBlockerCount = bookGate.findings.filter((f) => f.severity === "blocker").length;
   const bookMajorCount = bookGate.findings.filter((f) => f.severity === "major").length;
   const noApiMode = isNoApiCodexQcMode();
   const majorPolicy = evaluateMajorCleanliness(bookId, loadedChapters, {
     requireContentBound: true,
     requireRoundBacked: noApiMode,
-  });
+  }, floor);
   // Deterministic majors are ADVISORY by default — the calibrated, empty-by-design
   // behavior (QC_ENFORCED_MAJORS empty) that `5c7f899f3` reversed. They are surfaced
   // in the gate report but do NOT block promotion, so a book that fires clean-corpus

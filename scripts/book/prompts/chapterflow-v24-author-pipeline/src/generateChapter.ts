@@ -96,7 +96,8 @@ import {
   checkParagraphStartVariety,
 } from "./critics/prose.js";
 import { checkReadingLevel, fleschKincaid, LEGACY_TIER_TARGETS } from "./critics/readingLevel.js";
-import { runShipGate, formatGateReport } from "./critics/finalGate.js";
+import { formatGateReport } from "./critics/finalGate.js";
+import { chapterFloorGate } from "./critics/deterministicFloor.js";
 import { validateChapterV21 } from "./runtimeSchemas.js";
 import { RunPolicy, runPolicy as defaultRunPolicy, formatRunPolicy } from "./policy/runPolicy.js";
 import { chooseDeterministicExampleWinner, scoreExampleCandidate } from "./optimizers/exampleScorer.js";
@@ -379,7 +380,7 @@ function validateCachedChapterForReuse(
   const planFindings = checkPlanEnforcement(book.bookId, [cached]);
   problems.push(...planFindings.map((f) => `plan enforcement: ${f.checkId} ${f.message}`));
 
-  const gate = runShipGate(cached);
+  const gate = chapterFloorGate(cached);
   if (!gate.passed) {
     problems.push(...gate.blockers.map((f) => `ship gate: ${f.catalogId} ${f.unit}: ${f.message}`));
   }
@@ -1086,7 +1087,7 @@ export async function generateChapter(
   // Final ship gate. The assembled chapter is run through every critic in
   // the FAILURE-MODES catalog. Blockers fail-close: the chapter does NOT
   // get persisted to disk. Majors/minors are logged but allow the ship.
-  const gate = runShipGate(assembled);
+  const gate = chapterFloorGate(assembled);
   recordGenerationStage(generationManifest, {
     stage: "ship-gate",
     input: { chapterHash: generationInputHash(assembled) },

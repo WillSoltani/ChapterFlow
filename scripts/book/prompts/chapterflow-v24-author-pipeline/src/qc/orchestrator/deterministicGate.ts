@@ -29,10 +29,16 @@
  */
 
 import { checkAuthoringContract } from "../../critics/authoringContract.js";
-import { runBookGate, type BookGateReport } from "../../critics/bookGate.js";
-import { runShipGate, type GateReport } from "../../critics/finalGate.js";
+import { type BookGateReport } from "../../critics/bookGate.js";
+import { type GateReport } from "../../critics/finalGate.js";
 import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
-import { runIntraBookChecks } from "../../critics/intraBook.js";
+import {
+  chapterFloorGate,
+  bookFloorGate,
+  chapterFloorIntra,
+  createFloorLedger,
+  type FloorLedger,
+} from "../../critics/deterministicFloor.js";
 import type { ChapterV21, CriticFinding } from "../../types.js";
 import type { ACFinding } from "../../critics/authoringContract.js";
 import { checkSourceV2Gate, type SourceV2GateReport } from "../sourceV2Gate.js";
@@ -107,9 +113,17 @@ export function evaluateDeterministic(
   bookId: string,
   chapters: ChapterV21[],
   allChapters: ChapterV21[],
+  /** WP-205: an optional shared floor ledger. A caller that also runs the majors
+   *  scan (finalize) threads ONE ledger so the ship/book gates are computed once
+   *  across both. Omitted → a fresh ledger scoped to this call (behaviour-identical). */
+  ledger?: FloorLedger,
 ): DeterministicReport {
+  // WP-205: ONE consolidated floor pass for the whole deterministic battery, so
+  // the ship/book/intra gates are composed through the single floor entrypoint
+  // (and memoized by content) rather than re-composed here.
+  const floor = ledger ?? createFloorLedger();
   // Book-level checks computed ONCE (exemplar ownership + cross-chapter patterns).
-  const bookGate = runBookGate(bookId, allChapters);
+  const bookGate = bookFloorGate(bookId, allChapters, { ledger: floor });
   const bookGateStatus: DetStatus = bookGate.passed ? "PASS" : "FAIL";
   const planFindingsAll = checkPlanEnforcement(bookId, allChapters);
 
@@ -132,12 +146,12 @@ export function evaluateDeterministic(
 
   for (const ch of chapters) {
     const source = checkSourceV2Gate(bookId, [ch.number]);
-    const shipGate = runShipGate(ch);
+    const shipGate = chapterFloorGate(ch, { ledger: floor });
     const authorFindings = checkAuthoringContract(ch, {
       sidecar: loadChapterSidecar(ch.chapterId),
       filePath: `state/chapters/${ch.chapterId}.v21-native.chapter.json`,
     });
-    const intraFindings = runIntraBookChecks(ch, allChapters.filter((o) => o.number < ch.number));
+    const intraFindings = chapterFloorIntra(ch, allChapters.filter((o) => o.number < ch.number), { ledger: floor });
     const planFindings = planFindingsAll.filter((f) => f.chapterNumber === ch.number);
 
     const checks: DeterministicChecks = {

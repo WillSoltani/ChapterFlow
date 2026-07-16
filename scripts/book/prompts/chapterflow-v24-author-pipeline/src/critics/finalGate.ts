@@ -138,7 +138,11 @@ function allocatedNamesForChapter(chapter: ChapterV21): Set<string> {
   }
 }
 
-const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
+// Exported (WP-205) so the critic→D7 map completeness test can assert that every
+// advisory (D7-subsumed) catalog id resolves to a non-blocker severity — i.e. the
+// consolidation retired no blocker. This is the same registry runShipGate reads;
+// exporting it changes no detection logic.
+export const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // Chapter Format v25 (F25) — D8. Only the schema-crisp feedback block gates;
   // the semantic F-1/F-3 heuristics are advisory (STIER-2: lexical gates on
   // semantic properties invert). Run only when ShipGateOptions.formatV25.

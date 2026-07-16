@@ -55,8 +55,7 @@ import {
   buildMajorSkeleton,
 } from "../qc/orchestrator/reviewPacket.js";
 import { submissionJsonSchemaForRole } from "../qc/orchestrator/submissionSchemas.js";
-import { runShipGate } from "../critics/finalGate.js";
-import { runBookGate } from "../critics/bookGate.js";
+import { chapterFloorGate, bookFloorGate, createFloorLedger } from "../critics/deterministicFloor.js";
 import { sweepPackPath, sweepTwoRoundConfirmed, sweepFindingBlocks, type SweepRecord } from "../qc/sweep.js";
 import { renderSweepFamilyRubric, SWEEP_SUBMISSION_SCHEMA_ID, SWEEP_FAMILIES, sweepDefectFingerprintV2, type SweepFamily } from "../qc/sweepSpec.js";
 import { validateSubmission, type ValidatedSweepSubmission } from "../qc/orchestrator/schemas.js";
@@ -638,10 +637,12 @@ function defaultMajorFindingKeys(bookId: string): Set<string> {
   const keys = new Set<string>();
   try {
     const chapters = loadBookChapters(bookId);
+    // WP-205: route through the consolidated floor (one ledger, memoized by content).
+    const floor = createFloorLedger();
     for (const ch of chapters) {
-      for (const f of runShipGate(ch).majors) keys.add(`ship:ch${ch.number}:${f.catalogId}:${f.unit}`);
+      for (const f of chapterFloorGate(ch, { ledger: floor }).majors) keys.add(`ship:ch${ch.number}:${f.catalogId}:${f.unit}`);
     }
-    for (const f of runBookGate(bookId, chapters).findings) {
+    for (const f of bookFloorGate(bookId, chapters, { ledger: floor }).findings) {
       if (f.severity !== "major") continue;
       const named = f.chapters ?? [];
       keys.add(`book:${f.catalogId}:${named.length ? [...named].sort((a, b) => a - b).join(",") : "book"}`);
