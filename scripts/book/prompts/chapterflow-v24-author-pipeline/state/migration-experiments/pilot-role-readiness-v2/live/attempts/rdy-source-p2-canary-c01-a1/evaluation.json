@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-canary-c01-a1",
+  "requestSha256": "69c16c0808b0fd660337b21be95cf5a274e7c4328a7a7fb612d9420f838fdbd9",
+  "receiptSha256": "2e567d2db7fad2b0852d41fd8dfbfe46f731a8c11fbecc3c56efa6d1bdfc75a1",
+  "executionEvidenceSha256": "43b4663dba10f124a1be494d866ba1e47624725fe01d15c8c0466fa50e048126",
+  "rawOutputSha256": "058887571da464e509abe807d59e404b73f42a5397aa311fd46784c64d6ca1c5",
+  "evaluationSha256": "23c77f103fe66b60a94fc85e2558e30550e48abdbc3797021cff99ab838fd205",
+  "parsedOutputSha256": "91d43b9f4e4464d4c09ea8f323369e192861052bc6b70ba2668bbb9426b3c300",
+  "assembledReviewSha256": "6f1b543835d0e0d5fc169553e5a407d1d3f96d769ce13af5d235d93c00bcb76c",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly attributed as source-backed and is supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001. Its named/year-specific detail is anchored by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012, and it does not add unsupported participants, numbers, outcomes, or stronger causal claims."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "a555b78ef4ba2dc2140f17ef564f5b25cf68944ba7af173e56fd7c8c98702d0e",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "3c1e469f59859a2bc3dbd4cf6a2235b2a246e387ad74288eacbfa1dadd4889b4",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly attributed as source-backed and is supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001. Its named/year-specific detail is anchored by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012, and it does not add unsupported participants, numbers, outcomes, or stronger causal claims.",
+          "unitId": "unit.fact.ch01.fact.1",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is visibly attributed as source-backed and is supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001. Its named/year-specific detail is anchored by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012, and it does not add unsupported participants, numbers, outcomes, or stronger causal claims."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "3565758a7939cbcfc442ff0e9956db48d931fd83223bc593de3983e90502cba1"
+}

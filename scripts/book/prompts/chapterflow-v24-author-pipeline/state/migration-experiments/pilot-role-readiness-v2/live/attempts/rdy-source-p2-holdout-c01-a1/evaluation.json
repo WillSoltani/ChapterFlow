@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-holdout-c01-a1",
+  "requestSha256": "dc862d5d522ffc42e5d2481d3d4408e832b936a8fd2dfc5f8537b14eccdc5ded",
+  "receiptSha256": "554b38158fea53e1feceae84c0555daa36e491f87a8272f95227334744bb6ed7",
+  "executionEvidenceSha256": "5996df07d06139706cd5672ef57729b66d0b1a54096620bd9c7f9b22a175fcdf",
+  "rawOutputSha256": "b9892c844805584582ae301283e3b61f12aa968f57f5986bfb259ed34c3204b4",
+  "evaluationSha256": "a47875b58ab12280211f0b58e91969421e7922d4379dfb2a8e64f52b6488b66d",
+  "parsedOutputSha256": "52b7e6dbb9db065b209dd0f600db7ecc8e192983564c288967c1387ab043da5d",
+  "assembledReviewSha256": "54e99512341f589b1be0b9298cad53eb753d6a246c650ea29213d11fec46ebb4",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter target is visibly attributed to the source and is supported by the supplied source claim and mechanism evidence. The mechanistic wording stays within the compiler-owned maximum claim strength and uses only concept-level/source-documented content, with no named-specific leakage or invented detail. Evidence: CH-U001-001, PLAN-U001, SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, SRC-U001-ANCHOR-001."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "e3aa4cb292ea577b81496091fb02fba73460409e0fcb7474f457b766860580e7",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9909d27c42ec5d6045cd022d3d7c49e67e1c1e5b1f5e5b6781b58ba4ffe938d1",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter target is visibly attributed to the source and is supported by the supplied source claim and mechanism evidence. The mechanistic wording stays within the compiler-owned maximum claim strength and uses only concept-level/source-documented content, with no named-specific leakage or invented detail. Evidence: CH-U001-001, PLAN-U001, SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, SRC-U001-ANCHOR-001.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter target is visibly attributed to the source and is supported by the supplied source claim and mechanism evidence. The mechanistic wording stays within the compiler-owned maximum claim strength and uses only concept-level/source-documented content, with no named-specific leakage or invented detail. Evidence: CH-U001-001, PLAN-U001, SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, SRC-U001-ANCHOR-001."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "275edd674502b4eb5dd1e00a3ed6d04c656042ecec99c5dc6dbef2c110d093c6"
+}

@@ -1,0 +1,162 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c03-a1",
+  "requestSha256": "3693a5d620ff7c61152ba5a02b25d9ab8fb7d5e3df64bc25a8c2c920f0b981fa",
+  "receiptSha256": "eeca0cfc37d2b234813c48e0838e8a6339636cab8b7377b73af20d3da26b57f5",
+  "executionEvidenceSha256": "3472b86ded5e71225f964e67c63ec2b202e71fb66361399c33746d2c36950aa3",
+  "rawOutputSha256": "79532c43d80d14915f1647293921fce9c89d1babedbbb1932a30bf945d3769d0",
+  "evaluationSha256": "98bda79f05661fceb3015e7ca229a74345643acb721f9281117a47bb303a81c9",
+  "parsedOutputSha256": "696089f13ed8d71e097919a6b11449727d773bb127659498bec1ffbd51def305",
+  "assembledReviewSha256": "6dbb7b4bff76dac634df28e45b30483efda31cac59aa0cf40561c1476479d1d4",
+  "evidenceReferenceResolutionSha256": "b6bf532c8f4bb1703e90d0165f2aa9489dd3a9e867ec7f1f360caa60c07a0eea",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportRegisterAccuracy": false,
+      "highSeverityDefectSensitivity": false
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter explicitly attributes a date, sample size, and participants to the source, but the allowed anchor supports the platform-attention claim and mechanism without documenting those specifics. The packet identifies only a different grounded number and expressly prohibits invented research participants.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-ATOMIC-012",
+                "SRC-U001-ATOMIC-016"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 visibly presents all statements as sourced. Its platform-attention description and causal explanation are supported at the permitted mechanistic ceiling by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001, so framing and claim strength fit. However, its attributed date, participant count, and sample description lack support in SRC-U001-ANCHOR-001; SRC-U001-ATOMIC-012 identifies the available grounded number, and SRC-U001-ATOMIC-016 forbids invented participants in a real case. Therefore the target is only partially supported and its named specificity is not allowed."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d17ea4c3d9e17d21a89349cff5ed81f0f33ebfcf746c2f571817e4cfd50c0f24",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "c495fac7edda101199f8cec119800295b7ed757f8983ca2efd3d31995f2f66a1",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter explicitly attributes a date, sample size, and participants to the source, but the allowed anchor supports the platform-attention claim and mechanism without documenting those specifics. The packet identifies only a different grounded number and expressly prohibits invented research participants.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-ATOMIC-012",
+                "SRC-U001-ATOMIC-016"
+              ],
+              "findingId": "unit.fact.ch01.fact.2:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The source states: A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. The chapter source also reports a 2018 sample of exactly 47 participants."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"id\": \"ch01.fact.2\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}",
+                "{\n  \"label\": \"fact.ch01.fact.2.groundedNumbers[0]\",\n  \"value\": \"1\"\n}",
+                "{\n  \"label\": \"packet.forbiddenClaims[1]\",\n  \"value\": \"Do not cast invented people as research subjects, participants, patients, or customers in a real case.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 visibly presents all statements as sourced. Its platform-attention description and causal explanation are supported at the permitted mechanistic ceiling by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001, so framing and claim strength fit. However, its attributed date, participant count, and sample description lack support in SRC-U001-ANCHOR-001; SRC-U001-ATOMIC-012 identifies the available grounded number, and SRC-U001-ATOMIC-016 forbids invented participants in a real case. Therefore the target is only partially supported and its named specificity is not allowed.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden",
+        "unit.fact.ch01.fact.2:source-finding:001"
+      ],
+      "rationale": "U1: CH-U001-001 visibly presents all statements as sourced. Its platform-attention description and causal explanation are supported at the permitted mechanistic ceiling by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001, so framing and claim strength fit. However, its attributed date, participant count, and sample description lack support in SRC-U001-ANCHOR-001; SRC-U001-ATOMIC-012 identifies the available grounded number, and SRC-U001-ATOMIC-016 forbids invented participants in a real case. Therefore the target is only partially supported and its named specificity is not allowed."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The source states: A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. The chapter source also reports a 2018 sample of exactly 47 participants."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-ATOMIC-012",
+            "SRC-U001-ATOMIC-016"
+          ],
+          "evidenceSpans": [
+            "{\n  \"id\": \"ch01.fact.2\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}",
+            "{\n  \"label\": \"fact.ch01.fact.2.groundedNumbers[0]\",\n  \"value\": \"1\"\n}",
+            "{\n  \"label\": \"packet.forbiddenClaims[1]\",\n  \"value\": \"Do not cast invented people as research subjects, participants, patients, or customers in a real case.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "34cc3810dee2ab13d41d6ebefd1ae9b61648b49dc7687b643c037fd5ca15caeb"
+}

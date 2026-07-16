@@ -1,0 +1,75 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-holdout-c03-a1",
+  "requestSha256": "8d58fd47c31e46fcb2bcf3b69631b47e2dce6dcfc272984fed82c0f34ea6092c",
+  "receiptSha256": "235756100e041071838a8632a16585562868feb074bc9769e90b1cffc4857122",
+  "executionEvidenceSha256": "b2fd1705a211d918540630ce64148842dafab047c7e964c7f5059aed480ef6b4",
+  "rawOutputSha256": "3abbb8ee97523d999bcfce67fa78f0f68b29c7cbb50f5a925a5a8e8b64b54ffa",
+  "evaluationSha256": "575fbb3ab4f6c9f21e1f09f31164c68777332d22fa8b10497d4087471b3cc805",
+  "parsedOutputSha256": "305769837a7684dacd3113b374739cfe8cd6053fd378684a763290feb5bbc65a",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "The target visibly attributes a 2018 sample of exactly 47 participants to the chapter source, but the supplied source anchors for ch01.fact.2 support only the platform-convenience and attention-capture claim and mechanism. The plan also limits this explanation to concept-only sufficiency, so the date, sample, and participant count are unsupported named specifics.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ]
+            }
+          ],
+          "rationale": "The first two chapter sentences are supported by the source claim and mechanism and fit the mechanistic ceiling. The final sentence adds a sourced attribution with a date, exact participant count, and sample detail that are not present in the supplied source evidence for the allowed anchor."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "e6375b3bd0caca0cc2cf5522430a754cc0eee50879e3ec48b404419c8d62f535"
+}

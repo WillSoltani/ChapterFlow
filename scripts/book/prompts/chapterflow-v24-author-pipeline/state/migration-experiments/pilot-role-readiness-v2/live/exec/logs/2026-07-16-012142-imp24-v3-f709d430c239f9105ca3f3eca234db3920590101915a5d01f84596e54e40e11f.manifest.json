@@ -1,0 +1,84 @@
+{
+  "schema": "effective-context-manifest-v1",
+  "manifestVersion": 1,
+  "sessionId": "imp24-v3-f709d430c239f9105ca3f3eca234db3920590101915a5d01f84596e54e40e11f",
+  "role": "chapter-reviewer",
+  "profileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "bin": {
+    "path": "codex",
+    "version": "codex-cli 0.144.1"
+  },
+  "argv": [
+    "exec",
+    "--sandbox",
+    "read-only",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "-c",
+    "project_doc_max_bytes=0",
+    "-c",
+    "model=gpt-5.5",
+    "-c",
+    "model_reasoning_effort=high",
+    "--output-schema",
+    "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/reader-experience-model-output-v2.schema.json",
+    "--output-last-message",
+    "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/pilot-role-readiness-v2/live/exec/sessions/cf-exec-session-ODfC6H/last-message.txt",
+    "<task-sha256:4153c829528c93955de486740f26f6ac1670b327a69475440d062e63b43e9c86>"
+  ],
+  "cwd": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-direct-reader-tFajYS",
+  "cwdPolicy": "isolated-workspace",
+  "envKeys": [
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE",
+    "CHAPTERFLOW_NO_API_CODEX_QC",
+    "CHAPTERFLOW_SESSION_ID",
+    "CODEX_HOME",
+    "HOME",
+    "LANG",
+    "LOGNAME",
+    "PATH",
+    "SHELL",
+    "TMPDIR",
+    "USER"
+  ],
+  "callerEnvKeys": [],
+  "strictEnv": {
+    "CHAPTERFLOW_NO_API_CODEX_QC": "1",
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE": "1"
+  },
+  "codexHome": {
+    "dir": "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/pilot-role-readiness-v2/live/exec/sessions/cf-exec-session-ODfC6H/codex-home",
+    "authMaterial": "auth.json",
+    "authSourcePath": "/Users/radinsoltani/.codex/auth.json"
+  },
+  "instructionSources": [],
+  "workspace": {
+    "dir": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-direct-reader-tFajYS",
+    "files": [
+      {
+        "relPath": "evidence/RDY-READER-V3-HOLDOUT-craft-nonblocker-behave-ch01.review-evidence-envelope-v1.json",
+        "sha256": "e236f3e5042cd511e8ecac4593d5fc24684f2339a7afb840767ab5d2fa16c55d",
+        "bytes": 18713
+      }
+    ]
+  },
+  "model": "gpt-5.5",
+  "reasoningEffort": "high",
+  "sandbox": "read-only",
+  "timeoutMs": 900000,
+  "taskSha256": "4153c829528c93955de486740f26f6ac1670b327a69475440d062e63b43e9c86",
+  "taskBytes": 22428,
+  "qualification": {
+    "cliVersion": "codex-cli 0.144.1",
+    "flagsRequired": [
+      "--sandbox",
+      "-c",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--output-last-message"
+    ],
+    "synthetic": false
+  },
+  "createdAtIso": "2026-07-16T01:21:42.950Z"
+}

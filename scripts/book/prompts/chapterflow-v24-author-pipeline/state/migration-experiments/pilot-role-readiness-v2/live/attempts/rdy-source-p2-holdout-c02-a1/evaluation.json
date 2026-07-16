@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-holdout-c02-a1",
+  "requestSha256": "20cb86d93164928750ae0be6232fdb650ae65ad5b825dee4e264e062318f46b4",
+  "receiptSha256": "5dfb91327c05154a65ace99d64bd377c350390d54ea36bdf73263f2461b3f0b2",
+  "executionEvidenceSha256": "bc3fc5e2f944a617398db522172da9ade93bd535761587e94c0d8359d32f573c",
+  "rawOutputSha256": "642394d0c690f1547218630402cf40f790f32df758b5617c8edd87da1aa705ad",
+  "evaluationSha256": "6fa47b6287a8e968078739e851a9091e181eefb0f2e96f31ca9a68260c125587",
+  "parsedOutputSha256": "5ed9bfdc9c14c2e7ec42864520a6292563488ea90ff51d170feaeba541a3cda9",
+  "assembledReviewSha256": "2fe607321923a0c22491063d4d1cadc445b4525398093f532360d8d942e624fc",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is supported by SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, and SRC-U001-ANCHOR-001. PLAN-U001 permits a source-bound explanation with mechanistic strength, and the named specificity is anchored in the cited source evidence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d85c3523c2ab2c8c4ef5830e8ee5ba46dd586ef1718cd54cc684e31b6ceea50d",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "aefd5ed84707636c88ec1588230e15e725ff842155ec162f873d9f988a43ff1d",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is supported by SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, and SRC-U001-ANCHOR-001. PLAN-U001 permits a source-bound explanation with mechanistic strength, and the named specificity is anchored in the cited source evidence.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is supported by SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, and SRC-U001-ANCHOR-001. PLAN-U001 permits a source-bound explanation with mechanistic strength, and the named specificity is anchored in the cited source evidence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "68d3b54f1456c5de3ac7c08b20d0f4efcc976abada97705e11625000fc4c8b47"
+}

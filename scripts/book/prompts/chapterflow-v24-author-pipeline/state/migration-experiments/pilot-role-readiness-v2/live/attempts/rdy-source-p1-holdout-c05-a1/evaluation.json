@@ -1,0 +1,147 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c05-a1",
+  "requestSha256": "d16019be15afd49aff46cc103d7b151ef0bebbad5041b28c8aa989210fbfc7e4",
+  "receiptSha256": "d76f32cc1d34c69e015de7d1947bf4270814d2b2e41aa6113a507a2683e5e925",
+  "executionEvidenceSha256": "b9f982af1ea71dab5519fa13e080602238e3913d1979fc549a531dadf465742c",
+  "rawOutputSha256": "2fa6bf72847f9f67504c92a870c9a4961e0772077dc184716e54fbfd68e68836",
+  "evaluationSha256": "67c438a2db3a35a90acbf8e752f02d8d1a43a178b198a64e39790138e84c4fdd",
+  "parsedOutputSha256": "f9b2f1b5088669547b352692374fd4a17ba985bccd645487df3e2d9e17d07871",
+  "assembledReviewSha256": "b98e7d26627a9fa53e8c96011afd818025524c2fe69c62a4b175311d8e409c60",
+  "evidenceReferenceResolutionSha256": "9638505357b6f2831e9a3a1c4256e3a5b0fd76ab423a5b578cdd1654a82cad5e",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "BLOCK; primary=missing_visible_framing",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The constructed application is presented as an event that occurred, although visible hypothetical framing is required at first entry.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 uses a factual register for the constructed application. PLAN-U001 requires visible framing and permits descriptive concrete action; the claim stays descriptive and introduces no prohibited named specificity."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "247ca71104b14da069ffccb3b4950f586c170fb148b9c78adc71cc34e2409738",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "ea8dcabc85664acc2736f1ad27377cb3cee0fca61e97d1f0e42783e30842af04",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The constructed application is presented as an event that occurred, although visible hypothetical framing is required at first entry.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ],
+              "findingId": "unit.ch01.constructed-application:source-finding:001",
+              "chapterEvidenceSpans": [
+                "A support team tested a short notification-free focus block before reviewing its queue."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"constructed\",\n  \"formLicense\": \"application\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"fictional_name\",\n    \"role_label\",\n    \"concrete_action\",\n    \"hypothetical_consequence\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"real_person\",\n    \"real_organization\",\n    \"fabricated_statistic\",\n    \"fabricated_date\",\n    \"fabricated_credential\",\n    \"fabricated_citation\",\n    \"historical_claim\",\n    \"outcome_reported_as_fact\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": true,\n  \"allowedAnchorRefs\": []\n}"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 uses a factual register for the constructed application. PLAN-U001 requires visible framing and permits descriptive concrete action; the claim stays descriptive and introduces no prohibited named specificity.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:visible-framing",
+        "U1:visible-register-incompatible",
+        "unit.ch01.constructed-application:source-finding:001"
+      ],
+      "rationale": "U1: CH-U001-001 uses a factual register for the constructed application. PLAN-U001 requires visible framing and permits descriptive concrete action; the claim stays descriptive and introduces no prohibited named specificity."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "A support team tested a short notification-free focus block before reviewing its queue."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"constructed\",\n  \"formLicense\": \"application\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"fictional_name\",\n    \"role_label\",\n    \"concrete_action\",\n    \"hypothetical_consequence\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"real_person\",\n    \"real_organization\",\n    \"fabricated_statistic\",\n    \"fabricated_date\",\n    \"fabricated_credential\",\n    \"fabricated_citation\",\n    \"historical_claim\",\n    \"outcome_reported_as_fact\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": true,\n  \"allowedAnchorRefs\": []\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "0f26ef783302425988123536f19dc0c10730363a47e154358cb4ea14ca629174"
+}
