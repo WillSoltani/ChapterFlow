@@ -2,6 +2,19 @@
  * Pure IMP-23 bridge from retained v2 live evidence to the exact local ACTIVE
  * artifacts consumed by forwardLocalAutopilot. This module owns no filesystem,
  * process, clock, provider, or model capability.
+ *
+ * SUPERSEDED-BY-S-TIER (V25 decision ledger L-16; WP-203). This IMP-23 base
+ * local-activation materializer is superseded for the active-candidate path by
+ * ./forwardLocalActivationMaterializerV2.ts (IMP-24). It is NOT deleted here
+ * because it is still referenced by: (a) the quarantined-but-restorable campaign
+ * verb imp24ActivationWorkflow.ts (FORWARD_LOCAL_ACTIVATION_POLICY_REL_PATH);
+ * (b) the forward-local-activation-materializer + imp24-local-activation-v2
+ * retained-evidence suites; and (c) the model-policy forbidden-model allowlist as
+ * a HISTORICAL-identity record (the `baseline-55` rollback previousProfile — see
+ * tests/model-policy.test.ts, WP-501 / decision ledger L-18/L-19). The author-first
+ * ship path has ZERO runtime reach into this module (tests/campaign-quarantine.test.ts,
+ * WP-202). Physical deletion is deferred to the Phase-8 end-state deletion gate
+ * (WP-804 / decision D-5).
  */
 
 import { canonicalJson, hashCanonical } from "../contracts/contractUtil.js";
