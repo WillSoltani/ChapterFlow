@@ -36,8 +36,8 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 301 | integrated | wp-301-author-route | e8b1ec1ce | 30a184400 | rt PASS-WITH-NOTES; merged |
 | 201 | integrated | wp-201-default-flip | ed8cb64cc | b25c8f4fd | rt PASS-WITH-NOTES; merged; V25-04 closed |
 | 202 | integrated | wp-202-campaign-quarantine | a79474aeb | 2ae7deefb | rt PASS-WITH-NOTES; merged |
-| 203 | in progress | wp-203-materializer-thinning | (post-202) | — | dispatched: opus-4.8@xhigh |
-| 204 | in progress | wp-204-instrument-deletion | (post-202) | — | dispatched: sonnet-5@xhigh |
+| 203 | integrated | wp-203-materializer-thinning | 6a1533c9f | 0bbc46898 | rt PASS-WITH-NOTES; comment-only supersession map; dedup→WP-804 |
+| 204 | integrated | wp-204-instrument-deletion | 6a1533c9f | f8fff9ce5 | rt PASS-WITH-NOTES; 1 hard delete + 2 quarantines |
 | 402 | integrated | wp-402-threshold-reconcile | a79474aeb | 1b22290d5 | rt PASS-WITH-NOTES; merged; V25-11 closed |
 | others | not started | — | — | — | — |
 
