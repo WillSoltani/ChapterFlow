@@ -1,0 +1,75 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-holdout-c10-a1",
+  "requestSha256": "6bdf007473c7e9a35dc4629004dd29cc413a2cd29b3c4fe5d8c13fe036f30d68",
+  "receiptSha256": "31440d50b19418db9c50ea3a254aa26922199fa039993986818e5b4d33ac488e",
+  "executionEvidenceSha256": "1d0ab3305a8136c8d0a62f4102ac0cd0db7e070c9511ba0bafa6bdeb56ee73ec",
+  "rawOutputSha256": "31235b686a1d1274235aaba1eea8536f38ee6aa4a2df8ec2c36a103efa1c883b",
+  "evaluationSha256": "9871aadfe61287ef5dce5b754aeeb2067f2acae323606171b1c9cd097bfb37e0",
+  "parsedOutputSha256": "ba24e49c52f3d6b8bf7024a121f86f8e3ffde848586804125cfbdccbcf1f355c",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter includes the supported Facebook Like button feedback-signal claim, but escalates it into a universal guaranteed causal claim: it says the point is proven and always causes the outcome for every person without exception. The supplied source supports a mechanistic explanation about visible low-effort feedback giving users reasons to post and return, and the packet forbids guaranteed outcomes unless explicitly stated.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-016"
+              ]
+            }
+          ],
+          "rationale": "The named Facebook Like button detail is source-supported, and no additional framing is required for this source-bound explanation. However, the universal phrase about always causing the outcome for every person exceeds the plan's mechanistic ceiling and lacks source support."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "5f71b57b7e68457512bb6c849dbc3d476915dd3afefbafa11f4300210bd11369"
+}

@@ -1,0 +1,84 @@
+{
+  "schema": "effective-context-manifest-v1",
+  "manifestVersion": 1,
+  "sessionId": "imp24-v3-a70a2d9c20c702294bb4cdf6094b14295bcc77dbf035358b2eda1b28fd4d8e29",
+  "role": "chapter-reviewer",
+  "profileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+  "bin": {
+    "path": "codex",
+    "version": "codex-cli 0.144.1"
+  },
+  "argv": [
+    "exec",
+    "--sandbox",
+    "read-only",
+    "--skip-git-repo-check",
+    "--ignore-user-config",
+    "--ignore-rules",
+    "-c",
+    "project_doc_max_bytes=0",
+    "-c",
+    "model=gpt-5.6-sol",
+    "-c",
+    "model_reasoning_effort=xhigh",
+    "--output-schema",
+    "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/quiz-integrity-model-output-v2.schema.json",
+    "--output-last-message",
+    "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/pilot-role-readiness-v5/live/exec/sessions/cf-exec-session-UDAEO9/last-message.txt",
+    "<task-sha256:e7f4d70c9a5b8576867e5d81bfb3da8a71107e90344fd368adbc3b590f2da360>"
+  ],
+  "cwd": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-quiz-adjudication-CtUWmq",
+  "cwdPolicy": "isolated-workspace",
+  "envKeys": [
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE",
+    "CHAPTERFLOW_NO_API_CODEX_QC",
+    "CHAPTERFLOW_SESSION_ID",
+    "CODEX_HOME",
+    "HOME",
+    "LANG",
+    "LOGNAME",
+    "PATH",
+    "SHELL",
+    "TMPDIR",
+    "USER"
+  ],
+  "callerEnvKeys": [],
+  "strictEnv": {
+    "CHAPTERFLOW_NO_API_CODEX_QC": "1",
+    "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE": "1"
+  },
+  "codexHome": {
+    "dir": "/private/tmp/ChapterFlow-books-v25-live/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/pilot-role-readiness-v5/live/exec/sessions/cf-exec-session-UDAEO9/codex-home",
+    "authMaterial": "auth.json",
+    "authSourcePath": "/Users/radinsoltani/.codex/auth.json"
+  },
+  "instructionSources": [],
+  "workspace": {
+    "dir": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-exec-reviewer-quiz-adjudication-CtUWmq",
+    "files": [
+      {
+        "relPath": "evidence/RDY-QUIZ-V3-HOLDOUT-mechanism-causal-key-behave-ch02-q01.review-evidence-envelope-v1.json",
+        "sha256": "59156cad9bfc1f6879ff247f90b1559670c72eb71d2bd4150c41e87f48ab45e8",
+        "bytes": 16113
+      }
+    ]
+  },
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "xhigh",
+  "sandbox": "read-only",
+  "timeoutMs": 900000,
+  "taskSha256": "e7f4d70c9a5b8576867e5d81bfb3da8a71107e90344fd368adbc3b590f2da360",
+  "taskBytes": 18504,
+  "qualification": {
+    "cliVersion": "codex-cli 0.144.1",
+    "flagsRequired": [
+      "--sandbox",
+      "-c",
+      "--ignore-user-config",
+      "--ignore-rules",
+      "--output-last-message"
+    ],
+    "synthetic": false
+  },
+  "createdAtIso": "2026-07-16T09:12:15.203Z"
+}

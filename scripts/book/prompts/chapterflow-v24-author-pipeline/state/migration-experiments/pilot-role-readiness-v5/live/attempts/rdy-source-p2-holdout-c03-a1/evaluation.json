@@ -1,0 +1,167 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-holdout-c03-a1",
+  "requestSha256": "31bbcfe67972d43179db6a4459f0a3267f7be146354cdf9a5f48da6534c079d5",
+  "receiptSha256": "a01b56e4cef3242e19d04bb93ec59827273e040815e722124d57da7d3279b454",
+  "executionEvidenceSha256": "938f532d7d8a7dcbc36f99e8844ccf899001f5284bf70dfbb60211a033510312",
+  "rawOutputSha256": "42460b27c2377984c78ca0b3968f3c4879a1ed7ffa3b7ded0ca56037ae136786",
+  "evaluationSha256": "9662c693bebbd00f836c9fee925a23d6101a629dfa0c89ed648e1265306ed2b9",
+  "parsedOutputSha256": "d19305f53d4b1cafb58c68805502c2866115f64fefa5a8cb73ed7fde73bc7c7a",
+  "assembledReviewSha256": "17a52322ef3446d9d7ea54723f23ff90596233bd5717f972be4d7228547205ac",
+  "evidenceReferenceResolutionSha256": "747b54f4f11d71fdb178bd070b60998eac751aca49dde3f7f6e9506d13dfcac4",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "BLOCK; primary=unsupported_attribution",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter's core platform-convenience/attention claim and mechanism are supported by the allowed source anchor, but it additionally attributes a 2018 sample of exactly 47 participants to the chapter source. The supplied source evidence for the allowed anchor does not support that date, sample size, or participant detail.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001",
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ]
+            }
+          ],
+          "rationale": "The target is presented as sourced explanation and does not need hypothetical framing. Its mechanistic strength fits the plan and is supported for the first two sentences by the claim and mechanism evidence. The final sentence introduces named numeric/date/participant specifics that are not present in the supplied source evidence, so the target is only partially supported."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d17ea4c3d9e17d21a89349cff5ed81f0f33ebfcf746c2f571817e4cfd50c0f24",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "c495fac7edda101199f8cec119800295b7ed757f8983ca2efd3d31995f2f66a1",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter's core platform-convenience/attention claim and mechanism are supported by the allowed source anchor, but it additionally attributes a 2018 sample of exactly 47 participants to the chapter source. The supplied source evidence for the allowed anchor does not support that date, sample size, or participant detail.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001",
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ],
+              "findingId": "unit.fact.ch01.fact.2:source-finding:001",
+              "chapterEvidenceSpans": [
+                "The source states: A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. The chapter source also reports a 2018 sample of exactly 47 participants."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.2\"\n  ]\n}",
+                "{\n  \"id\": \"ch01.fact.2\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}",
+                "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+                "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time."
+              ]
+            }
+          ],
+          "rationale": "The target is presented as sourced explanation and does not need hypothetical framing. Its mechanistic strength fits the plan and is supported for the first two sentences by the claim and mechanism evidence. The final sentence introduces named numeric/date/participant specifics that are not present in the supplied source evidence, so the target is only partially supported.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden",
+        "unit.fact.ch01.fact.2:source-finding:001"
+      ],
+      "rationale": "U1: The target is presented as sourced explanation and does not need hypothetical framing. Its mechanistic strength fits the plan and is supported for the first two sentences by the claim and mechanism evidence. The final sentence introduces named numeric/date/participant specifics that are not present in the supplied source evidence, so the target is only partially supported."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "The source states: A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. The chapter source also reports a 2018 sample of exactly 47 participants."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001",
+            "SRC-U001-ANCHOR-001",
+            "SRC-U001-CLAIM-001",
+            "SRC-U001-MECHANISM-001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"source_bound\",\n  \"formLicense\": \"explanation\",\n  \"maximumClaimStrength\": \"mechanistic\",\n  \"allowedDetailTypes\": [\n    \"concept\",\n    \"documented_specific\",\n    \"documented_number\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"invented_scene\",\n    \"invented_participant\",\n    \"asserted_causation\",\n    \"invented_quantified_effect\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": [\n    \"ch01.fact.2\"\n  ]\n}",
+            "{\n  \"id\": \"ch01.fact.2\",\n  \"kind\": \"testable_fact\",\n  \"label\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.\",\n  \"supportsClaimTypes\": [\n    \"book_thesis\",\n    \"core_idea\",\n    \"core_move\",\n    \"hook\",\n    \"breakdown_claim\",\n    \"quiz_prompt\",\n    \"quiz_explanation\",\n    \"quiz_key_evidence\",\n    \"review_card\",\n    \"implementation_guidance\",\n    \"takeaway\",\n    \"memorable_line\"\n  ],\n  \"text\": \"A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.\"\n}",
+            "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+            "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time."
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "aa0c522b40fb969a6dd43f4f67cc36ec2a20345c28c3d1859752ec28e53adba6"
+}

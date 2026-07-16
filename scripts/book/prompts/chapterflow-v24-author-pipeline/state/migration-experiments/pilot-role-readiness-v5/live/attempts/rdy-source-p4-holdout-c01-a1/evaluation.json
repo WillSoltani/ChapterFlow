@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p4-holdout-c01-a1",
+  "requestSha256": "33d688efe4643c5b820d0b8669a6571c68cbdebe075fa2757c8578e996678fad",
+  "receiptSha256": "e1a7e4a1221a41a9a33800a46adfc90422f15e250f7b3b37ba0469294daad860",
+  "executionEvidenceSha256": "8321639479ebffce579ca2844295a7e3d29b66006da5ae76889a9b2ab404d77e",
+  "rawOutputSha256": "a8dd489aac6bcd7c684e8baff2f2bd9bd067a2e9d3f2094d54ed5fbc1f66542d",
+  "evaluationSha256": "794156b81ff7026e6e9c3fe0bbbfb7df10048295e742561b032b0561100cdd3d",
+  "parsedOutputSha256": "85dfd61dec13674a8040bbd6d4dc62557ec1445f227d2669c1c58cb08d3c9767",
+  "assembledReviewSha256": "81968f7fa3d6b899ae94f7e967b67813015317706632f29574ec0b6df0bd1333",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 presents the statement as source-bound and attributes it to the source. The convenience-versus-attention claim is supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, and the mechanistic adoption/engagement-loop explanation is supported by SRC-U001-MECHANISM-001. PLAN-U001 allows a source-bound explanation with concept-only detail and mechanistic maximum strength; the chapter stays within that scope and adds no unsupported named specifics."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "e3aa4cb292ea577b81496091fb02fba73460409e0fcb7474f457b766860580e7",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9909d27c42ec5d6045cd022d3d7c49e67e1c1e5b1f5e5b6781b58ba4ffe938d1",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 presents the statement as source-bound and attributes it to the source. The convenience-versus-attention claim is supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, and the mechanistic adoption/engagement-loop explanation is supported by SRC-U001-MECHANISM-001. PLAN-U001 allows a source-bound explanation with concept-only detail and mechanistic maximum strength; the chapter stays within that scope and adds no unsupported named specifics.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 presents the statement as source-bound and attributes it to the source. The convenience-versus-attention claim is supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, and the mechanistic adoption/engagement-loop explanation is supported by SRC-U001-MECHANISM-001. PLAN-U001 allows a source-bound explanation with concept-only detail and mechanistic maximum strength; the chapter stays within that scope and adds no unsupported named specifics."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "1f06b695543a49b1c40525404396ac8abb3dc8d72e2d94741e1b4a863f5793c2"
+}

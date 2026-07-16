@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p4-holdout-c02-a1",
+  "requestSha256": "24405de0dc24440239bfe4561b422a525a321950512011a21e679ecd103c32f2",
+  "receiptSha256": "cd4ec75f297328561a27862cb012f7373d98f7797eef8092f9ce67e1a696cf5c",
+  "executionEvidenceSha256": "c9e90636c938eae84add7e93d4217d486916a49913c5b286bf2531600b4e832e",
+  "rawOutputSha256": "78c5371323d2cd0045616f6c7f8e672431cc010938f445175a7c3890ec4d0453",
+  "evaluationSha256": "dd3c461b5a5f621733f96e668c85919a8c61b21f4d20604d7b58b2b7be79c52c",
+  "parsedOutputSha256": "38777653ea35dfb772e4ccd9445b33c5212f964c035ba290165743f002c536c3",
+  "assembledReviewSha256": "60f635a7dc2163d3f615a38a9b0d6b800698a8a5abb2bf1c8ad0f7fc991159fc",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 visibly attributes the passage to the source and matches the documented claim in SRC-U001-CLAIM-001 plus the documented mechanism in SRC-U001-MECHANISM-001. The source-bound explanation stays within PLAN-U001's allowed concept/documented-specific scope and mechanistic ceiling, with no unsupported named specifics beyond the documented Facebook Like button/Likes anchors in SRC-U001-ANCHOR-001."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d85c3523c2ab2c8c4ef5830e8ee5ba46dd586ef1718cd54cc684e31b6ceea50d",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "aefd5ed84707636c88ec1588230e15e725ff842155ec162f873d9f988a43ff1d",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 visibly attributes the passage to the source and matches the documented claim in SRC-U001-CLAIM-001 plus the documented mechanism in SRC-U001-MECHANISM-001. The source-bound explanation stays within PLAN-U001's allowed concept/documented-specific scope and mechanistic ceiling, with no unsupported named specifics beyond the documented Facebook Like button/Likes anchors in SRC-U001-ANCHOR-001.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 visibly attributes the passage to the source and matches the documented claim in SRC-U001-CLAIM-001 plus the documented mechanism in SRC-U001-MECHANISM-001. The source-bound explanation stays within PLAN-U001's allowed concept/documented-specific scope and mechanistic ceiling, with no unsupported named specifics beyond the documented Facebook Like button/Likes anchors in SRC-U001-ANCHOR-001."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "d7ea8a570585b61010bfe0d526d6c37b12d73081f43a3753c851916a18d97bdc"
+}

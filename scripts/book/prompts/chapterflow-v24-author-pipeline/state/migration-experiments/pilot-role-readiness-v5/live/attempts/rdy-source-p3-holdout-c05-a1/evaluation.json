@@ -1,0 +1,147 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p3-holdout-c05-a1",
+  "requestSha256": "6a94cecde79a94003acc5ba251d6280f8bf104907c1361421dfffb06d76bbfad",
+  "receiptSha256": "b22b5ba711c69b76379abae5047392bec7fdf7a5886c8824281279d21d611222",
+  "executionEvidenceSha256": "37f08afb8ff64b960319a35aa20e6919cfa300bd7fcabdff1f65c37685091399",
+  "rawOutputSha256": "7525fd6dc9e7b920d74bec8486214b3fc3d300f9ed228836e94a1125ded07076",
+  "evaluationSha256": "b188d7a6a65dbfdd132a7e50d7df293180719bf7528441e5edb24cd661934fae",
+  "parsedOutputSha256": "af755069052e872130c5ffddf6468a23ebd63b8a3ac152c9c77907973488411d",
+  "assembledReviewSha256": "13994c2811ef49a7ee1147149573428f74fd7581ebbba510cb47f34b6adcb42b",
+  "evidenceReferenceResolutionSha256": "9638505357b6f2831e9a3a1c4256e3a5b0fd76ab423a5b578cdd1654a82cad5e",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "BLOCK; primary=missing_visible_framing",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "UNSUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The chapter presents the application as an event that occurred, while the governing plan requires visible hypothetical framing at first entry and forbids reporting an illustrative outcome as fact.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 uses factual event syntax without a visible hypothetical cue. PLAN-U001 requires such framing. The prose remains descriptive and uses only an unnamed role label and concrete action, so its claim strength and specificity otherwise fit the plan."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "247ca71104b14da069ffccb3b4950f586c170fb148b9c78adc71cc34e2409738",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "ea8dcabc85664acc2736f1ad27377cb3cee0fca61e97d1f0e42783e30842af04",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "UNSUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The chapter presents the application as an event that occurred, while the governing plan requires visible hypothetical framing at first entry and forbids reporting an illustrative outcome as fact.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ],
+              "findingId": "unit.ch01.constructed-application:source-finding:001",
+              "chapterEvidenceSpans": [
+                "A support team tested a short notification-free focus block before reviewing its queue."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"constructed\",\n  \"formLicense\": \"application\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"fictional_name\",\n    \"role_label\",\n    \"concrete_action\",\n    \"hypothetical_consequence\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"real_person\",\n    \"real_organization\",\n    \"fabricated_statistic\",\n    \"fabricated_date\",\n    \"fabricated_credential\",\n    \"fabricated_citation\",\n    \"historical_claim\",\n    \"outcome_reported_as_fact\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": true,\n  \"allowedAnchorRefs\": []\n}"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 uses factual event syntax without a visible hypothetical cue. PLAN-U001 requires such framing. The prose remains descriptive and uses only an unnamed role label and concrete action, so its claim strength and specificity otherwise fit the plan.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:visible-framing",
+        "U1:visible-register-incompatible",
+        "unit.ch01.constructed-application:source-finding:001"
+      ],
+      "rationale": "U1: CH-U001-001 uses factual event syntax without a visible hypothetical cue. PLAN-U001 requires such framing. The prose remains descriptive and uses only an unnamed role label and concrete action, so its claim strength and specificity otherwise fit the plan."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "A support team tested a short notification-free focus block before reviewing its queue."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"constructed\",\n  \"formLicense\": \"application\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"fictional_name\",\n    \"role_label\",\n    \"concrete_action\",\n    \"hypothetical_consequence\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"real_person\",\n    \"real_organization\",\n    \"fabricated_statistic\",\n    \"fabricated_date\",\n    \"fabricated_credential\",\n    \"fabricated_citation\",\n    \"historical_claim\",\n    \"outcome_reported_as_fact\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": true,\n  \"allowedAnchorRefs\": []\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "21ba12caac73264da4b7229be8d67c507ddf657b0c9559bb1984134453ce7c79"
+}
