@@ -9,6 +9,8 @@
  * Only writer/researcher calls flow through this layer.
  */
 
+import type { AgentRole } from "../contracts/executionProfile.js";
+
 export type AgentTier = "writer" | "researcher" | "critic";
 
 export type ProviderName = "anthropic-cli" | "anthropic-api" | "openai-api";
@@ -54,9 +56,16 @@ export type CallOptions = {
   /** Override the provider this single call uses. Otherwise resolved via
    *  CHAPTERFLOW_PROVIDER env var, defaulting to "anthropic-cli". */
   provider?: ProviderName;
-  /** Override the model this single call uses. Otherwise resolved per tier
-   *  from CHAPTERFLOW_<TIER>_MODEL env var, falling back to provider defaults. */
+  /** Override the model this single call uses (call-explicit; rides above the
+   *  central policy and is recorded as such). Otherwise the model+effort DECISION
+   *  is resolved through `modelPolicy.resolveRoute` (WP-304) — never an ambient
+   *  `CHAPTERFLOW_*_MODEL` env, which is now inert. */
   model?: string;
+  /** WP-304: the central `modelPolicy` role this call governs to. Optional — a
+   *  precise caller (e.g. the quiz-key judge or a research agent) may pin the
+   *  exact role; otherwise the router derives it from `tier` via
+   *  `PROVIDER_TIER_ROLE`. */
+  role?: AgentRole;
   /** v22 telemetry: logical pipeline stage, e.g. writer-example or line-editor. */
   stage?: string;
   /** v22 telemetry: stable ids used in run cost manifests. */
@@ -128,12 +137,6 @@ const DEFAULT_MODELS: Record<ProviderName, Record<AgentTier, string>> = {
   },
 };
 
-const PROVIDER_ENV_PREFIX: Record<ProviderName, string> = {
-  "anthropic-cli": "CLAUDE",
-  "anthropic-api": "ANTHROPIC",
-  "openai-api": "OPENAI",
-};
-
 export function isProviderName(value: unknown): value is ProviderName {
   return value === "anthropic-cli" || value === "anthropic-api" || value === "openai-api";
 }
@@ -148,9 +151,14 @@ export function providerNameFromEnv(raw = process.env.CHAPTERFLOW_PROVIDER): Pro
   throw new Error(`CHAPTERFLOW_PROVIDER=${raw} is not a known provider. Use one of: ${PROVIDER_NAMES.join(", ")}`);
 }
 
+/** The provider's deterministic in-code default model for a tier. WP-304 KILLED
+ *  the former `CHAPTERFLOW_${PREFIX}_${TIER}` env override here: an ambient env
+ *  may no longer silently swap a provider's model (the V25-15 drift vector). The
+ *  central `modelPolicy` is the routing authority; this table is only the family-
+ *  appropriate fallback the router uses when the policy model is a different
+ *  family than the selected provider serves (see `routerRoute.ts`). */
 export function defaultModelForProvider(provider: ProviderName, tier: AgentTier): string {
-  const prefix = PROVIDER_ENV_PREFIX[provider];
-  return process.env[`CHAPTERFLOW_${prefix}_${tier.toUpperCase()}`] ?? DEFAULT_MODELS[provider][tier];
+  return DEFAULT_MODELS[provider][tier];
 }
 
 export const UNTRUSTED_SOURCE_DATA_NOTICE =

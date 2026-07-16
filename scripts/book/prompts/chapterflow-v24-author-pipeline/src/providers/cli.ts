@@ -271,6 +271,16 @@ export const ClaudeCliProvider: Provider = {
     const model = opts.model;
     const bin = findBinary();
     if (!bin) throw new Error("claude CLI executable not found");
+    // WP-304 model lock: the model is ALWAYS pinned with an explicit `--model`
+    // flag (the router resolves it through modelPolicy; it is never undefined).
+    // An explicit `--model` wins over any ambient `~/.claude/settings.json`
+    // default-model, so ambient user config CANNOT silently change which model a
+    // call runs — the CLI-side mirror of the codex envelope's
+    // `--ignore-user-config` intent for the MODEL dimension. Residual gap
+    // (documented, out of scope): the Claude Code CLI exposes no
+    // `--ignore-user-config` flag, so ambient NON-model config (MCP servers,
+    // hooks) is not neutralized here — but all tool use is already disabled via
+    // `--disallowedTools`, so no ambient config can add a tool or a second turn.
     const args = [
       "-p",
       "--model", model,
