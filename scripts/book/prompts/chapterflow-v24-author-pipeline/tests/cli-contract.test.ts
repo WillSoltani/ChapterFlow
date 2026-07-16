@@ -29,6 +29,7 @@ import {
   writeCanonicalIndexFixture,
   writeFixtureBook,
 } from "./helpers.js";
+import { driftedEmissionSample } from "../src/contracts/emissionPackage.js";
 
 const gold = goldChapterFiles().find((g) => g.files.length > 0);
 const CLI_BOOK = "zz-gold-daring-greatly";
@@ -155,4 +156,30 @@ test("qc-verdict: mechanical reduction — corruption veto, floors, partial-read
   const refused = runCli(["qc-verdict", "zz-t", "--scores", partial]);
   assert.equal(refused.status, 3, refused.out);
   assert.match(refused.out, /INCOMPLETE READ/);
+});
+
+// ── WP-102: contract-validate emission↔web-adapter parity self-check ──────────
+
+test("cli: contract-validate exits 0 on the conformant canonical emission", () => {
+  const { status, out } = runCli(["contract-validate"], { CHAPTERFLOW_NO_API_CODEX_QC: "1" });
+  assert.equal(status, 0, `expected exit 0, got ${status}\n${out.slice(-1500)}`);
+  assert.match(out, /emission-parity \(canonical sample\): PASS/, "the emission self-check must run and pass");
+});
+
+test("cli: contract-validate exits non-zero on a drifted emission fixture", () => {
+  const dir = resolve(TMP_DIR, "cli-emission-parity");
+  const fixture = resolve(dir, "drifted-emission.json");
+  try {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(fixture, JSON.stringify(driftedEmissionSample(), null, 2), "utf8");
+    const { status, out } = runCli(["contract-validate"], {
+      CHAPTERFLOW_NO_API_CODEX_QC: "1",
+      CHAPTERFLOW_EMISSION_FIXTURE: fixture,
+    });
+    assert.equal(status, 1, `expected exit 1 on drift, got ${status}\n${out.slice(-1500)}`);
+    assert.match(out, /emission-parity .*: FAIL/, "the drift must be reported by the emission self-check");
+    assert.match(out, /audioNarration/, "the specific unconsumed field must be named");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });

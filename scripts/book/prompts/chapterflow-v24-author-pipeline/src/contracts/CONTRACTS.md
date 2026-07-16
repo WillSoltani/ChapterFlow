@@ -24,6 +24,7 @@ and get integration approval — silent local variants are a merge blocker.
 | `judge-capability-qualification` | 1 | IMP-20 | per-role judge registry; recovery role-set readiness; qualification freshness |
 | `review-evidence-envelope` | 1 | IMP-24 | qualification and production inline evidence delivery; request/result freshness |
 | `review-model-output-v2` | 2 | IMP-24 | semantic-only reader/source/quiz outputs; conductor-owned V2 assembly |
+| `emission-package` | 1 | WP-102 | terminal v21 emission ↔ web-adapter parity surface; `contract-validate` drift gate; WP-101 field-parity reference |
 
 ## Additive change note (IMP-20, 2026-07-12)
 
@@ -42,6 +43,41 @@ defines deterministic inline evidence and packet-local references;
 `review-model-output-v2` removes conductor-owned identity, hash, index, and final
 status fields from model output. Registering them expands the manifest from 14
 to **16 contracts** without changing any pre-existing descriptor.
+
+## Additive change note (WP-102, 2026-07-16)
+
+The `emission-package` row is additive (V25 S-Tier §8 Lane 1). Registering it
+regenerated the manifest from 16 to **17 contracts**; no pre-existing descriptor
+was edited, so no existing `contractHash` moved (the freeze test recomputes every
+hash and pins the sixteen prior values in `PRE_WP102_HASHES`).
+
+**Emission ↔ web-adapter parity rule.** The pipeline's terminal artifact — the
+`book-packages/<id>.v21.json` bytes `promoteBook` writes — is the load-bearing
+interface to the two hand-maintained web adapters that render every book:
+
+- server `app/app/api/book/_lib/v21-adapter.ts` → `adaptV21ToV13`
+- client `app/book/lib/v21-adapter.ts` → `normalizeV21Package` + `extractV21ChapterExtras`
+
+The rule the contract enforces: **every field a fresh emission carries at the
+consumer envelope (package / book / chapter / breakdown) must be a field the web
+adapters read.** A new envelope field the adapters do not consume is silently
+dropped in the reader today; the contract makes that drift a `contract-validate`
+failure so the field is wired into BOTH adapters (or removed) before it ships.
+
+The `emission-package` descriptor's field lists (`EMISSION_ADAPTER_SURFACE`) are
+derived ONLY from the keys those two adapters actually read — never a superset
+that would let a dropped field pass. Closed-world drift detection is enforced at
+the four envelope levels where the emission surface and the consumer surface
+coincide; the deeper sub-object shapes (example, quiz question, review card,
+implementation plan, memorable line, experience plan) are documented here as the
+consumed reference but validated by `validateChapterV21`, which `contract-validate`
+runs alongside the parity check. Rationale: `validateChapterV21` legitimately
+requires internal-only emission fields the adapters never read (e.g.
+`implementationPlan.title`, `example.planSpec.{audience,stakes,requiredBeat}`,
+`*.sourceAnchorIds`), so a naive whole-tree closed-world check would flag
+deliberate internal metadata as drift. The two checks together are the parity
+gate. `contract-validate` self-checks a canonical conformant emission by default;
+`CHAPTERFLOW_EMISSION_FIXTURE=<path>` overrides it to validate any emission bytes.
 
 ## Change protocol
 

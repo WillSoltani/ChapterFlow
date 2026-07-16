@@ -34,6 +34,10 @@ import { AGGREGATED_CHAPTER_REVIEW_CONTRACT } from "./aggregateChapterReview.js"
 import { JUDGE_CAPABILITY_QUALIFICATION_CONTRACT } from "./judgeCapabilityQualification.js";
 import { REVIEW_EVIDENCE_ENVELOPE_CONTRACT } from "./reviewEvidenceEnvelope.js";
 import { REVIEW_MODEL_OUTPUT_V2_CONTRACT } from "./reviewModelOutputV2.js";
+// WP-102 — additive emission↔web-adapter parity contract (V25 S-Tier §8 Lane 1;
+// manifest 16 → 17). Freezes the terminal v21 emission's consumer surface; no
+// existing descriptor changes, so no existing contractHash moves.
+import { EMISSION_PACKAGE_CONTRACT } from "./emissionPackage.js";
 
 export const ALL_CONTRACTS: readonly ContractDescriptor[] = [
   EXECUTION_PROFILE_CONTRACT,
@@ -52,6 +56,7 @@ export const ALL_CONTRACTS: readonly ContractDescriptor[] = [
   JUDGE_CAPABILITY_QUALIFICATION_CONTRACT,
   REVIEW_EVIDENCE_ENVELOPE_CONTRACT,
   REVIEW_MODEL_OUTPUT_V2_CONTRACT,
+  EMISSION_PACKAGE_CONTRACT,
 ];
 
 export type ContractManifest = {
@@ -118,3 +123,4 @@ export * from "./aggregateChapterReview.js";
 export * from "./judgeCapabilityQualification.js";
 export * from "./reviewEvidenceEnvelope.js";
 export * from "./reviewModelOutputV2.js";
+export * from "./emissionPackage.js";
