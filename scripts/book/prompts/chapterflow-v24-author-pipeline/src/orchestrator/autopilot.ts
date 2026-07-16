@@ -239,12 +239,12 @@ export type AutopilotOptions = {
   autoPublish?: boolean; // library default false (→ HALT at ready). The CLI (book-run / book-autopilot) defaults this ON; when true, handleReady runs publish-after-qc --commit --push.
   plan?: boolean; // dry-run: print the spawn plan, take no action
   regen?: boolean; // regenerate an already-PACKAGED book: ignore the "shipped" skip (decidePhase) so the conductor re-runs end-to-end WITHOUT moving the package aside — the package stays, so the web registry import never dangles (fixes the concurrent-regen deadlock).
-  // REQUIRED, not defaulted: book-autopilot (cli.ts) and book-run (liveRun.ts) both default
-  // their own CLI flag to "compiler", and a silent library-level `?? "legacy"` here previously
-  // let any other caller (tests, future scripts) fall back to the v21 whole-chapter writer
-  // without anyone choosing that. Forcing every caller to state it keeps the route a conscious
-  // choice instead of an implicit one.
-  architecture: "compiler" | "legacy" | "author"; // v23 compiler path writes typed section artifacts then assembles ChapterV21; legacy keeps whole-chapter writer fanout; author (v24) = one whole-chapter author per chapter + blinded reader review/regeneration (authorRun.ts / authorReview.ts).
+  // REQUIRED, not defaulted: book-autopilot (cli.ts) and book-run (liveRun.ts) resolve their
+  // own CLI flag via `architectureFromFlags`, whose DEFAULT is now "author" (WP-201). A silent
+  // library-level `?? "compiler"`/`?? "legacy"` here would let any other caller (tests, future
+  // scripts) fall back to a retired path without anyone choosing that — so every caller must
+  // state it. Keeping the field required makes the route a conscious choice, not an implicit one.
+  architecture: "compiler" | "legacy" | "author"; // author (v24, DEFAULT) = one whole-chapter author per chapter + blinded reader review/regeneration (authorRun.ts / authorReview.ts); compiler (v23, --compiler opt-in) writes typed section artifacts then assembles ChapterV21; legacy (v22, --legacy) keeps the whole-chapter writer fanout.
   /** v24 author arch only: injectable IO for doAuthorWrite/doAuthorReview so tests
    *  drive the author phases against fixtures/tmp roots. Ignored by compiler/legacy. */
   authorIo?: Partial<AuthorReviewIo>;
@@ -260,13 +260,47 @@ export type AutopilotOptions = {
 };
 
 /** Map CLI flags → the conductor architecture. Shared by book-autopilot (cli.ts) and
- *  book-run (liveRun.ts) so the two entrypoints can never drift: --legacy (or the long
- *  form) keeps meaning legacy, --author selects the v24 author arch, default stays
- *  compiler. Exported for tests (pins compiler/legacy defaults unchanged). */
+ *  book-run (liveRun.ts) so the two entrypoints can never drift. Deterministic precedence
+ *  (WP-201): --legacy (or the long form --legacy-whole-chapter-writer) wins over everything
+ *  and keeps meaning v22 legacy; the explicit --compiler opt-in selects the retired v23
+ *  compiler path (kept reachable for WP-207's regression harness); --author selects v24
+ *  author; and the DEFAULT — with no architecture flag — is now v24 author. So `--legacy
+ *  --compiler` resolves legacy (legacy is checked first) and never throws, and a redundant
+ *  `--compiler --author` resolves compiler (the retired-path opt-in is the meaningful flag).
+ *  Exported for tests (pins the new author default + the compiler/legacy opt-ins). */
 export function architectureFromFlags(flags: Record<string, string | boolean>): "compiler" | "legacy" | "author" {
   if ("legacy-whole-chapter-writer" in flags || "legacy" in flags) return "legacy";
+  if ("compiler" in flags) return "compiler";
   if ("author" in flags) return "author";
-  return "compiler";
+  return "author";
+}
+
+/** The architecture flag that selected the resolved arch (or "default" when none was
+ *  passed) — mirrors `architectureFromFlags`' precedence exactly so the startup log can
+ *  truthfully state HOW the architecture was chosen (WP-201 guardrail). */
+export function architectureSelectedBy(flags: Record<string, string | boolean>): string {
+  if ("legacy-whole-chapter-writer" in flags) return "--legacy-whole-chapter-writer";
+  if ("legacy" in flags) return "--legacy";
+  if ("compiler" in flags) return "--compiler";
+  if ("author" in flags) return "--author";
+  return "default";
+}
+
+/** True iff the operator passed an explicit architecture flag (any of --legacy /
+ *  --legacy-whole-chapter-writer / --compiler / --author). Absence means the DEFAULT
+ *  selected the architecture — the case the WP-201 resume guard must protect from a
+ *  silent mid-run architecture switch. */
+export function hasExplicitArchitectureFlag(flags: Record<string, string | boolean>): boolean {
+  return architectureSelectedBy(flags) !== "default";
+}
+
+/** Operator-facing name for a resolved conductor architecture (startup log / labels). */
+export function architectureLabel(architecture: "compiler" | "legacy" | "author"): string {
+  return architecture === "compiler"
+    ? "v23 compiler"
+    : architecture === "author"
+      ? "v24 author"
+      : "v22 legacy whole-chapter";
 }
 
 /** Why the conductor stopped, so a "walk away" operator (or a harness) can route the

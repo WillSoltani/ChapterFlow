@@ -21,9 +21,10 @@
  *     npx tsx src/cli.ts book-run <bookId> [...same flags]
  *
  * Flags: --max-parallel N, --max-repair N, --plan (dry-run spawn plan),
- *        --legacy-whole-chapter-writer (use the v22 whole-chapter writer path instead of
- *          the v23 compiler path), --author (use the v24 whole-chapter AUTHOR path: one
- *          author per chapter + blinded reader review/regeneration),
+ *        DEFAULT architecture = v24 author (one whole-chapter author per chapter + blinded
+ *          reader review/regeneration); --author is accepted but redundant with the default,
+ *        --compiler (opt into the retired v23 compiler path — kept reachable for regression),
+ *        --legacy-whole-chapter-writer / --legacy (opt into the v22 whole-chapter writer path),
  *        --no-publish (halt at ready-to-publish for review; auto-publish is ON by
  *          default — on convergence it runs the full promote gate, then commits + pushes
  *          the package to main; NOT a live deploy, which stays manual),
@@ -36,12 +37,15 @@ import { fileURLToPath } from "url";
 
 import {
   architectureFromFlags,
+  architectureSelectedBy,
+  hasExplicitArchitectureFlag,
   formatOutcome,
   parseRoundId,
   resolveDeps,
   runAutopilot,
   type AutopilotOutcome,
 } from "./autopilot.js";
+import { guardResumeArchitecture } from "./runArchitectureMarker.js";
 import { doBookSamenessRepair, doContentDeviceRepair } from "./bookSamenessRun.js";
 import { evidenceMatrixPath } from "../qc/orchestrator/artifacts.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
@@ -534,9 +538,10 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
   // package and skips as "shipped". With it, it re-runs end-to-end over the existing package (promote
   // overwrites it) — no move-the-package-aside hack, so the web registry's static import never dangles.
   const regen = "regen" in flags;
-  // The standard local factory is shared with book-autopilot. An explicitly
-  // ACTIVE forward policy becomes the local development author default unless
-  // the operator explicitly requested the legacy architecture.
+  // The standard local factory is shared with book-autopilot. WP-201: FORWARD_ACTIVE no
+  // longer upgrades the architecture — the arch is decided solely by the flags (default =
+  // v24 author). The forward stack stays dormant unless a policy genuinely activates it
+  // (its activation is out of scope here — WP-202 decouples the ship path from it).
   const { resolveStandardForwardAutopilotControl } = await import("./forwardLocalAutopilot.js");
   let forwardControl: ReturnType<typeof resolveStandardForwardAutopilotControl>;
   try { forwardControl = resolveStandardForwardAutopilotControl(); }
@@ -544,11 +549,7 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
     console.error(red(`forward local runtime preflight failed: ${(error as Error).message}`));
     return 1;
   }
-  const requestedArchitecture = architectureFromFlags(flags);
-  const explicitLegacy = "legacy" in flags || "legacy-whole-chapter-writer" in flags;
-  const architecture = forwardControl.runtime.mode === "FORWARD_ACTIVE" && !explicitLegacy
-    ? "author"
-    : requestedArchitecture;
+  const architecture = architectureFromFlags(flags);
   const forwardActive = architecture === "author" && forwardControl.runtime.mode === "FORWARD_ACTIVE";
 
   console.log(bold(`\n📖 Book run — ${bookId}`));
@@ -556,10 +557,16 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
     dim(
       `   codex=${process.env.CHAPTERFLOW_CODEX_BIN ?? "(PATH)"} · notify=${notifyEnabled ? "on" : "off"}` +
         `${notifySound ? "+sound" : ""}${logFile ? ` · log=${logFile}` : ""}${plan ? " · PLAN (dry-run)" : ""}${regen ? " · REGEN (re-run a published book)" : ""}` +
-        ` · architecture=${architecture === "compiler" ? "v23 compiler" : architecture === "author" ? "v24 author" : "v22 legacy whole-chapter"}` +
+        ` · architecture=${architecture === "compiler" ? "v23 compiler" : architecture === "author" ? "v24 author" : "v22 legacy whole-chapter"} (selected by ${architectureSelectedBy(flags)})` +
         `${forwardActive ? " · forward local-only (publish disabled)" : autoPublish ? " · auto-publish ON (commit+push to main on convergence)" : " · --no-publish (halt for review)"}`,
     ),
   );
+  // Resume guard (WP-201): a book mid-run under a DIFFERENT architecture must not be silently
+  // switched by the default flip. Skipped for --plan (a dry-run takes no action, records nothing).
+  if (!plan) {
+    const guard = guardResumeArchitecture({ bookId, selected: architecture, explicit: hasExplicitArchitectureFlag(flags) });
+    if (!guard.ok) { console.error(red(guard.message)); return 1; }
+  }
   if (forwardActive) {
     console.log(dim("   ACTIVE forward policy: split-lane acceptance is authoritative; publish/push/deploy/upload remain disabled."));
   } else if (autoPublish) {
@@ -577,7 +584,13 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
     autoPublish,
     regen,
     architecture,
-    ...(architecture === "author" ? {
+    // Author writer: the DEFAULT (dormant) author path resolves its writer through WP-301's
+    // central modelPolicy route (doAuthorWrite → module authorWriteOneChapter → resolveRoute
+    // author-writer, tier "normal-profile", NO env pin). Only a genuinely FORWARD_ACTIVE stack
+    // supplies the split-lane reviewer-gated writer + ACTIVE acceptance semantics; passing
+    // forwardControl.writeOneChapter for the default would re-pin model/effort as a call-explicit
+    // override (the V25-04 parallel routing surface).
+    ...(architecture === "author" && forwardActive ? {
       authorWriteOneChapter: forwardControl.writeOneChapter,
       forwardAutopilotControl: forwardControl,
     } : {}),

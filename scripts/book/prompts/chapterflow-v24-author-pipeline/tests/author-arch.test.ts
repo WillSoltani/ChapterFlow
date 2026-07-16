@@ -21,6 +21,8 @@ import { fileURLToPath } from "node:url";
 import { test } from "./harness.js";
 import {
   architectureFromFlags,
+  architectureSelectedBy,
+  hasExplicitArchitectureFlag,
   decidePhase,
   runAutopilot,
   type AutopilotDeps,
@@ -474,13 +476,36 @@ function happyScript(o: { sessionId: string }): { finalMessage?: string } {
 
 // ── flags + phase pins (compiler/legacy unchanged) ───────────────────────────
 
-test("architectureFromFlags: --author maps to author; --legacy keeps legacy; default stays compiler", () => {
-  assert.equal(architectureFromFlags({ author: true }), "author");
+test("architectureFromFlags (WP-201): default resolves author; --compiler/--legacy/--author reach their paths; --legacy wins ties", () => {
+  // (a) default — no architecture flag — resolves the v24 author path (the WP-201 flip).
+  assert.equal(architectureFromFlags({}), "author");
+  // (b) explicit --compiler still reaches the retired v23 compiler path (WP-207's regression harness needs it).
+  assert.equal(architectureFromFlags({ compiler: true }), "compiler");
+  // (c) explicit --legacy (either form) still reaches the v22 whole-chapter writer path.
   assert.equal(architectureFromFlags({ legacy: true }), "legacy");
   assert.equal(architectureFromFlags({ "legacy-whole-chapter-writer": true }), "legacy");
-  assert.equal(architectureFromFlags({}), "compiler");
-  // --legacy wins over --author when both are passed (legacy is checked first, unchanged).
+  // --author is accepted and resolves author (redundant with the default, but explicit).
+  assert.equal(architectureFromFlags({ author: true }), "author");
+  // Deterministic precedence, never throws: --legacy wins over everything (incl. --compiler)...
   assert.equal(architectureFromFlags({ legacy: true, author: true }), "legacy");
+  assert.equal(architectureFromFlags({ legacy: true, compiler: true }), "legacy");
+  // ...and the retired-path --compiler opt-in wins over a redundant --author.
+  assert.equal(architectureFromFlags({ compiler: true, author: true }), "compiler");
+});
+
+test("architectureSelectedBy (WP-201): names the flag that selected the arch, 'default' when none", () => {
+  assert.equal(architectureSelectedBy({}), "default");
+  assert.equal(architectureSelectedBy({ author: true }), "--author");
+  assert.equal(architectureSelectedBy({ compiler: true }), "--compiler");
+  assert.equal(architectureSelectedBy({ legacy: true }), "--legacy");
+  assert.equal(architectureSelectedBy({ "legacy-whole-chapter-writer": true }), "--legacy-whole-chapter-writer");
+  // Mirrors architectureFromFlags precedence: legacy reported first, then compiler.
+  assert.equal(architectureSelectedBy({ legacy: true, compiler: true }), "--legacy");
+  assert.equal(architectureSelectedBy({ compiler: true, author: true }), "--compiler");
+  // hasExplicitArchitectureFlag agrees with the "default" sentinel.
+  assert.equal(hasExplicitArchitectureFlag({}), false);
+  assert.equal(hasExplicitArchitectureFlag({ compiler: true }), true);
+  assert.equal(hasExplicitArchitectureFlag({ author: true }), true);
 });
 
 test("decidePhase is byte-unchanged for compiler/legacy callers (same assertions as the autopilot suite)", () => {

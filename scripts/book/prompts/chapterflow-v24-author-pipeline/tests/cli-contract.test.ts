@@ -183,3 +183,31 @@ test("cli: contract-validate exits non-zero on a drifted emission fixture", () =
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+// WP-201: the default authoring architecture flipped to v24 author. These drive the REAL
+// book-autopilot / book-run entrypoints (--plan is model-free and takes no action) to prove
+// the zero-flag default resolves author and the explicit --compiler opt-in still reaches the
+// retired v23 path — the one contract a unit test on architectureFromFlags can't cover: that
+// BOTH CLI verbs actually consume the new default and log it.
+test("cli (WP-201): book-autopilot/book-run with zero flags resolve v24 author; --compiler still reaches v23", () => {
+  const bookId = "zz-wp201-cliplan";
+  const noApi = { CHAPTERFLOW_NO_API_CODEX_QC: "1" };
+  try {
+    const autopilot = runCli(["book-autopilot", bookId, "--plan"], noApi);
+    assert.match(autopilot.out, /architecture: v24 author \(selected by default\)/,
+      `book-autopilot zero-flag must resolve+log v24 author by default\n${autopilot.out.slice(-1200)}`);
+
+    const autopilotCompiler = runCli(["book-autopilot", bookId, "--plan", "--compiler"], noApi);
+    assert.match(autopilotCompiler.out, /architecture: v23 compiler \(selected by --compiler\)/,
+      `explicit --compiler must still reach the retired v23 path\n${autopilotCompiler.out.slice(-1200)}`);
+
+    const bookRun = runCli(["book-run", bookId, "--plan"], noApi);
+    assert.match(bookRun.out, /architecture=v24 author \(selected by default\)/,
+      `book-run zero-flag must resolve+log v24 author by default\n${bookRun.out.slice(-1200)}`);
+  } finally {
+    // --plan takes no action, but runAutopilot still flushes a run manifest/cost report; the
+    // resume marker is NEVER written on --plan. Clean both so the test leaves no state dropping.
+    rmSync(resolve(PIPELINE_DIR, "state/autopilot-logs", bookId), { recursive: true, force: true });
+    rmSync(resolve(PIPELINE_DIR, "state/books", bookId), { recursive: true, force: true });
+  }
+});
