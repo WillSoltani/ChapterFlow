@@ -1235,11 +1235,15 @@ test("WP-401: a new book with NO D7 receipt is refused under REQUIRE and leaves 
   }
 });
 
-test("WP-401: a fresh PASS receipt bound to the shipped bytes ALLOWS promotion under REQUIRE", () => {
+test("WP-401: a fresh PASS receipt bound to the shipped bytes ALLOWS promotion (advisory; honest retained-absent path)", () => {
   const oldWarn = console.warn;
   try {
     console.warn = () => {};
-    withPromotionEnvCleared(() => withRequireD7(() => {
+    // The fixture receipt's audit (`zz-d7-fixture`) has no retained dir, so custody
+    // re-verifies 'retained-absent'. rt-401 round 2 (finding A) moved this honest
+    // retained-absent PASS to ADVISORY mode; under REQUIRE the retained audit
+    // evidence must be present (asserted by the next test).
+    withPromotionEnvCleared(() => {
       const index = setupMajorCleanFixture();
       writeFixtureD7Receipt(MAJOR_BOOK, { verdict: "PASS" });
       const result = promoteMajorFixture(index);
@@ -1247,6 +1251,30 @@ test("WP-401: a fresh PASS receipt bound to the shipped bytes ALLOWS promotion u
       assert.equal(result.d7ShipGateDecision, "pass");
       assert.equal(result.d7ShipGateBlockerCount, 0);
       assert.ok(existsSync(productionPackagePath(MAJOR_BOOK)), "a D7-PASS book ships");
+    });
+  } finally {
+    console.warn = oldWarn;
+    cleanupFixture();
+  }
+});
+
+test("WP-401 (rt-401 finding A): under REQUIRE a retained-absent PASS receipt is BLOCKED — the retained audit evidence must be present", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => withRequireD7(() => {
+      const index = setupMajorCleanFixture();
+      writeFixtureD7Receipt(MAJOR_BOOK, { verdict: "PASS" }); // audit_id zz-d7-fixture → no retained dir
+      const result = promoteMajorFixture(index);
+      assert.equal(result.promoted, false, "REQUIRE mandates the retained audit evidence be present at gate time");
+      assert.equal(result.d7ShipGateDecision, "block");
+      assert.ok(result.d7ShipGateBlockerCount > 0, "the D7 gate contributes a blocker");
+      const report = JSON.parse(readFileSync(gateReportPath(MAJOR_BOOK), "utf8"));
+      assert.ok(
+        (report.d7ShipGate?.blockers ?? []).some((b: string) => b.startsWith("D7.retained_audit_required")),
+        `expected a D7.retained_audit_required blocker; got ${JSON.stringify(report.d7ShipGate?.blockers)}`,
+      );
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, "a D7-blocked promote writes no production package");
     }));
   } finally {
     console.warn = oldWarn;

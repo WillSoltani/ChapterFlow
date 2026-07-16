@@ -47,14 +47,18 @@ import {
   type RubricInspection,
 } from "../bakeoff/migration/rubricAuditReceipts.js";
 import { rubricAuditDirRelPath } from "../bakeoff/migration/rubricAuditInstrument.js";
+import { resolveAuditUnit } from "../bakeoff/migration/rubricAuditHarness.js";
 import {
   RUBRIC_AUDIT_BAR_D7,
   RUBRIC_AUDIT_RUBRIC_VERSION,
+  RUBRIC_CALIBRATION_REFERENCES,
   buildRubricAuditReport,
   headingInventorySha256,
   renderAuditChapterDocument,
+  validateChapterAdjudicationRecord,
   type RubricAuditBar,
   type RubricAuditBatchManifestV1,
+  type RubricAuditProfile,
   type RubricAuditReportV1,
 } from "../bakeoff/migration/rubricAuditInstrument.js";
 
@@ -86,6 +90,18 @@ export const CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV = "CHAPTERFLOW_REQUIRE_D7_SHIP
 
 /** A lowercase SHA-256 digest (the shape every custody artifact hash must take). */
 const SHA256_RE = /^[0-9a-f]{64}$/;
+
+/** A plain audit-id slug. `audit_id` is interpolated raw into the retained-audit
+ *  directory path (`rubricAuditDirRelPath`), so anything that is not a plain slug
+ *  (a '/'/'\\' separator, a '..' traversal, an absolute or leading-dot path) is a
+ *  path-traversal / injection vector and is refused at BOTH mint and gate time
+ *  (rt-401 round 2, finding A(b)). Kebab and the `zz-`/upper-case test ids remain
+ *  valid — only separators, dots, and traversal are rejected. */
+const SAFE_AUDIT_ID_RE = /^[A-Za-z0-9_-]+$/;
+
+function isSafeAuditId(auditId: unknown): auditId is string {
+  return typeof auditId === "string" && SAFE_AUDIT_ID_RE.test(auditId);
+}
 
 export type D7ShipGateVerdict = "PASS" | "FAIL" | "VOID_CALIBRATION";
 export type D7ShipGateDecision = "exempt" | "pass" | "advisory-skip" | "block";
@@ -286,6 +302,96 @@ export function buildD7ShipGateReceiptCore(args: {
   };
 }
 
+/** Resolve the source text + rubric profile needed to re-validate a retained
+ *  adjudication with `validateChapterAdjudicationRecord`, bound to the frozen
+ *  inspection's `source_hash`. Two resolution paths, each verified against the
+ *  inspection BEFORE use so a wrong doc can never satisfy the binding:
+ *   - the canonical `resolveAuditUnit` rebuild — real v25 book audits (and the
+ *     real calibration reference) whose audit documents rebuild from the frozen
+ *     manifest's package, and
+ *   - the owner-adjudicated calibration references — the sealed-baseline /
+ *     owner-run-compat units, read from `docRelPath` relative to the repo root.
+ *  Returns null when neither path yields bytes whose sha256 equals the frozen
+ *  `inspection.source_hash` (an incomplete/tampered audit; the caller fails
+ *  closed). */
+function resolveAdjudicationSource(args: {
+  repositoryRoot: string;
+  manifest: RubricAuditBatchManifestV1;
+  unit: string;
+  inspection: RubricInspection;
+}): { sourceText: string; profile: RubricAuditProfile } | null {
+  const wantHash = args.inspection.source_hash;
+  if (typeof wantHash !== "string" || !SHA256_RE.test(wantHash)) return null;
+  try {
+    const resolution = resolveAuditUnit({
+      repositoryRoot: args.repositoryRoot,
+      manifest: args.manifest,
+      unit: args.unit,
+    });
+    if (sha256Hex(Buffer.from(resolution.sourceText, "utf8")) === wantHash) {
+      return { sourceText: resolution.sourceText, profile: resolution.profile };
+    }
+  } catch {
+    // The canonical rebuild is unavailable (e.g. an owner-run-compat unit whose
+    // source package is not in this tree) — fall through to the reference docs.
+  }
+  const reference = RUBRIC_CALIBRATION_REFERENCES.find((ref) => ref.unit === args.unit);
+  if (reference !== undefined) {
+    const abs = resolve(args.repositoryRoot, reference.docRelPath);
+    if (existsSync(abs)) {
+      const text = readFileSync(abs, "utf8");
+      if (sha256Hex(Buffer.from(text, "utf8")) === wantHash) {
+        return { sourceText: text, profile: "owner-run-compat" };
+      }
+    }
+  }
+  return null;
+}
+
+/** Re-validate a retained adjudication END-TO-END with the SAME validator the
+ *  owner's ingest pipeline runs (`validateChapterAdjudicationRecord`): its blind-
+ *  pair chain, its arithmetic (every `domain_score` / `chapter_diagnostic_score`
+ *  recomputed from the sub-criteria ratings), its agreement metrics bound to the
+ *  untampered blind pair, its source binding, and its gates. The retained
+ *  ADJUDICATION is the artifact whose scores SOLELY set the D7 verdict, yet the
+ *  round-1 fix bound only the pair chain — so tampering the adjudication alone
+ *  minted a shippable PASS with custody "verified" (rt-401 round 2, finding B).
+ *  Binding it here closes that bypass. Returns `resolved:false` when the audit
+ *  source could not be resolved (fail-closed at the call sites). */
+function validateRetainedAdjudication(args: {
+  repositoryRoot: string;
+  manifest: RubricAuditBatchManifestV1;
+  unit: string;
+  adjudicationRaw: string;
+  primaryRaw: string;
+  verificationRaw: string;
+  primaryDispatchRaw: string;
+  verificationDispatchRaw: string;
+  pairSealRaw: string;
+  inspectionRaw: string;
+}): { resolved: boolean; errors: string[] } {
+  const inspection = loadRecord(args.inspectionRaw).value as RubricInspection;
+  const source = resolveAdjudicationSource({
+    repositoryRoot: args.repositoryRoot,
+    manifest: args.manifest,
+    unit: args.unit,
+    inspection,
+  });
+  if (source === null) return { resolved: false, errors: [] };
+  const errors = validateChapterAdjudicationRecord({
+    record: loadRecord(args.adjudicationRaw),
+    primary: loadRecord(args.primaryRaw),
+    verification: loadRecord(args.verificationRaw),
+    primaryDispatch: loadRecord(args.primaryDispatchRaw),
+    verificationDispatch: loadRecord(args.verificationDispatchRaw),
+    pairSeal: loadRecord(args.pairSealRaw),
+    inspection,
+    sourceText: source.sourceText,
+    profile: source.profile,
+  });
+  return { resolved: true, errors };
+}
+
 /** Mint a sealed D7 ship-gate receipt from a COMPLETED audit directory (batch
  *  manifest + adjudications + custody). Model-free: it reads the retained rating
  *  outputs, rebuilds the deterministic report, and seals — it never rates. The
@@ -296,6 +402,10 @@ export function mintD7ShipGateReceiptFromAudit(args: {
   auditId: string;
   round?: number;
 }): D7ShipGateReceiptV1 {
+  if (!isSafeAuditId(args.auditId)) {
+    throw new D7ShipGateError(
+      `D7.audit_id_invalid: audit_id '${String(args.auditId)}' is not a plain slug — refusing to mint (path-traversal / injection guard).`);
+  }
   const auditDir = resolve(args.repositoryRoot, rubricAuditDirRelPath(args.auditId));
   const manifestPath = resolve(auditDir, "batch-manifest.json");
   if (!existsSync(manifestPath)) {
@@ -371,6 +481,31 @@ export function mintD7ShipGateReceiptFromAudit(args: {
       throw new D7ShipGateError(
         `cannot mint a D7 ship-gate receipt: the retained blind-pair chain for ${unit} is invalid — ${chainErrors.join("; ")}`);
     }
+    // Bind the ADJUDICATION whose scores set the verdict, not only the pair chain
+    // (rt-401 round 2, finding B). A tamper-inflated adjudication is arithmetically
+    // inconsistent (and breaks its agreement binding to the blind pair), so this
+    // REFUSES the mint — a sealed PASS can only be minted from a self-consistent
+    // rating run, never from a hand-edited score.
+    const adjudication = validateRetainedAdjudication({
+      repositoryRoot: args.repositoryRoot,
+      manifest,
+      unit,
+      adjudicationRaw,
+      primaryRaw,
+      verificationRaw,
+      primaryDispatchRaw,
+      verificationDispatchRaw,
+      pairSealRaw,
+      inspectionRaw,
+    });
+    if (!adjudication.resolved) {
+      throw new D7ShipGateError(
+        `cannot mint a D7 ship-gate receipt: the retained audit source for ${unit} could not be resolved to re-validate its adjudication — the audit is incomplete or tampered.`);
+    }
+    if (adjudication.errors.length > 0) {
+      throw new D7ShipGateError(
+        `cannot mint a D7 ship-gate receipt: the retained adjudication for ${unit} is invalid — ${adjudication.errors.join("; ")}`);
+    }
     custody.push({
       unit,
       primaryDispatchSha256: artifactSha256FromText(primaryDispatchRaw),
@@ -445,10 +580,28 @@ export function verifyRetainedD7Custody(args: {
   repositoryRoot: string;
   receipt: D7ShipGateReceiptV1;
 }): D7CustodyVerification {
+  // audit_id is interpolated raw into the retained-audit path — refuse an unsafe
+  // id BEFORE touching the filesystem (rt-401 round 2, finding A(b)).
+  if (!isSafeAuditId(args.receipt.audit_id)) {
+    return {
+      status: "failed",
+      blockers: [`D7.audit_id_invalid: receipt audit_id '${String(args.receipt.audit_id)}' is not a plain slug (path-traversal / injection guard).`],
+    };
+  }
   const auditDir = resolve(args.repositoryRoot, rubricAuditDirRelPath(args.receipt.audit_id));
   // The batch manifest is the canonical "a real audit was retained here" signal.
-  if (!existsSync(resolve(auditDir, "batch-manifest.json"))) {
+  const manifestPath = resolve(auditDir, "batch-manifest.json");
+  if (!existsSync(manifestPath)) {
     return { status: "retained-absent", blockers: [] };
+  }
+  let manifest: RubricAuditBatchManifestV1;
+  try {
+    manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as RubricAuditBatchManifestV1;
+  } catch {
+    return {
+      status: "failed",
+      blockers: [`D7.adjudication_invalid: the retained batch manifest for audit '${args.receipt.audit_id}' is unreadable — cannot re-verify the adjudication chain.`],
+    };
   }
   const custodyByUnit = new Map(args.receipt.custody.map((entry) => [entry.unit, entry]));
   const blockers: string[] = [];
@@ -497,6 +650,27 @@ export function verifyRetainedD7Custody(args: {
       });
       if (chainErrors.length > 0) {
         blockers.push(`D7.pair_chain_invalid: the retained blind-pair chain for ${unit} does not validate — ${chainErrors.join("; ")}.`);
+      }
+      // Re-validate the retained ADJUDICATION whose scores set the verdict (rt-401
+      // round 2, finding B): a forged PASS receipt pointing at a tamper-inflated
+      // adjudication whose custody hash it matched would otherwise re-verify
+      // "verified". A tampered adjudication is internally inconsistent → BLOCK.
+      const adjudication = validateRetainedAdjudication({
+        repositoryRoot: args.repositoryRoot,
+        manifest,
+        unit,
+        adjudicationRaw,
+        primaryRaw,
+        verificationRaw,
+        primaryDispatchRaw,
+        verificationDispatchRaw,
+        pairSealRaw,
+        inspectionRaw,
+      });
+      if (!adjudication.resolved) {
+        blockers.push(`D7.adjudication_invalid: cannot resolve the retained audit source for ${unit} to re-validate its adjudication — the audit is incomplete or tampered.`);
+      } else if (adjudication.errors.length > 0) {
+        blockers.push(`D7.adjudication_invalid: the retained adjudication for ${unit} does not validate — ${adjudication.errors.join("; ")}.`);
       }
     } catch (error) {
       blockers.push(`D7.pair_chain_invalid: cannot re-verify the retained audit chain for ${unit} — ${(error as Error).message}.`);
@@ -635,6 +809,11 @@ export function evaluateD7ShipGate(input: {
   if (normSlug(receipt.book_id) !== bookId) {
     blockers.push(`D7.book_mismatch: receipt book_id '${receipt.book_id}' does not match the book being promoted '${bookId}'.`);
   }
+  // audit_id is a retained-audit path component — an unsafe id is a traversal /
+  // injection vector and is refused here too (rt-401 round 2, finding A(b)).
+  if (!isSafeAuditId(receipt.audit_id)) {
+    blockers.push(`D7.audit_id_invalid: receipt audit_id '${String(receipt.audit_id)}' is not a plain slug (path-traversal / injection guard).`);
+  }
 
   // Chain-of-custody: a receipt minted from nothing (or with a forged/garbage
   // custody block) can never ship. The custody shape is enforced UNCONDITIONALLY
@@ -661,10 +840,21 @@ export function evaluateD7ShipGate(input: {
       }
     }
   }
-  // Defense-in-depth: retained custody/pair-chain re-verification (best-effort;
-  // no-op when the audit dir is absent). Any mismatch/error is a fail-closed BLOCK.
+  // Defense-in-depth: retained custody/pair-chain/adjudication re-verification
+  // (best-effort; no-op when the audit dir is absent). Any mismatch/error is a
+  // fail-closed BLOCK.
   if (custodyStatus === "failed") {
     blockers.push(...(input.custodyVerification?.blockers ?? []));
+  }
+  // FINDING A (rt-401 round 2): REQUIRE mode mandates that the retained rubric-
+  // audit evidence be PRESENT at gate time. A receipt whose audit_id has no
+  // retained audit dir re-verifies "retained-absent" — with the dir gone, a
+  // well-formed-but-fabricated custody block cannot be distinguished from a
+  // genuine sealed run, so REQUIRE fails closed. Advisory/default mode preserves
+  // the honest retained-absent path (mint-time chain + adjudication validation is
+  // the load-bearing check there); the S-tier REQUIRE ship path retains the dir.
+  if (custodyStatus === "retained-absent" && input.require) {
+    blockers.push(`D7.retained_audit_required: REQUIRE mode mandates the retained rubric-audit evidence be present at gate time, but no retained audit dir was found for audit_id '${receipt.audit_id}'. Retain (or point the gate at) the sealed audit dir, or run in advisory mode.`);
   }
 
   // Content binding: every shipped chapter must be covered by the receipt at the

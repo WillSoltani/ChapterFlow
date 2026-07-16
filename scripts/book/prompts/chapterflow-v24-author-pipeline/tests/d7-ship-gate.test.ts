@@ -25,8 +25,10 @@ import { mkTestRoots } from "./testRoots.js";
 import { PIPELINE_DIR, makeGateCleanChapter } from "./helpers.js";
 import { sha256Hex } from "../src/contracts/contractUtil.js";
 import { chapterFileName } from "../src/lib/chapterPaths.js";
+import { artifactSha256FromText } from "../src/bakeoff/migration/rubricAuditCanonical.js";
 import {
   RUBRIC_AUDIT_BAR_D7,
+  RUBRIC_CALIBRATION_REFERENCES,
   buildRubricAuditReport,
   rubricAuditDirRelPath,
   type RubricAuditBatchManifestV1,
@@ -199,6 +201,10 @@ test("D7 gate: a PASS receipt bound to the current content passes", () => {
     shippedPackageBytes: null,
     receipt,
     currentContent: content,
+    // rt-401 round 2 (finding A): REQUIRE now mandates the retained audit evidence
+    // be present at gate time, so the happy path carries a `verified` custody
+    // (the honest retained-absent PASS path is exercised in advisory mode below).
+    custodyVerification: { status: "verified", blockers: [] },
     require: true,
   });
   assert.equal(r.decision, "pass", r.reason);
@@ -406,6 +412,18 @@ function materializeSealedFailAudit(roots: ReturnType<typeof mkTestRoots>, audit
   }
   write(`calibration/${calibrationUnit}.adjudicated.json`,
     readFileSync(resolve(OWNER_RUN, `raw/adjudicated/${calibrationUnit}.json`), "utf8"));
+  // rt-401 round 2: the mint + gate now re-validate each retained ADJUDICATION
+  // (validateChapterAdjudicationRecord), which re-derives the audited source doc
+  // from the repository root. Mirror the owner-run reader docs into the temp root
+  // so the resolver finds byte-identical source for each sealed unit — WITHOUT
+  // this, a genuine audit could not be re-validated in the disposable tree. This
+  // is retained evidence, not an assertion change: no existing check is weakened.
+  for (const reference of RUBRIC_CALIBRATION_REFERENCES) {
+    const sourceDoc = readFileSync(resolve(REPOSITORY_ROOT, reference.docRelPath), "utf8");
+    const target = resolve(roots.base, reference.docRelPath);
+    mkdirSync(dirname(target), { recursive: true });
+    writeFileSync(target, sourceDoc);
+  }
 }
 
 /** Flip one hex digit inside a retained JSON record's `binding_sha256` — a
@@ -687,15 +705,18 @@ test("rt-401: RETAINED-ABSENT — a sealed receipt with no audit dir re-verifies
     assert.equal(afterDelete.status, "retained-absent");
     assert.equal(afterDelete.blockers.length, 0);
 
-    // A PASS receipt with a valid custody SHAPE but no retained dir PASSES and
-    // records the honest custodyVerified status (mint-time validation is load-bearing).
+    // A PASS receipt with a valid custody SHAPE but no retained dir PASSES in
+    // ADVISORY mode and records the honest custodyVerified status (mint-time
+    // validation is load-bearing there). rt-401 round 2 (finding A) moved this
+    // honest retained-absent PASS to advisory: under REQUIRE the retained audit
+    // evidence must be present (asserted by the dedicated finding-A tests below).
     const content = currentContentFixture("zz-book");
     const passReceipt = buildReceipt({ bookId: "zz-book", content, verdict: "PASS" });
     const passCustody = verifyRetainedD7Custody({ repositoryRoot: roots.base, receipt: passReceipt });
     assert.equal(passCustody.status, "retained-absent");
     const pass = evaluateD7ShipGate({
       bookId: "zz-book", candidatePackageBytes: "new", shippedPackageBytes: null,
-      receipt: passReceipt, currentContent: content, custodyVerification: passCustody, require: true,
+      receipt: passReceipt, currentContent: content, custodyVerification: passCustody, require: false,
     });
     assert.equal(pass.decision, "pass", pass.reason);
     assert.equal(pass.custodyVerified, "retained-absent");
@@ -710,6 +731,171 @@ test("rt-401: RETAINED-ABSENT — a sealed receipt with no audit dir re-verifies
     });
     assert.equal(blocked.decision, "block");
     assert.ok(blocked.blockers.some((b) => b.startsWith("D7.custody_empty")));
+  } finally {
+    roots.dispose();
+  }
+});
+
+// ── rt-401 ROUND 2: adjudication binding (finding B) + REQUIRE-mode retained
+//    evidence & audit_id sanitization (finding A) ──────────────────────────────
+// Round 1 bound only the blind-pair chain; the retained ADJUDICATION whose scores
+// SOLELY set the verdict was unbound, so tampering it alone minted a shippable
+// PASS with custody "verified". And a retained-absent receipt shipped under
+// REQUIRE, with `audit_id` interpolated raw into the audit path. These pin both
+// remediations against the exact runtime-proven exploits.
+
+/** Inflate an adjudication to a clean PASS while leaving the blind-pair chain
+ *  untouched — the finding-B tamper: scores/domains/gates are hand-edited so they
+ *  no longer derive from the sealed sub-criteria ratings (arithmetic + gate-count
+ *  + agreement-binding inconsistency). */
+function inflateAdjudication(raw: string): string {
+  const record = JSON.parse(raw) as Record<string, any>;
+  record.chapter_diagnostic_score = 99;
+  for (const key of Object.keys(record.domains ?? {})) record.domains[key].domain_score = 4.0;
+  record.gates = record.gates ?? {};
+  for (const gate of Object.keys(record.gates)) record.gates[gate] = { status: "pass", rationale: "x" };
+  record.gates.layer_independence = { status: "pass", rationale: "x" };
+  return JSON.stringify(record, null, 2);
+}
+
+test("rt-401 finding B: a tamper-inflated adjudication REFUSES the mint (arithmetic/gate binding)", () => {
+  const roots = mkTestRoots("wp401-adj-tamper-mint");
+  try {
+    const auditId = "zz-adj-tamper-mint";
+    materializeSealedFailAudit(roots, auditId);
+    // Tamper ONLY the adjudication scores; the pair chain stays valid, so the
+    // round-1 bare validatePairChain would pass this straight through to a PASS.
+    const adjPath = resolve(roots.base, rubricAuditDirRelPath(auditId), `raw/adjudicated/${SEALED_UNITS[0].unit}.json`);
+    writeFileSync(adjPath, inflateAdjudication(readFileSync(adjPath, "utf8")));
+    assert.throws(
+      () => mintD7ShipGateReceiptFromAudit({ repositoryRoot: roots.base, auditId }),
+      /retained adjudication for nudge-ch03 is invalid/,
+      "a tamper-inflated adjudication must refuse the mint",
+    );
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("rt-401 finding B: the GATE BLOCKS a forged PASS receipt over a tamper-inflated retained adjudication whose custody hash MATCHES — both modes", () => {
+  const roots = mkTestRoots("wp401-adj-tamper-gate");
+  try {
+    const auditId = "zz-adj-tamper-gate";
+    materializeSealedFailAudit(roots, auditId);
+    const auditDir = resolve(roots.base, rubricAuditDirRelPath(auditId));
+    // Tamper every chapter's retained adjudication in place.
+    for (const u of SEALED_UNITS) {
+      const p = resolve(auditDir, `raw/adjudicated/${u.unit}.json`);
+      writeFileSync(p, inflateAdjudication(readFileSync(p, "utf8")));
+    }
+    // Forge a PASS receipt whose custody hashes MATCH the on-disk artifacts
+    // (INCLUDING the tampered adjudication), so custody-hash re-verification cannot
+    // catch it — only the adjudication re-validation can. This is the gate-time
+    // variant of the finding-B exploit the round-1 fix left open.
+    const content = forgedSealedContent();
+    const readArtifact = (rel: string) => readFileSync(resolve(auditDir, rel), "utf8");
+    const custody: D7ShipGateCustody[] = SEALED_UNITS.map((u) => ({
+      unit: u.unit,
+      primaryDispatchSha256: artifactSha256FromText(readArtifact(`jobs/${u.unit}.receipts/primary.dispatch.json`)),
+      verificationDispatchSha256: artifactSha256FromText(readArtifact(`jobs/${u.unit}.receipts/verification.dispatch.json`)),
+      pairSealSha256: artifactSha256FromText(readArtifact(`jobs/${u.unit}.receipts/pair.seal.json`)),
+      adjudicationCanonicalSha256: artifactSha256FromText(readArtifact(`raw/adjudicated/${u.unit}.json`)),
+    }));
+    const forged = forgePassReceipt({ bookId: "zz-sealed-baseline-book", auditId, content, custody });
+    const cv = verifyRetainedD7Custody({ repositoryRoot: roots.base, receipt: forged });
+    assert.equal(cv.status, "failed", cv.blockers.join("; "));
+    assert.ok(cv.blockers.some((b) => b.startsWith("D7.adjudication_invalid")), cv.blockers.join("; "));
+    // The custody hashes MATCH the on-disk bytes, so it is NOT a custody mismatch —
+    // proving the adjudication re-validation is the load-bearing catch.
+    assert.ok(!cv.blockers.some((b) => b.startsWith("D7.custody_mismatch")), `must be caught by adjudication re-validation, not custody-hash: ${cv.blockers.join("; ")}`);
+    for (const require of [true, false]) {
+      const gate = evaluateD7ShipGate({
+        bookId: "zz-sealed-baseline-book", candidatePackageBytes: "x", shippedPackageBytes: null,
+        receipt: forged, currentContent: content, custodyVerification: cv, require,
+      });
+      assert.equal(gate.decision, "block", `require=${require}`);
+      assert.ok(gate.blockers.some((b) => b.startsWith("D7.adjudication_invalid")), gate.blockers.join("; "));
+    }
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("rt-401 finding B: a genuine adjudication still mints + gate-re-verifies clean (no false-block)", () => {
+  const roots = mkTestRoots("wp401-adj-genuine");
+  try {
+    const auditId = "zz-adj-genuine";
+    materializeSealedFailAudit(roots, auditId);
+    const minted = mintD7ShipGateReceiptFromAudit({ repositoryRoot: roots.base, auditId });
+    assert.equal(minted.verdict, "FAIL", "the sealed baseline is sub-bar (67–70)");
+    assert.equal(minted.custody.length, 3);
+    const cv = verifyRetainedD7Custody({ repositoryRoot: roots.base, receipt: minted });
+    assert.equal(cv.status, "verified", cv.blockers.join("; "));
+    assert.equal(cv.blockers.length, 0);
+    assert.ok(!cv.blockers.some((b) => b.startsWith("D7.adjudication_invalid")), "a genuine adjudication is never falsely blocked");
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("rt-401 finding A: a retained-absent receipt is BLOCKED under REQUIRE (D7.retained_audit_required)", () => {
+  const content = currentContentFixture("zz-book");
+  const receipt = buildReceipt({ bookId: "zz-book", content, verdict: "PASS" });
+  const r = evaluateD7ShipGate({
+    bookId: "zz-book", candidatePackageBytes: "new", shippedPackageBytes: null,
+    receipt, currentContent: content,
+    custodyVerification: { status: "retained-absent", blockers: [] }, require: true,
+  });
+  assert.equal(r.decision, "block");
+  assert.ok(r.blockers.some((b) => b.startsWith("D7.retained_audit_required")), r.blockers.join("; "));
+});
+
+test("rt-401 finding A: a retained-absent PASS receipt still passes in ADVISORY mode (honest path preserved)", () => {
+  const content = currentContentFixture("zz-book");
+  const receipt = buildReceipt({ bookId: "zz-book", content, verdict: "PASS" });
+  const r = evaluateD7ShipGate({
+    bookId: "zz-book", candidatePackageBytes: "new", shippedPackageBytes: null,
+    receipt, currentContent: content,
+    custodyVerification: { status: "retained-absent", blockers: [] }, require: false,
+  });
+  assert.equal(r.decision, "pass", r.reason);
+  assert.equal(r.custodyVerified, "retained-absent");
+  assert.equal(r.blockers.length, 0);
+});
+
+test("rt-401 finding A: an unsafe audit_id ('..' / '/') is BLOCKED at mint and gate (D7.audit_id_invalid)", () => {
+  const roots = mkTestRoots("wp401-audit-id");
+  try {
+    // MINT: an unsafe audit_id is refused before it can touch the filesystem.
+    for (const badId of ["../../../../tmp", "a/b", "..", ".hidden"]) {
+      assert.throws(
+        () => mintD7ShipGateReceiptFromAudit({ repositoryRoot: roots.base, auditId: badId }),
+        /D7\.audit_id_invalid/,
+        `mint must reject audit_id '${badId}'`,
+      );
+    }
+    // GATE: a receipt carrying an unsafe audit_id blocks, and the custody
+    // re-verification refuses to interpolate it into a path.
+    const content = forgedSealedContent();
+    const custody: D7ShipGateCustody[] = [...content.keys()].map((unit) => ({
+      unit,
+      primaryDispatchSha256: "a".repeat(64),
+      verificationDispatchSha256: "b".repeat(64),
+      pairSealSha256: "c".repeat(64),
+      adjudicationCanonicalSha256: "d".repeat(64),
+    }));
+    const forged = forgePassReceipt({ bookId: "zz-sealed-baseline-book", auditId: "../../../../tmp", content, custody });
+    const cv = verifyRetainedD7Custody({ repositoryRoot: roots.base, receipt: forged });
+    assert.equal(cv.status, "failed");
+    assert.ok(cv.blockers.some((b) => b.startsWith("D7.audit_id_invalid")), cv.blockers.join("; "));
+    for (const require of [true, false]) {
+      const gate = evaluateD7ShipGate({
+        bookId: "zz-sealed-baseline-book", candidatePackageBytes: "x", shippedPackageBytes: null,
+        receipt: forged, currentContent: content, custodyVerification: cv, require,
+      });
+      assert.equal(gate.decision, "block", `require=${require}`);
+      assert.ok(gate.blockers.some((b) => b.startsWith("D7.audit_id_invalid")), gate.blockers.join("; "));
+    }
   } finally {
     roots.dispose();
   }
