@@ -1,25 +1,30 @@
 /**
- * Provider router. Picks the right provider for each call based on:
+ * Provider router (legacy "stack A" model transport). Picks the right provider
+ * for each call based on:
  *   1. CallOptions.provider override (per-call)
  *   2. CHAPTERFLOW_PROVIDER env var (per-run)
  *   3. Default: anthropic-cli (works on Max subscription, no API key)
  *
- * Per-tier model override via env vars:
- *   CHAPTERFLOW_WRITER_MODEL
- *   CHAPTERFLOW_RESEARCHER_MODEL
- *   CHAPTERFLOW_CRITIC_MODEL
+ * MODEL RESOLUTION (WP-304 — envelope parity for the stack-A gap): the model+
+ * effort DECISION is resolved through the central `modelPolicy.resolveRoute`
+ * (the ONE typed decision table), exactly as the codex envelope does — NOT
+ * through an ambient `CHAPTERFLOW_*_MODEL` env, which is now INERT (killed here
+ * and in `types.ts`). A caller may still pin `opts.model` per call (recorded as
+ * call-explicit); an unpinned call rides the normal-profile matrix. Every call
+ * emits a `ProviderRouteResultV1` provenance record (see `routerRoute.ts`),
+ * closing the "Claude-side calls unledgered" gap (V25-15).
  *
- * Mass-production setup:
- *   export CHAPTERFLOW_PROVIDER=anthropic-api
- *   export ANTHROPIC_API_KEY=...
- *   export CHAPTERFLOW_WRITER_MODEL=claude-sonnet-4-6
- *   export CHAPTERFLOW_CRITIC_MODEL=claude-haiku-4-5-20251001
+ * TRANSPORT/FAMILY: `modelPolicy` is a codex/GPT-5.6 authority; the subscription
+ * CLI serves the CLAUDE family. The policy model is DISPATCHED only when the
+ * selected provider serves that family (the mass-production `openai-api` route);
+ * otherwise the provider's deterministic in-code default is used and recorded as
+ * `modelSource:"provider-default"` — never an env-driven silent pick. See
+ * `routerRoute.ts` for the full rationale.
  *
- * Or with OpenAI:
+ * Mass-production setup (billed; requires the no-API guard OFF):
  *   export CHAPTERFLOW_PROVIDER=openai-api
  *   export OPENAI_API_KEY=...
- *   export CHAPTERFLOW_WRITER_MODEL=gpt-5.6-sol
- *   export CHAPTERFLOW_CRITIC_MODEL=gpt-4o-mini
+ *   # model is resolved by modelPolicy (gpt-5.6-sol) — no per-tier model env.
  */
 
 import { formatRuntimeFindings, validateProviderCallResult } from "../runtimeSchemas.js";
@@ -31,6 +36,7 @@ import {
   ProviderAttemptMetadata,
   ProviderName,
   ProviderRawResult,
+  ProviderTimeoutError,
   StructuredJsonError,
   appendJsonInstruction,
   defaultModelForProvider,
@@ -38,6 +44,16 @@ import {
   parseStructuredJson,
   providerNameFromEnv,
 } from "./types.js";
+import type { AgentRole } from "../contracts/executionProfile.js";
+import type { ProviderOutcomeV1 } from "../contracts/routeContracts.js";
+import { type ResolvedRoute, resolveRoute } from "../orchestrator/modelPolicy.js";
+import {
+  PROVIDER_TIER_ROLE,
+  type RouterModelSource,
+  buildProviderRouteResult,
+  persistProviderRouteResult,
+  providerServesModel,
+} from "./routerRoute.js";
 
 type ProviderLoader = () => Promise<Provider>;
 
@@ -53,13 +69,51 @@ function envProvider(): ProviderName | null {
   return providerNameFromEnv();
 }
 
-function envModelForTier(tier: AgentTier): string | null {
-  const key = `CHAPTERFLOW_${tier.toUpperCase()}_MODEL`;
-  return process.env[key] ?? null;
-}
-
 export function resolveProviderName(opts: Pick<CallOptions, "provider">): ProviderName {
   return opts.provider ?? envProvider() ?? defaultProviderName();
+}
+
+/** The `modelPolicy` role this call governs to: an explicit `opts.role` wins,
+ *  otherwise the frozen tier→role map. */
+function roleForCall(opts: Pick<CallOptions, "tier" | "role">): AgentRole {
+  return opts.role ?? PROVIDER_TIER_ROLE[opts.tier];
+}
+
+/** The full model+effort DECISION for one router call, resolved through the
+ *  central policy (WP-304). `resolved` is the policy decision (governance +
+ *  provenance); `effectiveModel` is what actually dispatches to the transport,
+ *  with `modelSource` recording why. The ambient `CHAPTERFLOW_*_MODEL` env plays
+ *  NO part — it is inert. */
+export type RouterRouteDecision = {
+  role: AgentRole;
+  resolved: ResolvedRoute;
+  effectiveModel: string;
+  modelSource: RouterModelSource;
+};
+
+export function resolveRouterRoute(opts: CallOptions, providerName: ProviderName): RouterRouteDecision {
+  const role = roleForCall(opts);
+  // Precedence identical to WP-301's author route: a call-explicit `opts.model`
+  // rides ABOVE the matrix (recorded call-explicit); otherwise the normal-profile
+  // cell decides. Effort is never taken from the caller here (the CLI/API
+  // transports have no reasoning-effort dial) — it is recorded from the policy.
+  const resolved = resolveRoute({ role, requestedModel: opts.model });
+  if (opts.model !== undefined) {
+    // The caller pinned this model deliberately; dispatch it verbatim on whatever
+    // provider they chose (e.g. an explicit `claude-opus-4-7` on anthropic-api).
+    return { role, resolved, effectiveModel: opts.model, modelSource: "call-explicit" };
+  }
+  // Unpinned: dispatch the policy model iff the provider serves its family;
+  // otherwise the provider's deterministic in-code default (ambient-free).
+  if (providerServesModel(providerName, resolved.model)) {
+    return { role, resolved, effectiveModel: resolved.model, modelSource: "policy" };
+  }
+  return {
+    role,
+    resolved,
+    effectiveModel: defaultModelForProvider(providerName, opts.tier),
+    modelSource: "provider-default",
+  };
 }
 
 async function loadProvider(name: ProviderName): Promise<Provider> {
@@ -82,8 +136,25 @@ export async function selectProvider(opts: CallOptions): Promise<Provider> {
   return provider;
 }
 
+/** The effective dispatched model for a call. Thin back-compat wrapper over the
+ *  full `resolveRouterRoute` decision (model+effort governance + provenance). */
 export function resolveModel(opts: CallOptions, provider: Provider): string {
-  return opts.model ?? envModelForTier(opts.tier) ?? provider.defaultModelForTier(opts.tier);
+  return resolveRouterRoute(opts, provider.name).effectiveModel;
+}
+
+/** Whether a metered API key is present for the selected transport. The CLI
+ *  route never carries one; a billed provider may. Recorded honestly in the
+ *  route provenance (the no-API guard already refuses billed providers under the
+ *  ship invariant, so this is telemetry, not a permission). */
+function apiKeyPresentFor(name: ProviderName): boolean {
+  if (name === "anthropic-cli") return false;
+  const key = name === "openai-api" ? "OPENAI_API_KEY" : "ANTHROPIC_API_KEY";
+  return Boolean(process.env[key]);
+}
+
+function outcomeForError(err: unknown): ProviderOutcomeV1 {
+  if (err instanceof ProviderTimeoutError) return "timeout";
+  return "infrastructure_failure";
 }
 
 export async function callModel<T = string>(opts: CallOptions): Promise<CallResult<T>> {
@@ -99,11 +170,37 @@ export async function callModel<T = string>(opts: CallOptions): Promise<CallResu
     throw new Error(`no-API mode (CHAPTERFLOW_NO_API_CODEX_QC=1) forbids a billed "${name}" model call (tier=${opts.tier}). All model work must run via codex exec. To spend on the API, unset CHAPTERFLOW_NO_API_CODEX_QC.`);
   }
   const provider = await selectProvider(opts);
-  const model = resolveModel(opts, provider);
+  // WP-304: resolve model+effort through the central policy (governance), not an
+  // ambient env; `model` is the effective transport model, `decision` carries the
+  // policy provenance recorded below (on BOTH success and failure paths).
+  const decision = resolveRouterRoute(opts, name);
+  const model = decision.effectiveModel;
+  const recordRoute = (outcome: ProviderOutcomeV1): void => {
+    persistProviderRouteResult(
+      buildProviderRouteResult({
+        tier: opts.tier,
+        role: decision.role,
+        resolved: decision.resolved,
+        modelSource: decision.modelSource,
+        effectiveProvider: name,
+        effectiveModel: model,
+        outcome,
+        apiKeyPresent: apiKeyPresentFor(name),
+        telemetry: { stage: opts.stage, runId: opts.runId, bookId: opts.bookId, chapterId: opts.chapterId, costCenter: opts.costCenter },
+      }),
+    );
+  };
+
   const rawResponses: string[] = [];
   const attemptMetadata: ProviderAttemptMetadata[] = [];
   const startedAt = Date.now();
-  const first = await callWithOwnedRetries(provider, prepareCallOptions(opts, model), attemptMetadata, rawResponses);
+  let first: ProviderRawResult;
+  try {
+    first = await callWithOwnedRetries(provider, prepareCallOptions(opts, model), attemptMetadata, rawResponses);
+  } catch (err) {
+    recordRoute(outcomeForError(err));
+    throw err;
+  }
 
   let effective = first;
   let content: T;
@@ -111,11 +208,18 @@ export async function callModel<T = string>(opts: CallOptions): Promise<CallResu
     try {
       content = parseStructuredJson<T>(first.raw, opts.jsonSchema);
     } catch (err) {
-      const repair = await runJsonRepair(provider, opts, model, first.raw, err, attemptMetadata, rawResponses);
+      let repair: ProviderRawResult;
+      try {
+        repair = await runJsonRepair(provider, opts, model, first.raw, err, attemptMetadata, rawResponses);
+      } catch (repairSpawnErr) {
+        recordRoute(outcomeForError(repairSpawnErr));
+        throw repairSpawnErr;
+      }
       effective = repair;
       try {
         content = parseStructuredJson<T>(repair.raw, opts.jsonSchema);
       } catch (repairErr) {
+        recordRoute("content_completed"); // the provider returned; the CONTENT failed schema, not the transport
         const detail = repairErr instanceof StructuredJsonError ? repairErr.issues.join("; ") : (repairErr as Error).message;
         throw new Error(`Structured JSON from ${name}/${model} failed after 1 repair attempt: ${detail}`);
       }
@@ -137,8 +241,10 @@ export async function callModel<T = string>(opts: CallOptions): Promise<CallResu
   };
   const validation = validateProviderCallResult(result);
   if (!validation.ok) {
+    recordRoute("content_completed");
     throw new Error(`Provider "${name}" returned an invalid CallResult: ${formatRuntimeFindings(validation.findings)}`);
   }
+  recordRoute("content_completed");
   return result;
 }
 
