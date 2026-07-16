@@ -284,7 +284,7 @@ Commands:
                                      reports DETERMINISTIC-CLEAN / DIRTY WITHOUT opening a formal QC round.
                                      Run after every repair until CLEAN, THEN qc-auto — so a formal round
                                      never burns submissions rediscovering a mechanical nit. Exit 0=clean, 1=dirty.
-  book-autopilot <bookId> [--regen] [--plan] [--no-publish] [--author] [--legacy] [--max-repair N] [--max-parallel N]
+  book-autopilot <bookId> [--regen] [--plan] [--no-publish] [--compiler] [--legacy] [--max-repair N] [--max-parallel N]
                                      END-TO-END conductor. Drives research → write → gate → QC(+≤3 repair)
                                      → ready-to-publish, spawning codex exec agentic sub-sessions for the
                                      WORK (distinct CHAPTERFLOW_SESSION_ID each) while deterministic code owns
@@ -292,12 +292,18 @@ Commands:
                                      convergence AUTO-PUBLISHES (full promote gate, then commit+push to main —
                                      NOT a live deploy); --no-publish halts for review. --plan previews the plan.
                                      --regen RE-RUNS an already-published book (else it's skipped as "shipped").
-  book-run <bookId> [--regen] [--max-parallel N] [--max-repair N] [--plan] [--no-publish] [--author] [--legacy] [--no-notify] [--sound] [--log <file>]
+                                     Architecture DEFAULT is v24 author; --compiler opts into the retired v23
+                                     compiler path, --legacy into the v22 whole-chapter writer (--author is
+                                     accepted too but is the default). Resuming a book mid-run under a different
+                                     architecture without its flag fails closed (no silent switch).
+  book-run <bookId> [--regen] [--max-parallel N] [--max-repair N] [--plan] [--no-publish] [--compiler] [--legacy] [--no-notify] [--sound] [--log <file>]
                                      SAME conductor as book-autopilot, wrapped to print a clean timestamped
                                      update AND a macOS notification on every MAJOR event (research / write /
                                      gate / QC round + publishable tally / repair / warnings / final). One
                                      input, walk away, get pinged. --no-notify = terminal only; --log appends
                                      an event log. Changes no pipeline behavior; same gates, env, exit code.
+                                     Architecture DEFAULT is v24 author (--compiler / --legacy opt into the
+                                     retired paths).
   migration-bakeoff <plan|seal|qualify|run|analyze|decide|status> --experiment <spec.json|id> [--corpus <corpus.json>] [--state-root <dir>] [--max-parallel N] [--allow-synthetic-qualification] [--json]
                                      IMP-11 NO-PUBLISH migration harness: Stage Q judge qualification →
                                      Stage D prompt-stack diagnostic → Stage C confirmatory four-way
@@ -4111,8 +4117,9 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
     console.error("Usage: book-autopilot <bookId> [--plan] [--no-publish] [--max-repair N] [--max-parallel N]");
     return 2;
   }
-  const { runAutopilot, formatOutcome, architectureFromFlags } = await import("./orchestrator/autopilot.js");
+  const { runAutopilot, formatOutcome, architectureFromFlags, architectureSelectedBy, architectureLabel, hasExplicitArchitectureFlag } = await import("./orchestrator/autopilot.js");
   const { resolveStandardForwardAutopilotControl } = await import("./orchestrator/forwardLocalAutopilot.js");
+  const { guardResumeArchitecture } = await import("./orchestrator/runArchitectureMarker.js");
   const maxRepair = typeof flags["max-repair"] === "string" ? parseInt(flags["max-repair"], 10) : undefined;
   const maxParallel = typeof flags["max-parallel"] === "string" ? parseInt(flags["max-parallel"], 10) : undefined;
   let forwardControl: ReturnType<typeof resolveStandardForwardAutopilotControl>;
@@ -4121,11 +4128,19 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
     console.error(`forward local runtime preflight failed: ${(error as Error).message}`);
     return 1;
   }
-  const requestedArchitecture = architectureFromFlags(flags);
-  const explicitLegacy = "legacy" in flags || "legacy-whole-chapter-writer" in flags;
-  const architecture = forwardControl.runtime.mode === "FORWARD_ACTIVE" && !explicitLegacy
-    ? "author"
-    : requestedArchitecture;
+  // WP-201: architecture is decided SOLELY by the flags — FORWARD_ACTIVE no longer upgrades
+  // the arch. The default (no arch flag) is now v24 author. The forward stack stays dormant
+  // unless a policy genuinely activates it; its activation is out of scope here (WP-202).
+  const architecture = architectureFromFlags(flags);
+  const forwardActive = forwardControl.runtime.mode === "FORWARD_ACTIVE";
+  // Guardrail: state the resolved architecture AND the flag that selected it, up front.
+  console.log(`[book-autopilot] architecture: ${architectureLabel(architecture)} (selected by ${architectureSelectedBy(flags)})`);
+  // Resume guard: a book mid-run under a DIFFERENT architecture must not be silently switched
+  // by the default flip. Skipped for --plan (a dry-run takes no action and records nothing).
+  if (flags["plan"] !== true) {
+    const guard = guardResumeArchitecture({ bookId, selected: architecture, explicit: hasExplicitArchitectureFlag(flags) });
+    if (!guard.ok) { console.error(guard.message); return 1; }
+  }
   const outcome = await runAutopilot({
     bookId,
     plan: flags["plan"] === true,
@@ -4134,9 +4149,14 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
     // can't make the opt-out fail OPEN.
     autoPublish: !("no-publish" in flags),
     regen: "regen" in flags,
-    // --author = v24 author arch; --legacy keeps meaning legacy; default stays compiler.
     architecture,
-    ...(architecture === "author" ? {
+    // Author writer: the DEFAULT (dormant) author path resolves its writer through WP-301's
+    // central modelPolicy route — doAuthorWrite falls back to the module `authorWriteOneChapter`
+    // → resolveRoute({ role: "author-writer" }) at tier "normal-profile", NO env pin. Only a
+    // genuinely FORWARD_ACTIVE stack supplies the split-lane reviewer-gated writer + ACTIVE
+    // acceptance semantics; passing forwardControl.writeOneChapter for the default would re-pin
+    // model/effort as a call-explicit override (the V25-04 parallel routing surface).
+    ...(architecture === "author" && forwardActive ? {
       authorWriteOneChapter: forwardControl.writeOneChapter,
       forwardAutopilotControl: forwardControl,
     } : {}),
