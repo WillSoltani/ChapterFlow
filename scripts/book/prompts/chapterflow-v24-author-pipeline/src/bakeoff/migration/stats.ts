@@ -11,7 +11,7 @@
  * the target never relaxes.
  */
 
-import { BASELINE_MODEL } from "../../orchestrator/modelPolicy.js";
+import { HISTORICAL_BASELINE_55 } from "./experimentTypes.js";
 import type { MigrationSampleRecordV1, PrecisionEndpointV1 } from "./experimentTypes.js";
 import { mulberry32, seededU32 } from "./prng.js";
 
@@ -306,16 +306,16 @@ export function effectsReport(
   for (const [metricName, metric] of metrics) {
     for (const stackId of stacks) {
       const solXH = find("gpt-5.6-sol", "xhigh", stackId);
-      const baseXH = find(BASELINE_MODEL, "xhigh", stackId);
+      const baseXH = find(HISTORICAL_BASELINE_55, "xhigh", stackId);
       if (solXH && baseXH) out.push(effectOf(records, "model", metricName, solXH, baseXH, metric, seed));
       const solH = find("gpt-5.6-sol", "high", stackId);
       if (solH && solXH) out.push(effectOf(records, "effort(sol)", metricName, solXH, solH, metric, seed));
-      const baseH = find(BASELINE_MODEL, "high", stackId);
+      const baseH = find(HISTORICAL_BASELINE_55, "high", stackId);
       if (baseH && baseXH) out.push(effectOf(records, "effort(5.5)", metricName, baseXH, baseH, metric, seed));
     }
     if (stacks.length >= 2) {
       const [s1, s2] = stacks;
-      for (const [model, effort] of [[BASELINE_MODEL, "xhigh"], ["gpt-5.6-sol", "high"], ["gpt-5.6-sol", "xhigh"]] as const) {
+      for (const [model, effort] of [[HISTORICAL_BASELINE_55, "xhigh"], ["gpt-5.6-sol", "high"], ["gpt-5.6-sol", "xhigh"]] as const) {
         const a = find(model, effort, s2);
         const b = find(model, effort, s1);
         if (a && b) out.push(effectOf(records, `stack(${model}@${effort})`, metricName, a, b, metric, seed));
@@ -323,8 +323,8 @@ export function effectsReport(
       // Model-by-stack interaction: difference-in-differences on paired deltas.
       const sol2 = find("gpt-5.6-sol", "xhigh", s2);
       const sol1 = find("gpt-5.6-sol", "xhigh", s1);
-      const b2 = find(BASELINE_MODEL, "xhigh", s2);
-      const b1 = find(BASELINE_MODEL, "xhigh", s1);
+      const b2 = find(HISTORICAL_BASELINE_55, "xhigh", s2);
+      const b1 = find(HISTORICAL_BASELINE_55, "xhigh", s1);
       if (sol2 && sol1 && b2 && b1) {
         const dSol = pairedBlockDeltas(records, sol2, sol1, metric).deltas;
         const dBase = pairedBlockDeltas(records, b2, b1, metric).deltas;

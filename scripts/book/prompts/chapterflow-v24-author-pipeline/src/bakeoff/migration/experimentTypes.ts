@@ -34,6 +34,23 @@ export const SOL_BAKEOFF_DECISION_SCHEMA = "sol-bakeoff-decision-v1" as const;
 /** The frozen repair-demand projection formula version (metrics.ts documents it). */
 export const REPAIR_PROJECTION_VERSION = "repair-projection-v1" as const;
 
+/**
+ * The HISTORICAL pre-migration baseline model identity: literal `gpt-5.5`.
+ *
+ * This is a FROZEN historical constant, NOT the live production baseline. The
+ * migration experiment (Stage C confirmatory `55-H`/`55-XH` cells, Stage D
+ * diagnostic factorial, the stats effect-estimation baseline arm) compares the
+ * SOL candidate against the pre-migration gpt-5.5 arm — that comparison is the
+ * entire point of the bakeoff, so the `55` arm must denote gpt-5.5 permanently.
+ *
+ * It used to be aliased to `BASELINE_MODEL`, which silently re-pointed the `55`
+ * arm to gpt-5.6-sol when WP-302 flipped the live baseline (directive-1),
+ * degenerating the design (55-H would equal 56S-H). Frozen here (WP-501, Part 3)
+ * so the historical identity can never again track the live baseline. gpt-5.5 is
+ * VOID for the target architecture (no live route); this literal is a
+ * data record of what the migration measured against. */
+export const HISTORICAL_BASELINE_55 = "gpt-5.5" as const;
+
 /** Migration phases, in lifecycle order. NO promote/qc/publish phase EXISTS —
  *  the ladder simply has no rung that crosses into canonical state. */
 export const MIGRATION_PHASES = [
