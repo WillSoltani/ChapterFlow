@@ -26,6 +26,17 @@ import {
 } from "../src/qc/majorDisposition.js";
 import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
 import { firstMachineryExampleTag, isMachineryExampleTag } from "../src/lib/readerContent.js";
+import { RUBRIC_AUDIT_BAR_D7 } from "../src/bakeoff/migration/rubricAuditInstrument.js";
+import {
+  CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV,
+  D7_REAUTHOR_BUDGET_PER_AUDIT,
+  d7ShipGateHaltPath,
+  d7ShipGateReceiptPath,
+  deriveCurrentD7Content,
+  sealD7ShipGateReceipt,
+  type D7ShipGateReceiptV1,
+  type D7ShipGateVerdict,
+} from "../src/critics/d7ShipGate.js";
 import type { ChapterV21 } from "../src/types.js";
 
 const BOOK = "zz-fixture-promote";
@@ -47,6 +58,10 @@ function cleanupFixture(): void {
   rmSync(productionManifestSidecarPath(MAJOR_BOOK), { force: true });
   rmSync(sourceVerifyRecordPath(BOOK), { force: true });
   rmSync(sourceVerifyRecordPath(MAJOR_BOOK), { force: true });
+  const d7BooksDir = resolve(PIPELINE_DIR, "state", "books");
+  rmSync(d7ShipGateReceiptPath(MAJOR_BOOK, d7BooksDir), { force: true });
+  rmSync(d7ShipGateHaltPath(MAJOR_BOOK, d7BooksDir), { force: true });
+  rmSync(productionManifestSidecarPath(BOOK), { force: true });
   // Remove the WHOLE fixture research-run dir, not just the one runId subdir — the
   // synthetic fixtures create `.chapterflow/runs/<fixtureBook>/` from scratch (unlike
   // the old `drive` clone, whose parent dir pre-existed), so leaving the empty parent
@@ -1115,6 +1130,202 @@ test("promotion fault injection leaves owner-attributed, recoverable transaction
       assert.equal(journal.state, "staged", "the journal records the last durable transition reached");
       assert.ok(existsSync(resolve(txDir, "package.v21.json")), "the staged package bytes are recoverable");
       assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, "a fault exposes no production package");
+    });
+  } finally {
+    console.warn = oldWarn;
+    cleanupFixture();
+  }
+});
+
+// ── WP-401: D7 rubric-audit SHIP GATE wired into promote ──────────────────────
+// promoteBook now refuses to ship a NEW/CHANGED book without a fresh, sealed D7
+// PASS receipt bound to the exact bytes (REQUIRE mode). A FAIL/VOID/stale/tamper
+// receipt blocks regardless of REQUIRE. A byte-identical re-promote of the shipped
+// corpus is EXEMPT (no-retroactivity). These promote the REAL fixture book through
+// the whole gate stack with a fixture receipt written to the state sidecar path.
+
+const D7_STATE_BOOKS_DIR = resolve(PIPELINE_DIR, "state", "books");
+
+function withRequireD7<T>(fn: () => T): T {
+  const prev = process.env[CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV];
+  try {
+    process.env[CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV] = "1";
+    return fn();
+  } finally {
+    if (prev === undefined) delete process.env[CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV];
+    else process.env[CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV] = prev;
+  }
+}
+
+/** Seal a fixture D7 receipt for `bookId` bound to its CURRENT canonical content,
+ *  and write it to the state-side path the gate resolves. `staleUnit` deliberately
+ *  breaks one content hash to exercise the stale-content path. */
+function writeFixtureD7Receipt(bookId: string, opts: { verdict: D7ShipGateVerdict; round?: number; staleUnit?: string }): void {
+  const content = deriveCurrentD7Content({ bookId });
+  const pass = opts.verdict === "PASS";
+  const chapters = [...content.entries()].map(([unit, entry]) => ({
+    unit,
+    chapterNumber: entry.chapterNumber,
+    chapterDiagnostic: pass ? 90 : 69,
+    coreDomainMin: pass ? 3.5 : 2.0,
+    coreDomainsPass: pass,
+    gatesPass: true,
+    layerIndependencePass: pass,
+    pass,
+    contentDocSha256: opts.staleUnit === unit ? "f".repeat(64) : entry.contentDocSha256,
+    headingInventorySha256: entry.headingInventorySha256,
+  }));
+  const mean = pass ? 90 : 69;
+  const receipt: D7ShipGateReceiptV1 = sealD7ShipGateReceipt({
+    schema_version: "1.0.0",
+    artifact_type: "chapterflow_d7_ship_gate_receipt",
+    issuer: "chapterflow_evaluation_orchestrator",
+    book_id: bookId,
+    audit_id: "zz-d7-fixture",
+    round: opts.round ?? 1,
+    reauthor_budget_per_audit: D7_REAUTHOR_BUDGET_PER_AUDIT,
+    instrument: { rubric_version: "2.0", bar: RUBRIC_AUDIT_BAR_D7 },
+    verdict: opts.verdict,
+    book_cds: mean,
+    summary: {
+      chapter_count: chapters.length, mean, min: pass ? 88 : 67.66,
+      mean_pass: pass, min_pass: pass, all_core_domains_pass: pass,
+      all_gates_pass: true, all_layer_independence_pass: pass, calibration_pass: true,
+    },
+    calibration: { unit: "cal", expected: 67.66, observed: 67.66, abs_delta: 0, tolerance: 3, pass: true },
+    chapters,
+    custody: [],
+    report_sha256: "0".repeat(64),
+  });
+  mkdirSync(D7_STATE_BOOKS_DIR, { recursive: true });
+  writeFileSync(d7ShipGateReceiptPath(bookId, D7_STATE_BOOKS_DIR), JSON.stringify(receipt, null, 2) + "\n", "utf8");
+}
+
+test("WP-401: a new book with NO D7 receipt is refused under REQUIRE and leaves no production package", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => withRequireD7(() => {
+      const index = setupMajorCleanFixture();
+      const result = promoteMajorFixture(index);
+      assert.equal(result.promoted, false, "REQUIRE mode blocks a new book with no receipt");
+      assert.ok(result.d7ShipGateBlockerCount > 0, "the D7 gate contributes a blocker");
+      assert.equal(result.d7ShipGateDecision, "block");
+      assert.match(result.reason, /D7.receipt_missing|D7 ship-gate/i);
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, "a D7-blocked promote writes no production package");
+    }));
+  } finally {
+    console.warn = oldWarn;
+    cleanupFixture();
+  }
+});
+
+test("WP-401: a fresh PASS receipt bound to the shipped bytes ALLOWS promotion under REQUIRE", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => withRequireD7(() => {
+      const index = setupMajorCleanFixture();
+      writeFixtureD7Receipt(MAJOR_BOOK, { verdict: "PASS" });
+      const result = promoteMajorFixture(index);
+      assert.equal(result.promoted, true, result.reason);
+      assert.equal(result.d7ShipGateDecision, "pass");
+      assert.equal(result.d7ShipGateBlockerCount, 0);
+      assert.ok(existsSync(productionPackagePath(MAJOR_BOOK)), "a D7-PASS book ships");
+    }));
+  } finally {
+    console.warn = oldWarn;
+    cleanupFixture();
+  }
+});
+
+test("WP-401: a FAIL D7 receipt is quarantined (blocks even without REQUIRE) and writes a one-round halt record", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      writeFixtureD7Receipt(MAJOR_BOOK, { verdict: "FAIL", round: 1 });
+      const result = promoteMajorFixture(index); // NOTE: no REQUIRE — a present FAIL always blocks
+      assert.equal(result.promoted, false, "a book you audited and it FAILED can never ship");
+      assert.ok(result.d7ShipGateBlockerCount > 0);
+      assert.equal(result.d7ShipGateDecision, "block");
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, "a FAIL D7 receipt writes no production package");
+      const haltPath = d7ShipGateHaltPath(MAJOR_BOOK, D7_STATE_BOOKS_DIR);
+      assert.ok(existsSync(haltPath), "a FAIL emits the owner-visible halt record");
+      const halt = JSON.parse(readFileSync(haltPath, "utf8"));
+      assert.equal(halt.halt_category, "BLOCKED_QUALITY_BAR");
+      assert.equal(halt.re_author_directive.allowed_reauthors, 1, "round 1 owes one full re-author");
+      assert.equal(halt.re_author_directive.terminal, false);
+    });
+  } finally {
+    console.warn = oldWarn;
+    cleanupFixture();
+  }
+});
+
+test("WP-401: one-round policy — a round-2 FAIL receipt halts BLOCKED_QUALITY_BAR terminally for the owner", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      writeFixtureD7Receipt(MAJOR_BOOK, { verdict: "FAIL", round: 2 });
+      const result = promoteMajorFixture(index);
+      assert.equal(result.promoted, false);
+      const halt = JSON.parse(readFileSync(d7ShipGateHaltPath(MAJOR_BOOK, D7_STATE_BOOKS_DIR), "utf8"));
+      assert.equal(halt.round, 2);
+      assert.equal(halt.re_author_directive.terminal, true, "the single re-author budget is exhausted at round 2");
+      assert.equal(halt.re_author_directive.allowed_reauthors, 0);
+    });
+  } finally {
+    console.warn = oldWarn;
+    cleanupFixture();
+  }
+});
+
+test("WP-401: a receipt bound to STALE bytes (content changed since the audit) is refused", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => withRequireD7(() => {
+      const index = setupMajorCleanFixture();
+      writeFixtureD7Receipt(MAJOR_BOOK, { verdict: "PASS", staleUnit: `${MAJOR_BOOK}-ch01` });
+      const result = promoteMajorFixture(index);
+      assert.equal(result.promoted, false, "a receipt not bound to the current bytes is stale");
+      assert.equal(result.d7ShipGateDecision, "block");
+      const report = JSON.parse(readFileSync(gateReportPath(MAJOR_BOOK), "utf8"));
+      assert.ok(
+        (report.d7ShipGate?.blockers ?? []).some((b: string) => b.startsWith("D7.stale_content")),
+        `expected a D7.stale_content blocker; got ${JSON.stringify(report.d7ShipGate?.blockers)}`,
+      );
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false);
+    }));
+  } finally {
+    console.warn = oldWarn;
+    cleanupFixture();
+  }
+});
+
+test("WP-401 no-retroactivity: a byte-identical re-promote of a shipped package is EXEMPT even under REQUIRE (no receipt)", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      // First promote WITHOUT the gate required (advisory) creates the shipped package.
+      const first = promoteMajorFixture(index);
+      assert.equal(first.promoted, true, first.reason);
+      assert.equal(first.d7ShipGateDecision, "advisory-skip");
+      const shippedBytes = readFileSync(productionPackagePath(MAJOR_BOOK), "utf8");
+
+      // Re-promote the identical content under REQUIRE, with NO receipt: the
+      // byte-identical candidate is exempt (an already-shipped book stays untouchable).
+      const second = withRequireD7(() => promoteMajorFixture(index));
+      assert.equal(second.promoted, true, `a byte-identical re-promote must be exempt: ${second.reason}`);
+      assert.equal(second.d7ShipGateDecision, "exempt");
+      assert.equal(second.d7ShipGateBlockerCount, 0);
+      assert.equal(readFileSync(productionPackagePath(MAJOR_BOOK), "utf8"), shippedBytes, "the exempt re-promote keeps the shipped bytes stable");
     });
   } finally {
     console.warn = oldWarn;

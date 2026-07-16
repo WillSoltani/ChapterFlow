@@ -35,6 +35,8 @@ function baseResult(over: Partial<PromotionResult> = {}): PromotionResult {
     generationDebtBlockerCount: 0,
     generationDebtAdvisoryCount: 0,
     productionManifestBlockerCount: 0,
+    d7ShipGateBlockerCount: 0,
+    d7ShipGateDecision: "advisory-skip",
     canonicalBlockerCount: 0,
     shipGateMajorCount: 0,
     bookGateMajorCount: 0,
@@ -81,6 +83,7 @@ test("formatPromotionResult DEFAULT path (no quizKeyEvidence) is byte-identical 
     `  Generation debt: 0 blockers, 0 advisories`,
     `  Major policy: 0 blockers`,
     `  Production manifest: 0 blockers`,
+    `  D7 ship gate: advisory-skip (0 blockers)`,
     `  Book gate: 0 blockers, 0 majors`,
   ].join("\n");
   assert.equal(formatPromotionResult(r), expected);

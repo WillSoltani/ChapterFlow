@@ -15,6 +15,10 @@ import { V21_SCHEMA_VERSION } from "../types.js";
 import { CANONICAL_STATE, REPO_ROOT } from "../lib/chapterPaths.js";
 import { compareChapterSetToCanonical, readCanonicalChapterIndex } from "../lib/chapterSet.js";
 import { verifyProductionPackage } from "../verifyProductionPackage.js";
+import {
+  CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV,
+  evaluateD7ShipGateForPreflight,
+} from "../critics/d7ShipGate.js";
 import { normalizeChapterProvenance } from "./normalizeProvenance.js";
 import { checkManualKeyJudge, loadBookChapters } from "./manualKeyJudge.js";
 import { unresolvedMajors } from "./majorDisposition.js";
@@ -426,6 +430,18 @@ function noApiPreflightChecks(bookId: string): PreflightCheck[] {
     { check: "sweep", blockers: safe("sweep", () => checkSweep(chapters, true).map((f) => `sweep ${f.checkId}: ${f.message}`)) },
     { check: "majors", blockers: safe("majors", () => unresolvedMajors(bookId, chapters, true).map((f) => `major ${f.id} ${f.scope} ${f.checkId}: ${f.message}`)) },
     { check: "source-reality", blockers: srBlockers, decision: srDecision },
+    // WP-401 D7 rubric-audit ship gate (defense-in-depth; promoteBook is the
+    // authority + also runs the byte-identity exemption). A PRESENT receipt must
+    // be a fresh PASS bound to the current bytes; a MISSING one blocks only under
+    // CHAPTERFLOW_REQUIRE_D7_SHIP_GATE=1.
+    (() => {
+      const d7 = safe("d7-ship-gate", () => evaluateD7ShipGateForPreflight({
+        bookId,
+        stateBooksDir: resolve(PIPELINE_DIR, "state", "books"),
+        require: process.env[CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV] === "1",
+      }).blockers.map((b) => `d7-ship-gate ${b}`));
+      return { check: "d7-ship-gate", blockers: d7 };
+    })(),
   ];
 }
 

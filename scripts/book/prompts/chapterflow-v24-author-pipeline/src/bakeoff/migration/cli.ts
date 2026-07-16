@@ -93,6 +93,7 @@ import {
   summarizeAudit,
 } from "./rubricAuditHarness.js";
 import { assembleAuditPackage } from "../auditPackageAssembler.js";
+import { mintD7ShipGateReceiptFromAudit } from "../../critics/d7ShipGate.js";
 import { materializePilotRoleReadiness, materializePilotRoleReadinessV2, materializePilotRoleReadinessV3, materializePilotRoleReadinessV4, materializePilotRoleReadinessV5, materializePilotRoleReadinessV6 } from "./pilotRoleReadinessInstrument.js";
 import {
   buildGoldArtifacts,
@@ -318,6 +319,7 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "rubric-audit-ingest",
   "rubric-audit-status",
   "assemble-audit-package",
+  "rubric-audit-mint-ship-receipt",
   "pilot-role-readiness",
   "pilot-role-readiness-v2",
   "pilot-role-readiness-v3",
@@ -371,6 +373,7 @@ const RUBRIC_AUDIT_SUBVERBS: ReadonlySet<string> = new Set([
   "rubric-audit-ingest",
   "rubric-audit-status",
   "assemble-audit-package",
+  "rubric-audit-mint-ship-receipt",
 ]);
 
 /** Every readiness/qualification/attestation/forward-campaign subverb gated behind
@@ -1823,6 +1826,49 @@ function runLocalForwardSubverb(
       return 0;
     } catch (error) {
       console.error(`assemble-audit-package: ${(error as Error).message}`);
+      return 1;
+    }
+  }
+  if (subverb === "rubric-audit-mint-ship-receipt") {
+    // WP-401: mint the SEALED D7 ship-gate receipt from a COMPLETED audit. This
+    // is model-free — it CONSUMES the external rater/adjudicator outputs (rated by
+    // isolated Claude workers, never here) and seals a receipt binding the book's
+    // per-chapter content hashes, D7 scores, book CDS, bar verdict, and the sealed
+    // rater/adjudication custody. The GATE (in the ship path) later binds it to the
+    // CURRENT canonical bytes and refuses a stale / FAIL / VOID / tampered / missing
+    // receipt.
+    //
+    // Operator flow (RATING is external, Claude-side):
+    //   1. assemble-audit-package --book B --out <tmp>   (current canonical content)
+    //   2. rubric-audit-batch --audit-id A --package <tmp> --chapters ... --write
+    //   3. rubric-audit-render-task / rate externally / rubric-audit-ingest (both
+    //      raters + adjudicator per chapter, plus the calibration item)
+    //   4. rubric-audit-report --audit-id A            (deterministic verdict)
+    //   5. rubric-audit-mint-ship-receipt --audit-id A --out <receipt path> --write
+    //      (the receipt path the ship gate resolves is d7ShipGateReceiptPath(book))
+    //   6. promote / publish — the gate reads the sealed receipt.
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const auditId = typeof flags["audit-id"] === "string" ? flags["audit-id"] : "";
+    const out = typeof flags.out === "string" ? flags.out : "";
+    const roundFlag = typeof flags.round === "string" ? Number(flags.round) : 1;
+    if (auditId === "") throw new Error("rubric-audit-mint-ship-receipt requires --audit-id");
+    if (!Number.isInteger(roundFlag) || roundFlag < 1) throw new Error("--round must be a positive integer");
+    try {
+      const receipt = mintD7ShipGateReceiptFromAudit({ repositoryRoot, auditId, round: roundFlag });
+      if (out !== "") {
+        const outPath = resolve(out);
+        if (flags.write === true) {
+          writeFileAtomic(outPath, JSON.stringify(receipt, null, 2) + "\n");
+        }
+        console.log(flags.json === true ? JSON.stringify(receipt, null, 2)
+          : `[migration] rubric-audit ${auditId}: minted D7 ship-gate receipt for ${receipt.book_id} — verdict=${receipt.verdict} bookCDS=${receipt.book_cds.toFixed(2)} min=${receipt.summary.min.toFixed(2)} round=${receipt.round} ${flags.write === true ? `→ ${outPath}` : "(dry; pass --write)"} model/api calls=0`);
+      } else {
+        console.log(flags.json === true ? JSON.stringify(receipt, null, 2)
+          : `[migration] rubric-audit ${auditId}: minted D7 ship-gate receipt for ${receipt.book_id} — verdict=${receipt.verdict} bookCDS=${receipt.book_cds.toFixed(2)} min=${receipt.summary.min.toFixed(2)} round=${receipt.round} (no --out; not written) model/api calls=0`);
+      }
+      return receipt.verdict === "PASS" ? 0 : 1;
+    } catch (error) {
+      console.error(`rubric-audit-mint-ship-receipt: ${(error as Error).message}`);
       return 1;
     }
   }

@@ -67,6 +67,13 @@ import {
   readCanonicalChapterIndex,
   type ChapterSetBlocker,
 } from "./lib/chapterSet.js";
+import {
+  CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV,
+  d7ShipGateHaltPath,
+  runD7ShipGate,
+  type D7ShipGateDecision,
+  type D7ShipGateResult,
+} from "./critics/d7ShipGate.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE = resolve(__dirname, "../state");
@@ -215,6 +222,14 @@ export type PromotionResult = {
   generationDebtBlockerCount: number;
   generationDebtAdvisoryCount: number;
   productionManifestBlockerCount: number;
+  /** WP-401 D7 rubric-audit SHIP GATE: 0 unless a new/changed book is missing a
+   *  required receipt, or its receipt is FAIL/VOID/stale/tampered/corrupt. An
+   *  exempt (byte-identical to the shipped corpus) or advisory (no receipt, gate
+   *  not required) book counts 0. */
+  d7ShipGateBlockerCount: number;
+  /** The reported D7 ship-gate decision: exempt | pass | advisory-skip | block |
+   *  not-evaluated (the book was blocked before the gate ran). */
+  d7ShipGateDecision: D7ShipGateDecision | "not-evaluated";
   canonicalBlockerCount: number;
   canonicalBlockers?: ChapterSetBlocker[];
   shipGateMajorCount: number;
@@ -842,6 +857,30 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   }
   const productionManifestBlockerCount = productionManifestFindings.length + verificationFindings.length;
 
+  // Step 3.8: D7 rubric-audit SHIP GATE (WP-401). The LAST gate on the ship path:
+  // a NEW or CHANGED book must carry a fresh, sealed D7 PASS receipt bound to the
+  // exact bytes being shipped. Runs only when the book is otherwise shippable (a
+  // candidate package was built and verified) — an already-blocked book is not
+  // re-gated. The rating itself stays Claude-side/external; this gate only reads
+  // the sealed receipt and re-derives the current content hashes (zero model
+  // calls). Exemption (byte-identical to the shipped corpus package) and the
+  // require-flag semantics live in runD7ShipGate.
+  const requireD7 = process.env[CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV] === "1";
+  let d7Result: D7ShipGateResult | null = null;
+  let d7ShipGateBlockerCount = 0;
+  if (candidatePackage && candidateSidecar && productionManifestBlockerCount === 0) {
+    d7Result = runD7ShipGate({
+      bookId,
+      // The EXACT bytes publishPackageTransactionally will write (no trailing newline).
+      candidatePackageBytes: JSON.stringify(candidatePackage, null, 2),
+      packagePath,
+      stateBooksDir: resolve(STATE, "books"),
+      require: requireD7,
+    });
+    d7ShipGateBlockerCount = d7Result.blockers.length;
+  }
+  const d7ShipGateDecision: D7ShipGateDecision | "not-evaluated" = d7Result?.decision ?? "not-evaluated";
+
   // Step 4: Write the report regardless of pass/fail.
   mkdirSync(resolve(STATE, "books"), { recursive: true });
   const reportPath = resolve(STATE, "books", `${bookId}.gate.json`);
@@ -909,15 +948,32 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
       totalBlockers: productionManifestBlockerCount,
       findings: [...productionManifestFindings, ...verificationFindings],
     },
+    d7ShipGate: {
+      schemaVersion: "d7-ship-gate-report-v1",
+      decision: d7ShipGateDecision,
+      require: requireD7,
+      verdict: d7Result?.verdict ?? null,
+      totalBlockers: d7ShipGateBlockerCount,
+      blockers: d7Result?.blockers ?? [],
+      reason: d7Result?.reason ?? "not evaluated (book blocked before the D7 gate)",
+      halt: d7Result?.halt ?? null,
+    },
   };
 
   // Step 5: Promote only if EVERY gate passes blocker-clean — deterministic
   // gates (per-chapter + intra-book + book), the QC-attestation gate, AND the
   // quiz answer-key judge gate.
-  if (preManifestBlockerCount > 0 || productionManifestBlockerCount > 0 || !candidatePackage || !candidateSidecar) {
+  if (preManifestBlockerCount > 0 || productionManifestBlockerCount > 0 || d7ShipGateBlockerCount > 0 || !candidatePackage || !candidateSidecar) {
     mkdirSync(QUARANTINE_DIR, { recursive: true });
     const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${now().getTime()}.report.json`);
     writeFileAtomic(quarantinePath, JSON.stringify(fullReport, null, 2) + "\n");
+    // On a D7 quality-bar FAIL/VOID, persist the owner-visible halt record that
+    // carries the D-8 on-fail policy DATA (one full re-author round, then a
+    // terminal owner halt). The re-author EXECUTION is the author loop's job.
+    if (d7Result?.halt) {
+      mkdirSync(resolve(STATE, "books"), { recursive: true });
+      writeFileAtomic(d7ShipGateHaltPath(bookId, resolve(STATE, "books")), JSON.stringify(d7Result.halt, null, 2) + "\n");
+    }
     // Bound this book's blocked-report history: keep the newest 5, MOVE the rest
     // into _blocked/_archive-<date>/ (never delete — F-14). The just-written report
     // is always the newest, so it is never archived by its own write.
@@ -949,6 +1005,9 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     const manifestSummary = productionManifestBlockerCount > 0
       ? ` + ${productionManifestBlockerCount} production-manifest blocker(s): ${[...productionManifestFindings, ...verificationFindings].slice(0, 3).map((f) => `${f.chapterNumber ? `ch${f.chapterNumber} ` : ""}${f.checkId}`).join(", ")}${productionManifestBlockerCount > 3 ? ", …" : ""}`
       : "";
+    const d7Summary = d7ShipGateBlockerCount > 0
+      ? ` + D7 ship-gate ${d7Result?.verdict ?? "BLOCK"} (${d7ShipGateBlockerCount} blocker(s)): ${(d7Result?.blockers ?? []).slice(0, 2).map((b) => b.split(":")[0]).join(", ")}${d7ShipGateBlockerCount > 2 ? ", …" : ""}`
+      : "";
     writeFileAtomic(reportPath, JSON.stringify(fullReport, null, 2) + "\n");
     return {
       promoted: false,
@@ -966,6 +1025,8 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
       generationDebtBlockerCount,
       generationDebtAdvisoryCount,
       productionManifestBlockerCount,
+      d7ShipGateBlockerCount,
+      d7ShipGateDecision,
       canonicalBlockerCount: 0,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
@@ -975,7 +1036,7 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
         unverifiedChapters: keyEvidence.unverifiedChapters,
         lines: keyEvidence.perChapter.map((c) => c.line),
       },
-      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${sourceIntegritySummary}${sourceRealitySummary}${generationDebtSummary}${noApiSummary}${majorSummary}${manifestSummary}. Quarantined at ${quarantinePath}.${keyEvidence.unverifiedChapters.length > 0 ? ` ${keyEvidence.summary}` : ""}`,
+      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${sourceIntegritySummary}${sourceRealitySummary}${generationDebtSummary}${noApiSummary}${majorSummary}${manifestSummary}${d7Summary}. Quarantined at ${quarantinePath}.${keyEvidence.unverifiedChapters.length > 0 ? ` ${keyEvidence.summary}` : ""}`,
     };
   }
 
@@ -1013,6 +1074,8 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     generationDebtBlockerCount: 0,
     generationDebtAdvisoryCount,
     productionManifestBlockerCount: 0,
+    d7ShipGateBlockerCount: 0,
+    d7ShipGateDecision,
     canonicalBlockerCount: 0,
     shipGateMajorCount: shipMajorCount,
     bookGateMajorCount: bookMajorCount,
@@ -1022,7 +1085,7 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
       unverifiedChapters: keyEvidence.unverifiedChapters,
       lines: keyEvidence.perChapter.map((c) => c.line),
     },
-    reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Source-reality: ${sourceReality.decision}. Major policy clean with ${majorPolicy.current.length} current major(s) waived or absent.${keyEvidence.unverifiedChapters.length > 0 ? ` ${keyEvidence.summary}` : ""}`,
+    reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Source-reality: ${sourceReality.decision}. D7 ship gate: ${d7ShipGateDecision}. Major policy clean with ${majorPolicy.current.length} current major(s) waived or absent.${keyEvidence.unverifiedChapters.length > 0 ? ` ${keyEvidence.summary}` : ""}`,
   };
 }
 
@@ -1045,6 +1108,9 @@ function blockedResult(args: { bookId: string; reason: string; canonicalBlockers
     generationDebtBlockerCount: 0,
     generationDebtAdvisoryCount: 0,
     productionManifestBlockerCount: 0,
+    // A pre-gate fail-closed return never reached the D7 ship gate.
+    d7ShipGateBlockerCount: 0,
+    d7ShipGateDecision: "not-evaluated",
     canonicalBlockerCount: args.canonicalBlockers?.length ?? 0,
     canonicalBlockers: args.canonicalBlockers,
     shipGateMajorCount: 0,
@@ -1069,6 +1135,7 @@ export function formatPromotionResult(r: PromotionResult): string {
   lines.push(`  Generation debt: ${r.generationDebtBlockerCount} blockers, ${r.generationDebtAdvisoryCount} advisories`);
   lines.push(`  Major policy: ${r.majorBlockerCount} blockers`);
   lines.push(`  Production manifest: ${r.productionManifestBlockerCount} blockers`);
+  lines.push(`  D7 ship gate: ${r.d7ShipGateDecision} (${r.d7ShipGateBlockerCount} blockers)`);
   lines.push(`  Book gate: ${r.bookGateBlockerCount} blockers, ${r.bookGateMajorCount} majors`);
   // R5(b): the F-10 quiz answer-key EVIDENCE, per chapter. The `reason` only
   // folds in the one-line summary (and only when a chapter is UNVERIFIED), so the
