@@ -116,3 +116,118 @@ test("adaptApiChapterToBookChapter: a normal 200 with prose reconstructs to non-
   assert.ok(full.summaryByDepth.standard.length > 0, "expected a reconstructed standard body");
   assert.equal(isReconstructedChapterEmpty(full), false);
 });
+
+// ─── D10 progressive (cumulative) rendering (WP-405) ──────────────────────────
+//
+// Serial-layer v21 books author fastRead/deepRead/fullRead as complementary
+// slices (fastRead ≈ 15% of the prose). The reader now composes them
+// cumulatively: Simple = fastRead, Standard = fastRead+deepRead, Challenge = all
+// three — recovering the prose that single-layer rendering hid. Distinct one-
+// paragraph tiers make the composition observable by paragraph text.
+
+const FAST = "Fast-read prose: the one-paragraph core lesson stated plainly.";
+const DEEP = "Deep-read prose: the mechanism, evidence, and nuance behind the core lesson.";
+const FULL = "Full-read prose: boundary conditions, misuse, and integration of the lesson.";
+
+function paragraphs(blocks: ChapterSummaryBlock[]): string[] {
+  return blocks.filter((b) => b.type === "paragraph").map((b) => b.text);
+}
+
+function threeTierChapter() {
+  return apiChapter({
+    contentVariants: {
+      easy: { chapterBreakdown: { direct: FAST } },
+      medium: { chapterBreakdown: { direct: DEEP } },
+      hard: { chapterBreakdown: { direct: FULL } },
+    },
+  });
+}
+
+test("D10: Simple renders fastRead only", () => {
+  const ch = adaptApiChapterToBookChapter(threeTierChapter(), BOOK);
+  assert.deepEqual(paragraphs(ch.summaryByDepth.simple), [FAST]);
+});
+
+test("D10: Standard composes fastRead + deepRead in order", () => {
+  const ch = adaptApiChapterToBookChapter(threeTierChapter(), BOOK);
+  assert.deepEqual(paragraphs(ch.summaryByDepth.standard), [FAST, DEEP]);
+});
+
+test("D10: Challenge (deeper) composes all three layers in order", () => {
+  const ch = adaptApiChapterToBookChapter(threeTierChapter(), BOOK);
+  assert.deepEqual(paragraphs(ch.summaryByDepth.deeper), [FAST, DEEP, FULL]);
+});
+
+test("D10: composed prose volume is strictly cumulative (Simple < Standard < Challenge)", () => {
+  const ch = adaptApiChapterToBookChapter(threeTierChapter(), BOOK);
+  const chars = (blocks: ChapterSummaryBlock[]) =>
+    paragraphs(blocks).reduce((n, t) => n + t.length, 0);
+  const simple = chars(ch.summaryByDepth.simple);
+  const standard = chars(ch.summaryByDepth.standard);
+  const deeper = chars(ch.summaryByDepth.deeper);
+  assert.ok(simple < standard, `expected simple(${simple}) < standard(${standard})`);
+  assert.ok(standard < deeper, `expected standard(${standard}) < deeper(${deeper})`);
+});
+
+test("D10: composed blocks carry stable, unique ${depth}-p-N ids", () => {
+  const ch = adaptApiChapterToBookChapter(threeTierChapter(), BOOK);
+  for (const depth of ["simple", "standard", "deeper"] as const) {
+    const ids = ch.summaryByDepth[depth].map((b) => b.id);
+    assert.equal(new Set(ids).size, ids.length, `${depth} block ids must be unique`);
+    for (const id of ids) {
+      assert.ok(id.startsWith(`${depth}-`), `id "${id}" must be keyed to depth "${depth}"`);
+    }
+  }
+  const stdParaIds = ch.summaryByDepth.standard
+    .filter((b) => b.type === "paragraph")
+    .map((b) => b.id);
+  assert.deepEqual(stdParaIds, ["standard-p-1", "standard-p-2"]);
+});
+
+test("D10: a chapter missing deepRead + fullRead composes only fastRead, no empty section", () => {
+  const ch = adaptApiChapterToBookChapter(
+    apiChapter({ contentVariants: { easy: { chapterBreakdown: { direct: FAST } } } }),
+    BOOK,
+  );
+  // Every present layer is fastRead only ⇒ each depth shows just fastRead; no
+  // depth renders an empty section, and the missing layers are silently skipped.
+  assert.deepEqual(paragraphs(ch.summaryByDepth.simple), [FAST]);
+  assert.deepEqual(paragraphs(ch.summaryByDepth.standard), [FAST]);
+  assert.deepEqual(paragraphs(ch.summaryByDepth.deeper), [FAST]);
+  assert.equal(isReconstructedChapterEmpty(ch), false);
+});
+
+test("D10: a chapter missing fullRead composes fastRead+deepRead for Challenge, no empty section", () => {
+  const ch = adaptApiChapterToBookChapter(
+    apiChapter({
+      contentVariants: {
+        easy: { chapterBreakdown: { direct: FAST } },
+        medium: { chapterBreakdown: { direct: DEEP } },
+      },
+    }),
+    BOOK,
+  );
+  assert.deepEqual(paragraphs(ch.summaryByDepth.deeper), [FAST, DEEP]);
+  assert.ok(ch.summaryByDepth.deeper.every((b) => b.text.trim().length > 0), "no empty block");
+});
+
+test("D10: byte-identical blocks repeated across layers render once (dedup)", () => {
+  // v21 memorable lines are appended as identical bullet blocks to every tier;
+  // the cumulative Challenge view collapses those repeats to one occurrence each
+  // while keeping the complementary prose paragraphs from every layer.
+  const shared = "A memorable line repeated verbatim in every layer.";
+  const ch = adaptApiChapterToBookChapter(
+    {
+      ...threeTierChapter(),
+      v21Extras: { memorableLines: [{ text: shared }] },
+    },
+    BOOK,
+  );
+  const sharedBullets = ch.summaryByDepth.deeper
+    .filter((b) => b.type === "bullet")
+    .map((b) => b.text)
+    .filter((t) => t === shared);
+  assert.equal(sharedBullets.length, 1, "the repeated memorable-line bullet must appear exactly once");
+  // Prose paragraphs, being complementary, are NOT collapsed.
+  assert.deepEqual(paragraphs(ch.summaryByDepth.deeper), [FAST, DEEP, FULL]);
+});

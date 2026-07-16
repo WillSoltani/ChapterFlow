@@ -252,3 +252,71 @@ test("behaviorLoop.readerPatterns survives the API-backed path (chapterFromApi.v
   assert.equal(patterns![0].id, "morning-phone-reach");
   assert.equal(patterns![1].mapsToExampleIndex, 2);
 });
+
+// ─── D10 progressive rendering on real catalog data (WP-405) ──────────────────
+//
+// The shipped atomic-habits.v21.json is a serial-layer book: fastRead/deepRead/
+// fullRead are complementary slices. Under D10 the reader composes them
+// cumulatively so a Standard reader sees fast+deep and a Challenge reader sees
+// all three — recovering prose that single-layer rendering hid. The
+// `layerIndependent` marker opts a book back into single-layer rendering.
+
+const paraCount = (blocks: { type: string }[]) =>
+  blocks.filter((b) => b.type === "paragraph").length;
+const proseChars = (blocks: { type: string; text: string }[]) =>
+  blocks.filter((b) => b.type === "paragraph").reduce((n, b) => n + b.text.length, 0);
+
+test("D10 real fixture: Standard adds deepRead over Simple; Challenge adds fullRead over Standard", () => {
+  const chapter = buildBookChapterFromRawV21(sampleRawChapter, {
+    bookId: "atomic-habits",
+    title: "Atomic Habits",
+    author: "James Clear",
+  });
+  const s = chapter.summaryByDepth.simple;
+  const st = chapter.summaryByDepth.standard;
+  const d = chapter.summaryByDepth.deeper;
+
+  // Prose volume grows monotonically across the three modes.
+  assert.ok(proseChars(s) < proseChars(st), "Standard must show more prose than Simple");
+  assert.ok(proseChars(st) < proseChars(d), "Challenge must show more prose than Standard");
+  assert.ok(paraCount(s) < paraCount(st) && paraCount(st) < paraCount(d));
+
+  // Cumulative order: Standard's paragraphs begin with Simple's; Challenge's begin
+  // with Standard's (fastRead → deepRead → fullRead).
+  const simplePara = s.filter((b) => b.type === "paragraph").map((b) => b.text);
+  const stdPara = st.filter((b) => b.type === "paragraph").map((b) => b.text);
+  const deepPara = d.filter((b) => b.type === "paragraph").map((b) => b.text);
+  assert.ok(simplePara.every((t, i) => stdPara[i] === t), "Standard is a superset-in-order of Simple");
+  assert.ok(stdPara.every((t, i) => deepPara[i] === t), "Challenge is a superset-in-order of Standard");
+
+  // No paragraph is rendered twice within the Challenge view.
+  assert.equal(new Set(deepPara).size, deepPara.length, "no duplicated paragraph in Challenge");
+});
+
+test("D10 real fixture: layerIndependent marker keeps single-layer-per-mode rendering", () => {
+  const serial = buildBookChapterFromRawV21(sampleRawChapter, {
+    bookId: "atomic-habits",
+    title: "Atomic Habits",
+  });
+  const independent = buildBookChapterFromRawV21(sampleRawChapter, {
+    bookId: "atomic-habits",
+    title: "Atomic Habits",
+    layerIndependent: true,
+  });
+
+  // Simple is fastRead-only either way.
+  assert.equal(
+    proseChars(independent.summaryByDepth.simple),
+    proseChars(serial.summaryByDepth.simple),
+  );
+  // With the marker, Standard/Challenge render a single layer, so they show
+  // strictly LESS prose than the composed (serial) rendering.
+  assert.ok(
+    proseChars(independent.summaryByDepth.standard) < proseChars(serial.summaryByDepth.standard),
+    "layer-independent Standard must not concatenate",
+  );
+  assert.ok(
+    proseChars(independent.summaryByDepth.deeper) < proseChars(serial.summaryByDepth.deeper),
+    "layer-independent Challenge must not concatenate",
+  );
+});
