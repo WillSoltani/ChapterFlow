@@ -71,7 +71,7 @@ import { writeReports, type ReportInputs } from "./report.js";
 export const DEFAULT_BAKEOFF_MODELS = ["gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"];
 export const DEFAULT_BAKEOFF_EFFORT: ReasoningEffort = "xhigh";
 // WP-501: the bakeoff judge model has NO default. directive-1 removed the
-// gpt-5.5 default, and a judge must never SILENTLY inherit BASELINE_MODEL (the
+// prior 5.5 default, and a judge must never SILENTLY inherit BASELINE_MODEL (the
 // writer/candidate model) — that is self-review, not independent judgement. The
 // judge model is REQUIRED and explicit (`judgeModel` below / `--judge-model`).
 // The target judge is the Claude-side D7 rubric-audit instrument; WP-702 rewires
@@ -167,8 +167,8 @@ export type RunBakeoffOptions = {
   effort?: ReasoningEffort;
   /** REQUIRED and explicit (WP-501): the fixed judging-instrument model. It has
    *  NO default — it must never silently inherit BASELINE_MODEL (the writer),
-   *  and gpt-5.5 is void per directive-1. Callers pass an explicit judge id
-   *  (the CLI requires `--judge-model`). */
+   *  and the prior 5.5 baseline is void per directive-1. Callers pass an explicit
+   *  judge id (the CLI requires `--judge-model`). */
   judgeModel: string;
   judgeEffort?: ReasoningEffort;
   maxParallel?: number;
@@ -265,8 +265,8 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
   if (!judgeModel) {
     throw new Error(
       "model-bakeoff: an explicit judge model is required (no default). The judge must not " +
-        "silently inherit the writer/baseline model (evaluator independence), and gpt-5.5 is void " +
-        "per directive-1. Pass --judge-model; the target judge is the D7 rubric-audit instrument (WP-702).",
+        "silently inherit the writer/baseline model (evaluator independence), and the prior 5.5 baseline " +
+        "is void per directive-1. Pass --judge-model; the target judge is the D7 rubric-audit instrument (WP-702).",
     );
   }
   const judge = { model: judgeModel, effort: opts.judgeEffort ?? DEFAULT_JUDGE_EFFORT };

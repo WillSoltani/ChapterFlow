@@ -55,7 +55,7 @@ export const NORMAL_PROFILE_MODEL: { readonly model: string; readonly status: st
 
 /** The normal-profile production model. Kept as the `BASELINE_MODEL` export for
  *  import stability across the pipeline; its VALUE is now the provisional 5.6
- *  default (was gpt-5.5, deleted per directive-1). Typed `string` (not a literal)
+ *  default (the prior 5.5 baseline was deleted per directive-1). Typed `string` (not a literal)
  *  so consumers do not couple to a specific model id. WP-501 owns any rename of
  *  this symbol during the repo-wide 5.5-literal purge. */
 export const BASELINE_MODEL: string = NORMAL_PROFILE_MODEL.model;

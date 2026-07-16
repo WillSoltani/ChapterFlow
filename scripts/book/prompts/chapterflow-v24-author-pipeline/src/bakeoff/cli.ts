@@ -58,7 +58,7 @@ export async function runModelBakeoffCli(args: string[], flags: Record<string, s
     return 2;
   }
   // WP-501: the judge model is REQUIRED and explicit — no default, never the
-  // silent writer/baseline model (evaluator independence), and gpt-5.5 is void.
+  // silent writer/baseline model (evaluator independence), and the 5.5 baseline is void.
   const judgeModel = typeof flags["judge-model"] === "string" ? flags["judge-model"].trim() : "";
   if (!judgeModel) {
     console.error(USAGE);

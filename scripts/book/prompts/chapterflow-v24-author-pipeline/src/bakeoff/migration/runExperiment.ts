@@ -72,8 +72,9 @@ import {
 } from "./thresholds.js";
 import type { AuthorIo } from "../../orchestrator/authorRun.js";
 
-// The confirmatory baseline cell is the HISTORICAL gpt-5.5 arm (55-XH), frozen
-// so it never tracks the live baseline after the WP-302 flip (WP-501 Part 3).
+// The confirmatory baseline cell is the HISTORICAL 5.5 arm (55-XH,
+// HISTORICAL_BASELINE_55), frozen so it never tracks the live baseline after the
+// WP-302 flip (WP-501 Part 3).
 const BASELINE_CELL_MODEL = HISTORICAL_BASELINE_55;
 const BASELINE_CELL_ID = "55-XH";
 

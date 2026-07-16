@@ -49,7 +49,7 @@ export class SealError extends Error {
 }
 
 // The confirmatory four-way design. The `55-H`/`55-XH` cells are the HISTORICAL
-// gpt-5.5 comparison arm (HISTORICAL_BASELINE_55) — a frozen data identity, NOT
+// 5.5 comparison arm (HISTORICAL_BASELINE_55) — a frozen data identity, NOT
 // the live baseline. They MUST stay distinct from the `56S-*` SOL cells; aliasing
 // them to BASELINE_MODEL silently collapsed the design (55-H == 56S-H) once the
 // live baseline flipped to gpt-5.6-sol (WP-302). Frozen per WP-501 Part 3.
@@ -96,7 +96,7 @@ export function validateExperimentSpec(spec: ExperimentSpecV1): string[] {
   } else {
     // Inst. 5: the minimum diagnostic factorial — 55-XH on both stacks, SOL
     // high/xhigh on both stacks (6 cells; 55-H cells optional). The 55-XH arm is
-    // the HISTORICAL gpt-5.5 baseline (HISTORICAL_BASELINE_55), frozen so it stays
+    // the HISTORICAL 5.5 baseline (HISTORICAL_BASELINE_55), frozen so it stays
     // distinct from the SOL arms after the live baseline flip (WP-501 Part 3).
     if (stackIds.size < 2) problems.push("diagnostic design compares at least two stacks (legacy vs SOL-native)");
     const need: Array<{ model: string; effort: string }> = [

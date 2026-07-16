@@ -57,7 +57,7 @@ export function defaultManifestSink(): string {
 
 /** The normal-profile production model — OWNED by modelPolicy since IMP-02;
  *  re-exported here for envelope consumers. Its value is the provisional 5.6
- *  default (WP-302; was gpt-5.5, removed per directive-1). Profile defaults
+ *  default (WP-302; the prior 5.5 baseline was removed per directive-1). Profile defaults
  *  below resolve through the policy so the decision table lives in one module. */
 export { BASELINE_MODEL } from "../orchestrator/modelPolicy.js";
 import { resolveRoute as policyResolveRoute } from "../orchestrator/modelPolicy.js";
