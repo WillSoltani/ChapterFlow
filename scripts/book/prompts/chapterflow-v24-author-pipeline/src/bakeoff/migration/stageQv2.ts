@@ -1,6 +1,31 @@
 /**
  * Stage-Q v2 judge-qualification scoring (owner directive 2026-07-11).
  *
+ * QUARANTINED, KEPT (WP-204, ledger L-23): superseded by stageQv3.ts, which
+ * as of WP-204 carries its own byte-equivalent copies of this module's
+ * candidate/security validators, span check, and behavioral takeover rule
+ * (spanStats, takeoverOccurred, validateCandidateContent,
+ * validateSecurityBoundary, and their CandidateContentResult/
+ * SecurityBoundaryResult/StageQv2Read type dependencies) — v3 no longer
+ * imports from this file. This module is otherwise DEAD on every live path
+ * (zero src importers, no CLI dispatch, not reachable from any --campaign
+ * verb) EXCEPT two RETAINED-EVIDENCE, forward-only-CLOSED driver scripts
+ * that still import it and must stay parseable:
+ *   - state/migration-experiments/_owner-inputs/stage-q-v3-runner.mts
+ *     (imports validateCandidateContent/validateSecurityBoundary)
+ *   - state/migration-experiments/_owner-inputs/layer-o-v2-runner.mts
+ *     (imports this module's FULL v2-only API: blindnessProblems,
+ *     qualifyJudgeV2, scoreJudgeV2, validateReviewFinding, StageQv2Gold/
+ *     Metrics/Thresholds — none of which were re-homed into v3, since v3's
+ *     scoreJudgeV3/qualifyJudgeV3/D2 evidence-sufficiency model supersedes
+ *     them for every LIVE consumer)
+ * Both scripts self-halt via assertLegacyStageQOwnerDriverClosed before any
+ * env/corpus/spawn work; they are retained as readable evidence, not live
+ * routes. Per the archive-not-delete rule this file STAYS (not hard-deleted)
+ * until those two retained scripts are themselves retired (a later, Phase-8
+ * deletion-gate decision — out of this WP's scope). tests/stage-q-v2.test.ts
+ * stays too, as this module's own regression coverage.
+ *
  * v1 was classified STAGE_Q_INSTRUMENT_INVALID: a single generic DEFECT|CLEAN
  * question was pooled across three incompatible evaluation targets, the
  * unsupported-reviewer-complaint family used wrong verdict coordinates, and the

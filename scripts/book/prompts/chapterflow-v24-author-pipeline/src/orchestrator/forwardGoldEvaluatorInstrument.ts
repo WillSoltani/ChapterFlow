@@ -1,6 +1,27 @@
 /**
  * Deterministic IMP-22 forward-gold evaluator instrument.
  *
+ * QUARANTINED (WP-204, ledger L-23, audit V25-10): the codex-side
+ * `gpt-5.6-sol` gold evaluator this instrument freezes (FORWARD_GOLD_EVALUATOR_
+ * MODEL below) is superseded by the Claude-side D7 rubric-audit instrument
+ * (rubricAuditInstrument.ts). Import-closure proof (WP-204 evidence): this
+ * module is UNREACHABLE from every ship-path entry point (autopilot.ts,
+ * liveRun.ts, promoteBook.ts) — a full unfiltered BFS over the runtime import
+ * graph from those three entries (224 nodes visited) never reaches this file.
+ * Its only remaining importers are forward-stack modules carried in the
+ * WP-202 quarantine set (forwardLiveValidationDriver.ts,
+ * forwardLiveArtifactMaterializer.ts, forwardLiveArtifactMaterializerV3.ts,
+ * forwardRetainedCampaignEvidenceV3.ts) plus this instrument's own tests
+ * (forward-gold-evaluator-instrument.test.ts, forward-live-validation-
+ * driver.test.ts, imp24-local-activation-v2.test.ts, imp24e-transport-
+ * schema-compatibility.test.ts, forwardGoldRuntimeFixtures.ts) — none of
+ * which are hard-deleted yet (WP-203 materializer dedup is out of this WP's
+ * scope). Per the archive-not-delete rule this file is KEPT (not
+ * hard-deleted) and carried into the Phase-8 deletion gate (WP-203/WP-207/
+ * WP-804) alongside the rest of the forward stack once those importers are
+ * dedup'd or removed. The `gpt-5.6-sol` pin below is dead-off-ship-path
+ * residue, not a live route; it feeds WP-501's model-inventory record.
+ *
  * This is a configuration seal, not a model boundary.  It freezes the exact
  * Rubric v2.0 source, scoring/adjudication protocols, output schemas, call
  * order, actors, model/effort, prompts, and no-publish/no-API capabilities.
