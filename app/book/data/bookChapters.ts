@@ -348,6 +348,116 @@ function exactRecap(
   return dedupe(variant?.oneMinuteRecap ?? []);
 }
 
+// ── D10 progressive (cumulative) rendering for serial-layer v21 books ──────────
+//
+// Pre-v25 v21 books author their EMH read layers SERIALLY:
+// easy=fastRead (~15% of prose), medium=deepRead, hard=fullRead are
+// complementary slices, so a mode that renders one layer hides the rest. D10
+// composes them cumulatively — Standard = fastRead+deepRead, Challenge = all
+// three, Simple stays fastRead-only — recovering the hidden prose with no
+// catalog regeneration. Gated on the `layerIndependent` authoring marker: F-1
+// (Chapter-Format-v25) books, whose layers are self-contained supersets, opt out
+// and keep single-layer-per-mode rendering (see buildBundle `composeCumulative`).
+//
+// The layer order is fastRead → deepRead → fullRead; each depth reads a
+// cumulative prefix of that order.
+const CUMULATIVE_EMH_KEYS: Record<ReadingDepth, VariantKey[]> = {
+  simple: ["easy"],
+  standard: ["easy", "medium"],
+  deeper: ["easy", "medium", "hard"],
+};
+
+/** Byte-identity key for a summary block, so a block a later layer repeats
+ *  verbatim (e.g. the memorable-line bullets every EMH layer appends) is
+ *  rendered once, while complementary prose from each layer is all kept. */
+function summaryBlockIdentity(block: PackageSummaryBlock): string {
+  return block.type === "bullet"
+    ? `bullet ${block.text} ${block.detail ?? ""}`
+    : `paragraph ${block.text}`;
+}
+
+/** Compose a depth's summary blocks cumulatively across the present EMH layers,
+ *  dropping only byte-identical duplicates, then re-key with the existing
+ *  `${depth}-p-N` / `${depth}-b-N` scheme over the deduped list. Missing layers
+ *  are skipped (never an empty section); if no cumulative layer is present, falls
+ *  back to the single-layer selection so a pathological chapter never regresses. */
+function cumulativeSummaryBlocks(
+  chapter: PackageChapter,
+  family: VariantFamily,
+  depth: ReadingDepth
+): ChapterSummaryBlock[] {
+  const seen = new Set<string>();
+  const composed: PackageSummaryBlock[] = [];
+  for (const key of CUMULATIVE_EMH_KEYS[depth]) {
+    for (const block of variantSummaryBlocks(chapter.contentVariants[key])) {
+      const identity = summaryBlockIdentity(block);
+      if (seen.has(identity)) continue;
+      seen.add(identity);
+      composed.push(block);
+    }
+  }
+  if (composed.length === 0) return exactSummaryBlocks(chapter, family, depth);
+
+  let paragraphIndex = 0;
+  let bulletIndex = 0;
+  return composed.map((block) => {
+    if (block.type === "paragraph") {
+      paragraphIndex += 1;
+      return {
+        id: `${depth}-p-${paragraphIndex}`,
+        type: "paragraph",
+        text: cleanText(block.text),
+      } satisfies ChapterSummaryBlock;
+    }
+    bulletIndex += 1;
+    return {
+      id: `${depth}-b-${bulletIndex}`,
+      type: "bullet",
+      text: cleanText(block.text),
+      detail: block.detail ? cleanText(block.detail) : undefined,
+    } satisfies ChapterSummaryBlock;
+  });
+}
+
+/** Takeaways composed cumulatively across the present EMH layers (deduped).
+ *  For the current serial-layer catalog this equals the single-layer set (each
+ *  layer repeats the same memorable-line takeaways), so it is output-identical;
+ *  the composition matters only if a serial layer ever carries distinct
+ *  takeaways. Falls back to the single-layer selection when no cumulative layer
+ *  contributes. */
+function cumulativeTakeaways(
+  chapter: PackageChapter,
+  family: VariantFamily,
+  depth: ReadingDepth
+): string[] {
+  const collected: string[] = [];
+  for (const key of CUMULATIVE_EMH_KEYS[depth]) {
+    const variant = chapter.contentVariants[key];
+    if (!variant) continue;
+    const bulletTexts = variantSummaryBlocks(variant)
+      .filter((block): block is Extract<PackageSummaryBlock, { type: "bullet" }> => block.type === "bullet")
+      .map((block) => cleanText(block.text));
+    collected.push(...(variant.takeaways ?? []), ...(variant.keyTakeaways ?? []), ...bulletTexts);
+  }
+  const deduped = dedupe(collected);
+  return deduped.length > 0 ? deduped : exactTakeaways(chapter, family, depth);
+}
+
+/** One-minute recap composed cumulatively across the present EMH layers
+ *  (deduped). Falls back to the single-layer selection when empty. */
+function cumulativeRecap(
+  chapter: PackageChapter,
+  family: VariantFamily,
+  depth: ReadingDepth
+): string[] {
+  const collected: string[] = [];
+  for (const key of CUMULATIVE_EMH_KEYS[depth]) {
+    collected.push(...(chapter.contentVariants[key]?.oneMinuteRecap ?? []));
+  }
+  const deduped = dedupe(collected);
+  return deduped.length > 0 ? deduped : exactRecap(chapter, family, depth);
+}
+
 function exactActivationPrompt(
   chapter: PackageChapter,
   family: VariantFamily,
@@ -630,6 +740,12 @@ export function buildBundle(
   const family = bookPackage.book.variantFamily;
   const strictV12 = isStrictV12ReaderPackage(bookPackage);
   const isV21 = isV21NormalizedPackage(bookPackage);
+  // D10 cumulative rendering applies ONLY to serial-layer v21/EMH books and only
+  // when they are NOT flagged layer-independent (F-1 / Chapter-Format-v25). v13,
+  // strict-v12 ("1.1.0") and PBC books keep single-layer selection; a future
+  // `layerIndependent: true` book opts out. See CUMULATIVE_EMH_KEYS.
+  const composeCumulative =
+    isV21 && family === "EMH" && bookPackage.layerIndependent !== true;
   const rawByNumber = new Map<number, unknown>();
   if (rawChapters) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -665,8 +781,12 @@ export function buildBundle(
       const takeawaysByDepth: Record<ReadingDepth, string[]> = strictV12
         ? {
             simple: exactTakeaways(chapter, family, "simple"),
-            standard: exactTakeaways(chapter, family, "standard"),
-            deeper: exactTakeaways(chapter, family, "deeper"),
+            standard: composeCumulative
+              ? cumulativeTakeaways(chapter, family, "standard")
+              : exactTakeaways(chapter, family, "standard"),
+            deeper: composeCumulative
+              ? cumulativeTakeaways(chapter, family, "deeper")
+              : exactTakeaways(chapter, family, "deeper"),
           }
         : {
             simple: buildTakeaways(chapter, family),
@@ -676,8 +796,12 @@ export function buildBundle(
       const recapByDepth: Record<ReadingDepth, string[]> = strictV12
         ? {
             simple: exactRecap(chapter, family, "simple"),
-            standard: exactRecap(chapter, family, "standard"),
-            deeper: exactRecap(chapter, family, "deeper"),
+            standard: composeCumulative
+              ? cumulativeRecap(chapter, family, "standard")
+              : exactRecap(chapter, family, "standard"),
+            deeper: composeCumulative
+              ? cumulativeRecap(chapter, family, "deeper")
+              : exactRecap(chapter, family, "deeper"),
           }
         : {
             simple: legacyRecap,
@@ -742,15 +866,22 @@ export function buildBundle(
         title: chapter.title,
         minutes: chapter.readingTimeMinutes,
         summaryByDepth: {
+          // Simple stays fastRead-only in every mode.
           simple: strictV12
             ? exactSummaryBlocks(chapter, family, "simple")
             : buildSummaryBlocks(chapter, family, "simple"),
-          standard: strictV12
-            ? exactSummaryBlocks(chapter, family, "standard")
-            : buildSummaryBlocks(chapter, family, "standard"),
-          deeper: strictV12
-            ? exactSummaryBlocks(chapter, family, "deeper")
-            : buildSummaryBlocks(chapter, family, "deeper"),
+          // Standard = fastRead+deepRead, Challenge = all three, for serial-layer
+          // v21/EMH books (D10); otherwise the single-layer selection is kept.
+          standard: composeCumulative
+            ? cumulativeSummaryBlocks(chapter, family, "standard")
+            : strictV12
+              ? exactSummaryBlocks(chapter, family, "standard")
+              : buildSummaryBlocks(chapter, family, "standard"),
+          deeper: composeCumulative
+            ? cumulativeSummaryBlocks(chapter, family, "deeper")
+            : strictV12
+              ? exactSummaryBlocks(chapter, family, "deeper")
+              : buildSummaryBlocks(chapter, family, "deeper"),
         },
         takeaways: standardTakeaways,
         takeawaysByDepth,
@@ -839,6 +970,10 @@ export function buildBookChapterFromRawV21(
     author?: string;
     categories?: string[];
     tags?: string[];
+    /** D10 authoring marker (see BookPackage.layerIndependent). Omit/false for
+     *  the serial-layer catalog (⇒ cumulative rendering); a future F-1 /
+     *  Chapter-Format-v25 book passes `true` to keep single-layer rendering. */
+    layerIndependent?: boolean;
   },
 ): BookChapter {
   const rawPackage = {
@@ -855,6 +990,7 @@ export function buildBookChapterFromRawV21(
       variantFamily: "EMH",
     },
     chapters: [rawChapter],
+    layerIndependent: book.layerIndependent === true,
   };
   const pkg = normalizeV21Package(rawPackage);
   // The API content path carries no quiz (quiz is fetched separately by
