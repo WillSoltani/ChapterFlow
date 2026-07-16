@@ -25,7 +25,8 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 104 | in progress | wp-104-boundary-proof | 58a8c84e0 | — | dispatched: sonnet-5@xhigh |
 | 206 | in progress | wp-206-hygiene-sweep | 58a8c84e0 | — | dispatched: sonnet-5@xhigh |
 | 405 | in progress | wp-405-d10-progressive-render | 58a8c84e0 | — | dispatched: opus-4.8@xhigh (separate web-app PR lane) |
-| 101, 302, 501 | queued (batch 2/3) | — | 58a8c84e0 | — | 101+302 after 102; 501 after 302 |
+| 101, 302, 501 | queued (batch 2/3) | — | post-G1 integration SHA | — | 101+302 after 102 integrates; 501 after 302 |
+| 208 (NEW, L-16) | in progress | wp-208-seal-lifecycle | bb50d1dcf | — | dispatched: opus-4.8@xhigh — unblocks all src-touching WPs |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
