@@ -538,19 +538,13 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
   // package and skips as "shipped". With it, it re-runs end-to-end over the existing package (promote
   // overwrites it) — no move-the-package-aside hack, so the web registry's static import never dangles.
   const regen = "regen" in flags;
-  // The standard local factory is shared with book-autopilot. WP-201: FORWARD_ACTIVE no
-  // longer upgrades the architecture — the arch is decided solely by the flags (default =
-  // v24 author). The forward stack stays dormant unless a policy genuinely activates it
-  // (its activation is out of scope here — WP-202 decouples the ship path from it).
-  const { resolveStandardForwardAutopilotControl } = await import("./forwardLocalAutopilot.js");
-  let forwardControl: ReturnType<typeof resolveStandardForwardAutopilotControl>;
-  try { forwardControl = resolveStandardForwardAutopilotControl(); }
-  catch (error) {
-    console.error(red(`forward local runtime preflight failed: ${(error as Error).message}`));
-    return 1;
-  }
+  // WP-202: the ship path is DECOUPLED from the forward readiness/qualification stack.
+  // WP-201 made architecture flag-decided (default = v24 author); the FORWARD_ACTIVE runtime is
+  // no longer consulted anywhere on the ship path. resolveStandardForwardAutopilotControl (which
+  // transitively loads the imp24*/roleQualification*/forward-attestation family) is no longer
+  // imported here — the default author run resolves its writer through WP-301's central
+  // modelPolicy route (doAuthorWrite → resolveRoute author-writer, tier "normal-profile").
   const architecture = architectureFromFlags(flags);
-  const forwardActive = architecture === "author" && forwardControl.runtime.mode === "FORWARD_ACTIVE";
 
   console.log(bold(`\n📖 Book run — ${bookId}`));
   console.log(
@@ -558,7 +552,7 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
       `   codex=${process.env.CHAPTERFLOW_CODEX_BIN ?? "(PATH)"} · notify=${notifyEnabled ? "on" : "off"}` +
         `${notifySound ? "+sound" : ""}${logFile ? ` · log=${logFile}` : ""}${plan ? " · PLAN (dry-run)" : ""}${regen ? " · REGEN (re-run a published book)" : ""}` +
         ` · architecture=${architecture === "compiler" ? "v23 compiler" : architecture === "author" ? "v24 author" : "v22 legacy whole-chapter"} (selected by ${architectureSelectedBy(flags)})` +
-        `${forwardActive ? " · forward local-only (publish disabled)" : autoPublish ? " · auto-publish ON (commit+push to main on convergence)" : " · --no-publish (halt for review)"}`,
+        `${autoPublish ? " · auto-publish ON (commit+push to main on convergence)" : " · --no-publish (halt for review)"}`,
     ),
   );
   // Resume guard (WP-201): a book mid-run under a DIFFERENT architecture must not be silently
@@ -567,9 +561,7 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
     const guard = guardResumeArchitecture({ bookId, selected: architecture, explicit: hasExplicitArchitectureFlag(flags) });
     if (!guard.ok) { console.error(red(guard.message)); return 1; }
   }
-  if (forwardActive) {
-    console.log(dim("   ACTIVE forward policy: split-lane acceptance is authoritative; publish/push/deploy/upload remain disabled."));
-  } else if (autoPublish) {
+  if (autoPublish) {
     console.log(yellow("   ⚠️  On QC convergence this auto-publishes: the full promote gate runs, then the package is committed + pushed to main. This is NOT a live deploy (still manual) and is reversible via git. Pass --no-publish to halt for review instead."));
   } else {
     console.log(dim("   --no-publish: will halt at ready-to-publish and print the manual ship command."));
@@ -584,16 +576,10 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
     autoPublish,
     regen,
     architecture,
-    // Author writer: the DEFAULT (dormant) author path resolves its writer through WP-301's
-    // central modelPolicy route (doAuthorWrite → module authorWriteOneChapter → resolveRoute
-    // author-writer, tier "normal-profile", NO env pin). Only a genuinely FORWARD_ACTIVE stack
-    // supplies the split-lane reviewer-gated writer + ACTIVE acceptance semantics; passing
-    // forwardControl.writeOneChapter for the default would re-pin model/effort as a call-explicit
-    // override (the V25-04 parallel routing surface).
-    ...(architecture === "author" && forwardActive ? {
-      authorWriteOneChapter: forwardControl.writeOneChapter,
-      forwardAutopilotControl: forwardControl,
-    } : {}),
+    // WP-202: no forwardAutopilotControl / authorWriteOneChapter is passed. The default author
+    // run resolves its writer through WP-301's central modelPolicy route (doAuthorWrite → module
+    // authorWriteOneChapter → resolveRoute author-writer, tier "normal-profile", NO env pin). The
+    // FORWARD_ACTIVE writer surface is retired from the ship path (S-tier ledger L-16/L-15).
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
     deps: { log: (m) => emit(bookId, m) },
