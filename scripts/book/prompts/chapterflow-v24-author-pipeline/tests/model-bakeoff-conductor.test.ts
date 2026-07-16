@@ -190,9 +190,13 @@ test("conductor happy path (PUBLISH=false): shared research reused, blinded sele
   assert.ok(d.args.includes(BOOK_ID) && d.args.includes("--author"));
   // 20. PUBLISH=false → --no-publish rides the delegation.
   assert.ok(d.args.includes("--no-publish"));
-  // The winner is pinned as the (repair) author for the formal QC lifecycle.
-  assert.equal(d.env.CHAPTERFLOW_AUTHOR_MODEL, "gpt-5.6-sol");
-  assert.equal(d.env.CHAPTERFLOW_AUTHOR_EFFORT, "xhigh");
+  // WP-301: the CHAPTERFLOW_AUTHOR_MODEL/EFFORT env surface was DELETED — the
+  // production author (write + repair) now resolves from the central model policy
+  // (resolveRoute, tier="normal-profile"), so a cross-process env pin can no longer
+  // steer the delegated subprocess. The delegation therefore carries NO author env
+  // pin (the winner is measured on its first-write candidate, not the QC repairs).
+  assert.equal(d.env.CHAPTERFLOW_AUTHOR_MODEL, undefined);
+  assert.equal(d.env.CHAPTERFLOW_AUTHOR_EFFORT, undefined);
 
   // 22. losing candidates retained (durable candidates/ tree + slot originals).
   for (const slot of ["w2", "w3"]) {
