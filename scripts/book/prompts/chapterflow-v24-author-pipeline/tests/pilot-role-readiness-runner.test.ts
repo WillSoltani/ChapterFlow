@@ -27,12 +27,13 @@ import {
   CANDIDATE_INSTRUMENT_SEAL_REL_PATH,
   IMP24_V3_BUNDLE_REL_PATH,
   PILOT_READINESS_BUDGET,
-  PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
+  PILOT_ROLE_READINESS_V4_EXPERIMENT_ID,
   READINESS_CANARY_GOLD_ADJUDICATIONS_V1,
   READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2,
-  buildPilotRoleReadinessCorpusV3,
-  buildPilotRoleReadinessPlanV3,
-  type PilotRoleReadinessCorpusV3,
+  READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1,
+  buildPilotRoleReadinessCorpusV4,
+  buildPilotRoleReadinessPlanV4,
+  type PilotRoleReadinessCorpusV4,
 } from "../src/bakeoff/migration/pilotRoleReadinessInstrument.js";
 import {
   READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES,
@@ -74,7 +75,7 @@ const INPUTS_PRESENT = existsSync(resolve(REPOSITORY_ROOT, IMP24_V3_BUNDLE_REL_P
 
 type Ctx = {
   input: RunPilotRoleReadinessInputV1;
-  corpus: PilotRoleReadinessCorpusV3;
+  corpus: PilotRoleReadinessCorpusV4;
   evaluate: QualificationOutputEvaluatorV3;
   goldOutputs: Map<string, string>;
 };
@@ -164,6 +165,8 @@ function goldRawOutput(compiled: CompiledReadinessCaseV1, payload: Record<string
       acceptedPrimaryCategories?: string[];
     };
     const emittedPrimary = gold.acceptedPrimaryCategories?.[0] ?? gold.primaryCategory;
+    const emittedSupport = (gold as { acceptedSupport?: string[] }).acceptedSupport?.[0] ?? gold.supportStatus;
+    const emittedRegister = (gold as { acceptedRegisters?: string[] }).acceptedRegisters?.[0] ?? gold.visibleRegister;
     const chapterRef = compiled.envelope.segments.find((segment) => segment.kind === "chapter")?.refId;
     const sourceRef = compiled.envelope.segments.find((segment) => segment.kind === "source_claim")?.refId;
     const planRef = compiled.envelope.segments.find((segment) => segment.kind === "plan")?.refId;
@@ -174,8 +177,8 @@ function goldRawOutput(compiled: CompiledReadinessCaseV1, payload: Record<string
       schema: "source-integrity-model-output-v2",
       assessments: [{
         targetRef: "U1",
-        visibleRegister: gold.visibleRegister,
-        supportStatus: gold.supportStatus,
+        visibleRegister: emittedRegister,
+        supportStatus: emittedSupport,
         framingAdequate: gold.framingAdequate,
         claimStrengthFit: gold.claimStrengthFit,
         namedSpecificityAllowed: gold.namedSpecificityAllowed,
@@ -211,13 +214,13 @@ function goldRawOutput(compiled: CompiledReadinessCaseV1, payload: Record<string
 
 function ctx(): Ctx {
   if (ctxMemo) return ctxMemo;
-  const corpus = buildPilotRoleReadinessCorpusV3({ repositoryRoot: REPOSITORY_ROOT });
-  const plan = buildPilotRoleReadinessPlanV3({ repositoryRoot: REPOSITORY_ROOT, corpus });
+  const corpus = buildPilotRoleReadinessCorpusV4({ repositoryRoot: REPOSITORY_ROOT });
+  const plan = buildPilotRoleReadinessPlanV4({ repositoryRoot: REPOSITORY_ROOT, corpus });
   const sealBytes = readFileSync(resolve(REPOSITORY_ROOT, CANDIDATE_INSTRUMENT_SEAL_REL_PATH));
   const certBytes = readFileSync(resolve(REPOSITORY_ROOT, CANDIDATE_INSTRUMENT_CERT_REL_PATH));
   const prepared = preparePilotReadinessCases({ repositoryRoot: REPOSITORY_ROOT, corpus });
   const input: RunPilotRoleReadinessInputV1 = {
-    experimentId: PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
+    experimentId: PILOT_ROLE_READINESS_V4_EXPERIMENT_ID,
     corpus,
     plan,
     planBytesSha256: sha256Hex(Buffer.from(canonicalPretty(plan), "utf8")),
@@ -232,7 +235,7 @@ function ctx(): Ctx {
   };
   const goldOutputs = new Map<string, string>();
   for (const entry of everyReadinessCase(corpus)) {
-    const compiled = compilePilotReadinessCaseInstrument(entry, READINESS_CANARY_GOLD_ADJUDICATIONS_V1, READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2);
+    const compiled = compilePilotReadinessCaseInstrument(entry, READINESS_CANARY_GOLD_ADJUDICATIONS_V1, READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2, READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1);
     goldOutputs.set(entry.caseId, goldRawOutput(compiled, entry.payload));
   }
   ctxMemo = { input, corpus, evaluate: createPilotRoleReadinessEvaluator(corpus), goldOutputs };
@@ -369,10 +372,9 @@ xenv(
   () => INPUTS_PRESENT,
   async () => {
     const { input, corpus, evaluate, goldOutputs } = ctx();
-    // Make every reader profile fail its holdout via undetected craft cases
-    // (canaries stay gold), and the first source profile fail via wrong
-    // register on every holdout case. Spend: reader 4x14=56, source p1 14,
-    // source p2 14 -> 84. Quiz then has zero remaining budget.
+    // Quiz-first (C3): quiz p1 qualifies (14). Source: p1 fails via wrong
+    // register (14), p2 + p3 qualify (28) -> 56. Reader: every profile fails
+    // its craft holdout; p1 + p2 burn 28 -> 84 exactly; p3/p4 are unfundable.
     const override: Record<string, ExecutorPlanEntry> = {};
     for (const entry of corpus.reader.holdout) {
       if (entry.category !== "craft-nonblocker") continue;
@@ -401,23 +403,20 @@ xenv(
     assert.equal(calls.length, 84);
     // Every reader profile failed on craft detection; no reader qualified.
     assert.deepEqual(result.qualifiers.reader, []);
+    const readerStatuses = result.profileRoleResults
+      .filter((item) => item.role === "reader")
+      .map((item) => item.status);
+    assert.deepEqual(readerStatuses, [
+      "NOT_QUALIFIED", "NOT_QUALIFIED",
+      "NOT_TESTED_BUDGET_EXHAUSTED", "NOT_TESTED_BUDGET_EXHAUSTED",
+    ]);
     const readerFails = result.profileRoleResults.filter((item) => item.role === "reader" && item.status === "NOT_QUALIFIED");
-    assert.equal(readerFails.length, 4);
     assert.ok(readerFails.every((item) => item.outcome?.failedThresholds.some((id) => id.startsWith("craftCategoryDetected"))));
-    // Source: p1 failed register accuracy, p2/p3 qualified? p2 qualified (gold),
-    // then p3/p4 sequential-stop needs 2 — only p2 qualified so p3 would run
-    // but the budget is exhausted at 84 exactly after source p2.
     const sourceStatuses = result.profileRoleResults
       .filter((item) => item.role === "source")
       .map((item) => item.status);
-    assert.deepEqual(sourceStatuses, ["NOT_QUALIFIED", "READY", "NOT_TESTED_BUDGET_EXHAUSTED", "NOT_TESTED_BUDGET_EXHAUSTED"]);
-    const quizStatuses = result.profileRoleResults
-      .filter((item) => item.role === "quiz")
-      .map((item) => item.status);
-    assert.deepEqual(quizStatuses, [
-      "NOT_TESTED_BUDGET_EXHAUSTED", "NOT_TESTED_BUDGET_EXHAUSTED",
-      "NOT_TESTED_BUDGET_EXHAUSTED", "NOT_TESTED_BUDGET_EXHAUSTED",
-    ]);
+    assert.deepEqual(sourceStatuses, ["NOT_QUALIFIED", "READY", "READY", "NOT_TESTED_SEQUENTIAL_STOP"]);
+    assert.deepEqual(result.qualifiers.quiz, ["gpt-5.6-sol@xhigh"]);
     assert.match(result.blockedReason ?? "", /base budget exhausted/);
   },
 );
@@ -466,7 +465,7 @@ xenv(
   () => INPUTS_PRESENT,
   async () => {
     const { input, evaluate, goldOutputs } = ctx();
-    const fatalAttempt = "rdy-reader-p1-canary-c01-a1";
+    const fatalAttempt = "rdy-quiz-p1-canary-c01-a1";
     const retained: string[] = [];
     const { executor, calls } = fakeExecutor(goldOutputs, {
       [fatalAttempt]: { status: "policy_failure" },

@@ -75,6 +75,46 @@ export const READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2: Readonly<Record<st
     pacing: Object.freeze(["pacing", "density"]),
   });
 
+/** v4 successor identity (owner: "proceed" on packet C, 2026-07-16): v3
+ * closed BLOCKED at 72/84 with the READER PAIR COMPLETE (primary gpt-5.5@high,
+ * audit gpt-5.6-sol@xhigh). v4 = v3 + C1 (readiness-scoped plan-evidence
+ * assembly relaxation for constructed/generic cases) + C2 (source holdout
+ * gold adjudications below) + C3 (quiz-first role execution order). */
+export const PILOT_ROLE_READINESS_V4_EXPERIMENT_ID = "s16-forward-pilot-role-readiness-v4" as const;
+export const PILOT_ROLE_READINESS_V4_DIR_REL_PATH =
+  `${PIPELINE_REL}/state/migration-experiments/pilot-role-readiness-v4` as const;
+export const PILOT_ROLE_READINESS_V4_CORPUS_SCHEMA = "pilot-role-readiness-corpus-v4" as const;
+export const PILOT_ROLE_READINESS_V4_PLAN_SCHEMA = "pilot-role-readiness-plan-v4" as const;
+
+/** C2 — source HOLDOUT gold adjudications (same evidentiary standard as R2:
+ * cross-profile consensus vs gold over FIVE retained runs — v2 sol@xhigh +
+ * 5.5@xhigh, v3 sol@xhigh + 5.5@xhigh + sol@high; raw cross-tab in
+ * docs/v25/reports/V25_P5_V4_PACKET_C_EXECUTION.md). Keyed by payload caseId
+ * substring match on the ORIGINAL bundle ids. acceptedSupport/acceptedRegisters
+ * replace equality when present; acceptedPrimaryCategories extends R2's
+ * accepted set to the same-family holdouts (5/5 BLOCK+unsupported_attribution
+ * on invented-detail-under-attribution cases). */
+export const READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1 = Object.freeze({
+  schema: "pilot-readiness-source-holdout-gold-adjudications-v1",
+  ownerDirective: "proceed (packet C, 2026-07-16)",
+  cases: Object.freeze([
+    Object.freeze({ match: "source-bound-detail-ch01-fact-1-defect", acceptedSupport: ["PARTIALLY_SUPPORTED"], acceptedRegisters: ["clearly_sourced"], acceptedPrimaryCategories: ["unsupported_attribution", "invented_detail"] }),
+    Object.freeze({ match: "source-bound-detail-ch01-fact-2-defect", acceptedSupport: ["PARTIALLY_SUPPORTED"], acceptedRegisters: ["clearly_sourced"], acceptedPrimaryCategories: ["unsupported_attribution", "invented_detail"] }),
+    Object.freeze({ match: "claim-strength-ch01-fact-2-defect", acceptedSupport: ["PARTIALLY_SUPPORTED"], acceptedRegisters: null, acceptedPrimaryCategories: null }),
+    Object.freeze({ match: "claim-strength-ch01-fact-3-defect", acceptedSupport: ["PARTIALLY_SUPPORTED"], acceptedRegisters: null, acceptedPrimaryCategories: null }),
+    Object.freeze({ match: "attribution-ch01-fact-3-defect", acceptedSupport: ["PARTIALLY_SUPPORTED"], acceptedRegisters: null, acceptedPrimaryCategories: null }),
+    Object.freeze({ match: "generic-operational-01-defect", acceptedSupport: null, acceptedRegisters: ["clearly_generic", "ambiguous"], acceptedPrimaryCategories: null }),
+    Object.freeze({ match: "generic-operational-02-defect", acceptedSupport: ["NOT_APPLICABLE", "UNSUPPORTED"], acceptedRegisters: ["clearly_generic", "ambiguous"], acceptedPrimaryCategories: null }),
+    Object.freeze({ match: "constructed-application-01-defect", acceptedSupport: ["NOT_APPLICABLE", "UNSUPPORTED"], acceptedRegisters: null, acceptedPrimaryCategories: null }),
+    Object.freeze({ match: "constructed-application-02-defect", acceptedSupport: ["NOT_APPLICABLE", "UNSUPPORTED"], acceptedRegisters: null, acceptedPrimaryCategories: null }),
+  ]),
+  c1AssemblyRelaxation: Object.freeze({
+    scope: "readiness-evaluator-only (production assembly untouched)",
+    rule: "constructed/generic register finding requires plan evidence",
+    ruling: "chapter-cited findings on constructed/generic-family cases are protocol-valid — the plan-evidence requirement was never stated in the task instructions; 3 of 4 sol invalid outputs across v2+v3 were exactly this interaction while every valid defect was detected",
+  }),
+});
+
 /** Canary-gold adjudication record (owner: "Proceed with A"). Basis for each
  * ruling: unanimous model divergence across TWO independent campaigns (this
  * run 4/4 profiles + the archived IMP-24 attempts) on a single secondary
@@ -767,6 +807,101 @@ export function materializePilotRoleReadinessV3(args: {
   return {
     schema: "pilot-role-readiness-materialization-v3",
     experimentId: PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
+    corpusPath,
+    corpusSha256: corpus.corpusSha256,
+    planPath,
+    planSha256,
+    planWritten,
+    written: args.write === true || existsSync(corpusPath),
+    modelCalls: 0,
+    apiCalls: 0,
+  };
+}
+
+// ── v4 corpus (v3 + C1/C2 source adjudications) ──────────────────────────────
+
+export type PilotRoleReadinessCorpusV4 = Omit<PilotRoleReadinessCorpusV3, "schema" | "experimentId"> & {
+  schema: typeof PILOT_ROLE_READINESS_V4_CORPUS_SCHEMA;
+  experimentId: typeof PILOT_ROLE_READINESS_V4_EXPERIMENT_ID;
+  sourceHoldoutGoldAdjudications: typeof READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1;
+};
+
+export function buildPilotRoleReadinessCorpusV4(args: { repositoryRoot: string }): PilotRoleReadinessCorpusV4 {
+  const v3 = buildPilotRoleReadinessCorpusV3(args);
+  const { corpusSha256: _v3Sha256, ...v3Core } = v3;
+  const core = {
+    ...v3Core,
+    schema: PILOT_ROLE_READINESS_V4_CORPUS_SCHEMA,
+    experimentId: PILOT_ROLE_READINESS_V4_EXPERIMENT_ID,
+    sourceHoldoutGoldAdjudications: READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1,
+  };
+  return { ...core, corpusSha256: hashCanonical(core) };
+}
+
+export type PilotRoleReadinessPlanV4 = Omit<PilotRoleReadinessPlanV3, "schema" | "experimentId"> & {
+  schema: typeof PILOT_ROLE_READINESS_V4_PLAN_SCHEMA;
+  experimentId: typeof PILOT_ROLE_READINESS_V4_EXPERIMENT_ID;
+  sourceHoldoutGoldAdjudicationsSha256: string;
+};
+
+export function buildPilotRoleReadinessPlanV4(args: {
+  repositoryRoot: string;
+  corpus: PilotRoleReadinessCorpusV4;
+}): PilotRoleReadinessPlanV4 {
+  const v3Style = buildPilotRoleReadinessPlanV3({
+    repositoryRoot: args.repositoryRoot,
+    corpus: args.corpus as unknown as PilotRoleReadinessCorpusV3,
+  });
+  const { planSha256: _v3PlanSha256, ...v3Core } = v3Style;
+  const core = {
+    ...v3Core,
+    schema: PILOT_ROLE_READINESS_V4_PLAN_SCHEMA,
+    experimentId: PILOT_ROLE_READINESS_V4_EXPERIMENT_ID,
+    corpusSha256: args.corpus.corpusSha256,
+    sourceHoldoutGoldAdjudicationsSha256: hashCanonical(READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1),
+  };
+  return { ...core, planSha256: hashCanonical(core) };
+}
+
+export function materializePilotRoleReadinessV4(args: {
+  repositoryRoot: string;
+  write?: boolean;
+  mintPlan?: boolean;
+}): Omit<PilotRoleReadinessMaterializationV2, "schema" | "experimentId"> & {
+  schema: "pilot-role-readiness-materialization-v4";
+  experimentId: typeof PILOT_ROLE_READINESS_V4_EXPERIMENT_ID;
+} {
+  const repositoryRoot = resolve(args.repositoryRoot);
+  const corpus = buildPilotRoleReadinessCorpusV4({ repositoryRoot });
+  const corpusPath = resolve(repositoryRoot, `${PILOT_ROLE_READINESS_V4_DIR_REL_PATH}/readiness-corpus.v4.json`);
+  const corpusBytes = canonicalPretty(corpus);
+  if (existsSync(corpusPath)) {
+    requireCondition(readFileSync(corpusPath, "utf8") === corpusBytes,
+      "retained v4 readiness corpus differs from the deterministic rebuild — the corpus is frozen at creation");
+  } else if (args.write === true) {
+    writeFileAtomic(corpusPath, corpusBytes);
+    requireCondition(readFileSync(corpusPath, "utf8") === corpusBytes, "v4 readiness corpus read-back drift");
+  }
+  const planPath = resolve(repositoryRoot, `${PILOT_ROLE_READINESS_V4_DIR_REL_PATH}/readiness-plan.v4.json`);
+  let planSha256: string | null = null;
+  let planWritten = false;
+  if (existsSync(planPath)) {
+    const retained = JSON.parse(readFileSync(planPath, "utf8")) as PilotRoleReadinessPlanV4;
+    requireCondition(retained.corpusSha256 === corpus.corpusSha256, "retained v4 plan is bound to a different corpus");
+    const rebuilt = buildPilotRoleReadinessPlanV4({ repositoryRoot, corpus });
+    requireCondition(rebuilt.planSha256 === retained.planSha256,
+      "retained v4 readiness plan no longer matches the current inputs (candidate re-minted since plan freeze?) — mint a fresh plan identity");
+    planSha256 = retained.planSha256;
+    planWritten = true;
+  } else if (args.mintPlan === true && args.write === true) {
+    const plan = buildPilotRoleReadinessPlanV4({ repositoryRoot, corpus });
+    writeFileAtomic(planPath, canonicalPretty(plan));
+    planSha256 = plan.planSha256;
+    planWritten = true;
+  }
+  return {
+    schema: "pilot-role-readiness-materialization-v4",
+    experimentId: PILOT_ROLE_READINESS_V4_EXPERIMENT_ID,
     corpusPath,
     corpusSha256: corpus.corpusSha256,
     planPath,

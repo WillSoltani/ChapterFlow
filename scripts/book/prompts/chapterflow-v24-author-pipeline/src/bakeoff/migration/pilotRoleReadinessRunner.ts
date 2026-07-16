@@ -74,13 +74,14 @@ import {
   PILOT_READINESS_METRIC_SEMANTICS,
   PILOT_READINESS_STOPPING,
   PILOT_READINESS_THRESHOLDS,
-  PILOT_ROLE_READINESS_V3_CORPUS_SCHEMA,
-  PILOT_ROLE_READINESS_V3_EXPERIMENT_ID as PILOT_ROLE_READINESS_EXPERIMENT_ID,
-  PILOT_ROLE_READINESS_V3_PLAN_SCHEMA,
+  PILOT_ROLE_READINESS_V4_CORPUS_SCHEMA,
+  PILOT_ROLE_READINESS_V4_EXPERIMENT_ID as PILOT_ROLE_READINESS_EXPERIMENT_ID,
+  PILOT_ROLE_READINESS_V4_PLAN_SCHEMA,
   READINESS_CANARY_GOLD_ADJUDICATIONS_V1,
   READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2,
-  type PilotRoleReadinessCorpusV3 as PilotRoleReadinessCorpusV1,
-  type PilotRoleReadinessPlanV3 as PilotRoleReadinessPlanV1,
+  READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1,
+  type PilotRoleReadinessCorpusV4 as PilotRoleReadinessCorpusV1,
+  type PilotRoleReadinessPlanV4 as PilotRoleReadinessPlanV1,
   type ReadinessCaseV1,
   type ReadinessCountBar,
   type ReadinessProfile,
@@ -96,7 +97,14 @@ export const PILOT_READINESS_HOLDOUT_CALLS = 12 as const;
 /** Full qualification cost of one profile-role (canaries + holdout). */
 export const PILOT_READINESS_PROFILE_ROLE_CALLS = 14 as const;
 
-const ROLES = ["reader", "source", "quiz"] as const satisfies readonly Imp24ReviewRole[];
+/** C3 (owner packet C): quiz-first EXECUTION order for v4 — quiz needs one
+ * qualifier and had zero data after three campaigns because reader+source
+ * always exhausted the envelope first. This is execution order only; the
+ * frozen §5.6 candidate order WITHIN each role is untouched. */
+const ROLES = ["quiz", "source", "reader"] as const satisfies readonly Imp24ReviewRole[];
+/** The availability snapshot preserves the frozen DISCOVERY order (the imp24
+ * models-cache walk), independent of the v4 execution order above. */
+const AVAILABILITY_ROLES = ["reader", "source", "quiz"] as const satisfies readonly Imp24ReviewRole[];
 const SHA256 = /^[a-f0-9]{64}$/;
 /** Conductor-owned metric identities the injected evaluator may never emit. */
 const CONDUCTOR_OWNED_METRICS = new Set([
@@ -156,7 +164,7 @@ function validateReadinessAvailability(availability: ReadinessCandidateAvailabil
   requireCondition(hashCanonical(PILOT_READINESS_CANDIDATE_ORDERS) === availability.candidateOrderSha256
       && hashCanonical(IMP24_ROLE_CANDIDATE_ORDER) === availability.candidateOrderSha256,
     "candidate availability order hash differs from the frozen §5.6 readiness orders");
-  const expected = ROLES.flatMap((role) =>
+  const expected = AVAILABILITY_ROLES.flatMap((role) =>
     PILOT_READINESS_CANDIDATE_ORDERS[role].map((candidate, ordinal) => ({ role, ordinal, ...candidate })));
   requireCondition(availability.entries.length === expected.length,
     "candidate availability entry count differs from the frozen order");
@@ -227,7 +235,7 @@ export function preparePilotReadinessCases(args: {
       for (const entry of args.corpus[role][partition]) {
         requireCondition(entry.role === role && entry.partition === partition,
           `${entry.caseId}: corpus role/partition binding mismatch`);
-        const compiled = compilePilotReadinessCaseInstrument(entry, args.corpus.goldAdjudications, args.corpus.craftWeaknessAcceptedCategories);
+        const compiled = compilePilotReadinessCaseInstrument(entry, args.corpus.goldAdjudications, args.corpus.craftWeaknessAcceptedCategories, args.corpus.sourceHoldoutGoldAdjudications);
         assertReadinessTask(compiled.task, compiled.evidenceEnvelopeBytes, entry.caseId);
         preparedCases[role][partition].push({
           role,
@@ -373,7 +381,7 @@ export function buildPilotReadinessSchedule(
 }
 
 function validateCorpus(corpus: PilotRoleReadinessCorpusV1): void {
-  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V3_CORPUS_SCHEMA
+  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V4_CORPUS_SCHEMA
       && corpus.experimentId === PILOT_ROLE_READINESS_EXPERIMENT_ID
       && corpus.objective === "PILOT_ROLE_READINESS",
     "readiness corpus identity mismatch");
@@ -382,6 +390,9 @@ function validateCorpus(corpus: PilotRoleReadinessCorpusV1): void {
   requireCondition(hashCanonical(corpus.craftWeaknessAcceptedCategories)
       === hashCanonical(READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2),
     "readiness corpus craft-category map differs from the frozen owner-authorized v2 map");
+  requireCondition(hashCanonical(corpus.sourceHoldoutGoldAdjudications)
+      === hashCanonical(READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1),
+    "readiness corpus source-holdout adjudications differ from the frozen owner-authorized record");
   const { corpusSha256, ...core } = corpus;
   requireCondition(hashCanonical(core) === corpusSha256, "readiness corpus self hash mismatch");
   const categoryCounts = (cases: ReadinessCaseV1[]): Map<string, number> => {
@@ -410,7 +421,7 @@ function validateCorpus(corpus: PilotRoleReadinessCorpusV1): void {
 
 function validatePlan(input: RunPilotRoleReadinessInputV1): void {
   const plan = input.plan;
-  requireCondition(plan.schema === PILOT_ROLE_READINESS_V3_PLAN_SCHEMA
+  requireCondition(plan.schema === PILOT_ROLE_READINESS_V4_PLAN_SCHEMA
       && plan.experimentId === PILOT_ROLE_READINESS_EXPERIMENT_ID
       && plan.objective === "PILOT_ROLE_READINESS",
     "readiness plan identity mismatch");
@@ -419,6 +430,9 @@ function validatePlan(input: RunPilotRoleReadinessInputV1): void {
   requireCondition(plan.craftWeaknessAcceptedCategoriesSha256
       === hashCanonical(READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2),
     "readiness plan craft-map binding drifted");
+  requireCondition(plan.sourceHoldoutGoldAdjudicationsSha256
+      === hashCanonical(READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1),
+    "readiness plan source-adjudication binding drifted");
   const { planSha256, ...core } = plan;
   requireCondition(hashCanonical(core) === planSha256, "readiness plan self hash mismatch");
   requireSha(input.planBytesSha256, "retained plan bytes hash");
@@ -488,7 +502,7 @@ function validatePreparedAgainstCorpus(input: RunPilotRoleReadinessInputV1): voi
         const entry = corpusCases[index];
         requireCondition(item.caseId === entry.caseId && item.family === entry.category,
           `${role} ${partition} prepared case ${index} differs from frozen corpus order`);
-        const compiled = compilePilotReadinessCaseInstrument(entry, input.corpus.goldAdjudications, input.corpus.craftWeaknessAcceptedCategories);
+        const compiled = compilePilotReadinessCaseInstrument(entry, input.corpus.goldAdjudications, input.corpus.craftWeaknessAcceptedCategories, input.corpus.sourceHoldoutGoldAdjudications);
         requireCondition(item.sourceCaseSha256 === compiled.sourceCaseSha256,
           `${item.caseId}: prepared source-case binding mismatch`);
         requireCondition(item.goldSha256 === hashCanonical(compiled.gold),

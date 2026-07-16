@@ -68,13 +68,16 @@ import type {
 } from "./roleQualificationRunnerV3.js";
 import { renderKeyFreeReaderDocument } from "./readerGoldDevDocs.js";
 import {
-  PILOT_ROLE_READINESS_V3_CORPUS_SCHEMA,
-  PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
+  PILOT_ROLE_READINESS_V4_CORPUS_SCHEMA,
+  PILOT_ROLE_READINESS_V4_EXPERIMENT_ID,
   READINESS_CANARY_GOLD_ADJUDICATIONS_V1,
   READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2,
-  type PilotRoleReadinessCorpusV3,
+  READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1,
+  type PilotRoleReadinessCorpusV4,
   type ReadinessCaseV1,
 } from "./pilotRoleReadinessInstrument.js";
+
+type ReadinessSourceAdjudications = typeof READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1;
 
 type ReadinessCraftMap = Readonly<Record<string, readonly string[]>>;
 
@@ -167,7 +170,21 @@ function effectiveGold(
   bundleGold: unknown,
   adjudications: ReadinessGoldAdjudications | undefined,
   craftMap: ReadinessCraftMap | undefined,
+  sourceAdjudications?: ReadinessSourceAdjudications,
 ): unknown {
+  // C2 (owner packet C): source HOLDOUT accepted-set overlays, matched on the
+  // original bundle caseId; hash-bound into goldSha256 like every adjudication.
+  if (entry.role === "source" && sourceAdjudications) {
+    const payloadCaseId = String((entry.payload as { caseId?: unknown }).caseId ?? "");
+    const ruling = sourceAdjudications.cases.find((item) => payloadCaseId.includes(item.match));
+    if (ruling) {
+      const overlaid = { ...(bundleGold as Record<string, unknown>) };
+      if (ruling.acceptedSupport) overlaid.acceptedSupport = [...ruling.acceptedSupport];
+      if (ruling.acceptedRegisters) overlaid.acceptedRegisters = [...ruling.acceptedRegisters];
+      if (ruling.acceptedPrimaryCategories) overlaid.acceptedPrimaryCategories = [...ruling.acceptedPrimaryCategories];
+      return overlaid;
+    }
+  }
   if (entry.role === "reader" && entry.category === "craft-nonblocker" && craftMap) {
     const weakness = String((bundleGold as { expectedWeakness?: unknown }).expectedWeakness ?? "");
     const accepted = craftMap[weakness];
@@ -208,6 +225,7 @@ export function compilePilotReadinessCaseInstrument(
   entry: ReadinessCaseV1,
   adjudications?: ReadinessGoldAdjudications,
   craftMap?: ReadinessCraftMap,
+  sourceAdjudications?: ReadinessSourceAdjudications,
 ): CompiledReadinessCaseV1 {
   requireCondition(hashCanonical(entry.payload) === entry.caseSha256,
     `${entry.caseId}: frozen payload no longer matches its corpus caseSha256`);
@@ -243,7 +261,7 @@ export function compilePilotReadinessCaseInstrument(
       envelope: compiled.envelope,
       evidenceEnvelopeBytes: compiled.envelopeBytes,
       task: compiled.task,
-      gold: effectiveGold(entry, payload.expected, adjudications, craftMap),
+      gold: effectiveGold(entry, payload.expected, adjudications, craftMap, sourceAdjudications),
       sourceCaseSha256: entry.caseSha256,
       chapterContentSha256: chapterContentHash(chapter),
       readerDocumentSha256: compiled.readerDocumentSha256,
@@ -267,7 +285,7 @@ export function compilePilotReadinessCaseInstrument(
       envelope,
       evidenceEnvelopeBytes: serializeReviewEvidenceEnvelope(envelope),
       task: buildReaderExperienceInlineReviewTask(envelope),
-      gold: effectiveGold(entry, item.expected, adjudications, craftMap),
+      gold: effectiveGold(entry, item.expected, adjudications, craftMap, sourceAdjudications),
       sourceCaseSha256: substantive,
       chapterContentSha256: item.provenance.variantContentSha256,
       readerDocumentSha256: completeKeyFreeReaderDocumentSha256V2(item.chapter),
@@ -286,7 +304,7 @@ export function compilePilotReadinessCaseInstrument(
       envelope: partition.envelope,
       evidenceEnvelopeBytes: serializeReviewEvidenceEnvelope(partition.envelope),
       task: partition.task,
-      gold: effectiveGold(entry, deriveImp24SourceSemantics(item), adjudications, craftMap),
+      gold: effectiveGold(entry, deriveImp24SourceSemantics(item), adjudications, craftMap, sourceAdjudications),
       sourceCaseSha256: substantive,
       chapterContentSha256: null,
       readerDocumentSha256: null,
@@ -304,7 +322,7 @@ export function compilePilotReadinessCaseInstrument(
     envelope: instrument.compiled.envelope,
     evidenceEnvelopeBytes: serializeReviewEvidenceEnvelope(instrument.compiled.envelope),
     task: instrument.compiled.task,
-    gold: effectiveGold(entry, item.expected, adjudications, craftMap),
+    gold: effectiveGold(entry, item.expected, adjudications, craftMap, sourceAdjudications),
     sourceCaseSha256: substantive,
     chapterContentSha256: null,
     readerDocumentSha256: null,
@@ -314,7 +332,7 @@ export function compilePilotReadinessCaseInstrument(
   };
 }
 
-export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV3, "reader" | "source" | "quiz">): ReadinessCaseV1[] {
+export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV4, "reader" | "source" | "quiz">): ReadinessCaseV1[] {
   const cases: ReadinessCaseV1[] = [];
   for (const role of ["reader", "source", "quiz"] as const) {
     for (const partition of ["canary", "holdout"] as const) {
@@ -328,11 +346,14 @@ export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV3, "rea
  * IMP-24 evaluator's protocol/freshness/authority handling exactly; only the
  * metric identities and the reader decision policy differ (v3, per D1). */
 export function createPilotRoleReadinessEvaluator(
-  corpus: PilotRoleReadinessCorpusV3,
+  corpus: PilotRoleReadinessCorpusV4,
 ): QualificationOutputEvaluatorV3 {
-  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V3_CORPUS_SCHEMA
-      && corpus.experimentId === PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
-    "readiness evaluator requires the exact frozen v3 readiness corpus");
+  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V4_CORPUS_SCHEMA
+      && corpus.experimentId === PILOT_ROLE_READINESS_V4_EXPERIMENT_ID,
+    "readiness evaluator requires the exact frozen v4 readiness corpus");
+  requireCondition(hashCanonical(corpus.sourceHoldoutGoldAdjudications)
+      === hashCanonical(READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1),
+    "readiness corpus source-holdout adjudications differ from the frozen owner-authorized record");
   requireCondition(hashCanonical(corpus.goldAdjudications) === hashCanonical(READINESS_CANARY_GOLD_ADJUDICATIONS_V1),
     "readiness corpus gold adjudications differ from the frozen owner-authorized record");
   requireCondition(hashCanonical(corpus.craftWeaknessAcceptedCategories)
@@ -341,7 +362,7 @@ export function createPilotRoleReadinessEvaluator(
   const byCaseId = new Map<string, { entry: ReadinessCaseV1; compiled: CompiledReadinessCaseV1 }>();
   for (const entry of everyReadinessCase(corpus)) {
     requireCondition(!byCaseId.has(entry.caseId), `duplicate readiness case ${entry.caseId}`);
-    byCaseId.set(entry.caseId, { entry, compiled: compilePilotReadinessCaseInstrument(entry, corpus.goldAdjudications, corpus.craftWeaknessAcceptedCategories) });
+    byCaseId.set(entry.caseId, { entry, compiled: compilePilotReadinessCaseInstrument(entry, corpus.goldAdjudications, corpus.craftWeaknessAcceptedCategories, corpus.sourceHoldoutGoldAdjudications) });
   }
   requireCondition(byCaseId.size === 42, `readiness evaluator requires all 42 frozen cases, got ${byCaseId.size}`);
 
@@ -542,10 +563,14 @@ function evaluateSource(args: LaneEvaluationArgs): CaseEvaluationV3 {
     supportStatus: string;
     visibleRegister: string;
     acceptedPrimaryCategories?: string[];
+    acceptedSupport?: string[];
+    acceptedRegisters?: string[];
   };
   const acceptedPrimary = gold.primaryCategory === null
     ? null
     : gold.acceptedPrimaryCategories ?? [gold.primaryCategory];
+  const acceptedSupport = gold.acceptedSupport ?? [gold.supportStatus];
+  const acceptedRegisters = gold.acceptedRegisters ?? [gold.visibleRegister];
   let parsed: ReturnType<typeof parseSourceIntegrityModelOutputV2>;
   try {
     parsed = parseSourceIntegrityModelOutputV2(rawOutput);
@@ -561,8 +586,36 @@ function evaluateSource(args: LaneEvaluationArgs): CaseEvaluationV3 {
   try {
     const item = entry.payload as unknown as Imp24SourceCase;
     const partition = compiled.sourcePartition!;
+    // C1 (owner packet C, readiness-scoped): on constructed/generic-family
+    // cases the task never states the plan-evidence citation requirement; a
+    // finding citing only chapter evidence is augmented with the envelope's
+    // deterministic plan-segment ref (context, not model judgment) so the
+    // shared production assembly rule can bind it. Production is untouched.
+    let effectiveRawOutput = rawOutput;
+    if (entry.category === "constructed-application" || entry.category === "generic-operational"
+      || entry.category.startsWith("unframed-") || entry.category.startsWith("generic-")) {
+      const planRef = partition.envelope.segments.find((segment) => segment.kind === "plan")?.refId;
+      if (planRef) {
+        try {
+          const reparsed = JSON.parse(rawOutput) as { assessments?: Array<{ findings?: Array<Record<string, unknown>> }> };
+          let augmented = false;
+          for (const assessment of reparsed.assessments ?? []) {
+            for (const finding of assessment.findings ?? []) {
+              const refs = finding.sourceEvidenceRefIds;
+              if (Array.isArray(refs) && refs.length === 0) {
+                finding.sourceEvidenceRefIds = [planRef];
+                augmented = true;
+              }
+            }
+          }
+          if (augmented) effectiveRawOutput = JSON.stringify(reparsed);
+        } catch {
+          // fall through to normal assembly on unparseable output
+        }
+      }
+    }
     const assembled = assembleProductionSourcePartitionReviewV2({
-      rawOutput,
+      rawOutput: effectiveRawOutput,
       partition,
       chapterContentSha256: item.evidence.provenanceHashes.chapterContentSha256,
       sourceUsePlanSha256: item.evidence.provenanceHashes.sourceUsePlanSha256,
@@ -574,8 +627,8 @@ function evaluateSource(args: LaneEvaluationArgs): CaseEvaluationV3 {
     const unit = assembled.units[0];
     const categories = unit?.findings.map((finding) => finding.primaryCategory) ?? [];
     const observations: Record<string, boolean> = {
-      supportRegisterAccuracy: unit?.supportStatus === gold.supportStatus
-        && unit?.visibleRegister === gold.visibleRegister,
+      supportRegisterAccuracy: acceptedSupport.includes(String(unit?.supportStatus))
+        && acceptedRegisters.includes(String(unit?.visibleRegister)),
     };
     if (acceptedPrimary !== null) {
       observations.highSeverityDefectSensitivity = assembled.result === "BLOCK"
