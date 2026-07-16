@@ -12,7 +12,7 @@ import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { keyDerivationPath, keyPackDir, loadKeyPack, manualKeyJudgePath, writeKeyPacks, type KeyDerivation } from "../src/qc/manualKeyJudge.js";
 import { qcRoundPath, openQcRound } from "../src/qc/qcRound.js";
 import { repairLedgerPath, roundRecordPath, orchestratorRoundDir, writeBarReadArtifact, writeConfirmReadArtifact } from "../src/qc/orchestrator/artifacts.js";
-import { REQUIRED_SWEEP_FAMILIES, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
+import { REQUIRED_SWEEP_FAMILIES, chapterClearsPath, sweepHistoryPath, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 import { sourceHashFor } from "../src/qc/sourceV2Gate.js";
 import { publishAfterQc, formatPreflightChecklist, hermeticSelfTestEnv } from "../src/qc/publishAfterQc.js";
 import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
@@ -30,6 +30,11 @@ const CONFIRM_SESSION = "fixture-publish-confirm";
 const ATTEST_SESSION = "fixture-publish-attest";
 
 function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
+  // state/chapters is untracked (only state/briefs and state/migration-experiments
+  // are tracked), so it is absent on a fresh worktree. Fixture-create the empty
+  // dir before scanning it — the fixture bodies write real chapters here — so the
+  // scandir below cannot ENOENT. Never writes tracked state/ content.
+  mkdirSync(STATE_CHAPTERS, { recursive: true });
   for (const bookId of bookIds) {
     for (const f of readdirSync(STATE_CHAPTERS)) {
       if (f.startsWith(`${bookId}-ch`)) rmSync(resolve(STATE_CHAPTERS, f), { force: true });
@@ -51,6 +56,11 @@ function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
     rmSync(manualKeyJudgePath(bookId, SOURCE_CHAPTER_NUMBER), { force: true });
     rmSync(provenancePath(`${bookId}-ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}`), { force: true });
     rmSync(sourceVerifyRecordPath(bookId), { force: true });
+    // The publish flow also writes untracked book/sweep-cache state; remove it so
+    // the fixture leaves no droppings in the (untracked) state/ tree.
+    rmSync(resolve(PIPELINE_DIR, "state", "books", bookId), { recursive: true, force: true });
+    rmSync(sweepHistoryPath(bookId), { force: true });
+    rmSync(chapterClearsPath(bookId), { force: true });
   }
 }
 

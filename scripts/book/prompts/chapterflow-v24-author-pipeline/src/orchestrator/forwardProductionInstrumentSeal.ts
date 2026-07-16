@@ -17,6 +17,7 @@ import { fileURLToPath } from "node:url";
 import { hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import { canonicalJson } from "../lib/canonicalJson.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
+import { campaignInstrumentChecksEnabled } from "../lib/campaignInstrumentChecks.js";
 
 export const FORWARD_PRODUCTION_INSTRUMENT_SEAL_SCHEMA = "forward-production-instrument-seal-v1" as const;
 export const FORWARD_PRODUCTION_INSTRUMENT_SEAL_VERSION = 1 as const;
@@ -288,16 +289,27 @@ export function verifyHistoricalForwardProductionInstrumentSeal(args: {
   });
 }
 
-/** Fail-closed verification of an already retained seal. Unlike dry
- * materialization, this proves both that the artifact exists and that its
- * self-hash/inventory still match every current production-instrument byte. */
+/** Verification of an already retained seal.
+ *
+ * The whole-src drift comparison against the current checkout is a CLOSED
+ * campaign instrument (decision ledger L-16; formal retirement in
+ * WP-202/203/204). By DEFAULT this therefore performs HISTORICAL /
+ * retained-integrity verification only (self-hash + capabilities + inventory
+ * shape) and never reads the checkout, so an ordinary src edit cannot break the
+ * default suite. Setting CHAPTERFLOW_CAMPAIGN_INSTRUMENT_CHECKS=1 restores the
+ * strict, byte-for-byte current-checkout comparison (today's behaviour): it
+ * proves both that the artifact exists and that its self-hash/inventory still
+ * match every current production-instrument byte. */
 export function verifyRetainedForwardProductionInstrumentSeal(args: {
   repositoryRoot?: string;
   outputPath?: string;
-} = {}): ForwardProductionInstrumentSealVerificationV1 {
+} = {}): ForwardProductionInstrumentSealVerificationV1 | ForwardProductionInstrumentSealHistoricalVerificationV1 {
   const repositoryRoot = resolve(args.repositoryRoot ?? DEFAULT_REPOSITORY_ROOT);
   const outputPath = resolve(args.outputPath
     ?? resolve(repositoryRoot, IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH));
+  if (!campaignInstrumentChecksEnabled()) {
+    return verifyHistoricalForwardProductionInstrumentSeal({ outputPath });
+  }
   requireCondition(existsSync(outputPath), `retained production instrument seal is missing: ${outputPath}`);
   let retained: unknown;
   try { retained = JSON.parse(readFileSync(outputPath, "utf8")); }

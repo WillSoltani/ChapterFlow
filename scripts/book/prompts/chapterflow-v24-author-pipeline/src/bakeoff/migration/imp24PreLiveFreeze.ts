@@ -14,6 +14,7 @@ import { relative, resolve } from "node:path";
 
 import { canonicalJson, hashCanonical, sha256Hex } from "../../contracts/contractUtil.js";
 import { writeFileAtomic } from "../../lib/atomicWrite.js";
+import { campaignInstrumentChecksEnabled } from "../../lib/campaignInstrumentChecks.js";
 import {
   IMP24_FORWARD_PRODUCTION_INSTRUMENT_SEAL_ARTIFACT_REL_PATH,
   verifyRetainedForwardProductionInstrumentSeal,
@@ -532,8 +533,22 @@ type ContractManifest = {
   contracts: Array<{ name: string; version: number; ownerPrompt: string; hash: string }>;
 };
 
+/** The IMP-24C pre-live freeze pinned the current contract manifest at exactly
+ * 16 contracts (14 pre-existing + the two additive IMP-24 descriptors). */
+export const IMP24C_FROZEN_CONTRACT_COUNT = 16 as const;
+
+/** ACTIVE-CANDIDATE assertion (CLOSED campaign instrument, decision ledger
+ * L-16; formal retirement in WP-202/203/204): the current manifest must still
+ * hold exactly the frozen contract count. Runs only under
+ * CHAPTERFLOW_CAMPAIGN_INSTRUMENT_CHECKS=1 so a later WP's additive contract
+ * does not break the default suite. */
+export function assertImp24cFrozenContractCount(manifest: Pick<ContractManifest, "contracts">): void {
+  requireCondition(manifest.contracts.length === IMP24C_FROZEN_CONTRACT_COUNT,
+    `current contract manifest must contain exactly ${IMP24C_FROZEN_CONTRACT_COUNT} contracts`);
+}
+
 function contractEvidence(repositoryRoot: string): {
-  contractCount: 16;
+  contractCount: number;
   preExistingContractHashesUnchanged: true;
   contractVersions: Record<string, number>;
 } {
@@ -552,7 +567,12 @@ function contractEvidence(repositoryRoot: string): {
     throw new Imp24BPreLiveFreezeError("cannot read the starting contract manifest from Git", [(error as Error).message]);
   }
   requireCondition(baseline.contracts.length === 14, "starting contract manifest must contain exactly 14 contracts");
-  requireCondition(current.contracts.length === 16, "current contract manifest must contain exactly 16 contracts");
+  if (campaignInstrumentChecksEnabled()) {
+    // Whole-manifest count is pinned only under the closed-campaign opt-in
+    // (ledger L-16). By default the internal-integrity checks below (frozenAtIso,
+    // pre-existing contracts unchanged, additive descriptors present) still run.
+    assertImp24cFrozenContractCount(current);
+  }
   requireCondition(current.frozenAtIso === baseline.frozenAtIso, "contract manifest frozenAtIso drifted");
   const currentByName = new Map(current.contracts.map((item) => [item.name, item]));
   for (const item of baseline.contracts) {
@@ -563,7 +583,7 @@ function contractEvidence(repositoryRoot: string): {
     && currentByName.get("review-model-output-v2")?.version === 2,
   "IMP-24 additive contract descriptors are missing or mis-versioned");
   return {
-    contractCount: 16,
+    contractCount: current.contracts.length,
     preExistingContractHashesUnchanged: true,
     contractVersions: Object.fromEntries(
       [...current.contracts]

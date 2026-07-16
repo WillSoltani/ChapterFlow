@@ -12,10 +12,11 @@ import {
   validateForwardProductionInstrumentSeal,
   verifyRetainedForwardProductionInstrumentSeal,
 } from "../src/orchestrator/forwardProductionInstrumentSeal.js";
-import { test } from "./harness.js";
+import { test, xenv } from "./harness.js";
 import { hashCanonical, sha256Hex } from "../src/contracts/contractUtil.js";
 import { runMigrationBakeoffCli } from "../src/bakeoff/migration/cli.js";
 import { IMP24_FROZEN_ROLE_THRESHOLDS } from "../src/bakeoff/migration/roleQualificationRunnerV3.js";
+import { campaignInstrumentChecksEnabled, CAMPAIGN_INSTRUMENT_CHECKS_SKIP_REASON } from "../src/lib/campaignInstrumentChecks.js";
 
 test("production instrument seal inventories all implementation/config/schema bytes and validates current checkout", () => {
   const seal = buildForwardProductionInstrumentSeal();
@@ -147,6 +148,56 @@ test("IMP-24 retained-seal verification fails closed on missing or drifted artif
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+// CLOSED campaign instrument (decision ledger L-16; formal retirement in
+// WP-202/203/204). The whole-src drift comparison against the current checkout
+// runs ONLY under the campaign opt-in, so by default this reports xenv
+// (skip-with-reason) and an ordinary src edit cannot break the default suite.
+// With CHAPTERFLOW_CAMPAIGN_INSTRUMENT_CHECKS=1 it proves today's strict
+// behaviour byte-for-byte: a freshly minted seal at an UNEDITED tree verifies,
+// and after an authorized byte change it fails exactly as today.
+xenv(
+  "[campaign] retained-seal STRICT drift refuses a stale seal vs current bytes (CHAPTERFLOW_CAMPAIGN_INSTRUMENT_CHECKS=1)",
+  CAMPAIGN_INSTRUMENT_CHECKS_SKIP_REASON,
+  () => campaignInstrumentChecksEnabled(),
+  () => {
+    const root = mkdtempSync(resolve(tmpdir(), "forward-production-seal-campaign-strict-"));
+    const outputPath = resolve(root, "retained", "forward-production-instrument-seal.json");
+    const pipelineRel = "scripts/book/prompts/chapterflow-v24-author-pipeline";
+    const fixtureFiles = [
+      `${pipelineRel}/src/index.ts`,
+      `${pipelineRel}/config/example.json`,
+      `${pipelineRel}/state/migration-experiments/contracts/schemas/example.schema.json`,
+      `${pipelineRel}/package.json`,
+      `${pipelineRel}/package-lock.json`,
+      ".agents/skills/chapterflow-book-evaluator/references/rubric-v2.md",
+      ".agents/skills/chapterflow-book-evaluator/references/book-rater-prompt.md",
+      ".agents/skills/chapterflow-book-evaluator/references/scoring-protocol.md",
+      ".agents/skills/chapterflow-book-evaluator/references/book-evaluation.schema.json",
+      ".agents/skills/chapterflow-book-evaluator/references/adjudication-protocol.md",
+      ".agents/skills/chapterflow-book-evaluator/references/adjudicated-book.schema.json",
+    ];
+    try {
+      let mutableSource = "";
+      for (const relativePath of fixtureFiles) {
+        const path = resolve(root, relativePath);
+        mkdirSync(dirname(path), { recursive: true });
+        writeFileSync(path, `${relativePath}\n`);
+        if (relativePath.endsWith("src/index.ts")) mutableSource = path;
+      }
+      // UNEDITED tree: strict verify of a freshly minted seal passes.
+      materializeForwardProductionInstrumentSeal({ repositoryRoot: root, outputPath, write: true });
+      const verified = verifyRetainedForwardProductionInstrumentSeal({ repositoryRoot: root, outputPath });
+      assert.equal(verified.verified, true);
+      // After an authorized instrument byte change: strict verify fails as today.
+      writeFileSync(mutableSource, "export const successor = true;\n");
+      assert.throws(() => verifyRetainedForwardProductionInstrumentSeal({ repositoryRoot: root, outputPath }),
+        /bytes drifted/);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  },
+);
 
 test("IMP-24 threshold CLI writes only the exact frozen model-free artifact", async () => {
   const root = mkdtempSync(resolve(tmpdir(), "imp24-threshold-cli-"));
