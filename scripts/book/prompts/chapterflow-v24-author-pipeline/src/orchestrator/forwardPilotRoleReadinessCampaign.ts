@@ -82,11 +82,11 @@ import {
   CANDIDATE_INSTRUMENT_SEAL_REL_PATH,
   PILOT_READINESS_BUDGET,
   PILOT_READINESS_STOPPING,
-  PILOT_ROLE_READINESS_V4_DIR_REL_PATH as PILOT_ROLE_READINESS_DIR_REL_PATH,
-  PILOT_ROLE_READINESS_V4_EXPERIMENT_ID as PILOT_ROLE_READINESS_EXPERIMENT_ID,
-  materializePilotRoleReadinessV4 as materializePilotRoleReadiness,
-  type PilotRoleReadinessCorpusV4 as PilotRoleReadinessCorpusV1,
-  type PilotRoleReadinessPlanV4 as PilotRoleReadinessPlanV1,
+  PILOT_ROLE_READINESS_V5_DIR_REL_PATH as PILOT_ROLE_READINESS_DIR_REL_PATH,
+  PILOT_ROLE_READINESS_V5_EXPERIMENT_ID as PILOT_ROLE_READINESS_EXPERIMENT_ID,
+  materializePilotRoleReadinessV5 as materializePilotRoleReadiness,
+  type PilotRoleReadinessCorpusV5 as PilotRoleReadinessCorpusV1,
+  type PilotRoleReadinessPlanV5 as PilotRoleReadinessPlanV1,
 } from "../bakeoff/migration/pilotRoleReadinessInstrument.js";
 import { createPilotRoleReadinessEvaluator } from "../bakeoff/migration/pilotRoleReadinessEvaluator.js";
 import {
@@ -221,8 +221,8 @@ function readinessImplementationPaths(): string[] {
     `${PIPELINE_REL}/state/migration-experiments/contracts/imp24`,
     `${PIPELINE_REL}/state/migration-experiments/contracts/imp24f`,
     `${PIPELINE_REL}/state/migration-experiments/contracts/schemas`,
-    `${PILOT_ROLE_READINESS_DIR_REL_PATH}/readiness-corpus.v4.json`,
-    `${PILOT_ROLE_READINESS_DIR_REL_PATH}/readiness-plan.v4.json`,
+    `${PILOT_ROLE_READINESS_DIR_REL_PATH}/readiness-corpus.v5.json`,
+    `${PILOT_ROLE_READINESS_DIR_REL_PATH}/readiness-plan.v5.json`,
     `${PIPELINE_REL}/state/migration-experiments/reader-gold-dev-pool-v1`,
     "book-packages",
     IMP24_REQUIRED_WORKFLOW_FILE,
@@ -931,7 +931,7 @@ export async function runPilotRoleReadinessCampaign(
   //    a candidate re-mint after the plan freeze).
   const materialized = materializePilotRoleReadiness({ repositoryRoot });
   requireCondition(materialized.planWritten && materialized.planSha256 !== null,
-    "readiness plan is not minted — mint it with pilot-role-readiness-v4 --write --mint-plan AFTER the final candidate re-mint");
+    "readiness plan is not minted — mint it with pilot-role-readiness-v5 --write --mint-plan AFTER the final candidate re-mint");
   const corpus = parseJson<PilotRoleReadinessCorpusV1>(materialized.corpusPath, "readiness corpus");
   const planBytes = readFileSync(materialized.planPath);
   const plan = JSON.parse(planBytes.toString("utf8")) as PilotRoleReadinessPlanV1;

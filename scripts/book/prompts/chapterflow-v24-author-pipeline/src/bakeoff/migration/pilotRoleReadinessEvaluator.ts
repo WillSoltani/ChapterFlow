@@ -68,16 +68,16 @@ import type {
 } from "./roleQualificationRunnerV3.js";
 import { renderKeyFreeReaderDocument } from "./readerGoldDevDocs.js";
 import {
-  PILOT_ROLE_READINESS_V4_CORPUS_SCHEMA,
-  PILOT_ROLE_READINESS_V4_EXPERIMENT_ID,
+  PILOT_ROLE_READINESS_V5_CORPUS_SCHEMA,
+  PILOT_ROLE_READINESS_V5_EXPERIMENT_ID,
   READINESS_CANARY_GOLD_ADJUDICATIONS_V1,
   READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2,
-  READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1,
-  type PilotRoleReadinessCorpusV4,
+  READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2,
+  type PilotRoleReadinessCorpusV5,
   type ReadinessCaseV1,
 } from "./pilotRoleReadinessInstrument.js";
 
-type ReadinessSourceAdjudications = typeof READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1;
+type ReadinessSourceAdjudications = typeof READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2;
 
 type ReadinessCraftMap = Readonly<Record<string, readonly string[]>>;
 
@@ -332,7 +332,7 @@ export function compilePilotReadinessCaseInstrument(
   };
 }
 
-export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV4, "reader" | "source" | "quiz">): ReadinessCaseV1[] {
+export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV5, "reader" | "source" | "quiz">): ReadinessCaseV1[] {
   const cases: ReadinessCaseV1[] = [];
   for (const role of ["reader", "source", "quiz"] as const) {
     for (const partition of ["canary", "holdout"] as const) {
@@ -346,13 +346,13 @@ export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV4, "rea
  * IMP-24 evaluator's protocol/freshness/authority handling exactly; only the
  * metric identities and the reader decision policy differ (v3, per D1). */
 export function createPilotRoleReadinessEvaluator(
-  corpus: PilotRoleReadinessCorpusV4,
+  corpus: PilotRoleReadinessCorpusV5,
 ): QualificationOutputEvaluatorV3 {
-  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V4_CORPUS_SCHEMA
-      && corpus.experimentId === PILOT_ROLE_READINESS_V4_EXPERIMENT_ID,
-    "readiness evaluator requires the exact frozen v4 readiness corpus");
+  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V5_CORPUS_SCHEMA
+      && corpus.experimentId === PILOT_ROLE_READINESS_V5_EXPERIMENT_ID,
+    "readiness evaluator requires the exact frozen v5 readiness corpus");
   requireCondition(hashCanonical(corpus.sourceHoldoutGoldAdjudications)
-      === hashCanonical(READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1),
+      === hashCanonical(READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2),
     "readiness corpus source-holdout adjudications differ from the frozen owner-authorized record");
   requireCondition(hashCanonical(corpus.goldAdjudications) === hashCanonical(READINESS_CANARY_GOLD_ADJUDICATIONS_V1),
     "readiness corpus gold adjudications differ from the frozen owner-authorized record");

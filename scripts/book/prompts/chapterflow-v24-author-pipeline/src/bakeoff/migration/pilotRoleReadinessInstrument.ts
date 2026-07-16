@@ -150,6 +150,30 @@ export const READINESS_CANARY_GOLD_ADJUDICATIONS_V1 = Object.freeze({
   }),
 });
 
+/** v5 ERRATUM identity (2026-07-16): v4 closed BLOCKED @72 with quiz
+ * sol@xhigh READY (first quiz qualifier) + reader sol@high READY; every
+ * tested source profile missed exactly ONE case — source-bound-detail
+ * fact-3-defect — answering the ADJUDICATED pattern. Root cause: a
+ * transcription error in the V1 record below ("fact-1-defect", the CANARY id,
+ * instead of "fact-3-defect"; the holdout defects are fact-2 + fact-3 and the
+ * 5-run consensus table covered both). V2 corrects the match string only;
+ * every ruling is unchanged. */
+export const PILOT_ROLE_READINESS_V5_EXPERIMENT_ID = "s16-forward-pilot-role-readiness-v5" as const;
+export const PILOT_ROLE_READINESS_V5_DIR_REL_PATH =
+  `${PIPELINE_REL}/state/migration-experiments/pilot-role-readiness-v5` as const;
+export const PILOT_ROLE_READINESS_V5_CORPUS_SCHEMA = "pilot-role-readiness-corpus-v5" as const;
+export const PILOT_ROLE_READINESS_V5_PLAN_SCHEMA = "pilot-role-readiness-plan-v5" as const;
+
+export const READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2 = Object.freeze({
+  ...READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1,
+  schema: "pilot-readiness-source-holdout-gold-adjudications-v2",
+  erratum: "v1 transcription error: match 'source-bound-detail-ch01-fact-1-defect' (the canary id) corrected to 'fact-3-defect'; rulings unchanged",
+  cases: Object.freeze(READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V1.cases.map((item) =>
+    item.match === "source-bound-detail-ch01-fact-1-defect"
+      ? Object.freeze({ ...item, match: "source-bound-detail-ch01-fact-3-defect" })
+      : item)),
+});
+
 /** Immutable inputs (raw-byte pins — any drift fails closed). */
 export const IMP24_V3_BUNDLE_REL_PATH =
   `${PIPELINE_REL}/state/migration-experiments/contracts/imp24/role-qualification-corpus-bundle.v3-envelope.json` as const;
@@ -902,6 +926,100 @@ export function materializePilotRoleReadinessV4(args: {
   return {
     schema: "pilot-role-readiness-materialization-v4",
     experimentId: PILOT_ROLE_READINESS_V4_EXPERIMENT_ID,
+    corpusPath,
+    corpusSha256: corpus.corpusSha256,
+    planPath,
+    planSha256,
+    planWritten,
+    written: args.write === true || existsSync(corpusPath),
+    modelCalls: 0,
+    apiCalls: 0,
+  };
+}
+
+// ── v5 corpus (v4 + adjudication erratum) ────────────────────────────────────
+
+export type PilotRoleReadinessCorpusV5 = Omit<PilotRoleReadinessCorpusV4, "schema" | "experimentId" | "sourceHoldoutGoldAdjudications"> & {
+  schema: typeof PILOT_ROLE_READINESS_V5_CORPUS_SCHEMA;
+  experimentId: typeof PILOT_ROLE_READINESS_V5_EXPERIMENT_ID;
+  sourceHoldoutGoldAdjudications: typeof READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2;
+};
+
+export function buildPilotRoleReadinessCorpusV5(args: { repositoryRoot: string }): PilotRoleReadinessCorpusV5 {
+  const v4 = buildPilotRoleReadinessCorpusV4(args);
+  const { corpusSha256: _v4Sha256, ...v4Core } = v4;
+  const core = {
+    ...v4Core,
+    schema: PILOT_ROLE_READINESS_V5_CORPUS_SCHEMA,
+    experimentId: PILOT_ROLE_READINESS_V5_EXPERIMENT_ID,
+    sourceHoldoutGoldAdjudications: READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2,
+  };
+  return { ...core, corpusSha256: hashCanonical(core) };
+}
+
+export type PilotRoleReadinessPlanV5 = Omit<PilotRoleReadinessPlanV4, "schema" | "experimentId"> & {
+  schema: typeof PILOT_ROLE_READINESS_V5_PLAN_SCHEMA;
+  experimentId: typeof PILOT_ROLE_READINESS_V5_EXPERIMENT_ID;
+};
+
+export function buildPilotRoleReadinessPlanV5(args: {
+  repositoryRoot: string;
+  corpus: PilotRoleReadinessCorpusV5;
+}): PilotRoleReadinessPlanV5 {
+  const v4Style = buildPilotRoleReadinessPlanV4({
+    repositoryRoot: args.repositoryRoot,
+    corpus: args.corpus as unknown as PilotRoleReadinessCorpusV4,
+  });
+  const { planSha256: _v4PlanSha256, ...v4Core } = v4Style;
+  const core = {
+    ...v4Core,
+    schema: PILOT_ROLE_READINESS_V5_PLAN_SCHEMA,
+    experimentId: PILOT_ROLE_READINESS_V5_EXPERIMENT_ID,
+    corpusSha256: args.corpus.corpusSha256,
+    sourceHoldoutGoldAdjudicationsSha256: hashCanonical(READINESS_SOURCE_HOLDOUT_GOLD_ADJUDICATIONS_V2),
+  };
+  return { ...core, planSha256: hashCanonical(core) };
+}
+
+export function materializePilotRoleReadinessV5(args: {
+  repositoryRoot: string;
+  write?: boolean;
+  mintPlan?: boolean;
+}): Omit<PilotRoleReadinessMaterializationV2, "schema" | "experimentId"> & {
+  schema: "pilot-role-readiness-materialization-v5";
+  experimentId: typeof PILOT_ROLE_READINESS_V5_EXPERIMENT_ID;
+} {
+  const repositoryRoot = resolve(args.repositoryRoot);
+  const corpus = buildPilotRoleReadinessCorpusV5({ repositoryRoot });
+  const corpusPath = resolve(repositoryRoot, `${PILOT_ROLE_READINESS_V5_DIR_REL_PATH}/readiness-corpus.v5.json`);
+  const corpusBytes = canonicalPretty(corpus);
+  if (existsSync(corpusPath)) {
+    requireCondition(readFileSync(corpusPath, "utf8") === corpusBytes,
+      "retained v5 readiness corpus differs from the deterministic rebuild — the corpus is frozen at creation");
+  } else if (args.write === true) {
+    writeFileAtomic(corpusPath, corpusBytes);
+    requireCondition(readFileSync(corpusPath, "utf8") === corpusBytes, "v5 readiness corpus read-back drift");
+  }
+  const planPath = resolve(repositoryRoot, `${PILOT_ROLE_READINESS_V5_DIR_REL_PATH}/readiness-plan.v5.json`);
+  let planSha256: string | null = null;
+  let planWritten = false;
+  if (existsSync(planPath)) {
+    const retained = JSON.parse(readFileSync(planPath, "utf8")) as PilotRoleReadinessPlanV5;
+    requireCondition(retained.corpusSha256 === corpus.corpusSha256, "retained v5 plan is bound to a different corpus");
+    const rebuilt = buildPilotRoleReadinessPlanV5({ repositoryRoot, corpus });
+    requireCondition(rebuilt.planSha256 === retained.planSha256,
+      "retained v5 readiness plan no longer matches the current inputs — mint a fresh plan identity");
+    planSha256 = retained.planSha256;
+    planWritten = true;
+  } else if (args.mintPlan === true && args.write === true) {
+    const plan = buildPilotRoleReadinessPlanV5({ repositoryRoot, corpus });
+    writeFileAtomic(planPath, canonicalPretty(plan));
+    planSha256 = plan.planSha256;
+    planWritten = true;
+  }
+  return {
+    schema: "pilot-role-readiness-materialization-v5",
+    experimentId: PILOT_ROLE_READINESS_V5_EXPERIMENT_ID,
     corpusPath,
     corpusSha256: corpus.corpusSha256,
     planPath,
