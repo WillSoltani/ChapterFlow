@@ -76,6 +76,7 @@ import {
   PILOT_READINESS_BUDGET,
   PILOT_ROLE_READINESS_EXPERIMENT_ID,
   PILOT_ROLE_READINESS_V2_EXPERIMENT_ID,
+  PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
 } from "../bakeoff/migration/pilotRoleReadinessInstrument.js";
 import { qualifyRole } from "../bakeoff/migration/roleQualification.js";
 import {
@@ -145,7 +146,8 @@ export type Imp24LiveExecutionIdentityV3 =
   | typeof IMP24E_TRANSPORT_SMOKE_EXECUTION_ID
   | typeof IMP24E_TRANSPORT_SMOKE_R2_EXECUTION_ID
   | typeof PILOT_ROLE_READINESS_EXPERIMENT_ID
-  | typeof PILOT_ROLE_READINESS_V2_EXPERIMENT_ID;
+  | typeof PILOT_ROLE_READINESS_V2_EXPERIMENT_ID
+  | typeof PILOT_ROLE_READINESS_V3_EXPERIMENT_ID;
 
 const IMP24_LIVE_EXECUTION_IDENTITIES = new Set<string>([
   IMP24_ROLE_QUALIFICATION_EXECUTION_ID,
@@ -156,6 +158,7 @@ const IMP24_LIVE_EXECUTION_IDENTITIES = new Set<string>([
   IMP24E_TRANSPORT_SMOKE_R2_EXECUTION_ID,
   PILOT_ROLE_READINESS_EXPERIMENT_ID,
   PILOT_ROLE_READINESS_V2_EXPERIMENT_ID,
+  PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
 ]);
 
 /** Identity-keyed live call ceilings. Every IMP-24 qualification/smoke
@@ -167,7 +170,8 @@ export function liveCallCeilingsForExecutionIdentityV3(
   executionId: Imp24LiveExecutionIdentityV3,
 ): { baseMaximumCalls: number; hardMaximumCalls: number } {
   if (executionId === PILOT_ROLE_READINESS_EXPERIMENT_ID
-    || executionId === PILOT_ROLE_READINESS_V2_EXPERIMENT_ID) {
+    || executionId === PILOT_ROLE_READINESS_V2_EXPERIMENT_ID
+    || executionId === PILOT_ROLE_READINESS_V3_EXPERIMENT_ID) {
     return {
       baseMaximumCalls: PILOT_READINESS_BUDGET.baseMaximumCalls,
       hardMaximumCalls: PILOT_READINESS_BUDGET.hardMaximumCalls,

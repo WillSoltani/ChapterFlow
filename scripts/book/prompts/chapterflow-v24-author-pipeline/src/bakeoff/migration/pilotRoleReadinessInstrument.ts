@@ -50,6 +50,31 @@ export const PILOT_ROLE_READINESS_V2_DIR_REL_PATH =
 export const PILOT_ROLE_READINESS_V2_CORPUS_SCHEMA = "pilot-role-readiness-corpus-v2" as const;
 export const PILOT_ROLE_READINESS_V2_PLAN_SCHEMA = "pilot-role-readiness-plan-v2" as const;
 
+/** v3 successor identity (owner directive "proceed and continue the same
+ * way", 2026-07-16 = Option B + fresh <=84/168 envelope): v2 closed BLOCKED
+ * at the exact ceiling with reader sol@xhigh QUALIFIED; v3 = v2 + the ONE
+ * craft-map widening below. */
+export const PILOT_ROLE_READINESS_V3_EXPERIMENT_ID = "s16-forward-pilot-role-readiness-v3" as const;
+export const PILOT_ROLE_READINESS_V3_DIR_REL_PATH =
+  `${PIPELINE_REL}/state/migration-experiments/pilot-role-readiness-v3` as const;
+export const PILOT_ROLE_READINESS_V3_CORPUS_SCHEMA = "pilot-role-readiness-corpus-v3" as const;
+export const PILOT_ROLE_READINESS_V3_PLAN_SCHEMA = "pilot-role-readiness-plan-v3" as const;
+
+/** Option B ruling (owner-authorized): craft weakness->category acceptance
+ * map v2. ONE change vs v1: `pacing` also accepts `density` — the schema's
+ * closest adjacent label for information-rate/flow weaknesses (both v2
+ * gpt-5.5 profiles emitted adjacent labels on the pacing case). Universal
+ * `other_craft` acceptance was CONSIDERED AND REJECTED: it would make
+ * craftCategoryDetected trivially passable for advisory-spamming reviewers.
+ * Prospective-only: applies to the v3 identity, never retroactively. */
+export const READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2: Readonly<Record<string, readonly string[]>> =
+  Object.freeze({
+    weak_transition: Object.freeze(["pacing", "other_craft"]),
+    thin_explanation: Object.freeze(["thin_example", "other_craft"]),
+    tone: Object.freeze(["tone"]),
+    pacing: Object.freeze(["pacing", "density"]),
+  });
+
 /** Canary-gold adjudication record (owner: "Proceed with A"). Basis for each
  * ruling: unanimous model divergence across TWO independent campaigns (this
  * run 4/4 profiles + the archived IMP-24 attempts) on a single secondary
@@ -647,6 +672,101 @@ export function materializePilotRoleReadinessV2(args: {
   return {
     schema: "pilot-role-readiness-materialization-v2",
     experimentId: PILOT_ROLE_READINESS_V2_EXPERIMENT_ID,
+    corpusPath,
+    corpusSha256: corpus.corpusSha256,
+    planPath,
+    planSha256,
+    planWritten,
+    written: args.write === true || existsSync(corpusPath),
+    modelCalls: 0,
+    apiCalls: 0,
+  };
+}
+
+// ── v3 corpus (v2 + Option B craft-map widening) ─────────────────────────────
+
+export type PilotRoleReadinessCorpusV3 = Omit<PilotRoleReadinessCorpusV2, "schema" | "experimentId"> & {
+  schema: typeof PILOT_ROLE_READINESS_V3_CORPUS_SCHEMA;
+  experimentId: typeof PILOT_ROLE_READINESS_V3_EXPERIMENT_ID;
+  craftWeaknessAcceptedCategories: typeof READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2;
+};
+
+export function buildPilotRoleReadinessCorpusV3(args: { repositoryRoot: string }): PilotRoleReadinessCorpusV3 {
+  const v2 = buildPilotRoleReadinessCorpusV2(args);
+  const { corpusSha256: _v2Sha256, ...v2Core } = v2;
+  const core = {
+    ...v2Core,
+    schema: PILOT_ROLE_READINESS_V3_CORPUS_SCHEMA,
+    experimentId: PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
+    craftWeaknessAcceptedCategories: READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2,
+  };
+  return { ...core, corpusSha256: hashCanonical(core) };
+}
+
+export type PilotRoleReadinessPlanV3 = Omit<PilotRoleReadinessPlanV2, "schema" | "experimentId"> & {
+  schema: typeof PILOT_ROLE_READINESS_V3_PLAN_SCHEMA;
+  experimentId: typeof PILOT_ROLE_READINESS_V3_EXPERIMENT_ID;
+  craftWeaknessAcceptedCategoriesSha256: string;
+};
+
+export function buildPilotRoleReadinessPlanV3(args: {
+  repositoryRoot: string;
+  corpus: PilotRoleReadinessCorpusV3;
+}): PilotRoleReadinessPlanV3 {
+  const v2Style = buildPilotRoleReadinessPlanV2({
+    repositoryRoot: args.repositoryRoot,
+    corpus: args.corpus as unknown as PilotRoleReadinessCorpusV2,
+  });
+  const { planSha256: _v2PlanSha256, ...v2Core } = v2Style;
+  const core = {
+    ...v2Core,
+    schema: PILOT_ROLE_READINESS_V3_PLAN_SCHEMA,
+    experimentId: PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
+    corpusSha256: args.corpus.corpusSha256,
+    craftWeaknessAcceptedCategoriesSha256: hashCanonical(READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2),
+  };
+  return { ...core, planSha256: hashCanonical(core) };
+}
+
+export function materializePilotRoleReadinessV3(args: {
+  repositoryRoot: string;
+  write?: boolean;
+  mintPlan?: boolean;
+}): Omit<PilotRoleReadinessMaterializationV2, "schema" | "experimentId"> & {
+  schema: "pilot-role-readiness-materialization-v3";
+  experimentId: typeof PILOT_ROLE_READINESS_V3_EXPERIMENT_ID;
+} {
+  const repositoryRoot = resolve(args.repositoryRoot);
+  const corpus = buildPilotRoleReadinessCorpusV3({ repositoryRoot });
+  const corpusPath = resolve(repositoryRoot, `${PILOT_ROLE_READINESS_V3_DIR_REL_PATH}/readiness-corpus.v3.json`);
+  const corpusBytes = canonicalPretty(corpus);
+  if (existsSync(corpusPath)) {
+    requireCondition(readFileSync(corpusPath, "utf8") === corpusBytes,
+      "retained v3 readiness corpus differs from the deterministic rebuild — the corpus is frozen at creation");
+  } else if (args.write === true) {
+    writeFileAtomic(corpusPath, corpusBytes);
+    requireCondition(readFileSync(corpusPath, "utf8") === corpusBytes, "v3 readiness corpus read-back drift");
+  }
+  const planPath = resolve(repositoryRoot, `${PILOT_ROLE_READINESS_V3_DIR_REL_PATH}/readiness-plan.v3.json`);
+  let planSha256: string | null = null;
+  let planWritten = false;
+  if (existsSync(planPath)) {
+    const retained = JSON.parse(readFileSync(planPath, "utf8")) as PilotRoleReadinessPlanV3;
+    requireCondition(retained.corpusSha256 === corpus.corpusSha256, "retained v3 plan is bound to a different corpus");
+    const rebuilt = buildPilotRoleReadinessPlanV3({ repositoryRoot, corpus });
+    requireCondition(rebuilt.planSha256 === retained.planSha256,
+      "retained v3 readiness plan no longer matches the current inputs (candidate re-minted since plan freeze?) — mint a fresh plan identity");
+    planSha256 = retained.planSha256;
+    planWritten = true;
+  } else if (args.mintPlan === true && args.write === true) {
+    const plan = buildPilotRoleReadinessPlanV3({ repositoryRoot, corpus });
+    writeFileAtomic(planPath, canonicalPretty(plan));
+    planSha256 = plan.planSha256;
+    planWritten = true;
+  }
+  return {
+    schema: "pilot-role-readiness-materialization-v3",
+    experimentId: PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
     corpusPath,
     corpusSha256: corpus.corpusSha256,
     planPath,

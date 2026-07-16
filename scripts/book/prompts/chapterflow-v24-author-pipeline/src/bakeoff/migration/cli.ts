@@ -93,7 +93,7 @@ import {
   summarizeAudit,
 } from "./rubricAuditHarness.js";
 import { assembleAuditPackage } from "../auditPackageAssembler.js";
-import { materializePilotRoleReadiness, materializePilotRoleReadinessV2 } from "./pilotRoleReadinessInstrument.js";
+import { materializePilotRoleReadiness, materializePilotRoleReadinessV2, materializePilotRoleReadinessV3 } from "./pilotRoleReadinessInstrument.js";
 import {
   buildGoldArtifacts,
   buildPilotArtifacts,
@@ -314,6 +314,7 @@ const LOCAL_FORWARD_SUBVERBS: ReadonlySet<string> = new Set([
   "assemble-audit-package",
   "pilot-role-readiness",
   "pilot-role-readiness-v2",
+  "pilot-role-readiness-v3",
   "role-qualification-freeze",
   "forward-materialize-pilot-artifacts",
   "forward-materialize-gold-artifacts",
@@ -1766,6 +1767,20 @@ function runLocalForwardSubverb(
     // overlay embedded. Same create-once / bind-once discipline as v1.
     const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
     const out = materializePilotRoleReadinessV2({
+      repositoryRoot,
+      write: flags.write === true,
+      mintPlan: flags["mint-plan"] === true,
+    });
+    console.log(flags.json === true ? JSON.stringify(out, null, 2)
+      : `[migration] ${out.experimentId}: corpus=${out.corpusSha256} plan=${out.planSha256 ?? "UNMINTED"} written=${String(out.written)} model/api calls=0`);
+    return 0;
+  }
+  if (subverb === "pilot-role-readiness-v3") {
+    // v3 successor (owner: Option B + fresh envelope): v2 + the single
+    // craft-map widening (pacing also accepts density). Same create-once /
+    // bind-once discipline.
+    const repositoryRoot = resolve(PIPELINE_DIR, "../../../..");
+    const out = materializePilotRoleReadinessV3({
       repositoryRoot,
       write: flags.write === true,
       mintPlan: flags["mint-plan"] === true,

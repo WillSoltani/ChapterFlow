@@ -68,12 +68,15 @@ import type {
 } from "./roleQualificationRunnerV3.js";
 import { renderKeyFreeReaderDocument } from "./readerGoldDevDocs.js";
 import {
-  PILOT_ROLE_READINESS_V2_CORPUS_SCHEMA,
-  PILOT_ROLE_READINESS_V2_EXPERIMENT_ID,
+  PILOT_ROLE_READINESS_V3_CORPUS_SCHEMA,
+  PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
   READINESS_CANARY_GOLD_ADJUDICATIONS_V1,
-  type PilotRoleReadinessCorpusV2,
+  READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2,
+  type PilotRoleReadinessCorpusV3,
   type ReadinessCaseV1,
 } from "./pilotRoleReadinessInstrument.js";
+
+type ReadinessCraftMap = Readonly<Record<string, readonly string[]>>;
 
 type ReadinessGoldAdjudications = typeof READINESS_CANARY_GOLD_ADJUDICATIONS_V1;
 
@@ -163,7 +166,15 @@ function effectiveGold(
   entry: ReadinessCaseV1,
   bundleGold: unknown,
   adjudications: ReadinessGoldAdjudications | undefined,
+  craftMap: ReadinessCraftMap | undefined,
 ): unknown {
+  if (entry.role === "reader" && entry.category === "craft-nonblocker" && craftMap) {
+    const weakness = String((bundleGold as { expectedWeakness?: unknown }).expectedWeakness ?? "");
+    const accepted = craftMap[weakness];
+    if (accepted) {
+      return { ...(bundleGold as Record<string, unknown>), acceptedCraftCategories: [...accepted] };
+    }
+  }
   if (!adjudications) return bundleGold;
   const payloadCaseId = String((entry.payload as { caseId?: unknown }).caseId ?? "");
   if (entry.role === "reader" && payloadCaseId === adjudications.reader.caseId) {
@@ -196,6 +207,7 @@ function effectiveGold(
 export function compilePilotReadinessCaseInstrument(
   entry: ReadinessCaseV1,
   adjudications?: ReadinessGoldAdjudications,
+  craftMap?: ReadinessCraftMap,
 ): CompiledReadinessCaseV1 {
   requireCondition(hashCanonical(entry.payload) === entry.caseSha256,
     `${entry.caseId}: frozen payload no longer matches its corpus caseSha256`);
@@ -231,7 +243,7 @@ export function compilePilotReadinessCaseInstrument(
       envelope: compiled.envelope,
       evidenceEnvelopeBytes: compiled.envelopeBytes,
       task: compiled.task,
-      gold: effectiveGold(entry, payload.expected, adjudications),
+      gold: effectiveGold(entry, payload.expected, adjudications, craftMap),
       sourceCaseSha256: entry.caseSha256,
       chapterContentSha256: chapterContentHash(chapter),
       readerDocumentSha256: compiled.readerDocumentSha256,
@@ -255,7 +267,7 @@ export function compilePilotReadinessCaseInstrument(
       envelope,
       evidenceEnvelopeBytes: serializeReviewEvidenceEnvelope(envelope),
       task: buildReaderExperienceInlineReviewTask(envelope),
-      gold: effectiveGold(entry, item.expected, adjudications),
+      gold: effectiveGold(entry, item.expected, adjudications, craftMap),
       sourceCaseSha256: substantive,
       chapterContentSha256: item.provenance.variantContentSha256,
       readerDocumentSha256: completeKeyFreeReaderDocumentSha256V2(item.chapter),
@@ -274,7 +286,7 @@ export function compilePilotReadinessCaseInstrument(
       envelope: partition.envelope,
       evidenceEnvelopeBytes: serializeReviewEvidenceEnvelope(partition.envelope),
       task: partition.task,
-      gold: effectiveGold(entry, deriveImp24SourceSemantics(item), adjudications),
+      gold: effectiveGold(entry, deriveImp24SourceSemantics(item), adjudications, craftMap),
       sourceCaseSha256: substantive,
       chapterContentSha256: null,
       readerDocumentSha256: null,
@@ -292,7 +304,7 @@ export function compilePilotReadinessCaseInstrument(
     envelope: instrument.compiled.envelope,
     evidenceEnvelopeBytes: serializeReviewEvidenceEnvelope(instrument.compiled.envelope),
     task: instrument.compiled.task,
-    gold: effectiveGold(entry, item.expected, adjudications),
+    gold: effectiveGold(entry, item.expected, adjudications, craftMap),
     sourceCaseSha256: substantive,
     chapterContentSha256: null,
     readerDocumentSha256: null,
@@ -302,7 +314,7 @@ export function compilePilotReadinessCaseInstrument(
   };
 }
 
-export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV2, "reader" | "source" | "quiz">): ReadinessCaseV1[] {
+export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV3, "reader" | "source" | "quiz">): ReadinessCaseV1[] {
   const cases: ReadinessCaseV1[] = [];
   for (const role of ["reader", "source", "quiz"] as const) {
     for (const partition of ["canary", "holdout"] as const) {
@@ -316,17 +328,20 @@ export function everyReadinessCase(corpus: Pick<PilotRoleReadinessCorpusV2, "rea
  * IMP-24 evaluator's protocol/freshness/authority handling exactly; only the
  * metric identities and the reader decision policy differ (v3, per D1). */
 export function createPilotRoleReadinessEvaluator(
-  corpus: PilotRoleReadinessCorpusV2,
+  corpus: PilotRoleReadinessCorpusV3,
 ): QualificationOutputEvaluatorV3 {
-  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V2_CORPUS_SCHEMA
-      && corpus.experimentId === PILOT_ROLE_READINESS_V2_EXPERIMENT_ID,
-    "readiness evaluator requires the exact frozen v2 readiness corpus");
+  requireCondition(corpus.schema === PILOT_ROLE_READINESS_V3_CORPUS_SCHEMA
+      && corpus.experimentId === PILOT_ROLE_READINESS_V3_EXPERIMENT_ID,
+    "readiness evaluator requires the exact frozen v3 readiness corpus");
   requireCondition(hashCanonical(corpus.goldAdjudications) === hashCanonical(READINESS_CANARY_GOLD_ADJUDICATIONS_V1),
     "readiness corpus gold adjudications differ from the frozen owner-authorized record");
+  requireCondition(hashCanonical(corpus.craftWeaknessAcceptedCategories)
+      === hashCanonical(READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES_V2),
+    "readiness corpus craft-category map differs from the frozen owner-authorized v2 map");
   const byCaseId = new Map<string, { entry: ReadinessCaseV1; compiled: CompiledReadinessCaseV1 }>();
   for (const entry of everyReadinessCase(corpus)) {
     requireCondition(!byCaseId.has(entry.caseId), `duplicate readiness case ${entry.caseId}`);
-    byCaseId.set(entry.caseId, { entry, compiled: compilePilotReadinessCaseInstrument(entry, corpus.goldAdjudications) });
+    byCaseId.set(entry.caseId, { entry, compiled: compilePilotReadinessCaseInstrument(entry, corpus.goldAdjudications, corpus.craftWeaknessAcceptedCategories) });
   }
   requireCondition(byCaseId.size === 42, `readiness evaluator requires all 42 frozen cases, got ${byCaseId.size}`);
 
@@ -473,8 +488,9 @@ function evaluateReader(args: LaneEvaluationArgs): CaseEvaluationV3 {
         && composite >= minComposite;
       semanticCorrect = observations.acceptableControlSuccess;
     } else {
-      const weakness = String((compiled.gold as { expectedWeakness?: unknown }).expectedWeakness ?? "");
-      const accepted = READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES[weakness];
+      const craftGold = compiled.gold as { expectedWeakness?: unknown; acceptedCraftCategories?: string[] };
+      const weakness = String(craftGold.expectedWeakness ?? "");
+      const accepted = craftGold.acceptedCraftCategories ?? READINESS_CRAFT_WEAKNESS_ACCEPTED_CATEGORIES[weakness];
       requireCondition(accepted !== undefined,
         `${entry.caseId}: craft weakness '${weakness}' has no frozen advisory-category mapping`);
       observations.falseReaderBlockersOnAcceptableAndCraft = blockingCategories.length === 0;
