@@ -2,11 +2,12 @@
  * IMP-00: Phase-0 contract freeze + validator coverage.
  *
  * The frozen `contract-manifest.json` pins { name, version, hash } for all
- * seventeen cross-package contracts — the nine Phase-0 contracts (execution
+ * eighteen cross-package contracts — the nine Phase-0 contracts (execution
  * profile, effective context, candidate transaction, source-use plan, repair,
  * review, route, attempt evidence, worker report) plus the five additive IMP-20
  * split-lane / §16-recovery contracts, the two additive IMP-24 inline-review
- * contracts, and the additive WP-102 emission↔web-adapter parity contract.
+ * contracts, the additive WP-102 emission↔web-adapter parity contract, and the
+ * additive WP-305 source-projection-boundary contract.
  * Editing a contract without a version bump
  * + regenerated manifest + integration review is the "silent schema drift across
  * parallel branches" merge blocker from master-plan §12 — these tests make that
@@ -39,14 +40,15 @@ test("contract manifest is frozen and matches the live descriptors exactly", () 
   assert.deepEqual(divergences, [], `contract drift detected:\n${divergences.join("\n")}`);
 });
 
-test("all seventeen frozen contracts are present at their pinned versions with distinct owners", () => {
+test("all eighteen frozen contracts are present at their pinned versions with distinct owners", () => {
   const manifest = loadFrozenManifest();
   // 9 Phase-0 contracts + the 5 additive IMP-20 split-lane / §16-recovery
   // contracts (reader-experience-review, source-integrity-review,
   // quiz-integrity-result, aggregated-chapter-review, judge-capability-qualification)
   // + the 2 additive IMP-24 inline-review contracts (review-evidence-envelope,
-  // review-model-output-v2) + the WP-102 additive emission-package parity contract.
-  assert.equal(manifest.contracts.length, 17);
+  // review-model-output-v2) + the WP-102 additive emission-package parity contract
+  // + the WP-305 additive source-projection-boundary contract.
+  assert.equal(manifest.contracts.length, 18);
   const names = manifest.contracts.map((c) => c.name).sort();
   assert.deepEqual(names, [
     "aggregated-chapter-review", "attempt-evidence-manifest", "candidate-transaction",
@@ -54,7 +56,8 @@ test("all seventeen frozen contracts are present at their pinned versions with d
     "judge-capability-qualification",
     "quiz-integrity-result", "reader-experience-review", "repair", "review-evidence-envelope",
     "review-model-output-v2", "review-output",
-    "route-result", "source-integrity-review", "source-use-plan", "worker-implementation-report",
+    "route-result", "source-integrity-review", "source-projection-boundary", "source-use-plan",
+    "worker-implementation-report",
   ]);
   // route-result was deliberately bumped to v2 (owner §16 route-invariant
   // directive 2026-07-11: per-spawn subscription-route telemetry). Every other
@@ -65,7 +68,7 @@ test("all seventeen frozen contracts are present at their pinned versions with d
     assert.equal(c.version, expected, `${c.name} must be v${expected}`);
   }
   const owners = new Set(manifest.contracts.map((c) => c.ownerPrompt));
-  for (const owner of ["IMP-00", "IMP-01", "IMP-02", "IMP-03", "IMP-07", "IMP-08", "IMP-10", "IMP-20", "IMP-24", "WP-102"]) {
+  for (const owner of ["IMP-00", "IMP-01", "IMP-02", "IMP-03", "IMP-07", "IMP-08", "IMP-10", "IMP-20", "IMP-24", "WP-102", "WP-305"]) {
     assert.ok(owners.has(owner), `expected an ${owner}-owned contract`);
   }
 });
@@ -127,6 +130,36 @@ test("emission descriptor: a field edit without a version bump is detected as ha
   const frozenEmission = loadFrozenManifest().contracts.find((c) => c.name === "emission-package")!;
   const changed = mutated.find((c) => c.name === "emission-package")!;
   assert.notEqual(contractHash(changed), frozenEmission.hash, "mutated emission descriptor must not match the frozen hash");
+});
+
+// ── WP-305: the source-projection-boundary contract is additive ───────────────
+
+// The exact hashes of the seventeen contracts that predate WP-305 (the sixteen
+// pre-WP-102 contracts + the WP-102 emission-package). Registering the additive
+// source-projection-boundary descriptor MUST leave every one of these untouched
+// (additive-only, mirroring the IMP-20/IMP-24/WP-102 notes). If any moves, a
+// pre-existing descriptor was edited — a freeze violation, not an additive change.
+const PRE_WP305_HASHES: Record<string, string> = {
+  ...PRE_WP102_HASHES,
+  "emission-package": "3e1dbcb905efae7a95eccbe516240620625547230fcc93ddae4c1805b29e472e",
+};
+
+test("WP-305 registration is additive: no pre-existing contractHash moved", () => {
+  const live = new Map(ALL_CONTRACTS.map((c) => [c.name, contractHash(c)]));
+  const frozen = new Map(loadFrozenManifest().contracts.map((c) => [c.name, c.hash]));
+  for (const [name, hash] of Object.entries(PRE_WP305_HASHES)) {
+    assert.equal(live.get(name), hash, `${name} live hash moved (pre-existing descriptor edited)`);
+    assert.equal(frozen.get(name), hash, `${name} manifest hash moved (non-additive manifest regen)`);
+  }
+});
+
+test("source-projection-boundary descriptor: a field edit without a version bump is detected as hash drift", () => {
+  const mutated = ALL_CONTRACTS.map((c) =>
+    c.name === "source-projection-boundary" ? { ...c, fields: { ...c.fields, smuggled: "string" } } : c,
+  );
+  const frozen = loadFrozenManifest().contracts.find((c) => c.name === "source-projection-boundary")!;
+  const changed = mutated.find((c) => c.name === "source-projection-boundary")!;
+  assert.notEqual(contractHash(changed), frozen.hash, "mutated source-projection-boundary descriptor must not match the frozen hash");
 });
 
 // ── WP-102: the emission↔web-adapter parity validator ─────────────────────────

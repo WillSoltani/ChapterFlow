@@ -38,6 +38,12 @@ import { REVIEW_MODEL_OUTPUT_V2_CONTRACT } from "./reviewModelOutputV2.js";
 // manifest 16 → 17). Freezes the terminal v21 emission's consumer surface; no
 // existing descriptor changes, so no existing contractHash moves.
 import { EMISSION_PACKAGE_CONTRACT } from "./emissionPackage.js";
+// WP-305 — additive source-projection-boundary contract (V25 S-Tier §8 Lane 3;
+// manifest 17 → 18). Freezes the three-surface source boundary (full packet ⊇
+// source-review packet ⊋ writer projection) so the advisory source lane is
+// provably source-EQUIPPED; no existing descriptor changes, so no existing
+// contractHash moves.
+import { SOURCE_PROJECTION_BOUNDARY_CONTRACT } from "./sourceProjectionBoundary.js";
 
 export const ALL_CONTRACTS: readonly ContractDescriptor[] = [
   EXECUTION_PROFILE_CONTRACT,
@@ -57,6 +63,7 @@ export const ALL_CONTRACTS: readonly ContractDescriptor[] = [
   REVIEW_EVIDENCE_ENVELOPE_CONTRACT,
   REVIEW_MODEL_OUTPUT_V2_CONTRACT,
   EMISSION_PACKAGE_CONTRACT,
+  SOURCE_PROJECTION_BOUNDARY_CONTRACT,
 ];
 
 export type ContractManifest = {
@@ -124,3 +131,4 @@ export * from "./judgeCapabilityQualification.js";
 export * from "./reviewEvidenceEnvelope.js";
 export * from "./reviewModelOutputV2.js";
 export * from "./emissionPackage.js";
+export * from "./sourceProjectionBoundary.js";

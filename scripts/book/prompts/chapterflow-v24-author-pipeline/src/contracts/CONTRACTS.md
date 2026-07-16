@@ -25,6 +25,7 @@ and get integration approval — silent local variants are a merge blocker.
 | `review-evidence-envelope` | 1 | IMP-24 | qualification and production inline evidence delivery; request/result freshness |
 | `review-model-output-v2` | 2 | IMP-24 | semantic-only reader/source/quiz outputs; conductor-owned V2 assembly |
 | `emission-package` | 1 | WP-102 | terminal v21 emission ↔ web-adapter parity surface; `contract-validate` drift gate; WP-101 field-parity reference |
+| `source-projection-boundary` | 1 | WP-305 | three-surface source boundary (full packet ⊇ source-review packet ⊋ writer projection); advisory source lane's source-EQUIPPED inputs (WP-403 consumer); WP-404 repair from source findings |
 
 ## Additive change note (IMP-20, 2026-07-12)
 
@@ -78,6 +79,43 @@ requires internal-only emission fields the adapters never read (e.g.
 deliberate internal metadata as drift. The two checks together are the parity
 gate. `contract-validate` self-checks a canonical conformant emission by default;
 `CHAPTERFLOW_EMISSION_FIXTURE=<path>` overrides it to validate any emission bytes.
+
+## Additive change note (WP-305, 2026-07-16)
+
+The `source-projection-boundary` row is additive (V25 S-Tier §8 Lane 3).
+Registering it regenerated the manifest from 17 to **18 contracts**; no
+pre-existing descriptor was edited, so no existing `contractHash` moved (the
+freeze test recomputes every hash and pins the seventeen prior values in
+`PRE_WP305_HASHES`).
+
+The contract freezes the **three-surface source boundary** — the deliberate
+asymmetry in how much source truth reaches each downstream consumer:
+
+- FULL source packet (`SourcePacketV1` + sidecar + `SourceUsePlanV1` + anchor
+  catalog) — compiler / QC truth.
+- SOURCE-REVIEW packet (`assembleSourceReviewPacket`, `SourceReviewPacketV1`) —
+  the advisory review lane's fuller-than-writer projection: the WHOLE packet
+  (still carrying case `allowedUses`/`forbiddenUses` and provenance), the
+  sidecar, the compiler-owned plan license, and full anchor bodies. Key-blind,
+  **never source-blind**.
+- WRITER projection (`writerPacketProjection`, `WriterPacketProjection`) — the
+  card diet: the same source-evidence fields are STRIPPED (case permissions,
+  provenance/grounding inventories, frameworks, fact verification refs, anchor
+  bodies → ids only).
+
+Containment: **FULL ⊇ SOURCE-REVIEW ⊋ WRITER**. WHY (V25-09/10, §5 target
+architecture): the historical source-reviewer false positives (cleanPass 0.125)
+were partly an instrument artifact of a SOURCE-BLIND lane — handed the reader
+document alone it flagged legitimately source-bound named examples as invented.
+The fix is a source-EQUIPPED advisory lane. The descriptor's field lists
+(`WRITER_STRIPPED_SOURCE_EVIDENCE`, `SOURCE_REVIEW_PACKET_SURFACE`) are the
+load-bearing freeze: `sourceReviewPacketEquippedErrors` / `assertSourceReviewPacketEquipped`
+prove a real assembled input is equipped (refusing a source-blind or dieted
+input fail-closed — the helper WP-403 wires), and `writerProjectionLeakedSourceEvidence`
+proves the writer diet is not weakened. The origin/form/claim-strength ONTOLOGY
+is frozen separately by `source-use-plan` (v1) and imported here, never
+re-declared; an ontology change moves the source-use-plan hash and stales the
+bound source review.
 
 ## Change protocol
 
