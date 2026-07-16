@@ -1,6 +1,6 @@
 # V25 S-Tier Program — Execution Status
 
-**Program state:** EXECUTING — Phase 1 / Wave A dispatched 2026-07-16T08:05-0300 (owner approved; ledger L-14). Live calls remain forbidden until Phase-6 written authorization (D-3).
+**Program state:** EXECUTING — Phase 1 COMPLETE (G1 passed @ f3b83a4fe, L-20). Phase 2 in progress. Live calls remain forbidden until Phase-6 written authorization (D-3).
 
 ## Branch / worktree registry
 
@@ -12,6 +12,10 @@
 | ~/ChapterFlow-books | feat/v25-pipeline | 96ba28179 | Owner's active checkout | owner | DO NOT TOUCH |
 
 Integration SHAs will be appended per gate (G1–G8) after approval.
+
+| Gate | SHA | Result | Evidence |
+|---|---|---|---|
+| G1 | f3b83a4fe | **PASS** — suite 3032/0/12xenv/39skip (detached); root typecheck+build green; contract-validate PASS | g1-gate-final.log, ledger L-20 |
 
 ## Work-package status
 
