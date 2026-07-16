@@ -58,7 +58,14 @@ export type RubricThresholds = {
   fleschEase: MetricBand;
   /** Flesch-Kincaid grade band (RUBRIC §11: ~7–8). */
   fkGrade: MetricBand;
-  /** Max distractor-tell rate as a fraction (RUBRIC §3 goal < 0.20). Fail above. */
+  /** ADVISORY (warn-only) ceiling for the distractor-tell rate as a fraction
+   *  (RUBRIC §3 goal < 0.20). DEMOTED from a blocking gate to warn-only per WP-402
+   *  / ledger L-14 D-9(a): it double-counted lengthTell.uniquelyLongest and its
+   *  0.20 blocking cutoff contradicted the owner corpus (reference exemplar 79%
+   *  key-longest; top-10 mean 0.456). It WARNS above this value, never fails; the
+   *  shortest-side lengthTell gate (lengthTellShortestMax) carries the real
+   *  key-length safety signal. See bookRubricMetrics.advisoryTellRateVerdict and
+   *  docs/v24/w2-card-preflight-calibration.md §(d). */
   tellRateMax: number;
   /** Min transfer ratio as a fraction (RUBRIC §3 goal > 0.70). Fail below. */
   transferMin: number;

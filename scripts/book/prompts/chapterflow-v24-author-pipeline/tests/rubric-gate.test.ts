@@ -198,17 +198,24 @@ test("computeChapterRubricMetrics: gate metrics fail under STRICT, pass under LO
   const ch = denseChapter("zz-flip");
   const strict = computeChapterRubricMetrics(ch, STRICT);
   assert.equal(strict.verdict, "fail");
-  for (const key of ["fleschEase", "tellRate", "transferRatio", "memorableClean"]) {
+  // WP-402: tellRate is DEMOTED to warn-only — it is NO LONGER in the fail set even
+  // when the key is the uniquely-longest choice (rate 1.0 > tellRateMax 0.2).
+  for (const key of ["fleschEase", "transferRatio", "memorableClean"]) {
     assert.ok(strict.failing.includes(key), `expected ${key} to fail under STRICT (failing=${strict.failing.join(",")})`);
   }
+  assert.ok(!strict.failing.includes("tellRate"), `tellRate is advisory (warn-only) — never in the failing set post-WP-402 (failing=${strict.failing.join(",")})`);
+  assert.equal(strict.metrics.tellRate.verdict, "warn", "a uniquely-longest key at rate 1.0 WARNS, never fails (WP-402)");
   // whole-chapter readability is reported (advisory) and does not add to `failing`.
   assert.ok(Number.isFinite(strict.metrics.fleschEaseWhole.value), "whole-chapter ease is reported");
-  // tell rate is a FRACTION, not a percentage.
+  // tell rate is a FRACTION, not a percentage — the measured value is unchanged.
   assert.equal(strict.metrics.tellRate.value, 1, "single uniquely-longest keyed answer → tell rate 1.0");
 
   const loose = computeChapterRubricMetrics(ch, LOOSE);
   assert.equal(loose.verdict, "pass", `LOOSE thresholds should pass everything (failing=${loose.failing.join(",")})`);
   assert.equal(loose.failing.length, 0);
+  // Under LOOSE (tellRateMax=1) the uniquely-longest key is within the advisory
+  // ceiling, so tellRate is a clean pass (not even a warn).
+  assert.equal(loose.metrics.tellRate.verdict, "pass", "tellRate ≤ ceiling under LOOSE → pass");
 });
 
 test("computeChapterRubricMetrics: house-tic + nominalization are warn-only (never fail)", () => {

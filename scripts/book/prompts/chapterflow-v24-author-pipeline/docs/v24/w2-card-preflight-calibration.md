@@ -134,6 +134,81 @@ POM v24 passes the practice floor in all but ch2 — the floor is not POM's bloc
 
 ---
 
+## (d) DISTRACTOR-TELL RATE (`tellRate`) — DEMOTED to ADVISORY (warn). WP-402.
+
+**What it measures:** `src/metrics/rubricMetrics.ts` `distractorTellRate` — the
+fraction of a chapter's quiz questions whose KEY is the UNIQUELY LONGEST choice by
+characters. (The formula is a frozen score.py port; WP-402 did NOT touch it.)
+
+**The contradiction (finding V25-11):** `bookRubricMetrics` gated `tellRate` as
+BLOCKING at `tellRateMax = 0.20`, i.e. a chapter FAILED once more than ~1.8 of its
+9 keys were the uniquely-longest choice. But this is the SAME "key is uniquely
+longest" signal the symmetric length-tell (§b) caps at `lengthTellLongestMax = 9`
+(never blocks) — a direct internal contradiction: one ruler failed at >~1.8/9 while
+the other passed 9/9. And the uniquely-longest key is the **long-standing house
+norm** in the owner's best books (§b: atomic-habits / crucial-conversations /
+games-people-play run 9/9), so the 0.20 blocking gate contradicted the very corpus
+the rubric is calibrated to. The genuine key-length defect is the SHORTEST side,
+already blocked by §b at `shortestMax = 4`.
+
+**Owner-corpus evidence (why 0.20 is wrong):** the reference-standard exemplar runs
+**79% key-longest**; the top-10 owner packages average **0.456**. A 0.20 BLOCKING
+gate false-positive-failed **1,718 of 1,903 chapters across 131 of 140** shipped
+`book-packages/*.v21.json` — 90% of the catalog's chapters and 94% of its books.
+
+**Reconciliation (ledger L-14 D-9(a)): DEMOTE `tellRate` to WARN-ONLY.** It is now
+computed and reported (and surfaces on the rubric line + chapter verdict as a
+`warn`), but it can NEVER drive a chapter to `fail`. The `0.20` value is retained as
+the diagnostic warn ceiling. The double-count is resolved to ONE blocking ruler for
+the key-length signal: the symmetric §b length-tell (shortest side BLOCKS at 4,
+longest side calibrated open at 9). No other threshold changed; every other safety
+gate keeps its number.
+
+**Full-corpus calibration (140 packages, 1,903 chapters — read-only sweep):**
+
+| | OLD (tellRate blocking @0.20) | NEW (tellRate advisory) |
+|---|---|---|
+| chapters with `tellRate` in the FAIL set | **1,718 / 1,903** | **0** |
+| chapters where `tellRate` WARNS | n/a | **1,718** (the same chapters) |
+| books with ≥1 tellRate-blocked chapter | 131 / 140 | 0 |
+| books that FAIL **only** on tellRate | 2 | **0** (flip to `warn`) |
+
+The two books that failed PURELY on tellRate — **how-to-talk-to-anyone** and
+**make-time** — flip from `fail` to `warn` (their keys exhibit the uniquely-longest
+house norm, not a defect). Every other owner book that still shows a `fail` verdict
+does so on a PRE-EXISTING, out-of-scope gate (fleschEase / transferRatio /
+memorableClean / the shortest-side length-tell), unchanged by this WP — the rubric
+pre-flight runs in SHADOW by default, so none of these block publication today.
+
+**Pinned 10-package sample** (`tests/threshold-reconcile.test.ts`; includes
+difficult-conversations per ledger L-14):
+
+| book | ch | tellRate FAIL (old→new) | tellRate WARN (new) | book verdict old→new | still-failing gates (out of scope) |
+|---|---|---|---|---|---|
+| atomic-habits | 20 | 20 → **0** | 20 | fail → fail | memorableClean |
+| crucial-conversations | 10 | 10 → **0** | 10 | fail → fail | transferRatio, fleschEase |
+| games-people-play | 10 | 10 → **0** | 10 | fail → fail | fleschEase, practiceFloor |
+| thinking-in-bets | 7 | 7 → **0** | 7 | fail → fail | fleschEase, memorableClean, practiceFloor |
+| the-happiness-hypothesis | 11 | 11 → **0** | 11 | fail → fail | transferRatio |
+| difficult-conversations | 12 | 12 → **0** | 12 | fail → fail | fleschEase, memorableClean |
+| **the-power-of-moments (control)** | 12 | **0 → 0** | **0** | fail → fail | **lengthTell (shortest side)** |
+| made-to-stick | 6 | 6 → **0** | 6 | fail → fail | memorableClean, fleschEase |
+| nudge | 18 | 17 → **0** | 17 | fail → fail | transferRatio, lengthTell, fleschEase |
+| how-to-talk-to-anyone | 9 | 9 → **0** | 9 | **fail → warn** | — (flips: no blocking gate) |
+
+**Negative control holds:** the-power-of-moments v24's keys are the SHORTEST, not
+longest, so its `tellRate` was never > 0.20 (0 old blockers, 0 new warns) and it is
+BLOCKED entirely by the shortest-side length-tell (§b) — the demotion is orthogonal
+to POM's real defect, which still FAILS. Safety preserved.
+
+**Removal/tighten condition:** re-promote `tellRateMax` to a blocking gate ONLY if a
+future owner-corpus recalibration shows uniquely-longest keys are no longer the
+house norm AND a fresh zero-false-positive sweep over `book-packages/*.v21.json`
+passes at the chosen cutoff (documented in `config/rubric-thresholds.json` `_comment`
+and `src/metrics/rubricThresholds.ts`).
+
+---
+
 ## Summary of what blocks
 
 Through the real `bookRubricMetrics` gate:
@@ -143,9 +218,12 @@ Through the real `bookRubricMetrics` gate:
 | echo-tell (a) | **advisory (warn)** | 0 (never blocks) | 0 blocks (4 advisory flags) |
 | length-tell (b) | **blocking** | 0 | blocks (shortest side, 51%) |
 | practice-floor (c) | **blocking** | 2 (documented: games ch8, thinking ch6) | 0 |
+| distractor-tell rate (d) | **advisory (warn)** — WP-402 | 0 (never blocks; warns on the house norm) | 0 (keys are shortest, not longest) |
 
 Net blocking card-quality failures across the 60 top-5 chapters: **2** (both
 documented). POM v24 is correctly BLOCKED (via the shortest length-tell). No gate
 was weakened: echo ships advisory because the corpus proves it cannot separate a
-74.7 book from 85.3 books deterministically — a documented calibration outcome, not
-a softened threshold.
+74.7 book from 85.3 books deterministically, and tellRate ships advisory because its
+0.20 blocking cutoff false-flagged 1,718/1,903 owner chapters on the uniquely-longest
+house norm — both documented calibration outcomes, not softened thresholds. The one
+blocking key-length ruler is the shortest-side length-tell (§b).

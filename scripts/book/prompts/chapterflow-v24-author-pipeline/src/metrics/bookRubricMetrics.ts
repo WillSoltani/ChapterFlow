@@ -16,7 +16,15 @@
  *       FK-min gate contradicts the rubric's own exemplars. Easier-than-band
  *       is not a defect in a beginner product.
  *   fleschEaseWhole / fkGradeWhole  whole assembled chapter → ADVISORY diagnostic
- *   tellRate ................... distractor-tell as a fraction 0..1 → GATE
+ *   tellRate ................... distractor-tell (KEY uniquely-longest) as a
+ *       fraction 0..1 → ADVISORY (warn-only). DEMOTED from a blocking gate per
+ *       WP-402 / ledger L-14 D-9(a): the 0.20 blocking cutoff contradicted the
+ *       owner corpus (the reference-standard exemplar runs 79% key-longest; the
+ *       top-10 owner packages mean 0.456; an 0.20 blocking gate false-positive-
+ *       failed 1,718/1,903 chapters across 131/140 shipped book-packages). It
+ *       DOUBLE-COUNTS lengthTell.uniquelyLongest, and the genuine key-length
+ *       defect is the SHORTEST side — still BLOCKED by the symmetric lengthTell
+ *       gate at shortestMax=4. See docs/v24/w2-card-preflight-calibration.md §(d).
  *   transferRatio ............. transfer as a fraction 0..1 → GATE
  *   memorableClean ............ clean (≤14-word) memorable lines → GATE
  *   houseTicDensity ........... chapter-prose tic count → WARN-ONLY diagnostic
@@ -128,12 +136,6 @@ function bandVerdict(value: number, band: MetricBand): MetricResult {
   return { value, verdict: "fail", note: `outside [${band.min},${band.max}] by more than ±${band.warnTolerance}` };
 }
 
-/** A one-sided max: pass when value <= max, fail when above. NaN → warn. */
-function maxVerdict(value: number, max: number, label: string): MetricResult {
-  if (!Number.isFinite(value)) return { value, verdict: "warn", note: `unmeasurable ${label}` };
-  return value <= max ? { value, verdict: "pass" } : { value, verdict: "fail", note: `${label} ${round(value)} exceeds max ${max}` };
-}
-
 /** A one-sided min: pass when value >= min, fail when below. NaN → warn. */
 function minVerdict(value: number, min: number, label: string): MetricResult {
   if (!Number.isFinite(value)) return { value, verdict: "warn", note: `unmeasurable ${label}` };
@@ -172,6 +174,29 @@ function advisoryBoolVerdict(ok: boolean, value: number, note: string): MetricRe
   return ok ? { value, verdict: "pass" } : { value, verdict: "warn", note };
 }
 
+/** A warn-only advisory for the distractor-tell rate (KEY uniquely-longest fraction).
+ *  DEMOTED from a blocking gate to warn-only per WP-402 / ledger L-14 D-9(a): the
+ *  0.20 blocking cutoff CONTRADICTED the owner corpus — the reference-standard
+ *  exemplar runs 79% key-longest and the top-10 owner packages average 0.456, so an
+ *  0.20 gate false-positive-failed 1,718/1,903 chapters across 131/140 shipped
+ *  book-packages. The signal also DOUBLE-COUNTS lengthTell.uniquelyLongest, and the
+ *  genuine key-length defect is the SHORTEST side, which the symmetric lengthTell
+ *  gate still BLOCKS at shortestMax=4 (the-power-of-moments v24 runs 5–8/9 → FAIL).
+ *  So tellRate can only ever `warn`, never `fail`. NaN (nothing scorable) is a clean
+ *  `pass`. See docs/v24/w2-card-preflight-calibration.md §(d). */
+function advisoryTellRateVerdict(value: number, max: number): MetricResult {
+  if (!Number.isFinite(value)) return { value, verdict: "pass" };
+  if (value <= max) return { value, verdict: "pass" };
+  return {
+    value,
+    verdict: "warn",
+    note:
+      `distractor-tell rate ${round(value)} exceeds advisory ceiling ${max} — warn-only: the owner ` +
+      `corpus runs high (reference exemplar 79% key-longest; top-10 mean 0.456), so this never blocks; ` +
+      `the shortest-side lengthTell gate carries the real key-length safety signal`,
+  };
+}
+
 function round(n: number): number {
   return Number.isFinite(n) ? Math.round(n * 1000) / 1000 : n;
 }
@@ -191,7 +216,9 @@ export function computeChapterRubricMetrics(chapter: ChapterV21, thresholds: Rub
   // P01 rates are score.py 0..100 percentages; the thresholds are fractions.
   const tellPct = distractorTellRate(questions);
   const transferPct = transferRatio(questions);
-  const tellRate = maxVerdict(Number.isFinite(tellPct) ? tellPct / 100 : NaN, thresholds.tellRateMax, "distractor-tell rate");
+  // tellRate is ADVISORY (warn-only) — see advisoryTellRateVerdict + WP-402. Its
+  // value is still measured + reported; it just cannot drive a chapter to `fail`.
+  const tellRate = advisoryTellRateVerdict(Number.isFinite(tellPct) ? tellPct / 100 : NaN, thresholds.tellRateMax);
   const transfer = minVerdict(Number.isFinite(transferPct) ? transferPct / 100 : NaN, thresholds.transferMin, "transfer ratio");
 
   const memorableClean = minVerdict(cleanMemorableLineCount(memorableTexts), thresholds.memorableCleanMin, "clean memorable lines");
@@ -235,8 +262,12 @@ export function computeChapterRubricMetrics(chapter: ChapterV21, thresholds: Rub
   // Whole-chapter readability is ADVISORY (score.py measures breakdown-only, so the
   // rubric band is calibrated there); FK grade, house-tic + nominalization are
   // warn-only. Only the GATE metrics below can drive a chapter to `fail` — and of
-  // these, fkGrade/houseTic/nominal are warn-only by construction, so the effective
-  // fail set is fleschEase, tellRate, transferRatio, memorableClean.
+  // these, fkGrade/houseTic/nominal/tellRate are warn-only by construction (tellRate
+  // was DEMOTED from blocking per WP-402 — see advisoryTellRateVerdict), so the
+  // effective fail set is fleschEase, transferRatio, memorableClean, and the two
+  // BLOCKING W2 card-quality gates (lengthTell, practiceFloor). tellRate stays in
+  // the gate map so its `warn` still surfaces on the chapter verdict — exactly like
+  // the other warn-only metrics — but it can no longer contribute a `fail`.
   const gate: Record<string, MetricResult> = {
     fleschEase,
     fkGrade,
