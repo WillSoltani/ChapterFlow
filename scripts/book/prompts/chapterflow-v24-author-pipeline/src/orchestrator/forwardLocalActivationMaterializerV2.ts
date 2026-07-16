@@ -51,7 +51,13 @@ import {
   IMP24_LIVE_PREFLIGHT_SCHEMA,
   type LiveQualificationPreflightV3,
 } from "./forwardRoleQualificationLiveV3.js";
-import { BASELINE_MODEL } from "./modelPolicy.js";
+/** The pre-migration rollback profile is named `baseline-55`; its writer is the
+ *  HISTORICAL gpt-5.5 baseline, a frozen data identity. It used to read
+ *  BASELINE_MODEL, which silently re-pointed the rollback target to gpt-5.6-sol
+ *  when WP-302 flipped the live baseline — collapsing the rollback to the same
+ *  model it rolls back FROM. Frozen per WP-501 Part 3. gpt-5.5 is VOID for the
+ *  target architecture (no live route); this is a record of the prior profile. */
+const HISTORICAL_BASELINE_55 = "gpt-5.5";
 import {
   FORWARD_LIVE_CAMPAIGN_PREFLIGHT_V3_SCHEMA,
   FORWARD_LIVE_CAMPAIGN_RESULT_V3_SCHEMA,
@@ -471,8 +477,8 @@ export function buildForwardLocalActivationArtifactsV2(
   const previousProfile: LocalForwardRouteProfileV1 = {
     schema: LOCAL_ROUTE_PROFILE_SCHEMA,
     profileId: "baseline-55",
-    writer: { model: BASELINE_MODEL, effort: "xhigh" },
-    highRiskWriter: { model: BASELINE_MODEL, effort: "xhigh" },
+    writer: { model: HISTORICAL_BASELINE_55, effort: "xhigh" },
+    highRiskWriter: { model: HISTORICAL_BASELINE_55, effort: "xhigh" },
     reviewers: clone(reviewers),
   };
   const activationPolicy = buildForwardActivationPolicy({
