@@ -16,7 +16,7 @@ import {
 import { hashCanonical, sha256Hex } from "../../contracts/contractUtil.js";
 import type { ForwardProductionInstrumentSealV1 } from "../../orchestrator/forwardProductionInstrumentSeal.js";
 import { computeForwardProductionInstrumentSealSha256 } from "../../orchestrator/forwardProductionInstrumentSeal.js";
-import { BASELINE_MODEL } from "../../orchestrator/modelPolicy.js";
+import { HISTORICAL_BASELINE_55 } from "./experimentTypes.js";
 import {
   reviewProtocolFileAccessFailureV2,
   reviewProtocolFreshnessErrorsV2,
@@ -102,21 +102,21 @@ const profile = (model: string, effort: EffortLevelV1): QualificationProfileV3 =
 export const IMP24_ROLE_CANDIDATE_ORDER: Readonly<Record<Imp24ReviewRole, readonly QualificationProfileV3[]>> = Object.freeze({
   reader: Object.freeze([
     profile("gpt-5.6-sol", "high"),
-    profile(BASELINE_MODEL, "high"),
+    profile(HISTORICAL_BASELINE_55, "high"),
     profile("gpt-5.6-sol", "xhigh"),
-    profile(BASELINE_MODEL, "xhigh"),
+    profile(HISTORICAL_BASELINE_55, "xhigh"),
   ]),
   source: Object.freeze([
     profile("gpt-5.6-sol", "xhigh"),
-    profile(BASELINE_MODEL, "xhigh"),
+    profile(HISTORICAL_BASELINE_55, "xhigh"),
     profile("gpt-5.6-sol", "high"),
-    profile(BASELINE_MODEL, "high"),
+    profile(HISTORICAL_BASELINE_55, "high"),
   ]),
   quiz: Object.freeze([
     profile("gpt-5.6-sol", "xhigh"),
-    profile(BASELINE_MODEL, "xhigh"),
+    profile(HISTORICAL_BASELINE_55, "xhigh"),
     profile("gpt-5.6-sol", "high"),
-    profile(BASELINE_MODEL, "high"),
+    profile(HISTORICAL_BASELINE_55, "high"),
   ]),
 });
 
