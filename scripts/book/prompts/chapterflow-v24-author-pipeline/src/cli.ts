@@ -4526,6 +4526,49 @@ async function runContractValidate(): Promise<number> {
   } else {
     console.log(`worker-report: (reports dir not present at ${reportsDir} — skipped)`);
   }
+
+  // WP-102 — emission↔web-adapter parity self-check (no model/network). Validate a
+  // fresh emission against BOTH validateChapterV21 (deep shape) AND the frozen
+  // emission-package descriptor (consumer-envelope drift). A fresh emission that
+  // grows an envelope field the web adapters do not read, or drops a required
+  // consumed field, fails CI here before it can silently drop in the reader.
+  // The default sample is the canonical conformant emission; a fixture path in
+  // CHAPTERFLOW_EMISSION_FIXTURE overrides it (used to exercise drift in tests).
+  const { canonicalEmissionSample, validateEmissionParity } = await import("./contracts/emissionPackage.js");
+  const { validateChapterV21 } = await import("./runtimeSchemas.js");
+  const fixturePath = process.env.CHAPTERFLOW_EMISSION_FIXTURE;
+  let emission: unknown;
+  let emissionSource: string;
+  if (fixturePath && fixturePath.trim().length > 0) {
+    emissionSource = fixturePath;
+    try { emission = JSON.parse(readFileSync(fixturePath, "utf8")); }
+    catch (err) { emission = null; }
+    if (emission === null || typeof emission !== "object") {
+      failures += 1;
+      console.log(`emission-parity: FAIL — fixture unreadable or not an object at ${emissionSource}`);
+    }
+  } else {
+    emissionSource = "canonical sample";
+    emission = canonicalEmissionSample();
+  }
+  if (emission !== null && typeof emission === "object") {
+    const parityErrors = validateEmissionParity(emission);
+    const chapters = (emission as { chapters?: unknown }).chapters;
+    if (Array.isArray(chapters)) {
+      chapters.forEach((ch, i) => {
+        const r = validateChapterV21(ch);
+        if (!r.ok) for (const f of r.findings) parityErrors.push(`chapter[${i}]${f.path === "/" ? "" : f.path}: ${f.message}`);
+      });
+    }
+    if (parityErrors.length > 0) {
+      failures += parityErrors.length;
+      console.log(`emission-parity (${emissionSource}): FAIL — ${parityErrors.length} issue(s):`);
+      for (const e of parityErrors.slice(0, 8)) console.log(`  ✗ ${e}`);
+    } else {
+      console.log(`emission-parity (${emissionSource}): PASS — emission matches the frozen consumer surface.`);
+    }
+  }
+
   console.log(failures === 0 ? "contract-validate: PASS" : `contract-validate: FAIL — ${failures} issue(s)`);
   return failures === 0 ? 0 : 1;
 }
