@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V25 Pipeline Audit &amp; Model Test Plan — ChapterFlow</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface: #fcfcfb; --panel: #f3f2ef; --line: #d8d6d0;
+    --ink: #0b0b0b; --ink-2: #52514e; --ink-3: #8a887f;
+    --code-c: #2a78d6;   /* deterministic code  */
+    --model-c: #4a3aa7;  /* model step          */
+    --adv-c: #eda100;    /* advisory            */
+    --gate-c: #e34948;   /* blocking gate       */
+    --human-c: #008300;  /* human / owner       */
+    --store-c: #8a887f;  /* storage / legacy    */
+    --crit-bg:#fbe3e3; --crit-ink:#8c1d1c;
+    --high-bg:#fdeeda; --high-ink:#8a4a06;
+    --med-bg:#fdf4d7;  --med-ink:#6d5303;
+    --low-bg:#e9e8e4;  --low-ink:#454440;
+    --ok-bg:#e2f0e2;   --ok-ink:#0f5c0f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface:#1a1a19; --panel:#242422; --line:#3c3b38;
+      --ink:#ffffff; --ink-2:#c3c2b7; --ink-3:#8a887f;
+      --code-c:#3987e5; --model-c:#9085e9; --adv-c:#c98500; --gate-c:#e66767; --human-c:#4caf50; --store-c:#8a887f;
+      --crit-bg:#4a1615; --crit-ink:#ffb3b2;
+      --high-bg:#46280b; --high-ink:#ffd39e;
+      --med-bg:#3e3305;  --med-ink:#ffe58a;
+      --low-bg:#333230;  --low-ink:#d5d4cd;
+      --ok-bg:#123a12;   --ok-ink:#a5e0a5;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface:#1a1a19; --panel:#242422; --line:#3c3b38;
+    --ink:#ffffff; --ink-2:#c3c2b7; --ink-3:#8a887f;
+    --code-c:#3987e5; --model-c:#9085e9; --adv-c:#c98500; --gate-c:#e66767; --human-c:#4caf50; --store-c:#8a887f;
+    --crit-bg:#4a1615; --crit-ink:#ffb3b2;
+    --high-bg:#46280b; --high-ink:#ffd39e;
+    --med-bg:#3e3305;  --med-ink:#ffe58a;
+    --low-bg:#333230;  --low-ink:#d5d4cd;
+    --ok-bg:#123a12;   --ok-ink:#a5e0a5;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--surface); color: var(--ink);
+    font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 62rem; margin: 0 auto; padding: 0 1rem 4rem; }
+  h1 { font-size: 1.7rem; line-height: 1.25; margin: 1.2rem 0 .4rem; }
+  h2 { font-size: 1.25rem; margin: 2.6rem 0 .6rem; padding-top: .6rem; border-top: 1px solid var(--line); }
+  h3 { font-size: 1.02rem; margin: 1.4rem 0 .4rem; }
+  p, li { max-width: 70ch; }
+  a { color: var(--code-c); }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--code-c); outline-offset: 2px; border-radius: 3px; }
+  code { font: .88em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--panel); padding: .08em .35em; border-radius: 4px; overflow-wrap: anywhere; }
+  .skip { position: absolute; left: -999px; top: 0; background: var(--panel); padding: .5rem 1rem; z-index: 9; }
+  .skip:focus { left: .5rem; top: .5rem; }
+  .muted { color: var(--ink-2); }
+  .small { font-size: .85rem; }
+
+  /* banner */
+  .banner { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.2rem; margin-top: 1rem; }
+  .banner dl { display: grid; grid-template-columns: max-content 1fr; gap: .15rem .8rem; margin: .6rem 0 0; }
+  .banner dt { color: var(--ink-2); font-size: .85rem; }
+  .banner dd { margin: 0; font-size: .9rem; overflow-wrap: anywhere; }
+  @media (max-width: 540px) {
+    .banner dl { grid-template-columns: 1fr; }
+    .banner dd { margin-bottom: .5rem; }
+  }
+  .verdict { display: inline-block; font-weight: 700; background: var(--crit-bg); color: var(--crit-ink); border-radius: 8px; padding: .25rem .7rem; }
+
+  /* chips (always text-bearing — color is never the only signal) */
+  .chip { display: inline-block; font-size: .74rem; font-weight: 600; letter-spacing: .02em; border-radius: 6px; padding: .1rem .45rem; }
+  .sev-Critical { background: var(--crit-bg); color: var(--crit-ink); }
+  .sev-High     { background: var(--high-bg); color: var(--high-ink); }
+  .sev-Medium   { background: var(--med-bg);  color: var(--med-ink); }
+  .sev-Low, .sev-Low-Medium { background: var(--low-bg); color: var(--low-ink); }
+  .ok { background: var(--ok-bg); color: var(--ok-ink); }
+
+  /* kind tags on pipeline nodes */
+  .kind { display: inline-block; font: 700 .68rem/1.5 ui-monospace, Menlo, monospace; border: 1.5px solid; border-radius: 5px; padding: 0 .35rem; vertical-align: middle; }
+  .k-code   { color: var(--code-c);  border-color: var(--code-c); }
+  .k-model  { color: var(--model-c); border-color: var(--model-c); }
+  .k-adv    { color: var(--adv-c);   border-color: var(--adv-c); }
+  .k-gate   { color: var(--gate-c);  border-color: var(--gate-c); }
+  .k-human  { color: var(--human-c); border-color: var(--human-c); }
+  .k-store, .k-legacy { color: var(--store-c); border-color: var(--store-c); }
+
+  /* pipeline map */
+  .pipe { list-style: none; margin: 1rem 0; padding: 0; }
+  .pipe > li { border-left: 4px solid var(--code-c); background: var(--panel); border-radius: 0 10px 10px 0; margin: .45rem 0; }
+  .pipe > li.m { border-left-color: var(--model-c); }
+  .pipe > li.g { border-left-color: var(--gate-c); }
+  .pipe > li.a { border-left-color: var(--adv-c); }
+  .pipe > li.h { border-left-color: var(--human-c); }
+  .pipe summary { cursor: pointer; padding: .55rem .8rem; display: flex; flex-wrap: wrap; gap: .5rem; align-items: baseline; }
+  .pipe summary::marker { color: var(--ink-3); }
+  .pipe .body { padding: 0 1rem .8rem 1.2rem; border-top: 1px dashed var(--line); font-size: .9rem; }
+  .pipe .body dt { font-weight: 600; margin-top: .5rem; }
+  .pipe .body dd { margin: 0 0 .2rem; color: var(--ink-2); overflow-wrap: anywhere; }
+  .stagename { font-weight: 650; }
+
+  /* tables */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: .87rem; }
+  th, td { text-align: left; vertical-align: top; padding: .5rem .6rem; border-bottom: 1px solid var(--line); }
+  th { background: var(--panel); position: sticky; top: 0; }
+  tbody tr:last-child td { border-bottom: 0; }
+
+  /* filters */
+  .filters { display: flex; flex-wrap: wrap; gap: .4rem; margin: .6rem 0; }
+  .filters button { font: 600 .8rem/1.6 inherit; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: .15rem .7rem; cursor: pointer; }
+  .filters button[aria-pressed="true"] { border-color: var(--code-c); background: var(--panel); }
+
+  /* stat tiles */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .6rem; margin: 1rem 0; }
+  .tile { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: .7rem .9rem; }
+  .tile .n { font-size: 1.55rem; font-weight: 700; line-height: 1.2; }
+  .tile .l { font-size: .82rem; color: var(--ink-2); }
+
+  /* decision tree / flows */
+  .tree, .flow { list-style: none; padding-left: 1.1rem; border-left: 2px solid var(--line); }
+  .tree li, .flow li { margin: .45rem 0; position: relative; padding-left: .6rem; }
+  .tree li::before, .flow li::before { content: "→"; position: absolute; left: -1.05rem; color: var(--ink-3); background: var(--surface); }
+  .stop { font-weight: 700; color: var(--gate-c); }
+  .go   { font-weight: 700; color: var(--human-c); }
+
+  .legend { display: flex; flex-wrap: wrap; gap: .8rem; font-size: .82rem; align-items: center; background: var(--panel); border-radius: 10px; padding: .5rem .8rem; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: .7rem .9rem; margin: .6rem 0; }
+
+  nav.toc { font-size: .85rem; margin: 1rem 0; display: flex; flex-wrap: wrap; gap: .3rem .9rem; }
+  nav.toc a { white-space: nowrap; }
+
+  @media print {
+    .filters, .skip, nav.toc { display: none !important; }
+    details { break-inside: avoid; }
+    details > .body { display: block !important; }
+    .pipe summary::marker { content: ""; }
+    body { font-size: 11pt; }
+    .tablewrap { overflow: visible; border: none; }
+    a { color: inherit; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
+
+<h1>ChapterFlow V25 pipeline — audit &amp; Sol/Terra/Luna test plan</h1>
+<p class="muted">Visual companion to <a href="V25_PIPELINE_AUDIT_AND_MODEL_TEST_PLAN.md">the full written audit</a>. Same findings, same IDs, plain language. Self-contained; works offline and printed; no scripts required (one optional table filter).</p>
+
+<!-- ── 1. Current-state banner ─────────────────────────────────────────── -->
+<section class="banner" aria-labelledby="bannerh">
+  <h2 id="bannerh" style="border:0;margin:0;padding:0">Where things stand <span class="small muted">(as of commit <code>64b5d8a04</code>, 2026-07-17)</span></h2>
+  <p style="margin:.6rem 0"><span class="verdict">NOT READY FOR MODEL TEST</span>&ensp;<span class="chip ok">Code health: typecheck ✓ · 14 targeted test suites ✓ · contracts ✓</span></p>
+  <dl>
+    <dt>Real code lives at</dt><dd><code>/private/tmp/cf-v25-s-tier-plan</code>, branch <code>plan/v25-s-tier-implementation</code> — <strong>223 commits ahead of the checkout you normally see, and pushed nowhere</strong></dd>
+    <dt>Audit ran on</dt><dd>a pinned copy at <code>/private/tmp/cf-v25-audit</code> (same commit), read-only everywhere else</dd>
+    <dt>Last trustworthy evidence</dt><dd>the model-free test suites above. The one live screening run (2026-07-17) produced <strong>no valid model comparison</strong> and its saved verdict is wrong — see below</dd>
+    <dt>Default author model</dt><dd><code>gpt-5.6-sol</code> @ xhigh — explicitly <em>provisional</em> in code, awaiting this experiment</dd>
+  </dl>
+</section>
+
+<!-- 30-second answers -->
+<section aria-labelledby="q30h">
+  <h2 id="q30h">The 30-second version</h2>
+  <ul>
+    <li><strong>What the pipeline does:</strong> an operator types <code>generate-book</code>; a GPT-5.6 Sol model writes whole chapters in a locked sandbox; deterministic code checks structure, quizzes and readability; Sol-family readers trigger small bounded repairs; a separate <em>blind Claude panel</em> (called D7) is the only real quality judge; publish re-checks everything.</li>
+    <li><strong>Is it ready to compare Sol vs Terra vs Luna?</strong> <strong>No.</strong> A readability formula tuned to Sol's writing style kills Terra and Luna chapters <em>before they finish writing</em>, and the D7 judging machinery rejected ~38% of its own rating sessions in the only live run.</li>
+    <li><strong>The owner's one-chapter result</strong> (Luna &amp; Terra beat Sol, and cost less): a promising reason to run the experiment — but one chapter per model proves nothing by itself, and the prices are <em>owner-supplied, not verified</em>.</li>
+    <li><strong>Before any whole book:</strong> 3 small fixes + a judge calibration drill (Stage 0), then a blinded 18-chapter screening (Stage 1), then a fresh confirmation round (Stage 2). Hard cap: 150 live sessions, fixed rules written down before results exist.</li>
+  </ul>
+</section>
+
+<nav class="toc" aria-label="Sections">
+  <a href="#maph">Pipeline map</a><a href="#bakeoffh">What the screening did</a><a href="#overlayh">Built vs planned</a><a href="#failh">Failure &amp; repair</a><a href="#flawh">Flaw matrix</a><a href="#chainh">Root causes</a><a href="#timelineh">Test timeline</a><a href="#treeh">Decision rule</a><a href="#econh">Economics</a><a href="#actionh">Action list</a><a href="#evidenceh">Evidence</a><a href="#glossh">Glossary</a>
+</nav>
+
+<!-- ── 2. End-to-end pipeline map ──────────────────────────────────────── -->
+<section aria-labelledby="maph">
+  <h2 id="maph">End-to-end pipeline map (what actually runs today)</h2>
+  <p class="legend" role="note">Legend:&ensp;<span class="kind k-code">CODE</span> deterministic&ensp;<span class="kind k-model">MODEL</span> live model call&ensp;<span class="kind k-gate">GATE</span> can block&ensp;<span class="kind k-adv">ADVISORY</span> warns only&ensp;<span class="kind k-human">HUMAN</span> owner/operator&ensp;<span class="kind k-store">STORE</span> saved artifact&ensp;— every step is also labeled in words; color is reinforcement only.</p>
+  <p class="small muted">Click any stage for its purpose, files, gates and tests. Text alternative: the same facts appear in §4 of the written audit.</p>
+  <ol class="pipe">
+    <li class="h"><details><summary><span class="kind k-human">HUMAN</span> <span class="stagename">1 · Operator command</span> <span class="muted small">generate-book / book-run / book-autopilot</span></summary>
+      <div class="body"><dl>
+        <dt>Purpose</dt><dd>Start a book run; refuse un-wired model/effort choices.</dd>
+        <dt>Files</dt><dd><code>src/cli.ts</code> (123 verbs), <code>src/orchestrator/generateBookCommand.ts</code></dd>
+        <dt>Watch out</dt><dd>Three verbs look equivalent but are not: only <code>generate-book</code> runs preflight and forces the D7 gate (finding V25-AUD-09). It also <strong>auto-publishes on success</strong>, against ratified decision D-12 (V25-AUD-10).</dd>
+        <dt>Tests</dt><dd><code>generate-book-command.test.ts</code> (arg/exit wiring; conductor faked)</dd>
+      </dl></div></details></li>
+    <li><details><summary><span class="kind k-code">CODE</span> <span class="stagename">2 · Preflight “doctor”</span> <span class="muted small">filesystem/git/config checks — generate-book only</span></summary>
+      <div class="body"><dl>
+        <dt>Purpose</dt><dd>Catch broken state before spending model time. Zero model/network calls.</dd>
+        <dt>Files</dt><dd><code>src/lifecycle/doctor.ts</code></dd>
+        <dt>Blocks?</dt><dd>Yes — fatal findings stop the run (exit 2). <code>book-run</code>/<code>book-autopilot</code> skip it entirely.</dd>
+      </dl></div></details></li>
+    <li><details><summary><span class="kind k-code">CODE</span> <span class="stagename">3 · Conductor</span> <span class="muted small">research → write → gate → qc → ready → shipped</span></summary>
+      <div class="body"><dl>
+        <dt>Purpose</dt><dd>Drives all phases; the current phase is re-derived from what's on disk (no stored “phase done” marker to go stale — good design).</dd>
+        <dt>Files</dt><dd><code>src/orchestrator/autopilot.ts</code> — with a per-book lock (stale locks stolen safely by PID check)</dd>
+        <dt>Caps</dt><dd>40 loop iterations; 4 QC/repair rounds; parallelism 6</dd>
+      </dl></div></details></li>
+    <li class="m"><details><summary><span class="kind k-model">MODEL</span> <span class="stagename">4 · Research &amp; source packets</span> <span class="muted small">codex · policy-routed</span></summary>
+      <div class="body"><dl>
+        <dt>Purpose</dt><dd>Build the factual source material and chapter briefs every writer must use.</dd>
+        <dt>Caps</dt><dd>2 research passes, 3 repair passes, 45-minute timeout</dd>
+        <dt>Store</dt><dd><span class="kind k-store">STORE</span> <code>state/books/&lt;id&gt;/runs/v23-current/</code></dd>
+      </dl></div></details></li>
+    <li class="m"><details><summary><span class="kind k-model">MODEL</span> <span class="stagename">5 · Author writes chapters</span> <span class="muted small">gpt-5.6-sol @ xhigh · hermetic sandbox</span></summary>
+      <div class="body"><dl>
+        <dt>Purpose</dt><dd>One whole chapter per call, inside an envelope that strips API keys, pins model+effort, proves subscription auth, and saves per-call evidence before the call runs.</dd>
+        <dt>Files</dt><dd><code>src/orchestrator/authorRun.ts</code>, <code>codexAgent.ts</code>, <code>src/exec/executionEnvelope.ts</code>, <code>src/orchestrator/modelPolicy.ts</code></dd>
+        <dt>Caps</dt><dd>1 gate retry, 1 lead-degrade retry, 60-minute timeout; atomic file writes (a crash can't half-write a chapter)</dd>
+      </dl></div></details></li>
+    <li class="g"><details><summary><span class="kind k-gate">GATE</span> <span class="stagename">6 · Generation gates</span> <span class="muted small">incl. readability as a hard blocker</span></summary>
+      <div class="body"><dl>
+        <dt>Purpose</dt><dd>Structure, quiz hygiene, seams, scaffold leaks — and a Flesch/FK readability formula.</dd>
+        <dt>Files</dt><dd><code>src/sections/sectionGate.ts</code> (readability = <strong>blocker</strong> here), <code>src/critics/finalGate.ts</code> (same metric = <strong>advisory</strong> at publish time — the inconsistency behind V25-AUD-01)</dd>
+        <dt>Consequence</dt><dd>This is the gate that erased Terra and Luna from the screening before any judge saw a word.</dd>
+      </dl></div></details></li>
+    <li class="m"><details><summary><span class="kind k-model">MODEL</span> <span class="stagename">7 · Author review &amp; bounded repair ↻</span> <span class="muted small">3 readers, sol @ high · repair cap 2</span></summary>
+      <div class="body"><dl>
+        <dt>Purpose</dt><dd>Same-family readers score the chapter (accept ≥74) and trigger surgical patch repairs.</dd>
+        <dt>Files</dt><dd><code>src/orchestrator/authorReview.ts</code>, <code>authorRepair.ts</code></dd>
+        <dt>Note</dt><dd>Sol reviewing Sol is deliberate and advisory; real independence is delegated to the Claude-side D7 audit (V25-AUD-12).</dd>
+      </dl></div></details></li>
+    <li class="h"><details><summary><span class="kind k-human">HUMAN</span> <span class="stagename">8 · QC attestation</span> <span class="muted small">out-of-band reviewer verdict, enforced by code</span></summary>
+      <div class="body"><dl>
+        <dt>Purpose</dt><dd>A reviewer's PUBLISHABLE verdict becomes an un-stale-able requirement.</dd>
+        <dt>Watch out</dt><dd>Reviewer identity is an honor-system name prefix (<code>claude-qc:/codex-qc:/…</code>) — the code's own comment admits a relabeled agent could pass it (V25-AUD-12).</dd>
+      </dl></div></details></li>
+    <li class="g"><details><summary><span class="kind k-gate">GATE</span> <span class="stagename">9 · Promote — 14 deterministic checks</span> <span class="muted small">all code, no model calls</span></summary>
+      <div class="body"><dl>
+        <dt>Purpose</dt><dd>Floor gates, source integrity, QC attestation, quiz-key judge, packaging, and finally the D7 receipt. Any blocker → quarantine, nothing ships.</dd>
+        <dt>Files</dt><dd><code>src/promoteBook.ts</code>, <code>src/verifyProductionPackage.ts</code></dd>
+        <dt>Gap</dt><dd>The shipped package itself never embeds or re-checks the D7 receipt (V25-AUD-12).</dd>
+      </dl></div></details></li>
+    <li class="g"><details><summary><span class="kind k-gate">GATE</span> <span class="stagename">10 · D7 ship gate</span> <span class="muted small">blind Claude rubric audit → sealed receipt</span></summary>
+      <div class="body"><dl>
+        <dt>Purpose</dt><dd>The only semantic quality gate: two blind Claude raters + an adjudicator score 8 learning domains; code recomputes all arithmetic; bar = chapter ≥80, book mean ≥85, calibration within ±3.</dd>
+        <dt>Files</dt><dd><code>src/critics/d7ShipGate.ts</code> (receipt mint/eval — itself model-free)</dd>
+        <dt>Watch out</dt><dd>A <em>missing</em> receipt blocks only when <code>CHAPTERFLOW_REQUIRE_D7_SHIP_GATE=1</code> — which only <code>generate-book</code> sets (V25-AUD-09).</dd>
+      </dl></div></details></li>
+    <li class="h"><details><summary><span class="kind k-human">HUMAN</span>/<span class="kind k-code">CODE</span> <span class="stagename">11 · Publish</span> <span class="muted small">currently automatic on success</span></summary>
+      <div class="body"><dl>
+        <dt>Watch out</dt><dd>Default <code>autoPublish=true</code> commits and pushes to main on convergence — the owner ratified the opposite (halt-at-ready, D-12). Fix scheduled pre-pilot (V25-AUD-10).</dd>
+      </dl></div></details></li>
+    <li><details><summary><span class="kind k-store">STORE</span> <span class="stagename">12 · Ledgers &amp; evidence</span> <span class="muted small">calls + latency only — no tokens, no dollars</span></summary>
+      <div class="body"><dl>
+        <dt>Files</dt><dd><code>src/telemetry/runCallLedger.ts</code> — every entry's cost field is the literal string <code>NOT_METERED</code> (V25-AUD-08)</dd>
+      </dl></div></details></li>
+  </ol>
+  <p class="small muted"><span class="kind k-legacy">LEGACY</span> paths still present but off the default route: the v23 compiler verbs, a second model transport (<code>src/providers/</code>) outside the sandbox, and a ~40,000-line quarantined migration harness that — awkwardly — still contains the <em>live</em> D7 rating instrument (V25-AUD-13).</p>
+</section>
+
+<!-- ── screening story ─────────────────────────────────────────────────── -->
+<section aria-labelledby="bakeoffh">
+  <h2 id="bakeoffh">What the first screening run actually did (2026-07-17)</h2>
+  <p>One blinded run: Sol vs Terra vs Luna, one chapter (<em>Nudge</em> ch. 3), all at xhigh effort. Labels A/B/C hid the model names from every reviewer. Result:</p>
+  <div class="tiles">
+    <div class="tile"><div class="n">0 / 3</div><div class="l">models with a valid quality score</div></div>
+    <div class="tile"><div class="n">2 / 3</div><div class="l">models blocked by the readability formula before writing anything (Terra ease 54.2, Luna 47.7 — floor is 70)</div></div>
+    <div class="tile"><div class="n">5 / 13</div><div class="l">judge rating sessions rejected by the validator (~38%) — each a 10–25 min Claude session</div></div>
+    <div class="tile"><div class="n">10 min</div><div class="l">between the saved “Sol INELIGIBLE” verdict (14:32 UTC) and the retry that cured the failure (14:43 UTC)</div></div>
+  </div>
+  <ul>
+    <li><strong>Sol</strong> was the only model that produced a chapter. Its blind audit then stalled: a hidden “calibration” rating (a reference chapter the judges re-score to prove they're accurate) came back with self-inconsistent arithmetic and was rejected.</li>
+    <li>The run <em>saved its scoreboard at that moment</em> — “winner: none, Sol ineligible.” Ten minutes later a retried rating <em>passed</em>. The saved verdict was never updated. This audit hand-recomputed the surviving record: its math is exactly right. <strong>The saved “arithmetic mismatch” verdict describes a dead attempt, not the surviving evidence.</strong></li>
+    <li>Even the surviving rating scored the reference chapter 74.3 where the owner's benchmark says 67.7 — a 6.6-point miss, over twice the allowed ±3 tolerance. The judge panel has not yet proven it is calibrated.</li>
+    <li>Failed rating attempts are deleted on retry, so 4 of the 5 rejection reasons are unknowable now.</li>
+    <li>Only 1 of the 6 planned screening invocations ever ran.</li>
+  </ul>
+  <p class="card"><strong>Bottom line:</strong> no evidence about model quality exists yet — for or against any model. The owner's one-chapter comparison remains the only cross-model signal, and it was made outside this machinery.</p>
+</section>
+
+<!-- ── 3. Actual vs intended overlay ───────────────────────────────────── -->
+<section aria-labelledby="overlayh">
+  <h2 id="overlayh">Built vs planned vs contradicted</h2>
+  <div class="tablewrap"><table>
+    <caption class="small muted" style="text-align:left;padding:.3rem .6rem">States: <strong>WIRED</strong> = live on the default path · <strong>PARTIAL</strong> = built, conditionally used · <strong>PLANNED</strong> = not started · <strong>LEGACY</strong> = old path still present · <strong>QUARANTINED</strong> = gated off · <strong>CONTRADICTED</strong> = docs say otherwise</caption>
+    <thead><tr><th scope="col">Capability</th><th scope="col">State</th><th scope="col">Reality check</th></tr></thead>
+    <tbody>
+      <tr><td>Author-first generation, hermetic envelope, atomic writes, resume, locks</td><td><span class="chip ok">WIRED</span></td><td>Verified in code; genuinely well built</td></tr>
+      <tr><td><code>generate-book</code> terminal command</td><td><span class="chip ok">WIRED</span></td><td>But auto-publishes — <span class="chip sev-Medium">CONTRADICTED</span> by ratified D-12 (halt-at-ready)</td></tr>
+      <tr><td>D7 ship gate (receipt check)</td><td><span class="chip sev-Medium">PARTIAL</span></td><td>Enforced only via <code>generate-book</code>; other ship verbs skip the requirement</td></tr>
+      <tr><td>D7 live judging (blind Claude panel)</td><td><span class="chip sev-High">PARTIAL</span></td><td>Built; ~62% of live rating attempts valid; calibration never yet passed; driver script untested</td></tr>
+      <tr><td>Bakeoff Stage 1 screening</td><td><span class="chip sev-High">PARTIAL</span></td><td>Plan registered &amp; frozen ✓; execution: 1 of 6 invocations, invalid, mid-flight</td></tr>
+      <tr><td>Stages 2–3, model decision (WP-705), pilot (WP-802), release gate (WP-803)</td><td><span class="chip sev-Low">PLANNED</span></td><td>Not started; Sol stays provisional until WP-705</td></tr>
+      <tr><td>Advisory review lane (WP-403)</td><td><span class="chip sev-Low">PLANNED</span></td><td>Module exists; nothing imports it</td></tr>
+      <tr><td>Cost accounting (WP-503 ledger)</td><td><span class="chip sev-High">PARTIAL</span></td><td>Counts calls/latency; cannot price anything; re-ingests counted as calls</td></tr>
+      <tr><td>v23 compiler; second model transport; migration harness</td><td><span class="chip sev-Low">LEGACY / QUARANTINED</span></td><td>Compiler still imported by ship-path code; live D7 instrument lives <em>inside</em> the quarantined tree</td></tr>
+      <tr><td>CI for this branch</td><td><span class="chip sev-High">CONTRADICTED</span></td><td>v25 workflow broken at head (6 quarantine-refused steps) and never triggers on this branch's pushes; root CI checks the old v21 package instead</td></tr>
+      <tr><td>Status docs (master plan, execution status, screening §11, protocol)</td><td><span class="chip sev-Medium">CONTRADICTED</span></td><td>Master plan still says “no implementation has begun”; counters disagree within one file</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ── 4. Failure & repair flow ────────────────────────────────────────── -->
+<section aria-labelledby="failh">
+  <h2 id="failh">Failure &amp; repair — every loop is bounded</h2>
+  <ul class="flow">
+    <li><span class="kind k-model">MODEL</span> Write fails a gate → <strong>1</strong> retry, then <strong>1</strong> “simpler lead” retry → chapter marked failed</li>
+    <li><span class="kind k-model">MODEL</span> Review finds defects → targeted repair, cap <strong>2 rounds</strong>; regeneration cap <strong>2 per chapter / 3 per book</strong> → then quarantine, never silent pass</li>
+    <li><span class="kind k-gate">GATE</span> D7 book verdict fails → <strong>1</strong> re-author round → terminal <span class="stop">HALT</span> for the owner (no loop)</li>
+    <li><span class="kind k-code">CODE</span> Any promote blocker → <span class="stop">QUARANTINE</span> record; no package written</li>
+    <li><span class="kind k-gate">GATE</span> D7 rater record invalid (bakeoff) → re-dispatch — <strong class="stop">currently unbounded and evidence-destroying</strong>; fix = attempt cap 3 + keep every attempt (V25-AUD-02)</li>
+    <li><span class="kind k-code">CODE</span> Crash mid-run → lock stolen safely, phase re-derived from disk, finished chapters reused by hash — resume is precise <em>except</em> the stale-verdict bug (V25-AUD-03)</li>
+  </ul>
+</section>
+
+<!-- ── 5. Flaw matrix ──────────────────────────────────────────────────── -->
+<section aria-labelledby="flawh">
+  <h2 id="flawh">Flaw matrix</h2>
+  <p class="small muted">IDs, severities and fixes match the written audit §7 exactly. Filters need JavaScript; without it, all rows simply stay visible.</p>
+  <div class="filters" role="group" aria-label="Filter findings by severity">
+    <button type="button" data-sev="all" aria-pressed="true">All</button>
+    <button type="button" data-sev="Critical" aria-pressed="false">Critical</button>
+    <button type="button" data-sev="High" aria-pressed="false">High</button>
+    <button type="button" data-sev="Medium" aria-pressed="false">Medium</button>
+    <button type="button" data-sev="Low" aria-pressed="false">Low</button>
+  </div>
+  <div class="filters" role="group" aria-label="Filter findings by pipeline area">
+    <button type="button" data-area="all" aria-pressed="true">All areas</button>
+    <button type="button" data-area="generation" aria-pressed="false">Generation</button>
+    <button type="button" data-area="judging" aria-pressed="false">D7 judging</button>
+    <button type="button" data-area="evidence" aria-pressed="false">Evidence/CI</button>
+    <button type="button" data-area="ship" aria-pressed="false">Ship/publish</button>
+  </div>
+  <div class="tablewrap"><table id="flawtable">
+    <thead><tr><th scope="col">ID</th><th scope="col">Severity</th><th scope="col">Area</th><th scope="col">Problem → consequence</th><th scope="col">Smallest fix → proof</th></tr></thead>
+    <tbody>
+      <tr data-sev="Critical" data-area="generation"><td>V25-AUD-01</td><td><span class="chip sev-Critical">Critical</span> Confirmed</td><td>Generation</td><td>A Sol-tuned readability formula hard-blocks candidate chapters at generation (advisory at publish). Terra &amp; Luna wrote nothing → the comparison was decided by a formula, not a judge.</td><td>Bakeoff-lane flag: readability becomes measure-only for candidates → test: low-ease fixture completes with metrics recorded; production untouched.</td></tr>
+      <tr data-sev="Critical" data-area="judging"><td>V25-AUD-02</td><td><span class="chip sev-Critical">Critical</span> Confirmed</td><td>D7 judging</td><td>Raters must reproduce arithmetic code already computes; ~38% of sessions rejected; failed replies deleted; retries uncapped → double judge cost, undiagnosable failures, one slip can void a whole audit.</td><td>Validator derives aggregates from atomic ratings; keep every attempt; cap 3 per role → replay + cap tests.</td></tr>
+      <tr data-sev="High" data-area="evidence"><td>V25-AUD-03</td><td><span class="chip sev-High">High</span> Confirmed</td><td>Evidence/CI</td><td>Verdict files are written mid-flight and never re-derived — the saved “Sol INELIGIBLE” verdict was falsified by a passing retry 10 minutes later.</td><td>Mint selection only from terminal states; provisional marker; annotate the nudge run INVALID → conductor tests.</td></tr>
+      <tr data-sev="High" data-area="judging"><td>V25-AUD-04</td><td><span class="chip sev-High">High</span> Confirmed</td><td>D7 judging</td><td>Judge calibrated only at scores 67–71; decisions happen at 75–85; the one live calibration missed by 6.6 (limit ±3) → decisions at the bar are extrapolations.</td><td>Owner adjudicates 2 anchors in the 80–92 band; Stage-0 drill must pass both → drill report.</td></tr>
+      <tr data-sev="High" data-area="evidence"><td>V25-AUD-05</td><td><span class="chip sev-High">High</span> Confirmed</td><td>Evidence/CI</td><td>The entire implementation (223 commits) exists on one machine, unpushed; three branch lines diverged.</td><td>Owner: push, pick the canonical line, reconcile → <code>ls-remote</code>/ancestry checks.</td></tr>
+      <tr data-sev="High" data-area="evidence"><td>V25-AUD-06</td><td><span class="chip sev-High">High</span> Confirmed</td><td>Evidence/CI</td><td>v25 CI calls six quarantined verbs without <code>--campaign</code> (they exit 2) and never runs on this branch's pushes; root CI tests the legacy v21 package → zero real CI coverage.</td><td>Add <code>--campaign</code>/remove steps; push trigger; repoint root scripts → green no-op PR.</td></tr>
+      <tr data-sev="High" data-area="evidence"><td>V25-AUD-07</td><td><span class="chip sev-High">High</span> Confirmed</td><td>Evidence/CI</td><td>The screening run's report reads like a scoreboard although zero valid comparisons exist.</td><td>“NO VALID COMPARISON” banner when composites are null; annotate run → report test.</td></tr>
+      <tr data-sev="High" data-area="evidence"><td>V25-AUD-08</td><td><span class="chip sev-High">High</span> Confirmed</td><td>Evidence/CI</td><td>Ledger prices nothing (<code>NOT_METERED</code>, no tokens) and counts free disk re-ingests as model calls → the “cheaper model” question is unanswerable in-repo.</td><td>session/re-ingest flag + attempt index + versioned owner price table → ledger tests.</td></tr>
+      <tr data-sev="Medium" data-area="ship"><td>V25-AUD-09</td><td><span class="chip sev-Medium">Medium</span> Confirmed</td><td>Ship/publish</td><td>Gate strength depends on which of three look-alike verbs the operator types; only <code>generate-book</code> forces the D7 requirement and preflight.</td><td>Inject REQUIRE flags in the conductor/promote layer → book-run-parity promote test.</td></tr>
+      <tr data-sev="Medium" data-area="ship"><td>V25-AUD-10</td><td><span class="chip sev-Medium">Medium</span> Confirmed</td><td>Ship/publish</td><td><code>generate-book</code> auto-commits and pushes to main on convergence — the owner ratified halt-at-ready (D-12b).</td><td>Default flip + <code>--publish</code> flag → default test.</td></tr>
+      <tr data-sev="Medium" data-area="evidence"><td>V25-AUD-11</td><td><span class="chip sev-Medium">Medium</span> Confirmed</td><td>Evidence/CI</td><td>Six load-bearing docs contradict the code or each other; the “authoritative” master plan is the most stale — and the live-spend ceiling itself has two incompatible official definitions (D-3: 150 codex sessions, Claude tracked separately; screening plan/code: both kinds against one 150).</td><td>One generated status block + staleness banner → CI drift check.</td></tr>
+      <tr data-sev="Medium" data-area="ship"><td>V25-AUD-12</td><td><span class="chip sev-Medium">Medium</span> Confirmed</td><td>Ship/publish</td><td>In-pipeline review is Sol-on-Sol; attestation identity is honor-system; the shipped package never embeds the D7 receipt; D7 schemas aren't contract-frozen.</td><td>Bind receipt hash into the package + register schemas → tamper test.</td></tr>
+      <tr data-sev="Medium" data-area="evidence"><td>V25-AUD-13</td><td><span class="chip sev-Medium">Medium</span> Confirmed</td><td>Evidence/CI</td><td>449 files / 188.7k lines; 123 CLI verbs; the live D7 instrument sits inside the “quarantined” migration tree; duplicate entrypoints and an overloaded <code>--compiler</code> flag.</td><td>After the experiment: move live instrument out, run the planned deletion WPs → import-graph test.</td></tr>
+      <tr data-sev="Low" data-area="evidence"><td>V25-AUD-14</td><td><span class="chip sev-Low-Medium">Low-Med</span> Confirmed</td><td>Evidence/CI</td><td>Generated run evidence committed into the implementation branch with no retention rule.</td><td>Use the evidence-branch pattern; keep the artifact guard strict → CI guard.</td></tr>
+      <tr data-sev="Low" data-area="judging"><td>V25-AUD-15 (a–f)</td><td><span class="chip sev-Low">Low</span> Confirmed (15f Probable)</td><td>Mixed</td><td>Weakened bakeoff book gate (BP7 skipped); blinding residuals (book ids in paths); legacy second transport; stale env reads; exit-0 no-op branch; whole-pair re-runs after one adjudicator slip (13 sessions for a ~6-session job).</td><td>Grouped small fixes; role-scoped retry rides the AUD-02 slice → per-item unit tests.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ── 6. Root-cause chains ────────────────────────────────────────────── -->
+<section aria-labelledby="chainh">
+  <h2 id="chainh">Root-cause chains</h2>
+  <ul class="flow">
+    <li>42-package build-out under time pressure <span class="muted">(AUD-13)</span></li>
+    <li>→ bakeoff reused production gates with no severity contract → <strong>readability censored 2 of 3 models</strong> <span class="muted">(AUD-01)</span></li>
+    <li>→ only Sol reached the judge, whose task demands model-computed arithmetic → <strong>stochastic slips + fail-closed validator + evidence-destroying retries</strong> <span class="muted">(AUD-02)</span></li>
+    <li>→ one calibration slip voided Sol at the moment the verdict file was written → <strong>stale false verdict retained</strong> <span class="muted">(AUD-03, 07)</span></li>
+    <li>→ no CI could catch any of it (broken/mistargeted for this branch) <span class="muted">(AUD-06)</span> and the status docs had already drifted <span class="muted">(AUD-11)</span></li>
+    <li class="stop">Net effect: zero valid evidence, misleading artifacts, ~2× judge spend — with every link individually small and fixable.</li>
+  </ul>
+</section>
+
+<!-- ── 7. Model-test timeline ──────────────────────────────────────────── -->
+<section aria-labelledby="timelineh">
+  <h2 id="timelineh">The experiment — stage by stage</h2>
+  <p>Spend is hard-capped, but the cap itself needs an owner ruling: decision D-3's ratified wording caps <strong>150 codex sessions</strong> with the Claude judge sessions tracked separately, while the screening code charges <em>both</em> kinds against one 150 budget (~11 already spent). <strong>Until the owner rules, the plan binds itself to the stricter combined reading</strong>: planned path ≈ 134 of the 139 remaining; the existing budget guard halts before any breaching session; if money runs short before the confirmation stage, a pre-named replicate is dropped or the campaign halts for re-authorization — never a favorable-case drop, never an overrun, never a screening without its confirmation stage. All rules, bars and caps are fixed <em>before</em> any result exists.</p>
+  <ol>
+    <li class="card"><strong>Stage 0a — Instrument qualification (0 live calls).</strong> Ship the three fixes (measure-only readability · derive-don't-reject arithmetic with kept attempts &amp; cap 3 · terminal-state verdicts), replay the retained failure records, re-run the model-free suites. <span class="stop">Any red stops here.</span></li>
+    <li class="card"><strong>Stage 0b — Judge drill (≤10 sessions, separately approved).</strong> Full blind audits of two owner-benchmarked chapters — one mid-band (~68), one decision-band (~85). <span class="go">Go:</span> ≥5/6 first-attempt-valid records and both audits within ±3 of the benchmark. <span class="stop">Miss → stop, fix the instrument, re-drill. No authoring money is spent before the judge is proven.</span></li>
+    <li class="card"><strong>Stage 1 — Blinded screening (≤36 authoring + ≤90 judge sessions).</strong> Sol, Terra, Luna at the same xhigh effort × 3 frozen chapters × 2 independent generations = 18 chapters, all blind-judged. Gate failures are <em>measured, preserved and still scored</em> — they just can't ship. <span class="go">Advance ≤2 models:</span> no safety hard-fail, mean D7 ≥75, no chapter block &lt;60. <span class="stop">None qualify → Sol stays provisional; stop.</span> A Sol@high arm runs separately and only informs effort policy.</li>
+    <li class="card"><strong>Stage 2 — Fresh confirmation (≤16 authoring + ≤38 judge sessions).</strong> Top two on fresh generations: one <em>held-out</em> chapter from an under-represented genre + the most separating Stage-1 chapter. First-pass and post-repair results reported separately. <span class="go">Confirmed if the leader keeps its direction on ≥3 of 4 cells and the holdout doesn't invert.</span></li>
+    <li class="card"><strong>Stage 3 — Only if too close to call.</strong> More paired chapters, only under a <em>new</em> owner authorization. No automatic max-spend.</li>
+    <li class="card"><strong>Stage 4 — One full-book pilot (outside this task, owner-approved).</strong> Requires the pre-pilot fixes (halt-at-ready publish, uniform D7 requirement, receipt-in-package). Acceptance: D7 book verdict PASS (mean ≥85 / min ≥80) within ≤2 repairs. Rollback: quarantine; default reverts to Sol.</li>
+  </ol>
+</section>
+
+<!-- ── 8. Decision tree ───────────────────────────────────────────────── -->
+<section aria-labelledby="treeh">
+  <h2 id="treeh">How the default gets decided (pre-registered)</h2>
+  <ul class="tree">
+    <li>Unresolved safety/integrity hard failure? → <span class="stop">that model is out</span>, whatever its scores.</li>
+    <li>One model <strong>&gt;3 D7 points better</strong> (consistent across chapters) <em>and</em> cheaper per accepted chapter? → <span class="go">it wins</span>: provisional default + pilot candidate.</li>
+    <li>Top models <strong>within ±3 points</strong> (statistically indistinguishable)? → cheaper per accepted chapter wins — <em>but only if</em> a dated, owner-approved price table exists; otherwise it's declared a quality tie and the owner decides with cost marked <code>PRICE NOT VERIFIED</code>.</li>
+    <li>Cheaper model <strong>&gt;3 points worse</strong>? → price cannot rescue it.</li>
+    <li>Quality and cost pull in opposite directions with no dominant option? → present the trade-off; <span class="kind k-human">HUMAN</span> owner decides; no invented utility weights after seeing results.</li>
+    <li>Nobody clears the bar? → <span class="stop">Sol stays provisional, campaign stops, the bar does not move.</span></li>
+    <li class="muted">The owner's blind preference is recorded before unblinding and may only break a declared tie or sign off the pilot — never override mid-test. The original n=1 comparison carries zero evidentiary weight.</li>
+  </ul>
+</section>
+
+<!-- ── 9. Economics view ──────────────────────────────────────────────── -->
+<section aria-labelledby="econh">
+  <h2 id="econh">Economics — what we can and cannot say about cost</h2>
+  <div class="tiles">
+    <div class="tile"><div class="n">NOT_METERED</div><div class="l">every ledger entry's cost field — no dollars, no tokens are recorded anywhere on the codex route</div></div>
+    <div class="tile"><div class="n">13 → 8</div><div class="l">real judge sessions → valid records in the screening (5 wasted, ≈2.5 h of judge time)</div></div>
+    <div class="tile"><div class="n">×2</div><div class="l">approx. judge-spend inflation from retries &amp; whole-pair re-runs in the observed run</div></div>
+    <div class="tile"><div class="n">0</div><div class="l">accepted chapters — so “cost per accepted chapter” is currently undefined (÷0)</div></div>
+  </div>
+  <ul>
+    <li><strong>Prices:</strong> “Terra/Luna are cheaper” is <em>owner-supplied and not verified</em>. No dollar figure appears in this audit or the plan, and none will be fabricated. The decision rule activates its cost clause only when a dated, versioned price table is approved by the owner.</li>
+    <li><strong>What will be measured instead</strong> (all real, all already observable once the ledger fix lands): true session counts (excluding free re-ingests), retries, repair rounds, wall-clock latency — combined as <em>sessions per accepted chapter</em>, then multiplied by the price table if and when one exists.</li>
+    <li><strong>Failed attempts count.</strong> A model that needs three tries to pass costs three tries — list price alone never decides.</li>
+  </ul>
+</section>
+
+<!-- ── 10. Prioritized action list ─────────────────────────────────────── -->
+<section aria-labelledby="actionh">
+  <h2 id="actionh">Action list</h2>
+  <h3>Stop now (invalidates testing or publication)</h3>
+  <ul>
+    <li>Treat the screening run as an instrument shakedown, not evidence; annotate it INVALID (keep every file).</li>
+    <li>Do not run screening invocations 2–6 until Stage 0 passes.</li>
+    <li>Fix the six broken CI steps; owner: push the branch (it exists on one machine).</li>
+  </ul>
+  <h3>Before the next model sample</h3>
+  <ul>
+    <li>Measure-only readability in the bakeoff lane · derive-don't-reject judge arithmetic with kept attempts and a cap of 3 · verdicts only from terminal states · decision-band calibration anchors + drill · ledger session/re-ingest split + price-table hook · re-register the screening plan.</li>
+  </ul>
+  <h3>Before a full-book pilot</h3>
+  <ul>
+    <li>Halt-at-ready publish default (D-12) · one uniform gate envelope for every ship verb · D7 receipt bound into the shipped package · full book gate at confirmation.</li>
+  </ul>
+  <h3>Defer</h3>
+  <ul><li>Generated status block · driver liveness record · blinding path-hashing.</li></ul>
+  <h3>Delete / quarantine later (never blocking evidence gathering)</h3>
+  <ul><li>Move the live D7 instrument out of the migration tree, then delete the ~35–40k-line legacy harness · retire the second model transport and legacy verbs · disambiguate <code>--compiler</code> · prune merged work-package worktrees after reconciling branches.</li></ul>
+</section>
+
+<!-- ── 11. Evidence table ─────────────────────────────────────────────── -->
+<section aria-labelledby="evidenceh">
+  <h2 id="evidenceh">Evidence table (spot-checkable)</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th scope="col">Claim</th><th scope="col">Source (package-relative @ <code>64b5d8a04</code>)</th><th scope="col">Status</th></tr></thead>
+    <tbody>
+      <tr><td>Default author = gpt-5.6-sol @ xhigh, provisional</td><td><code>src/orchestrator/modelPolicy.ts:44-61,120-138</code></td><td><span class="chip ok">VERIFIED</span> read</td></tr>
+      <tr><td>Readability is a blocker at generation, advisory at promote</td><td><code>src/sections/sectionGate.ts:2028,2038</code> · <code>src/critics/finalGate.ts:382,961</code> · <code>readingLevel.ts:54-67</code></td><td><span class="chip ok">VERIFIED</span> read</td></tr>
+      <tr><td>Terra ease 54.174 / Luna 47.719 blocked; Sol only completer</td><td><code>state/model-bakeoffs/nudge/stage1-…/candidates/*/generation.json</code> (untracked evidence)</td><td><span class="chip ok">VERIFIED</span> read</td></tr>
+      <tr><td>5 of 13 judge sessions rejected; timestamps 11:27–14:43 UTC</td><td><code>state/run-ledger/{nudge,nudge-ch03,made-to-stick-ch04}/bakeoff-…-trio-b.jsonl</code></td><td><span class="chip ok">VERIFIED</span> read</td></tr>
+      <tr><td>Saved verdict (14:32:45Z) falsified by passing retry (14:43:12Z)</td><td><code>selection/selection.json</code> · ingest ledger · custody <code>…/raw/primary/made-to-stick-ch04.json</code></td><td><span class="chip ok">VERIFIED</span> read + recompute</td></tr>
+      <tr><td>Surviving calibration record's arithmetic is exactly correct</td><td>hand-recompute of all 8 domains vs <code>rubricAuditInstrument.ts:200-260</code></td><td><span class="chip ok">VERIFIED</span> recompute</td></tr>
+      <tr><td>Calibration anchors 67.7–70.8 vs bar 80/85; tolerance ±3</td><td><code>rubricAuditInstrument.ts:119-154</code></td><td><span class="chip ok">VERIFIED</span> read</td></tr>
+      <tr><td>Ledger cost always NOT_METERED, zero token fields</td><td><code>src/telemetry/runCallLedger.ts:73-105</code></td><td><span class="chip ok">VERIFIED</span> read</td></tr>
+      <tr><td>Six CI steps call quarantined verbs ungated (exit 2)</td><td><code>.github/workflows/chapterflow-v25-pipeline.yml:146-195</code> vs <code>src/bakeoff/migration/cli.ts:385-392,2329</code></td><td><span class="chip ok">VERIFIED</span> read</td></tr>
+      <tr><td>Root CI validates the legacy v21 workspace only</td><td>root <code>package.json</code> workspaces + <code>pipeline:*</code> scripts</td><td><span class="chip ok">VERIFIED</span> read</td></tr>
+      <tr><td>Auto-publish default contradicts ratified D-12(b)</td><td><code>generateBookCommand.ts:309-312</code> vs <code>V25_OWNER_DECISIONS.md#L106-111</code></td><td><span class="chip ok">VERIFIED</span> read</td></tr>
+      <tr><td>223 commits ahead; branch unpushed; three-way divergence</td><td><code>git log/merge-base/ls-remote</code> outputs (§2 of the written audit)</td><td><span class="chip ok">VERIFIED</span> run</td></tr>
+      <tr><td>Typecheck / 14 suites / contract-validate all pass at head</td><td>§17 of the written audit — exact commands + exit codes</td><td><span class="chip ok">VERIFIED</span> run (exit 0)</td></tr>
+      <tr><td>Whole-pair re-run choreography after one adjudicator slip</td><td>dispatch ledger pattern 12:54→14:27Z + immutable-custody code</td><td><span class="chip sev-Medium">PROBABLE</span> (mechanism partly inferred — 15f)</td></tr>
+      <tr><td>Luna/Terra cheaper than Sol</td><td>owner statement only</td><td><span class="chip sev-Medium">OWNER-SUPPLIED, PRICE NOT VERIFIED</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ── glossary ───────────────────────────────────────────────────────── -->
+<section aria-labelledby="glossh">
+  <h2 id="glossh">Glossary</h2>
+  <dl>
+    <dt><strong>D7</strong></dt><dd>The blind quality audit: two independent Claude raters score a chapter on 8 learning-quality domains (0–4 each), an adjudicator settles differences, code recomputes all arithmetic, and the result is sealed into a receipt. The pipeline's only semantic ship gate.</dd>
+    <dt><strong>Deterministic floor</strong></dt><dd>The pure-code checks every chapter must pass — structure, quiz hygiene, seams, lengths. No model involved; same input always gives the same answer.</dd>
+    <dt><strong>Calibration (unit / anchor)</strong></dt><dd>A reference chapter the owner has already scored. Judges secretly re-score it each run; if they land more than ±3 points from the benchmark, the whole audit is voided — proof the judges drifted, not the book.</dd>
+    <dt><strong>CAS / atomic write</strong></dt><dd>“Compare-and-swap” style file writes: a chapter is written to a temp file and renamed into place, so a crash can never leave a half-written chapter.</dd>
+    <dt><strong>Receipt</strong></dt><dd>A sealed, hash-bound record proving a specific chapter's bytes passed the D7 audit. Tampering, staleness, or a different chapter voids it.</dd>
+    <dt><strong>Bakeoff</strong></dt><dd>A blinded side-by-side trial: several models write the same chapter from identical frozen inputs; judges score them without knowing which model wrote which.</dd>
+  </dl>
+  <p class="small muted">Written audit with full citations: <a href="V25_PIPELINE_AUDIT_AND_MODEL_TEST_PLAN.md"><code>V25_PIPELINE_AUDIT_AND_MODEL_TEST_PLAN.md</code></a>. Produced 2026-07-17 against commit <code>64b5d8a04</code>; zero live model calls, zero generation, zero code changes, zero git publication.</p>
+</section>
+
+</main>
+<script>
+(function () {
+  "use strict";
+  var table = document.getElementById("flawtable");
+  if (!table) return;
+  var state = { sev: "all", area: "all" };
+  function apply() {
+    var rows = table.tBodies[0].rows;
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      var okSev = state.sev === "all" || r.getAttribute("data-sev") === state.sev;
+      var okArea = state.area === "all" || r.getAttribute("data-area") === state.area;
+      r.hidden = !(okSev && okArea);
+    }
+  }
+  function wire(attr, key) {
+    var btns = document.querySelectorAll("button[" + attr + "]");
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        btns.forEach(function (o) { o.setAttribute("aria-pressed", "false"); });
+        b.setAttribute("aria-pressed", "true");
+        state[key] = b.getAttribute(attr);
+        apply();
+      });
+    });
+  }
+  wire("data-sev", "sev");
+  wire("data-area", "area");
+})();
+</script>
+</body>
+</html>
