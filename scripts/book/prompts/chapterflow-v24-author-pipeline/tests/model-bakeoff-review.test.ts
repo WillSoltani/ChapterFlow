@@ -163,6 +163,60 @@ test("the identity-leak check runs on every D7 task BEFORE dispatch — a leakin
   }
 });
 
+test("blind-rater prose with a forbidden common word does NOT block the adjudicator dispatch; candidate content with a model id STILL does", async () => {
+  // Phase 1 — the live false positive: both blind raters honestly write
+  // "flagship" in their own verdict prose. The adjudicator task embeds those
+  // sealed records; the leak check runs on the redacted surface, so the audit
+  // must drive to a full composite (before the fix: BlindingLeakError →
+  // ineligible at the adjudicator dispatch).
+  const repo = makeD7Repo("cf-d7-leak-scope", CALIBRATION_UNIT);
+  try {
+    const chapters = [fullFixtureChapter("zz-d7-scope", 1)];
+    let adjudicatorDispatches = 0;
+    const base = d7WorkerDouble({
+      repositoryRoot: repo.base, calibrationUnit: CALIBRATION_UNIT, ratingForUnit: () => 4,
+      onDispatch: (req) => { if (req.role === "adjudicator") adjudicatorDispatches += 1; },
+    });
+    const worker = async (req: D7WorkerRequest): Promise<string> => {
+      const text = await base(req);
+      if (req.role === "adjudicator") return text;
+      const record = JSON.parse(text) as Record<string, unknown>;
+      record.verdict = "A flagship-quality chapter whose credibility move transfers cleanly.";
+      return JSON.stringify(record, null, 2);
+    };
+    const j = await judgeCandidateD7({
+      bookId: "zz-d7-scope", label: "A", chapters,
+      repositoryRoot: repo.base, auditId: "bakeoff-d7-scope-a",
+      calibrationUnit: CALIBRATION_UNIT, worker, forbidden: ["flagship"], log: () => {},
+    });
+    assert.equal(typeof j.d7Composite, "number",
+      `rater-authored "flagship" must not abort the audit (ineligibleReason: ${j.ineligibleReason ?? "none"})`);
+    assert.ok(adjudicatorDispatches >= 2, "the adjudicator dispatched for the chapter AND the calibration unit");
+  } finally {
+    repo.dispose();
+  }
+
+  // Phase 2 — no weakening: CANDIDATE content carrying a real model id is still
+  // refused before any dispatch (candidate-derived bytes stay fully checked).
+  const repo2 = makeD7Repo("cf-d7-leak-scope-2", CALIBRATION_UNIT);
+  try {
+    const chapters = [fullFixtureChapter("zz-d7-scope2", 1)];
+    (chapters[0] as unknown as { hook: string }).hook += " Compare this with the gpt-5.6-sol flagship treatment.";
+    let dispatched = 0;
+    const worker = d7WorkerDouble({ repositoryRoot: repo2.base, calibrationUnit: CALIBRATION_UNIT, onDispatch: () => { dispatched += 1; } });
+    const j = await judgeCandidateD7({
+      bookId: "zz-d7-scope2", label: "B", chapters,
+      repositoryRoot: repo2.base, auditId: "bakeoff-d7-scope2-b",
+      calibrationUnit: CALIBRATION_UNIT, worker, forbidden: forbiddenReviewTokens(SPECS), log: () => {},
+    });
+    assert.equal(j.d7Composite, null, "candidate content carrying a model id is refused");
+    assert.ok(/leak/i.test(j.ineligibleReason ?? ""), "refused by the identity-leak check");
+    assert.equal(dispatched, 0, "no worker session over an unblinded packet");
+  } finally {
+    repo2.dispose();
+  }
+});
+
 test("assertNoIdentityLeak-backed guard is fail-closed: a direct leak throws BlindingLeakError", () => {
   // The D7 judge swallows this into an ineligible reason (proven above); the guard
   // itself is fail-closed by construction.

@@ -35,10 +35,12 @@ import {
   ingestRaterRecord,
   raterBindingEnvelope,
   renderAdjudicationRecordSkeleton,
+  renderAdjudicatorLeakCheckSurface,
   renderRaterRecordSkeleton,
   renderRaterTaskDocument,
   summarizeAudit,
 } from "../src/bakeoff/migration/rubricAuditHarness.js";
+import { assertNoIdentityLeak, BlindingLeakError } from "../src/bakeoff/review.js";
 import { AuditPackageAssemblyError, assembleAuditPackage } from "../src/bakeoff/auditPackageAssembler.js";
 import { loadRecord, validatePairChain, type RubricInspection } from "../src/bakeoff/migration/rubricAuditReceipts.js";
 import { readCallLedgerEntries } from "../src/telemetry/runCallLedger.js";
@@ -683,6 +685,47 @@ test("a task-following adjudicator that fills the skeleton ingests; the live str
     assert.ok(existsSync(result.persistedPath), "the filled compliant adjudication ingests and persists");
     const persisted = JSON.parse(readFileSync(result.persistedPath, "utf8")) as Record<string, unknown>;
     assert.equal((persisted.calibration_changes as unknown[]).length, 1);
+  } finally {
+    repo.dispose();
+  }
+});
+
+// ── adjudicator leak-check surface (blind-rater prose is out of scan scope) ───
+
+test("the adjudicator leak surface masks blind-rater prose but keeps every candidate-derived byte", () => {
+  const repo = makeAuditRepo("rubric-audit-leak-surface");
+  try {
+    // Seal a pair whose RATER-AUTHORED prose contains a forbidden-list common
+    // word ("flagship" — the live false positive): blind raters never saw a
+    // candidate identity, so this word is their own honest vocabulary.
+    for (const [role, rating] of [["primary", 3], ["verification", 4]] as Array<["primary" | "verification", number]>) {
+      const task = renderRaterTaskDocument({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role });
+      const record = fillSkeleton(extractRecordSkeleton(task), rating);
+      record.verdict = "A flagship-quality chapter; the credibility move lands cleanly.";
+      ingestRaterRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role, recordText: JSON.stringify(record, null, 2) });
+    }
+
+    const task = renderRaterTaskDocument({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "adjudicator" });
+    const surface = renderAdjudicatorLeakCheckSurface({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit });
+
+    // The TASK the adjudicator receives still embeds the full records (it must —
+    // adjudication reads them); the SURFACE masks exactly those bodies.
+    assert.ok(task.includes("flagship"), "the dispatched task embeds the blind records verbatim");
+    assert.ok(!surface.includes("flagship"), "the leak surface masks blind-rater-authored prose");
+    assert.ok(surface.includes("redacted from the leak scan"), "the surface marks the masked record bodies");
+
+    // Every candidate-derived byte is STILL on the surface: the audit document,
+    // the per-layer docs, the chapter title in the skeleton, and the contract.
+    assert.ok(surface.includes("The Inspectable Claim"), "candidate chapter title stays checked");
+    assert.ok(surface.includes("A fishmonger sets a temperature log beside the cod"), "candidate audit-document prose stays checked");
+    assert.ok(surface.includes("Full read (app mode: Challenge)"), "candidate layer documents stay checked");
+    assert.ok(surface.includes(RATER_SKELETON_BEGIN), "the record skeleton stays checked");
+
+    // Mechanically: the common word no longer trips the check on the surface,
+    // while a candidate-content token still does (fail-closed unchanged).
+    assertNoIdentityLeak(surface, ["flagship"], "adjudicator leak surface");
+    assert.throws(() => assertNoIdentityLeak(surface, ["fishmonger"], "adjudicator leak surface"), BlindingLeakError,
+      "a token appearing in CANDIDATE content still fails the scoped check");
   } finally {
     repo.dispose();
   }
