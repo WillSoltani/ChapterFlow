@@ -1,6 +1,6 @@
 # V25 S-Tier Program — Execution Status
 
-**Program state:** EXECUTING — Phases 1–3 COMPLETE (G1/G2/G3 all passed). Phase 4 in progress (D7 ship gate). Live calls remain forbidden until Phase-6 written authorization (D-3; incl. the deferred WP-701 corpus freeze per L-25).
+**Program state:** EXECUTING — Phases 1–4 COMPLETE (G1–G4 passed; D7 ship gate live). Phase 5 in progress (terminal autonomy). Live calls forbidden until Phase-6 written authorization (D-3). Live calls remain forbidden until Phase-6 written authorization (D-3; incl. the deferred WP-701 corpus freeze per L-25).
 
 ## Branch / worktree registry
 
@@ -16,6 +16,7 @@ Integration SHAs will be appended per gate (G1–G8) after approval.
 | Gate | SHA | Result | Evidence |
 |---|---|---|---|
 | G1 | f3b83a4fe | **PASS** — suite 3032/0/12xenv/39skip (detached); root typecheck+build green; contract-validate PASS | g1-gate-final.log, ledger L-20 |
+| G4 | 116f214d7 | **PASS** — suite 3176/0/12xenv/39skip (detached); root green; Phase 4 CLOSED (D7 gate live) | g4-final.log, L-30 |
 | G3 | f8c74a760 | **PASS** — suite 3107/0/12xenv/39skip (detached); root green; Phase 3 CLOSED | g3-gate2.log, L-27 |
 | G2 | ef41abe57 | **PASS** — suite 3058/0/12xenv/39skip (detached); root typecheck+build green; contract-validate PASS; Phase 2 CLOSED | g2-gate-final.log, ledger L-25 |
 
@@ -48,6 +49,9 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 401 | integrated | wp-401-d7-ship-gate | 9e118bd66 | e6a330c2d | 3 red-team rounds; V25-02 closed; residuals→D-11 |
 | 403 | integrated | wp-403-advisory-review | e27cb5fef | f8238350e | rt PASS-WITH-NOTES; V25-10/16 closed |
 | 205 | integrated | wp-205-floor-consolidation | e27cb5fef | 024e7c0cd | rt PASS-WITH-NOTES; floor dedup |
+| 503 | in progress | wp-503-unified-ledger | (post-G4) | — | dispatched: sonnet-5@xhigh |
+| 504 | in progress | wp-504-fallback-config | (post-G4) | — | dispatched: opus-4.8@xhigh |
+| 602 | in progress | wp-602-preflight-doctor | (post-G4) | — | dispatched: sonnet-5@xhigh |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
