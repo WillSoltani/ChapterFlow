@@ -87,11 +87,27 @@ function readManifest(): CorpusManifest {
 }
 
 /** The SAME derivation the manifest's own bakeoffReadiness must reflect: a
- *  packet is ready only when every unit has a resolved (non-UNRESOLVED)
- *  authoringSource. Defined locally (not imported) so this test is an
- *  INDEPENDENT re-derivation, not a call into the value it is checking. */
+ *  packet is ready only when every unit has a RESOLVED authoringSource.
+ *  Defined locally (not imported) so this test is an INDEPENDENT
+ *  re-derivation, not a call into the value it is checking.
+ *
+ *  Resolution is an ALLOWLIST, not a denylist (red-team FINDING-1): a unit is
+ *  resolved ONLY when authoringSource looks like a real repo-relative pointer
+ *  (path-shaped, containing a directory separator, optionally with a
+ *  #fragment). Anything else — the UNRESOLVED sentinel, "", whitespace, or
+ *  placeholder strings like TODO/PENDING/TBD — stays fail-closed. */
+const AUTHORING_SOURCE_PLACEHOLDERS = new Set([
+  "", "UNRESOLVED", "TODO", "PENDING", "TBD", "NULL", "NONE", "N/A",
+]);
+
+function isResolvedAuthoringSource(value: string): boolean {
+  const trimmed = value.trim();
+  if (AUTHORING_SOURCE_PLACEHOLDERS.has(trimmed.toUpperCase())) return false;
+  return trimmed.includes("/") && /^[A-Za-z0-9][A-Za-z0-9._/-]*(#[A-Za-z0-9._-]+)?$/.test(trimmed);
+}
+
 function deriveBakeoffReadiness(units: ReadonlyArray<{ authoringSource: string }>): "ready-for-bakeoff" | "not-ready-for-bakeoff" {
-  return units.every((u) => u.authoringSource !== "UNRESOLVED") ? "ready-for-bakeoff" : "not-ready-for-bakeoff";
+  return units.every((u) => isResolvedAuthoringSource(u.authoringSource)) ? "ready-for-bakeoff" : "not-ready-for-bakeoff";
 }
 
 /** Independently rebuilds a chapter_diagnostic_score from a sealed adjudicated
@@ -188,6 +204,18 @@ test("each chapter_diagnostic_score is rebuilt from sealed subcriteria ratings a
     assert.equal(adjudicated.chapter_diagnostic_score, unit.sealedChapterDiagnostic,
       `${unit.unit} manifest diagnostic disagrees with the sealed record's own stored score`);
     assert.equal(adjudicated.diagnostic_band, unit.sealedBand, `${unit.unit} sealedBand drifted from the sealed record`);
+    // Direct source-identity cross-binding (red-team FINDING-2): the sealed
+    // adjudicated record itself must name this unit's source and book/chapter —
+    // a swapped record cannot pass even if its pointer hash and diagnostic were
+    // somehow made consistent.
+    assert.equal(adjudicated.source_hash, unit.sourceHash,
+      `${unit.unit} adjudicated record source_hash disagrees with the unit sourceHash (record/unit swap?)`);
+    // The sealed records identify the audited unit via book.book_id (e.g.
+    // "nudge-ch03" — the unit id, not the bare catalog bookId).
+    const book = adjudicated.book as { book_id: string };
+    assert.equal(book.book_id, unit.unit, `${unit.unit} adjudicated record book_id disagrees with the unit binding`);
+    const chapter = adjudicated.chapter as { number: number };
+    assert.equal(chapter.number, unit.chapterNumber, `${unit.unit} adjudicated record chapter number disagrees with the unit binding`);
   }
 });
 
@@ -231,6 +259,21 @@ test("UNRESOLVED authoringSource drives a not-ready-for-bakeoff verdict — no h
   }));
   assert.equal(deriveBakeoffReadiness(partiallyResolved), "not-ready-for-bakeoff",
     "a single UNRESOLVED unit must veto the whole packet");
+});
+
+test("placeholder authoringSource values never derive readiness (allowlist, not denylist)", () => {
+  const manifest = readManifest();
+  // Red-team FINDING-1: under the old denylist derivation, any non-sentinel
+  // string — including "" and TODO-style placeholders — counted as resolved.
+  // The allowlist derivation must veto every one of these.
+  for (const placeholder of ["", " ", "TODO", "PENDING", "TBD", "null", "n/a", "yes", "resolved"]) {
+    const units = manifest.units.map((u) => ({ ...u, authoringSource: placeholder }));
+    assert.equal(deriveBakeoffReadiness(units), "not-ready-for-bakeoff",
+      `placeholder authoringSource ${JSON.stringify(placeholder)} must NOT derive ready-for-bakeoff`);
+  }
+  // While a genuine repo-relative pointer does resolve.
+  const resolved = manifest.units.map((u) => ({ ...u, authoringSource: "docs/v25/bakeoff-corpus-v1/frozen-inputs/example.md" }));
+  assert.equal(deriveBakeoffReadiness(resolved), "ready-for-bakeoff");
 });
 
 // ── (e) manifest is byte-stable under the canonical serializer ──────────────
