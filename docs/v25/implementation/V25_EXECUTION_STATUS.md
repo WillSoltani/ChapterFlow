@@ -49,9 +49,10 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 401 | integrated | wp-401-d7-ship-gate | 9e118bd66 | e6a330c2d | 3 red-team rounds; V25-02 closed; residuals→D-11 |
 | 403 | integrated | wp-403-advisory-review | e27cb5fef | f8238350e | rt PASS-WITH-NOTES; V25-10/16 closed |
 | 205 | integrated | wp-205-floor-consolidation | e27cb5fef | 024e7c0cd | rt PASS-WITH-NOTES; floor dedup |
-| 503 | in progress | wp-503-unified-ledger | (post-G4) | — | dispatched: sonnet-5@xhigh |
-| 504 | in progress | wp-504-fallback-config | (post-G4) | — | dispatched: opus-4.8@xhigh |
-| 602 | in progress | wp-602-preflight-doctor | (post-G4) | — | dispatched: sonnet-5@xhigh |
+| 503 | integrated | wp-503-unified-ledger | fcf4708a4 | c0ad13e63 | rt PASS-WITH-NOTES; V25-15 closed |
+| 504 | integrated | wp-504-fallback-config | fcf4708a4 | 87aa06195 | rt PASS-WITH-NOTES |
+| 602 | integrated | wp-602-preflight-doctor | fcf4708a4 | db9aabd91 | rt PASS-WITH-NOTES |
+| 601 | in progress | wp-601-generate-book | (post-503/504/602) | — | dispatched: opus-4.8@xhigh |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
