@@ -37,6 +37,7 @@ import { fileURLToPath } from "url";
 import { computeBookStatus, type BookStatus } from "../lifecycle/bookStatus.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 import { REPO_ROOT, normSlug, CANONICAL_STATE } from "../lib/chapterPaths.js";
+import { canonicalChapterIndexPath } from "../lib/chapterSet.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { hashCanonical } from "../contracts/contractUtil.js";
 import { recordAuthorProvenance } from "../qc/sessionProvenance.js";
@@ -323,6 +324,16 @@ export type AutopilotOutcome =
 function mkHalt(bookId: string, phase: AutopilotPhase, category: HaltCategory, reason: string): AutopilotOutcome {
   return { status: "halt", bookId, phase, reason, category };
 }
+
+/** WP-701b — the terminal outcome of the research-only `auto-research` stage verb.
+ *  Distinct from AutopilotOutcome because "research complete, STOPPED before authoring" is
+ *  NOT "ready to publish": the verb produces the chapter index + source-v2 sidecars and then
+ *  halts, with no write/author phase reachable. The `halt` variant reuses the SAME halt shape
+ *  doResearch already returns (its phase is always "research"), so the existing infra/content/
+ *  progress/governance categories carry through to a truthful, distinct CLI exit code. */
+export type AutoResearchOutcome =
+  | { status: "research-complete"; bookId: string; indexPath: string; sidecarsDir: string | null; message: string }
+  | { status: "halt"; bookId: string; phase: "research"; category: HaltCategory; reason: string };
 
 // ── Small utilities ────────────────────────────────────────────────────────────
 
@@ -1018,6 +1029,49 @@ function terminalTag(o: AutopilotOutcome): string {
   return o.status === "halt" ? `halt:${o.category}` : o.status;
 }
 
+/** WS6 + WP-503 — wrap the two telemetry choke points (mkSessionId, logSession) plus
+ *  noteReviewCarry around a base deps set WITHOUT changing their behavior: mkSessionId
+ *  still returns the base id (we just observe it into `ledger`); logSession still runs the
+ *  base sink (we also record the outcome into `ledger` AND mirror it into the unified
+ *  per-run call ledger under `runId`). `stage` reuses the existing session-label
+ *  classification (never a second taxonomy); role/model/effort/outcome ride on `r`
+ *  (codexAgent.ts stamps them on every spawn result, hermetic AND legacy). Every wrapper is
+ *  self-guarded so a ledger bug can never brick a run. Shared verbatim by runAutopilot and
+ *  runAutoResearch (WP-701b) so the WP-503 ledger wrapper is byte-identical on both
+ *  entrypoints — it cannot drift. */
+function buildLedgeredDeps(base: AutopilotDeps, ledger: SessionLedger, runId: string): AutopilotDeps {
+  return {
+    ...base,
+    mkSessionId: (label: string) => {
+      const id = base.mkSessionId(label);
+      try { ledger.mint(label, id); } catch { /* telemetry never halts a run */ }
+      return id;
+    },
+    logSession: (bookId: string, label: string, r: CodexAgentResult) => {
+      try { ledger.record(r); } catch { /* telemetry never halts a run */ }
+      try {
+        appendCallLedgerEntry({
+          pipelineDir: PIPELINE_DIR,
+          bookId,
+          runId,
+          family: "codex-exec",
+          stage: classifySessionLabel(label),
+          role: r.role ?? null,
+          model: r.model ?? null,
+          effort: r.effort ?? null,
+          latencyMs: Number.isFinite(r.durationMs) ? r.durationMs : null,
+          outcome: r.outcome ?? (r.ok ? "content_completed" : "infrastructure_failure"),
+          sessionId: r.sessionId,
+        });
+      } catch { /* telemetry never halts a run */ }
+      base.logSession(bookId, label, r);
+    },
+    noteReviewCarry: (hit: boolean) => {
+      try { if (hit) ledger.reviewCarryHit(); else ledger.reviewCarryMiss(); } catch { /* telemetry never halts a run */ }
+    },
+  };
+}
+
 export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOutcome> {
   // WS6 — one per-run session ledger + run manifest. The ledger observes EVERY minted
   // session id (mkSessionId) and every spawned session's outcome (logSession) by wrapping
@@ -1042,45 +1096,10 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
     readerCount: opts.architecture === "author" ? AUTHOR_BOOK_READERS : null,
   });
   const base = resolveDeps(opts.deps);
-  // Wrap the two telemetry choke points without changing their behavior. mkSessionId still
-  // returns the base id (unchanged), we just observe it; logSession still runs the base
-  // sink, we just also record the outcome. Both wrappers are self-guarded so a ledger bug
-  // can never brick a run.
-  const deps: AutopilotDeps = {
-    ...base,
-    mkSessionId: (label: string) => {
-      const id = base.mkSessionId(label);
-      try { ledger.mint(label, id); } catch { /* telemetry never halts a run */ }
-      return id;
-    },
-    logSession: (bookId: string, label: string, r: CodexAgentResult) => {
-      try { ledger.record(r); } catch { /* telemetry never halts a run */ }
-      // WP-503 — mirror this SAME choke point into the unified per-run call ledger.
-      // `stage` reuses the existing session-label classification (never a second
-      // taxonomy); role/model/effort/outcome ride on `r` (codexAgent.ts stamps them
-      // on every spawn result, hermetic AND legacy). Best-effort: a ledger bug must
-      // never brick a run any more than the pre-existing SessionLedger.record above.
-      try {
-        appendCallLedgerEntry({
-          pipelineDir: PIPELINE_DIR,
-          bookId,
-          runId,
-          family: "codex-exec",
-          stage: classifySessionLabel(label),
-          role: r.role ?? null,
-          model: r.model ?? null,
-          effort: r.effort ?? null,
-          latencyMs: Number.isFinite(r.durationMs) ? r.durationMs : null,
-          outcome: r.outcome ?? (r.ok ? "content_completed" : "infrastructure_failure"),
-          sessionId: r.sessionId,
-        });
-      } catch { /* telemetry never halts a run */ }
-      base.logSession(bookId, label, r);
-    },
-    noteReviewCarry: (hit: boolean) => {
-      try { if (hit) ledger.reviewCarryHit(); else ledger.reviewCarryMiss(); } catch { /* telemetry never halts a run */ }
-    },
-  };
+  // Wrap the two telemetry choke points without changing their behavior (see
+  // buildLedgeredDeps). Shared verbatim with runAutoResearch (WP-701b) so the WP-503
+  // ledger wrapper is IDENTICAL on both entrypoints and can never drift.
+  const deps: AutopilotDeps = buildLedgeredDeps(base, ledger, runId);
   let outcome: AutopilotOutcome;
   try {
     outcome = await runAutopilotCore(opts, deps, ledger);
@@ -1122,6 +1141,152 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
     finalizeManifestPackage(opts.bookId, outcome, runManifest);
     writeRunManifest(PIPELINE_DIR, runManifest);
   } catch { /* telemetry is best-effort: never let it change the outcome */ }
+  return outcome;
+}
+
+// ── WP-701b: the `auto-research` stage verb — compliant codex research, stops before authoring ──
+
+export type AutoResearchOptions = {
+  bookId: string;
+  /** Declared identity, recorded in the run ledger / logs (matches the generate-book
+   *  contract). These do NOT steer the research session: doResearch's task infers and
+   *  verifies the title from the slug + sources EXACTLY as the autopilot does, so these
+   *  are metadata only — recording them here never changes what the research agent does. */
+  title?: string;
+  author?: string;
+  /** WP-503 ledger identity. Production reads process.env.CHAPTERFLOW_RUN_ID ?? a minted id;
+   *  the command layer passes a stable one so its printed artifact locations match the run. */
+  runId?: string;
+  deps?: Partial<AutopilotDeps>;
+};
+
+/** Best-effort informational path: where the newest research run's source-v2 sidecars land
+ *  (.chapterflow/runs/<bookId>/<run>/sidecars/source/). Returns the book's runs dir when it
+ *  exists (the precise <run> subdir is printed as a hint), else null. Never throws. */
+function researchSidecarsLocation(bookId: string): string | null {
+  try {
+    const runsBookDir = resolve(REPO_ROOT, ".chapterflow", "runs", bookId);
+    return existsSync(runsBookDir) ? runsBookDir : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * WP-701b — run EXACTLY the autopilot's research phase (doResearch) for ONE book and STOP.
+ *
+ * This is the compliant, V25-policy research entrypoint. It reuses the SAME doResearch the
+ * conductor's phase loop calls, so it preserves — unchanged — every research invariant:
+ *   - the WP-503 ledger wrapper (buildLedgeredDeps: every codex session appended to the
+ *     unified per-run call ledger AND the SessionLedger honest-accounting invariant);
+ *   - role "research" routing through modelPolicy.resolveRoute (spawnCodexAgent resolves
+ *     gpt-5.6-sol@high via NORMAL_56 research-synthesis — NO model is pinned here);
+ *   - the hermetic envelope + reasoningEffort "high" + the 45-min research session cap;
+ *   - the RESEARCH_MAX_PASSES=2 retry cap and the fresh-vs-restore freshness check;
+ *   - the same-book run lock (acquireBookLock) — a second concurrent invocation is refused;
+ *   - the fail-closed halt taxonomy (a restored archive → 'content' halt, a session exit →
+ *     'infra' halt, no index after the cap → 'progress' halt).
+ *
+ * It does NOT (and structurally CANNOT) reach the write/author phase: the function's only
+ * work is doResearch, then it returns. There is no phase loop, no write branch, no publish.
+ * On success it returns where the chapter index + source-v2 sidecars landed.
+ *
+ * NOTE: this spawns a REAL codex research session on the production path (an owner-D-3-gated
+ * Phase-6 live call). Tests drive it model-free via an injected `deps.spawn` double.
+ */
+export async function runAutoResearch(opts: AutoResearchOptions): Promise<AutoResearchOutcome> {
+  const bookId = opts.bookId;
+  // Same canonical-slug validation runAutopilotCore uses: the lock is taken on the RAW
+  // bookId while all state ops normalize via normSlug, so a non-canonical id would take a
+  // DIFFERENT lock than its normalized state (same-book mutex bypass) and can traverse
+  // lock/state paths. Refuse up front with a structured governance halt (→ usage exit).
+  if (typeof bookId !== "string" || bookId.length === 0 || normSlug(bookId) !== bookId) {
+    return {
+      status: "halt",
+      bookId: String(bookId),
+      phase: "research",
+      category: "governance",
+      reason: `invalid bookId "${bookId}" — must be a canonical lowercase slug (got normSlug="${typeof bookId === "string" ? normSlug(bookId) : "?"}"). Refusing to run: a non-canonical id takes a different run lock than its normalized state (mutex bypass) and can traverse lock/state paths.`,
+    };
+  }
+
+  const ledger = new SessionLedger(bookId);
+  const runId = opts.runId ?? process.env.CHAPTERFLOW_RUN_ID ?? `auto-research-${bookId}-${Date.now()}`;
+  const base = resolveDeps(opts.deps);
+  // The SAME WP-503 ledger wrapper the autopilot uses (buildLedgeredDeps) — every research
+  // codex session lands in the unified per-run call ledger + the SessionLedger.
+  const deps = buildLedgeredDeps(base, ledger, runId);
+  try { ledger.setPhase("research"); } catch { /* telemetry never halts a run */ }
+
+  // Same-book lock: refuse to start if another run (autopilot OR another auto-research)
+  // holds it. Non-blocking + fail-fast (heldBy set on failure). Released in `finally`.
+  const lock = deps.acquireLock(bookId);
+  if (!lock.ok) {
+    return {
+      status: "halt",
+      bookId,
+      phase: "research",
+      category: "infra",
+      reason: `could not acquire the run lock for ${bookId} (${lock.heldBy ?? "unknown"}). If a previous run died, remove state/autopilot-locks/${bookId}.lock and retry.`,
+    };
+  }
+  deps.log(`[auto-research] compliant codex research (no-API · role=research → modelPolicy · hermetic envelope · ≤${RESEARCH_MAX_PASSES} passes · freshness-checked); STOPS before authoring; lock acquired for ${bookId}`);
+
+  let outcome: AutoResearchOutcome;
+  try {
+    // EXACTLY the autopilot's research phase — the SAME doResearch the conductor calls at
+    // `if (phase === "research")`. No write/author phase is reachable from here (structural
+    // stop, not a flag-order stop): this function calls ONLY doResearch and returns.
+    const halt = await doResearch(bookId, deps);
+    if (halt) {
+      // doResearch only ever returns a "research"-phase halt (or null).
+      outcome = halt.status === "halt"
+        ? { status: "halt", bookId, phase: "research", category: halt.category, reason: halt.reason }
+        : { status: "halt", bookId, phase: "research", category: "infra", reason: "research halted with an unexpected outcome shape" };
+    } else {
+      outcome = {
+        status: "research-complete",
+        bookId,
+        indexPath: canonicalChapterIndexPath(bookId),
+        sidecarsDir: researchSidecarsLocation(bookId),
+        message: `research complete for ${bookId}: chapter index + source-v2 sidecars written; STOPPED before authoring (no write/author phase is reachable from auto-research).`,
+      };
+    }
+  } catch (err) {
+    outcome = {
+      status: "halt",
+      bookId,
+      phase: "research",
+      category: "infra",
+      reason: `unexpected failure in the research phase: ${(err as Error)?.message ?? String(err)} — re-run \`auto-research ${bookId}\` to retry.`,
+    };
+  } finally {
+    lock.release();
+  }
+
+  // Best-effort telemetry finalize (never converts into a halt), mirroring runAutopilot's
+  // terminal: the SessionLedger cost report (its honest-accounting invariant is the backstop
+  // that every minted research session was logged) + the WP-503 unified call-ledger rollup.
+  // Every codex session was already appended per-call by the logSession wrapper above; this
+  // flushes the run rollup + per-book rollup-of-rollups and reconciles the two ledgers.
+  try {
+    const terminal = outcome.status === "halt" ? `halt:${outcome.category}` : "research-complete";
+    const report = ledger.build(terminal);
+    writeCostReport(PIPELINE_DIR, bookId, report);
+    base.log(formatCostReport(report));
+    if (!report.invariantOk) {
+      base.log(`[auto-research] ERROR cost-report honest-accounting invariant TRIPPED for ${bookId}: ${report.unloggedSpawnIds.length} spawn id(s) minted but never logged (${report.unloggedSpawnIds.slice(0, 8).join(", ")}) — a spawn site is not routing through logSession.`);
+    }
+    try {
+      const { rollup } = finalizeRunCallLedgerRollup(PIPELINE_DIR, bookId, runId);
+      writeBookRollup(PIPELINE_DIR, bookId);
+      const codexLedgerCalls = rollup.byFamily["codex-exec"] ?? 0;
+      if (codexLedgerCalls !== report.grandTotalSessions) {
+        base.log(`[auto-research] WARNING WP-503 call-ledger reconciliation mismatch for ${bookId}: session-ledger grandTotalSessions=${report.grandTotalSessions} vs unified call-ledger codex-exec entries=${codexLedgerCalls} (run ${runId}) — a spawn is landing in one ledger but not the other.`);
+      }
+    } catch { /* telemetry is best-effort: never let it change the outcome */ }
+  } catch { /* telemetry is best-effort: never let it change the outcome */ }
+
   return outcome;
 }
 
@@ -1494,7 +1659,15 @@ async function buildResearchTask(bookId: string, deps: AutopilotDeps, pass: numb
   return `${deps.readTask(promptPath)}\n\n---\nAUTOPILOT RESEARCH TASK\nbookId: ${bookId}\npass: ${pass}/${RESEARCH_MAX_PASSES}\n\nYou are already running from the ChapterFlow pipeline root. Do NOT cd into an old v21/v22 folder. Do NOT write chapters, QC, or publish.\n\nCurrent deterministic task probe:\n${probeText}\n\n${previousNote}${freshnessNote}\nMANDATORY HANDOFF CONTRACT\nContinue running the research/next-task loop until BOTH are true:\n1. state/indexes/${bookId}.json exists and contains the full chapter list.\n2. book-status reports phase write-chapter OR generating.\n\nIf the book id is a slug, infer the public title from it for research purposes (for example, your-money-or-your-life → Your Money or Your Life), verify title/author/edition from sources, then write the canonical index and source-v2 sidecars. Stop immediately after the handoff contract is satisfied.`;
 }
 
-async function doResearch(bookId: string, deps: AutopilotDeps): Promise<AutopilotOutcome | null> {
+/** The autopilot's research phase, extracted-by-export so the `auto-research` stage verb
+ *  (WP-701b, runAutoResearch) runs the SAME compliant codex research the conductor's phase
+ *  loop runs — a single research session (role "research" → modelPolicy, reasoningEffort
+ *  "high", hermetic envelope, WP-503-ledgered via spawnAndLog), a ≤RESEARCH_MAX_PASSES retry
+ *  cap, and the fresh-vs-restore freshness check — with NO behavioral change to the autopilot
+ *  (the conductor still calls this exact function at autopilot.ts's `if (phase === "research")`).
+ *  Returns null when research is complete (chapter index + source-v2 sidecars written; the
+ *  handoff postcondition holds AND the run is fresh), else a `research`-phase halt. */
+export async function doResearch(bookId: string, deps: AutopilotDeps): Promise<AutopilotOutcome | null> {
   let previous: CodexAgentResult | undefined;
   let lastProbe = await researchProbe(bookId, deps);
   // A2: the last freshness violation, when a pass satisfied the handoff contract by

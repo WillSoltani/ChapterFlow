@@ -158,6 +158,20 @@ Commands:
                                      missing chapters); --overwrite regenerates a shipped book. The
                                      retired v23 compiler stays reachable via --compiler (WP-207 owns
                                      its deletion). See docs/v25/WP-601-GENERATE-BOOK-COMMAND.md.
+  auto-research <bookId> --title X --author Y
+                                     WP-701b: the RESEARCH-ONLY stage verb. Runs EXACTLY the
+                                     autopilot's COMPLIANT codex research phase (role=research →
+                                     modelPolicy sol@high, hermetic envelope, WP-503-ledgered,
+                                     ≤2 passes, freshness-checked) and STOPS before authoring — it
+                                     writes the chapter index (state/indexes/<bookId>.json) +
+                                     source-v2 sidecars, then halts (NO write/author phase is
+                                     reachable, structurally). Global fresh-book preflight (WP-602b)
+                                     runs first; the same-book lock refuses a concurrent run. Truthful
+                                     exit codes: 0 complete · 2 usage/preflight-fatal · 3 lock-refused ·
+                                     4 halt-infra · 5 halt-content · 6 halt-progress. This is the
+                                     Phase-6 corpus-freeze research entry — NOT the legacy 'research'
+                                     verb (that routes off-policy through the Anthropic provider router).
+                                     A REAL run is an owner-gated Phase-6 live call.
   promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y]
                                      Final gate. Requires the complete canonical index, then re-validates
                                      every chapter + book-level checks + the QC-attestation gate, and writes book-packages/<id>.v21.json on
@@ -1033,6 +1047,29 @@ async function runGenerateBook(args: string[], flags: Record<string, string | bo
     return runGenerateBookLegacyCompiler(args, flags);
   }
   const result = await generateBookCommand(parsed);
+  return result.code;
+}
+
+/**
+ * WP-701b — `auto-research <bookId> --title X --author Y` runs the COMPLIANT codex research
+ * phase (research → chapter index + source-v2 sidecars) and STOPS before authoring. It reuses
+ * the autopilot's doResearch through runAutoResearch (role "research" → modelPolicy, hermetic
+ * envelope, WP-503-ledgered, ≤2 passes, freshness-checked) and never reaches a write/author
+ * phase. This is the Phase-6 corpus-freeze research entrypoint — NOT the legacy `research`
+ * verb (which routes off-policy through the Anthropic provider router and stays untouched).
+ * Truthful exit codes: 0 complete · 2 usage/preflight · 3 lock-refused · 4/5/6 research halt
+ * (infra/content/progress). A REAL run is an owner-D-3-gated Phase-6 live call.
+ */
+async function runAutoResearchVerb(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const { parseAutoResearchArgs, autoResearchCommand } = await import("./orchestrator/autoResearchCommand.js");
+  const parsedResult = parseAutoResearchArgs(args, flags);
+  if (!parsedResult.ok) {
+    console.error(parsedResult.message);
+    return parsedResult.code;
+  }
+  const result = await autoResearchCommand(parsedResult.parsed);
   return result.code;
 }
 
@@ -6023,6 +6060,8 @@ async function main() {
     }
     case "generate-book":
       return runGenerateBook(args, flags);
+    case "auto-research":
+      return runAutoResearchVerb(args, flags);
     case "next-task":
       return runNextTask(args);
     case "runbook":
