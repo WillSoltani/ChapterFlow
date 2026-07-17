@@ -19,6 +19,7 @@
  */
 
 import { ContractDescriptor, expectFields, isNonEmptyString, isStringArray } from "./contractUtil.js";
+import { isReviewScore, REVIEW_SCORE_SCALE } from "./readerExperienceReview.js";
 import type { ReaderExperienceReviewV1 } from "./readerExperienceReview.js";
 import type { SourceIntegrityReviewV1 } from "./sourceIntegrityReview.js";
 import type { QuizIntegrityResultV1 } from "./quizIntegrityReview.js";
@@ -106,8 +107,11 @@ export function validateAggregatedChapterReview(r: unknown): string[] {
   for (const f of ["chapterContentSha256", "readerResultSha256", "sourceResultSha256", "quizResultSha256", "deterministicCriticBundleSha256"] as const) {
     if (!isNonEmptyString(v[f])) errors.push(`aggregate: ${f} must be a non-empty string`);
   }
-  if (typeof v.readerComposite !== "number" || !Number.isFinite(v.readerComposite)) errors.push("aggregate: readerComposite must be a finite number");
-  if (typeof v.readerBar !== "number" || !Number.isFinite(v.readerBar)) errors.push("aggregate: readerBar must be a finite number");
+  // WP-403 item 4: both composed numbers are pinned to the single canonical review
+  // scale [0,100] (REVIEW_SCORE_SCALE) — an off-scale composite/bar (e.g. a 1-5 or
+  // 0-1 value) is a validation error, never silently accepted (V25-16).
+  if (!isReviewScore(v.readerComposite)) errors.push(`aggregate: readerComposite must be a number on the canonical review scale [${REVIEW_SCORE_SCALE.min},${REVIEW_SCORE_SCALE.max}]`);
+  if (!isReviewScore(v.readerBar)) errors.push(`aggregate: readerBar must be a number on the canonical review scale [${REVIEW_SCORE_SCALE.min},${REVIEW_SCORE_SCALE.max}]`);
   if (!isEnum(v.finalStatus, ["PASS", "REVISE", "BLOCK", "INCONCLUSIVE"])) errors.push("aggregate: finalStatus must be PASS|REVISE|BLOCK|INCONCLUSIVE");
   if (!isStringArray(v.blockingReasons)) errors.push("aggregate: blockingReasons must be string[]");
   if (!isStringArray(v.revisionReasons)) errors.push("aggregate: revisionReasons must be string[]");
