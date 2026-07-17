@@ -1,0 +1,13 @@
+{
+  // WP-703 execution-driver typecheck config. The pipeline's `-p .` tsconfig
+  // includes only src/** + tests/** (scripts/ is outside its scope), so this
+  // dedicated config extends it and typechecks the driver alone WITHOUT touching
+  // the product config. Verify with:
+  //
+  //   npx tsc -p scripts/screening/tsconfig.json --noEmit
+  //
+  // It inherits the pipeline's exact compilerOptions (ESNext / Bundler / strict),
+  // so the driver is checked the same way tsx executes it.
+  "extends": "../../tsconfig.json",
+  "include": ["run-invocation.mts"]
+}
