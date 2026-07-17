@@ -33,12 +33,18 @@
  *      session budget BEFORE spawning: the ≤18 authoring / ≤40 total caps via
  *      the registered ScreeningSessionBudget, and the 150 campaign ceiling
  *      directly — a would-be overshoot HALTS before the run (never a warning).
- *   5. Wire deps.d7Worker = createD7WorkerDispatch({ sessionRunner }) where
- *      sessionRunner spawns ONE isolated `claude -p` session per D7 rater task,
- *      and wire deps.logSession to mirror every codex authoring/repair spawn
- *      into the WP-503 ledger (family codex-exec) so the ledger is the true
- *      cross-invocation session-count source of truth.
- *   6. Invoke the corpus-mode runBakeoff exactly as the tests do (compare-only,
+ *   5. Consult the ultra-acceptance probe ONCE per campaign BEFORE the first
+ *      rating spawn (WP-E22): a prior accepted sidecar is reused; otherwise the
+ *      probe runs and, on accepted:false / absent, the invocation HALTS — the D7
+ *      raters are Sol-ultra codex sessions and an unaccepted ultra token would
+ *      spawn every rating at the wrong effort.
+ *   6. Wire deps.d7Worker = createD7CodexWorkerDispatch(…) — each D7 rating is an
+ *      envelope-proven GPT-5.6 Sol @ ultra codex session (the D7 rater is codex-only
+ *      per execution plan §4 / V25-NEW-01), ledgered family codex-exec with
+ *      the real model/effort — and wire deps.logSession to mirror every codex
+ *      authoring/repair spawn into the WP-503 ledger (family codex-exec) so the
+ *      ledger is the true cross-invocation session-count source of truth.
+ *   7. Invoke the corpus-mode runBakeoff exactly as the tests do (compare-only,
  *      resume-safe) with the registered advisory judge, then print progress and
  *      a final JSON summary.
  *
@@ -47,9 +53,8 @@
  * invocation id.
  */
 
-import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
-import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 import {
@@ -61,7 +66,10 @@ import {
   type ConductorInvocation,
 } from "../../src/bakeoff/screeningPlan.js";
 import { runBakeoff, resolveBakeoffDeps, type BakeoffOutcome, type BakeoffDeps } from "../../src/bakeoff/runBakeoff.js";
-import { createD7WorkerDispatch, D7_DISPATCH_LEDGER_STAGE, type IsolatedClaudeSessionRunner } from "../../src/bakeoff/d7WorkerDispatch.js";
+import { createD7CodexWorkerDispatch, assertUltraProbeAccepted, D7_DISPATCH_LEDGER_STAGE } from "../../src/bakeoff/d7WorkerDispatch.js";
+import { D7JudgeError } from "../../src/bakeoff/d7Judge.js";
+import { runUltraAcceptanceProbe, type UltraAcceptanceProbeV1 } from "../../src/exec/ultraSession.js";
+import { resolveD7RaterRoute } from "../../src/orchestrator/modelPolicy.js";
 import type { ReasoningEffort, CandidateScorecardV1 } from "../../src/bakeoff/types.js";
 import { PIPELINE_DIR } from "../../src/bakeoff/paths.js";
 import { appendCallLedgerEntry, readCallLedgerEntries, type RunCallLedgerEntryV1 } from "../../src/telemetry/runCallLedger.js";
@@ -78,16 +86,16 @@ const COMPANION_PATH = resolve(REPOSITORY_ROOT, "docs/v25/implementation/V25_BAK
  *  screening's own ledger slices (the 150 ceiling is campaign-wide). */
 const SCREENING_BOOK_IDS = new Set(SCREENING_PLAN.runs.map((r) => r.bookId));
 
-/** The D7 rubric-audit harness dispatches EXACTLY one Claude session per
+/** The D7 rubric-audit harness dispatches EXACTLY one rating session per
  *  (unit, role): each candidate audits its chapter subset PLUS one hidden
  *  calibration unit, over the three roles primary/verification/adjudicator
  *  (d7Judge.ts roleOrder). This is the worst-case D7 dispatch count per candidate
  *  used ONLY for the 150-ceiling projection. */
 const D7_ROLES_PER_UNIT = 3;
 
-/** Isolated `claude -p` session budget — generous per rt703 deliverable-3. */
-const CLAUDE_SESSION_TIMEOUT_MS = 20 * 60 * 1000; // ≥ 15 min
-const CLAUDE_SESSION_MAX_BYTES = 48 * 1024 * 1024; // ≥ 32 MB
+/** Campaign-shared dir for the once-per-campaign ultra-acceptance probe sidecar
+ *  (WP-E22): the same accepted proof is reused across all six invocations. */
+const ULTRA_ACCEPTANCE_DIR = resolve(PIPELINE_DIR, "state", "model-bakeoffs", "_campaign", "ultra-acceptance");
 
 // ── Small helpers ───────────────────────────────────────────────────────────────
 
@@ -124,7 +132,7 @@ function resolveInvocation(invocationId: string): { run: ScreeningRun; invocatio
 type LedgerCounts = {
   /** Campaign-wide: every codex-exec authoring/repair/advisory-judge spawn. */
   codexExecSessions: number;
-  /** Campaign-wide: every Claude-side D7 rater/adjudicator DISPATCH. */
+  /** Campaign-wide: every D7 rater/adjudicator DISPATCH (WP-E22: family codex-exec). */
   d7RaterDispatches: number;
   /** Campaign-wide ceiling currency = codex-exec + d7-rater-dispatch. */
   campaignSessions: number;
@@ -168,15 +176,26 @@ function readAllLedgerEntries(pipelineDir: string): RunCallLedgerEntryV1[] {
 
 function computeLedgerCounts(pipelineDir: string): LedgerCounts {
   const entries = readAllLedgerEntries(pipelineDir);
-  const isD7Dispatch = (e: RunCallLedgerEntryV1): boolean => e.family === "claude-side" && e.stage === D7_DISPATCH_LEDGER_STAGE;
-  const isCodex = (e: RunCallLedgerEntryV1): boolean => e.family === "codex-exec";
+  // A D7 rater/adjudicator dispatch is identified by its UNIQUE stage label,
+  // independent of family: WP-E22 flipped it to family codex-exec (the Sol-ultra
+  // codex session), but a legacy dispatch under the retired rater family from a
+  // prior run must still count. Excluding D7 from the codex-authoring tallies keeps
+  // the ≤40 total-cap semantics (authoring + repairs + advisory, NOT D7) and the
+  // campaign total (codex + D7, never double-counted) intact across the family flip.
+  const isD7Dispatch = (e: RunCallLedgerEntryV1): boolean => e.stage === D7_DISPATCH_LEDGER_STAGE;
+  const isCodexNonD7 = (e: RunCallLedgerEntryV1): boolean => e.family === "codex-exec" && !isD7Dispatch(e);
+  // A resume-time re-ingest re-reads already-persisted bytes — it is NOT a live
+  // spend and must never inflate a ceiling (execution plan §"D7 → Sol-Ultra":
+  // only `session` entries count). `undefined` (legacy, pre-WP-E41 persistence) is
+  // counted conservatively — the ceiling check never under-counts real spend.
+  const isLiveSpend = (e: RunCallLedgerEntryV1): boolean => e.sessionKind !== "reingest";
   const inScreening = (e: RunCallLedgerEntryV1): boolean => SCREENING_BOOK_IDS.has(e.bookId);
 
-  const codexExecSessions = entries.filter(isCodex).length;
-  const d7RaterDispatches = entries.filter(isD7Dispatch).length;
-  const screeningAuthoring = entries.filter((e) => isCodex(e) && inScreening(e) && classifySessionLabel(e.stage) === "writer").length;
-  const screeningCodexSessions = entries.filter((e) => isCodex(e) && inScreening(e)).length;
-  const screeningD7Dispatches = entries.filter((e) => isD7Dispatch(e) && inScreening(e)).length;
+  const codexExecSessions = entries.filter((e) => isCodexNonD7(e) && isLiveSpend(e)).length;
+  const d7RaterDispatches = entries.filter((e) => isD7Dispatch(e) && isLiveSpend(e)).length;
+  const screeningAuthoring = entries.filter((e) => isCodexNonD7(e) && isLiveSpend(e) && inScreening(e) && classifySessionLabel(e.stage) === "writer").length;
+  const screeningCodexSessions = entries.filter((e) => isCodexNonD7(e) && isLiveSpend(e) && inScreening(e)).length;
+  const screeningD7Dispatches = entries.filter((e) => isD7Dispatch(e) && isLiveSpend(e) && inScreening(e)).length;
 
   return {
     codexExecSessions,
@@ -198,8 +217,9 @@ function computeLedgerCounts(pipelineDir: string): LedgerCounts {
  *     minimum; retries/repairs are ledgered live and seen by the NEXT invocation).
  *   - the ≤18 / ≤40 caps are the registered ScreeningSessionBudget's currencies:
  *     18 = codex WRITER spawns, 40 = ALL codex spawns (authoring + repairs +
- *     advisory-judge). D7 dispatches are Claude-side and are accounted against the
- *     150 ceiling, NOT the 40 codex-session cap (see the GAP note in the README).
+ *     advisory-judge). D7 dispatches (their own d7-rater-dispatch stage; WP-E22
+ *     flipped them to family codex-exec) are accounted against the 150 ceiling,
+ *     NOT the 40 codex-session cap (see the GAP note in the README).
  *   - the 150 ceiling worst case = campaign ledger total + this invocation's
  *     authoring + its bounded D7-dispatch worst case.
  */
@@ -242,118 +262,38 @@ function assertBudgetOrHalt(run: ScreeningRun, invocation: ConductorInvocation, 
   return { authoringWorstCase, d7WorstCase };
 }
 
-// ── Deliverable 3: the isolated `claude -p` D7 rater session runner ─────────────
+// ── Deliverable 3 (WP-E22): the once-per-campaign ultra-acceptance gate ──────────
+
+/** Read the campaign's ultra-acceptance probe sidecar if it exists, else null. The
+ *  filename matches `runUltraAcceptanceProbe`'s writer (`ultra-acceptance-probe.json`). */
+function readUltraProbeSidecar(probeDir: string): UltraAcceptanceProbeV1 | null {
+  try {
+    return JSON.parse(readFileSync(resolve(probeDir, "ultra-acceptance-probe.json"), "utf8")) as UltraAcceptanceProbeV1;
+  } catch {
+    return null;
+  }
+}
 
 /**
- * Run ONE isolated `claude -p` session for a single D7 rater task and return its
- * reply with ONLY transport-level trimming (first "{" … last "}"). The task is
- * ALREADY leak-checked by the D7 judge (assertNoIdentityLeak) before dispatch.
- *
- *   - cwd = a per-request EMPTY isolated dir under state/model-bakeoffs/… so no
- *     project context bleeds between raters and no rater shares another's state.
- *   - OPENAI_API_KEY is stripped from the child env (defense in depth; the driver
- *     already refuses to start if it is present in the process env).
- *   - A non-zero exit, a timeout, an over-budget stream, or a reply with no JSON
- *     object THROWS — the D7 judge turns a worker throw into an INELIGIBLE
- *     candidate (fail-closed). This runner NEVER edits fields and NEVER fabricates.
+ * Consult the ultra-acceptance probe BEFORE the first rating spawn (execution plan
+ * §4). The probe proves the installed codex CLI accepts `model_reasoning_effort=
+ * ultra` at runtime — static `.codex/agents/*.toml` evidence is NOT proof. It runs
+ * ONCE per campaign: a prior accepted sidecar is reused (all six invocations share
+ * it); otherwise the probe runs live now. `assertUltraProbeAccepted` HALTS on a
+ * missing/`accepted:false` result — the D7 raters are Sol-ultra codex sessions and
+ * an unaccepted ultra token would spawn every rating at the wrong effort.
  */
-const isolatedClaudeSessionRunner: IsolatedClaudeSessionRunner = (req) =>
-  new Promise<string>((resolvePromise, rejectPromise) => {
-    const dir = resolve(PIPELINE_DIR, "state", "model-bakeoffs", req.bookId, "claude-sessions", req.auditId, `${req.unit}-${req.role}`);
-    // Fresh, empty, per-request dir (resume never re-dispatches, so this is only
-    // ever created for a real new call).
-    try {
-      rmSync(dir, { recursive: true, force: true });
-      mkdirSync(dir, { recursive: true });
-    } catch (err) {
-      rejectPromise(err);
-      return;
-    }
-
-    const childEnv: NodeJS.ProcessEnv = { ...process.env };
-    delete childEnv.OPENAI_API_KEY;
-
-    // The claude CLI is not on PATH in every environment (e.g. the VS Code
-    // extension bundles it at resources/native-binary/claude) — the operator
-    // supplies the exact binary via CHAPTERFLOW_CLAUDE_BIN. Fail-closed ENOENT
-    // otherwise (never a fabricated record).
-    const claudeBin = process.env.CHAPTERFLOW_CLAUDE_BIN?.trim() || "claude";
-    // Deep reasoning for the rater session (a one-shot default-budget reply
-    // produced a schema-non-compliant record — wrong domain/subcriteria keys).
-    childEnv.MAX_THINKING_TOKENS = childEnv.MAX_THINKING_TOKENS ?? "31999";
-    // Generic compliance directive — carries ZERO task/identity content, so
-    // blinding is untouched; it only enforces the record contract the task
-    // itself specifies.
-    const strictSystem =
-      "You are a meticulous rater completing a structured audit task. Follow the task document EXACTLY. " +
-      "Your ENTIRE final reply must be the single JSON record the task specifies — copy the record's " +
-      "field names, domain keys, subcriteria keys, and weights CHARACTER-FOR-CHARACTER from the task's " +
-      "schema enumeration; never invent, rename, merge, or omit keys. No prose outside the JSON.";
-    // No explicit `stdio` key ⇒ default 'pipe' for stdin/stdout/stderr, and the
-    // ChildProcessWithoutNullStreams return type (non-null streams).
-    const child = spawn(claudeBin, ["-p", "--model", "claude-opus-4-8", "--output-format", "text", "--append-system-prompt", strictSystem], {
-      cwd: dir,
-      env: childEnv,
-    });
-
-    let stdout = "";
-    let stderr = "";
-    let killedReason: string | null = null;
-
-    const timer = setTimeout(() => {
-      killedReason = `timed out after ${Math.round(CLAUDE_SESSION_TIMEOUT_MS / 60000)} min`;
-      child.kill("SIGKILL");
-    }, CLAUDE_SESSION_TIMEOUT_MS);
-
-    child.stdout.on("data", (d: Buffer) => {
-      stdout += d.toString();
-      if (stdout.length > CLAUDE_SESSION_MAX_BYTES && killedReason === null) {
-        killedReason = `exceeded ${Math.round(CLAUDE_SESSION_MAX_BYTES / (1024 * 1024))}MB output budget`;
-        child.kill("SIGKILL");
-      }
-    });
-    child.stderr.on("data", (d: Buffer) => {
-      if (stderr.length < 8192) stderr += d.toString();
-    });
-    child.on("error", (err) => {
-      clearTimeout(timer);
-      rejectPromise(new Error(`claude session failed to spawn (unit ${req.unit} ${req.role}): ${(err as Error).message}`));
-    });
-    child.on("close", (code) => {
-      clearTimeout(timer);
-      if (killedReason !== null) {
-        rejectPromise(new Error(`claude session ${killedReason} (unit ${req.unit} ${req.role})`));
-        return;
-      }
-      // Debugging telemetry: persist the raw reply BEFORE any JSON extraction, so a
-      // live ingest failure (e.g. a schema-non-compliant record) is inspectable
-      // from the session dir. Best-effort — a telemetry write must never lose a
-      // valid rating or mask the real failure.
-      try {
-        writeFileSync(resolve(dir, "reply.txt"), stdout);
-      } catch { /* telemetry write must never brick the D7 dispatch */ }
-      if (code !== 0) {
-        rejectPromise(new Error(`claude session exited ${code} (unit ${req.unit} ${req.role}): ${stderr.trim().split("\n").slice(-3).join(" / ").slice(0, 400) || "no stderr"}`));
-        return;
-      }
-      const first = stdout.indexOf("{");
-      const last = stdout.lastIndexOf("}");
-      if (first === -1 || last === -1 || last < first) {
-        rejectPromise(new Error(`claude session returned no JSON object (unit ${req.unit} ${req.role}) — refusing to fabricate a rater record`));
-        return;
-      }
-      // Transport-level trim ONLY — never edit a field, never fabricate one.
-      const extracted = stdout.slice(first, last + 1);
-      // Persist the extracted record next to the raw reply (debugging telemetry).
-      try {
-        writeFileSync(resolve(dir, "record.json"), extracted);
-      } catch { /* telemetry write must never brick the D7 dispatch */ }
-      resolvePromise(extracted);
-    });
-
-    child.stdin.write(req.task);
-    child.stdin.end();
-  });
+async function ensureUltraAcceptedOrHalt(): Promise<void> {
+  let probe = readUltraProbeSidecar(ULTRA_ACCEPTANCE_DIR);
+  if (probe !== null && probe.accepted) {
+    log(`[screening]   ultra-acceptance: reusing accepted probe (${probe.probedAt}) at ${ULTRA_ACCEPTANCE_DIR}`);
+  } else {
+    log(`[screening]   ultra-acceptance: running the probe once (installed CLI must accept model_reasoning_effort=ultra)…`);
+    probe = await runUltraAcceptanceProbe({ route: resolveD7RaterRoute(), probeDir: ULTRA_ACCEPTANCE_DIR });
+    log(`[screening]   ultra-acceptance: accepted=${probe.accepted} — ${probe.detail}`);
+  }
+  assertUltraProbeAccepted(probe); // throws D7JudgeError on a non-accepted probe
+}
 
 // ── Deliverable 5: the ledgered codex logSession sink ───────────────────────────
 
@@ -479,14 +419,27 @@ async function main(argv: string[]): Promise<number> {
   }
   log(`[screening]   budget OK: worst case +${worst.authoringWorstCase} authoring, +${worst.d7WorstCase} D7 dispatches (ceiling ${SCREENING_PLAN.ledgerAccounting.campaignSessionCeiling})`);
 
-  // 5. Wire the D7 dispatch (isolated claude -p) + the ledgered codex logSession.
+  // 5. Consult the ultra-acceptance probe BEFORE the first rating spawn; HALT if
+  //    the installed CLI has not proven it accepts model_reasoning_effort=ultra.
+  try {
+    await ensureUltraAcceptedOrHalt();
+  } catch (err) {
+    if (err instanceof D7JudgeError) {
+      log(`[screening] ultra-acceptance HALT before starting "${invocation.runId}": ${err.message}`);
+      return 9;
+    }
+    throw err;
+  }
+
+  // 6. Wire the D7 dispatch (Sol-ultra codex session per rating, WP-E22) + the
+  //    ledgered codex logSession. The D7 rater is codex-only (V25-NEW-01).
   const forensicBase = resolveBakeoffDeps();
   const deps: Partial<BakeoffDeps> = {
-    d7Worker: createD7WorkerDispatch({ sessionRunner: isolatedClaudeSessionRunner, pipelineDir: PIPELINE_DIR, log }),
+    d7Worker: createD7CodexWorkerDispatch({ pipelineDir: PIPELINE_DIR, log }),
     logSession: buildLedgeredLogSession(invocation.runId, forensicBase.logSession),
   };
 
-  // 6. Invoke the corpus-mode runBakeoff (compare-only, resume-safe) with the
+  // 7. Invoke the corpus-mode runBakeoff (compare-only, resume-safe) with the
   //    registered advisory judge. runId = the invocation id ⇒ the run tree lands
   //    at state/model-bakeoffs/<bookId>/<invocationId>/ (plan §10).
   log(`[screening] starting corpus-mode runBakeoff (compare-only, resume-safe)…`);
