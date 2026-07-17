@@ -266,25 +266,40 @@ test("two distinct rater records seal the blind pair and render the adjudicator 
   }
 });
 
-test("ingest fails closed on wrong arithmetic and persists nothing", () => {
-  const repo = makeAuditRepo("rubric-audit-harness-arith");
+test("ingest DERIVES a slipped self-reported aggregate (does not reject) but STILL fails closed on a bad atomic rating", () => {
+  const repo = makeAuditRepo("rubric-audit-harness-derive");
+  const pipelineDir = resolve(repo.base, "scripts/book/prompts/chapterflow-v24-author-pipeline");
   try {
-    const record = syntheticRaterRecord(repo);
-    // Corrupt a domain_score so the sum-of-ratings arithmetic no longer holds.
-    (((record.domains as Record<string, Record<string, unknown>>).epistemic_integrity)).domain_score = 3.9;
-    const recordText = JSON.stringify(record, null, 2);
-    assert.throws(() => ingestRaterRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary", recordText }), /arithmetic mismatch/);
-    const persisted = resolve(repo.base, "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/rubric-audits/harness-audit-1", `raw/primary/${repo.unit}.json`);
-    assert.ok(!existsSync(persisted), "a failed ingest persists no record");
+    // WP-E24 (V25-AUD-02/04) derive-don't-reject: a stochastic slip in a
+    // SELF-REPORTED aggregate (domain_score no longer equals the mean of its four
+    // atomic ratings) is REPLACED by the code-derived value and INGESTS — it must
+    // NOT void an otherwise-valid rater session whose atomic ratings and evidence
+    // are intact (the retained 2026-07-17 ledgers lost 5/13 sessions to this class).
+    const slipped = syntheticRaterRecord(repo);
+    (((slipped.domains as Record<string, Record<string, unknown>>).epistemic_integrity)).domain_score = 3.9;
+    const slippedText = JSON.stringify(slipped, null, 2);
+    const result = ingestRaterRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary", recordText: slippedText });
+    // Immutable custody: the submission is retained VERBATIM (the slipped bytes) —
+    // derivation is a read-time correction, never a silent rewrite of the evidence.
+    assert.equal(readFileSync(result.persistedPath, "utf8"), slippedText, "the slipped record is retained verbatim as immutable evidence");
+    let entries = readCallLedgerEntries(pipelineDir, repo.unit, "harness-audit-1");
+    assert.equal(entries.length, 1);
+    assert.equal(entries[0].outcome, "content_completed", "a derived-accepted rating ledgers as completed, never voided");
 
-    // WP-503 — a FAILED ingest is STILL a real call attempt: it is ledgered
-    // exactly once (outcome content_invalid), never silently dropped just
-    // because throwIfInvalid rejected it.
-    const pipelineDir = resolve(repo.base, "scripts/book/prompts/chapterflow-v24-author-pipeline");
-    const entries = readCallLedgerEntries(pipelineDir, repo.unit, "harness-audit-1");
-    assert.equal(entries.length, 1, "the failed ingest attempt is ledgered, not dropped");
-    assert.equal(entries[0].role, "primary");
-    assert.equal(entries[0].outcome, "content_invalid");
+    // STILL fail-closed: a missing/invalid ATOMIC rating (the ground truth) is
+    // hard-rejected — derivation NEVER papers over a bad atomic rating.
+    const badAtomic = syntheticRaterRecord(repo, "verification");
+    const badDomains = badAtomic.domains as Record<string, { subcriteria: Record<string, { rating: unknown }> }>;
+    badDomains.epistemic_integrity.subcriteria.claim_support_fit.rating = "not-a-number";
+    assert.throws(
+      () => ingestRaterRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "verification", recordText: JSON.stringify(badAtomic, null, 2) }),
+      /rating must be integer 0-4/,
+    );
+    const persisted = resolve(pipelineDir, "state/migration-experiments/rubric-audits/harness-audit-1", `raw/verification/${repo.unit}.json`);
+    assert.ok(!existsSync(persisted), "a hard-invalid atomic rating persists no record");
+    entries = readCallLedgerEntries(pipelineDir, repo.unit, "harness-audit-1");
+    assert.equal(entries.length, 2, "the failed ingest attempt is ledgered, not dropped");
+    assert.equal(entries.find((e) => e.role === "verification")?.outcome, "content_invalid");
   } finally {
     repo.dispose();
   }

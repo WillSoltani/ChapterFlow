@@ -63,6 +63,18 @@ import type { JsonRecord } from "./migration/rubricAuditReceipts.js";
  */
 export const D7_SELECTION_BAND = 2.0;
 
+/**
+ * WP-E24 (V25-AUD-02): the per-(unit, role) rater attempt cap. A rejected record
+ * (never persisted — validation precedes persistence, so a failed attempt leaves
+ * an empty slot) is re-dispatched up to this many times; on exhaustion the unit
+ * reaches the frozen terminal state "instrument-fail" (verdict "INSTRUMENT_FAIL")
+ * — a RECORDED terminal outcome, never an erased one (every attempt is ledgered
+ * inside the harness). Retries never overwrite retained bytes: a valid record
+ * short-circuits the loop, and immutable-custody conflicts only arise across
+ * process runs, which the resume branch handles before the loop is reached.
+ */
+export const D7_ATTEMPT_CAP = 3;
+
 export class D7JudgeError extends Error {
   constructor(message: string) {
     super(message);
@@ -83,6 +95,12 @@ export type D7WorkerRequest = {
   role: D7WorkerRole;
   kind: "candidate" | "calibration";
   task: string;
+  /** 1-based attempt index within the per-(unit, role) cap (WP-E24 / V25-AUD-02):
+   *  a retry after a rejected record. The judge ALWAYS supplies it; optional only
+   *  so pre-existing dispatch-seam fixtures stay valid. The execution lane's
+   *  attempt-DIR mechanics (run-invocation.mts) key their isolated per-attempt
+   *  custody off this. */
+  attempt?: number;
 };
 
 export type D7WorkerDispatch = (req: D7WorkerRequest) => Promise<string>;
@@ -146,12 +164,51 @@ function ineligible(opts: JudgeCandidateD7Options, reason: string): CandidateD7J
   };
 }
 
+/** Build the INSTRUMENT_FAIL terminal judgment (WP-E24 / V25-AUD-02): the rater
+ *  attempt cap was exhausted for a (unit, role) — a RECORDED terminal outcome
+ *  (`terminalState "instrument-fail"`, `verdict "INSTRUMENT_FAIL"`, d7Composite
+ *  null), distinct from a merely-`ineligible` (non-terminal) candidate so
+ *  terminal-gated selection (V25-AUD-03) can tell a capped instrument failure
+ *  from an in-flight one. Never a codex fallback. */
+function instrumentFail(
+  opts: JudgeCandidateD7Options,
+  unit: string,
+  role: D7WorkerRole,
+  detail: string,
+): CandidateD7JudgmentV1 {
+  return {
+    schemaVersion: "model-bakeoff-candidate-d7-v1",
+    label: opts.label,
+    contentSha256: safeContentHash(opts.chapters),
+    auditId: opts.auditId,
+    d7Composite: null,
+    d7CoreDomainMins: [],
+    d7GatesPass: false,
+    d7LayerIndependencePass: false,
+    allCoreDomainsPass: false,
+    min: null,
+    meanPass: false,
+    minPass: false,
+    calibrationPass: false,
+    verdict: "INSTRUMENT_FAIL",
+    terminalState: "instrument-fail",
+    chapters: [],
+    ineligibleReason:
+      `D7 instrument exhausted ${D7_ATTEMPT_CAP} attempts for (unit ${unit}, role ${role}): ${detail}`,
+    judgedAt: new Date().toISOString(),
+  };
+}
+
 function safeContentHash(chapters: ChapterV21[]): string {
   try {
     return combinedContentHash(chapters);
   } catch {
     return "";
   }
+}
+
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
 }
 
 /** Drive the Claude-side D7 harness to a chapter-diagnostic composite for ONE
@@ -237,6 +294,9 @@ export async function judgeCandidateD7(opts: JudgeCandidateD7Options): Promise<C
         }
         // renderRaterTaskDocument for `adjudicator` reads the sealed blind pair,
         // so primary+verification MUST be ingested first (roleOrder guarantees it).
+        // The task is deterministic per (unit, role), so it is rendered + leak-
+        // checked ONCE, outside the attempt loop (a leak is a config defect a retry
+        // cannot fix — it aborts the whole audit as before).
         const task = renderRaterTaskDocument({ repositoryRoot: opts.repositoryRoot, manifest, unit, role });
         // Leak-check scope: rater tasks are checked in FULL. The adjudicator task
         // additionally embeds the two sealed BLIND rater records — prose those
@@ -252,13 +312,42 @@ export async function judgeCandidateD7(opts: JudgeCandidateD7Options): Promise<C
           ? renderAdjudicatorLeakCheckSurface({ repositoryRoot: opts.repositoryRoot, manifest, unit })
           : task;
         assertNoIdentityLeak(leakSurface, opts.forbidden, `D7 ${role} task (label ${opts.label}, unit ${unit})`);
-        const recordText = await opts.worker({
-          auditId: opts.auditId, bookId, label: opts.label, unit, role, kind, task,
-        });
-        if (role === "adjudicator") {
-          ingestAdjudicationRecord({ repositoryRoot: opts.repositoryRoot, manifest, unit, recordText });
-        } else {
-          ingestRaterRecord({ repositoryRoot: opts.repositoryRoot, manifest, unit, role, recordText });
+
+        // Attempt cap (WP-E24 / V25-AUD-02): a rejected record is a stochastic
+        // rater slip, not a candidate defect — re-dispatch up to D7_ATTEMPT_CAP
+        // times. A failed ingest persists nothing (validation precedes
+        // persistence), so each retry re-enters an empty slot with no immutable-
+        // custody conflict; a valid record short-circuits the loop. On exhaustion
+        // the whole candidate reaches the recorded INSTRUMENT_FAIL terminal state.
+        let ingested = false;
+        let lastFailure = "no attempt was made";
+        for (let attempt = 1; attempt <= D7_ATTEMPT_CAP; attempt += 1) {
+          let recordText: string;
+          try {
+            recordText = await opts.worker({
+              auditId: opts.auditId, bookId, label: opts.label, unit, role, kind, task, attempt,
+            });
+          } catch (workerError) {
+            lastFailure = `worker dispatch failed: ${errorMessage(workerError)}`;
+            log(`[bakeoff] d7-judge ${opts.label}: ${unit} ${role} attempt ${attempt}/${D7_ATTEMPT_CAP} — ${lastFailure}`);
+            continue;
+          }
+          try {
+            if (role === "adjudicator") {
+              ingestAdjudicationRecord({ repositoryRoot: opts.repositoryRoot, manifest, unit, recordText });
+            } else {
+              ingestRaterRecord({ repositoryRoot: opts.repositoryRoot, manifest, unit, role, recordText });
+            }
+            ingested = true;
+            break;
+          } catch (ingestError) {
+            lastFailure = `record rejected: ${errorMessage(ingestError)}`;
+            log(`[bakeoff] d7-judge ${opts.label}: ${unit} ${role} attempt ${attempt}/${D7_ATTEMPT_CAP} — ${lastFailure}`);
+          }
+        }
+        if (!ingested) {
+          log(`[bakeoff] d7-judge ${opts.label}: ${unit} ${role} — INSTRUMENT_FAIL after ${D7_ATTEMPT_CAP} attempts`);
+          return instrumentFail(opts, unit, role, lastFailure);
         }
       }
     }
@@ -315,6 +404,9 @@ export async function judgeCandidateD7(opts: JudgeCandidateD7Options): Promise<C
       minPass: report.summary.minPass,
       calibrationPass: report.summary.calibrationPass,
       verdict: report.summary.verdict,
+      // WP-E24 (V25-AUD-03): a candidate driven to a full report is TERMINAL —
+      // terminal-gated selection may treat it as final evidence.
+      terminalState: "judged",
       chapters,
       judgedAt: new Date().toISOString(),
     };
