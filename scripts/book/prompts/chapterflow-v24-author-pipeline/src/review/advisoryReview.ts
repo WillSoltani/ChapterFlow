@@ -30,7 +30,7 @@
  *      WP-404 cap-2 bounded-repair loop (`repairPatch.findingsFromComplaints`),
  *      never a promote blocker.
  *   2. Different-model-from-writer role selection seeded from the frozen v6 set
- *      (L-15) MINUS the void gpt-5.5 adjudicator, with the D-2/M9 sol self-review
+ *      (L-15) MINUS the void 5.5-era adjudicator (the retired GPT baseline; no-5.5 directive), with the D-2/M9 sol self-review
  *      fallback (run sol at a DIFFERENT effort, reduced finding weight) and a run-
  *      ledger record of the reviewer profiles.
  *   3. Advisory-finding-precision tracking with the D-2 removal condition
@@ -148,7 +148,7 @@ export const ADVISORY_SELF_REVIEW_FINDING_WEIGHT = 0.5 as const;
 
 /**
  * The frozen v6 advisory seed (L-15: PILOT_ROLE_SET_READY @ 8224f079a). The source
- * ADJUDICATOR slot (gpt-5.5@xhigh) is VOID for the target architecture (no-5.5
+ * ADJUDICATOR slot (the retired 5.5-era @xhigh) is VOID for the target architecture (no-5.5
  * directive) and is OMITTED here — the advisory lane never blocks, so it runs
  * without a blocking adjudicator. Quiz correctness is deterministic (an answer-tell
  * code path), so the quiz slot's model is recorded but the different-model rule
