@@ -24,9 +24,9 @@ import { hostname } from "os";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { assertNoShadowStateDir } from "../lib/chapterPaths.js";
+import { assertNoShadowStateDir, normSlug } from "../lib/chapterPaths.js";
 import { pendingDeployAgeHours, readPendingDeploy } from "../publish/publishFinal.js";
-import { compareChapterSetToCanonical, formatChapterSetBlockers, readCanonicalChapterIndex } from "../lib/chapterSet.js";
+import { canonicalChapterIndexPath, compareChapterSetToCanonical, formatChapterSetBlockers, readCanonicalChapterIndex } from "../lib/chapterSet.js";
 import { findRunArtifact } from "../lib/runDirs.js";
 import { formatTocIssues, parseTocFile } from "../lib/tocContract.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
@@ -518,10 +518,57 @@ export async function checkD7AuditToolingReachable(require: boolean): Promise<Do
   }
 }
 
+/** The workspace-GLOBAL doctor findings — independent of any single book, so they
+ *  run on EVERY doctor/preflight invocation, fresh or resume: the shadow state
+ *  dir, untracked-imports TS2307 trap, stale autopilot locks, and pending-deploy
+ *  debt. Extracted so `runGeneratePreflightChecks` can compose the global battery
+ *  WITHOUT the per-book existing-state checks on a fresh new book (WP-602b). */
+function globalDoctorChecks(): DoctorFinding[] {
+  return [checkShadowStateDir(), checkUntrackedImports(), ...checkStaleLocks(), ...checkPendingDeploy()];
+}
+
+/** The per-book EXISTING-STATE checks. Every one PRESUMES the book already has
+ *  authored/indexed state on disk — `checkCanonicalChapterSet` is FATAL for a book
+ *  with no canonical index (by design: an existing book must have one), and
+ *  `checkSweepHistory`/`checkChapterNumbers` likewise read state the pipeline only
+ *  creates during a run. Correct for a doctor of an EXISTING book (the `doctor`
+ *  verb) or a `--resume` run; a genuinely FRESH `generate-book` run has none of it
+ *  yet, so `runGeneratePreflightChecks` gates these (see there). Extracted verbatim
+ *  from the old inline list — `runDoctorChecks`'s output is byte-for-byte unchanged. */
+function perBookExistingStateChecks(bookId: string): DoctorFinding[] {
+  return [checkDualBrief(bookId), checkChapterNumbers(bookId), checkCanonicalChapterSet(bookId), checkTocContract(bookId), checkSweepHistory(bookId)];
+}
+
+/**
+ * Deterministic, model-free disk probe: does this book ALREADY have per-book state
+ * that the EXISTING-STATE checks are meant to validate? True when EITHER the
+ * canonical chapter-index file exists (`state/indexes/<book>.json` — checked for
+ * PRESENCE, not validity, so a corrupt index still routes into the checks that
+ * surface it rather than being hidden as "fresh") OR any canonical chapter file for
+ * the book is on disk (a run killed mid-authoring). A genuinely FRESH new book has
+ * neither — the pipeline creates them. Uses the SAME index path
+ * (`canonicalChapterIndexPath`, normSlug-canonicalized) that `checkCanonicalChapterSet`
+ * reads and the SAME chapter-file glob `runDoctorChecks`'s all-books sweep uses, so
+ * the gate is perfectly aligned with the checks it gates. Reads the local filesystem
+ * ONLY: zero model/network calls (WP-602b stop condition — fresh-vs-existing MUST be
+ * a deterministic probe, never a live call).
+ */
+export function bookHasExistingState(bookId: string): boolean {
+  if (existsSync(canonicalChapterIndexPath(bookId))) return true;
+  const norm = normSlug(bookId);
+  try {
+    return readdirSync(resolve(STATE_DIR, "chapters")).some(
+      (f) => f.match(/^(.+)-ch\d+\.v21-native\.chapter\.json$/i)?.[1] === norm,
+    );
+  } catch {
+    return false;
+  }
+}
+
 export function runDoctorChecks(bookId?: string): DoctorFinding[] {
-  const findings: DoctorFinding[] = [checkShadowStateDir(), checkUntrackedImports(), ...checkStaleLocks(), ...checkPendingDeploy()];
+  const findings: DoctorFinding[] = globalDoctorChecks();
   if (bookId) {
-    findings.push(checkDualBrief(bookId), checkChapterNumbers(bookId), checkCanonicalChapterSet(bookId), checkTocContract(bookId), checkSweepHistory(bookId));
+    findings.push(...perBookExistingStateChecks(bookId));
   } else {
     // sweep every book's chapter-number integrity
     try {
@@ -537,10 +584,22 @@ export function runDoctorChecks(bookId?: string): DoctorFinding[] {
 }
 
 export type GeneratePreflightOptions = {
-  /** Present ⇒ per-book checks (dual-brief, chapter-numbers, canonical-set,
-   *  TOC, sweep-history) run in addition to the global ones; absent ⇒ the
-   *  global-only sweep, same as bare `runDoctorChecks()`. */
+  /** Present ⇒ the per-book EXISTING-STATE checks (dual-brief, chapter-numbers,
+   *  canonical-set, TOC, sweep-history) are considered — but they run as FATAL
+   *  ONLY when the run EXPECTS existing state (`resume` OR the book already has a
+   *  canonical index/chapters on disk); a genuinely FRESH new book runs the GLOBAL
+   *  checks only (WP-602b). Absent ⇒ the global-only sweep, same as bare
+   *  `runDoctorChecks()`. */
   bookId?: string;
+  /** True ⇒ this is a `--resume` run: the book's existing per-book state MUST be
+   *  consistent, so the per-book EXISTING-STATE checks run (and can fatal) EVEN IF
+   *  the on-disk probe is inconclusive. A resume over a missing/corrupt canonical
+   *  set SHOULD fatal — that integrity guarantee is the whole point of a resume. */
+  resume?: boolean;
+  /** Test seam ONLY: force the fresh-vs-existing gate decision instead of probing
+   *  disk. Production leaves this undefined and `bookHasExistingState(bookId)`
+   *  decides deterministically from the filesystem. Never set by any runtime caller. */
+  bookHasExistingStateOverride?: boolean;
   /** The requested model for this run; defaults to the central normal-profile
    *  model (`NORMAL_PROFILE_MODEL.model`) when omitted. */
   model?: string;
@@ -560,22 +619,55 @@ export type GeneratePreflightOptions = {
 /**
  * The deterministic preflight for the generate-book command (WP-602; WP-601
  * wires this in before any book work starts — see master plan §8 WP-602).
- * Combines the existing workspace `runDoctorChecks` battery (shadow-state
- * dir, dual-brief, chapter numbers, canonical set, TOC contract, sweep
- * history, untracked imports, stale locks, pending deploy) with the checks
- * this WP adds: worktree cleanliness, base-SHA match, branch sanity,
- * model-config support, schema-fixture validity, name-bank/config integrity,
- * and the D7 REQUIRE-mode audit-tooling-reachable check. Every check is
- * deterministic — filesystem/git/config reads only,
- * ZERO model or network calls — and reports through the SAME `DoctorFinding`
- * `ok`/`warn`/`fatal` levels `doctorExitCode` already maps to 0/1/2 (no new
- * exit codes). This function only REPORTS; enforcing a halt on a fatal
- * finding is the calling command's job (WP-504/WP-601), not this module's.
+ * Combines the GLOBAL workspace battery (shadow-state dir, untracked imports,
+ * stale locks, pending deploy) with the checks this WP adds: worktree
+ * cleanliness, base-SHA match, branch sanity, model-config support,
+ * schema-fixture validity, name-bank/config integrity, and the D7 REQUIRE-mode
+ * audit-tooling-reachable check. Every check is deterministic —
+ * filesystem/git/config reads only, ZERO model or network calls — and reports
+ * through the SAME `DoctorFinding` `ok`/`warn`/`fatal` levels `doctorExitCode`
+ * already maps to 0/1/2 (no new exit codes). This function only REPORTS;
+ * enforcing a halt on a fatal finding is the calling command's job
+ * (WP-504/WP-601), not this module's.
+ *
+ * WP-602b — the per-book EXISTING-STATE checks (canonical-chapter-set,
+ * chapter-numbers, toc-contract, sweep-history, dual-brief) run as FATAL ONLY
+ * when the run EXPECTS existing state: `opts.resume === true` OR the book
+ * already has a canonical index / chapters on disk (`bookHasExistingState`, a
+ * run killed mid-authoring). For a genuinely FRESH new book — not a resume,
+ * nothing on disk — those checks are NOT applicable (the pipeline research →
+ * briefs → author stages CREATE that state) and are replaced by one
+ * informational `ok`, never a fatal. Before this gate the command hit
+ * PREFLIGHT_FATAL on `checkCanonicalChapterSet` for every new book and could
+ * never start one (WP-604 escalation #3 / ledger L-33). A `--resume` run keeps
+ * the full battery: resuming over a missing/corrupt canonical set SHOULD fatal.
  */
 export async function runGeneratePreflightChecks(opts: GeneratePreflightOptions = {}): Promise<DoctorFinding[]> {
   const requireD7 = opts.requireD7ShipGate ?? process.env[CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV] === "1";
-  return [
-    ...runDoctorChecks(opts.bookId),
+  const findings: DoctorFinding[] = [];
+
+  if (opts.bookId) {
+    // GLOBAL checks always run — fresh or resume (do NOT weaken any of these).
+    findings.push(...globalDoctorChecks());
+    const expectsExistingState =
+      opts.resume === true ||
+      (opts.bookHasExistingStateOverride ?? bookHasExistingState(opts.bookId));
+    if (expectsExistingState) {
+      findings.push(...perBookExistingStateChecks(opts.bookId));
+    } else {
+      findings.push({
+        level: "ok",
+        check: "per-book-existing-state",
+        message: `${normSlug(opts.bookId)}: fresh new book (no canonical index/chapters on disk, not a --resume) — the per-book existing-state checks (canonical-chapter-set, chapter-numbers, toc-contract, sweep-history, dual-brief) are not applicable; the author-first pipeline creates this state`,
+      });
+    }
+  } else {
+    // No bookId ⇒ the global battery + the all-books chapter-number sweep,
+    // byte-identical to bare `runDoctorChecks()`.
+    findings.push(...runDoctorChecks(undefined));
+  }
+
+  findings.push(
     checkWorktreeClean({ require: opts.requireCleanWorktree }),
     checkBaseShaMatch(opts.expectedBaseSha),
     await checkBranchSanity(),
@@ -583,7 +675,8 @@ export async function runGeneratePreflightChecks(opts: GeneratePreflightOptions 
     checkSchemaFixtures(),
     checkNameBankConfig(),
     await checkD7AuditToolingReachable(requireD7),
-  ];
+  );
+  return findings;
 }
 
 /**

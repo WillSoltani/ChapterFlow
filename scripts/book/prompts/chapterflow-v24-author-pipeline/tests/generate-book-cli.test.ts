@@ -61,7 +61,7 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdtempSync, mkdirSync, rmSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
 import { dirname, join, resolve } from "path";
 
@@ -297,6 +297,23 @@ test("cli exit-2: an unsupported --model fails closed even combined with --valid
   assert.equal(status, 2, `tail:\n${out.slice(-1000)}`);
   assert.match(out, /UNSUPPORTED_MODEL_CONFIG/);
   assert.doesNotMatch(out, /DOCTOR —/, "the early fail-closed model gate must return before the preflight battery ever runs");
+});
+
+test("cli (WP-602b): --validate-only on a genuinely FRESH bookId (NO fixture, NO --resume) no longer hits PREFLIGHT_FATAL — a brand-new book's preflight can pass because the per-book canonical-chapter-set check is skipped (the L-33 defect the WP-604 fixture used to route around)", () => {
+  // Deliberately NO withMinimalCanonicalFixture — this IS the primary use case the
+  // L-33 defect blocked: a brand-new book with zero on-disk state. Before WP-602b the
+  // real CLI hit PREFLIGHT_FATAL on checkCanonicalChapterSet (index_missing) and could
+  // never start; after it, the per-book existing-state checks are skipped for a fresh book.
+  const bookId = "zz-wp602b-cli-fresh";
+  assert.equal(existsSync(resolve(STATE_INDEXES, `${bookId}.json`)), false, "precondition: the fresh book has no canonical index");
+  const { status, out } = runCli(
+    ["generate-book", bookId, "--title", "T", "--author", "A", "--validate-only"],
+    NO_API,
+  );
+  assert.notEqual(status, 2, `a fresh book's --validate-only must NOT be a FATAL preflight (exit 2); tail:\n${out.slice(-1800)}`);
+  assert.doesNotMatch(out, /\[canonical-chapter-set\]/, "the fresh path must not even run — let alone fatal on — the canonical-chapter-set check");
+  assert.doesNotMatch(out, /PREFLIGHT_FATAL|BLOCKED — a fatal preflight/, "no fatal-preflight block on a genuinely new book");
+  assert.match(out, /READY/i, "validate-only reaches its READY verdict for a fresh book (the run can now start)");
 });
 
 // ═══════════════════════════════════════════════════════════════════════════════════════════

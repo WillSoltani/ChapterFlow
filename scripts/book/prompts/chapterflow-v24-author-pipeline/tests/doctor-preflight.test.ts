@@ -15,8 +15,16 @@ import { mkdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
-import { TMP_DIR } from "./helpers.js";
 import {
+  TMP_DIR,
+  STATE_CHAPTERS,
+  STATE_INDEXES,
+  makeChapter,
+  writeCanonicalIndexFixture,
+  writeFixtureBook,
+} from "./helpers.js";
+import {
+  bookHasExistingState,
   checkBaseShaMatch,
   checkBranchSanity,
   checkD7AuditToolingReachable,
@@ -298,6 +306,112 @@ test("runGeneratePreflightChecks: an unsupported model makes the composed exit c
   assert.equal(doctorExitCode(findings), 2, "an unsupported model must fail closed with exit 2");
   const modelFinding = findings.find((f) => f.check === "model-config-support")!;
   assert.equal(modelFinding.level, "fatal");
+});
+
+// ── WP-602b: fresh-vs-resume-vs-existing gate on the per-book checks ───────────
+//
+// The per-book EXISTING-STATE checks (dual-brief, chapter-numbers, canonical-set,
+// TOC, sweep-history) presume the book already has authored/indexed state on disk
+// — checkCanonicalChapterSet is FATAL for a book with no canonical index. A FRESH
+// generate-book run (the primary use case) has none of that yet (the pipeline
+// CREATES it), so runGeneratePreflightChecks must SKIP them for a genuinely new
+// book while still fataling on a --resume over inconsistent state. These drive the
+// REAL doctor against the REAL deterministic on-disk probe (fixtures written to and
+// cleaned from the pipeline state dirs by explicit path — the SAME pattern
+// generate-book-cli.test.ts uses), never a stub. Zero model/network calls.
+
+const PER_BOOK_CHECKS = new Set([
+  "dual-brief", "chapter-numbers", "chapter-parse", "canonical-chapter-set", "toc-contract", "sweep-history",
+]);
+
+test("bookHasExistingState: false for a nonexistent book; true once a canonical index is on disk (deterministic probe, no live call)", () => {
+  const bookId = "zz-wp602b-probe";
+  assert.equal(bookHasExistingState(bookId), false, "a book with no index/chapters is genuinely fresh");
+  writeCanonicalIndexFixture(bookId, [{ chapterId: `${bookId}-ch01`, number: 1, title: "One" }]);
+  const indexPath = resolve(STATE_INDEXES, `${bookId}.json`);
+  try {
+    assert.equal(bookHasExistingState(bookId), true, "an on-disk canonical index makes the probe true (expects existing state)");
+  } finally {
+    rmSync(indexPath, { force: true });
+  }
+});
+
+test("runGeneratePreflightChecks: a FRESH new book (no state, not --resume) SKIPS the per-book existing-state checks — the run can start (WP-602b / L-33)", async () => {
+  const bookId = "zz-wp602b-fresh-nonexistent";
+  assert.equal(bookHasExistingState(bookId), false, "precondition: the fresh book has no canonical index/chapters on disk");
+  const findings = await runGeneratePreflightChecks({ bookId });
+  const perBookFatals = findings.filter((f) => f.level === "fatal" && PER_BOOK_CHECKS.has(f.check));
+  assert.deepEqual(perBookFatals, [], "a fresh new book must NOT fatal on any per-book existing-state check (esp. canonical-chapter-set)");
+  assert.equal(findings.find((f) => f.check === "canonical-chapter-set"), undefined, "the offending check is not even run on the fresh path");
+  const skip = findings.find((f) => f.check === "per-book-existing-state");
+  assert.ok(skip && skip.level === "ok", "the skip is emitted as an informational ok, never a fatal");
+  assert.match(skip!.message, /not applicable/, "the skip explains WHY (the pipeline creates this state)");
+});
+
+test("runGeneratePreflightChecks: the GLOBAL checks still run (and can fatal) on the fresh path — an unsupported model is STILL fatal while the per-book checks are skipped (globals not weakened)", async () => {
+  const bookId = "zz-wp602b-fresh-globals";
+  const findings = await runGeneratePreflightChecks({ bookId, model: "gpt-5.5" });
+  const model = findings.find((f) => f.check === "model-config-support")!;
+  assert.equal(model.level, "fatal", "a global-tier WP-602 check still fatals on the fresh path");
+  assert.equal(doctorExitCode(findings), 2, "the composed exit is still fatal (2) — the fresh gate did not weaken the global battery");
+  // The fatal is the GLOBAL model check, never a per-book existing-state check.
+  const perBookFatals = findings.filter((f) => f.level === "fatal" && PER_BOOK_CHECKS.has(f.check));
+  assert.deepEqual(perBookFatals, []);
+  // shadow-state-dir + untracked-imports (the always-on global battery) are present.
+  const names = findings.map((f) => f.check);
+  for (const g of ["shadow-state-dir", "untracked-imports"]) assert.ok(names.includes(g), `global check "${g}" still runs on the fresh path`);
+});
+
+test("runGeneratePreflightChecks: --resume over a book with MISSING canonical state is STILL fatal — a resume MUST verify its integrity, never skip (WP-602b)", async () => {
+  const bookId = "zz-wp602b-resume-missing";
+  assert.equal(bookHasExistingState(bookId), false, "precondition: nothing on disk");
+  const findings = await runGeneratePreflightChecks({ bookId, resume: true });
+  const canonical = findings.find((f) => f.check === "canonical-chapter-set");
+  assert.ok(canonical, "--resume runs the per-book existing-state checks even with nothing on disk");
+  assert.equal(canonical!.level, "fatal", "a resume over a missing canonical index must FATAL — the skip must never apply to a resume");
+  assert.equal(doctorExitCode(findings), 2);
+  assert.equal(findings.find((f) => f.check === "per-book-existing-state"), undefined, "the fresh-skip is NEVER emitted on a resume");
+});
+
+test("runGeneratePreflightChecks: a CONSISTENT existing book PASSES the per-book checks — under --resume AND on-disk-without-resume (interrupted mid-authoring) (WP-602b)", async () => {
+  const bookId = "zz-wp602b-consistent";
+  const ch1 = makeChapter(bookId, 1);
+  const files = writeFixtureBook(STATE_CHAPTERS, [ch1]);
+  writeCanonicalIndexFixture(bookId, [{ chapterId: ch1.chapterId, number: 1, title: ch1.title }]);
+  const indexPath = resolve(STATE_INDEXES, `${bookId}.json`);
+  try {
+    assert.equal(bookHasExistingState(bookId), true, "precondition: the fixture book HAS canonical state on disk");
+
+    // (c) --resume: the per-book checks run and pass over a consistent book.
+    const resumed = await runGeneratePreflightChecks({ bookId, resume: true });
+    const canonicalResume = resumed.find((f) => f.check === "canonical-chapter-set");
+    assert.ok(canonicalResume && canonicalResume.level === "ok", `canonical-chapter-set must PASS for a consistent book on resume: ${canonicalResume?.message}`);
+    assert.equal(resumed.find((f) => f.check === "per-book-existing-state"), undefined, "an existing book runs the REAL checks, not the fresh skip");
+    assert.deepEqual(resumed.filter((f) => f.level === "fatal" && PER_BOOK_CHECKS.has(f.check)), []);
+
+    // existing-state-on-disk WITHOUT --resume: the deterministic probe alone triggers the checks.
+    const onDisk = await runGeneratePreflightChecks({ bookId, resume: false });
+    const canonicalOnDisk = onDisk.find((f) => f.check === "canonical-chapter-set");
+    assert.ok(canonicalOnDisk && canonicalOnDisk.level === "ok", "an interrupted-mid-authoring book (state on disk, not a resume) still runs the per-book checks and passes");
+    assert.equal(onDisk.find((f) => f.check === "per-book-existing-state"), undefined, "a book with state on disk is not treated as fresh");
+    assert.deepEqual(onDisk.filter((f) => f.level === "fatal" && PER_BOOK_CHECKS.has(f.check)), []);
+  } finally {
+    for (const f of files) rmSync(f, { force: true });
+    rmSync(indexPath, { force: true });
+  }
+});
+
+test("runGeneratePreflightChecks: the bookHasExistingStateOverride test seam forces the gate deterministically, independent of disk", async () => {
+  const bookId = "zz-wp602b-override";
+  // override=false, no resume → the fresh skip (per-book checks not run).
+  const skipped = await runGeneratePreflightChecks({ bookId, bookHasExistingStateOverride: false });
+  assert.ok(skipped.find((f) => f.check === "per-book-existing-state"), "override=false forces the fresh-skip path");
+  assert.equal(skipped.find((f) => f.check === "canonical-chapter-set"), undefined);
+  // override=true → the REAL per-book checks run (and, against a nonexistent book, canonical-set fatals).
+  const ran = await runGeneratePreflightChecks({ bookId, bookHasExistingStateOverride: true });
+  assert.equal(ran.find((f) => f.check === "per-book-existing-state"), undefined, "override=true forces the existing-state path");
+  const canonical = ran.find((f) => f.check === "canonical-chapter-set");
+  assert.ok(canonical && canonical.level === "fatal", "override=true runs the real per-book checks against disk");
 });
 
 test("doctor-preflight scratch tree is removed", () => {
