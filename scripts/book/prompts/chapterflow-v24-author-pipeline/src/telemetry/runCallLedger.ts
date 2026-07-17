@@ -202,6 +202,14 @@ export function appendCallLedgerEntry(args: {
     sessionId: args.sessionId ?? null,
     cost: LEDGER_COST_MARKER,
   };
+  // Only set when the caller actually supplied a value: these are optional
+  // (`?`) fields, and a legacy/omitting caller must produce a byte-identical
+  // entry to before WP-E41 — an explicit `undefined` own-property would
+  // survive in memory (breaking round-trip equality against the
+  // JSON.stringify-dropped disk copy, where the key is simply absent) even
+  // though it serializes the same as never having set the key.
+  if (args.sessionKind !== undefined) entry.sessionKind = args.sessionKind;
+  if (args.attemptIndex !== undefined) entry.attemptIndex = args.attemptIndex;
   const lines = readLines(paths.jsonl);
   lines.push(JSON.stringify(entry));
   const capped = trimToCaps(lines, args.maxLines ?? DEFAULT_MAX_LEDGER_LINES, args.maxBytes ?? DEFAULT_MAX_LEDGER_BYTES);
@@ -260,20 +268,35 @@ function tally(map: Record<string, number>, key: string): void {
   map[key] = (map[key] ?? 0) + 1;
 }
 
-export function buildCallLedgerRollup(bookId: string, runId: string, entries: readonly RunCallLedgerEntryV1[]): RunCallLedgerRollupV1 {
+export function buildCallLedgerRollup(
+  bookId: string,
+  runId: string,
+  entries: readonly RunCallLedgerEntryV1[],
+  opts?: { priceVersion?: string | null },
+): RunCallLedgerRollupV1 {
   const byFamily: Record<string, number> = {};
   const byStage: Record<string, number> = {};
   const byRole: Record<string, number> = {};
   const byModel: Record<string, number> = {};
   const byOutcome: Record<string, number> = {};
+  const bySessionKind: Record<string, number> = {};
   const latencies: number[] = [];
   let unknownLatencyCalls = 0;
+  let trueSessionCalls = 0;
   for (const e of entries) {
     tally(byFamily, e.family);
     tally(byStage, e.stage);
     tally(byRole, e.role ?? "unknown");
     tally(byModel, e.model ?? "unknown");
     tally(byOutcome, e.outcome);
+    // WP-E41 (V25-AUD-08 behavior): an entry missing `sessionKind` is a
+    // legacy entry, tallied under "unknown" — NEVER folded into "session".
+    // A live-spend ceiling reads `trueSessionCalls` alone, so silently
+    // counting an unknown-provenance legacy call as a session would let a
+    // resume-time reingest (or a pre-WP-E41 entry) inflate the ceiling.
+    const kind = e.sessionKind ?? "unknown";
+    tally(bySessionKind, kind);
+    if (e.sessionKind === "session") trueSessionCalls += 1;
     if (e.latencyMs === null || e.latencyMs === undefined || !Number.isFinite(e.latencyMs)) {
       unknownLatencyCalls += 1;
     } else {
@@ -298,8 +321,36 @@ export function buildCallLedgerRollup(bookId: string, runId: string, entries: re
       sampledCalls: sorted.length,
       unknownLatencyCalls,
     },
+    bySessionKind,
+    trueSessionCalls,
+    // WP-E42 wires the priced table lookup; this rollup only carries the
+    // version the caller says it priced against (absent/null ⇒ PRICE NOT
+    // VERIFIED, per NEW-06 — no pricing arithmetic lives in this module).
+    priceVersion: opts?.priceVersion ?? null,
     cost: LEDGER_COST_MARKER,
   };
+}
+
+/** Count entries that represent a REAL, billable model session — never a
+ *  resume-time reingest of already-persisted bytes, and never a legacy entry
+ *  with no recorded `sessionKind` at all (honesty rule, V25-AUD-08: absence
+ *  of provenance is not evidence of a session). The screening-budget
+ *  ceiling consumer (WP-E33) calls this rather than reading
+ *  `entries.length` or `byFamily` directly, so a ceiling check can never be
+ *  inflated by reingests or unlabeled legacy calls.
+ *  `opts.family`, when supplied, restricts the count to one call family
+ *  (e.g. isolating `codex-exec` spend from `claude-side`). */
+export function countTrueSessions(
+  entries: readonly RunCallLedgerEntryV1[],
+  opts?: { family?: LedgerCallFamily },
+): number {
+  let count = 0;
+  for (const e of entries) {
+    if (e.sessionKind !== "session") continue;
+    if (opts?.family !== undefined && e.family !== opts.family) continue;
+    count += 1;
+  }
+  return count;
 }
 
 export function writeCallLedgerRollup(pipelineDir: string, rollup: RunCallLedgerRollupV1): string {
