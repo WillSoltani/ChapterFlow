@@ -148,6 +148,26 @@ export const CANDIDATE_MODELS: readonly { readonly family: string; readonly capa
   { family: "gpt-5.6-luna", capability: "unconfirmed-pending-WP-502" },
 ];
 
+/** WP-504: the set of model ids a PRODUCTION 5.6 route may explicitly request —
+ *  DERIVED from the candidate family set above (data owned by WP-302/501), never
+ *  a second hand-kept list. By naming ONLY the 5.6 candidates it excludes the
+ *  retired legacy baseline and every non-5.6 id by construction (directive-1), so
+ *  no forbidden id can be a member: a request for anything outside this set is an
+ *  UNSUPPORTED_MODEL_CONFIG at route resolution, BEFORE any spawn (see
+ *  `resolveRoute({ requireSupportedModel })` and `preflightOperatorModelSelection`).
+ *  Membership is a SEPARATE, EARLIER gate than capability: it says
+ *  "this is one of the models the program routes"; the WP-502 probe later says
+ *  "…and it actually exists with the required --output-schema / effort
+ *  capability." A model can pass membership (terra/luna) and still fail the
+ *  capability probe — both raise the SAME typed error. */
+export const SUPPORTED_MODEL_IDS: ReadonlySet<string> = new Set(CANDIDATE_MODELS.map((c) => c.family));
+
+/** True iff `id` is a member of the 5.6 candidate set (the models the program is
+ *  allowed to route). Does NOT assert capability (that is the WP-502 probe). */
+export function isSupportedModelId(id: string): boolean {
+  return SUPPORTED_MODEL_IDS.has(id);
+}
+
 /** Candidate/rollback matrices are DATA for later authorized use — nothing in
  *  this package routes through them (the normal profile is pinned). The SOL
  *  candidate cells carry the split the plan hypothesizes (high ordinary / xhigh
@@ -184,8 +204,11 @@ export function profileMatrix(name: RouteProfileName): Record<TaskClassV1, Route
 
 /** Rollback order: the last-qualified 5.6 profile first, then the provisional
  *  normal profile as the emergency floor. directive-1: NO GPT-5.5 fallback may
- *  appear here (the retired `baseline-55` entry is gone). Data only — selection
- *  is a WP-705/authorized-activation decision. */
+ *  appear here (the retired `baseline-55` entry is gone). DATA ONLY — there is no
+ *  automatic traversal: a failed 5.6 model fail-closes with `UNSUPPORTED_MODEL_CONFIG`
+ *  and an alternate is reached ONLY via `resolveModelFallback`'s explicit
+ *  operator-supplied config. `last-qualified-sol` is a fail-closed placeholder
+ *  until WP-705 qualifies a concrete 5.6 matrix. */
 export const ROLLBACK_ORDER: readonly RouteProfileName[] = ["last-qualified-sol", NORMAL_PROFILE];
 
 /**
@@ -297,6 +320,58 @@ export class RoutePreflightError extends Error {
   readonly classification: ProviderOutcomeV1 = "policy_preflight_failure";
 }
 
+/** WP-504 halt code. DISTINCT from the frozen, DISJOINT provider-outcome
+ *  taxonomy (`ProviderOutcomeV1`, which classifies what a provider DID): this
+ *  classifies an operator/config REQUEST the pipeline refuses BEFORE any provider
+ *  is reached. The terminal command (WP-601) maps it to a truthful non-zero exit
+ *  (a usage-level bad flag → exit 2; a run-start capability/rollback halt →
+ *  exit 1); run-start preflight (WP-602) surfaces it. */
+export const UNSUPPORTED_MODEL_CONFIG = "UNSUPPORTED_MODEL_CONFIG" as const;
+
+/** Which unsupported-config check failed — one discriminant so every entry point
+ *  reports the SAME shape and the CLI can pick a truthful exit. */
+export type UnsupportedModelConfigReason =
+  | "unsupported-model"     // requested model malformed OR not in the 5.6 candidate set (directive-1)
+  | "unsupported-effort"    // requested reasoning effort not in the local union (e.g. API-only "max")
+  | "capability-absent"     // the WP-502 capability probe found a required capability missing
+  | "unqualified-rollback"  // a rollback / last-qualified-sol target with no WP-705 qualification (fail-closed placeholder)
+  | "no-fallback";          // selected model failed and NO explicit alternate config was supplied (no silent substitution)
+
+/** WP-504: the ONE typed config-refusal, raised at route resolution BEFORE any
+ *  spawn. A SUBCLASS of `RoutePreflightError` (NOT a second parallel error), so
+ *  every existing `instanceof RoutePreflightError` fail-closed check still catches
+ *  it and the frozen `policy_preflight_failure` provider-outcome classification is
+ *  inherited unchanged (directive-4: align with the existing `max`-effort
+ *  preflight, don't fork the taxonomy). `code` is the halt code; `reason`,
+ *  `failingModel`, and `failingCheck` name EXACTLY what was refused (no silent
+ *  degradation). There is NO fallback branch inside this error — the pipeline
+ *  fails closed; an alternate 5.6 candidate is reachable ONLY by explicit operator
+ *  config (see `resolveModelFallback`). */
+export class UnsupportedModelConfigError extends RoutePreflightError {
+  readonly code = UNSUPPORTED_MODEL_CONFIG;
+  readonly reason: UnsupportedModelConfigReason;
+  readonly failingCheck: string;
+  readonly failingModel?: string;
+  constructor(args: { reason: UnsupportedModelConfigReason; failingCheck: string; failingModel?: string; detail?: string }) {
+    const named = args.failingModel !== undefined ? ` model "${args.failingModel}"` : "";
+    super(`${UNSUPPORTED_MODEL_CONFIG} [${args.reason}]:${named} failed check "${args.failingCheck}"${args.detail !== undefined ? ` — ${args.detail}` : ""} (no silent fallback — halt)`);
+    this.name = "UnsupportedModelConfigError";
+    this.reason = args.reason;
+    this.failingCheck = args.failingCheck;
+    if (args.failingModel !== undefined) this.failingModel = args.failingModel;
+  }
+}
+
+/** Factory the WP-502 capability probe (and the rollback policy) call so every
+ *  unsupported-config halt is the SAME typed error. WP-502 executes the live
+ *  probe and, on an absent capability, raises
+ *  `unsupportedModelConfig({ reason: "capability-absent", failingModel,
+ *   failingCheck: "codex exec --output-schema / effort capability probe", detail })`.
+ *  WP-504 DEFINES the error here; WP-502 RAISES it at run start. */
+export function unsupportedModelConfig(args: { reason: UnsupportedModelConfigReason; failingCheck: string; failingModel?: string; detail?: string }): UnsupportedModelConfigError {
+  return new UnsupportedModelConfigError(args);
+}
+
 export type ResolvedRoute = {
   taskClass: TaskClassV1;
   profileName: RouteProfileName;
@@ -316,6 +391,16 @@ export function resolveRoute(args: {
   role: AgentRole;
   requestedModel?: string;
   requestedEffort?: string;
+  /** WP-504: when true (the operator boundary — CLI `--model`/`--effort`, run-start
+   *  preflight, capability pre-gate), an EXPLICIT model must be a member of the 5.6
+   *  candidate set or the call fails closed with `UNSUPPORTED_MODEL_CONFIG`. Default
+   *  false preserves the provider-agnostic decision recorder that the legacy
+   *  multi-provider router uses to dispatch (and honestly record) an explicit
+   *  foreign-provider model (e.g. a claude id on anthropic-cli), and the bakeoff /
+   *  historical qualification replays that legitimately evaluate non-normal
+   *  candidates. Effort-union and model-FORMAT validation are UNCONDITIONAL either
+   *  way — an out-of-union effort ("max") or a malformed id always fails closed. */
+  requireSupportedModel?: boolean;
 }): ResolvedRoute {
   const taskClass = ROLE_TASK_CLASS[args.role];
   if (!taskClass) throw new RoutePreflightError(`no task class mapped for role "${args.role}"`);
@@ -323,13 +408,30 @@ export function resolveRoute(args: {
   if (matrix === "call-explicit") throw new RoutePreflightError(`normal profile ${NORMAL_PROFILE} has no matrix — invalid policy state`);
   const cell = matrix[taskClass];
 
-  if (args.requestedModel !== undefined && !isValidModelId(args.requestedModel)) {
-    throw new RoutePreflightError(`invalid model id "${args.requestedModel}" — refusing to spawn (no silent fallback)`);
+  if (args.requestedModel !== undefined) {
+    if (!isValidModelId(args.requestedModel)) {
+      throw new UnsupportedModelConfigError({
+        reason: "unsupported-model",
+        failingModel: args.requestedModel,
+        failingCheck: "well-formed model id",
+        detail: "refusing to spawn (no silent fallback)",
+      });
+    }
+    if (args.requireSupportedModel && !isSupportedModelId(args.requestedModel)) {
+      throw new UnsupportedModelConfigError({
+        reason: "unsupported-model",
+        failingModel: args.requestedModel,
+        failingCheck: "member of the 5.6 candidate set",
+        detail: `allowed: ${[...SUPPORTED_MODEL_IDS].join(", ")} (directive-1: 5.6 candidates only — no legacy baseline, no non-5.6 route)`,
+      });
+    }
   }
   if (args.requestedEffort !== undefined && !EFFORTS.includes(args.requestedEffort as EffortLevelV1)) {
-    throw new RoutePreflightError(
-      `invalid reasoning effort "${args.requestedEffort}" (allowed: ${EFFORTS.join(", ")}; API-only "max" is NOT in the local union) — refusing to spawn`,
-    );
+    throw new UnsupportedModelConfigError({
+      reason: "unsupported-effort",
+      failingCheck: "member of the local reasoning-effort union",
+      detail: `requested "${args.requestedEffort}"; allowed: ${EFFORTS.join(", ")}; API-only "max" is NOT in the local union — refusing to spawn`,
+    });
   }
   const explicit = args.requestedModel !== undefined || args.requestedEffort !== undefined;
   return {
@@ -344,6 +446,108 @@ export function resolveRoute(args: {
 
 export function isValidModelId(id: string): boolean {
   return /^[a-z0-9][a-z0-9.-]{1,63}$/.test(id);
+}
+
+/**
+ * WP-504 — the fallback / rollback SEMANTICS (directive-1: no 5.5; directive-4:
+ * no silent behavior, no unbounded loops). The pipeline has NO automatic model
+ * substitution: when the selected 5.6 model fails preflight or the WP-502
+ * capability probe, the run HALTS with `UNSUPPORTED_MODEL_CONFIG`. This function
+ * encodes the ONLY escape and is a PURE single decision — it never iterates over
+ * models, so there is structurally no "retry on the next model" loop.
+ *
+ *   • No explicit alternate supplied            → HALT (`no-fallback`).
+ *   • `last-qualified-sol`                       → HALT (`unqualified-rollback`) —
+ *     a fail-closed placeholder until WP-705 lands both a decision file AND a
+ *     concrete 5.6 matrix; this build carries neither.
+ *   • An explicit alternate that is `call-explicit` or routes to any non-candidate
+ *     model                              → HALT (never reaches the retired baseline).
+ *   • An explicit alternate whose CONCRETE matrix routes only to 5.6 candidates
+ *                                                → accepted (the ONLY success path;
+ *     reachable ONLY via an operator-supplied `explicitAlternateProfile`, never
+ *     an ambient default).
+ *
+ * `ROLLBACK_ORDER` remains DATA (docs/tests); selecting from it is this explicit,
+ * operator-gated decision, never a silent traversal.
+ */
+export function resolveModelFallback(args: {
+  failingModel: string;
+  failingCheck: string;
+  /** ONLY an operator-supplied override reaches an alternate; undefined ⇒ HALT. */
+  explicitAlternateProfile?: RouteProfileName;
+  /** Whether a WP-705 decision file exists for `last-qualified-sol` (still HALTs
+   *  until the matrix is authored — reported in the halt detail). */
+  lastQualifiedSolDecisionFilePresent?: boolean;
+}): { profileName: RouteProfileName; models: readonly string[] } {
+  const alt = args.explicitAlternateProfile;
+
+  if (alt === undefined) {
+    throw new UnsupportedModelConfigError({
+      reason: "no-fallback",
+      failingModel: args.failingModel,
+      failingCheck: args.failingCheck,
+      detail: "no explicit alternate model config was supplied — the pipeline does not fall back to another model",
+    });
+  }
+
+  if (alt === "last-qualified-sol") {
+    throw new UnsupportedModelConfigError({
+      reason: "unqualified-rollback",
+      failingModel: args.failingModel,
+      failingCheck: "WP-705 qualification (decision file + concrete 5.6 matrix) for last-qualified-sol",
+      detail: args.lastQualifiedSolDecisionFilePresent
+        ? "a WP-705 decision file is present but this build carries no last-qualified-sol matrix — WP-705 authors it before this rollback can route"
+        : "last-qualified-sol is a fail-closed placeholder — no WP-705 qualification file exists yet",
+    });
+  }
+
+  const mtx = profileMatrix(alt);
+  if (mtx === "call-explicit") {
+    throw new UnsupportedModelConfigError({
+      reason: "unqualified-rollback",
+      failingModel: args.failingModel,
+      failingCheck: `explicit alternate profile "${alt}" has a concrete routable matrix`,
+      detail: "call-explicit profiles carry no matrix to route — pin a concrete 5.6 candidate profile",
+    });
+  }
+  const models = [...new Set(Object.values(mtx).map((c) => c.model))];
+  const forbidden = models.filter((m) => !isSupportedModelId(m));
+  if (forbidden.length > 0) {
+    throw new UnsupportedModelConfigError({
+      reason: "unsupported-model",
+      failingCheck: `explicit alternate profile "${alt}" routes only to 5.6 candidates`,
+      detail: `profile routes to non-candidate model(s): ${forbidden.join(", ")}`,
+    });
+  }
+  return { profileName: alt, models };
+}
+
+/**
+ * WP-504 — the operator-selection boundary. The CLI `--model`/`--effort` handler
+ * (WP-601) and run-start preflight (WP-602) call THIS to validate an operator's
+ * model/effort selection BEFORE any authoring. It funnels through the ONE
+ * validator (`resolveRoute`, `requireSupportedModel: true`) so this boundary, the
+ * author route, and every other route resolution raise the IDENTICAL typed
+ * `UnsupportedModelConfigError` for the same unsupported config. On success it
+ * echoes back the operator's RAW selection (each role's own `resolveRoute`
+ * applies it downstream); on failure it throws before returning — so no spawn can
+ * follow. The neutral `cli-adhoc` role reaches the validator without pinning a
+ * production role.
+ */
+export function preflightOperatorModelSelection(args: {
+  model?: string;
+  effort?: string;
+}): { model?: string; effort?: EffortLevelV1 } {
+  resolveRoute({
+    role: "cli-adhoc",
+    requestedModel: args.model,
+    requestedEffort: args.effort,
+    requireSupportedModel: true,
+  });
+  return {
+    ...(args.model !== undefined ? { model: args.model } : {}),
+    ...(args.effort !== undefined ? { effort: args.effort as EffortLevelV1 } : {}),
+  };
 }
 
 /** Stable requalification fingerprint (plan item 13 / IMP-13 drift triggers):
