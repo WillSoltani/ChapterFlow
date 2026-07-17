@@ -4,8 +4,7 @@ import { resolve } from "path";
 
 import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
-import { runShipGate } from "../critics/finalGate.js";
-import { runBookGate } from "../critics/bookGate.js";
+import { chapterFloorGate, bookFloorGate, type FloorLedger } from "../critics/deterministicFloor.js";
 import { isAdvisoryMajor } from "../critics/majorPolicy.js";
 import { isApprovedReviewer, chapterContentHash } from "../critics/qcAttestation.js";
 import { canonicalJsonSha256 } from "../lib/canonicalJson.js";
@@ -130,16 +129,20 @@ function snapshotFinding(scope: string, checkId: string, message: string, eviden
   };
 }
 
-export function currentMajorFindings(bookId: string, chapters = loadBookChapters(bookId)): MajorFindingSnapshot[] {
+export function currentMajorFindings(bookId: string, chapters = loadBookChapters(bookId), ledger?: FloorLedger): MajorFindingSnapshot[] {
   const out: MajorFindingSnapshot[] = [];
   for (const ch of chapters) {
-    const gate = runShipGate(ch);
+    // WP-205: route through the consolidated floor. When the caller (promote /
+    // publish-preflight) threads its shared ledger, the ship gate this stage
+    // already computed on these exact bytes is a cache hit — the major-policy scan
+    // no longer re-runs runShipGate a second time on identical content.
+    const gate = chapterFloorGate(ch, { ledger });
     for (const f of gate.majors) {
       const scope = `chapter:${ch.number}:${f.unit}`;
       out.push(snapshotFinding(scope, f.catalogId, f.message, f.evidence, chapters));
     }
   }
-  const bookGate = runBookGate(bookId, chapters);
+  const bookGate = bookFloorGate(bookId, chapters, { ledger });
   for (const f of bookGate.findings.filter((x) => x.severity === "major")) {
     const scope = "book";
     out.push(snapshotFinding(scope, f.catalogId, f.message, f.evidence, chapters));
@@ -251,10 +254,10 @@ function effectiveDisposition(bookId: string, finding: MajorFindingSnapshot, dis
   return { finding, disposition, decision: "waived", blocking: false, reason: `${disposition.status} by ${disposition.reviewer}.` };
 }
 
-export function evaluateMajorCleanliness(bookId: string, chapters = loadBookChapters(bookId), options?: boolean | MajorCleanlinessOptions): MajorCleanlinessResult {
+export function evaluateMajorCleanliness(bookId: string, chapters = loadBookChapters(bookId), options?: boolean | MajorCleanlinessOptions, ledger?: FloorLedger): MajorCleanlinessResult {
   const opts = normalizeOptions(options);
   const dispositions = new Map(loadWaivers(bookId).dispositions.map((d) => [d.findingId, d]));
-  const current = currentMajorFindings(bookId, chapters);
+  const current = currentMajorFindings(bookId, chapters, ledger);
   const decisions = current.map((f) => effectiveDisposition(bookId, f, dispositions.get(f.id), opts));
   const unresolved = decisions.filter((d) => d.blocking).map((d) => d.finding);
   return { ok: unresolved.length === 0, current, decisions, unresolved };
@@ -266,8 +269,8 @@ export function evaluateMajorCleanliness(bookId: string, chapters = loadBookChap
  * that exact finding on the exact current reader content. Minors and advisories
  * never enter this list.
  */
-export function unresolvedMajors(bookId: string, chapters = loadBookChapters(bookId), options?: boolean | MajorCleanlinessOptions): MajorFindingSnapshot[] {
-  return evaluateMajorCleanliness(bookId, chapters, options).unresolved;
+export function unresolvedMajors(bookId: string, chapters = loadBookChapters(bookId), options?: boolean | MajorCleanlinessOptions, ledger?: FloorLedger): MajorFindingSnapshot[] {
+  return evaluateMajorCleanliness(bookId, chapters, options, ledger).unresolved;
 }
 
 export function formatMajorStatus(bookId: string, chapters = loadBookChapters(bookId)): string {

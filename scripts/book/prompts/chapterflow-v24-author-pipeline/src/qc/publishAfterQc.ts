@@ -4,9 +4,12 @@ import { dirname, relative, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { checkQcAttestation } from "../critics/qcAttestation.js";
-import { runBookGate } from "../critics/bookGate.js";
-import { runIntraBookChecks } from "../critics/intraBook.js";
-import { runShipGate } from "../critics/finalGate.js";
+import {
+  chapterFloorGate,
+  bookFloorGate,
+  chapterFloorIntra,
+  createFloorLedger,
+} from "../critics/deterministicFloor.js";
 import { checkKeyJudge } from "../critics/quizKeyGate.js";
 import { deriveCategoriesAndTags } from "../agents/autoCategorize.js";
 import { loadChapterIndex } from "../generateBook.js";
@@ -389,12 +392,17 @@ function noApiPreflightChecks(bookId: string): PreflightCheck[] {
   const safe = (label: string, fn: () => string[]): string[] => {
     try { return fn(); } catch (err) { return [`${label} GATE_CRASH: a critic threw on a malformed chapter — ${(err as Error)?.message ?? String(err)}`]; }
   };
+  // WP-205: ONE floor ledger for the whole publish preflight. The ship gate +
+  // book gate computed for the deterministic-floor checks are memoized by content,
+  // so the majors scan below (unresolvedMajors → currentMajorFindings) reuses them
+  // rather than re-running runShipGate/runBookGate a second time on the same bytes.
+  const floor = createFloorLedger();
   const ship: string[] = [], intra: string[] = [], qcStatus: string[] = [], quizKey: string[] = [], manualKey: string[] = [];
   for (const ch of chapters) {
     // Wrap the WHOLE per-chapter critic group (every one of these can throw on a malformed chapter).
     try {
-      ship.push(...runShipGate(ch).blockers.map((f) => `ship ch${ch.number} ${f.catalogId}: ${f.message}`));
-      intra.push(...runIntraBookChecks(ch, chapters.filter((other) => other.number < ch.number)).filter((f) => f.severity === "blocker").map((f) => `intra ch${ch.number} ${f.checkId}: ${f.message}`));
+      ship.push(...chapterFloorGate(ch, { ledger: floor }).blockers.map((f) => `ship ch${ch.number} ${f.catalogId}: ${f.message}`));
+      intra.push(...chapterFloorIntra(ch, chapters.filter((other) => other.number < ch.number), { ledger: floor }).filter((f) => f.severity === "blocker").map((f) => `intra ch${ch.number} ${f.checkId}: ${f.message}`));
       qcStatus.push(...checkQcAttestation(ch, true).map((f) => `qc-status ch${ch.number} ${f.checkId}: ${f.message}`));
       quizKey.push(...checkKeyJudge(ch, true, process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE === "1").map((f) => `quiz-key ch${ch.number} ${f.checkId}: ${f.message}`));
       manualKey.push(...checkManualKeyJudge(ch, true).map((f) => `manual-keyjudge ch${ch.number} ${f.checkId}: ${f.message}`));
@@ -424,11 +432,11 @@ function noApiPreflightChecks(bookId: string): PreflightCheck[] {
     { check: "qc-status", blockers: qcStatus },
     { check: "quiz-key", blockers: quizKey },
     { check: "manual-keyjudge", blockers: manualKey },
-    { check: "book-gate", blockers: safe("book-gate", () => runBookGate(bookId, chapters).findings.filter((f) => f.severity === "blocker").map((f) => `book-gate ${f.catalogId}: ${f.message}`)) },
+    { check: "book-gate", blockers: safe("book-gate", () => bookFloorGate(bookId, chapters, { ledger: floor }).findings.filter((f) => f.severity === "blocker").map((f) => `book-gate ${f.catalogId}: ${f.message}`)) },
     { check: "source-v2", blockers: safe("source-v2", () => checkSourceV2Gate(bookId).findings.filter((f) => f.severity === "blocker").map((f) => `source-v2 ch${f.chapterNumber} ${f.checkId}: ${f.message}`)) },
     { check: "plan-enforcement", blockers: safe("plan-enforcement", () => checkPlanEnforcement(bookId, chapters).map((f) => `plan ch${f.chapterNumber} ${f.checkId}: ${f.message}`)) },
     { check: "sweep", blockers: safe("sweep", () => checkSweep(chapters, true).map((f) => `sweep ${f.checkId}: ${f.message}`)) },
-    { check: "majors", blockers: safe("majors", () => unresolvedMajors(bookId, chapters, true).map((f) => `major ${f.id} ${f.scope} ${f.checkId}: ${f.message}`)) },
+    { check: "majors", blockers: safe("majors", () => unresolvedMajors(bookId, chapters, true, floor).map((f) => `major ${f.id} ${f.scope} ${f.checkId}: ${f.message}`)) },
     { check: "source-reality", blockers: srBlockers, decision: srDecision },
     // WP-401 D7 rubric-audit ship gate (defense-in-depth; promoteBook is the
     // authority + also runs the byte-identity exemption). A PRESENT receipt must

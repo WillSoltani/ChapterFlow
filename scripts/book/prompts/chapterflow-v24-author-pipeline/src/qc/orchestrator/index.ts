@@ -1,8 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync } from "fs";
 import { dirname, resolve } from "path";
 
-import { runBookGate } from "../../critics/bookGate.js";
-import { runShipGate } from "../../critics/finalGate.js";
+import { chapterFloorGate, bookFloorGate, chapterFloorIntra, createFloorLedger } from "../../critics/deterministicFloor.js";
 import { canonicalJsonSha256 } from "../../lib/canonicalJson.js";
 import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import { checkPlanEnforcement } from "../planEnforcement.js";
@@ -12,7 +11,6 @@ import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
 import { chapterContentHash, isApprovedReviewer, approvedReviewerRoles, isAttestationFresh, loadAttestation } from "../../critics/qcAttestation.js";
 import { AXIS_WEIGHTS, combineBarAxes, computeVerdict, type PublishableVerdict } from "../../critics/semantic/publishableBar.js";
 import type { ChapterV21 } from "../../types.js";
-import { runIntraBookChecks } from "../../critics/intraBook.js";
 import { writeBarPack } from "../barReview.js";
 import { keyDerivationPath, loadBookChapters, loadKeyPack, loadManualKeyJudge, resolveManualKeyJudges, writeKeyPacks, type KeyDerivation } from "../manualKeyJudge.js";
 import { unresolvedMajors } from "../majorDisposition.js";
@@ -237,9 +235,12 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
 
   const source = checkSourceV2Gate(bookId, selected.map((ch) => ch.number));
   messages.push(`source-v2-gate: ${source.passed ? "PASS" : "BLOCK"} (${source.findings.length} blocker(s))`);
-  const bookGate = runBookGate(bookId, allChapters);
+  // WP-205: consolidated floor pass for this round preflight (one ledger; the
+  // book gate the majors scan re-derives on the same selection is a cache hit).
+  const floor = createFloorLedger();
+  const bookGate = bookFloorGate(bookId, allChapters, { ledger: floor });
   messages.push(`book-gate: ${bookGate.passed ? "PASS" : "BLOCK"} (${bookGate.findings.length} finding(s))`);
-  const productionMajors = unresolvedMajors(bookId, selected, true);
+  const productionMajors = unresolvedMajors(bookId, selected, true, floor);
   messages.push(`major-status: ${productionMajors.length === 0 ? "PASS" : "BLOCK"} (${productionMajors.length} unresolved major(s))`);
   // `allowDirtyPreflight` is an explicit operator/test override: round-MECHANICS
   // unit tests use minimal synthetic fixtures that intentionally fail book-gate,
@@ -807,17 +808,19 @@ export function verifyRepair(bookId: string, roundId: string): { ok: boolean; su
   // a repair that silently changed a dealt scene shape or used a forbidden exemplar
   // is caught HERE, in the repair loop, before the round re-QCs — not deferred to publish.
   const planFindings = checkPlanEnforcement(bookId, chapters);
+  // WP-205: consolidated floor pass for the repair-validation scan (one ledger).
+  const floor = createFloorLedger();
   const validationByChapter = new Map<number, { authorFindings: number; gateBlockers: number; intraBlockers: number; planBlockers: number }>();
   for (const n of edited) {
     const ch = byNumber.get(n);
     if (!ch) continue;
     const authorFindings = checkAuthoringContract(ch, { sidecar: loadChapterSidecar(ch.chapterId), filePath: `state/chapters/${ch.chapterId}.v21-native.chapter.json` }).length;
-    const gate = runShipGate(ch);
-    const intra = runIntraBookChecks(ch, chapters.filter((other) => other.number < ch.number));
+    const gate = chapterFloorGate(ch, { ledger: floor });
+    const intra = chapterFloorIntra(ch, chapters.filter((other) => other.number < ch.number), { ledger: floor });
     const planBlockers = planFindings.filter((f) => f.chapterNumber === n).length;
     validationByChapter.set(n, { authorFindings, gateBlockers: gate.blockers.length, intraBlockers: intra.filter((f) => f.severity === "blocker").length, planBlockers });
   }
-  const bookGate = runBookGate(bookId, chapters);
+  const bookGate = bookFloorGate(bookId, chapters, { ledger: floor });
   const bookBlockers = bookGate.findings.filter((f) => f.severity === "blocker").length;
 
   for (const f of findings) {

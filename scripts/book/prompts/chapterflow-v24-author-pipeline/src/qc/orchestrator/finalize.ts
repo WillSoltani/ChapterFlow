@@ -11,6 +11,7 @@ import { unresolvedMajors, type MajorFindingSnapshot } from "../majorDisposition
 import { sourceHashFor } from "../sourceV2Gate.js";
 import { loadSweepRecord, sweepChapterStatus, sweepRecordPath, writeSweepRecordFromSubmission } from "../sweep.js";
 import { evaluateDeterministic } from "./deterministicGate.js";
+import { createFloorLedger } from "../../critics/deterministicFloor.js";
 import {
   barArtifactPath,
   BAR_READ_VARIANTS,
@@ -373,7 +374,11 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
   const carriedSet: Set<number> | null = Array.isArray(roundRecord?.carriedChapters)
     ? new Set(roundRecord.carriedChapters.map((n: unknown) => Number(n)))
     : null;
-  const unresolvedMajorFindings = unresolvedMajors(bookId, chapters, true);
+  // WP-205: ONE floor ledger shared across finalize's two deterministic passes —
+  // the majors scan and the six-check battery both compose the ship/book gates on
+  // these bytes, so the ledger computes each once instead of twice.
+  const floor = createFloorLedger();
+  const unresolvedMajorFindings = unresolvedMajors(bookId, chapters, true, floor);
   // The six DETERMINISTIC checks (source-v2, ship-gate, author-check, intra-book,
   // book-gate, plan-enforcement) come from the SHARED evaluator that `qc-converge`
   // also calls — so a clean qc-converge provably predicts that finalize raises no
@@ -382,7 +387,7 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
   // repair-ledger, majors) are still computed per-chapter below. Book-gate +
   // plan-enforcement are evaluated once over the whole book inside the evaluator
   // (exemplar ownership + cross-chapter patterns are book-wide).
-  const det = evaluateDeterministic(bookId, chapters, allChapters);
+  const det = evaluateDeterministic(bookId, chapters, allChapters, floor);
   const bookGate = det.bookGate;
   let sweepRecord: ReturnType<typeof loadSweepRecord> = null;
   try {
