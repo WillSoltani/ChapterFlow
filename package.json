@@ -27,6 +27,8 @@
     "pipeline:build": "npm run build --workspace @chapterflow/v21-authored",
     "pipeline:doctor": "npm run doctor --workspace @chapterflow/v21-authored",
     "pipeline:test:focused": "npm run test:focused --workspace @chapterflow/v21-authored",
+    "pipeline24:typecheck": "cd scripts/book/prompts/chapterflow-v24-author-pipeline && npx tsc -p . --noEmit",
+    "pipeline24:test": "cd scripts/book/prompts/chapterflow-v24-author-pipeline && CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
     "verify": "npm run typecheck && npm run test && npm run scan:style && npm run build",
     "verify:live": "tsx scripts/book/verify-live-sync.ts",
     "register:api": "tsx scripts/book/register-api-books.ts",
