@@ -1,0 +1,101 @@
+{
+  "bakeoffReadiness": "not-ready-for-bakeoff",
+  "bakeoffReadinessReason": "authoringSource is UNRESOLVED for one or more units (owner decision D-7 pending); no unit may enter the bakeoff until every authoringSource is a resolved draft/manuscript pointer.",
+  "consumers": [
+    "WP-703",
+    "WP-704"
+  ],
+  "corpusId": "bakeoff-corpus-v1",
+  "d7Floors": {
+    "releaseMean": 85,
+    "screeningMean": 75
+  },
+  "immutable": true,
+  "rubricVersion": "2.0",
+  "schema": "bakeoff-corpus-manifest-v1",
+  "sealedRunId": "20260715T110908Z",
+  "sealedRunRelPath": "docs/v25/rubric-audit-2026-07-15",
+  "units": [
+    {
+      "auditedReaderDocRelPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/nudge-ch03.md",
+      "authoringSource": "UNRESOLVED",
+      "bookId": "nudge",
+      "chapterNumber": 3,
+      "chapterTitle": "Following the Herd",
+      "provenanceChain": {
+        "inspectionRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/nudge-ch03.inspection.json",
+        "inspectionSha256": "a664902e9307837eba2caafcb39759cb47884b828e481cd38237d4d4635eb9b2",
+        "pairSealRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/nudge-ch03.receipts/pair.seal.json",
+        "pairSealSha256": "f16cda47e0d988dfa329cc6878aa59b2d1884ff863596c42b53452a5cbc0d72e",
+        "primaryDispatchRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/nudge-ch03.receipts/primary.dispatch.json",
+        "primaryDispatchSha256": "650b950ebd257bb9aab1d799625a8dc6e6addf14ea6fe2465fcc1def2397f3df",
+        "primaryRelPath": "docs/v25/rubric-audit-2026-07-15/raw/primary/nudge-ch03.json",
+        "primarySha256": "79b541d1c45228975a74c4fad857702cc0be4d8127a499a9b900993bd644dbd6",
+        "verificationDispatchRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/nudge-ch03.receipts/verification.dispatch.json",
+        "verificationDispatchSha256": "0ad94d9fab9029859dc1878f178b20476d900336a79a52545800b5b70c623476",
+        "verificationRelPath": "docs/v25/rubric-audit-2026-07-15/raw/verification/nudge-ch03.json",
+        "verificationSha256": "f114f8e6a45ba6580d9fea564865712e54fbacea44209617e4cc2225f11ce300"
+      },
+      "sealedAdjudicatedRecordRelPath": "docs/v25/rubric-audit-2026-07-15/raw/adjudicated/nudge-ch03.json",
+      "sealedAdjudicatedRecordSha256": "db0d0db45fbe5195e8b5f226e898aa87666fa8112af0c624ca0a753b5eaca277",
+      "sealedBand": "Standalone chapter diagnostic: valuable but materially uneven; targeted redesign needed.",
+      "sealedChapterDiagnostic": 70.75657894736842,
+      "sourceHash": "5561431cdd87978ec2bd4def5cf4e2fc7ab53d8379f48e0eaaf7327a9dcaeda7",
+      "unit": "nudge-ch03"
+    },
+    {
+      "auditedReaderDocRelPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/the-happiness-hypothesis-ch06.md",
+      "authoringSource": "UNRESOLVED",
+      "bookId": "the-happiness-hypothesis",
+      "chapterNumber": 6,
+      "chapterTitle": "Love and attachments",
+      "provenanceChain": {
+        "inspectionRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/the-happiness-hypothesis-ch06.inspection.json",
+        "inspectionSha256": "b51cb87f1f8db9561f3ac4337e4051ed1b1df234c9c8c35c38316ecb219bc5be",
+        "pairSealRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/the-happiness-hypothesis-ch06.receipts/pair.seal.json",
+        "pairSealSha256": "72b71335a88e32180868131fc6d245b50f7c8922597ce24e049dd3a8c4caf9ea",
+        "primaryDispatchRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/the-happiness-hypothesis-ch06.receipts/primary.dispatch.json",
+        "primaryDispatchSha256": "4de0e1903d4a4aecfaa36a41542264c7e0a62ae7ac82277a513edbe1bf044166",
+        "primaryRelPath": "docs/v25/rubric-audit-2026-07-15/raw/primary/the-happiness-hypothesis-ch06.json",
+        "primarySha256": "82562071e50f2483d9ef4dfa8dbc42d826b7bad9132cc6e1d61cfe9ca9b44348",
+        "verificationDispatchRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/the-happiness-hypothesis-ch06.receipts/verification.dispatch.json",
+        "verificationDispatchSha256": "f6ad3a05876b532b3f143cc519e8b04b67964538e31ae42b40ff8cb533f0273e",
+        "verificationRelPath": "docs/v25/rubric-audit-2026-07-15/raw/verification/the-happiness-hypothesis-ch06.json",
+        "verificationSha256": "bb49252530562ed6dfa42ecb0b71bf1ee11471f0023632c63e9c1e293dfdf60d"
+      },
+      "sealedAdjudicatedRecordRelPath": "docs/v25/rubric-audit-2026-07-15/raw/adjudicated/the-happiness-hypothesis-ch06.json",
+      "sealedAdjudicatedRecordSha256": "3ae3ad5bb0284df53f4a3840d3a592ef7cdfc8e60783a1db6daec165288aa722",
+      "sealedBand": "Chapter diagnostic: Substantial redesign needed",
+      "sealedChapterDiagnostic": 68.8157894736842,
+      "sourceHash": "98fb3e50e070ca44543881613f39dbaf5c478bfff7e2aea838688f2b3d0e5dd2",
+      "unit": "the-happiness-hypothesis-ch06"
+    },
+    {
+      "auditedReaderDocRelPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/reader-gold-dev-pool-v1/reader-docs/made-to-stick-ch04.md",
+      "authoringSource": "UNRESOLVED",
+      "bookId": "made-to-stick",
+      "chapterNumber": 4,
+      "chapterTitle": "Credible",
+      "provenanceChain": {
+        "inspectionRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/made-to-stick-ch04.inspection.json",
+        "inspectionSha256": "c8ee26c35258f11a510fc65c0affc134aca0b9516bf18b6dff0bc6c7b265fcfc",
+        "pairSealRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/made-to-stick-ch04.receipts/pair.seal.json",
+        "pairSealSha256": "581ffbee993f86ebd7389489ba8af7d03045263980ee1186bb293e728bb4a731",
+        "primaryDispatchRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/made-to-stick-ch04.receipts/primary.dispatch.json",
+        "primaryDispatchSha256": "fbb29f8a3dd64732679e672bdb6475849739c57db3c6c1156154645362535fb1",
+        "primaryRelPath": "docs/v25/rubric-audit-2026-07-15/raw/primary/made-to-stick-ch04.json",
+        "primarySha256": "8d3fa490f742040eb848d5c534920184246ee833e39d6751bf02d7e0d7e6b487",
+        "verificationDispatchRelPath": "docs/v25/rubric-audit-2026-07-15/jobs/made-to-stick-ch04.receipts/verification.dispatch.json",
+        "verificationDispatchSha256": "88e5bcc1ef4bd69602e1b23ce4f7e9177ab276bcaf01ad4b5af459aa2ce9f11e",
+        "verificationRelPath": "docs/v25/rubric-audit-2026-07-15/raw/verification/made-to-stick-ch04.json",
+        "verificationSha256": "b1c71f7817b325fca024d068d726fbf1327ad5f91aff4c477dc944f01f662111"
+      },
+      "sealedAdjudicatedRecordRelPath": "docs/v25/rubric-audit-2026-07-15/raw/adjudicated/made-to-stick-ch04.json",
+      "sealedAdjudicatedRecordSha256": "66982e03651b6110c3ff767b4803f8ac83799876a2af9b638cb35467c7cf7686",
+      "sealedBand": "Chapter diagnostic: substantial redesign needed",
+      "sealedChapterDiagnostic": 67.66447368421052,
+      "sourceHash": "9a20a3afd9612faf43ea26575e0f471401c180f58fdef2bcaceedd4a54194120",
+      "unit": "made-to-stick-ch04"
+    }
+  ]
+}
