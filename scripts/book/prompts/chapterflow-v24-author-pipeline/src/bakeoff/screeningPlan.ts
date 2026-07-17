@@ -24,6 +24,16 @@
  * The advancement bar and STOP rule are the ratified D-3 acknowledgment-(ii)
  * terms (ledger L-37): the bar is NEVER lowered mid-flight; a zero-passing
  * screening HALTS with an owner escalation (audit change-condition C→D).
+ *
+ * WP-E33 (evaluator/model-selection execution plan §5.3) ADDS the budget
+ * authority for the newer blinded chapter experiment below (`EXPERIMENT_*`,
+ * `DEGRADATION_LADDER`, `selectSmallestSpreadBlock`, `checkBudgetBeforeStage2`).
+ * That experiment's Stage 0a-4 shape (E-audit/D7-lite dual instrument, W-band,
+ * anchors, a 5-stage budget table) does not fit the `ScreeningPlan` type above
+ * (one screening's 4 configs × 3 chapter-runs) — see the design-choice note
+ * ahead of `EXPERIMENT_BUDGET_PLAN`. `SCREENING_PLAN` and every export above
+ * this marker are UNTOUCHED (still byte-frozen; still bound to
+ * `tests/bakeoff-screening-plan.test.ts`).
  */
 
 /** Machine-readable companion schema id (the on-disk `.plan.json` carries it). */
@@ -476,4 +486,309 @@ export function decideAdvancement(
     return { outcome: "STOP", advancing: [], reasons, escalation: SCREENING_STOP_ESCALATION };
   }
   return { outcome: "ADVANCE", advancing, reasons };
+}
+
+// ── WP-E33: chapter-experiment budget authority (frozen plan §5.3) ────────────
+//
+// DESIGN CHOICE (recorded per the WP-E33 CAUTION): the registration mechanism
+// above (a `ScreeningPlan` object + `screeningPlanJson()` + a companion
+// `.plan.json` byte-bound by a test) is REUSED verbatim, but as a SEPARATE
+// exported structure rather than a v2 of `SCREENING_PLAN`. `ScreeningPlan`'s
+// shape (configs × chapter-runs × one advancement bar) is WP-703's Stage-1
+// screening specifically; the frozen plan's §5.3 budget authority spans five
+// stages (0a/0b/1/1b/2/3/4) with a dual E-audit/D7-lite instrument, a
+// degradation ladder, and a pre-Stage-2 gate that has no counterpart in
+// `ScreeningPlan` at all. Minting a "v2" by overloading that type would force
+// either unused fields on one shape or drop fields the other needs — same
+// failure mode the frozen plan itself warns against ("no model is ever
+// substituted for a dropped one" / no silent reshaping of registered data).
+// `SCREENING_PLAN` + its companion + its freeze test are byte-identical to
+// before this WP; this section registers its own companion
+// (`V25_CHAPTER_EXPERIMENT_BUDGET.plan.json`) and its own freeze test.
+//
+// Everything here is DATA and pure decision functions — same non-negotiable
+// as above: NO model call, NO live-capable verb, NO execution.
+
+/** Machine-readable companion schema id for the chapter-experiment budget
+ *  authority (distinct from `SCREENING_PLAN_SCHEMA`). */
+export const EXPERIMENT_BUDGET_PLAN_SCHEMA = "v25-chapter-experiment-budget-plan-v1" as const;
+
+export type ExperimentStageId = "0a" | "0b" | "1" | "1b" | "2" | "3" | "4";
+
+/** One row of the frozen plan §5.3 stage table, verbatim. `cap` is the hard
+ *  session cap for the stage (0 for stages that spend no live sessions).
+ *  `capWithD7Lite` records Stage 2's D7-lite-inclusive cap reading (58) where
+ *  the frozen table gives two cap numbers for one stage — never collapsed
+ *  into one value. */
+export type ExperimentStageBudget = {
+  stage: ExperimentStageId;
+  name: string;
+  planned: number;
+  cap: number;
+  capWithD7Lite?: number;
+  goStop: string;
+};
+
+/** The registered Stage 0a-4 budget table (frozen plan §5.3, verbatim). */
+export const EXPERIMENT_STAGE_BUDGETS: ExperimentStageBudget[] = [
+  {
+    stage: "0a",
+    name: "model-free",
+    planned: 0,
+    cap: 0,
+    goStop: "all suites green",
+  },
+  {
+    stage: "0b",
+    name: "calibration",
+    planned: 14,
+    cap: 24,
+    goStop: "noise STOP; >=6/8 first-attempt-valid; D7-lite |delta| <= 3.0 else demoted from start",
+  },
+  {
+    stage: "1",
+    name: "screening",
+    planned: 84,
+    cap: 119,
+    goStop: "advance <=2: no candidate-attributable gate-2/3 failure x2 cells; mean E >= advance floor; no block < block floor; 0 qualify -> STOP (Sol stays provisional)",
+  },
+  {
+    stage: "1b",
+    name: "Sol@high arm",
+    planned: 0,
+    cap: 0,
+    goStop: "DROPPED by default (budget; owner-revivable with its own budget)",
+  },
+  {
+    stage: "2",
+    name: "confirmation",
+    planned: 32,
+    cap: 46,
+    capWithD7Lite: 58,
+    goStop: "leader's Delta sign holds on >=3/4 cells; holdout not inverted",
+  },
+  {
+    stage: "3",
+    name: "resolver",
+    planned: 0,
+    cap: 0,
+    goStop: "only if CI straddles the equivalence band; requires NEW owner authorization; pre-registered rule applies first",
+  },
+  {
+    stage: "4",
+    name: "full-book pilot",
+    planned: 0,
+    cap: 0,
+    goStop: "outside this assignment (recommendation only); entry requires Stage-2 clear + BEFORE-PILOT items",
+  },
+];
+
+export type DegradationRungId = "R1" | "R2" | "R3";
+
+/** How a degradation rung selects its target, if it selects one at all. */
+export type DegradationSelectionMode =
+  | "smallest-replicate1-e-spread-block"
+  | "same-block-replicate-2"
+  | "halt-for-reauthorization";
+
+/** One rung of the frozen degradation ladder (§5.3, verbatim numbers). The
+ *  ladder is DATA — a fixed, pre-registered fallback order, never computed or
+ *  re-derived from the live outcome; `deltaSessions` is the session delta
+ *  against the default ~130-session path as stated in the frozen plan. */
+export type DegradationRung = {
+  id: DegradationRungId;
+  deltaSessions: number;
+  action: string;
+  selection: DegradationSelectionMode;
+};
+
+/** The registered degradation ladder (frozen plan §5.3): R1 drops Stage-1
+ *  D7-lite from 12 to 6 sessions for ONE block, chosen by
+ *  `selectSmallestSpreadBlock()` (an information criterion — never by which
+ *  candidate is ahead); R2 drops replicate 2 of that SAME block (R2 never
+ *  picks a different block, and never fires without R1 having selected one);
+ *  R3 halts for new owner re-authorization rather than degrading further. */
+export const DEGRADATION_LADDER: DegradationRung[] = [
+  {
+    id: "R1",
+    deltaSessions: -6,
+    action:
+      "Drop Stage-1 D7-lite secondary sessions from 12 to 6 for the block selectSmallestSpreadBlock() selects " +
+      "(information criterion, never outcome-direction).",
+    selection: "smallest-replicate1-e-spread-block",
+  },
+  {
+    id: "R2",
+    deltaSessions: -12,
+    action:
+      "Drop replicate 2 (E-audit and any surviving D7-lite) for the SAME block R1 selected — never a different " +
+      "block, and never applied without R1 first.",
+    selection: "same-block-replicate-2",
+  },
+  {
+    id: "R3",
+    deltaSessions: 0,
+    action:
+      "Halt the campaign for new owner re-authorization. No further degradation is applied — the ladder ends " +
+      "here, not at a lowered bar.",
+    selection: "halt-for-reauthorization",
+  },
+];
+
+/** The registered rule (frozen plan §5.3: "Never run Stage 1 to cap and skip
+ *  Stage 2 (STOP)"), verbatim intent, checked mechanically by
+ *  `checkBudgetBeforeStage2()`. */
+export const STAGE1_AT_CAP_WITHOUT_CONFIRMATION_RULE =
+  "Stage 1 at cap without confirmation = STOP. Never run Stage 1 to its registered cap and then enter Stage 2 " +
+  "on an unconfirmed outcome or without headroom for Stage 2's planned spend — halt and escalate for " +
+  "re-authorization (apply the degradation ladder first) instead.";
+
+/** The registered chapter-experiment budget authority (frozen plan §5.3). Both
+ *  D-3 ceiling readings are carried as DISCLOSED RANGES (owner-supplied
+ *  estimates), never collapsed to one number and never computed here — the
+ *  frozen plan is explicit that Stage-0a's exact ledger recount replaces
+ *  these estimates once it runs. */
+export type ExperimentBudgetPlan = {
+  schema: typeof EXPERIMENT_BUDGET_PLAN_SCHEMA;
+  /** The D-3 codex-only ceiling reading (unchanged from `SCREENING_PLAN`'s
+   *  `ledgerAccounting.campaignSessionCeiling`). */
+  ceilingCodexOnlyReading: number;
+  /** Remaining budget under the codex-only reading (150 - ~17-21 already
+   *  spent), as a disclosed range — never a single invented number. */
+  remainingCodexOnlyReading: string;
+  /** Remaining budget under the conservative combined reading (further -13
+   *  Claude sessions). Disclosed as NOT fitting the default ~130-session path
+   *  — this is evidence for an owner decision, not a second enforced cap. */
+  remainingCombinedReading: string;
+  /** The default (no-degradation) path's total planned session spend. */
+  defaultPathSessions: string;
+  stages: ExperimentStageBudget[];
+  ladder: DegradationRung[];
+  stage1AtCapWithoutConfirmationRule: string;
+};
+
+export const EXPERIMENT_BUDGET_PLAN: ExperimentBudgetPlan = {
+  schema: EXPERIMENT_BUDGET_PLAN_SCHEMA,
+  ceilingCodexOnlyReading: 150,
+  remainingCodexOnlyReading: "129-133 (150 minus ~17-21 already spent)",
+  remainingCombinedReading: "116-120 (further -13 Claude sessions) — does not fit the default ~130-session path",
+  defaultPathSessions: "~130",
+  stages: EXPERIMENT_STAGE_BUDGETS,
+  ladder: DEGRADATION_LADDER,
+  stage1AtCapWithoutConfirmationRule: STAGE1_AT_CAP_WITHOUT_CONFIRMATION_RULE,
+};
+
+/** Canonical JSON serialization of the registered experiment budget plan. The
+ *  committed companion `V25_CHAPTER_EXPERIMENT_BUDGET.plan.json` is EXACTLY
+ *  this string (mirrors `screeningPlanJson()`'s byte-freeze contract). */
+export function experimentBudgetPlanJson(plan: ExperimentBudgetPlan = EXPERIMENT_BUDGET_PLAN): string {
+  return JSON.stringify(plan, null, 2) + "\n";
+}
+
+export class LadderSelectionError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "LadderSelectionError";
+  }
+}
+
+/** One block's replicate-1 E-audit dispersion. This type carries ONLY a
+ *  non-negative spread magnitude (e.g. SD or range across the block's
+ *  replicate-1 E-audits) — deliberately NO score, delta-vs-Sol, or winner
+ *  field, so `selectSmallestSpreadBlock` structurally CANNOT select by
+ *  outcome direction: the information it would need to do so was never
+ *  passed in. */
+export type BlockSpread = {
+  block: string;
+  replicate1ESpread: number;
+};
+
+/** Deterministic block selection for ladder rungs R1 (and, by construction,
+ *  R2's "same block" reuse of R1's pick): the block with the SMALLEST
+ *  replicate-1 E spread is targeted first — the block whose extra data
+ *  carries the least statistical signal to lose (an information criterion).
+ *  Ties break on `block` ascending (lexicographic) so the result is fully
+ *  deterministic for a given set of spreads. Throws on an empty list or on
+ *  any non-finite / negative spread (fail-closed — never selects on invalid
+ *  dispersion data). */
+export function selectSmallestSpreadBlock(spreads: BlockSpread[]): BlockSpread {
+  if (spreads.length === 0) {
+    throw new LadderSelectionError("selectSmallestSpreadBlock: no blocks to select from.");
+  }
+  for (const s of spreads) {
+    if (!Number.isFinite(s.replicate1ESpread) || s.replicate1ESpread < 0) {
+      throw new LadderSelectionError(
+        `selectSmallestSpreadBlock: block "${s.block}" has a non-finite or negative spread (${s.replicate1ESpread}) — refusing to select on invalid dispersion data.`,
+      );
+    }
+  }
+  const sorted = [...spreads].sort(
+    (a, b) => a.replicate1ESpread - b.replicate1ESpread || a.block.localeCompare(b.block),
+  );
+  return sorted[0];
+}
+
+export type PreStage2BudgetCheckInput = {
+  /** Cumulative sessions already spent this campaign phase, READ from the
+   *  ledger (never estimated — Stage-0a's exact recount replaces estimates
+   *  per the frozen plan). */
+  cumulativeSessionsUsed: number;
+  /** The campaign session ceiling currently in force (one of the two D-3
+   *  readings, or a ladder-adjusted figure — the caller's choice; this
+   *  function does not pick between readings). */
+  ceiling: number;
+  /** Stage 1 produced a CONFIRMED advancement decision (`decideAdvancement`
+   *  ran to completion and returned `ADVANCE`) before Stage 2 is considered. */
+  stage1Confirmed: boolean;
+  /** Stage 1's actual spend reached its registered hard cap (119). */
+  stage1AtCap: boolean;
+  /** Stage 2's planned session cost for the arm being requested (32 without
+   *  D7-lite, 46/58 at Stage 2's registered caps). */
+  stage2PlannedSessions: number;
+};
+
+export type PreStage2BudgetCheckResult =
+  | { ok: true; remainingBeforeStage2: number; remainingAfterStage2: number }
+  | { ok: false; reason: string; remainingBeforeStage2: number };
+
+/** The pre-Stage-2 remaining-budget check (frozen plan §5.3): enforces
+ *  "Stage 1 at cap without confirmation = STOP" and refuses to start Stage 2
+ *  without enough remaining headroom under the ceiling for its planned spend
+ *  — "never run Stage 1 to cap and skip Stage 2 (STOP)". `ScreeningSessionBudget`
+ *  remains the authoritative CUMULATIVE halt during live spend (it throws
+ *  before the offending session); this function is the GATE checked once,
+ *  before Stage 2 is allowed to start spending against that budget at all. */
+export function checkBudgetBeforeStage2(input: PreStage2BudgetCheckInput): PreStage2BudgetCheckResult {
+  const remainingBeforeStage2 = input.ceiling - input.cumulativeSessionsUsed;
+  if (input.stage1AtCap && !input.stage1Confirmed) {
+    return {
+      ok: false,
+      reason:
+        `${STAGE1_AT_CAP_WITHOUT_CONFIRMATION_RULE} (Stage 1 spent to its registered cap without a confirmed ` +
+        "advancement decision.)",
+      remainingBeforeStage2,
+    };
+  }
+  if (!input.stage1Confirmed) {
+    return {
+      ok: false,
+      reason: "Stage 1 has not produced a CONFIRMED advancement decision (decideAdvancement -> ADVANCE) — Stage 2 cannot start.",
+      remainingBeforeStage2,
+    };
+  }
+  if (remainingBeforeStage2 < input.stage2PlannedSessions) {
+    return {
+      ok: false,
+      reason:
+        `insufficient remaining budget for Stage 2: ${remainingBeforeStage2} session(s) remain under the ` +
+        `${input.ceiling}-session ceiling but Stage 2 is planned to spend ${input.stage2PlannedSessions} — ` +
+        `${STAGE1_AT_CAP_WITHOUT_CONFIRMATION_RULE}`,
+      remainingBeforeStage2,
+    };
+  }
+  return {
+    ok: true,
+    remainingBeforeStage2,
+    remainingAfterStage2: remainingBeforeStage2 - input.stage2PlannedSessions,
+  };
 }
