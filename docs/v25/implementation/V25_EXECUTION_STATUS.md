@@ -63,7 +63,7 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 602b | integrated | wp-602b-fresh-preflight | 96998904 | 681189ac9 | rt PASS-WITH-NOTES; L-33 CLOSED (fresh book starts) |
 | 801 | integrated | wp/801-failure-injection | 11e0362ac | 1d3fd38eb | rt PASS (4 mutation probes); merged 650f49450; zero guard gaps found — all 10 scenarios already fail-closed |
 | 701-mf | integrated | wp/701-bakeoff-corpus | 11e0362ac | 5b5343800 | rt PASS; 2 rt findings fixed pre-merge (allowlist readiness + record cross-binding); merged e912bf63f; packet not-ready-for-bakeoff pending D-7 freeze |
-| 502 | in progress (build) | wp/502-capability-probe | 11e0362ac | — | build model-free; live probe (≤3 calls/model) executes post-integration under L-37 authorization |
+| 502 | **accepted (built + live-executed)** | wp/502-capability-probe | 11e0362ac | 6187d3bf6 | rt PASS; RT-1 fixed pre-merge; live probe 2026-07-17: ALL 4 configs SUPPORTED (8 calls, 8/150 ceiling); results doc + ledger committed |
 | 702 | in progress | wp/702-bakeoff-d7-judge | 416a73385 | — | dispatched 2026-07-17 after 701-mf integration; model-free (injected D7-judge doubles) |
 | others | not started | — | — | — | — |
 
