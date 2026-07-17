@@ -198,10 +198,81 @@ export function collectRatings(record: JsonRecord): RatingsByPath | null {
   return out;
 }
 
+// ── Derive-don't-reject aggregates (V25-AUD-02/04) ────────────────────────────
+// The four ATOMIC 0-4 subcriterion ratings are a rater's real judgment and the
+// ground truth; the domain_score / weighted_points / chapter_diagnostic_score
+// aggregates are arithmetic a stochastic rater slip can get wrong. The instrument
+// DERIVES those aggregates from the atomic ratings (the exact formulas below,
+// unchanged) instead of voiding an otherwise-valid rating on a self-reported
+// arithmetic mismatch — the retained 2026-07-17 ledgers lost 5/13 live rater
+// sessions to exactly that reject class. Hard rejection is UNCHANGED for
+// missing/invalid atomic ratings, missing evidence, and schema-identity drift.
+
+/** The rubric aggregates DERIVED from a record's atomic ratings, or null when any
+ *  domain lacks its four numeric subcriterion ratings (that record is hard-
+ *  rejected on the atomic ratings elsewhere; a partial derivation is meaningless,
+ *  so a consumer then falls back to the self-reported value). */
+export type DerivedAggregatesV1 = {
+  domainScores: Map<string, number>;
+  weightedPoints: Map<string, number>;
+  chapterDiagnostic: number;
+};
+
+export function deriveRecordAggregates(record: JsonRecord): DerivedAggregatesV1 | null {
+  const ratings = collectRatings(record);
+  if (ratings === null) return null;
+  const domainScores = new Map<string, number>();
+  const weightedPoints = new Map<string, number>();
+  let weightedTotal = 0;
+  for (const spec of RUBRIC_DOMAINS) {
+    const values = spec.subcriteria.map((sub) => ratings.get(`domains.${spec.key}.subcriteria.${sub}`) ?? Number.NaN);
+    const domainScore = values.reduce((a, b) => a + b, 0) / 4;
+    const points = (domainScore / 4) * spec.weight;
+    domainScores.set(spec.key, domainScore);
+    weightedPoints.set(spec.key, points);
+    weightedTotal += points;
+  }
+  return { domainScores, weightedPoints, chapterDiagnostic: (weightedTotal / RUBRIC_CHAPTER_WEIGHT_TOTAL) * 100 };
+}
+
+/** The annotation a validator populates when it derived any aggregate: `derived`
+ *  is true iff at least one self-reported field was absent or drifted and was
+ *  replaced by the derived value; `fields` lists their canonical paths. */
+export type AggregateDerivationV1 = {
+  derived: boolean;
+  fields: string[];
+};
+
+/** Replace a self-reported aggregate with the derived value when it is absent or
+ *  drifts (isClose) from it, recording the field path in the derivation. Mutates
+ *  the record IN PLACE so a caller reading the validated record sees the derived
+ *  value; the persisted immutable bytes are untouched (the harness retains the
+ *  original submission verbatim). A matching self-reported value is left
+ *  byte-identical — never overwritten with a possibly-last-ULP-different rebuild. */
+function deriveAggregate(
+  container: JsonRecord,
+  key: string,
+  derivedValue: number,
+  fieldPath: string,
+  derivation?: AggregateDerivationV1,
+): void {
+  const reported = container[key];
+  if (typeof reported === "number" && isClose(reported, derivedValue)) return;
+  container[key] = derivedValue;
+  if (derivation !== undefined) {
+    derivation.derived = true;
+    derivation.fields.push(fieldPath);
+  }
+}
+
 function validateDomains(
   record: JsonRecord,
   errors: string[],
-  args: { ratingCheck: (rating: unknown) => boolean; ratingMessage: string },
+  args: {
+    ratingCheck: (rating: unknown) => boolean;
+    ratingMessage: string;
+    derivation?: AggregateDerivationV1;
+  },
 ): void {
   const domains = (record.domains ?? {}) as JsonRecord;
   const expectedKeys = new Set(RUBRIC_DOMAINS.map((d) => d.key));
@@ -209,7 +280,7 @@ function validateDomains(
   if (actualKeys.size !== expectedKeys.size || [...expectedKeys].some((key) => !actualKeys.has(key))) {
     errors.push("domains must contain exactly Domains 1-8");
   }
-  let weightedTotal = 0;
+  let allDomainsRated = true;
   for (const spec of RUBRIC_DOMAINS) {
     const domain = (domains[spec.key] ?? {}) as JsonRecord;
     if (domain.weight !== spec.weight) errors.push(`${spec.key}.weight must be ${spec.weight}`);
@@ -217,6 +288,7 @@ function validateDomains(
     const subKeys = new Set(Object.keys(subs));
     if (subKeys.size !== spec.subcriteria.length || spec.subcriteria.some((key) => !subKeys.has(key))) {
       errors.push(`${spec.key}.subcriteria keys are invalid`);
+      allDomainsRated = false;
       continue;
     }
     const ratings: number[] = [];
@@ -233,17 +305,7 @@ function validateDomains(
       const evidence = sub.evidence;
       if (!Array.isArray(evidence) || evidence.length === 0) errors.push(`${spec.key}.${subKey} needs evidence`);
     }
-    if (ratings.length === 4) {
-      const expectedScore = ratings.reduce((a, b) => a + b, 0) / 4;
-      const expectedPoints = (expectedScore / 4) * spec.weight;
-      if (!isClose(Number(domain.domain_score ?? -1), expectedScore)) {
-        errors.push(`${spec.key}.domain_score arithmetic mismatch`);
-      }
-      if (!isClose(Number(domain.weighted_points ?? -1), expectedPoints)) {
-        errors.push(`${spec.key}.weighted_points arithmetic mismatch`);
-      }
-      weightedTotal += expectedPoints;
-    }
+    if (ratings.length !== 4) allDomainsRated = false;
     if (!Array.isArray(domain.strengths) || domain.strengths.length < 2) errors.push(`${spec.key} needs at least two strengths`);
     if (!Array.isArray(domain.limitations) || domain.limitations.length < 1) errors.push(`${spec.key} needs at least one limitation`);
     if (String(domain.pattern ?? domain.within_chapter_pattern ?? "").trim().length === 0) errors.push(`${spec.key} needs pattern`);
@@ -252,9 +314,22 @@ function validateDomains(
     }
     if (String(domain.scope_note ?? "").trim().length === 0) errors.push(`${spec.key} needs scope_note`);
   }
-  const expectedDiagnostic = (weightedTotal / RUBRIC_CHAPTER_WEIGHT_TOTAL) * 100;
-  if (!isClose(Number(record.chapter_diagnostic_score ?? -1), expectedDiagnostic)) {
-    errors.push("chapter_diagnostic_score arithmetic mismatch");
+  // Derive-don't-reject the aggregates ONLY when every domain carried its four
+  // valid atomic ratings — otherwise the record is already hard-rejected on the
+  // atomic ratings and a partial derivation would be meaningless.
+  if (allDomainsRated) {
+    const derived = deriveRecordAggregates(record);
+    if (derived !== null) {
+      for (const spec of RUBRIC_DOMAINS) {
+        const domain = (domains[spec.key] ?? {}) as JsonRecord;
+        deriveAggregate(domain, "domain_score", derived.domainScores.get(spec.key) ?? Number.NaN,
+          `domains.${spec.key}.domain_score`, args.derivation);
+        deriveAggregate(domain, "weighted_points", derived.weightedPoints.get(spec.key) ?? Number.NaN,
+          `domains.${spec.key}.weighted_points`, args.derivation);
+      }
+      deriveAggregate(record, "chapter_diagnostic_score", derived.chapterDiagnostic,
+        "chapter_diagnostic_score", args.derivation);
+    }
   }
 }
 
@@ -361,6 +436,10 @@ export function validateChapterRaterRecord(args: {
   inspection: RubricInspection;
   sourceText: string;
   profile: RubricAuditProfile;
+  /** Optional out-collector: which self-reported aggregates were derive-replaced
+   *  (V25-AUD-02/04). Absent ⇒ the record is still derive-accepted, just not
+   *  annotated. */
+  derivation?: AggregateDerivationV1;
 }): string[] {
   const errors: string[] = [];
   const record = args.record.value;
@@ -374,6 +453,7 @@ export function validateChapterRaterRecord(args: {
   validateDomains(record, errors, {
     ratingCheck: (rating) => typeof rating === "number" && Number.isInteger(rating) && rating >= 0 && rating <= 4,
     ratingMessage: "must be integer 0-4",
+    derivation: args.derivation,
   });
   if (!Array.isArray(record.improvements) || record.improvements.length !== 3) {
     errors.push("exactly three improvements required");
@@ -398,6 +478,9 @@ export function validateChapterAdjudicationRecord(args: {
   inspection: RubricInspection;
   sourceText: string;
   profile: RubricAuditProfile;
+  /** Optional out-collector: which self-reported aggregates were derive-replaced
+   *  (V25-AUD-02/04). Absent ⇒ still derive-accepted, just not annotated. */
+  derivation?: AggregateDerivationV1;
 }): string[] {
   const errors: string[] = [];
   const record = args.record.value;
@@ -426,6 +509,7 @@ export function validateChapterAdjudicationRecord(args: {
   validateDomains(record, errors, {
     ratingCheck: (rating) => typeof rating === "number" && rating >= 0 && rating <= 4 && isClose(rating * 2, Math.round(rating * 2)),
     ratingMessage: "must be a half-point 0-4",
+    derivation: args.derivation,
   });
 
   const primaryRatings = collectRatings(args.primary.value);
@@ -875,16 +959,28 @@ export type RubricAuditReportV1 = {
   reportSha256: string;
 };
 
+/** The record's chapter diagnostic — DERIVED from its atomic ratings when they
+ *  are present (V25-AUD-02/04: the ground truth a self-reported slip cannot
+ *  corrupt), else the self-reported value (synthetic/legacy records that carry no
+ *  atomic ratings — behavior unchanged for them). */
+function reportedOrDerivedDiagnostic(record: JsonRecord): number {
+  const derived = deriveRecordAggregates(record);
+  return derived !== null ? derived.chapterDiagnostic : Number(record.chapter_diagnostic_score);
+}
+
 function chapterResultFromAdjudication(
   unit: string,
   record: JsonRecord,
   bar: RubricAuditBar,
 ): RubricAuditChapterResultV1 {
-  const score = Number(record.chapter_diagnostic_score);
+  const derived = deriveRecordAggregates(record);
+  const score = derived !== null ? derived.chapterDiagnostic : Number(record.chapter_diagnostic_score);
   const domains = (record.domains ?? {}) as JsonRecord;
   let coreDomainMin = Number.POSITIVE_INFINITY;
   for (const key of RUBRIC_CORE_DOMAIN_KEYS) {
-    const domainScore = Number(((domains[key] ?? {}) as JsonRecord).domain_score);
+    const domainScore = derived !== null
+      ? (derived.domainScores.get(key) ?? Number.NaN)
+      : Number(((domains[key] ?? {}) as JsonRecord).domain_score);
     coreDomainMin = Math.min(coreDomainMin, domainScore);
   }
   const gates = (record.gates ?? {}) as JsonRecord;
@@ -927,7 +1023,7 @@ export function buildRubricAuditReport(args: {
     requireCondition(record !== undefined, `missing adjudication for ${chapter.unit}`);
     chapters.push(chapterResultFromAdjudication(chapter.unit, record, manifest.bar));
   }
-  const observed = Number(args.calibrationAdjudication.chapter_diagnostic_score);
+  const observed = reportedOrDerivedDiagnostic(args.calibrationAdjudication);
   const absDelta = Math.abs(observed - manifest.calibration.expectedChapterDiagnostic);
   const calibrationPass = absDelta <= manifest.bar.calibrationTolerance;
   const scores = chapters.map((chapter) => chapter.chapterDiagnostic);

@@ -158,6 +158,117 @@ test("v25 profile requires the layer-independence gate; owner-compat rejects it"
     "a passing gate over a non-self-contained layer must fail closed");
 });
 
+// ── Derive-don't-reject (WP-E24 / V25-AUD-02/04) ─────────────────────────────
+// The sealed owner nudge-ch03 primary validates clean; these mutate ONLY the
+// self-reported aggregates (or an atomic rating) and prove the derive-vs-reject
+// boundary: an aggregate slip is DERIVED and accepted; a bad atomic rating,
+// missing evidence, or schema-identity drift still fails closed.
+
+function ownerPrimaryFixture(): {
+  primaryRaw: string;
+  dispatch: ReturnType<typeof loadRecord>;
+  inspection: Record<string, unknown>;
+  sourceText: string;
+} {
+  const unit = "nudge-ch03";
+  return {
+    primaryRaw: readFileSync(resolve(OWNER_RUN_DIR, `raw/primary/${unit}.json`), "utf8"),
+    dispatch: loadRecord(readFileSync(resolve(OWNER_RUN_DIR, `jobs/${unit}.receipts/primary.dispatch.json`), "utf8")),
+    inspection: JSON.parse(readFileSync(resolve(OWNER_RUN_DIR, `jobs/${unit}.inspection.json`), "utf8")) as Record<string, unknown>,
+    sourceText: readFileSync(resolve(REPOSITORY_ROOT, RUBRIC_CALIBRATION_REFERENCES[0].docRelPath), "utf8"),
+  };
+}
+
+const approx = (a: unknown, b: unknown): boolean => Math.abs(Number(a) - Number(b)) <= 1e-9;
+const epistemicDomain = (r: Record<string, unknown>): Record<string, unknown> =>
+  ((r.domains as Record<string, Record<string, unknown>>).epistemic_integrity);
+
+test("derive-don't-reject: a MISMATCHED self-reported domain_score is accepted, derived, and annotated", () => {
+  const fx = ownerPrimaryFixture();
+  const parsed = JSON.parse(fx.primaryRaw) as Record<string, unknown>;
+  const originalScore = epistemicDomain(parsed).domain_score;
+  // A stochastic rater slip: the atomic ratings + evidence are intact, only the
+  // reported domain_score drifts (weighted_points / chapter_diagnostic_score stay
+  // correct, so ONLY domain_score is derived).
+  epistemicDomain(parsed).domain_score = 99;
+  const record = loadRecord(JSON.stringify(parsed));
+  const derivation = { derived: false, fields: [] as string[] };
+  const errors = validateChapterRaterRecord({
+    record, dispatch: fx.dispatch, inspection: fx.inspection as never, sourceText: fx.sourceText,
+    profile: "owner-run-compat", derivation,
+  });
+  assert.deepEqual(errors, [], "an aggregate slip does not void the rating");
+  assert.equal(derivation.derived, true);
+  assert.deepEqual(derivation.fields, ["domains.epistemic_integrity.domain_score"]);
+  assert.ok(approx(epistemicDomain(record.value).domain_score, originalScore),
+    "the record now carries the code-derived value (== the owner's original), not the slipped 99");
+});
+
+test("derive-don't-reject: an ABSENT aggregate (chapter_diagnostic_score) is accepted and derived", () => {
+  const fx = ownerPrimaryFixture();
+  const parsed = JSON.parse(fx.primaryRaw) as Record<string, unknown>;
+  const originalDiag = parsed.chapter_diagnostic_score;
+  delete parsed.chapter_diagnostic_score;
+  const record = loadRecord(JSON.stringify(parsed));
+  const derivation = { derived: false, fields: [] as string[] };
+  const errors = validateChapterRaterRecord({
+    record, dispatch: fx.dispatch, inspection: fx.inspection as never, sourceText: fx.sourceText,
+    profile: "owner-run-compat", derivation,
+  });
+  assert.deepEqual(errors, [], "an absent aggregate is derived, not rejected");
+  assert.equal(derivation.derived, true);
+  assert.deepEqual(derivation.fields, ["chapter_diagnostic_score"]);
+  assert.ok(approx(record.value.chapter_diagnostic_score, originalDiag),
+    "the derived chapter_diagnostic_score matches the owner's original");
+});
+
+test("derive-don't-reject: an unmodified owner primary derives NOTHING (correct arithmetic is left byte-identical)", () => {
+  const fx = ownerPrimaryFixture();
+  const record = loadRecord(fx.primaryRaw);
+  const derivation = { derived: false, fields: [] as string[] };
+  const errors = validateChapterRaterRecord({
+    record, dispatch: fx.dispatch, inspection: fx.inspection as never, sourceText: fx.sourceText,
+    profile: "owner-run-compat", derivation,
+  });
+  assert.deepEqual(errors, []);
+  assert.equal(derivation.derived, false, "a correct record is never derived");
+  assert.deepEqual(derivation.fields, []);
+});
+
+test("hard rejection preserved: a bad atomic rating, missing evidence, and schema-identity drift still fail closed (never derived)", () => {
+  const fx = ownerPrimaryFixture();
+
+  // (1) A non-integer atomic rating — the ground truth — is hard-rejected and
+  //     NOTHING is derived (derivation never papers over a bad atomic rating).
+  const badRating = JSON.parse(fx.primaryRaw) as Record<string, unknown>;
+  ((epistemicDomain(badRating).subcriteria as Record<string, Record<string, unknown>>).claim_support_fit).rating = 2.5;
+  const d1 = { derived: false, fields: [] as string[] };
+  const e1 = validateChapterRaterRecord({
+    record: loadRecord(JSON.stringify(badRating)), dispatch: fx.dispatch, inspection: fx.inspection as never,
+    sourceText: fx.sourceText, profile: "owner-run-compat", derivation: d1,
+  });
+  assert.ok(e1.some((e) => /claim_support_fit\.rating must be integer 0-4/.test(e)), e1.join("; "));
+  assert.equal(d1.derived, false, "a bad atomic rating blocks derivation for its domain");
+
+  // (2) Missing evidence is a hard rejection.
+  const noEvidence = JSON.parse(fx.primaryRaw) as Record<string, unknown>;
+  ((epistemicDomain(noEvidence).subcriteria as Record<string, Record<string, unknown>>).claim_support_fit).evidence = [];
+  const e2 = validateChapterRaterRecord({
+    record: loadRecord(JSON.stringify(noEvidence)), dispatch: fx.dispatch, inspection: fx.inspection as never,
+    sourceText: fx.sourceText, profile: "owner-run-compat",
+  });
+  assert.ok(e2.some((e) => /claim_support_fit needs evidence/.test(e)), e2.join("; "));
+
+  // (3) A schema-identity mismatch is a hard rejection.
+  const badSchema = JSON.parse(fx.primaryRaw) as Record<string, unknown>;
+  badSchema.artifact_type = "not_a_rating_artifact";
+  const e3 = validateChapterRaterRecord({
+    record: loadRecord(JSON.stringify(badSchema)), dispatch: fx.dispatch, inspection: fx.inspection as never,
+    sourceText: fx.sourceText, profile: "owner-run-compat",
+  });
+  assert.ok(e3.some((e) => /artifact_type is invalid/.test(e)), e3.join("; "));
+});
+
 // ── App-faithful rendering ────────────────────────────────────────────────────
 
 test("audit documents carry the full key surface and label app modes", () => {
