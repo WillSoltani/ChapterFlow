@@ -1,6 +1,6 @@
 # V25 S-Tier Program — Execution Status
 
-**Program state:** EXECUTING — Phases 1–4 COMPLETE (G1–G4 passed; D7 ship gate live). Phase 5 in progress (terminal autonomy). Live calls forbidden until Phase-6 written authorization (D-3). Live calls remain forbidden until Phase-6 written authorization (D-3; incl. the deferred WP-701 corpus freeze per L-25).
+**Program state:** PAUSED AT PHASE-6 BOUNDARY — Phases 1–5 COMPLETE (G1–G5 passed; model-free pipeline done). Awaiting owner D-3 (bakeoff live-call authorization) before Phase 6. 28/42 WPs integrated; the remaining 14 all require live model calls. Live calls remain forbidden until Phase-6 written authorization (D-3; incl. the deferred WP-701 corpus freeze per L-25).
 
 ## Branch / worktree registry
 
@@ -16,6 +16,7 @@ Integration SHAs will be appended per gate (G1–G8) after approval.
 | Gate | SHA | Result | Evidence |
 |---|---|---|---|
 | G1 | f3b83a4fe | **PASS** — suite 3032/0/12xenv/39skip (detached); root typecheck+build green; contract-validate PASS | g1-gate-final.log, ledger L-20 |
+| G5 | c7746bab5 | **PASS** — suite 3323/0/12xenv/39skip (detached); root green; Phase 5 CLOSED; all build phases done | g5-gate.log, L-36 |
 | G4 | 116f214d7 | **PASS** — suite 3176/0/12xenv/39skip (detached); root green; Phase 4 CLOSED (D7 gate live) | g4-final.log, L-30 |
 | G3 | f8c74a760 | **PASS** — suite 3107/0/12xenv/39skip (detached); root green; Phase 3 CLOSED | g3-gate2.log, L-27 |
 | G2 | ef41abe57 | **PASS** — suite 3058/0/12xenv/39skip (detached); root typecheck+build green; contract-validate PASS; Phase 2 CLOSED | g2-gate-final.log, ledger L-25 |
