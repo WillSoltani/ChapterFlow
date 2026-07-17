@@ -1,0 +1,205 @@
+{
+  "schema": "v25-bakeoff-stage1-screening-plan-v1",
+  "corpusId": "bakeoff-corpus-v1",
+  "corpusManifestRelPath": "docs/v25/bakeoff-corpus-v1/corpus-manifest.json",
+  "configs": [
+    {
+      "id": "gpt-5.6-sol@xhigh",
+      "family": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "probeSupported": true
+    },
+    {
+      "id": "gpt-5.6-terra@xhigh",
+      "family": "gpt-5.6-terra",
+      "effort": "xhigh",
+      "probeSupported": true
+    },
+    {
+      "id": "gpt-5.6-luna@xhigh",
+      "family": "gpt-5.6-luna",
+      "effort": "xhigh",
+      "probeSupported": true
+    },
+    {
+      "id": "gpt-5.6-sol@high",
+      "family": "gpt-5.6-sol",
+      "effort": "high",
+      "probeSupported": true
+    }
+  ],
+  "runs": [
+    {
+      "id": "stage1-nudge-ch03",
+      "bookId": "nudge",
+      "chapters": [
+        3
+      ],
+      "unit": "nudge-ch03",
+      "calibrationUnit": "made-to-stick-ch04",
+      "calibrationRationale": "made-to-stick-ch04 is a sealed corpus unit from a DIFFERENT book than nudge, so it can never collide with the nudge-ch03 candidate unit (rt702-R1); it is also the DEFAULT_D7_CALIBRATION_UNIT, valid here without an override.",
+      "configIds": [
+        "gpt-5.6-sol@xhigh",
+        "gpt-5.6-terra@xhigh",
+        "gpt-5.6-luna@xhigh",
+        "gpt-5.6-sol@high"
+      ],
+      "advisoryJudge": {
+        "model": "gpt-5.6-terra",
+        "effort": "high"
+      },
+      "conductorInvocations": [
+        {
+          "runId": "stage1-nudge-ch03-xhigh-trio",
+          "models": [
+            "gpt-5.6-sol",
+            "gpt-5.6-terra",
+            "gpt-5.6-luna"
+          ],
+          "effort": "xhigh",
+          "configIds": [
+            "gpt-5.6-sol@xhigh",
+            "gpt-5.6-terra@xhigh",
+            "gpt-5.6-luna@xhigh"
+          ]
+        },
+        {
+          "runId": "stage1-nudge-ch03-sol-high",
+          "models": [
+            "gpt-5.6-sol"
+          ],
+          "effort": "high",
+          "configIds": [
+            "gpt-5.6-sol@high"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage1-made-to-stick-ch04",
+      "bookId": "made-to-stick",
+      "chapters": [
+        4
+      ],
+      "unit": "made-to-stick-ch04",
+      "calibrationUnit": "nudge-ch03",
+      "calibrationRationale": "the DEFAULT_D7_CALIBRATION_UNIT (made-to-stick-ch04) IS the unit under test here and would trip the rt702-R1 collision guard, so this run overrides to nudge-ch03 — the lowest-numbered sealed unit from a disjoint book (the-happiness-hypothesis-ch06 would also be disjoint; nudge-ch03 is the neutral default choice).",
+      "configIds": [
+        "gpt-5.6-sol@xhigh",
+        "gpt-5.6-terra@xhigh",
+        "gpt-5.6-luna@xhigh",
+        "gpt-5.6-sol@high"
+      ],
+      "advisoryJudge": {
+        "model": "gpt-5.6-terra",
+        "effort": "high"
+      },
+      "conductorInvocations": [
+        {
+          "runId": "stage1-made-to-stick-ch04-xhigh-trio",
+          "models": [
+            "gpt-5.6-sol",
+            "gpt-5.6-terra",
+            "gpt-5.6-luna"
+          ],
+          "effort": "xhigh",
+          "configIds": [
+            "gpt-5.6-sol@xhigh",
+            "gpt-5.6-terra@xhigh",
+            "gpt-5.6-luna@xhigh"
+          ]
+        },
+        {
+          "runId": "stage1-made-to-stick-ch04-sol-high",
+          "models": [
+            "gpt-5.6-sol"
+          ],
+          "effort": "high",
+          "configIds": [
+            "gpt-5.6-sol@high"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stage1-the-happiness-hypothesis-ch06",
+      "bookId": "the-happiness-hypothesis",
+      "chapters": [
+        6
+      ],
+      "unit": "the-happiness-hypothesis-ch06",
+      "calibrationUnit": "made-to-stick-ch04",
+      "calibrationRationale": "made-to-stick-ch04 is a sealed corpus unit from a DIFFERENT book than the-happiness-hypothesis, so it can never collide with the the-happiness-hypothesis-ch06 candidate unit (rt702-R1); the DEFAULT_D7_CALIBRATION_UNIT is valid here without an override.",
+      "configIds": [
+        "gpt-5.6-sol@xhigh",
+        "gpt-5.6-terra@xhigh",
+        "gpt-5.6-luna@xhigh",
+        "gpt-5.6-sol@high"
+      ],
+      "advisoryJudge": {
+        "model": "gpt-5.6-terra",
+        "effort": "high"
+      },
+      "conductorInvocations": [
+        {
+          "runId": "stage1-the-happiness-hypothesis-ch06-xhigh-trio",
+          "models": [
+            "gpt-5.6-sol",
+            "gpt-5.6-terra",
+            "gpt-5.6-luna"
+          ],
+          "effort": "xhigh",
+          "configIds": [
+            "gpt-5.6-sol@xhigh",
+            "gpt-5.6-terra@xhigh",
+            "gpt-5.6-luna@xhigh"
+          ]
+        },
+        {
+          "runId": "stage1-the-happiness-hypothesis-ch06-sol-high",
+          "models": [
+            "gpt-5.6-sol"
+          ],
+          "effort": "high",
+          "configIds": [
+            "gpt-5.6-sol@high"
+          ]
+        }
+      ]
+    }
+  ],
+  "caps": {
+    "plannedAuthoringRuns": 12,
+    "maxAuthoringRuns": 18,
+    "maxTotalSessions": 40
+  },
+  "advancementBar": {
+    "statement": "A config advances to Stage-2 confirmation iff it has 0 hard-gate failures (deterministic floor AND D7 gate) AND a D7 chapter-diagnostic mean >= 75 across the 3 chapters. At most 3 configs advance, highest D7 means first.",
+    "hardGateFailuresAllowed": 0,
+    "d7ChapterDiagnosticMeanMin": 75,
+    "maxAdvance": 3,
+    "ordering": "highest-d7-mean-first"
+  },
+  "stopRule": {
+    "statement": "If NO config meets the advancement bar, the screening STOPS and emits an owner-escalation note (a format/architecture question, not a model-quality retry). The bar is NEVER lowered to manufacture an advancer, and no model is ever substituted for a dropped one.",
+    "changeCondition": "C->D",
+    "barNeverLowered": true
+  },
+  "ledgerAccounting": {
+    "campaignSessionCeiling": 150,
+    "ledgerSourceOfTruth": "state/run-ledger/** (WP-503 unified per-run ledger). The running Phase-6 total is READ from the ledger slices — it is never hardcoded in this plan; the prior probe spend (L-39) is already recorded there.",
+    "countsAgainstCeiling": "every codex-exec authoring/repair session AND every Claude-side D7 rater/adjudicator dispatch (family claude-side), summed across all run-ledger slices for this campaign phase.",
+    "enforcement": "the execution lane reserves each session through ScreeningSessionBudget and checks the cumulative ledger total against the 150 ceiling BEFORE spawning; a would-be overshoot HALTS before the offending session (never a warning)."
+  },
+  "blinding": [
+    "Candidates are mapped to opaque labels (A/B/C…) once per run and the mapping lives only in the run manifest + final report, never in a reviewer-visible artifact.",
+    "Every reviewer-visible artifact (D7 rater task, advisory review doc/task) passes the forbidden-token leak check (model ids, family suffixes, slugs, slots, price/tier words) BEFORE any dispatch — a leak is fail-closed, never a warning.",
+    "The D7 hidden calibration unit is disjoint from the book under test (rt702-R1), so the calibration pass can never be shadowed by a candidate chapter."
+  ],
+  "evidenceLayout": [
+    "Per conductor invocation: state/model-bakeoffs/<bookId>/<runId>/ — manifest.json (resume SoT), shared-inputs/ freeze record (combinedSha256), work/<slot>/ candidate chapters, reviews/<label>/d7.json (PRIMARY) + review.json (advisory), selection/selection.json, report.json + report.md.",
+    "Per D7 audit: the retained rubric-audit tree under its auditId (bakeoff-<runId>-<label>) — batch manifest, per-(unit,role) rater/adjudication records, blind-pair seals.",
+    "Ledger: state/run-ledger/<bookId>/<runId>.jsonl + <runId>.summary.json (WP-503) — one entry per codex authoring/repair session and per Claude-side D7 dispatch.",
+    "The advancement/STOP decision record and the per-config D7 means are written alongside the plan doc as the Stage-1 outcome evidence."
+  ]
+}
