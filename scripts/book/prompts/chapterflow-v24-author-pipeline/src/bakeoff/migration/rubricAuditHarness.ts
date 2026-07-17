@@ -481,6 +481,142 @@ function renderLayerSection(resolution: UnitResolution): string {
   return parts.join("\n");
 }
 
+// ── Fill-in record skeleton (the task↔validator shape closure) ────────────────
+
+/** Delimiters that fence the literal fill-in record skeleton inside a rater task,
+ *  so a driver/orchestrator/test can extract the exact JSON deterministically. */
+export const RATER_SKELETON_BEGIN = "<<<BEGIN_RATER_RECORD_SKELETON";
+export const RATER_SKELETON_END = "END_RATER_RECORD_SKELETON>>>";
+
+/** The base + (v25) layer-independence gate block, pre-filled with the ONLY
+ *  statuses a passing chapter may carry, so the skeleton is itself ingest-valid. */
+function raterGateSkeleton(profile: RubricAuditProfile): JsonRecord {
+  const statusOf: Record<string, string> = {
+    chapter_artifact_completeness: "pass",
+    epistemic_instructional_safety: "pass",
+    ethics_reader_autonomy: "pass",
+    purpose_audience_declaration: "pass",
+    external_accuracy: "not_assessed",
+    actual_book_completeness: "unevaluable",
+  };
+  const gates: JsonRecord = {};
+  for (const key of RUBRIC_BASE_GATE_KEYS) {
+    gates[key] = { status: statusOf[key] ?? "pass", rationale: `TODO: rationale for the ${key} gate` };
+  }
+  if (profile === "v25") {
+    gates[RUBRIC_LAYER_INDEPENDENCE_GATE_KEY] = {
+      status: "pass",
+      rationale: "TODO: rationale (this gate cannot pass if any layer is not self_contained)",
+      layers: {
+        fast: { self_contained: true, findings: [] },
+        deep: { self_contained: true, findings: [] },
+        full: { self_contained: true, findings: [] },
+      },
+    };
+  }
+  return gates;
+}
+
+/** Build the literal fill-in record skeleton for a blind rater task: the EXACT
+ *  JSON shape validateChapterRaterRecord accepts, with the deterministic binding
+ *  envelope already filled and every JUDGMENT field a clearly-marked "TODO:"
+ *  placeholder. `domains` and each `subcriteria` are OBJECTS keyed by the exact
+ *  rubric snake_case ids (never arrays, never renamed) — the shape the prose
+ *  contract alone did NOT pin down, which made task-following raters emit an array
+ *  (Object.keys → "0".."3") or human-named keys and fail ingest on all eight
+ *  domains ("<domain>.subcriteria keys are invalid" + a zeroed chapter_diagnostic
+ *  arithmetic mismatch). The skeleton is itself ingest-valid (integer 0 placeholder
+ *  ratings + non-empty placeholder prose): a rater who replaces the ratings/prose
+ *  and recomputes the arithmetic per the contract emits exactly what ingest
+ *  accepts, closing the task↔validator loop. */
+export function renderRaterRecordSkeleton(args: {
+  repositoryRoot: string;
+  manifest: RubricAuditBatchManifestV1;
+  unit: string;
+  role: DispatchRole;
+}): JsonRecord {
+  const resolution = resolveAuditUnit(args);
+  const envelope = raterBindingEnvelope(args);
+  const domains: JsonRecord = {};
+  for (const spec of RUBRIC_DOMAINS) {
+    const subcriteria: JsonRecord = {};
+    for (const sub of spec.subcriteria) {
+      subcriteria[sub] = {
+        rating: 0,
+        anchor_rationale: `TODO: one-sentence anchor-linked rationale for ${sub}, citing a specific locator in the document`,
+        evidence: [{ locator: "TODO: section or paragraph locator", paraphrase: "TODO: what the cited text says" }],
+      };
+    }
+    domains[spec.key] = {
+      weight: spec.weight,
+      subcriteria,
+      domain_score: 0,
+      weighted_points: 0,
+      strengths: [`TODO: a ${spec.key} strength observed in the document`, "TODO: a second strength"],
+      limitations: [`TODO: a ${spec.key} limitation observed in the document`],
+      within_chapter_pattern: `TODO: the within-chapter pattern for ${spec.key}`,
+      anchor_linked_rationale: `TODO: domain-level anchor-linked rationale for ${spec.key}`,
+      scope_note: "TODO: chapter-local scope note",
+    };
+  }
+  return {
+    schema_version: envelope.schema_version,
+    artifact_type: envelope.artifact_type,
+    run_id: envelope.run_id,
+    job_id: envelope.job_id,
+    rater_role: envelope.rater_role,
+    worker_task_id: envelope.worker_task_id,
+    worker_session_id: envelope.worker_session_id,
+    worker_dispatch_receipt_sha256: envelope.worker_dispatch_receipt_sha256,
+    book: { book_id: envelope.book.book_id, source_book_title: "TODO: source book title inferred from the document only" },
+    source_hash: envelope.source_hash,
+    chapter: envelope.chapter,
+    scope: envelope.scope,
+    evaluation_construct: "TODO: what this chapter teaches and to whom",
+    gates: raterGateSkeleton(resolution.profile),
+    domains,
+    chapter_diagnostic_score: 0,
+    diagnostic_band: "TODO: chapter diagnostic band phrase (a CHAPTER diagnostic, never a full-book certification)",
+    strongest_qualities: "TODO: the chapter's strongest qualities",
+    weakest_qualities: "TODO: the chapter's weakest qualities",
+    engagement_curve: "TODO: the engagement curve across the chapter",
+    comprehension_retention_analysis: "TODO: comprehension and retention analysis",
+    practical_use_judgment_analysis: "TODO: practical-use and judgment analysis",
+    best_fit_readers: "TODO: readers this chapter fits best",
+    struggling_readers: "TODO: readers who will struggle",
+    improvements: ["TODO: highest-priority improvement", "TODO: second improvement", "TODO: third improvement"],
+    verdict: "TODO: two or three sentence chapter-diagnostic verdict",
+  };
+}
+
+/** The rater task's record-skeleton section: the shape instructions + the fenced,
+ *  extractable literal JSON the rater fills. */
+function renderRaterSkeletonSection(skeleton: JsonRecord): string {
+  return [
+    "── Record skeleton (the EXACT output shape — copy it, keep every key) ──",
+    "Return a JSON object with EXACTLY these keys. `domains` is an OBJECT keyed by the eight domain ids, and",
+    "each domain's `subcriteria` is an OBJECT keyed by that domain's four subcriterion ids (NEVER an array,",
+    "NEVER renamed or human-worded keys). The identity, source, chapter, and scope block is already filled —",
+    'keep it verbatim. Replace every 0 rating with your integer 0-4 judgment, replace every "TODO:"',
+    "placeholder string with your finding, and RECOMPUTE each domain_score, weighted_points, and",
+    "chapter_diagnostic_score per the arithmetic above. Return ONLY the JSON object (no prose around it).",
+    RATER_SKELETON_BEGIN,
+    JSON.stringify(skeleton, null, 2),
+    RATER_SKELETON_END,
+  ].join("\n");
+}
+
+/** Extract the fenced literal record skeleton from a rendered rater task and parse
+ *  it (top-level-object checked). The inverse of renderRaterSkeletonSection — lets
+ *  a driver/test recover the exact fill-in JSON the task taught. */
+export function extractRecordSkeleton(taskText: string): JsonRecord {
+  const begin = taskText.indexOf(RATER_SKELETON_BEGIN);
+  const end = taskText.indexOf(RATER_SKELETON_END);
+  requireCondition(begin >= 0 && end > begin, "rater task has no record skeleton block");
+  const json = taskText.slice(begin + RATER_SKELETON_BEGIN.length, end).trim();
+  return loadRecord(json).value;
+}
+
 /** Render one self-contained rater/adjudicator task string. No filesystem paths
  *  appear in the returned text. */
 export function renderRaterTaskDocument(args: {
@@ -518,8 +654,10 @@ export function renderRaterTaskDocument(args: {
     "",
     "── Required output ──",
     renderIdentityBlock(resolution, manifest.auditId, role),
-    "Then add the eight domains, the gates above, the analysis fields, exactly three improvements, and the",
-    "verdict. Return ONLY the JSON object.",
+    "The record skeleton below already carries this identity block (fill your judgment into it, keep the",
+    "identity/source/scope values verbatim).",
+    "",
+    renderRaterSkeletonSection(renderRaterRecordSkeleton({ repositoryRoot: args.repositoryRoot, manifest, unit, role })),
   ];
   return sections.filter((section) => section !== "").join("\n");
 }

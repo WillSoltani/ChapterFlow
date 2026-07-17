@@ -47,7 +47,7 @@
  * invocation id.
  */
 
-import { mkdirSync, readFileSync, readdirSync, rmSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
@@ -325,6 +325,13 @@ const isolatedClaudeSessionRunner: IsolatedClaudeSessionRunner = (req) =>
         rejectPromise(new Error(`claude session ${killedReason} (unit ${req.unit} ${req.role})`));
         return;
       }
+      // Debugging telemetry: persist the raw reply BEFORE any JSON extraction, so a
+      // live ingest failure (e.g. a schema-non-compliant record) is inspectable
+      // from the session dir. Best-effort — a telemetry write must never lose a
+      // valid rating or mask the real failure.
+      try {
+        writeFileSync(resolve(dir, "reply.txt"), stdout);
+      } catch { /* telemetry write must never brick the D7 dispatch */ }
       if (code !== 0) {
         rejectPromise(new Error(`claude session exited ${code} (unit ${req.unit} ${req.role}): ${stderr.trim().split("\n").slice(-3).join(" / ").slice(0, 400) || "no stderr"}`));
         return;
@@ -336,7 +343,12 @@ const isolatedClaudeSessionRunner: IsolatedClaudeSessionRunner = (req) =>
         return;
       }
       // Transport-level trim ONLY — never edit a field, never fabricate one.
-      resolvePromise(stdout.slice(first, last + 1));
+      const extracted = stdout.slice(first, last + 1);
+      // Persist the extracted record next to the raw reply (debugging telemetry).
+      try {
+        writeFileSync(resolve(dir, "record.json"), extracted);
+      } catch { /* telemetry write must never brick the D7 dispatch */ }
+      resolvePromise(extracted);
     });
 
     child.stdin.write(req.task);
