@@ -83,7 +83,7 @@ xenv("generateBook range runs do not write or overwrite production packages",
       verdict: "PUBLISHABLE",
       contentHash: chapterContentHash(chapter),
       hashVersion: "v2",
-      reviewer: "claude-qc:generate-range-regression",
+      reviewer: "codex-qc:generate-range-regression",
       reviewedAt: "2026-06-23T00:00:00.000Z",
     });
     writeStageCacheManifest({

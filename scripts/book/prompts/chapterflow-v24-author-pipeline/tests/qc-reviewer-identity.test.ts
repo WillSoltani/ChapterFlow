@@ -71,7 +71,7 @@ test("checkQcAttestation blocks a PUBLISHABLE attestation self-certified by the 
 test("checkQcAttestation accepts the approved QC reviewer roles", () => {
   const ch = makeChapter(BOOK, 2);
   try {
-    for (const reviewer of ["claude-qc:s1", "codex-qc:s2", "harness:qc-run-x", "human:alice"]) {
+    for (const reviewer of ["codex-qc:s2", "harness:qc-run-x", "human:alice"]) {
       writeAtt(ch, reviewer);
       assert.deepEqual(withoutNoApi(() => checkQcAttestation(ch, true)), [], `${reviewer} should be an approved QC role`);
     }

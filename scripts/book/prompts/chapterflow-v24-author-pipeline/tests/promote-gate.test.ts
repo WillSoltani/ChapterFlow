@@ -461,7 +461,7 @@ test("promoteBook rejects a caller-provided one-chapter subset of a canonical bo
         verdict: "PUBLISHABLE",
         contentHash: chapterContentHash(chapters[0]),
         hashVersion: "v2",
-        reviewer: "claude-qc:canonical-subset-regression",
+        reviewer: "codex-qc:canonical-subset-regression",
         reviewedAt: "2026-06-23T00:00:00.000Z",
       });
 

@@ -19,6 +19,45 @@ import {
   ProviderTimeoutError,
   defaultModelForProvider,
 } from "./types.js";
+import type { AgentRole } from "../contracts/executionProfile.js";
+
+/** Policy P1 (owner assignment): no Claude-family model rates books or
+ *  chapters. The roles below are the ones `modelPolicy.ROLE_TASK_CLASS` maps
+ *  to a scoring task class ("chapter-direct-read" / "acceptance" /
+ *  "bakeoff-judge") — qc-reviewer, chapter-reviewer, eval-reader, eval-book,
+ *  book-acceptance-reader, bakeoff-judge. Writer/research/repair/scout roles
+ *  are untouched: this refuses the RATING surface only, not the legacy CLI
+ *  transport itself. `opts.role` is a precise caller pin (see
+ *  `providers/router.ts` `roleForCall`); an unpinned call carries no role here
+ *  (the router's tier→role fallback governs `modelPolicy` routing, not the
+ *  literal `CallOptions` object handed to a provider), so only an EXPLICIT
+ *  rating-role pin trips this refusal. */
+const RATING_ROLES: ReadonlySet<AgentRole> = new Set<AgentRole>([
+  "qc-reviewer",
+  "chapter-reviewer",
+  "eval-reader",
+  "eval-book",
+  "book-acceptance-reader",
+  "bakeoff-judge",
+]);
+
+/** Thrown before any subprocess spawns when the legacy Claude Code CLI
+ *  transport is asked to serve a rating/judging role. Policy P1 refuses this
+ *  unconditionally — rating/judging work routes through the codex evaluator
+ *  adapter instead (see V25_EVALUATOR_AND_MODEL_SELECTION_EXECUTION_PLAN.md
+ *  §3). Non-rating roles (author-writer, research, …) are unaffected. */
+export class AnthropicRatingRoleRefusalError extends Error {
+  readonly role: AgentRole;
+  constructor(role: AgentRole) {
+    super(
+      `Policy P1 (no Claude-family model rates books or chapters): the legacy anthropic-cli ` +
+      `transport refuses to serve rating/judging role "${role}". Route rating/judging work through ` +
+      `the codex evaluator adapter instead.`,
+    );
+    this.name = "AnthropicRatingRoleRefusalError";
+    this.role = role;
+  }
+}
 
 const DEFAULT_OUTPUT_LIMIT_BYTES = 1_000_000;
 const TIMEOUT_KILL_GRACE_MS = 50;
@@ -268,6 +307,7 @@ export const ClaudeCliProvider: Provider = {
     return hasClaudeAuthConfig(bin);
   },
   async call(opts: CallOptions & { model: string }): Promise<ProviderRawResult> {
+    if (opts.role && RATING_ROLES.has(opts.role)) throw new AnthropicRatingRoleRefusalError(opts.role);
     const model = opts.model;
     const bin = findBinary();
     if (!bin) throw new Error("claude CLI executable not found");
