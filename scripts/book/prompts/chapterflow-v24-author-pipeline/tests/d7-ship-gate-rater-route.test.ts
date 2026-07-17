@@ -82,20 +82,27 @@ function currentContentFixture(bookId: string): D7CurrentContent {
   return out;
 }
 
-function syntheticCustody(units: string[]): D7ShipGateCustody[] {
+/** Per-unit synthetic custody. `withEnvelope` (default true) controls whether the
+ *  deciding-unit `envelopeManifestSha256` route-proof binding is present — the
+ *  vestigial (pre-fix) shape omits it (rt FINDING A leg 2). */
+function syntheticCustody(units: string[], opts?: { withEnvelope?: boolean }): D7ShipGateCustody[] {
+  const withEnvelope = opts?.withEnvelope ?? true;
   return units.map((unit) => ({
     unit,
     primaryDispatchSha256: sha256Hex(Buffer.from(`${unit}-primary-dispatch`, "utf8")),
     verificationDispatchSha256: sha256Hex(Buffer.from(`${unit}-verification-dispatch`, "utf8")),
     pairSealSha256: sha256Hex(Buffer.from(`${unit}-pair-seal`, "utf8")),
     adjudicationCanonicalSha256: sha256Hex(Buffer.from(`${unit}-adjudication`, "utf8")),
+    ...(withEnvelope ? { envelopeManifestSha256: sha256Hex(Buffer.from(`${unit}-envelope-manifest`, "utf8")) } : {}),
   }));
 }
 
 /** Build + seal a PASS receipt over a current-content map, with or without a
  *  rater_route (mirrors tests/d7-ship-gate.test.ts's buildReceipt, minimized to
- *  this file's own need: only the PASS shape, +rater_route control). */
-function buildPassReceipt(args: { bookId: string; content: D7CurrentContent; raterRoute?: D7ShipGateRaterRouteV1 }): D7ShipGateReceiptV1 {
+ *  this file's own need: only the PASS shape, +rater_route control). A current-
+ *  schema (route-carrying) receipt binds the deciding-unit envelope custody by
+ *  default; `custodyWithoutEnvelope` strips it to exercise the vestigial case. */
+function buildPassReceipt(args: { bookId: string; content: D7CurrentContent; raterRoute?: D7ShipGateRaterRouteV1; custodyWithoutEnvelope?: boolean }): D7ShipGateReceiptV1 {
   const chapters = [...args.content.entries()].map(([unit, entry]) => ({
     unit,
     chapterNumber: entry.chapterNumber,
@@ -125,7 +132,7 @@ function buildPassReceipt(args: { bookId: string; content: D7CurrentContent; rat
     },
     calibration: { unit: "made-to-stick-ch04", expected: 67.66, observed: 67.66, abs_delta: 0, tolerance: 3, pass: true },
     chapters,
-    custody: syntheticCustody([...args.content.keys()]),
+    custody: syntheticCustody([...args.content.keys()], { withEnvelope: args.custodyWithoutEnvelope !== true }),
     report_sha256: "0".repeat(64),
     ...(args.raterRoute !== undefined ? { rater_route: args.raterRoute } : {}),
   });
@@ -153,7 +160,69 @@ test("receipt round-trip with rater_route: JSON round-trip preserves it byte-for
     assert.equal(r.decision, "pass", r.reason);
     assert.equal(r.routeProof, "proven");
     assert.equal(r.blockers.length, 0);
+    // rt FINDING A leg 3: with NO campaign probe sha supplied the route is proven
+    // but NOT silently full-proven — a visible PROBE-UNBOUND note rides in reason.
+    assert.match(r.reason, /PROBE-UNBOUND/, "an unbound probe is surfaced, never silent");
   }
+});
+
+test("probe binding (leg 3): the matching campaign probe sha yields FULL proof (no PROBE-UNBOUND note); a mismatched sha is invalid and BLOCKS in both modes", () => {
+  const content = currentContentFixture("zz-route-book");
+  const receipt = buildPassReceipt({ bookId: "zz-route-book", content, raterRoute: PROVEN_ROUTE });
+
+  // Matching probe sha → full proof, no unbound note.
+  const bound = evaluateD7ShipGate({
+    bookId: "zz-route-book", candidatePackageBytes: "new", shippedPackageBytes: null,
+    receipt, currentContent: content, require: true,
+    custodyVerification: { status: "verified" as const, blockers: [] },
+    expectedUltraProbeSha256: PROVEN_ROUTE.ultra_probe_sha256,
+  });
+  assert.equal(bound.decision, "pass", bound.reason);
+  assert.equal(bound.routeProof, "proven");
+  assert.doesNotMatch(bound.reason, /PROBE-UNBOUND/, "a bound probe is not reported as unbound");
+
+  // A mismatched campaign probe sha → invalid, hard block (both modes).
+  const other = sha256Hex(Buffer.from("a-different-campaign-probe", "utf8"));
+  for (const require of [true, false]) {
+    const bad = evaluateD7ShipGate({
+      bookId: "zz-route-book", candidatePackageBytes: "new", shippedPackageBytes: null,
+      receipt, currentContent: content, require,
+      ...(require ? { custodyVerification: { status: "verified" as const, blockers: [] } } : {}),
+      expectedUltraProbeSha256: other,
+    });
+    assert.equal(bad.decision, "block", `require=${require}: ${bad.reason}`);
+    assert.equal(bad.routeProof, "invalid");
+    assert.ok(bad.blockers.some((b) => b.startsWith("D7.rater_route_probe_mismatch")), bad.blockers.join("; "));
+  }
+});
+
+test("vestigial route proof (leg 2): a current-schema receipt whose deciding-unit custody lacks a well-formed envelopeManifestSha256 is INVALID — blocks under REQUIRE, ships-with-a-visible-note under advisory", () => {
+  const content = currentContentFixture("zz-route-book");
+  // A route-carrying (current-schema) receipt whose custody has NO envelope-manifest
+  // binding — the exact "route proof is vestigial" shape the fix catches.
+  const receipt = buildPassReceipt({ bookId: "zz-route-book", content, raterRoute: PROVEN_ROUTE, custodyWithoutEnvelope: true });
+  assert.equal(receipt.schema_version, D7_SHIP_GATE_RECEIPT_SCHEMA_VERSION);
+  assert.ok(receipt.custody.every((c) => c.envelopeManifestSha256 === undefined), "the fixture custody omits the envelope-manifest sha");
+
+  // REQUIRE → blocked, routeProof invalid, a distinct D7.rater_route_unbound reason.
+  const required = evaluateD7ShipGate({
+    bookId: "zz-route-book", candidatePackageBytes: "new", shippedPackageBytes: null,
+    receipt, currentContent: content, require: true,
+    custodyVerification: { status: "verified" as const, blockers: [] },
+  });
+  assert.equal(required.decision, "block", required.reason);
+  assert.equal(required.routeProof, "invalid");
+  assert.ok(required.blockers.some((b) => b.startsWith("D7.rater_route_unbound")), required.blockers.join("; "));
+
+  // Advisory → not blocked BY the route, but the route is still reported invalid and
+  // the UNBOUND note rides visibly (never a silent "proven").
+  const advisory = evaluateD7ShipGate({
+    bookId: "zz-route-book", candidatePackageBytes: "new", shippedPackageBytes: null,
+    receipt, currentContent: content, require: false,
+  });
+  assert.equal(advisory.routeProof, "invalid");
+  assert.ok(!advisory.blockers.some((b) => b.startsWith("D7.rater_route_unbound")), "advisory does not add the unbound blocker");
+  assert.match(advisory.reason, /UNBOUND/, "advisory surfaces the unbound route in reason");
 });
 
 test("tampered rater_route → verification failure: a self-consistently RE-SEALED tamper (model swapped for a Claude string) is still caught — routeProof 'invalid', BLOCKED", () => {

@@ -19,7 +19,7 @@ import { dirname, resolve } from "node:path";
 import { mkTestRoots } from "./testRoots.js";
 import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
 import type { ChapterV21 } from "../src/types.js";
-import type { D7WorkerDispatch, D7WorkerRequest } from "../src/bakeoff/d7Judge.js";
+import type { D7WorkerRequest } from "../src/bakeoff/d7Judge.js";
 import { artifactSha256FromText } from "../src/bakeoff/migration/rubricAuditCanonical.js";
 import {
   RUBRIC_CALIBRATION_REFERENCES,
@@ -173,8 +173,11 @@ export type D7WorkerDoubleOptions = {
 };
 
 /** A model-free Claude-worker double: returns VALID rater / adjudication records
- *  for every (unit, role) the D7 judge dispatches. */
-export function d7WorkerDouble(opts: D7WorkerDoubleOptions): D7WorkerDispatch {
+ *  (as raw record TEXT — no observed dispatch metadata) for every (unit, role) the
+ *  D7 judge dispatches. Typed to `Promise<string>` (narrower than, and assignable
+ *  to, `D7WorkerDispatch`) so callers that wrap/mutate the returned text keep a
+ *  string in hand. */
+export function d7WorkerDouble(opts: D7WorkerDoubleOptions): (req: D7WorkerRequest) => Promise<string> {
   const ownerDir = resolve(REPOSITORY_ROOT, RUBRIC_OWNER_RUN_REL_PATH);
   return async (req) => {
     opts.onDispatch?.(req);

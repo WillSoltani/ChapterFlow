@@ -26,7 +26,7 @@
  * retry loop.
  */
 
-import { existsSync, mkdirSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 import { writeFileAtomic } from "../lib/atomicWrite.js";
@@ -51,6 +51,7 @@ import {
   renderAdjudicatorLeakCheckSurface,
   renderRaterTaskDocument,
   summarizeAudit,
+  type D7IngestDispatchMetaV1,
   type RubricAuditHarnessRole,
 } from "./migration/rubricAuditHarness.js";
 import type { JsonRecord } from "./migration/rubricAuditReceipts.js";
@@ -103,7 +104,55 @@ export type D7WorkerRequest = {
   attempt?: number;
 };
 
-export type D7WorkerDispatch = (req: D7WorkerRequest) => Promise<string>;
+/** WP-E23 route proof (rt FINDING A leg 1): the dispatch metadata a REAL rating
+ *  call observed, handed back alongside the record so the judge can thread it into
+ *  ingest — where it becomes the ledger's real family/model/effort and the
+ *  adjudicator's envelope-manifest custody sidecar. A dispatch that genuinely
+ *  observed nothing (a test double, the legacy Claude adapter) returns a plain
+ *  string instead and the honest `null`/`claude-side` fallback stands. */
+export type D7WorkerDispatchMetaV1 = {
+  model: string | null;
+  effort: string | null;
+  sessionId?: string | null;
+  /** sha256 of the spawning ultra session's effective-context manifest
+   *  (`UltraSessionResultV1.manifestSha256`) — bound as the ADJUDICATOR's
+   *  route-proof custody artifact at ingest. */
+  manifestSha256?: string;
+  manifestPath?: string;
+  sessionKind?: "session" | "reingest";
+  attemptIndex?: number | null;
+};
+
+/** A dispatch that observed real metadata returns this envelope; a plain string
+ *  (no observed metadata) stays accepted for backward compatibility. */
+export type D7WorkerDispatchResultV1 = { record: string; dispatchMeta: D7WorkerDispatchMetaV1 };
+
+/** The value a `D7WorkerDispatch` resolves to: the raw record text (no observed
+ *  metadata), or a `{record, dispatchMeta}` envelope from a dispatch that drove a
+ *  real session. */
+export type D7WorkerReturn = string | D7WorkerDispatchResultV1;
+
+export type D7WorkerDispatch = (req: D7WorkerRequest) => Promise<D7WorkerReturn>;
+
+/** Normalize either worker return shape to `{record, dispatchMeta?}`. A plain
+ *  string carries no observed dispatch metadata (the ingest ledger keeps its
+ *  honest `null`/`claude-side` fallback on that path). */
+export function normalizeD7WorkerReturn(ret: D7WorkerReturn): { record: string; dispatchMeta?: D7WorkerDispatchMetaV1 } {
+  return typeof ret === "string" ? { record: ret } : { record: ret.record, dispatchMeta: ret.dispatchMeta };
+}
+
+/** Map the dispatch-observed metadata to the harness ingest's `D7IngestDispatchMetaV1`
+ *  shape: the ultra-session `manifestSha256` becomes the adjudicator's route-proof
+ *  `envelopeManifestSha256` (retained beside the DECIDING session's custody). */
+function toIngestDispatchMeta(meta: D7WorkerDispatchMetaV1): D7IngestDispatchMetaV1 {
+  return {
+    model: meta.model,
+    effort: meta.effort,
+    ...(meta.sessionKind !== undefined ? { sessionKind: meta.sessionKind } : {}),
+    ...(meta.attemptIndex !== undefined ? { attemptIndex: meta.attemptIndex } : {}),
+    ...(meta.manifestSha256 !== undefined ? { envelopeManifestSha256: meta.manifestSha256 } : {}),
+  };
+}
 
 /** The default worker is fail-closed: the bake-off PRIMARY judge is the Claude-
  *  side D7 instrument, and its rating is NEVER a codex read and NEVER a stubbed
@@ -207,6 +256,72 @@ function safeContentHash(chapters: ChapterV21[]): string {
   }
 }
 
+/** WP-E24 durability (rt FINDING C): the DURABLE per-(unit, role) instrument-fail
+ *  marker persisted on cap exhaustion beside the retained audit evidence. Its
+ *  presence at judge entry is what makes a resume return the recorded terminal
+ *  WITHOUT re-attempting — a capped candidate can never be silently revived by a
+ *  fresh run (which resets the in-memory attempt counter). */
+type D7InstrumentFailMarkerV1 = {
+  schemaVersion: "d7-instrument-fail-marker-v1";
+  unit: string;
+  role: D7WorkerRole;
+  attempts: number;
+  reason: string;
+  at: string;
+};
+
+function instrumentFailDir(auditDir: string): string {
+  return resolve(auditDir, "instrument-fail");
+}
+
+function instrumentFailMarkerPath(auditDir: string, unit: string, role: D7WorkerRole): string {
+  return resolve(instrumentFailDir(auditDir), `${unit}.${role}.json`);
+}
+
+/** Persist the durable instrument-fail marker (create-once; best-effort — a
+ *  telemetry write must never turn a recorded terminal into a thrown run). */
+function writeInstrumentFailMarker(auditDir: string, unit: string, role: D7WorkerRole, attempts: number, reason: string): void {
+  try {
+    const marker: D7InstrumentFailMarkerV1 = {
+      schemaVersion: "d7-instrument-fail-marker-v1",
+      unit,
+      role,
+      attempts,
+      reason,
+      at: new Date().toISOString(),
+    };
+    const path = instrumentFailMarkerPath(auditDir, unit, role);
+    mkdirSync(dirname(path), { recursive: true });
+    if (!existsSync(path)) writeFileAtomic(path, JSON.stringify(marker, null, 2) + "\n");
+  } catch {
+    /* a marker write failure never bricks the recorded INSTRUMENT_FAIL terminal */
+  }
+}
+
+/** The FIRST durable instrument-fail marker retained for this audit, or null. A
+ *  capped (unit, role) fails the WHOLE candidate (V25-AUD-03), so any one marker
+ *  is the recorded terminal for the run. */
+function readExistingInstrumentFail(auditDir: string): D7InstrumentFailMarkerV1 | null {
+  const dir = instrumentFailDir(auditDir);
+  let names: string[];
+  try {
+    names = readdirSync(dir).filter((n) => n.endsWith(".json")).sort();
+  } catch {
+    return null;
+  }
+  for (const name of names) {
+    try {
+      const marker = JSON.parse(readFileSync(resolve(dir, name), "utf8")) as D7InstrumentFailMarkerV1;
+      if (marker.schemaVersion === "d7-instrument-fail-marker-v1" && typeof marker.unit === "string" && typeof marker.role === "string") {
+        return marker;
+      }
+    } catch {
+      /* a torn/garbage marker is not a recorded terminal — skip it */
+    }
+  }
+  return null;
+}
+
 function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
@@ -219,6 +334,18 @@ export async function judgeCandidateD7(opts: JudgeCandidateD7Options): Promise<C
   const log = opts.log ?? (() => {});
   const bookId = normSlug(opts.bookId);
   const contentSha256 = safeContentHash(opts.chapters);
+
+  // ── 0. Durable INSTRUMENT_FAIL short-circuit (rt FINDING C / WP-E24 durability).
+  // A prior run that exhausted the attempt cap for some (unit, role) persisted a
+  // marker. A resume returns that RECORDED terminal WITHOUT re-dispatching — the
+  // in-memory attempt counter resets each run, so without this a resume would
+  // silently revive a capped candidate and re-spend on it.
+  const auditDirForResume = resolve(opts.repositoryRoot, rubricAuditDirRelPath(opts.auditId));
+  const priorFail = readExistingInstrumentFail(auditDirForResume);
+  if (priorFail !== null) {
+    log(`[bakeoff] d7-judge ${opts.label}: resume — durable INSTRUMENT_FAIL marker present (${priorFail.unit} ${priorFail.role}); returning the recorded terminal without re-attempting`);
+    return instrumentFail(opts, priorFail.unit, priorFail.role, priorFail.reason);
+  }
 
   // ── 1. Assemble the APP-FAITHFUL audit package (fail-closed on missing key/explanation)
   let pkg;
@@ -322,9 +449,9 @@ export async function judgeCandidateD7(opts: JudgeCandidateD7Options): Promise<C
         let ingested = false;
         let lastFailure = "no attempt was made";
         for (let attempt = 1; attempt <= D7_ATTEMPT_CAP; attempt += 1) {
-          let recordText: string;
+          let workerReturn: D7WorkerReturn;
           try {
-            recordText = await opts.worker({
+            workerReturn = await opts.worker({
               auditId: opts.auditId, bookId, label: opts.label, unit, role, kind, task, attempt,
             });
           } catch (workerError) {
@@ -332,11 +459,18 @@ export async function judgeCandidateD7(opts: JudgeCandidateD7Options): Promise<C
             log(`[bakeoff] d7-judge ${opts.label}: ${unit} ${role} attempt ${attempt}/${D7_ATTEMPT_CAP} — ${lastFailure}`);
             continue;
           }
+          // WP-E23 route proof (rt FINDING A leg 1): thread the dispatch-observed
+          // metadata (real family codex-exec / model / effort, and the adjudicator's
+          // envelope-manifest sha) into ingest, so the WP-503 ledger records the REAL
+          // route and the adjudicator's route-proof custody sidecar is actually
+          // written — never left as the vestigial claude-side/null fallback.
+          const { record: recordText, dispatchMeta } = normalizeD7WorkerReturn(workerReturn);
+          const ingestMeta = dispatchMeta !== undefined ? toIngestDispatchMeta(dispatchMeta) : undefined;
           try {
             if (role === "adjudicator") {
-              ingestAdjudicationRecord({ repositoryRoot: opts.repositoryRoot, manifest, unit, recordText });
+              ingestAdjudicationRecord({ repositoryRoot: opts.repositoryRoot, manifest, unit, recordText, dispatchMeta: ingestMeta });
             } else {
-              ingestRaterRecord({ repositoryRoot: opts.repositoryRoot, manifest, unit, role, recordText });
+              ingestRaterRecord({ repositoryRoot: opts.repositoryRoot, manifest, unit, role, recordText, dispatchMeta: ingestMeta });
             }
             ingested = true;
             break;
@@ -346,6 +480,7 @@ export async function judgeCandidateD7(opts: JudgeCandidateD7Options): Promise<C
           }
         }
         if (!ingested) {
+          writeInstrumentFailMarker(auditDir, unit, role, D7_ATTEMPT_CAP, lastFailure);
           log(`[bakeoff] d7-judge ${opts.label}: ${unit} ${role} — INSTRUMENT_FAIL after ${D7_ATTEMPT_CAP} attempts`);
           return instrumentFail(opts, unit, role, lastFailure);
         }

@@ -66,7 +66,7 @@ import {
   type ConductorInvocation,
 } from "../../src/bakeoff/screeningPlan.js";
 import { runBakeoff, resolveBakeoffDeps, type BakeoffOutcome, type BakeoffDeps } from "../../src/bakeoff/runBakeoff.js";
-import { createD7CodexWorkerDispatch, assertUltraProbeAccepted, D7_DISPATCH_LEDGER_STAGE } from "../../src/bakeoff/d7WorkerDispatch.js";
+import { createD7CodexWorkerDispatch, assertUltraProbeAccepted, isValidUltraProbe, D7_DISPATCH_LEDGER_STAGE } from "../../src/bakeoff/d7WorkerDispatch.js";
 import { D7JudgeError } from "../../src/bakeoff/d7Judge.js";
 import { runUltraAcceptanceProbe, type UltraAcceptanceProbeV1 } from "../../src/exec/ultraSession.js";
 import { resolveD7RaterRoute } from "../../src/orchestrator/modelPolicy.js";
@@ -278,21 +278,30 @@ function readUltraProbeSidecar(probeDir: string): UltraAcceptanceProbeV1 | null 
  * Consult the ultra-acceptance probe BEFORE the first rating spawn (execution plan
  * §4). The probe proves the installed codex CLI accepts `model_reasoning_effort=
  * ultra` at runtime — static `.codex/agents/*.toml` evidence is NOT proof. It runs
- * ONCE per campaign: a prior accepted sidecar is reused (all six invocations share
- * it); otherwise the probe runs live now. `assertUltraProbeAccepted` HALTS on a
- * missing/`accepted:false` result — the D7 raters are Sol-ultra codex sessions and
- * an unaccepted ultra token would spawn every rating at the wrong effort.
+ * ONCE per campaign: a prior sidecar is reused ONLY when it is a VALID proof for
+ * THIS route (rt FINDING B: `isValidUltraProbe` — right schema/effort/model AND a
+ * self-hash that recomputes; a stale-model or hand-planted `{"accepted":true}`
+ * sidecar is treated as absent and RE-PROBED, never trusted); otherwise the probe
+ * runs live now. `assertUltraProbeAccepted` re-validates and HALTS on a
+ * missing/invalid/`accepted:false` result — the D7 raters are Sol-ultra codex
+ * sessions and an unaccepted ultra token would spawn every rating at the wrong
+ * effort. Returns the accepted probe so the caller can bind its campaign sha (rt
+ * FINDING A leg 3).
  */
-async function ensureUltraAcceptedOrHalt(): Promise<void> {
+async function ensureUltraAcceptedOrHalt(): Promise<UltraAcceptanceProbeV1> {
   let probe = readUltraProbeSidecar(ULTRA_ACCEPTANCE_DIR);
-  if (probe !== null && probe.accepted) {
-    log(`[screening]   ultra-acceptance: reusing accepted probe (${probe.probedAt}) at ${ULTRA_ACCEPTANCE_DIR}`);
+  if (probe !== null && probe.accepted && isValidUltraProbe(probe)) {
+    log(`[screening]   ultra-acceptance: reusing valid accepted probe (${probe.probedAt}) at ${ULTRA_ACCEPTANCE_DIR}`);
   } else {
+    if (probe !== null && !isValidUltraProbe(probe)) {
+      log(`[screening]   ultra-acceptance: an existing sidecar is NOT a trustworthy proof for this route (schema/effort/model/self-hash) — treating it as absent and re-probing.`);
+    }
     log(`[screening]   ultra-acceptance: running the probe once (installed CLI must accept model_reasoning_effort=ultra)…`);
     probe = await runUltraAcceptanceProbe({ route: resolveD7RaterRoute(), probeDir: ULTRA_ACCEPTANCE_DIR });
     log(`[screening]   ultra-acceptance: accepted=${probe.accepted} — ${probe.detail}`);
   }
-  assertUltraProbeAccepted(probe); // throws D7JudgeError on a non-accepted probe
+  assertUltraProbeAccepted(probe); // throws D7JudgeError on a missing/invalid/non-accepted probe
+  return probe;
 }
 
 // ── Deliverable 5: the ledgered codex logSession sink ───────────────────────────
@@ -421,8 +430,14 @@ async function main(argv: string[]): Promise<number> {
 
   // 5. Consult the ultra-acceptance probe BEFORE the first rating spawn; HALT if
   //    the installed CLI has not proven it accepts model_reasoning_effort=ultra.
+  //    The accepted probe's self-hash is the campaign ULTRA-PROBE SHA the D7 ship
+  //    gate binds a rater route against (rt FINDING A leg 3: `evaluateD7ShipGate`'s
+  //    `expectedUltraProbeSha256`) — captured here and surfaced in the summary so
+  //    the receipt-mint / ship-gate step downstream binds THIS campaign's probe.
+  let campaignUltraProbeSha256: string;
   try {
-    await ensureUltraAcceptedOrHalt();
+    const probe = await ensureUltraAcceptedOrHalt();
+    campaignUltraProbeSha256 = probe.sidecarSha256;
   } catch (err) {
     if (err instanceof D7JudgeError) {
       log(`[screening] ultra-acceptance HALT before starting "${invocation.runId}": ${err.message}`);
@@ -430,6 +445,7 @@ async function main(argv: string[]): Promise<number> {
     }
     throw err;
   }
+  log(`[screening]   ultra-probe sha (ship-gate binding): ${campaignUltraProbeSha256}`);
 
   // 6. Wire the D7 dispatch (Sol-ultra codex session per rating, WP-E22) + the
   //    ledgered codex logSession. The D7 rater is codex-only (V25-NEW-01).
@@ -479,6 +495,9 @@ async function main(argv: string[]): Promise<number> {
     bookId: run.bookId,
     chapters: run.chapters,
     status: outcome.status,
+    // rt FINDING A leg 3: the campaign ultra-probe sha the D7 ship gate binds the
+    // rater route against (evaluateD7ShipGate expectedUltraProbeSha256).
+    ultraProbeSha256: campaignUltraProbeSha256,
     perCandidate,
     ledgerCounts: {
       campaignSessions: postCounts.campaignSessions,

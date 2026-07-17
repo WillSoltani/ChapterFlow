@@ -235,20 +235,33 @@ export function deriveRecordAggregates(record: JsonRecord): DerivedAggregatesV1 
   return { domainScores, weightedPoints, chapterDiagnostic: (weightedTotal / RUBRIC_CHAPTER_WEIGHT_TOTAL) * 100 };
 }
 
+/** One SELF-DESCRIBING derivation entry (V25-AUD-04, rt route-proof follow-up):
+ *  the canonical `path` derived, the rater's original `reported` value at that
+ *  path (or `null` when it was absent / not a number), and the `derived` value
+ *  the instrument substituted. A downstream consumer can therefore explain WHY a
+ *  field changed — reported→derived — instead of only that it changed. */
+export type AggregateDerivationFieldV1 = {
+  path: string;
+  reported: number | null;
+  derived: number;
+};
+
 /** The annotation a validator populates when it derived any aggregate: `derived`
  *  is true iff at least one self-reported field was absent or drifted and was
- *  replaced by the derived value; `fields` lists their canonical paths. */
+ *  replaced by the derived value; `fields` carries a self-describing
+ *  {path, reported, derived} entry for each. */
 export type AggregateDerivationV1 = {
   derived: boolean;
-  fields: string[];
+  fields: AggregateDerivationFieldV1[];
 };
 
 /** Replace a self-reported aggregate with the derived value when it is absent or
- *  drifts (isClose) from it, recording the field path in the derivation. Mutates
- *  the record IN PLACE so a caller reading the validated record sees the derived
- *  value; the persisted immutable bytes are untouched (the harness retains the
- *  original submission verbatim). A matching self-reported value is left
- *  byte-identical — never overwritten with a possibly-last-ULP-different rebuild. */
+ *  drifts (isClose) from it, recording a self-describing {path, reported, derived}
+ *  entry in the derivation. Mutates the record IN PLACE so a caller reading the
+ *  validated record sees the derived value; the persisted immutable bytes are
+ *  untouched (the harness retains the original submission verbatim). A matching
+ *  self-reported value is left byte-identical — never overwritten with a
+ *  possibly-last-ULP-different rebuild. */
 function deriveAggregate(
   container: JsonRecord,
   key: string,
@@ -261,7 +274,11 @@ function deriveAggregate(
   container[key] = derivedValue;
   if (derivation !== undefined) {
     derivation.derived = true;
-    derivation.fields.push(fieldPath);
+    derivation.fields.push({
+      path: fieldPath,
+      reported: typeof reported === "number" ? reported : null,
+      derived: derivedValue,
+    });
   }
 }
 

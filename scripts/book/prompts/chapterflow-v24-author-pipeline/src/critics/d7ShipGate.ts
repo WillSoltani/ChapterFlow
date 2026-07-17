@@ -272,34 +272,107 @@ function barEquals(a: RubricAuditBar, b: RubricAuditBar): boolean {
     && a.calibrationTolerance === b.calibrationTolerance;
 }
 
-/** WP-E23 route proof (P3, "a prompt string claiming Sol Ultra is not proof"):
- *  classify a receipt's D7 rater route. Pure, structural, independent of
- *  `binding_sha256` — a forger who tampers `rater_route` and ALSO recomputes
- *  the binding hash (a self-consistent forgery) is still caught here, because
- *  this checks the route's CONTENT against the authorized shape, not merely
- *  whether the receipt is internally consistent with itself.
- *
- *   - legacy schema           → "unproven" (honest gap; the receipt predates
- *     this proof — see D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1).
- *   - current schema, no `rater_route` → "invalid" (a current-schema receipt
- *     without proof is inconsistent with its own schema claim — the real mint
- *     path never produces this; only a hand-edited/forged receipt would).
- *   - current schema, `rater_route` present → "proven" iff family is the sole
- *     authorized transport, model is a RECOGNIZED codex-exec family member
- *     (not pinned to today's provisional baseline — a later WP-705 winner
- *     change must not retroactively invalidate an honest past route), effort
- *     is the single ultra token, and the probe hash is sha256-shaped;
- *     otherwise "invalid" (a Claude string, a spoofed family, or a malformed
- *     probe hash all land here). */
-function deriveRouteProof(receipt: D7ShipGateReceiptV1): D7ShipGateRouteProofStatus {
-  if (receipt.schema_version === D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1) return "unproven";
-  const route = receipt.rater_route;
-  if (route === undefined) return "invalid";
+/** Whether a `rater_route`'s CONTENT matches the sole authorized D7 transport:
+ *  family `codex-exec`, a RECOGNIZED codex-exec family member (not pinned to
+ *  today's provisional baseline — a later WP-705 winner change must not
+ *  retroactively invalidate an honest past route), the single ultra effort token,
+ *  and a sha256-shaped probe hash. A Claude string, a spoofed family, or a
+ *  malformed probe hash all fail this. */
+function isAuthorizedRouteShape(route: D7ShipGateRaterRouteV1 | undefined): route is D7ShipGateRaterRouteV1 {
+  if (route === undefined) return false;
   const wellFormedProbe = typeof route.ultra_probe_sha256 === "string" && SHA256_RE.test(route.ultra_probe_sha256);
-  if (route.family !== D7_RATER_ROUTE_FAMILY || !SUPPORTED_MODEL_IDS.has(route.model) || route.effort !== ULTRA_EFFORT || !wellFormedProbe) {
-    return "invalid";
+  return route.family === D7_RATER_ROUTE_FAMILY
+    && SUPPORTED_MODEL_IDS.has(route.model)
+    && route.effort === ULTRA_EFFORT
+    && wellFormedProbe;
+}
+
+/** A full route-proof assessment: the status PLUS how it should surface.
+ *   - `hardBlock`    — a spoof/tamper (a Claude string, a spoofed family, a probe
+ *                      that does not match the campaign's) — blocks in BOTH modes.
+ *   - `requireBlock` — a vestigial proof (rt FINDING A leg 2): a current-schema
+ *                      receipt whose deciding-unit custody lacks the envelope-
+ *                      manifest binding — blocks ONLY under REQUIRE.
+ *   - `note`         — a visible line folded into `reason` so a non-fully-proven
+ *                      route is NEVER silently reported as full proof. */
+type D7RouteProofAssessmentV1 = {
+  status: D7ShipGateRouteProofStatus;
+  hardBlock: string | null;
+  requireBlock: string | null;
+  note: string;
+};
+
+/** WP-E23 route proof (P3, "a prompt string claiming Sol Ultra is not proof") +
+ *  rt FINDING A (route proof vestigial). Classify a receipt's D7 rater route.
+ *  Pure, structural, independent of `binding_sha256` — a self-consistent forgery
+ *  is still caught because this checks the route CONTENT (and its custody binding)
+ *  against the authorized shape, not merely internal consistency.
+ *
+ *   - legacy schema            → "unproven" (honest gap; predates this proof).
+ *   - current schema, missing/spoofed `rater_route` → "invalid" (hard block).
+ *   - current schema, authorized route shape, but the deciding-unit custody lacks
+ *     a well-formed `envelopeManifestSha256` binding it to the real ultra session
+ *     → "invalid" (the proof is vestigial — a claim with no binding; REQUIRE fails
+ *     closed, advisory records a visible note) — rt FINDING A leg 2.
+ *   - current schema, authorized + custody-bound, and (when the caller supplies
+ *     the campaign probe sha) `ultra_probe_sha256` MATCHES it → "proven"; a
+ *     mismatch → "invalid" (hard block) — rt FINDING A leg 3. When the caller
+ *     supplies no expected probe sha, the route is "proven" but carries a
+ *     "probe-unbound" note (never silently full-proven). */
+function assessRouteProof(receipt: D7ShipGateReceiptV1, expectedUltraProbeSha256?: string): D7RouteProofAssessmentV1 {
+  if (receipt.schema_version === D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1) {
+    return {
+      status: "unproven",
+      hardBlock: null,
+      requireBlock: null,
+      note: " [D7 rater route: UNPROVEN — receipt predates route-proof (legacy schema); external rater identity not verifiable.]",
+    };
   }
-  return "proven";
+  const route = receipt.rater_route;
+  if (!isAuthorizedRouteShape(route)) {
+    return {
+      status: "invalid",
+      hardBlock: "D7.rater_route_invalid: the receipt's rater_route is missing or does not match the authorized Sol-ultra codex-exec route (family/model/effort/probe-hash-shape) — a Claude-family or spoofed route can never ship.",
+      requireBlock: null,
+      note: "",
+    };
+  }
+  // rt FINDING A leg 2: an authorized route SHAPE is only PROVEN when the deciding
+  // (adjudicator) session's envelope-manifest custody actually binds it. A current-
+  // schema receipt whose custody lacks a well-formed envelopeManifestSha256 on any
+  // unit is a vestigial claim — route proof was never wired through to the sidecar.
+  const custody = Array.isArray(receipt.custody) ? receipt.custody : [];
+  const custodyBound = custody.length > 0
+    && custody.every((entry) => typeof entry.envelopeManifestSha256 === "string" && SHA256_RE.test(entry.envelopeManifestSha256));
+  if (!custodyBound) {
+    return {
+      status: "invalid",
+      hardBlock: null,
+      requireBlock: "D7.rater_route_unbound: the receipt claims a proven codex-exec route but a deciding-unit custody entry lacks a well-formed envelope-manifest sha256 binding it to the real ultra session — route proof is vestigial (REQUIRE fails closed; re-mint from a retained audit that observed the dispatch).",
+      note: " [D7 rater route: UNBOUND — current-schema route claim has no deciding-unit envelope-manifest custody binding it.]",
+    };
+  }
+  // rt FINDING A leg 3: when the caller supplies the campaign ultra-acceptance
+  // probe sha, the route's ultra_probe_sha256 MUST equal it (a mismatch is a route
+  // not backed by the accepted probe → hard block). When absent, the proof is not
+  // fully bound to a specific probe — a visible note, never silent.
+  if (expectedUltraProbeSha256 !== undefined) {
+    if (route.ultra_probe_sha256 !== expectedUltraProbeSha256) {
+      return {
+        status: "invalid",
+        hardBlock: `D7.rater_route_probe_mismatch: the receipt's ultra_probe_sha256 (${route.ultra_probe_sha256.slice(0, 12)}…) does not equal the campaign ultra-acceptance probe (${expectedUltraProbeSha256.slice(0, 12)}…) — the claimed route is not backed by the accepted probe.`,
+        requireBlock: null,
+        note: "",
+      };
+    }
+    return { status: "proven", hardBlock: null, requireBlock: null, note: "" };
+  }
+  return {
+    status: "proven",
+    hardBlock: null,
+    requireBlock: null,
+    note: " [D7 rater route: PROBE-UNBOUND — proven route shape + custody, but no campaign ultra-probe sha was supplied to bind it; pass expectedUltraProbeSha256 for full proof.]",
+  };
 }
 
 /** Bind hash over the receipt minus its own `binding_sha256` (rubricAuditReceipts
@@ -953,6 +1026,12 @@ export function evaluateD7ShipGate(input: {
    *  retained artifacts were re-verified and the decision records
    *  `retained-absent` — the seal + custody-shape checks still hold. */
   custodyVerification?: D7CustodyVerification;
+  /** rt FINDING A leg 3 (probe binding): the campaign ultra-acceptance probe sha
+   *  (`UltraAcceptanceProbeV1.sidecarSha256`). When supplied, a current-schema
+   *  receipt's `rater_route.ultra_probe_sha256` MUST equal it or the route is
+   *  invalid (blocks). When omitted, the gate records a visible "probe-unbound"
+   *  note — a proven route shape is never silently reported as full proof. */
+  expectedUltraProbeSha256?: string;
   require: boolean;
 }): D7ShipGateResult {
   const bookId = normSlug(input.bookId);
@@ -1024,11 +1103,14 @@ export function evaluateD7ShipGate(input: {
     || receipt.issuer !== D7_SHIP_GATE_RECEIPT_ISSUER) {
     blockers.push("D7.receipt_schema_invalid: receipt schema/artifact_type/issuer is not the D7 ship-gate receipt identity.");
   }
-  const routeProof = deriveRouteProof(receipt);
-  if (routeProof === "invalid") {
-    blockers.push(
-      "D7.rater_route_invalid: the receipt's rater_route is missing or does not match the authorized Sol-ultra codex-exec route (family/model/effort/probe-hash-shape) — a Claude-family or spoofed route can never ship.");
-  }
+  const routeAssessment = assessRouteProof(receipt, input.expectedUltraProbeSha256);
+  const routeProof = routeAssessment.status;
+  // A spoof/tamper (a Claude string, a spoofed family, a probe that does not match
+  // the campaign's) blocks in BOTH modes; a vestigial-but-authorized proof (rt
+  // FINDING A leg 2: current-schema route with no deciding-unit custody binding)
+  // blocks ONLY under REQUIRE — advisory keeps the honest note below.
+  if (routeAssessment.hardBlock !== null) blockers.push(routeAssessment.hardBlock);
+  if (routeAssessment.requireBlock !== null && input.require) blockers.push(routeAssessment.requireBlock);
   if (receipt.instrument?.rubric_version !== RUBRIC_AUDIT_RUBRIC_VERSION
     || !barEquals(receipt.instrument?.bar ?? ({} as RubricAuditBar), RUBRIC_AUDIT_BAR_D7)) {
     blockers.push("D7.instrument_mismatch: receipt rubric version / bar differs from the frozen D7 instrument (RUBRIC_AUDIT_BAR_D7).");
@@ -1120,13 +1202,11 @@ export function evaluateD7ShipGate(input: {
       `D7.quality_bar_failed: D7 verdict is ${verdict} (mean ${receipt.summary.mean.toFixed(2)}, min ${receipt.summary.min.toFixed(2)}; bar mean>=${RUBRIC_AUDIT_BAR_D7.meanMin}, min>=${RUBRIC_AUDIT_BAR_D7.perChapterMin}, core>=${RUBRIC_AUDIT_BAR_D7.coreDomainFloor}, +-${RUBRIC_AUDIT_BAR_D7.calibrationTolerance} calibration).`);
   }
 
-  // WP-E23: an unproven route is NEVER silent — it rides visibly in `reason`
-  // even when it does not itself block (a legacy-schema receipt can still
-  // ship; see `deriveRouteProof`). An invalid route already added a blocker
-  // above, so this note only fires for the honest "unproven" case.
-  const routeProofNote = routeProof === "unproven"
-    ? " [D7 rater route: UNPROVEN — receipt predates route-proof (legacy schema); external rater identity not verifiable.]"
-    : "";
+  // WP-E23 + rt FINDING A: a route that is not FULLY proven is NEVER silent — it
+  // rides visibly in `reason`. This covers the legacy "unproven" gap, the advisory
+  // "unbound custody" case (leg 2), and the "probe-unbound" case (leg 3, no
+  // campaign probe sha supplied). A hard-invalid route already added its blocker.
+  const routeProofNote = routeAssessment.note;
 
   if (blockers.length > 0) {
     const halt = verdict !== "PASS" ? buildHaltRecord(receipt, bookId) : null;
@@ -1169,6 +1249,9 @@ export function runD7ShipGate(args: {
   repositoryRoot: string;
   /** Canonical chapters dir override (test seam); defaults to CHAPTERS_DIR. */
   chaptersDir?: string;
+  /** rt FINDING A leg 3: the campaign ultra-acceptance probe sha the route must
+   *  bind against (optional — omitted keeps the "probe-unbound" note path). */
+  expectedUltraProbeSha256?: string;
   require: boolean;
 }): D7ShipGateResult {
   const bookId = normSlug(args.bookId);
@@ -1219,6 +1302,7 @@ export function runD7ShipGate(args: {
     receiptCorrupt,
     currentContent,
     custodyVerification,
+    expectedUltraProbeSha256: args.expectedUltraProbeSha256,
     require: args.require,
   });
 }
@@ -1242,6 +1326,9 @@ export function evaluateD7ShipGateForPreflight(args: {
   /** Git repo root — resolves the retained audit dir for custody re-verification. */
   repositoryRoot: string;
   chaptersDir?: string;
+  /** rt FINDING A leg 3: the campaign ultra-acceptance probe sha the route must
+   *  bind against (optional). */
+  expectedUltraProbeSha256?: string;
   require: boolean;
 }): D7ShipGateResult {
   const bookId = normSlug(args.bookId);
@@ -1273,6 +1360,7 @@ export function evaluateD7ShipGateForPreflight(args: {
     receiptCorrupt,
     currentContent,
     custodyVerification,
+    expectedUltraProbeSha256: args.expectedUltraProbeSha256,
     require: args.require,
   });
 }

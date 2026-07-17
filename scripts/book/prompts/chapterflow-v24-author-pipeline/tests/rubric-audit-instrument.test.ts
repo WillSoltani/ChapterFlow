@@ -36,6 +36,7 @@ import {
   rubricBand,
   validateChapterRaterRecord,
   verifyOwnerRubricAuditRun,
+  type AggregateDerivationFieldV1,
   type AuditChapter,
   type RubricAuditBatchManifestV1,
 } from "../src/bakeoff/migration/rubricAuditInstrument.js";
@@ -192,14 +193,19 @@ test("derive-don't-reject: a MISMATCHED self-reported domain_score is accepted, 
   // correct, so ONLY domain_score is derived).
   epistemicDomain(parsed).domain_score = 99;
   const record = loadRecord(JSON.stringify(parsed));
-  const derivation = { derived: false, fields: [] as string[] };
+  const derivation = { derived: false, fields: [] as AggregateDerivationFieldV1[] };
   const errors = validateChapterRaterRecord({
     record, dispatch: fx.dispatch, inspection: fx.inspection as never, sourceText: fx.sourceText,
     profile: "owner-run-compat", derivation,
   });
   assert.deepEqual(errors, [], "an aggregate slip does not void the rating");
   assert.equal(derivation.derived, true);
-  assert.deepEqual(derivation.fields, ["domains.epistemic_integrity.domain_score"]);
+  // The annotation is SELF-DESCRIBING: path + the rater's original claim + the
+  // derived substitute (reported = the slipped 99; derived == the owner's original).
+  assert.equal(derivation.fields.length, 1);
+  assert.equal(derivation.fields[0].path, "domains.epistemic_integrity.domain_score");
+  assert.equal(derivation.fields[0].reported, 99, "the entry preserves the rater's original claimed value");
+  assert.ok(approx(derivation.fields[0].derived, originalScore), "the entry records the derived substitute");
   assert.ok(approx(epistemicDomain(record.value).domain_score, originalScore),
     "the record now carries the code-derived value (== the owner's original), not the slipped 99");
 });
@@ -210,14 +216,18 @@ test("derive-don't-reject: an ABSENT aggregate (chapter_diagnostic_score) is acc
   const originalDiag = parsed.chapter_diagnostic_score;
   delete parsed.chapter_diagnostic_score;
   const record = loadRecord(JSON.stringify(parsed));
-  const derivation = { derived: false, fields: [] as string[] };
+  const derivation = { derived: false, fields: [] as AggregateDerivationFieldV1[] };
   const errors = validateChapterRaterRecord({
     record, dispatch: fx.dispatch, inspection: fx.inspection as never, sourceText: fx.sourceText,
     profile: "owner-run-compat", derivation,
   });
   assert.deepEqual(errors, [], "an absent aggregate is derived, not rejected");
   assert.equal(derivation.derived, true);
-  assert.deepEqual(derivation.fields, ["chapter_diagnostic_score"]);
+  // An ABSENT field records reported = null (not a number to preserve).
+  assert.equal(derivation.fields.length, 1);
+  assert.equal(derivation.fields[0].path, "chapter_diagnostic_score");
+  assert.equal(derivation.fields[0].reported, null, "an absent aggregate reports null, not a fabricated value");
+  assert.ok(approx(derivation.fields[0].derived, originalDiag), "the entry records the derived value");
   assert.ok(approx(record.value.chapter_diagnostic_score, originalDiag),
     "the derived chapter_diagnostic_score matches the owner's original");
 });
@@ -225,7 +235,7 @@ test("derive-don't-reject: an ABSENT aggregate (chapter_diagnostic_score) is acc
 test("derive-don't-reject: an unmodified owner primary derives NOTHING (correct arithmetic is left byte-identical)", () => {
   const fx = ownerPrimaryFixture();
   const record = loadRecord(fx.primaryRaw);
-  const derivation = { derived: false, fields: [] as string[] };
+  const derivation = { derived: false, fields: [] as AggregateDerivationFieldV1[] };
   const errors = validateChapterRaterRecord({
     record, dispatch: fx.dispatch, inspection: fx.inspection as never, sourceText: fx.sourceText,
     profile: "owner-run-compat", derivation,
@@ -242,7 +252,7 @@ test("hard rejection preserved: a bad atomic rating, missing evidence, and schem
   //     NOTHING is derived (derivation never papers over a bad atomic rating).
   const badRating = JSON.parse(fx.primaryRaw) as Record<string, unknown>;
   ((epistemicDomain(badRating).subcriteria as Record<string, Record<string, unknown>>).claim_support_fit).rating = 2.5;
-  const d1 = { derived: false, fields: [] as string[] };
+  const d1 = { derived: false, fields: [] as AggregateDerivationFieldV1[] };
   const e1 = validateChapterRaterRecord({
     record: loadRecord(JSON.stringify(badRating)), dispatch: fx.dispatch, inspection: fx.inspection as never,
     sourceText: fx.sourceText, profile: "owner-run-compat", derivation: d1,

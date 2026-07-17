@@ -21,12 +21,13 @@
  * Zero model/api calls (the ingest itself never invokes a model). */
 
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { mkTestRoots } from "./testRoots.js";
 import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
+import { sha256Hex } from "../src/contracts/contractUtil.js";
 import {
   RUBRIC_CALIBRATION_REFERENCES,
   materializeRubricAuditBatch,
@@ -38,6 +39,10 @@ import {
   ingestAdjudicationRecord,
   ingestRaterRecord,
 } from "../src/bakeoff/migration/rubricAuditHarness.js";
+import { judgeCandidateD7 } from "../src/bakeoff/d7Judge.js";
+import { createD7CodexWorkerDispatch } from "../src/bakeoff/d7WorkerDispatch.js";
+import type { UltraSessionRequestV1, UltraSessionResultV1, UltraSessionDepsV1 } from "../src/exec/ultraSession.js";
+import { fullFixtureChapter, makeD7Repo, d7WorkerDouble } from "./model-bakeoff-d7-helpers.js";
 import { appendCallLedgerEntry, readCallLedgerEntries, type RunCallLedgerEntryInput } from "../src/telemetry/runCallLedger.js";
 
 const REPOSITORY_ROOT = resolve(PIPELINE_DIR, "../../../..");
@@ -254,6 +259,66 @@ test("ingestRaterRecord WITHOUT dispatchMeta: unchanged — family claude-side, 
     assert.equal(entries[0].model, null);
     assert.equal(entries[0].effort, null);
     assert.equal(entries[0].sessionKind, undefined, "no dispatchMeta ⇒ sessionKind is never invented");
+  } finally {
+    repo.dispose();
+  }
+});
+
+// ── rt FINDING A leg 1: the production-shaped flow (codex dispatch → judge → ingest) ──
+
+const PROD_CALIBRATION_UNIT = "made-to-stick-ch04";
+
+test("production-shaped flow (rt FINDING A leg 1): codex dispatch double → judge → ingest ACTUALLY writes the adjudicator envelope-manifest custody sidecar AND ledgers family codex-exec with the REAL model/effort (never the vestigial claude-side/null)", async () => {
+  const repo = makeD7Repo("dispatch-meta-prod-flow", PROD_CALIBRATION_UNIT);
+  try {
+    const pipelineDir = pipelineDirFor(repo.base);
+    // A runUltra double that answers every ultra request with a VALID rater record
+    // (from the model-free d7WorkerDouble) written to the reply path — no process.
+    // createD7CodexWorkerDispatch extracts + persists it and hands the judge back
+    // the REAL observed metadata, which the judge threads into ingest.
+    const base = d7WorkerDouble({ repositoryRoot: repo.base, calibrationUnit: PROD_CALIBRATION_UNIT, ratingForUnit: () => 4 });
+    const runUltra = async (req: UltraSessionRequestV1, _deps?: UltraSessionDepsV1): Promise<UltraSessionResultV1> => {
+      void _deps;
+      const role = req.role as "primary" | "verification" | "adjudicator";
+      // createD7CodexWorkerDispatch encodes (unit, role) into sessionTag = `${unit}-${role}`.
+      const unit = req.sessionTag.slice(0, req.sessionTag.length - (role.length + 1));
+      const kind = unit === PROD_CALIBRATION_UNIT ? "calibration" : "candidate";
+      const record = await base({ auditId: req.runId, bookId: req.bookId, label: "A", unit, role, kind, task: "" });
+      const replyPath = resolve(req.cwd, "reply.txt");
+      writeFileSync(replyPath, record);
+      return {
+        ok: true, model: "gpt-5.6-sol", effort: "ultra", sessionId: `sess-${req.sessionTag}`,
+        manifestPath: resolve(req.cwd, "manifest.json"),
+        manifestSha256: sha256Hex(Buffer.from(`manifest-${req.sessionTag}`, "utf8")),
+        replyPath, latencyMs: 4, outcome: "content_completed",
+      };
+    };
+    const worker = createD7CodexWorkerDispatch({ runUltra, pipelineDir, clock: () => new Date("2026-07-17T00:00:00.000Z") });
+
+    const auditId = "prod-flow-audit-1";
+    const j = await judgeCandidateD7({
+      bookId: "zz-d7-prodflow", label: "A", chapters: [fullFixtureChapter("zz-d7-prodflow", 1)],
+      repositoryRoot: repo.base, auditId, calibrationUnit: PROD_CALIBRATION_UNIT, worker, forbidden: [], log: () => {},
+    });
+    assert.equal(j.terminalState, "judged", j.ineligibleReason ?? "expected a judged candidate");
+    assert.equal(typeof j.d7Composite, "number");
+
+    // The adjudicator's route-proof custody sidecar was ACTUALLY written for the
+    // DECIDING (adjudicator) session of the candidate chapter — not left vestigial.
+    const unit = "zz-d7-prodflow-ch01";
+    const sidecarPath = resolve(repo.base, rubricAuditDirRelPath(auditId), `jobs/${unit}.receipts/adjudicator.envelope-manifest.json`);
+    assert.ok(existsSync(sidecarPath), "the adjudicator envelope-manifest custody sidecar was written");
+    const sidecar = JSON.parse(readFileSync(sidecarPath, "utf8")) as { envelope_manifest_sha256: string; model: string; effort: string };
+    assert.match(sidecar.envelope_manifest_sha256, /^[0-9a-f]{64}$/, "the sidecar carries the ultra-session manifest sha (custody sha)");
+    assert.equal(sidecar.model, "gpt-5.6-sol");
+    assert.equal(sidecar.effort, "ultra");
+
+    // The WP-503 ingest ledger for the unit records the REAL route on every role —
+    // family codex-exec, real model/effort — never the vestigial claude-side/null.
+    const ingestEntries = readCallLedgerEntries(pipelineDir, unit, auditId).filter((e) => e.stage === "d7-rubric-audit");
+    assert.ok(ingestEntries.length >= 3, `expected ingest ledger entries for the unit's three roles (got ${ingestEntries.length})`);
+    assert.ok(ingestEntries.every((e) => e.family === "codex-exec"), "every ingest entry is family codex-exec");
+    assert.ok(ingestEntries.every((e) => e.model === "gpt-5.6-sol" && e.effort === "ultra"), "the ingest ledger carries the REAL model/effort, never null");
   } finally {
     repo.dispose();
   }

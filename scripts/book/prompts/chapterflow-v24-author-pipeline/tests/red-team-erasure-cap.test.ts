@@ -34,7 +34,7 @@ import {
   createD7CodexWorkerDispatch,
   d7CodexSessionBaseDir,
 } from "../src/bakeoff/d7WorkerDispatch.js";
-import { D7JudgeError, type D7WorkerRequest } from "../src/bakeoff/d7Judge.js";
+import { D7JudgeError, normalizeD7WorkerReturn, type D7WorkerRequest } from "../src/bakeoff/d7Judge.js";
 import type { UltraSessionRequestV1, UltraSessionResultV1, UltraSessionDepsV1 } from "../src/exec/ultraSession.js";
 import type { appendCallLedgerEntry } from "../src/telemetry/runCallLedger.js";
 import { V21_SCHEMA_VERSION, type ChapterV21 } from "../src/types.js";
@@ -202,8 +202,17 @@ test("attack7B: prior FAILED attempt dirs survive across retries; a resume re-in
   assert.ok(existsSync(join(baseDir, "attempt-002", "task.md")), "attempt-002 survives (the earlier failure was NOT erased)");
 
   // Dispatch 3 succeeds → attempt-003 persists a completion marker + record.
-  const record3 = await dispatch(req);
+  // WP-E23 route proof (rt FINDING A leg 1): the dispatch now hands back the record
+  // WITH its observed metadata envelope — normalize to compare the record bytes and
+  // assert the real family model/effort + envelope-manifest sha ride alongside.
+  const dispatch3 = normalizeD7WorkerReturn(await dispatch(req));
+  const record3 = dispatch3.record;
   assert.equal(record3, '{"chapter_diagnostic_score": 88}', "the transport-trimmed record is returned");
+  assert.equal(dispatch3.dispatchMeta?.model, "gpt-5.6-sol", "the record carries the REAL observed model, never null");
+  assert.equal(dispatch3.dispatchMeta?.effort, "ultra");
+  assert.equal(dispatch3.dispatchMeta?.sessionKind, "session");
+  assert.equal(dispatch3.dispatchMeta?.attemptIndex, 3);
+  assert.equal(dispatch3.dispatchMeta?.manifestSha256, "a".repeat(64), "the ultra-session manifest sha rides for the adjudicator custody sidecar");
   assert.ok(existsSync(join(baseDir, "attempt-003", "record.json")));
   assert.ok(existsSync(join(baseDir, "attempt-003", "dispatch-result.json")));
   // The two prior failed attempts are STILL on disk.
@@ -211,8 +220,10 @@ test("attack7B: prior FAILED attempt dirs survive across retries; a resume re-in
   assert.equal(spawnCount, 3, "three real spawns so far");
 
   // Dispatch 4 (resume) → re-ingests attempt-003's exact bytes; NO fourth spawn.
-  const record4 = await dispatch(req);
-  assert.equal(record4, record3, "resume returns the SAME persisted bytes");
+  const dispatch4 = normalizeD7WorkerReturn(await dispatch(req));
+  assert.equal(dispatch4.record, record3, "resume returns the SAME persisted bytes");
+  assert.equal(dispatch4.dispatchMeta?.sessionKind, "reingest", "the resume envelope is a reingest, never a live session");
+  assert.equal(dispatch4.dispatchMeta?.attemptIndex, 3);
   assert.equal(spawnCount, 3, "resume did NOT spawn a new session (no double-spend)");
 
   // Ledger provenance: 3 real 'session' entries + 1 'reingest' entry.

@@ -110,3 +110,39 @@ test("the attempt cap SALVAGES a run: a (unit, role) that fails twice then retur
     repo.dispose();
   }
 });
+
+test("resume after exhaustion (rt FINDING C): a durable INSTRUMENT_FAIL marker returns the recorded terminal WITHOUT any new worker dispatch — a resume can never silently revive a capped candidate", async () => {
+  const repo = makeD7Repo("cf-d7-cap-resume", CALIBRATION_UNIT);
+  try {
+    const auditId = "bakeoff-d7-resume-x";
+    const base = d7WorkerDouble({ repositoryRoot: repo.base, calibrationUnit: CALIBRATION_UNIT, ratingForUnit: () => 4 });
+
+    // Run 1: the worker always returns an invalid record → the first (unit, role)
+    // exhausts the cap and the candidate reaches INSTRUMENT_FAIL, persisting a
+    // durable marker beside the audit evidence.
+    const failing: D7WorkerDispatch = async (req) => corruptAtomicRating(await base(req));
+    const j1 = await judgeCandidateD7({
+      bookId: "zz-d7-resume", label: "D", chapters: [fullFixtureChapter("zz-d7-resume", 1)],
+      repositoryRoot: repo.base, auditId, calibrationUnit: CALIBRATION_UNIT, worker: failing, forbidden: [], log: () => {},
+    });
+    assert.equal(j1.terminalState, "instrument-fail");
+    assert.equal(j1.verdict, "INSTRUMENT_FAIL");
+
+    // Run 2 (resume, same auditId + repo): a SPY worker that would return VALID
+    // records if it were ever called. The durable marker must short-circuit BEFORE
+    // any dispatch — a capped candidate is never re-attempted or re-spent on.
+    let dispatches = 0;
+    const spy: D7WorkerDispatch = async (req) => { dispatches += 1; return base(req); };
+    const j2 = await judgeCandidateD7({
+      bookId: "zz-d7-resume", label: "D", chapters: [fullFixtureChapter("zz-d7-resume", 1)],
+      repositoryRoot: repo.base, auditId, calibrationUnit: CALIBRATION_UNIT, worker: spy, forbidden: [], log: () => {},
+    });
+    assert.equal(dispatches, 0, "a resume of a capped candidate makes ZERO new worker dispatches");
+    assert.equal(j2.terminalState, "instrument-fail", "the resume returns the RECORDED terminal, not a fresh judgment");
+    assert.equal(j2.verdict, "INSTRUMENT_FAIL");
+    assert.equal(j2.d7Composite, null);
+    assert.ok(/exhausted 3 attempts/.test(j2.ineligibleReason ?? ""), j2.ineligibleReason ?? "no reason");
+  } finally {
+    repo.dispose();
+  }
+});

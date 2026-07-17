@@ -51,11 +51,14 @@ import { resolve } from "node:path";
 
 import { appendCallLedgerEntry } from "../telemetry/runCallLedger.js";
 import type { ProviderOutcomeV1 } from "../contracts/routeContracts.js";
-import type { D7WorkerDispatch, D7WorkerRequest } from "./d7Judge.js";
+import { hashCanonical } from "../contracts/contractUtil.js";
+import type { D7WorkerDispatch, D7WorkerRequest, D7WorkerReturn } from "./d7Judge.js";
 import { D7JudgeError } from "./d7Judge.js";
 import { PIPELINE_DIR } from "./paths.js";
+import { resolveD7RaterRoute } from "../orchestrator/modelPolicy.js";
 import {
   runUltraSession,
+  ULTRA_EFFORT,
   type UltraAcceptanceProbeV1,
   type UltraSessionDepsV1,
   type UltraSessionRequestV1,
@@ -312,7 +315,7 @@ export function createD7CodexWorkerDispatch(args: CreateD7CodexWorkerDispatchArg
   const appendLedger = args.appendLedger ?? appendCallLedgerEntry;
   const clock = args.clock ?? (() => new Date());
 
-  return async (req: D7WorkerRequest): Promise<string> => {
+  return async (req: D7WorkerRequest): Promise<D7WorkerReturn> => {
     const baseDir = d7CodexSessionBaseDir(pipelineDir, req);
 
     const ledger = (fields: {
@@ -358,7 +361,22 @@ export function createD7CodexWorkerDispatch(args: CreateD7CodexWorkerDispatchArg
         attemptIndex: completed.index,
       });
       log(`[bakeoff] d7-codex-dispatch ${req.unit} ${req.role}: REINGEST attempt-${String(completed.index).padStart(3, "0")} (already-persisted bytes; no new session)`);
-      return completed.record;
+      // WP-E23 route proof (rt FINDING A leg 1): hand the OBSERVED metadata back so
+      // the judge threads it into ingest — the re-ingested record carries the same
+      // real model/effort and the adjudicator's envelope-manifest sha the original
+      // session recorded (sessionKind "reingest", never a live re-spend).
+      return {
+        record: completed.record,
+        dispatchMeta: {
+          model: completed.result.model ?? null,
+          effort: completed.result.effort ?? null,
+          sessionId: completed.result.sessionId ?? null,
+          manifestSha256: completed.result.manifestSha256,
+          manifestPath: completed.result.manifestPath,
+          sessionKind: "reingest",
+          attemptIndex: completed.index,
+        },
+      };
     }
 
     // ── New session: the next attempt dir (a prior failed attempt is preserved).
@@ -435,21 +453,85 @@ export function createD7CodexWorkerDispatch(args: CreateD7CodexWorkerDispatchArg
     }, record);
 
     log(`[bakeoff] d7-codex-dispatch ${req.unit} ${req.role}: attempt-${String(attemptIndex).padStart(3, "0")} OK (${result.model}@${result.effort})`);
-    return record;
+    // WP-E23 route proof (rt FINDING A leg 1): return the record WITH the REAL
+    // observed dispatch metadata (family codex-exec model/effort, the ultra
+    // session id, and the effective-context manifest sha) so the judge threads it
+    // into ingest — the ledger records the real route and the adjudicator's
+    // envelope-manifest custody sidecar is actually written, never left null.
+    return {
+      record,
+      dispatchMeta: {
+        model: result.model,
+        effort: result.effort,
+        sessionId: result.sessionId,
+        manifestSha256: result.manifestSha256,
+        manifestPath: result.manifestPath,
+        sessionKind: "session",
+        attemptIndex,
+      },
+    };
   };
+}
+
+/** Recompute the canonical semantic fingerprint the ultra-session writer stamped
+ *  (`writeUltraProbeSidecar`: `hashCanonical` over the semantic fields, EXCLUDING
+ *  the self-referential `sidecarPath`/`sidecarSha256`). MUST stay byte-identical
+ *  to that writer — a divergence here silently disables the tamper check. */
+function recomputeUltraProbeSha256(probe: UltraAcceptanceProbeV1): string {
+  return hashCanonical({
+    schemaVersion: probe.schemaVersion,
+    probedAt: probe.probedAt,
+    model: probe.model,
+    effort: probe.effort,
+    accepted: probe.accepted,
+    detail: probe.detail,
+    manifestPath: probe.manifestPath,
+  });
+}
+
+/**
+ * Whether a probe sidecar is a STRUCTURALLY VALID acceptance proof for THIS D7
+ * ultra route (rt FINDING B: "probe gate not validated"). A sidecar is honored
+ * only when ALL hold:
+ *   - `schemaVersion === "ultra-acceptance-probe-v1"`,
+ *   - `effort === ULTRA_EFFORT`,
+ *   - `model === resolveD7RaterRoute().model` (a stale-model sidecar from a prior
+ *     winner is NOT this campaign's proof), AND
+ *   - the recomputed canonical semantic hash equals the recorded `sidecarSha256`
+ *     (a hand-planted `{"accepted":true}` sidecar, or one whose fields were edited
+ *     after signing, fails this self-hash check).
+ * `accepted` itself is checked by the caller — a valid-but-`accepted:false` probe
+ * is a distinct, honest halt.
+ */
+export function isValidUltraProbe(probe: UltraAcceptanceProbeV1 | null): boolean {
+  if (probe === null) return false;
+  if (probe.schemaVersion !== "ultra-acceptance-probe-v1") return false;
+  if (probe.effort !== ULTRA_EFFORT) return false;
+  if (probe.model !== resolveD7RaterRoute().model) return false;
+  if (typeof probe.sidecarSha256 !== "string" || recomputeUltraProbeSha256(probe) !== probe.sidecarSha256) return false;
+  return true;
 }
 
 /**
  * Consult the campaign's ultra-acceptance probe BEFORE the first rating spawn.
- * A missing probe or `accepted:false` HALTS (throws `D7JudgeError`): the D7 raters
- * are Sol-ultra codex sessions, and an unaccepted `model_reasoning_effort=ultra`
- * token means every rating would spawn at the wrong effort. Fail closed — the
- * campaign is not runnable until the installed CLI proves it accepts ultra.
+ * A missing, STRUCTURALLY-INVALID, or `accepted:false` probe HALTS (throws
+ * `D7JudgeError`): the D7 raters are Sol-ultra codex sessions, and an unaccepted
+ * `model_reasoning_effort=ultra` token means every rating would spawn at the wrong
+ * effort. Fail closed — the campaign is not runnable until the installed CLI proves
+ * it accepts ultra AND the proof is one this route can trust (rt FINDING B: a
+ * hand-planted `{"accepted":true}` or a stale-model sidecar is NOT acceptance).
  */
 export function assertUltraProbeAccepted(probe: UltraAcceptanceProbeV1 | null): void {
   if (probe === null) {
     throw new D7JudgeError(
       "ultra-acceptance probe missing — refusing to spawn any D7 rating session before the campaign proves the installed codex CLI accepts model_reasoning_effort=ultra (fail closed).",
+    );
+  }
+  if (!isValidUltraProbe(probe)) {
+    throw new D7JudgeError(
+      "ultra-acceptance probe is not a trustworthy proof for the D7 ultra route — its schemaVersion/effort/model must match resolveD7RaterRoute() @ ultra AND its self-hash must recompute over the recorded fields. " +
+        `Observed schemaVersion=${String((probe as { schemaVersion?: unknown }).schemaVersion)} model=${String(probe.model)} effort=${String(probe.effort)}. ` +
+        "Treating it as absent (re-run the probe); refusing to spawn any D7 rating session (fail closed).",
     );
   }
   if (!probe.accepted) {
