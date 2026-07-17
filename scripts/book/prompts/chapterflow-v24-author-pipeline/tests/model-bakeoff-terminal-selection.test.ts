@@ -29,7 +29,7 @@ import { chapterContentHash } from "../src/critics/qcAttestation.js";
 import { bakeoffRoots } from "../src/bakeoff/paths.js";
 import { slotChapterAbsPath } from "../src/bakeoff/candidates.js";
 import { combinedContentHash } from "../src/bakeoff/review.js";
-import { annotateInvalidRun, runBakeoff, type BakeoffStages, type RunBakeoffOptions } from "../src/bakeoff/runBakeoff.js";
+import { annotateInvalidRun, MeasureOnlyNotCompareOnlyError, runBakeoff, type BakeoffStages, type RunBakeoffOptions } from "../src/bakeoff/runBakeoff.js";
 import { selectWinner, type SelectionInputs } from "../src/bakeoff/selection.js";
 import { D7_SELECTION_BAND } from "../src/bakeoff/d7Judge.js";
 import type {
@@ -208,6 +208,11 @@ function makeWorld(pendingSlots: Set<string> = new Set(), compositesBySlot: Reco
     deps: bundle.deps,
     stateRoot,
     stages,
+    // Hermetic run lock — the conductor's real book lock lives under the pipeline
+    // state root (state/autopilot-locks), the one PRODUCTION-ROOT write these
+    // otherwise-tmp conductor tests would make; a no-op keeps the suite hermetic
+    // under CHAPTERFLOW_LEAK_GUARD=1. These tests never exercise locking.
+    acquireLock: () => ({ ok: true, release: () => {} }),
     ...over,
   });
 
@@ -280,7 +285,9 @@ test("curing the pending D7 record out-of-band lets the very next resume re-deri
   const manifestAfter = manifestOf(w);
   assert.ok(manifestAfter.completedPhases.includes("select"), "the select phase is now marked done");
   assert.ok(manifestAfter.completedPhases.includes("promote"));
-  assert.equal(manifestAfter.selection!.provisional, undefined, "a FINAL selection carries no provisional flag");
+  // F3: a genuine FINAL selection is stamped provisional:false (not absent) —
+  // absent is reserved for records that predate terminal gating.
+  assert.equal(manifestAfter.selection!.provisional, false, "a FINAL selection carries provisional:false");
   assert.equal(second.winner, "gpt-5.6-sol", "the highest D7 composite (w1, 90) still wins");
 });
 
@@ -300,7 +307,53 @@ test("a deterministic-floor-failed candidate never blocks terminal gating — it
   assert.equal(outcome.status, "ready", "the run completes even though luna never reaches the D7 judge");
   assert.equal(w.calls.d7.length, 2, "the floor-disqualified candidate got no D7 spend, and is not on the hook for terminal-gating");
   const manifest = manifestOf(w);
-  assert.equal(manifest.selection!.provisional, undefined);
+  assert.equal(manifest.selection!.provisional, false, "a FINAL selection is stamped provisional:false");
+});
+
+// ── F1 (WP-E71 red-team): readabilityMeasureOnly is refused unless compare-only ─
+// The measure-only readability lane demotes the ship-readability floor to a
+// measurement; that is safe ONLY where promotion is structurally unreachable
+// (a compare-only run). A non-compare-only measure-only run is refused up front.
+
+/** Pre-seed a manifest on disk (as the screening lane would) so the run resumes
+ *  straight to the compare-only check with readabilityMeasureOnly already set —
+ *  there is no opts/CLI surface for the flag (red-team-measure-only containment). */
+function seedManifest(w: World, over: Partial<BakeoffManifestV1>): void {
+  const manifest: BakeoffManifestV1 = {
+    schemaVersion: "model-bakeoff-manifest-v1",
+    runId: "bo-test",
+    bookId: BOOK_ID,
+    createdAt: "t",
+    updatedAt: "t",
+    candidates: MODELS.map((model, i) => ({ model, slug: model.replace(/[^a-z0-9]+/gi, "-"), slot: `w${i + 1}`, effort: "xhigh" })),
+    judge: { model: "gpt-5.6-sol", effort: "high" },
+    maxParallel: 3,
+    publish: false,
+    blindMap: {},
+    completedPhases: ["intake", "research", "freeze"],
+    freeze: w.freeze,
+    ...over,
+  };
+  mkdirSync(dirname(w.roots.manifestPath), { recursive: true });
+  writeFileSync(w.roots.manifestPath, JSON.stringify(manifest, null, 2));
+}
+
+test("F1: a measure-only run that is NOT compare-only (full index) is refused before any candidate spend", async () => {
+  const w = makeWorld(); // expectedChapterNumbers = [1]; freeze = [1] ⇒ full index ⇒ NOT compare-only
+  seedManifest(w, { readabilityMeasureOnly: true });
+  await assert.rejects(() => runBakeoff(w.opts()), MeasureOnlyNotCompareOnlyError);
+  assert.equal(w.calls.generate.length, 0, "the run refused before any candidate was generated");
+  assert.equal(w.calls.promote.length, 0, "nothing was promoted");
+});
+
+test("F1: a measure-only run that IS compare-only (frozen subset of the index) proceeds", async () => {
+  const w = makeWorld();
+  seedManifest(w, { readabilityMeasureOnly: true });
+  // Index has 2 chapters, but the run froze only ch01 ⇒ compare-only ⇒ the
+  // measure-only lane is allowed (promotion is structurally skipped anyway).
+  const outcome = await runBakeoff(w.opts({ deps: { ...w.bundle.deps, expectedChapterNumbers: () => [1, 2] } }));
+  assert.equal(outcome.status, "compared", "the compare-only measure-only run runs to a comparison, never refused");
+  assert.equal(w.calls.promote.length, 0, "a compare-only run never promotes, by construction");
 });
 
 // ── Pure selectWinner-level: evaluator-primary ranking (§2) ───────────────────
@@ -408,6 +461,32 @@ test("evaluator-primary mode: a null evaluator diagnostic DISQUALIFIES — never
   const lunaCard = sel.scorecards.find((s) => s.model === "gpt-5.6-luna")!;
   assert.equal(lunaCard.eligible, false);
   assert.ok(lunaCard.disqualifications.some((d) => /no evaluator chapter diagnostic/.test(d) && /dispatch timed out/.test(d)));
+});
+
+// ── F2 (WP-E71 red-team): the eval-primary tie-break must not consult d7Min ──
+test("evaluator-primary tie-break: the tie rung is the evaluator diagnostic itself, never d7Min (which would invert the pick)", () => {
+  const inputs: SelectionInputs = [
+    {
+      // Higher evaluator diagnostic (86), but the LOWER worst-chapter D7 min (80).
+      spec: spec("gpt-5.6-luna", "w1"), label: "A", generation: generation("gpt-5.6-luna", "w1"), validation: validation("gpt-5.6-luna"),
+      review: null, d7: d7("A", 85, { min: 80 }), evalDiagnostic: evalDiag("A", 86.0),
+    },
+    {
+      // Lower evaluator diagnostic (85, within the ±2.0 band), but the HIGHER d7Min (90).
+      spec: spec("gpt-5.6-sol", "w2"), label: "B", generation: generation("gpt-5.6-sol", "w2"), validation: validation("gpt-5.6-sol"),
+      review: null, d7: d7("B", 86, { min: 90 }), evalDiagnostic: evalDiag("B", 85.0),
+    },
+  ];
+  const sel = selectWinner(inputs);
+  assert.equal(sel.decidedByTieBreak, true, "1.0 apart on the evaluator diagnostic (< 2.0 band) is a tie");
+  assert.equal(sel.winner, "gpt-5.6-luna", "the evaluator diagnostic (86 > 85) breaks the tie — a d7Min ladder (80 < 90) would have inverted it to sol");
+  // Prove the inversion the OLD ladder would have produced: sol carries the higher d7Min.
+  const sol = sel.scorecards.find((s) => s.model === "gpt-5.6-sol")!;
+  const luna = sel.scorecards.find((s) => s.model === "gpt-5.6-luna")!;
+  assert.ok((sol.d7Min ?? -Infinity) > (luna.d7Min ?? -Infinity), "sol has the higher worst-chapter D7 min the legacy ladder would have picked");
+  // The tie-break reason names the evaluator-diagnostic ladder, never worst-chapter D7 min.
+  assert.ok(sel.reasons.some((r) => /effectively TIED/.test(r) && /evaluator diagnostic/.test(r)), "the tie-break trace cites the evaluator diagnostic rung");
+  assert.ok(!sel.reasons.some((r) => /worst-chapter D7 min/.test(r)), "the eval-primary tie-break never cites worst-chapter D7 min");
 });
 
 test("legacy inputs (no evalDiagnostic field on ANY candidate) stay D7-primary — scorecards carry no eval* keys, byte-identical to pre-WP-E32", () => {

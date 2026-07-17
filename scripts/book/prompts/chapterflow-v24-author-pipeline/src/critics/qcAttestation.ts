@@ -264,16 +264,19 @@ export type QcFinding = { checkId: string; severity: "blocker" | "advisory"; mes
 /** Policy P1 (owner assignment, no Claude-family model rates books/chapters):
  *  a QC verdict is never attributable to a Claude-family identity. Thrown by
  *  `isApprovedReviewer`/`writeAttestation` the moment a reviewer role prefix
- *  starts with "claude" — this is a REFUSAL, not an advisory finding, and it
- *  cannot be bypassed via `CHAPTERFLOW_QC_REVIEWERS` (see
- *  `approvedReviewerRoles`, which strips claude-* prefixes from the env list
- *  before a caller ever reaches this check). */
+ *  names the Claude family (see CLAUDE_FAMILY_ROLE_PREFIXES) — this is a REFUSAL,
+ *  not an advisory finding, and it cannot be bypassed via
+ *  `CHAPTERFLOW_QC_REVIEWERS` (see `approvedReviewerRoles`, which strips every
+ *  Claude-family prefix from the env list before a caller ever reaches this
+ *  check). The family ships under several names (claude/opus/sonnet/haiku/fable
+ *  under Anthropic), so a bare "opus-qc" is refused exactly like "claude-qc". */
 export class ClaudeRatingRoleRefusalError extends Error {
   readonly reviewer: string;
   constructor(reviewer: string) {
     super(
-      `QC reviewer "${reviewer}" carries a claude-* role prefix. Policy P1 (no Claude-family ` +
-      `model rates books or chapters) refuses ANY claude-prefixed QC identity — attest with an ` +
+      `QC reviewer "${reviewer}" carries a Claude-family role prefix ` +
+      `(${CLAUDE_FAMILY_ROLE_PREFIXES.join("/")}). Policy P1 (no Claude-family ` +
+      `model rates books or chapters) refuses ANY Claude-family QC identity — attest with an ` +
       `approved non-Claude role instead (codex-qc:/harness:/human:).`,
     );
     this.name = "ClaudeRatingRoleRefusalError";
@@ -286,9 +289,20 @@ function reviewerRolePrefix(reviewer: string): string {
   return (reviewer.split(":")[0] ?? "").trim().toLowerCase();
 }
 
-/** True if `role` (already lowercased, no ":" suffix) names the Claude family. */
+/** The Claude-family role-prefix alias set. Policy P1 refuses ANY of these as a
+ *  QC rating identity: the same model answers to several names (Claude / Opus /
+ *  Sonnet / Haiku / Fable, all under the Anthropic family), so a reviewer role
+ *  that STARTS WITH any of them is a Claude-family identity and is refused
+ *  exactly like `claude-*`. The approved non-Claude roles (codex-qc / harness /
+ *  human, and the writer identity codex:writer) start with none of these. */
+const CLAUDE_FAMILY_ROLE_PREFIXES = ["claude", "opus", "sonnet", "haiku", "fable", "anthropic"] as const;
+
+/** True if `role` (already lowercased, no ":" suffix) names the Claude family —
+ *  any of the family aliases as a PREFIX, so "opus-qc" trips it like "claude-qc"
+ *  (case-insensitive; lowercased defensively). */
 function isClaudeRole(role: string): boolean {
-  return role.startsWith("claude");
+  const r = role.trim().toLowerCase();
+  return CLAUDE_FAMILY_ROLE_PREFIXES.some((p) => r.startsWith(p));
 }
 
 /** Reviewer-identity allowlist. A PUBLISHABLE attestation only counts at the
@@ -304,9 +318,10 @@ function isClaudeRole(role: string): boolean {
  *  honesty-INDEPENDENT catch for the worst class (wrong quiz keys) is the model
  *  judge enforced via quizKeyGate.ts. Override the allowed roles with
  *  CHAPTERFLOW_QC_REVIEWERS (comma-separated role prefixes) — EXCEPT a
- *  claude-* prefix, which policy P1 never allows into this list (silently
- *  dropped here; `isApprovedReviewer` also refuses it outright for any
- *  reviewer identity, whether or not it was ever added to this list). */
+ *  Claude-family prefix (claude/opus/sonnet/haiku/fable/anthropic), which policy
+ *  P1 never allows into this list (silently dropped here; `isApprovedReviewer`
+ *  also refuses it outright for any reviewer identity, whether or not it was
+ *  ever added to this list). */
 const DEFAULT_QC_REVIEWERS = ["codex-qc", "harness", "human"];
 
 export function approvedReviewerRoles(): string[] {

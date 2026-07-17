@@ -87,6 +87,19 @@ test("attack3: isApprovedReviewer refuses any claude-* identity (throws), accept
   assert.equal(isApprovedReviewer("harness:x"), true);
 });
 
+// F4 (WP-E71 red-team): re-entry via a Claude-family ALIAS, not just the literal
+// "claude-*". The family answers to Opus/Sonnet/Haiku/Fable (Anthropic), so each
+// must be stripped from the allowlist and refused at the gate — a bare "opus-qc"
+// is a Claude route by another name.
+test("attack3: the whole Claude-family alias set (opus/sonnet/haiku/fable/anthropic) is stripped and refused", () => {
+  withEnv({ CHAPTERFLOW_QC_REVIEWERS: "opus-qc, sonnet-x, anthropic-j, codex-qc" }, () => {
+    assert.deepEqual(approvedReviewerRoles(), ["codex-qc"], "every Claude-family alias is dropped; only codex-qc survives");
+  });
+  for (const reviewer of ["opus-qc:wf1", "sonnet-3-5:wf1", "haiku:wf1", "fable-5:wf1", "anthropic-opus:wf1", "OPUS:wf1"]) {
+    assert.throws(() => isApprovedReviewer(reviewer), ClaudeRatingRoleRefusalError, `${reviewer} is a Claude-family identity by another name`);
+  }
+});
+
 test("attack3: qc-attest with a claude-* reviewer is refused at the write boundary (never reaches disk)", () => {
   const att: QcAttestation = {
     schemaVersion: "qc-attest-v1",

@@ -89,6 +89,10 @@ function selection(over: Partial<SelectionV1> & { scorecards: CandidateScorecard
   return {
     schemaVersion: "model-bakeoff-selection-v1",
     selectedAt: "2026-07-17T01:00:00.000Z",
+    // F3: selectWinner stamps a genuine final provisional:false; mirror that
+    // default here so absent no longer masquerades as final. Cases that mean to
+    // exercise the provisional/legacy path override this explicitly.
+    provisional: false,
     winner: null,
     runnerUp: null,
     decidedByTieBreak: false,
@@ -178,6 +182,30 @@ test("provisional selection: banner + suppressed scoreboard even though scores/w
   // The raw selection record is still retained as evidence in the JSON (never
   // deleted), just flagged — a resumed run re-derives it from here.
   assert.equal(json.selection.provisional, true);
+});
+
+test("F3: a legacy selection with provisional ABSENT is treated as NO VALID COMPARISON (never final)", () => {
+  // A record predating terminal gating: provisional is ABSENT (not false). Per
+  // SelectionV1's frozen contract that must read as provisional — a scoreboard
+  // must never be printed as if the run were a decided comparison.
+  const sel = selection({
+    winner: "gpt-5.6-sol",
+    scorecards: [
+      scorecard({ model: "gpt-5.6-sol", label: "A", d7Composite: 92.8, d7Min: 90, d7GatesPass: true, d7LayerIndependencePass: true, d7Verdict: "PASS" }),
+      scorecard({ model: "gpt-5.6-terra", label: "B", d7Composite: 70, d7Min: 65, d7GatesPass: true, d7LayerIndependencePass: true, d7Verdict: "PASS" }),
+    ],
+    reasons: ["gpt-5.6-sol wins on the D7 chapter-diagnostic composite (92.80)."],
+  });
+  delete (sel as { provisional?: boolean }).provisional; // simulate a pre-terminal-gating record
+
+  const md = buildReportMd(baseInputs({ selection: sel }));
+  assert.match(md, /NO VALID COMPARISON/);
+  assert.ok(!md.includes("92.8"), "an absent-provisional record must not print a scoreboard as if final");
+  assert.match(md, /WITHHELD/);
+
+  const json = buildReportJson(baseInputs({ selection: sel })) as any;
+  assert.equal(json.comparisonValidity.noValidComparison, true);
+  assert.match(json.comparisonValidity.reason, /provisional/);
 });
 
 // ── Label truthfulness: evaluator diagnostic vs D7 ────────────────────────────

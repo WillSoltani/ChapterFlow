@@ -239,20 +239,41 @@ function primaryCompare(
 }
 
 /** The tie-break — ONLY reached inside the ±2.0 primary-metric band. INTERIM
- *  stand-in for the WP-705 ladder: worst-chapter D7 min, then retries, then
- *  latency, then stable model order. Unchanged by WP-E32 — the ladder stays
- *  D7-sourced (per-chapter granularity) in BOTH modes; WP-705 owns any redesign. */
-function tieBreak(tied: CandidateScorecardV1[], reasons: string[], primaryOf: (s: CandidateScorecardV1) => number, metricLabel: string): CandidateScorecardV1 {
+ *  stand-in for the WP-705 ladder.
+ *
+ *  F2 (WP-E71 red-team): the FIRST tie rung is the PRIMARY metric itself.
+ *  Under evaluator-primary mode that is the evaluator chapter diagnostic (higher
+ *  wins) — the ladder must NOT consult d7Min, which is a SECONDARY (downgrade-
+ *  only) D7 signal under §5.7 and could otherwise re-rank the winner by D7 (the
+ *  exact secondary→decisive leak this ladder must never have). D7 stays
+ *  flags-only in that mode. Under legacy D7-primary mode the first rung is the
+ *  worst-chapter D7 min, unchanged. Both modes then fall to retries → latency →
+ *  stable model order. WP-705 owns any full redesign. */
+function tieBreak(
+  tied: CandidateScorecardV1[],
+  reasons: string[],
+  primaryOf: (s: CandidateScorecardV1) => number,
+  metricLabel: string,
+  evalPrimary: boolean,
+): CandidateScorecardV1 {
   const ranked = [...tied].sort((a, b) =>
-    ((b.d7Min ?? -Infinity) - (a.d7Min ?? -Infinity)) ||
+    (evalPrimary
+      ? primaryOf(b) - primaryOf(a)                         // eval-primary: the evaluator diagnostic itself, never d7Min
+      : (b.d7Min ?? -Infinity) - (a.d7Min ?? -Infinity)) || // legacy: worst-chapter D7 min
     (a.totalRetries - b.totalRetries) ||
     (a.totalDurationMs - b.totalDurationMs) ||
     a.model.localeCompare(b.model));
   const w = ranked[0];
+  const ladderDesc = evalPrimary
+    ? "evaluator chapter-diagnostic, then retries, then latency; WP-705 owns the full ladder"
+    : "worst-chapter D7 min, then retries, then latency; WP-705 owns the full ladder";
+  const firstRungDetail = evalPrimary
+    ? `evaluator diagnostic ${ranked.map((t) => `${t.model}=${primaryOf(t).toFixed(2)}`).join(", ")}`
+    : `worst-chapter D7 min ${ranked.map((t) => `${t.model}=${t.d7Min?.toFixed(2) ?? "n/a"}`).join(", ")}`;
   reasons.push(
     `${metricLabel} effectively TIED (±${D7_SELECTION_BAND}) among ${tied.map((t) => `${t.model} (${primaryOf(t).toFixed(2)})`).join(", ")} — ` +
-    "deferred to the tie-break ladder (worst-chapter D7 min, then retries, then latency; WP-705 owns the full ladder): " +
-    `selected ${w.model} (worst-chapter D7 min ${ranked.map((t) => `${t.model}=${t.d7Min?.toFixed(2) ?? "n/a"}`).join(", ")}; ` +
+    `deferred to the tie-break ladder (${ladderDesc}): ` +
+    `selected ${w.model} (${firstRungDetail}; ` +
     `retries ${ranked.map((t) => `${t.model}=${t.totalRetries}`).join(", ")}).`,
   );
   return w;
@@ -298,7 +319,7 @@ export function selectWinner(inputs: SelectionInputs, band = D7_SELECTION_BAND):
         reasons.push(`${winner.model} wins on the ${metricLabel} (${primaryOf(winner).toFixed(2)}).`);
       }
     } else {
-      winner = tieBreak(tied, reasons, primaryOf, metricLabel);
+      winner = tieBreak(tied, reasons, primaryOf, metricLabel, evalPrimary);
       decidedByTieBreak = true;
     }
   } else {
@@ -333,6 +354,12 @@ export function selectWinner(inputs: SelectionInputs, band = D7_SELECTION_BAND):
   return {
     schemaVersion: "model-bakeoff-selection-v1",
     selectedAt: new Date().toISOString(),
+    // F3 (WP-E71 red-team): a selection minted here is a GENUINE FINAL — every
+    // candidate was scored from the records present at call time. Stamp
+    // provisional:false explicitly so `absent` can mean ONLY "predates terminal
+    // gating" (SelectionV1's frozen contract). The conductor OVERRIDES this to
+    // true on the non-terminal path (runBakeoff), the only provisional source.
+    provisional: false,
     winner: winner?.model ?? null,
     runnerUp,
     decidedByTieBreak,

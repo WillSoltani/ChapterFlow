@@ -24,7 +24,7 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { test, xenv, xfail } from "./harness.js";
+import { test, xenv } from "./harness.js";
 import {
   assertNoModelIdentityLeak,
   ChapterDiagnosticRunError,
@@ -101,22 +101,21 @@ test("attack10: assertNoModelIdentityLeak trips on a model token in a rater-visi
   assert.doesNotThrow(() => assertNoModelIdentityLeak({ verdict: "a solution on the console is soluble" }, "record"));
 });
 
-// FINDING F-1 (WP-E71). The defense-in-depth final-record/prompt/package blind scan
-// `assertNoModelIdentityLeak` (chapterDiagnosticRun.ts) uses a `\b<token>\b` match.
-// `_` is a WORD character in JS regex, so `\bsol\b` does NOT match `sol_primary` —
-// the EXACT `/root/sol_primary` reference-record leak form the code's own comment
-// (mintRoleIdentity) calls out. The sibling reviewer guard
-// `bakeoff/review.assertNoIdentityLeak` uses `(^|[^a-z0-9])TOKEN($|[^a-z0-9])`
-// boundaries and DOES catch it. Primary blinding still holds (the orchestrator
-// overwrites worker_task_id with a role-only id it controls), so this is a
-// defense-in-depth gap, not an open leak — but a rater writing "sol_primary" into
-// any free-text field would evade this scan. Fix: align the boundary with the
-// reviewer guard (treat `_` as a separator). Kept xfail so the fix promotes it.
-xfail(
-  'attack10 FINDING F-1: an underscore-joined model token ("sol_primary") evades assertNoModelIdentityLeak (\\b treats _ as a word char)',
-  "chapterDiagnosticRun.assertNoModelIdentityLeak uses \\b...\\b; `_` is a regex word char so `\\bsol\\b` misses the `/root/sol_primary` reference-record leak form — the sibling review.assertNoIdentityLeak does catch it",
+// FINDING F-1 (WP-E71) — FIXED. `assertNoModelIdentityLeak` (chapterDiagnosticRun.ts)
+// previously used a `\b<token>\b` match. `_` is a WORD character in JS regex, so
+// `\bsol\b` did NOT match `sol_primary` — the EXACT `/root/sol_primary`
+// reference-record leak form the code's own comment (mintRoleIdentity) calls out.
+// The boundary is now aligned with the sibling reviewer guard
+// `bakeoff/review.assertNoIdentityLeak` — `(^|[^a-z0-9])TOKEN($|[^a-z0-9])`, which
+// treats `_` as a separator — so an underscore-joined model token is caught while
+// benign prose ("solution", "console") still never trips. Promoted from xfail.
+test(
+  'attack10 F-1 (fixed): an underscore-joined model token ("sol_primary") IS caught by assertNoModelIdentityLeak',
   () => {
     assert.throws(() => assertNoModelIdentityLeak({ verdict: "graded by sol_primary" }, "record"), ChapterDiagnosticRunError);
+    assert.throws(() => assertNoModelIdentityLeak({ worker_session_id: "luna_verification" }, "record"), ChapterDiagnosticRunError);
+    // …and a benign identifier that merely CONTAINS the letters still never trips.
+    assert.doesNotThrow(() => assertNoModelIdentityLeak({ verdict: "resolved on the console" }, "record"));
   },
 );
 

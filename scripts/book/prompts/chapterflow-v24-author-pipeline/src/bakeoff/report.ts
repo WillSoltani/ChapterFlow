@@ -94,7 +94,7 @@ export function buildReportJson(inputs: ReportInputs): Record<string, unknown> {
       reason: noValidComparison
         ? !inputs.selection || inputs.selection.scorecards.length === 0
           ? "selection has not run / no scorecards"
-          : inputs.selection.provisional === true
+          : inputs.selection.provisional !== false
             ? "selection is provisional (not every candidate is D7-terminal)"
             : "every candidate's primary composite is null"
         : null,
@@ -156,9 +156,15 @@ function primaryComposite(sc: CandidateScorecardV1, evalPrimary: boolean): numbe
 
 /** No valid comparison exists when the selection was never minted, is
  *  provisional (evidence still incomplete by construction — WP-E00), or every
- *  candidate's primary composite is null (no scoreable candidate at all). */
+ *  candidate's primary composite is null (no scoreable candidate at all).
+ *
+ *  F3 (WP-E71 red-team): per SelectionV1's frozen contract, `provisional`
+ *  ABSENT is read as provisional (a record predating terminal gating) — only an
+ *  EXPLICIT `provisional: false` (stamped by selectWinner on a genuine final)
+ *  clears this. So the test is `!== false`, not `=== true`: absent OR true both
+ *  mean NO VALID COMPARISON. */
 function hasNoValidComparison(sel: SelectionV1 | null): boolean {
-  if (!sel || sel.provisional === true || sel.scorecards.length === 0) return true;
+  if (!sel || sel.provisional !== false || sel.scorecards.length === 0) return true;
   const evalPrimary = isEvalPrimary(sel);
   return sel.scorecards.every((sc) => primaryComposite(sc, evalPrimary) === null);
 }
@@ -189,8 +195,8 @@ export function buildReportMd(inputs: ReportInputs): string {
     lines.push(
       !sel || sel.scorecards.length === 0
         ? "> Selection has not run, or minted zero scorecards. There is nothing to compare yet."
-        : sel.provisional === true
-          ? "> This selection was minted while at least one candidate was still non-terminal (its judge is pending or capped instrument-fail — see WP-E00 terminal gating). It is a snapshot, NOT a comparison result: resume MUST re-derive it once every candidate reaches a terminal state before any number below can be read as evidence."
+        : sel.provisional !== false
+          ? "> This selection was minted while at least one candidate was still non-terminal (its judge is pending or capped instrument-fail — see WP-E00 terminal gating), or it predates terminal gating entirely (provisional absent). It is a snapshot, NOT a comparison result: resume MUST re-derive it once every candidate reaches a terminal state before any number below can be read as evidence."
           : `> Every candidate's primary composite (${evalPrimary ? EVAL_LABEL : D7_LABEL}) is null — no candidate produced a scoreable result. There is no eligible candidate in this run.`,
     );
     lines.push(">");
