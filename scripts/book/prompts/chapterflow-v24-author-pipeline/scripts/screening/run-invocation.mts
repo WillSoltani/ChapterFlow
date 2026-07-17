@@ -278,9 +278,20 @@ const isolatedClaudeSessionRunner: IsolatedClaudeSessionRunner = (req) =>
     // supplies the exact binary via CHAPTERFLOW_CLAUDE_BIN. Fail-closed ENOENT
     // otherwise (never a fabricated record).
     const claudeBin = process.env.CHAPTERFLOW_CLAUDE_BIN?.trim() || "claude";
+    // Deep reasoning for the rater session (a one-shot default-budget reply
+    // produced a schema-non-compliant record — wrong domain/subcriteria keys).
+    childEnv.MAX_THINKING_TOKENS = childEnv.MAX_THINKING_TOKENS ?? "31999";
+    // Generic compliance directive — carries ZERO task/identity content, so
+    // blinding is untouched; it only enforces the record contract the task
+    // itself specifies.
+    const strictSystem =
+      "You are a meticulous rater completing a structured audit task. Follow the task document EXACTLY. " +
+      "Your ENTIRE final reply must be the single JSON record the task specifies — copy the record's " +
+      "field names, domain keys, subcriteria keys, and weights CHARACTER-FOR-CHARACTER from the task's " +
+      "schema enumeration; never invent, rename, merge, or omit keys. No prose outside the JSON.";
     // No explicit `stdio` key ⇒ default 'pipe' for stdin/stdout/stderr, and the
     // ChildProcessWithoutNullStreams return type (non-null streams).
-    const child = spawn(claudeBin, ["-p", "--model", "claude-opus-4-8", "--output-format", "text"], {
+    const child = spawn(claudeBin, ["-p", "--model", "claude-opus-4-8", "--output-format", "text", "--append-system-prompt", strictSystem], {
       cwd: dir,
       env: childEnv,
     });
