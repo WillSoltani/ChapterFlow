@@ -60,8 +60,8 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 603 | integrated | wp-603-progress-logs | 61508ed88 | e1a7f72ec | rt PASS-WITH-NOTES; doc-claim scoped |
 | 604 | integrated | wp-604-cli-tests | 61508ed88 | 4c17a7d15 | rt PASS-WITH-NOTES; found L-33 defect |
 | 602b | integrated | wp-602b-fresh-preflight | 96998904 | 681189ac9 | rt PASS-WITH-NOTES; L-33 CLOSED (fresh book starts) |
-| 801 | in progress | wp/801-failure-injection | 11e0362ac | — | dispatched 2026-07-17 at D-3 authorization (wf_3c695a3b-192) |
-| 701-mf | in progress | wp/701-bakeoff-corpus | 11e0362ac | — | model-free portion; authoringSource UNRESOLVED fail-closed pending the D-7 compile freeze |
+| 801 | integrated | wp/801-failure-injection | 11e0362ac | 1d3fd38eb | rt PASS (4 mutation probes); merged 650f49450; zero guard gaps found — all 10 scenarios already fail-closed |
+| 701-mf | integrated | wp/701-bakeoff-corpus | 11e0362ac | 5b5343800 | rt PASS; 2 rt findings fixed pre-merge (allowlist readiness + record cross-binding); merged e912bf63f; packet not-ready-for-bakeoff pending D-7 freeze |
 | 502 | in progress (build) | wp/502-capability-probe | 11e0362ac | — | build model-free; live probe (≤3 calls/model) executes post-integration under L-37 authorization |
 | others | not started | — | — | — | — |
 
