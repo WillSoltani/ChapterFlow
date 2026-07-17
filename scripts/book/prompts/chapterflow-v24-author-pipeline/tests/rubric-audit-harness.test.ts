@@ -33,6 +33,7 @@ import {
   ingestAdjudicationRecord,
   ingestRaterRecord,
   raterBindingEnvelope,
+  renderAdjudicationRecordSkeleton,
   renderRaterRecordSkeleton,
   renderRaterTaskDocument,
   summarizeAudit,
@@ -446,6 +447,160 @@ test("a task-following rater that fills the rendered skeleton ingests (task↔va
       /subcriteria keys are invalid/,
       "an array-shaped subcriteria (the live symptom) is still rejected",
     );
+  } finally {
+    repo.dispose();
+  }
+});
+
+// ── adjudicator task↔validator schema closure ─────────────────────────────────
+
+/** Seal a deterministic blind pair from the rendered RATER skeletons themselves:
+ *  primary filled at rating 3 (cds 75), verification at rating 4 (cds 100) — all
+ *  32 subcriteria differ by exactly 1, so the disagreement inventory and the
+ *  agreement metrics are fully predictable. */
+function sealSkeletonPair(repo: { base: string; manifest: RubricAuditBatchManifestV1; unit: string }): void {
+  for (const [role, rating] of [["primary", 3], ["verification", 4]] as Array<["primary" | "verification", number]>) {
+    const task = renderRaterTaskDocument({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role });
+    const record = fillSkeleton(extractRecordSkeleton(task), rating);
+    ingestRaterRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role, recordText: JSON.stringify(record, null, 2) });
+  }
+}
+
+/** Fill a rendered ADJUDICATION skeleton as a compliant adjudicator: every final
+ *  rating 3 except `halfPointPath` at 3.5 (differing from BOTH blind ratings 3
+ *  and 4 ⇒ exactly one calibration_changes entry), arithmetic recomputed, every
+ *  TODO placeholder replaced. */
+function fillAdjudicationSkeleton(skeleton: Record<string, unknown>, halfPointPath: string): Record<string, unknown> {
+  const record = JSON.parse(JSON.stringify(skeleton)) as Record<string, unknown>;
+  const domains = record.domains as Record<string, Record<string, unknown>>;
+  let weightedTotal = 0;
+  for (const spec of RUBRIC_DOMAINS) {
+    const domain = domains[spec.key];
+    const subs = domain.subcriteria as Record<string, Record<string, unknown>>;
+    const ratings: number[] = [];
+    for (const sub of spec.subcriteria) {
+      const path = `domains.${spec.key}.subcriteria.${sub}`;
+      const rating = path === halfPointPath ? 3.5 : 3;
+      ratings.push(rating);
+      subs[sub].rating = rating;
+      subs[sub].anchor_rationale = `Adjudicated anchor rationale for ${sub}.`;
+      subs[sub].evidence = [{ locator: "Deep read, paragraph 2", paraphrase: "the source supports this anchor" }];
+    }
+    const domainScore = ratings.reduce((a, b) => a + b, 0) / 4;
+    const weightedPoints = (domainScore / 4) * spec.weight;
+    weightedTotal += weightedPoints;
+    domain.domain_score = domainScore;
+    domain.weighted_points = weightedPoints;
+    domain.strengths = ["A concrete strength.", "A second concrete strength."];
+    domain.limitations = ["A concrete limitation."];
+    domain.within_chapter_pattern = "A consistent within-chapter pattern.";
+    domain.anchor_linked_rationale = "A domain-level anchor-linked rationale.";
+    domain.scope_note = "Scored on chapter-local support only.";
+  }
+  record.chapter_diagnostic_score = (weightedTotal / RUBRIC_CHAPTER_WEIGHT_TOTAL) * 100;
+  const agreement = record.rater_agreement as Record<string, unknown>;
+  for (const item of agreement.disagreements as Array<Record<string, unknown>>) {
+    item.final = item.path === halfPointPath ? 3.5 : 3;
+    item.rationale = "The source recheck supports this anchor.";
+    item.evidence = [{ locator: "Deep read, paragraph 2", paraphrase: "the source supports this anchor" }];
+  }
+  record.calibration_changes = [{
+    path: halfPointPath,
+    original: 3,
+    final: 3.5,
+    reason: "After source review both adjacent anchors remain equally supported, so the half-point is the honest composite.",
+    evidence: [{ locator: "Deep read, paragraph 2", paraphrase: "the source supports both adjacent anchors" }],
+  }];
+  const gates = record.gates as Record<string, Record<string, unknown>>;
+  for (const gate of Object.values(gates)) gate.rationale = "A concrete gate rationale.";
+  const confidence = record.confidence as Record<string, unknown>;
+  confidence.level = "high";
+  confidence.rationale = "The blind pair differed uniformly by one anchor and the source review resolved it.";
+  (record.book as Record<string, unknown>).source_book_title = "A Source Book";
+  for (const key of [
+    "evaluation_construct", "diagnostic_band", "strongest_qualities", "weakest_qualities", "engagement_curve",
+    "comprehension_retention_analysis", "practical_use_judgment_analysis", "best_fit_readers", "struggling_readers", "verdict",
+  ]) {
+    record[key] = `A concrete ${key}.`;
+  }
+  record.improvements = ["First improvement.", "Second improvement.", "Third improvement."];
+  return record;
+}
+
+test("the rendered adjudicator task teaches the exact ingestable adjudication shape (skeleton + exact rater_agreement prefill)", () => {
+  const repo = makeAuditRepo("rubric-audit-adj-skeleton");
+  try {
+    sealSkeletonPair(repo);
+    const adjTask = renderRaterTaskDocument({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "adjudicator" });
+
+    // The task fences an extractable literal skeleton AND shows the exact
+    // calibration_changes entry value shapes (the live-failure surface).
+    assert.ok(adjTask.includes(RATER_SKELETON_BEGIN) && adjTask.includes(RATER_SKELETON_END), "adjudicator task fences a record skeleton");
+    assert.ok(adjTask.includes('"original": <NUMBER'), "task pins original as a NUMBER, never a description string");
+    assert.ok(adjTask.includes("ARRAY of {locator, paraphrase} objects"), "task pins evidence as an array of locator/paraphrase objects");
+
+    const skeleton = renderAdjudicationRecordSkeleton({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit });
+    const extracted = extractRecordSkeleton(adjTask);
+    assert.deepEqual(extracted, skeleton, "the fenced adjudication skeleton parses back to the builder's object exactly");
+
+    // Everything derivable from the sealed pair is prefilled EXACTLY: a 3-vs-4
+    // uniform pair means all 32 subcriteria disagree by 1 and the cds differ by 25.
+    const agreement = extracted.rater_agreement as Record<string, unknown>;
+    assert.equal(agreement.mean_absolute_subcriterion_difference, 1);
+    assert.equal(agreement.maximum_subcriterion_difference, 1);
+    assert.equal(agreement.chapter_diagnostic_score_difference, 25);
+    assert.equal((agreement.disagreements as unknown[]).length, 32, "the full disagreement inventory is prefilled");
+
+    // The RAW skeleton (placeholder ratings, empty calibration_changes) is itself
+    // an ingest-valid adjudication record — parse the exact bytes the task shows
+    // and ingest them.
+    const result = ingestAdjudicationRecord({
+      repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit,
+      recordText: JSON.stringify(skeleton, null, 2),
+    });
+    assert.equal(result.role, "adjudicator");
+    assert.ok(existsSync(result.persistedPath), "the raw adjudication skeleton ingests and persists");
+    assert.ok(!adjTask.includes(repo.base) && !adjTask.includes("/Users/") && !adjTask.includes("/private/"), "no filesystem paths leak");
+  } finally {
+    repo.dispose();
+  }
+});
+
+test("a task-following adjudicator that fills the skeleton ingests; the live string-shaped calibration entries are rejected", () => {
+  const repo = makeAuditRepo("rubric-audit-adj-fill");
+  try {
+    sealSkeletonPair(repo);
+    const adjTask = renderRaterTaskDocument({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "adjudicator" });
+    const halfPointPath = "domains.epistemic_integrity.subcriteria.claim_support_fit";
+    const filled = fillAdjudicationSkeleton(extractRecordSkeleton(adjTask), halfPointPath);
+
+    // NEGATIVE CONTROL first (nothing persists on failure): the EXACT live
+    // failure — original as a descriptive STRING and evidence as prose — is
+    // rejected with the two observed validator errors.
+    const broken = JSON.parse(JSON.stringify(filled)) as Record<string, unknown>;
+    const entry = (broken.calibration_changes as Array<Record<string, unknown>>)[0];
+    entry.original = "primary 3 / verification 4";
+    entry.evidence = "Cap declared and honored: Deep read paragraph 2.";
+    assert.throws(
+      () => ingestAdjudicationRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, recordText: JSON.stringify(broken, null, 2) }),
+      /calibration change values invalid/,
+      "a string original (the live symptom) is rejected",
+    );
+    assert.throws(
+      () => ingestAdjudicationRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, recordText: JSON.stringify(broken, null, 2) }),
+      /calibration change lacks reason\/evidence/,
+      "a prose-string evidence (the live symptom) is rejected",
+    );
+
+    // The compliant fill — half-point final differing from BOTH blind ratings,
+    // with a correctly-shaped calibration_changes entry — ingests.
+    const result = ingestAdjudicationRecord({
+      repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit,
+      recordText: JSON.stringify(filled, null, 2),
+    });
+    assert.ok(existsSync(result.persistedPath), "the filled compliant adjudication ingests and persists");
+    const persisted = JSON.parse(readFileSync(result.persistedPath, "utf8")) as Record<string, unknown>;
+    assert.equal((persisted.calibration_changes as unknown[]).length, 1);
   } finally {
     repo.dispose();
   }

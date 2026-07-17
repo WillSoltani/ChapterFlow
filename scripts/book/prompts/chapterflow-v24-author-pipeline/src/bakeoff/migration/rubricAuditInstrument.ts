@@ -177,7 +177,11 @@ export function headingInventorySha256(sourceText: string): string {
 
 type RatingsByPath = Map<string, number>;
 
-function collectRatings(record: JsonRecord): RatingsByPath | null {
+/** Collect the 32 subcriterion ratings keyed by canonical path
+ *  (domains.<domain>.subcriteria.<sub>), or null if any is missing/non-numeric.
+ *  Exported so the harness's adjudication skeleton computes its rater_agreement
+ *  prefill with the SAME walk the validator uses — never a reimplementation. */
+export function collectRatings(record: JsonRecord): RatingsByPath | null {
   const out: RatingsByPath = new Map();
   const domains = record.domains as JsonRecord | undefined;
   if (domains === null || typeof domains !== "object") return null;
