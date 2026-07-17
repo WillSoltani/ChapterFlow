@@ -30,6 +30,9 @@ import { checkReaderBudgets } from "../critics/readerBudgets.js";
 import { runBookGate } from "../critics/bookGate.js";
 import { runShipGate } from "../critics/finalGate.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
+import { BREAKDOWN_READING_EASE_FLOOR, TIER_TARGETS, type TierName } from "../critics/readingLevel.js";
+import { fleschReadingEase } from "../metrics/rubricMetrics.js";
+import type { BookRubricMetricsReport, MetricVerdict } from "../metrics/bookRubricMetrics.js";
 import {
   authorChapterId,
   authorWriteOneChapter,
@@ -183,6 +186,114 @@ export const realRubricVerb: RubricVerb = async (bookId, chapters) => {
   }
 };
 
+// ── Measure-only readability (WP-E31 / AUD-01) ────────────────────────────────
+//
+// The bakeoff/screening lane compares model QUALITY; a readability floor-fail
+// must not censor a candidate before it is judged (a Luna@xhigh draft this floor
+// blocked scored 85.3 on the canonical evaluator). Under the manifest flag,
+// readability becomes MEASURE-ONLY: the draft always completes, the measurement
+// is recorded into validation.json, and ship-eligibility stays a SEPARATE
+// recorded fact (a floor-failed candidate is not-promotable but IS judged).
+//
+// The measurement uses the EXACT score.py-parity rulers the section gate's two
+// SEC12 pushes wrap — per-tier FK ceilings (checkReadingLevel/TIER_TARGETS) and
+// the assembled-breakdown ease floor (checkBreakdownReadingEase/
+// BREAKDOWN_READING_EASE_FLOOR). The whole-chapter author path never runs the
+// section gate; the enforcer that actually blocks a low-ease candidate here is
+// the rubric fleschEase gate (finalGate E1 readability is warn-only), so
+// eligibility leniency is applied there (demoteReadabilityOnlyFailures) while the
+// recorded numbers stay SEC12-faithful.
+
+/** The rubric-metrics GATE keys that are pure readability (the only ones demoted
+ *  under measure-only). fkGrade/whole-chapter ease are already warn-only. */
+const READABILITY_RUBRIC_GATE_KEYS = new Set<string>(["fleschEase"]);
+const READABILITY_TIERS: readonly TierName[] = ["fastRead", "deepRead", "fullRead"] as const;
+const VERDICT_RANK: Record<MetricVerdict, number> = { pass: 0, warn: 1, fail: 2 };
+
+export type ChapterReadabilityMeasurement = {
+  chapterNumber: number;
+  /** Per-tier FK grade vs its SEC12 ceiling (parity: checkReadingLevel, TIER_TARGETS). */
+  tiers: Array<{ tier: TierName; fk: number; ceiling: number; exceedsCeiling: boolean }>;
+  /** Assembled-breakdown Flesch reading ease vs the SEC12 floor (parity:
+   *  checkBreakdownReadingEase, BREAKDOWN_READING_EASE_FLOOR). */
+  assembledEase: number;
+  easeFloor: number;
+  floorFailed: boolean;
+  /** false ⇒ the candidate is not-promotable (a recorded fact; it stays judged). */
+  shipEligible: boolean;
+};
+
+/** SEC12-parity readability MEASUREMENT for one candidate chapter's breakdown.
+ *  Pure; never blocks — the caller records it as outcome data. */
+export function measureChapterReadability(chapter: ChapterV21): ChapterReadabilityMeasurement {
+  const bd = (chapter.breakdown ?? {}) as Partial<Record<TierName, string>>;
+  const tierText = (t: TierName): string => (typeof bd[t] === "string" ? (bd[t] as string) : "");
+  const tiers = READABILITY_TIERS.map((tier) => {
+    const fk = TIER_TARGETS.measure(tierText(tier));
+    const ceiling = TIER_TARGETS[tier].hi;
+    // Parity with checkReadingLevel (readingLevel.ts): only a FINITE grade above
+    // the ceiling exceeds it (a degenerate/unmeasurable tier never fails).
+    return { tier, fk, ceiling, exceedsCeiling: Number.isFinite(fk) && fk > ceiling };
+  });
+  const assembledEase = fleschReadingEase(READABILITY_TIERS.map((t) => tierText(t)).join("\n\n"));
+  // Parity with checkBreakdownReadingEase (readingLevel.ts): a finite ease below
+  // the floor fails; NaN (no words) never fails.
+  const floorFailed = Number.isFinite(assembledEase) && assembledEase < BREAKDOWN_READING_EASE_FLOOR;
+  return {
+    chapterNumber: chapter.number,
+    tiers,
+    assembledEase,
+    easeFloor: BREAKDOWN_READING_EASE_FLOOR,
+    floorFailed,
+    shipEligible: !floorFailed && !tiers.some((t) => t.exceedsCeiling),
+  };
+}
+
+/** Human-readable measure-only advisory line for one chapter's readability. */
+function readabilityAdvisoryLine(m: ChapterReadabilityMeasurement): string {
+  const nn = String(m.chapterNumber).padStart(2, "0");
+  const tierStr = m.tiers
+    .map((t) => `${t.tier} FK ${Number.isFinite(t.fk) ? t.fk.toFixed(1) : "n/a"}/${t.ceiling}${t.exceedsCeiling ? "✗" : ""}`)
+    .join(", ");
+  const ease = Number.isFinite(m.assembledEase) ? m.assembledEase.toFixed(1) : "n/a";
+  return `readability(measure-only) ch${nn}: ${tierStr}; assembled ease ${ease} (floor ${m.easeFloor}) → ${m.floorFailed ? "FLOOR FAILED" : "floor met"}`;
+}
+
+/** Not-promotable marker line (the separate ship-eligibility fact). */
+function notPromotableLine(m: ChapterReadabilityMeasurement): string {
+  return `not-promotable ch${String(m.chapterNumber).padStart(2, "0")}: breakdown readability below the ship floor (measure-only bakeoff lane — recorded, candidate still judged, promotion withheld)`;
+}
+
+/** Rewrite a rubric report so a chapter whose ONLY failing GATE metric is
+ *  readability (fleschEase) drops to `warn` instead of `fail` — the measure-only
+ *  contract. Chapters that also fail a non-readability gate stay `fail`. Pure. */
+export function demoteReadabilityOnlyFailures(report: BookRubricMetricsReport): BookRubricMetricsReport {
+  const chapters = report.chapters.map((ch) => {
+    if (ch.verdict !== "fail") return ch;
+    const remaining = ch.failing.filter((k) => !READABILITY_RUBRIC_GATE_KEYS.has(k));
+    if (remaining.length === ch.failing.length) return ch; // no readability fail — untouched
+    const verdict: MetricVerdict = remaining.length > 0 ? "fail" : "warn";
+    return { ...ch, failing: remaining, verdict };
+  });
+  const summary = { pass: 0, warn: 0, fail: 0 };
+  for (const ch of chapters) summary[ch.verdict] += 1;
+  const verdict = chapters.reduce<MetricVerdict>((v, ch) => (VERDICT_RANK[ch.verdict] >= VERDICT_RANK[v] ? ch.verdict : v), "pass");
+  return { ...report, chapters, summary, verdict };
+}
+
+/** Measure-only rubric interception: identical to realRubricVerb but with
+ *  readability-only failures demoted, so the writer's rubric preflight completes
+ *  a low-ease draft (the whole-chapter author retries on a FAIL verdict line). */
+export const measureOnlyReadabilityRubricVerb: RubricVerb = async (bookId, chapters) => {
+  try {
+    const { computeBookRubricMetrics, formatRubricMetrics } = await import("../metrics/bookRubricMetrics.js");
+    const report = demoteReadabilityOnlyFailures(computeBookRubricMetrics(bookId, { chapters }));
+    return { code: 0, stdout: formatRubricMetrics(report), stderr: "" };
+  } catch (err) {
+    return { code: 1, stdout: "", stderr: `bakeoff rubric-metrics: ${(err as Error).message}` };
+  }
+};
+
 export function candidateDeps(
   deps: AutopilotDeps,
   roots: BakeoffRoots,
@@ -224,6 +335,10 @@ export type GenerateCandidateOptions = {
   ioOverrides?: Partial<AuthorIo>;
   /** Rubric-verb override (tests). Default: real rubric metrics. */
   rubricVerb?: RubricVerb;
+  /** WP-E31 (AUD-01): bakeoff/screening lane only — readability becomes
+   *  measure-only, so the writer's rubric preflight completes a low-ease draft
+   *  instead of retrying it to exhaustion. Absent/false ⇒ production behaviour. */
+  readabilityMeasureOnly?: boolean;
 };
 
 async function mapPool<T, R>(items: T[], limit: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
@@ -273,7 +388,10 @@ export async function generateCandidate(
   // candidate-validation seam — the candidate is substituted into THIS SLOT's
   // committed chapters (never the canonical corpus). Gate stays the REAL
   // composite by default (sibling context = the slot dir via outputRelPath).
-  const rubricVerb = opts.rubricVerb ?? realRubricVerb;
+  // WP-E31: an explicit rubricVerb override (tests) wins; otherwise the
+  // measure-only lane uses the readability-demoting rubric so a low-ease draft
+  // completes the writer's rubric preflight instead of failing every attempt.
+  const rubricVerb = opts.rubricVerb ?? (opts.readabilityMeasureOnly ? measureOnlyReadabilityRubricVerb : realRubricVerb);
   const io = {
     ...candidateAuthorIo(roots, spec.slot),
     rubricWithCandidate: async (b: string, n: number, candidate: ChapterV21) =>
@@ -324,7 +442,9 @@ export async function generateCandidate(
     }
     const attempts: CandidateChapterAttemptV1[] = [];
     const observed: SpawnObservation[] = [];
-    const cdeps = candidateDeps(deps, roots, spec, (o) => observed.push(o), opts.rubricVerb);
+    // WP-E31: the rubric-metrics verb interception uses the SAME resolved verb as
+    // the io preflight, so a measure-only run stays measure-only on both seams.
+    const cdeps = candidateDeps(deps, roots, spec, (o) => observed.push(o), rubricVerb);
     const r = await authorWriteOneChapter(bookId, n, cdeps, {
       io,
       totalChapters: opts.chapterNumbers.length,
@@ -371,6 +491,11 @@ export type ValidateCandidateInputs = {
   chapterNumbers: number[];
   readPacket: (bookId: string, n: number) => SourcePacketV1 | null;
   readBrief: (bookId: string, n: number) => { lengthBudget?: { renderedChars: number; tolerance: number } } | null;
+  /** WP-E31 (AUD-01): bakeoff/screening lane only — record readability as
+   *  measure-only (into validation.json) and demote a readability-only rubric
+   *  failure so the candidate stays JUDGED (not-promotable is a separate fact).
+   *  Absent/false ⇒ readability blocks exactly as today. */
+  readabilityMeasureOnly?: boolean;
 };
 
 export function defaultValidateInputs(): ValidateCandidateInputs {
@@ -454,10 +579,15 @@ export async function validateCandidate(
   }
 
   // Deterministic rubric metrics (ease band / tell / transfer / practice floor).
+  // WP-E31: under the measure-only lane a readability-ONLY rubric fail is demoted
+  // so it never becomes a hard failure — the candidate stays JUDGED. A candidate
+  // that also fails a non-readability gate still hard-fails.
+  const measureOnly = inputs.readabilityMeasureOnly === true;
   let rubricVerdict: CandidateValidationV1["rubricVerdict"] = "fail";
   try {
     const { computeBookRubricMetrics } = await import("../metrics/bookRubricMetrics.js");
-    const rep = computeBookRubricMetrics(bookId, { chapters });
+    const raw = computeBookRubricMetrics(bookId, { chapters });
+    const rep = measureOnly ? demoteReadabilityOnlyFailures(raw) : raw;
     rubricVerdict = rep.verdict;
     if (rubricVerdict === "fail") {
       for (const c of rep.chapters.filter((x) => x.verdict === "fail").slice(0, 6)) {
@@ -466,6 +596,19 @@ export async function validateCandidate(
     }
   } catch (err) {
     hardFailures.push(`rubric-metrics crashed: ${(err as Error).message.slice(0, 160)}`);
+  }
+
+  // WP-E31 (AUD-01): record the SEC12-parity readability MEASUREMENT (per-tier FK
+  // + assembled ease + floor result) into validation.json as advisory outcome
+  // data, and mark a floor-failed candidate not-promotable — a SEPARATE recorded
+  // fact from eligibility (the candidate is still judged). Only under the flag;
+  // production validation.json is byte-identical to today.
+  if (measureOnly) {
+    for (const ch of chapters) {
+      const m = measureChapterReadability(ch);
+      advisories.push(readabilityAdvisoryLine(m));
+      if (!m.shipEligible) advisories.push(notPromotableLine(m));
+    }
   }
 
   return {

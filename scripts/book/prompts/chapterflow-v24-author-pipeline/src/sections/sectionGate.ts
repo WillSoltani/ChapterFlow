@@ -35,7 +35,12 @@ import type { SourceClaimType } from "../types.js";
 
 export type SectionFinding = {
   checkId: string;
-  severity: "blocker" | "advisory";
+  // "measure-only" (WP-E31/AUD-01): a readability outcome recorded WITHOUT
+  // blocking — emitted only by the SEC12 pushes when the caller passes
+  // readabilityMeasureOnly (the bakeoff/screening lane). Never a blocker, never
+  // an advisory-budget entry; production callers never set the flag, so the gate
+  // output is byte-identical to today.
+  severity: "blocker" | "advisory" | "measure-only";
   chapterNumber?: number;
   section?: SectionKind;
   path?: string;
@@ -1997,12 +2002,17 @@ function factWhyOverlap(whyItMatters: string, fact: SourcePacketV1["facts"][numb
   return [...factTerms].filter((term) => whyTerms.has(term));
 }
 
-export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
+export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1, readabilityMeasureOnly = false): SectionFinding[] {
   const findings: SectionFinding[] = [];
   const ch = bp.chapterNumber;
   const allowed = sourceAnchorIds(packet);
   const anchors = sourceAnchorById(packet);
   const push = (checkId: string, severity: SectionFinding["severity"], message: string, path?: string) => findings.push({ checkId, severity, chapterNumber: ch, section: "summary-pack", message, path });
+  // WP-E31 (AUD-01): the two SEC12 readability pushes below record MEASURE-ONLY
+  // outcomes (the measured grade/ease ride in f.message) instead of blocking when
+  // the bakeoff/screening lane asks for it — the draft always completes and
+  // ship-eligibility stays a separate recorded fact. Default (production) = blocker.
+  const readabilitySeverity: SectionFinding["severity"] = readabilityMeasureOnly ? "measure-only" : "blocker";
   if (pack.schemaVersion !== SECTION_ARTIFACT_SCHEMA_VERSION || pack.artifactType !== "summary-pack") push("SEC1.summary_schema", "blocker", "summary-pack schema/artifactType mismatch");
   if (pack.chapterId !== bp.chapterId) push("SEC2.summary_identity", "blocker", "summary-pack chapterId must match blueprint", "/chapterId");
   if (text(pack.hook?.hook).length < 40) push("SEC3.hook_length", "blocker", "hook too short", "/hook/hook");
@@ -2025,7 +2035,7 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     const value = text(pack.breakdown?.[tier]);
     if (value.length < mins[tier]) push("SEC6.breakdown_length", "blocker", `${tier} too short (${value.length})`, `/breakdown/${tier}`);
     if (/\b(this chapter|the chapter|the author|the book)\b/i.test(value)) push("SEC7.meta_reference", "blocker", `${tier} contains meta-reference`, `/breakdown/${tier}`);
-    for (const f of checkReadingLevel(value, tier)) push("SEC12.summary_readability", "blocker", f.message, `/breakdown/${tier}`);
+    for (const f of checkReadingLevel(value, tier)) push("SEC12.summary_readability", readabilitySeverity, f.message, `/breakdown/${tier}`);
     for (const p of validateAnchorIds(pack.breakdown?.sourceAnchorIds?.[tier], allowed, `breakdown.sourceAnchorIds.${tier}`)) push("SEC8.breakdown_anchor", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorClaimType(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", `breakdown.sourceAnchorIds.${tier}`)) push("SEC13.summary_anchor_claim_type", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorHardSpecifics(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", value, `breakdown.${tier}`)) push("SEC14.summary_anchor_specifics", "blocker", p, `/breakdown/${tier}`);
@@ -2035,7 +2045,7 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   // three tiers concatenated) must clear the rubric band, not just each tier
   // alone. Blocker, same as the per-tier SEC12 reading-level check.
   const assembledBreakdown = tiers.map((tier) => text(pack.breakdown?.[tier])).join("\n\n");
-  for (const f of checkBreakdownReadingEase(assembledBreakdown)) push("SEC12.summary_readability", "blocker", f.message, "/breakdown");
+  for (const f of checkBreakdownReadingEase(assembledBreakdown)) push("SEC12.summary_readability", readabilitySeverity, f.message, "/breakdown");
   const usedMemorableKeys = new Set<string>();
   const selectedMemorable = memorableCandidates
     .sort((a, b) => b.score - a.score)
@@ -2391,10 +2401,10 @@ export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, p
   return findings;
 }
 
-export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
+export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1, readabilityMeasureOnly = false): SectionFinding[] {
   const findings = (() => {
     switch (pack.artifactType) {
-      case "summary-pack": return validateSummaryPack(pack, bp, packet);
+      case "summary-pack": return validateSummaryPack(pack, bp, packet, readabilityMeasureOnly);
       case "example-pack": return validateExamplePack(pack, bp, packet);
       case "learning-pack": return validateLearningPack(pack, bp, packet);
       case "action-pack": return validateActionPack(pack, bp, packet);
@@ -2417,6 +2427,10 @@ export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1,
 export type SectionGateOptions = {
   chapters?: number[];
   sections?: SectionKind[];
+  /** WP-E31 (AUD-01): when true, SEC12 readability findings are recorded
+   *  MEASURE-ONLY (never blockers) — set ONLY by the bakeoff/screening lane.
+   *  Absent/false (every production/CLI caller) ⇒ SEC12 blocks exactly as today. */
+  readabilityMeasureOnly?: boolean;
 };
 
 export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {}, options: SectionGateOptions = {}): SectionGateReport {
@@ -2494,7 +2508,7 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
       }
       try {
         const pack = readJsonFile<SectionPackV1>(p);
-        findings.push(...validateSectionPack(pack, bp, packet));
+        findings.push(...validateSectionPack(pack, bp, packet, options.readabilityMeasureOnly === true));
         findings.push(...castContainmentFindings(pack, usedCast, bp.chapterNumber));
         softBannedFields.push(...collectSoftBannedTextFields(pack, bp.chapterNumber, true));
         if (kind === "example-pack" && pack.artifactType === "example-pack") {

@@ -706,6 +706,9 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
           prior,
           heartbeat,
           log,
+          // WP-E31 (AUD-01): readability is measure-only ONLY when the manifest
+          // (set by the bakeoff/screening lane) asks for it; no env var, no global.
+          readabilityMeasureOnly: manifest.readabilityMeasureOnly === true,
         }, (state) => {
           mkdirSync(candidateDir(roots, spec.slug), { recursive: true });
           writeFileAtomic(generationPath(roots, spec.slug), JSON.stringify(state, null, 2) + "\n");
@@ -720,7 +723,13 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
     if (!phaseDone(manifest, "validate")) {
       for (const spec of specs) {
         persistCandidateChapters(roots, spec, bookId, freeze.chapterNumbers);
-        const inputs = { ...defaultValidateInputs(), chapterNumbers: freeze.chapterNumbers };
+        const inputs = {
+          ...defaultValidateInputs(),
+          chapterNumbers: freeze.chapterNumbers,
+          // WP-E31 (AUD-01): mirror the manifest flag into the deterministic
+          // validation so readability is recorded measure-only (not a blocker).
+          readabilityMeasureOnly: manifest.readabilityMeasureOnly === true,
+        };
         const validation = await stages.validate(bookId, spec, roots, inputs);
         writeFileAtomic(validationPath(roots, spec.slug), JSON.stringify(validation, null, 2) + "\n");
         log(`[bakeoff] validate ${spec.model}: ${validation.hardFailures.length === 0 ? "clean" : `${validation.hardFailures.length} hard failure(s)`} (book-gate ${validation.bookGatePassed ? "PASS" : "FAIL"}, rubric ${validation.rubricVerdict})`);
