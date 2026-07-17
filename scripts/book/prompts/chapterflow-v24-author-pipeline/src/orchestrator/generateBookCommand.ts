@@ -143,6 +143,11 @@ export type GenerateBookDeps = {
   runConductor: (opts: AutopilotOptions) => Promise<AutopilotOutcome>;
   runPreflight: (opts: {
     bookId?: string;
+    /** True ⇒ a `--resume` run — the WP-602 preflight then runs the per-book
+     *  EXISTING-STATE checks as FATAL even when the on-disk probe is inconclusive
+     *  (a resume MUST verify its state is consistent). A fresh run (false) skips
+     *  those checks when the book has no canonical index/chapters yet (WP-602b). */
+    resume?: boolean;
     model?: string;
     effort?: string;
     expectedBaseSha?: string;
@@ -515,10 +520,15 @@ export async function generateBookCommand(
   log(`  D7 gate: ${resolved.requireD7ShipGate ? "REQUIRE (a sealed PASS receipt bound to the shipped bytes is mandatory)" : "advisory (--d7-advisory)"} [source: ${resolved.sources.requireD7ShipGate}]`);
   if (resolved.out) log(`  out:     ${resolved.out}`);
 
-  // ── step 1: deterministic preflight (WP-602). Read-only, zero model/network calls. ──
+  // ── step 1: deterministic preflight (WP-602). Read-only, zero model/network calls.
+  //    `resume` gates the per-book EXISTING-STATE checks (WP-602b): a FRESH new book
+  //    has no canonical index/chapters yet — the pipeline creates them — so those
+  //    checks must not fatal, while a --resume run keeps them (its state must be
+  //    consistent). ──
   progress.start("preflight");
   const findings = await deps.runPreflight({
     bookId,
+    resume: parsed.resume,
     model: resolved.model,
     effort: resolved.effort,
     expectedBaseSha: resolved.expectedBaseSha,

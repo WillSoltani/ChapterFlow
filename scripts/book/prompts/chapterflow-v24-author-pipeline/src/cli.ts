@@ -203,7 +203,7 @@ Commands:
                                      chapter-number drift, and untracked-but-imported source files before
                                      they cost a run. Exit 0 healthy / 1 warnings / 2 blocking trap.
   generate-preflight [<bookId>] [--model X] [--effort Y] [--expected-base-sha SHA]
-                     [--require-clean-worktree] [--require-d7-ship-gate] [--json]
+                     [--resume] [--require-clean-worktree] [--require-d7-ship-gate] [--json]
                                      WP-602: the generate-book command's deterministic preflight — doctor's
                                      checks PLUS worktree cleanliness, base-SHA match, branch sanity,
                                      model-config support (5.6 candidate set + supported effort), schema-
@@ -2068,12 +2068,14 @@ async function runDoctor(args: string[], _flags: Record<string, string | boolean
 }
 
 /** `generate-preflight [<bookId>] [--model X] [--effort Y] [--expected-base-sha SHA]
- *  [--require-clean-worktree] [--require-d7-ship-gate] [--json]` — WP-602: the
- *  deterministic preflight the generate-book command (WP-601) runs before any
+ *  [--resume] [--require-clean-worktree] [--require-d7-ship-gate] [--json]` — WP-602:
+ *  the deterministic preflight the generate-book command (WP-601) runs before any
  *  book work starts. Read-only, filesystem/git/config checks ONLY — zero
  *  model or network calls. `--validate-only`/doctor mode: runs the checks and
  *  exits, nothing else. Exit code reuses the existing doctor 0/1/2 contract
- *  (0 healthy / 1 warnings / 2 a fatal blocker) — no new exit codes. */
+ *  (0 healthy / 1 warnings / 2 a fatal blocker) — no new exit codes. WP-602b:
+ *  the per-book EXISTING-STATE checks fatal only for a `--resume` run or a book
+ *  with state already on disk; a fresh new book runs the global checks only. */
 async function runGeneratePreflight(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const input = args.join(" ").trim();
   let bookId: string | undefined = input || undefined;
@@ -2089,8 +2091,9 @@ async function runGeneratePreflight(args: string[], flags: Record<string, string
   const expectedBaseSha = typeof flags["expected-base-sha"] === "string" ? flags["expected-base-sha"] : undefined;
   const requireCleanWorktree = flags["require-clean-worktree"] === true;
   const requireD7ShipGate = flags["require-d7-ship-gate"] === true ? true : undefined;
+  const resume = flags["resume"] === true;
   const findings = await runGeneratePreflightChecks({
-    bookId, model, effort, expectedBaseSha, requireCleanWorktree, requireD7ShipGate,
+    bookId, resume, model, effort, expectedBaseSha, requireCleanWorktree, requireD7ShipGate,
   });
   const exitCode = doctorExitCode(findings);
   if (flags.json === true) {
