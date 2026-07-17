@@ -48,6 +48,7 @@ import {
 import {
   ingestAdjudicationRecord,
   ingestRaterRecord,
+  renderAdjudicatorLeakCheckSurface,
   renderRaterTaskDocument,
   summarizeAudit,
   type RubricAuditHarnessRole,
@@ -237,7 +238,20 @@ export async function judgeCandidateD7(opts: JudgeCandidateD7Options): Promise<C
         // renderRaterTaskDocument for `adjudicator` reads the sealed blind pair,
         // so primary+verification MUST be ingested first (roleOrder guarantees it).
         const task = renderRaterTaskDocument({ repositoryRoot: opts.repositoryRoot, manifest, unit, role });
-        assertNoIdentityLeak(task, opts.forbidden, `D7 ${role} task (label ${opts.label}, unit ${unit})`);
+        // Leak-check scope: rater tasks are checked in FULL. The adjudicator task
+        // additionally embeds the two sealed BLIND rater records — prose those
+        // raters authored in isolated sessions whose only input was a task that
+        // passed this same check before its own dispatch (resume re-ingests the
+        // immutable records from such a run). Blind-rater prose cannot leak a
+        // candidate identity it never saw, but a generic forbidden token in it
+        // (e.g. "flagship") would false-positive the whole audit — so the
+        // adjudicator check runs on the redacted surface: the identical render
+        // with ONLY the record bodies masked; every candidate-derived byte
+        // (audit doc, layer docs, skeleton, instructions) is still checked.
+        const leakSurface = role === "adjudicator"
+          ? renderAdjudicatorLeakCheckSurface({ repositoryRoot: opts.repositoryRoot, manifest, unit })
+          : task;
+        assertNoIdentityLeak(leakSurface, opts.forbidden, `D7 ${role} task (label ${opts.label}, unit ${unit})`);
         const recordText = await opts.worker({
           auditId: opts.auditId, bookId, label: opts.label, unit, role, kind, task,
         });

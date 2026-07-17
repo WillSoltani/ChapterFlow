@@ -815,10 +815,32 @@ function readCustodyText(absPath: string, label: string): string {
   return readFileSync(absPath, "utf8");
 }
 
+/** The adjudicator task's IDENTITY-LEAK-CHECK surface: the byte-identical task
+ *  render with the two embedded blind rater record BODIES replaced by fixed
+ *  placeholders. The blind raters authored those records in isolated sessions
+ *  whose ONLY input was their own task — which passed the same forbidden-token
+ *  check before its dispatch — so their prose cannot leak a candidate identity
+ *  they never saw, while a generic forbidden word (e.g. "flagship") in honest
+ *  rater prose would false-positive the whole audit. Every candidate-derived
+ *  byte (audit document, layer documents, chapter title, contract, skeleton)
+ *  remains in this surface and is still checked in full. */
+export function renderAdjudicatorLeakCheckSurface(args: {
+  repositoryRoot: string;
+  manifest: RubricAuditBatchManifestV1;
+  unit: string;
+}): string {
+  const resolution = resolveAuditUnit(args);
+  return renderAdjudicatorTask(args.repositoryRoot, args.manifest, resolution, { redactBlindRecords: true });
+}
+
+const BLIND_RECORD_REDACTION =
+  "[blind rater record redacted from the leak scan — authored in an isolated session whose only input was its own already-leak-checked task]";
+
 function renderAdjudicatorTask(
   repositoryRoot: string,
   manifest: RubricAuditBatchManifestV1,
   resolution: UnitResolution,
+  opts?: { redactBlindRecords?: boolean },
 ): string {
   const paths = custodyPaths(repositoryRoot, manifest.auditId, resolution.unit);
   const primaryRaw = readCustodyText(paths.record("primary"), "primary rater record");
@@ -827,6 +849,9 @@ function renderAdjudicatorTask(
   const sealSha = artifactSha256FromText(sealRaw);
   const primarySha = artifactSha256FromText(primaryRaw);
   const verificationSha = artifactSha256FromText(verificationRaw);
+  const redact = opts?.redactBlindRecords === true;
+  const primaryBody = redact ? BLIND_RECORD_REDACTION : primaryRaw;
+  const verificationBody = redact ? BLIND_RECORD_REDACTION : verificationRaw;
   return [
     `# Rubric-v2 standalone chapter audit — ADJUDICATOR — unit ${resolution.unit}`,
     "",
@@ -843,11 +868,11 @@ function renderAdjudicatorTask(
     "",
     "── Blind primary rater record ──",
     "",
-    primaryRaw,
+    primaryBody,
     "",
     "── Blind verification rater record ──",
     "",
-    verificationRaw,
+    verificationBody,
     "",
     "── Rubric contract ──",
     renderDomainContract(),
