@@ -556,6 +556,17 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
       return found[0];
     };
     const calibrationUnit = opts.calibrationUnit ?? DEFAULT_D7_CALIBRATION_UNIT;
+    // rt702 R1: the hidden calibration reference MUST be disjoint from the book
+    // under test. On a collision the candidate's raw records shadow the
+    // calibration pass (same unit id), its adjudication is never written, and
+    // EVERY candidate dies with an opaque "audit incomplete" — a config error
+    // masquerading as model failure. Refuse loudly before any D7 spend.
+    if (calibrationUnit.startsWith(`${bookId}-ch`)) {
+      return halt(
+        `D7 calibration unit "${calibrationUnit}" belongs to the book under test (${bookId}) — the hidden ` +
+          `calibration reference must come from a DIFFERENT book. Pass calibrationUnit with a disjoint sealed reference.`,
+      );
+    }
     if (!phaseDone(manifest, "review")) {
       const forbidden = forbiddenReviewTokens(specs);
       for (const spec of specs) {

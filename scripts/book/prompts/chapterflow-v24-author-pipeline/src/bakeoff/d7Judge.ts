@@ -174,6 +174,20 @@ export async function judgeCandidateD7(opts: JudgeCandidateD7Options): Promise<C
     throw error;
   }
 
+  // rt702 R1: the calibration reference must be DISJOINT from the book under
+  // test. A colliding unit id makes the candidate's raw records shadow the
+  // calibration pass (d7RecordPath matches), starving its adjudication and
+  // returning an opaque "audit incomplete" for every candidate. This is a
+  // CONFIG error, not a candidate defect — throw (halting the run) instead of
+  // returning ineligible, before materializing or dispatching anything.
+  const candidateUnits = pkg.chapters.map((c) => `${bookId}-ch${String(c.number).padStart(2, "0")}`);
+  if (candidateUnits.includes(opts.calibrationUnit)) {
+    throw new D7JudgeError(
+      `D7 calibration unit "${opts.calibrationUnit}" collides with a candidate chapter unit of ${bookId} ` +
+        `(${candidateUnits.join(", ")}) — configure a calibrationUnit from a DIFFERENT book (rt702 R1).`,
+    );
+  }
+
   try {
     // ── 2. Materialize the frozen rubric-audit batch (docs + hidden calibration).
     const packageRelPath = `${rubricAuditDirRelPath(opts.auditId)}/candidate-package.json`;

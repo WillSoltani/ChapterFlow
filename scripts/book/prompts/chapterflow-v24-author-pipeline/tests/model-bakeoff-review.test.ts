@@ -169,6 +169,35 @@ test("assertNoIdentityLeak-backed guard is fail-closed: a direct leak throws Bli
   assert.throws(() => assertNoIdentityLeak("the gpt-5.6-sol writer", ["gpt-5.6-sol"], "unit test"), BlindingLeakError);
 });
 
+test("rt702 R1: a calibration unit colliding with the book under test THROWS a config error (never a silent per-candidate disqualification), with zero dispatches", async () => {
+  // Colliding unit id — the candidate's raw records would shadow the calibration
+  // pass and every candidate would die "audit incomplete". That is a CONFIG
+  // error: the judge must throw D7JudgeError naming the collision, not return
+  // an ineligible judgment that reads as model failure.
+  const repo = makeD7Repo("cf-d7-judge-collide", CALIBRATION_UNIT);
+  try {
+    const chapters = [fullFixtureChapter("zz-d7-collide", 1)];
+    let dispatched = 0;
+    const worker = d7WorkerDouble({ repositoryRoot: repo.base, calibrationUnit: "zz-d7-collide-ch01", onDispatch: () => { dispatched += 1; } });
+
+    await assert.rejects(
+      judgeCandidateD7({
+        bookId: "zz-d7-collide", label: "D", chapters,
+        repositoryRoot: repo.base, auditId: "bakeoff-d7-collide-d",
+        calibrationUnit: "zz-d7-collide-ch01", worker, forbidden: [], log: () => {},
+      }),
+      (err: Error) => err.name === "D7JudgeError"
+        && /collides/.test(err.message)
+        && /zz-d7-collide-ch01/.test(err.message)
+        && /DIFFERENT book/.test(err.message),
+      "collision must throw a D7JudgeError naming the colliding unit",
+    );
+    assert.equal(dispatched, 0, "no worker dispatch before the collision refusal");
+  } finally {
+    repo.dispose();
+  }
+});
+
 // ── ADVISORY (non-blocking): the codex whole-book panel read ──────────────────
 
 const TEN_SCORES = { retention: 82, quizzes: 80, transfer: 81, practical: 83, summaries: 80, tone: 82, limits: 78, insight: 79, density: 80, beginner: 84 };
