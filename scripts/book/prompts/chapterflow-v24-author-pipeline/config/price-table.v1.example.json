@@ -1,0 +1,12 @@
+{
+  "schema": "chapterflow-price-table-v1",
+  "priceVersion": "example-2026-07-17",
+  "effectiveDate": "2026-07-17",
+  "ownerApproved": false,
+  "_comment": "TEMPLATE ONLY. Copy to price-table.v1.json, fill in real per-session prices, and set ownerApproved to true ONLY after the owner has actually reviewed and signed off on these numbers. loadPriceTable() rejects ownerApproved !== true structurally — copying this file verbatim never loads, by design (WP-E42).",
+  "prices": {
+    "gpt-5.6-sol": { "perSession": 0 },
+    "gpt-5.6-terra": { "perSession": 0 },
+    "gpt-5.6-luna": { "perSession": 0 }
+  }
+}

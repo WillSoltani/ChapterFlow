@@ -55,6 +55,7 @@ import { resolve } from "path";
 
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import type { ProviderOutcomeV1 } from "../contracts/routeContracts.js";
+import { loadPriceTable, type PriceTableV1 } from "./priceTable.js";
 
 export const RUN_CALL_LEDGER_ENTRY_SCHEMA = "run-call-ledger-entry-v1" as const;
 export const RUN_CALL_LEDGER_ROLLUP_SCHEMA = "run-call-ledger-rollup-v1" as const;
@@ -252,8 +253,77 @@ export type RunCallLedgerRollupV1 = {
    *  cost estimate was computed against; null/absent ⇒ PRICE NOT VERIFIED and
    *  no dollar figure anywhere in the rollup. */
   priceVersion?: string | null;
+  /** WP-E42 (V25-NEW-06): present ONLY when `buildCallLedgerRollup` was given
+   *  a valid, owner-approved `PriceTableV1` (`opts.priceTable`, a non-null
+   *  table). Absent whenever the table is null/unchecked/unsupplied — a
+   *  caller must never read a dollar figure off this rollup any other way.
+   *  See `estimateSessionCost` for how it is computed. */
+  estimate?: PriceTableEstimateV1;
   cost: typeof LEDGER_COST_MARKER;
 };
+
+/** A cost ESTIMATE — never treated as verified/metered spend (the `cost`
+ *  field stays `NOT_METERED` regardless of whether this is present). Priced
+ *  ONLY from `sessionKind === "session"` entries (mirrors `trueSessionCalls` /
+ *  `countTrueSessions` — a reingest or a legacy unknown-provenance entry is
+ *  never priced). */
+export type PriceTableEstimateV1 = {
+  priceVersion: string;
+  effectiveDate: string;
+  /** Sum of `perSession` price for every `sessionKind === "session"` entry
+   *  whose `model` has a price-table entry. A session entry whose model has
+   *  NO price-table entry contributes $0 to this sum (never a guessed
+   *  price) — see `unpricedSessionCalls` for how many were skipped that way. */
+  estimatedCost: number;
+  /** How many session entries were priced (model found in the table). */
+  pricedSessionCalls: number;
+  /** How many session entries had a model with no price-table entry at all,
+   *  and so contributed $0 rather than a guess. */
+  unpricedSessionCalls: number;
+  /** Present ONLY when the caller supplies `opts.acceptedChapterCount` as a
+   *  positive finite number — omitted entirely otherwise (never a
+   *  NaN/Infinity from dividing by zero, never a fabricated 0). */
+  costPerAcceptedChapter?: number;
+};
+
+/** Price every `sessionKind === "session"` entry against `table.prices`,
+ *  summing `perSession` for models the table actually prices. This is the
+ *  WP-E42 rollup join: it is the ONLY place in this module dollar arithmetic
+ *  happens, and it only ever runs when the caller hands in an already-valid
+ *  `PriceTableV1` (see `priceTable.ts` — `loadPriceTable` is the gate; this
+ *  function trusts its input completely and does no owner-approval checking
+ *  of its own). */
+export function estimateSessionCost(
+  entries: readonly RunCallLedgerEntryV1[],
+  table: PriceTableV1,
+  opts?: { acceptedChapterCount?: number },
+): PriceTableEstimateV1 {
+  let estimatedCost = 0;
+  let pricedSessionCalls = 0;
+  let unpricedSessionCalls = 0;
+  for (const e of entries) {
+    if (e.sessionKind !== "session") continue;
+    const price = e.model !== null ? table.prices[e.model] : undefined;
+    if (price === undefined) {
+      unpricedSessionCalls += 1;
+      continue;
+    }
+    estimatedCost += price.perSession;
+    pricedSessionCalls += 1;
+  }
+  const estimate: PriceTableEstimateV1 = {
+    priceVersion: table.priceVersion,
+    effectiveDate: table.effectiveDate,
+    estimatedCost,
+    pricedSessionCalls,
+    unpricedSessionCalls,
+  };
+  const accepted = opts?.acceptedChapterCount;
+  if (typeof accepted === "number" && Number.isFinite(accepted) && accepted > 0) {
+    estimate.costPerAcceptedChapter = estimatedCost / accepted;
+  }
+  return estimate;
+}
 
 /** Nearest-rank percentile over an ASCENDING-sorted array. `null` on an empty
  *  input rather than a fabricated 0 — an empty latency sample means "no call
@@ -272,7 +342,20 @@ export function buildCallLedgerRollup(
   bookId: string,
   runId: string,
   entries: readonly RunCallLedgerEntryV1[],
-  opts?: { priceVersion?: string | null },
+  opts?: {
+    priceVersion?: string | null;
+    /** WP-E42 rollup join. Pass a valid `PriceTableV1` (e.g. from
+     *  `loadPriceTable`) to compute a real `estimate` block; pass `null`
+     *  explicitly to record "checked, no usable table" (`priceVersion: null`,
+     *  no `estimate` key, no dollar figure anywhere); omit entirely to keep
+     *  pre-WP-E42 callers byte-compatible (falls back to `opts.priceVersion`,
+     *  never computes an estimate). When both `priceTable` and `priceVersion`
+     *  are supplied, `priceTable` wins — the stamped version always matches
+     *  what the estimate was actually priced against. */
+    priceTable?: PriceTableV1 | null;
+    /** Forwarded to `estimateSessionCost` when `priceTable` is valid. */
+    acceptedChapterCount?: number;
+  },
 ): RunCallLedgerRollupV1 {
   const byFamily: Record<string, number> = {};
   const byStage: Record<string, number> = {};
@@ -304,7 +387,28 @@ export function buildCallLedgerRollup(
     }
   }
   const sorted = [...latencies].sort((a, b) => a - b);
-  return {
+
+  // WP-E42 rollup join. `priceTable` (when supplied, even as an explicit
+  // `null`) takes over the priceVersion/estimate decision entirely — a
+  // caller that has already checked the table gets an honest answer instead
+  // of a stale `priceVersion` string left over from a prior call. Omitting
+  // `priceTable` altogether preserves the pre-WP-E42 behavior exactly
+  // (`opts.priceVersion` passthrough, never an `estimate` key).
+  let priceVersion: string | null;
+  let estimate: PriceTableEstimateV1 | undefined;
+  if (opts && "priceTable" in opts) {
+    const table = opts.priceTable;
+    if (table === null || table === undefined) {
+      priceVersion = null;
+    } else {
+      estimate = estimateSessionCost(entries, table, { acceptedChapterCount: opts.acceptedChapterCount });
+      priceVersion = table.priceVersion;
+    }
+  } else {
+    priceVersion = opts?.priceVersion ?? null;
+  }
+
+  const rollup: RunCallLedgerRollupV1 = {
     schema: RUN_CALL_LEDGER_ROLLUP_SCHEMA,
     bookId,
     runId,
@@ -323,12 +427,18 @@ export function buildCallLedgerRollup(
     },
     bySessionKind,
     trueSessionCalls,
-    // WP-E42 wires the priced table lookup; this rollup only carries the
-    // version the caller says it priced against (absent/null ⇒ PRICE NOT
-    // VERIFIED, per NEW-06 — no pricing arithmetic lives in this module).
-    priceVersion: opts?.priceVersion ?? null,
+    // PRICE NOT VERIFIED (NEW-06) whenever no valid table was checked: null,
+    // never a guessed version string.
+    priceVersion,
     cost: LEDGER_COST_MARKER,
   };
+  // Only set when actually computed: an absent key (not an `undefined`-valued
+  // one) is what the "no dollar figure anywhere in the rollup" tests assert —
+  // `JSON.stringify` drops `undefined` properties, but `"estimatedCost" in
+  // rollup.estimate` style checks on the in-memory object should not even see
+  // the key.
+  if (estimate !== undefined) rollup.estimate = estimate;
+  return rollup;
 }
 
 /** Count entries that represent a REAL, billable model session — never a
@@ -362,10 +472,16 @@ export function writeCallLedgerRollup(pipelineDir: string, rollup: RunCallLedger
 
 /** Convenience: read a run's own ledger back, roll it up, and persist the
  *  per-run summary in one call — the exact sequence the autopilot/D7 flush
- *  points use at run end. */
+ *  points use at run end.
+ *
+ *  WP-E42 rollup join: this is the production call site, so it loads
+ *  `config/price-table.v1.json` itself (via `loadPriceTable`) rather than
+ *  requiring every existing caller (autopilot.ts, D7 flush points) to be
+ *  rewired — `loadPriceTable` returns `null` on a missing/invalid/unapproved
+ *  table, which `buildCallLedgerRollup` already treats as PRICE NOT VERIFIED. */
 export function finalizeRunCallLedgerRollup(pipelineDir: string, bookId: string, runId: string): { rollup: RunCallLedgerRollupV1; path: string } {
   const entries = readCallLedgerEntries(pipelineDir, bookId, runId);
-  const rollup = buildCallLedgerRollup(bookId, runId, entries);
+  const rollup = buildCallLedgerRollup(bookId, runId, entries, { priceTable: loadPriceTable(pipelineDir) });
   const path = writeCallLedgerRollup(pipelineDir, rollup);
   return { rollup, path };
 }
@@ -388,7 +504,10 @@ export function buildBookRollup(pipelineDir: string, bookId: string): RunCallLed
     const runId = f.slice(0, -".jsonl".length);
     entries.push(...readCallLedgerEntries(pipelineDir, bookId, runId));
   }
-  return { ...buildCallLedgerRollup(bookId, "ALL_RUNS", entries), runId: "ALL_RUNS" };
+  return {
+    ...buildCallLedgerRollup(bookId, "ALL_RUNS", entries, { priceTable: loadPriceTable(pipelineDir) }),
+    runId: "ALL_RUNS",
+  };
 }
 
 export function writeBookRollup(pipelineDir: string, bookId: string): string {
