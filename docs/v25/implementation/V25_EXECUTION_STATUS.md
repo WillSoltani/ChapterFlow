@@ -46,8 +46,8 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 305 | integrated | wp-305-source-contracts | 054ea43ce | 42db0f5cd | rt PASS-WITH-NOTES; 18th contract |
 | 404 | integrated | wp-404-repair-verification | 054ea43ce | 9bff33f4a | rt PASS-WITH-NOTES; cap 2 |
 | 401 | integrated | wp-401-d7-ship-gate | 9e118bd66 | e6a330c2d | 3 red-team rounds; V25-02 closed; residuals→D-11 |
-| 403 | in progress | wp-403-advisory-review | (post-401) | — | dispatched: opus-4.8@xhigh |
-| 205 | in progress | wp-205-floor-consolidation | (post-401) | — | dispatched: opus-4.8@xhigh |
+| 403 | integrated | wp-403-advisory-review | e27cb5fef | f8238350e | rt PASS-WITH-NOTES; V25-10/16 closed |
+| 205 | integrated | wp-205-floor-consolidation | e27cb5fef | 024e7c0cd | rt PASS-WITH-NOTES; floor dedup |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
