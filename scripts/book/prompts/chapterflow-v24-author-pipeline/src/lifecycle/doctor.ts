@@ -6,6 +6,16 @@
  *   - chapter-number drift (dupes/gaps that make AS5–AS12 silently skip)
  *   - untracked src/*.ts imported by tracked code (the TS2307-on-origin trap)
  * Read-only. Exit 0 = healthy, 1 = warnings, 2 = a blocking trap.
+ *
+ * WP-602 extends this module with the deterministic GENERATE-BOOK preflight
+ * (master plan §8 WP-602; the entry point WP-601 wires in before any book
+ * work starts): worktree cleanliness, base-SHA match, branch sanity,
+ * model-config support, schema-fixture validity, name-bank/config integrity,
+ * and the D7 REQUIRE-mode audit-tooling-reachable check. Every added check is
+ * filesystem/git/config only — ZERO model or network calls, matching the
+ * existing checks' contract exactly (`ok` /
+ * `warn` / `fatal`, the SAME `doctorExitCode` 0/1/2 mapping — no new exit
+ * codes). See `runGeneratePreflightChecks` below.
  */
 
 import { spawnSync } from "child_process";
@@ -21,6 +31,10 @@ import { findRunArtifact } from "../lib/runDirs.js";
 import { formatTocIssues, parseTocFile } from "../lib/tocContract.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { loadSweepHistory } from "../qc/sweep.js";
+import { CANDIDATE_MODELS, NORMAL_PROFILE_MODEL } from "../orchestrator/modelPolicy.js";
+import { contractFreezeDivergences, type ContractManifest } from "../contracts/index.js";
+import { canonicalEmissionSample, validateEmissionParity } from "../contracts/emissionPackage.js";
+import { loadBannedConnectives, loadNameBank } from "../librarian/namePlan.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -237,6 +251,273 @@ export function checkPendingDeploy(outerRoot?: string, now: number = Date.now())
   });
 }
 
+// ── WP-602: generate-book preflight checks ──────────────────────────────────
+//
+// worktree-clean, base-sha-match, branch-sanity, model-config-support,
+// schema-fixtures, name-bank-config, and d7-audit-tooling are the NEW
+// deterministic findings this WP adds (master plan §8 WP-602). Each is
+// independently exported/testable, and `runGeneratePreflightChecks` composes
+// them with the existing `runDoctorChecks` battery for the entry point
+// WP-601's `generate-book` command calls before any book work starts.
+
+/** A git-invoking function, matching `Runner` in src/qc/publishAfterQc.ts
+ *  structurally so the SAME injected fake can drive both — the pattern that
+ *  module's own git-touching functions/tests already use (`dirtyVsHead`,
+ *  `publishBranchError`, tests/publish-after-qc-git.test.ts). Real callers get
+ *  `defaultGitRunner` (a real `git` subprocess); tests inject a fake that
+ *  returns canned output for a specific arg vector — no real repo needed, no
+ *  dependency on this ACTUAL worktree's current (constantly-changing, mid-
+ *  development) git state. */
+type GitRunner = (cmd: string, args: string[], options?: { cwd?: string; env?: NodeJS.ProcessEnv; timeoutMs?: number }) => string;
+
+/** Throws on a non-zero exit (git failures are a THROW here, not an empty
+ *  string) so every caller has one place to catch/report "could not run
+ *  git" rather than silently misreading empty stdout as "clean"/"no HEAD". */
+const defaultGitRunner: GitRunner = (cmd, args, options = {}) => {
+  const r = spawnSync(cmd, args, { cwd: options.cwd ?? PIPELINE_DIR, env: options.env, encoding: "utf8", timeout: options.timeoutMs });
+  if (r.status !== 0) {
+    throw new Error((r.stderr ?? "").trim().slice(0, 200) || `${cmd} ${args.join(" ")} exited ${r.status}`);
+  }
+  return r.stdout ?? "";
+};
+
+/**
+ * Worktree cleanliness (V25-14 / WP-104's branch-sensitivity concern). Runs
+ * `git status --porcelain` from the pipeline dir — git walks up to the
+ * enclosing repo, the SAME pattern `checkUntrackedImports` above and
+ * `publishBranchError` (src/qc/publishAfterQc.ts) already rely on, so this
+ * works identically whether the package carries its own `.git` or is nested
+ * inside an outer checkout/worktree.
+ *
+ * A dirty tracked tree is `fatal` ONLY when the caller says this run DEMANDS
+ * a clean worktree (`opts.require`) — an operator poking at the preflight
+ * mid-edit is normal and must not be told to halt; `require` is what the
+ * generate-book command sets before starting unattended work. Undeterminable
+ * (git missing/erroring) reports `warn`, never a silent `ok` — a check that
+ * cannot run must never claim to have passed (WP-602 stop condition).
+ */
+export function checkWorktreeClean(opts: { require?: boolean; runner?: GitRunner } = {}): DoctorFinding {
+  const runner = opts.runner ?? defaultGitRunner;
+  let output: string;
+  try {
+    output = runner("git", ["status", "--porcelain"]);
+  } catch (err) {
+    return { level: "warn", check: "worktree-clean", message: `could not determine worktree cleanliness: ${(err as Error).message}` };
+  }
+  const lines = output.split(/\r?\n/).filter((l) => l.trim().length > 0);
+  if (lines.length === 0) {
+    return { level: "ok", check: "worktree-clean", message: "worktree is clean (no uncommitted changes)" };
+  }
+  const sample = lines.slice(0, 5).join("; ");
+  const tail = lines.length > 5 ? "; …" : "";
+  return opts.require
+    ? { level: "fatal", check: "worktree-clean", message: `worktree has ${lines.length} uncommitted change(s) (${sample}${tail}) — this run demands a clean worktree; commit or stash before proceeding.` }
+    : { level: "warn", check: "worktree-clean", message: `worktree has ${lines.length} uncommitted change(s) (${sample}${tail})` };
+}
+
+/**
+ * Base-SHA match — the worktree is (or is not) built on the approved
+ * integration SHA the caller expects. Absent an `expectedSha` this check has
+ * nothing to compare and reports `ok` (not applicable), never a guessed pass
+ * or fail. A short/malformed `expectedSha` (<7 chars) can't be compared
+ * reliably against an abbreviated `git rev-parse` output, so it warns rather
+ * than risking a prefix-collision false match.
+ */
+export function checkBaseShaMatch(expectedSha?: string, opts: { runner?: GitRunner } = {}): DoctorFinding {
+  if (!expectedSha || !expectedSha.trim()) {
+    return { level: "ok", check: "base-sha-match", message: "no expected base SHA configured — check not applicable" };
+  }
+  const expected = expectedSha.trim();
+  if (expected.length < 7) {
+    return { level: "warn", check: "base-sha-match", message: `expected SHA "${expected}" is too short (<7 chars) to compare reliably` };
+  }
+  const runner = opts.runner ?? defaultGitRunner;
+  let current: string;
+  try {
+    current = runner("git", ["rev-parse", "HEAD"]).trim();
+  } catch (err) {
+    return { level: "warn", check: "base-sha-match", message: `could not determine current HEAD SHA: ${(err as Error).message}` };
+  }
+  const matches = current === expected || current.startsWith(expected) || expected.startsWith(current);
+  if (!matches) {
+    return { level: "fatal", check: "base-sha-match", message: `HEAD is ${current.slice(0, 12)} but the expected integration SHA is ${expected.slice(0, 12)} — this worktree is not based on the approved SHA.` };
+  }
+  return { level: "ok", check: "base-sha-match", message: `HEAD ${current.slice(0, 12)} matches the expected base SHA` };
+}
+
+/**
+ * Branch sanity — REUSES the existing publish-time branch guard
+ * (`publishBranchError`, src/qc/publishAfterQc.ts) so "which branch is this
+ * worktree on" is answered by the SAME logic, not a second copy. Generation
+ * itself does not require `main` (every S-tier work package in this program
+ * is authored off `main`, in its own worktree/branch), so an off-main branch
+ * is `warn` here — visible context, not a false requirement; `publish` still
+ * enforces its own on-main rule unconditionally when the book actually ships.
+ * Dynamically imported so this module's default (static) import graph does
+ * not grow by publishAfterQc.ts's much heavier transitive dependencies
+ * (promoteBook/generateBook/the deterministic floor/quiz-key gate/…) — the
+ * cost is paid only when this specific check actually runs.
+ */
+export async function checkBranchSanity(opts: { runner?: GitRunner } = {}): Promise<DoctorFinding> {
+  const { publishBranchError } = await import("../qc/publishAfterQc.js");
+  const runner = opts.runner ?? defaultGitRunner;
+  let error: string | null;
+  try {
+    error = publishBranchError(runner);
+  } catch (err) {
+    return { level: "warn", check: "branch-sanity", message: `could not determine the current branch: ${(err as Error).message}` };
+  }
+  if (error) {
+    return { level: "warn", check: "branch-sanity", message: `${error} (advisory for generation — publish enforces this unconditionally when the book ships)` };
+  }
+  return { level: "ok", check: "branch-sanity", message: "on main (or CHAPTERFLOW_ALLOW_PUBLISH_BRANCH=1 is set) — publish will not be branch-blocked" };
+}
+
+/**
+ * Name-bank / config-file integrity — REUSES `loadNameBank()`
+ * (src/librarian/namePlan.ts), the SAME function `name-plan`/CHB3 depend on,
+ * which reads+parses `config/name-bank.json` and THROWS on unreadable/corrupt
+ * JSON. `name-plan` calls it uncaught (a corrupt bank already fails that
+ * command closed); this surfaces the SAME failure here, before any authoring
+ * work starts, rather than a second bespoke validator. `config/banned-
+ * connectives.json` (`loadBannedConnectives()`, same module) is checked the
+ * same way. A bank that parses but yields zero bankable names degrades
+ * CHB3/name-plan to a silent no-op (readerBudgets.ts's own documented
+ * fallback) — visible here as `warn`, not a crash. `opts` path overrides are
+ * test-only (point at a fixture instead of the real committed config).
+ */
+export function checkNameBankConfig(opts: { nameBankPath?: string; bannedConnectivesPath?: string } = {}): DoctorFinding {
+  try {
+    const bank = opts.nameBankPath !== undefined ? loadNameBank(opts.nameBankPath) : loadNameBank();
+    if (opts.bannedConnectivesPath !== undefined) loadBannedConnectives(opts.bannedConnectivesPath);
+    else loadBannedConnectives();
+    if (bank.length === 0) {
+      return { level: "warn", check: "name-bank-config", message: "config/name-bank.json parsed but yielded zero bankable names — CHB3/name-plan will silently degrade to a no-op" };
+    }
+    return { level: "ok", check: "name-bank-config", message: `config/name-bank.json + config/banned-connectives.json present and valid (${bank.length} bankable name(s))` };
+  } catch (err) {
+    return { level: "fatal", check: "name-bank-config", message: `name-bank/config unreadable or corrupt: ${(err as Error).message}` };
+  }
+}
+
+/** Reasoning-effort union this pipeline routes locally (mirrors the private
+ *  `EFFORTS` list in `../orchestrator/modelPolicy.ts`, which is not exported —
+ *  API-only "max" is deliberately excluded, matching `resolveRoute`). */
+const SUPPORTED_EFFORTS: readonly string[] = ["minimal", "low", "medium", "high", "xhigh"];
+
+/**
+ * Model-config support — REPORTS (never enforces; that is WP-504/the
+ * command's job) whether a requested model is in the 5.6 candidate set and a
+ * requested effort is one this pipeline routes. No live/network call: family
+ * membership is looked up in `CANDIDATE_MODELS` (data), never probed against
+ * a provider. Omitted `model`/`effort` default to the central normal-profile
+ * model (`NORMAL_PROFILE_MODEL.model`, always a confirmed candidate by
+ * construction) and "not specified" respectively, so a bystander call to this
+ * check without an explicit `--model`/`--effort` still reports something
+ * meaningful. An unknown model family is `fatal` (directive-1: no silent
+ * fallback to an unsupported model); a candidate whose capability is not yet
+ * `confirmed` (terra/luna, pending WP-502) is `warn` — visible, not a hard
+ * block, since it is legitimate bakeoff data, just not yet production-routed.
+ */
+export function checkModelConfigSupport(opts: { model?: string; effort?: string } = {}): DoctorFinding {
+  const model = opts.model ?? NORMAL_PROFILE_MODEL.model;
+  const known = CANDIDATE_MODELS.find((c) => c.family === model);
+  const parts: string[] = [];
+  const levels: DoctorFinding["level"][] = [];
+
+  if (!known) {
+    levels.push("fatal");
+    parts.push(`model "${model}" is not in the 5.6 candidate set (${CANDIDATE_MODELS.map((c) => c.family).join(", ")})`);
+  } else if (known.capability !== "confirmed") {
+    levels.push("warn");
+    parts.push(`model "${model}" is a 5.6 candidate but its capability is "${known.capability}" — not yet confirmed for production routing`);
+  } else {
+    levels.push("ok");
+    parts.push(`model "${model}" is a confirmed 5.6 candidate`);
+  }
+
+  if (opts.effort !== undefined) {
+    if (!SUPPORTED_EFFORTS.includes(opts.effort)) {
+      levels.push("fatal");
+      parts.push(`effort "${opts.effort}" is not a supported reasoning effort (allowed: ${SUPPORTED_EFFORTS.join(", ")})`);
+    } else {
+      levels.push("ok");
+      parts.push(`effort "${opts.effort}" is supported`);
+    }
+  }
+
+  const level: DoctorFinding["level"] = levels.includes("fatal") ? "fatal" : levels.includes("warn") ? "warn" : "ok";
+  return { level, check: "model-config-support", message: parts.join("; ") };
+}
+
+/**
+ * Schema-fixture validity — the frozen contract manifest still matches the
+ * live contract descriptors (`contractFreezeDivergences`, IMP-12) AND the
+ * canonical emission sample still satisfies the frozen consumer-parity
+ * contract (`validateEmissionParity`, WP-102). Both are the SAME deterministic
+ * functions `contract-validate` runs (src/cli.ts), called in-process here
+ * rather than by spawning the CLI. `manifest`/`emission` are injectable so a
+ * test can hand this a deliberately corrupt fixture without touching the real
+ * committed manifest.
+ */
+export function checkSchemaFixtures(opts: { manifest?: ContractManifest; emission?: unknown } = {}): DoctorFinding {
+  let divergences: string[];
+  try {
+    divergences = opts.manifest ? contractFreezeDivergences(opts.manifest) : contractFreezeDivergences();
+  } catch (err) {
+    return { level: "fatal", check: "schema-fixtures", message: `contract manifest unreadable/corrupt: ${(err as Error).message}` };
+  }
+  let parityErrors: string[];
+  try {
+    parityErrors = validateEmissionParity(opts.emission ?? canonicalEmissionSample());
+  } catch (err) {
+    return { level: "fatal", check: "schema-fixtures", message: `emission-parity fixture unreadable/corrupt: ${(err as Error).message}` };
+  }
+  const problems = [...divergences, ...parityErrors];
+  if (problems.length > 0) {
+    const tail = problems.length > 5 ? "; …" : "";
+    return { level: "fatal", check: "schema-fixtures", message: `${problems.length} schema-fixture issue(s): ${problems.slice(0, 5).join("; ")}${tail}` };
+  }
+  return { level: "ok", check: "schema-fixtures", message: "contract manifest + emission-parity fixtures are valid" };
+}
+
+/** The env var REQUIRE-mode name the D7 ship gate owns (mirrors
+ *  `CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV` in `../critics/d7ShipGate.ts`, kept
+ *  as a literal here rather than a static import so this module's default
+ *  import graph stays light — see the dynamic imports below). */
+const CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV = "CHAPTERFLOW_REQUIRE_D7_SHIP_GATE";
+
+/**
+ * D7 REQUIRE-mode prerequisite — when the caller has (or the environment has)
+ * `CHAPTERFLOW_REQUIRE_D7_SHIP_GATE=1` set, the rubric-audit tooling the D7
+ * gate's REQUIRE path depends on (the `migration-bakeoff rubric-audit-*`
+ * dispatcher + its path resolver) must actually be reachable — a broken
+ * import there would only surface later, mid-audit, wasting a live run.
+ * Dynamic `import()` proves REACHABILITY (the whole transitive module graph
+ * resolves), not just file presence, and is still deterministic/network-free:
+ * module resolution touches only the local filesystem. When REQUIRE mode is
+ * not set, this is a no-op `ok` (the D7 gate runs in advisory mode and never
+ * needs this tooling).
+ */
+export async function checkD7AuditToolingReachable(require: boolean): Promise<DoctorFinding> {
+  if (!require) {
+    return { level: "ok", check: "d7-audit-tooling", message: `${CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV} is not set — audit-tooling reachability check skipped` };
+  }
+  try {
+    const dispatcher = await import("../bakeoff/migration/cli.js");
+    if (typeof dispatcher.runMigrationBakeoffCli !== "function") {
+      return { level: "fatal", check: "d7-audit-tooling", message: `${CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV}=1: migration/cli.js loaded but runMigrationBakeoffCli is not exported — the rubric-audit dispatcher is broken` };
+    }
+    const instrument = await import("../bakeoff/migration/rubricAuditInstrument.js");
+    if (typeof instrument.rubricAuditDirRelPath !== "function") {
+      return { level: "fatal", check: "d7-audit-tooling", message: `${CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV}=1: rubricAuditInstrument.js loaded but rubricAuditDirRelPath is not exported — the rubric-audit path resolver is broken` };
+    }
+    return { level: "ok", check: "d7-audit-tooling", message: `${CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV}=1: rubric-audit dispatcher + path resolver are reachable` };
+  } catch (err) {
+    return { level: "fatal", check: "d7-audit-tooling", message: `${CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV}=1 but the rubric-audit tooling is UNREACHABLE: ${(err as Error).message}` };
+  }
+}
+
 export function runDoctorChecks(bookId?: string): DoctorFinding[] {
   const findings: DoctorFinding[] = [checkShadowStateDir(), checkUntrackedImports(), ...checkStaleLocks(), ...checkPendingDeploy()];
   if (bookId) {
@@ -253,6 +534,74 @@ export function runDoctorChecks(bookId?: string): DoctorFinding[] {
     } catch { /* no chapters dir */ }
   }
   return findings;
+}
+
+export type GeneratePreflightOptions = {
+  /** Present ⇒ per-book checks (dual-brief, chapter-numbers, canonical-set,
+   *  TOC, sweep-history) run in addition to the global ones; absent ⇒ the
+   *  global-only sweep, same as bare `runDoctorChecks()`. */
+  bookId?: string;
+  /** The requested model for this run; defaults to the central normal-profile
+   *  model (`NORMAL_PROFILE_MODEL.model`) when omitted. */
+  model?: string;
+  /** The requested reasoning effort; unchecked when omitted. */
+  effort?: string;
+  /** The approved integration SHA this worktree must be based on; the check
+   *  is not-applicable (`ok`) when omitted. */
+  expectedBaseSha?: string;
+  /** True ⇒ a dirty worktree is `fatal`, not a soft `warn` (this run demands
+   *  a clean tree before starting unattended book work). */
+  requireCleanWorktree?: boolean;
+  /** True ⇒ verify the D7 rubric-audit tooling is reachable; defaults to
+   *  reading `CHAPTERFLOW_REQUIRE_D7_SHIP_GATE` from the environment. */
+  requireD7ShipGate?: boolean;
+};
+
+/**
+ * The deterministic preflight for the generate-book command (WP-602; WP-601
+ * wires this in before any book work starts — see master plan §8 WP-602).
+ * Combines the existing workspace `runDoctorChecks` battery (shadow-state
+ * dir, dual-brief, chapter numbers, canonical set, TOC contract, sweep
+ * history, untracked imports, stale locks, pending deploy) with the checks
+ * this WP adds: worktree cleanliness, base-SHA match, branch sanity,
+ * model-config support, schema-fixture validity, name-bank/config integrity,
+ * and the D7 REQUIRE-mode audit-tooling-reachable check. Every check is
+ * deterministic — filesystem/git/config reads only,
+ * ZERO model or network calls — and reports through the SAME `DoctorFinding`
+ * `ok`/`warn`/`fatal` levels `doctorExitCode` already maps to 0/1/2 (no new
+ * exit codes). This function only REPORTS; enforcing a halt on a fatal
+ * finding is the calling command's job (WP-504/WP-601), not this module's.
+ */
+export async function runGeneratePreflightChecks(opts: GeneratePreflightOptions = {}): Promise<DoctorFinding[]> {
+  const requireD7 = opts.requireD7ShipGate ?? process.env[CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV] === "1";
+  return [
+    ...runDoctorChecks(opts.bookId),
+    checkWorktreeClean({ require: opts.requireCleanWorktree }),
+    checkBaseShaMatch(opts.expectedBaseSha),
+    await checkBranchSanity(),
+    checkModelConfigSupport({ model: opts.model, effort: opts.effort }),
+    checkSchemaFixtures(),
+    checkNameBankConfig(),
+    await checkD7AuditToolingReachable(requireD7),
+  ];
+}
+
+/**
+ * Render `findings` as the publish-preflight "definition of done" checklist —
+ * reusing the ALREADY-EXISTING `formatPreflightChecklist` (src/qc/publishAfterQc.ts)
+ * verbatim rather than re-implementing a second checklist renderer. Imported
+ * dynamically so this module's (and every static `doctor.ts` importer's,
+ * e.g. optimizedPipeline.ts) default import graph stays exactly as light as
+ * before — the cost of publishAfterQc.ts's much heavier import graph is paid
+ * only by a caller that actually asks for this rendering.
+ */
+export async function formatGeneratePreflightChecklist(findings: DoctorFinding[]): Promise<string> {
+  const { formatPreflightChecklist } = await import("../qc/publishAfterQc.js");
+  const checks = findings.map((f) => ({
+    check: f.check,
+    blockers: f.level === "ok" ? [] : [`[${f.level}] ${f.message}`],
+  }));
+  return formatPreflightChecklist(checks);
 }
 
 export function formatDoctor(findings: DoctorFinding[]): string {

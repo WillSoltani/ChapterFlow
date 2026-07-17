@@ -99,13 +99,15 @@ function isBankable(name: string): boolean {
  *  reader can spot) — both flagged by the ch16-23 QC. Sorting by a stable hash
  *  scatters origin and initial, so each chapter's disjoint slice reads like a
  *  varied real-world cast. Deterministic → allocations remain reproducible and
- *  re-plan stays idempotent. */
-export function loadNameBank(): string[] {
+ *  re-plan stays idempotent. `path` defaults to the real committed config and
+ *  is only overridden by tests (e.g. WP-602's doctor preflight corrupt-fixture
+ *  coverage) so they never touch the real file. */
+export function loadNameBank(path: string = NAME_BANK_PATH): string[] {
   let raw: Record<string, unknown>;
   try {
-    raw = JSON.parse(readFileSync(NAME_BANK_PATH, "utf8")) as Record<string, unknown>;
+    raw = JSON.parse(readFileSync(path, "utf8")) as Record<string, unknown>;
   } catch (err) {
-    throw new Error(`name-bank config unreadable at ${NAME_BANK_PATH}: ${(err as Error).message}`);
+    throw new Error(`name-bank config unreadable at ${path}: ${(err as Error).message}`);
   }
   const seen = new Set<string>();
   const out: string[] = [];
@@ -126,12 +128,12 @@ export function loadNameBank(): string[] {
 
 type BannedConnectivesConfig = { principle: string; bannedConnectives: string[] };
 
-export function loadBannedConnectives(): BannedConnectivesConfig {
+export function loadBannedConnectives(path: string = BANNED_CONNECTIVES_PATH): BannedConnectivesConfig {
   let raw: any;
   try {
-    raw = JSON.parse(readFileSync(BANNED_CONNECTIVES_PATH, "utf8"));
+    raw = JSON.parse(readFileSync(path, "utf8"));
   } catch (err) {
-    throw new Error(`banned-connectives config unreadable at ${BANNED_CONNECTIVES_PATH}: ${(err as Error).message}`);
+    throw new Error(`banned-connectives config unreadable at ${path}: ${(err as Error).message}`);
   }
   return {
     principle: typeof raw.principle === "string" ? raw.principle : "",
