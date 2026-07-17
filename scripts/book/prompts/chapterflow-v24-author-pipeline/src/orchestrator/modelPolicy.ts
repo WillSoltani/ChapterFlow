@@ -28,6 +28,9 @@
 import { hashCanonical } from "../contracts/contractUtil.js";
 import type { AgentRole, EffortLevelV1 } from "../contracts/executionProfile.js";
 import type { ChatgptAuthProofV1, ProviderOutcomeV1, RouteResultV1, TaskClassV1 } from "../contracts/routeContracts.js";
+// Type-only import (erased at runtime, so no cycle with ultraSession, which
+// imports this module's resolveD7RaterRoute at runtime).
+import type { UltraRouteV1 } from "../exec/ultraSession.js";
 
 /** Bumped on ANY change to the matrices/mapping below — part of the drift
  *  fingerprint, so a policy edit stales prior qualification evidence. WP-302
@@ -672,4 +675,21 @@ export function normalRouteMatrix(): Array<{ role: AgentRole; taskClass: TaskCla
     const r = resolveRoute({ role });
     return { role, taskClass: r.taskClass, model: r.model, effort: r.effort };
   });
+}
+
+/**
+ * WP-E21 — the SINGLE authority that decides the D7 operational-reviewer /
+ * canonical-evaluator ultra rater route (execution plan §4; V25-NEW-01). It is
+ * DELIBERATELY separate from `resolveRoute`: "ultra" is not a member of the
+ * frozen `EffortLevelV1` union (`resolveRoute` fail-closes it as
+ * `unsupported-effort`), so this route is carried as a plain string through the
+ * argv/manifest layer only (see `ultraSession.ts`). The model is `BASELINE_MODEL`
+ * — the provisional 5.6 default (gpt-5.6-sol) — so if WP-705 replaces the winner
+ * the D7 rater tracks it, and effort is pinned to the ultra token.
+ *
+ * This is the ONLY place the D7 rater route is decided: every ultra spawn resolves
+ * its model/effort here, never at a call site.
+ */
+export function resolveD7RaterRoute(): UltraRouteV1 {
+  return { model: BASELINE_MODEL, effort: "ultra" };
 }
