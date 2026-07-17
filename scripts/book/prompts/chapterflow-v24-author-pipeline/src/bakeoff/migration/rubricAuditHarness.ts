@@ -39,6 +39,7 @@ import {
   type RubricInspection,
 } from "./rubricAuditReceipts.js";
 import {
+  PIPELINE_REL,
   RUBRIC_BASE_GATE_KEYS,
   RUBRIC_CHAPTER_WEIGHT_TOTAL,
   RUBRIC_DOMAINS,
@@ -52,6 +53,7 @@ import {
   type RubricAuditProfile,
   type RubricLayerKey,
 } from "./rubricAuditInstrument.js";
+import { appendCallLedgerEntry } from "../../telemetry/runCallLedger.js";
 
 export class RubricAuditHarnessError extends Error {
   constructor(message: string) {
@@ -610,6 +612,44 @@ function throwIfInvalid(errors: string[], label: string): void {
   }
 }
 
+/** WP-503 — the Claude-side D7 rater/adjudicator call ledger choke point. This
+ *  harness is model-free CODE (`modelCalls: 0` on every ingest result above):
+ *  the real model turn happens in an EXTERNAL Claude session this process never
+ *  observes — renderRaterTaskDocument/renderAdjudicatorTask hand it a task, and
+ *  ingestRaterRecord/ingestAdjudicationRecord are the ONLY place that session's
+ *  outcome becomes visible to this codebase. So this is where it gets ledgered.
+ *
+ *  Unconditional (called before throwIfInvalid, on BOTH success and failure) —
+ *  every real ingest attempt appends exactly one entry, never zero. model/
+ *  effort/latencyMs are recorded `null`: this process genuinely cannot observe
+ *  which model, effort, or wall-clock duration the external session used —
+ *  never a guessed value standing in for that gap. Best-effort: a ledger bug
+ *  must never turn a valid rating into a lost book audit. */
+function recordD7CallLedgerEntry(args: {
+  repositoryRoot: string;
+  auditId: string;
+  unit: string;
+  bookId: string;
+  role: RubricAuditHarnessRole;
+  outcome: "content_completed" | "content_invalid";
+}): void {
+  try {
+    appendCallLedgerEntry({
+      pipelineDir: resolve(args.repositoryRoot, PIPELINE_REL),
+      bookId: args.bookId,
+      runId: args.auditId,
+      family: "claude-side",
+      stage: "d7-rubric-audit",
+      role: args.role,
+      model: null,
+      effort: null,
+      latencyMs: null,
+      outcome: args.outcome,
+      sessionId: `${args.auditId}/${args.unit}/${args.role}`,
+    });
+  } catch { /* telemetry must never brick the D7 audit ingest */ }
+}
+
 /** Ingest a primary/verification rater record: validate through the existing
  *  validator, persist the inspection + dispatch + record, and (once both raters
  *  are in) mint + persist the blind pair seal. */
@@ -636,6 +676,10 @@ export function ingestRaterRecord(args: {
     inspection,
     sourceText: resolution.sourceText,
     profile: resolution.profile,
+  });
+  recordD7CallLedgerEntry({
+    repositoryRoot, auditId: manifest.auditId, unit, bookId: resolution.bookId, role,
+    outcome: errors.length > 0 ? "content_invalid" : "content_completed",
   });
   throwIfInvalid(errors, `${unit} ${role} rater record`);
 
@@ -714,6 +758,10 @@ export function ingestAdjudicationRecord(args: {
     inspection,
     sourceText: resolution.sourceText,
     profile: resolution.profile,
+  });
+  recordD7CallLedgerEntry({
+    repositoryRoot, auditId: manifest.auditId, unit, bookId: resolution.bookId, role: "adjudicator",
+    outcome: errors.length > 0 ? "content_invalid" : "content_completed",
   });
   throwIfInvalid(errors, `${unit} adjudication record`);
 

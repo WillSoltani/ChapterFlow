@@ -8,10 +8,25 @@
  */
 
 import { mkdirSync } from "fs";
-import { resolve } from "path";
+import { dirname, resolve } from "path";
+import { fileURLToPath } from "url";
 import { writeFileAtomic } from "./lib/atomicWrite.js";
 import { CallOptions, CallResult } from "./providers/types.js";
 import { callModel as routerCallModel } from "./providers/router.js";
+import { classifyProviderOutcome } from "./orchestrator/modelPolicy.js";
+import { appendCallLedgerEntry } from "./telemetry/runCallLedger.js";
+
+// WP-503: this module's own pipeline root, computed the SAME way autopilot.ts/
+// bakeoff/paths.ts do (never a cross-import of another module's constant — see
+// bakeoff/paths.ts's own "recomputed here to avoid importing side effects" note).
+const __dirnameLocal = dirname(fileURLToPath(import.meta.url));
+const PIPELINE_DIR = resolve(__dirnameLocal, "..");
+
+/** A `callModel` invocation with no `opts.bookId` still gets ledgered (never
+ *  silently dropped) — it lands under this clearly-labeled bucket rather than
+ *  a guessed book id. This is a DIRECTORY KEY choice, not a fabricated data
+ *  field: the entry's own `bookId` value is honest about being unaddressed. */
+export const UNSPECIFIED_LEDGER_BOOK_ID = "unspecified-book";
 
 export type CostBucket = {
   calls: number;
@@ -94,8 +109,40 @@ export function getCurrentStats(): CostStats | null {
   return _stats;
 }
 
+/** WP-503: a rejected `callModel` is a real, disjoint outcome too — ledger it
+ *  (best-effort) before the caller re-throws the SAME error, unchanged. Only
+ *  when a run is active (`_stats`), matching every other telemetry write in
+ *  this module. Extracted as its own function (rather than inlined in the
+ *  `callModel` catch block) so it has a direct, no-router, no-live-call test
+ *  seam — `tests/cost-tracker.test.ts` calls it with a synthetic Error. */
+export function recordFailedCall(opts: CallOptions, err: unknown): void {
+  if (!_stats) return;
+  try {
+    appendCallLedgerEntry({
+      pipelineDir: PIPELINE_DIR,
+      bookId: opts.bookId ?? UNSPECIFIED_LEDGER_BOOK_ID,
+      runId: _stats.runId,
+      family: "claude-side",
+      stage: opts.stage ?? "unlabeled",
+      role: opts.role ?? null,
+      model: opts.model ?? null,
+      effort: null,
+      // Genuinely unobservable: the router throws before returning any
+      // durationMs on this path — never a placeholder 0.
+      latencyMs: null,
+      outcome: classifyProviderOutcome({ completed: false, errorMessage: (err as Error)?.message ?? String(err) }),
+    });
+  } catch { /* telemetry must never convert a real failure into a different one */ }
+}
+
 export async function callModel<T = string>(opts: CallOptions): Promise<CallResult<T>> {
-  const result = await routerCallModel<T>(opts);
+  let result: CallResult<T>;
+  try {
+    result = await routerCallModel<T>(opts);
+  } catch (err) {
+    recordFailedCall(opts, err);
+    throw err;
+  }
   if (_stats) recordCall(opts, result);
   return result;
 }
@@ -129,7 +176,10 @@ export function formatStats(stats: CostStats): string {
   return lines.join("\n");
 }
 
-function recordCall(opts: CallOptions, result: CallResult<unknown>): void {
+// WP-503: exported (was module-private) — the direct, no-mock-router seam
+// `tests/cost-tracker.test.ts` uses to prove the unified-ledger hook without
+// spawning a real provider call.
+export function recordCall(opts: CallOptions, result: CallResult<unknown>): void {
   if (!_stats) return;
   const record: CostCallRecord = {
     at: new Date().toISOString(),
@@ -157,6 +207,25 @@ function recordCall(opts: CallOptions, result: CallResult<unknown>): void {
   add(bucket(_stats.byTier, opts.tier), record);
   add(bucket(_stats.byStage, record.stage), record);
   if (opts.chapterId) add(bucket(_stats.byChapter, opts.chapterId), record);
+  // WP-503: mirror this successful call into the unified per-run call ledger
+  // (claude-side family) alongside the existing token/cost bucket accounting
+  // above — best-effort, never lets a successful model call surface as an error.
+  try {
+    appendCallLedgerEntry({
+      pipelineDir: PIPELINE_DIR,
+      bookId: opts.bookId ?? UNSPECIFIED_LEDGER_BOOK_ID,
+      runId: _stats.runId,
+      family: "claude-side",
+      stage: record.stage,
+      role: opts.role ?? null,
+      model: result.model,
+      // CallOptions carries no reasoning-effort concept (that is a codex-exec-only
+      // dial) — recorded null honestly rather than repurposing `temperature`.
+      effort: null,
+      latencyMs: result.durationMs,
+      outcome: classifyProviderOutcome({ completed: true, exitCode: 0 }),
+    });
+  } catch { /* best-effort: telemetry never converts a successful call into a failure */ }
 }
 
 function bucket(map: Record<string, CostBucket>, key: string): CostBucket {

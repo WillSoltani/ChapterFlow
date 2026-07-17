@@ -25,6 +25,7 @@ import {
   type RubricAuditBatchManifestV1,
 } from "../src/bakeoff/migration/rubricAuditInstrument.js";
 import {
+  ingestAdjudicationRecord,
   ingestRaterRecord,
   raterBindingEnvelope,
   renderRaterTaskDocument,
@@ -32,6 +33,7 @@ import {
 } from "../src/bakeoff/migration/rubricAuditHarness.js";
 import { AuditPackageAssemblyError, assembleAuditPackage } from "../src/bakeoff/auditPackageAssembler.js";
 import { loadRecord, validatePairChain, type RubricInspection } from "../src/bakeoff/migration/rubricAuditReceipts.js";
+import { readCallLedgerEntries } from "../src/telemetry/runCallLedger.js";
 
 const REPOSITORY_ROOT = resolve(PIPELINE_DIR, "../../../..");
 const OWNER_RUN_DIR = resolve(REPOSITORY_ROOT, RUBRIC_OWNER_RUN_REL_PATH);
@@ -184,6 +186,22 @@ test("render→ingest round-trip: a v25 candidate rater record validates and per
     assert.equal(unitStatus.primary, true);
     assert.deepEqual(unitStatus.missing, ["verification", "seal", "adjudication"]);
     assert.equal(status.allComplete, false);
+
+    // WP-503 — the Claude-side D7 rater call ledgered exactly once per REAL
+    // ingest attempt (both the initial ingest and the idempotent re-ingest are
+    // real calls; neither is silently dropped).
+    const pipelineDir = resolve(repo.base, "scripts/book/prompts/chapterflow-v24-author-pipeline");
+    const entries = readCallLedgerEntries(pipelineDir, repo.unit, "harness-audit-1");
+    assert.equal(entries.length, 2, "one ledger line per ingest call, including the idempotent re-ingest");
+    for (const e of entries) {
+      assert.equal(e.family, "claude-side");
+      assert.equal(e.stage, "d7-rubric-audit");
+      assert.equal(e.role, "primary");
+      assert.equal(e.outcome, "content_completed");
+      assert.equal(e.model, null, "the external rater session's model id is genuinely unobservable here");
+      assert.equal(e.latencyMs, null);
+      assert.equal(e.cost, "NOT_METERED");
+    }
   } finally {
     repo.dispose();
   }
@@ -226,6 +244,13 @@ test("two distinct rater records seal the blind pair and render the adjudicator 
     assert.ok(adjTask.includes("MULTIPLE OF 0.5"), "adjudicator ratings are half-points");
     assert.ok(adjTask.includes("mean_absolute_subcriterion_difference"));
     assert.ok(!adjTask.includes(repo.base) && !adjTask.includes("/private/"));
+
+    // WP-503 — both blind-rater ingests (distinct roles) are ledgered, each exactly once.
+    const pipelineDir = resolve(repo.base, "scripts/book/prompts/chapterflow-v24-author-pipeline");
+    const entries = readCallLedgerEntries(pipelineDir, repo.unit, "harness-audit-1");
+    assert.equal(entries.length, 2);
+    assert.deepEqual(entries.map((e) => e.role).sort(), ["primary", "verification"]);
+    assert.ok(entries.every((e) => e.outcome === "content_completed" && e.family === "claude-side" && e.stage === "d7-rubric-audit"));
   } finally {
     repo.dispose();
   }
@@ -241,6 +266,15 @@ test("ingest fails closed on wrong arithmetic and persists nothing", () => {
     assert.throws(() => ingestRaterRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary", recordText }), /arithmetic mismatch/);
     const persisted = resolve(repo.base, "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/rubric-audits/harness-audit-1", `raw/primary/${repo.unit}.json`);
     assert.ok(!existsSync(persisted), "a failed ingest persists no record");
+
+    // WP-503 — a FAILED ingest is STILL a real call attempt: it is ledgered
+    // exactly once (outcome content_invalid), never silently dropped just
+    // because throwIfInvalid rejected it.
+    const pipelineDir = resolve(repo.base, "scripts/book/prompts/chapterflow-v24-author-pipeline");
+    const entries = readCallLedgerEntries(pipelineDir, repo.unit, "harness-audit-1");
+    assert.equal(entries.length, 1, "the failed ingest attempt is ledgered, not dropped");
+    assert.equal(entries[0].role, "primary");
+    assert.equal(entries[0].outcome, "content_invalid");
   } finally {
     repo.dispose();
   }
@@ -254,6 +288,42 @@ test("ingest fails closed on a tampered bound field", () => {
     (record.chapter as Record<string, unknown>).title = "A Different Title";
     const recordText = JSON.stringify(record, null, 2);
     assert.throws(() => ingestRaterRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary", recordText }), /differs from inspection/);
+
+    const pipelineDir = resolve(repo.base, "scripts/book/prompts/chapterflow-v24-author-pipeline");
+    const entries = readCallLedgerEntries(pipelineDir, repo.unit, "harness-audit-1");
+    assert.equal(entries.length, 1, "the failed ingest attempt is ledgered, not dropped");
+    assert.equal(entries[0].outcome, "content_invalid");
+  } finally {
+    repo.dispose();
+  }
+});
+
+test("ingestAdjudicationRecord: a failed adjudication ingest is ledgered (role adjudicator, content_invalid), never dropped", () => {
+  const repo = makeAuditRepo("rubric-audit-harness-adj-fail");
+  try {
+    const primaryText = JSON.stringify(syntheticRaterRecord(repo, "primary"), null, 2);
+    const verificationText = JSON.stringify(syntheticRaterRecord(repo, "verification"), null, 2);
+    ingestRaterRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary", recordText: primaryText });
+    ingestRaterRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "verification", recordText: verificationText });
+
+    // A deliberately incomplete adjudication record — enough to reach
+    // validateChapterAdjudicationRecord and fail it, never enough to pass.
+    const badAdjudication = { schema_version: "1.0.0", artifact_type: "chapterflow_standalone_chapter_adjudication", rater_role: "adjudicated" };
+    const recordText = JSON.stringify(badAdjudication, null, 2);
+    assert.throws(
+      () => ingestAdjudicationRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, recordText }),
+      /failed fail-closed validation/,
+    );
+
+    const pipelineDir = resolve(repo.base, "scripts/book/prompts/chapterflow-v24-author-pipeline");
+    const entries = readCallLedgerEntries(pipelineDir, repo.unit, "harness-audit-1");
+    // 2 rater ingests (primary, verification) + 1 failed adjudication ingest.
+    assert.equal(entries.length, 3);
+    const adjEntry = entries.find((e) => e.role === "adjudicator");
+    assert.ok(adjEntry, "the failed adjudication ingest attempt is ledgered under role adjudicator");
+    assert.equal(adjEntry!.outcome, "content_invalid");
+    assert.equal(adjEntry!.family, "claude-side");
+    assert.equal(adjEntry!.stage, "d7-rubric-audit");
   } finally {
     repo.dispose();
   }

@@ -40,7 +40,10 @@ import {
   type RubricInspection,
 } from "./rubricAuditReceipts.js";
 
-const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
+// WP-503: exported (was module-private) so rubricAuditHarness.ts can resolve the
+// SAME pipeline-relative root the ledger writes under, from the `repositoryRoot`
+// this module already threads everywhere — never a second literal copy of the string.
+export const PIPELINE_REL = "scripts/book/prompts/chapterflow-v24-author-pipeline";
 
 export const RUBRIC_AUDIT_SCHEMA_BATCH = "rubric-audit-batch-v1" as const;
 export const RUBRIC_AUDIT_SCHEMA_REPORT = "rubric-audit-report-v1" as const;
