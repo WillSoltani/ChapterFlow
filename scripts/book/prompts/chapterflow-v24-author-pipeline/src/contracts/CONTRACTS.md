@@ -117,6 +117,32 @@ is frozen separately by `source-use-plan` (v1) and imported here, never
 re-declared; an ontology change moves the source-use-plan hash and stales the
 bound source review.
 
+## Additive change note (WP-502, 2026-07-17)
+
+The `model-capability-probe` row is additive (V25 S-Tier §8 Lane 5).
+Registering it regenerated the manifest from 18 to **19 contracts**; no
+pre-existing descriptor was edited, so no existing `contractHash` moved.
+
+The contract freezes the **bounded, fail-closed capability-probe result surface**
+that proves a named 5.6 model is usable BEFORE any book run:
+
+- `ModelCapabilityCheckResultV1` — one check's outcome: `check`
+  (`existence`|`auth-route`|`output-schema`|`effort-flag`) × `status`
+  (`SUPPORTED`|`UNSUPPORTED`|`NOT_TESTED`) + a human reason, for a
+  (`model`, `effort`) pair (`effort` reuses `EffortLevelV1` — no API-only `max`).
+- `UnsupportedModelConfigV1` — the `UNSUPPORTED_MODEL_CONFIG` result WP-504's
+  fail-closed run-start halt consumes (`model`, `effort`, `failingCheck`,
+  `reason`); built ONLY from an `UNSUPPORTED` check, never a guess.
+- `ModelCapabilityProbeReportV1` — the aggregate per-(model, effort) report: the
+  four ordered checks, live-call accounting (`liveCallsMade`/`liveCallBudget` ≤3),
+  the overall verdict, and the fail-closed config (non-null iff `UNSUPPORTED`).
+
+Existence uses the local `models_cache.json` only (zero calls); auth-route reuses
+`assertChatgptSubscriptionAuth`. The two live checks (`output-schema`,
+`effort-flag`) are `--execute-live`-gated and deferred to Phase-6 execution; on
+the dry default path they are honestly `NOT_TESTED`. Owner: `src/exec/modelCapabilityProbe.ts`;
+runbook: `docs/v25/CAPABILITY_PROBE_RUNBOOK.md`.
+
 ## Change protocol
 
 1. Bump the contract's `version` and edit its descriptor + TS types together.

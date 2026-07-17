@@ -32,6 +32,7 @@ import { pingClaude } from "./claudeClient.js";
 import { parseChapterId, isSiblingFile, checkChapterIdentity, chapterIdFromFileName, assertNoShadowStateDir } from "./lib/chapterPaths.js";
 import { writeFileAtomic } from "./lib/atomicWrite.js";
 import type { ProviderName } from "./providers/types.js";
+import type { ModelCapabilityLedgerSink } from "./exec/modelCapabilityProbe.js";
 import type { AxisId, AxisScore, FailureTier } from "./critics/semantic/publishableBar.js";
 import { formatRuntimeFindings, validateAllConfigFiles } from "./runtimeSchemas.js";
 
@@ -210,6 +211,15 @@ Commands:
                                      fixture validity, name-bank/config integrity, and (when set) the D7
                                      REQUIRE-mode audit-tooling-reachable check. Read-only, zero model/
                                      network calls. Exit 0 healthy / 1 warnings / 2 blocking trap.
+  capability-probe <model> | --model <slug> [--effort minimal|low|medium|high|xhigh]
+                   [--models-cache <path>] [--auth <auth.json>] [--execute-live] [--json]
+                                     WP-502: prove a named 5.6 model is usable BEFORE a run. Dry default
+                                     (zero model calls): existence (local models_cache.json) + auth-route
+                                     (ChatGPT-subscription OAuth, no metered key); the --output-schema and
+                                     effort-flag checks report NOT_TESTED. --execute-live (Phase-6 only)
+                                     runs ≤3 ledgered codex-exec calls/model, never retries a refusal,
+                                     never falls back. Any UNSUPPORTED check ⇒ non-zero exit +
+                                     UNSUPPORTED_MODEL_CONFIG. See docs/v25/CAPABILITY_PROBE_RUNBOOK.md.
   authoring-guardrails <bookId> [--chapters N]
                                      Write the pre-authoring sheet (per-chapter reserved names +
                                      banned-phrase registry: house tics, forbidden moves, salting
@@ -4610,6 +4620,93 @@ async function runExecQualify(flags: Record<string, string | boolean>): Promise<
   return missingRequired === 0 ? 0 : 1;
 }
 
+/** `capability-probe` — WP-502: bounded, fail-closed capability probe that proves
+ *  a named 5.6 model is usable BEFORE any book run. The default (dry) path makes
+ *  ZERO model calls: existence (local `models_cache.json`) + auth-route
+ *  (`assertChatgptSubscriptionAuth`) run locally, and the two live checks
+ *  (`--output-schema` strict-subset acceptance + effort-flag acceptance) report
+ *  NOT_TESTED. The live checks fire ONLY under an explicit `--execute-live`
+ *  (≤3 `codex exec` calls/model, each ledgered via WP-503, never a refusal
+ *  retry, never a route/model fallback) — deferred to Phase-6 orchestrator
+ *  custody. Any UNSUPPORTED check ⇒ non-zero exit + the WP-504-consumable
+ *  UNSUPPORTED_MODEL_CONFIG result. See docs/v25/CAPABILITY_PROBE_RUNBOOK.md. */
+async function runCapabilityProbe(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const {
+    runModelCapabilityProbe,
+    formatCapabilityProbeReport,
+    ModelCapabilityProbeError,
+  } = await import("./exec/modelCapabilityProbe.js");
+
+  const model = typeof flags["model"] === "string" ? (flags["model"] as string) : args[0];
+  const effort = typeof flags["effort"] === "string" ? (flags["effort"] as string) : "high";
+  if (!model || typeof model !== "string") {
+    console.error("Usage: capability-probe <model> | --model <slug> [--effort minimal|low|medium|high|xhigh] [--models-cache <path>] [--auth <auth.json>] [--execute-live] [--json]");
+    return 2;
+  }
+  if (!["minimal", "low", "medium", "high", "xhigh"].includes(effort)) {
+    console.error(`capability-probe: unknown effort "${effort}" (minimal|low|medium|high|xhigh — no API-only "max")`);
+    return 2;
+  }
+  const executeLive = flags["execute-live"] === true;
+  const codexHome = process.env.CODEX_HOME?.trim() || resolve(homedir(), ".codex");
+  const modelsCachePath = typeof flags["models-cache"] === "string"
+    ? resolve(flags["models-cache"] as string)
+    : resolve(codexHome, "models_cache.json");
+  const authJsonPath = typeof flags["auth"] === "string"
+    ? resolve(flags["auth"] as string)
+    : resolve(codexHome, "auth.json");
+
+  // Default live-call ledger sink → the WP-503 unified per-run ledger. A probe
+  // has no book, so it uses a fixed synthetic bookId + a per-invocation runId.
+  // The real spawn runner is wired ONLY under --execute-live (rt finding RT-1):
+  // the dry default passes no spawn at all, so it structurally cannot call out.
+  let ledger: ModelCapabilityLedgerSink | undefined;
+  let liveSpawn: import("./exec/modelCapabilityProbe.js").ModelCapabilityProbeSpawn | undefined;
+  if (executeLive) {
+    const { spawnCodexAgent } = await import("./orchestrator/codexAgent.js");
+    liveSpawn = spawnCodexAgent;
+    const { appendCallLedgerEntry } = await import("./telemetry/runCallLedger.js");
+    const { PIPELINE_DIR } = await import("./bakeoff/paths.js");
+    const runId = `capability-probe-${new Date().toISOString().replace(/[:.]/g, "-")}`;
+    ledger = (entry) => {
+      try {
+        appendCallLedgerEntry({
+          pipelineDir: PIPELINE_DIR,
+          bookId: "__capability-probe__",
+          runId,
+          family: entry.family,
+          stage: entry.stage,
+          role: entry.role,
+          model: entry.model,
+          effort: entry.effort,
+          latencyMs: entry.latencyMs,
+          outcome: entry.outcome,
+          sessionId: entry.sessionId,
+        });
+      } catch { /* ledger is best-effort; never masks the probe result */ }
+    };
+  }
+
+  try {
+    const report = await runModelCapabilityProbe(
+      { model, effort: effort as "minimal" | "low" | "medium" | "high" | "xhigh", executeLive, modelsCachePath, authJsonPath },
+      { ledger, spawn: liveSpawn },
+    );
+    if (flags["json"] === true) console.log(JSON.stringify(report, null, 2));
+    else console.log(formatCapabilityProbeReport(report));
+    // Truthful exit code: an UNSUPPORTED check fails closed (non-zero); a fully
+    // SUPPORTED model or a legitimate dry NOT_FULLY_TESTED plan exits 0.
+    return report.overall === "UNSUPPORTED" ? 1 : 0;
+  } catch (err) {
+    if (err instanceof ModelCapabilityProbeError) {
+      console.error(`capability-probe: ${err.message}`);
+      return 2;
+    }
+    console.error(`capability-probe: unexpected failure — ${(err as Error).message}`);
+    return 1;
+  }
+}
+
 /** `contract-validate` — IMP-12 CI entry point (no model/network): assert the
  *  Phase-0 frozen contract manifest still matches the live contract source, and
  *  validate every landed worker report against the frozen worker-report schema.
@@ -5970,6 +6067,8 @@ async function main() {
       return runGeneratePreflight(args, flags);
     case "exec-qualify":
       return runExecQualify(flags);
+    case "capability-probe":
+      return runCapabilityProbe(args, flags);
     case "contract-validate":
       return runContractValidate();
     case "evidence-reconstruct":
