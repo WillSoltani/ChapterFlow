@@ -12,7 +12,7 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, rmSync, statSync, writeFileSync } from "fs";
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
 import { join, resolve } from "path";
 
@@ -32,6 +32,7 @@ import {
 import { runAutopilot } from "../src/orchestrator/autopilot.js";
 import { runGeneratePreflightChecks } from "../src/lifecycle/doctor.js";
 import { d7ShipGateHaltPath, CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV } from "../src/critics/d7ShipGate.js";
+import { siblingArtifactPath, type GenerateBookRunSummaryV1, type GenerateBookPreflightReportV1 } from "../src/orchestrator/generateBookArtifacts.js";
 import type { AutopilotOptions, AutopilotOutcome } from "../src/orchestrator/autopilot.js";
 import type { DoctorFinding } from "../src/lifecycle/doctor.js";
 
@@ -54,6 +55,10 @@ function mkHarness(opts: {
   packageExists?: boolean;
   stateBooksDir?: string;
   runConductor?: GenerateBookDeps["runConductor"];
+  /** Override the injected clock — default is a CONSTANT (elapsed always 0ms), which
+   *  is fine for tests that don't assert on timing; WP-603 progress/elapsed tests pass
+   *  an incrementing counter instead. */
+  now?: () => number;
 } = {}): Harness {
   const logs: string[] = [];
   const env: Record<string, string | undefined> = {};
@@ -71,7 +76,7 @@ function mkHarness(opts: {
     runConductor,
     runPreflight: async () => opts.preflight ?? [{ level: "ok", check: "stub", message: "all clear" }],
     loadConfigFile: () => opts.config ?? {},
-    now: () => 1_000_000,
+    now: opts.now ?? (() => 1_000_000),
     log: (l) => logs.push(l),
     env,
     stateBooksDir,
@@ -413,6 +418,129 @@ test("defaultGenerateBookDeps binds the REAL author-first conductor + WP-602 pre
   const lp = d.ledgerPaths("zz-book", "generate-book-zz-book-1");
   assert.match(lp.jsonl, /state\/run-ledger\/zz-book\/generate-book-zz-book-1\.jsonl$/);
   assert.match(lp.bookRollup, /state\/run-ledger\/zz-book\/book-rollup\.json$/);
+});
+
+// ── WP-603: stage-level progress reporting (quiet vs --verbose) ────────────────
+
+test("quiet (default): only MILESTONE steps print a progress line; the run still ships", async () => {
+  const h = mkHarness({ now: (() => { let n = 0; return () => (n += 10); })() });
+  const r = await generateBookCommand(parse(["zz-book"], { ...OK_FLAGS }), h.deps);
+  assert.equal(r.code, GENERATE_BOOK_EXIT.OK);
+  // Milestones (preflight / author-pipeline / artifacts) always print, even quiet.
+  assert.match(h.out, /\[progress\] \[1\/12\] ✓ validate prerequisites \(doctor preflight\): ok/);
+  assert.match(h.out, /\[progress\] \[5-9\/12\] ✓ execute the author-first pipeline \(conductor\): ok/);
+  assert.match(h.out, /\[progress\] \[11\/12\] ✓ print artifact \+ evidence locations: ok/);
+  // Non-milestone steps that completed cleanly ("ok") stay silent in quiet mode.
+  assert.doesNotMatch(h.out, /\[progress\] \[2\/12\]/, "config step (non-milestone, ok) is silent in quiet mode");
+  assert.doesNotMatch(h.out, /\[progress\] \[3\/12\]/, "model-check step (non-milestone, ok) is silent in quiet mode");
+  assert.doesNotMatch(h.out, /\[progress\] \[4a\/12\]/, "clobber-check step (non-milestone, ok) is silent in quiet mode");
+});
+
+test("--verbose: every step prints a start AND a complete line", async () => {
+  const h = mkHarness({ now: (() => { let n = 0; return () => (n += 5); })() });
+  const r = await generateBookCommand(parse(["zz-book"], { ...OK_FLAGS, verbose: true }), h.deps);
+  assert.equal(r.code, GENERATE_BOOK_EXIT.OK);
+  for (const num of ["2", "3", "1", "4a", "4", "5-9", "10", "11"]) {
+    assert.match(h.out, new RegExp(`\\[progress\\] \\[${num}/12\\] …`), `step ${num} has a start line in --verbose`);
+    assert.match(h.out, new RegExp(`\\[progress\\] \\[${num}/12\\] ✓ .*: ok`), `step ${num} has a complete line in --verbose`);
+  }
+});
+
+test("a halted run's progress line is fatal, never 'ok' — quiet mode still shows it", async () => {
+  const h = mkHarness({ outcome: (o) => ({ status: "halt", bookId: o.bookId, phase: "write", reason: "chapters need work", category: "content" }) });
+  const r = await generateBookCommand(parse(["zz-book"], { ...OK_FLAGS }), h.deps);
+  assert.equal(r.code, GENERATE_BOOK_EXIT.HALT);
+  assert.match(h.out, /\[progress\] \[5-9\/12\] ✗ execute the author-first pipeline \(conductor\): fatal \(\d+ms\) — halt/);
+  assert.doesNotMatch(h.out, /\[5-9\/12\] ✓/, "a halted conductor call is never reported as ok");
+});
+
+// ── WP-603: preflight-report artifact ───────────────────────────────────────────
+
+test("--validate-only writes + prints the preflight report with exact fatal/warn/ok counts", async () => {
+  const preflight: DoctorFinding[] = [
+    { level: "fatal", check: "base-sha-match", message: "mismatch" },
+    { level: "warn", check: "worktree-clean", message: "dirty" },
+  ];
+  const h = mkHarness({ preflight });
+  const r = await generateBookCommand(parse(["zz-book"], { ...OK_FLAGS, "validate-only": true }), h.deps);
+  assert.equal(r.code, 2);
+  const line = h.out.split("\n").find((l) => l.includes("preflight report:"));
+  assert.ok(line, "the preflight report path is printed");
+  const path = line!.split("preflight report:")[1].trim();
+  assert.ok(existsSync(path), "the preflight report file was actually written");
+  const report = JSON.parse(readFileSync(path, "utf8")) as GenerateBookPreflightReportV1;
+  assert.equal(report.fatalCount, 1);
+  assert.equal(report.warnCount, 1);
+  assert.deepEqual(report.findings, preflight);
+});
+
+test("a FATAL preflight finding on the run path also writes + prints the preflight report", async () => {
+  const h = mkHarness({ preflight: [{ level: "fatal", check: "schema-fixtures", message: "corrupt" }] });
+  const r = await generateBookCommand(parse(["zz-book"], { ...OK_FLAGS }), h.deps);
+  assert.equal(r.code, GENERATE_BOOK_EXIT.USAGE);
+  assert.equal(r.label, "PREFLIGHT_FATAL");
+  const line = h.out.split("\n").find((l) => l.includes("preflight report:"));
+  assert.ok(line, "the preflight report path is printed even on a fatal-block");
+  assert.ok(existsSync(line!.split("preflight report:")[1].trim()));
+});
+
+// ── WP-603: machine-readable run-summary JSON ───────────────────────────────────
+
+test("run-summary JSON: a published run carries status/exitCode/artifact-map and failedStep=null", async () => {
+  const h = mkHarness();
+  const r = await generateBookCommand(parse(["zz-book"], { ...OK_FLAGS }), h.deps);
+  assert.equal(r.code, GENERATE_BOOK_EXIT.OK);
+  const ledger = h.deps.ledgerPaths!("zz-book", r.runId!);
+  const runSummaryPath = siblingArtifactPath(ledger.jsonl, ".run-summary.json");
+  assert.ok(existsSync(runSummaryPath), "the run-summary JSON was written");
+  const summary = JSON.parse(readFileSync(runSummaryPath, "utf8")) as GenerateBookRunSummaryV1;
+  assert.equal(summary.bookId, "zz-book");
+  assert.equal(summary.runId, r.runId);
+  assert.equal(summary.exitCode, 0);
+  assert.equal(summary.status, "PUBLISHED");
+  assert.equal(summary.failedStep, null);
+  assert.equal(summary.artifacts.runLedger, ledger.jsonl);
+  assert.equal(summary.artifacts.runLedgerSummary, ledger.summary);
+  assert.equal(summary.artifacts.bookRollup, ledger.bookRollup);
+  assert.equal(summary.ledgerRollup.available, false, "no fake conductor ever wrote a real WP-503 rollup file here");
+});
+
+test("run-summary JSON: a generic halt names the failed step + the exact halt reason", async () => {
+  const h = mkHarness({
+    outcome: (o) => ({ status: "halt", bookId: o.bookId, phase: "write", reason: "chapters need work", category: "content" }),
+  });
+  const r = await generateBookCommand(parse(["zz-book"], { ...OK_FLAGS }), h.deps);
+  assert.equal(r.code, GENERATE_BOOK_EXIT.HALT);
+  const ledger = h.deps.ledgerPaths!("zz-book", r.runId!);
+  const runSummaryPath = siblingArtifactPath(ledger.jsonl, ".run-summary.json");
+  const summary = JSON.parse(readFileSync(runSummaryPath, "utf8")) as GenerateBookRunSummaryV1;
+  assert.equal(summary.exitCode, 1);
+  assert.equal(summary.status, "HALT");
+  assert.equal(summary.failedStep, "author-pipeline");
+  assert.match(summary.reason, /chapters need work/);
+  assert.match(h.out, /failed step:\s+author-pipeline \(HALT/, "the failed step is also printed to the terminal");
+});
+
+test("run-summary JSON: a D7 quality-bar block records BLOCKED_QUALITY_BAR/exit 3 and the D7 halt path", async () => {
+  const stateBooksDir = mkdtempSync(join(TMP, "d7-block-summary-"));
+  const h = mkHarness({
+    stateBooksDir,
+    runConductor: async (o) => {
+      writeFileSync(
+        d7ShipGateHaltPath(o.bookId, stateBooksDir),
+        JSON.stringify({ halt_category: "BLOCKED_QUALITY_BAR", verdict: "BLOCK", failing_chapters: [] }) + "\n",
+        "utf8",
+      );
+      return { status: "halt", bookId: o.bookId, phase: "ready", category: "infra", reason: "publish-final failed (exit 1): D7 ship gate BLOCK" };
+    },
+  });
+  const r = await generateBookCommand(parse(["zz-book"], { ...OK_FLAGS }), h.deps);
+  assert.equal(r.code, GENERATE_BOOK_EXIT.BLOCKED);
+  const ledger = h.deps.ledgerPaths!("zz-book", r.runId!);
+  const summary = JSON.parse(readFileSync(siblingArtifactPath(ledger.jsonl, ".run-summary.json"), "utf8")) as GenerateBookRunSummaryV1;
+  assert.equal(summary.exitCode, 3);
+  assert.equal(summary.status, "BLOCKED_QUALITY_BAR");
+  assert.ok(summary.artifacts.d7Halt, "the D7 halt sidecar path is recorded in the artifact map");
 });
 
 // ── cleanup ────────────────────────────────────────────────────────────────────
