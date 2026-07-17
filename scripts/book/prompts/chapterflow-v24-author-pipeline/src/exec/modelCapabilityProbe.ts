@@ -134,9 +134,10 @@ export type RunModelCapabilityProbeArgs = {
 
 export type ModelCapabilityProbeDeps = {
   clock?: () => Date;
-  /** Live `codex exec` runner. Default = the real `spawnCodexAgent`. Tests
-   *  inject a runner that THROWS if the dry path ever reaches it, or one that
-   *  counts calls for the budget guard. */
+  /** Live `codex exec` runner. NO runtime default — the CLI verb wires the
+   *  real `spawnCodexAgent` only under `--execute-live`; a live run without a
+   *  runner fails closed. Tests inject a runner that THROWS if the dry path
+   *  ever reaches it, or one that counts calls for the budget guard. */
   spawn?: ModelCapabilityProbeSpawn;
   /** WP-503 ledger sink for live calls (default wired by the CLI verb). */
   ledger?: ModelCapabilityLedgerSink;

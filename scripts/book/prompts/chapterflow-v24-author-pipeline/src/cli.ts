@@ -4658,8 +4658,13 @@ async function runCapabilityProbe(args: string[], flags: Record<string, string |
 
   // Default live-call ledger sink → the WP-503 unified per-run ledger. A probe
   // has no book, so it uses a fixed synthetic bookId + a per-invocation runId.
+  // The real spawn runner is wired ONLY under --execute-live (rt finding RT-1):
+  // the dry default passes no spawn at all, so it structurally cannot call out.
   let ledger: ModelCapabilityLedgerSink | undefined;
+  let liveSpawn: import("./exec/modelCapabilityProbe.js").ModelCapabilityProbeSpawn | undefined;
   if (executeLive) {
+    const { spawnCodexAgent } = await import("./orchestrator/codexAgent.js");
+    liveSpawn = spawnCodexAgent;
     const { appendCallLedgerEntry } = await import("./telemetry/runCallLedger.js");
     const { PIPELINE_DIR } = await import("./bakeoff/paths.js");
     const runId = `capability-probe-${new Date().toISOString().replace(/[:.]/g, "-")}`;
@@ -4685,7 +4690,7 @@ async function runCapabilityProbe(args: string[], flags: Record<string, string |
   try {
     const report = await runModelCapabilityProbe(
       { model, effort: effort as "minimal" | "low" | "medium" | "high" | "xhigh", executeLive, modelsCachePath, authJsonPath },
-      { ledger },
+      { ledger, spawn: liveSpawn },
     );
     if (flags["json"] === true) console.log(JSON.stringify(report, null, 2));
     else console.log(formatCapabilityProbeReport(report));
