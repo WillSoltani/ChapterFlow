@@ -135,18 +135,28 @@ Commands:
                                      SUBPROCESS MODE: end-to-end fresh generation.
                                      Counts against your Max subscription quota.
   pipeline <bookId> --title X --author Y [--policy economy|standard|premium|publish] [--research|--skip-research]
-                                     Preferred v22 optimized autonomous run with live terminal phases, cost telemetry,
-                                     adaptive examples, risk-gated polish, deterministic final gates.
+                                     LEGACY v22 optimized autonomous run (live terminal phases, cost telemetry,
+                                     adaptive examples, risk-gated polish, deterministic final gates).
+                                     DEPRECATED for new work → use generate-book (WP-601, v24 author-first).
   flow <bookId> --title X --author Y [--policy economy|standard|premium|publish] [--research|--skip-research]
-                                     Alias of pipeline, retained for compatibility.
+                                     Alias of pipeline, retained for compatibility. DEPRECATED → generate-book.
   policy [economy|standard|premium|publish]
                                      Print the v22 run policy cost/quality contract.
-  generate-book <bookId> --title X --author Y [--from N] [--to N] [--policy economy|standard|premium|publish] [--force] [--no-categorizer --categories A,B --tags x,y]
-                                     Lower-level: generate (or resume) every chapter of a book
-                                     using an existing chapter index. Full canonical runs auto-promote
-                                     on success; --from/--to range runs stop before production promotion.
-                                     For inline-operator mode (no subprocess calls), pre-populate
-                                     state/chapters/ and use --no-categorizer with manual metadata.
+  generate-book <bookId> --title X --author Y [--model M] [--effort E] [--config file]
+                [--resume] [--validate-only] [--dry-run] [--out dir] [--overwrite] [--no-publish] [--verbose] [--compiler]
+                                     WP-601: the ONE end-to-end command. Generates a book through the
+                                     v24 AUTHOR-FIRST pipeline: preflight (WP-602) → config resolve
+                                     (flag > --config file > default) → model check (WP-504, fail-closed)
+                                     → author + bounded repair (≤2, WP-404) → consolidated floor →
+                                     D7 ship gate (WP-401, REQUIRE by default) → V21 publish → run
+                                     ledger flush (WP-503). Truthful exit codes: 0 shipped/ready ·
+                                     1 halt/blocked · 2 usage/preflight/unsupported-config/refuse-clobber ·
+                                     3 D7 quality-bar block OR duplicate-run lock. --validate-only runs
+                                     preflight only (zero calls); --dry-run plans the run (zero calls,
+                                     zero mutations); --resume continues a crashed run (author only the
+                                     missing chapters); --overwrite regenerates a shipped book. The
+                                     retired v23 compiler stays reachable via --compiler (WP-207 owns
+                                     its deletion). See docs/v25/WP-601-GENERATE-BOOK-COMMAND.md.
   promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y]
                                      Final gate. Requires the complete canonical index, then re-validates
                                      every chapter + book-level checks + the QC-attestation gate, and writes book-packages/<id>.v21.json on
@@ -304,6 +314,10 @@ Commands:
                                      compiler path, --legacy into the v22 whole-chapter writer (--author is
                                      accepted too but is the default). Resuming a book mid-run under a different
                                      architecture without its flag fails closed (no silent switch).
+                                     NOTE: this is the lower-level conductor. For the ONE consolidated
+                                     end-to-end command with preflight, config precedence, model check,
+                                     validate-only/dry-run, and truthful 0/1/2/3 exit codes, use
+                                     generate-book (WP-601) — it wraps this same conductor.
   book-run <bookId> [--regen] [--max-parallel N] [--max-repair N] [--plan] [--no-publish] [--compiler] [--legacy] [--no-notify] [--sound] [--log <file>]
                                      SAME conductor as book-autopilot, wrapped to print a clean timestamped
                                      update AND a macOS notification on every MAJOR event (research / write /
@@ -977,10 +991,48 @@ async function runMigrateChapterIdentity(args: string[], flags: Record<string, s
   return 0;
 }
 
+/**
+ * WP-601 — `generate-book` is the ONE consolidated terminal command that generates a
+ * book end-to-end through the AUTHOR-FIRST architecture (WP-201 default). It wires the
+ * deterministic preflight (WP-602), fail-closed model config (WP-504), the author-first
+ * conductor (WP-201, bounded repairs WP-404), the D7 ship gate (WP-401), and the unified
+ * run ledger (WP-503) behind one entry with truthful 0/1/2/3 exit codes.
+ *
+ * The retired v23 per-chapter compiler stays REACHABLE behind `--compiler` (and v22
+ * legacy behind `--legacy`) — WP-207 owns their deletion, not this WP — routed here to
+ * the preserved `runGenerateBookLegacyCompiler` body. Default (no flag) = v24 author.
+ *
+ * NO live model calls run from a test: --validate-only/--dry-run are model-free, an
+ * unsupported --model fails closed before any work, and the injected-deps path drives
+ * the conductor against fixtures. A REAL book run is a Phase-6+ owner-authorized action.
+ */
 async function runGenerateBook(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const g = shadowGuard();
+  if (g) return g;
+  const { parseGenerateBookArgs, generateBookCommand } = await import("./orchestrator/generateBookCommand.js");
+  const parsedResult = parseGenerateBookArgs(args, flags);
+  if (!parsedResult.ok) {
+    console.error(parsedResult.message);
+    return parsedResult.code;
+  }
+  const parsed = parsedResult.parsed;
+  // Legacy opt-in: the retired v23 compiler / v22 legacy authoring paths stay reachable
+  // (WP-207 owns their physical deletion). The author-first default routes to the
+  // consolidated command; an explicit --compiler/--legacy routes to the preserved body.
+  if (parsed.architecture !== "author") {
+    return runGenerateBookLegacyCompiler(args, flags);
+  }
+  const result = await generateBookCommand(parsed);
+  return result.code;
+}
+
+/** The PRESERVED legacy v23 per-chapter compiler `generate-book` body (reachable only via
+ *  `generate-book <id> --compiler …`). Kept byte-for-byte behaviorally so WP-207's
+ *  regression harness can still drive the retired path; do NOT extend it. */
+async function runGenerateBookLegacyCompiler(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: generate-book <bookId> --title X --author Y [--from N] [--to N] [--policy economy|standard|premium|publish] [--force] [--no-categorizer --categories A,B --tags x,y]");
+    console.error("Usage: generate-book <bookId> --title X --author Y --compiler [--from N] [--to N] [--policy economy|standard|premium|publish] [--force] [--no-categorizer --categories A,B --tags x,y]");
     return 2;
   }
   const title = typeof flags["title"] === "string" ? flags["title"] : null;
