@@ -192,6 +192,14 @@ Commands:
   doctor [<bookId>] [--json]         Preflight: catches the shadow state dir, dual brief shapes,
                                      chapter-number drift, and untracked-but-imported source files before
                                      they cost a run. Exit 0 healthy / 1 warnings / 2 blocking trap.
+  generate-preflight [<bookId>] [--model X] [--effort Y] [--expected-base-sha SHA]
+                     [--require-clean-worktree] [--require-d7-ship-gate] [--json]
+                                     WP-602: the generate-book command's deterministic preflight — doctor's
+                                     checks PLUS worktree cleanliness, base-SHA match, branch sanity,
+                                     model-config support (5.6 candidate set + supported effort), schema-
+                                     fixture validity, name-bank/config integrity, and (when set) the D7
+                                     REQUIRE-mode audit-tooling-reachable check. Read-only, zero model/
+                                     network calls. Exit 0 healthy / 1 warnings / 2 blocking trap.
   authoring-guardrails <bookId> [--chapters N]
                                      Write the pre-authoring sheet (per-chapter reserved names +
                                      banned-phrase registry: house tics, forbidden moves, salting
@@ -2003,6 +2011,55 @@ async function runDoctor(args: string[], _flags: Record<string, string | boolean
     }, null, 2));
   } else {
     console.log(formatDoctor(findings));
+  }
+  return exitCode;
+}
+
+/** `generate-preflight [<bookId>] [--model X] [--effort Y] [--expected-base-sha SHA]
+ *  [--require-clean-worktree] [--require-d7-ship-gate] [--json]` — WP-602: the
+ *  deterministic preflight the generate-book command (WP-601) runs before any
+ *  book work starts. Read-only, filesystem/git/config checks ONLY — zero
+ *  model or network calls. `--validate-only`/doctor mode: runs the checks and
+ *  exits, nothing else. Exit code reuses the existing doctor 0/1/2 contract
+ *  (0 healthy / 1 warnings / 2 a fatal blocker) — no new exit codes. */
+async function runGeneratePreflight(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const input = args.join(" ").trim();
+  let bookId: string | undefined = input || undefined;
+  if (input) {
+    const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
+    const resolved = resolveBookIdentifier(input);
+    bookId = resolved.ok === false ? input : resolved.bookId;
+    if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
+  }
+  const { runGeneratePreflightChecks, formatDoctor, doctorExitCode, formatGeneratePreflightChecklist } = await import("./lifecycle/doctor.js");
+  const model = typeof flags["model"] === "string" ? flags["model"] : undefined;
+  const effort = typeof flags["effort"] === "string" ? flags["effort"] : undefined;
+  const expectedBaseSha = typeof flags["expected-base-sha"] === "string" ? flags["expected-base-sha"] : undefined;
+  const requireCleanWorktree = flags["require-clean-worktree"] === true;
+  const requireD7ShipGate = flags["require-d7-ship-gate"] === true ? true : undefined;
+  const findings = await runGeneratePreflightChecks({
+    bookId, model, effort, expectedBaseSha, requireCleanWorktree, requireD7ShipGate,
+  });
+  const exitCode = doctorExitCode(findings);
+  if (flags.json === true) {
+    const fatal = findings.filter((f) => f.level === "fatal").length;
+    const warnings = findings.filter((f) => f.level === "warn").length;
+    console.log(JSON.stringify({
+      status: exitCode === 0 ? "ok" : exitCode === 1 ? "warn" : "fatal",
+      exitCode,
+      bookId,
+      summary: {
+        fatal,
+        warnings,
+        ok: findings.filter((f) => f.level === "ok").length,
+        total: findings.length,
+      },
+      findings,
+    }, null, 2));
+  } else {
+    console.log(formatDoctor(findings));
+    console.log("");
+    console.log(await formatGeneratePreflightChecklist(findings));
   }
   return exitCode;
 }
@@ -5854,6 +5911,8 @@ async function main() {
       return runBookStatus(args, flags);
     case "doctor":
       return runDoctor(args, flags);
+    case "generate-preflight":
+      return runGeneratePreflight(args, flags);
     case "exec-qualify":
       return runExecQualify(flags);
     case "contract-validate":
