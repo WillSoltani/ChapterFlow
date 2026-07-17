@@ -1,0 +1,180 @@
+# V25 Evaluator & Model-Selection Execution Plan
+
+**Status:** FROZEN (Wave-0 contract) · **Audit basis:** branch `plan/v25-s-tier-implementation` @ `64b5d8a04b41b174c8cfde384730a82caeadd346` · **Implementation branch:** `impl/v25-evaluator-selection` (worktree `/private/tmp/cf-v25-impl`) · **Date:** 2026-07-17
+**Supersedes:** the experiment design in `V25_PIPELINE_AUDIT_AND_MODEL_TEST_PLAN.md` §13–14 (register §7 remains the evidence base; imported to this branch @ `9f13a304c`).
+**Companion:** `V25_EVALUATOR_AND_MODEL_SELECTION_EXECUTION_PLAN.html` (visual rendering of this same truth) · `V25_EVALUATOR_IMPLEMENTATION_REPORT.md` (written at Wave 6).
+
+---
+
+## 1. Mission and policy delta
+
+The owner's evaluator-implementation assignment (`CLAUDE_FABLE_5_ULTRACODE_V25_EVALUATOR_IMPLEMENTATION_ORCHESTRATOR_PROMPT.md`, committed on this branch) supersedes the prior audit's evaluation architecture:
+
+| # | Policy | Prior state at `64b5d8a04` | Verified evidence |
+|---|---|---|---|
+| P1 | **No Claude-family model rates books/chapters** (Claude orchestrates/implements code only) | D7 raters hard-pinned `claude-opus-4-8` | `scripts/screening/run-invocation.mts:294`; roles `d7Judge.ts:216`; also `qcAttestation.ts:266` (`claude-qc` prefix), legacy `providers/**` transports |
+| P2 | **Canonical full-book standard = Codex ChapterFlow Book Evaluator** (`.agents/skills/chapterflow-book-evaluator`, rubric v2.0) | Skill is an unwired asset; pipeline borrows its rubric text only | `rubricAuditInstrument.ts:6`; no pipeline code invokes the skill |
+| P3 | **D7 → GPT-5.6 Sol @ Ultra**, proven by receipts/ledgers; secondary to the canonical evaluator | "ultra" unrepresentable (effort union caps at xhigh, fails closed); ledger/receipts store `model: null` on the D7 path | `modelPolicy.ts:429-434`; `runCallLedger.ts:96`; `rubricAuditHarness.ts:961`; `d7WorkerDispatch.ts:119`; `D7ShipGateReceiptV1` has no rater-model field |
+| P4 | **Sol/Terra/Luna remain candidates** until a blinded paired chapter experiment completes; chapter diagnostics never masquerade as book scores; no whole-book generation | Bakeoff lane censors Terra/Luna via readability blocker; selection mints non-terminal verdicts | `sectionGate.ts:2028/2038`; `runBakeoff.ts:746-751` |
+| P5 | **Up to 8 concurrent workers**, isolated worktrees, explicit file ownership | n/a (orchestration rule) | §8 |
+
+Hard boundaries honored throughout: no live model calls this session (terminal state **READY_FOR_LIVE_TEST**), no push/PR/publish, no whole-book generation, skill files untouched, every attempt preserved, unrelated dirty/untracked files preserved.
+
+## 2. Provenance matrix (every claimed Sol/Terra/Luna result)
+
+| Row | Claim source | Candidate (model@effort) | Source hash | Evaluator method | Score construct | Score (full precision) | Rater identities / receipts | Date / run | Comparability | Disposition |
+|---|---|---|---|---|---|---|---|---|---|---|
+| PM-1 | Owner statement (assignment prompt :39) | Luna (chapter, method unknown) | unknown | unknown ("independent one-chapter Nudge comparison") | unknown | ≈87 | none | unknown | **incompatible** (no artifact) | **OWNER-SUPPLIED_PRELIMINARY** — motivating prior, zero evidentiary weight; the new experiment resolves it |
+| PM-2 | Owner statement (same) | Terra | unknown | unknown | unknown | ≈84 | none | unknown | incompatible | OWNER-SUPPLIED_PRELIMINARY |
+| PM-3 | Owner statement (same) | Sol | unknown | unknown | unknown | ≈79 | none | unknown | incompatible | OWNER-SUPPLIED_PRELIMINARY |
+| PM-4 | Adjudicated record `artifacts/chapterflow-chapter-audits/20260717T133637Z/raw/adjudicated/nudge-ch03.json` (visible checkout) | **gpt-5.6-luna@xhigh — FLOOR-FAILED draft** (identity from `jobs/nudge-ch03.inspection.json` `origin_path`; unlabeled in the record itself) | `ca161ba2…` | standalone chapter audit (schema 1.0.0, dual-blind + adjudication, receipts + pair seal) | chapter diagnostic | **85.29605263157895** (primary 89.40789…, verification 75.98684…; split 13.42 → confidence MEDIUM) | pseudo-path session ids; full receipt chain present; rater model unrecorded | 2026-07-17T13:36Z | partially comparable (same rubric family; draft failed the production readability floor) | Retain as prior evidence; **AUD-01 smoking gun** (censored draft scored 85.3) |
+| PM-5 | Adjudicated record `…/20260717T140020Z/raw/adjudicated/nudge-ch03-sol.json` | sol (label `sol`; authoring `chapter-authoring-v1`) | `911011be…` | standalone chapter audit (same) | chapter diagnostic | **81.44736842105263** (80.19736…/83.94736…; confidence HIGH) | receipts complete | 2026-07-17T14:00Z | partially comparable | Retain as prior evidence |
+| PM-6 | Adjudicated record `…/nudge-ch03-terra.json` | terra | `dd0c2ddf…` | standalone chapter audit (same) | chapter diagnostic | **75.16447368421052** (75.98684…/73.81578…; confidence HIGH) | receipts complete; **anomaly:** verification worker_task_id `/root/sol_primary/terra_verification` (nested id — recorded as identity-hygiene flag, not invalidation) | 2026-07-17T14:00Z | partially comparable | Retain as prior evidence |
+| PM-7 | In-pipeline screening `state/model-bakeoffs/nudge/stage1-nudge-ch03-xhigh-trio` (head worktree, untracked) | sol/terra/luna @xhigh | per generation.json | legacy Claude D7 rubric-audit (banned method going forward) | none valid (Terra/Luna censored by readability preflight; Sol's D7 voided/stale-selection) | none | 13 Claude sessions, 5 invalid | 2026-07-17 ~11-14Z | **invalid** (instrument shakedown, AUD-01/02/03) | Annotate `INVALID — instrument shakedown` (WP-E32); never model evidence |
+| PM-8 | 140-book snapshot `docs/v25/chapterflow-140-evaluation/` | n/a (catalog books, not candidates) | per package | **single-evaluator screening** (`meta.evaluation_mode`); 8 books `profile:"prior"` close-read, 132 scalable; explicit `method_warning` | full-book score | top: difficult-conversations 90.1, willpower-instinct 89.7, power-of-moments 89.0, decisive 88.0, behave/peak 87.9, make-it-stick 87.4 | single evaluator (no blind pair) | data mtime 2026-07-10 | not comparable to chapter diagnostics | Anchor-selection source only (§5.2); scores NEVER enter blind contexts |
+
+**Never merged:** PM-4/5/6 have three different source hashes (different drafts) — they are not one comparison. PM-1..3 vs PM-4..6 conflict (Luna>Terra>Sol vs Sol>Terra, Luna-floor-failed-85.3) is **unresolved by design**; only the pre-registered experiment (§5) may resolve it.
+
+## 3. Evaluation architecture (the one hierarchy)
+
+1. **Full-book release standard** — the evaluator skill, unmodified: dual mutually-blind raters + fresh adjudicator + dispatch receipts + pair seal + `validate_book_result.py --require-full-content`, all chapters read in full, 9 domains/36 subcriteria/5 gates, deterministic arithmetic. The pipeline gains an *adapter* (`src/evaluation/`), never a reimplementation. If Codex workers cannot be dispatched, the step stops as `BLOCKED_NO_CODEX_RATER` with pending job manifests — never a Claude substitute.
+2. **Chapter-screening diagnostic** — a genuine **1-chapter package** evaluated full-content (`common.py:515-531`: 1-chapter inventory is valid; chapter *sampling* stays hard-failed, `validate_book_result.py:518-519`). Output uses the existing `chapterflow_standalone_chapter_adjudication` 1.0.0 artifact family (PM-4..6 precedent — no third format): `scope_type: standalone_chapter_audit`, `full_book_score: null`, certification unevaluable, Domain 9 unassessable. Anti-masquerade (WP-E13): `chapterdiag--` book-id prefix; artifacts under `state/model-bakeoffs/<bookId>/chapter-diagnostics/` (never `artifacts/chapterflow-evaluation/`); wrapper manifest `not_a_book_score: true`; portfolio scripts (`aggregate_results.py`, `export_portfolio_book_update.py`, `update_portfolio_report.py`, `render_report.py`) never invoked on diagnostics.
+3. **D7 operational reviewer** — GPT-5.6 Sol @ ultra via `ultraSession` (codex envelope; §4). Secondary by construction: may trigger inspection/downgrade, never select, never override a source-bound evaluator result. Because Sol judges Sol-authored candidates, the judge-interaction analysis (§5.6) is mandatory; disqualifying patterns demote D7 to descriptive.
+4. **Content anchors** (WP-E51) — read-only study of 2–3 high-scoring books with different nonfiction types (difficult-conversations 90.1 communication `prior`; the-willpower-instinct 89.7 science-explainer `prior`; peak 87.9 skill-building `deep_practical`; all packages verified present in `book-packages/`), contrasted with one low scorer where useful. Qualitative and method-limited (single-evaluator snapshot). Its author agent never rates candidates; its scores never enter blind contexts.
+
+## 4. D7 → Sol-Ultra route (frozen design decision)
+
+**Chosen: codex-envelope route.** New `src/exec/ultraSession.ts` reuses exported primitives — `buildIsolatedSession` (subscription-OAuth proof, refuses API keys), `hermeticExecArgv` (`codexTransportConfig.ts:204-235` already accepts effort as a plain string and pushes `-c model_reasoning_effort=<v>`), effective-context manifest persistence (records full argv + effort as string; **zero contract edits**). `resolveD7RaterRoute()` is added to `modelPolicy.ts` so the routing decision stays in the single authority. A fail-closed **ultra-acceptance preflight probe** runs once per campaign (static evidence: `.codex/agents/*.toml` set `model_reasoning_effort = "ultra"`; runtime acceptance unproven until a live spawn — the probe is the proof, and rejection halts the campaign).
+**Rejected:** extending the frozen effort union ("ultra" at ~19 sites incl. 3 frozen contracts; would make ultra requestable by every production call site) and a fake `gpt-5.6-sol-ultra` model id (conflates model/effort axes; receipts would lie).
+**Route proof:** `D7ShipGateReceiptV1` schema bump adds `rater_route {family, model, effort, ultra_probe_sha256}` + per-unit envelope-manifest sha; ledger entries on this path flip to family `codex-exec` with real `model`/`effort` (never `null`); an effort-spoof is detectable because the manifest records argv (red-team fixture WP-E71).
+
+## 5. Pre-registered experiment (frozen before any candidate generation)
+
+### 5.1 Decision
+Which of {Sol, Terra, Luna}@xhigh earns a separately authorized full-book pilot. Chapter samples never certify a production default; the production default does not change in this assignment.
+
+### 5.2 Instruments, anchors, band
+- **E-audit** (PRIMARY): adjudicated standalone chapter diagnostic via the evaluator adapter = 3 codex sessions (2 raters + adjudicator) per cell. Primary metric = renormalized 8-domain chapter score (Σ weighted points for domains 1–8, ÷0.95); Domain 9 unevaluable, never imputed; the renormalization is order-preserving and the band is defined on the same scale.
+- **D7-lite** (SECONDARY): single-rater Sol-ultra rubric-audit session per replicate-1 cell; signs/patterns only; keeps its legacy anchors (70.757 nudge-ch03 / 68.816 happiness-ch06 / 67.664 made-to-stick-ch04) and 3.0 tolerance for its own drift check.
+- **Anchors for E** (from the 8 `prior`-profile close-read books, excluding corpus books): A_high = `difficult-conversations` (90.1), A_mid = `multipliers` (72.3); chapter pick deterministic (⌈n/2⌉ of inventory). 2 repeat E-audits each → pooled test-retest SD.
+- **Equivalence band:** `W = clamp(2 × SD_retest, 2.0, 4.0)`, frozen after Stage 0b. `2×SD_retest > 4.0` = **noise STOP** (instrument work, never band inflation). The old ±3.0 was a property of the retired instrument and is not carried over.
+- **Floors (formulas now, constants after 0b):** screening advance floor = `mean(A_high) − 8`; block floor = `mean(A_high) − 18`; sanity stop if `mean(A_high)` < 75 or > 95. Optional owner hand-adjudication of the 2 anchor chapters = truth check (`|E − owner| ≤ W`); if declined, anchors provide location+noise only (disclosed).
+
+### 5.3 Stages and budgets (sessions = live codex sessions; ALL spend now bills the codex meter)
+
+| Stage | Runs | Planned → cap | Go / stop |
+|---|---|---|---|
+| 0a model-free | chapter-diagnostic exporter + scrub + leak tokens; attempt persistence/caps; terminal selection; known-effect fixture; **exact spend recount from `state/run-ledger/**`**; plan JSON byte-freeze | 0 | all suites green |
+| 0b calibration | 2 anchors × 2 E-audits (12) + D7-lite legacy-anchor drill (2); optional degraded-fixture E-audit (3) | 14 → 24 | noise STOP; ≥6/8 first-attempt-valid; D7-lite |Δ|≤3.0 else demoted from start |
+| 1 screening | 3 models × 3 blocks × 2 replicates = 18 author cells (≤1 in-lane retry) + 18 E-audits (54) + D7-lite (9 cells + 3 drift = 12) | 84 → 119 | advance ≤2: no candidate-attributable gate-2/3 failure ×2 cells; mean E ≥ advance floor; no block < block floor; 0 qualify → STOP (Sol stays provisional) |
+| 1b Sol@high arm | **DROPPED by default** (budget; owner-revivable with own budget) | 0 | — |
+| 2 confirmation | top 2 × 2 blocks (1 pre-registered holdout archetype + max-separation block) × 2 fresh replicates = 8 author + 8 E-audits (24); D7-lite conditional (10) | 32 → 46 (58 w/ D7) | leader's Δ sign holds on ≥3/4 cells; holdout not inverted |
+| 3 resolver | only if CI straddles band; **new owner authorization** | 0 | pre-registered first |
+| 4 full-book pilot | outside this assignment (recommendation only) | — | entry: Stage-2 clear + BEFORE-PILOT items (§7) |
+
+**Budget truth (owner must see):** judges moved onto the codex meter, so the default path ≈ **130** sessions vs remaining ≈ **129–133** under the D-3 codex-only reading (150 − ~17–21 already spent) or ≈ **116–120** under the conservative combined reading (further −13 Claude sessions) — **the combined reading no longer fits the default path**. Handling, in order: `ScreeningSessionBudget` cumulative halt authoritative → Stage-0a exact recount replaces estimates → degradation ladder frozen now (**R1** −6: D7-lite 12→6, drop the block with smallest replicate-1 E spread — information criterion, never outcome-direction; **R2** −12: drop replicate 2 of that block; **R3** halt for re-authorization). Never run Stage 1 to cap and skip Stage 2 (STOP). Costs remain `OWNER-SUPPLIED, PRICE NOT VERIFIED` (Luna < Terra < Sol) until a dated versioned price table exists; dollars never invented.
+
+### 5.4 Frozen controls
+Corpus manifest (frozen 2026-07-17T10:12Z) supplies the 3 blocks (nudge-ch03, made-to-stick-ch04, happiness-ch06 — chosen before this policy existed; Nudge overlap with the owner prior disclosed; Stage-2 holdout is the check). Identical briefs/packets/prompt cards per arm; byte-frozen plan JSON re-registered; modelPolicy role matrix fixed across arms; hermetic envelope; slot-isolated replicates; hash-verified resume; readability **measure-only** in this lane (draft always completes; metrics recorded; ship-eligibility separate — a floor-failed candidate can win quality but cannot be promoted). The evaluator instrument itself (rubric, prompts, schemas, validators) is hash-recorded at 0a; any change after 0b voids comparability.
+
+### 5.5 Blinding
+Blind 1-chapter packages built into `eval-packages/<blindId>.json` (`blindId = cf-<runHash>-<block>-<slot>`); slot→model map sealed in the manifest. Receipts stay valid — they bind to the blind package's book_id/source_hash/inventory (nothing requires a canonical id). **Model identity is the secret; book identity is not.** Reader-facing metadata whitelist (title/audience/purpose for Gate 4); strip model ids, efforts, run/slot paths, timestamps, repair history. Forbidden-token leak check extended (`sol`, `terra`, `luna`, `gpt-5.6`, effort strings, session ids) over package bytes + every rater-visible artifact, fail-closed. Anchors packaged identically and interleaved — raters cannot tell anchor from candidate. Each rater: one package per fresh session identity; adjudicator fresh; blind key preserved until analysis frozen. Accepted residual (disclosed): prose fingerprints unscannable; rater family may equal candidate family (§5.6b).
+
+### 5.6 Judge-interaction analysis
+**(a) D7 Sol judging Sol (measurable):** per challenger X and block b, compare δ_E = Δ_E/W vs δ_D7 = Δ_D7/3.0. Disqualifying patterns (any → D7 demoted to descriptive, disclosed): **P1** sign flip (sign(Δ_D7) ≠ sign(Δ_E) in ≥2/3 blocks while |mean Δ_E| > W); **P2** uniform self-inflation (mean(δ_E − δ_D7) > 1.0 Sol-favoring); **P3** calibration miss (either legacy anchor or any drift unit |Δ| > 3.0). One-sided by design: pro-Sol D7 bias pushes toward the expensive incumbent — the direction the cost policy most needs protected.
+**(b) Evaluator rater = unpinned codex default (mostly common-mode across candidates):** record resolved rater model per session; **uniformity rule** — all Stage-1/2 sessions must resolve to one rater model, else stratify + halt for owner decision; if the default resolves to a candidate model, elevated-risk disclosure + owner blind Stage-2 read becomes load-bearing. Under the no-Claude policy no cross-family judge exists — this is the single largest validity concession and is stated verbatim in every report.
+
+### 5.7 Analysis and decision rule
+Unit = adjudicated E per (model, block, replicate); blind pair scores are adjudication inputs, never pooled. Per-block paired Δ vs Sol; across-block mean; clustered bootstrap (blocks, then replicates); within-model spread; worst cell; gate rates; failures stay in the denominator. Sensitivity recompute excluding chapter-strained subcriteria (3.3, 4.1, 5.2) — winner's sign must hold, else INCONCLUSIVE. Decision (in order, after Stage 2): **(0)** validity preconditions else INCONCLUSIVE; **(1)** ineligibility on adjudicator-confirmed candidate-attributable gate-2/3 failure in ≥2 cells (D7 alone never disqualifies — it triggers inspection); **(2)** superiority: > W above runner-up, signs consistent → provisional default + pilot candidate (quality wins with or without price data); **(3)** within ±W → cheaper wins **only with** a versioned price table, else quality tie → owner; **(4)** below −W cannot be price-rescued; **(5)** no dominance → Pareto frontier → owner; **(6)** nobody clears → Sol stays, STOP, bar unmoved; **(7)** D7 safety check (if it survived §5.6): winner below D7 75 on ≥2 blocks → INCONCLUSIVE-pending owner blind read (downgrade-only); **(8)** INCONCLUSIVE is a legal terminal outcome; **(9)** owner blind preference recorded pre-unblinding, usable only in rules 3/5 + pilot sign-off. Unblinding cannot change the frozen analysis.
+
+## 6. Finding register
+
+The 15 audit findings (V25-AUD-01…15f) remain the evidence base — full packets in `V25_PIPELINE_AUDIT_AND_MODEL_TEST_PLAN.md` §7 (this branch @ `9f13a304c`). Revalidated at head this session: AUD-01/02/03/04/06/08 re-confirmed from code (evidence lines reproduced); AUD-05 re-confirmed from git (3-way drift, unpushed); AUD-07/09/10/11/12/13/14/15a-f carried Confirmed (spot-checks held: advisoryReview unwired, 15c providers present). **Policy re-scoring:** AUD-02/04 now apply to the D7-lite + evaluator-worker instruments (derive-don't-reject, attempt persistence, caps — same mechanics, new raters); AUD-04's Claude-side anchor adjudication path is retired in favor of §5.2 evaluator calibration.
+
+New findings (complete packets):
+
+**V25-NEW-01 — Claude-side rating contradicts the canonical Codex-evaluator policy** · Confirmed · Critical · Hard · Sensitivity critical · Route Opus 4.8 xhigh
+Evidence: `run-invocation.mts:294` (`--model claude-opus-4-8`); `d7Judge.ts:216`; `qcAttestation.ts:266`; `providers/cli.ts` (anthropic transports). Current behavior: every D7 rating session is Claude; `claude-qc` is an accepted attestation reviewer; legacy transports can serve raters. Issue: violates P1/P3. Root cause: D7 was consciously designed as a cross-family Claude gate before the policy. Consequence: no experiment or ship gate can run compliantly. Fix (smallest): WP-E21/E22/E23 (route swap + proof) + WP-E26 (neutralization sweep). Inputs: ultraSession contract (frozen). Outputs: Sol-ultra dispatch + proving receipts. Acceptance: unit (route resolution; refusal of claude binaries in rating dispatch), contract (receipt schema), failure-injection (effort-spoof, route-spoof). Red-team: attempt to reach any rating path with a Claude model string. Ownership: L2. Deps: WP-E00. Non-goals: no third judge family, no effort-union extension. Residual: same-family judging (§5.6, disclosed).
+
+**V25-NEW-02 — 140-book snapshot is single-evaluator screening; scores not comparable to adjudicated results** · Confirmed · High · Hard · Sensitivity high · Route Opus 4.8 xhigh (analysis) / Sonnet 5 (doc)
+Evidence: `meta.evaluation_mode = "Single-evaluator screening audit"`; `meta.method_warning`; `profile_counts {prior: 8, scalable: 132}`. Issue: treating ranks as adjudicated truth overstates certainty. Fix: anchor selection restricted to `prior` books (§5.2); every anchor/report labeled method-limited; snapshot scores never in blind contexts. Acceptance: leak-token tests include anchor titles/scores in rater-visible artifacts. Red-team: hunt for snapshot scores reaching a rater prompt. Ownership: L5 (doc) + L1 (leak guard). Residual: anchor "truth" is optional owner adjudication.
+
+**V25-NEW-03 — Owner 87/84/79 conflicts with newer artifacts and has no local record** · Confirmed · High · Medium · Sensitivity high · Route Sonnet 5 xhigh
+Evidence: §2 PM-1..6 (numbers only in the prompt; PM-4 is a Luna floor-failed draft at 85.3; PM-5/6 Sol 81.4 > Terra 75.2; three source hashes). Fix: provenance matrix retained here; experiment resolves; no averaging across hashes/methods. Acceptance: plan red-team verifies no sentence treats PM-1..3 as evidence. Ownership: W0 (this doc). Residual: prior may be unresolvable if owner's method is never identified — acceptable (superseded by the experiment).
+
+**V25-NEW-04 — Sol-ultra D7 may favor Sol-authored candidates** · Hypothesis · Critical if real · Hard · Sensitivity critical · Route Opus 4.8 xhigh
+Evidence: design-level (D7 judge family = candidate family after P3). Fix: §5.6a patterns P1–P3 pre-registered; D7 secondary/downgrade-only (§5.7 rules 1/7); receipts disclose rater family so same-family pairings are auditable. Acceptance: analysis-code unit tests over synthetic interaction fixtures (P1/P2/P3 each detected). Red-team: adversarial fixture where D7 flips a selection — must be impossible by construction. Ownership: L3 (analysis) + L2 (receipts). Residual: sub-threshold bias undetectable; contained by structure.
+
+**V25-NEW-05 — Chapter diagnostics can masquerade as full-book scores** · Confirmed (risk) · Critical · Hard · Sensitivity critical · Route Opus 4.8 xhigh
+Evidence: skill hard-fails sampling but a 1-chapter package validates full-content; existing PM-4..6 records carry correct scope labels only by authoring discipline. Fix: WP-E11/E13 boundary — `chapterdiag--` prefix, segregated root, `not_a_book_score: true`, portfolio scripts never invoked, report labels "CHAPTER DIAGNOSTIC — NOT A BOOK SCORE". Acceptance: masquerade fixtures (canonical id refused; canonical root refused; export refused). Red-team: WP-E71 masquerade attack. Ownership: L1. Residual: a human can still misquote a diagnostic — labels make it lying, not error.
+
+**V25-NEW-06 — No versioned price table; cost order unverifiable** · Confirmed · High · Medium · Sensitivity high · Route Sonnet 5 xhigh
+Evidence: `LEDGER_COST_MARKER = "NOT_METERED"` on every entry; no table anywhere. Fix: WP-E42 (static `config/price-table.v1.json` + `priceVersion` stamping; absent → `PRICE NOT VERIFIED`, never a number). Acceptance: rollup tests both ways. Ownership: L4. Residual: estimates only ever as good as the owner's table.
+
+**V25-NEW-07 — 8-agent fan-out can corrupt shared state/evidence** · Confirmed (risk) · High · Hard · Sensitivity high · Route Opus 4.8 xhigh (orchestrator)
+Evidence: 44 historical `cf-wp-*` worktrees; suite known flaky under parallel load (IMP-20 report). Fix: §8 protocol — per-lane worktrees, single-owner files, frozen shared types (landed @ `1192ace72`), CLI files integration-writer-only, contracts untouchable, tests only in own worktree. Acceptance: task-ledger review shows zero cross-lane file edits; integration diffs inspected. Residual: same-file collisions within a lane — prevented by internal sequencing.
+
+## 7. Implementation priorities
+
+**STOP NOW (all in flight this assignment):** Claude rating paths (E21-23/26) · candidate censorship in experimental lane (E31) · unproven D7 route (E21/23) · chapter-as-book masquerade (E11/13) · non-terminal selection-as-final (E32) · auto-publish remains flagged (AUD-10; pre-pilot S7 scope, unchanged default not exercised — no live runs).
+**BEFORE NEXT MODEL SAMPLE:** provenance reconciliation (§2, done) · derive-don't-reject + attempt persistence/caps (E24) · calibration across decision band (§5.2, live part = Stage 0b) · freeze prompts/schemas/blind IDs/stop rules/budgets (§5, E33) · session-vs-reingest (E41) · terminal selection + no-valid-comparison reporting (E32/E34) · judge-interaction analysis (E33/E34).
+**BEFORE FULL-BOOK PILOT (deferred, unchanged from audit §12):** D-12 halt-at-ready flip, uniform REQUIRE-envelope, D7 receipt bound into package verification, full gates at confirmation.
+**DEFER/DELETE LATER:** migration-tree move-only cleanup; legacy transport deletion (quarantined by E26 refusals); doc-site work; state cleanup.
+
+## 8. Lanes, ownership, execution (Waves 1–4)
+
+Orchestrator = single integration writer (branch `impl/v25-evaluator-selection`). Lane worktrees `cf-e-l1…l4, l6` branched from the freeze commit `1192ace72`. Shared types frozen in that commit; `src/contracts/*` + `contract-manifest.json` untouchable; `src/cli.ts`/`src/bakeoff/cli.ts` integration-only (lanes export `register*()`); envelope/codexAgent/transport modules read-only.
+
+| WP | Lane/worktree | Outcome | Difficulty · Sensitivity · Route | Owned files (PKG-relative) | Deps |
+|---|---|---|---|---|---|
+| E21 | L2 `cf-e-l2` | ultraSession implementation + acceptance probe + `resolveD7RaterRoute()` | HARD · critical · Opus4.8-xhigh | src/exec/ultraSession.ts, src/orchestrator/modelPolicy.ts (additive) | E00 |
+| E24 | L2 | derive-don't-reject; attempt dirs (no rmSync); cap 3 → INSTRUMENT_FAIL | HARD · critical · Opus4.8-xhigh | src/bakeoff/migration/rubricAuditInstrument.ts, src/bakeoff/d7Judge.ts | E00 |
+| E22 | L2 | dispatch swap claude→ultraSession; ledger family flip + real model/effort; attempt-dir runner part | HARD · critical · Opus4.8-xhigh | scripts/screening/run-invocation.mts, src/bakeoff/d7WorkerDispatch.ts | E21,E41 |
+| E23 | L2 | receipt proof (schema bump; rater_route; manifest sha; ledger model non-null) | MED · high · Sonnet5-xhigh | src/critics/d7ShipGate.ts, src/bakeoff/migration/rubricAuditHarness.ts, rubricAuditReceipts.ts | E22 |
+| E26 | L2 | drop `claude-qc`; typed refusal for anthropic transports on rating roles | EASY-MED · high · Sonnet5-high | src/critics/qcAttestation.ts, src/providers/cli.ts | — |
+| E11/E12 | L1 `cf-e-l1` | blind 1-chapter package builder + skill-script subprocess harness | MED · high · Sonnet5-xhigh | NEW src/evaluation/chapterDiagnosticPackage.ts, evaluatorSkillHarness.ts | E00 |
+| E13 | L1 | dual-blind + adjudication runner + boundary guard | HARD · critical · Opus4.8-xhigh | NEW src/evaluation/chapterDiagnosticRun.ts, diagnosticBoundary.ts | E12,E21 |
+| E14 | L1 | boundary tests + `registerChapterDiagnosticCommand()` export | EASY · med · Sonnet5-high | NEW tests/chapter-diagnostic-*.test.ts | E13 |
+| E31 | L3 `cf-e-l3` | measure-only readability (bakeoff lane only; production byte-identical) | HARD · critical(prod) · Opus4.8-xhigh | src/sections/sectionGate.ts (minimal), src/bakeoff/candidates.ts, runBakeoff.ts (flag) | E00 |
+| E32 | L3 | terminal-gated selection + provisional + INVALID marker; eval-primary scorecard | MED · critical(evidence) · Sonnet5-xhigh | src/bakeoff/selection.ts, src/bakeoff/runBakeoff.ts | E00 |
+| E33 | L3 | budget authority + pre-Stage-2 check + ladder; experiment protocol doc (§5 as artifact) | MED · high · Sonnet5-xhigh | src/bakeoff/screeningPlan.ts, NEW docs/v25/implementation/V25_CHAPTER_EXPERIMENT_PROTOCOL.md | E00 |
+| E34 | L3 | report: diagnostics section + NOT-A-BOOK-SCORE labels + no-valid-comparison banner | EASY · med · Sonnet5-high | src/bakeoff/report.ts | E13,E32 |
+| E41 | L4 `cf-e-l4` | ledger sessionKind/attemptIndex behavior + rollup exclusion (merges first) | MED · high · Sonnet5-xhigh | src/telemetry/runCallLedger.ts + tests | E00 |
+| E42 | L4 | price-table contract + `PRICE NOT VERIFIED` rollups | EASY-MED · high · Sonnet5-high | NEW config/price-table.v1.json, src/telemetry/priceTable.ts | E41 |
+| E51 | L5 (docs) | anchor-band study + content-anchor pattern study (read-only) | MED · med · Sonnet5-xhigh | NEW docs/v25/reports/V25_ANCHOR_BAND_STUDY.md | — |
+| E61 | L6 `cf-e-l6` | workflow `--campaign` ×6 + impl-branch trigger | EASY · high · Sonnet5-high | .github/workflows/chapterflow-v25-pipeline.yml | — |
+| E62 | L6 | root workspace/scripts repoint to v24 (AGENTS.md cd rule respected) | MED · high · Sonnet5-high | root package.json | — |
+| E71 | L7 (post-merge) | adversarial fixtures (receipt tamper, clone, effort-spoof, masquerade, reingest, flag leak) | HARD · high · Opus4.8-xhigh | NEW tests/red-team-*.test.ts | Wave 3 |
+| E72 | L7 (docs) | READY_FOR_LIVE_TEST runbook + budget arithmetic | EASY · med · Sonnet5-high | NEW docs/v25/implementation/V25_READY_FOR_LIVE_TEST.md | — |
+
+Merge order (Wave 3): E41 → E21 → E24 → E22 → E23 → E32 → E31 → E33 → E42 → E11-E14 → E34 → E26/E61/E62 → CLI registration (one commit). After each batch: affected suites, contract-validate, resume/failure tests, no-Claude-rating grep, ledger updated from command output. Wave 4: fresh-context red-team of every high/critical WP (attack list: owner assignment §14/Wave-4); dispositions recorded before acceptance. Wave 5: not authorized → READY_FOR_LIVE_TEST. Wave 6: exact-head evidence in the implementation report.
+
+## 9. Test and red-team matrix (per §17 of the assignment)
+
+**Unit:** route resolution incl. refusal of claude strings in rating dispatch; derive-accept replay (incl. the 14:32:45Z failure class from retained ledgers); cap 3 → INSTRUMENT_FAIL; attempt-dir accumulation (no deletion); terminal-gated minting; provisional re-derive on resume; measure-only fixture (ease < 70 completes; metrics in validation.json; production sectionGate suites byte-untouched); sessionKind exclusion; price-table absent/present; publish default untouched.
+**Contract:** receipt schema bump round-trip; dispatch-receipt/pair-seal/adjudication chain via the skill's own validators; distinct worker identities; cloned-judgment rejection; blind package hash binding; report-data labels.
+**Integration:** candidate → diagnostic → selection → report on fixtures; exact resume after one failed role; alternate verbs inherit gates (existing suites); evaluator-skill offline suite green (`python3 -m unittest discover -s .agents/skills/chapterflow-book-evaluator/tests`).
+**Failure injection:** unreadable/duplicate/reordered 1-chapter package; source mutation after inspect; invalid atomic rating; arithmetic mismatch (now derived, noted); rater timeout + capped retry; stale receipt; identity collision; non-terminal selection; crash between write and manifest; reingest after success; absent price table; anchor-score string in a rater prompt (leak guard trips); D7 route resolves to a claude binary (refused); concurrent shared-state write.
+**Statistical:** synthetic known-effect fixture (degraded chapter scores lower + trips gate); blind-key reproducibility; ladder cannot selectively rescue; failed generations counted; unblinding immutability; interaction patterns P1–P3 detected on synthetic fixtures.
+**Visual (HTML):** self-contained, no network/CDN/fonts; semantic headings/keyboard/contrast; escaped embedded JSON; hostile-string fixture; MD↔HTML parity check.
+
+## 10. Adopted best practices (shanraisshan/claude-code-best-practice @ `eab161ca`)
+
+| Practice | Disposition | Application here |
+|---|---|---|
+| Plan first, execute against frozen contract | **Adopted** | Wave-0 freeze commit + this doc; scope changes only via DEFER |
+| Small vertical slices (median ~118-line PRs, squash) | **Adopted** | Every WP ≲300 LOC + tests; single-commit handoffs |
+| Fresh uncorrelated contexts as test-time compute | **Adopted** | Authors never accept own slices; Wave-4 fresh red-teams |
+| Worktrees + explicit file ownership | **Adopted** | Per-lane worktrees off the freeze commit; ownership table §8 |
+| Shared task list + shared data contracts | **Adopted** | `state/qc-orchestrator`-style task ledger JSON + WP-E00 types |
+| Per-agent concrete verification loop | **Adopted** | Every packet names its commands + expected exits |
+| Deterministic hooks/scripts for validation | **Adopted** | Existing guards (secret/artifact, style/token) + suite runners |
+| Pre-allow permissions, never bypass flags | **Adopted** | No `--dangerously-*`; sandbox defaults kept |
+| tmux agent-teams framework | **Adapted → Workflow tool** | Same coordination, no new infrastructure |
+| Wholesale command/skill copying; hooks buildout; mobile/loop features | **Rejected** | Out of scope; no new control plane |
+
+## 11. Decisions, residual risks, definition of done
+
+**Owner decisions (none block Waves 0–4; all block Wave 5):** (1) D-3 ceiling ruling — sharpened by §5.3 (combined reading no longer fits; confirm codex-only + headroom ≈170, or start at rung R1); (2) versioned price table; (3) optional anchor hand-adjudication; (4) Stage-0b authorization (≤24 sessions); (5) branch push/reconcile (AUD-05).
+**Residual risks:** same-family judging (disclosed, §5.6); anchor truth optional; single-machine branch loss until pushed; ultra runtime acceptance unproven until probe; prose-fingerprint blinding limit.
+**Done when (§20 of the assignment):** all lanes merged with green exact-head evidence; every high/critical WP red-teamed with recorded disposition; no Claude rating path reachable; diagnostics cannot masquerade; route provable; experiment frozen + READY_FOR_LIVE_TEST; MD/HTML agree; implementation report contains no unsupported claim; no whole book generated; nothing pushed.
