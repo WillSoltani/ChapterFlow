@@ -15,6 +15,15 @@
  *   - WP-401 D7 ship gate               (promote/publish under REQUIRE mode)
  *   - WP-503 unified run ledger         (CHAPTERFLOW_RUN_ID convention + per-book rollup)
  *
+ * WP-603 adds STAGE-LEVEL progress reporting (`generateBookProgress.ts`'s
+ * `createProgressReporter`, quiet-by-default / `--verbose`-for-every-step) and two
+ * durable per-run artifacts (`generateBookArtifacts.ts`): a persisted preflight
+ * report (the exact WP-602 doctor findings this run saw) and a machine-readable
+ * run-summary JSON (final status/exit code/reason/failed-step + every artifact
+ * location + a best-effort read-back of the WP-503 ledger-rollup counts). Both are
+ * pure wiring over the SAME injected log/artifact seams WP-601 already exposes —
+ * no parallel logging framework, no new telemetry.
+ *
  * ── Exit-code table (aligned with tests/cli-contract.test.ts: 0/1/2/3) ──────────
  *   0  OK        — shipped / ready / published; or a clean --validate-only/--dry-run.
  *   1  HALT      — the author-first run halted for a generic reason (content / infra /
@@ -58,6 +67,15 @@ import {
   CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV,
 } from "../critics/d7ShipGate.js";
 import { callLedgerPaths } from "../telemetry/runCallLedger.js";
+import { createProgressReporter, type GenerateBookStepStatus } from "./generateBookProgress.js";
+import {
+  siblingArtifactPath,
+  buildPreflightReport,
+  writePreflightReport,
+  buildRunSummary,
+  writeRunSummary,
+  readLedgerRollupIfPresent,
+} from "./generateBookArtifacts.js";
 
 const PIPELINE_DIR = resolve(REPO_ROOT);
 
@@ -402,19 +420,36 @@ export async function generateBookCommand(
   const deps: GenerateBookDeps = { ...defaultGenerateBookDeps(), ...depsOverride };
   const log = deps.log;
   const bookId = parsed.bookId;
+  const progress = createProgressReporter({ log, now: deps.now, verbose: parsed.verbose });
+
+  // WP-603 — mint the run id HERE (not just before the conductor call) so every
+  // artifact this command writes/prints — including a preflight report on a
+  // pre-conductor exit — shares ONE stable identity. This is a NAMING convenience
+  // only: it does NOT change when CHAPTERFLOW_RUN_ID is set in the environment
+  // (still only at the init-run step, immediately before the conductor runs) or
+  // the D7 halt-sidecar freshness anchor (a separate timestamp sampled at its
+  // original position — see `conductorStartMs` below).
+  const cmdStartMs = deps.now();
+  const runId = `generate-book-${bookId}-${cmdStartMs}`;
+  const ledger = deps.ledgerPaths(bookId, runId);
+  const preflightReportPath = siblingArtifactPath(ledger.jsonl, ".preflight-report.json");
+  const runSummaryPath = siblingArtifactPath(ledger.jsonl, ".run-summary.json");
 
   // ── step 2 (early): load the --config file (needed to resolve model precedence
   //    before the WP-504 model check) ──
+  progress.start("config");
   let config: GenerateBookConfig = {};
   if (parsed.configFile) {
     try {
       config = deps.loadConfigFile(parsed.configFile);
     } catch (err) {
+      progress.complete("config", "fatal", (err as Error).message);
       log(`generate-book: could not load --config ${parsed.configFile}: ${(err as Error).message}`);
       return { code: GENERATE_BOOK_EXIT.USAGE, label: "USAGE", ranConductor: false };
     }
   }
   const resolved = resolveGenerateBookConfig(parsed, config);
+  progress.complete("config", "ok");
 
   // ── legacy opt-in: the retired v23 compiler / v22 legacy paths stay reachable
   //    (WP-207 owns their deletion; WP-601 must not remove them). Delegated to the
@@ -427,14 +462,17 @@ export async function generateBookCommand(
   // ── step 3: confirm the model is supported (WP-504) BEFORE any work. An explicit
   //    --model/--effort that is not a 5.6 candidate / supported effort fails closed
   //    with UNSUPPORTED_MODEL_CONFIG and NO silent fallback. ──
+  progress.start("model-check");
   if (resolved.model !== undefined || resolved.effort !== undefined) {
     try {
       preflightOperatorModelSelection({ model: resolved.model, effort: resolved.effort });
     } catch (err) {
       if (err instanceof UnsupportedModelConfigError) {
+        progress.complete("model-check", "fatal", err.message);
         log(`generate-book: ${err.message}`);
         return { code: GENERATE_BOOK_EXIT.USAGE, label: "UNSUPPORTED_MODEL_CONFIG", ranConductor: false };
       }
+      progress.complete("model-check", "fatal", (err as Error).message);
       log(`generate-book: model/effort selection rejected: ${(err as Error).message}`);
       return { code: GENERATE_BOOK_EXIT.USAGE, label: "USAGE", ranConductor: false };
     }
@@ -446,6 +484,7 @@ export async function generateBookCommand(
   // than print one model and run another (red-team: no silent non-selected routing).
   const wired = resolveRoute({ role: "author-writer", requireSupportedModel: true });
   if (resolved.model !== undefined && resolved.model !== wired.model) {
+    progress.complete("model-check", "fatal", `--model ${resolved.model} refused (not the wired route)`);
     log(
       `generate-book: --model "${resolved.model}" is a valid 5.6 candidate but is NOT the wired production route "${wired.model}" ` +
       `(${NORMAL_PROFILE_MODEL.status}). Per-run model override beyond the provisional baseline is gated on WP-705's concrete matrix — ` +
@@ -457,6 +496,7 @@ export async function generateBookCommand(
   // --effort must also fail closed, never be silently accepted-and-ignored. The
   // author write effort is policy-owned (WP-301); print == run.
   if (resolved.effort !== undefined && resolved.effort !== wired.effort) {
+    progress.complete("model-check", "fatal", `--effort ${resolved.effort} refused (not the wired effort)`);
     log(
       `generate-book: --effort "${resolved.effort}" is a valid effort but is NOT the wired author write effort "${wired.effort}" ` +
       `(policy-owned, WP-301). Per-run effort override is gated on WP-705 — refusing to accept an effort the run would not apply ` +
@@ -464,6 +504,7 @@ export async function generateBookCommand(
     );
     return { code: GENERATE_BOOK_EXIT.USAGE, label: "UNSUPPORTED_MODEL_CONFIG", ranConductor: false };
   }
+  progress.complete("model-check", "ok", `${wired.model}@${wired.effort}`);
 
   // ── truthful startup print: HOW every value resolved ──
   log(`generate-book — ${bookId}`);
@@ -475,6 +516,7 @@ export async function generateBookCommand(
   if (resolved.out) log(`  out:     ${resolved.out}`);
 
   // ── step 1: deterministic preflight (WP-602). Read-only, zero model/network calls. ──
+  progress.start("preflight");
   const findings = await deps.runPreflight({
     bookId,
     model: resolved.model,
@@ -483,11 +525,24 @@ export async function generateBookCommand(
     requireCleanWorktree: resolved.requireCleanWorktree,
     requireD7ShipGate: resolved.requireD7ShipGate,
   });
+  const fatal = findings.filter((f) => f.level === "fatal");
+  const warns = findings.filter((f) => f.level === "warn");
+  const preflightStatus: GenerateBookStepStatus = fatal.length > 0 ? "fatal" : warns.length > 0 ? "warn" : "ok";
+  progress.complete("preflight", preflightStatus, `${findings.length} check(s) — ${fatal.length} fatal, ${warns.length} warn`);
+  // WP-603 — persist the doctor findings this run actually saw (durable, auditable
+  // after the fact) regardless of which branch below the run takes next. Best-effort:
+  // a report-write failure must never change the preflight verdict or block a run.
+  try {
+    writePreflightReport(preflightReportPath, buildPreflightReport({
+      bookId, runId, at: new Date(deps.now()).toISOString(), findings,
+    }));
+  } catch { /* best-effort: telemetry never changes the outcome */ }
 
   // --validate-only: preflight ONLY, then exit with the doctor 0/1/2 contract. ZERO
   // authoring calls. (fatal → 2, warn → 1, ok → 0.)
   if (parsed.validateOnly) {
     log(formatDoctor(findings));
+    log(`  preflight report: ${preflightReportPath}`);
     const code = doctorExitCode(findings);
     log(`generate-book --validate-only: ${code === 0 ? "READY" : code === 1 ? "READY WITH WARNINGS" : "BLOCKED — a fatal preflight finding must be fixed before a run"} (exit ${code}).`);
     return { code, label: "VALIDATE_ONLY", ranConductor: false };
@@ -495,69 +550,115 @@ export async function generateBookCommand(
 
   // On the RUN path a FATAL preflight finding blocks with exit 2 (no run created);
   // warns are advisory and the run proceeds.
-  const fatal = findings.filter((f) => f.level === "fatal");
   if (fatal.length > 0) {
     log(formatDoctor(findings));
-    log(`generate-book: ${fatal.length} FATAL preflight finding(s) — refusing to start a run (exit 2). Fix them (or run \`generate-preflight ${bookId}\`) and retry.`);
+    log(`  preflight report: ${preflightReportPath}`);
+    log(`generate-book: ${fatal.length} FATAL preflight finding(s) — refusing to start a run (exit 2). Fix them (or run \`generate-preflight ${bookId}\`) and retry. [failed step: preflight]`);
     return { code: GENERATE_BOOK_EXIT.USAGE, label: "PREFLIGHT_FATAL", ranConductor: false };
   }
-  const warns = findings.filter((f) => f.level === "warn");
   if (warns.length > 0) log(`generate-book: ${warns.length} preflight warning(s) (advisory — run proceeds): ${warns.map((w) => w.check).join(", ")}`);
 
   // ── overwrite/refusal semantics: never clobber a shipped package silently. --resume
   //    (continue a crashed run) and --overwrite/--force (regen end-to-end) are the two
   //    sanctioned ways past a shipped package. ──
+  progress.start("clobber-check");
   const pkgPath = deps.packagePath(bookId);
   const pkgExists = existsSync(pkgPath);
   if (pkgExists && !parsed.resume && !parsed.overwrite) {
+    progress.complete("clobber-check", "fatal", "shipped package exists; --resume or --overwrite required");
     log(`generate-book: ${bookId} already has a shipped package at ${pkgPath}.`);
-    log(`  Refusing to clobber it. Re-run with --resume (continue an interrupted run without re-doing finished chapters) or --overwrite (regenerate end-to-end).`);
+    log(`  Refusing to clobber it. Re-run with --resume (continue an interrupted run without re-doing finished chapters) or --overwrite (regenerate end-to-end). [failed step: clobber-check]`);
     return { code: GENERATE_BOOK_EXIT.USAGE, label: "REFUSED_CLOBBER", ranConductor: false };
   }
+  progress.complete("clobber-check", "ok");
 
-  // ── step 4: init/resume the run — mint the ledger run id (WP-503 CHAPTERFLOW_RUN_ID
-  //    convention) so the exact ledger path is known and printable at run end. ──
-  const runStartMs = deps.now();
-  const runId = `generate-book-${bookId}-${runStartMs}`;
-
-  // --dry-run: plan the run (the conductor's planOnly), zero mutations + zero model
-  // calls. We still route through the conductor so the plan reflects the REAL phase
-  // logic — planOnly takes no lock and writes no chapters.
+  // ── step 4: init/resume the run — the ledger run id (WP-503 CHAPTERFLOW_RUN_ID
+  //    convention) was already minted above; this step applies it to the environment
+  //    for the conductor call. `conductorStartMs` is the D7 halt-sidecar freshness
+  //    anchor — sampled HERE (the original position), independent of `cmdStartMs`
+  //    above, which only names artifact paths. ──
+  progress.start("init-run");
+  const conductorStartMs = deps.now();
   const savedRunId = deps.env["CHAPTERFLOW_RUN_ID"];
   const savedRequireD7 = deps.env[CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV];
   deps.env["CHAPTERFLOW_RUN_ID"] = runId;
   if (resolved.requireD7ShipGate) deps.env[CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV] = "1";
+  progress.complete("init-run", "ok", parsed.resume ? "resume" : parsed.overwrite ? "overwrite" : "fresh");
 
   try {
     if (parsed.dryRun) {
       log(`generate-book --dry-run: planning ${bookId} (zero model calls, zero mutations).`);
+      progress.start("author-pipeline");
       const outcome = await deps.runConductor(conductorOptions(parsed, resolved, { plan: true }));
+      progress.complete("author-pipeline", "ok", `plan: ${outcome.status}`);
       log(`generate-book --dry-run: plan complete (${outcome.status}).`);
       return { code: GENERATE_BOOK_EXIT.OK, label: "DRY_RUN", ranConductor: true, runId };
     }
 
-    // ── steps 5-9: execute the author-first pipeline end-to-end ──
+    // ── steps 5-9: execute the author-first pipeline end-to-end (bundled: this
+    //    layer does not instrument the conductor's internals — see generateBookProgress.ts) ──
     log(`generate-book: starting the author-first run for ${bookId} (run ${runId})…`);
+    progress.start("author-pipeline");
     const outcome = await deps.runConductor(conductorOptions(parsed, resolved, { plan: false }));
+    progress.complete("author-pipeline", outcome.status === "halt" ? "fatal" : "ok", outcome.status);
 
     // ── step 10: truthful status ──
-    const cls = classifyOutcomeExit(outcome, { bookId, stateBooksDir: deps.stateBooksDir, runStartMs });
+    progress.start("classify");
+    const cls = classifyOutcomeExit(outcome, { bookId, stateBooksDir: deps.stateBooksDir, runStartMs: conductorStartMs });
+    progress.complete("classify", cls.code === GENERATE_BOOK_EXIT.OK ? "ok" : "fatal", cls.label);
 
     // ── step 11: print artifact + evidence locations (always — even on halt paths;
     //    the WP-503 ledger flushes on every terminal, so its path is meaningful). ──
-    const ledger = deps.ledgerPaths(bookId, runId);
+    progress.start("artifacts");
     log("");
     log(`generate-book: ${cls.label} — ${cls.reason}`);
     log("  artifacts + evidence:");
     log(`    package:      ${pkgPath}${existsSync(pkgPath) ? "" : " (not produced)"}`);
     const d7ReceiptDir = deps.stateBooksDir;
-    log(`    D7 receipt:   ${resolve(d7ReceiptDir, `${normSlug(bookId)}.d7-ship-gate.json`)}`);
-    if (cls.label === D7_HALT_CATEGORY_QUALITY_BAR) {
-      log(`    D7 halt:      ${d7ShipGateHaltPath(bookId, d7ReceiptDir)}`);
-    }
+    const d7ReceiptPath = resolve(d7ReceiptDir, `${normSlug(bookId)}.d7-ship-gate.json`);
+    log(`    D7 receipt:   ${d7ReceiptPath}`);
+    const d7HaltPath = cls.label === D7_HALT_CATEGORY_QUALITY_BAR ? d7ShipGateHaltPath(bookId, d7ReceiptDir) : null;
+    if (d7HaltPath) log(`    D7 halt:      ${d7HaltPath}`);
     log(`    run ledger:   ${ledger.jsonl}`);
     log(`    run summary:  ${ledger.summary}`);
     log(`    book rollup:  ${ledger.bookRollup}`);
+    log(`    preflight report: ${preflightReportPath}`);
+    const failedStep = cls.code === GENERATE_BOOK_EXIT.OK ? null : "author-pipeline";
+    if (failedStep) log(`    failed step:  ${failedStep} (${cls.label} — ${cls.reason})`);
+    log(`    run report:   ${runSummaryPath}`);
+    // WP-603 — one machine-readable summary tying status/exit-code/artifact-map/
+    // ledger-rollup-counts together. Best-effort: a write failure here must never
+    // change the run's outcome (the SAME guarantee every telemetry writer in this
+    // pipeline already carries).
+    try {
+      const rollup = readLedgerRollupIfPresent(ledger.summary);
+      writeRunSummary(runSummaryPath, buildRunSummary({
+        bookId,
+        runId,
+        startedAt: new Date(cmdStartMs).toISOString(),
+        finishedAt: new Date(deps.now()).toISOString(),
+        status: cls.label,
+        exitCode: cls.code,
+        reason: cls.reason,
+        failedStep,
+        model: wired.model,
+        effort: wired.effort,
+        requireD7ShipGate: resolved.requireD7ShipGate,
+        autoPublish: resolved.autoPublish,
+        artifacts: {
+          package: pkgPath,
+          packageProduced: existsSync(pkgPath),
+          d7Receipt: d7ReceiptPath,
+          d7Halt: d7HaltPath,
+          preflightReport: preflightReportPath,
+          runLedger: ledger.jsonl,
+          runLedgerSummary: ledger.summary,
+          bookRollup: ledger.bookRollup,
+        },
+        ledgerRollup: rollup,
+      }));
+    } catch { /* best-effort: telemetry never changes the outcome */ }
+    progress.complete("artifacts", "ok");
 
     // ── step 12: exit code ──
     return { code: cls.code, label: cls.label, ranConductor: true, runId };
