@@ -6,35 +6,317 @@
   "integrationWorktree": "/private/tmp/cf-v25-impl",
   "frozenContracts": {
     "sharedTypesCommit": "1192ace72",
-    "untouchable": ["src/contracts/**", "src/contracts/contract-manifest.json"],
-    "integrationWriterOnly": ["src/cli.ts", "src/bakeoff/cli.ts"],
-    "readOnlyForAll": ["src/exec/executionEnvelope.ts", "src/exec/codexTransportConfig.ts", "src/orchestrator/codexAgent.ts", ".agents/skills/chapterflow-book-evaluator/**"],
+    "untouchable": [
+      "src/contracts/**",
+      "src/contracts/contract-manifest.json"
+    ],
+    "integrationWriterOnly": [
+      "src/cli.ts",
+      "src/bakeoff/cli.ts"
+    ],
+    "readOnlyForAll": [
+      "src/exec/executionEnvelope.ts",
+      "src/exec/codexTransportConfig.ts",
+      "src/orchestrator/codexAgent.ts",
+      ".agents/skills/chapterflow-book-evaluator/**"
+    ],
     "screeningPlanBudgetFieldNames": "frozen as exported at 1192ace72 (SCREENING_PLAN.ledgerAccounting.*)"
   },
   "workPackages": [
-    {"id": "E00", "lane": "W0", "status": "done", "commit": "1192ace72", "owner": "orchestrator", "note": "shared-type freeze; docs import 9f13a304c"},
-    {"id": "E21", "lane": "L2", "status": "pending", "worktree": "/private/tmp/cf-e-l2", "branch": "wp/e-l2", "route": "opus-xhigh", "files": ["src/exec/ultraSession.ts", "src/orchestrator/modelPolicy.ts"], "deps": ["E00"]},
-    {"id": "E24", "lane": "L2", "status": "pending", "worktree": "/private/tmp/cf-e-l2b", "branch": "wp/e-l2b", "route": "opus-xhigh", "files": ["src/bakeoff/migration/rubricAuditInstrument.ts", "src/bakeoff/d7Judge.ts"], "deps": ["E00"]},
-    {"id": "E22", "lane": "L2", "status": "pending", "worktree": "/private/tmp/cf-e-l2", "route": "opus-xhigh", "files": ["scripts/screening/run-invocation.mts", "src/bakeoff/d7WorkerDispatch.ts"], "deps": ["E21", "E41"]},
-    {"id": "E23", "lane": "L2", "status": "pending", "worktree": "/private/tmp/cf-e-l2", "route": "sonnet-xhigh", "files": ["src/critics/d7ShipGate.ts", "src/bakeoff/migration/rubricAuditHarness.ts", "src/bakeoff/migration/rubricAuditReceipts.ts"], "deps": ["E22"]},
-    {"id": "E26", "lane": "L2", "status": "pending", "worktree": "/private/tmp/cf-e-l2c", "branch": "wp/e-l2c", "route": "sonnet-high", "files": ["src/critics/qcAttestation.ts", "src/providers/cli.ts"], "deps": []},
-    {"id": "E11+E12", "lane": "L1", "status": "pending", "worktree": "/private/tmp/cf-e-l1", "branch": "wp/e-l1", "route": "sonnet-xhigh", "files": ["src/evaluation/chapterDiagnosticPackage.ts", "src/evaluation/evaluatorSkillHarness.ts", "tests/*"], "deps": ["E00"]},
-    {"id": "E13+E14", "lane": "L1", "status": "pending", "worktree": "/private/tmp/cf-e-l1", "route": "opus-xhigh", "files": ["src/evaluation/chapterDiagnosticRun.ts", "src/evaluation/diagnosticBoundary.ts", "tests/chapter-diagnostic-*.test.ts"], "deps": ["E12", "E21"]},
-    {"id": "E31", "lane": "L3", "status": "pending", "worktree": "/private/tmp/cf-e-l3", "route": "opus-xhigh", "files": ["src/sections/sectionGate.ts", "src/bakeoff/candidates.ts", "src/bakeoff/runBakeoff.ts"], "deps": ["E32-merged-first-in-worktree"]},
-    {"id": "E32", "lane": "L3", "status": "pending", "worktree": "/private/tmp/cf-e-l3", "branch": "wp/e-l3", "route": "sonnet-xhigh", "files": ["src/bakeoff/selection.ts", "src/bakeoff/runBakeoff.ts"], "deps": ["E00"]},
-    {"id": "E33", "lane": "L3", "status": "pending", "worktree": "/private/tmp/cf-e-l3b", "branch": "wp/e-l3b", "route": "sonnet-xhigh", "files": ["src/bakeoff/screeningPlan.ts", "docs/v25/implementation/V25_CHAPTER_EXPERIMENT_PROTOCOL.md"], "deps": ["E00"]},
-    {"id": "E34", "lane": "L3", "status": "pending", "worktree": "/private/tmp/cf-e-l3", "route": "sonnet-high", "files": ["src/bakeoff/report.ts"], "deps": ["E13", "E32"]},
-    {"id": "E41", "lane": "L4", "status": "pending", "worktree": "/private/tmp/cf-e-l4", "branch": "wp/e-l4", "route": "sonnet-xhigh", "files": ["src/telemetry/runCallLedger.ts", "tests/run-call-ledger*"], "deps": ["E00"], "mergeOrder": 1},
-    {"id": "E42", "lane": "L4", "status": "pending", "worktree": "/private/tmp/cf-e-l4", "route": "sonnet-high", "files": ["config/price-table.v1.json", "src/telemetry/priceTable.ts"], "deps": ["E41"]},
-    {"id": "E51", "lane": "L5", "status": "pending", "worktree": "/private/tmp/cf-v25-impl", "route": "sonnet-xhigh", "files": ["docs/v25/reports/V25_ANCHOR_BAND_STUDY.md"], "deps": []},
-    {"id": "E61+E62", "lane": "L6", "status": "pending", "worktree": "/private/tmp/cf-e-l6", "branch": "wp/e-l6", "route": "sonnet-high", "files": [".github/workflows/chapterflow-v25-pipeline.yml", "package.json"], "deps": []},
-    {"id": "E71", "lane": "L7", "status": "pending", "worktree": "/private/tmp/cf-v25-impl", "route": "opus-xhigh", "files": ["tests/red-team-*.test.ts"], "deps": ["wave3"]},
-    {"id": "E72", "lane": "L7", "status": "pending", "worktree": "/private/tmp/cf-v25-impl", "route": "sonnet-high", "files": ["docs/v25/implementation/V25_READY_FOR_LIVE_TEST.md"], "deps": []}
+    {
+      "id": "E00",
+      "lane": "W0",
+      "status": "done",
+      "commit": "1192ace72",
+      "owner": "orchestrator",
+      "note": "shared-type freeze; docs import 9f13a304c"
+    },
+    {
+      "id": "E21",
+      "lane": "L2",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l2",
+      "branch": "wp/e-l2",
+      "route": "opus-xhigh",
+      "files": [
+        "src/exec/ultraSession.ts",
+        "src/orchestrator/modelPolicy.ts"
+      ],
+      "deps": [
+        "E00"
+      ],
+      "commit": "2d133259b"
+    },
+    {
+      "id": "E24",
+      "lane": "L2",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l2b",
+      "branch": "wp/e-l2b",
+      "route": "opus-xhigh",
+      "files": [
+        "src/bakeoff/migration/rubricAuditInstrument.ts",
+        "src/bakeoff/d7Judge.ts"
+      ],
+      "deps": [
+        "E00"
+      ],
+      "commit": "37c860bf5"
+    },
+    {
+      "id": "E22",
+      "lane": "L2",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l2",
+      "route": "opus-xhigh",
+      "files": [
+        "scripts/screening/run-invocation.mts",
+        "src/bakeoff/d7WorkerDispatch.ts"
+      ],
+      "deps": [
+        "E21",
+        "E41"
+      ],
+      "commit": "1cd539969"
+    },
+    {
+      "id": "E23",
+      "lane": "L2",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l2",
+      "route": "sonnet-xhigh",
+      "files": [
+        "src/critics/d7ShipGate.ts",
+        "src/bakeoff/migration/rubricAuditHarness.ts",
+        "src/bakeoff/migration/rubricAuditReceipts.ts"
+      ],
+      "deps": [
+        "E22"
+      ],
+      "commit": "fef6f1aa4"
+    },
+    {
+      "id": "E26",
+      "lane": "L2",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l2c",
+      "branch": "wp/e-l2c",
+      "route": "sonnet-high",
+      "files": [
+        "src/critics/qcAttestation.ts",
+        "src/providers/cli.ts"
+      ],
+      "deps": [],
+      "commit": "5876cfa4b"
+    },
+    {
+      "id": "E11+E12",
+      "lane": "L1",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l1",
+      "branch": "wp/e-l1",
+      "route": "sonnet-xhigh",
+      "files": [
+        "src/evaluation/chapterDiagnosticPackage.ts",
+        "src/evaluation/evaluatorSkillHarness.ts",
+        "tests/*"
+      ],
+      "deps": [
+        "E00"
+      ],
+      "commit": "72cbd5973"
+    },
+    {
+      "id": "E13+E14",
+      "lane": "L1",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l1",
+      "route": "opus-xhigh",
+      "files": [
+        "src/evaluation/chapterDiagnosticRun.ts",
+        "src/evaluation/diagnosticBoundary.ts",
+        "tests/chapter-diagnostic-*.test.ts"
+      ],
+      "deps": [
+        "E12",
+        "E21"
+      ],
+      "commit": "86450acc9"
+    },
+    {
+      "id": "E31",
+      "lane": "L3",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l3",
+      "route": "opus-xhigh",
+      "files": [
+        "src/sections/sectionGate.ts",
+        "src/bakeoff/candidates.ts",
+        "src/bakeoff/runBakeoff.ts"
+      ],
+      "deps": [
+        "E32-merged-first-in-worktree"
+      ],
+      "commit": "e56e6bdb3"
+    },
+    {
+      "id": "E32",
+      "lane": "L3",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l3",
+      "branch": "wp/e-l3",
+      "route": "sonnet-xhigh",
+      "files": [
+        "src/bakeoff/selection.ts",
+        "src/bakeoff/runBakeoff.ts"
+      ],
+      "deps": [
+        "E00"
+      ],
+      "commit": "c5a945998"
+    },
+    {
+      "id": "E33",
+      "lane": "L3",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l3b",
+      "branch": "wp/e-l3b",
+      "route": "sonnet-xhigh",
+      "files": [
+        "src/bakeoff/screeningPlan.ts",
+        "docs/v25/implementation/V25_CHAPTER_EXPERIMENT_PROTOCOL.md"
+      ],
+      "deps": [
+        "E00"
+      ],
+      "commit": "40c5687b1"
+    },
+    {
+      "id": "E34",
+      "lane": "L3",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l3",
+      "route": "sonnet-high",
+      "files": [
+        "src/bakeoff/report.ts"
+      ],
+      "deps": [
+        "E13",
+        "E32"
+      ],
+      "commit": "a79d140b6"
+    },
+    {
+      "id": "E41",
+      "lane": "L4",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l4",
+      "branch": "wp/e-l4",
+      "route": "sonnet-xhigh",
+      "files": [
+        "src/telemetry/runCallLedger.ts",
+        "tests/run-call-ledger*"
+      ],
+      "deps": [
+        "E00"
+      ],
+      "mergeOrder": 1,
+      "commit": "13ce1d2a4"
+    },
+    {
+      "id": "E42",
+      "lane": "L4",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l4",
+      "route": "sonnet-high",
+      "files": [
+        "config/price-table.v1.json",
+        "src/telemetry/priceTable.ts"
+      ],
+      "deps": [
+        "E41"
+      ],
+      "commit": "08edebd2f"
+    },
+    {
+      "id": "E51",
+      "lane": "L5",
+      "status": "done",
+      "worktree": "/private/tmp/cf-v25-impl",
+      "route": "sonnet-xhigh",
+      "files": [
+        "docs/v25/reports/V25_ANCHOR_BAND_STUDY.md"
+      ],
+      "deps": [],
+      "commit": "e0fae892b"
+    },
+    {
+      "id": "E61+E62",
+      "lane": "L6",
+      "status": "done",
+      "worktree": "/private/tmp/cf-e-l6",
+      "branch": "wp/e-l6",
+      "route": "sonnet-high",
+      "files": [
+        ".github/workflows/chapterflow-v25-pipeline.yml",
+        "package.json"
+      ],
+      "deps": [],
+      "commit": "f2d8d701e"
+    },
+    {
+      "id": "E71",
+      "lane": "L7",
+      "status": "done",
+      "worktree": "/private/tmp/cf-v25-impl",
+      "route": "opus-xhigh",
+      "files": [
+        "tests/red-team-*.test.ts"
+      ],
+      "deps": [
+        "wave3"
+      ],
+      "commit": "a4cd40797"
+    },
+    {
+      "id": "E72",
+      "lane": "L7",
+      "status": "done",
+      "worktree": "/private/tmp/cf-v25-impl",
+      "route": "sonnet-high",
+      "files": [
+        "docs/v25/implementation/V25_READY_FOR_LIVE_TEST.md"
+      ],
+      "deps": [],
+      "commit": "e0fae892b"
+    }
   ],
-  "mergeOrder": ["E41", "E21", "E24", "E22", "E23", "E32", "E31", "E33", "E42", "E11+E12", "E13+E14", "E34", "E26", "E61+E62", "cli-registration", "E71", "E72"],
+  "mergeOrder": [
+    "E41",
+    "E21",
+    "E24",
+    "E22",
+    "E23",
+    "E32",
+    "E31",
+    "E33",
+    "E42",
+    "E11+E12",
+    "E13+E14",
+    "E34",
+    "E26",
+    "E61+E62",
+    "cli-registration",
+    "E71",
+    "E72"
+  ],
   "verification": {
     "perSlice": "cd <worktree>/scripts/book/prompts/chapterflow-v24-author-pipeline && npx tsc -p . --noEmit && CHAPTERFLOW_NO_API_CODEX_QC=1 CHAPTERFLOW_ALLOW_MODEL_GEN=0 CHAPTERFLOW_LEAK_GUARD=1 npx tsx tests/run.ts <filters>",
     "perBatch": "contract-validate + affected suites + no-claude-rating grep",
     "exactHead": "Wave 6 in impl worktree"
+  },
+  "finalHead": "d7eb5a963",
+  "wave4": {
+    "redteamFindings": "1 HIGH + 3 MED + 5 LOW, all fixed (8433e5961, 071ca7693); dispositions in plan \u00a713"
   }
 }

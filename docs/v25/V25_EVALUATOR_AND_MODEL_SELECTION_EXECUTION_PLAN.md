@@ -200,3 +200,24 @@ Merge order (Wave 3): E41 → E21 → E24 → E22 → E23 → E32 → E31 → E3
 | F15 | P2 subtracts differently-normalized deltas | NIT | **Accepted, noted**: per-instrument noise units; sensitivity scales with W (§5.6a) |
 
 Reviewer's verification notes adopted as evidence: ÷0.95 renormalization exactly reproduces PM-4's 85.29605 from the 8-domain sum 81.03125; all spot-checked citations held; file-ownership table confirmed conflict-safe at `1192ace72`.
+
+## 13. Wave-4 adversarial verification results and dispositions
+
+Three fresh contexts (none authored the code under attack): the WP-E71 fixture author + code red-teams A (D7 route chain) and B (experiment/economics/CI), all Opus 4.8 xhigh.
+
+**E71 fixture suite** — 8 new `tests/red-team-*.test.ts` files, 10 attacks, all defenses held (62 pass / 0 fail at final head): receipt tampering, effort spoof (manifest is authority), Claude re-entry (env/provider/reviewer seams + static grep), masquerade, reingest double-count, measure-only leak (production byte-identical), attempt erasure, price fabrication, cloned judgment (drives the skill's real Python seal script), blind-identity leak.
+
+| Finding | Severity | Disposition |
+|---|---|---|
+| **rtA-A** Route proof vestigial: production judge never threaded `dispatchMeta`, so the envelope-manifest sidecar was never written; `deriveRouteProof` accepted a shape-only `rater_route`; probe sha never compared to a real probe | **HIGH** | **FIXED** (`wp/fix-a`): `D7WorkerDispatch` seam widened (backward-compatible); dispatchMeta threaded through `judgeCandidateD7` → ingest (sidecar written; ingest ledger entries now codex-exec + real model/effort); current-schema receipt without a well-formed deciding-unit `envelopeManifestSha256` → routeProof `invalid` (REQUIRE fail-closed); `ultra_probe_sha256` validated against the campaign probe when supplied, visible "probe-unbound" note otherwise |
+| rtA-B Probe gate not co-located; stale/foreign probe sidecar honored | MED | **FIXED**: probe reuse validates schemaVersion + effort + model-vs-`resolveD7RaterRoute()` + recomputed canonical hash |
+| rtA-C Attempt cap reset on resume; INSTRUMENT_FAIL not durable | MED | **FIXED**: durable per-(unit,role) instrument-fail marker; resume returns terminal without re-attempting; attempt numbering cumulative |
+| rtA-D `derived:true` didn't preserve the rater's original claim | LOW | **FIXED**: annotations carry `{path, reported, derived}` |
+| rtB-F1 "not-promotable" advisory unenforced (latent — lane unwired) | LOW | **FIXED**: `readabilityMeasureOnly` on a non-compare-only run throws `MeasureOnlyNotCompareOnlyError` before any spend — promotion structurally unreachable |
+| rtB-F2 Tie-break consulted `d7Min` under eval-primary (D7 re-rank) | LOW-MED | **FIXED**: eval-primary tie ladder keys on the evaluator diagnostic; D7 stays flags-only; legacy ladder byte-identical |
+| rtB-F3 `provisional` absent ambiguous — legacy selections rendered as evidence | LOW | **FIXED**: finals stamp `provisional:false`; report treats `provisional !== false` as NO VALID COMPARISON (matches the frozen type contract) |
+| rtB-F4 Claude-family alias (`opus-qc` etc.) bypassed the reviewer refusal | LOW-MED | **FIXED**: family-prefix set {claude, opus, sonnet, haiku, fable, anthropic} refused at both gate and write boundary |
+| E71-F1 Leak scan `\b` boundary missed `sol_primary` | LOW | **FIXED**: sibling `(^|[^a-z0-9])token($|[^a-z0-9])` idiom; pinned xfail promoted to a passing test |
+| rtB residuals (unpinned-role legacy provider call; retained legacy claude-side dispatch factory (default fail-closed unwired); report double-label on legacy runs) | INFO | **RECORDED** — quarantined/legacy-only surfaces; primary defense is the role→task-class routing + the codex dispatch being the only wired production path |
+
+Axes verified clean by the red-teams: reingest correctness, auth fail-closure (subscription proof, API-key stripping), no reachable Claude rating path, masquerade wall (case/unicode/traversal attempted), budget/ladder outcome-direction resistance, price fail-closure, CI subverb validity. Known pre-existing defect (NOT ours, present at pristine `64b5d8a04`, zero skill files touched on this branch): the evaluator-skill Python suite fails 1/75 (`test_schema_files_are_valid_json_and_enumerate_full_rubric`, `KeyError: 'allOf'`) — a skill-internal schema-shape meta-test; recorded for the owner, not fixable here (skill files are out of bounds).
