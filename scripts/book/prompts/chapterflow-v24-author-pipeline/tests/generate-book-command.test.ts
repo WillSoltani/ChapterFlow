@@ -184,6 +184,17 @@ test("a supported-but-non-baseline --model is REFUSED (no silent re-route), exit
   assert.match(h.out, /not the wired production route/i);
 });
 
+test("a supported-but-non-wired --effort is REFUSED (symmetry with --model, no silent drop), exit 2", async () => {
+  // 'high' is a valid effort but the wired author write effort is xhigh — the
+  // command must refuse rather than accept an effort the run would not apply.
+  const h = mkHarness();
+  const r = await generateBookCommand(parse(["zz-book"], { ...OK_FLAGS, effort: "high" }), h.deps);
+  assert.equal(r.code, GENERATE_BOOK_EXIT.USAGE);
+  assert.equal(r.label, "UNSUPPORTED_MODEL_CONFIG");
+  assert.equal(h.conductorCalls.length, 0, "no run may follow a non-wired effort selection");
+  assert.match(h.out, /not the wired author write effort/i);
+});
+
 test("the wired baseline --model gpt-5.6-sol is accepted and runs", async () => {
   const h = mkHarness();
   const r = await generateBookCommand(parse(["zz-book"], { ...OK_FLAGS, model: "gpt-5.6-sol" }), h.deps);

@@ -453,6 +453,17 @@ export async function generateBookCommand(
     );
     return { code: GENERATE_BOOK_EXIT.USAGE, label: "UNSUPPORTED_MODEL_CONFIG", ranConductor: false };
   }
+  // Symmetry with --model (red-team WP-601 NOTE 1): a supported-but-non-wired
+  // --effort must also fail closed, never be silently accepted-and-ignored. The
+  // author write effort is policy-owned (WP-301); print == run.
+  if (resolved.effort !== undefined && resolved.effort !== wired.effort) {
+    log(
+      `generate-book: --effort "${resolved.effort}" is a valid effort but is NOT the wired author write effort "${wired.effort}" ` +
+      `(policy-owned, WP-301). Per-run effort override is gated on WP-705 — refusing to accept an effort the run would not apply ` +
+      `(no silent drop).`,
+    );
+    return { code: GENERATE_BOOK_EXIT.USAGE, label: "UNSUPPORTED_MODEL_CONFIG", ranConductor: false };
+  }
 
   // ── truthful startup print: HOW every value resolved ──
   log(`generate-book — ${bookId}`);
