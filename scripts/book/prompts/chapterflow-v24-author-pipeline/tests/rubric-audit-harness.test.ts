@@ -21,6 +21,7 @@ import {
   RUBRIC_OWNER_RUN_REL_PATH,
   RUBRIC_CHAPTER_WEIGHT_TOTAL,
   buildRubricAuditBatch,
+  expectedGateKeys,
   materializeRubricAuditBatch,
   renderAuditChapterDocument,
   type AuditChapter,
@@ -447,6 +448,87 @@ test("a task-following rater that fills the rendered skeleton ingests (task↔va
       /subcriteria keys are invalid/,
       "an array-shaped subcriteria (the live symptom) is still rejected",
     );
+  } finally {
+    repo.dispose();
+  }
+});
+
+// ── gate-set closure (skeleton gates ≡ the validator's profile set) ───────────
+
+test("skeleton gate keys EXACTLY equal the validator's expected set for the batch profile (v25 candidate, owner-compat calibration, adjudication)", () => {
+  const repo = makeAuditRepo("rubric-audit-gate-set");
+  try {
+    // Candidate rater skeleton: the v25 7-gate set (incl. layer_independence),
+    // derived from the SAME expectedGateKeys the validator counts.
+    const candidateTask = renderRaterTaskDocument({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary" });
+    const candidateGates = extractRecordSkeleton(candidateTask).gates as Record<string, unknown>;
+    assert.deepEqual(Object.keys(candidateGates).sort(), [...expectedGateKeys("v25")].sort(),
+      "candidate rater skeleton gates ≡ expectedGateKeys(v25)");
+    assert.ok("layers" in (candidateGates.layer_independence as Record<string, unknown>),
+      "layers is NESTED inside layer_independence");
+    assert.ok(!("layers" in candidateGates), "layers is never its own gates key");
+
+    // Calibration rater skeleton: the owner-run-compat 6-gate set (no
+    // layer_independence) — and its raw skeleton ingests under that profile.
+    const calibrationUnit = repo.manifest.calibration.unit;
+    const calibrationTask = renderRaterTaskDocument({ repositoryRoot: repo.base, manifest: repo.manifest, unit: calibrationUnit, role: "primary" });
+    const calibrationSkeleton = extractRecordSkeleton(calibrationTask);
+    assert.deepEqual(Object.keys(calibrationSkeleton.gates as Record<string, unknown>).sort(),
+      [...expectedGateKeys("owner-run-compat")].sort(),
+      "calibration rater skeleton gates ≡ expectedGateKeys(owner-run-compat)");
+    const calibrationIngest = ingestRaterRecord({
+      repositoryRoot: repo.base, manifest: repo.manifest, unit: calibrationUnit, role: "primary",
+      recordText: JSON.stringify(calibrationSkeleton, null, 2),
+    });
+    assert.equal(calibrationIngest.kind, "calibration", "the raw calibration skeleton ingests under the owner-compat profile");
+
+    // Adjudication skeleton (candidate unit): the same v25 gate set.
+    sealSkeletonPair(repo);
+    const adjSkeleton = renderAdjudicationRecordSkeleton({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit });
+    assert.deepEqual(Object.keys(adjSkeleton.gates as Record<string, unknown>).sort(), [...expectedGateKeys("v25")].sort(),
+      "adjudication skeleton gates ≡ expectedGateKeys(v25)");
+  } finally {
+    repo.dispose();
+  }
+});
+
+test("a rater recording a layer-independence FAIL ingests; hoisting layers to a sibling gates key is rejected", () => {
+  const repo = makeAuditRepo("rubric-audit-gate-fail");
+  try {
+    const task = renderRaterTaskDocument({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary" });
+    const filled = fillSkeleton(extractRecordSkeleton(task), 3);
+    const gates = filled.gates as Record<string, Record<string, unknown>>;
+    gates.layer_independence = {
+      status: "fail",
+      rationale: "The full layer imports a concept never introduced inside it.",
+      layers: {
+        fast: { self_contained: true, findings: [] },
+        deep: { self_contained: true, findings: [] },
+        full: { self_contained: false, findings: ["the closing paragraph imports an undefined concept from another chapter"] },
+      },
+    };
+
+    // NEGATIVE CONTROL first (nothing persists on failure): the EXACT live
+    // deviation — layers hoisted OUT of layer_independence to a sibling gates
+    // key (8 keys) — is rejected with the observed validator error.
+    const hoisted = JSON.parse(JSON.stringify(filled)) as Record<string, unknown>;
+    const hoistedGates = hoisted.gates as Record<string, Record<string, unknown>>;
+    hoistedGates.layers = hoistedGates.layer_independence.layers as Record<string, unknown>;
+    delete hoistedGates.layer_independence.layers;
+    assert.throws(
+      () => ingestRaterRecord({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary", recordText: JSON.stringify(hoisted, null, 2) }),
+      /gates must contain exactly/,
+      "a sibling `layers` gates key (the live symptom) is rejected",
+    );
+
+    // A compliant FAIL — status fail with layers NESTED — ingests: a rater whose
+    // genuine judgment is a layer-independence failure never has to break the
+    // record shape to say so.
+    const result = ingestRaterRecord({
+      repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary",
+      recordText: JSON.stringify(filled, null, 2),
+    });
+    assert.ok(existsSync(result.persistedPath), "a nested-layers FAIL record ingests and persists");
   } finally {
     repo.dispose();
   }

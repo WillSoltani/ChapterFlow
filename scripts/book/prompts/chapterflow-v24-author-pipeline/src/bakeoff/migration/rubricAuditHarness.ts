@@ -46,6 +46,7 @@ import {
   RUBRIC_LAYER_INDEPENDENCE_GATE_KEY,
   buildRubricAuditBatch,
   collectRatings,
+  expectedGateKeys,
   headingInventorySha256,
   rubricAuditDirRelPath,
   validateChapterAdjudicationRecord,
@@ -413,10 +414,11 @@ function renderGateContract(profile: RubricAuditProfile): string {
     ].join("\n");
   }
   return [
-    "gates (exactly these seven):",
+    "gates (an OBJECT with EXACTLY these seven keys — never more, never fewer):",
     base,
     `  - ${RUBRIC_LAYER_INDEPENDENCE_GATE_KEY}: {status one of pass|fail, rationale, layers:` +
       " {fast, deep, full} each {self_contained: boolean, findings: []}}.",
+    "  `layers` is a field INSIDE the layer_independence gate object — NEVER its own gates key.",
     "  Judge each read layer standalone: unresolved references, characters introduced elsewhere, or a",
     "  missing core lesson are layer-independence findings. The gate cannot pass if any layer is not",
     "  self_contained. external_accuracy is not_assessed; actual_book_completeness is unevaluable.",
@@ -489,8 +491,13 @@ function renderLayerSection(resolution: UnitResolution): string {
 export const RATER_SKELETON_BEGIN = "<<<BEGIN_RATER_RECORD_SKELETON";
 export const RATER_SKELETON_END = "END_RATER_RECORD_SKELETON>>>";
 
-/** The base + (v25) layer-independence gate block, pre-filled with the ONLY
- *  statuses a passing chapter may carry, so the skeleton is itself ingest-valid. */
+/** The gate block for a record skeleton, keyed by EXACTLY the validator's
+ *  expectedGateKeys(profile) — the same single source validateGates counts —
+ *  pre-filled with the statuses a passing chapter carries, so the skeleton is
+ *  itself ingest-valid. `layers` lives INSIDE the layer_independence gate object
+ *  (a live rater flipping the prefilled status to "fail" hoisted `layers` to a
+ *  sibling gates key → 8 keys → "gates must contain exactly: …"; the skeleton
+ *  section's fill rules now forbid that explicitly). */
 function raterGateSkeleton(profile: RubricAuditProfile): JsonRecord {
   const statusOf: Record<string, string> = {
     chapter_artifact_completeness: "pass",
@@ -501,19 +508,18 @@ function raterGateSkeleton(profile: RubricAuditProfile): JsonRecord {
     actual_book_completeness: "unevaluable",
   };
   const gates: JsonRecord = {};
-  for (const key of RUBRIC_BASE_GATE_KEYS) {
-    gates[key] = { status: statusOf[key] ?? "pass", rationale: `TODO: rationale for the ${key} gate` };
-  }
-  if (profile === "v25") {
-    gates[RUBRIC_LAYER_INDEPENDENCE_GATE_KEY] = {
-      status: "pass",
-      rationale: "TODO: rationale (this gate cannot pass if any layer is not self_contained)",
-      layers: {
-        fast: { self_contained: true, findings: [] },
-        deep: { self_contained: true, findings: [] },
-        full: { self_contained: true, findings: [] },
-      },
-    };
+  for (const key of expectedGateKeys(profile)) {
+    gates[key] = key === RUBRIC_LAYER_INDEPENDENCE_GATE_KEY
+      ? {
+          status: "pass",
+          rationale: "TODO: rationale — set status to \"fail\" if any layer is not self_contained; layers stays NESTED here",
+          layers: {
+            fast: { self_contained: true, findings: [] },
+            deep: { self_contained: true, findings: [] },
+            full: { self_contained: true, findings: [] },
+          },
+        }
+      : { status: statusOf[key] ?? "pass", rationale: `TODO: rationale for the ${key} gate` };
   }
   return gates;
 }
@@ -607,7 +613,11 @@ function renderRaterSkeletonSection(skeleton: JsonRecord): string {
     "NEVER renamed or human-worded keys). The identity, source, chapter, and scope block is already filled —",
     'keep it verbatim. Replace every 0 rating with your integer 0-4 judgment, replace every "TODO:"',
     "placeholder string with your finding, and RECOMPUTE each domain_score, weighted_points, and",
-    "chapter_diagnostic_score per the arithmetic above. Return ONLY the JSON object (no prose around it).",
+    "chapter_diagnostic_score per the arithmetic above. Fill VALUES only — NEVER move, add, remove, or hoist",
+    "keys. The gates object keeps EXACTLY the keys shown even when you change a status: to record a",
+    'layer-independence failure, set layer_independence.status to "fail" and edit its NESTED layers.<layer>',
+    "(self_contained false + findings) — `layers` never becomes its own gates key. Return ONLY the JSON",
+    "object (no prose around it).",
     RATER_SKELETON_BEGIN,
     JSON.stringify(skeleton, null, 2),
     RATER_SKELETON_END,
@@ -738,7 +748,9 @@ function renderAdjudicationSkeletonSection(skeleton: JsonRecord): string {
     "Return a JSON object with EXACTLY these keys. `domains` is an OBJECT keyed by the eight domain ids, and",
     "each domain's `subcriteria` is an OBJECT keyed by that domain's four subcriterion ids (NEVER an array,",
     "NEVER renamed keys). The identity, source, scope, blind_pair_seal_sha256, and the ENTIRE rater_agreement",
-    "block are already filled EXACTLY from the sealed pair — keep them verbatim. Replace every 0 rating with",
+    "block are already filled EXACTLY from the sealed pair — keep them verbatim. Fill VALUES only — NEVER",
+    "move, add, remove, or hoist keys; the gates object keeps EXACTLY the keys shown even when you change a",
+    "status, and `layers` stays NESTED inside layer_independence. Replace every 0 rating with",
     "your final half-point judgment, set each disagreements[].final to your final rating at that path (with",
     'your rationale and {locator, paraphrase} evidence), replace every "TODO:" placeholder, RECOMPUTE each',
     "domain_score, weighted_points, and chapter_diagnostic_score per the arithmetic above, and populate",
