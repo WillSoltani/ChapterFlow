@@ -42,6 +42,7 @@ export type ReportInputs = {
 
 export function buildReportJson(inputs: ReportInputs): Record<string, unknown> {
   const m = inputs.manifest;
+  const noValidComparison = hasNoValidComparison(inputs.selection);
   return {
     schemaVersion: BAKEOFF_REPORT_SCHEMA,
     generatedAt: new Date().toISOString(),
@@ -89,8 +90,8 @@ export function buildReportJson(inputs: ReportInputs): Record<string, unknown> {
      *  a consumer must check this before treating `selection` as a decided
      *  comparison. `null` reason ⇒ a real comparison ran. */
     comparisonValidity: {
-      noValidComparison: hasNoValidComparison(inputs.selection),
-      reason: hasNoValidComparison(inputs.selection)
+      noValidComparison,
+      reason: noValidComparison
         ? !inputs.selection || inputs.selection.scorecards.length === 0
           ? "selection has not run / no scorecards"
           : inputs.selection.provisional === true
