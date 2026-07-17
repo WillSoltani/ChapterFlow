@@ -300,11 +300,19 @@ function validateScope(record: JsonRecord, errors: string[], args: { requireScop
   }
 }
 
-function validateGates(record: JsonRecord, errors: string[], profile: RubricAuditProfile): void {
-  const gates = (record.gates ?? {}) as JsonRecord;
-  const expectedKeys = profile === "v25"
+/** The EXACT gate-key set a record must carry under a profile — the single
+ *  source both validateGates and the harness's task/record skeletons derive
+ *  from, so the rendered task can never teach a different gate set than the
+ *  validator counts. */
+export function expectedGateKeys(profile: RubricAuditProfile): string[] {
+  return profile === "v25"
     ? [...RUBRIC_BASE_GATE_KEYS, RUBRIC_LAYER_INDEPENDENCE_GATE_KEY]
     : [...RUBRIC_BASE_GATE_KEYS];
+}
+
+function validateGates(record: JsonRecord, errors: string[], profile: RubricAuditProfile): void {
+  const gates = (record.gates ?? {}) as JsonRecord;
+  const expectedKeys = expectedGateKeys(profile);
   const actualKeys = new Set(Object.keys(gates));
   if (actualKeys.size !== expectedKeys.length || expectedKeys.some((key) => !actualKeys.has(key))) {
     errors.push(`gates must contain exactly: ${expectedKeys.join(", ")}`);
