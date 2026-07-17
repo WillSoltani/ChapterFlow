@@ -675,15 +675,21 @@ export type ExperimentBudgetPlan = {
 
 export const EXPERIMENT_BUDGET_PLAN: ExperimentBudgetPlan = {
   schema: EXPERIMENT_BUDGET_PLAN_SCHEMA,
-  ceilingCodexOnlyReading: 150,
+  // D-3 AMENDED 2026-07-17 (owner Q&A, recorded in V25_OWNER_DECISIONS.md): the
+  // codex-only reading is confirmed and the ceiling raised 150 -> 170 so the
+  // full ~141-session default design runs undegraded. TRUE sessions only
+  // (sessionKind "session"; reingests excluded).
+  ceilingCodexOnlyReading: 170,
   remainingCodexOnlyReading:
-    "129-133 (150 minus ~17-21 already spent; ESTIMATE pending the Stage-0a exact ledger recount)",
+    "149-153 (170 minus ~17-21 already spent; ESTIMATE pending the Stage-0a exact ledger recount)",
   remainingCombinedReading:
-    "116-120 (further -13 Claude sessions) — the honest default path (~141, incl. Stage-2 D7-lite) does not " +
-    "reliably fit under EITHER reading",
+    "superseded by the D-3 amendment (codex-only reading confirmed; the 13 retired Claude-side judge " +
+    "sessions are ledgered history, not codex spend)",
   defaultPathSessions:
     "~141 incl. Stage-2 D7-lite (the normal case when D7 survives interaction analysis; ~119 if D7 is " +
-    "demoted) — the campaign starts at ladder rung R1 by default unless the owner grants explicit headroom",
+    "demoted) — fits the amended 170 ceiling with margin; the ladder-R1-by-default start is RESCINDED and " +
+    "the ladder remains the registered fallback only if the recounted remaining budget drops below a " +
+    "stage's planned spend",
   stages: EXPERIMENT_STAGE_BUDGETS,
   ladder: DEGRADATION_LADDER,
   stage1AtCapWithoutConfirmationRule: STAGE1_AT_CAP_WITHOUT_CONFIRMATION_RULE,

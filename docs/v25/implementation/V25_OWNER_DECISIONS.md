@@ -26,6 +26,8 @@ Format per §13 of the master plan. Answers are recorded in `V25_DECISION_LEDGER
 
 ## D-3 — Bakeoff live-call authorization and ceiling
 
+> **AMENDED 2026-07-17 (evaluator-implementation session, owner Q&A): the CODEX-ONLY reading is confirmed and the ceiling is raised to 170 codex sessions.** Rationale: the no-Claude-rating policy moved all judge spend (E-audits + D7-lite Sol-ultra) onto the codex meter, so the honest default experiment path (~141 sessions) no longer fit the original 150 under either reading; the owner granted explicit headroom so the full pre-registered design runs undegraded (degradation-ladder R1 default rescinded; the ladder remains the registered fallback if the recounted remaining budget ever drops below a stage's planned spend). The ceiling counts TRUE codex sessions only (`sessionKind:"session"`; re-ingests excluded). Also ruled in the same Q&A: **Stage 0b live calibration AUTHORIZED (≤24 codex sessions)**; **price table SKIPPED for now** (decision rule runs quality-only; within-band ties go to the owner marked PRICE NOT VERIFIED); **push `impl/v25-evaluator-selection` + `plan/v25-s-tier-implementation` to origin authorized** (refs only — no PR/merge/deploy).
+
 > **ANSWERED 2026-07-17 (L-37): AUTHORIZED — option (b) executed at Phase-6 entry after G5, full 150-session ceiling.** Owner selected "Authorize — 150 ceiling". Bundled D-8 ratification and the three acknowledgments (i)–(iii) below were included in the question text and are accepted. Phase 6 is OPEN.
 
 **Decision required:** Authorize Phase 6 live calls: capability probe (≤10) + staged bakeoff, hard ceiling **150 codex sessions total**, plus Claude-side D7 audits (all ledgered).

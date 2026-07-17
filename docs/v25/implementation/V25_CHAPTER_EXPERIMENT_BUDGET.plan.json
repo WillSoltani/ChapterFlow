@@ -1,9 +1,9 @@
 {
   "schema": "v25-chapter-experiment-budget-plan-v1",
-  "ceilingCodexOnlyReading": 150,
-  "remainingCodexOnlyReading": "129-133 (150 minus ~17-21 already spent; ESTIMATE pending the Stage-0a exact ledger recount)",
-  "remainingCombinedReading": "116-120 (further -13 Claude sessions) — the honest default path (~141, incl. Stage-2 D7-lite) does not reliably fit under EITHER reading",
-  "defaultPathSessions": "~141 incl. Stage-2 D7-lite (the normal case when D7 survives interaction analysis; ~119 if D7 is demoted) — the campaign starts at ladder rung R1 by default unless the owner grants explicit headroom",
+  "ceilingCodexOnlyReading": 170,
+  "remainingCodexOnlyReading": "149-153 (170 minus ~17-21 already spent; ESTIMATE pending the Stage-0a exact ledger recount)",
+  "remainingCombinedReading": "superseded by the D-3 amendment (codex-only reading confirmed; the 13 retired Claude-side judge sessions are ledgered history, not codex spend)",
+  "defaultPathSessions": "~141 incl. Stage-2 D7-lite (the normal case when D7 survives interaction analysis; ~119 if D7 is demoted) — fits the amended 170 ceiling with margin; the ladder-R1-by-default start is RESCINDED and the ladder remains the registered fallback only if the recounted remaining budget drops below a stage's planned spend",
   "stages": [
     {
       "stage": "0a",

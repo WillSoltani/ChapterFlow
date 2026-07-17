@@ -1,5 +1,10 @@
 # V25 — READY_FOR_LIVE_TEST Runbook (Wave-5 Gate)
 
+> **AMENDMENT 2026-07-17 (owner Q&A; V25_OWNER_DECISIONS.md D-3 amendment):** D-3 = codex-only, ceiling
+> **170** true sessions; §3's 150-based table below is pre-amendment record — remaining ≈149–153, the
+> ~141 default path fits, R1-by-default is rescinded. **Stage 0b IS NOW AUTHORIZED (≤24 sessions).**
+> Price table skipped (quality-only; ties → owner, PRICE NOT VERIFIED). Branch push authorized.
+
 **Source of truth:** `docs/v25/V25_EVALUATOR_AND_MODEL_SELECTION_EXECUTION_PLAN.md` §5 (experiment), §7
 (priorities), §11 (decisions/DoD). This doc does not restate policy it can drift from — it points at
 the frozen sections and reproduces only the arithmetic an operator needs at the gate.

@@ -173,6 +173,8 @@ Merge order (Wave 3): E41 → E21 → E24 → E22 → E23 → E32 → E31 → E3
 | tmux agent-teams framework | **Adapted → Workflow tool** | Same coordination, no new infrastructure |
 | Wholesale command/skill copying; hooks buildout; mobile/loop features | **Rejected** | Out of scope; no new control plane |
 
+> **AMENDMENT 2026-07-17 (post-freeze, owner Q&A — recorded in `implementation/V25_OWNER_DECISIONS.md` D-3):** the owner CONFIRMED the codex-only D-3 reading and raised the ceiling to **170** (true sessions only) — the ~141 default path now fits with margin and the ladder-R1-by-default start is **rescinded** (ladder remains the registered fallback). **Stage 0b is AUTHORIZED (≤24 sessions).** Price table **skipped** for now (quality-only decision rule; within-band ties → owner, `PRICE NOT VERIFIED`). **Push of `impl/v25-evaluator-selection` + `plan/v25-s-tier-implementation` authorized** (refs only). Registered budget data + companion JSON updated; §5.3 figures above are the pre-amendment analysis, kept for the record.
+
 ## 11. Decisions, residual risks, definition of done
 
 **Owner decisions (none block Waves 0–4; all block Wave 5):** (1) D-3 ceiling ruling — sharpened by §5.3 (combined reading no longer fits; confirm codex-only + headroom ≈170, or start at rung R1); (2) versioned price table; (3) optional anchor hand-adjudication; (4) Stage-0b authorization (≤24 sessions); (5) branch push/reconcile (AUD-05).

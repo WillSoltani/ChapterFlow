@@ -92,12 +92,14 @@ test("(b) Stage 0b/1/2 budgets match the frozen planned->cap numbers", () => {
 });
 
 test("(b) both D-3 ceiling readings are disclosed ranges, not invented single numbers", () => {
-  assert.equal(EXPERIMENT_BUDGET_PLAN.ceilingCodexOnlyReading, 150);
-  assert.match(EXPERIMENT_BUDGET_PLAN.remainingCodexOnlyReading, /129-133/);
-  assert.match(EXPERIMENT_BUDGET_PLAN.remainingCombinedReading, /116-120/);
-  assert.match(EXPERIMENT_BUDGET_PLAN.remainingCombinedReading, /does not\s+reliably fit under EITHER reading/);
+  // D-3 AMENDED 2026-07-17: codex-only reading confirmed, ceiling 170 (owner Q&A;
+  // V25_OWNER_DECISIONS.md D-3 amendment). Ranges stay disclosed estimates until
+  // the Stage-0a exact recount.
+  assert.equal(EXPERIMENT_BUDGET_PLAN.ceilingCodexOnlyReading, 170);
+  assert.match(EXPERIMENT_BUDGET_PLAN.remainingCodexOnlyReading, /149-153/);
+  assert.match(EXPERIMENT_BUDGET_PLAN.remainingCombinedReading, /superseded by the D-3 amendment/);
   assert.match(EXPERIMENT_BUDGET_PLAN.defaultPathSessions, /141/);
-  assert.match(EXPERIMENT_BUDGET_PLAN.defaultPathSessions, /rung R1 by default/);
+  assert.match(EXPERIMENT_BUDGET_PLAN.defaultPathSessions, /RESCINDED/);
 });
 
 // ── (c) ladder block selection: deterministic, never outcome-direction ─────
