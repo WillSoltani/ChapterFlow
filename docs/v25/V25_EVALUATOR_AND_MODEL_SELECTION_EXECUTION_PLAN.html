@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>V25 Evaluator &amp; Model-Selection Execution Plan</title>
+<style>
+  :root{
+    --bg:#ffffff; --bg2:#f6f7f9; --fg:#1a1d21; --fg2:#4b5563; --line:#d7dbe0;
+    --blue:#2563eb; --blue-bg:#e8effc; --yellow:#b45309; --yellow-bg:#fdf3e3;
+    --violet:#7c3aed; --violet-bg:#f1eafc; --green:#15803d; --green-bg:#e7f5ec;
+    --red:#b91c1c; --red-bg:#fdeaea;
+  }
+  @media (prefers-color-scheme: dark){ :root{
+    --bg:#111418; --bg2:#1a1f26; --fg:#e5e8ec; --fg2:#9aa3ad; --line:#333a43;
+    --blue:#60a5fa; --blue-bg:#182338; --yellow:#fbbf24; --yellow-bg:#2d2410;
+    --violet:#a78bfa; --violet-bg:#251d38; --green:#4ade80; --green-bg:#12291a;
+    --red:#f87171; --red-bg:#331617;
+  }}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,"SF Pro Text",Segoe UI,Roboto,sans-serif;padding:0 0 4rem}
+  main{max-width:1080px;margin:0 auto;padding:1rem 1.25rem}
+  h1{font-size:1.55rem;line-height:1.25;margin:1.2rem 0 .3rem}
+  h2{font-size:1.2rem;margin:2.2rem 0 .6rem;padding-top:.6rem;border-top:1px solid var(--line)}
+  h3{font-size:1rem;margin:1.2rem 0 .4rem}
+  p,li{max-width:78ch}
+  .sub{color:var(--fg2);font-size:.9rem}
+  code{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:0 .3em;font:.85em ui-monospace,SFMono-Regular,Menlo,monospace}
+  .chip{display:inline-block;border-radius:999px;padding:.05rem .55rem;font-size:.78rem;font-weight:600;border:1px solid transparent;white-space:nowrap}
+  .c-blue{color:var(--blue);background:var(--blue-bg)} .c-yellow{color:var(--yellow);background:var(--yellow-bg)}
+  .c-violet{color:var(--violet);background:var(--violet-bg)} .c-green{color:var(--green);background:var(--green-bg)}
+  .c-red{color:var(--red);background:var(--red-bg)}
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px;margin:.6rem 0}
+  table{border-collapse:collapse;width:100%;font-size:.86rem}
+  th{position:sticky;top:0;background:var(--bg2);text-align:left}
+  th,td{border-bottom:1px solid var(--line);padding:.42rem .6rem;vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .box{border:1px solid var(--line);border-radius:8px;background:var(--bg2);padding:.7rem .9rem;margin:.6rem 0}
+  .flow{display:flex;flex-wrap:wrap;gap:.5rem;align-items:stretch;margin:.6rem 0}
+  .fnode{flex:1 1 150px;min-width:140px;border:1.5px solid var(--line);border-radius:8px;padding:.5rem .6rem;font-size:.83rem;background:var(--bg)}
+  .fnode b{display:block;font-size:.86rem;margin-bottom:.15rem}
+  .fnode.primary{border-color:var(--blue)} .fnode.secondary{border-color:var(--violet)}
+  .fnode.stop{border-color:var(--red)} .fnode.ok{border-color:var(--green)}
+  .lane{display:grid;grid-template-columns:110px 1fr;border:1px solid var(--line);border-radius:8px;margin:.45rem 0;overflow:hidden}
+  .lane>.lname{background:var(--bg2);padding:.5rem .6rem;font-weight:600;font-size:.85rem;border-right:1px solid var(--line)}
+  .lane>.lwps{display:flex;flex-wrap:wrap;gap:.4rem;padding:.5rem .6rem}
+  .wp{border:1.5px solid var(--line);border-radius:6px;padding:.25rem .5rem;font-size:.8rem;background:var(--bg)}
+  .wp.hard{border-color:var(--red)} .wp.med{border-color:var(--yellow)} .wp.easy{border-color:var(--green)}
+  .legend{display:flex;flex-wrap:wrap;gap:.6rem;font-size:.8rem;color:var(--fg2);margin:.4rem 0}
+  .filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0}
+  .filters button{border:1px solid var(--line);background:var(--bg2);color:var(--fg);border-radius:999px;padding:.25rem .8rem;font-size:.82rem;cursor:pointer}
+  .filters button[aria-pressed="true"]{border-color:var(--blue);color:var(--blue);background:var(--blue-bg)}
+  .filters button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  .kv{display:grid;grid-template-columns:minmax(140px,220px) 1fr;gap:.25rem .8rem;font-size:.88rem}
+  .kv dt{color:var(--fg2)} .kv dd{margin:0}
+  code,.sub{overflow-wrap:anywhere}
+  @media (max-width:520px){
+    .lane{grid-template-columns:1fr}
+    .lane>.lname{border-right:none;border-bottom:1px solid var(--line)}
+    .kv{grid-template-columns:1fr}
+    .fnode{flex-basis:100%;min-width:0}
+    .chip{white-space:normal}
+  }
+  @media print{.filters{display:none} body{font-size:11px} .tablewrap{overflow:visible;border:none}}
+</style>
+</head>
+<body>
+<main>
+<h1>V25 Evaluator &amp; Model-Selection Execution Plan</h1>
+<p class="sub">Visual rendering of <code>V25_EVALUATOR_AND_MODEL_SELECTION_EXECUTION_PLAN.md</code> (canonical) · audit basis <code>plan/v25-s-tier-implementation @ 64b5d8a04</code> · implementation branch <code>impl/v25-evaluator-selection</code> · 2026-07-17 · self-contained, no network.</p>
+
+<div class="box">
+  <dl class="kv">
+    <dt>Status</dt><dd><span class="chip c-green">IMPLEMENTED (Waves 0–4)</span> <span class="chip c-yellow">READY_FOR_LIVE_TEST</span> — live model calls not authorized this session</dd>
+    <dt>Policy</dt><dd><span class="chip c-red">No Claude rating</span> <span class="chip c-blue">Canonical = Codex Book Evaluator</span> <span class="chip c-violet">D7 = GPT-5.6 Sol @ ultra (secondary)</span></dd>
+    <dt>Not done here</dt><dd>No whole-book generation · no push/PR/publish · production author default unchanged</dd>
+  </dl>
+</div>
+
+<h2 id="pipeline">1 · The pipeline, in simple terms</h2>
+<div class="flow" role="list">
+  <div class="fnode" role="listitem"><b>Author</b>Candidate model (Sol / Terra / Luna @ xhigh) writes one chapter from frozen inputs. Readability is <em>measured, never blocking</em> in this lane.</div>
+  <div class="fnode primary" role="listitem"><b>E-audit — PRIMARY</b>Blind 1-chapter package → 2 mutually-blind Codex raters + fresh adjudicator (Sol @ ultra, pinned &amp; receipted) → <span class="chip c-blue">CHAPTER DIAGNOSTIC</span> — never a book score.</div>
+  <div class="fnode secondary" role="listitem"><b>D7-lite — SECONDARY</b>Single Sol-ultra rubric session. Signs only. Can trigger inspection or downgrade, <em>never</em> select.</div>
+  <div class="fnode ok" role="listitem"><b>Selection</b>Minted only when every candidate is terminal (<code>judged</code> / <code>instrument-fail</code>); otherwise <code>provisional</code> and re-derived on resume.</div>
+  <div class="fnode stop" role="listitem"><b>Stop line</b>Recommendation for a separately authorized full-book pilot. Nothing publishes; nothing generates a whole book.</div>
+</div>
+
+<h2 id="hierarchy">2 · Evaluator hierarchy</h2>
+<div class="tablewrap"><table>
+  <thead><tr><th>Tier</th><th>Instrument</th><th>Scope</th><th>Authority</th></tr></thead>
+  <tbody>
+  <tr><td><span class="chip c-blue">1 · Canonical</span></td><td>ChapterFlow Book Evaluator skill (rubric v2.0: 9 domains / 36 subcriteria / 5 gates; dual-blind + adjudication + receipt chain)</td><td>Full book, every chapter read in full</td><td>Release standard. Unmodified; adapter drives its own scripts. No Codex workers ⇒ <code>BLOCKED_NO_CODEX_RATER</code>, never Claude.</td></tr>
+  <tr><td><span class="chip c-blue">1b · Diagnostic</span></td><td>Same protocol over a genuine 1-chapter package (<code>chapterdiag--</code> ids, segregated root, <code>not_a_book_score:true</code>)</td><td>One chapter; Domain 9 unassessable; certification unevaluable</td><td>PRIMARY experiment statistic. Labeled <strong>CHAPTER DIAGNOSTIC — NOT A BOOK SCORE</strong> everywhere.</td></tr>
+  <tr><td><span class="chip c-violet">2 · Operational</span></td><td>D7 (ship gate: full 3-role choreography; experiment: D7-lite single-rater) — GPT-5.6 Sol @ ultra via the codex envelope; receipts prove the route</td><td>Chapter or book, operational gate</td><td>SECONDARY. Downgrade-only; never overrides tier 1; Sol-judging-Sol policed by patterns P1–P3.</td></tr>
+  <tr><td><span class="chip c-green">3 · Anchors</span></td><td>Content-anchor study (difficult-conversations · the-willpower-instinct · peak vs the-48-laws-of-power)</td><td>Read-only pattern extraction</td><td>Qualitative, method-limited; scores never enter blind contexts.</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="provenance">3 · Score provenance — the conflict, honestly</h2>
+<div class="tablewrap"><table>
+  <thead><tr><th>Row</th><th>Source</th><th>Candidate</th><th>Method</th><th>Score</th><th>Disposition</th></tr></thead>
+  <tbody>
+  <tr><td>PM-1..3</td><td>Owner recollection (prompt :39)</td><td>Luna / Terra / Sol</td><td>unknown</td><td>≈87 / ≈84 / ≈79</td><td><span class="chip c-yellow">OWNER-SUPPLIED_PRELIMINARY</span> zero evidentiary weight; experiment resolves</td></tr>
+  <tr><td>PM-4</td><td>Chapter audit 20260717T133637Z</td><td><strong>Luna@xhigh — FLOOR-FAILED draft</strong></td><td>standalone chapter audit (dual-blind, sealed)</td><td><strong>85.296</strong> (conf. MEDIUM: subcriteria diff 0.53 &gt; 0.35 + book context unavailable)</td><td><span class="chip c-red">AUD-01 smoking gun</span> — the readability gate censored an 85-scoring chapter</td></tr>
+  <tr><td>PM-5/6</td><td>Chapter audit 20260717T140020Z</td><td>Sol · Terra</td><td>standalone chapter audit</td><td>81.447 · 75.164 (conf. HIGH)</td><td>Prior evidence; different source hashes — never merged with PM-4 or PM-1..3</td></tr>
+  <tr><td>PM-7</td><td>In-pipeline screening run</td><td>trio @ xhigh</td><td>legacy Claude D7 (banned)</td><td>none valid</td><td><span class="chip c-red">INVALID — instrument shakedown</span> (marker writer shipped; application = operator action)</td></tr>
+  <tr><td>PM-8</td><td>140-book snapshot</td><td>catalog</td><td><strong>single-evaluator screening</strong> (8 prior close-reads / 132 scalable)</td><td>top 90.1 … 87.4</td><td>Anchor selection only; never in blind contexts</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="roadmap">4 · Roadmap — lanes and dependencies</h2>
+<p class="sub">Border encodes difficulty: <span class="chip c-red">HARD · Opus 4.8 xhigh</span> <span class="chip c-yellow">MED · Sonnet 5 xhigh/high</span> <span class="chip c-green">EASY · Sonnet 5 high</span>. All 17 packages landed; merge order E41 → E21 → E24 → E22 → E23 → E32 → E31 → E33 → E42 → E11-14 → E34 → E26/E61/62 → CLI.</p>
+<div class="lane"><div class="lname">W0 freeze</div><div class="lwps"><span class="wp hard">E00 shared types + plan + ledger ✓</span></div></div>
+<div class="lane"><div class="lname">L1 Evaluator adapter</div><div class="lwps"><span class="wp med">E11 blind 1-ch package ✓</span><span class="wp med">E12 skill-script harness ✓</span><span class="wp hard">E13 dual-blind runner + caps ✓</span><span class="wp easy">E14 boundary tests + verb ✓</span></div></div>
+<div class="lane"><div class="lname">L2 D7 route</div><div class="lwps"><span class="wp hard">E21 ultraSession + probe ✓</span><span class="wp hard">E22 dispatch swap + attempts ✓</span><span class="wp med">E23 receipts prove route ✓</span><span class="wp hard">E24 derive-don't-reject + cap ✓</span><span class="wp easy">E26 Claude neutralization ✓</span></div></div>
+<div class="lane"><div class="lname">L3 Experiment</div><div class="lwps"><span class="wp hard">E31 measure-only readability ✓</span><span class="wp med">E32 terminal selection + eval-primary ✓</span><span class="wp med">E33 budget + protocol ✓</span><span class="wp easy">E34 report labels ✓</span></div></div>
+<div class="lane"><div class="lname">L4 Economics</div><div class="lwps"><span class="wp med">E41 session/reingest ledger ✓</span><span class="wp easy">E42 price-table contract ✓</span></div></div>
+<div class="lane"><div class="lname">L5/L6/L7</div><div class="lwps"><span class="wp med">E51 anchor study ✓</span><span class="wp easy">E61 CI workflow ✓</span><span class="wp med">E62 root scripts ✓</span><span class="wp hard">E71 red-team fixtures ✓</span><span class="wp easy">E72 live-test runbook ✓</span></div></div>
+
+<h2 id="findings">5 · Finding register</h2>
+<div class="filters" role="group" aria-label="Filter findings by severity">
+  <button aria-pressed="true" data-f="all">All</button>
+  <button aria-pressed="false" data-f="critical">Critical</button>
+  <button aria-pressed="false" data-f="high">High</button>
+  <button aria-pressed="false" data-f="resolved">Resolved this branch</button>
+</div>
+<div class="tablewrap"><table id="ftable">
+  <thead><tr><th>ID</th><th>Finding</th><th>Severity</th><th>Status at impl head</th></tr></thead>
+  <tbody>
+  <tr data-sev="critical resolved"><td>NEW-01</td><td>Claude-side rating vs Codex-evaluator policy (raters hard-pinned <code>claude-opus-4-8</code>)</td><td><span class="chip c-red">Critical</span></td><td><span class="chip c-green">RESOLVED</span> E21/E22/E23/E26 — Sol-ultra route, receipts prove it, claude-qc dropped, transports refused for rating</td></tr>
+  <tr data-sev="critical resolved"><td>NEW-05</td><td>Chapter diagnostics could masquerade as book scores</td><td><span class="chip c-red">Critical</span></td><td><span class="chip c-green">RESOLVED</span> E11/E13/E14 — prefix wall, segregated root, portfolio-script refusals, verbatim labels</td></tr>
+  <tr data-sev="critical"><td>NEW-04</td><td>Sol-ultra judges Sol-authored candidates (family interaction)</td><td><span class="chip c-red">Critical</span></td><td><span class="chip c-yellow">STRUCTURALLY CONTAINED</span> — P1/P2/P3 pre-registered; D7 downgrade-only; owner blind Stage-2 read REQUIRED; kinship disclosed (unmeasurable in-house)</td></tr>
+  <tr data-sev="critical resolved"><td>AUD-01</td><td>Readability proxy censors candidates before semantic measurement (censored Luna draft scored 85.3)</td><td><span class="chip c-red">Critical</span></td><td><span class="chip c-green">RESOLVED (lane)</span> E31 — measure-only in bakeoff lane; production byte-identical</td></tr>
+  <tr data-sev="critical resolved"><td>AUD-02</td><td>Rater arithmetic reject-don't-derive; failures destroyed; no cap</td><td><span class="chip c-red">Critical</span></td><td><span class="chip c-green">RESOLVED</span> E24/E22 — derive + attempt dirs + cap 3 → INSTRUMENT_FAIL; adapter analog in E13 (cap 2)</td></tr>
+  <tr data-sev="high resolved"><td>AUD-03/07</td><td>Selection minted from mid-flight state; scoreboard over zero comparisons</td><td><span class="chip c-yellow">High</span></td><td><span class="chip c-green">RESOLVED</span> E32/E34 — terminal gating, provisional marker, NO-VALID-COMPARISON banner</td></tr>
+  <tr data-sev="high"><td>AUD-04</td><td>Calibration doesn't span the decision band</td><td><span class="chip c-yellow">High</span></td><td><span class="chip c-yellow">RE-DESIGNED</span> — E-audit anchors A_high/A_mid + measured W; D7 drill needs the sealed high-band unit; live part awaits Stage 0b authorization</td></tr>
+  <tr data-sev="high"><td>AUD-05</td><td>Branch/worktree authority drift; everything unpushed, one machine</td><td><span class="chip c-yellow">High</span></td><td><span class="chip c-red">OPEN — owner action</span> push/reconcile decision</td></tr>
+  <tr data-sev="high resolved"><td>AUD-06</td><td>CI broken/mistargeted; root validates legacy v21</td><td><span class="chip c-yellow">High</span></td><td><span class="chip c-green">RESOLVED</span> E61/E62 — <code>--campaign</code> ×6, impl-branch trigger, root <code>pipeline24:*</code> scripts</td></tr>
+  <tr data-sev="high resolved"><td>AUD-08 / NEW-06</td><td>Ledger can't distinguish spend from re-ingest; no price table</td><td><span class="chip c-yellow">High</span></td><td><span class="chip c-green">RESOLVED</span> E41/E42 — sessionKind + trueSessionCalls + versioned table contract; absent table ⇒ <strong>PRICE NOT VERIFIED</strong></td></tr>
+  <tr data-sev="high"><td>NEW-02</td><td>140-book snapshot is single-evaluator screening</td><td><span class="chip c-yellow">High</span></td><td><span class="chip c-green">DISCLOSED</span> — method limits labeled everywhere; anchors from the 8 prior-close-read books only</td></tr>
+  <tr data-sev="high"><td>NEW-03</td><td>Owner 87/84/79 conflicts with newer artifacts</td><td><span class="chip c-yellow">High</span></td><td><span class="chip c-green">RECONCILED</span> — provenance matrix; retained as prior; experiment resolves</td></tr>
+  <tr data-sev="high"><td>NEW-07</td><td>8-agent fan-out shared-state risk</td><td><span class="chip c-yellow">High</span></td><td><span class="chip c-green">CONTAINED</span> — per-worker worktrees, frozen types, single-owner files; zero cross-lane edits observed</td></tr>
+  <tr data-sev="high"><td>AUD-09/10/12</td><td>Verb-conditional gates · auto-publish default · receipt binding into package</td><td><span class="chip c-yellow">High</span></td><td><span class="chip c-yellow">DEFERRED (pre-pilot)</span> — S7 scope; no live runs can fire them this session</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="experiment">6 · Experiment — sample &amp; decision flow</h2>
+<div class="flow">
+  <div class="fnode"><b>0a · model-free</b>0 sessions. Suites green, spend recount, plan byte-freeze.</div>
+  <div class="fnode"><b>0b · calibration</b>15→24 sessions. 2 anchors ×2 E-audits; D7 drill both bands. <span class="chip c-red">noise STOP if 2×SD&gt;4.0</span></div>
+  <div class="fnode"><b>1 · screening</b>84→119. 3 models × 3 blocks × 2 reps; 18 E-audits; D7-lite signs.</div>
+  <div class="fnode"><b>2 · confirmation</b>32→46 (58 w/ D7). Top 2 × holdout + max-separation block; owner blind read REQUIRED.</div>
+  <div class="fnode ok"><b>Decide</b>&gt;W + consistent signs → pilot candidate · within ±W → cheaper only with price table · else Sol stays · INCONCLUSIVE is legal.</div>
+</div>
+<div class="box">
+  <strong>Band:</strong> <code>W = max(2×SD_retest, 2.0)</code>, STOP above 4.0 — measured, not assumed. <strong>Floors:</strong> keyed to the anchor's <em>chapter re-score</em>, never its book score.
+  <br><strong>Budget honesty:</strong> default path ≈ <strong>141 sessions</strong> (incl. Stage-2 D7-lite) vs remaining ≈ 129–133 (codex-only D-3 reading) / ≈ 116–120 (combined) — <span class="chip c-red">fits neither reliably</span> → campaign starts at ladder rung <strong>R1 (−4)</strong> by default unless the owner grants headroom. <code>ScreeningSessionBudget</code> halt authoritative; Stage-0a recount replaces all estimates; Stage 1 at cap without confirmation = STOP.
+</div>
+
+<h2 id="costquality">7 · Cost–quality decision matrix</h2>
+<div class="tablewrap"><table>
+  <thead><tr><th>Quality result (E-audit, band W)</th><th>With versioned price table</th><th>Without price table</th></tr></thead>
+  <tbody>
+  <tr><td>Challenger <strong>&gt; W above</strong> Sol, signs consistent</td><td><span class="chip c-green">Challenger wins</span> (quality alone decides)</td><td><span class="chip c-green">Challenger wins</span></td></tr>
+  <tr><td>Within <strong>±W</strong> (noninferior tie)</td><td><span class="chip c-blue">Cheaper wins</span> (owner cost order verified by table)</td><td><span class="chip c-yellow">Quality tie → owner decides</span>, cost column reads PRICE NOT VERIFIED</td></tr>
+  <tr><td>Challenger <strong>&lt; −W below</strong></td><td><span class="chip c-red">Price cannot rescue</span> — Sol stays</td><td><span class="chip c-red">Sol stays</span></td></tr>
+  <tr><td>Gate failure ×2 cells (adjudicator-confirmed)</td><td colspan="2"><span class="chip c-red">Ineligible regardless of scores</span> — D7 alone can never disqualify; it triggers inspection</td></tr>
+  </tbody>
+</table></div>
+<p class="sub">Owner-supplied cost order (Luna &lt; Terra &lt; Sol) remains <strong>OWNER-SUPPLIED, PRICE NOT VERIFIED</strong> until a dated, versioned, owner-approved table exists (shipped contract: <code>config/price-table.v1.example.json</code>, loader rejects <code>ownerApproved:false</code>).</p>
+
+<h2 id="gates">8 · Test &amp; red-team gates</h2>
+<div class="tablewrap"><table>
+  <thead><tr><th>Gate</th><th>What it proves</th><th>Result</th></tr></thead>
+  <tbody>
+  <tr><td>Typecheck + targeted suites per slice</td><td>Every WP's acceptance loop (route refusal, derive-accept replay, caps, terminal gating, measure-only byte-parity, masquerade refusals, ledger truth, price fail-closed)</td><td><span class="chip c-green">green at every merge batch</span></td></tr>
+  <tr><td><code>contract-validate</code></td><td>18 frozen contracts untouched</td><td><span class="chip c-green">PASS</span></td></tr>
+  <tr><td>Evaluator-skill offline suite</td><td>Skill unmodified and self-consistent</td><td><span class="chip c-green">run at Wave 6</span></td></tr>
+  <tr><td>Plan red-team (fresh Opus 4.8 xhigh)</td><td>15 findings F1–F15 — all dispositioned in MD §12 (5 MAJOR fixed incl. honest 141-session budget)</td><td><span class="chip c-green">dispositioned</span></td></tr>
+  <tr><td>Code red-teams A/B + E71 fixture suite (fresh contexts)</td><td>Route-spoof, probe bypass, masquerade, reingest, measure-only leak, claude re-entry, clone rejection, price fabrication</td><td><span class="chip c-blue">see implementation report</span></td></tr>
+  <tr><td>No-Claude-rating invariant</td><td>No rating dispatch resolves to a claude binary/model</td><td><span class="chip c-green">tested + grep-asserted</span></td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="decisions">9 · Owner decisions (block Wave 5 only)</h2>
+<ol>
+  <li><strong>D-3 ceiling ruling</strong> — default path ≈141 fits neither reading; confirm codex-only + explicit headroom, or accept starting at ladder R1.</li>
+  <li><strong>Versioned price table</strong> — until then the cost half of the decision rule is inert.</li>
+  <li>Optional: hand-adjudicate the 2 evaluator anchor chapters (upgrades anchors to a truth check).</li>
+  <li><strong>Stage 0b authorization</strong> (≤24 codex sessions) when ready.</li>
+  <li><strong>Branch push/reconcile</strong> (AUD-05) — implementation commits remain local.</li>
+</ol>
+
+<p class="sub">Canonical truth lives in the Markdown plan; this page carries the same facts in visual form. Generated on the implementation branch; no external requests, fonts, or scripts.</p>
+</main>
+<script>
+(function(){
+  var btns=document.querySelectorAll('.filters button');
+  var rows=document.querySelectorAll('#ftable tbody tr');
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    btns.forEach(function(x){x.setAttribute('aria-pressed','false')});
+    b.setAttribute('aria-pressed','true');
+    var f=b.getAttribute('data-f');
+    rows.forEach(function(r){
+      r.style.display=(f==='all'||(r.getAttribute('data-sev')||'').split(' ').indexOf(f)>=0)?'':'none';
+    });
+  })});
+})();
+</script>
+</body>
+</html>
