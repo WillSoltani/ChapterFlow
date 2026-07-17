@@ -273,9 +273,14 @@ const isolatedClaudeSessionRunner: IsolatedClaudeSessionRunner = (req) =>
     const childEnv: NodeJS.ProcessEnv = { ...process.env };
     delete childEnv.OPENAI_API_KEY;
 
+    // The claude CLI is not on PATH in every environment (e.g. the VS Code
+    // extension bundles it at resources/native-binary/claude) — the operator
+    // supplies the exact binary via CHAPTERFLOW_CLAUDE_BIN. Fail-closed ENOENT
+    // otherwise (never a fabricated record).
+    const claudeBin = process.env.CHAPTERFLOW_CLAUDE_BIN?.trim() || "claude";
     // No explicit `stdio` key ⇒ default 'pipe' for stdin/stdout/stderr, and the
     // ChildProcessWithoutNullStreams return type (non-null streams).
-    const child = spawn("claude", ["-p", "--model", "claude-opus-4-8", "--output-format", "text"], {
+    const child = spawn(claudeBin, ["-p", "--model", "claude-opus-4-8", "--output-format", "text"], {
       cwd: dir,
       env: childEnv,
     });
