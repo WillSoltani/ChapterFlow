@@ -6110,6 +6110,13 @@ async function main() {
       return runCapabilityProbe(args, flags);
     case "contract-validate":
       return runContractValidate();
+    case "chapter-diagnostic": {
+      // WP-E14 registration (integration-writer wiring): the lane exports the
+      // command; only this case owns the verb. Boundary enforcement (blind
+      // chapterdiag-- ids, NOT-A-BOOK-SCORE banner) lives in the command itself.
+      const { registerChapterDiagnosticCommand } = await import("./evaluation/diagnosticBoundary.js");
+      return registerChapterDiagnosticCommand().run(args, flags);
+    }
     case "evidence-reconstruct":
       return runEvidenceReconstruct(args, flags);
     case "evidence-cleanup":
