@@ -5,8 +5,12 @@
  * cheaply, but CANNOT judge semantic correctness: a confidently-wrong quiz
  * correctIndex, a plausible-but-false breakdown sentence, or grounded-looking
  * filler all pass them. The "No OpenAI/Anthropic API" constraint forbids an
- * automated model judge, so the semantic judge is a Claude reviewer (run in the
- * harness / Agent SDK — not a funded API). The problem with a reviewer alone is
+ * automated model judge, so the semantic judge is a non-Claude reviewer session
+ * (codex-qc: a Codex agent, or harness:/human: an operator) — not a funded API,
+ * and never a Claude-family identity: policy P1 (owner assignment) forbids any
+ * Claude-family model from rating books or chapters, so a claude-* reviewer
+ * role is refused outright (see `ClaudeRatingRoleRefusalError` below), even one
+ * added via `CHAPTERFLOW_QC_REVIEWERS`. The problem with a reviewer alone is
  * that it is out-of-band: nothing stops promotion of a chapter the reviewer
  * never read, or one edited AFTER it passed.
  *
@@ -57,7 +61,8 @@ export type QcAttestation = {
    *  (the original include-list projection — see chapterContentHashV1).
    *  New attestations are always "v2" (exclude-list, full coverage). */
   hashVersion?: QcHashVersion;
-  /** who/what produced the verdict, e.g. "claude-qc:wf_93f0a1dd" or a session id. */
+  /** who/what produced the verdict, e.g. "codex-qc:wf_93f0a1dd" or a session id
+   *  (never a claude-* prefix — policy P1, see ClaudeRatingRoleRefusalError). */
   reviewer: string;
   reviewedAt: string;
   /** v21.1 no-api QC mode: round-backed role that produced this attestation. */
@@ -244,6 +249,10 @@ export function loadAttestation(bookId: string, chapterNumber: number): QcAttest
 }
 
 export function writeAttestation(att: QcAttestation): string {
+  // Refuse at the write boundary too (the `qc-attest` CLI verb's `--reviewer`
+  // flows straight here): a claude-* reviewer identity must never even reach
+  // disk, not just fail the later gate read. Same check as isApprovedReviewer.
+  if (isClaudeRole(reviewerRolePrefix(att.reviewer))) throw new ClaudeRatingRoleRefusalError(att.reviewer);
   mkdirSync(QC_DIR, { recursive: true });
   const p = attestationPath(att.bookId, att.chapterNumber);
   writeFileAtomic(p, JSON.stringify(att, null, 2) + "\n");
@@ -252,30 +261,69 @@ export function writeAttestation(att: QcAttestation): string {
 
 export type QcFinding = { checkId: string; severity: "blocker" | "advisory"; message: string };
 
+/** Policy P1 (owner assignment, no Claude-family model rates books/chapters):
+ *  a QC verdict is never attributable to a Claude-family identity. Thrown by
+ *  `isApprovedReviewer`/`writeAttestation` the moment a reviewer role prefix
+ *  starts with "claude" — this is a REFUSAL, not an advisory finding, and it
+ *  cannot be bypassed via `CHAPTERFLOW_QC_REVIEWERS` (see
+ *  `approvedReviewerRoles`, which strips claude-* prefixes from the env list
+ *  before a caller ever reaches this check). */
+export class ClaudeRatingRoleRefusalError extends Error {
+  readonly reviewer: string;
+  constructor(reviewer: string) {
+    super(
+      `QC reviewer "${reviewer}" carries a claude-* role prefix. Policy P1 (no Claude-family ` +
+      `model rates books or chapters) refuses ANY claude-prefixed QC identity — attest with an ` +
+      `approved non-Claude role instead (codex-qc:/harness:/human:).`,
+    );
+    this.name = "ClaudeRatingRoleRefusalError";
+    this.reviewer = reviewer;
+  }
+}
+
+/** The role prefix (segment before the first ":"), lowercased. */
+function reviewerRolePrefix(reviewer: string): string {
+  return (reviewer.split(":")[0] ?? "").trim().toLowerCase();
+}
+
+/** True if `role` (already lowercased, no ":" suffix) names the Claude family. */
+function isClaudeRole(role: string): boolean {
+  return role.startsWith("claude");
+}
+
 /** Reviewer-identity allowlist. A PUBLISHABLE attestation only counts at the
  *  gate if its reviewer carries an approved QC ROLE prefix (the segment before
  *  the first ":"). This stops the WRITER agent from self-certifying its own
  *  output — the whole semantic gate assumes reviewer ≠ author (see
  *  QC-SESSION-PROMPT.md "a separate writer agent (Codex) produces the
  *  chapters; you evaluate them"). On-disk reviewers are
- *  claude-qc:/codex-qc:/harness:/human:; the writer identity is codex:writer.
+ *  codex-qc:/harness:/human:; the writer identity is codex:writer.
  *
  *  NOTE: this is a default-safe GUARDRAIL, not a cryptographic guarantee — a
  *  single agent willing to relabel itself a reviewer can still pass it. The
  *  honesty-INDEPENDENT catch for the worst class (wrong quiz keys) is the model
  *  judge enforced via quizKeyGate.ts. Override the allowed roles with
- *  CHAPTERFLOW_QC_REVIEWERS (comma-separated role prefixes). */
-const DEFAULT_QC_REVIEWERS = ["claude-qc", "codex-qc", "harness", "human"];
+ *  CHAPTERFLOW_QC_REVIEWERS (comma-separated role prefixes) — EXCEPT a
+ *  claude-* prefix, which policy P1 never allows into this list (silently
+ *  dropped here; `isApprovedReviewer` also refuses it outright for any
+ *  reviewer identity, whether or not it was ever added to this list). */
+const DEFAULT_QC_REVIEWERS = ["codex-qc", "harness", "human"];
 
 export function approvedReviewerRoles(): string[] {
   const env = process.env.CHAPTERFLOW_QC_REVIEWERS;
-  if (env && env.trim()) return env.split(",").map((s) => s.trim()).filter(Boolean);
+  if (env && env.trim()) {
+    return env.split(",").map((s) => s.trim()).filter(Boolean).filter((r) => !isClaudeRole(r.toLowerCase()));
+  }
   return DEFAULT_QC_REVIEWERS;
 }
 
-/** True if the reviewer string carries an approved QC role prefix. */
+/** True if the reviewer string carries an approved QC role prefix. Throws
+ *  `ClaudeRatingRoleRefusalError` (never just "not approved") for a
+ *  claude-prefixed reviewer identity — policy P1 refuses it outright rather
+ *  than routing it through the ordinary allowlist miss. */
 export function isApprovedReviewer(reviewer: string): boolean {
-  const role = (reviewer.split(":")[0] ?? "").trim().toLowerCase();
+  const role = reviewerRolePrefix(reviewer);
+  if (isClaudeRole(role)) throw new ClaudeRatingRoleRefusalError(reviewer);
   return approvedReviewerRoles().some((r) => r.toLowerCase() === role);
 }
 
@@ -294,7 +342,7 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
   const att = loadAttestation(bookId, num);
   if (!att) {
     return [{ checkId: "QC0.missing_attestation", severity: sev,
-      message: `No QC attestation at ${attestationPath(bookId, num)}. A Claude reviewer must read this chapter and run \`qc-attest\` before it can ship.` }];
+      message: `No QC attestation at ${attestationPath(bookId, num)}. An approved (non-Claude) QC reviewer must read this chapter and run \`qc-attest\` before it can ship.` }];
   }
   if (att.verdict !== "PUBLISHABLE") {
     return [{ checkId: "QC0.not_publishable", severity: sev,
@@ -307,7 +355,7 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
   }
   if (!isApprovedReviewer(att.reviewer)) {
     return [{ checkId: "QC0.unverified_reviewer", severity: sev,
-      message: `QC reviewer "${att.reviewer}" is not an approved QC role (${approvedReviewerRoles().join(", ")}). A chapter cannot be certified by its own writer — review it in a QC session and re-attest as e.g. "claude-qc:<id>" or "codex-qc:<id>" (set CHAPTERFLOW_QC_REVIEWERS to change the allowed roles).` }];
+      message: `QC reviewer "${att.reviewer}" is not an approved QC role (${approvedReviewerRoles().join(", ")}). A chapter cannot be certified by its own writer — review it in a QC session and re-attest as e.g. "codex-qc:<id>" or "harness:<id>" (set CHAPTERFLOW_QC_REVIEWERS to change the allowed roles; a claude-* role is never accepted — policy P1).` }];
   }
   // Session-independence gate (OFF by default). When CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1
   // and BOTH the authoring session (sidecar) and reviewing session (attestation)
