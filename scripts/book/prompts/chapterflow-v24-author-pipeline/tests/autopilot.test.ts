@@ -34,6 +34,7 @@ import {
 import { spawnCodexAgent } from "../src/orchestrator/codexAgent.js";
 import { STRICT_ENV_VAR_NAMES } from "../src/lib/strictEnv.js";
 import type { BookStatus, ChapterStatus } from "../src/lifecycle/bookStatus.js";
+import { callLedgerDir, readCallLedgerEntries } from "../src/telemetry/runCallLedger.js";
 
 type FixtureFileSnapshot = {
   path: string;
@@ -1089,9 +1090,28 @@ test("a codex spawn rejection is RECORDED in the durable log before it propagate
     spawn: (async () => { throw new Error("codex exec timed out after 1800000ms"); }) as unknown as AutopilotDeps["spawn"],
     logSession: (_b: string, _label: string, r: { ok: boolean; stderr: string; sessionId: string }) => logged.push(r),
   });
-  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
-  assert.equal(outcome.status, "halt"); // still halts (rethrow preserved)
-  assert.ok(logged.some((r) => r.ok === false && /timed out/.test(r.stderr)), "the rejected spawn was logged with ok:false + the error");
+  const runId = "run-spawn-rejection-wp503";
+  const previousRunId = process.env.CHAPTERFLOW_RUN_ID;
+  process.env.CHAPTERFLOW_RUN_ID = runId;
+  try {
+    const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
+    assert.equal(outcome.status, "halt"); // still halts (rethrow preserved)
+    assert.ok(logged.some((r) => r.ok === false && /timed out/.test(r.stderr)), "the rejected spawn was logged with ok:false + the error");
+
+    // WP-503 — a REJECTED spawn is a real, disjoint outcome too: it is ledgered
+    // in the unified call ledger exactly like a completed one, never silently
+    // dropped just because the process threw. Real elapsed time is recorded
+    // (never a placeholder 0), and the outcome classification is "timeout"
+    // (reusing the SAME classifier the success path uses).
+    const entries = readCallLedgerEntries(PIPELINE_DIR, "zz", runId);
+    assert.ok(entries.length > 0, "the rejected spawn is ledgered, not dropped");
+    assert.ok(entries.every((e) => e.family === "codex-exec"));
+    assert.ok(entries.every((e) => e.outcome === "timeout"), "classifyProviderOutcome recognizes 'timed out' in the error message");
+    assert.ok(entries.every((e) => typeof e.latencyMs === "number" && e.latencyMs >= 0));
+  } finally {
+    if (previousRunId === undefined) delete process.env.CHAPTERFLOW_RUN_ID; else process.env.CHAPTERFLOW_RUN_ID = previousRunId;
+    rmSync(callLedgerDir(PIPELINE_DIR, "zz"), { recursive: true, force: true });
+  }
 });
 
 test("parallel writer fan-out WAITS for all siblings to settle before the infra halt (no orphan outlives the lock)", async () => {

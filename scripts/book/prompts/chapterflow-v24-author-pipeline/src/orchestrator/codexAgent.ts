@@ -49,6 +49,7 @@ import { existsSync, readFileSync } from "fs";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 import { sha256Hex } from "../contracts/contractUtil.js";
 import type { AgentRole } from "../contracts/executionProfile.js";
+import type { ProviderOutcomeV1 } from "../contracts/routeContracts.js";
 import type { ExecResultV1, WorkspaceFileV1 } from "../contracts/effectiveContext.js";
 import { type CodexCliQualificationV1, qualifyCodexCli, syntheticQualification } from "../exec/cliQualification.js";
 import {
@@ -230,6 +231,18 @@ export type CodexAgentResult = {
   finalMessageSource?: "output-file" | "stdout-fallback";
   /** Path of the persisted effective-context manifest (hermetic runs). */
   manifestPath?: string;
+  /** WP-503: the agent role this spawn declared. Absent only for a role-less
+   *  injected-runner legacy test double — never guessed. */
+  role?: AgentRole;
+  /** WP-503: the resolved (hermetic path) or caller-requested (legacy path)
+   *  model id for this spawn, when known. */
+  model?: string;
+  /** WP-503: the resolved/requested reasoning effort for this spawn, when known. */
+  effort?: string;
+  /** WP-503: this spawn's ProviderOutcomeV1 classification — the SAME frozen
+   *  taxonomy the route sidecar uses — so the single `deps.logSession` choke
+   *  point can ledger every call without a parallel outcome lookup. */
+  outcome?: ProviderOutcomeV1;
 };
 
 export type CodexPostRunEvidenceStage = "route" | "exec-result" | "structured-output";
@@ -439,14 +452,20 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
     };
     const startedAt = Date.now();
     const { stdout, stderr, code } = await runner({ bin, argv, cwd: opts.cwd, env, timeoutMs });
+    const legacyFinalMessage = lastNonEmptyLine(stdout);
     return {
       ok: code === 0,
       exitCode: code,
-      finalMessage: lastNonEmptyLine(stdout),
+      finalMessage: legacyFinalMessage,
       stdout,
       stderr,
       durationMs: Date.now() - startedAt,
       sessionId: opts.sessionId,
+      ...(opts.model ? { model: opts.model } : {}),
+      ...(opts.reasoningEffort ? { effort: opts.reasoningEffort } : {}),
+      // WP-503: reuse the SAME disjoint classification the hermetic path uses —
+      // never a second, parallel outcome vocabulary for the legacy test-double path.
+      outcome: classifyProviderOutcome({ completed: true, exitCode: code, stderr, finalMessage: legacyFinalMessage }),
     };
   }
 
@@ -580,6 +599,11 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
     } catch { /* runner produced no capture file (test double / crashed run) */ }
     if (finalMessageSource === "stdout-fallback") finalMessage = lastNonEmptyLine(stdout);
 
+    // WP-503: computed once, reused for BOTH the route sidecar (unchanged
+    // behavior) and the CodexAgentResult stamp the unified call ledger reads —
+    // never a second, divergent classification of the same run.
+    const outcome = classifyProviderOutcome({ completed: true, exitCode: code, stderr, finalMessage });
+
     const returnedResult: CodexAgentResult = {
       ok: code === 0,
       exitCode: code,
@@ -589,11 +613,14 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
       durationMs,
       sessionId: opts.sessionId,
       finalMessageSource,
+      role: profile.role,
+      model,
+      effort: reasoningEffort,
+      outcome,
       ...(manifestPath ? { manifestPath } : {}),
     };
 
     if (manifestPath) {
-      const outcome = classifyProviderOutcome({ completed: true, exitCode: code, stderr, finalMessage });
       persistReturnedEvidence("route", returnedResult, () => persistRouteResult(
         buildRouteResult({ role: profile.role, resolved: route, executionProfileHash: profileHash, cliVersion: qualification.version, outcome, authProof: session.authProof }),
         manifestPath,

@@ -69,11 +69,13 @@ import { doCompilerWrite } from "./compilerRun.js";
 import { doAuthorWrite, type AuthorWriteOneInvoker } from "./authorRun.js";
 import { doAuthorReview, AUTHOR_BOOK_READERS, type AuthorReviewIo } from "./authorReview.js";
 import { deriveDurableAcceptance, loadNewestAcceptanceRecord } from "./authorAcceptanceState.js";
-import { SessionLedger, newRunManifest, writeCostReport, formatCostReport, writeRunManifest, type RunManifest } from "./sessionLedger.js";
+import { SessionLedger, newRunManifest, writeCostReport, formatCostReport, writeRunManifest, classifySessionLabel, type RunManifest } from "./sessionLedger.js";
 import { runRoutedRedeals, runArtifactSync } from "./repairRouting.js";
 import { bookRiskPath } from "../artifacts/artifactStore.js";
 import { RISK_SCORE_SCHEMA_VERSION, type BookRiskScoreV1, type ChapterRiskScoreV1 } from "../artifacts/artifactTypes.js";
 import { NOT_METERED_MESSAGE } from "../cost-tracker.js";
+import { classifyProviderOutcome } from "./modelPolicy.js";
+import { appendCallLedgerEntry, finalizeRunCallLedgerRollup, writeBookRollup } from "../telemetry/runCallLedger.js";
 import type { ForwardAutopilotControlV1 } from "./forwardLocalAutopilot.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -437,12 +439,20 @@ export async function mapWithConcurrency<T, R>(items: T[], limit: number, fn: (i
  *  timed-out/ENOENT session left no trace in the durable walk-away log. */
 async function spawnAndLog(bookId: string, opts: Parameters<SpawnAgent>[0], deps: AutopilotDeps): Promise<CodexAgentResult> {
   let r: CodexAgentResult;
+  const spawnStartedAt = Date.now();
   try {
     r = await deps.spawn(opts);
   } catch (err) {
     const failed: CodexAgentResult = {
       ok: false, exitCode: -1, finalMessage: "", stdout: "",
-      stderr: (err as Error)?.message ?? String(err), durationMs: 0, sessionId: opts.sessionId,
+      stderr: (err as Error)?.message ?? String(err), durationMs: Date.now() - spawnStartedAt, sessionId: opts.sessionId,
+      ...(opts.role ? { role: opts.role } : {}),
+      ...(opts.model ? { model: opts.model } : {}),
+      ...(opts.reasoningEffort ? { effort: opts.reasoningEffort } : {}),
+      // WP-503: a rejected spawn (timeout/ENOENT/preflight) is a real, disjoint
+      // outcome — reuse the SAME classifier the codex spawn success path uses,
+      // never a silently-dropped call.
+      outcome: classifyProviderOutcome({ completed: false, errorMessage: (err as Error)?.message ?? String(err) }),
     };
     try { deps.logSession(bookId, opts.sessionId, failed); } catch { /* best-effort: never convert a spawn error into a log error */ }
     throw err; // preserve drain-then-throw + infra-halt behavior
@@ -1015,6 +1025,10 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
   // every terminal we write cost-report.json + finalize run-manifest.json and print a
   // compact table. Telemetry is best-effort: it never converts into a halt.
   const ledger = new SessionLedger(opts.bookId);
+  // WP-503 — one unified per-run call ledger id, shared with the rest of the pipeline's
+  // CHAPTERFLOW_RUN_ID convention (cost-tracker.ts beginRun, generateChapter.ts,
+  // productionManifest.ts, selfHealingRepair.ts) rather than a parallel identity scheme.
+  const runId = process.env.CHAPTERFLOW_RUN_ID ?? `autopilot-${opts.bookId}-${Date.now()}`;
   const runManifest = newRunManifest({
     bookId: opts.bookId,
     arch: opts.architecture,
@@ -1041,6 +1055,26 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
     },
     logSession: (bookId: string, label: string, r: CodexAgentResult) => {
       try { ledger.record(r); } catch { /* telemetry never halts a run */ }
+      // WP-503 — mirror this SAME choke point into the unified per-run call ledger.
+      // `stage` reuses the existing session-label classification (never a second
+      // taxonomy); role/model/effort/outcome ride on `r` (codexAgent.ts stamps them
+      // on every spawn result, hermetic AND legacy). Best-effort: a ledger bug must
+      // never brick a run any more than the pre-existing SessionLedger.record above.
+      try {
+        appendCallLedgerEntry({
+          pipelineDir: PIPELINE_DIR,
+          bookId,
+          runId,
+          family: "codex-exec",
+          stage: classifySessionLabel(label),
+          role: r.role ?? null,
+          model: r.model ?? null,
+          effort: r.effort ?? null,
+          latencyMs: Number.isFinite(r.durationMs) ? r.durationMs : null,
+          outcome: r.outcome ?? (r.ok ? "content_completed" : "infrastructure_failure"),
+          sessionId: r.sessionId,
+        });
+      } catch { /* telemetry never halts a run */ }
       base.logSession(bookId, label, r);
     },
     noteReviewCarry: (hit: boolean) => {
@@ -1069,6 +1103,19 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
       // deterministic gate-repair spawns at READY instead of via counter archaeology.
       base.log(`[autopilot] ERROR cost-report honest-accounting invariant TRIPPED for ${opts.bookId}: ${report.unloggedSpawnIds.length} spawn id(s) minted but never logged (${report.unloggedSpawnIds.slice(0, 8).join(", ")}) — a spawn site is not routing through logSession.`);
     }
+    // WP-503 — flush the unified per-run call ledger's rollup (p50/p95 latency +
+    // per-stage/role/model/outcome counts) and the per-book rollup-of-rollups, for
+    // EVERY terminal (same best-effort guarantee as the cost report above). Reconciles
+    // against the EXISTING `grandTotalSessions` (never recomputes session counts a
+    // second way) so a spawn landing in one ledger but not the other is loud, not silent.
+    try {
+      const { rollup } = finalizeRunCallLedgerRollup(PIPELINE_DIR, opts.bookId, runId);
+      writeBookRollup(PIPELINE_DIR, opts.bookId);
+      const codexLedgerCalls = rollup.byFamily["codex-exec"] ?? 0;
+      if (codexLedgerCalls !== report.grandTotalSessions) {
+        base.log(`[autopilot] WARNING WP-503 call-ledger reconciliation mismatch for ${opts.bookId}: session-ledger grandTotalSessions=${report.grandTotalSessions} vs unified call-ledger codex-exec entries=${codexLedgerCalls} (run ${runId}) — a spawn is landing in one ledger but not the other.`);
+      }
+    } catch { /* telemetry is best-effort: never let it change the outcome */ }
     runManifest.finishedAt = new Date().toISOString();
     runManifest.terminal = terminal;
     finalizeManifestBeatShipped(opts.bookId, opts.architecture, runManifest);

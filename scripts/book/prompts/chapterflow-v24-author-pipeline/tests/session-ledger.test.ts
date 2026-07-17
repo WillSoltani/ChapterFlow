@@ -8,6 +8,9 @@
  *  - a STATIC regression: every deps.spawn call site in src/orchestrator is paired with a
  *    deps.logSession in the same function, so no spawn can go unlogged (the exact "hidden
  *    session" defect the forensics counter-proved).
+ *  - WP-503: the SAME real runAutopilot terminal also flushes the unified per-run call
+ *    ledger (codex-exec family) + its rollup + the per-book rollup, reconciled 1:1 against
+ *    the pre-existing grandTotalSessions counter (never a second, divergent spawn count).
  */
 
 import assert from "node:assert/strict";
@@ -28,6 +31,7 @@ import { runAutopilot } from "../src/orchestrator/autopilot.js";
 import type { AutopilotDeps } from "../src/orchestrator/autopilot.js";
 import type { CodexAgentResult } from "../src/orchestrator/codexAgent.js";
 import type { BookStatus, ChapterStatus } from "../src/lifecycle/bookStatus.js";
+import { callLedgerDir, callLedgerPaths, readCallLedgerEntries } from "../src/telemetry/runCallLedger.js";
 
 function mkResult(sessionId: string, over: Partial<CodexAgentResult> = {}): CodexAgentResult {
   return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 5, sessionId, ...over };
@@ -308,6 +312,12 @@ test("runAutopilot writes cost-report.json + run-manifest.json at a READY termin
     "provenance",
     `zz-ledger-int-ch0${n}.json`,
   )));
+  // WP-503: pin a known runId so the test can look the unified call ledger up
+  // deterministically afterward (runAutopilot honors CHAPTERFLOW_RUN_ID —
+  // the SAME convention cost-tracker.ts/generateChapter.ts/etc. already use).
+  const runId = "run-zz-ledger-int-wp503";
+  const previousRunId = process.env.CHAPTERFLOW_RUN_ID;
+  process.env.CHAPTERFLOW_RUN_ID = runId;
   try {
     const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz-ledger-int", deps });
     assert.equal(outcome.status, "ready", `expected READY, got ${outcome.status} (${(outcome as { reason?: string }).reason ?? ""})`);
@@ -335,8 +345,27 @@ test("runAutopilot writes cost-report.json + run-manifest.json at a READY termin
     assert.equal(man.arch, "legacy");
     assert.equal(man.terminal, "ready");
     assert.ok(man.startedAt && man.finishedAt, "manifest start + finish stamped");
+
+    // WP-503 — the SAME real run also produced exactly one unified-ledger line per
+    // spawn (no unlogged call), a rollup reconciled to grandTotalSessions, and a
+    // per-book rollup — all on a durable (non-gitignored) path.
+    const entries = readCallLedgerEntries(PIPELINE_DIR, "zz-ledger-int", runId);
+    assert.equal(entries.length, spawns.length, "one unified-ledger line per real spawn — no unlogged call");
+    assert.ok(entries.every((e) => e.family === "codex-exec"));
+    assert.ok(entries.every((e) => e.outcome === "content_completed"), "every mocked spawn in this fixture succeeds");
+    assert.ok(entries.every((e) => typeof e.latencyMs === "number" && e.latencyMs >= 0), "real elapsed time, never a placeholder");
+    assert.ok((entries.filter((e) => e.stage === "writer").length) >= 2, "writer stage reused from classifySessionLabel, not reinvented");
+
+    const paths = callLedgerPaths(PIPELINE_DIR, "zz-ledger-int", runId);
+    const rollup = JSON.parse(readFileSync(paths.summary, "utf8"));
+    assert.equal(rollup.totalCalls, spawns.length);
+    assert.equal(rollup.byFamily["codex-exec"], rep.grandTotalSessions, "unified-ledger rollup reconciles 1:1 against the pre-existing grandTotalSessions");
+    assert.equal(rollup.cost, "NOT_METERED");
+    assert.ok(existsSync(paths.bookRollup), "the per-book rollup is written at run end too");
   } finally {
+    if (previousRunId === undefined) delete process.env.CHAPTERFLOW_RUN_ID; else process.env.CHAPTERFLOW_RUN_ID = previousRunId;
     rmSync(logDir, { recursive: true, force: true });
+    rmSync(callLedgerDir(PIPELINE_DIR, "zz-ledger-int"), { recursive: true, force: true });
     for (const snapshot of provenanceSnapshots) restoreFixtureFile(snapshot);
   }
 });
