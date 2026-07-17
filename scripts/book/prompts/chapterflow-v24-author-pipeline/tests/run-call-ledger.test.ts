@@ -30,6 +30,7 @@ import {
   buildBookRollup,
   buildCallLedgerRollup,
   callLedgerPaths,
+  countTrueSessions,
   DEFAULT_MAX_LEDGER_BYTES,
   DEFAULT_MAX_LEDGER_LINES,
   LEDGER_COST_MARKER,
@@ -100,6 +101,45 @@ test("genuinely unobservable fields are recorded as explicit null, never guessed
     assert.equal(entry.effort, null);
     assert.equal(entry.latencyMs, null);
     assert.equal(entry.sessionId, null, "sessionId defaults to explicit null, not omitted/undefined");
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("sessionKind/attemptIndex round-trip through append/read when supplied", () => {
+  const roots = mkTestRoots("run-call-ledger-sessionkind-roundtrip");
+  try {
+    const entry = appendCallLedgerEntry(baseEntry({
+      pipelineDir: roots.base,
+      sessionId: "sess-sk",
+      sessionKind: "session",
+      attemptIndex: 2,
+    }));
+    assert.equal(entry.sessionKind, "session");
+    assert.equal(entry.attemptIndex, 2);
+
+    const read = readCallLedgerEntries(roots.base, "zz-ledger-mod", "run-1");
+    assert.equal(read.length, 1);
+    assert.deepEqual(read[0], entry);
+    assert.equal(read[0].sessionKind, "session");
+    assert.equal(read[0].attemptIndex, 2);
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("sessionKind/attemptIndex omitted stays byte-compatible: no key on disk, no key in memory", () => {
+  const roots = mkTestRoots("run-call-ledger-sessionkind-omitted");
+  try {
+    const entry = appendCallLedgerEntry(baseEntry({ pipelineDir: roots.base, sessionId: "sess-legacy" }));
+    assert.ok(!("sessionKind" in entry), "no sessionKind key at all when the caller never supplied one");
+    assert.ok(!("attemptIndex" in entry), "no attemptIndex key at all when the caller never supplied one");
+
+    const paths = callLedgerPaths(roots.base, "zz-ledger-mod", "run-1");
+    const raw = readFileSync(paths.jsonl, "utf8").trim();
+    const rawJson = JSON.parse(raw);
+    assert.ok(!("sessionKind" in rawJson), "the on-disk JSON line carries no sessionKind key either");
+    assert.ok(!("attemptIndex" in rawJson), "the on-disk JSON line carries no attemptIndex key either");
   } finally {
     roots.dispose();
   }
@@ -214,6 +254,74 @@ test("buildCallLedgerRollup on zero entries returns an honest empty rollup", () 
   assert.equal(rollup.latency.p95Ms, null);
   assert.equal(rollup.latency.sampledCalls, 0);
   assert.equal(rollup.latency.unknownLatencyCalls, 0);
+  assert.deepEqual(rollup.bySessionKind, {}, "no entries ⇒ no sessionKind buckets at all");
+  assert.equal(rollup.trueSessionCalls, 0);
+  assert.equal(rollup.priceVersion, null, "no price table wired yet (WP-E42) ⇒ null, never a guessed version string");
+});
+
+// ── WP-E41: sessionKind rollup + trueSessions honesty rule ─────────────────
+test("buildCallLedgerRollup: mixed session/reingest/legacy entries tally bySessionKind correctly, trueSessionCalls counts ONLY sessionKind===\"session\"", () => {
+  const entries: RunCallLedgerEntryV1[] = [
+    mkRollupEntry({ sessionKind: "session" }),
+    mkRollupEntry({ sessionKind: "session" }),
+    mkRollupEntry({ sessionKind: "reingest" }),
+    mkRollupEntry({}), // legacy: no sessionKind field at all
+  ];
+  const rollup = buildCallLedgerRollup("zz-rollup-sk", "run-x", entries);
+  assert.deepEqual(rollup.bySessionKind, { session: 2, reingest: 1, unknown: 1 });
+  assert.equal(rollup.trueSessionCalls, 2, "reingest and legacy-unknown entries never count as sessions");
+  assert.equal(rollup.totalCalls, 4, "sessionKind tallying never changes totalCalls");
+});
+
+test("buildCallLedgerRollup: legacy-only ledger (no entry carries sessionKind) ⇒ trueSessionCalls 0, every entry bucketed unknown", () => {
+  const entries: RunCallLedgerEntryV1[] = [
+    mkRollupEntry({}),
+    mkRollupEntry({}),
+    mkRollupEntry({}),
+  ];
+  const rollup = buildCallLedgerRollup("zz-rollup-legacy", "run-x", entries);
+  assert.deepEqual(rollup.bySessionKind, { unknown: 3 });
+  assert.equal(rollup.trueSessionCalls, 0, "the honesty rule: legacy unknown NEVER silently counted as sessions");
+});
+
+test("buildCallLedgerRollup: priceVersion passes through opts, defaults to null when omitted", () => {
+  const entries: RunCallLedgerEntryV1[] = [mkRollupEntry({})];
+  const withVersion = buildCallLedgerRollup("zz-price", "run-x", entries, { priceVersion: "v1" });
+  assert.equal(withVersion.priceVersion, "v1");
+  const withNull = buildCallLedgerRollup("zz-price", "run-x", entries, { priceVersion: null });
+  assert.equal(withNull.priceVersion, null);
+  const omitted = buildCallLedgerRollup("zz-price", "run-x", entries);
+  assert.equal(omitted.priceVersion, null, "PRICE NOT VERIFIED by default (NEW-06) — never a guessed version");
+});
+
+// ── WP-E41: countTrueSessions helper (screening-budget ceiling consumer) ───
+test("countTrueSessions: counts sessionKind===\"session\" only, ignoring reingest and legacy-unknown", () => {
+  const entries: RunCallLedgerEntryV1[] = [
+    mkRollupEntry({ sessionKind: "session" }),
+    mkRollupEntry({ sessionKind: "session" }),
+    mkRollupEntry({ sessionKind: "session" }),
+    mkRollupEntry({ sessionKind: "reingest" }),
+    mkRollupEntry({}),
+  ];
+  assert.equal(countTrueSessions(entries), 3);
+});
+
+test("countTrueSessions: zero on an all-legacy or all-reingest ledger", () => {
+  assert.equal(countTrueSessions([mkRollupEntry({}), mkRollupEntry({})]), 0);
+  assert.equal(countTrueSessions([mkRollupEntry({ sessionKind: "reingest" })]), 0);
+  assert.equal(countTrueSessions([]), 0);
+});
+
+test("countTrueSessions: opts.family restricts the count to one call family", () => {
+  const entries: RunCallLedgerEntryV1[] = [
+    mkRollupEntry({ sessionKind: "session", family: "codex-exec" }),
+    mkRollupEntry({ sessionKind: "session", family: "codex-exec" }),
+    mkRollupEntry({ sessionKind: "session", family: "claude-side" }),
+    mkRollupEntry({ sessionKind: "reingest", family: "codex-exec" }),
+  ];
+  assert.equal(countTrueSessions(entries, { family: "codex-exec" }), 2);
+  assert.equal(countTrueSessions(entries, { family: "claude-side" }), 1);
+  assert.equal(countTrueSessions(entries), 3, "no family filter ⇒ all true sessions across families");
 });
 
 test("writeCallLedgerRollup + finalize round-trip through disk", () => {
@@ -229,6 +337,23 @@ test("writeCallLedgerRollup + finalize round-trip through disk", () => {
     assert.equal(onDisk.totalCalls, 2);
     assert.equal(onDisk.byOutcome.content_completed, 1);
     assert.equal(onDisk.byOutcome.timeout, 1);
+  } finally {
+    roots.dispose();
+  }
+});
+
+test("full round-trip: append mixed sessionKind entries to disk, read back, roll up — bySessionKind/trueSessionCalls survive the disk hop", () => {
+  const roots = mkTestRoots("run-call-ledger-sessionkind-rollup-roundtrip");
+  try {
+    appendCallLedgerEntry(baseEntry({ pipelineDir: roots.base, sessionId: "r1", sessionKind: "session" }));
+    appendCallLedgerEntry(baseEntry({ pipelineDir: roots.base, sessionId: "r2", sessionKind: "session" }));
+    appendCallLedgerEntry(baseEntry({ pipelineDir: roots.base, sessionId: "r3", sessionKind: "reingest" }));
+    appendCallLedgerEntry(baseEntry({ pipelineDir: roots.base, sessionId: "r4" })); // legacy: no sessionKind
+    const read = readCallLedgerEntries(roots.base, "zz-ledger-mod", "run-1");
+    const rollup = buildCallLedgerRollup("zz-ledger-mod", "run-1", read);
+    assert.deepEqual(rollup.bySessionKind, { session: 2, reingest: 1, unknown: 1 });
+    assert.equal(rollup.trueSessionCalls, 2);
+    assert.equal(countTrueSessions(read), 2, "countTrueSessions over disk-round-tripped entries agrees with the rollup");
   } finally {
     roots.dispose();
   }

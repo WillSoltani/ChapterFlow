@@ -23,3 +23,8 @@ logs/exec/
 # manifests + state journals. Bounded by retention classes + protected-reference
 # cleanup; never tracked, never state/, excluded from chapter discovery/packages.
 .evidence/
+
+# WP-E42: the REAL, owner-approved price table. Only config/price-table.v1.example.json
+# (ownerApproved: false, never loadable) ships in the repo — the live table carries
+# real per-model prices and the owner's sign-off, so it is local-only, never committed.
+config/price-table.v1.json
