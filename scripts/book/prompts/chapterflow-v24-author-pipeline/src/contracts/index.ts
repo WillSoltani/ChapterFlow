@@ -44,6 +44,11 @@ import { EMISSION_PACKAGE_CONTRACT } from "./emissionPackage.js";
 // provably source-EQUIPPED; no existing descriptor changes, so no existing
 // contractHash moves.
 import { SOURCE_PROJECTION_BOUNDARY_CONTRACT } from "./sourceProjectionBoundary.js";
+// WP-502 — additive model capability-probe contract (V25 S-Tier §8 Lane 5;
+// manifest 18 → 19). Freezes the bounded fail-closed probe result surface
+// (per-check record, UNSUPPORTED_MODEL_CONFIG, aggregate report) WP-504 consumes;
+// no existing descriptor changes, so no existing contractHash moves.
+import { MODEL_CAPABILITY_PROBE_CONTRACT } from "./modelCapabilityProbe.js";
 
 export const ALL_CONTRACTS: readonly ContractDescriptor[] = [
   EXECUTION_PROFILE_CONTRACT,
@@ -64,6 +69,7 @@ export const ALL_CONTRACTS: readonly ContractDescriptor[] = [
   REVIEW_MODEL_OUTPUT_V2_CONTRACT,
   EMISSION_PACKAGE_CONTRACT,
   SOURCE_PROJECTION_BOUNDARY_CONTRACT,
+  MODEL_CAPABILITY_PROBE_CONTRACT,
 ];
 
 export type ContractManifest = {
@@ -132,3 +138,4 @@ export * from "./reviewEvidenceEnvelope.js";
 export * from "./reviewModelOutputV2.js";
 export * from "./emissionPackage.js";
 export * from "./sourceProjectionBoundary.js";
+export * from "./modelCapabilityProbe.js";

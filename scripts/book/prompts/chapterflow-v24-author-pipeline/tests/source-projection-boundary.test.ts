@@ -248,14 +248,14 @@ test("equipped: an anchored source_bound case is adjudicable SUPPORTED (the sour
   }
 });
 
-// ── 6. manifest regeneration byte-check (tool-regenerated, 18 contracts) ────────
+// ── 6. manifest regeneration byte-check (tool-regenerated, 19 contracts) ────────
 
-test("manifest byte-check: contract-manifest.json is the tool output for the 18 live descriptors (no hand-edit)", () => {
+test("manifest byte-check: contract-manifest.json is the tool output for the 19 live descriptors (no hand-edit)", () => {
   const frozen = loadFrozenManifest();
   const expected = JSON.stringify(computeContractManifest(frozen.frozenAtIso), null, 2) + "\n";
   const onDisk = readFileSync(CONTRACT_MANIFEST_PATH, "utf8");
   assert.equal(onDisk, expected, "contract-manifest.json drifted from the generator output — run `npx tsx src/contracts/generateManifest.ts`");
-  assert.equal(frozen.contracts.length, 18);
+  assert.equal(frozen.contracts.length, 19);
   assert.ok(frozen.contracts.some((c) => c.name === "source-projection-boundary" && c.ownerPrompt === "WP-305"));
 });
 

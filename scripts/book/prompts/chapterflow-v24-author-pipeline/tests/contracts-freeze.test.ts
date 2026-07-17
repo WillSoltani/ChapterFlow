@@ -2,12 +2,13 @@
  * IMP-00: Phase-0 contract freeze + validator coverage.
  *
  * The frozen `contract-manifest.json` pins { name, version, hash } for all
- * eighteen cross-package contracts — the nine Phase-0 contracts (execution
+ * nineteen cross-package contracts — the nine Phase-0 contracts (execution
  * profile, effective context, candidate transaction, source-use plan, repair,
  * review, route, attempt evidence, worker report) plus the five additive IMP-20
  * split-lane / §16-recovery contracts, the two additive IMP-24 inline-review
- * contracts, the additive WP-102 emission↔web-adapter parity contract, and the
- * additive WP-305 source-projection-boundary contract.
+ * contracts, the additive WP-102 emission↔web-adapter parity contract, the
+ * additive WP-305 source-projection-boundary contract, and the additive WP-502
+ * model-capability-probe contract.
  * Editing a contract without a version bump
  * + regenerated manifest + integration review is the "silent schema drift across
  * parallel branches" merge blocker from master-plan §12 — these tests make that
@@ -40,20 +41,21 @@ test("contract manifest is frozen and matches the live descriptors exactly", () 
   assert.deepEqual(divergences, [], `contract drift detected:\n${divergences.join("\n")}`);
 });
 
-test("all eighteen frozen contracts are present at their pinned versions with distinct owners", () => {
+test("all nineteen frozen contracts are present at their pinned versions with distinct owners", () => {
   const manifest = loadFrozenManifest();
   // 9 Phase-0 contracts + the 5 additive IMP-20 split-lane / §16-recovery
   // contracts (reader-experience-review, source-integrity-review,
   // quiz-integrity-result, aggregated-chapter-review, judge-capability-qualification)
   // + the 2 additive IMP-24 inline-review contracts (review-evidence-envelope,
   // review-model-output-v2) + the WP-102 additive emission-package parity contract
-  // + the WP-305 additive source-projection-boundary contract.
-  assert.equal(manifest.contracts.length, 18);
+  // + the WP-305 additive source-projection-boundary contract
+  // + the WP-502 additive model-capability-probe contract.
+  assert.equal(manifest.contracts.length, 19);
   const names = manifest.contracts.map((c) => c.name).sort();
   assert.deepEqual(names, [
     "aggregated-chapter-review", "attempt-evidence-manifest", "candidate-transaction",
     "effective-context-manifest", "emission-package", "execution-profile",
-    "judge-capability-qualification",
+    "judge-capability-qualification", "model-capability-probe",
     "quiz-integrity-result", "reader-experience-review", "repair", "review-evidence-envelope",
     "review-model-output-v2", "review-output",
     "route-result", "source-integrity-review", "source-projection-boundary", "source-use-plan",
@@ -68,7 +70,7 @@ test("all eighteen frozen contracts are present at their pinned versions with di
     assert.equal(c.version, expected, `${c.name} must be v${expected}`);
   }
   const owners = new Set(manifest.contracts.map((c) => c.ownerPrompt));
-  for (const owner of ["IMP-00", "IMP-01", "IMP-02", "IMP-03", "IMP-07", "IMP-08", "IMP-10", "IMP-20", "IMP-24", "WP-102", "WP-305"]) {
+  for (const owner of ["IMP-00", "IMP-01", "IMP-02", "IMP-03", "IMP-07", "IMP-08", "IMP-10", "IMP-20", "IMP-24", "WP-102", "WP-305", "WP-502"]) {
     assert.ok(owners.has(owner), `expected an ${owner}-owned contract`);
   }
 });
