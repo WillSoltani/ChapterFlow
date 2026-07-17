@@ -53,8 +53,9 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 504 | integrated | wp-504-fallback-config | fcf4708a4 | 87aa06195 | rt PASS-WITH-NOTES |
 | 602 | integrated | wp-602-preflight-doctor | fcf4708a4 | db9aabd91 | rt PASS-WITH-NOTES |
 | 601 | integrated | wp-601-generate-book | 14a0833da | (601-end) | rt PASS-WITH-NOTES; effort-symmetry fixed; auto-publish→D-12 |
-| 603 | in progress | wp-603-progress-logs | (post-601) | — | dispatched: sonnet-5@xhigh |
-| 604 | in progress | wp-604-cli-tests | (post-601) | — | dispatched: sonnet-5@xhigh |
+| 603 | integrated | wp-603-progress-logs | 61508ed88 | e1a7f72ec | rt PASS-WITH-NOTES; doc-claim scoped |
+| 604 | integrated | wp-604-cli-tests | 61508ed88 | 4c17a7d15 | rt PASS-WITH-NOTES; found L-33 defect |
+| 602b | in progress | wp-602b-fresh-preflight | (post-603/604) | — | dispatched: opus-4.8@xhigh — L-33 fix |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
