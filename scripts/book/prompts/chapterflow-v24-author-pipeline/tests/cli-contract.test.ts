@@ -205,9 +205,47 @@ test("cli (WP-201): book-autopilot/book-run with zero flags resolve v24 author; 
     assert.match(bookRun.out, /architecture=v24 author \(selected by default\)/,
       `book-run zero-flag must resolve+log v24 author by default\n${bookRun.out.slice(-1200)}`);
   } finally {
-    // --plan takes no action, but runAutopilot still flushes a run manifest/cost report; the
-    // resume marker is NEVER written on --plan. Clean both so the test leaves no state dropping.
+    // --plan takes no action, but runAutopilot still flushes a run manifest/cost report AND the
+    // WP-503 unified call ledger (state/run-ledger/ is NON-gitignored — L-31 footgun); the resume
+    // marker is NEVER written on --plan. Clean all three so the test leaves no state dropping.
     rmSync(resolve(PIPELINE_DIR, "state/autopilot-logs", bookId), { recursive: true, force: true });
     rmSync(resolve(PIPELINE_DIR, "state/books", bookId), { recursive: true, force: true });
+    rmSync(resolve(PIPELINE_DIR, "state/run-ledger", bookId), { recursive: true, force: true });
   }
+});
+
+// ── WP-601: generate-book consolidated terminal command exit-code table ─────────
+// These drive the REAL CLI through the pre-work exit paths (parse + fail-closed model
+// config), which are MODEL-FREE and write no run state (they return before the author
+// conductor, the lock, or any ledger flush). The exit codes are the operator contract
+// (0 ok / 1 halt / 2 usage-preflight-config / 3 blocked). Dry-run / validate-only /
+// end-to-end / resume / D7-block / lock are covered model-free by the injected-deps
+// suite in tests/generate-book-command.test.ts.
+
+test("cli (WP-601): generate-book with missing --title/--author is a usage error (exit 2)", () => {
+  const noApi = { CHAPTERFLOW_NO_API_CODEX_QC: "1" };
+  const noTitle = runCli(["generate-book", "zz-wp601-usage", "--author", "A"], noApi);
+  assert.equal(noTitle.status, 2, `missing --title must exit 2; tail:\n${noTitle.out.slice(-800)}`);
+  const noBook = runCli(["generate-book", "--title", "T", "--author", "A"], noApi);
+  assert.equal(noBook.status, 2, `missing bookId must exit 2; tail:\n${noBook.out.slice(-800)}`);
+});
+
+test("cli (WP-601): an unsupported --model fails closed with UNSUPPORTED_MODEL_CONFIG before any work (exit 2)", () => {
+  const { status, out } = runCli(
+    ["generate-book", "zz-wp601-badmodel", "--title", "T", "--author", "A", "--model", "gpt-4o"],
+    { CHAPTERFLOW_NO_API_CODEX_QC: "1" },
+  );
+  assert.equal(status, 2, `an unsupported model must exit 2; tail:\n${out.slice(-1000)}`);
+  assert.match(out, /UNSUPPORTED_MODEL_CONFIG/, "the fail-closed halt code must be named");
+  assert.doesNotMatch(out, /starting the author-first run/, "no run may follow an unsupported model selection");
+});
+
+test("cli (WP-601): a supported-but-non-baseline --model is refused (no silent re-route, exit 2)", () => {
+  const { status, out } = runCli(
+    ["generate-book", "zz-wp601-terra", "--title", "T", "--author", "A", "--model", "gpt-5.6-terra"],
+    { CHAPTERFLOW_NO_API_CODEX_QC: "1" },
+  );
+  assert.equal(status, 2, `a non-baseline candidate must be refused with exit 2; tail:\n${out.slice(-1000)}`);
+  assert.match(out, /not the wired production route/i);
+  assert.doesNotMatch(out, /starting the author-first run/, "the command must not print one model and run another");
 });
