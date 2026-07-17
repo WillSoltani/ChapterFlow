@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "the-happiness-hypothesis-ch05",
+  "chapterNumber": 5,
+  "title": "The Pursuit of Happiness",
+  "coreMove": "Because Comparing extreme positive and negative changes with a control group allowed the researchers to test whether contrast and adaptation altered everyday pleasure and reported happiness.",
+  "thesis": "The 1978 adaptation study included 22 major lottery winners, 22 controls, and 29 people paralyzed in accidents.",
+  "readerPromise": "After this chapter, a reader can because Comparing extreme positive and negative changes with a control group allowed the researchers to test whether contrast and adaptation altered everyday pleasure and reported happiness.",
+  "ownedCases": [
+    {
+      "id": "ch05.example.brickman",
+      "label": "Philip Brickman, Dan Coates, and Ronnie Janoff-Bulman / lottery and accident study"
+    },
+    {
+      "id": "ch05.example.lyubomirsky",
+      "label": "Sonja Lyubomirsky, Kennon Sheldon, and David Schkade / sustainable happiness model"
+    },
+    {
+      "id": "ch05.example.csikszentmihalyi",
+      "label": "Mihaly Csikszentmihalyi / experience-sampling research"
+    },
+    {
+      "id": "ch05.example.commute",
+      "label": "Alois Stutzer and Bruno Frey / commuting paradox"
+    }
+  ],
+  "notYours": [
+    "Aaron Beck / cognitive therapy",
+    "Antonio Damasio / ventromedial prefrontal patients",
+    "Aristotle / virtue and the mean",
+    "Aristotle / virtue plus external goods",
+    "Benjamin Franklin / thirteen-virtue chart",
+    "Brett Pelham and colleagues / implicit egotism",
+    "Buddhist insight meditation / attentional training",
+    "Buddhist nonattachment and Benjamin Franklin's striving",
+    "C. Daniel Batson / moral-hypocrisy task",
+    "Christopher Peterson and Martin Seligman / VIA classification",
+    "Cindy Hazan and Phillip Shaver / adult romantic attachment",
+    "Dacher Keltner and Jonathan Haidt / awe prototype",
+    "Dan McAdams / redemptive life stories",
+    "Dan McAdams / three levels of personality",
+    "Daniel Wegner / white-bear suppression experiments",
+    "David Burns / anger inventory",
+    "Deanna Kuhn and David Perkins / argument evaluation",
+    "Dennis Regan / Coca-Cola reciprocity experiment",
+    "Harry Harlow / cloth and wire surrogate mothers",
+    "Hazan and colleagues / transfer of attachment functions"
+  ],
+  "cast": [
+    "Pauline",
+    "Spencer",
+    "Vera",
+    "Suzanne"
+  ],
+  "answerIndexPattern": [
+    0,
+    1,
+    2,
+    2,
+    0,
+    0,
+    1,
+    2,
+    1
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on characteristic adaptations and narrative identity",
+    "flavor (ch01): venue: a working note on cloth covered surrogate mother",
+    "flavor (ch01): venue: a dinner table",
+    "flavor (ch01): frame: a first attempt at anomie as weakened normative structure that gets corrected",
+    "flavor (ch01): frame: a first encounter with anomie as weakened normative structure that sets a benchmark",
+    "flavor (ch02): venue: a shared grocery list"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a saved draft message",
+    "venue: a phone call home",
+    "venue: a reminder on a phone",
+    "frame: a first attempt at automatic thoughts recorded in writing that gets corrected",
+    "frame: an unexpected kindness that lands and gets retold afterward"
+  ],
+  "architectureFamily": "single-deep-case",
+  "openerType": "scene",
+  "challengeFrame": "timebox-N-minutes",
+  "practiceShape": "measure-one-number",
+  "exampleLenses": [
+    "postmortem",
+    "walkthrough",
+    "counterfactual"
+  ],
+  "practiceVerb": "circle",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "rather",
+    "across",
+    "different",
+    "life",
+    "repeated",
+    "consequences"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "partial",
+      "fieldStyle": "cost-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "measure-one-number",
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script"
+  ],
+  "quizStemShapes": [
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain"
+  ],
+  "quizFailureModes": [
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority"
+  ],
+  "questionFactOrder": [
+    1,
+    4,
+    7,
+    8,
+    3,
+    6,
+    5,
+    9,
+    2
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "cost-speak",
+    "question-speak"
+  ],
+  "shellRegister": "cost-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Pauline",
+    "aliases": [
+      "Pauline"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because Victims encode lasting consequences while perpetrators focus on immediate provocation and a bounded act.",
+    "next": "Because The WHO commission synthesized evidence about institutional care and prolonged separation to inform child welfare practice."
+  },
+  "totalChapters": 11
+}

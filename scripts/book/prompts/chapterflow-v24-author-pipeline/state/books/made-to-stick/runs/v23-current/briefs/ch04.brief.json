@@ -1,0 +1,193 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "made-to-stick-ch04",
+  "chapterNumber": 4,
+  "title": "Credible",
+  "coreMove": "Because the self-experiment connected the bacterium to a resulting gastric inflammation in a previously healthy host, it challenged the view that such organisms were harmless passengers.",
+  "thesis": "Barry Marshall drank a Helicobacter pylori culture in July 1984 and developed gastritis after the exposure.",
+  "readerPromise": "After this chapter, a reader can because the self-experiment connected the bacterium to a resulting gastric inflammation in a previously healthy host, it challenged the view that such organisms were harmless passengers.",
+  "ownedCases": [
+    {
+      "id": "ch04.ex.marshall",
+      "label": "Barry Marshall / Helicobacter pylori self-experiment"
+    },
+    {
+      "id": "ch04.ex.laffin",
+      "label": "Pam Laffin antismoking campaign"
+    },
+    {
+      "id": "ch04.ex.bbs",
+      "label": "Beyond War nuclear BB demonstration"
+    },
+    {
+      "id": "ch04.ex.reagan",
+      "label": "Ronald Reagan's 1980 testable question"
+    },
+    {
+      "id": "ch04.ex.safexpress",
+      "label": "Safexpress / Harry Potter launch logistics"
+    }
+  ],
+  "notYours": [
+    "Aesop's Fox and the Grapes",
+    "American Legacy Foundation truth campaign",
+    "Boeing 727 / LaGuardia Runway 4-22",
+    "Floyd Lee / Pegasus dining facility",
+    "Galileo and Saturn's changing appearance",
+    "Georgia State Safe Night Out accounting case",
+    "Herb Kelleher / Southwest Airlines",
+    "James P. Grant / oral rehydration salts packet",
+    "Jane Elliott's blue-eyes/brown-eyes exercise",
+    "Jared Fogle / Subway campaign",
+    "Jeff Hawkins / PalmPilot wooden prototype",
+    "John F. Kennedy's lunar goal",
+    "Julian Orr / Xerox copier technicians",
+    "Masaru Ibuka / Sony pocketable radio",
+    "Nora Ephron's Journalism 101 lead",
+    "Nordstrom's shirt-ironing service story",
+    "Pham and Taylor mental-simulation experiment",
+    "Sheena Iyengar and Mark Lepper choice experiments",
+    "Small, Loewenstein, and Slovic Rokia experiment",
+    "Stephen Denning / World Bank Zambia story"
+  ],
+  "cast": [
+    "Logan",
+    "Emma",
+    "Cecile",
+    "Trent"
+  ],
+  "answerIndexPattern": [
+    1,
+    2,
+    0,
+    2,
+    0,
+    1,
+    1,
+    0,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on launched in early",
+    "flavor (ch01): venue: a shared calendar invite",
+    "flavor (ch01): venue: a handwritten note on the counter",
+    "flavor (ch01): frame: a first attempt at about percent of the decline that gets corrected",
+    "flavor (ch01): frame: a first encounter with about percent of the decline that sets a benchmark",
+    "flavor (ch02): venue: a text thread with a friend"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a shared photo album",
+    "venue: a working note on about percent of the decline",
+    "venue: a working note on college freshmen",
+    "frame: two stakeholders disagree about anti litter campaign in before deciding",
+    "frame: a first encounter with college freshmen that sets a benchmark"
+  ],
+  "architectureFamily": "misconception-reversal",
+  "openerType": "claim",
+  "challengeFrame": "before-your-next-X",
+  "practiceShape": "single-imperative",
+  "exampleLenses": [
+    "outsider-witness",
+    "numbers-detective",
+    "prop-tableau"
+  ],
+  "practiceVerb": "write",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "rather",
+    "later",
+    "audience",
+    "first",
+    "story",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "at-the-demand",
+      "outcome": "failure",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "single-imperative",
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script"
+  ],
+  "quizStemShapes": [
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority"
+  ],
+  "quizFailureModes": [
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction"
+  ],
+  "questionFactOrder": [
+    2,
+    3,
+    4,
+    9,
+    8,
+    1,
+    7,
+    5,
+    6
+  ],
+  "memorableShapes": [
+    "cost-statement",
+    "pointed-question",
+    "imperative"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "sensory-speak",
+    "mechanism-speak"
+  ],
+  "shellRegister": "artifact-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Barry Marshall / Helicobacter pylori self-experiment",
+    "caseId": "ch04.ex.marshall",
+    "aliases": [
+      "Barry Marshall / Helicobacter pylori self-experiment",
+      "Helicobacter",
+      "Barry",
+      "Marshall"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because arbitrary eye color immediately changed status, privileges, and treatment, pupils encountered discrimination as an operating system rather than a vocabulary word.",
+    "next": "Because the constructed individual gave attention a single human target, participants could form an affective response more readily than from aggregate figures."
+  },
+  "totalChapters": 6
+}

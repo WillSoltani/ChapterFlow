@@ -1,0 +1,37 @@
+Chapter 7 focus: Disclosure becomes useful when complex information is timely, standardized, machine-readable, and available to trusted choice engines. Dense fine print can satisfy a legal formality while leaving the decision opaque.
+
+Core claim: Information helps only when people or their tools can convert it into a comparison tied to actual use.
+
+Central concept (smart disclosure):
+  The timely release of relevant data in standardized, machine-readable forms that consumers and intermediaries can use to compare options.
+  Why it matters: It shifts disclosure from unreadable paperwork to reusable data that can expose total cost and personalize recommendations.
+
+Key claims:
+- Standard units make competing offers comparable.
+- Machine-readable formats let software process complexity that individuals cannot.
+- Personal usage history improves matching between plans and needs.
+- Choice engines can reveal hidden and partitioned prices.
+- Terms-and-conditions volume can obscure rather than inform.
+- Data portability limits the incumbent advantage created by stored customer history.
+
+Named examples:
+- White House OIRA / 2011 Smart Disclosure memorandum: The Office of Information and Regulatory Affairs issued a 2011 memorandum defining smart disclosure around timely, standardized, machine-readable data. It emphasized direct consumer access and third-party tools that translate complex records into decisions. (teaches: Disclosure policy should be designed for reuse, not merely publication.)
+- United Kingdom midata initiative: The UK midata program encouraged firms to release personal transaction and usage data in portable electronic formats. Energy customers could combine their own consumption history with tariff data so comparison services could identify a better plan. (teaches: Personal data portability can turn a generic price table into a user-specific recommendation.)
+- Federal Trade Commission / hotel drip pricing: Hotel booking can display a base room price before adding mandatory resort or service fees later in the path. FTC work on drip pricing shows how partitioning charges impedes comparison of the total price. (teaches: A visible headline price is not informative when unavoidable charges remain hidden until late.)
+
+Hard edge / typical misreading:
+  More disclosure is not automatically smarter disclosure. Dumping data, lengthening fine print, or giving a dominant platform exclusive access can increase burden and market power rather than improve choice.
+
+Voice cues observed in this chapter:
+- defines a policy term with operational criteria
+- uses a government memorandum as an anchor
+- moves across hotels, streaming, finance, and energy
+- focuses on intermediaries as well as individual readers
+
+Forbidden leakage (concepts that belong to later chapters):
+- subscription-cancellation sludge
+- mortgage-file and credit-card applications
+- insurance dominance comparisons
+
+Paraphrase notes:
+Conventional disclosure often mistakes availability for usefulness. The Office of Information and Regulatory Affairs' September 2011 memorandum supplied a stricter test: relevant information should be timely, standardized, machine-readable, and available to consumers or intermediaries that can translate it. The United Kingdom's midata initiative shows the personalized version. An energy customer can release actual usage history and combine it with tariff data, allowing a comparison service to calculate which plan fits that household rather than naming one generic winner. Hotel drip pricing shows the failure smart disclosure is meant to correct. A booking path anchors the shopper on a base price, then reveals a mandatory resort fee after comparison effort has already been spent. The fee may be disclosed somewhere, but the total cost was not usable at the moment it mattered. Common units and structured fields let choice engines expose that total, compare many attributes, and incorporate past behavior. Data portability also matters because an incumbent such as a streaming platform may remember preferences better than the customer can reproduce them, creating lock-in without a formal ban. The hard edge is information overload. Long terms and conditions, raw data dumps, and exclusive platform access can satisfy a rule while deepening confusion. Smart disclosure is therefore an engineering standard: identify the decision, provide the consequential data before commitment, use common definitions, and let trusted tools perform the comparison. Grounding anchors: September 2011 OIRA memorandum; standardized machine-readable consumer data; UK midata consumer-data program; energy usage records paired with tariff comparisons; mandatory hotel resort fees; charges revealed after the initial room price.

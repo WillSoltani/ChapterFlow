@@ -24,7 +24,7 @@
  */
 
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { test } from "./harness.js";
@@ -61,6 +61,8 @@ type CorpusUnit = {
   sealedChapterDiagnostic: number;
   sealedBand: string;
   authoringSource: string;
+  frozenInputs: Array<{ relPath: string; sha256: string }>;
+  researchRunId: string;
   provenanceChain: ProvenanceChain;
 };
 
@@ -229,35 +231,50 @@ test("the three sealed diagnostics are the exact frozen calibration values", () 
 
 // ── (d) UNRESOLVED authoringSource ⇒ not-ready-for-bakeoff, fail-closed ──────
 
-test("every unit's authoringSource is the explicit UNRESOLVED fail-closed state", () => {
+test("every unit's authoringSource is a RESOLVED frozen-brief pointer (Stage-B freeze, L-44)", () => {
   const manifest = readManifest();
   for (const unit of manifest.units) {
-    assert.equal(unit.authoringSource, "UNRESOLVED",
-      `${unit.unit} authoringSource must be the explicit UNRESOLVED marker (no owner draft is registered)`);
+    const nn = String(unit.chapterNumber).padStart(2, "0");
+    assert.equal(
+      unit.authoringSource,
+      `scripts/book/prompts/chapterflow-v24-author-pipeline/state/books/${unit.bookId}/runs/v23-current/briefs/ch${nn}.brief.json`,
+      `${unit.unit} authoringSource must point at its frozen chapter brief`,
+    );
+    assert.ok(isResolvedAuthoringSource(unit.authoringSource), `${unit.unit} authoringSource must pass the resolution allowlist`);
+    assert.ok(existsSync(resolve(REPOSITORY_ROOT, unit.authoringSource)), `${unit.unit} authoringSource file must exist on disk`);
   }
 });
 
-test("UNRESOLVED authoringSource drives a not-ready-for-bakeoff verdict — no hidden default", () => {
+test("every frozenInputs entry re-hashes to its recorded SHA-256 (the frozen shared-input set is byte-bound)", () => {
+  const manifest = readManifest();
+  for (const unit of manifest.units) {
+    assert.ok(Array.isArray(unit.frozenInputs) && unit.frozenInputs.length === 6,
+      `${unit.unit} must freeze exactly 6 shared inputs (index, sidecar, packet, brief json+md, design)`);
+    for (const fi of unit.frozenInputs) {
+      const recomputed = sha256Hex(readFileSync(resolve(REPOSITORY_ROOT, fi.relPath)));
+      assert.equal(recomputed, fi.sha256, `${unit.unit} frozen input drifted since the freeze: ${fi.relPath}`);
+    }
+    // The authoringSource pointer itself is a member of the frozen set.
+    assert.ok(unit.frozenInputs.some((fi) => fi.relPath === unit.authoringSource),
+      `${unit.unit} authoringSource must be hash-bound under frozenInputs`);
+  }
+});
+
+test("RESOLVED authoringSource drives the ready-for-bakeoff verdict — and UNRESOLVED still vetoes (no hidden default)", () => {
   const manifest = readManifest();
   const derived = deriveBakeoffReadiness(manifest.units);
-  assert.equal(derived, "not-ready-for-bakeoff");
-  assert.equal(manifest.bakeoffReadiness, "not-ready-for-bakeoff");
+  assert.equal(derived, "ready-for-bakeoff");
+  assert.equal(manifest.bakeoffReadiness, "ready-for-bakeoff");
   assert.equal(manifest.bakeoffReadiness, derived, "stored bakeoffReadiness must equal the independent re-derivation");
-  assert.ok(manifest.bakeoffReadinessReason.length > 0, "a fail-closed verdict must carry a stated reason");
+  assert.ok(manifest.bakeoffReadinessReason.length > 0, "the verdict must carry a stated reason");
 
-  // Prove the derivation is state-driven, not a hardcoded string: resolving
-  // every unit's authoringSource (on an in-memory copy only) must flip the
-  // SAME derivation function to ready-for-bakeoff.
-  const resolvedUnits = manifest.units.map((u) => ({ ...u, authoringSource: "docs/example/resolved-draft.md#ch" }));
-  assert.equal(deriveBakeoffReadiness(resolvedUnits), "ready-for-bakeoff",
-    "the readiness derivation must respond to authoringSource state, not always report not-ready");
-
-  // And a single remaining UNRESOLVED unit must still veto readiness.
-  const partiallyResolved = manifest.units.map((u, index) => ({
+  // The derivation stays state-driven: a single UNRESOLVED unit (in-memory
+  // copy only) must veto the whole packet.
+  const partiallyUnresolved = manifest.units.map((u, index) => ({
     ...u,
-    authoringSource: index === 0 ? "UNRESOLVED" : "docs/example/resolved-draft.md#ch",
+    authoringSource: index === 0 ? "UNRESOLVED" : u.authoringSource,
   }));
-  assert.equal(deriveBakeoffReadiness(partiallyResolved), "not-ready-for-bakeoff",
+  assert.equal(deriveBakeoffReadiness(partiallyUnresolved), "not-ready-for-bakeoff",
     "a single UNRESOLVED unit must veto the whole packet");
 });
 

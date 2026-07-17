@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "the-happiness-hypothesis-ch11",
+  "chapterNumber": 11,
+  "title": "On Balance",
+  "coreMove": "Because Each side acquires meaning through contrast with the other and can transform as conditions change.",
+  "thesis": "Yin and Yang describe contrary forces as complementary and interdependent rather than absolutely separate.",
+  "readerPromise": "After this chapter, a reader can because Each side acquires meaning through contrast with the other and can transform as conditions change.",
+  "ownedCases": [
+    {
+      "id": "ch11.example.yinyang",
+      "label": "Yin and Yang / interdependent opposites"
+    },
+    {
+      "id": "ch11.example.heraclitus",
+      "label": "Heraclitus / conflict of opposites"
+    },
+    {
+      "id": "ch11.example.buddhafranklin",
+      "label": "Buddhist nonattachment and Benjamin Franklin's striving"
+    },
+    {
+      "id": "ch11.example.aristotle",
+      "label": "Aristotle / virtue plus external goods"
+    }
+  ],
+  "notYours": [
+    "Aaron Beck / cognitive therapy",
+    "Alois Stutzer and Bruno Frey / commuting paradox",
+    "Antonio Damasio / ventromedial prefrontal patients",
+    "Aristotle / virtue and the mean",
+    "Benjamin Franklin / thirteen-virtue chart",
+    "Brett Pelham and colleagues / implicit egotism",
+    "Buddhist insight meditation / attentional training",
+    "C. Daniel Batson / moral-hypocrisy task",
+    "Christopher Peterson and Martin Seligman / VIA classification",
+    "Cindy Hazan and Phillip Shaver / adult romantic attachment",
+    "Dacher Keltner and Jonathan Haidt / awe prototype",
+    "Dan McAdams / redemptive life stories",
+    "Dan McAdams / three levels of personality",
+    "Daniel Wegner / white-bear suppression experiments",
+    "David Burns / anger inventory",
+    "Deanna Kuhn and David Perkins / argument evaluation",
+    "Dennis Regan / Coca-Cola reciprocity experiment",
+    "Harry Harlow / cloth and wire surrogate mothers",
+    "Hazan and colleagues / transfer of attachment functions",
+    "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project"
+  ],
+  "cast": [
+    "Blake",
+    "Ethan",
+    "Katherine",
+    "Alexis"
+  ],
+  "answerIndexPattern": [
+    2,
+    2,
+    2,
+    1,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on characteristic adaptations and narrative identity",
+    "flavor (ch01): venue: a working note on cloth covered surrogate mother",
+    "flavor (ch01): venue: a dinner table",
+    "flavor (ch01): frame: a first attempt at anomie as weakened normative structure that gets corrected",
+    "flavor (ch01): frame: a first encounter with anomie as weakened normative structure that sets a benchmark",
+    "flavor (ch02): venue: a shared grocery list"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on automatic thoughts recorded in writing",
+    "venue: a working note on caregiver separation and institutional care",
+    "venue: a working note on clear goals and immediate feedback",
+    "frame: two stakeholders disagree before the protagonist chooses",
+    "frame: one sensory detail that turns an ordinary moment into a kept memory"
+  ],
+  "architectureFamily": "historical-narrative",
+  "openerType": "claim",
+  "challengeFrame": "replace-one-Y",
+  "practiceShape": "measure-one-number",
+  "exampleLenses": [
+    "counterfactual",
+    "outsider-witness",
+    "numbers-detective"
+  ],
+  "practiceVerb": "say",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "rather",
+    "across",
+    "different",
+    "life",
+    "repeated",
+    "consequences"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "partial",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "measure-one-number",
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script"
+  ],
+  "quizStemShapes": [
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis"
+  ],
+  "quizFailureModes": [
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing"
+  ],
+  "questionFactOrder": [
+    3,
+    6,
+    2,
+    8,
+    7,
+    5,
+    9,
+    1,
+    4
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "cost-speak",
+    "question-speak"
+  ],
+  "shellRegister": "cost-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Blake",
+    "aliases": [
+      "Blake"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because High-quality performance, responsibility to others, and personal meaning can diverge, so all three must be examined."
+  },
+  "totalChapters": 11
+}

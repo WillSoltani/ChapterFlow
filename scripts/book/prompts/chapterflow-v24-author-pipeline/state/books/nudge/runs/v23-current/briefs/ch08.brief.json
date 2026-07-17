@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "nudge-ch08",
+  "chapterNumber": 8,
+  "title": "#Sludge",
+  "coreMove": "This mechanism operates because participants underweighted the future hassle of completing and returning the form.",
+  "thesis": "In the Letzler–Tasoff experiment, expected rebate redemption exceeded actual redemption by 49 percentage points.",
+  "readerPromise": "After this chapter, a reader can this mechanism operates because participants underweighted the future hassle of completing and returning the form.",
+  "ownedCases": [
+    {
+      "id": "ch08.ex.1",
+      "label": "Robert Letzler and Joshua Tasoff / rebate redemption experiment"
+    },
+    {
+      "id": "ch08.ex.2",
+      "label": "University of Michigan / HAIL Scholarship"
+    },
+    {
+      "id": "ch08.ex.3",
+      "label": "US federal paperwork burden"
+    }
+  ],
+  "notYours": [
+    "Beijing tax authority / restaurant receipt lottery",
+    "Brigitte Madrian and Dennis Shea / automatic 401(k) enrollment",
+    "Bruce Sacerdote / randomly assigned Dartmouth roommates",
+    "Christmas Club savings accounts",
+    "Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis",
+    "Daniel Kahneman and Amos Tversky / anchoring wheel experiment",
+    "Donate Life America / motor-vehicle registration prompts",
+    "Eric Johnson and Daniel Goldstein / European donor defaults",
+    "Federal Trade Commission / hotel drip pricing",
+    "George Loewenstein / hot–cold empathy gap",
+    "Gmail / forgotten-attachment warning",
+    "Hendrik Bruns and Yavor Paunov / transparency review",
+    "Henrik Cronqvist and Richard Thaler / Swedish portfolio analysis",
+    "Howard Kunreuther / flood and earthquake insurance behavior",
+    "Hunt Allcott / OPOWER Home Energy Reports",
+    "Hyde Park bookstores and Concord Bookshop versus Amazon",
+    "John Gathergood, Neale Mahoney, Neil Stewart, and Jörg Weber / balance matching",
+    "John Rawls / publicity principle",
+    "Kahneman and Tversky / Linda conjunction problem",
+    "NHS England and Wales / soft opt-out"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    0,
+    2,
+    0,
+    2,
+    1,
+    1,
+    2,
+    1,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a handwritten note on the counter",
+    "flavor (ch01): venue: a to-do list on the whiteboard",
+    "flavor (ch01): venue: a shared grocery list",
+    "flavor (ch01): frame: a first attempt at about treatment and control households that gets corrected",
+    "flavor (ch01): frame: a first encounter with about treatment and control households that sets a benchmark",
+    "flavor (ch02): venue: a text thread with a friend"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a returned phone call",
+    "venue: a back porch step",
+    "venue: a kitchen counter",
+    "frame: two stakeholders disagree about eight hospitals in eight cities before deciding",
+    "frame: a peak moment recalled vividly long after the day it happened"
+  ],
+  "architectureFamily": "everyday-first-person",
+  "openerType": "statistic",
+  "challengeFrame": "teach-it-to-someone",
+  "practiceShape": "if-then-trigger",
+  "exampleLenses": [
+    "dialogue-beat",
+    "before-after-ledger",
+    "postmortem"
+  ],
+  "practiceVerb": "move",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "mechanism",
+    "operates",
+    "rather",
+    "choice",
+    "attention",
+    "cost"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "partial",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "if-then-trigger",
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script"
+  ],
+  "quizStemShapes": [
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain"
+  ],
+  "quizFailureModes": [
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger"
+  ],
+  "questionFactOrder": [
+    1,
+    5,
+    3,
+    2,
+    8,
+    4,
+    9,
+    6,
+    7
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "question-speak",
+    "contrast-speak"
+  ],
+  "shellRegister": "cost-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Robert Letzler and Joshua Tasoff / rebate redemption experiment",
+    "caseId": "ch08.ex.1",
+    "aliases": [
+      "Robert Letzler and Joshua Tasoff / rebate redemption experiment",
+      "Tasoff",
+      "Robert",
+      "Letzler",
+      "Joshua"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "This mechanism operates because structured data can be processed and compared by software rather than requiring each consumer to decode prose.",
+    "next": "This mechanism operates because the default converted nonresponse from nonparticipation into participation while preserving opt-out."
+  },
+  "totalChapters": 15
+}

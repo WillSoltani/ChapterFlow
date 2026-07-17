@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 1,
+  "chapterTitle": "The Divided Self",
+  "focus": "Human conduct emerges from several partially independent systems, especially a fast automatic system and a slower controlled system. Deliberate reasoning can guide automatic impulses, but it cannot simply command them.",
+  "coreClaim": "Self-direction improves when conscious reasoning is treated as a skilled adviser that trains automatic responses instead of as an all-powerful executive.",
+  "centralConcept": {
+    "id": "ch01.concept",
+    "name": "rider and elephant",
+    "plainDefinition": "The rider represents language-based, controlled reasoning; the elephant represents the much larger set of automatic emotions, intuitions, and motivations that usually initiate action.",
+    "whyItMatters": "Failures of will stop looking like proof of bad character and become coordination problems. Change then depends on shaping cues, habits, and emotional learning while using reason for foresight and planning."
+  },
+  "keyClaims": [
+    "The mind is divided along several lines: mind and body, left and right hemispheres, older and newer neural systems, and controlled versus automatic processing.",
+    "Automatic processes are fast and effortless because they were shaped for reliable action under recurrent conditions.",
+    "Controlled reasoning is slow and capacity-limited, but it can imagine distant outcomes, learn from other people, and compare alternatives.",
+    "Explanations of one's own behavior often arrive after an action and may rationalize causes that were never consciously available.",
+    "Suppressing a thought can keep an automatic monitoring process searching for it, making rebound more likely.",
+    "Durable self-control relies on training automatic responses rather than repeatedly trying to overpower them."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch01.example.gazzaniga",
+      "label": "Michael Gazzaniga / split-brain patients",
+      "summary": "Patients underwent corpus-callosum surgery to reduce otherwise intractable epilepsy. When information or an instruction reached only the right hemisphere, the speaking left hemisphere could supply a fluent explanation for an action without access to its actual trigger. Verified anchors: corpus callosum surgically severed for intractable epilepsy; left visual field projects initially to the right hemisphere.",
+      "teachesWhat": "A coherent verbal explanation can be an interpreter's reconstruction rather than direct access to the causes of behavior.",
+      "hardSpecifics": [
+        "corpus callosum surgically severed for intractable epilepsy",
+        "left visual field projects initially to the right hemisphere",
+        "speech-dominant left hemisphere supplied post-action explanations"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch01.example.damasio",
+      "label": "Antonio Damasio / ventromedial prefrontal patients",
+      "summary": "Neurological patients with damage in ventromedial prefrontal regions could retain intelligence and discuss options yet make disastrously poor everyday decisions. Missing emotional valuation left calculation without a practical way to rank choices. Verified anchors: ventromedial prefrontal cortex damage; preserved conventional intelligence.",
+      "teachesWhat": "Reasoning needs affective signals; less emotion does not automatically yield better judgment.",
+      "hardSpecifics": [
+        "ventromedial prefrontal cortex damage",
+        "preserved conventional intelligence",
+        "impaired real-life decision making"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch01.example.wegner",
+      "label": "Daniel Wegner / white-bear suppression experiments",
+      "summary": "Participants instructed not to think about a white bear had to monitor whether the forbidden thought had returned. Later access to the thought increased, especially after suppression or when mental load made deliberate control harder. Verified anchors: white-bear target thought; five-minute suppression period in the original paradigm.",
+      "teachesWhat": "A controlled attempt to ban a thought can recruit an automatic search that keeps the thought accessible.",
+      "hardSpecifics": [
+        "white-bear target thought",
+        "five-minute suppression period in the original paradigm",
+        "post-suppression rebound effect"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch01.example.medea",
+      "label": "Medea's conflict between desire and reason",
+      "summary": "The classical scene presents someone who recognizes the better course while feeling pulled toward the worse one. Its durable power comes from describing conflict among systems rather than a simple absence of knowledge.",
+      "teachesWhat": "Knowing what is right and being moved to do it are separable psychological achievements.",
+      "hardSpecifics": [
+        "Medea in Ovid's Metamorphoses",
+        "conflict between loyalty to her father and desire for Jason"
+      ],
+      "realWorld": false
+    }
+  ],
+  "hardEdge": "The rider is not useless and the elephant is not a brutish enemy. Conscious thought supplies foresight, language, and social learning, while automatic systems supply valuation and most behavioral energy; effective agency requires cooperation between them.",
+  "voiceCues": [
+    "begins with ancient depictions of inner conflict",
+    "moves through four different meanings of a divided self",
+    "uses neurological cases before introducing the rider-and-elephant synthesis",
+    "turns a technical distinction into a concrete animal-control metaphor"
+  ],
+  "forbiddenLeakage": [
+    "the three interventions of meditation, cognitive therapy, and SSRIs",
+    "the happiness formula and hedonic adaptation",
+    "moral hypocrisy and the inner lawyer"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch01.fact.1",
+      "claim": "The corpus callosum is the main cortical communication route between the cerebral hemispheres.",
+      "becauseMechanism": "Because It carries axonal connections that transfer information across the left and right cerebral cortices.",
+      "commonError": "The hemispheres normally operate as fully independent brains.",
+      "errorIsWhy": "An intact corpus callosum ordinarily integrates their specialized processing.",
+      "derivedFrom": "ch01.example.gazzaniga"
+    },
+    {
+      "id": "ch01.fact.2",
+      "claim": "Callosotomy was used in the studied patients to alleviate severe, otherwise intractable epilepsy.",
+      "becauseMechanism": "Because Severing major interhemispheric pathways can limit the spread of seizure activity from one hemisphere to the other.",
+      "commonError": "Researchers severed healthy brains merely to study consciousness.",
+      "errorIsWhy": "The operations were clinical treatments for debilitating epilepsy, and research followed those surgeries.",
+      "derivedFrom": "ch01.example.gazzaniga"
+    },
+    {
+      "id": "ch01.fact.3",
+      "claim": "In classic split-brain tasks, the speaking hemisphere could explain behavior whose initiating information had been delivered to the other hemisphere.",
+      "becauseMechanism": "Because The language system generated a coherent interpretation despite lacking access to the isolated trigger.",
+      "commonError": "A confident explanation of one's action always reports the action's true cause.",
+      "errorIsWhy": "The interpreter can fill an information gap with a plausible reconstruction.",
+      "derivedFrom": "ch01.example.gazzaniga"
+    },
+    {
+      "id": "ch01.fact.4",
+      "claim": "Ventromedial prefrontal damage can impair everyday decision making even when standard intellectual abilities remain comparatively intact.",
+      "becauseMechanism": "Because Emotional valuation signals help rank options, so calculation alone may not select an adaptive course.",
+      "commonError": "Removing emotion produces purely rational and therefore superior decisions.",
+      "errorIsWhy": "Some emotional signals are inputs to effective choice rather than noise that reason must eliminate.",
+      "derivedFrom": "ch01.example.damasio"
+    },
+    {
+      "id": "ch01.fact.5",
+      "claim": "Post-suppression rebound for a target thought has been detected consistently in meta-analytic work.",
+      "becauseMechanism": "Because Monitoring for the forbidden thought preserves its accessibility after the deliberate suppression effort ends.",
+      "commonError": "Trying harder not to think something reliably erases it from awareness.",
+      "errorIsWhy": "The monitoring component of suppression must keep checking for the very representation being avoided.",
+      "derivedFrom": "ch01.example.wegner",
+      "replicationStatus": "robust"
+    },
+    {
+      "id": "ch01.fact.6",
+      "claim": "Immediate ironic enhancement during suppression is most evident under added cognitive load rather than in every setting.",
+      "becauseMechanism": "Because Extra demands consume the controlled resources needed to counter the automatic monitoring process.",
+      "commonError": "White-bear experiments prove every act of thought suppression backfires immediately.",
+      "errorIsWhy": "Later meta-analysis found the immediate effect conditional, while rebound after suppression was more consistent.",
+      "derivedFrom": "ch01.example.wegner",
+      "replicationStatus": "mixed"
+    },
+    {
+      "id": "ch01.fact.7",
+      "claim": "Automatic processing is typically faster and less effortful than controlled processing.",
+      "becauseMechanism": "Because It uses learned or evolved response routines without requiring serial conscious deliberation.",
+      "commonError": "Automatic means random, inaccurate, or unconscious in exactly the same way in every task.",
+      "errorIsWhy": "Automaticity describes processing demands and access, not a universal verdict about accuracy.",
+      "derivedFrom": "ch01.concept"
+    },
+    {
+      "id": "ch01.fact.8",
+      "claim": "Controlled processing can compare distant outcomes and exchange explicit information through language.",
+      "becauseMechanism": "Because Working memory and symbolic representation allow alternatives, rules, and future consequences to be held in view.",
+      "commonError": "Because automatic systems often initiate action, deliberate reasoning has no causal role.",
+      "errorIsWhy": "Planning, instruction, and repeated practice let controlled thought reshape later automatic responses.",
+      "derivedFrom": "ch01.concept"
+    },
+    {
+      "id": "ch01.fact.9",
+      "claim": "Weakness of will can occur even when a person correctly identifies the better action.",
+      "becauseMechanism": "Because Propositional knowledge and motivational force are produced by partly distinct systems.",
+      "commonError": "Anyone who acts against better judgment must not really understand the better choice.",
+      "errorIsWhy": "The Medea pattern and ordinary self-control failures separate knowing from being emotionally moved.",
+      "derivedFrom": "ch01.example.medea"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Four divisions of the self",
+      "members": [
+        "mind versus body",
+        "left versus right",
+        "new brain versus old brain",
+        "controlled versus automatic processing"
+      ]
+    }
+  ],
+  "paraphraseNotes": "Ancient descriptions of inner conflict become more precise when several distinct splits are separated. Bodily processes affect thought; the hemispheres have specialized functions; recently expanded cortical systems coexist with older motivational machinery; and controlled reasoning sits atop automatic processing. Michael Gazzaniga's callosotomy research makes limited access visible. Information shown to the right hemisphere can guide a response while the speech-dominant left hemisphere lacks the initiating cue, yet the verbal system may still produce a convincing explanation. That interpreter function warns against equating confidence with introspective access. Antonio Damasio's neurological cases provide the complementary lesson: people with ventromedial prefrontal damage may reason abstractly while failing at ordinary choices, showing that emotion helps assign value rather than merely disrupting logic. Daniel Wegner's white-bear paradigm adds a control failure. Deliberately excluding a thought requires an automatic monitor to keep checking for it; rebound is reliable after suppression, while immediate backfire is more conditional on cognitive load. These cases converge in the rider-and-elephant image. The rider can look ahead, read maps, share rules, and practice new responses. The elephant supplies rapid appraisal, pleasure, pain, and the energy that turns preference into action. Neither part should be romanticized. Pure impulse cannot plan across years, while pure calculation cannot create a stable ranking of what matters. Self-improvement therefore works indirectly: arrange environments, rehearse responses, and build emotional learning so that the automatic system increasingly wants what foresight recommends. The controlling mistake is to treat every failure as a shortage of information or moral resolve. Often the better diagnosis is that the rider has announced a destination without training the system that provides movement."
+}

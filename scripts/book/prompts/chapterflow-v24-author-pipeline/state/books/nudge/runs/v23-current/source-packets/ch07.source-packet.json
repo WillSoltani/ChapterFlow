@@ -1,0 +1,708 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch07",
+  "chapterNumber": 7,
+  "chapterTitle": "Smart Disclosure",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch07.source.json",
+  "sourceHash": "sha256:6c82714a4aebfceb9eafca71b56953ff317881d05137ebc382401cbf42b4f9b7",
+  "facts": [
+    {
+      "id": "ch07.fact.1",
+      "claim": "The 2011 OIRA memorandum defined smart disclosure around timely, standardized, machine-readable information.",
+      "mechanism": "This mechanism operates because structured data can be processed and compared by software rather than requiring each consumer to decode prose.",
+      "commonError": "Smart disclosure means posting any technically public document online.",
+      "whyWrong": "Publication without standardization or usability does not support comparison.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2011"
+      ],
+      "groundedEntities": [
+        "OIRA",
+        "Smart",
+        "Publication"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch07.fact.2",
+      "claim": "The UK midata initiative paired consumer access to personal records with third-party comparison tools.",
+      "mechanism": "This mechanism operates because portable usage history lets an engine calculate which offer fits the individual's actual pattern.",
+      "commonError": "A generic cheapest-plan ranking is always enough.",
+      "whyWrong": "The cheapest plan can vary with timing and quantity of use.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "The UK"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.2"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch07.fact.3",
+      "claim": "Hotel drip pricing reveals mandatory fees after presenting an initial room price.",
+      "mechanism": "This mechanism operates because late partitioned charges anchor the shopper on an incomplete price and make cross-site comparison costly.",
+      "commonError": "A mandatory resort fee is optional because it is listed separately.",
+      "whyWrong": "A charge required to complete the stay belongs in the total price.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Hotel"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.3"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch07.fact.4",
+      "claim": "Standard measurement units improve comparison across sellers.",
+      "mechanism": "This mechanism operates because a common denominator prevents each firm from presenting quantity or cost in the format most favorable to its product.",
+      "commonError": "Consumers can easily compare any two truthful measurements.",
+      "whyWrong": "Conversion effort and unfamiliar units can obscure meaningful differences.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2"
+      ],
+      "groundedEntities": [
+        "Standard",
+        "Consumers",
+        "Conversion"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.4"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch07.fact.5",
+      "claim": "A choice engine combines offer data with decision rules or user data to rank options.",
+      "mechanism": "This mechanism operates because computation translates many attributes into a manageable comparison matched to stated needs.",
+      "commonError": "A choice engine merely hosts advertisements from participating sellers.",
+      "whyWrong": "Its distinguishing function is structured comparison and recommendation.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.5"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch07.fact.6",
+      "claim": "Long terms-and-conditions documents can reduce effective understanding despite increasing nominal disclosure.",
+      "mechanism": "This mechanism operates because attention and comprehension are limited, so essential costs disappear inside low-value legal detail.",
+      "commonError": "A longer disclosure necessarily creates a more informed consumer.",
+      "whyWrong": "Information volume and usable knowledge are not the same.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Long",
+        "Information"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.6"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch07.fact.7",
+      "claim": "A platform's stored viewing or purchase history can create a switching advantage over its customer.",
+      "mechanism": "This mechanism operates because the incumbent remembers preferences and transactions that the user cannot easily reconstruct elsewhere.",
+      "commonError": "Data lock-in requires a contractual ban on switching.",
+      "whyWrong": "Loss of accumulated personalization can create a practical switching cost without a legal restriction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Data",
+        "Loss"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.7"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch07.fact.8",
+      "claim": "Smart disclosure can intensify competition by making hidden total costs easier to compare.",
+      "mechanism": "This mechanism operates because when standardized data exposes fees, firms lose the ability to compete through opacity.",
+      "commonError": "Disclosure affects only buyer education and cannot change seller behavior.",
+      "whyWrong": "Comparable offers alter which firms win customers and therefore what firms choose to price.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Smart",
+        "Disclosure",
+        "Comparable"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.8"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch07.fact.9",
+      "claim": "Timing is part of disclosure quality because information must appear before or during the relevant decision.",
+      "mechanism": "This mechanism operates because a fact learned after commitment cannot guide the choice that created the cost.",
+      "commonError": "A disclosure is equally useful whenever it is delivered.",
+      "whyWrong": "Late information may support a complaint but cannot prevent the original mistake.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Timing",
+        "Late"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch07.ex.1",
+      "label": "White House OIRA / 2011 Smart Disclosure memorandum",
+      "summary": "The Office of Information and Regulatory Affairs issued a 2011 memorandum defining smart disclosure around timely, standardized, machine-readable data. It emphasized direct consumer access and third-party tools that translate complex records into decisions.",
+      "realWorld": true,
+      "naturalSetting": "White House OIRA",
+      "hardSpecifics": [
+        "September 2011 OIRA memorandum",
+        "standardized machine-readable consumer data"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "September 2011 OIRA memorandum"
+      ]
+    },
+    {
+      "id": "ch07.ex.2",
+      "label": "United Kingdom midata initiative",
+      "summary": "The UK midata program encouraged firms to release personal transaction and usage data in portable electronic formats. Energy customers could combine their own consumption history with tariff data so comparison services could identify a better plan.",
+      "realWorld": true,
+      "naturalSetting": "United Kingdom",
+      "hardSpecifics": [
+        "UK midata consumer-data program",
+        "energy usage records paired with tariff comparisons"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch07.ex.3",
+      "label": "Federal Trade Commission / hotel drip pricing",
+      "summary": "Hotel booking can display a base room price before adding mandatory resort or service fees later in the path. FTC work on drip pricing shows how partitioning charges impedes comparison of the total price.",
+      "realWorld": true,
+      "naturalSetting": "Federal Trade Commission",
+      "hardSpecifics": [
+        "mandatory hotel resort fees",
+        "charges revealed after the initial room price"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Smart-disclosure requirements",
+      "members": [
+        "timely",
+        "standardized",
+        "machine-readable",
+        "consumer-accessible",
+        "usable by intermediaries"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch07.concept",
+      "kind": "concept",
+      "label": "smart disclosure",
+      "text": "The timely release of relevant data in standardized, machine-readable forms that consumers and intermediaries can use to compare options. It shifts disclosure from unreadable paperwork to reusable data that can expose total cost and personalize recommendations.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.ex.1",
+      "kind": "named_example",
+      "label": "White House OIRA / 2011 Smart Disclosure memorandum",
+      "text": "The Office of Information and Regulatory Affairs issued a 2011 memorandum defining smart disclosure around timely, standardized, machine-readable data. It emphasized direct consumer access and third-party tools that translate complex records into decisions. Disclosure policy should be designed for reuse, not merely publication.",
+      "hardSpecifics": [
+        "September 2011 OIRA memorandum",
+        "standardized machine-readable consumer data"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.ex.2",
+      "kind": "named_example",
+      "label": "United Kingdom midata initiative",
+      "text": "The UK midata program encouraged firms to release personal transaction and usage data in portable electronic formats. Energy customers could combine their own consumption history with tariff data so comparison services could identify a better plan. Personal data portability can turn a generic price table into a user-specific recommendation.",
+      "hardSpecifics": [
+        "UK midata consumer-data program",
+        "energy usage records paired with tariff comparisons"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.ex.3",
+      "kind": "named_example",
+      "label": "Federal Trade Commission / hotel drip pricing",
+      "text": "Hotel booking can display a base room price before adding mandatory resort or service fees later in the path. FTC work on drip pricing shows how partitioning charges impedes comparison of the total price. A visible headline price is not informative when unavoidable charges remain hidden until late.",
+      "hardSpecifics": [
+        "mandatory hotel resort fees",
+        "charges revealed after the initial room price"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.1",
+      "kind": "testable_fact",
+      "label": "The 2011 OIRA memorandum defined smart disclosure around timely, standardized, machine-readable information.",
+      "text": "The 2011 OIRA memorandum defined smart disclosure around timely, standardized, machine-readable information. This mechanism operates because structured data can be processed and compared by software rather than requiring each consumer to decode prose. Smart disclosure means posting any technically public document online. Publication without standardization or usability does not support comparison.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.2",
+      "kind": "testable_fact",
+      "label": "The UK midata initiative paired consumer access to personal records with third-party comparison tools.",
+      "text": "The UK midata initiative paired consumer access to personal records with third-party comparison tools. This mechanism operates because portable usage history lets an engine calculate which offer fits the individual's actual pattern. A generic cheapest-plan ranking is always enough. The cheapest plan can vary with timing and quantity of use.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.3",
+      "kind": "testable_fact",
+      "label": "Hotel drip pricing reveals mandatory fees after presenting an initial room price.",
+      "text": "Hotel drip pricing reveals mandatory fees after presenting an initial room price. This mechanism operates because late partitioned charges anchor the shopper on an incomplete price and make cross-site comparison costly. A mandatory resort fee is optional because it is listed separately. A charge required to complete the stay belongs in the total price.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.4",
+      "kind": "testable_fact",
+      "label": "Standard measurement units improve comparison across sellers.",
+      "text": "Standard measurement units improve comparison across sellers. This mechanism operates because a common denominator prevents each firm from presenting quantity or cost in the format most favorable to its product. Consumers can easily compare any two truthful measurements. Conversion effort and unfamiliar units can obscure meaningful differences.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.5",
+      "kind": "testable_fact",
+      "label": "A choice engine combines offer data with decision rules or user data to rank options.",
+      "text": "A choice engine combines offer data with decision rules or user data to rank options. This mechanism operates because computation translates many attributes into a manageable comparison matched to stated needs. A choice engine merely hosts advertisements from participating sellers. Its distinguishing function is structured comparison and recommendation.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.6",
+      "kind": "testable_fact",
+      "label": "Long terms-and-conditions documents can reduce effective understanding despite increasing nominal disclosure.",
+      "text": "Long terms-and-conditions documents can reduce effective understanding despite increasing nominal disclosure. This mechanism operates because attention and comprehension are limited, so essential costs disappear inside low-value legal detail. A longer disclosure necessarily creates a more informed consumer. Information volume and usable knowledge are not the same.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.7",
+      "kind": "testable_fact",
+      "label": "A platform's stored viewing or purchase history can create a switching advantage over its customer.",
+      "text": "A platform's stored viewing or purchase history can create a switching advantage over its customer. This mechanism operates because the incumbent remembers preferences and transactions that the user cannot easily reconstruct elsewhere. Data lock-in requires a contractual ban on switching. Loss of accumulated personalization can create a practical switching cost without a legal restriction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.8",
+      "kind": "testable_fact",
+      "label": "Smart disclosure can intensify competition by making hidden total costs easier to compare.",
+      "text": "Smart disclosure can intensify competition by making hidden total costs easier to compare. This mechanism operates because when standardized data exposes fees, firms lose the ability to compete through opacity. Disclosure affects only buyer education and cannot change seller behavior. Comparable offers alter which firms win customers and therefore what firms choose to price.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.9",
+      "kind": "testable_fact",
+      "label": "Timing is part of disclosure quality because information must appear before or during the relevant decision.",
+      "text": "Timing is part of disclosure quality because information must appear before or during the relevant decision. This mechanism operates because a fact learned after commitment cannot guide the choice that created the cost. A disclosure is equally useful whenever it is delivered. Late information may support a complaint but cannot prevent the original mistake.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.framework.smart.disclosure.requirements",
+      "kind": "framework",
+      "label": "Smart-disclosure requirements",
+      "text": "timely, standardized, machine-readable, consumer-accessible, usable by intermediaries",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "2011",
+    "2"
+  ],
+  "allowedEntities": [
+    "Smart Disclosure",
+    "Disclosure",
+    "Dense",
+    "Information",
+    "Standard",
+    "Machine-readable",
+    "Personal",
+    "Choice",
+    "Terms-and-conditions",
+    "Data",
+    "White House OIRA",
+    "The Office",
+    "Regulatory Affairs",
+    "September",
+    "OIRA",
+    "United Kingdom",
+    "The UK",
+    "Energy",
+    "Federal Trade Commission",
+    "Hotel",
+    "FTC",
+    "More",
+    "Dumping",
+    "Smart",
+    "Publication",
+    "Consumers",
+    "Conversion",
+    "Its",
+    "Long",
+    "Loss",
+    "Comparable",
+    "Timing",
+    "Late",
+    "Smart-disclosure",
+    "Conventional",
+    "Regulatory Affairs' September",
+    "The United Kingdom's",
+    "Common",
+    "Grounding",
+    "White House OIRA / 2011 Smart Disclosure memorandum",
+    "United Kingdom midata initiative",
+    "Federal Trade Commission / hotel drip pricing"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch07.ex.1",
+      "warning": "Keep examples about White House OIRA / 2011 Smart Disclosure memorandum source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch07.ex.2",
+      "warning": "Keep examples about United Kingdom midata initiative source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch07.ex.3",
+      "warning": "Keep examples about Federal Trade Commission / hotel drip pricing source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch07.fact.1"
+}

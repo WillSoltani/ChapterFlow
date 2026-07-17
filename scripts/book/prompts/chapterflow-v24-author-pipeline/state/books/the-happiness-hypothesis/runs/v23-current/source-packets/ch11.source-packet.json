@@ -1,0 +1,809 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "the-happiness-hypothesis",
+  "chapterId": "the-happiness-hypothesis-ch11",
+  "chapterNumber": 11,
+  "chapterTitle": "On Balance",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/the-happiness-hypothesis/20260717T094415142Z-1c996661-58d5-4e1d-9606-1e907d84ea3c/sidecars/source/ch11.source.json",
+  "sourceHash": "sha256:87d793a6014582ed547bc68f3483de21391ba8db576cd6b1e27a7763188a5602",
+  "facts": [
+    {
+      "id": "ch11.fact.1",
+      "claim": "Yin and Yang describe contrary forces as complementary and interdependent rather than absolutely separate.",
+      "mechanism": "Because Each side acquires meaning through contrast with the other and can transform as conditions change.",
+      "commonError": "Yin and Yang means every two opposing claims are equally true.",
+      "whyWrong": "The tradition concerns dynamic relation, not automatic epistemic equality.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2"
+      ],
+      "groundedEntities": [
+        "Yin",
+        "Yang",
+        "Because Each"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch11.fact.2",
+      "claim": "The familiar taijitu places a contrasting dot within each of its two halves.",
+      "mechanism": "Because The visual detail represents the presence or potential of one force within the other.",
+      "commonError": "The symbol depicts two sealed regions with no internal relation.",
+      "whyWrong": "Its curved boundary and opposite-colored dots depict mutual implication and transformation.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "2"
+      ],
+      "groundedEntities": [
+        "Because The",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch11.fact.3",
+      "claim": "Heraclitus used tension-based images such as the bow and lyre to connect opposition with harmony.",
+      "mechanism": "Because Opposing pulls can generate a stable functional form rather than cancel one another.",
+      "commonError": "Heraclitean harmony requires eliminating one side of a conflict.",
+      "whyWrong": "The image depends on maintained tension.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Heraclitus",
+        "Because Opposing",
+        "Heraclitean"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch11.fact.4",
+      "claim": "Buddhist nonattachment changes one's relationship to craving rather than requiring indifference to all people and outcomes.",
+      "mechanism": "Because Reducing compulsive identification with desire permits care and action without making well-being depend on total control.",
+      "commonError": "Nonattachment means emotional numbness and withdrawal from responsibility.",
+      "whyWrong": "Disciplined care can remain while clinging and possession are reduced.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Buddhist",
+        "Because Reducing",
+        "Nonattachment",
+        "Disciplined"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.4"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch11.fact.5",
+      "claim": "Franklin's virtue plan used active measurement and repeated practice to alter conduct.",
+      "mechanism": "Because Daily marks and weekly emphasis turned a general ideal into feedback about recurring behavior.",
+      "commonError": "Acceptance of temperament and circumstances makes deliberate habit training unnecessary.",
+      "whyWrong": "Some automatic responses remain changeable through structured repetition.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Franklin's",
+        "Because Daily",
+        "Acceptance",
+        "Some"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.5"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch11.fact.6",
+      "claim": "Aristotle's account of flourishing includes external goods as well as virtuous activity.",
+      "mechanism": "Because Friendship, material sufficiency, and political conditions provide opportunities and instruments for excellent action.",
+      "commonError": "Aristotelian virtue makes circumstances completely irrelevant to a good life.",
+      "whyWrong": "The Nicomachean Ethics explicitly recognizes that severe deprivation can obstruct flourishing.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Aristotle's",
+        "Because Friendship",
+        "Aristotelian",
+        "The Nicomachean Ethics"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.6"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch11.fact.7",
+      "claim": "Scientific findings and wisdom traditions answer partly different questions.",
+      "mechanism": "Because Empirical methods test descriptive and causal claims, while traditions also preserve practices, interpretations, and normative aims.",
+      "commonError": "A laboratory result can by itself determine what ends a person ought to value.",
+      "whyWrong": "Evidence constrains means and consequences but does not generate a complete moral ranking without value premises.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Scientific",
+        "Because Empirical",
+        "Evidence"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.7"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch11.fact.8",
+      "claim": "A valid principle can become harmful when applied beyond the conditions that make it valid.",
+      "mechanism": "Because Every heuristic selects some features and omits others, so unbounded application magnifies its blind spots.",
+      "commonError": "Once a maxim helps in one domain, consistency requires applying it everywhere.",
+      "whyWrong": "Scope conditions are part of responsible use rather than exceptions that weaken a principle.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Because Every",
+        "Once",
+        "Scope"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.8"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch11.fact.9",
+      "claim": "Complementary balance differs from taking the numerical midpoint between two positions.",
+      "mechanism": "Because The needed counterweight depends on evidence, stakes, and which excess is active in the present context.",
+      "commonError": "Wisdom always selects a fifty-fifty compromise.",
+      "whyWrong": "Some contexts require decisive action, rejection of a false claim, or an intentionally unequal weighting.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2",
+        "50"
+      ],
+      "groundedEntities": [
+        "Complementary",
+        "Because The",
+        "Wisdom",
+        "Some"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.9"
+      ],
+      "teachingPriority": 8
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch11.example.yinyang",
+      "label": "Yin and Yang / interdependent opposites",
+      "summary": "The Chinese symbol places a contrasting seed within each side and joins the two into one dynamic figure. It represents forces that define, limit, and transform one another rather than a battle that ends with one side's elimination.",
+      "realWorld": false,
+      "naturalSetting": "Yin",
+      "hardSpecifics": [
+        "ancient Chinese yin-yang tradition",
+        "dark and light halves joined in one circle",
+        "contrasting dot within each half",
+        "opposites understood as interdependent and transforming"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch11.example.heraclitus",
+      "label": "Heraclitus / conflict of opposites",
+      "summary": "Fragments associated with Heraclitus treat tension among opposites as constitutive of order rather than as mere failure. Harmony can depend on forces pulling against each other, as in a bow or lyre. Verified anchors: Heraclitus of Ephesus; pre-Socratic Greek philosopher.",
+      "realWorld": true,
+      "naturalSetting": "Heraclitus",
+      "hardSpecifics": [
+        "Heraclitus of Ephesus",
+        "pre-Socratic Greek philosopher",
+        "bow-and-lyre image of tension and harmony"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch11.example.buddhafranklin",
+      "label": "Buddhist nonattachment and Benjamin Franklin's striving",
+      "summary": "Buddhist practice reduces compulsive clinging by changing the relationship to desire, while Franklin's virtue program deliberately changes habits through tracking and effort. Each corrects a different failure: futile grasping on one side, passive acceptance of revisable conduct on the other. Verified anchors: Buddhist practice of nonattachment; Franklin's thirteen-virtue tracking plan.",
+      "realWorld": true,
+      "naturalSetting": "Buddhist",
+      "hardSpecifics": [
+        "Buddhist practice of nonattachment",
+        "Franklin's thirteen-virtue tracking plan",
+        "acceptance paired with active habit cultivation"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch11.example.aristotle",
+      "label": "Aristotle / virtue plus external goods",
+      "summary": "Aristotle tied flourishing to excellent activity while also acknowledging the need for friendship and sufficient external resources. Character matters greatly without making fortune, relationships, or political conditions irrelevant. Verified anchors: Aristotle's Nicomachean Ethics; flourishing through activity in accordance with virtue.",
+      "realWorld": true,
+      "naturalSetting": "Aristotle",
+      "hardSpecifics": [
+        "Aristotle's Nicomachean Ethics",
+        "flourishing through activity in accordance with virtue",
+        "friends and external goods treated as conditions of flourishing"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Balancing pairs",
+      "members": [
+        "acceptance and striving",
+        "autonomy and community",
+        "reason and intuition",
+        "virtue and external goods",
+        "ancient practice and modern evidence",
+        "East and West",
+        "liberal and conservative"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch11.concept",
+      "kind": "concept",
+      "label": "complementary balance",
+      "text": "Some apparent opposites correct each other's excesses and become useful only in relationship. Balance is an active adjustment to context, not a permanent midpoint or refusal to choose. Readers can use maxims as tools with boundary conditions, seeking the missing counterweight whenever one idea begins to explain everything.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.example.yinyang",
+      "kind": "named_example",
+      "label": "Yin and Yang / interdependent opposites",
+      "text": "The Chinese symbol places a contrasting seed within each side and joins the two into one dynamic figure. It represents forces that define, limit, and transform one another rather than a battle that ends with one side's elimination. A counterweight can be internal to a sound idea and necessary for keeping that idea sound.",
+      "hardSpecifics": [
+        "ancient Chinese yin-yang tradition",
+        "dark and light halves joined in one circle",
+        "contrasting dot within each half",
+        "opposites understood as interdependent and transforming"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.example.heraclitus",
+      "kind": "named_example",
+      "label": "Heraclitus / conflict of opposites",
+      "text": "Fragments associated with Heraclitus treat tension among opposites as constitutive of order rather than as mere failure. Harmony can depend on forces pulling against each other, as in a bow or lyre. Verified anchors: Heraclitus of Ephesus; pre-Socratic Greek philosopher. Resolution does not always mean removing conflict; structure can require disciplined tension.",
+      "hardSpecifics": [
+        "Heraclitus of Ephesus",
+        "pre-Socratic Greek philosopher",
+        "bow-and-lyre image of tension and harmony"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.example.buddhafranklin",
+      "kind": "named_example",
+      "label": "Buddhist nonattachment and Benjamin Franklin's striving",
+      "text": "Buddhist practice reduces compulsive clinging by changing the relationship to desire, while Franklin's virtue program deliberately changes habits through tracking and effort. Each corrects a different failure: futile grasping on one side, passive acceptance of revisable conduct on the other. Verified anchors: Buddhist practice of nonattachment; Franklin's thirteen-virtue tracking plan. Acceptance and self-directed change are tools for different parts of the same divided person.",
+      "hardSpecifics": [
+        "Buddhist practice of nonattachment",
+        "Franklin's thirteen-virtue tracking plan",
+        "acceptance paired with active habit cultivation"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.example.aristotle",
+      "kind": "named_example",
+      "label": "Aristotle / virtue plus external goods",
+      "text": "Aristotle tied flourishing to excellent activity while also acknowledging the need for friendship and sufficient external resources. Character matters greatly without making fortune, relationships, or political conditions irrelevant. Verified anchors: Aristotle's Nicomachean Ethics; flourishing through activity in accordance with virtue. Inner excellence and outer conditions are complementary contributors rather than rival total explanations.",
+      "hardSpecifics": [
+        "Aristotle's Nicomachean Ethics",
+        "flourishing through activity in accordance with virtue",
+        "friends and external goods treated as conditions of flourishing"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.1",
+      "kind": "testable_fact",
+      "label": "Yin and Yang describe contrary forces as complementary and interdependent rather than absolutely separate.",
+      "text": "Yin and Yang describe contrary forces as complementary and interdependent rather than absolutely separate. Because Each side acquires meaning through contrast with the other and can transform as conditions change. Yin and Yang means every two opposing claims are equally true. The tradition concerns dynamic relation, not automatic epistemic equality.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.2",
+      "kind": "testable_fact",
+      "label": "The familiar taijitu places a contrasting dot within each of its two halves.",
+      "text": "The familiar taijitu places a contrasting dot within each of its two halves. Because The visual detail represents the presence or potential of one force within the other. The symbol depicts two sealed regions with no internal relation. Its curved boundary and opposite-colored dots depict mutual implication and transformation.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.3",
+      "kind": "testable_fact",
+      "label": "Heraclitus used tension-based images such as the bow and lyre to connect opposition with harmony.",
+      "text": "Heraclitus used tension-based images such as the bow and lyre to connect opposition with harmony. Because Opposing pulls can generate a stable functional form rather than cancel one another. Heraclitean harmony requires eliminating one side of a conflict. The image depends on maintained tension.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.4",
+      "kind": "testable_fact",
+      "label": "Buddhist nonattachment changes one's relationship to craving rather than requiring indifference to all people and outcomes.",
+      "text": "Buddhist nonattachment changes one's relationship to craving rather than requiring indifference to all people and outcomes. Because Reducing compulsive identification with desire permits care and action without making well-being depend on total control. Nonattachment means emotional numbness and withdrawal from responsibility. Disciplined care can remain while clinging and possession are reduced.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.5",
+      "kind": "testable_fact",
+      "label": "Franklin's virtue plan used active measurement and repeated practice to alter conduct.",
+      "text": "Franklin's virtue plan used active measurement and repeated practice to alter conduct. Because Daily marks and weekly emphasis turned a general ideal into feedback about recurring behavior. Acceptance of temperament and circumstances makes deliberate habit training unnecessary. Some automatic responses remain changeable through structured repetition.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.6",
+      "kind": "testable_fact",
+      "label": "Aristotle's account of flourishing includes external goods as well as virtuous activity.",
+      "text": "Aristotle's account of flourishing includes external goods as well as virtuous activity. Because Friendship, material sufficiency, and political conditions provide opportunities and instruments for excellent action. Aristotelian virtue makes circumstances completely irrelevant to a good life. The Nicomachean Ethics explicitly recognizes that severe deprivation can obstruct flourishing.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.7",
+      "kind": "testable_fact",
+      "label": "Scientific findings and wisdom traditions answer partly different questions.",
+      "text": "Scientific findings and wisdom traditions answer partly different questions. Because Empirical methods test descriptive and causal claims, while traditions also preserve practices, interpretations, and normative aims. A laboratory result can by itself determine what ends a person ought to value. Evidence constrains means and consequences but does not generate a complete moral ranking without value premises.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.8",
+      "kind": "testable_fact",
+      "label": "A valid principle can become harmful when applied beyond the conditions that make it valid.",
+      "text": "A valid principle can become harmful when applied beyond the conditions that make it valid. Because Every heuristic selects some features and omits others, so unbounded application magnifies its blind spots. Once a maxim helps in one domain, consistency requires applying it everywhere. Scope conditions are part of responsible use rather than exceptions that weaken a principle.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.9",
+      "kind": "testable_fact",
+      "label": "Complementary balance differs from taking the numerical midpoint between two positions.",
+      "text": "Complementary balance differs from taking the numerical midpoint between two positions. Because The needed counterweight depends on evidence, stakes, and which excess is active in the present context. Wisdom always selects a fifty-fifty compromise. Some contexts require decisive action, rejection of a false claim, or an intentionally unequal weighting.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.framework.balancing.pairs",
+      "kind": "framework",
+      "label": "Balancing pairs",
+      "text": "acceptance and striving, autonomy and community, reason and intuition, virtue and external goods, ancient practice and modern evidence, East and West, liberal and conservative",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "2",
+    "1",
+    "50",
+    "13"
+  ],
+  "allowedEntities": [
+    "On Balance",
+    "Wisdom",
+    "Some",
+    "Balance",
+    "Readers",
+    "Ancient",
+    "Eastern",
+    "Western",
+    "Liberal",
+    "Reason",
+    "Yin",
+    "Yang",
+    "The Chinese",
+    "Chinese",
+    "Heraclitus",
+    "Fragments",
+    "Harmony",
+    "Verified",
+    "Ephesus",
+    "Socratic Greek",
+    "Resolution",
+    "Buddhist",
+    "Benjamin Franklin's",
+    "Franklin's",
+    "Each",
+    "Acceptance",
+    "Aristotle",
+    "Character",
+    "Aristotle's Nicomachean Ethics",
+    "Inner",
+    "Because Each",
+    "Because The",
+    "Its",
+    "Because Opposing",
+    "Heraclitean",
+    "Because Reducing",
+    "Nonattachment",
+    "Disciplined",
+    "Because Daily",
+    "Aristotle's",
+    "Because Friendship",
+    "Aristotelian",
+    "The Nicomachean Ethics",
+    "Scientific",
+    "Because Empirical",
+    "Evidence",
+    "Because Every",
+    "Once",
+    "Scope",
+    "Complementary",
+    "Balancing",
+    "East",
+    "West",
+    "Heraclitus's",
+    "Either",
+    "False",
+    "Yin and Yang / interdependent opposites",
+    "Heraclitus / conflict of opposites",
+    "Buddhist nonattachment and Benjamin Franklin's striving",
+    "Aristotle / virtue plus external goods"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch11.example.yinyang",
+      "warning": "Keep examples about Yin and Yang / interdependent opposites source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch11.example.heraclitus",
+      "warning": "Keep examples about Heraclitus / conflict of opposites source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch11.example.buddhafranklin",
+      "warning": "Keep examples about Buddhist nonattachment and Benjamin Franklin's striving source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch11.example.aristotle",
+      "warning": "Keep examples about Aristotle / virtue plus external goods source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch11.fact.1"
+}

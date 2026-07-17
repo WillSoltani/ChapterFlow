@@ -1,0 +1,41 @@
+{
+  "bookId": "made-to-stick",
+  "title": "Made to Stick: Why Some Ideas Survive and Others Die",
+  "author": "Chip Heath and Dan Heath",
+  "edition": {
+    "name": "First U.S. hardcover edition",
+    "publisher": "Random House",
+    "publishedYear": 2007,
+    "isbn13": "9781400064281",
+    "language": "English",
+    "chapterCount": 6
+  },
+  "introduction": "What Sticks?",
+  "flatChapters": [
+    { "number": 1, "title": "Simple" },
+    { "number": 2, "title": "Unexpected" },
+    { "number": 3, "title": "Concrete" },
+    { "number": 4, "title": "Credible" },
+    { "number": 5, "title": "Emotional" },
+    { "number": 6, "title": "Stories" }
+  ],
+  "thesis": "Ideas become understandable, memorable, and capable of changing thought or behavior when communicators deliberately build six qualities into them: simplicity, unexpectedness, concreteness, credibility, emotion, and story. The recurring obstacle is expert knowledge that makes the communicator forget what an uninitiated audience does not yet know.",
+  "teachingArc": "The introduction defines stickiness and the curse of knowledge, then the six numbered units develop the SUCCESs checklist one quality at a time. The sequence moves from selecting a compact core and opening a knowledge gap, through giving the idea sensory form and self-contained proof, to making the stakes personally meaningful and packaging action inside narrative. An epilogue recombines the qualities as a diagnostic path from attention to action rather than adding a seventh authored unit.",
+  "authorVoice": {
+    "register": "plainspoken",
+    "signatureMoves": [
+      "opens an idea with a surprising named case before extracting the communication principle",
+      "pairs memorable labels with operational distinctions and short diagnostic questions",
+      "uses contrasting message versions and clinic-style rewrites to expose why one formulation travels",
+      "moves between business, education, public health, military, and popular-culture settings",
+      "returns to the curse of knowledge as the practical antagonist behind expert communication failures"
+    ],
+    "avoidMoves": [
+      "does not rely on abstract theory without a concrete case",
+      "does not treat brevity alone as sufficient for simplicity",
+      "does not present the six qualities as a rigid step-by-step formula"
+    ]
+  },
+  "confidence": "high",
+  "notes": "Verified against Penguin Random House's product record for the 2007 Random House publication and Penguin's official sample table of contents. The authored chapter list contains six numbered chapters. The introduction 'What Sticks?' and epilogue 'What Sticks' are front/back matter and are recorded here but not counted as numbered chapters; the later 'Sticky Advice' material is supplementary rather than a seventh numbered chapter."
+}

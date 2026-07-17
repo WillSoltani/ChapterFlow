@@ -1,0 +1,832 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "made-to-stick",
+  "chapterId": "made-to-stick-ch03",
+  "chapterNumber": 3,
+  "chapterTitle": "Concrete",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/made-to-stick/20260717T093830230Z-96208fba-c8b1-451c-8c89-3b5434d80f07/sidecars/source/ch03.source.json",
+  "sourceHash": "sha256:c19434ffe63c3cc610f40d87db3daf89dfb9cd6fad770f4fb80024cefc204886",
+  "facts": [
+    {
+      "id": "ch03.fact.1",
+      "claim": "Georgia State University's Safe Night Out case follows startup co-founders Kris and Sandy to teach accounting decisions.",
+      "mechanism": "Because transactions change the fortunes of named people and their venture, accounting categories gain causal and narrative hooks.",
+      "commonError": "The Safe Night Out method removes financial statements and teaches only entrepreneurship anecdotes.",
+      "whyWrong": "The story supplies context for the accounting content; it does not replace the underlying concepts and records.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Georgia State University's Safe Night",
+        "Out",
+        "Kris",
+        "Sandy",
+        "The Safe Night Out"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.1"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch03.fact.2",
+      "claim": "Jane Elliott first ran the blue-eyes/brown-eyes exercise with her Iowa third-grade class on April 5, 1968.",
+      "mechanism": "Because arbitrary eye color immediately changed status, privileges, and treatment, pupils encountered discrimination as an operating system rather than a vocabulary word.",
+      "commonError": "Elliott merely asked pupils to imagine discrimination without changing classroom roles.",
+      "whyWrong": "The exercise assigned superiority and disadvantage, then reversed the categories so pupils experienced both positions.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "5",
+        "1968"
+      ],
+      "groundedEntities": [
+        "Jane Elliott",
+        "Iowa",
+        "April",
+        "Elliott"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.2"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch03.fact.3",
+      "claim": "The Boeing 727 design criterion named a fully loaded takeoff and a safe landing on LaGuardia Runway 4-22.",
+      "mechanism": "Because the criterion specifies aircraft, load state, place, and runway, engineering teams can evaluate competing designs against the same outcome.",
+      "commonError": "The 727 teams coordinated around the unmeasurable instruction to build the world's best airplane.",
+      "whyWrong": "An abstract superlative permits conflicting interpretations, whereas the runway task supplies a common performance test.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "4",
+        "22",
+        "727"
+      ],
+      "groundedEntities": [
+        "The Boeing",
+        "LaGuardia Runway"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.3"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch03.fact.4",
+      "claim": "Oral rehydration salts combine sugar and salts for dissolution in clean water to treat dehydration from fluid loss.",
+      "mechanism": "Because intestinal glucose transport remains coupled with sodium uptake during severe diarrhoea, the solution accelerates absorption of salt and water.",
+      "commonError": "Plain water alone replaces the electrolytes and uses the same intestinal transport mechanism as ORS.",
+      "whyWrong": "The therapeutic mechanism depends on correctly proportioned glucose and electrolytes, not water without solutes.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Oral",
+        "Plain",
+        "ORS. The"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.4"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch03.fact.5",
+      "claim": "James P. Grant used a packet of sugar and salt as a concrete representation of oral rehydration therapy.",
+      "mechanism": "Because policymakers could see and hold the intervention's ingredients, a large public-health program became a graspable action rather than a remote abstraction.",
+      "commonError": "Grant's packet was offered as a complete dry medicine to swallow without water or measurement.",
+      "whyWrong": "The ingredients must be prepared as a correctly diluted oral solution; the packet represented the intervention, not a dry dose.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "James P. Grant",
+        "Grant's"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.5"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch03.fact.6",
+      "claim": "The Fox and the Grapes makes self-protective devaluation visible through a fox dismissing fruit it cannot reach.",
+      "mechanism": "Because the motive appears inside a physical failed attempt and a face-saving response, the abstract bias is easy to reconstruct later.",
+      "commonError": "The fable's mechanism is that unreachable objects objectively become lower quality.",
+      "whyWrong": "The fruit does not change; the fox changes its judgment to protect itself after failure.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "The Fox",
+        "Grapes"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.6"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch03.fact.7",
+      "claim": "Concrete language is expressed through sensory or observable terms that different listeners can picture or inspect.",
+      "mechanism": "Because observable referents constrain possible interpretations, people are more likely to attach the same meaning to the message.",
+      "commonError": "Concrete language is any sentence containing a large number, even when nobody can visualize its scale.",
+      "whyWrong": "A numeral can remain abstract; concreteness requires a perceptible referent, comparison, action, or test.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Concrete"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.7"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch03.fact.8",
+      "claim": "The Velcro theory of memory treats concrete details as multiple hooks that can cue later retrieval.",
+      "mechanism": "Because a scene can be reached through people, objects, sensations, actions, and consequences, forgetting one route need not erase the idea.",
+      "commonError": "Memory improves only when a message repeats the same abstract phrase many times.",
+      "whyWrong": "Repetition strengthens one route, while varied concrete hooks create several routes back to the same meaning.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "The Velcro",
+        "Memory",
+        "Repetition"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.8"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch03.fact.9",
+      "claim": "Concrete criteria improve coordination by giving specialists a shared definition of completion.",
+      "mechanism": "Because each contributor can test work against the same observable result, disciplinary assumptions are less likely to produce incompatible outputs.",
+      "commonError": "Abstract goals coordinate experts better because each team can privately define success.",
+      "whyWrong": "Private definitions create hidden divergence; a common test exposes mismatches before integration.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Concrete",
+        "Abstract",
+        "Private"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch03.ex.accounting",
+      "label": "Georgia State Safe Night Out accounting case",
+      "summary": "Georgia State University instructors taught accounting through the Safe Night Out case, following co-founders Kris and Sandy as they built a startup. Transactions and statements acquired concrete consequences inside an unfolding business story.",
+      "realWorld": true,
+      "naturalSetting": "Georgia State Safe Night Out",
+      "hardSpecifics": [
+        "Georgia State University",
+        "Kris and Sandy"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Georgia State University"
+      ]
+    },
+    {
+      "id": "ch03.ex.elliott",
+      "label": "Jane Elliott's blue-eyes/brown-eyes exercise",
+      "summary": "On April 5, 1968, Iowa teacher Jane Elliott divided her third-grade class by eye color, privileging one group and later reversing the roles. The blue-eyes/brown-eyes exercise turned discrimination from a definition into an experienced system of arbitrary status.",
+      "realWorld": true,
+      "naturalSetting": "Jane Elliott's",
+      "hardSpecifics": [
+        "April 5, 1968",
+        "third-grade class"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "April 5, 1968"
+      ]
+    },
+    {
+      "id": "ch03.ex.boeing",
+      "label": "Boeing 727 / LaGuardia Runway 4-22",
+      "summary": "The Boeing 727 design target included taking off fully loaded and landing on LaGuardia Runway 4-22. A named aircraft, payload condition, airport, and runway gave multiple engineering teams one inspectable performance test.",
+      "realWorld": true,
+      "naturalSetting": "Boeing",
+      "hardSpecifics": [
+        "Boeing 727",
+        "LaGuardia Runway 4-22"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch03.ex.ors",
+      "label": "James P. Grant / oral rehydration salts packet",
+      "summary": "UNICEF executive director James P. Grant used a packet of sugar and salt to make oral rehydration therapy visible to policymakers. Oral rehydration salts are dissolved in clean water so coupled glucose and sodium absorption can replace fluid lost through severe diarrhoea.",
+      "realWorld": true,
+      "naturalSetting": "James P. Grant",
+      "hardSpecifics": [
+        "James P. Grant",
+        "packet of sugar and salt"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch03.ex.aesop",
+      "label": "Aesop's Fox and the Grapes",
+      "summary": "The Fox and the Grapes gives sour grapes a fox, unreachable fruit, and a face-saving judgment. The fable packages an abstract pattern of devaluing what one cannot obtain inside concrete action.",
+      "realWorld": false,
+      "naturalSetting": "Aesop's Fox",
+      "hardSpecifics": [
+        "fox",
+        "unreachable grapes"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Concrete hooks",
+      "members": [
+        "people",
+        "objects",
+        "actions",
+        "sensations",
+        "observable outcomes"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch03.concept",
+      "kind": "concept",
+      "label": "concrete hooks",
+      "text": "Express meaning through things that can be pictured, handled, enacted, or checked instead of relying only on category labels and abstractions. Concrete hooks give memory more routes back to an idea and give collaborators a common object against which to test interpretations.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.ex.accounting",
+      "kind": "named_example",
+      "label": "Georgia State Safe Night Out accounting case",
+      "text": "Georgia State University instructors taught accounting through the Safe Night Out case, following co-founders Kris and Sandy as they built a startup. Transactions and statements acquired concrete consequences inside an unfolding business story. A continuing case supplies people, motives, and consequences that abstract accounting terms can attach to.",
+      "hardSpecifics": [
+        "Georgia State University",
+        "Kris and Sandy"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.ex.elliott",
+      "kind": "named_example",
+      "label": "Jane Elliott's blue-eyes/brown-eyes exercise",
+      "text": "On April 5, 1968, Iowa teacher Jane Elliott divided her third-grade class by eye color, privileging one group and later reversing the roles. The blue-eyes/brown-eyes exercise turned discrimination from a definition into an experienced system of arbitrary status. An enacted mechanism can reveal social consequences that an abstract lecture leaves distant.",
+      "hardSpecifics": [
+        "April 5, 1968",
+        "third-grade class"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.ex.boeing",
+      "kind": "named_example",
+      "label": "Boeing 727 / LaGuardia Runway 4-22",
+      "text": "The Boeing 727 design target included taking off fully loaded and landing on LaGuardia Runway 4-22. A named aircraft, payload condition, airport, and runway gave multiple engineering teams one inspectable performance test. A shared concrete criterion aligns specialists better than a phrase such as high-performance airliner.",
+      "hardSpecifics": [
+        "Boeing 727",
+        "LaGuardia Runway 4-22"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.ex.ors",
+      "kind": "named_example",
+      "label": "James P. Grant / oral rehydration salts packet",
+      "text": "UNICEF executive director James P. Grant used a packet of sugar and salt to make oral rehydration therapy visible to policymakers. Oral rehydration salts are dissolved in clean water so coupled glucose and sodium absorption can replace fluid lost through severe diarrhoea. A small physical object can carry a life-saving mechanism more effectively than an abstract program description.",
+      "hardSpecifics": [
+        "James P. Grant",
+        "packet of sugar and salt"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.ex.aesop",
+      "kind": "named_example",
+      "label": "Aesop's Fox and the Grapes",
+      "text": "The Fox and the Grapes gives sour grapes a fox, unreachable fruit, and a face-saving judgment. The fable packages an abstract pattern of devaluing what one cannot obtain inside concrete action. A compact scene can preserve an abstract moral through recognizable objects and behavior.",
+      "hardSpecifics": [
+        "fox",
+        "unreachable grapes"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.1",
+      "kind": "testable_fact",
+      "label": "Georgia State University's Safe Night Out case follows startup co-founders Kris and Sandy to teach accounting decisions.",
+      "text": "Georgia State University's Safe Night Out case follows startup co-founders Kris and Sandy to teach accounting decisions. Because transactions change the fortunes of named people and their venture, accounting categories gain causal and narrative hooks. The Safe Night Out method removes financial statements and teaches only entrepreneurship anecdotes. The story supplies context for the accounting content; it does not replace the underlying concepts and records.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.2",
+      "kind": "testable_fact",
+      "label": "Jane Elliott first ran the blue-eyes/brown-eyes exercise with her Iowa third-grade class on April 5, 1968.",
+      "text": "Jane Elliott first ran the blue-eyes/brown-eyes exercise with her Iowa third-grade class on April 5, 1968. Because arbitrary eye color immediately changed status, privileges, and treatment, pupils encountered discrimination as an operating system rather than a vocabulary word. Elliott merely asked pupils to imagine discrimination without changing classroom roles. The exercise assigned superiority and disadvantage, then reversed the categories so pupils experienced both positions.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.3",
+      "kind": "testable_fact",
+      "label": "The Boeing 727 design criterion named a fully loaded takeoff and a safe landing on LaGuardia Runway 4-22.",
+      "text": "The Boeing 727 design criterion named a fully loaded takeoff and a safe landing on LaGuardia Runway 4-22. Because the criterion specifies aircraft, load state, place, and runway, engineering teams can evaluate competing designs against the same outcome. The 727 teams coordinated around the unmeasurable instruction to build the world's best airplane. An abstract superlative permits conflicting interpretations, whereas the runway task supplies a common performance test.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.4",
+      "kind": "testable_fact",
+      "label": "Oral rehydration salts combine sugar and salts for dissolution in clean water to treat dehydration from fluid loss.",
+      "text": "Oral rehydration salts combine sugar and salts for dissolution in clean water to treat dehydration from fluid loss. Because intestinal glucose transport remains coupled with sodium uptake during severe diarrhoea, the solution accelerates absorption of salt and water. Plain water alone replaces the electrolytes and uses the same intestinal transport mechanism as ORS. The therapeutic mechanism depends on correctly proportioned glucose and electrolytes, not water without solutes.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.5",
+      "kind": "testable_fact",
+      "label": "James P. Grant used a packet of sugar and salt as a concrete representation of oral rehydration therapy.",
+      "text": "James P. Grant used a packet of sugar and salt as a concrete representation of oral rehydration therapy. Because policymakers could see and hold the intervention's ingredients, a large public-health program became a graspable action rather than a remote abstraction. Grant's packet was offered as a complete dry medicine to swallow without water or measurement. The ingredients must be prepared as a correctly diluted oral solution; the packet represented the intervention, not a dry dose.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.6",
+      "kind": "testable_fact",
+      "label": "The Fox and the Grapes makes self-protective devaluation visible through a fox dismissing fruit it cannot reach.",
+      "text": "The Fox and the Grapes makes self-protective devaluation visible through a fox dismissing fruit it cannot reach. Because the motive appears inside a physical failed attempt and a face-saving response, the abstract bias is easy to reconstruct later. The fable's mechanism is that unreachable objects objectively become lower quality. The fruit does not change; the fox changes its judgment to protect itself after failure.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.7",
+      "kind": "testable_fact",
+      "label": "Concrete language is expressed through sensory or observable terms that different listeners can picture or inspect.",
+      "text": "Concrete language is expressed through sensory or observable terms that different listeners can picture or inspect. Because observable referents constrain possible interpretations, people are more likely to attach the same meaning to the message. Concrete language is any sentence containing a large number, even when nobody can visualize its scale. A numeral can remain abstract; concreteness requires a perceptible referent, comparison, action, or test.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.8",
+      "kind": "testable_fact",
+      "label": "The Velcro theory of memory treats concrete details as multiple hooks that can cue later retrieval.",
+      "text": "The Velcro theory of memory treats concrete details as multiple hooks that can cue later retrieval. Because a scene can be reached through people, objects, sensations, actions, and consequences, forgetting one route need not erase the idea. Memory improves only when a message repeats the same abstract phrase many times. Repetition strengthens one route, while varied concrete hooks create several routes back to the same meaning.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.9",
+      "kind": "testable_fact",
+      "label": "Concrete criteria improve coordination by giving specialists a shared definition of completion.",
+      "text": "Concrete criteria improve coordination by giving specialists a shared definition of completion. Because each contributor can test work against the same observable result, disciplinary assumptions are less likely to produce incompatible outputs. Abstract goals coordinate experts better because each team can privately define success. Private definitions create hidden divergence; a common test exposes mismatches before integration.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.framework.concrete.hooks",
+      "kind": "framework",
+      "label": "Concrete hooks",
+      "text": "people, objects, actions, sensations, observable outcomes",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "5",
+    "1968",
+    "4",
+    "22",
+    "727",
+    "1"
+  ],
+  "allowedEntities": [
+    "Concrete",
+    "Cases",
+    "People",
+    "Express",
+    "Sensory",
+    "Simulations",
+    "Georgia State Safe Night Out",
+    "Georgia State University",
+    "Safe Night Out",
+    "Kris",
+    "Sandy",
+    "Transactions",
+    "Jane Elliott's",
+    "On April",
+    "Iowa",
+    "Jane Elliott",
+    "April",
+    "Boeing",
+    "LaGuardia Runway",
+    "The Boeing",
+    "James P. Grant",
+    "UNICEF",
+    "Oral",
+    "Aesop's Fox",
+    "Grapes",
+    "The Fox",
+    "Detail",
+    "Velcro",
+    "Pam Laffin",
+    "Georgia State University's Safe Night",
+    "Out",
+    "The Safe Night Out",
+    "Elliott",
+    "Plain",
+    "ORS",
+    "Grant's",
+    "The Velcro",
+    "Memory",
+    "Repetition",
+    "Abstract",
+    "Private",
+    "Abstraction",
+    "Aesop's",
+    "Jane Elliott's April",
+    "These",
+    "Georgia State Safe Night Out accounting case",
+    "Jane Elliott's blue-eyes/brown-eyes exercise",
+    "Boeing 727 / LaGuardia Runway 4-22",
+    "James P. Grant / oral rehydration salts packet",
+    "Aesop's Fox and the Grapes"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch03.ex.accounting",
+      "warning": "Keep examples about Georgia State Safe Night Out accounting case source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch03.ex.elliott",
+      "warning": "Keep examples about Jane Elliott's blue-eyes/brown-eyes exercise source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch03.ex.boeing",
+      "warning": "Keep examples about Boeing 727 / LaGuardia Runway 4-22 source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch03.ex.ors",
+      "warning": "Keep examples about James P. Grant / oral rehydration salts packet source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch03.ex.aesop",
+      "warning": "Keep examples about Aesop's Fox and the Grapes source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch03.fact.2"
+}

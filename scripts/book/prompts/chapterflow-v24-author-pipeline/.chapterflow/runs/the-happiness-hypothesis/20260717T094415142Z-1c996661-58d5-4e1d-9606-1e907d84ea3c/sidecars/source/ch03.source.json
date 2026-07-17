@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 3,
+  "chapterTitle": "Reciprocity with a Vengeance",
+  "focus": "Human cooperation is stabilized by a strong obligation to return benefits, punish exploitation, and track reputations through language. The same machinery that supports trust can be manipulated by gifts, concessions, and strategically created debts.",
+  "coreClaim": "Reciprocity works as a social accounting system whose positive and punitive sides make large-scale cooperation possible while creating predictable openings for influence.",
+  "centralConcept": {
+    "id": "ch03.concept",
+    "name": "reciprocity ledger",
+    "plainDefinition": "People remember favors and harms, feel pressure to repay them, and share reputation information with others. The ledger is emotional and social rather than an exact calculation.",
+    "whyItMatters": "A reader can build trust through genuine exchange, recognize manufactured obligation, and address conflicts before retaliation becomes a self-sustaining cycle."
+  },
+  "keyClaims": [
+    "Reciprocity extends the gains of cooperation because help can be returned later rather than exchanged simultaneously.",
+    "Punitive reciprocity deters cheating, but it can escalate when each side treats its own retaliation as justified repayment.",
+    "Gossip distributes reputational information beyond direct partners and helps groups identify reliable cooperators.",
+    "Unsolicited gifts can create a felt debt even when the receiver did not request or value them.",
+    "A retreat from a large request to a smaller one can be experienced as a concession that calls for a reciprocal concession.",
+    "Human ultrasociality depends on shared norms and reputation, not kindness alone."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch03.example.regan",
+      "label": "Dennis Regan / Coca-Cola reciprocity experiment",
+      "summary": "A confederate brought some participants an unsolicited Coca-Cola during an art-rating task and later sold raffle tickets. Participants who had received the drink bought more tickets, even when their reported liking for the confederate was low. Verified anchors: Dennis T. Regan's 1971 experiment; unsolicited bottle of Coca-Cola.",
+      "teachesWhat": "A small unasked-for benefit can create repayment pressure independent of affection.",
+      "hardSpecifics": [
+        "Dennis T. Regan's 1971 experiment",
+        "unsolicited bottle of Coca-Cola",
+        "raffle-ticket purchase request",
+        "favor effect distinct from liking"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.example.cialdini",
+      "label": "Robert Cialdini / Hare Krishna flower tactic",
+      "summary": "Fundraisers placed a flower or other small gift into a passerby's hand before asking for a donation. Refusing or discarding the gift did not necessarily erase the social discomfort created by receiving first. Verified anchors: Hare Krishna airport fundraising; flower given before donation request.",
+      "teachesWhat": "Reciprocity can be triggered before consent, so the defensive move is to reclassify a manipulative gift rather than feel bound by it.",
+      "hardSpecifics": [
+        "Hare Krishna airport fundraising",
+        "flower given before donation request",
+        "unrequested gift used to create obligation"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.example.axelrod",
+      "label": "Robert Axelrod / iterated Prisoner's Dilemma tournaments",
+      "summary": "Computer strategies competed across repeated rounds of a cooperation dilemma. Anatol Rapoport's Tit for Tat began cooperatively and then copied the other strategy's preceding move, showing how conditional cooperation can be firm without initiating betrayal. Verified anchors: Robert Axelrod's iterated Prisoner's Dilemma tournaments; Anatol Rapoport's Tit for Tat strategy.",
+      "teachesWhat": "Stable exchange rewards a cooperative opening, quick response to defection, and readiness to resume cooperation.",
+      "hardSpecifics": [
+        "Robert Axelrod's iterated Prisoner's Dilemma tournaments",
+        "Anatol Rapoport's Tit for Tat strategy",
+        "cooperate on the first move",
+        "copy the counterpart's previous move"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.example.dunbar",
+      "label": "Robin Dunbar / gossip as social grooming",
+      "summary": "Research on primate group size and human conversation connects language with the work of maintaining alliances and tracking reputations in larger networks. Talk about social conduct can spread information that direct observation alone cannot provide. Verified anchors: Robin Dunbar's social-brain research; primate grooming compared with human conversation.",
+      "teachesWhat": "Gossip is not only idle cruelty; it can enforce norms, though it also carries distortion and exclusion risks.",
+      "hardSpecifics": [
+        "Robin Dunbar's social-brain research",
+        "primate grooming compared with human conversation",
+        "reputation information shared beyond direct observation"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The Golden Rule is not a claim that niceness alone sustains cooperation. Human exchange includes gratitude, suspicion, gossip, and punishment; ignoring the punitive side leaves both manipulation and escalating revenge unexplained.",
+  "voiceCues": [
+    "moves from a cross-cultural moral rule to experimental influence tactics",
+    "pairs cooperative reciprocity with vengeance rather than treating them separately",
+    "uses strategic games to expose the structure beneath everyday favors",
+    "ends with practical defenses against manufactured obligation"
+  ],
+  "forbiddenLeakage": [
+    "self-serving bias and moral hypocrisy",
+    "attachment bonds and passionate love",
+    "divinity, elevation, and sacredness"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch03.fact.1",
+      "claim": "In Regan's 1971 experiment, an unsolicited soft drink increased later raffle-ticket purchases from the giver.",
+      "becauseMechanism": "Because Receiving the favor activated a norm of repayment before the later request was made.",
+      "commonError": "Participants bought more tickets only because the drink made them like the confederate.",
+      "errorIsWhy": "The favor's effect was distinguishable from reported liking.",
+      "derivedFrom": "ch03.example.regan"
+    },
+    {
+      "id": "ch03.fact.2",
+      "claim": "The reciprocity norm can be activated by a benefit the receiver did not request.",
+      "becauseMechanism": "Because Social accounting responds to the sequence of receiving and asking, not only to a negotiated exchange.",
+      "commonError": "An unrequested gift creates no psychological pressure because no contract was formed.",
+      "errorIsWhy": "The Hare Krishna and laboratory examples show felt obligation without prior consent.",
+      "derivedFrom": "ch03.example.cialdini"
+    },
+    {
+      "id": "ch03.fact.3",
+      "claim": "The door-in-the-face technique begins with a large request and then retreats to a smaller target request.",
+      "becauseMechanism": "Because The requester's retreat can look like a concession, prompting the recipient to reciprocate by conceding in turn.",
+      "commonError": "The smaller request succeeds only because it looks cheap beside the first one.",
+      "errorIsWhy": "Perceptual contrast can contribute, but reciprocal concession is a distinct social mechanism.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.4",
+      "claim": "Tit for Tat opens with cooperation and then copies the counterpart's previous move.",
+      "becauseMechanism": "Because That rule rewards cooperation, answers defection promptly, and forgives as soon as the counterpart returns to cooperation.",
+      "commonError": "Tit for Tat maximizes safety by defecting first.",
+      "errorIsWhy": "Its defining first move is cooperative, not defensive betrayal.",
+      "derivedFrom": "ch03.example.axelrod"
+    },
+    {
+      "id": "ch03.fact.5",
+      "claim": "Repeated interaction changes the incentive structure of a one-shot cooperation dilemma.",
+      "becauseMechanism": "Because Current defection can provoke future retaliation and current cooperation can create future mutual gains.",
+      "commonError": "The rational move in every Prisoner's Dilemma setting is always to defect.",
+      "errorIsWhy": "Iteration introduces reputation and future consequences absent from the one-shot game.",
+      "derivedFrom": "ch03.example.axelrod"
+    },
+    {
+      "id": "ch03.fact.6",
+      "claim": "Gossip can transmit reputational information to people who did not witness the original conduct.",
+      "becauseMechanism": "Because Language makes third-party experience available across a social network.",
+      "commonError": "Only direct personal experience can support cooperation decisions.",
+      "errorIsWhy": "Reputation allows indirect evidence to guide partner choice, although it can also be inaccurate.",
+      "derivedFrom": "ch03.example.dunbar"
+    },
+    {
+      "id": "ch03.fact.7",
+      "claim": "Reciprocity includes responses to harms as well as returns of benefits.",
+      "becauseMechanism": "Because Retaliation raises the cost of exploitation and can deter repeat cheating.",
+      "commonError": "Reciprocity is simply generosity returned with gratitude.",
+      "errorIsWhy": "Negative reciprocity repays injury and is central to enforcement and revenge.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.8",
+      "claim": "Retaliation can escalate when each side interprets its own act as a proportionate response to the other's aggression.",
+      "becauseMechanism": "Because Self-serving perception discounts one's provocation and magnifies the opponent's, making equal actions feel unequal.",
+      "commonError": "A revenge cycle continues only because both sides enjoy conflict.",
+      "errorIsWhy": "Each side may sincerely believe it is restoring balance rather than initiating harm.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.9",
+      "claim": "Large-group human cooperation relies on norms and reputation in addition to kinship.",
+      "becauseMechanism": "Because Shared rules and third-party information let people identify, reward, and sanction partners beyond close relatives.",
+      "commonError": "Cooperation at scale is just family altruism extended to strangers.",
+      "errorIsWhy": "Unrelated people cooperate in institutions where norm enforcement and reputation substitute for genetic relatedness.",
+      "derivedFrom": "ch03.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Tit for Tat properties",
+      "members": [
+        "cooperative opening",
+        "immediate response to defection",
+        "immediate return to cooperation",
+        "simple and legible rule"
+      ]
+    }
+  ],
+  "paraphraseNotes": "Reciprocity converts a one-time benefit into the possibility of a continuing relationship. A favor can be returned later, so two people gain without settling every exchange immediately. The same memory system also tracks injury. Gratitude and vengeance are paired solutions to the problem of finding cooperators and discouraging exploitation. Dennis Regan's Coca-Cola experiment isolates the felt debt: a confederate supplied an unsolicited drink and later requested raffle-ticket purchases; recipients bought more even when liking did not account for the difference. Robert Cialdini's account of Hare Krishna airport fundraising shows the mechanism outside the laboratory. A flower placed in someone's hand before a donation request creates an exchange sequence before the target has agreed to participate. The defense is not blanket ingratitude but accurate classification: a sales device need not be entered in the same moral ledger as genuine generosity. Repeated games expose the strategic structure. Anatol Rapoport's Tit for Tat opened cooperatively, answered a defection on the next move, and resumed cooperation immediately after the counterpart did. It is firm without being first to betray and forgiving without ignoring exploitation. Real groups add gossip. Robin Dunbar's social-brain work treats conversation partly as a scalable way to maintain alliances and exchange reputation information when direct observation is impossible. Gossip can therefore police norms, although distortion and exclusion make it dangerous. These mechanisms explain both large-scale cooperation and feud. Each party in a conflict remembers the other's offense more vividly, discounts its own provocation, and experiences retaliation as restoration. The Golden Rule becomes psychologically serious only when joined to reputation, boundary setting, and a way to interrupt negative reciprocity."
+}

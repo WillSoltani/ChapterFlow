@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "nudge-ch03",
+  "chapterNumber": 3,
+  "title": "Following the Herd",
+  "coreMove": "This mechanism operates because unanimity created informational doubt and social pressure even when the private visual answer was clear.",
+  "thesis": "About three quarters of Asch participants conformed to an obviously wrong unanimous line judgment at least once.",
+  "readerPromise": "After this chapter, a reader can this mechanism operates because unanimity created informational doubt and social pressure even when the private visual answer was clear.",
+  "ownedCases": [
+    {
+      "id": "ch03.ex.1",
+      "label": "Solomon Asch / line-judgment experiments"
+    },
+    {
+      "id": "ch03.ex.2",
+      "label": "Bruce Sacerdote / randomly assigned Dartmouth roommates"
+    },
+    {
+      "id": "ch03.ex.3",
+      "label": "Noah Goldstein, Robert Cialdini, and Vladas Griskevicius / hotel towels"
+    }
+  ],
+  "notYours": [
+    "Beijing tax authority / restaurant receipt lottery",
+    "Brigitte Madrian and Dennis Shea / automatic 401(k) enrollment",
+    "Christmas Club savings accounts",
+    "Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis",
+    "Daniel Kahneman and Amos Tversky / anchoring wheel experiment",
+    "Donate Life America / motor-vehicle registration prompts",
+    "Eric Johnson and Daniel Goldstein / European donor defaults",
+    "Federal Trade Commission / hotel drip pricing",
+    "George Loewenstein / hot–cold empathy gap",
+    "Gmail / forgotten-attachment warning",
+    "Hendrik Bruns and Yavor Paunov / transparency review",
+    "Henrik Cronqvist and Richard Thaler / Swedish portfolio analysis",
+    "Howard Kunreuther / flood and earthquake insurance behavior",
+    "Hunt Allcott / OPOWER Home Energy Reports",
+    "Hyde Park bookstores and Concord Bookshop versus Amazon",
+    "John Gathergood, Neale Mahoney, Neil Stewart, and Jörg Weber / balance matching",
+    "John Rawls / publicity principle",
+    "Kahneman and Tversky / Linda conjunction problem",
+    "NHS England and Wales / soft opt-out",
+    "Paris Métro / two-sided pass validation"
+  ],
+  "cast": [
+    "Phoebe",
+    "Travis",
+    "Joan",
+    "Nathalie"
+  ],
+  "answerIndexPattern": [
+    1,
+    1,
+    2,
+    0,
+    1,
+    0,
+    0,
+    2,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a handwritten note on the counter",
+    "flavor (ch01): venue: a to-do list on the whiteboard",
+    "flavor (ch01): venue: a shared grocery list",
+    "flavor (ch01): frame: a first attempt at about treatment and control households that gets corrected",
+    "flavor (ch01): frame: a first encounter with about treatment and control households that sets a benchmark",
+    "flavor (ch02): venue: a text thread with a friend"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a late-night text exchange",
+    "venue: a direct-message thread",
+    "venue: a birthday-card envelope",
+    "frame: a first attempt at articles and transparency tests that gets corrected",
+    "frame: a first encounter with average electricity reduction of percent that sets a benchmark"
+  ],
+  "architectureFamily": "direct-conceptual",
+  "openerType": "statistic",
+  "challengeFrame": "before-your-next-X",
+  "practiceShape": "two-step-sequence",
+  "exampleLenses": [
+    "before-after-ledger",
+    "postmortem",
+    "walkthrough"
+  ],
+  "practiceVerb": "ask",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "mechanism",
+    "operates",
+    "rather",
+    "choice",
+    "attention",
+    "cost"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script",
+    "measure-one-number"
+  ],
+  "quizStemShapes": [
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem"
+  ],
+  "quizFailureModes": [
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction"
+  ],
+  "questionFactOrder": [
+    7,
+    4,
+    2,
+    9,
+    6,
+    3,
+    5,
+    1,
+    8
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "ledger-speak",
+    "sensory-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Solomon Asch / line-judgment experiments",
+    "caseId": "ch03.ex.1",
+    "aliases": [
+      "Solomon Asch / line-judgment experiments",
+      "Asch",
+      "Solomon"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Labels create internal spending boundaries so that using one account feels different from using another.",
+    "next": "This mechanism operates because forming an implementation plan linked an intention to concrete situational cues."
+  },
+  "totalChapters": 15
+}

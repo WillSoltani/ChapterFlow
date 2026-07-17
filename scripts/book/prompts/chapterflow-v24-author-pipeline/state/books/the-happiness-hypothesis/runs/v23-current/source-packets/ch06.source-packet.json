@@ -1,0 +1,852 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "the-happiness-hypothesis",
+  "chapterId": "the-happiness-hypothesis-ch06",
+  "chapterNumber": 6,
+  "chapterTitle": "Love and Attachments",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/the-happiness-hypothesis/20260717T094415142Z-1c996661-58d5-4e1d-9606-1e907d84ea3c/sidecars/source/ch06.source.json",
+  "sourceHash": "sha256:ea33c60f4355b701c5f91e4ffa7605b6eb90a7dbbed704276091ee6f709c1066",
+  "facts": [
+    {
+      "id": "ch06.fact.1",
+      "claim": "Bowlby's Maternal Care and Mental Health was published by the World Health Organization in 1951.",
+      "mechanism": "Because The WHO commission synthesized evidence about institutional care and prolonged separation to inform child welfare practice.",
+      "commonError": "Attachment theory began as Harlow's interpretation of monkey experiments.",
+      "whyWrong": "Bowlby's human clinical and institutional work developed in parallel and supplied the evolutionary framework.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1951"
+      ],
+      "groundedEntities": [
+        "Bowlby's Maternal Care",
+        "Mental Health",
+        "World Health Organization",
+        "Because The WHO",
+        "Attachment",
+        "Harlow's",
+        "Bowlby's"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch06.fact.2",
+      "claim": "Bowlby treated attachment behavior as an evolved system for maintaining protective proximity to a caregiver.",
+      "mechanism": "Because Infants who restore closeness under danger gain protection before they can survive independently.",
+      "commonError": "Crying and clinging are learned only because a caregiver supplies food.",
+      "whyWrong": "Attachment behaviors organize safety and proximity beyond feeding episodes.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Bowlby",
+        "Because Infants",
+        "Crying",
+        "Attachment"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.2"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch06.fact.3",
+      "claim": "Harlow's original surrogate-mother study used eight newborn rhesus monkeys divided across two feeding arrangements.",
+      "mechanism": "Because Reversing whether cloth or wire supplied milk separated contact comfort from nourishment.",
+      "commonError": "Every monkey received milk only from the wire surrogate.",
+      "whyWrong": "Milk location was counterbalanced across two groups of four.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2",
+        "4",
+        "8"
+      ],
+      "groundedEntities": [
+        "Harlow's",
+        "Because Reversing",
+        "Every",
+        "Milk"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.3"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch06.fact.4",
+      "claim": "Infant rhesus monkeys strongly preferred the cloth surrogate even when the wire surrogate supplied milk.",
+      "mechanism": "Because Soft contact and a usable haven under threat had value independent of caloric reinforcement.",
+      "commonError": "The monkeys preferred whichever surrogate fed them.",
+      "whyWrong": "Time spent clinging followed cloth covering more than milk location.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Infant",
+        "Because Soft",
+        "Time"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.4"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch06.fact.5",
+      "claim": "Attachment bonds are identified by proximity maintenance, separation distress, safe haven, and secure base.",
+      "mechanism": "Because Together the four functions describe staying near, reacting to loss, seeking comfort, and exploring from safety.",
+      "commonError": "Attachment is measured only by how upset someone becomes during separation.",
+      "whyWrong": "Separation distress is one of four defining functions.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "4"
+      ],
+      "groundedEntities": [
+        "Attachment",
+        "Because Together",
+        "Separation"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.5"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch06.fact.6",
+      "claim": "Hazan and Shaver applied attachment theory to adult romantic love in a 1987 study.",
+      "mechanism": "Because Adult partners can provide proximity, comfort, and security functions analogous to those in earlier bonds.",
+      "commonError": "Attachment theory concerns only infants and parents.",
+      "whyWrong": "The adult extension generated a large research program on romantic attachment.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1987"
+      ],
+      "groundedEntities": [
+        "Hazan",
+        "Shaver",
+        "Because Adult",
+        "Attachment"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.6"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch06.fact.7",
+      "claim": "The early Hazan-Shaver study recruited respondents through the Rocky Mountain News.",
+      "mechanism": "Because A newspaper questionnaire allowed adult readers to classify relationship experience and report romantic histories at scale.",
+      "commonError": "The original adult-attachment evidence came from observed couples in a clinical laboratory.",
+      "whyWrong": "The landmark first study relied substantially on self-report from newspaper respondents.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Hazan-Shaver",
+        "Rocky Mountain News. Because A"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.7"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch06.fact.8",
+      "claim": "Peer relationships acquire attachment functions gradually across childhood and adolescence.",
+      "mechanism": "Because Preferences for proximity, comfort, and exploration shift at different rates rather than transferring all at once.",
+      "commonError": "A first romance instantly replaces parents in every attachment role.",
+      "whyWrong": "The four functions show a staged transfer across age and relationship development.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "4"
+      ],
+      "groundedEntities": [
+        "Peer",
+        "Because Preferences"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.8"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch06.fact.9",
+      "claim": "Passionate love and companionate love have different typical dynamics.",
+      "mechanism": "Because Novelty, longing, and arousal can intensify rapidly, while trust, shared history, and caregiving accumulate through repeated interaction.",
+      "commonError": "A decline in early intensity proves that love has ended.",
+      "whyWrong": "A bond can shift toward companionate attachment even as acute passion becomes less constant.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Passionate",
+        "Because Novelty"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch06.example.bowlby",
+      "label": "John Bowlby / Maternal Care and Mental Health",
+      "summary": "Working for the World Health Organization, Bowlby reviewed the effects of prolonged caregiver separation and institutional care. His 1951 report helped shift attention from feeding schedules toward the developmental importance of a continuous, responsive relationship, though later attachment research refined the report's maternal focus. Verified anchors: John Bowlby; World Health Organization commission.",
+      "realWorld": true,
+      "naturalSetting": "John Bowlby",
+      "hardSpecifics": [
+        "John Bowlby",
+        "World Health Organization commission",
+        "Maternal Care and Mental Health published in 1951",
+        "caregiver separation and institutional care"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Maternal Care and Mental Health published in 1951"
+      ]
+    },
+    {
+      "id": "ch06.example.harlow",
+      "label": "Harry Harlow / cloth and wire surrogate mothers",
+      "summary": "Eight newborn rhesus monkeys received access to a cloth-covered surrogate and a wire surrogate, with milk location reversed across groups. They spent far more time clinging to the cloth surrogate even when the wire surrogate supplied milk and ran to the cloth figure when frightened. Verified anchors: eight newborn rhesus monkeys; cloth-covered surrogate mother.",
+      "realWorld": true,
+      "naturalSetting": "Harry Harlow",
+      "hardSpecifics": [
+        "eight newborn rhesus monkeys",
+        "cloth-covered surrogate mother",
+        "wire surrogate mother",
+        "milk source reversed across two four-monkey groups"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch06.example.hazan",
+      "label": "Cindy Hazan and Phillip Shaver / adult romantic attachment",
+      "summary": "Hazan and Shaver extended attachment concepts to adult romantic relationships, first through a newspaper questionnaire and later research. Secure, anxious, and avoidant patterns shaped expectations about trust, closeness, jealousy, and separation. Verified anchors: Cindy Hazan and Phillip Shaver; 1987 romantic-attachment study.",
+      "realWorld": true,
+      "naturalSetting": "Cindy Hazan",
+      "hardSpecifics": [
+        "Cindy Hazan and Phillip Shaver",
+        "1987 romantic-attachment study",
+        "Rocky Mountain News questionnaire",
+        "secure, anxious, and avoidant categories"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1987 romantic-attachment study",
+        "secure, anxious, and avoidant categories"
+      ]
+    },
+    {
+      "id": "ch06.example.hazanage",
+      "label": "Hazan and colleagues / transfer of attachment functions",
+      "summary": "A survey spanning ages six through eighty-two asked whom people preferred nearby, sought when upset, and used as a base for exploration. Peers increasingly gained attachment roles through childhood and adolescence, with romantic partners able to satisfy all four functions later. Verified anchors: participants ages six through eighty-two; four attachment functions.",
+      "realWorld": true,
+      "naturalSetting": "Hazan",
+      "hardSpecifics": [
+        "participants ages six through eighty-two",
+        "four attachment functions",
+        "peer safe-haven role expands between ages eight and fourteen",
+        "full peer attachment possible around ages fifteen to seventeen"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Four defining features of attachment",
+      "members": [
+        "proximity maintenance",
+        "separation distress",
+        "safe haven",
+        "secure base"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Early adult attachment categories",
+      "members": [
+        "secure",
+        "anxious",
+        "avoidant"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch06.concept",
+      "kind": "concept",
+      "label": "attachment bond",
+      "text": "An attachment figure is someone whose presence is sought, whose absence causes distress, who provides comfort under threat, and who supports confident exploration. Romantic intensity no longer has to carry the whole meaning of love; a reader can evaluate whether a relationship develops trust, secure reliance, and mutual care.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.example.bowlby",
+      "kind": "named_example",
+      "label": "John Bowlby / Maternal Care and Mental Health",
+      "text": "Working for the World Health Organization, Bowlby reviewed the effects of prolonged caregiver separation and institutional care. His 1951 report helped shift attention from feeding schedules toward the developmental importance of a continuous, responsive relationship, though later attachment research refined the report's maternal focus. Verified anchors: John Bowlby; World Health Organization commission. Attachment is a functional need for reliable care, not indulgence created by feeding.",
+      "hardSpecifics": [
+        "John Bowlby",
+        "World Health Organization commission",
+        "Maternal Care and Mental Health published in 1951",
+        "caregiver separation and institutional care"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.example.harlow",
+      "kind": "named_example",
+      "label": "Harry Harlow / cloth and wire surrogate mothers",
+      "text": "Eight newborn rhesus monkeys received access to a cloth-covered surrogate and a wire surrogate, with milk location reversed across groups. They spent far more time clinging to the cloth surrogate even when the wire surrogate supplied milk and ran to the cloth figure when frightened. Verified anchors: eight newborn rhesus monkeys; cloth-covered surrogate mother. Contact comfort and felt security cannot be explained as secondary by-products of feeding alone.",
+      "hardSpecifics": [
+        "eight newborn rhesus monkeys",
+        "cloth-covered surrogate mother",
+        "wire surrogate mother",
+        "milk source reversed across two four-monkey groups"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.example.hazan",
+      "kind": "named_example",
+      "label": "Cindy Hazan and Phillip Shaver / adult romantic attachment",
+      "text": "Hazan and Shaver extended attachment concepts to adult romantic relationships, first through a newspaper questionnaire and later research. Secure, anxious, and avoidant patterns shaped expectations about trust, closeness, jealousy, and separation. Verified anchors: Cindy Hazan and Phillip Shaver; 1987 romantic-attachment study. Adult romance recruits the same broad security system without making adult partners identical to parents.",
+      "hardSpecifics": [
+        "Cindy Hazan and Phillip Shaver",
+        "1987 romantic-attachment study",
+        "Rocky Mountain News questionnaire",
+        "secure, anxious, and avoidant categories"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.example.hazanage",
+      "kind": "named_example",
+      "label": "Hazan and colleagues / transfer of attachment functions",
+      "text": "A survey spanning ages six through eighty-two asked whom people preferred nearby, sought when upset, and used as a base for exploration. Peers increasingly gained attachment roles through childhood and adolescence, with romantic partners able to satisfy all four functions later. Verified anchors: participants ages six through eighty-two; four attachment functions. Attachment reorganizes across development rather than simply disappearing after childhood.",
+      "hardSpecifics": [
+        "participants ages six through eighty-two",
+        "four attachment functions",
+        "peer safe-haven role expands between ages eight and fourteen",
+        "full peer attachment possible around ages fifteen to seventeen"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.1",
+      "kind": "testable_fact",
+      "label": "Bowlby's Maternal Care and Mental Health was published by the World Health Organization in 1951.",
+      "text": "Bowlby's Maternal Care and Mental Health was published by the World Health Organization in 1951. Because The WHO commission synthesized evidence about institutional care and prolonged separation to inform child welfare practice. Attachment theory began as Harlow's interpretation of monkey experiments. Bowlby's human clinical and institutional work developed in parallel and supplied the evolutionary framework.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.2",
+      "kind": "testable_fact",
+      "label": "Bowlby treated attachment behavior as an evolved system for maintaining protective proximity to a caregiver.",
+      "text": "Bowlby treated attachment behavior as an evolved system for maintaining protective proximity to a caregiver. Because Infants who restore closeness under danger gain protection before they can survive independently. Crying and clinging are learned only because a caregiver supplies food. Attachment behaviors organize safety and proximity beyond feeding episodes.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.3",
+      "kind": "testable_fact",
+      "label": "Harlow's original surrogate-mother study used eight newborn rhesus monkeys divided across two feeding arrangements.",
+      "text": "Harlow's original surrogate-mother study used eight newborn rhesus monkeys divided across two feeding arrangements. Because Reversing whether cloth or wire supplied milk separated contact comfort from nourishment. Every monkey received milk only from the wire surrogate. Milk location was counterbalanced across two groups of four.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.4",
+      "kind": "testable_fact",
+      "label": "Infant rhesus monkeys strongly preferred the cloth surrogate even when the wire surrogate supplied milk.",
+      "text": "Infant rhesus monkeys strongly preferred the cloth surrogate even when the wire surrogate supplied milk. Because Soft contact and a usable haven under threat had value independent of caloric reinforcement. The monkeys preferred whichever surrogate fed them. Time spent clinging followed cloth covering more than milk location.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.5",
+      "kind": "testable_fact",
+      "label": "Attachment bonds are identified by proximity maintenance, separation distress, safe haven, and secure base.",
+      "text": "Attachment bonds are identified by proximity maintenance, separation distress, safe haven, and secure base. Because Together the four functions describe staying near, reacting to loss, seeking comfort, and exploring from safety. Attachment is measured only by how upset someone becomes during separation. Separation distress is one of four defining functions.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.6",
+      "kind": "testable_fact",
+      "label": "Hazan and Shaver applied attachment theory to adult romantic love in a 1987 study.",
+      "text": "Hazan and Shaver applied attachment theory to adult romantic love in a 1987 study. Because Adult partners can provide proximity, comfort, and security functions analogous to those in earlier bonds. Attachment theory concerns only infants and parents. The adult extension generated a large research program on romantic attachment.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.7",
+      "kind": "testable_fact",
+      "label": "The early Hazan-Shaver study recruited respondents through the Rocky Mountain News.",
+      "text": "The early Hazan-Shaver study recruited respondents through the Rocky Mountain News. Because A newspaper questionnaire allowed adult readers to classify relationship experience and report romantic histories at scale. The original adult-attachment evidence came from observed couples in a clinical laboratory. The landmark first study relied substantially on self-report from newspaper respondents.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.8",
+      "kind": "testable_fact",
+      "label": "Peer relationships acquire attachment functions gradually across childhood and adolescence.",
+      "text": "Peer relationships acquire attachment functions gradually across childhood and adolescence. Because Preferences for proximity, comfort, and exploration shift at different rates rather than transferring all at once. A first romance instantly replaces parents in every attachment role. The four functions show a staged transfer across age and relationship development.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.9",
+      "kind": "testable_fact",
+      "label": "Passionate love and companionate love have different typical dynamics.",
+      "text": "Passionate love and companionate love have different typical dynamics. Because Novelty, longing, and arousal can intensify rapidly, while trust, shared history, and caregiving accumulate through repeated interaction. A decline in early intensity proves that love has ended. A bond can shift toward companionate attachment even as acute passion becomes less constant.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.framework.four.defining.features.of.attachment",
+      "kind": "framework",
+      "label": "Four defining features of attachment",
+      "text": "proximity maintenance, separation distress, safe haven, secure base",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.framework.early.adult.attachment.categories",
+      "kind": "framework",
+      "label": "Early adult attachment categories",
+      "text": "secure, anxious, avoidant",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1951",
+    "2",
+    "4",
+    "8",
+    "1",
+    "1987",
+    "6",
+    "14",
+    "15",
+    "17",
+    "80"
+  ],
+  "allowedEntities": [
+    "Love",
+    "Attachments",
+    "Attachment",
+    "Passionate",
+    "Romantic",
+    "Infant",
+    "Bowlby's",
+    "Peers",
+    "Durable",
+    "John Bowlby",
+    "Maternal Care",
+    "Mental Health",
+    "Working",
+    "World Health Organization",
+    "Bowlby",
+    "His",
+    "Verified",
+    "Harry Harlow",
+    "Eight",
+    "They",
+    "Contact",
+    "Cindy Hazan",
+    "Phillip Shaver",
+    "Hazan",
+    "Shaver",
+    "Secure",
+    "Adult",
+    "Rocky Mountain News",
+    "Harlow's",
+    "Harlow",
+    "Durkheimian",
+    "Bowlby's Maternal Care",
+    "Because The WHO",
+    "Because Infants",
+    "Crying",
+    "Because Reversing",
+    "Every",
+    "Milk",
+    "Because Soft",
+    "Time",
+    "Because Together",
+    "Separation",
+    "Because Adult",
+    "Hazan-Shaver",
+    "Because A",
+    "Peer",
+    "Because Preferences",
+    "Because Novelty",
+    "Four",
+    "Early",
+    "John Bowlby's",
+    "Mental Health. The",
+    "Harry Harlow's",
+    "Later",
+    "High",
+    "Constraints",
+    "One",
+    "John Bowlby / Maternal Care and Mental Health",
+    "Harry Harlow / cloth and wire surrogate mothers",
+    "Cindy Hazan and Phillip Shaver / adult romantic attachment",
+    "Hazan and colleagues / transfer of attachment functions"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch06.example.bowlby",
+      "warning": "Keep examples about John Bowlby / Maternal Care and Mental Health source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch06.example.harlow",
+      "warning": "Keep examples about Harry Harlow / cloth and wire surrogate mothers source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch06.example.hazan",
+      "warning": "Keep examples about Cindy Hazan and Phillip Shaver / adult romantic attachment source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch06.example.hazanage",
+      "warning": "Keep examples about Hazan and colleagues / transfer of attachment functions source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch06.fact.1"
+}

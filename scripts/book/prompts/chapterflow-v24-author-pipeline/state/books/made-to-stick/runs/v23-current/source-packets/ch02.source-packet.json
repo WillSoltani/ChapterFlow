@@ -1,0 +1,858 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "made-to-stick",
+  "chapterId": "made-to-stick-ch02",
+  "chapterNumber": 2,
+  "chapterTitle": "Unexpected",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/made-to-stick/20260717T093830230Z-96208fba-c8b1-451c-8c89-3b5434d80f07/sidecars/source/ch02.source.json",
+  "sourceHash": "sha256:de4dcff2e4b741c842164c2541e400b365013a55f01edfcdda037c5f4e354dae",
+  "facts": [
+    {
+      "id": "ch02.fact.1",
+      "claim": "Nordstrom's shirt-ironing story depicts an employee preparing a customer's shirt for use that same afternoon.",
+      "mechanism": "Because ironing falls outside the ordinary retail transaction, the act breaks the service schema and makes initiative memorable.",
+      "commonError": "The Nordstrom example is a formal policy requiring every employee to offer laundry service.",
+      "whyWrong": "Its teaching force comes from an exceptional employee story, not from a universal checklist item.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Nordstrom's",
+        "The Nordstrom",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.1"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch02.fact.2",
+      "claim": "Nora Ephron's journalism exercise resolves with no school next Thursday as the audience-relevant lead.",
+      "mechanism": "Because the students initially reproduced official facts instead of their consequence, the unexpected lead exposes the defect in their news judgment.",
+      "commonError": "The correct lead was the visiting officials' names and the sequence of their lectures.",
+      "whyWrong": "Those details mattered less to student readers than the immediate consequence that classes would be canceled.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Nora Ephron's",
+        "Thursday",
+        "Those"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.2"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch02.fact.3",
+      "claim": "George Loewenstein's 1994 information-gap account links curiosity to attention focused on missing knowledge.",
+      "mechanism": "Because awareness of a specific discrepancy between current and desired knowledge feels unresolved, people seek information that can close it.",
+      "commonError": "Curiosity is maximized by presenting a subject about which the audience knows absolutely nothing.",
+      "whyWrong": "Without enough prior structure to locate the missing piece, the audience cannot form a meaningful, closable gap.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1994"
+      ],
+      "groundedEntities": [
+        "George Loewenstein's",
+        "Curiosity",
+        "Without"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.3"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch02.fact.4",
+      "claim": "Sony introduced the TR-63 pocketable transistor radio in 1957.",
+      "mechanism": "Because the pocket-sized target forced simultaneous miniaturization of the radio's components, a concrete unresolved goal coordinated extended engineering work.",
+      "commonError": "Sony's first 1955 transistor radio already fulfilled the pocketable goal without further redesign.",
+      "whyWrong": "The earlier TR-55 established transistor production, while the smaller TR-63 arrived two years later as the pocketable model.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2",
+        "55",
+        "63",
+        "1955",
+        "1957"
+      ],
+      "groundedEntities": [
+        "Sony",
+        "TR-63",
+        "Sony's",
+        "TR-55"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.4"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch02.fact.5",
+      "claim": "John F. Kennedy announced the U.S. lunar landing-and-return goal to Congress on May 25, 1961.",
+      "mechanism": "Because the goal fixed a vivid outcome and a deadline before the decade ended while leaving the route open, it concentrated attention on solving the technical gap.",
+      "commonError": "Kennedy's 1961 goal supplied NASA with a complete engineering plan for reaching the Moon.",
+      "whyWrong": "It specified destination, safe return, and time boundary; engineers still had to discover and execute the means.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "25",
+        "1961"
+      ],
+      "groundedEntities": [
+        "John F. Kennedy",
+        "U.S",
+        "Congress",
+        "May",
+        "Kennedy's",
+        "NASA",
+        "Moon. It"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.5"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch02.fact.6",
+      "claim": "Galileo first recorded Saturn's puzzling side structures in 1610, and Huygens explained a surrounding ring in 1659.",
+      "mechanism": "Because the apparent companions changed and disappeared with viewing angle, the observations created a mystery that better optics and a ring model could resolve.",
+      "commonError": "Galileo immediately identified Saturn's side structures as a thin flat ring.",
+      "whyWrong": "His telescope made the planet look triple or handled; the ring explanation came decades later from Huygens.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1610",
+        "1659"
+      ],
+      "groundedEntities": [
+        "Galileo",
+        "Saturn's",
+        "Huygens",
+        "His"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.6"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch02.fact.7",
+      "claim": "A useful surprise violates an audience prediction about the message's core rather than adding an unrelated shock.",
+      "mechanism": "Because a missed relevant prediction forces the audience to revise its model, the attention serves understanding instead of distraction.",
+      "commonError": "Any bizarre image improves a message even when it has no relationship to the point.",
+      "whyWrong": "Unrelated novelty may be remembered while the intended idea is forgotten or displaced.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Any",
+        "Unrelated"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.7"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch02.fact.8",
+      "claim": "A postdictable surprise becomes sensible after the missing explanation is supplied.",
+      "mechanism": "Because the reveal lets the audience reconstruct why the outcome follows, surprise and coherence reinforce each other.",
+      "commonError": "The strongest surprise should remain arbitrary and inexplicable after the reveal.",
+      "whyWrong": "Permanent arbitrariness prevents the audience from updating a useful model and reduces the event to a gimmick.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Permanent"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch02.fact.9",
+      "claim": "Surprise captures attention briefly, whereas an information gap can hold attention until resolution.",
+      "mechanism": "Because the orienting response to novelty fades but an activated unanswered question remains incomplete, curiosity sustains information seeking.",
+      "commonError": "One startling opening guarantees that an audience will follow a long explanation.",
+      "whyWrong": "The initial prediction error does not supply an ongoing reason to listen once the momentary novelty passes.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Surprise",
+        "One"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.9"
+      ],
+      "teachingPriority": 8
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch02.ex.nordstrom",
+      "label": "Nordstrom's shirt-ironing service story",
+      "summary": "Nordstrom employees heard about a colleague who ironed a customer's shirt for an event that same afternoon. The shirt-ironing service story violates the ordinary boundary of retail service and resets expectations around initiative.",
+      "realWorld": true,
+      "naturalSetting": "Nordstrom's",
+      "hardSpecifics": [
+        "Nordstrom employees",
+        "shirt-ironing service story"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch02.ex.ephron",
+      "label": "Nora Ephron's Journalism 101 lead",
+      "summary": "Nora Ephron recalled a Journalism 101 exercise in which students buried the consequence of a faculty training announcement. The instructor's decisive lead was no school next Thursday, forcing the students to replace transcription with audience-centered judgment.",
+      "realWorld": true,
+      "naturalSetting": "Nora Ephron's Journalism",
+      "hardSpecifics": [
+        "Nora Ephron",
+        "no school next Thursday"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch02.ex.sony",
+      "label": "Masaru Ibuka / Sony pocketable radio",
+      "summary": "Masaru Ibuka pushed Sony's engineers and suppliers toward a pocketable radio. Sony released the TR-63 in 1957 after miniaturizing components beyond its earlier transistor sets.",
+      "realWorld": true,
+      "naturalSetting": "Masaru Ibuka",
+      "hardSpecifics": [
+        "Sony TR-63",
+        "1957 pocketable radio"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1957 pocketable radio"
+      ]
+    },
+    {
+      "id": "ch02.ex.kennedy",
+      "label": "John F. Kennedy's lunar goal",
+      "summary": "On May 25, 1961, John F. Kennedy asked the United States to land a person on the Moon and return him safely before the decade ended. The lunar goal named an outcome and deadline while leaving a vast technical gap to close.",
+      "realWorld": true,
+      "naturalSetting": "John F. Kennedy's",
+      "hardSpecifics": [
+        "May 25, 1961",
+        "before the decade ended"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "May 25, 1961"
+      ]
+    },
+    {
+      "id": "ch02.ex.saturn",
+      "label": "Galileo and Saturn's changing appearance",
+      "summary": "Galileo observed puzzling shapes beside Saturn in 1610 and later saw them disappear when the rings were edge-on. Christiaan Huygens resolved the puzzle in 1659 by describing a thin flat ring around the planet.",
+      "realWorld": true,
+      "naturalSetting": "Galileo",
+      "hardSpecifics": [
+        "Galileo in 1610",
+        "Huygens in 1659"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Galileo in 1610",
+        "Huygens in 1659"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Unexpectedness sequence",
+      "members": [
+        "break a relevant pattern",
+        "open a knowledge gap",
+        "close the gap"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch02.concept",
+      "kind": "concept",
+      "label": "surprise plus curiosity gap",
+      "text": "Interrupt a prediction to create attention, then make the audience aware of missing knowledge so it wants the resolution. Attention that would otherwise fade becomes sustained inquiry tied to the message's central meaning.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.ex.nordstrom",
+      "kind": "named_example",
+      "label": "Nordstrom's shirt-ironing service story",
+      "text": "Nordstrom employees heard about a colleague who ironed a customer's shirt for an event that same afternoon. The shirt-ironing service story violates the ordinary boundary of retail service and resets expectations around initiative. A relevant expectation violation can make a service standard memorable.",
+      "hardSpecifics": [
+        "Nordstrom employees",
+        "shirt-ironing service story"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.ex.ephron",
+      "kind": "named_example",
+      "label": "Nora Ephron's Journalism 101 lead",
+      "text": "Nora Ephron recalled a Journalism 101 exercise in which students buried the consequence of a faculty training announcement. The instructor's decisive lead was no school next Thursday, forcing the students to replace transcription with audience-centered judgment. A surprise can repair a faulty professional schema when the reveal exposes what truly matters.",
+      "hardSpecifics": [
+        "Nora Ephron",
+        "no school next Thursday"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.ex.sony",
+      "kind": "named_example",
+      "label": "Masaru Ibuka / Sony pocketable radio",
+      "text": "Masaru Ibuka pushed Sony's engineers and suppliers toward a pocketable radio. Sony released the TR-63 in 1957 after miniaturizing components beyond its earlier transistor sets. A concrete unresolved goal can sustain curiosity and engineering effort over years.",
+      "hardSpecifics": [
+        "Sony TR-63",
+        "1957 pocketable radio"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.ex.kennedy",
+      "kind": "named_example",
+      "label": "John F. Kennedy's lunar goal",
+      "text": "On May 25, 1961, John F. Kennedy asked the United States to land a person on the Moon and return him safely before the decade ended. The lunar goal named an outcome and deadline while leaving a vast technical gap to close. A bounded mission can organize long-term attention around an unanswered how.",
+      "hardSpecifics": [
+        "May 25, 1961",
+        "before the decade ended"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.ex.saturn",
+      "kind": "named_example",
+      "label": "Galileo and Saturn's changing appearance",
+      "text": "Galileo observed puzzling shapes beside Saturn in 1610 and later saw them disappear when the rings were edge-on. Christiaan Huygens resolved the puzzle in 1659 by describing a thin flat ring around the planet. A carefully framed mystery turns missing information into a durable reason to keep listening.",
+      "hardSpecifics": [
+        "Galileo in 1610",
+        "Huygens in 1659"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.1",
+      "kind": "testable_fact",
+      "label": "Nordstrom's shirt-ironing story depicts an employee preparing a customer's shirt for use that same afternoon.",
+      "text": "Nordstrom's shirt-ironing story depicts an employee preparing a customer's shirt for use that same afternoon. Because ironing falls outside the ordinary retail transaction, the act breaks the service schema and makes initiative memorable. The Nordstrom example is a formal policy requiring every employee to offer laundry service. Its teaching force comes from an exceptional employee story, not from a universal checklist item.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.2",
+      "kind": "testable_fact",
+      "label": "Nora Ephron's journalism exercise resolves with no school next Thursday as the audience-relevant lead.",
+      "text": "Nora Ephron's journalism exercise resolves with no school next Thursday as the audience-relevant lead. Because the students initially reproduced official facts instead of their consequence, the unexpected lead exposes the defect in their news judgment. The correct lead was the visiting officials' names and the sequence of their lectures. Those details mattered less to student readers than the immediate consequence that classes would be canceled.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.3",
+      "kind": "testable_fact",
+      "label": "George Loewenstein's 1994 information-gap account links curiosity to attention focused on missing knowledge.",
+      "text": "George Loewenstein's 1994 information-gap account links curiosity to attention focused on missing knowledge. Because awareness of a specific discrepancy between current and desired knowledge feels unresolved, people seek information that can close it. Curiosity is maximized by presenting a subject about which the audience knows absolutely nothing. Without enough prior structure to locate the missing piece, the audience cannot form a meaningful, closable gap.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.4",
+      "kind": "testable_fact",
+      "label": "Sony introduced the TR-63 pocketable transistor radio in 1957.",
+      "text": "Sony introduced the TR-63 pocketable transistor radio in 1957. Because the pocket-sized target forced simultaneous miniaturization of the radio's components, a concrete unresolved goal coordinated extended engineering work. Sony's first 1955 transistor radio already fulfilled the pocketable goal without further redesign. The earlier TR-55 established transistor production, while the smaller TR-63 arrived two years later as the pocketable model.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.5",
+      "kind": "testable_fact",
+      "label": "John F. Kennedy announced the U.S. lunar landing-and-return goal to Congress on May 25, 1961.",
+      "text": "John F. Kennedy announced the U.S. lunar landing-and-return goal to Congress on May 25, 1961. Because the goal fixed a vivid outcome and a deadline before the decade ended while leaving the route open, it concentrated attention on solving the technical gap. Kennedy's 1961 goal supplied NASA with a complete engineering plan for reaching the Moon. It specified destination, safe return, and time boundary; engineers still had to discover and execute the means.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.6",
+      "kind": "testable_fact",
+      "label": "Galileo first recorded Saturn's puzzling side structures in 1610, and Huygens explained a surrounding ring in 1659.",
+      "text": "Galileo first recorded Saturn's puzzling side structures in 1610, and Huygens explained a surrounding ring in 1659. Because the apparent companions changed and disappeared with viewing angle, the observations created a mystery that better optics and a ring model could resolve. Galileo immediately identified Saturn's side structures as a thin flat ring. His telescope made the planet look triple or handled; the ring explanation came decades later from Huygens.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.7",
+      "kind": "testable_fact",
+      "label": "A useful surprise violates an audience prediction about the message's core rather than adding an unrelated shock.",
+      "text": "A useful surprise violates an audience prediction about the message's core rather than adding an unrelated shock. Because a missed relevant prediction forces the audience to revise its model, the attention serves understanding instead of distraction. Any bizarre image improves a message even when it has no relationship to the point. Unrelated novelty may be remembered while the intended idea is forgotten or displaced.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.8",
+      "kind": "testable_fact",
+      "label": "A postdictable surprise becomes sensible after the missing explanation is supplied.",
+      "text": "A postdictable surprise becomes sensible after the missing explanation is supplied. Because the reveal lets the audience reconstruct why the outcome follows, surprise and coherence reinforce each other. The strongest surprise should remain arbitrary and inexplicable after the reveal. Permanent arbitrariness prevents the audience from updating a useful model and reduces the event to a gimmick.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.9",
+      "kind": "testable_fact",
+      "label": "Surprise captures attention briefly, whereas an information gap can hold attention until resolution.",
+      "text": "Surprise captures attention briefly, whereas an information gap can hold attention until resolution. Because the orienting response to novelty fades but an activated unanswered question remains incomplete, curiosity sustains information seeking. One startling opening guarantees that an audience will follow a long explanation. The initial prediction error does not supply an ongoing reason to listen once the momentary novelty passes.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.framework.unexpectedness.sequence",
+      "kind": "framework",
+      "label": "Unexpectedness sequence",
+      "text": "break a relevant pattern, open a knowledge gap, close the gap",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1994",
+    "2",
+    "55",
+    "63",
+    "1955",
+    "1957",
+    "25",
+    "1961",
+    "1610",
+    "1659",
+    "1",
+    "101"
+  ],
+  "allowedEntities": [
+    "Unexpected",
+    "Surprise",
+    "Break",
+    "Interrupt",
+    "Attention",
+    "Useful",
+    "Curiosity",
+    "Nordstrom's",
+    "Nordstrom",
+    "Nora Ephron's Journalism",
+    "Nora Ephron",
+    "Journalism",
+    "Thursday",
+    "Masaru Ibuka",
+    "Sony",
+    "Sony's",
+    "TR-63",
+    "Sony TR-63",
+    "John F. Kennedy's",
+    "On May",
+    "John F. Kennedy",
+    "United States",
+    "Moon",
+    "May",
+    "Galileo",
+    "Saturn's",
+    "Saturn",
+    "Christiaan Huygens",
+    "Huygens",
+    "Commander",
+    "Intent",
+    "Southwest's",
+    "The Nordstrom",
+    "Its",
+    "Nora Ephron's",
+    "Those",
+    "George Loewenstein's",
+    "Without",
+    "TR-55",
+    "U.S",
+    "Congress",
+    "Kennedy's",
+    "NASA",
+    "His",
+    "Any",
+    "Unrelated",
+    "Permanent",
+    "One",
+    "Unexpectedness",
+    "Sustained",
+    "Masaru Ibuka's",
+    "John F. Kennedy's May",
+    "Both",
+    "Nordstrom's shirt-ironing service story",
+    "Nora Ephron's Journalism 101 lead",
+    "Masaru Ibuka / Sony pocketable radio",
+    "John F. Kennedy's lunar goal",
+    "Galileo and Saturn's changing appearance"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch02.ex.nordstrom",
+      "warning": "Keep examples about Nordstrom's shirt-ironing service story source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch02.ex.ephron",
+      "warning": "Keep examples about Nora Ephron's Journalism 101 lead source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch02.ex.sony",
+      "warning": "Keep examples about Masaru Ibuka / Sony pocketable radio source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch02.ex.kennedy",
+      "warning": "Keep examples about John F. Kennedy's lunar goal source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch02.ex.saturn",
+      "warning": "Keep examples about Galileo and Saturn's changing appearance source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch02.fact.4"
+}

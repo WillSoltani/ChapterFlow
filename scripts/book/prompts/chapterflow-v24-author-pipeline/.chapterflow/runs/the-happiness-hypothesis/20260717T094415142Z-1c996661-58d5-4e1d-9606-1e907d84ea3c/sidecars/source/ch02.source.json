@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 2,
+  "chapterTitle": "Changing Your Mind",
+  "focus": "Temperament and automatic appraisal bias what a person notices and feels before conscious reasoning begins. Meditation, cognitive therapy, and SSRI medication offer three different routes for changing that emotional machinery.",
+  "coreClaim": "Lasting mood change requires altering automatic patterns through attention training, revised interpretations, biological intervention, or a carefully chosen combination.",
+  "centralConcept": {
+    "id": "ch02.concept",
+    "name": "automatic affective appraisal",
+    "plainDefinition": "Events acquire a rapid positive or negative coloring before deliberate analysis. Repeated appraisals form a filter that can tilt experience toward threat, loss, safety, or opportunity.",
+    "whyItMatters": "A person can stop treating every first feeling as a verdict and choose an intervention suited to attention, interpretation, or neurochemistry."
+  },
+  "keyClaims": [
+    "Baseline emotional style reflects both inherited temperament and learning, so optimism and pessimism are neither pure choices nor immutable fates.",
+    "Negative appraisals can recruit supporting memories and interpretations, creating a self-reinforcing loop.",
+    "Meditation trains attention to notice thoughts without automatically following them.",
+    "Cognitive therapy makes recurring interpretations explicit and tests them against evidence.",
+    "Selective serotonin reuptake inhibitors can change mood and personality experience through a biological route, though benefits and adverse effects vary.",
+    "Evidence for name-driven choices in major life decisions is disputed and should not be treated as a general law."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch02.example.beck",
+      "label": "Aaron Beck / cognitive therapy",
+      "summary": "Aaron Beck identified recurring negative interpretations in depression and developed a structured method for examining them. A patient records an automatic thought, identifies the distortion, weighs evidence, and practices a more accurate alternative until the emotional response begins to change. Verified anchors: Aaron T. Beck; automatic thoughts recorded in writing.",
+      "teachesWhat": "Reason changes the elephant through repeated, evidence-based retraining rather than a single argument.",
+      "hardSpecifics": [
+        "Aaron T. Beck",
+        "automatic thoughts recorded in writing",
+        "evidence for and against an interpretation",
+        "cognitive therapy developed for depression"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.example.meditation",
+      "label": "Buddhist insight meditation / attentional training",
+      "summary": "Insight practice repeatedly returns attention to present experience and observes thoughts as passing events. The exercise changes the relationship to worry by reducing automatic identification with each mental event rather than proving every worry false. Verified anchors: repeated attention to present-moment experience; nonreactive observation of thoughts.",
+      "teachesWhat": "Attention can be trained so that an appraisal is noticed without becoming an instruction.",
+      "hardSpecifics": [
+        "repeated attention to present-moment experience",
+        "nonreactive observation of thoughts",
+        "training across repeated practice sessions"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.example.kramer",
+      "label": "Peter Kramer / Listening to Prozac",
+      "summary": "Clinical reports surrounding fluoxetine described some patients as less socially inhibited or less trapped by depressive patterns. The cases raised an ethical question about whether medication restores a prior self or can alter traits a patient experiences as identity. Verified anchors: fluoxetine marketed as Prozac; selective serotonin reuptake inhibitor.",
+      "teachesWhat": "Biological change can affect the emotional filter directly, but effectiveness, side effects, and identity concerns require clinical judgment.",
+      "hardSpecifics": [
+        "fluoxetine marketed as Prozac",
+        "selective serotonin reuptake inhibitor",
+        "Peter D. Kramer's 1993 Listening to Prozac"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.example.pelham",
+      "label": "Brett Pelham and colleagues / implicit egotism",
+      "summary": "Archival analyses proposed that shared name letters subtly attract people toward matching places, partners, or occupations. Later reanalyses showed that major-life-choice examples can be produced by confounds, so the broad claim is useful as a caution about automatic preference, not a secure predictive rule. Verified anchors: name-letter similarity; archival claims about occupations and places.",
+      "teachesWhat": "An appealing demonstration of unconscious influence must be separated from its replication standing.",
+      "hardSpecifics": [
+        "name-letter similarity",
+        "archival claims about occupations and places",
+        "Uri Simonsohn's confound-based reanalyses"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The practical lesson is not that a positive slogan can overwrite temperament, nor that medication is a shortcut that settles every problem. Each route changes a different part of the appraisal system and carries different evidence, effort, access, and risk.",
+  "voiceCues": [
+    "opens with the contrast between optimistic and pessimistic emotional styles",
+    "uses an automatic association claim before turning to clinical interventions",
+    "organizes change around three named routes",
+    "treats medication as both an empirical and an identity question"
+  ],
+  "forbiddenLeakage": [
+    "hedonic adaptation and the happiness formula",
+    "post-traumatic growth through life-story reconstruction",
+    "attachment styles in romantic love"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch02.fact.1",
+      "claim": "Cognitive therapy targets recurring automatic interpretations rather than treating emotion as directly voluntary.",
+      "becauseMechanism": "Because Changing how an event is construed changes the emotional consequences that follow from that appraisal.",
+      "commonError": "Cognitive therapy asks patients simply to replace sad thoughts with cheerful ones.",
+      "errorIsWhy": "The method tests accuracy and usefulness against evidence rather than demanding positivity.",
+      "derivedFrom": "ch02.example.beck"
+    },
+    {
+      "id": "ch02.fact.2",
+      "claim": "Aaron Beck's model treats negative views of self, world, and future as mutually reinforcing features of depression.",
+      "becauseMechanism": "Because Each interpretation supplies confirming material for the others and keeps negative appraisal active.",
+      "commonError": "Depressive cognition consists of one isolated mistaken belief.",
+      "errorIsWhy": "The cognitive triad describes a linked pattern across three domains.",
+      "derivedFrom": "ch02.example.beck"
+    },
+    {
+      "id": "ch02.fact.3",
+      "claim": "Mindfulness practice trains observation of thoughts and feelings without immediate reaction.",
+      "becauseMechanism": "Because Repeatedly noticing and returning attention weakens the automatic step from mental event to identification or action.",
+      "commonError": "Successful meditation eliminates thoughts from consciousness.",
+      "errorIsWhy": "The skill is nonreactive awareness, not permanent mental blankness.",
+      "derivedFrom": "ch02.example.meditation"
+    },
+    {
+      "id": "ch02.fact.4",
+      "claim": "Fluoxetine is an SSRI used clinically to treat depression and other conditions.",
+      "becauseMechanism": "Because It inhibits serotonin reuptake, altering serotonergic signaling over the course of treatment.",
+      "commonError": "Prozac produces immediate happiness in anyone who takes a dose.",
+      "errorIsWhy": "Therapeutic response takes time, varies among patients, and is not equivalent to a universal euphoric effect.",
+      "derivedFrom": "ch02.example.kramer"
+    },
+    {
+      "id": "ch02.fact.5",
+      "claim": "SSRI treatment can produce adverse effects and requires individualized clinical assessment.",
+      "becauseMechanism": "Because Changing serotonin signaling affects multiple systems, and patients differ in benefit, tolerability, interactions, and risk.",
+      "commonError": "A biological treatment is automatically more precise and predictable than a psychological one.",
+      "errorIsWhy": "Mechanistic category does not guarantee uniform outcome or eliminate monitoring needs.",
+      "derivedFrom": "ch02.example.kramer"
+    },
+    {
+      "id": "ch02.fact.6",
+      "claim": "The name-letter effect is narrower and better supported than claims that names determine major careers or residential choices.",
+      "becauseMechanism": "Because Small evaluative preferences can appear in low-stakes tasks while archival life outcomes contain cohort, ethnicity, and geographic confounds.",
+      "commonError": "People named Dennis are reliably drawn to dentistry because of their names.",
+      "errorIsWhy": "Reanalysis showed that broad occupational matching claims do not isolate name similarity as the cause.",
+      "derivedFrom": "ch02.example.pelham",
+      "replicationStatus": "contested"
+    },
+    {
+      "id": "ch02.fact.7",
+      "claim": "Temperament contributes to stable individual differences in positive and negative affect.",
+      "becauseMechanism": "Because Genetic variation and early-developing neural sensitivity influence the threshold and intensity of emotional response.",
+      "commonError": "A heritable influence fixes one unchangeable lifetime happiness score.",
+      "errorIsWhy": "Heritability describes variation in a population under given conditions, not an individual's immutable destiny.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.8",
+      "claim": "Negative appraisal can bias attention toward threat-consistent information.",
+      "becauseMechanism": "Because Once a danger interpretation is active, selective attention and memory make confirming cues easier to retrieve.",
+      "commonError": "Pessimism is merely a spoken opinion with no effect on perception.",
+      "errorIsWhy": "Appraisal operates early enough to influence what evidence receives attention.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.9",
+      "claim": "Meditation, cognitive therapy, and SSRIs intervene through distinguishable routes rather than one shared technique.",
+      "becauseMechanism": "Because They primarily train attentional stance, revise interpretive habits, and alter neurochemical signaling, respectively.",
+      "commonError": "All three methods work by consciously deciding to feel better.",
+      "errorIsWhy": "Only part of their action is deliberate in the moment, and medication does not depend on conscious reappraisal.",
+      "derivedFrom": "ch02.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Three routes to changing automatic reactions",
+      "members": [
+        "meditation",
+        "cognitive therapy",
+        "SSRI medication"
+      ]
+    },
+    {
+      "name": "Beck's cognitive triad",
+      "members": [
+        "negative view of self",
+        "negative view of the world",
+        "negative view of the future"
+      ]
+    }
+  ],
+  "paraphraseNotes": "Emotional life begins with rapid appraisal, not neutral data followed by a freely chosen attitude. Temperament gives some people a lower threshold for threat or discouragement, and experience strengthens the associations used to interpret later events. A negative filter can become self-confirming: threat captures attention, matching memories become easier to retrieve, and the resulting feeling seems to prove the original interpretation. Three interventions reach this loop from different directions. Buddhist insight meditation trains the attentional relationship to mental events. The aim is not a blank mind but enough distance to notice a worry without immediately treating it as a command or fact. Aaron Beck's cognitive therapy makes interpretations explicit. Recording an automatic thought, naming its distortion, examining evidence, and rehearsing a more accurate alternative gives controlled reasoning repeated opportunities to retrain appraisal. Fluoxetine and related SSRIs reach mood through biology. Peter Kramer's clinical discussions made vivid both the relief some patients experience and the identity questions that arise when inhibition or depressive style changes. Medication is neither instant happiness nor a moral failure; response and adverse effects vary and require clinical care. Implicit-egotism research supplies a needed warning about seductive evidence. Small preferences for self-linked letters are not the same as proof that names steer careers, partners, or cities. Confounds in archival analyses make those major-life claims contested. The larger claim survives without them: first reactions can guide choice before reasons are articulated. Change remains possible, but different problems call for different levers. Attention practice is not cognitive disputation, cognitive disputation is not medication, and inherited influence is not fate."
+}

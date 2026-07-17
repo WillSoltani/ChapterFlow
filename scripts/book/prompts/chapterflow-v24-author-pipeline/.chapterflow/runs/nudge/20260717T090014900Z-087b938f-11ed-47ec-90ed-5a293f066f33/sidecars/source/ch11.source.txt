@@ -1,0 +1,38 @@
+Chapter 11 focus: Complex mortgages require better product comparison, while credit cards require better ongoing use. Standardized data, conflict-aware advice, repayment rules, and automation can reduce costly borrowing mistakes.
+
+Core claim: Borrowers need architecture that exposes total cost at selection and makes disciplined repayment easy afterward.
+
+Central concept (borrowing architecture):
+  The disclosures, advice, defaults, and payment systems surrounding a loan or revolving credit account.
+  Why it matters: Small confusion about fees, rates, or repayment allocation compounds into large interest and delinquency costs.
+
+Key claims:
+- Mortgage shopping is difficult because rates, points, fees, and broker compensation interact.
+- Broker incentives can conflict with borrower welfare.
+- Standardized electronic mortgage files would support comparison engines.
+- Credit cards combine convenient payment with easy high-cost borrowing.
+- Minimum-payment salience can anchor repayment too low.
+- Multiple-card borrowers often match payments to balances instead of interest rates.
+- Automatic payments can prevent avoidable late fees.
+
+Named examples:
+- Susan Woodward and Robert Hall / mortgage broker compensation: Woodward and Hall studied more than 7,500 FHA mortgages and found confused borrowers paid substantially more for broker services. Shopping too few brokers cost at least 1,000 dollars, and paying both cash and lender commission roughly doubled broker compensation. (teaches: A competitive market can still punish shoppers who cannot compare complex compensation.)
+- US Credit CARD Act of 2009: The Credit Card Accountability Responsibility and Disclosure Act restricted several repricing and fee practices and required clearer notices. It changed the legal architecture around disclosures, due dates, and payment allocation. (teaches: Rules can curb exploitative complexity when disclosure alone is insufficient.)
+- John Gathergood, Neale Mahoney, Neil Stewart, and Jörg Weber / balance matching: Administrative credit-card data showed many multi-card borrowers allocated repayments roughly in proportion to balances. Paying the highest-interest card first would reduce interest faster. (teaches: A simple-looking repayment heuristic can be costly when cards carry different rates.)
+
+Hard edge / typical misreading:
+  Automation and simplification cannot make unaffordable debt safe. They reduce avoidable fees and comparison errors, but ability-to-repay rules, substantive protections, and lower borrowing may still be necessary.
+
+Voice cues observed in this chapter:
+- splits one topic into choose-better and use-better problems
+- pairs market data with named product proposals
+- uses blunt household rules
+- moves from policy reform to automatic personal action
+
+Forbidden leakage (concepts that belong to later chapters):
+- retirement saving defaults
+- insurance deductible dominance
+- smart disclosure as a general abstract definition
+
+Paraphrase notes:
+Mortgages and credit cards create different design problems. A mortgage is a large, infrequent product choice whose price combines rates, points, fees, penalties, and broker compensation. Susan Woodward and Robert Hall used more than 7,500 FHA loans from May and June 2001 to show that confusion has a price: shopping too few brokers cost at least 1,000 dollars, and mixed cash-plus-lender compensation could roughly double broker pay. A standardized Mortgage File and an EZ Mortgage menu would expose total cost and allow comparison engines to work across lenders. Revolving credit shifts the challenge from selection to repeated use. The Final Edition reports that an average card-using American household has four cards and more than $6,000 outstanding; this is not Experian's 2018 individual average of 3.04 cards. The 2009 Credit CARD Act limited repricing, fee, due-date, and payment practices, illustrating where a rule must replace another disclosure. Multi-card repayment evidence from John Gathergood, Neale Mahoney, Neil Stewart, and Jörg Weber identifies balance matching: borrowers allocate money in proportion to balances instead of attacking the highest APR. The interest-minimizing rule is to cover each minimum and send extra payment to the most expensive rate. Automatic payment can prevent late fees, but the amount and linked account need safeguards. Better architecture reduces confusion and forgetting; it does not turn excessive or unaffordable borrowing into a good outcome. Ability-to-repay standards and substantive consumer protection remain necessary when the product itself creates severe risk. Grounding anchors: more than 7,500 FHA mortgages from May and June 2001; too little broker shopping cost at least 1,000 dollars; Credit CARD Act enacted in 2009; restrictions on repricing, fees, and payment practices; multi-card repayment allocations; payments tracked balance shares more than APR differences.

@@ -1,0 +1,834 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "made-to-stick",
+  "chapterId": "made-to-stick-ch05",
+  "chapterNumber": 5,
+  "chapterTitle": "Emotional",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/made-to-stick/20260717T093830230Z-96208fba-c8b1-451c-8c89-3b5434d80f07/sidecars/source/ch05.source.json",
+  "sourceHash": "sha256:a9e704fdc74cea08e93070a5e8267a4c6887bba11a8a5a1ae0b1bdf7f66e5f52",
+  "facts": [
+    {
+      "id": "ch05.fact.1",
+      "claim": "In the Small, Loewenstein, and Slovic study, the Rokia-only appeal averaged $2.38 while a statistics-only appeal averaged $1.14.",
+      "mechanism": "Because the constructed individual gave attention a single human target, participants could form an affective response more readily than from aggregate figures.",
+      "commonError": "The reported amounts prove that every individual story always raises exactly twice as much as any statistical appeal.",
+      "whyWrong": "They are means from one experimental design, and later work shows identifiable-victim effects vary with context and framing.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "1.14",
+        "2.38"
+      ],
+      "groundedEntities": [
+        "Small",
+        "Loewenstein",
+        "Slovic",
+        "Rokia-only",
+        "They"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.1"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch05.fact.2",
+      "claim": "The Rokia experiment used a constructed 7-year-old girl from Mali rather than documenting a real named beneficiary.",
+      "mechanism": "Because identifiability was created inside controlled appeal text, the researchers could compare message framing without relying on a public person's biography.",
+      "commonError": "Rokia's personal history can be expanded as verified reportage about a real child.",
+      "whyWrong": "The figure was an experimental vignette, so adding scenes or biography would fabricate evidence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "7"
+      ],
+      "groundedEntities": [
+        "The Rokia",
+        "Mali",
+        "Rokia's"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch05.fact.3",
+      "claim": "The national truth campaign launched in early 2000 to discourage smoking among U.S. youth.",
+      "mechanism": "Because the campaign framed tobacco companies as manipulators, refusing cigarettes could express youthful independence rather than obedience to adult warnings.",
+      "commonError": "truth relied only on calm medical lectures delivered by tobacco executives.",
+      "whyWrong": "Its branded strategy used hard-hitting messages that challenged industry influence and recruited resistance.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2000"
+      ],
+      "groundedEntities": [
+        "U.S",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch05.fact.4",
+      "claim": "A 2005 quasi-experimental evaluation estimated that truth accounted for about 22 percent of the 1999–2002 decline in youth smoking prevalence.",
+      "mechanism": "Because researchers related varying campaign exposure to prevalence trends in a large national student sample, they could estimate an exposure-associated contribution while controlling measured alternatives.",
+      "commonError": "The estimate means the campaign single-handedly caused the entire decline in youth smoking.",
+      "whyWrong": "The study attributed a portion of the decline and used an observational pre/post design, so the result is not total or randomized causation.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "22",
+        "1999",
+        "2002",
+        "2005"
+      ],
+      "groundedEntities": [],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.4"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch05.fact.5",
+      "claim": "Floyd Lee brought 25 years of Marine Corps and Army cooking experience to the Pegasus dining facility near Baghdad airport.",
+      "mechanism": "Because he defined feeding soldiers as a morale mission, familiar supplies and routine service decisions were reorganized around emotional recovery.",
+      "commonError": "Pegasus succeeded only because Lee received a unique luxury-food supply unavailable to other facilities.",
+      "whyWrong": "The reported distinction was how standard resources were prepared and presented, guided by a different mission.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "25"
+      ],
+      "groundedEntities": [
+        "Floyd Lee",
+        "Marine Corps",
+        "Army",
+        "Pegasus",
+        "Baghdad",
+        "Lee"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.5"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch05.fact.6",
+      "claim": "TxDOT has used Don't mess with Texas to mean don't litter since 1986.",
+      "mechanism": "Because the phrase made roadside cleanliness part of Texas pride, littering could feel inconsistent with the target audience's group identity.",
+      "commonError": "The phrase originated as a general state threat with no transportation or litter purpose.",
+      "whyWrong": "Its institutional origin was a state anti-litter effort, even though later popular use broadened the phrase.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1986"
+      ],
+      "groundedEntities": [
+        "TxDOT",
+        "Don't",
+        "Texas",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.6"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch05.fact.7",
+      "claim": "An identity decision can be framed through who I am, what situation this is, and what someone like me does here.",
+      "mechanism": "Because group norms and self-concept supply behavioral defaults, the person need not calculate every consequence from scratch.",
+      "commonError": "Identity appeals work only by offering a direct cash reward to the audience.",
+      "whyWrong": "Cash belongs to narrow consequence-based self-interest; identity works through role and norm consistency.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Identity",
+        "Cash"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.7"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch05.fact.8",
+      "claim": "WIIFY means What's In It For You, but the relevant benefit can include meaning, belonging, mastery, or pride.",
+      "mechanism": "Because people value psychological and social outcomes as well as material gain, a message can connect action to higher-order motives.",
+      "commonError": "WIIFY requires reducing every appeal to price, pay, or personal convenience.",
+      "whyWrong": "That narrow reading misses motives such as service identity and collective pride that can be more powerful than money.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "WIIFY",
+        "What's In It For You"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.8"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch05.fact.9",
+      "claim": "Semantic stretch weakens an emotional association when a valued word is applied to many weakly related things.",
+      "mechanism": "Because repeated loose use makes the label less diagnostic of the original value, audiences stop feeling the intended association.",
+      "commonError": "Using a powerful value word in every message continuously strengthens its emotional force.",
+      "whyWrong": "Overextension dilutes the word's specificity and can make the appeal sound empty or promotional.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Semantic",
+        "Using",
+        "Overextension"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch05.ex.rokia-study",
+      "label": "Small, Loewenstein, and Slovic Rokia experiment",
+      "summary": "A Carnegie Mellon experiment by Deborah Small, George Loewenstein, and Paul Slovic used a constructed appeal about 7-year-old Rokia from Mali. Participants gave an average $2.38 to the identifiable appeal, compared with $1.14 for a statistics-only appeal; Rokia was a study vignette, not a verified beneficiary.",
+      "realWorld": true,
+      "naturalSetting": "Small",
+      "hardSpecifics": [
+        "average $2.38",
+        "$1.14 for a statistics-only appeal"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch05.ex.truth",
+      "label": "American Legacy Foundation truth campaign",
+      "summary": "The national American Legacy Foundation truth campaign launched in early 2000 and framed youth smoking as resistance to tobacco-industry manipulation. A quasi-experimental evaluation associated campaign exposure with about 22 percent of the decline in youth smoking prevalence from 1999 to 2002.",
+      "realWorld": true,
+      "naturalSetting": "American Legacy Foundation",
+      "hardSpecifics": [
+        "launched in early 2000",
+        "about 22 percent of the decline"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "launched in early 2000"
+      ]
+    },
+    {
+      "id": "ch05.ex.floyd-lee",
+      "label": "Floyd Lee / Pegasus dining facility",
+      "summary": "Floyd Lee, retired after 25 years as a Marine Corps and Army cook, ran the Pegasus dining facility near Baghdad airport. He treated the mission as soldier morale rather than food service, improving lighting, presentation, and the dining experience despite working from the standard supply system.",
+      "realWorld": true,
+      "naturalSetting": "Floyd Lee",
+      "hardSpecifics": [
+        "25 years as a Marine Corps and Army cook",
+        "Pegasus dining facility near Baghdad airport"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch05.ex.texas",
+      "label": "TxDOT Don't mess with Texas campaign",
+      "summary": "The Texas transportation department launched Don't mess with Texas as an anti-litter campaign in 1986, with Stevie Ray Vaughan among its inaugural messengers. The slogan linked clean roads to Texan identity instead of issuing a polite generic request.",
+      "realWorld": true,
+      "naturalSetting": "TxDOT Don't",
+      "hardSpecifics": [
+        "anti-litter campaign in 1986",
+        "Stevie Ray Vaughan"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "anti-litter campaign in 1986"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Routes to care",
+      "members": [
+        "identifiable individual",
+        "association",
+        "self-interest",
+        "identity"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Identity decision",
+      "members": [
+        "Who am I?",
+        "What kind of situation is this?",
+        "What does someone like me do here?"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch05.concept",
+      "kind": "concept",
+      "label": "making people care",
+      "text": "Translate an impersonal issue into stakes attached to a person, valued association, desired benefit, or identity the audience recognizes as its own. A credible message can remain inert; emotional relevance supplies the motive to choose or act.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.ex.rokia-study",
+      "kind": "named_example",
+      "label": "Small, Loewenstein, and Slovic Rokia experiment",
+      "text": "A Carnegie Mellon experiment by Deborah Small, George Loewenstein, and Paul Slovic used a constructed appeal about 7-year-old Rokia from Mali. Participants gave an average $2.38 to the identifiable appeal, compared with $1.14 for a statistics-only appeal; Rokia was a study vignette, not a verified beneficiary. A single identifiable figure can activate feeling more readily than aggregate need, although the general effect is context-sensitive.",
+      "hardSpecifics": [
+        "average $2.38",
+        "$1.14 for a statistics-only appeal"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.ex.truth",
+      "kind": "named_example",
+      "label": "American Legacy Foundation truth campaign",
+      "text": "The national American Legacy Foundation truth campaign launched in early 2000 and framed youth smoking as resistance to tobacco-industry manipulation. A quasi-experimental evaluation associated campaign exposure with about 22 percent of the decline in youth smoking prevalence from 1999 to 2002. An appeal can recruit identity and defiance instead of repeating distant health consequences.",
+      "hardSpecifics": [
+        "launched in early 2000",
+        "about 22 percent of the decline"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.ex.floyd-lee",
+      "kind": "named_example",
+      "label": "Floyd Lee / Pegasus dining facility",
+      "text": "Floyd Lee, retired after 25 years as a Marine Corps and Army cook, ran the Pegasus dining facility near Baghdad airport. He treated the mission as soldier morale rather than food service, improving lighting, presentation, and the dining experience despite working from the standard supply system. A higher-order identity can turn a routine task into meaningful service.",
+      "hardSpecifics": [
+        "25 years as a Marine Corps and Army cook",
+        "Pegasus dining facility near Baghdad airport"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.ex.texas",
+      "kind": "named_example",
+      "label": "TxDOT Don't mess with Texas campaign",
+      "text": "The Texas transportation department launched Don't mess with Texas as an anti-litter campaign in 1986, with Stevie Ray Vaughan among its inaugural messengers. The slogan linked clean roads to Texan identity instead of issuing a polite generic request. Identity can make an unwanted behavior feel inconsistent with group membership.",
+      "hardSpecifics": [
+        "anti-litter campaign in 1986",
+        "Stevie Ray Vaughan"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.1",
+      "kind": "testable_fact",
+      "label": "In the Small, Loewenstein, and Slovic study, the Rokia-only appeal averaged $2.38 while a statistics-only appeal averaged $1.14.",
+      "text": "In the Small, Loewenstein, and Slovic study, the Rokia-only appeal averaged $2.38 while a statistics-only appeal averaged $1.14. Because the constructed individual gave attention a single human target, participants could form an affective response more readily than from aggregate figures. The reported amounts prove that every individual story always raises exactly twice as much as any statistical appeal. They are means from one experimental design, and later work shows identifiable-victim effects vary with context and framing.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.2",
+      "kind": "testable_fact",
+      "label": "The Rokia experiment used a constructed 7-year-old girl from Mali rather than documenting a real named beneficiary.",
+      "text": "The Rokia experiment used a constructed 7-year-old girl from Mali rather than documenting a real named beneficiary. Because identifiability was created inside controlled appeal text, the researchers could compare message framing without relying on a public person's biography. Rokia's personal history can be expanded as verified reportage about a real child. The figure was an experimental vignette, so adding scenes or biography would fabricate evidence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.3",
+      "kind": "testable_fact",
+      "label": "The national truth campaign launched in early 2000 to discourage smoking among U.S. youth.",
+      "text": "The national truth campaign launched in early 2000 to discourage smoking among U.S. youth. Because the campaign framed tobacco companies as manipulators, refusing cigarettes could express youthful independence rather than obedience to adult warnings. truth relied only on calm medical lectures delivered by tobacco executives. Its branded strategy used hard-hitting messages that challenged industry influence and recruited resistance.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.4",
+      "kind": "testable_fact",
+      "label": "A 2005 quasi-experimental evaluation estimated that truth accounted for about 22 percent of the 1999–2002 decline in youth smoking prevalence.",
+      "text": "A 2005 quasi-experimental evaluation estimated that truth accounted for about 22 percent of the 1999–2002 decline in youth smoking prevalence. Because researchers related varying campaign exposure to prevalence trends in a large national student sample, they could estimate an exposure-associated contribution while controlling measured alternatives. The estimate means the campaign single-handedly caused the entire decline in youth smoking. The study attributed a portion of the decline and used an observational pre/post design, so the result is not total or randomized causation.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.5",
+      "kind": "testable_fact",
+      "label": "Floyd Lee brought 25 years of Marine Corps and Army cooking experience to the Pegasus dining facility near Baghdad airport.",
+      "text": "Floyd Lee brought 25 years of Marine Corps and Army cooking experience to the Pegasus dining facility near Baghdad airport. Because he defined feeding soldiers as a morale mission, familiar supplies and routine service decisions were reorganized around emotional recovery. Pegasus succeeded only because Lee received a unique luxury-food supply unavailable to other facilities. The reported distinction was how standard resources were prepared and presented, guided by a different mission.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.6",
+      "kind": "testable_fact",
+      "label": "TxDOT has used Don't mess with Texas to mean don't litter since 1986.",
+      "text": "TxDOT has used Don't mess with Texas to mean don't litter since 1986. Because the phrase made roadside cleanliness part of Texas pride, littering could feel inconsistent with the target audience's group identity. The phrase originated as a general state threat with no transportation or litter purpose. Its institutional origin was a state anti-litter effort, even though later popular use broadened the phrase.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.7",
+      "kind": "testable_fact",
+      "label": "An identity decision can be framed through who I am, what situation this is, and what someone like me does here.",
+      "text": "An identity decision can be framed through who I am, what situation this is, and what someone like me does here. Because group norms and self-concept supply behavioral defaults, the person need not calculate every consequence from scratch. Identity appeals work only by offering a direct cash reward to the audience. Cash belongs to narrow consequence-based self-interest; identity works through role and norm consistency.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.8",
+      "kind": "testable_fact",
+      "label": "WIIFY means What's In It For You, but the relevant benefit can include meaning, belonging, mastery, or pride.",
+      "text": "WIIFY means What's In It For You, but the relevant benefit can include meaning, belonging, mastery, or pride. Because people value psychological and social outcomes as well as material gain, a message can connect action to higher-order motives. WIIFY requires reducing every appeal to price, pay, or personal convenience. That narrow reading misses motives such as service identity and collective pride that can be more powerful than money.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.9",
+      "kind": "testable_fact",
+      "label": "Semantic stretch weakens an emotional association when a valued word is applied to many weakly related things.",
+      "text": "Semantic stretch weakens an emotional association when a valued word is applied to many weakly related things. Because repeated loose use makes the label less diagnostic of the original value, audiences stop feeling the intended association. Using a powerful value word in every message continuously strengthens its emotional force. Overextension dilutes the word's specificity and can make the appeal sound empty or promotional.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.framework.routes.to.care",
+      "kind": "framework",
+      "label": "Routes to care",
+      "text": "identifiable individual, association, self-interest, identity",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.framework.identity.decision",
+      "kind": "framework",
+      "label": "Identity decision",
+      "text": "Who am I?, What kind of situation is this?, What does someone like me do here?",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1",
+    "1.14",
+    "2.38",
+    "7",
+    "2000",
+    "22",
+    "1999",
+    "2002",
+    "2005",
+    "25",
+    "1986"
+  ],
+  "allowedEntities": [
+    "Emotional",
+    "Belief",
+    "Care",
+    "Connect",
+    "Translate",
+    "Analytical",
+    "Associations",
+    "Self-interest",
+    "Identity-based",
+    "Small",
+    "Loewenstein",
+    "Slovic Rokia",
+    "A Carnegie Mellon",
+    "Deborah Small",
+    "George Loewenstein",
+    "Paul Slovic",
+    "Rokia",
+    "Mali. Participants",
+    "American Legacy Foundation",
+    "Floyd Lee",
+    "Pegasus",
+    "Marine Corps",
+    "Army",
+    "Baghdad",
+    "TxDOT Don't",
+    "Texas",
+    "The Texas",
+    "Don't",
+    "Stevie Ray Vaughan",
+    "Texan",
+    "Identity",
+    "Pam Laffin's",
+    "Floyd Lee's",
+    "Slovic",
+    "Rokia-only",
+    "They",
+    "The Rokia",
+    "Mali",
+    "Rokia's",
+    "U.S",
+    "Its",
+    "Lee",
+    "TxDOT",
+    "Cash",
+    "WIIFY",
+    "What's In It For You",
+    "Semantic",
+    "Using",
+    "Overextension",
+    "Routes",
+    "Who",
+    "What",
+    "The Small",
+    "TxDOT's",
+    "Standard",
+    "Small, Loewenstein, and Slovic Rokia experiment",
+    "American Legacy Foundation truth campaign",
+    "Floyd Lee / Pegasus dining facility",
+    "TxDOT Don't mess with Texas campaign"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch05.ex.rokia-study",
+      "warning": "Keep examples about Small, Loewenstein, and Slovic Rokia experiment source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch05.ex.truth",
+      "warning": "Keep examples about American Legacy Foundation truth campaign source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch05.ex.floyd-lee",
+      "warning": "Keep examples about Floyd Lee / Pegasus dining facility source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch05.ex.texas",
+      "warning": "Keep examples about TxDOT Don't mess with Texas campaign source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch05.fact.1"
+}

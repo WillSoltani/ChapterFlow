@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 4,
+  "chapterTitle": "When Do We Need a Nudge?",
+  "focus": "Nudges are most valuable for decisions that are rare, difficult, poorly understood, weakly connected to feedback, or easy to neglect. The intervention should be highly likely to help and unlikely to harm.",
+  "coreClaim": "The case for a nudge grows when ordinary learning cannot reliably correct mistakes.",
+  "centralConcept": {
+    "id": "ch04.concept",
+    "name": "nudge need conditions",
+    "plainDefinition": "A decision is a strong nudge candidate when people lack practice, prompt feedback, clear preference mapping, or enough attention.",
+    "whyItMatters": "Choice architects can prioritize scarce effort where small design changes have the largest expected benefit and the least downside."
+  },
+  "keyClaims": [
+    "Rare decisions do not generate enough repetition for learning.",
+    "Delayed or missing feedback lets errors persist.",
+    "Complex mappings make it hard to connect features to lived outcomes.",
+    "Forgetfulness calls for reminders rather than larger incentives.",
+    "Checklists coordinate known steps under pressure.",
+    "Competitive markets may not protect consumers when mistakes are profitable."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch04.ex.1",
+      "label": "Todd Rogers, David Nickerson, and voting-plan prompts",
+      "summary": "Before the 2008 US presidential election, eligible voters were prompted to specify when, where, and how they would vote. The planning questions raised turnout particularly among households with a single eligible voter.",
+      "teachesWhat": "A concrete plan can close the gap between intention and an easily forgotten action.",
+      "hardSpecifics": [
+        "2008 United States presidential election",
+        "questions specified when, where, and how to vote"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.ex.2",
+      "label": "World Health Organization / Surgical Safety Checklist",
+      "summary": "A WHO pilot introduced a 19-item checklist at eight hospitals in eight cities. The before-and-after study reported lower major complications and inpatient deaths after implementation.",
+      "teachesWhat": "A short prompt can protect a complex procedure from omission when teams already know the required steps.",
+      "hardSpecifics": [
+        "19-item surgical checklist",
+        "eight hospitals in eight cities"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.ex.3",
+      "label": "US extended-warranty market",
+      "summary": "Retailers sell protection on inexpensive electronics and appliances at prices far above expected repair cost. These rare, opaque failures are difficult for buyers to evaluate and highly profitable for sellers.",
+      "teachesWhat": "Markets can amplify mistakes when firms earn more from consumer confusion than from correcting it.",
+      "hardSpecifics": [
+        "extended warranties on electronics and appliances",
+        "retailer margins exceed expected repair value"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Difficulty alone does not justify steering toward an architect's preferred outcome. The golden rule asks whether the intervention is likely to make choosers better off by their own standards and whether a mistake by the architect would be easy to escape.",
+  "voiceCues": [
+    "states a golden rule before a diagnostic list",
+    "uses hypothetical choice-architect questions",
+    "moves from reminders to surgery to consumer products",
+    "ends with a blunt practical warning"
+  ],
+  "forbiddenLeakage": [
+    "defaults and mapping as the full Chapter 5 toolkit",
+    "smart-disclosure machine-readable data",
+    "sludge audits"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch04.fact.1",
+      "claim": "Prompts asking when, where, and how a person would vote increased turnout in the 2008 election study.",
+      "becauseMechanism": "This mechanism operates because forming an implementation plan linked an intention to concrete situational cues.",
+      "commonError": "A reminder can only help by supplying new information about candidates.",
+      "errorIsWhy": "The prompt changed action planning rather than political knowledge.",
+      "derivedFrom": "ch04.ex.1"
+    },
+    {
+      "id": "ch04.fact.2",
+      "claim": "The WHO Surgical Safety Checklist pilot used 19 items across eight hospitals in eight cities.",
+      "becauseMechanism": "This mechanism operates because a standardized pause made critical coordination and omission checks visible at the same points in each operation.",
+      "commonError": "The checklist was a long clinical manual replacing professional judgment.",
+      "errorIsWhy": "It was a short coordination tool layered onto existing expertise.",
+      "derivedFrom": "ch04.ex.2"
+    },
+    {
+      "id": "ch04.fact.3",
+      "claim": "Extended warranties are often priced well above the expected cost of repair for small consumer goods.",
+      "becauseMechanism": "This mechanism operates because buyers overweight salient failure scenarios while sellers exploit opaque probabilities and high margins.",
+      "commonError": "A competitive retail market guarantees that warranty prices equal actuarial value.",
+      "errorIsWhy": "Profit from consumer error can sustain expensive add-ons across competitors.",
+      "derivedFrom": "ch04.ex.3"
+    },
+    {
+      "id": "ch04.fact.4",
+      "claim": "Rare choices are strong nudge candidates because people receive few chances to learn from experience.",
+      "becauseMechanism": "This mechanism operates because learning requires repeated action and observable outcomes, which one-time decisions do not provide.",
+      "commonError": "High importance automatically makes people expert decision makers.",
+      "errorIsWhy": "Stakes increase consequences but do not create practice.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.5",
+      "claim": "Delayed feedback weakens learning even when a decision is repeated.",
+      "becauseMechanism": "This mechanism operates because a remote outcome is difficult to attribute to the earlier choice, so the error signal cannot update behavior cleanly.",
+      "commonError": "Repetition always teaches which option works.",
+      "errorIsWhy": "Practice without timely diagnostic feedback can repeat the same mistake.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.6",
+      "claim": "A mapping problem exists when product attributes do not translate transparently into the chooser's eventual experience.",
+      "becauseMechanism": "This mechanism operates because technical dimensions such as fund fees or car features must be converted into welfare consequences before they can be compared.",
+      "commonError": "More disclosed attributes automatically make a difficult choice easy.",
+      "errorIsWhy": "Raw features remain unusable when people cannot connect them to outcomes.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.7",
+      "claim": "Reminders are suited to inattention when the person already intends to act.",
+      "becauseMechanism": "This mechanism operates because a timely cue restores the intended task to working attention without changing its payoff.",
+      "commonError": "Forgetting always requires a stronger financial incentive.",
+      "errorIsWhy": "The preference and incentive may already be adequate; only attention is missing.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.8",
+      "claim": "The golden rule favors nudges that are unlikely to harm and likely to help.",
+      "becauseMechanism": "This mechanism operates because choice architects are fallible, so low downside and easy avoidance limit damage from a mistaken design.",
+      "commonError": "Any intervention with a positive average effect satisfies the rule.",
+      "errorIsWhy": "Distributional harm and ease of escape also matter.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.9",
+      "claim": "Markets may preserve confusing choice environments when firms profit from consumer mistakes.",
+      "becauseMechanism": "This mechanism operates because a seller loses revenue by educating a mistaken buyer if competitors continue monetizing the same error.",
+      "commonError": "Competition necessarily eliminates every exploitative choice design.",
+      "errorIsWhy": "Competition disciplines price only when consumers can recognize and compare the relevant cost.",
+      "derivedFrom": "ch04.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Strong nudge-candidate conditions",
+      "members": [
+        "rare",
+        "difficult",
+        "weak feedback",
+        "unclear mapping",
+        "low attention"
+      ],
+      "acronym": false
+    }
+  ],
+  "paraphraseNotes": "A nudge earns its keep where ordinary learning breaks down. The strongest candidates are rare, difficult decisions with delayed feedback, unfamiliar mappings, or an easy path to forgetting. Todd Rogers and David Nickerson's 2008 voting study turns intention into action by asking eligible voters when, where, and how they will vote. The content is mundane; the mechanism is a concrete implementation plan that makes the future cue retrievable. The World Health Organization's 19-item Surgical Safety Checklist addresses a different failure. Eight hospitals in eight cities tested a standardized set of pauses and confirmations, with the published before-and-after comparison reporting lower major complications and deaths. Expertise was not replaced; known steps were protected from omission and team coordination failure. Extended warranties show why a market does not automatically solve every decision problem. Failures are rare, repair probabilities are opaque, and sellers can earn high margins precisely because buyers overreact to a salient breakdown scenario. These examples point to a diagnostic sequence. Ask how often the choice is made, whether feedback arrives quickly enough to teach, whether attributes map to outcomes the chooser values, and whether inattention rather than preference is the obstacle. Then apply the golden rule: favor interventions with a high chance of helping by the chooser's own lights and a low chance of harm. A prompt, checklist, or warning should be easy to ignore when the architect is mistaken. Grounding anchors: 2008 United States presidential election; questions specified when, where, and how to vote; 19-item surgical checklist; extended warranties on electronics and appliances; retailer margins exceed expected repair value."
+}

@@ -32,6 +32,14 @@ SELF="scripts/ci/scan-secrets-and-artifacts.sh"
 
 # Paths that must never be tracked (already in .gitignore; this catches `git add -f`).
 FORBIDDEN_PATHS='(^|/)\.next(-|/)|(^|/)\.open-next/|(^|/)node_modules/|(^|/)\.chapterflow/|^infra/cdk\.out/|^infra/dist/|\.swp$|\.swo$|\.tsbuildinfo$|(^|/)\.DS_Store$'
+# Scoped exemption (ledger L-44): the v24 pipeline's .chapterflow/runs/ store is
+# DURABLE research evidence — the frozen bakeoff-corpus shared inputs are
+# hash-bound by docs/v25/bakeoff-corpus-v1/corpus-manifest.json and re-verified
+# by tests/bakeoff-corpus-fixtures.test.ts, so they MUST be tracked. The
+# forbidden-.chapterflow rule targets the repo-root scratch dir and build
+# caches; those (and every other .chapterflow) remain blocked. Content-level
+# secret scanning below still covers these files.
+FORBIDDEN_ALLOW='^scripts/book/prompts/chapterflow-v24-author-pipeline/\.chapterflow/(runs/|source-verify-)'
 ENV_FILE='(^|/)\.env($|\.)'
 ENV_ALLOW='\.(example|sample|template)$'
 
@@ -109,7 +117,7 @@ fi
 problems=0
 
 # ── 1. forbidden artifact / cache / env paths ────────────────────────────────
-BADPATHS=$(printf '%s\n' "$FILES" | grep -E "$FORBIDDEN_PATHS" || true)
+BADPATHS=$(printf '%s\n' "$FILES" | grep -E "$FORBIDDEN_PATHS" | grep -vE "$FORBIDDEN_ALLOW" || true)
 BADENV=$(printf '%s\n' "$FILES" | grep -E "$ENV_FILE" | grep -vE "$ENV_ALLOW" || true)
 ARTIFACTS=$(printf '%s\n%s\n' "$BADPATHS" "$BADENV" | grep -v '^$' | sort -u || true)
 if [ -n "$ARTIFACTS" ]; then

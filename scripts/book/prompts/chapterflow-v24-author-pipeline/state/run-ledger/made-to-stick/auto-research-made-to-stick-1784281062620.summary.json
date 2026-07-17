@@ -1,0 +1,29 @@
+{
+  "schema": "run-call-ledger-rollup-v1",
+  "bookId": "made-to-stick",
+  "runId": "auto-research-made-to-stick-1784281062620",
+  "at": "2026-07-17T09:58:00.459Z",
+  "totalCalls": 1,
+  "byFamily": {
+    "codex-exec": 1
+  },
+  "byStage": {
+    "other": 1
+  },
+  "byRole": {
+    "research": 1
+  },
+  "byModel": {
+    "gpt-5.6-sol": 1
+  },
+  "byOutcome": {
+    "content_completed": 1
+  },
+  "latency": {
+    "p50Ms": 1216108,
+    "p95Ms": 1216108,
+    "sampledCalls": 1,
+    "unknownLatencyCalls": 0
+  },
+  "cost": "NOT_METERED"
+}

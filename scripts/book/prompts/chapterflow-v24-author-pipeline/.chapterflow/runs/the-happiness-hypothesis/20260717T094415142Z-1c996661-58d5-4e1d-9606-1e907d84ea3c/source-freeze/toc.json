@@ -1,0 +1,46 @@
+{
+  "bookId": "the-happiness-hypothesis",
+  "title": "The Happiness Hypothesis",
+  "author": "Jonathan Haidt",
+  "edition": {
+    "name": "Finding Modern Truth in Ancient Wisdom",
+    "publisher": "Basic Books",
+    "publishedYear": 2006,
+    "isbn13": "9780465003686",
+    "language": "English",
+    "chapterCount": 11
+  },
+  "introduction": "Too Much Wisdom",
+  "flatChapters": [
+    { "number": 1, "title": "The Divided Self" },
+    { "number": 2, "title": "Changing Your Mind" },
+    { "number": 3, "title": "Reciprocity with a Vengeance" },
+    { "number": 4, "title": "The Faults of Others" },
+    { "number": 5, "title": "The Pursuit of Happiness" },
+    { "number": 6, "title": "Love and Attachments" },
+    { "number": 7, "title": "The Uses of Adversity" },
+    { "number": 8, "title": "The Felicity of Virtue" },
+    { "number": 9, "title": "Divinity with or without God" },
+    { "number": 10, "title": "Happiness Comes from Between" },
+    { "number": 11, "title": "On Balance" }
+  ],
+  "thesis": "Enduring maxims about living well become useful only when tested against how minds, relationships, and cultures actually work. Flourishing depends neither entirely on inner control nor entirely on external conditions, but on building a workable fit among automatic emotion, deliberate thought, social bonds, purposeful activity, and larger moral commitments.",
+  "teachingArc": "The opening chapters explain the divided mind, emotional change, reciprocity, and self-serving moral judgment. The middle chapters examine the conditions of happiness, attachment, adversity, virtue, and experiences of sacredness. The final chapters join love and purposeful work into an account of meaning, then resolve the competing wisdom traditions through balance rather than a single universal formula.",
+  "authorVoice": {
+    "register": "analytical",
+    "signatureMoves": [
+      "opens each inquiry with a maxim from an older wisdom tradition",
+      "moves from a vivid human or animal case to a named psychological mechanism",
+      "tests broad moral advice by distinguishing where it works from where it fails",
+      "uses compact metaphors such as rider and elephant to connect research findings",
+      "closes by translating evidence into a qualified practical implication"
+    ],
+    "avoidMoves": [
+      "does not treat any one philosophical tradition as sufficient",
+      "does not present happiness as constant positive mood",
+      "avoids giving unsupported inspiration in place of mechanisms"
+    ]
+  },
+  "confidence": "high",
+  "notes": "The frozen record follows the 2006 Basic Books unabridged edition (ISBN 9780465003686). The separately titled introduction is not counted among the eleven numbered chapters. Some catalogs label the final entry 'Conclusion: On Balance'; the author-maintained chapter list and Google Books render its chapter title as 'On Balance', which is used here."
+}

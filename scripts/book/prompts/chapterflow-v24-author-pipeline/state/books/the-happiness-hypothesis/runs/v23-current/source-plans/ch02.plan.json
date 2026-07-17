@@ -1,0 +1,401 @@
+{
+  "schema": "source-use-plan-v1",
+  "planVersion": 1,
+  "bookId": "the-happiness-hypothesis",
+  "chapterNumber": 2,
+  "sourcePacketSha256": "sha256:224107fd7ba35a8752d8ee303a846fc384d26e78b231756a87258537e5289b17",
+  "compilerVersion": "chapterflow-source-plan-compiler/1 (compiler-owned)",
+  "units": [
+    {
+      "unitId": "unit.fact.ch02.fact.1",
+      "origin": "source_bound",
+      "form": "explanation",
+      "claimStrength": "mechanistic",
+      "anchorIds": [
+        "ch02.fact.1"
+      ],
+      "allowedDetailTypes": [
+        "concept",
+        "documented_specific",
+        "documented_number"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_scene",
+        "invented_participant",
+        "asserted_causation",
+        "invented_quantified_effect"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.fact.ch02.fact.2",
+      "origin": "source_bound",
+      "form": "explanation",
+      "claimStrength": "mechanistic",
+      "anchorIds": [
+        "ch02.fact.2"
+      ],
+      "allowedDetailTypes": [
+        "concept",
+        "documented_specific",
+        "documented_number"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_scene",
+        "invented_participant",
+        "asserted_causation",
+        "invented_quantified_effect"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.fact.ch02.fact.3",
+      "origin": "source_bound",
+      "form": "explanation",
+      "claimStrength": "mechanistic",
+      "anchorIds": [
+        "ch02.fact.3"
+      ],
+      "allowedDetailTypes": [
+        "concept",
+        "documented_specific",
+        "documented_number"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_scene",
+        "invented_participant",
+        "asserted_causation",
+        "invented_quantified_effect"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.fact.ch02.fact.4",
+      "origin": "source_bound",
+      "form": "explanation",
+      "claimStrength": "mechanistic",
+      "anchorIds": [
+        "ch02.fact.4"
+      ],
+      "allowedDetailTypes": [
+        "concept",
+        "documented_specific",
+        "documented_number"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_scene",
+        "invented_participant",
+        "asserted_causation",
+        "invented_quantified_effect"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.fact.ch02.fact.5",
+      "origin": "source_bound",
+      "form": "explanation",
+      "claimStrength": "mechanistic",
+      "anchorIds": [
+        "ch02.fact.5"
+      ],
+      "allowedDetailTypes": [
+        "concept",
+        "documented_specific",
+        "documented_number"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_scene",
+        "invented_participant",
+        "asserted_causation",
+        "invented_quantified_effect"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.fact.ch02.fact.6",
+      "origin": "source_bound",
+      "form": "explanation",
+      "claimStrength": "descriptive",
+      "anchorIds": [
+        "ch02.fact.6"
+      ],
+      "allowedDetailTypes": [
+        "concept",
+        "documented_specific",
+        "documented_number"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_scene",
+        "invented_participant",
+        "asserted_causation",
+        "invented_quantified_effect"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.fact.ch02.fact.7",
+      "origin": "source_bound",
+      "form": "explanation",
+      "claimStrength": "mechanistic",
+      "anchorIds": [
+        "ch02.fact.7"
+      ],
+      "allowedDetailTypes": [
+        "concept",
+        "documented_specific",
+        "documented_number"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_scene",
+        "invented_participant",
+        "asserted_causation",
+        "invented_quantified_effect"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.fact.ch02.fact.8",
+      "origin": "source_bound",
+      "form": "explanation",
+      "claimStrength": "mechanistic",
+      "anchorIds": [
+        "ch02.fact.8"
+      ],
+      "allowedDetailTypes": [
+        "concept",
+        "documented_specific",
+        "documented_number"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_scene",
+        "invented_participant",
+        "asserted_causation",
+        "invented_quantified_effect"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.fact.ch02.fact.9",
+      "origin": "source_bound",
+      "form": "explanation",
+      "claimStrength": "mechanistic",
+      "anchorIds": [
+        "ch02.fact.9"
+      ],
+      "allowedDetailTypes": [
+        "concept",
+        "documented_specific",
+        "documented_number"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_scene",
+        "invented_participant",
+        "asserted_causation",
+        "invented_quantified_effect"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.case.ch02.example.beck",
+      "origin": "source_bound",
+      "form": "case",
+      "claimStrength": "descriptive",
+      "caseId": "ch02.example.beck",
+      "anchorIds": [
+        "ch02.example.beck"
+      ],
+      "allowedDetailTypes": [
+        "documented_specific",
+        "documented_number",
+        "documented_name",
+        "documented_place",
+        "documented_date"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_dialogue",
+        "invented_thoughts",
+        "invented_participant",
+        "invented_date",
+        "invented_setting",
+        "invented_outcome",
+        "asserted_causation",
+        "invented_quantified_effect",
+        "restamp_protected_specific",
+        "scene_completion"
+      ],
+      "detailSufficiency": "partial",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.case.ch02.example.meditation",
+      "origin": "source_bound",
+      "form": "case",
+      "claimStrength": "descriptive",
+      "caseId": "ch02.example.meditation",
+      "anchorIds": [
+        "ch02.example.meditation"
+      ],
+      "allowedDetailTypes": [
+        "documented_specific",
+        "documented_number",
+        "documented_name",
+        "documented_place",
+        "documented_date"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_dialogue",
+        "invented_thoughts",
+        "invented_participant",
+        "invented_date",
+        "invented_setting",
+        "invented_outcome",
+        "asserted_causation",
+        "invented_quantified_effect",
+        "restamp_protected_specific",
+        "scene_completion"
+      ],
+      "detailSufficiency": "partial",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.case.ch02.example.kramer",
+      "origin": "source_bound",
+      "form": "case",
+      "claimStrength": "descriptive",
+      "caseId": "ch02.example.kramer",
+      "anchorIds": [
+        "ch02.example.kramer"
+      ],
+      "allowedDetailTypes": [
+        "documented_specific",
+        "documented_number",
+        "documented_name",
+        "documented_place",
+        "documented_date"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_dialogue",
+        "invented_thoughts",
+        "invented_participant",
+        "invented_date",
+        "invented_setting",
+        "invented_outcome",
+        "asserted_causation",
+        "invented_quantified_effect",
+        "restamp_protected_specific",
+        "scene_completion"
+      ],
+      "detailSufficiency": "partial",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.case.ch02.example.pelham",
+      "origin": "source_bound",
+      "form": "case",
+      "claimStrength": "descriptive",
+      "caseId": "ch02.example.pelham",
+      "anchorIds": [
+        "ch02.example.pelham"
+      ],
+      "allowedDetailTypes": [
+        "documented_specific",
+        "documented_number",
+        "documented_name",
+        "documented_place",
+        "documented_date"
+      ],
+      "forbiddenDetailTypes": [
+        "invented_dialogue",
+        "invented_thoughts",
+        "invented_participant",
+        "invented_date",
+        "invented_setting",
+        "invented_outcome",
+        "asserted_causation",
+        "invented_quantified_effect",
+        "restamp_protected_specific",
+        "scene_completion"
+      ],
+      "detailSufficiency": "partial",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.ch02.constructed-application",
+      "origin": "constructed",
+      "form": "application",
+      "claimStrength": "descriptive",
+      "anchorIds": [],
+      "allowedDetailTypes": [
+        "fictional_name",
+        "role_label",
+        "concrete_action",
+        "hypothetical_consequence"
+      ],
+      "forbiddenDetailTypes": [
+        "real_person",
+        "real_organization",
+        "fabricated_statistic",
+        "fabricated_date",
+        "fabricated_credential",
+        "fabricated_citation",
+        "historical_claim",
+        "outcome_reported_as_fact"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": true
+    },
+    {
+      "unitId": "unit.ch02.generic-scenario",
+      "origin": "generic",
+      "form": "operational_scenario",
+      "claimStrength": "descriptive",
+      "anchorIds": [],
+      "allowedDetailTypes": [
+        "role_label",
+        "observable_action",
+        "constraint",
+        "tradeoff",
+        "workflow_step"
+      ],
+      "forbiddenDetailTypes": [
+        "named_person",
+        "named_organization",
+        "date",
+        "exact_metric",
+        "credential",
+        "biography",
+        "historical_claim"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": false
+    },
+    {
+      "unitId": "unit.ch02.analogy",
+      "origin": "constructed",
+      "form": "analogy",
+      "claimStrength": "descriptive",
+      "anchorIds": [],
+      "allowedDetailTypes": [
+        "everyday_object",
+        "familiar_process"
+      ],
+      "forbiddenDetailTypes": [
+        "real_person",
+        "fabricated_statistic",
+        "historical_claim",
+        "literal_equivalence"
+      ],
+      "detailSufficiency": "concept_only",
+      "framingRequired": true
+    }
+  ]
+}

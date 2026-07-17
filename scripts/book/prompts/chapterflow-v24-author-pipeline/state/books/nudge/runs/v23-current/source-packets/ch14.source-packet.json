@@ -1,0 +1,754 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch14",
+  "chapterNumber": 14,
+  "chapterTitle": "Saving the Planet",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch14.source.json",
+  "sourceHash": "sha256:e6ac646a460ffec224c9f1493040a752289c20c857813f7669bdff87df0f6b66",
+  "facts": [
+    {
+      "id": "ch14.fact.1",
+      "claim": "OPOWER Home Energy Report trials across about 600,000 households reduced average electricity use by 2.0 percent.",
+      "mechanism": "This mechanism operates because neighbor comparison and tailored tips supplied salient feedback that ordinary bills lacked.",
+      "commonError": "The reduction came from an 11-to-20-percent electricity price increase.",
+      "whyWrong": "The reports were a nonprice intervention, though their effect was comparable to such a short-run price change.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2.0",
+        "11",
+        "20",
+        "600000"
+      ],
+      "groundedEntities": [
+        "OPOWER Home Energy Report"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch14.fact.2",
+      "claim": "The Toxics Release Inventory originated in the 1986 Emergency Planning and Community Right-to-Know Act.",
+      "mechanism": "This mechanism operates because facility-level publication exposed emissions to communities, investors, and peer comparison.",
+      "commonError": "TRI data remained confidential inside the EPA.",
+      "whyWrong": "Public access is the mechanism that creates reputational pressure.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1986"
+      ],
+      "groundedEntities": [
+        "The Toxics Release Inventory",
+        "Emergency Planning",
+        "Community Right-to-Know Act. This",
+        "TRI",
+        "EPA. Public"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch14.fact.3",
+      "claim": "A climate club pairs a shared carbon commitment with penalties on nonmembers.",
+      "mechanism": "This mechanism operates because the external consequence makes free riding less attractive than joining the agreement.",
+      "commonError": "A climate club relies only on voluntary moral appeals.",
+      "whyWrong": "Its distinctive feature is an enforceable penalty, commonly a trade measure.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.3"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch14.fact.4",
+      "claim": "The social cost of carbon estimates the damage caused by one additional ton of carbon dioxide emissions.",
+      "mechanism": "This mechanism operates because monetizing marginal harm provides a benchmark for taxes and regulatory benefit calculations.",
+      "commonError": "It is the market price firms already pay for every ton emitted.",
+      "whyWrong": "The social cost is an estimate of external damage, not necessarily an enacted price.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.4"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch14.fact.5",
+      "claim": "A carbon tax changes incentives by charging for each unit of emissions.",
+      "mechanism": "This mechanism operates because the price makes some external harm part of the emitter's private cost.",
+      "commonError": "A carbon tax guarantees an exact emissions quantity.",
+      "whyWrong": "It fixes a price; the resulting quantity depends on behavioral and technological response.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.5"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch14.fact.6",
+      "claim": "Cap-and-trade fixes an aggregate emissions limit and allows permits to be exchanged.",
+      "mechanism": "This mechanism operates because trading directs reductions toward sources with lower abatement costs while the cap controls total authorized emissions.",
+      "commonError": "Permit trading removes the emissions limit.",
+      "whyWrong": "The number of permits remains bounded by the cap.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Cap-and-trade",
+        "Permit"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.6"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch14.fact.7",
+      "claim": "Present bias hinders climate action because mitigation costs arrive before many benefits.",
+      "mechanism": "This mechanism operates because immediate taxes, prices, or restrictions receive more decision weight than avoided harms decades later.",
+      "commonError": "Delay makes future climate damage economically irrelevant.",
+      "whyWrong": "Discounting changes present valuation but does not eliminate future welfare.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Present",
+        "Delay",
+        "Discounting"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.7"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch14.fact.8",
+      "claim": "Conditional cooperators reduce contributions when they believe others are free riding.",
+      "mechanism": "This mechanism operates because willingness to bear a shared cost depends partly on expectations that peers will reciprocate.",
+      "commonError": "Public-good contributions are independent of others' behavior.",
+      "whyWrong": "Observed cooperation often decays when defection becomes visible.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Conditional",
+        "Public-good",
+        "Observed"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch14.fact.9",
+      "claim": "Green More Tomorrow would commit to a modest current carbon cost that rises on a schedule.",
+      "mechanism": "This mechanism operates because gradual escalation reduces immediate loss salience while locking in stronger future incentives.",
+      "commonError": "The proposal keeps carbon prices permanently low.",
+      "whyWrong": "Its defining feature is precommitted increase over time.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Green More Tomorrow",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch14.fact.9"
+      ],
+      "teachingPriority": 8
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch14.ex.1",
+      "label": "Hunt Allcott / OPOWER Home Energy Reports",
+      "summary": "OPOWER mailed households reports comparing their electricity use with similar neighbors and offering conservation tips. Randomized programs covering about 600,000 households reduced average consumption by 2.0 percent.",
+      "realWorld": true,
+      "naturalSetting": "Hunt Allcott",
+      "hardSpecifics": [
+        "about 600,000 treatment and control households",
+        "average electricity reduction of 2.0 percent"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch14.ex.2",
+      "label": "US EPA / Toxics Release Inventory",
+      "summary": "Federal law required covered facilities to publish releases of listed toxic chemicals through the Toxics Release Inventory. Public rankings and scrutiny created reputational pressure even before a new emissions tax or ban.",
+      "realWorld": true,
+      "naturalSetting": "US EPA",
+      "hardSpecifics": [
+        "created under the 1986 Emergency Planning and Community Right-to-Know Act",
+        "facility-level toxic release data made public"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "created under the 1986 Emergency Planning and Community Right-to-Know Act"
+      ]
+    },
+    {
+      "id": "ch14.ex.3",
+      "label": "William Nordhaus / climate club proposal",
+      "summary": "Nordhaus proposed a coalition whose members adopt a common carbon price and impose trade penalties on nonparticipants. The penalty changes the incentive to free ride outside a cooperative agreement.",
+      "realWorld": true,
+      "naturalSetting": "William Nordhaus",
+      "hardSpecifics": [
+        "common carbon-price commitment among club members",
+        "trade penalties applied to nonparticipants"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Climate inaction mechanisms",
+      "members": [
+        "present bias",
+        "low salience",
+        "no specific villain",
+        "probabilistic harm",
+        "loss aversion",
+        "free riding"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Climate policy tool stack",
+      "members": [
+        "carbon pricing",
+        "cap and trade",
+        "standards",
+        "disclosure",
+        "green defaults",
+        "feedback",
+        "international enforcement"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch14.concept",
+      "kind": "concept",
+      "label": "climate policy tool stack",
+      "text": "A coordinated mix of prices, rules, disclosure, defaults, feedback, and international cooperation aimed at lowering emissions. The scale and externality of climate harm exceed what voluntary individual nudges can solve alone.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.ex.1",
+      "kind": "named_example",
+      "label": "Hunt Allcott / OPOWER Home Energy Reports",
+      "text": "OPOWER mailed households reports comparing their electricity use with similar neighbors and offering conservation tips. Randomized programs covering about 600,000 households reduced average consumption by 2.0 percent. Specific local feedback and social comparison can reduce household energy use at low cost.",
+      "hardSpecifics": [
+        "about 600,000 treatment and control households",
+        "average electricity reduction of 2.0 percent"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.ex.2",
+      "kind": "named_example",
+      "label": "US EPA / Toxics Release Inventory",
+      "text": "Federal law required covered facilities to publish releases of listed toxic chemicals through the Toxics Release Inventory. Public rankings and scrutiny created reputational pressure even before a new emissions tax or ban. Mandatory disclosure can change organizational behavior through visibility.",
+      "hardSpecifics": [
+        "created under the 1986 Emergency Planning and Community Right-to-Know Act",
+        "facility-level toxic release data made public"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.ex.3",
+      "kind": "named_example",
+      "label": "William Nordhaus / climate club proposal",
+      "text": "Nordhaus proposed a coalition whose members adopt a common carbon price and impose trade penalties on nonparticipants. The penalty changes the incentive to free ride outside a cooperative agreement. International cooperation needs an enforceable benefit of joining or cost of staying out.",
+      "hardSpecifics": [
+        "common carbon-price commitment among club members",
+        "trade penalties applied to nonparticipants"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.1",
+      "kind": "testable_fact",
+      "label": "OPOWER Home Energy Report trials across about 600,000 households reduced average electricity use by 2.0 percent.",
+      "text": "OPOWER Home Energy Report trials across about 600,000 households reduced average electricity use by 2.0 percent. This mechanism operates because neighbor comparison and tailored tips supplied salient feedback that ordinary bills lacked. The reduction came from an 11-to-20-percent electricity price increase. The reports were a nonprice intervention, though their effect was comparable to such a short-run price change.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.2",
+      "kind": "testable_fact",
+      "label": "The Toxics Release Inventory originated in the 1986 Emergency Planning and Community Right-to-Know Act.",
+      "text": "The Toxics Release Inventory originated in the 1986 Emergency Planning and Community Right-to-Know Act. This mechanism operates because facility-level publication exposed emissions to communities, investors, and peer comparison. TRI data remained confidential inside the EPA. Public access is the mechanism that creates reputational pressure.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.3",
+      "kind": "testable_fact",
+      "label": "A climate club pairs a shared carbon commitment with penalties on nonmembers.",
+      "text": "A climate club pairs a shared carbon commitment with penalties on nonmembers. This mechanism operates because the external consequence makes free riding less attractive than joining the agreement. A climate club relies only on voluntary moral appeals. Its distinctive feature is an enforceable penalty, commonly a trade measure.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.4",
+      "kind": "testable_fact",
+      "label": "The social cost of carbon estimates the damage caused by one additional ton of carbon dioxide emissions.",
+      "text": "The social cost of carbon estimates the damage caused by one additional ton of carbon dioxide emissions. This mechanism operates because monetizing marginal harm provides a benchmark for taxes and regulatory benefit calculations. It is the market price firms already pay for every ton emitted. The social cost is an estimate of external damage, not necessarily an enacted price.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.5",
+      "kind": "testable_fact",
+      "label": "A carbon tax changes incentives by charging for each unit of emissions.",
+      "text": "A carbon tax changes incentives by charging for each unit of emissions. This mechanism operates because the price makes some external harm part of the emitter's private cost. A carbon tax guarantees an exact emissions quantity. It fixes a price; the resulting quantity depends on behavioral and technological response.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.6",
+      "kind": "testable_fact",
+      "label": "Cap-and-trade fixes an aggregate emissions limit and allows permits to be exchanged.",
+      "text": "Cap-and-trade fixes an aggregate emissions limit and allows permits to be exchanged. This mechanism operates because trading directs reductions toward sources with lower abatement costs while the cap controls total authorized emissions. Permit trading removes the emissions limit. The number of permits remains bounded by the cap.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.7",
+      "kind": "testable_fact",
+      "label": "Present bias hinders climate action because mitigation costs arrive before many benefits.",
+      "text": "Present bias hinders climate action because mitigation costs arrive before many benefits. This mechanism operates because immediate taxes, prices, or restrictions receive more decision weight than avoided harms decades later. Delay makes future climate damage economically irrelevant. Discounting changes present valuation but does not eliminate future welfare.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.8",
+      "kind": "testable_fact",
+      "label": "Conditional cooperators reduce contributions when they believe others are free riding.",
+      "text": "Conditional cooperators reduce contributions when they believe others are free riding. This mechanism operates because willingness to bear a shared cost depends partly on expectations that peers will reciprocate. Public-good contributions are independent of others' behavior. Observed cooperation often decays when defection becomes visible.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.fact.9",
+      "kind": "testable_fact",
+      "label": "Green More Tomorrow would commit to a modest current carbon cost that rises on a schedule.",
+      "text": "Green More Tomorrow would commit to a modest current carbon cost that rises on a schedule. This mechanism operates because gradual escalation reduces immediate loss salience while locking in stronger future incentives. The proposal keeps carbon prices permanently low. Its defining feature is precommitted increase over time.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.framework.climate.inaction.mechanisms",
+      "kind": "framework",
+      "label": "Climate inaction mechanisms",
+      "text": "present bias, low salience, no specific villain, probabilistic harm, loss aversion, free riding",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch14.framework.climate.policy.tool.stack",
+      "kind": "framework",
+      "label": "Climate policy tool stack",
+      "text": "carbon pricing, cap and trade, standards, disclosure, green defaults, feedback, international enforcement",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "2.0",
+    "11",
+    "20",
+    "600000",
+    "1986",
+    "1"
+  ],
+  "allowedEntities": [
+    "Saving",
+    "Planet",
+    "Climate",
+    "Nudges",
+    "Use",
+    "Present",
+    "Greenhouse",
+    "Carbon",
+    "Emission",
+    "Green",
+    "International",
+    "Hunt Allcott",
+    "OPOWER Home Energy Reports",
+    "OPOWER",
+    "Randomized",
+    "Specific",
+    "US EPA",
+    "Toxics Release Inventory",
+    "Federal",
+    "Toxics Release Inventory. Public",
+    "Mandatory",
+    "Emergency Planning",
+    "Community Right-to-Know Act",
+    "William Nordhaus",
+    "Nordhaus",
+    "Low-cost",
+    "OPOWER Home Energy Report",
+    "The Toxics Release Inventory",
+    "TRI",
+    "EPA",
+    "Public",
+    "Its",
+    "Cap-and-trade",
+    "Permit",
+    "Delay",
+    "Discounting",
+    "Conditional",
+    "Public-good",
+    "Observed",
+    "Green More Tomorrow",
+    "Prices",
+    "William Nordhaus's",
+    "Behavioral",
+    "The EPA's Toxics Release Inventory",
+    "Hunt Allcott's",
+    "Treating",
+    "Grounding",
+    "Hunt Allcott / OPOWER Home Energy Reports",
+    "US EPA / Toxics Release Inventory",
+    "William Nordhaus / climate club proposal"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch14.ex.1",
+      "warning": "Keep examples about Hunt Allcott / OPOWER Home Energy Reports source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch14.ex.2",
+      "warning": "Keep examples about US EPA / Toxics Release Inventory source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch14.ex.3",
+      "warning": "Keep examples about William Nordhaus / climate club proposal source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch14.fact.1"
+}

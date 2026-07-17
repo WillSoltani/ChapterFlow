@@ -1,0 +1,867 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "the-happiness-hypothesis",
+  "chapterId": "the-happiness-hypothesis-ch07",
+  "chapterNumber": 7,
+  "chapterTitle": "The Uses of Adversity",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/the-happiness-hypothesis/20260717T094415142Z-1c996661-58d5-4e1d-9606-1e907d84ea3c/sidecars/source/ch07.source.json",
+  "sourceHash": "sha256:d0e18e46a75b6d25eb1136590774b808404097b595c268267c4b4f319e45f989",
+  "facts": [
+    {
+      "id": "ch07.fact.1",
+      "claim": "The Posttraumatic Growth Inventory was introduced by Tedeschi and Calhoun in 1996.",
+      "mechanism": "Because It operationalized perceived positive change after crisis across several distinguishable domains.",
+      "commonError": "Post-traumatic growth is diagnosed whenever distress decreases.",
+      "whyWrong": "The PTGI measures perceived positive change, not simply symptom reduction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1996"
+      ],
+      "groundedEntities": [
+        "The Posttraumatic Growth Inventory",
+        "Tedeschi",
+        "Calhoun",
+        "Because It",
+        "Post-traumatic",
+        "The PTGI"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.1"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch07.fact.2",
+      "claim": "The PTGI's five domains are relating to others, new possibilities, personal strength, spiritual change, and appreciation of life.",
+      "mechanism": "Because The domains separate social, behavioral, self-concept, spiritual, and priority changes that can follow disruption.",
+      "commonError": "Growth after trauma means only discovering greater personal toughness.",
+      "whyWrong": "Personal strength is only one of five measured domains.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "5"
+      ],
+      "groundedEntities": [
+        "The PTGI's",
+        "Because The",
+        "Growth",
+        "Personal"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.2"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch07.fact.3",
+      "claim": "Perceived post-traumatic growth can differ from prospectively measured change.",
+      "mechanism": "Because Retrospective reports compare the present with a reconstructed memory of the pre-event self and may also serve coping needs.",
+      "commonError": "A high self-report growth score proves objective improvement from a pre-trauma baseline.",
+      "whyWrong": "Without pre-event measures, actual change and perceived change cannot be cleanly separated.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Perceived",
+        "Because Retrospective",
+        "Without"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.3"
+      ],
+      "replicationStatus": "contested",
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch07.fact.4",
+      "claim": "Pennebaker and Beall's first expressive-writing experiment used fifteen-minute sessions on four consecutive days.",
+      "mechanism": "Because Repeated constrained disclosure was designed to transform inhibited experience into an organized verbal account.",
+      "commonError": "The original intervention required months of daily journaling.",
+      "whyWrong": "The initial protocol was brief and concentrated across four days.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "4",
+        "15"
+      ],
+      "groundedEntities": [
+        "Pennebaker",
+        "Beall's",
+        "Because Repeated"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.4"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch07.fact.5",
+      "claim": "The original expressive-writing study tracked student-health-center visits for six months and was underpowered.",
+      "mechanism": "Because Health visits offered a behavioral outcome, but the small sample made the striking reduction uncertain without replication.",
+      "commonError": "The first writing study by itself established a large clinical effect with high precision.",
+      "whyWrong": "Its designer later described it as severely underpowered and noted subsequent failures as well as replications.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "6"
+      ],
+      "groundedEntities": [
+        "Because Health",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.5"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch07.fact.6",
+      "claim": "Expressive-writing effects vary across populations and outcomes.",
+      "mechanism": "Because Disclosure, baseline inhibition, trauma type, timing, and the chosen health measure alter what the intervention can change.",
+      "commonError": "Writing about trauma reliably improves every reader's mental and physical health.",
+      "whyWrong": "Meta-analyses find heterogeneous and generally modest average effects rather than a universal cure.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Expressive-writing",
+        "Because Disclosure",
+        "Writing",
+        "Meta-analyses"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.6"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch07.fact.7",
+      "claim": "Redemptive narratives connect a negative event to a later positive commitment or contribution.",
+      "mechanism": "Because The story creates continuity by making the response to hardship part of an enduring identity and goal.",
+      "commonError": "A redemptive story proves the harmful event was secretly good.",
+      "whyWrong": "Value can arise from a later response while the original harm remains harmful.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Redemptive",
+        "Because The",
+        "Value"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.7"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch07.fact.8",
+      "claim": "Sternberg's balance theory defines wisdom through balancing multiple interests and time horizons.",
+      "mechanism": "Because Wise action must coordinate self, others, and wider systems instead of maximizing one interest immediately.",
+      "commonError": "Wisdom is the automatic result of age or suffering.",
+      "whyWrong": "Experience supplies material, but balanced judgment is a separate cognitive and moral achievement.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Sternberg's",
+        "Because Wise",
+        "Wisdom",
+        "Experience"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.8"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch07.fact.9",
+      "claim": "Post-traumatic stress and reported growth can coexist.",
+      "mechanism": "Because Distress concerns ongoing threat and impairment, while growth reports concern changed priorities, relationships, or identity.",
+      "commonError": "Anyone who reports growth can no longer meet criteria for trauma-related distress.",
+      "whyWrong": "The constructs measure different outcomes and are not logical opposites.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Post-traumatic",
+        "Because Distress",
+        "Anyone"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.9"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch07.example.tedeschi",
+      "label": "Richard Tedeschi and Lawrence Calhoun / Posttraumatic Growth Inventory",
+      "summary": "Tedeschi and Calhoun developed the PTGI in 1996 to measure perceived positive changes after crisis. Its five domains are relating to others, new possibilities, personal strength, spiritual change, and appreciation of life. Verified anchors: Posttraumatic Growth Inventory introduced in 1996; five growth domains.",
+      "realWorld": true,
+      "naturalSetting": "Richard Tedeschi",
+      "hardSpecifics": [
+        "Posttraumatic Growth Inventory introduced in 1996",
+        "five growth domains",
+        "relating to others and new possibilities",
+        "personal strength, spiritual change, and appreciation of life"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Posttraumatic Growth Inventory introduced in 1996",
+        "personal strength, spiritual change, and appreciation of life"
+      ]
+    },
+    {
+      "id": "ch07.example.pennebaker",
+      "label": "James Pennebaker and Sandra Beall / expressive-writing experiment",
+      "summary": "College students were randomly assigned to write about trauma or superficial topics for fifteen minutes on four consecutive days. The original underpowered study reported fewer student-health-center visits over the next six months in the trauma-writing group; later studies included both replications and failures. Verified anchors: first experiment run in fall 1983; 15 minutes of writing.",
+      "realWorld": true,
+      "naturalSetting": "James Pennebaker",
+      "hardSpecifics": [
+        "first experiment run in fall 1983",
+        "15 minutes of writing",
+        "four consecutive days",
+        "health-center visits tracked for six months"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "first experiment run in fall 1983"
+      ]
+    },
+    {
+      "id": "ch07.example.mcadams",
+      "label": "Dan McAdams / redemptive life stories",
+      "summary": "Narrative-identity interviews distinguish stories in which bad events contaminate later good periods from stories in which hardship is connected to growth, service, or a clarified commitment. The interpretation does not change the past event, but it changes the role that event occupies in identity. Verified anchors: Dan P. McAdams; narrative identity research.",
+      "realWorld": true,
+      "naturalSetting": "Dan McAdams",
+      "hardSpecifics": [
+        "Dan P. McAdams",
+        "narrative identity research",
+        "redemption and contamination story sequences"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch07.example.sternberg",
+      "label": "Robert Sternberg / balance theory of wisdom",
+      "summary": "Sternberg defines wise judgment as balancing personal, interpersonal, and wider interests across short and long time horizons. Difficult experience may supply material for wisdom when reflection broadens perspective rather than hardening one narrow grievance. Verified anchors: Robert J. Sternberg; balance theory of wisdom.",
+      "realWorld": true,
+      "naturalSetting": "Robert Sternberg",
+      "hardSpecifics": [
+        "Robert J. Sternberg",
+        "balance theory of wisdom",
+        "intrapersonal, interpersonal, and extrapersonal interests",
+        "short-term and long-term consequences"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "intrapersonal, interpersonal, and extrapersonal interests"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Posttraumatic Growth Inventory domains",
+      "members": [
+        "relating to others",
+        "new possibilities",
+        "personal strength",
+        "spiritual change",
+        "appreciation of life"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Balance theory of wisdom interests",
+      "members": [
+        "intrapersonal",
+        "interpersonal",
+        "extrapersonal",
+        "short-term",
+        "long-term"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch07.concept",
+      "kind": "concept",
+      "label": "conditional post-traumatic growth",
+      "text": "Positive change after severe disruption may appear in relationships, priorities, perceived strength, new possibilities, or spiritual outlook. Such change can coexist with distress and must be distinguished from retrospective belief that one has grown. A reader can support sense-making and connection without romanticizing harm, blaming survivors who do not grow, or confusing recovery with proof that the event was beneficial.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.example.tedeschi",
+      "kind": "named_example",
+      "label": "Richard Tedeschi and Lawrence Calhoun / Posttraumatic Growth Inventory",
+      "text": "Tedeschi and Calhoun developed the PTGI in 1996 to measure perceived positive changes after crisis. Its five domains are relating to others, new possibilities, personal strength, spiritual change, and appreciation of life. Verified anchors: Posttraumatic Growth Inventory introduced in 1996; five growth domains. Growth is multidimensional and should not be reduced to feeling happier after suffering.",
+      "hardSpecifics": [
+        "Posttraumatic Growth Inventory introduced in 1996",
+        "five growth domains",
+        "relating to others and new possibilities",
+        "personal strength, spiritual change, and appreciation of life"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.example.pennebaker",
+      "kind": "named_example",
+      "label": "James Pennebaker and Sandra Beall / expressive-writing experiment",
+      "text": "College students were randomly assigned to write about trauma or superficial topics for fifteen minutes on four consecutive days. The original underpowered study reported fewer student-health-center visits over the next six months in the trauma-writing group; later studies included both replications and failures. Verified anchors: first experiment run in fall 1983; 15 minutes of writing. Structured disclosure may help integrate experience, but one striking result should not be universalized.",
+      "hardSpecifics": [
+        "first experiment run in fall 1983",
+        "15 minutes of writing",
+        "four consecutive days",
+        "health-center visits tracked for six months"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.example.mcadams",
+      "kind": "named_example",
+      "label": "Dan McAdams / redemptive life stories",
+      "text": "Narrative-identity interviews distinguish stories in which bad events contaminate later good periods from stories in which hardship is connected to growth, service, or a clarified commitment. The interpretation does not change the past event, but it changes the role that event occupies in identity. Verified anchors: Dan P. McAdams; narrative identity research. Meaning is built by placing disruption into a larger sequence rather than by finding a hidden benefit in every loss.",
+      "hardSpecifics": [
+        "Dan P. McAdams",
+        "narrative identity research",
+        "redemption and contamination story sequences"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.example.sternberg",
+      "kind": "named_example",
+      "label": "Robert Sternberg / balance theory of wisdom",
+      "text": "Sternberg defines wise judgment as balancing personal, interpersonal, and wider interests across short and long time horizons. Difficult experience may supply material for wisdom when reflection broadens perspective rather than hardening one narrow grievance. Verified anchors: Robert J. Sternberg; balance theory of wisdom. Surviving hardship is not identical to becoming wise; integration and balancing are the operative achievements.",
+      "hardSpecifics": [
+        "Robert J. Sternberg",
+        "balance theory of wisdom",
+        "intrapersonal, interpersonal, and extrapersonal interests",
+        "short-term and long-term consequences"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.1",
+      "kind": "testable_fact",
+      "label": "The Posttraumatic Growth Inventory was introduced by Tedeschi and Calhoun in 1996.",
+      "text": "The Posttraumatic Growth Inventory was introduced by Tedeschi and Calhoun in 1996. Because It operationalized perceived positive change after crisis across several distinguishable domains. Post-traumatic growth is diagnosed whenever distress decreases. The PTGI measures perceived positive change, not simply symptom reduction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.2",
+      "kind": "testable_fact",
+      "label": "The PTGI's five domains are relating to others, new possibilities, personal strength, spiritual change, and appreciation of life.",
+      "text": "The PTGI's five domains are relating to others, new possibilities, personal strength, spiritual change, and appreciation of life. Because The domains separate social, behavioral, self-concept, spiritual, and priority changes that can follow disruption. Growth after trauma means only discovering greater personal toughness. Personal strength is only one of five measured domains.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.3",
+      "kind": "testable_fact",
+      "label": "Perceived post-traumatic growth can differ from prospectively measured change.",
+      "text": "Perceived post-traumatic growth can differ from prospectively measured change. Because Retrospective reports compare the present with a reconstructed memory of the pre-event self and may also serve coping needs. A high self-report growth score proves objective improvement from a pre-trauma baseline. Without pre-event measures, actual change and perceived change cannot be cleanly separated.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.4",
+      "kind": "testable_fact",
+      "label": "Pennebaker and Beall's first expressive-writing experiment used fifteen-minute sessions on four consecutive days.",
+      "text": "Pennebaker and Beall's first expressive-writing experiment used fifteen-minute sessions on four consecutive days. Because Repeated constrained disclosure was designed to transform inhibited experience into an organized verbal account. The original intervention required months of daily journaling. The initial protocol was brief and concentrated across four days.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.5",
+      "kind": "testable_fact",
+      "label": "The original expressive-writing study tracked student-health-center visits for six months and was underpowered.",
+      "text": "The original expressive-writing study tracked student-health-center visits for six months and was underpowered. Because Health visits offered a behavioral outcome, but the small sample made the striking reduction uncertain without replication. The first writing study by itself established a large clinical effect with high precision. Its designer later described it as severely underpowered and noted subsequent failures as well as replications.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.6",
+      "kind": "testable_fact",
+      "label": "Expressive-writing effects vary across populations and outcomes.",
+      "text": "Expressive-writing effects vary across populations and outcomes. Because Disclosure, baseline inhibition, trauma type, timing, and the chosen health measure alter what the intervention can change. Writing about trauma reliably improves every reader's mental and physical health. Meta-analyses find heterogeneous and generally modest average effects rather than a universal cure.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.7",
+      "kind": "testable_fact",
+      "label": "Redemptive narratives connect a negative event to a later positive commitment or contribution.",
+      "text": "Redemptive narratives connect a negative event to a later positive commitment or contribution. Because The story creates continuity by making the response to hardship part of an enduring identity and goal. A redemptive story proves the harmful event was secretly good. Value can arise from a later response while the original harm remains harmful.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.8",
+      "kind": "testable_fact",
+      "label": "Sternberg's balance theory defines wisdom through balancing multiple interests and time horizons.",
+      "text": "Sternberg's balance theory defines wisdom through balancing multiple interests and time horizons. Because Wise action must coordinate self, others, and wider systems instead of maximizing one interest immediately. Wisdom is the automatic result of age or suffering. Experience supplies material, but balanced judgment is a separate cognitive and moral achievement.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.9",
+      "kind": "testable_fact",
+      "label": "Post-traumatic stress and reported growth can coexist.",
+      "text": "Post-traumatic stress and reported growth can coexist. Because Distress concerns ongoing threat and impairment, while growth reports concern changed priorities, relationships, or identity. Anyone who reports growth can no longer meet criteria for trauma-related distress. The constructs measure different outcomes and are not logical opposites.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.framework.posttraumatic.growth.inventory.domains",
+      "kind": "framework",
+      "label": "Posttraumatic Growth Inventory domains",
+      "text": "relating to others, new possibilities, personal strength, spiritual change, appreciation of life",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.framework.balance.theory.of.wisdom.interests",
+      "kind": "framework",
+      "label": "Balance theory of wisdom interests",
+      "text": "intrapersonal, interpersonal, extrapersonal, short-term, long-term",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1996",
+    "1",
+    "5",
+    "4",
+    "15",
+    "6",
+    "1983"
+  ],
+  "allowedEntities": [
+    "The Uses",
+    "Adversity",
+    "Growth",
+    "Positive",
+    "Such",
+    "Post-traumatic",
+    "Most",
+    "Self-reported",
+    "Expressive",
+    "Richard Tedeschi",
+    "Lawrence Calhoun",
+    "Posttraumatic Growth Inventory",
+    "Tedeschi",
+    "Calhoun",
+    "PTGI",
+    "Its",
+    "Verified",
+    "James Pennebaker",
+    "Sandra Beall",
+    "College",
+    "Structured",
+    "Dan McAdams",
+    "Narrative-identity",
+    "Dan P. McAdams",
+    "Meaning",
+    "Robert Sternberg",
+    "Sternberg",
+    "Difficult",
+    "Robert J. Sternberg",
+    "Surviving",
+    "Nietzschean",
+    "VIA",
+    "Franklin's",
+    "The Posttraumatic Growth Inventory",
+    "Because It",
+    "The PTGI",
+    "The PTGI's",
+    "Because The",
+    "Personal",
+    "Perceived",
+    "Because Retrospective",
+    "Without",
+    "Pennebaker",
+    "Beall's",
+    "Because Repeated",
+    "Because Health",
+    "Expressive-writing",
+    "Because Disclosure",
+    "Writing",
+    "Meta-analyses",
+    "Redemptive",
+    "Value",
+    "Sternberg's",
+    "Because Wise",
+    "Wisdom",
+    "Experience",
+    "Because Distress",
+    "Anyone",
+    "Balance",
+    "Severe",
+    "Only",
+    "Lawrence Calhoun's",
+    "Sandra Beall's",
+    "Students",
+    "Dan McAdams's",
+    "Redemption",
+    "Robert Sternberg's",
+    "Richard Tedeschi and Lawrence Calhoun / Posttraumatic Growth Inventory",
+    "James Pennebaker and Sandra Beall / expressive-writing experiment",
+    "Dan McAdams / redemptive life stories",
+    "Robert Sternberg / balance theory of wisdom"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch07.example.tedeschi",
+      "warning": "Keep examples about Richard Tedeschi and Lawrence Calhoun / Posttraumatic Growth Inventory source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch07.example.pennebaker",
+      "warning": "Keep examples about James Pennebaker and Sandra Beall / expressive-writing experiment source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch07.example.mcadams",
+      "warning": "Keep examples about Dan McAdams / redemptive life stories source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch07.example.sternberg",
+      "warning": "Keep examples about Robert Sternberg / balance theory of wisdom source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch07.fact.1"
+}

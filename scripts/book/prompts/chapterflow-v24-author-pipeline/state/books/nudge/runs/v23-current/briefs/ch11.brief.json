@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "nudge-ch11",
+  "chapterNumber": 11,
+  "title": "Borrow More Today: Mortgages and Credit Cards",
+  "coreMove": "This mechanism operates because a stable-rate period and detailed closing data allowed broker compensation differences to be compared across similar loans.",
+  "thesis": "Woodward and Hall analyzed more than 7,500 FHA mortgages originated in May and June 2001.",
+  "readerPromise": "After this chapter, a reader can this mechanism operates because a stable-rate period and detailed closing data allowed broker compensation differences to be compared across similar loans.",
+  "ownedCases": [
+    {
+      "id": "ch11.ex.1",
+      "label": "Susan Woodward and Robert Hall / mortgage broker compensation"
+    },
+    {
+      "id": "ch11.ex.2",
+      "label": "US Credit CARD Act of 2009"
+    },
+    {
+      "id": "ch11.ex.3",
+      "label": "John Gathergood, Neale Mahoney, Neil Stewart, and Jörg Weber / balance matching"
+    }
+  ],
+  "notYours": [
+    "Beijing tax authority / restaurant receipt lottery",
+    "Brigitte Madrian and Dennis Shea / automatic 401(k) enrollment",
+    "Bruce Sacerdote / randomly assigned Dartmouth roommates",
+    "Christmas Club savings accounts",
+    "Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis",
+    "Daniel Kahneman and Amos Tversky / anchoring wheel experiment",
+    "Donate Life America / motor-vehicle registration prompts",
+    "Eric Johnson and Daniel Goldstein / European donor defaults",
+    "Federal Trade Commission / hotel drip pricing",
+    "George Loewenstein / hot–cold empathy gap",
+    "Gmail / forgotten-attachment warning",
+    "Hendrik Bruns and Yavor Paunov / transparency review",
+    "Henrik Cronqvist and Richard Thaler / Swedish portfolio analysis",
+    "Howard Kunreuther / flood and earthquake insurance behavior",
+    "Hunt Allcott / OPOWER Home Energy Reports",
+    "Hyde Park bookstores and Concord Bookshop versus Amazon",
+    "John Rawls / publicity principle",
+    "Kahneman and Tversky / Linda conjunction problem",
+    "NHS England and Wales / soft opt-out",
+    "Noah Goldstein, Robert Cialdini, and Vladas Griskevicius / hotel towels"
+  ],
+  "cast": [
+    "Caroline",
+    "Nathan",
+    "Camden",
+    "Noemie"
+  ],
+  "answerIndexPattern": [
+    2,
+    2,
+    2,
+    1,
+    1,
+    0,
+    1,
+    0,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a handwritten note on the counter",
+    "flavor (ch01): venue: a to-do list on the whiteboard",
+    "flavor (ch01): venue: a shared grocery list",
+    "flavor (ch01): frame: a first attempt at about treatment and control households that gets corrected",
+    "flavor (ch01): frame: a first encounter with about treatment and control households that sets a benchmark",
+    "flavor (ch02): venue: a text thread with a friend"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a doorway conversation",
+    "venue: a shared photo album",
+    "venue: a bulletin board note",
+    "frame: two stakeholders disagree before the protagonist chooses",
+    "frame: one sensory detail that turns an ordinary moment into a kept memory"
+  ],
+  "architectureFamily": "direct-conceptual",
+  "openerType": "scene",
+  "challengeFrame": "before-your-next-X",
+  "practiceShape": "say-aloud-script",
+  "exampleLenses": [
+    "before-after-ledger",
+    "postmortem",
+    "walkthrough"
+  ],
+  "practiceVerb": "mark",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "mechanism",
+    "operates",
+    "rather",
+    "choice",
+    "attention",
+    "cost"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "at-the-demand",
+      "outcome": "failure",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "say-aloud-script",
+    "if-then-trigger",
+    "two-step-sequence",
+    "observe-then-note"
+  ],
+  "quizStemShapes": [
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem"
+  ],
+  "quizFailureModes": [
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction"
+  ],
+  "questionFactOrder": [
+    1,
+    8,
+    3,
+    2,
+    5,
+    9,
+    4,
+    6,
+    7
+  ],
+  "memorableShapes": [
+    "imperative",
+    "reversal",
+    "redefinition"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "question-speak",
+    "contrast-speak"
+  ],
+  "shellRegister": "condition-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Susan Woodward and Robert Hall / mortgage broker compensation",
+    "caseId": "ch11.ex.1",
+    "aliases": [
+      "Susan Woodward and Robert Hall / mortgage broker compensation",
+      "Hall",
+      "Susan",
+      "Woodward",
+      "Robert"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "This mechanism operates because the large catalog made the premium-pension allocation an unusually complex mass-market choice.",
+    "next": "This mechanism operates because premium savings and employer account contributions exceeded the extra deductible exposure in the compared designs."
+  },
+  "totalChapters": 15
+}

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "chapterflow.researchRunManifest.v1",
+  "runId": "20260717T094415142Z-1c996661-58d5-4e1d-9606-1e907d84ea3c",
+  "bookId": "the-happiness-hypothesis",
+  "createdAt": "2026-07-17T09:44:15.142Z",
+  "updatedAt": "2026-07-17T09:44:15.142Z",
+  "overallStatus": "complete",
+  "input": {
+    "title": "The Happiness Hypothesis",
+    "author": "Jonathan Haidt",
+    "bookIdHint": "the-happiness-hypothesis",
+    "hash": "69b8b3dc4b114990ec79d2a538eb076e1e24e9a0b0f0873c24e5f2feef73c534"
+  },
+  "bibliography": {
+    "hash": "247e6910a4111f1abc0dc0c414dac0ce9657876af9a61c42d8af6921b1386bae",
+    "path": "source-freeze/toc.json"
+  },
+  "expectedChapters": [
+    { "number": 1, "title": "The Divided Self" },
+    { "number": 2, "title": "Changing Your Mind" },
+    { "number": 3, "title": "Reciprocity with a Vengeance" },
+    { "number": 4, "title": "The Faults of Others" },
+    { "number": 5, "title": "The Pursuit of Happiness" },
+    { "number": 6, "title": "Love and Attachments" },
+    { "number": 7, "title": "The Uses of Adversity" },
+    { "number": 8, "title": "The Felicity of Virtue" },
+    { "number": 9, "title": "Divinity with or without God" },
+    { "number": 10, "title": "Happiness Comes from Between" },
+    { "number": 11, "title": "On Balance" }
+  ],
+  "expectedChaptersHash": "f83fbd64c093c0eaab1a932d1dab83ad74769486fc7580c1191222b67346e527",
+  "compatibility": {
+    "codeVersion": "inline-operator-v24",
+    "promptHash": "fresh-session-step-1",
+    "configHash": "production",
+    "provider": "openai",
+    "model": "gpt-5-codex"
+  },
+  "chapters": {
+    "01": { "chapterNumber": 1, "chapterTitle": "The Divided Self", "status": "pending", "attempts": 0, "errors": [], "updatedAt": "2026-07-17T09:44:15.142Z" },
+    "02": { "chapterNumber": 2, "chapterTitle": "Changing Your Mind", "status": "pending", "attempts": 0, "errors": [], "updatedAt": "2026-07-17T09:44:15.142Z" },
+    "03": { "chapterNumber": 3, "chapterTitle": "Reciprocity with a Vengeance", "status": "pending", "attempts": 0, "errors": [], "updatedAt": "2026-07-17T09:44:15.142Z" },
+    "04": { "chapterNumber": 4, "chapterTitle": "The Faults of Others", "status": "pending", "attempts": 0, "errors": [], "updatedAt": "2026-07-17T09:44:15.142Z" },
+    "05": { "chapterNumber": 5, "chapterTitle": "The Pursuit of Happiness", "status": "pending", "attempts": 0, "errors": [], "updatedAt": "2026-07-17T09:44:15.142Z" },
+    "06": { "chapterNumber": 6, "chapterTitle": "Love and Attachments", "status": "pending", "attempts": 0, "errors": [], "updatedAt": "2026-07-17T09:44:15.142Z" },
+    "07": { "chapterNumber": 7, "chapterTitle": "The Uses of Adversity", "status": "pending", "attempts": 0, "errors": [], "updatedAt": "2026-07-17T09:44:15.142Z" },
+    "08": { "chapterNumber": 8, "chapterTitle": "The Felicity of Virtue", "status": "pending", "attempts": 0, "errors": [], "updatedAt": "2026-07-17T09:44:15.142Z" },
+    "09": { "chapterNumber": 9, "chapterTitle": "Divinity with or without God", "status": "pending", "attempts": 0, "errors": [], "updatedAt": "2026-07-17T09:44:15.142Z" },
+    "10": { "chapterNumber": 10, "chapterTitle": "Happiness Comes from Between", "status": "pending", "attempts": 0, "errors": [], "updatedAt": "2026-07-17T09:44:15.142Z" },
+    "11": { "chapterNumber": 11, "chapterTitle": "On Balance", "status": "pending", "attempts": 0, "errors": [], "updatedAt": "2026-07-17T09:44:15.142Z" }
+  },
+  "coherence": { "status": "pending" },
+  "events": [
+    { "at": "2026-07-17T09:44:15.142Z", "type": "run.created", "message": "Created research run manifest for fresh inline research." }
+  ]
+}

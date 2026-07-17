@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "made-to-stick-ch06",
+  "chapterNumber": 6,
+  "title": "Stories",
+  "coreMove": "Because repeated rehearsal occurred while real preparation choices were still available, the simulation could influence planning and study behavior.",
+  "thesis": "Pham and Taylor assigned college freshmen to mental-simulation conditions for 5 to 7 days before a midterm examination.",
+  "readerPromise": "After this chapter, a reader can because repeated rehearsal occurred while real preparation choices were still available, the simulation could influence planning and study behavior.",
+  "ownedCases": [
+    {
+      "id": "ch06.ex.orr",
+      "label": "Julian Orr / Xerox copier technicians"
+    },
+    {
+      "id": "ch06.ex.pham-taylor",
+      "label": "Pham and Taylor mental-simulation experiment"
+    },
+    {
+      "id": "ch06.ex.jared",
+      "label": "Jared Fogle / Subway campaign"
+    },
+    {
+      "id": "ch06.ex.denning",
+      "label": "Stephen Denning / World Bank Zambia story"
+    }
+  ],
+  "notYours": [
+    "Aesop's Fox and the Grapes",
+    "American Legacy Foundation truth campaign",
+    "Barry Marshall / Helicobacter pylori self-experiment",
+    "Beyond War nuclear BB demonstration",
+    "Boeing 727 / LaGuardia Runway 4-22",
+    "Floyd Lee / Pegasus dining facility",
+    "Galileo and Saturn's changing appearance",
+    "Georgia State Safe Night Out accounting case",
+    "Herb Kelleher / Southwest Airlines",
+    "James P. Grant / oral rehydration salts packet",
+    "Jane Elliott's blue-eyes/brown-eyes exercise",
+    "Jeff Hawkins / PalmPilot wooden prototype",
+    "John F. Kennedy's lunar goal",
+    "Masaru Ibuka / Sony pocketable radio",
+    "Nora Ephron's Journalism 101 lead",
+    "Nordstrom's shirt-ironing service story",
+    "Pam Laffin antismoking campaign",
+    "Ronald Reagan's 1980 testable question",
+    "Safexpress / Harry Potter launch logistics",
+    "Sheena Iyengar and Mark Lepper choice experiments"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    1,
+    2,
+    2,
+    0,
+    1,
+    1,
+    0,
+    0,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on launched in early",
+    "flavor (ch01): venue: a shared calendar invite",
+    "flavor (ch01): venue: a handwritten note on the counter",
+    "flavor (ch01): frame: a first attempt at about percent of the decline that gets corrected",
+    "flavor (ch01): frame: a first encounter with about percent of the decline that sets a benchmark",
+    "flavor (ch02): venue: a text thread with a friend"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on anti litter campaign in",
+    "venue: a working note on emphysema at age",
+    "venue: a working note on launched in early",
+    "frame: two stakeholders disagree about before the decade ended before deciding",
+    "frame: a small ceremony that marks a transition so it feels earned"
+  ],
+  "architectureFamily": "direct-conceptual",
+  "openerType": "tension-thesis",
+  "challengeFrame": "script-one-sentence",
+  "practiceShape": "two-step-sequence",
+  "exampleLenses": [
+    "walkthrough",
+    "counterfactual",
+    "outsider-witness"
+  ],
+  "practiceVerb": "mark",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "rather",
+    "later",
+    "audience",
+    "first",
+    "story",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "failure",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "two-step-sequence",
+    "single-imperative",
+    "if-then-trigger",
+    "observe-then-note"
+  ],
+  "quizStemShapes": [
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation"
+  ],
+  "quizFailureModes": [
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure"
+  ],
+  "questionFactOrder": [
+    2,
+    8,
+    9,
+    3,
+    6,
+    5,
+    4,
+    7,
+    1
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "contrast-speak",
+    "motion-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Julian Orr / Xerox copier technicians",
+    "caseId": "ch06.ex.orr",
+    "aliases": [
+      "Julian Orr / Xerox copier technicians",
+      "Xerox",
+      "Julian",
+      "Orr"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because the constructed individual gave attention a single human target, participants could form an affective response more readily than from aggregate figures."
+  },
+  "totalChapters": 6
+}

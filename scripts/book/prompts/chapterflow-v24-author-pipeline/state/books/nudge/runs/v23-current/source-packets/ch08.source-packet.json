@@ -1,0 +1,712 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch08",
+  "chapterNumber": 8,
+  "chapterTitle": "#Sludge",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch08.source.json",
+  "sourceHash": "sha256:ac9dbebea5f723dd764fd8b0bf3b9d4bcb611019fa9e1700aed1f1ecceedec1a",
+  "facts": [
+    {
+      "id": "ch08.fact.1",
+      "claim": "In the Letzler–Tasoff experiment, expected rebate redemption exceeded actual redemption by 49 percentage points.",
+      "mechanism": "This mechanism operates because participants underweighted the future hassle of completing and returning the form.",
+      "commonError": "Low rebate redemption proves buyers never intended to claim the money.",
+      "whyWrong": "Their elicited expectations were much higher than their eventual completion.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "49"
+      ],
+      "groundedEntities": [
+        "Letzler",
+        "Tasoff",
+        "Low",
+        "Their"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch08.fact.2",
+      "claim": "The HAIL Scholarship promised four years of tuition and fees to targeted high-achieving, low-income Michigan students who were admitted.",
+      "mechanism": "This mechanism operates because an early unconditional-looking guarantee removed uncertainty about affordability before application effort was due.",
+      "commonError": "HAIL relaxed the university's academic admission standard.",
+      "whyWrong": "The intervention changed outreach and aid certainty, not eligibility for admission.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "4"
+      ],
+      "groundedEntities": [
+        "The HAIL Scholarship",
+        "Michigan",
+        "HAIL"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch08.fact.3",
+      "claim": "US federal paperwork requirements were estimated at roughly eleven billion public burden hours annually.",
+      "mechanism": "This mechanism operates because each form, record, and reporting rule consumes time across millions of affected people and organizations.",
+      "commonError": "A form is costless when the government charges no filing fee.",
+      "whyWrong": "Time and cognitive effort remain real resources.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "11"
+      ],
+      "groundedEntities": [
+        "Time"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch08.fact.4",
+      "claim": "An unsubscribe trap makes joining substantially easier than leaving the same service.",
+      "mechanism": "This mechanism operates because the firm places friction only on the action that reduces its revenue.",
+      "commonError": "A difficult cancellation process merely reflects equal administrative needs in both directions.",
+      "whyWrong": "The asymmetry reveals that equivalent account changes receive different burdens.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.4"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch08.fact.5",
+      "claim": "Mail-in rebate redemption rates commonly fall between 10 and 40 percent.",
+      "mechanism": "This mechanism operates because deadlines, forms, documentation, and forgetting prevent many purchasers from completing the later task.",
+      "commonError": "The advertised rebate reduces the effective price for nearly every buyer.",
+      "whyWrong": "Only completed claims receive the money.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "10",
+        "40"
+      ],
+      "groundedEntities": [
+        "Mail-in",
+        "Only"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.5"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch08.fact.6",
+      "claim": "A shrouded attribute is a costly product feature that remains difficult to discover when the headline price is shown.",
+      "mechanism": "This mechanism operates because sellers make the base product salient and defer attention to complementary costs such as printer ink.",
+      "commonError": "A low printer purchase price demonstrates a low total ownership cost.",
+      "whyWrong": "Replacement cartridges can dominate the lifetime expense.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Replacement"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.6"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch08.fact.7",
+      "claim": "Administrative burden can reduce benefit take-up among people who are legally eligible.",
+      "mechanism": "This mechanism operates because forms, documentation, waiting, and uncertainty impose costs before the benefit is received.",
+      "commonError": "Low take-up proves that eligible people do not value the program.",
+      "whyWrong": "Noncompletion can reflect process cost rather than preference.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Administrative",
+        "Low",
+        "Noncompletion"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.7"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch08.fact.8",
+      "claim": "A sludge audit inventories time, steps, confusion, and psychological costs before deciding what to remove.",
+      "mechanism": "This mechanism operates because making each burden explicit allows necessary safeguards to be separated from inherited or self-serving friction.",
+      "commonError": "A sludge audit begins by deleting every verification step.",
+      "whyWrong": "Some burdens protect safety, privacy, or program integrity and must be justified rather than automatically removed.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Some"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.8"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch08.fact.9",
+      "claim": "Prefilling tax returns with information government already possesses can reduce duplicate reporting.",
+      "mechanism": "This mechanism operates because reusing wage and withholding data removes transcription and search tasks from the taxpayer.",
+      "commonError": "Prefilling prevents taxpayers from correcting government errors.",
+      "whyWrong": "A prefilled return can remain reviewable and editable.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Prefilling"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch08.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch08.ex.1",
+      "label": "Robert Letzler and Joshua Tasoff / rebate redemption experiment",
+      "summary": "Participants expected to redeem mail-in forms far more often than they actually did. Expected redemption exceeded actual redemption by 49 percentage points, and simplifying the task reduced the gap.",
+      "realWorld": true,
+      "naturalSetting": "Robert Letzler",
+      "hardSpecifics": [
+        "expected redemption exceeded actual redemption by 49 percentage points",
+        "simplification reduced overoptimism by about half"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch08.ex.2",
+      "label": "University of Michigan / HAIL Scholarship",
+      "summary": "The HAIL experiment sent high-achieving, low-income Michigan students an early, simple guarantee of four years of tuition and fees if admitted. The commitment reduced uncertainty and application burden before the normal aid process.",
+      "realWorld": true,
+      "naturalSetting": "University",
+      "hardSpecifics": [
+        "four-year tuition-and-fee guarantee",
+        "targeted high-achieving low-income Michigan residents"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch08.ex.3",
+      "label": "US federal paperwork burden",
+      "summary": "Federal information-collection estimates placed the annual public paperwork burden near eleven billion hours. The total includes compliance by households, businesses, health workers, students, and benefit applicants.",
+      "realWorld": true,
+      "naturalSetting": "Federal",
+      "hardSpecifics": [
+        "approximately eleven billion hours per year",
+        "federal information-collection and paperwork requirements"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Sludge-audit cost categories",
+      "members": [
+        "time",
+        "paperwork",
+        "confusion",
+        "waiting",
+        "psychological burden"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch08.concept",
+      "kind": "concept",
+      "label": "sludge",
+      "text": "Friction in a choice environment that makes it harder for people to reach an outcome that would improve their welfare by their own standards. Time, confusion, and paperwork change take-up even when formal eligibility or available options remain unchanged.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.ex.1",
+      "kind": "named_example",
+      "label": "Robert Letzler and Joshua Tasoff / rebate redemption experiment",
+      "text": "Participants expected to redeem mail-in forms far more often than they actually did. Expected redemption exceeded actual redemption by 49 percentage points, and simplifying the task reduced the gap. Firms can profit when people underestimate the future cost of paperwork.",
+      "hardSpecifics": [
+        "expected redemption exceeded actual redemption by 49 percentage points",
+        "simplification reduced overoptimism by about half"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.ex.2",
+      "kind": "named_example",
+      "label": "University of Michigan / HAIL Scholarship",
+      "text": "The HAIL experiment sent high-achieving, low-income Michigan students an early, simple guarantee of four years of tuition and fees if admitted. The commitment reduced uncertainty and application burden before the normal aid process. Removing procedural uncertainty can unlock an opportunity without changing academic eligibility.",
+      "hardSpecifics": [
+        "four-year tuition-and-fee guarantee",
+        "targeted high-achieving low-income Michigan residents"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.ex.3",
+      "kind": "named_example",
+      "label": "US federal paperwork burden",
+      "text": "Federal information-collection estimates placed the annual public paperwork burden near eleven billion hours. The total includes compliance by households, businesses, health workers, students, and benefit applicants. Administrative time is a policy cost large enough to require explicit accounting.",
+      "hardSpecifics": [
+        "approximately eleven billion hours per year",
+        "federal information-collection and paperwork requirements"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.1",
+      "kind": "testable_fact",
+      "label": "In the Letzler–Tasoff experiment, expected rebate redemption exceeded actual redemption by 49 percentage points.",
+      "text": "In the Letzler–Tasoff experiment, expected rebate redemption exceeded actual redemption by 49 percentage points. This mechanism operates because participants underweighted the future hassle of completing and returning the form. Low rebate redemption proves buyers never intended to claim the money. Their elicited expectations were much higher than their eventual completion.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.2",
+      "kind": "testable_fact",
+      "label": "The HAIL Scholarship promised four years of tuition and fees to targeted high-achieving, low-income Michigan students who were admitted.",
+      "text": "The HAIL Scholarship promised four years of tuition and fees to targeted high-achieving, low-income Michigan students who were admitted. This mechanism operates because an early unconditional-looking guarantee removed uncertainty about affordability before application effort was due. HAIL relaxed the university's academic admission standard. The intervention changed outreach and aid certainty, not eligibility for admission.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.3",
+      "kind": "testable_fact",
+      "label": "US federal paperwork requirements were estimated at roughly eleven billion public burden hours annually.",
+      "text": "US federal paperwork requirements were estimated at roughly eleven billion public burden hours annually. This mechanism operates because each form, record, and reporting rule consumes time across millions of affected people and organizations. A form is costless when the government charges no filing fee. Time and cognitive effort remain real resources.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.4",
+      "kind": "testable_fact",
+      "label": "An unsubscribe trap makes joining substantially easier than leaving the same service.",
+      "text": "An unsubscribe trap makes joining substantially easier than leaving the same service. This mechanism operates because the firm places friction only on the action that reduces its revenue. A difficult cancellation process merely reflects equal administrative needs in both directions. The asymmetry reveals that equivalent account changes receive different burdens.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.5",
+      "kind": "testable_fact",
+      "label": "Mail-in rebate redemption rates commonly fall between 10 and 40 percent.",
+      "text": "Mail-in rebate redemption rates commonly fall between 10 and 40 percent. This mechanism operates because deadlines, forms, documentation, and forgetting prevent many purchasers from completing the later task. The advertised rebate reduces the effective price for nearly every buyer. Only completed claims receive the money.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.6",
+      "kind": "testable_fact",
+      "label": "A shrouded attribute is a costly product feature that remains difficult to discover when the headline price is shown.",
+      "text": "A shrouded attribute is a costly product feature that remains difficult to discover when the headline price is shown. This mechanism operates because sellers make the base product salient and defer attention to complementary costs such as printer ink. A low printer purchase price demonstrates a low total ownership cost. Replacement cartridges can dominate the lifetime expense.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.7",
+      "kind": "testable_fact",
+      "label": "Administrative burden can reduce benefit take-up among people who are legally eligible.",
+      "text": "Administrative burden can reduce benefit take-up among people who are legally eligible. This mechanism operates because forms, documentation, waiting, and uncertainty impose costs before the benefit is received. Low take-up proves that eligible people do not value the program. Noncompletion can reflect process cost rather than preference.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.8",
+      "kind": "testable_fact",
+      "label": "A sludge audit inventories time, steps, confusion, and psychological costs before deciding what to remove.",
+      "text": "A sludge audit inventories time, steps, confusion, and psychological costs before deciding what to remove. This mechanism operates because making each burden explicit allows necessary safeguards to be separated from inherited or self-serving friction. A sludge audit begins by deleting every verification step. Some burdens protect safety, privacy, or program integrity and must be justified rather than automatically removed.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.fact.9",
+      "kind": "testable_fact",
+      "label": "Prefilling tax returns with information government already possesses can reduce duplicate reporting.",
+      "text": "Prefilling tax returns with information government already possesses can reduce duplicate reporting. This mechanism operates because reusing wage and withholding data removes transcription and search tasks from the taxpayer. Prefilling prevents taxpayers from correcting government errors. A prefilled return can remain reviewable and editable.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch08.framework.sludge.audit.cost.categories",
+      "kind": "framework",
+      "label": "Sludge-audit cost categories",
+      "text": "time, paperwork, confusion, waiting, psychological burden",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "49",
+    "4",
+    "11",
+    "10",
+    "40"
+  ],
+  "allowedEntities": [
+    "Sludge",
+    "Friction",
+    "Administrative",
+    "Time",
+    "Join-easy",
+    "Rebate",
+    "Shrouded",
+    "Government",
+    "Robert Letzler",
+    "Joshua Tasoff",
+    "Participants",
+    "Expected",
+    "Firms",
+    "University",
+    "Michigan",
+    "HAIL Scholarship",
+    "The HAIL",
+    "Removing",
+    "Federal",
+    "Not",
+    "Identity",
+    "Letzler",
+    "Tasoff",
+    "Low",
+    "Their",
+    "The HAIL Scholarship",
+    "HAIL",
+    "Mail-in",
+    "Only",
+    "Replacement",
+    "Noncompletion",
+    "Some",
+    "Prefilling",
+    "Sludge-audit",
+    "Sellers",
+    "Public",
+    "The University",
+    "Michigan's HAIL Scholarship",
+    "Verification",
+    "Grounding",
+    "Robert Letzler and Joshua Tasoff / rebate redemption experiment",
+    "University of Michigan / HAIL Scholarship",
+    "US federal paperwork burden"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch08.ex.1",
+      "warning": "Keep examples about Robert Letzler and Joshua Tasoff / rebate redemption experiment source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch08.ex.2",
+      "warning": "Keep examples about University of Michigan / HAIL Scholarship source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch08.ex.3",
+      "warning": "Keep examples about US federal paperwork burden source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch08.fact.1"
+}

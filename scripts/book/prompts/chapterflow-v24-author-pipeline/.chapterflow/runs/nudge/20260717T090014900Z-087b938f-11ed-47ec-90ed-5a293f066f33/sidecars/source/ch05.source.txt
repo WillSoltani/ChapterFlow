@@ -1,0 +1,38 @@
+Chapter 5 focus: Good design aligns cues with actions, sets defensible defaults, expects error, supplies feedback, maps options to outcomes, structures complexity, and makes incentives salient. Small channel factors often decide whether an intention becomes behavior.
+
+Core claim: Every choice environment has a structure, so responsible designers should make the beneficial path understandable and forgiving.
+
+Central concept (choice architecture):
+  The arrangement of options, defaults, cues, feedback, and incentives through which a choice is made.
+  Why it matters: Design details influence behavior even when prices and available options do not change.
+
+Key claims:
+- Stimulus-response compatibility makes the visible cue match the required action.
+- Defaults govern what happens when a person does nothing.
+- Prompted or required choice can replace a substantive default in suitable settings.
+- Error-tolerant systems make common slips reversible.
+- Feedback must be timely and interpretable.
+- Complex options need grouping, filtering, and useful mapping.
+- Incentives work differently when costs are not salient.
+
+Named examples:
+- Richard Thaler / confusing classroom doors: Classroom doors carried handles that visually invited pulling but opened only by pushing. Students repeatedly made the same error because the physical cue conflicted with the required response. (teaches: Bad stimulus-response compatibility manufactures mistakes that better hardware can prevent.)
+- Paris Métro / two-sided pass validation: Paris transit gates accepted fare cards regardless of which side faced up. The system removed an unnecessary orientation error instead of punishing passengers for presenting the card incorrectly. (teaches: Error-tolerant design eliminates a predictable failure at little marginal cost.)
+- Gmail / forgotten-attachment warning: Gmail engineering intern Jon Kotker introduced the Forgotten Attachment Detector in Gmail Labs on September 15, 2008. It detects attachment-related wording when no file is attached and asks the sender to check before sending. (teaches: A timely check can catch a predictable omission before it becomes costly.)
+
+Hard edge / typical misreading:
+  Making an action easy is not the same as making it good. Ease must serve a defensible outcome, preserve meaningful alternatives, and avoid hiding costs or steering through confusion.
+
+Voice cues observed in this chapter:
+- opens with a comic design failure
+- uses a repeated Make It Easy imperative
+- organizes material as a toolkit
+- adds caveats after each apparently universal tool
+
+Forbidden leakage (concepts that belong to later chapters):
+- curation and fun as the separate addendum
+- machine-readable smart disclosure
+- subscription sludge and dark patterns
+
+Paraphrase notes:
+Confusing classroom doors make the governing idea physical. Handles invite a pull, but the doors require a push, so the environment repeatedly manufactures the same mistake. Choice architecture begins when the designer accepts responsibility for that cue. Paris Métro gates show an error-tolerant alternative by accepting fare cards with either side up. Gmail handles a different predictable slip: when message text refers to an attachment but no file is present, a prompt appears before sending. Both interventions remove or catch error rather than scolding the user afterward. Defaults then determine the outcome of inaction. They cannot be avoided, because even a blank form has a nonresponse rule. Required choice replaces a substantive preselection with a mandate to answer; prompted choice calls attention to the decision while retaining a fallback. Neither is automatically superior. Feedback must arrive soon enough to connect action and result, and product attributes must map onto experiences the chooser values. Large menus require structure: grouping, sensible ordering, or collaborative filtering based on similar tastes. Incentives remain part of the design, but their nominal size is not enough. Ask who chooses, uses, pays, and profits, then check whether the cost is visible when the action occurs. The common thread is not a bag of tricks. It is a discipline of expecting real users, making useful actions easy, allowing recovery, and testing whether the architecture serves rather than exploits them. Grounding anchors: large double door in Richard Thaler's business-school classroom; vertically mounted cylindrical wood handles about three feet long; doors required a push to open; Paris Métro fare gates; magnetic-strip card accepted face up or face down; card accepted in either insertion direction; Forgotten Attachment Detector added to Gmail Labs in September 2008; message text mentions an attachment; no file is present when Send is pressed. Jon Kotker posted the Gmail Labs feature on September 15, 2008; Forgotten Attachment Detector developed during his Summer 2008 Gmail engineering internship.

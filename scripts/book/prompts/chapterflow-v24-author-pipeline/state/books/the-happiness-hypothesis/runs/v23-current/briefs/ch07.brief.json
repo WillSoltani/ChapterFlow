@@ -1,0 +1,191 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "the-happiness-hypothesis-ch07",
+  "chapterNumber": 7,
+  "title": "The Uses of Adversity",
+  "coreMove": "Because It operationalized perceived positive change after crisis across several distinguishable domains.",
+  "thesis": "The Posttraumatic Growth Inventory was introduced by Tedeschi and Calhoun in 1996.",
+  "readerPromise": "After this chapter, a reader can because It operationalized perceived positive change after crisis across several distinguishable domains.",
+  "ownedCases": [
+    {
+      "id": "ch07.example.tedeschi",
+      "label": "Richard Tedeschi and Lawrence Calhoun / Posttraumatic Growth Inventory"
+    },
+    {
+      "id": "ch07.example.pennebaker",
+      "label": "James Pennebaker and Sandra Beall / expressive-writing experiment"
+    },
+    {
+      "id": "ch07.example.mcadams",
+      "label": "Dan McAdams / redemptive life stories"
+    },
+    {
+      "id": "ch07.example.sternberg",
+      "label": "Robert Sternberg / balance theory of wisdom"
+    }
+  ],
+  "notYours": [
+    "Aaron Beck / cognitive therapy",
+    "Alois Stutzer and Bruno Frey / commuting paradox",
+    "Antonio Damasio / ventromedial prefrontal patients",
+    "Aristotle / virtue and the mean",
+    "Aristotle / virtue plus external goods",
+    "Benjamin Franklin / thirteen-virtue chart",
+    "Brett Pelham and colleagues / implicit egotism",
+    "Buddhist insight meditation / attentional training",
+    "Buddhist nonattachment and Benjamin Franklin's striving",
+    "C. Daniel Batson / moral-hypocrisy task",
+    "Christopher Peterson and Martin Seligman / VIA classification",
+    "Cindy Hazan and Phillip Shaver / adult romantic attachment",
+    "Dacher Keltner and Jonathan Haidt / awe prototype",
+    "Dan McAdams / three levels of personality",
+    "Daniel Wegner / white-bear suppression experiments",
+    "David Burns / anger inventory",
+    "Deanna Kuhn and David Perkins / argument evaluation",
+    "Dennis Regan / Coca-Cola reciprocity experiment",
+    "Harry Harlow / cloth and wire surrogate mothers",
+    "Hazan and colleagues / transfer of attachment functions"
+  ],
+  "cast": [
+    "Oscar",
+    "Phyllis",
+    "Karen",
+    "Bridget"
+  ],
+  "answerIndexPattern": [
+    2,
+    1,
+    2,
+    0,
+    1,
+    1,
+    0,
+    0,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on characteristic adaptations and narrative identity",
+    "flavor (ch01): venue: a working note on cloth covered surrogate mother",
+    "flavor (ch01): venue: a dinner table",
+    "flavor (ch01): frame: a first attempt at anomie as weakened normative structure that gets corrected",
+    "flavor (ch01): frame: a first encounter with anomie as weakened normative structure that sets a benchmark",
+    "flavor (ch02): venue: a shared grocery list"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a voicemail inbox",
+    "venue: a reply-all email",
+    "venue: a missed-call screen",
+    "frame: a first attempt at balance theory of wisdom that gets corrected",
+    "frame: a first-time experience that sets a lasting benchmark"
+  ],
+  "architectureFamily": "research-lead",
+  "openerType": "statistic",
+  "challengeFrame": "teach-it-to-someone",
+  "practiceShape": "if-then-trigger",
+  "exampleLenses": [
+    "dialogue-beat",
+    "before-after-ledger",
+    "postmortem"
+  ],
+  "practiceVerb": "read-aloud",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "rather",
+    "across",
+    "different",
+    "life",
+    "repeated",
+    "consequences"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "partial",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "if-then-trigger",
+    "single-imperative",
+    "two-step-sequence",
+    "observe-then-note"
+  ],
+  "quizStemShapes": [
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why"
+  ],
+  "quizFailureModes": [
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger"
+  ],
+  "questionFactOrder": [
+    7,
+    5,
+    3,
+    4,
+    6,
+    9,
+    1,
+    8,
+    2
+  ],
+  "memorableShapes": [
+    "cost-statement",
+    "pointed-question",
+    "imperative"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "mechanism-speak",
+    "people-speak"
+  ],
+  "shellRegister": "verb-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Oscar",
+    "aliases": [
+      "Oscar"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because The WHO commission synthesized evidence about institutional care and prolonged separation to inform child welfare practice.",
+    "next": "Because A finite list made faults observable and allowed focused practice instead of an undifferentiated demand for perfection."
+  },
+  "totalChapters": 11
+}

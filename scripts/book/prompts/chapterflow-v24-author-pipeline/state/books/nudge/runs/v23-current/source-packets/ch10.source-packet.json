@@ -1,0 +1,745 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch10",
+  "chapterNumber": 10,
+  "chapterTitle": "Do Nudges Last Forever? Perhaps in Sweden",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch10.source.json",
+  "sourceHash": "sha256:45e81dac3d6cc8d8658626d3bc0a53ca671404a6ee37fa09642d269538ca908a",
+  "facts": [
+    {
+      "id": "ch10.fact.1",
+      "claim": "Sweden's 2000 launch presented 456 funds from 72 companies to about four million savers.",
+      "mechanism": "This mechanism operates because the large catalog made the premium-pension allocation an unusually complex mass-market choice.",
+      "commonError": "Participants chose among a short curated list of fewer than ten funds.",
+      "whyWrong": "The launch menu contained hundreds of funds.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "4",
+        "10",
+        "72",
+        "456",
+        "2000",
+        "1000000"
+      ],
+      "groundedEntities": [
+        "Sweden's",
+        "Participants"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch10.fact.2",
+      "claim": "Cronqvist and Thaler found actively selected Swedish portfolios were generally costlier and less diversified than the default.",
+      "mechanism": "This mechanism operates because advertising and recent returns attracted attention toward concentrated, higher-fee options.",
+      "commonError": "Active choosers reliably earned a diversification advantage over delegators.",
+      "whyWrong": "The observed portfolio characteristics pointed in the opposite direction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Cronqvist",
+        "Thaler",
+        "Swedish",
+        "Active"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.2"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch10.fact.3",
+      "claim": "The Seventh AP Fund managed the Premium Savings Fund for people who made no active selection.",
+      "mechanism": "This mechanism operates because a centralized default provided an investable allocation when savers delegated the decision.",
+      "commonError": "Nonchoosers left their premium-pension contributions in cash.",
+      "whyWrong": "Their money entered the state-run default fund.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "The Seventh AP Fund",
+        "Premium Savings Fund",
+        "Nonchoosers",
+        "Their"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.3"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch10.fact.4",
+      "claim": "Almost two thirds of eligible savers made an active choice in the launch year.",
+      "mechanism": "This mechanism operates because government communication and private advertising framed active management as expected and responsible.",
+      "commonError": "The presence of a default caused nearly everyone to delegate immediately.",
+      "whyWrong": "The campaign against passive acceptance outweighed the default for the initial cohort.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2"
+      ],
+      "groundedEntities": [
+        "Almost"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.4"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch10.fact.5",
+      "claim": "Fund companies spent about 65 million US dollars advertising during the initial Swedish choice round, with spending falling below 10 million by 2003.",
+      "mechanism": "This mechanism operates because the collapse in promotion reduced salience and coincided with much lower active choice among later entrants.",
+      "commonError": "The menu attracted the same engagement without marketing.",
+      "whyWrong": "Active selection fell sharply as campaign intensity faded.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "10",
+        "65",
+        "2003",
+        "1000000"
+      ],
+      "groundedEntities": [
+        "Fund",
+        "Swedish",
+        "Active"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.5"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch10.fact.6",
+      "claim": "The original system let savers divide their allocation among one to five funds.",
+      "mechanism": "This mechanism operates because the rule encouraged portfolio construction from a hundreds-fund menu rather than one simple selection.",
+      "commonError": "Every active saver had to select exactly one fund.",
+      "whyWrong": "The design explicitly permitted multiple funds up to five.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "5"
+      ],
+      "groundedEntities": [
+        "Every"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.6"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch10.fact.7",
+      "claim": "Later cohorts entered the default at much higher rates than the 2000 cohort.",
+      "mechanism": "This mechanism operates because with less advertising and public attention, inaction again became the path of least resistance.",
+      "commonError": "The culture of active pension management strengthened automatically over time.",
+      "whyWrong": "New-entrant active choice declined after launch.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2000"
+      ],
+      "groundedEntities": [
+        "Later",
+        "New-entrant"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.7"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch10.fact.8",
+      "claim": "Early active choices remained sticky even after the original promotional environment disappeared.",
+      "mechanism": "This mechanism operates because review required attention and effort, so savers treated a one-time portfolio as a set-and-forget decision.",
+      "commonError": "Active choosers continuously rebalance because they rejected delegation once.",
+      "whyWrong": "Initial activeness did not imply ongoing monitoring.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Early",
+        "Active",
+        "Initial"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.8"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch10.fact.9",
+      "claim": "An age-adjusted default reduces equity exposure as retirement approaches.",
+      "mechanism": "This mechanism operates because a lifecycle allocation automatically changes risk when the saver may not revisit the portfolio.",
+      "commonError": "A good retirement default should hold the same asset mix at every age.",
+      "whyWrong": "Capacity to absorb market loss changes with the remaining investment horizon.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Capacity"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch10.ex.1",
+      "label": "Swedish Premium Pension Agency / 2000 fund launch",
+      "summary": "Around four million Swedes received a catalog covering 456 funds managed by 72 companies and could allocate savings among one to five funds. The government campaign encouraged active selection rather than passive use of the default.",
+      "realWorld": true,
+      "naturalSetting": "Swedish Premium Pension Agency",
+      "hardSpecifics": [
+        "456 funds from 72 fund companies",
+        "catalog sent to about four million people in 2000"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "catalog sent to about four million people in 2000"
+      ]
+    },
+    {
+      "id": "ch10.ex.2",
+      "label": "Henrik Cronqvist and Richard Thaler / Swedish portfolio analysis",
+      "summary": "Cronqvist and Thaler compared actively selected portfolios with the government default. Active choosers tended toward higher fees, more concentrated risk, and stronger home bias, while advertising predicted fund flows.",
+      "realWorld": true,
+      "naturalSetting": "Henrik Cronqvist",
+      "hardSpecifics": [
+        "2004 analysis of the Swedish premium-pension launch",
+        "active portfolios were costlier and less diversified than the default"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "2004 analysis of the Swedish premium-pension launch"
+      ]
+    },
+    {
+      "id": "ch10.ex.3",
+      "label": "Seventh AP Fund / Premium Savings Fund",
+      "summary": "Savers who made no selection entered the state-run Premium Savings Fund managed by AP7. The low-cost diversified default later evolved toward an age-adjusted AP7 Såfa structure.",
+      "realWorld": true,
+      "naturalSetting": "Seventh AP Fund",
+      "hardSpecifics": [
+        "default managed by Sweden's Seventh AP Fund",
+        "later AP7 Såfa allocation becomes more bond-heavy with age"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Default stances",
+      "members": [
+        "default only",
+        "default discouraged",
+        "default encouraged",
+        "automatic default",
+        "required choice"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch10.concept",
+      "kind": "concept",
+      "label": "persistent choice architecture",
+      "text": "An initial default or active-choice campaign continues to affect outcomes because people seldom revisit the decision. Architects must judge a design by long-run portfolio quality and review behavior, not only first-day engagement.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.ex.1",
+      "kind": "named_example",
+      "label": "Swedish Premium Pension Agency / 2000 fund launch",
+      "text": "Around four million Swedes received a catalog covering 456 funds managed by 72 companies and could allocate savings among one to five funds. The government campaign encouraged active selection rather than passive use of the default. A campaign can overpower a default by framing active choice as the responsible action.",
+      "hardSpecifics": [
+        "456 funds from 72 fund companies",
+        "catalog sent to about four million people in 2000"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.ex.2",
+      "kind": "named_example",
+      "label": "Henrik Cronqvist and Richard Thaler / Swedish portfolio analysis",
+      "text": "Cronqvist and Thaler compared actively selected portfolios with the government default. Active choosers tended toward higher fees, more concentrated risk, and stronger home bias, while advertising predicted fund flows. More active choice does not guarantee a better portfolio when the menu and marketing are difficult.",
+      "hardSpecifics": [
+        "2004 analysis of the Swedish premium-pension launch",
+        "active portfolios were costlier and less diversified than the default"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.ex.3",
+      "kind": "named_example",
+      "label": "Seventh AP Fund / Premium Savings Fund",
+      "text": "Savers who made no selection entered the state-run Premium Savings Fund managed by AP7. The low-cost diversified default later evolved toward an age-adjusted AP7 Såfa structure. A delegated default can outperform unaided active selection when it is designed as a real product rather than a penalty box.",
+      "hardSpecifics": [
+        "default managed by Sweden's Seventh AP Fund",
+        "later AP7 Såfa allocation becomes more bond-heavy with age"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.1",
+      "kind": "testable_fact",
+      "label": "Sweden's 2000 launch presented 456 funds from 72 companies to about four million savers.",
+      "text": "Sweden's 2000 launch presented 456 funds from 72 companies to about four million savers. This mechanism operates because the large catalog made the premium-pension allocation an unusually complex mass-market choice. Participants chose among a short curated list of fewer than ten funds. The launch menu contained hundreds of funds.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.2",
+      "kind": "testable_fact",
+      "label": "Cronqvist and Thaler found actively selected Swedish portfolios were generally costlier and less diversified than the default.",
+      "text": "Cronqvist and Thaler found actively selected Swedish portfolios were generally costlier and less diversified than the default. This mechanism operates because advertising and recent returns attracted attention toward concentrated, higher-fee options. Active choosers reliably earned a diversification advantage over delegators. The observed portfolio characteristics pointed in the opposite direction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.3",
+      "kind": "testable_fact",
+      "label": "The Seventh AP Fund managed the Premium Savings Fund for people who made no active selection.",
+      "text": "The Seventh AP Fund managed the Premium Savings Fund for people who made no active selection. This mechanism operates because a centralized default provided an investable allocation when savers delegated the decision. Nonchoosers left their premium-pension contributions in cash. Their money entered the state-run default fund.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.4",
+      "kind": "testable_fact",
+      "label": "Almost two thirds of eligible savers made an active choice in the launch year.",
+      "text": "Almost two thirds of eligible savers made an active choice in the launch year. This mechanism operates because government communication and private advertising framed active management as expected and responsible. The presence of a default caused nearly everyone to delegate immediately. The campaign against passive acceptance outweighed the default for the initial cohort.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.5",
+      "kind": "testable_fact",
+      "label": "Fund companies spent about 65 million US dollars advertising during the initial Swedish choice round, with spending falling below 10 million by 2003.",
+      "text": "Fund companies spent about 65 million US dollars advertising during the initial Swedish choice round, with spending falling below 10 million by 2003. This mechanism operates because the collapse in promotion reduced salience and coincided with much lower active choice among later entrants. The menu attracted the same engagement without marketing. Active selection fell sharply as campaign intensity faded.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.6",
+      "kind": "testable_fact",
+      "label": "The original system let savers divide their allocation among one to five funds.",
+      "text": "The original system let savers divide their allocation among one to five funds. This mechanism operates because the rule encouraged portfolio construction from a hundreds-fund menu rather than one simple selection. Every active saver had to select exactly one fund. The design explicitly permitted multiple funds up to five.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.7",
+      "kind": "testable_fact",
+      "label": "Later cohorts entered the default at much higher rates than the 2000 cohort.",
+      "text": "Later cohorts entered the default at much higher rates than the 2000 cohort. This mechanism operates because with less advertising and public attention, inaction again became the path of least resistance. The culture of active pension management strengthened automatically over time. New-entrant active choice declined after launch.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.8",
+      "kind": "testable_fact",
+      "label": "Early active choices remained sticky even after the original promotional environment disappeared.",
+      "text": "Early active choices remained sticky even after the original promotional environment disappeared. This mechanism operates because review required attention and effort, so savers treated a one-time portfolio as a set-and-forget decision. Active choosers continuously rebalance because they rejected delegation once. Initial activeness did not imply ongoing monitoring.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.9",
+      "kind": "testable_fact",
+      "label": "An age-adjusted default reduces equity exposure as retirement approaches.",
+      "text": "An age-adjusted default reduces equity exposure as retirement approaches. This mechanism operates because a lifecycle allocation automatically changes risk when the saver may not revisit the portfolio. A good retirement default should hold the same asset mix at every age. Capacity to absorb market loss changes with the remaining investment horizon.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.framework.default.stances",
+      "kind": "framework",
+      "label": "Default stances",
+      "text": "default only, default discouraged, default encouraged, automatic default, required choice",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "4",
+    "10",
+    "72",
+    "456",
+    "2000",
+    "1000000",
+    "2",
+    "65",
+    "2003",
+    "1",
+    "5",
+    "2004"
+  ],
+  "allowedEntities": [
+    "Do Nudges Last Forever",
+    "Perhaps",
+    "Sweden",
+    "Sweden's",
+    "Too",
+    "Architects",
+    "Nearly",
+    "Fund",
+    "Active",
+    "New",
+    "Both",
+    "Swedish Premium Pension Agency",
+    "Around",
+    "Swedes",
+    "Henrik Cronqvist",
+    "Richard Thaler",
+    "Swedish",
+    "Cronqvist",
+    "Thaler",
+    "More",
+    "Seventh AP Fund",
+    "Premium Savings Fund",
+    "Savers",
+    "AP7. The",
+    "AP7 S",
+    "Sweden's Seventh AP Fund",
+    "Participants",
+    "The Seventh AP Fund",
+    "Nonchoosers",
+    "Their",
+    "Almost",
+    "Every",
+    "Later",
+    "New-entrant",
+    "Early",
+    "Initial",
+    "Capacity",
+    "Default",
+    "Premium Savings Fund. Henrik Cronqvist",
+    "Richard Thaler's",
+    "Seventh AP Fund. Advertising",
+    "Advertising",
+    "AP7's",
+    "Grounding",
+    "Swedish Premium Pension Agency / 2000 fund launch",
+    "Henrik Cronqvist and Richard Thaler / Swedish portfolio analysis",
+    "Seventh AP Fund / Premium Savings Fund"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch10.ex.1",
+      "warning": "Keep examples about Swedish Premium Pension Agency / 2000 fund launch source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch10.ex.2",
+      "warning": "Keep examples about Henrik Cronqvist and Richard Thaler / Swedish portfolio analysis source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch10.ex.3",
+      "warning": "Keep examples about Seventh AP Fund / Premium Savings Fund source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch10.fact.1"
+}

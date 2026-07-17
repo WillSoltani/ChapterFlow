@@ -1,0 +1,796 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "the-happiness-hypothesis",
+  "chapterId": "the-happiness-hypothesis-ch01",
+  "chapterNumber": 1,
+  "chapterTitle": "The Divided Self",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/the-happiness-hypothesis/20260717T094415142Z-1c996661-58d5-4e1d-9606-1e907d84ea3c/sidecars/source/ch01.source.json",
+  "sourceHash": "sha256:1afa8fc24a9d61ac85be9a8baba54c6b075beea5f9904be6bc6e158cf26291c6",
+  "facts": [
+    {
+      "id": "ch01.fact.1",
+      "claim": "The corpus callosum is the main cortical communication route between the cerebral hemispheres.",
+      "mechanism": "Because It carries axonal connections that transfer information across the left and right cerebral cortices.",
+      "commonError": "The hemispheres normally operate as fully independent brains.",
+      "whyWrong": "An intact corpus callosum ordinarily integrates their specialized processing.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Because It"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.1"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch01.fact.2",
+      "claim": "Callosotomy was used in the studied patients to alleviate severe, otherwise intractable epilepsy.",
+      "mechanism": "Because Severing major interhemispheric pathways can limit the spread of seizure activity from one hemisphere to the other.",
+      "commonError": "Researchers severed healthy brains merely to study consciousness.",
+      "whyWrong": "The operations were clinical treatments for debilitating epilepsy, and research followed those surgeries.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Callosotomy",
+        "Because Severing",
+        "Researchers"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.2"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch01.fact.3",
+      "claim": "In classic split-brain tasks, the speaking hemisphere could explain behavior whose initiating information had been delivered to the other hemisphere.",
+      "mechanism": "Because The language system generated a coherent interpretation despite lacking access to the isolated trigger.",
+      "commonError": "A confident explanation of one's action always reports the action's true cause.",
+      "whyWrong": "The interpreter can fill an information gap with a plausible reconstruction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Because The"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.3"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch01.fact.4",
+      "claim": "Ventromedial prefrontal damage can impair everyday decision making even when standard intellectual abilities remain comparatively intact.",
+      "mechanism": "Because Emotional valuation signals help rank options, so calculation alone may not select an adaptive course.",
+      "commonError": "Removing emotion produces purely rational and therefore superior decisions.",
+      "whyWrong": "Some emotional signals are inputs to effective choice rather than noise that reason must eliminate.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Ventromedial",
+        "Because Emotional",
+        "Removing",
+        "Some"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.4"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch01.fact.5",
+      "claim": "Post-suppression rebound for a target thought has been detected consistently in meta-analytic work.",
+      "mechanism": "Because Monitoring for the forbidden thought preserves its accessibility after the deliberate suppression effort ends.",
+      "commonError": "Trying harder not to think something reliably erases it from awareness.",
+      "whyWrong": "The monitoring component of suppression must keep checking for the very representation being avoided.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Post-suppression",
+        "Because Monitoring",
+        "Trying"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.5"
+      ],
+      "replicationStatus": "robust",
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch01.fact.6",
+      "claim": "Immediate ironic enhancement during suppression is most evident under added cognitive load rather than in every setting.",
+      "mechanism": "Because Extra demands consume the controlled resources needed to counter the automatic monitoring process.",
+      "commonError": "White-bear experiments prove every act of thought suppression backfires immediately.",
+      "whyWrong": "Later meta-analysis found the immediate effect conditional, while rebound after suppression was more consistent.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Immediate",
+        "Because Extra",
+        "White-bear",
+        "Later"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.6"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch01.fact.7",
+      "claim": "Automatic processing is typically faster and less effortful than controlled processing.",
+      "mechanism": "Because It uses learned or evolved response routines without requiring serial conscious deliberation.",
+      "commonError": "Automatic means random, inaccurate, or unconscious in exactly the same way in every task.",
+      "whyWrong": "Automaticity describes processing demands and access, not a universal verdict about accuracy.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Automatic",
+        "Because It",
+        "Automaticity"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.7"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch01.fact.8",
+      "claim": "Controlled processing can compare distant outcomes and exchange explicit information through language.",
+      "mechanism": "Because Working memory and symbolic representation allow alternatives, rules, and future consequences to be held in view.",
+      "commonError": "Because automatic systems often initiate action, deliberate reasoning has no causal role.",
+      "whyWrong": "Planning, instruction, and repeated practice let controlled thought reshape later automatic responses.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Controlled",
+        "Because Working",
+        "Planning"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.8"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch01.fact.9",
+      "claim": "Weakness of will can occur even when a person correctly identifies the better action.",
+      "mechanism": "Because Propositional knowledge and motivational force are produced by partly distinct systems.",
+      "commonError": "Anyone who acts against better judgment must not really understand the better choice.",
+      "whyWrong": "The Medea pattern and ordinary self-control failures separate knowing from being emotionally moved.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Weakness",
+        "Because Propositional",
+        "Anyone",
+        "The Medea"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.9"
+      ],
+      "teachingPriority": 8
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch01.example.gazzaniga",
+      "label": "Michael Gazzaniga / split-brain patients",
+      "summary": "Patients underwent corpus-callosum surgery to reduce otherwise intractable epilepsy. When information or an instruction reached only the right hemisphere, the speaking left hemisphere could supply a fluent explanation for an action without access to its actual trigger. Verified anchors: corpus callosum surgically severed for intractable epilepsy; left visual field projects initially to the right hemisphere.",
+      "realWorld": true,
+      "naturalSetting": "Michael Gazzaniga",
+      "hardSpecifics": [
+        "corpus callosum surgically severed for intractable epilepsy",
+        "left visual field projects initially to the right hemisphere",
+        "speech-dominant left hemisphere supplied post-action explanations"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch01.example.damasio",
+      "label": "Antonio Damasio / ventromedial prefrontal patients",
+      "summary": "Neurological patients with damage in ventromedial prefrontal regions could retain intelligence and discuss options yet make disastrously poor everyday decisions. Missing emotional valuation left calculation without a practical way to rank choices. Verified anchors: ventromedial prefrontal cortex damage; preserved conventional intelligence.",
+      "realWorld": true,
+      "naturalSetting": "Antonio Damasio",
+      "hardSpecifics": [
+        "ventromedial prefrontal cortex damage",
+        "preserved conventional intelligence",
+        "impaired real-life decision making"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch01.example.wegner",
+      "label": "Daniel Wegner / white-bear suppression experiments",
+      "summary": "Participants instructed not to think about a white bear had to monitor whether the forbidden thought had returned. Later access to the thought increased, especially after suppression or when mental load made deliberate control harder. Verified anchors: white-bear target thought; five-minute suppression period in the original paradigm.",
+      "realWorld": true,
+      "naturalSetting": "Daniel Wegner",
+      "hardSpecifics": [
+        "white-bear target thought",
+        "five-minute suppression period in the original paradigm",
+        "post-suppression rebound effect"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch01.example.medea",
+      "label": "Medea's conflict between desire and reason",
+      "summary": "The classical scene presents someone who recognizes the better course while feeling pulled toward the worse one. Its durable power comes from describing conflict among systems rather than a simple absence of knowledge.",
+      "realWorld": false,
+      "naturalSetting": "Medea's",
+      "hardSpecifics": [
+        "Medea in Ovid's Metamorphoses",
+        "conflict between loyalty to her father and desire for Jason"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Four divisions of the self",
+      "members": [
+        "mind versus body",
+        "left versus right",
+        "new brain versus old brain",
+        "controlled versus automatic processing"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch01.concept",
+      "kind": "concept",
+      "label": "rider and elephant",
+      "text": "The rider represents language-based, controlled reasoning; the elephant represents the much larger set of automatic emotions, intuitions, and motivations that usually initiate action. Failures of will stop looking like proof of bad character and become coordination problems. Change then depends on shaping cues, habits, and emotional learning while using reason for foresight and planning.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.example.gazzaniga",
+      "kind": "named_example",
+      "label": "Michael Gazzaniga / split-brain patients",
+      "text": "Patients underwent corpus-callosum surgery to reduce otherwise intractable epilepsy. When information or an instruction reached only the right hemisphere, the speaking left hemisphere could supply a fluent explanation for an action without access to its actual trigger. Verified anchors: corpus callosum surgically severed for intractable epilepsy; left visual field projects initially to the right hemisphere. A coherent verbal explanation can be an interpreter's reconstruction rather than direct access to the causes of behavior.",
+      "hardSpecifics": [
+        "corpus callosum surgically severed for intractable epilepsy",
+        "left visual field projects initially to the right hemisphere",
+        "speech-dominant left hemisphere supplied post-action explanations"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.example.damasio",
+      "kind": "named_example",
+      "label": "Antonio Damasio / ventromedial prefrontal patients",
+      "text": "Neurological patients with damage in ventromedial prefrontal regions could retain intelligence and discuss options yet make disastrously poor everyday decisions. Missing emotional valuation left calculation without a practical way to rank choices. Verified anchors: ventromedial prefrontal cortex damage; preserved conventional intelligence. Reasoning needs affective signals; less emotion does not automatically yield better judgment.",
+      "hardSpecifics": [
+        "ventromedial prefrontal cortex damage",
+        "preserved conventional intelligence",
+        "impaired real-life decision making"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.example.wegner",
+      "kind": "named_example",
+      "label": "Daniel Wegner / white-bear suppression experiments",
+      "text": "Participants instructed not to think about a white bear had to monitor whether the forbidden thought had returned. Later access to the thought increased, especially after suppression or when mental load made deliberate control harder. Verified anchors: white-bear target thought; five-minute suppression period in the original paradigm. A controlled attempt to ban a thought can recruit an automatic search that keeps the thought accessible.",
+      "hardSpecifics": [
+        "white-bear target thought",
+        "five-minute suppression period in the original paradigm",
+        "post-suppression rebound effect"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.example.medea",
+      "kind": "named_example",
+      "label": "Medea's conflict between desire and reason",
+      "text": "The classical scene presents someone who recognizes the better course while feeling pulled toward the worse one. Its durable power comes from describing conflict among systems rather than a simple absence of knowledge. Knowing what is right and being moved to do it are separable psychological achievements.",
+      "hardSpecifics": [
+        "Medea in Ovid's Metamorphoses",
+        "conflict between loyalty to her father and desire for Jason"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.1",
+      "kind": "testable_fact",
+      "label": "The corpus callosum is the main cortical communication route between the cerebral hemispheres.",
+      "text": "The corpus callosum is the main cortical communication route between the cerebral hemispheres. Because It carries axonal connections that transfer information across the left and right cerebral cortices. The hemispheres normally operate as fully independent brains. An intact corpus callosum ordinarily integrates their specialized processing.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.2",
+      "kind": "testable_fact",
+      "label": "Callosotomy was used in the studied patients to alleviate severe, otherwise intractable epilepsy.",
+      "text": "Callosotomy was used in the studied patients to alleviate severe, otherwise intractable epilepsy. Because Severing major interhemispheric pathways can limit the spread of seizure activity from one hemisphere to the other. Researchers severed healthy brains merely to study consciousness. The operations were clinical treatments for debilitating epilepsy, and research followed those surgeries.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.3",
+      "kind": "testable_fact",
+      "label": "In classic split-brain tasks, the speaking hemisphere could explain behavior whose initiating information had been delivered to the other hemisphere.",
+      "text": "In classic split-brain tasks, the speaking hemisphere could explain behavior whose initiating information had been delivered to the other hemisphere. Because The language system generated a coherent interpretation despite lacking access to the isolated trigger. A confident explanation of one's action always reports the action's true cause. The interpreter can fill an information gap with a plausible reconstruction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.4",
+      "kind": "testable_fact",
+      "label": "Ventromedial prefrontal damage can impair everyday decision making even when standard intellectual abilities remain comparatively intact.",
+      "text": "Ventromedial prefrontal damage can impair everyday decision making even when standard intellectual abilities remain comparatively intact. Because Emotional valuation signals help rank options, so calculation alone may not select an adaptive course. Removing emotion produces purely rational and therefore superior decisions. Some emotional signals are inputs to effective choice rather than noise that reason must eliminate.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.5",
+      "kind": "testable_fact",
+      "label": "Post-suppression rebound for a target thought has been detected consistently in meta-analytic work.",
+      "text": "Post-suppression rebound for a target thought has been detected consistently in meta-analytic work. Because Monitoring for the forbidden thought preserves its accessibility after the deliberate suppression effort ends. Trying harder not to think something reliably erases it from awareness. The monitoring component of suppression must keep checking for the very representation being avoided.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.6",
+      "kind": "testable_fact",
+      "label": "Immediate ironic enhancement during suppression is most evident under added cognitive load rather than in every setting.",
+      "text": "Immediate ironic enhancement during suppression is most evident under added cognitive load rather than in every setting. Because Extra demands consume the controlled resources needed to counter the automatic monitoring process. White-bear experiments prove every act of thought suppression backfires immediately. Later meta-analysis found the immediate effect conditional, while rebound after suppression was more consistent.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.7",
+      "kind": "testable_fact",
+      "label": "Automatic processing is typically faster and less effortful than controlled processing.",
+      "text": "Automatic processing is typically faster and less effortful than controlled processing. Because It uses learned or evolved response routines without requiring serial conscious deliberation. Automatic means random, inaccurate, or unconscious in exactly the same way in every task. Automaticity describes processing demands and access, not a universal verdict about accuracy.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.8",
+      "kind": "testable_fact",
+      "label": "Controlled processing can compare distant outcomes and exchange explicit information through language.",
+      "text": "Controlled processing can compare distant outcomes and exchange explicit information through language. Because Working memory and symbolic representation allow alternatives, rules, and future consequences to be held in view. Because automatic systems often initiate action, deliberate reasoning has no causal role. Planning, instruction, and repeated practice let controlled thought reshape later automatic responses.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.9",
+      "kind": "testable_fact",
+      "label": "Weakness of will can occur even when a person correctly identifies the better action.",
+      "text": "Weakness of will can occur even when a person correctly identifies the better action. Because Propositional knowledge and motivational force are produced by partly distinct systems. Anyone who acts against better judgment must not really understand the better choice. The Medea pattern and ordinary self-control failures separate knowing from being emotionally moved.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.framework.four.divisions.of.the.self",
+      "kind": "framework",
+      "label": "Four divisions of the self",
+      "text": "mind versus body, left versus right, new brain versus old brain, controlled versus automatic processing",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1",
+    "5"
+  ],
+  "allowedEntities": [
+    "The Divided Self",
+    "Human",
+    "Deliberate",
+    "Self-direction",
+    "Failures",
+    "Change",
+    "Automatic",
+    "Controlled",
+    "Explanations",
+    "Suppressing",
+    "Durable",
+    "Michael Gazzaniga",
+    "Patients",
+    "Verified",
+    "Antonio Damasio",
+    "Neurological",
+    "Missing",
+    "Reasoning",
+    "Daniel Wegner",
+    "Participants",
+    "Later",
+    "Medea's",
+    "Its",
+    "Knowing",
+    "Medea",
+    "Ovid's Metamorphoses",
+    "Jason",
+    "Conscious",
+    "SSRIs",
+    "Because It",
+    "Callosotomy",
+    "Because Severing",
+    "Researchers",
+    "Because The",
+    "Ventromedial",
+    "Because Emotional",
+    "Removing",
+    "Some",
+    "Post-suppression",
+    "Because Monitoring",
+    "Trying",
+    "Immediate",
+    "Because Extra",
+    "White-bear",
+    "Automaticity",
+    "Because Working",
+    "Planning",
+    "Weakness",
+    "Because Propositional",
+    "Anyone",
+    "The Medea",
+    "Four",
+    "Ancient",
+    "Bodily",
+    "Michael Gazzaniga's",
+    "Information",
+    "Antonio Damasio's",
+    "Daniel Wegner's",
+    "Deliberately",
+    "These",
+    "Neither",
+    "Pure",
+    "Self-improvement",
+    "Often",
+    "Michael Gazzaniga / split-brain patients",
+    "Antonio Damasio / ventromedial prefrontal patients",
+    "Daniel Wegner / white-bear suppression experiments",
+    "Medea's conflict between desire and reason"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch01.example.gazzaniga",
+      "warning": "Keep examples about Michael Gazzaniga / split-brain patients source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.example.damasio",
+      "warning": "Keep examples about Antonio Damasio / ventromedial prefrontal patients source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.example.wegner",
+      "warning": "Keep examples about Daniel Wegner / white-bear suppression experiments source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.example.medea",
+      "warning": "Keep examples about Medea's conflict between desire and reason source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch01.fact.2"
+}

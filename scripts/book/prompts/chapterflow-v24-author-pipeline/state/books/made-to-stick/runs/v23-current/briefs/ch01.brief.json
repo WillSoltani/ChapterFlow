@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "made-to-stick-ch01",
+  "chapterNumber": 1,
+  "title": "Simple",
+  "coreMove": "Because evaluating many attractive alternatives raises comparison and commitment costs, the extensive sets drew interest but the limited sets more often produced action.",
+  "thesis": "Iyengar and Lepper's 2000 experiments compared limited sets of 6 choices with extensive sets of 24 or 30 choices.",
+  "readerPromise": "After this chapter, a reader can because evaluating many attractive alternatives raises comparison and commitment costs, the extensive sets drew interest but the limited sets more often produced action.",
+  "ownedCases": [
+    {
+      "id": "ch01.ex.commanders-intent",
+      "label": "U.S. Army Commander's Intent"
+    },
+    {
+      "id": "ch01.ex.southwest",
+      "label": "Herb Kelleher / Southwest Airlines"
+    },
+    {
+      "id": "ch01.ex.choice-study",
+      "label": "Sheena Iyengar and Mark Lepper choice experiments"
+    },
+    {
+      "id": "ch01.ex.palm",
+      "label": "Jeff Hawkins / PalmPilot wooden prototype"
+    }
+  ],
+  "notYours": [
+    "Aesop's Fox and the Grapes",
+    "American Legacy Foundation truth campaign",
+    "Barry Marshall / Helicobacter pylori self-experiment",
+    "Beyond War nuclear BB demonstration",
+    "Boeing 727 / LaGuardia Runway 4-22",
+    "Floyd Lee / Pegasus dining facility",
+    "Galileo and Saturn's changing appearance",
+    "Georgia State Safe Night Out accounting case",
+    "James P. Grant / oral rehydration salts packet",
+    "Jane Elliott's blue-eyes/brown-eyes exercise",
+    "Jared Fogle / Subway campaign",
+    "John F. Kennedy's lunar goal",
+    "Julian Orr / Xerox copier technicians",
+    "Masaru Ibuka / Sony pocketable radio",
+    "Nora Ephron's Journalism 101 lead",
+    "Nordstrom's shirt-ironing service story",
+    "Pam Laffin antismoking campaign",
+    "Pham and Taylor mental-simulation experiment",
+    "Ronald Reagan's 1980 testable question",
+    "Safexpress / Harry Potter launch logistics"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    1,
+    1,
+    0,
+    2,
+    0,
+    1,
+    2,
+    0,
+    2
+  ],
+  "avoid": [
+    "flavor (ch02): venue: a text thread with a friend",
+    "flavor (ch02): venue: a lunch break",
+    "flavor (ch02): venue: a bulletin board note",
+    "flavor (ch02): frame: two stakeholders disagree about about percent of the decline before deciding",
+    "flavor (ch02): frame: a first encounter with anti litter campaign in that sets a benchmark",
+    "flavor (ch03): venue: a sticky note on the fridge"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on launched in early",
+    "venue: a shared calendar invite",
+    "venue: a handwritten note on the counter",
+    "frame: a first attempt at about percent of the decline that gets corrected",
+    "frame: a first encounter with about percent of the decline that sets a benchmark"
+  ],
+  "architectureFamily": "research-lead",
+  "openerType": "tension-thesis",
+  "challengeFrame": "teach-it-to-someone",
+  "practiceShape": "observe-then-note",
+  "exampleLenses": [
+    "counterfactual",
+    "outsider-witness",
+    "numbers-detective"
+  ],
+  "practiceVerb": "read-aloud",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "rather",
+    "later",
+    "audience",
+    "first",
+    "story",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "partial",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "observe-then-note",
+    "two-step-sequence",
+    "say-aloud-script",
+    "measure-one-number"
+  ],
+  "quizStemShapes": [
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why"
+  ],
+  "quizFailureModes": [
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger"
+  ],
+  "questionFactOrder": [
+    7,
+    5,
+    6,
+    8,
+    3,
+    2,
+    9,
+    4,
+    1
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "sensory-speak",
+    "mechanism-speak"
+  ],
+  "shellRegister": "verb-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "U.S. Army Commander's Intent",
+    "caseId": "ch01.ex.commanders-intent",
+    "aliases": [
+      "U.S. Army Commander's Intent",
+      "Intent",
+      "Army",
+      "Commander"
+    ]
+  },
+  "adjacentJobs": {
+    "next": "Because the pocket-sized target forced simultaneous miniaturization of the radio's components, a concrete unresolved goal coordinated extended engineering work."
+  },
+  "totalChapters": 6
+}

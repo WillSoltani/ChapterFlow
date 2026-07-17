@@ -1,0 +1,188 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "the-happiness-hypothesis-ch01",
+  "chapterNumber": 1,
+  "title": "The Divided Self",
+  "coreMove": "Because Severing major interhemispheric pathways can limit the spread of seizure activity from one hemisphere to the other.",
+  "thesis": "Callosotomy was used in the studied patients to alleviate severe, otherwise intractable epilepsy.",
+  "readerPromise": "After this chapter, a reader can because Severing major interhemispheric pathways can limit the spread of seizure activity from one hemisphere to the other.",
+  "ownedCases": [
+    {
+      "id": "ch01.example.gazzaniga",
+      "label": "Michael Gazzaniga / split-brain patients"
+    },
+    {
+      "id": "ch01.example.damasio",
+      "label": "Antonio Damasio / ventromedial prefrontal patients"
+    },
+    {
+      "id": "ch01.example.wegner",
+      "label": "Daniel Wegner / white-bear suppression experiments"
+    },
+    {
+      "id": "ch01.example.medea",
+      "label": "Medea's conflict between desire and reason"
+    }
+  ],
+  "notYours": [
+    "Aaron Beck / cognitive therapy",
+    "Alois Stutzer and Bruno Frey / commuting paradox",
+    "Aristotle / virtue and the mean",
+    "Aristotle / virtue plus external goods",
+    "Benjamin Franklin / thirteen-virtue chart",
+    "Brett Pelham and colleagues / implicit egotism",
+    "Buddhist insight meditation / attentional training",
+    "Buddhist nonattachment and Benjamin Franklin's striving",
+    "C. Daniel Batson / moral-hypocrisy task",
+    "Christopher Peterson and Martin Seligman / VIA classification",
+    "Cindy Hazan and Phillip Shaver / adult romantic attachment",
+    "Dacher Keltner and Jonathan Haidt / awe prototype",
+    "Dan McAdams / redemptive life stories",
+    "Dan McAdams / three levels of personality",
+    "David Burns / anger inventory",
+    "Deanna Kuhn and David Perkins / argument evaluation",
+    "Dennis Regan / Coca-Cola reciprocity experiment",
+    "Harry Harlow / cloth and wire surrogate mothers",
+    "Hazan and colleagues / transfer of attachment functions",
+    "Heraclitus / conflict of opposites"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    1,
+    1,
+    0,
+    2,
+    0,
+    1,
+    2,
+    0,
+    2
+  ],
+  "avoid": [
+    "flavor (ch02): venue: a shared grocery list",
+    "flavor (ch02): venue: a walk around the block",
+    "flavor (ch02): venue: a morning routine",
+    "flavor (ch02): frame: two stakeholders disagree about anomie as weakened normative structure before deciding",
+    "flavor (ch02): frame: a first encounter with arguments about public policy issues that sets a benchmark",
+    "flavor (ch03): venue: a shared photo album"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on characteristic adaptations and narrative identity",
+    "venue: a working note on cloth covered surrogate mother",
+    "venue: a dinner table",
+    "frame: a first attempt at anomie as weakened normative structure that gets corrected",
+    "frame: a first encounter with anomie as weakened normative structure that sets a benchmark"
+  ],
+  "architectureFamily": "everyday-first-person",
+  "openerType": "claim",
+  "challengeFrame": "attach-to-existing-routine",
+  "practiceShape": "if-then-trigger",
+  "exampleLenses": [
+    "numbers-detective",
+    "prop-tableau",
+    "dialogue-beat"
+  ],
+  "practiceVerb": "say",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "rather",
+    "across",
+    "different",
+    "life",
+    "repeated",
+    "consequences"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "if-then-trigger",
+    "single-imperative",
+    "two-step-sequence",
+    "observe-then-note"
+  ],
+  "quizStemShapes": [
+    "failure-postmortem",
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence"
+  ],
+  "quizFailureModes": [
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope"
+  ],
+  "questionFactOrder": [
+    1,
+    4,
+    3,
+    7,
+    5,
+    2,
+    8,
+    9,
+    6
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "mechanism-speak",
+    "people-speak"
+  ],
+  "shellRegister": "verb-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Michael Gazzaniga / split-brain patients",
+    "caseId": "ch01.example.gazzaniga",
+    "aliases": [
+      "Michael Gazzaniga / split-brain patients",
+      "Gazzaniga",
+      "Michael"
+    ]
+  },
+  "adjacentJobs": {
+    "next": "Because Each interpretation supplies confirming material for the others and keeps negative appraisal active."
+  },
+  "totalChapters": 11
+}

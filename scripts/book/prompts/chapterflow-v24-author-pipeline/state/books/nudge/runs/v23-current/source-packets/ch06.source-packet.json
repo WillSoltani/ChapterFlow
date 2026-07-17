@@ -1,0 +1,726 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch06",
+  "chapterNumber": 6,
+  "chapterTitle": "But Wait, There's More",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch06.source.json",
+  "sourceHash": "sha256:90c23ed249134ddc0bfb15e65ac69a98cffad69b5d917b83fa202aa9cf6a9eb6",
+  "facts": [
+    {
+      "id": "ch06.fact.1",
+      "claim": "Taiwan's Uniform Invoice Lottery links prize eligibility to retaining an official sales receipt.",
+      "mechanism": "This mechanism operates because customers request and keep invoices for the drawing, so merchants face more pressure to record taxable sales.",
+      "commonError": "The lottery rewards merchants for voluntarily reporting revenue.",
+      "whyWrong": "The consumer's demand for an official invoice is the enforcement lever.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Taiwan's Uniform Invoice Lottery"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.1"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch06.fact.2",
+      "claim": "Beijing's 2002 restaurant receipt lottery used scratch-off prizes on official invoices.",
+      "mechanism": "This mechanism operates because an immediate chance to win made diners more likely to request the document that registers the sale.",
+      "commonError": "The policy reduced tax evasion by raising restaurant fines at checkout.",
+      "whyWrong": "Its distinctive mechanism was a customer reward rather than a larger penalty.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2002"
+      ],
+      "groundedEntities": [
+        "Beijing's",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.2"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch06.fact.3",
+      "claim": "Hyde Park bookstores and the Concord Bookshop compete through curated selection even though they cannot match Amazon's catalog size.",
+      "mechanism": "This mechanism operates because human judgment and physical arrangement reduce search burden while creating discovery and trust.",
+      "commonError": "A smaller inventory always produces a strictly worse choice experience.",
+      "whyWrong": "Selection can add informational value when the curator's taste is useful.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Hyde Park",
+        "Concord Bookshop",
+        "Amazon's",
+        "Selection"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch06.fact.4",
+      "claim": "Navigation and curation address different forms of choice overload.",
+      "mechanism": "This mechanism operates because navigation helps locate a known target, whereas curation decides which unfamiliar options deserve attention.",
+      "commonError": "A better search box makes editorial selection unnecessary.",
+      "whyWrong": "Search cannot retrieve an option the chooser does not know to seek.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Navigation",
+        "Search"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.4"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch06.fact.5",
+      "claim": "Tom Sawyer makes fence painting desirable by presenting access to the task as scarce and enjoyable.",
+      "mechanism": "This mechanism operates because the reframing changes the social meaning from imposed labor to a privilege others must earn.",
+      "commonError": "The fence scene motivates helpers with higher wages.",
+      "whyWrong": "The reward is perceived exclusivity and play, not cash.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Tom Sawyer"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.5"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch06.fact.6",
+      "claim": "A reward can motivate more effectively when it feels like a guilt-free pleasure rather than fungible cash.",
+      "mechanism": "This mechanism operates because a designated treat avoids the mental-accounting pressure to spend ordinary money on necessities.",
+      "commonError": "Only the monetary face value of a reward affects behavior.",
+      "whyWrong": "Label and form alter how recipients experience and use the reward.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Only",
+        "Label"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.6"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch06.fact.7",
+      "claim": "Frequent-flier rewards and coffee punch cards convert repeated transactions into visible progress.",
+      "mechanism": "This mechanism operates because accumulating status or stamps supplies immediate feedback before the final reward arrives.",
+      "commonError": "Loyalty programs work only by cutting the unit price.",
+      "whyWrong": "Progress, status, and earmarked treats can motivate beyond a cash-equivalent discount.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Frequent-flier",
+        "Loyalty",
+        "Progress"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.7"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch06.fact.8",
+      "claim": "A playful nudge can change behavior without changing the underlying requirement or banning alternatives.",
+      "mechanism": "This mechanism operates because it adds an attractive experience or symbolic payoff to the desired action.",
+      "commonError": "Any use of prizes is a mandate.",
+      "whyWrong": "Participation remains optional when the original alternatives stay available.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Any",
+        "Participation"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.8"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch06.fact.9",
+      "claim": "Curation creates value only when the selector's judgment is credible to the chooser.",
+      "mechanism": "This mechanism operates because a reduced menu helps when exclusions carry useful information rather than arbitrary limitation.",
+      "commonError": "Removing options automatically improves every large menu.",
+      "whyWrong": "A bad curator can discard valuable options and impose irrelevant taste.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Curation",
+        "Removing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch06.ex.1",
+      "label": "Taiwan Uniform Invoice Lottery",
+      "summary": "Taiwan attaches lottery numbers to standardized sales invoices and draws winning numbers on a regular schedule. Customers gain a reason to request receipts, which makes retail transactions harder to conceal from the tax authority.",
+      "realWorld": true,
+      "naturalSetting": "Taiwan Uniform Invoice Lottery Taiwan",
+      "hardSpecifics": [
+        "Taiwan Ministry of Finance program introduced on January 1, 1951",
+        "lottery numbers printed on uniform sales invoices",
+        "customers must retain receipts to claim prizes"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Taiwan Ministry of Finance program introduced on January 1, 1951"
+      ]
+    },
+    {
+      "id": "ch06.ex.2",
+      "label": "Beijing tax authority / restaurant receipt lottery",
+      "summary": "Beijing's tax authority tested scratch-off prizes printed on restaurant invoices. Diners who wanted a chance to win asked for the official receipt, increasing the likelihood that the sale entered the tax system.",
+      "realWorld": true,
+      "naturalSetting": "Beijing",
+      "hardSpecifics": [
+        "Beijing trial launched August 1, 2002 in 11 districts and counties",
+        "scratch-off prizes on restaurant invoices",
+        "official receipt request exposes the transaction to tax reporting"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Beijing trial launched August 1, 2002 in 11 districts and counties"
+      ]
+    },
+    {
+      "id": "ch06.ex.3",
+      "label": "Hyde Park bookstores and Concord Bookshop versus Amazon",
+      "summary": "The Final Edition contrasts Amazon's searchable catalog with bookstores in the University of Chicago's Hyde Park neighborhood and the Concord Bookshop in Massachusetts. Staff judgment, tables, and shelf placement can create discovery even with a smaller inventory.",
+      "realWorld": true,
+      "naturalSetting": "Hyde Park",
+      "hardSpecifics": [
+        "Amazon catalog relies on navigation tools",
+        "bookstores in the University of Chicago's Hyde Park neighborhood",
+        "Concord Bookshop in Massachusetts uses curated selection"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "bookstores in the University of Chicago's Hyde Park neighborhood"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Two large-menu tools",
+      "members": [
+        "navigation",
+        "curation"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch06.concept",
+      "kind": "concept",
+      "label": "fun and curation",
+      "text": "Curation reduces a large universe to a purposeful selection, while fun supplies an intrinsic or symbolic reward for participation. People are more likely to engage when design offers discovery, pleasure, or a memorable reward instead of another obligation.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.ex.1",
+      "kind": "named_example",
+      "label": "Taiwan Uniform Invoice Lottery",
+      "text": "Taiwan attaches lottery numbers to standardized sales invoices and draws winning numbers on a regular schedule. Customers gain a reason to request receipts, which makes retail transactions harder to conceal from the tax authority. A playful reward can align the customer's action with tax reporting.",
+      "hardSpecifics": [
+        "Taiwan Ministry of Finance program introduced on January 1, 1951",
+        "lottery numbers printed on uniform sales invoices",
+        "customers must retain receipts to claim prizes"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.ex.2",
+      "kind": "named_example",
+      "label": "Beijing tax authority / restaurant receipt lottery",
+      "text": "Beijing's tax authority tested scratch-off prizes printed on restaurant invoices. Diners who wanted a chance to win asked for the official receipt, increasing the likelihood that the sale entered the tax system. The target behavior becomes self-reinforcing when compliance carries immediate fun.",
+      "hardSpecifics": [
+        "Beijing trial launched August 1, 2002 in 11 districts and counties",
+        "scratch-off prizes on restaurant invoices",
+        "official receipt request exposes the transaction to tax reporting"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.ex.3",
+      "kind": "named_example",
+      "label": "Hyde Park bookstores and Concord Bookshop versus Amazon",
+      "text": "The Final Edition contrasts Amazon's searchable catalog with bookstores in the University of Chicago's Hyde Park neighborhood and the Concord Bookshop in Massachusetts. Staff judgment, tables, and shelf placement can create discovery even with a smaller inventory. Curation and navigation solve different problems in a large choice universe.",
+      "hardSpecifics": [
+        "Amazon catalog relies on navigation tools",
+        "bookstores in the University of Chicago's Hyde Park neighborhood",
+        "Concord Bookshop in Massachusetts uses curated selection"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.1",
+      "kind": "testable_fact",
+      "label": "Taiwan's Uniform Invoice Lottery links prize eligibility to retaining an official sales receipt.",
+      "text": "Taiwan's Uniform Invoice Lottery links prize eligibility to retaining an official sales receipt. This mechanism operates because customers request and keep invoices for the drawing, so merchants face more pressure to record taxable sales. The lottery rewards merchants for voluntarily reporting revenue. The consumer's demand for an official invoice is the enforcement lever.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.2",
+      "kind": "testable_fact",
+      "label": "Beijing's 2002 restaurant receipt lottery used scratch-off prizes on official invoices.",
+      "text": "Beijing's 2002 restaurant receipt lottery used scratch-off prizes on official invoices. This mechanism operates because an immediate chance to win made diners more likely to request the document that registers the sale. The policy reduced tax evasion by raising restaurant fines at checkout. Its distinctive mechanism was a customer reward rather than a larger penalty.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.3",
+      "kind": "testable_fact",
+      "label": "Hyde Park bookstores and the Concord Bookshop compete through curated selection even though they cannot match Amazon's catalog size.",
+      "text": "Hyde Park bookstores and the Concord Bookshop compete through curated selection even though they cannot match Amazon's catalog size. This mechanism operates because human judgment and physical arrangement reduce search burden while creating discovery and trust. A smaller inventory always produces a strictly worse choice experience. Selection can add informational value when the curator's taste is useful.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.4",
+      "kind": "testable_fact",
+      "label": "Navigation and curation address different forms of choice overload.",
+      "text": "Navigation and curation address different forms of choice overload. This mechanism operates because navigation helps locate a known target, whereas curation decides which unfamiliar options deserve attention. A better search box makes editorial selection unnecessary. Search cannot retrieve an option the chooser does not know to seek.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.5",
+      "kind": "testable_fact",
+      "label": "Tom Sawyer makes fence painting desirable by presenting access to the task as scarce and enjoyable.",
+      "text": "Tom Sawyer makes fence painting desirable by presenting access to the task as scarce and enjoyable. This mechanism operates because the reframing changes the social meaning from imposed labor to a privilege others must earn. The fence scene motivates helpers with higher wages. The reward is perceived exclusivity and play, not cash.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.6",
+      "kind": "testable_fact",
+      "label": "A reward can motivate more effectively when it feels like a guilt-free pleasure rather than fungible cash.",
+      "text": "A reward can motivate more effectively when it feels like a guilt-free pleasure rather than fungible cash. This mechanism operates because a designated treat avoids the mental-accounting pressure to spend ordinary money on necessities. Only the monetary face value of a reward affects behavior. Label and form alter how recipients experience and use the reward.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.7",
+      "kind": "testable_fact",
+      "label": "Frequent-flier rewards and coffee punch cards convert repeated transactions into visible progress.",
+      "text": "Frequent-flier rewards and coffee punch cards convert repeated transactions into visible progress. This mechanism operates because accumulating status or stamps supplies immediate feedback before the final reward arrives. Loyalty programs work only by cutting the unit price. Progress, status, and earmarked treats can motivate beyond a cash-equivalent discount.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.8",
+      "kind": "testable_fact",
+      "label": "A playful nudge can change behavior without changing the underlying requirement or banning alternatives.",
+      "text": "A playful nudge can change behavior without changing the underlying requirement or banning alternatives. This mechanism operates because it adds an attractive experience or symbolic payoff to the desired action. Any use of prizes is a mandate. Participation remains optional when the original alternatives stay available.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.9",
+      "kind": "testable_fact",
+      "label": "Curation creates value only when the selector's judgment is credible to the chooser.",
+      "text": "Curation creates value only when the selector's judgment is credible to the chooser. This mechanism operates because a reduced menu helps when exclusions carry useful information rather than arbitrary limitation. Removing options automatically improves every large menu. A bad curator can discard valuable options and impose irrelevant taste.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.framework.two.large.menu.tools",
+      "kind": "framework",
+      "label": "Two large-menu tools",
+      "text": "navigation, curation",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "2002",
+    "1",
+    "1951",
+    "11"
+  ],
+  "allowedEntities": [
+    "But Wait",
+    "There's More",
+    "Curation",
+    "Smaller",
+    "People",
+    "Small",
+    "Navigation",
+    "Play",
+    "Receipt",
+    "Symbolic",
+    "Fun",
+    "Taiwan Uniform Invoice Lottery",
+    "Taiwan",
+    "Customers",
+    "Taiwan Ministry",
+    "Finance",
+    "January",
+    "Beijing",
+    "Beijing's",
+    "Diners",
+    "August",
+    "Hyde Park",
+    "Concord Bookshop",
+    "Amazon",
+    "The Final Edition",
+    "Amazon's",
+    "University",
+    "Chicago's Hyde Park",
+    "Massachusetts. Staff",
+    "Massachusetts",
+    "Taiwan's Uniform Invoice Lottery",
+    "Its",
+    "Selection",
+    "Search",
+    "Tom Sawyer",
+    "Only",
+    "Label",
+    "Frequent-flier",
+    "Loyalty",
+    "Progress",
+    "Any",
+    "Participation",
+    "Removing",
+    "Two",
+    "Ease",
+    "Amazon-scale",
+    "In Mark Twain's",
+    "Chinese",
+    "These",
+    "Grounding",
+    "Beijing tax authority / restaurant receipt lottery",
+    "Hyde Park bookstores and Concord Bookshop versus Amazon"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch06.ex.1",
+      "warning": "Keep examples about Taiwan Uniform Invoice Lottery source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch06.ex.2",
+      "warning": "Keep examples about Beijing tax authority / restaurant receipt lottery source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch06.ex.3",
+      "warning": "Keep examples about Hyde Park bookstores and Concord Bookshop versus Amazon source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch06.fact.2"
+}

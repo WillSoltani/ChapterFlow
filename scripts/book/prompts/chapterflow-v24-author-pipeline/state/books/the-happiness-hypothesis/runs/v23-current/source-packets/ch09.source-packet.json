@@ -1,0 +1,868 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "the-happiness-hypothesis",
+  "chapterId": "the-happiness-hypothesis-ch09",
+  "chapterNumber": 9,
+  "chapterTitle": "Divinity with or without God",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/the-happiness-hypothesis/20260717T094415142Z-1c996661-58d5-4e1d-9606-1e907d84ea3c/sidecars/source/ch09.source.json",
+  "sourceHash": "sha256:580cc0d28a783c4d6ac46017228afed086aebb58693d323cc0e8eae3f9c4aef2",
+  "facts": [
+    {
+      "id": "ch09.fact.1",
+      "claim": "Core disgust is strongly organized around oral incorporation, offensive foods, waste, and contamination.",
+      "mechanism": "Because Withdrawal and rejection reduce contact with substances that may carry toxins or pathogens.",
+      "commonError": "Disgust originated as a judgment about immoral people.",
+      "whyWrong": "Moral disgust is an extension of a more basic bodily rejection system.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Core",
+        "Because Withdrawal",
+        "Disgust",
+        "Moral"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.1"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch09.fact.2",
+      "claim": "Animal-reminder disgust includes death, injury, sex, poor hygiene, and violations of the body envelope.",
+      "mechanism": "Because Those elicitors make human vulnerability and animal embodiment salient beyond the immediate question of eating.",
+      "commonError": "Every disgust elicitor is literally a food-poisoning risk.",
+      "whyWrong": "The emotion has expanded into domains whose symbolic meaning exceeds oral contamination.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Animal-reminder",
+        "Because Those",
+        "Every"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.2"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch09.fact.3",
+      "claim": "The ethic of autonomy centers individual harm, rights, liberty, and justice.",
+      "mechanism": "Because It treats persons as independent choosers whose interests require protection from coercion and injury.",
+      "commonError": "Autonomy ethics is simply selfishness.",
+      "whyWrong": "It includes equal rights and protection of every individual's welfare, not just one's own preference.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Because It",
+        "Autonomy"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.3"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch09.fact.4",
+      "claim": "The ethic of community centers duty, hierarchy, interdependence, and the integrity of social roles.",
+      "mechanism": "Because It evaluates conduct by effects on the groups and relationships that sustain collective life.",
+      "commonError": "Community ethics asks only whether an act harms a consenting individual.",
+      "whyWrong": "Role violation and collective disorder can count as moral harms within this ethic.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Because It",
+        "Community",
+        "Role"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.4"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch09.fact.5",
+      "claim": "The ethic of divinity centers purity, sacredness, and protection of perceived higher potential from degradation.",
+      "mechanism": "Because It interprets body and conduct on a vertical scale between animal baseness and spiritual nobility.",
+      "commonError": "Divinity ethics is identical to belief in a particular deity.",
+      "whyWrong": "Sacredness and elevation can organize moral experience in religious or secular forms.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Because It",
+        "Divinity",
+        "Sacredness"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.5"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch09.fact.6",
+      "claim": "Moral elevation is elicited by witnessing moral beauty rather than by receiving a benefit oneself.",
+      "mechanism": "Because The observed exemplar activates warmth and approach motivation directed toward virtue and prosocial action.",
+      "commonError": "Elevation is another name for gratitude toward a benefactor.",
+      "whyWrong": "Gratitude requires personal benefit; elevation can arise as a third-party witness.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Moral",
+        "Because The",
+        "Elevation",
+        "Gratitude"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.6"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch09.fact.7",
+      "claim": "Elevation commonly includes warm or open bodily feelings and motivation to help or improve oneself.",
+      "mechanism": "Because Positive moral appraisal shifts attention toward affiliation and emulation rather than withdrawal.",
+      "commonError": "Witnessing virtue produces only a cool judgment that the actor followed a rule.",
+      "whyWrong": "The response includes affective and motivational components, not evaluation alone.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Elevation",
+        "Because Positive",
+        "Witnessing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.7"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch09.fact.8",
+      "claim": "Keltner and Haidt's awe prototype requires perceived vastness and a need for accommodation.",
+      "mechanism": "Because An experience too large for an existing frame pressures the mind to revise that frame.",
+      "commonError": "Awe is simply intense pleasure in beautiful scenery.",
+      "whyWrong": "Awe can be threatening or mixed and depends on vastness plus cognitive accommodation, not pleasantness alone.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Keltner",
+        "Haidt's",
+        "Because An",
+        "Awe"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.8"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch09.fact.9",
+      "claim": "Purity language can motivate both self-transcendence and social exclusion.",
+      "mechanism": "Because The same contamination logic that protects a sacred object can be transferred to people treated as polluting.",
+      "commonError": "Sacredness is either wholly ennobling or wholly irrational.",
+      "whyWrong": "Its consequences depend on what is sacralized, who controls the boundary, and how violations are treated.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Purity",
+        "Because The",
+        "Sacredness",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch09.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch09.example.rozin",
+      "label": "Paul Rozin, Clark McCauley, and colleagues / disgust research",
+      "summary": "Research began with core disgust around offensive foods, waste, and contamination, then mapped extensions to reminders of animal embodiment such as blood, sex, injury, and death. Cultural learning can recruit the same withdrawal response for social and moral boundaries. Verified anchors: Paul Rozin and Clark McCauley; core disgust centered on oral incorporation and contamination.",
+      "realWorld": true,
+      "naturalSetting": "Paul Rozin",
+      "hardSpecifics": [
+        "Paul Rozin and Clark McCauley",
+        "core disgust centered on oral incorporation and contamination",
+        "animal-reminder disgust includes death and body-envelope violations",
+        "body-to-soul preadaptation account published in 1999"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "body-to-soul preadaptation account published in 1999"
+      ]
+    },
+    {
+      "id": "ch09.example.shweder",
+      "label": "Richard Shweder and colleagues / moral discourse in Bhubaneswar",
+      "summary": "Comparative work in Bhubaneswar, India, and the United States identified three recurring moral languages. Autonomy protects individuals from harm and coercion, community protects roles and collective order, and divinity protects the sacred potential of persons and practices from degradation. Verified anchors: Richard Shweder's research team; Bhubaneswar, Odisha, India.",
+      "realWorld": true,
+      "naturalSetting": "Richard Shweder",
+      "hardSpecifics": [
+        "Richard Shweder's research team",
+        "Bhubaneswar, Odisha, India",
+        "ethics of autonomy, community, and divinity",
+        "comparative Indian and United States moral discourse"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Bhubaneswar, Odisha, India",
+        "ethics of autonomy, community, and divinity",
+        "comparative Indian and United States moral discourse"
+      ]
+    },
+    {
+      "id": "ch09.example.elevation",
+      "label": "Jonathan Haidt and Sara Algoe / moral elevation studies",
+      "summary": "Participants exposed to acts of moral beauty reported warm or open feelings and a desire to become better or help others. Elevation differs from amusement and from gratitude because its elicitor is witnessed excellence rather than personal benefit. Verified anchors: moral beauty as the elicitor; warm feelings often located in the chest.",
+      "realWorld": true,
+      "naturalSetting": "Jonathan Haidt",
+      "hardSpecifics": [
+        "moral beauty as the elicitor",
+        "warm feelings often located in the chest",
+        "desire to emulate virtue or help",
+        "distinguished from gratitude and admiration of skill"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch09.example.keltner",
+      "label": "Dacher Keltner and Jonathan Haidt / awe prototype",
+      "summary": "Their 2003 model defines clear awe experiences through perceived vastness and a need for accommodation. Nature, authority, art, collective ritual, or moral greatness can overwhelm an existing frame and force it to expand. Verified anchors: Keltner and Haidt 2003 model; perceived vastness.",
+      "realWorld": true,
+      "naturalSetting": "Dacher Keltner",
+      "hardSpecifics": [
+        "Keltner and Haidt 2003 model",
+        "perceived vastness",
+        "need for accommodation",
+        "awe can be positive, threatening, or mixed"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Keltner and Haidt 2003 model",
+        "awe can be positive, threatening, or mixed"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Three ethics",
+      "members": [
+        "autonomy",
+        "community",
+        "divinity"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Awe prototype",
+      "members": [
+        "perceived vastness",
+        "need for accommodation"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.3",
+      "name": "Three dimensions of social space",
+      "members": [
+        "closeness or liking",
+        "hierarchy or status",
+        "divinity or elevation"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch09.concept",
+      "kind": "concept",
+      "label": "vertical moral dimension",
+      "text": "People experience some acts and objects as base, contaminating, noble, elevating, or sacred, as though conduct moved the self downward or upward. This dimension differs from liking and status even when it interacts with them. Secular and religious moral languages become more mutually intelligible, and purity reactions can be examined for both meaning and danger.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.example.rozin",
+      "kind": "named_example",
+      "label": "Paul Rozin, Clark McCauley, and colleagues / disgust research",
+      "text": "Research began with core disgust around offensive foods, waste, and contamination, then mapped extensions to reminders of animal embodiment such as blood, sex, injury, and death. Cultural learning can recruit the same withdrawal response for social and moral boundaries. Verified anchors: Paul Rozin and Clark McCauley; core disgust centered on oral incorporation and contamination. A bodily defense can become a moral metaphor with real motivational force.",
+      "hardSpecifics": [
+        "Paul Rozin and Clark McCauley",
+        "core disgust centered on oral incorporation and contamination",
+        "animal-reminder disgust includes death and body-envelope violations",
+        "body-to-soul preadaptation account published in 1999"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.example.shweder",
+      "kind": "named_example",
+      "label": "Richard Shweder and colleagues / moral discourse in Bhubaneswar",
+      "text": "Comparative work in Bhubaneswar, India, and the United States identified three recurring moral languages. Autonomy protects individuals from harm and coercion, community protects roles and collective order, and divinity protects the sacred potential of persons and practices from degradation. Verified anchors: Richard Shweder's research team; Bhubaneswar, Odisha, India. Moral disagreement can begin from different protected objects, not simply different factual beliefs.",
+      "hardSpecifics": [
+        "Richard Shweder's research team",
+        "Bhubaneswar, Odisha, India",
+        "ethics of autonomy, community, and divinity",
+        "comparative Indian and United States moral discourse"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.example.elevation",
+      "kind": "named_example",
+      "label": "Jonathan Haidt and Sara Algoe / moral elevation studies",
+      "text": "Participants exposed to acts of moral beauty reported warm or open feelings and a desire to become better or help others. Elevation differs from amusement and from gratitude because its elicitor is witnessed excellence rather than personal benefit. Verified anchors: moral beauty as the elicitor; warm feelings often located in the chest. Moral exemplars can train aspiration through emotion, not only through rule instruction.",
+      "hardSpecifics": [
+        "moral beauty as the elicitor",
+        "warm feelings often located in the chest",
+        "desire to emulate virtue or help",
+        "distinguished from gratitude and admiration of skill"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.example.keltner",
+      "kind": "named_example",
+      "label": "Dacher Keltner and Jonathan Haidt / awe prototype",
+      "text": "Their 2003 model defines clear awe experiences through perceived vastness and a need for accommodation. Nature, authority, art, collective ritual, or moral greatness can overwhelm an existing frame and force it to expand. Verified anchors: Keltner and Haidt 2003 model; perceived vastness. A sacred-feeling experience can arise from cognitive and emotional structure without settling a theological claim.",
+      "hardSpecifics": [
+        "Keltner and Haidt 2003 model",
+        "perceived vastness",
+        "need for accommodation",
+        "awe can be positive, threatening, or mixed"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.1",
+      "kind": "testable_fact",
+      "label": "Core disgust is strongly organized around oral incorporation, offensive foods, waste, and contamination.",
+      "text": "Core disgust is strongly organized around oral incorporation, offensive foods, waste, and contamination. Because Withdrawal and rejection reduce contact with substances that may carry toxins or pathogens. Disgust originated as a judgment about immoral people. Moral disgust is an extension of a more basic bodily rejection system.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.2",
+      "kind": "testable_fact",
+      "label": "Animal-reminder disgust includes death, injury, sex, poor hygiene, and violations of the body envelope.",
+      "text": "Animal-reminder disgust includes death, injury, sex, poor hygiene, and violations of the body envelope. Because Those elicitors make human vulnerability and animal embodiment salient beyond the immediate question of eating. Every disgust elicitor is literally a food-poisoning risk. The emotion has expanded into domains whose symbolic meaning exceeds oral contamination.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.3",
+      "kind": "testable_fact",
+      "label": "The ethic of autonomy centers individual harm, rights, liberty, and justice.",
+      "text": "The ethic of autonomy centers individual harm, rights, liberty, and justice. Because It treats persons as independent choosers whose interests require protection from coercion and injury. Autonomy ethics is simply selfishness. It includes equal rights and protection of every individual's welfare, not just one's own preference.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.4",
+      "kind": "testable_fact",
+      "label": "The ethic of community centers duty, hierarchy, interdependence, and the integrity of social roles.",
+      "text": "The ethic of community centers duty, hierarchy, interdependence, and the integrity of social roles. Because It evaluates conduct by effects on the groups and relationships that sustain collective life. Community ethics asks only whether an act harms a consenting individual. Role violation and collective disorder can count as moral harms within this ethic.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.5",
+      "kind": "testable_fact",
+      "label": "The ethic of divinity centers purity, sacredness, and protection of perceived higher potential from degradation.",
+      "text": "The ethic of divinity centers purity, sacredness, and protection of perceived higher potential from degradation. Because It interprets body and conduct on a vertical scale between animal baseness and spiritual nobility. Divinity ethics is identical to belief in a particular deity. Sacredness and elevation can organize moral experience in religious or secular forms.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.6",
+      "kind": "testable_fact",
+      "label": "Moral elevation is elicited by witnessing moral beauty rather than by receiving a benefit oneself.",
+      "text": "Moral elevation is elicited by witnessing moral beauty rather than by receiving a benefit oneself. Because The observed exemplar activates warmth and approach motivation directed toward virtue and prosocial action. Elevation is another name for gratitude toward a benefactor. Gratitude requires personal benefit; elevation can arise as a third-party witness.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.7",
+      "kind": "testable_fact",
+      "label": "Elevation commonly includes warm or open bodily feelings and motivation to help or improve oneself.",
+      "text": "Elevation commonly includes warm or open bodily feelings and motivation to help or improve oneself. Because Positive moral appraisal shifts attention toward affiliation and emulation rather than withdrawal. Witnessing virtue produces only a cool judgment that the actor followed a rule. The response includes affective and motivational components, not evaluation alone.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.8",
+      "kind": "testable_fact",
+      "label": "Keltner and Haidt's awe prototype requires perceived vastness and a need for accommodation.",
+      "text": "Keltner and Haidt's awe prototype requires perceived vastness and a need for accommodation. Because An experience too large for an existing frame pressures the mind to revise that frame. Awe is simply intense pleasure in beautiful scenery. Awe can be threatening or mixed and depends on vastness plus cognitive accommodation, not pleasantness alone.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.fact.9",
+      "kind": "testable_fact",
+      "label": "Purity language can motivate both self-transcendence and social exclusion.",
+      "text": "Purity language can motivate both self-transcendence and social exclusion. Because The same contamination logic that protects a sacred object can be transferred to people treated as polluting. Sacredness is either wholly ennobling or wholly irrational. Its consequences depend on what is sacralized, who controls the boundary, and how violations are treated.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.framework.three.ethics",
+      "kind": "framework",
+      "label": "Three ethics",
+      "text": "autonomy, community, divinity",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.framework.awe.prototype",
+      "kind": "framework",
+      "label": "Awe prototype",
+      "text": "perceived vastness, need for accommodation",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch09.framework.three.dimensions.of.social.space",
+      "kind": "framework",
+      "label": "Three dimensions of social space",
+      "text": "closeness or liking, hierarchy or status, divinity or elevation",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1",
+    "1999",
+    "3",
+    "2003"
+  ],
+  "allowedEntities": [
+    "Divinity",
+    "God",
+    "Human",
+    "Disgust",
+    "Sacredness",
+    "People",
+    "Secular",
+    "Purity",
+    "Moral",
+    "Awe",
+    "Paul Rozin",
+    "Clark McCauley",
+    "Research",
+    "Cultural",
+    "Verified",
+    "Richard Shweder",
+    "Bhubaneswar",
+    "Comparative",
+    "India",
+    "United States",
+    "Autonomy",
+    "Richard Shweder's",
+    "Odisha",
+    "Indian",
+    "Jonathan Haidt",
+    "Sara Algoe",
+    "Participants",
+    "Elevation",
+    "Dacher Keltner",
+    "Their",
+    "Nature",
+    "Keltner",
+    "Haidt",
+    "Explaining",
+    "God. It",
+    "VIA",
+    "Yin",
+    "Yang",
+    "Core",
+    "Because Withdrawal",
+    "Animal-reminder",
+    "Because Those",
+    "Every",
+    "Because It",
+    "Community",
+    "Role",
+    "Because The",
+    "Gratitude",
+    "Because Positive",
+    "Witnessing",
+    "Haidt's",
+    "Because An",
+    "Its",
+    "Three",
+    "Many",
+    "Clark McCauley's",
+    "Culture",
+    "None",
+    "Upward",
+    "These",
+    "Contamination",
+    "Mature",
+    "Paul Rozin, Clark McCauley, and colleagues / disgust research",
+    "Richard Shweder and colleagues / moral discourse in Bhubaneswar",
+    "Jonathan Haidt and Sara Algoe / moral elevation studies",
+    "Dacher Keltner and Jonathan Haidt / awe prototype"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch09.example.rozin",
+      "warning": "Keep examples about Paul Rozin, Clark McCauley, and colleagues / disgust research source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch09.example.shweder",
+      "warning": "Keep examples about Richard Shweder and colleagues / moral discourse in Bhubaneswar source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch09.example.elevation",
+      "warning": "Keep examples about Jonathan Haidt and Sara Algoe / moral elevation studies source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch09.example.keltner",
+      "warning": "Keep examples about Dacher Keltner and Jonathan Haidt / awe prototype source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch09.fact.3"
+}

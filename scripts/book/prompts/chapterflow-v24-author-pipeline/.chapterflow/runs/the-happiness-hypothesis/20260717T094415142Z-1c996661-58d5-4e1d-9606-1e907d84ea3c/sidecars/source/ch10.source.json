@@ -1,0 +1,188 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 10,
+  "chapterTitle": "Happiness Comes from Between",
+  "focus": "Meaning is not found by solving an abstract cosmic question but by forming coherent relations with people, skilled work, and communities or ideals larger than the self. Love and vital engagement join inner capacities to durable external commitments.",
+  "coreClaim": "Flourishing emerges from fit across levels: motives, traits, goals, identity, relationships, work, and institutions must support rather than chronically contradict one another.",
+  "centralConcept": {
+    "id": "ch10.concept",
+    "name": "cross-level coherence",
+    "plainDefinition": "A life is coherent when biological tendencies, personal aims, identity stories, relationships, practices, and cultural roles can be understood as parts of a workable whole.",
+    "whyItMatters": "The search for meaning shifts from private introspection toward choosing and repairing the relationships between self and world."
+  },
+  "keyClaims": [
+    "A purpose of life asks for a cosmic answer, while purpose within life asks how a particular person can build meaningful commitments.",
+    "Love connects a person to other people; vital engagement connects developed strengths to demanding activity that matters.",
+    "Vital engagement combines absorbed attention with subjective significance and often grows through long practice.",
+    "Personality can be understood at the levels of broad traits, characteristic goals and values, and an integrating life story.",
+    "Social bonds and institutions constrain choice but can protect against isolation and anomie.",
+    "Religious communities are one evolved cultural solution for ritual, belonging, moral order, and sacred purpose, not the only possible solution."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch10.example.goodwork",
+      "label": "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project",
+      "summary": "Interviews with professionals examined work that was technically excellent, socially responsible, and personally meaningful. The project showed that a calling depends on the relation between individual standards, a field's practices, and institutions that reward or obstruct good work. Verified anchors: Howard Gardner, Mihaly Csikszentmihalyi, and William Damon; Good Work published in 2001.",
+      "teachesWhat": "Meaningful work is an ecosystem of skill, ethics, identity, and institutional support rather than private passion alone.",
+      "hardSpecifics": [
+        "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon",
+        "Good Work published in 2001",
+        "three criteria: excellence, ethics, and engagement",
+        "professional domains studied through interviews"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch10.example.nakamura",
+      "label": "Jeanne Nakamura and Mihaly Csikszentmihalyi / vital engagement",
+      "summary": "Vital engagement describes a sustained relationship with an activity that offers both flow and meaning. It usually develops as skill, attention, identity, and the valued domain become increasingly connected over time. Verified anchors: Jeanne Nakamura and Mihaly Csikszentmihalyi; The Nature of Vital Engagement in Adulthood published in 2001.",
+      "teachesWhat": "A calling is built where absorption meets significance, not discovered as a single hidden preference.",
+      "hardSpecifics": [
+        "Jeanne Nakamura and Mihaly Csikszentmihalyi",
+        "The Nature of Vital Engagement in Adulthood published in 2001",
+        "flow joined with subjective meaning",
+        "sustained relationship to a valued domain"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch10.example.mcadams",
+      "label": "Dan McAdams / three levels of personality",
+      "summary": "McAdams distinguishes dispositional traits, characteristic adaptations such as goals and values, and an internalized life story. Coherence increases when these levels can be linked without forcing them into perfect consistency. Verified anchors: Dan P. McAdams; three personality levels.",
+      "teachesWhat": "Meaning can be repaired at the level of goals or narrative even when broad temperament is relatively stable.",
+      "hardSpecifics": [
+        "Dan P. McAdams",
+        "three personality levels",
+        "dispositional traits",
+        "characteristic adaptations and narrative identity"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch10.example.durkheim",
+      "label": "Émile Durkheim / social integration and anomie",
+      "summary": "Durkheim's 1897 study of suicide connected social integration and regulation with population-level suicide patterns. The larger lesson is that unrestricted individual choice does not replace the protective structure of belonging, obligation, and shared practice. Verified anchors: Émile Durkheim; Suicide published in 1897.",
+      "teachesWhat": "Some constraints are constitutive supports for meaning rather than obstacles to authentic life.",
+      "hardSpecifics": [
+        "Émile Durkheim",
+        "Suicide published in 1897",
+        "social integration and social regulation",
+        "anomie as weakened normative structure"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Cross-level coherence is not perfect harmony, obedience to an institution, or a promise of constant positive mood. Healthy fit still permits conflict, criticism, and exit; the issue is whether commitments organize energy and identity without demanding chronic self-betrayal.",
+  "voiceCues": [
+    "rephrases an unanswerable cosmic question into a practical relational one",
+    "uses work research to join flow with moral significance",
+    "moves from three personality levels to institutions and culture",
+    "treats religious and secular communities as functional alternatives without calling them interchangeable"
+  ],
+  "forbiddenLeakage": [
+    "the 50-10-40 happiness allocation",
+    "the three ethics of autonomy, community, and divinity",
+    "Yin and Yang as the concluding balance metaphor"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch10.fact.1",
+      "claim": "The GoodWork framework evaluates work through excellence, ethics, and engagement.",
+      "becauseMechanism": "Because High-quality performance, responsibility to others, and personal meaning can diverge, so all three must be examined.",
+      "commonError": "Good work means only being highly skilled at a task.",
+      "errorIsWhy": "Technical excellence without ethical responsibility or engagement is incomplete in the framework.",
+      "derivedFrom": "ch10.example.goodwork"
+    },
+    {
+      "id": "ch10.fact.2",
+      "claim": "Good Work by Gardner, Csikszentmihalyi, and Damon was published in 2001.",
+      "becauseMechanism": "Because The book synthesized interview research on professionals and the institutions shaping their practice.",
+      "commonError": "The GoodWork Project was a survey of leisure happiness.",
+      "errorIsWhy": "Its central subject was professional work at the intersection of excellence and ethics.",
+      "derivedFrom": "ch10.example.goodwork"
+    },
+    {
+      "id": "ch10.fact.3",
+      "claim": "Vital engagement combines flow with subjective meaning in a sustained relationship to an activity.",
+      "becauseMechanism": "Because Absorption supplies immediate involvement while valued identity and purpose make the activity matter across time.",
+      "commonError": "Any enjoyable flow episode is automatically a calling.",
+      "errorIsWhy": "Vital engagement requires enduring significance in addition to temporary absorption.",
+      "derivedFrom": "ch10.example.nakamura"
+    },
+    {
+      "id": "ch10.fact.4",
+      "claim": "Vital engagement typically develops through repeated interaction between a person and a valued domain.",
+      "becauseMechanism": "Because Practice increases skill, the domain supplies new challenges, and identity becomes invested in the relationship.",
+      "commonError": "A calling appears fully formed as an unmistakable inner revelation.",
+      "errorIsWhy": "The construct emphasizes developmental fit rather than instant discovery.",
+      "derivedFrom": "ch10.example.nakamura"
+    },
+    {
+      "id": "ch10.fact.5",
+      "claim": "McAdams's personality model distinguishes dispositional traits, characteristic adaptations, and narrative identity.",
+      "becauseMechanism": "Because Broad tendencies, context-bound goals, and life stories answer different questions about what a person is like.",
+      "commonError": "Personality is exhausted by a score on broad traits.",
+      "errorIsWhy": "Traits do not specify a person's projects, values, or story of who they are becoming.",
+      "derivedFrom": "ch10.example.mcadams"
+    },
+    {
+      "id": "ch10.fact.6",
+      "claim": "Characteristic adaptations include goals, values, coping strategies, and relationship patterns shaped by context.",
+      "becauseMechanism": "Because They translate broad traits into what a person is trying to do in a particular social world.",
+      "commonError": "Goals and values are fixed biological traits.",
+      "errorIsWhy": "They develop in cultural and life-stage contexts and can be revised more readily than broad temperament.",
+      "derivedFrom": "ch10.example.mcadams"
+    },
+    {
+      "id": "ch10.fact.7",
+      "claim": "Durkheim's Suicide was published in 1897 and analyzed social integration and regulation.",
+      "becauseMechanism": "Because Comparing population patterns allowed him to relate suicide rates to the strength and structure of social ties.",
+      "commonError": "Durkheim explained suicide only through individual mental illness.",
+      "errorIsWhy": "His distinctive contribution was a sociological account of patterned rates.",
+      "derivedFrom": "ch10.example.durkheim"
+    },
+    {
+      "id": "ch10.fact.8",
+      "claim": "Anomie describes weakened or disrupted normative regulation rather than freedom in a purely positive sense.",
+      "becauseMechanism": "Because When expectations and obligations lose structure, desires and social roles become harder to orient.",
+      "commonError": "Fewer social constraints always produce more meaningful autonomy.",
+      "errorIsWhy": "Some shared limits make commitment, trust, and legible roles possible.",
+      "derivedFrom": "ch10.example.durkheim"
+    },
+    {
+      "id": "ch10.fact.9",
+      "claim": "Purpose within life can be investigated through a person's commitments even when a cosmic purpose cannot be empirically established.",
+      "becauseMechanism": "Because Relationships, work, and institutions create observable patterns of significance, obligation, and identity.",
+      "commonError": "Meaning is impossible unless everyone accepts one metaphysical answer to why the universe exists.",
+      "errorIsWhy": "Practical meaning can arise from coherent commitments without resolving the cosmic question.",
+      "derivedFrom": "ch10.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Three levels of personality",
+      "members": [
+        "dispositional traits",
+        "characteristic adaptations",
+        "narrative identity"
+      ]
+    },
+    {
+      "name": "GoodWork criteria",
+      "members": [
+        "excellence",
+        "ethics",
+        "engagement"
+      ]
+    },
+    {
+      "name": "Primary relationships of meaning",
+      "members": [
+        "self and other people",
+        "self and work",
+        "self and something larger than self"
+      ]
+    }
+  ],
+  "paraphraseNotes": "A cosmic purpose of life and a workable purpose within life are different questions. The first asks why existence as a whole is here; the second asks how a particular person can form commitments that make days and years intelligible. Love supplies one relation, but meaningful work and membership in a larger practice supply others. Howard Gardner, Mihaly Csikszentmihalyi, and William Damon's GoodWork research examined professions where excellence, ethics, and engagement could support or undermine one another. Institutions matter because a worker cannot sustain good practice indefinitely if rewards consistently punish quality or responsibility. Jeanne Nakamura and Csikszentmihalyi call the best person-activity fit vital engagement: flow joined with subjective meaning across a sustained relationship to a domain. A calling is therefore often cultivated through practice, feedback, identity, and service rather than uncovered as a hidden essence. Dan McAdams's three levels of personality show where fit can be built. Broad traits describe tendencies; characteristic adaptations describe goals, values, and coping in context; narrative identity links change across time. Coherence does not demand that every level agree perfectly, but chronic contradiction among temperament, project, story, and role drains meaning. Émile Durkheim adds the social level. His 1897 analysis of suicide treated integration and regulation as population-level forces and named anomie as weakened normative structure. Obligations can burden people, yet total release from bonds also removes sources of identity and mutual reliance. Religious communities bundle ritual, history, belonging, and sacred purpose; secular organizations can provide analogous functions, though not automatically. Meaning emerges where a real person, a demanding practice, other people, and a durable moral world meet."
+}

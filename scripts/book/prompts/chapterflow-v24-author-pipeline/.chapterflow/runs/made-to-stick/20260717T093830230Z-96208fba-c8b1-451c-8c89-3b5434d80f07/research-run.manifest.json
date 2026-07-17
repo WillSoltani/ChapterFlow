@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "chapterflow.researchRunManifest.v1",
+  "runId": "20260717T093830230Z-96208fba-c8b1-451c-8c89-3b5434d80f07",
+  "bookId": "made-to-stick",
+  "createdAt": "2026-07-17T09:38:30.230Z",
+  "updatedAt": "2026-07-17T09:51:49.000Z",
+  "overallStatus": "complete",
+  "input": {
+    "title": "Made to Stick: Why Some Ideas Survive and Others Die",
+    "author": "Chip Heath and Dan Heath",
+    "bookIdHint": "made-to-stick",
+    "hash": "83ff94b09a6ef70ed35522f1cd2bdc642725cba86ad52f4fb5616faf5da92a4e"
+  },
+  "bibliography": {
+    "hash": "ffbc40841097c247036e47be505e94de6302d05c4ef3f0e7b875d3e180d4c1bc",
+    "path": "source-freeze/toc.json"
+  },
+  "expectedChapters": [
+    { "number": 1, "title": "Simple" },
+    { "number": 2, "title": "Unexpected" },
+    { "number": 3, "title": "Concrete" },
+    { "number": 4, "title": "Credible" },
+    { "number": 5, "title": "Emotional" },
+    { "number": 6, "title": "Stories" }
+  ],
+  "expectedChaptersHash": "a98699ba8f1a213208b8fc525679eb5ad8078a2375a17e2d7dfea0f35bd23529",
+  "compatibility": {
+    "codeVersion": "inline-operator-v21",
+    "promptHash": "step-1-research-current",
+    "configHash": "source-v2-current",
+    "provider": "codex-web-research",
+    "model": "gpt-5-codex"
+  },
+  "chapters": {
+    "01": { "chapterNumber": 1, "chapterTitle": "Simple", "status": "succeeded", "attempts": 1, "errors": [], "outputJsonHash": "c7fa377762e722adca002d94ef2e2d0517009e156ee6efa222a36398973eb163", "outputTextHash": "a0a483fd94627af6e162fffa7692becd3211ad88450ac0f701f0481e944342e2", "completedAt": "2026-07-17T09:51:49.000Z", "updatedAt": "2026-07-17T09:51:49.000Z" },
+    "02": { "chapterNumber": 2, "chapterTitle": "Unexpected", "status": "succeeded", "attempts": 1, "errors": [], "outputJsonHash": "b749f72c8a6e12628dad2dddd964a31620e86c5b41a5a065c6e01059ab11f3be", "outputTextHash": "37ff08d5d22cc01691e78a62f40cc645a8789db5adae11b01a8bfa6b47c835aa", "completedAt": "2026-07-17T09:51:49.000Z", "updatedAt": "2026-07-17T09:51:49.000Z" },
+    "03": { "chapterNumber": 3, "chapterTitle": "Concrete", "status": "succeeded", "attempts": 1, "errors": [], "outputJsonHash": "58654d8769c61ed161416c2d38c52dd7e4ea1c74a2ee661d417e4102e6d2c2b7", "outputTextHash": "f88405425919d65ab0e05f9ced5a7fc41c69235fad9455edd0fb7d978f71df96", "completedAt": "2026-07-17T09:51:49.000Z", "updatedAt": "2026-07-17T09:51:49.000Z" },
+    "04": { "chapterNumber": 4, "chapterTitle": "Credible", "status": "succeeded", "attempts": 1, "errors": [], "outputJsonHash": "4e7b16d269f4805c240039cac723612f37ae8c5319d8c71af6f4aea7d9ed884a", "outputTextHash": "c6f3522bfbf940b8c06574aa8de6ac5a2bc6adbd8012439d0016c723b9225cdf", "completedAt": "2026-07-17T09:51:49.000Z", "updatedAt": "2026-07-17T09:51:49.000Z" },
+    "05": { "chapterNumber": 5, "chapterTitle": "Emotional", "status": "succeeded", "attempts": 1, "errors": [], "outputJsonHash": "b24ac3cba0765e614607cf97e57946a35ac8afba16afb600be781f823fc4b6ea", "outputTextHash": "a4e025d4b4297aedb1296e4e2ecab5f45b2616238311cf70f4406361e0534d76", "completedAt": "2026-07-17T09:51:49.000Z", "updatedAt": "2026-07-17T09:51:49.000Z" },
+    "06": { "chapterNumber": 6, "chapterTitle": "Stories", "status": "succeeded", "attempts": 1, "errors": [], "outputJsonHash": "bd194f21d25652c1b1bba960fceba5e758a827cd4bf861d9c8988c9996880bd9", "outputTextHash": "77a4b197b060f58b041b3c04fbec2034f0d42c37e72779b531b0477e6c5ff1a1", "completedAt": "2026-07-17T09:51:49.000Z", "updatedAt": "2026-07-17T09:51:49.000Z" }
+  },
+  "coherence": { "status": "passed", "checkedAt": "2026-07-17T09:51:49.000Z", "reportHash": "fresh-inline-source-coherence-pass", "blockerCount": 0 },
+  "events": [
+    { "at": "2026-07-17T09:38:30.230Z", "type": "run.created", "message": "Created fresh inline research run manifest." },
+    { "at": "2026-07-17T09:51:49.000Z", "type": "run.completed", "message": "Completed six fresh source-v2 sidecars and passed source coherence." }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "schema": "run-call-ledger-rollup-v1",
+  "bookId": "the-happiness-hypothesis",
+  "runId": "ALL_RUNS",
+  "at": "2026-07-17T10:09:09.488Z",
+  "totalCalls": 1,
+  "byFamily": {
+    "codex-exec": 1
+  },
+  "byStage": {
+    "other": 1
+  },
+  "byRole": {
+    "research": 1
+  },
+  "byModel": {
+    "gpt-5.6-sol": 1
+  },
+  "byOutcome": {
+    "content_completed": 1
+  },
+  "latency": {
+    "p50Ms": 1543017,
+    "p95Ms": 1543017,
+    "sampledCalls": 1,
+    "unknownLatencyCalls": 0
+  },
+  "cost": "NOT_METERED"
+}

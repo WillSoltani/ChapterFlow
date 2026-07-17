@@ -1,0 +1,859 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "made-to-stick",
+  "chapterId": "made-to-stick-ch06",
+  "chapterNumber": 6,
+  "chapterTitle": "Stories",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/made-to-stick/20260717T093830230Z-96208fba-c8b1-451c-8c89-3b5434d80f07/sidecars/source/ch06.source.json",
+  "sourceHash": "sha256:515d9bc633a108540520abbc3b540c87db384961bd8a1041d08656906abd5faa",
+  "facts": [
+    {
+      "id": "ch06.fact.1",
+      "claim": "Julian Orr's fieldwork examined U.S. Xerox copier technicians and found oral stories central to diagnosis and knowledge circulation.",
+      "mechanism": "Because technicians narrated symptoms, attempted fixes, and machine behavior to peers, experience became a socially distributed diagnostic resource.",
+      "commonError": "Orr found that technicians worked only from manuals and avoided peer conversation.",
+      "whyWrong": "His ethnography emphasizes talk and circulating stories as instrumental parts of successful repair practice.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Julian Orr's",
+        "U.S. Xerox",
+        "Orr",
+        "His"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.1"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch06.fact.2",
+      "claim": "Pham and Taylor assigned college freshmen to mental-simulation conditions for 5 to 7 days before a midterm examination.",
+      "mechanism": "Because repeated rehearsal occurred while real preparation choices were still available, the simulation could influence planning and study behavior.",
+      "commonError": "Participants imagined an exam only once after they had already completed it.",
+      "whyWrong": "The intervention ran prospectively across the preparation period before the test.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "5",
+        "7"
+      ],
+      "groundedEntities": [
+        "Pham",
+        "Taylor",
+        "Participants"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.2"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch06.fact.3",
+      "claim": "In Pham and Taylor's study, process simulation enhanced studying and exam grades through improved planning and reduced anxiety.",
+      "mechanism": "Because rehearsing concrete study steps exposed when and how to act, participants formed better plans and reduced uncertainty around performance.",
+      "commonError": "Imagining the pleasure of the final grade produced the same planning mechanism as rehearsing study steps.",
+      "whyWrong": "Outcome imagery represents success, whereas process imagery rehearses the behaviors that can produce it.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "In Pham",
+        "Taylor's",
+        "Imagining",
+        "Outcome"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.3"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch06.fact.4",
+      "claim": "A 1999 Indiana Daily Student story brought attention to Jared Fogle's reported 245-pound weight loss before Subway's 2000 national campaign.",
+      "mechanism": "Because the discovered account contained a recognizable before-and-after challenge arc, advertisers could build a narrative around transformation rather than a list of low-fat menu items.",
+      "commonError": "Subway invented the entire weight-loss story first and then commissioned a fictional student newspaper article.",
+      "whyWrong": "The campus story preceded the national advertising campaign and helped the case reach the company.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "245",
+        "1999",
+        "2000"
+      ],
+      "groundedEntities": [
+        "Indiana Daily Student",
+        "Jared Fogle's",
+        "Subway's",
+        "Subway"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.4"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch06.fact.5",
+      "claim": "The historical Jared Fogle campaign cannot safely function as present-day moral endorsement because Fogle was later convicted of crimes involving minors.",
+      "mechanism": "Because later verified conduct radically changes the ethical associations of the spokesperson, retelling the campaign as uncomplicated inspiration would mislead current readers.",
+      "commonError": "Source fidelity requires ignoring all later public facts about a real figure used as an inspirational model.",
+      "whyWrong": "Historical accuracy includes material context needed to avoid turning a communication example into praise of the person.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Jared Fogle",
+        "Fogle",
+        "Source",
+        "Historical"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.5"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch06.fact.6",
+      "claim": "Stephen Denning's World Bank springboard case centers on a June 1995 health worker in Kamana, Zambia, finding malaria information online.",
+      "mechanism": "Because one small successful knowledge-sharing episode made a possible future visible, listeners could imagine scaling the pattern across the institution.",
+      "commonError": "The springboard method requires a long heroic biography with every technical implementation detail.",
+      "whyWrong": "Its function is to trigger the audience's own future story, so a concise true instance can be more generative than exhaustive narration.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "1995"
+      ],
+      "groundedEntities": [
+        "Stephen Denning's World Bank",
+        "June",
+        "Kamana",
+        "Zambia",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.6"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch06.fact.7",
+      "claim": "The three inspirational plot families are Challenge, Connection, and Creativity.",
+      "mechanism": "Because they model overcoming obstacles, bridging social distance, or solving a problem resourcefully, each plot supplies a different route to motivated action.",
+      "commonError": "All inspirational stories must use a lone hero defeating a physical opponent.",
+      "whyWrong": "Connection and Creativity plots can inspire through relationship or ingenuity without a conventional contest.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "3"
+      ],
+      "groundedEntities": [
+        "Challenge",
+        "Connection",
+        "Creativity. Because",
+        "All",
+        "Creativity"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.7"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch06.fact.8",
+      "claim": "A process story functions as mental simulation when it preserves goals, obstacles, choices, actions, and consequences.",
+      "mechanism": "Because listeners can map the sequence onto a future situation, the narrative rehearses responses before real stakes arrive.",
+      "commonError": "A story teaches action best when all decisions and causal links are removed in favor of a one-line moral.",
+      "whyWrong": "Removing the sequence discards the cues that show when and how the lesson applies.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Removing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.8"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch06.fact.9",
+      "claim": "A springboard story describes a real successful instance that helps listeners imagine analogous change in their own environment.",
+      "mechanism": "Because the case proves that a nearby possibility has already occurred, the audience can construct its own forward-looking scenario with lower disbelief.",
+      "commonError": "A springboard story is valuable only when listeners copy every surface detail exactly.",
+      "whyWrong": "The audience transfers the underlying possibility and mechanism, adapting details to its own context.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch06.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch06.ex.orr",
+      "label": "Julian Orr / Xerox copier technicians",
+      "summary": "Julian Orr's mid-1980s fieldwork followed U.S. Xerox copier technicians as they diagnosed machines and shared repair stories. Their oral narratives circulated unusual symptoms, interpretations, and fixes that formal documentation did not fully capture.",
+      "realWorld": true,
+      "naturalSetting": "Julian Orr",
+      "hardSpecifics": [
+        "mid-1980s fieldwork",
+        "U.S. Xerox copier technicians"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch06.ex.pham-taylor",
+      "label": "Pham and Taylor mental-simulation experiment",
+      "summary": "Lien Pham and Shelley Taylor asked college freshmen to simulate either study processes, desired exam outcomes, both, or self-monitoring for 5 to 7 days before a midterm. Process simulation improved studying and grades through better planning and lower anxiety.",
+      "realWorld": true,
+      "naturalSetting": "Pham",
+      "hardSpecifics": [
+        "5 to 7 days before a midterm",
+        "college freshmen"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch06.ex.jared",
+      "label": "Jared Fogle / Subway campaign",
+      "summary": "A 1999 Indiana Daily Student story reported that Jared Fogle had lost 245 pounds through changed eating and exercise, and Subway made the transformation a national advertising story in 2000. The historical campaign preceded Fogle's later criminal conviction and must not be treated as a moral endorsement or current model spokesperson.",
+      "realWorld": true,
+      "naturalSetting": "Jared Fogle",
+      "hardSpecifics": [
+        "lost 245 pounds",
+        "national advertising story in 2000"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "national advertising story in 2000"
+      ]
+    },
+    {
+      "id": "ch06.ex.denning",
+      "label": "Stephen Denning / World Bank Zambia story",
+      "summary": "Stephen Denning used a June 1995 account of a health worker in Kamana, Zambia, who found malaria-treatment information online to explain knowledge sharing at the World Bank. The small existing case let listeners imagine a larger institutional future.",
+      "realWorld": true,
+      "naturalSetting": "Stephen Denning",
+      "hardSpecifics": [
+        "June 1995",
+        "Kamana, Zambia"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "June 1995",
+        "Kamana, Zambia"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Story functions",
+      "members": [
+        "simulation",
+        "inspiration"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Inspirational plots",
+      "members": [
+        "Challenge",
+        "Connection",
+        "Creativity"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.3",
+      "name": "Simulation spine",
+      "members": [
+        "goal",
+        "obstacle",
+        "choice",
+        "action",
+        "consequence"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch06.concept",
+      "kind": "concept",
+      "label": "stories as simulation and inspiration",
+      "text": "Narrative places a person inside goals, obstacles, choices, and consequences so listeners can rehearse what to do or feel that action is possible. Instructions become usable experience and abstract encouragement acquires a visible path.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.ex.orr",
+      "kind": "named_example",
+      "label": "Julian Orr / Xerox copier technicians",
+      "text": "Julian Orr's mid-1980s fieldwork followed U.S. Xerox copier technicians as they diagnosed machines and shared repair stories. Their oral narratives circulated unusual symptoms, interpretations, and fixes that formal documentation did not fully capture. Work stories can function as distributed technical training rather than mere entertainment.",
+      "hardSpecifics": [
+        "mid-1980s fieldwork",
+        "U.S. Xerox copier technicians"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.ex.pham-taylor",
+      "kind": "named_example",
+      "label": "Pham and Taylor mental-simulation experiment",
+      "text": "Lien Pham and Shelley Taylor asked college freshmen to simulate either study processes, desired exam outcomes, both, or self-monitoring for 5 to 7 days before a midterm. Process simulation improved studying and grades through better planning and lower anxiety. Rehearsing a causal process prepares behavior better than admiring an imagined result.",
+      "hardSpecifics": [
+        "5 to 7 days before a midterm",
+        "college freshmen"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.ex.jared",
+      "kind": "named_example",
+      "label": "Jared Fogle / Subway campaign",
+      "text": "A 1999 Indiana Daily Student story reported that Jared Fogle had lost 245 pounds through changed eating and exercise, and Subway made the transformation a national advertising story in 2000. The historical campaign preceded Fogle's later criminal conviction and must not be treated as a moral endorsement or current model spokesperson. A discovered challenge narrative can outperform a menu claim because it supplies protagonist, obstacle, and visible change.",
+      "hardSpecifics": [
+        "lost 245 pounds",
+        "national advertising story in 2000"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.ex.denning",
+      "kind": "named_example",
+      "label": "Stephen Denning / World Bank Zambia story",
+      "text": "Stephen Denning used a June 1995 account of a health worker in Kamana, Zambia, who found malaria-treatment information online to explain knowledge sharing at the World Bank. The small existing case let listeners imagine a larger institutional future. A springboard story shows one successful instance so the audience can project analogous change.",
+      "hardSpecifics": [
+        "June 1995",
+        "Kamana, Zambia"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.1",
+      "kind": "testable_fact",
+      "label": "Julian Orr's fieldwork examined U.S. Xerox copier technicians and found oral stories central to diagnosis and knowledge circulation.",
+      "text": "Julian Orr's fieldwork examined U.S. Xerox copier technicians and found oral stories central to diagnosis and knowledge circulation. Because technicians narrated symptoms, attempted fixes, and machine behavior to peers, experience became a socially distributed diagnostic resource. Orr found that technicians worked only from manuals and avoided peer conversation. His ethnography emphasizes talk and circulating stories as instrumental parts of successful repair practice.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.2",
+      "kind": "testable_fact",
+      "label": "Pham and Taylor assigned college freshmen to mental-simulation conditions for 5 to 7 days before a midterm examination.",
+      "text": "Pham and Taylor assigned college freshmen to mental-simulation conditions for 5 to 7 days before a midterm examination. Because repeated rehearsal occurred while real preparation choices were still available, the simulation could influence planning and study behavior. Participants imagined an exam only once after they had already completed it. The intervention ran prospectively across the preparation period before the test.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.3",
+      "kind": "testable_fact",
+      "label": "In Pham and Taylor's study, process simulation enhanced studying and exam grades through improved planning and reduced anxiety.",
+      "text": "In Pham and Taylor's study, process simulation enhanced studying and exam grades through improved planning and reduced anxiety. Because rehearsing concrete study steps exposed when and how to act, participants formed better plans and reduced uncertainty around performance. Imagining the pleasure of the final grade produced the same planning mechanism as rehearsing study steps. Outcome imagery represents success, whereas process imagery rehearses the behaviors that can produce it.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.4",
+      "kind": "testable_fact",
+      "label": "A 1999 Indiana Daily Student story brought attention to Jared Fogle's reported 245-pound weight loss before Subway's 2000 national campaign.",
+      "text": "A 1999 Indiana Daily Student story brought attention to Jared Fogle's reported 245-pound weight loss before Subway's 2000 national campaign. Because the discovered account contained a recognizable before-and-after challenge arc, advertisers could build a narrative around transformation rather than a list of low-fat menu items. Subway invented the entire weight-loss story first and then commissioned a fictional student newspaper article. The campus story preceded the national advertising campaign and helped the case reach the company.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.5",
+      "kind": "testable_fact",
+      "label": "The historical Jared Fogle campaign cannot safely function as present-day moral endorsement because Fogle was later convicted of crimes involving minors.",
+      "text": "The historical Jared Fogle campaign cannot safely function as present-day moral endorsement because Fogle was later convicted of crimes involving minors. Because later verified conduct radically changes the ethical associations of the spokesperson, retelling the campaign as uncomplicated inspiration would mislead current readers. Source fidelity requires ignoring all later public facts about a real figure used as an inspirational model. Historical accuracy includes material context needed to avoid turning a communication example into praise of the person.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.6",
+      "kind": "testable_fact",
+      "label": "Stephen Denning's World Bank springboard case centers on a June 1995 health worker in Kamana, Zambia, finding malaria information online.",
+      "text": "Stephen Denning's World Bank springboard case centers on a June 1995 health worker in Kamana, Zambia, finding malaria information online. Because one small successful knowledge-sharing episode made a possible future visible, listeners could imagine scaling the pattern across the institution. The springboard method requires a long heroic biography with every technical implementation detail. Its function is to trigger the audience's own future story, so a concise true instance can be more generative than exhaustive narration.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.7",
+      "kind": "testable_fact",
+      "label": "The three inspirational plot families are Challenge, Connection, and Creativity.",
+      "text": "The three inspirational plot families are Challenge, Connection, and Creativity. Because they model overcoming obstacles, bridging social distance, or solving a problem resourcefully, each plot supplies a different route to motivated action. All inspirational stories must use a lone hero defeating a physical opponent. Connection and Creativity plots can inspire through relationship or ingenuity without a conventional contest.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.8",
+      "kind": "testable_fact",
+      "label": "A process story functions as mental simulation when it preserves goals, obstacles, choices, actions, and consequences.",
+      "text": "A process story functions as mental simulation when it preserves goals, obstacles, choices, actions, and consequences. Because listeners can map the sequence onto a future situation, the narrative rehearses responses before real stakes arrive. A story teaches action best when all decisions and causal links are removed in favor of a one-line moral. Removing the sequence discards the cues that show when and how the lesson applies.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.fact.9",
+      "kind": "testable_fact",
+      "label": "A springboard story describes a real successful instance that helps listeners imagine analogous change in their own environment.",
+      "text": "A springboard story describes a real successful instance that helps listeners imagine analogous change in their own environment. Because the case proves that a nearby possibility has already occurred, the audience can construct its own forward-looking scenario with lower disbelief. A springboard story is valuable only when listeners copy every surface detail exactly. The audience transfers the underlying possibility and mechanism, adapting details to its own context.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.framework.story.functions",
+      "kind": "framework",
+      "label": "Story functions",
+      "text": "simulation, inspiration",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.framework.inspirational.plots",
+      "kind": "framework",
+      "label": "Inspirational plots",
+      "text": "Challenge, Connection, Creativity",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch06.framework.simulation.spine",
+      "kind": "framework",
+      "label": "Simulation spine",
+      "text": "goal, obstacle, choice, action, consequence",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "5",
+    "7",
+    "245",
+    "1999",
+    "2000",
+    "1",
+    "1995",
+    "3"
+  ],
+  "allowedEntities": [
+    "Stories",
+    "Useful",
+    "Narrative",
+    "Instructions",
+    "Process",
+    "Inspirational",
+    "Organizations",
+    "Extracting",
+    "Julian Orr",
+    "Xerox",
+    "Julian Orr's",
+    "U.S. Xerox",
+    "Their",
+    "Work",
+    "Pham",
+    "Taylor",
+    "Lien Pham",
+    "Shelley Taylor",
+    "Rehearsing",
+    "Jared Fogle",
+    "Subway",
+    "Indiana Daily Student",
+    "Fogle's",
+    "Stephen Denning",
+    "World Bank Zambia",
+    "June",
+    "Kamana",
+    "Zambia",
+    "World Bank. The",
+    "Story",
+    "Jared Fogle's",
+    "Floyd Lee",
+    "Orr",
+    "His",
+    "Participants",
+    "In Pham",
+    "Taylor's",
+    "Imagining",
+    "Outcome",
+    "Subway's",
+    "Fogle",
+    "Source",
+    "Historical",
+    "Stephen Denning's World Bank",
+    "Its",
+    "Challenge",
+    "Connection",
+    "Creativity",
+    "All",
+    "Removing",
+    "Simulation",
+    "Current",
+    "Denning's June",
+    "World Bank",
+    "Across",
+    "Those",
+    "Fidelity",
+    "Julian Orr / Xerox copier technicians",
+    "Pham and Taylor mental-simulation experiment",
+    "Jared Fogle / Subway campaign",
+    "Stephen Denning / World Bank Zambia story"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch06.ex.orr",
+      "warning": "Keep examples about Julian Orr / Xerox copier technicians source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch06.ex.pham-taylor",
+      "warning": "Keep examples about Pham and Taylor mental-simulation experiment source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch06.ex.jared",
+      "warning": "Keep examples about Jared Fogle / Subway campaign source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch06.ex.denning",
+      "warning": "Keep examples about Stephen Denning / World Bank Zambia story source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch06.fact.2"
+}

@@ -1,0 +1,857 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "the-happiness-hypothesis",
+  "chapterId": "the-happiness-hypothesis-ch05",
+  "chapterNumber": 5,
+  "chapterTitle": "The Pursuit of Happiness",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/the-happiness-hypothesis/20260717T094415142Z-1c996661-58d5-4e1d-9606-1e907d84ea3c/sidecars/source/ch05.source.json",
+  "sourceHash": "sha256:335d734dc7f468bab24910f553d849d3d1089144ac8b945c8fa07c0930512a53",
+  "facts": [
+    {
+      "id": "ch05.fact.1",
+      "claim": "The 1978 adaptation study included 22 major lottery winners, 22 controls, and 29 people paralyzed in accidents.",
+      "mechanism": "Because Comparing extreme positive and negative changes with a control group allowed the researchers to test whether contrast and adaptation altered everyday pleasure and reported happiness.",
+      "commonError": "The famous study followed thousands of participants for many years.",
+      "whyWrong": "It was a small cross-sectional comparison with the stated group sizes.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "22",
+        "29",
+        "1978"
+      ],
+      "groundedEntities": [
+        "Because Comparing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.1"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch05.fact.2",
+      "claim": "The lottery winners and accident victims did not converge to an identical level of well-being in the 1978 data.",
+      "mechanism": "Because Adaptation reduced contrasts without erasing the enduring burden associated with paralysis.",
+      "commonError": "Lottery winners and paralyzed accident survivors became equally happy after enough time.",
+      "whyWrong": "That retelling overstates what the group comparisons showed.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1978"
+      ],
+      "groundedEntities": [
+        "Because Adaptation",
+        "Lottery"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.2"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch05.fact.3",
+      "claim": "The sustainable-happiness model distinguishes set-point influences, circumstances, and intentional activities.",
+      "mechanism": "Because The categories separate relatively stable disposition, environmental conditions, and repeated chosen behavior as different sources of variation.",
+      "commonError": "The model claims happiness has only one controllable cause.",
+      "whyWrong": "It explicitly includes three classes of influence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "3"
+      ],
+      "groundedEntities": [
+        "Because The"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch05.fact.4",
+      "claim": "The popular 50-10-40 happiness percentages should not be applied as fixed causal shares for an individual.",
+      "mechanism": "Because Population estimates depend on measurement and context, interact with each other, and do not partition one person's well-being like a budget.",
+      "commonError": "Exactly 40 percent of anyone's happiness can be changed by voluntary activity.",
+      "whyWrong": "The numerical allocation is a heuristic derived from heterogeneous research, not an individual diagnostic equation.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "10",
+        "40",
+        "50"
+      ],
+      "groundedEntities": [
+        "Because Population",
+        "Exactly"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.4"
+      ],
+      "replicationStatus": "contested",
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch05.fact.5",
+      "claim": "Flow is most likely when perceived challenge and skill are both high and reasonably matched.",
+      "mechanism": "Because The match demands full attention without making success feel impossible or the task trivial.",
+      "commonError": "Flow is simple relaxation in an easy activity.",
+      "whyWrong": "Low challenge tends toward boredom or passive pleasure rather than deep absorption.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Flow",
+        "Because The",
+        "Low"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.5"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch05.fact.6",
+      "claim": "Clear goals and prompt feedback help sustain flow.",
+      "mechanism": "Because They keep attention coupled to the next task-relevant adjustment instead of to self-monitoring.",
+      "commonError": "Any difficult task creates flow automatically.",
+      "whyWrong": "Difficulty without legible goals or feedback more often produces confusion and anxiety.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Clear",
+        "Because They",
+        "Any",
+        "Difficulty"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.6"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch05.fact.7",
+      "claim": "Longer commuting time has been associated with lower life satisfaction in German panel data.",
+      "mechanism": "Because Time loss, low control, and repeated travel stress can recur more reliably than compensating benefits enter daily awareness.",
+      "commonError": "People fully adapt to commuting because they voluntarily chose the job and home tradeoff.",
+      "whyWrong": "The commuting paradox is that predicted compensation was incomplete in reported satisfaction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Longer",
+        "German",
+        "Because Time",
+        "People"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.7"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch05.fact.8",
+      "claim": "Hedonic adaptation varies across life events and conditions rather than following one universal timetable.",
+      "mechanism": "Because Events differ in novelty, recurrence, attention, control, and the goals they continue to obstruct.",
+      "commonError": "Every gain or loss fades completely after a standard number of months.",
+      "whyWrong": "Longitudinal findings show heterogeneous and sometimes incomplete adaptation.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Hedonic",
+        "Because Events",
+        "Every",
+        "Longitudinal"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.8"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch05.fact.9",
+      "claim": "Spending can support well-being when it improves security, time use, relationships, or meaningful experience rather than status comparison alone.",
+      "mechanism": "Because Those uses change repeated daily conditions or social connection, while positional gains invite comparison and adaptation.",
+      "commonError": "Money never affects happiness once basic survival is covered.",
+      "whyWrong": "Income and spending choices can alter real conditions even though their marginal benefits diminish.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Spending",
+        "Because Those",
+        "Money",
+        "Income"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch05.example.brickman",
+      "label": "Philip Brickman, Dan Coates, and Ronnie Janoff-Bulman / lottery and accident study",
+      "summary": "The 1978 study compared twenty-two major lottery winners, twenty-two controls, and twenty-nine people paralyzed in accidents. Its results supported adaptation but did not show that the groups became equally happy, and later retellings often exaggerate the finding. Verified anchors: 1978 Journal of Personality and Social Psychology study; 22 major lottery winners.",
+      "realWorld": true,
+      "naturalSetting": "Philip Brickman",
+      "hardSpecifics": [
+        "1978 Journal of Personality and Social Psychology study",
+        "22 major lottery winners",
+        "22 control participants",
+        "29 paralyzed accident victims"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1978 Journal of Personality and Social Psychology study"
+      ]
+    },
+    {
+      "id": "ch05.example.lyubomirsky",
+      "label": "Sonja Lyubomirsky, Kennon Sheldon, and David Schkade / sustainable happiness model",
+      "summary": "The model grouped influences on chronic happiness into genetic set-point, circumstances, and intentional activity. Popular graphics turned the proposal into fixed 50-10-40 slices, but the categories are more defensible than treating those percentages as a personal prescription. Verified anchors: Lyubomirsky, Sheldon, and Schkade 2005 review; three categories: set point, circumstances, intentional activity.",
+      "realWorld": true,
+      "naturalSetting": "Sonja Lyubomirsky",
+      "hardSpecifics": [
+        "Lyubomirsky, Sheldon, and Schkade 2005 review",
+        "three categories: set point, circumstances, intentional activity",
+        "popularized 50-10-40 allocation"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Lyubomirsky, Sheldon, and Schkade 2005 review",
+        "three categories: set point, circumstances, intentional activity"
+      ]
+    },
+    {
+      "id": "ch05.example.csikszentmihalyi",
+      "label": "Mihaly Csikszentmihalyi / experience-sampling research",
+      "summary": "Participants were signaled during daily life and recorded current activity and experience. Episodes of deep engagement clustered where challenge and skill were both high, with clear goals and feedback narrowing attention onto the task. Verified anchors: experience-sampling method; random signals during daily activity.",
+      "realWorld": true,
+      "naturalSetting": "Mihaly Csikszentmihalyi",
+      "hardSpecifics": [
+        "experience-sampling method",
+        "random signals during daily activity",
+        "high challenge matched to high skill",
+        "clear goals and immediate feedback"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch05.example.commute",
+      "label": "Alois Stutzer and Bruno Frey / commuting paradox",
+      "summary": "Research on commuting found lower reported life satisfaction among people with longer commutes despite the expectation that housing or income benefits would compensate. Repeated traffic, time loss, and unpredictability make the burden salient day after day. Verified anchors: Alois Stutzer and Bruno S. Frey; German Socio-Economic Panel data.",
+      "realWorld": true,
+      "naturalSetting": "Alois Stutzer",
+      "hardSpecifics": [
+        "Alois Stutzer and Bruno S. Frey",
+        "German Socio-Economic Panel data",
+        "longer commuting time associated with lower life satisfaction"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Happiness formula",
+      "members": [
+        "S: set-point influences",
+        "C: conditions of life",
+        "V: voluntary activities"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Flow conditions",
+      "members": [
+        "matched high challenge and skill",
+        "clear goals",
+        "immediate feedback",
+        "deep task-focused attention"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch05.concept",
+      "kind": "concept",
+      "label": "happiness conditions and adaptation",
+      "text": "People often adjust to changed fortune, so the emotional impact of gains and losses fades, but adaptation is incomplete and varies by condition. Daily environments and repeated activities shape how often well-being-supporting experiences occur. Effort can shift from chasing one dramatic outcome toward changing persistent frictions, social circumstances, and the design of everyday activity.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.example.brickman",
+      "kind": "named_example",
+      "label": "Philip Brickman, Dan Coates, and Ronnie Janoff-Bulman / lottery and accident study",
+      "text": "The 1978 study compared twenty-two major lottery winners, twenty-two controls, and twenty-nine people paralyzed in accidents. Its results supported adaptation but did not show that the groups became equally happy, and later retellings often exaggerate the finding. Verified anchors: 1978 Journal of Personality and Social Psychology study; 22 major lottery winners. Adaptation is real without implying that extreme conditions are irrelevant.",
+      "hardSpecifics": [
+        "1978 Journal of Personality and Social Psychology study",
+        "22 major lottery winners",
+        "22 control participants",
+        "29 paralyzed accident victims"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.example.lyubomirsky",
+      "kind": "named_example",
+      "label": "Sonja Lyubomirsky, Kennon Sheldon, and David Schkade / sustainable happiness model",
+      "text": "The model grouped influences on chronic happiness into genetic set-point, circumstances, and intentional activity. Popular graphics turned the proposal into fixed 50-10-40 slices, but the categories are more defensible than treating those percentages as a personal prescription. Verified anchors: Lyubomirsky, Sheldon, and Schkade 2005 review; three categories: set point, circumstances, intentional activity. A framework can identify leverage without assigning a fixed causal percentage to every individual.",
+      "hardSpecifics": [
+        "Lyubomirsky, Sheldon, and Schkade 2005 review",
+        "three categories: set point, circumstances, intentional activity",
+        "popularized 50-10-40 allocation"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.example.csikszentmihalyi",
+      "kind": "named_example",
+      "label": "Mihaly Csikszentmihalyi / experience-sampling research",
+      "text": "Participants were signaled during daily life and recorded current activity and experience. Episodes of deep engagement clustered where challenge and skill were both high, with clear goals and feedback narrowing attention onto the task. Verified anchors: experience-sampling method; random signals during daily activity. Well-being can emerge as a by-product of structured absorption rather than direct monitoring of happiness.",
+      "hardSpecifics": [
+        "experience-sampling method",
+        "random signals during daily activity",
+        "high challenge matched to high skill",
+        "clear goals and immediate feedback"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.example.commute",
+      "kind": "named_example",
+      "label": "Alois Stutzer and Bruno Frey / commuting paradox",
+      "text": "Research on commuting found lower reported life satisfaction among people with longer commutes despite the expectation that housing or income benefits would compensate. Repeated traffic, time loss, and unpredictability make the burden salient day after day. Verified anchors: Alois Stutzer and Bruno S. Frey; German Socio-Economic Panel data. A recurring condition can matter more than a prestigious gain that quickly becomes normal.",
+      "hardSpecifics": [
+        "Alois Stutzer and Bruno S. Frey",
+        "German Socio-Economic Panel data",
+        "longer commuting time associated with lower life satisfaction"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.1",
+      "kind": "testable_fact",
+      "label": "The 1978 adaptation study included 22 major lottery winners, 22 controls, and 29 people paralyzed in accidents.",
+      "text": "The 1978 adaptation study included 22 major lottery winners, 22 controls, and 29 people paralyzed in accidents. Because Comparing extreme positive and negative changes with a control group allowed the researchers to test whether contrast and adaptation altered everyday pleasure and reported happiness. The famous study followed thousands of participants for many years. It was a small cross-sectional comparison with the stated group sizes.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.2",
+      "kind": "testable_fact",
+      "label": "The lottery winners and accident victims did not converge to an identical level of well-being in the 1978 data.",
+      "text": "The lottery winners and accident victims did not converge to an identical level of well-being in the 1978 data. Because Adaptation reduced contrasts without erasing the enduring burden associated with paralysis. Lottery winners and paralyzed accident survivors became equally happy after enough time. That retelling overstates what the group comparisons showed.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.3",
+      "kind": "testable_fact",
+      "label": "The sustainable-happiness model distinguishes set-point influences, circumstances, and intentional activities.",
+      "text": "The sustainable-happiness model distinguishes set-point influences, circumstances, and intentional activities. Because The categories separate relatively stable disposition, environmental conditions, and repeated chosen behavior as different sources of variation. The model claims happiness has only one controllable cause. It explicitly includes three classes of influence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.4",
+      "kind": "testable_fact",
+      "label": "The popular 50-10-40 happiness percentages should not be applied as fixed causal shares for an individual.",
+      "text": "The popular 50-10-40 happiness percentages should not be applied as fixed causal shares for an individual. Because Population estimates depend on measurement and context, interact with each other, and do not partition one person's well-being like a budget. Exactly 40 percent of anyone's happiness can be changed by voluntary activity. The numerical allocation is a heuristic derived from heterogeneous research, not an individual diagnostic equation.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.5",
+      "kind": "testable_fact",
+      "label": "Flow is most likely when perceived challenge and skill are both high and reasonably matched.",
+      "text": "Flow is most likely when perceived challenge and skill are both high and reasonably matched. Because The match demands full attention without making success feel impossible or the task trivial. Flow is simple relaxation in an easy activity. Low challenge tends toward boredom or passive pleasure rather than deep absorption.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.6",
+      "kind": "testable_fact",
+      "label": "Clear goals and prompt feedback help sustain flow.",
+      "text": "Clear goals and prompt feedback help sustain flow. Because They keep attention coupled to the next task-relevant adjustment instead of to self-monitoring. Any difficult task creates flow automatically. Difficulty without legible goals or feedback more often produces confusion and anxiety.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.7",
+      "kind": "testable_fact",
+      "label": "Longer commuting time has been associated with lower life satisfaction in German panel data.",
+      "text": "Longer commuting time has been associated with lower life satisfaction in German panel data. Because Time loss, low control, and repeated travel stress can recur more reliably than compensating benefits enter daily awareness. People fully adapt to commuting because they voluntarily chose the job and home tradeoff. The commuting paradox is that predicted compensation was incomplete in reported satisfaction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.8",
+      "kind": "testable_fact",
+      "label": "Hedonic adaptation varies across life events and conditions rather than following one universal timetable.",
+      "text": "Hedonic adaptation varies across life events and conditions rather than following one universal timetable. Because Events differ in novelty, recurrence, attention, control, and the goals they continue to obstruct. Every gain or loss fades completely after a standard number of months. Longitudinal findings show heterogeneous and sometimes incomplete adaptation.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.9",
+      "kind": "testable_fact",
+      "label": "Spending can support well-being when it improves security, time use, relationships, or meaningful experience rather than status comparison alone.",
+      "text": "Spending can support well-being when it improves security, time use, relationships, or meaningful experience rather than status comparison alone. Because Those uses change repeated daily conditions or social connection, while positional gains invite comparison and adaptation. Money never affects happiness once basic survival is covered. Income and spending choices can alter real conditions even though their marginal benefits diminish.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.framework.happiness.formula",
+      "kind": "framework",
+      "label": "Happiness formula",
+      "text": "S: set-point influences, C: conditions of life, V: voluntary activities",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.framework.flow.conditions",
+      "kind": "framework",
+      "label": "Flow conditions",
+      "text": "matched high challenge and skill, clear goals, immediate feedback, deep task-focused attention",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "22",
+    "29",
+    "1978",
+    "1",
+    "3",
+    "10",
+    "40",
+    "50",
+    "2",
+    "9",
+    "20",
+    "2005"
+  ],
+  "allowedEntities": [
+    "The Pursuit",
+    "Happiness",
+    "Well-being",
+    "Adaptation",
+    "People",
+    "Daily",
+    "Effort",
+    "The H",
+    "Hedonic",
+    "Noise",
+    "Money",
+    "Flow",
+    "Pleasure",
+    "Philip Brickman",
+    "Dan Coates",
+    "Ronnie Janoff-Bulman",
+    "Its",
+    "Verified",
+    "Journal",
+    "Personality",
+    "Social Psychology",
+    "Sonja Lyubomirsky",
+    "Kennon Sheldon",
+    "David Schkade",
+    "Popular",
+    "Lyubomirsky",
+    "Sheldon",
+    "Schkade",
+    "Mihaly Csikszentmihalyi",
+    "Participants",
+    "Episodes",
+    "Alois Stutzer",
+    "Bruno Frey",
+    "Research",
+    "Repeated",
+    "Bruno S. Frey",
+    "German Socio-Economic Panel",
+    "Neither",
+    "Conditions",
+    "Stoic",
+    "Because Comparing",
+    "Because Adaptation",
+    "Lottery",
+    "Because The",
+    "Because Population",
+    "Exactly",
+    "Low",
+    "Clear",
+    "Because They",
+    "Any",
+    "Difficulty",
+    "Longer",
+    "German",
+    "Because Time",
+    "Because Events",
+    "Every",
+    "Longitudinal",
+    "Spending",
+    "Because Those",
+    "Income",
+    "Temperament",
+    "Ronnie Janoff-Bulman's",
+    "Long",
+    "Mihaly Csikszentmihalyi's",
+    "Attention",
+    "Philip Brickman, Dan Coates, and Ronnie Janoff-Bulman / lottery and accident study",
+    "Sonja Lyubomirsky, Kennon Sheldon, and David Schkade / sustainable happiness model",
+    "Mihaly Csikszentmihalyi / experience-sampling research",
+    "Alois Stutzer and Bruno Frey / commuting paradox"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch05.example.brickman",
+      "warning": "Keep examples about Philip Brickman, Dan Coates, and Ronnie Janoff-Bulman / lottery and accident study source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch05.example.lyubomirsky",
+      "warning": "Keep examples about Sonja Lyubomirsky, Kennon Sheldon, and David Schkade / sustainable happiness model source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch05.example.csikszentmihalyi",
+      "warning": "Keep examples about Mihaly Csikszentmihalyi / experience-sampling research source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch05.example.commute",
+      "warning": "Keep examples about Alois Stutzer and Bruno Frey / commuting paradox source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch05.fact.1"
+}

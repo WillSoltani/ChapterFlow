@@ -1,0 +1,33 @@
+{
+  "bookId": "nudge",
+  "title": "Nudge",
+  "author": "Richard H. Thaler and Cass R. Sunstein",
+  "edition": { "name": "The Final Edition", "publisher": "Penguin Books", "publishedYear": 2021, "isbn13": "9780143137009", "language": "English", "chapterCount": 15, "sectionCount": 5 },
+  "introduction": "Introduction",
+  "sections": [
+    { "number": 1, "title": "Humans and Econs", "chapters": [
+      { "number": 1, "title": "Biases and Blunders" }, { "number": 2, "title": "Resisting Temptation" }, { "number": 3, "title": "Following the Herd" }
+    ]},
+    { "number": 2, "title": "The Tools of the Choice Architect", "chapters": [
+      { "number": 4, "title": "When Do We Need a Nudge?" }, { "number": 5, "title": "Choice Architecture" }, { "number": 6, "title": "But Wait, There's More" }, { "number": 7, "title": "Smart Disclosure" }, { "number": 8, "title": "#Sludge" }
+    ]},
+    { "number": 3, "title": "Money", "chapters": [
+      { "number": 9, "title": "Save More Tomorrow" }, { "number": 10, "title": "Do Nudges Last Forever? Perhaps in Sweden" }, { "number": 11, "title": "Borrow More Today: Mortgages and Credit Cards" }, { "number": 12, "title": "Insurance: Don't Sweat the Small Stuff" }
+    ]},
+    { "number": 4, "title": "Society", "chapters": [
+      { "number": 13, "title": "Organ Donations: The Default Solution Illusion" }, { "number": 14, "title": "Saving the Planet" }
+    ]},
+    { "number": 5, "title": "The Complaints Department", "chapters": [
+      { "number": 15, "title": "Much Ado About Nudging" }
+    ]}
+  ],
+  "thesis": "Choices are never presented neutrally: defaults, ordering, feedback, social cues, and administrative friction predictably shape what fallible people do. Institutions can therefore design environments that improve decisions while keeping meaningful alternatives available and avoiding large changes to economic incentives.",
+  "teachingArc": "Part I replaces the perfectly calculating Econ with a psychologically realistic Human who relies on shortcuts, struggles with self-control, and follows others. Part II turns those limits into a design discipline through choice architecture, disclosure, and sludge reduction; Parts III and IV apply the tools to saving, borrowing, insurance, organ donation, and climate policy. Part V tests ethical and political objections, arguing for transparent, welfare-oriented nudges that preserve choice and can complement stronger policy tools.",
+  "authorVoice": {
+    "register": "analytical",
+    "signatureMoves": ["opens concepts with ordinary decisions or vivid institutional cases", "contrasts idealized Econs with predictably fallible Humans", "uses playful labels and acronyms to make policy mechanisms memorable", "moves from behavioral evidence to a concrete design or policy proposal", "anticipates objections and answers them with counterexamples"],
+    "avoidMoves": ["does not rely on a purely academic register", "does not treat freedom and paternalism as an unavoidable binary", "does not present nudges as substitutes for every mandate or incentive"]
+  },
+  "confidence": "high",
+  "notes": "The 2021 Penguin paperback Final Edition is used because the slug did not specify an edition and this is the current cover-to-cover revision. The publisher and library tables of contents confirm five parts and fifteen numbered chapters. Preface, Introduction, Epilogue, Acknowledgments, Notes, and Index are not counted as numbered chapters."
+}

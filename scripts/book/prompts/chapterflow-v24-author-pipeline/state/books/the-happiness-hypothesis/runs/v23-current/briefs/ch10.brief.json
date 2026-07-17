@@ -1,0 +1,197 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "the-happiness-hypothesis-ch10",
+  "chapterNumber": 10,
+  "title": "Happiness Comes from Between",
+  "coreMove": "Because High-quality performance, responsibility to others, and personal meaning can diverge, so all three must be examined.",
+  "thesis": "The GoodWork framework evaluates work through excellence, ethics, and engagement.",
+  "readerPromise": "After this chapter, a reader can because High-quality performance, responsibility to others, and personal meaning can diverge, so all three must be examined.",
+  "ownedCases": [
+    {
+      "id": "ch10.example.goodwork",
+      "label": "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project"
+    },
+    {
+      "id": "ch10.example.nakamura",
+      "label": "Jeanne Nakamura and Mihaly Csikszentmihalyi / vital engagement"
+    },
+    {
+      "id": "ch10.example.mcadams",
+      "label": "Dan McAdams / three levels of personality"
+    },
+    {
+      "id": "ch10.example.durkheim",
+      "label": "Émile Durkheim / social integration and anomie"
+    }
+  ],
+  "notYours": [
+    "Aaron Beck / cognitive therapy",
+    "Alois Stutzer and Bruno Frey / commuting paradox",
+    "Antonio Damasio / ventromedial prefrontal patients",
+    "Aristotle / virtue and the mean",
+    "Aristotle / virtue plus external goods",
+    "Benjamin Franklin / thirteen-virtue chart",
+    "Brett Pelham and colleagues / implicit egotism",
+    "Buddhist insight meditation / attentional training",
+    "Buddhist nonattachment and Benjamin Franklin's striving",
+    "C. Daniel Batson / moral-hypocrisy task",
+    "Christopher Peterson and Martin Seligman / VIA classification",
+    "Cindy Hazan and Phillip Shaver / adult romantic attachment",
+    "Dacher Keltner and Jonathan Haidt / awe prototype",
+    "Dan McAdams / redemptive life stories",
+    "Daniel Wegner / white-bear suppression experiments",
+    "David Burns / anger inventory",
+    "Deanna Kuhn and David Perkins / argument evaluation",
+    "Dennis Regan / Coca-Cola reciprocity experiment",
+    "Harry Harlow / cloth and wire surrogate mothers",
+    "Hazan and colleagues / transfer of attachment functions"
+  ],
+  "cast": [
+    "Emilia",
+    "Cyrielle",
+    "Grant",
+    "Chloe"
+  ],
+  "answerIndexPattern": [
+    2,
+    1,
+    0,
+    1,
+    1,
+    0,
+    2,
+    2,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on characteristic adaptations and narrative identity",
+    "flavor (ch01): venue: a working note on cloth covered surrogate mother",
+    "flavor (ch01): venue: a dinner table",
+    "flavor (ch01): frame: a first attempt at anomie as weakened normative structure that gets corrected",
+    "flavor (ch01): frame: a first encounter with anomie as weakened normative structure that sets a benchmark",
+    "flavor (ch02): venue: a shared grocery list"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a bulletin board note",
+    "venue: an unsent email draft",
+    "venue: a video call with family",
+    "frame: failed small experiment with a revised second attempt",
+    "frame: a public recognition that shifts how someone sees themselves"
+  ],
+  "architectureFamily": "misconception-reversal",
+  "openerType": "scene",
+  "challengeFrame": "before-your-next-X",
+  "practiceShape": "say-aloud-script",
+  "exampleLenses": [
+    "before-after-ledger",
+    "postmortem",
+    "walkthrough"
+  ],
+  "practiceVerb": "write",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "rather",
+    "across",
+    "different",
+    "life",
+    "repeated",
+    "consequences"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "failure",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "say-aloud-script",
+    "single-imperative",
+    "if-then-trigger",
+    "two-step-sequence"
+  ],
+  "quizStemShapes": [
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority"
+  ],
+  "quizFailureModes": [
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction"
+  ],
+  "questionFactOrder": [
+    5,
+    3,
+    2,
+    6,
+    1,
+    8,
+    7,
+    9,
+    4
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "mechanism-speak",
+    "people-speak"
+  ],
+  "shellRegister": "artifact-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project",
+    "caseId": "ch10.example.goodwork",
+    "aliases": [
+      "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project",
+      "GoodWork",
+      "Howard",
+      "Mihaly",
+      "William",
+      "Damon"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because It treats persons as independent choosers whose interests require protection from coercion and injury.",
+    "next": "Because Each side acquires meaning through contrast with the other and can transform as conditions change."
+  },
+  "totalChapters": 11
+}

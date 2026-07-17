@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "the-happiness-hypothesis-ch04",
+  "chapterNumber": 4,
+  "title": "The Faults of Others",
+  "coreMove": "Because Victims encode lasting consequences while perpetrators focus on immediate provocation and a bounded act.",
+  "thesis": "Victim and perpetrator accounts of the same harm often differ in temporal scope and attributed motive.",
+  "readerPromise": "After this chapter, a reader can because Victims encode lasting consequences while perpetrators focus on immediate provocation and a bounded act.",
+  "ownedCases": [
+    {
+      "id": "ch04.example.batson",
+      "label": "C. Daniel Batson / moral-hypocrisy task"
+    },
+    {
+      "id": "ch04.example.kuhn",
+      "label": "Deanna Kuhn and David Perkins / argument evaluation"
+    },
+    {
+      "id": "ch04.example.baumeister",
+      "label": "Roy Baumeister / myth of pure evil"
+    },
+    {
+      "id": "ch04.example.burns",
+      "label": "David Burns / anger inventory"
+    }
+  ],
+  "notYours": [
+    "Aaron Beck / cognitive therapy",
+    "Alois Stutzer and Bruno Frey / commuting paradox",
+    "Antonio Damasio / ventromedial prefrontal patients",
+    "Aristotle / virtue and the mean",
+    "Aristotle / virtue plus external goods",
+    "Benjamin Franklin / thirteen-virtue chart",
+    "Brett Pelham and colleagues / implicit egotism",
+    "Buddhist insight meditation / attentional training",
+    "Buddhist nonattachment and Benjamin Franklin's striving",
+    "Christopher Peterson and Martin Seligman / VIA classification",
+    "Cindy Hazan and Phillip Shaver / adult romantic attachment",
+    "Dacher Keltner and Jonathan Haidt / awe prototype",
+    "Dan McAdams / redemptive life stories",
+    "Dan McAdams / three levels of personality",
+    "Daniel Wegner / white-bear suppression experiments",
+    "Dennis Regan / Coca-Cola reciprocity experiment",
+    "Harry Harlow / cloth and wire surrogate mothers",
+    "Hazan and colleagues / transfer of attachment functions",
+    "Heraclitus / conflict of opposites",
+    "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project"
+  ],
+  "cast": [
+    "Emmett",
+    "Sylvain",
+    "Gaetan",
+    "Cole"
+  ],
+  "answerIndexPattern": [
+    1,
+    2,
+    0,
+    2,
+    0,
+    1,
+    1,
+    0,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on characteristic adaptations and narrative identity",
+    "flavor (ch01): venue: a working note on cloth covered surrogate mother",
+    "flavor (ch01): venue: a dinner table",
+    "flavor (ch01): frame: a first attempt at anomie as weakened normative structure that gets corrected",
+    "flavor (ch01): frame: a first encounter with anomie as weakened normative structure that sets a benchmark",
+    "flavor (ch02): venue: a shared grocery list"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on anomie as weakened normative structure",
+    "venue: a working note on automatic thoughts recorded in writing",
+    "venue: a working note on caregiver separation and institutional care",
+    "frame: two stakeholders disagree about arguments about public policy issues before deciding",
+    "frame: a first encounter with balance theory of wisdom that sets a benchmark"
+  ],
+  "architectureFamily": "direct-conceptual",
+  "openerType": "question",
+  "challengeFrame": "script-one-sentence",
+  "practiceShape": "say-aloud-script",
+  "exampleLenses": [
+    "prop-tableau",
+    "dialogue-beat",
+    "before-after-ledger"
+  ],
+  "practiceVerb": "ask",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "rather",
+    "across",
+    "different",
+    "life",
+    "repeated",
+    "consequences"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "say-aloud-script",
+    "single-imperative",
+    "if-then-trigger",
+    "two-step-sequence"
+  ],
+  "quizStemShapes": [
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation"
+  ],
+  "quizFailureModes": [
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure"
+  ],
+  "questionFactOrder": [
+    8,
+    5,
+    4,
+    6,
+    1,
+    3,
+    9,
+    7,
+    2
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "mechanism-speak",
+    "people-speak"
+  ],
+  "shellRegister": "artifact-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "C. Daniel Batson / moral-hypocrisy task",
+    "caseId": "ch04.example.batson",
+    "aliases": [
+      "C. Daniel Batson / moral-hypocrisy task",
+      "Batson",
+      "Daniel"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because Receiving the favor activated a norm of repayment before the later request was made.",
+    "next": "Because Comparing extreme positive and negative changes with a control group allowed the researchers to test whether contrast and adaptation altered everyday pleasure and reported happiness."
+  },
+  "totalChapters": 11
+}

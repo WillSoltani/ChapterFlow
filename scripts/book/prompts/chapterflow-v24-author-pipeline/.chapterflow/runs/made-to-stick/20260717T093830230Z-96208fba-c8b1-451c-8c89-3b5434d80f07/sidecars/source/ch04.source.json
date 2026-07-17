@@ -1,0 +1,152 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 4,
+  "chapterTitle": "Credible",
+  "focus": "Believability can come from external authorities, experienced antiauthorities, diagnostic detail, human-scale comparisons, a demanding prior performance, or a claim the audience can test. The strongest credential fits the claim and lets evidence do visible work.",
+  "coreClaim": "Make an idea carry evidence appropriate to its claim, preferably in a form the audience can inspect, grasp, or test for itself.",
+  "centralConcept": {
+    "id": "ch04.concept",
+    "name": "self-contained credibility",
+    "plainDefinition": "Build proof into the message through a fitting source, revealing detail, comprehensible comparison, demonstrated capability, or audience-run test.",
+    "whyItMatters": "A listener need not accept the communicator's status on faith when the claim exposes why it deserves belief."
+  },
+  "keyClaims": [
+    "Expert authority is only one route to belief and can fail when the audience distrusts institutions or the authority lacks relevant experience.",
+    "An antiauthority can be persuasive because personal cost makes the source's knowledge difficult to dismiss as detached promotion.",
+    "Details support credibility when they are diagnostic of real access, not when they are merely numerous.",
+    "Statistics persuade better when translated into a scale the audience can simulate or compare.",
+    "A demanding prior success can stand as a credential for related work.",
+    "A testable credential shifts the final check from speaker to audience."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch04.ex.marshall",
+      "label": "Barry Marshall / Helicobacter pylori self-experiment",
+      "summary": "In July 1984, physician Barry Marshall drank a culture of Helicobacter pylori grown from a patient and subsequently developed gastritis. Marshall and Robin Warren received the 2005 Nobel Prize in Physiology or Medicine for establishing the bacterium's role in gastritis and peptic ulcer disease.",
+      "teachesWhat": "A risky demonstration can force attention toward evidence when institutional authority rejects a claim.",
+      "hardSpecifics": ["July 1984", "2005 Nobel Prize"],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.ex.laffin",
+      "label": "Pam Laffin antismoking campaign",
+      "summary": "Pam Laffin appeared in the Massachusetts antismoking campaign after developing emphysema at age 24 and having a lung removed. Her documented illness and family consequences made her an antiauthority whose experience carried the warning.",
+      "teachesWhat": "Lived cost can supply relevant credibility that a prestigious spokesperson cannot imitate.",
+      "hardSpecifics": ["emphysema at age 24", "lung removed"],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.ex.bbs",
+      "label": "Beyond War nuclear BB demonstration",
+      "summary": "Beyond War made arsenal scale audible by dropping 1 BB into a bucket for the Hiroshima-scale reference and then pouring thousands of BBs for the contemporary stockpile. The contrast translated an incomprehensible count into duration and sound.",
+      "teachesWhat": "Human-scale translation preserves a quantitative relationship while making its magnitude perceptible.",
+      "hardSpecifics": ["1 BB", "thousands of BBs"],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.ex.reagan",
+      "label": "Ronald Reagan's 1980 testable question",
+      "summary": "During the October 28, 1980 presidential debate, Ronald Reagan asked voters whether they were better off than four years earlier. The audience could answer from its own experience rather than accept a table of campaign statistics.",
+      "teachesWhat": "A claim becomes credible when listeners can run the relevant test against their own evidence.",
+      "hardSpecifics": ["October 28, 1980", "four years earlier"],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.ex.safexpress",
+      "label": "Safexpress / Harry Potter launch logistics",
+      "summary": "Indian logistics company Safexpress handled the tightly timed 2007 distribution of 240,000 first-stock Harry Potter copies in India. That demanding launch functioned as a Sinatra Test for later distribution work.",
+      "teachesWhat": "One difficult, relevant performance can prove capability more efficiently than broad claims of excellence.",
+      "hardSpecifics": ["2007 distribution", "240,000 first-stock Harry Potter copies"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Credibility is not a pile of citations, ornate detail, or impressive numbers. Evidence must be relevant to the claim, translated without distortion, and open to inspection; a vivid falsehood can feel credible while remaining false.",
+  "voiceCues": [
+    "contrasts authority with antiauthority rather than treating prestige as the only proof",
+    "turns large quantities into audible or human comparisons",
+    "uses the Sinatra Test as a named diagnostic for demonstrated capability",
+    "ends by handing the audience a test instead of another assertion"
+  ],
+  "forbiddenLeakage": [
+    "Do not use oral rehydration salts as the principal physical-object case; that object grounds concreteness.",
+    "Do not import the Rokia donation amounts or Texas litter identity appeal; those belong to emotional motivation."
+  ],
+  "testableFacts": [
+    {
+      "id": "ch04.fact.1",
+      "claim": "Barry Marshall drank a Helicobacter pylori culture in July 1984 and developed gastritis after the exposure.",
+      "becauseMechanism": "Because the self-experiment connected the bacterium to a resulting gastric inflammation in a previously healthy host, it challenged the view that such organisms were harmless passengers.",
+      "commonError": "Marshall won acceptance by presenting only an expert title and never exposing himself to the bacterium.",
+      "errorIsWhy": "The unusually memorable credential was the documented self-experiment, not professional status by itself.",
+      "derivedFrom": "ch04.ex.marshall"
+    },
+    {
+      "id": "ch04.fact.2",
+      "claim": "Barry Marshall and Robin Warren received the 2005 Nobel Prize for the discovery of Helicobacter pylori and its role in gastritis and peptic ulcer disease.",
+      "becauseMechanism": "Because their work established a bacterial cause, ulcer treatment could target infection rather than treating acid alone.",
+      "commonError": "The Nobel recognition established that every stomach symptom is caused by Helicobacter pylori.",
+      "errorIsWhy": "The award concerns the bacterium's causal role in specified gastric diseases, not a universal explanation for all symptoms.",
+      "derivedFrom": "ch04.ex.marshall"
+    },
+    {
+      "id": "ch04.fact.3",
+      "claim": "Pam Laffin developed emphysema at age 24 and had a lung removed before appearing in antismoking media.",
+      "becauseMechanism": "Because her body and family bore visible costs of smoking, her warning had experience-based relevance that a detached endorsement lacked.",
+      "commonError": "Laffin was a healthy celebrity hired to recite a generic public-health script.",
+      "errorIsWhy": "She appeared as a patient and mother living with severe smoking-related disease, which is the basis of the antiauthority credential.",
+      "derivedFrom": "ch04.ex.laffin"
+    },
+    {
+      "id": "ch04.fact.4",
+      "claim": "The Beyond War demonstration used 1 BB as the Hiroshima reference and thousands of BBs to represent the larger nuclear arsenal.",
+      "becauseMechanism": "Because listeners could hear the contrast between a single impact and a prolonged cascade, the ratio became perceptible rather than remaining an abstract count.",
+      "commonError": "The BB demonstration replaced quantitative comparison with an unrelated scary noise.",
+      "errorIsWhy": "Each BB represented a consistent unit, so the sound preserved the scale relationship while translating it.",
+      "derivedFrom": "ch04.ex.bbs"
+    },
+    {
+      "id": "ch04.fact.5",
+      "claim": "On October 28, 1980, Ronald Reagan asked debate viewers whether they were better off than four years earlier.",
+      "becauseMechanism": "Because each voter could compare present conditions with personal memory, the question outsourced part of the credibility test to the audience.",
+      "commonError": "The line asked viewers to trust Reagan's private economic calculations without consulting their lives.",
+      "errorIsWhy": "Its persuasive design points listeners toward their own comparison rather than an inaccessible calculation.",
+      "derivedFrom": "ch04.ex.reagan"
+    },
+    {
+      "id": "ch04.fact.6",
+      "claim": "Safexpress's 2007 Harry Potter launch assignment involved an Indian first stock of about 240,000 copies.",
+      "becauseMechanism": "Because a secretive, simultaneous, high-volume launch imposes demanding logistics constraints, successful execution serves as relevant proof for later distribution claims.",
+      "commonError": "A Sinatra Test is an unrelated famous client name that proves every possible capability.",
+      "errorIsWhy": "The prior performance must be difficult and relevant to the new claim; fame without task fit is weak evidence.",
+      "derivedFrom": "ch04.ex.safexpress"
+    },
+    {
+      "id": "ch04.fact.7",
+      "claim": "An antiauthority derives credibility from direct, costly experience rather than conventional prestige.",
+      "becauseMechanism": "Because the source has borne the consequence under discussion, audiences can treat the testimony as relevant evidence rather than remote promotion.",
+      "commonError": "An antiauthority is simply an uninformed person chosen because experts are always untrustworthy.",
+      "errorIsWhy": "The source is persuasive only when lived experience creates special access to the claim's consequences.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.8",
+      "claim": "The human-scale principle translates a statistic into a familiar comparison while preserving the original relationship.",
+      "becauseMechanism": "Because working memory can simulate everyday units more readily than huge totals, the audience can grasp magnitude without discarding quantity.",
+      "commonError": "Human-scaling permits changing the ratio as long as the resulting image feels dramatic.",
+      "errorIsWhy": "A distorted comparison sacrifices truth; the translation must retain the quantitative structure it explains.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.9",
+      "claim": "A testable credential lets the audience verify a claim through an accessible observation or comparison.",
+      "becauseMechanism": "Because the listener can perform the check independently, belief no longer rests entirely on the communicator's asserted authority.",
+      "commonError": "A testable credential is a promise that only the speaker can evaluate using private data.",
+      "errorIsWhy": "Private evidence cannot be audience-tested and therefore leaves the original trust problem intact.",
+      "derivedFrom": "ch04.concept"
+    }
+  ],
+  "frameworks": [
+    { "name": "Credibility sources", "members": ["authority", "antiauthority", "diagnostic detail", "human-scale statistics", "Sinatra Test", "testable credential"], "acronym": false }
+  ],
+  "paraphraseNotes": "Belief needs a reason fitted to the claim. Barry Marshall's July 1984 self-experiment made a disputed bacterial theory hard to ignore: he drank a Helicobacter pylori culture and developed gastritis. The later 2005 Nobel Prize shared with Robin Warren confirms the scientific contribution, but the communication lesson comes from evidence with personal stakes. Pam Laffin provides the antiauthority pattern. Emphysema at age 24 and a lung removed gave her antismoking warning direct relevance that celebrity prestige could not manufacture.\n\nNumbers need translation, not abandonment. Beyond War contrasted 1 BB in a bucket with thousands of BBs, turning arsenal scale into an audible duration while retaining a consistent unit. Human-scaling fails if the comparison changes the ratio merely to intensify emotion. Demonstrated capability offers another route. Safexpress's 2007 distribution of about 240,000 first-stock Harry Potter copies in India placed secrecy, synchronization, and volume inside one performance. The Sinatra Test works only when that prior difficulty matches the new claim.\n\nThe final route hands verification to the listener. Ronald Reagan's October 28, 1980 question about being better off than four years earlier invited voters to compare the claim against lived experience. A testable credential therefore differs from a confident promise: the audience can run the check. Across these routes, detail must be diagnostic, sources must have relevant access, and comparisons must stay faithful. Credibility can be engineered, but vividness is not truth; invented detail and impressive irrelevance are counterfeit evidence."
+}

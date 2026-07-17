@@ -1,0 +1,788 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "made-to-stick",
+  "chapterId": "made-to-stick-ch01",
+  "chapterNumber": 1,
+  "chapterTitle": "Simple",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/made-to-stick/20260717T093830230Z-96208fba-c8b1-451c-8c89-3b5434d80f07/sidecars/source/ch01.source.json",
+  "sourceHash": "sha256:6b079b8d5f6453a320e43fc67fa4a3ffa8b9c0f414ce4557ec2556a82fc9595a",
+  "facts": [
+    {
+      "id": "ch01.fact.1",
+      "claim": "A U.S. Army Commander's Intent can be stated as purpose, key tasks, and end state.",
+      "mechanism": "Because those elements specify why the mission exists, what must occur, and what success looks like, subordinates can adapt tactics without abandoning the objective.",
+      "commonError": "Commander's Intent is a condensed sequence of every maneuver in the original plan.",
+      "whyWrong": "A sequence becomes obsolete when conditions change; intent preserves the outcome and constraints rather than every step.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "A U.S. Army Commander's Intent",
+        "Commander's Intent"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.1"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch01.fact.2",
+      "claim": "Herb Kelleher's phrase THE low-fare airline served Southwest Airlines as a strategic decision filter.",
+      "mechanism": "Because proposed choices could be tested against the low-fare position, the phrase converted strategy into a repeatable operating judgment.",
+      "commonError": "Southwest's core meant approving any amenity that customers said they liked.",
+      "whyWrong": "Customer appeal alone did not settle the choice; the amenity also had to preserve the governing low-fare strategy.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Herb Kelleher's",
+        "THE",
+        "Southwest Airlines",
+        "Southwest's",
+        "Customer"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.2"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch01.fact.3",
+      "claim": "The journalistic inverted pyramid places the most important information first and arranges later details in descending importance.",
+      "mechanism": "Because readers see the core immediately and editors can cut from the bottom, the structure protects the lead under attention and space constraints.",
+      "commonError": "News written as an inverted pyramid should begin with background and reveal the main event at the end.",
+      "whyWrong": "That mystery structure reverses the form's priority and risks hiding or cutting the decisive fact.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "News"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.3"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch01.fact.4",
+      "claim": "Iyengar and Lepper's 2000 experiments compared limited sets of 6 choices with extensive sets of 24 or 30 choices.",
+      "mechanism": "Because evaluating many attractive alternatives raises comparison and commitment costs, the extensive sets drew interest but the limited sets more often produced action.",
+      "commonError": "The experiments showed that people dislike having any choice at all.",
+      "whyWrong": "The comparison was limited choice versus extensive choice, and the smaller array still preserved meaningful agency.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "6",
+        "24",
+        "30",
+        "2000"
+      ],
+      "groundedEntities": [
+        "Iyengar",
+        "Lepper's"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.4"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch01.fact.5",
+      "claim": "Jeff Hawkins used a wooden block while designing the original PalmPilot to rehearse calendar, contact, and button use.",
+      "mechanism": "Because pretending to use the object exposed form-factor and interaction problems before electronics were built, the prototype kept development tied to everyday behavior.",
+      "commonError": "The wooden block was a promotional mock-up created after the PalmPilot design was complete.",
+      "whyWrong": "Hawkins used it during design as a behavioral test, before a functioning electronic prototype existed.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Jeff Hawkins",
+        "PalmPilot",
+        "Hawkins"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.5"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch01.fact.6",
+      "claim": "A high-concept pitch such as Speed framed as Die Hard on a bus compresses a new premise through a familiar schema.",
+      "mechanism": "Because the audience already knows the reference film's action structure, the analogy transfers many expectations without a long synopsis.",
+      "commonError": "A high-concept pitch works by listing the new film's cast, budget, and complete plot.",
+      "whyWrong": "Those details expand the message; the compression comes from mapping the unfamiliar project onto existing knowledge.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Speed",
+        "Die Hard",
+        "Those"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.6"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch01.fact.7",
+      "claim": "The pomelo explanation becomes compact when the unfamiliar fruit is linked to the familiar grapefruit schema.",
+      "mechanism": "Because an existing fruit schema supplies shape, texture, and category expectations, only the differences need fresh explanation.",
+      "commonError": "Schemas are technical definitions that require audiences to forget prior knowledge.",
+      "whyWrong": "Schemas are useful precisely because they reuse structured prior knowledge and reduce what must be taught from scratch.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Schemas"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.7"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch01.fact.8",
+      "claim": "A proverb can be compact without being shallow because a short concrete phrase can support repeated interpretation across situations.",
+      "mechanism": "Because the listener supplies familiar social experience around the phrase, a few words can carry a durable decision rule.",
+      "commonError": "Any short sentence automatically has the depth and usefulness of a proverb.",
+      "whyWrong": "Length alone does not create meaning; the phrase must preserve a core insight that transfers to new cases.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Any",
+        "Length"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.8"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch01.fact.9",
+      "claim": "Disney's label cast members is a generative analogy for employees, not merely a decorative synonym.",
+      "mechanism": "Because the theater schema implies roles, audiences, performance, and backstage conduct, the label guides choices beyond the wording itself.",
+      "commonError": "A generative analogy only makes a message sound more imaginative and has no operational consequence.",
+      "whyWrong": "Its value lies in producing additional inferences that shape behavior when no script covers the situation.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Disney's",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch01.ex.commanders-intent",
+      "label": "U.S. Army Commander's Intent",
+      "summary": "U.S. Army planning separates a commander's intent into purpose, key tasks, and end state. Those three elements preserve the mission's core even when battlefield conditions invalidate detailed instructions.",
+      "realWorld": true,
+      "naturalSetting": "U.S. Army Commander's Intent U.S",
+      "hardSpecifics": [
+        "purpose, key tasks, and end state",
+        "U.S. Army planning"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "purpose, key tasks, and end state"
+      ]
+    },
+    {
+      "id": "ch01.ex.southwest",
+      "label": "Herb Kelleher / Southwest Airlines",
+      "summary": "Herb Kelleher framed Southwest Airlines as THE low-fare airline. The phrase supplied a decision test: an attractive service idea mattered only if it supported the low-fare position.",
+      "realWorld": true,
+      "naturalSetting": "Herb Kelleher",
+      "hardSpecifics": [
+        "Herb Kelleher",
+        "THE low-fare airline"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch01.ex.choice-study",
+      "label": "Sheena Iyengar and Mark Lepper choice experiments",
+      "summary": "Sheena Iyengar and Mark Lepper compared limited arrays of 6 options with extensive arrays of 24 or 30. Across jam, chocolate, and essay settings, the smaller choice set produced more purchasing or task completion than the larger set.",
+      "realWorld": true,
+      "naturalSetting": "Sheena Iyengar",
+      "hardSpecifics": [
+        "6 options",
+        "24 or 30"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch01.ex.palm",
+      "label": "Jeff Hawkins / PalmPilot wooden prototype",
+      "summary": "Jeff Hawkins carried a wooden PalmPilot prototype and pretended to check appointments, phone numbers, and buttons before the electronics existed. The wooden block forced the product vision into a pocket-sized, testable form.",
+      "realWorld": true,
+      "naturalSetting": "Jeff Hawkins",
+      "hardSpecifics": [
+        "Jeff Hawkins",
+        "wooden PalmPilot prototype"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Simple idea",
+      "members": [
+        "core",
+        "compact"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Commander's Intent",
+      "members": [
+        "purpose",
+        "key tasks",
+        "end state"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch01.concept",
+      "kind": "concept",
+      "label": "core plus compact",
+      "text": "Find the single most important meaning, then express it in a form small enough to travel while retaining enough depth to guide action. A prioritized message survives handoffs and gives people a decision rule when the original planner is absent.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.commanders-intent",
+      "kind": "named_example",
+      "label": "U.S. Army Commander's Intent",
+      "text": "U.S. Army planning separates a commander's intent into purpose, key tasks, and end state. Those three elements preserve the mission's core even when battlefield conditions invalidate detailed instructions. A simple core should enable local improvisation without losing the desired outcome.",
+      "hardSpecifics": [
+        "purpose, key tasks, and end state",
+        "U.S. Army planning"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.southwest",
+      "kind": "named_example",
+      "label": "Herb Kelleher / Southwest Airlines",
+      "text": "Herb Kelleher framed Southwest Airlines as THE low-fare airline. The phrase supplied a decision test: an attractive service idea mattered only if it supported the low-fare position. A strategic core becomes useful when it rules choices in or out.",
+      "hardSpecifics": [
+        "Herb Kelleher",
+        "THE low-fare airline"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.choice-study",
+      "kind": "named_example",
+      "label": "Sheena Iyengar and Mark Lepper choice experiments",
+      "text": "Sheena Iyengar and Mark Lepper compared limited arrays of 6 options with extensive arrays of 24 or 30. Across jam, chocolate, and essay settings, the smaller choice set produced more purchasing or task completion than the larger set. More available options can obstruct commitment instead of improving it.",
+      "hardSpecifics": [
+        "6 options",
+        "24 or 30"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.palm",
+      "kind": "named_example",
+      "label": "Jeff Hawkins / PalmPilot wooden prototype",
+      "text": "Jeff Hawkins carried a wooden PalmPilot prototype and pretended to check appointments, phone numbers, and buttons before the electronics existed. The wooden block forced the product vision into a pocket-sized, testable form. A concrete compact representation can keep a complex development effort aligned with its core use.",
+      "hardSpecifics": [
+        "Jeff Hawkins",
+        "wooden PalmPilot prototype"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.1",
+      "kind": "testable_fact",
+      "label": "A U.S. Army Commander's Intent can be stated as purpose, key tasks, and end state.",
+      "text": "A U.S. Army Commander's Intent can be stated as purpose, key tasks, and end state. Because those elements specify why the mission exists, what must occur, and what success looks like, subordinates can adapt tactics without abandoning the objective. Commander's Intent is a condensed sequence of every maneuver in the original plan. A sequence becomes obsolete when conditions change; intent preserves the outcome and constraints rather than every step.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.2",
+      "kind": "testable_fact",
+      "label": "Herb Kelleher's phrase THE low-fare airline served Southwest Airlines as a strategic decision filter.",
+      "text": "Herb Kelleher's phrase THE low-fare airline served Southwest Airlines as a strategic decision filter. Because proposed choices could be tested against the low-fare position, the phrase converted strategy into a repeatable operating judgment. Southwest's core meant approving any amenity that customers said they liked. Customer appeal alone did not settle the choice; the amenity also had to preserve the governing low-fare strategy.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.3",
+      "kind": "testable_fact",
+      "label": "The journalistic inverted pyramid places the most important information first and arranges later details in descending importance.",
+      "text": "The journalistic inverted pyramid places the most important information first and arranges later details in descending importance. Because readers see the core immediately and editors can cut from the bottom, the structure protects the lead under attention and space constraints. News written as an inverted pyramid should begin with background and reveal the main event at the end. That mystery structure reverses the form's priority and risks hiding or cutting the decisive fact.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.4",
+      "kind": "testable_fact",
+      "label": "Iyengar and Lepper's 2000 experiments compared limited sets of 6 choices with extensive sets of 24 or 30 choices.",
+      "text": "Iyengar and Lepper's 2000 experiments compared limited sets of 6 choices with extensive sets of 24 or 30 choices. Because evaluating many attractive alternatives raises comparison and commitment costs, the extensive sets drew interest but the limited sets more often produced action. The experiments showed that people dislike having any choice at all. The comparison was limited choice versus extensive choice, and the smaller array still preserved meaningful agency.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.5",
+      "kind": "testable_fact",
+      "label": "Jeff Hawkins used a wooden block while designing the original PalmPilot to rehearse calendar, contact, and button use.",
+      "text": "Jeff Hawkins used a wooden block while designing the original PalmPilot to rehearse calendar, contact, and button use. Because pretending to use the object exposed form-factor and interaction problems before electronics were built, the prototype kept development tied to everyday behavior. The wooden block was a promotional mock-up created after the PalmPilot design was complete. Hawkins used it during design as a behavioral test, before a functioning electronic prototype existed.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.6",
+      "kind": "testable_fact",
+      "label": "A high-concept pitch such as Speed framed as Die Hard on a bus compresses a new premise through a familiar schema.",
+      "text": "A high-concept pitch such as Speed framed as Die Hard on a bus compresses a new premise through a familiar schema. Because the audience already knows the reference film's action structure, the analogy transfers many expectations without a long synopsis. A high-concept pitch works by listing the new film's cast, budget, and complete plot. Those details expand the message; the compression comes from mapping the unfamiliar project onto existing knowledge.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.7",
+      "kind": "testable_fact",
+      "label": "The pomelo explanation becomes compact when the unfamiliar fruit is linked to the familiar grapefruit schema.",
+      "text": "The pomelo explanation becomes compact when the unfamiliar fruit is linked to the familiar grapefruit schema. Because an existing fruit schema supplies shape, texture, and category expectations, only the differences need fresh explanation. Schemas are technical definitions that require audiences to forget prior knowledge. Schemas are useful precisely because they reuse structured prior knowledge and reduce what must be taught from scratch.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.8",
+      "kind": "testable_fact",
+      "label": "A proverb can be compact without being shallow because a short concrete phrase can support repeated interpretation across situations.",
+      "text": "A proverb can be compact without being shallow because a short concrete phrase can support repeated interpretation across situations. Because the listener supplies familiar social experience around the phrase, a few words can carry a durable decision rule. Any short sentence automatically has the depth and usefulness of a proverb. Length alone does not create meaning; the phrase must preserve a core insight that transfers to new cases.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.9",
+      "kind": "testable_fact",
+      "label": "Disney's label cast members is a generative analogy for employees, not merely a decorative synonym.",
+      "text": "Disney's label cast members is a generative analogy for employees, not merely a decorative synonym. Because the theater schema implies roles, audiences, performance, and backstage conduct, the label guides choices beyond the wording itself. A generative analogy only makes a message sound more imaginative and has no operational consequence. Its value lies in producing additional inferences that shape behavior when no script covers the situation.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.framework.simple.idea",
+      "kind": "framework",
+      "label": "Simple idea",
+      "text": "core, compact",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.framework.commander.s.intent",
+      "kind": "framework",
+      "label": "Commander's Intent",
+      "text": "purpose, key tasks, end state",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "6",
+    "24",
+    "30",
+    "2000",
+    "3"
+  ],
+  "allowedEntities": [
+    "Simple",
+    "Simplicity",
+    "Familiar",
+    "Find",
+    "Prioritization",
+    "Schemas",
+    "Generative",
+    "Too",
+    "U.S. Army Commander's Intent",
+    "U.S. Army",
+    "Those",
+    "Herb Kelleher",
+    "Southwest Airlines",
+    "THE",
+    "Sheena Iyengar",
+    "Mark Lepper",
+    "Across",
+    "More",
+    "Jeff Hawkins",
+    "PalmPilot",
+    "Sony's",
+    "JFK's",
+    "A U.S. Army Commander's Intent",
+    "Commander's Intent",
+    "Herb Kelleher's",
+    "Southwest's",
+    "Customer",
+    "News",
+    "Iyengar",
+    "Lepper's",
+    "Hawkins",
+    "Speed",
+    "Die Hard",
+    "Any",
+    "Length",
+    "Disney's",
+    "Its",
+    "Compactness",
+    "Rehearsing",
+    "Herb Kelleher / Southwest Airlines",
+    "Sheena Iyengar and Mark Lepper choice experiments",
+    "Jeff Hawkins / PalmPilot wooden prototype"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch01.ex.commanders-intent",
+      "warning": "Keep examples about U.S. Army Commander's Intent source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.ex.southwest",
+      "warning": "Keep examples about Herb Kelleher / Southwest Airlines source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.ex.choice-study",
+      "warning": "Keep examples about Sheena Iyengar and Mark Lepper choice experiments source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.ex.palm",
+      "warning": "Keep examples about Jeff Hawkins / PalmPilot wooden prototype source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch01.fact.4"
+}

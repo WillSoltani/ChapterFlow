@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 4,
+  "chapterTitle": "The Faults of Others",
+  "focus": "Moral judgment is systematically asymmetric: people detect hypocrisy, selfishness, and aggression in others while rapidly producing justifications for themselves. Conflict becomes more tractable when attention is deliberately redirected toward one's own contribution.",
+  "coreClaim": "The most useful first move in moral conflict is to search for a specific fault in one's own conduct before prosecuting the other side.",
+  "centralConcept": {
+    "id": "ch04.concept",
+    "name": "inner lawyer",
+    "plainDefinition": "Reasoning often behaves like an advocate hired after an intuitive verdict, gathering evidence for the preferred side and explaining away inconvenient facts.",
+    "whyItMatters": "Recognizing advocacy as a default makes self-scrutiny an active practice instead of an assumption that good intentions guarantee accurate judgment."
+  },
+  "keyClaims": [
+    "Moral hypocrisy seeks the appearance of fairness without accepting its personal cost.",
+    "People demand stronger evidence for opposing conclusions than for conclusions they already favor.",
+    "Intentions dominate self-judgment while visible consequences dominate judgments of others.",
+    "Perpetrators and victims construct different narratives of the same harm, especially about provocation and motive.",
+    "The myth of pure evil exaggerates villains' unity, cruelty, and lack of perspective, making real conflict harder to understand.",
+    "Debiasing is more effective when a person is forced to examine personal behavior than when given a generic warning about bias."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch04.example.batson",
+      "label": "C. Daniel Batson / moral-hypocrisy task",
+      "summary": "Participants could assign a desirable task to themselves or another person and were offered a coin as a fair allocation device. Many who used the coin still ended with the desirable task while preserving a favorable view of their morality. Verified anchors: C. Daniel Batson; desirable and undesirable task assignment.",
+      "teachesWhat": "A fairness procedure can be recruited to protect self-image without producing fair behavior.",
+      "hardSpecifics": [
+        "C. Daniel Batson",
+        "desirable and undesirable task assignment",
+        "optional coin-flip fairness procedure",
+        "moral-hypocrisy experiments reported in 1997 and 2002"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.example.kuhn",
+      "label": "Deanna Kuhn and David Perkins / argument evaluation",
+      "summary": "Research on reasoning about public issues found that people readily generate supporting considerations for their own position and struggle to produce or evaluate counterevidence. Intelligence alone does not remove the directional pull of prior belief. Verified anchors: Deanna Kuhn; David Perkins.",
+      "teachesWhat": "Reasoning skill can strengthen a case without making the search for evidence evenhanded.",
+      "hardSpecifics": [
+        "Deanna Kuhn",
+        "David Perkins",
+        "arguments about public-policy issues",
+        "difficulty generating counterevidence"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.example.baumeister",
+      "label": "Roy Baumeister / myth of pure evil",
+      "summary": "Comparisons of victim and perpetrator accounts reveal recurring narrative differences. Victims emphasize innocent suffering and lasting damage; perpetrators minimize scope, cite provocation, and view the event as bounded rather than as proof of a wholly evil identity. Verified anchors: Roy F. Baumeister; Evil: Inside Human Violence and Cruelty published in 1997.",
+      "teachesWhat": "Understanding an offender's causal story is not exoneration; it is necessary for diagnosing real conflict.",
+      "hardSpecifics": [
+        "Roy F. Baumeister",
+        "Evil: Inside Human Violence and Cruelty published in 1997",
+        "victim-perpetrator narrative asymmetry"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch04.example.burns",
+      "label": "David Burns / anger inventory",
+      "summary": "Cognitive-therapy exercises for anger ask a person to reconstruct a conflict, identify distorted appraisals, and name a concrete personal contribution. The emotional shift begins when the self-protective account is made specific enough to test. Verified anchors: David D. Burns; Feeling Good cognitive-therapy exercises.",
+      "teachesWhat": "Self-criticism becomes constructive when it identifies one revisable act rather than declaring the whole self guilty.",
+      "hardSpecifics": [
+        "David D. Burns",
+        "Feeling Good cognitive-therapy exercises",
+        "written examination of anger-producing thoughts"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Looking for one's own fault is not moral equivalence, surrender, or an instruction to ignore abuse. The move is epistemic: recover omitted information about personal causation so that boundaries and repair rest on a less distorted account.",
+  "voiceCues": [
+    "anchors the inquiry in the speck-and-log image",
+    "moves from laboratory cheating to large moral narratives",
+    "uses the courtroom image of an inner lawyer",
+    "ends with a concrete self-audit for a recent conflict"
+  ],
+  "forbiddenLeakage": [
+    "reciprocity tactics and Tit for Tat",
+    "post-traumatic-growth life stories",
+    "autonomy, community, and divinity as three moral ethics"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch04.fact.1",
+      "claim": "Batson's moral-hypocrisy studies let participants allocate desirable and undesirable tasks between themselves and another person.",
+      "becauseMechanism": "Because The setup separated a stated wish to be fair from willingness to accept the personal cost of fairness.",
+      "commonError": "The experiment measured whether participants understood what fairness meant.",
+      "errorIsWhy": "Participants knew the moral standard; the test concerned whether behavior followed it when self-interest was at stake.",
+      "derivedFrom": "ch04.example.batson"
+    },
+    {
+      "id": "ch04.fact.2",
+      "claim": "Providing a coin as a fair procedure did not guarantee an even distribution of the desirable task.",
+      "becauseMechanism": "Because Participants could avoid the flip, disregard it, or use the act of flipping to preserve a moral self-image.",
+      "commonError": "A transparent fairness device automatically removes self-serving behavior.",
+      "errorIsWhy": "A procedure changes behavior only if its outcome is followed rather than used symbolically.",
+      "derivedFrom": "ch04.example.batson"
+    },
+    {
+      "id": "ch04.fact.3",
+      "claim": "Myside bias affects the generation and evaluation of arguments about contested issues.",
+      "becauseMechanism": "Because Prior belief directs search toward supportive reasons and sets a higher acceptance threshold for contrary evidence.",
+      "commonError": "Bias disappears when people are intelligent and can reason fluently.",
+      "errorIsWhy": "Reasoning ability can improve advocacy for a preferred conclusion without making evidence search symmetric.",
+      "derivedFrom": "ch04.example.kuhn"
+    },
+    {
+      "id": "ch04.fact.4",
+      "claim": "Victim and perpetrator accounts of the same harm often differ in temporal scope and attributed motive.",
+      "becauseMechanism": "Because Victims encode lasting consequences while perpetrators focus on immediate provocation and a bounded act.",
+      "commonError": "Only one side constructs a self-serving narrative while the other recalls a neutral record.",
+      "errorIsWhy": "Perspective and self-protection shape selection and emphasis on both sides.",
+      "derivedFrom": "ch04.example.baumeister"
+    },
+    {
+      "id": "ch04.fact.5",
+      "claim": "The myth of pure evil portrays harm as unprovoked, intentional, and committed by a consistently monstrous outsider.",
+      "becauseMechanism": "Because That story protects the victim group's moral identity and compresses complex escalation into a simple agent cause.",
+      "commonError": "Rejecting the pure-evil story means denying that severe wrongdoing exists.",
+      "errorIsWhy": "Causal complexity and moral condemnation can coexist.",
+      "derivedFrom": "ch04.example.baumeister"
+    },
+    {
+      "id": "ch04.fact.6",
+      "claim": "People commonly judge their own conduct with privileged access to intention but judge others from observable behavior and outcomes.",
+      "becauseMechanism": "Because Private motives are immediately available for self-explanation, while another person's inner constraints must be inferred.",
+      "commonError": "Equivalent evidence is used to evaluate self and other.",
+      "errorIsWhy": "The informational inputs are asymmetric even before motivational bias is added.",
+      "derivedFrom": "ch04.concept"
+    },
+    {
+      "id": "ch04.fact.7",
+      "claim": "A generic instruction to be unbiased is weaker than a task that forces examination of one's own conduct.",
+      "becauseMechanism": "Because Concrete self-examination supplies disconfirming evidence that the inner lawyer would otherwise omit.",
+      "commonError": "Knowing the name of a bias is enough to neutralize it.",
+      "errorIsWhy": "Bias knowledge can itself become evidence of sophistication while the directional search continues.",
+      "derivedFrom": "ch04.example.burns"
+    },
+    {
+      "id": "ch04.fact.8",
+      "claim": "Naming one specific personal fault in a conflict is different from accepting total blame.",
+      "becauseMechanism": "Because A bounded contribution can be revised without erasing the other party's agency or the need for protection.",
+      "commonError": "Self-scrutiny requires admitting the other person was right about everything.",
+      "errorIsWhy": "Causal responsibility can be distributed and issue-specific.",
+      "derivedFrom": "ch04.example.burns"
+    },
+    {
+      "id": "ch04.fact.9",
+      "claim": "Moral reasoning often begins after an intuitive evaluation has already favored one side.",
+      "becauseMechanism": "Because Automatic appraisal supplies a conclusion and controlled reasoning searches memory for defensible support.",
+      "commonError": "People ordinarily collect neutral evidence first and form moral judgments only afterward.",
+      "errorIsWhy": "Fast evaluation commonly precedes the explicit reasons offered in conversation.",
+      "derivedFrom": "ch04.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Myth of pure evil narrative",
+      "members": [
+        "intentional harm",
+        "innocent victim",
+        "unprovoked act",
+        "evil agent",
+        "large and enduring consequences"
+      ]
+    }
+  ],
+  "paraphraseNotes": "Moral perception offers high-resolution images of other people's faults and flattering compression of one's own. C. Daniel Batson's allocation studies show the pattern under controlled conditions. Participants knew that a desirable and an undesirable task had to be divided and could use a coin to appear fair, yet a fairness device did not reliably make outcomes fair. The useful distinction is between wanting to be moral and wanting to appear moral to oneself. Deanna Kuhn and David Perkins reveal a parallel pattern in argument. People search readily for reasons supporting an existing view and apply more demanding standards to opposition; intellectual skill can produce a better advocate rather than a neutral judge. Roy Baumeister extends the asymmetry to stories of harm. Victims remember innocence, magnitude, and lasting consequences. Perpetrators highlight provocation, limited intent, and a brief episode. The familiar pure-evil narrative turns one side into a unified monster, which can support condemnation but often blocks causal understanding and conflict reduction. None of this requires treating both sides as equally responsible. The central intervention is narrower: before prosecuting the other person, locate one concrete way personal behavior was insensitive, hurtful, or inconsistent with a stated principle. David Burns's cognitive exercises make that search testable by writing down anger-producing interpretations and examining them. Expect immediate counterargument from the inner lawyer. The point is not global shame and not surrender of a legitimate boundary. It is to restore omitted causal information. A person who can see one personal contribution gains a new lever for apology, changed behavior, or a clearer request. Moral humility is therefore a method of better perception, not a declaration that wrongdoing is unreal."
+}

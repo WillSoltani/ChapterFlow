@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "the-happiness-hypothesis-ch02",
+  "chapterNumber": 2,
+  "title": "Changing Your Mind",
+  "coreMove": "Because Each interpretation supplies confirming material for the others and keeps negative appraisal active.",
+  "thesis": "Aaron Beck's model treats negative views of self, world, and future as mutually reinforcing features of depression.",
+  "readerPromise": "After this chapter, a reader can because Each interpretation supplies confirming material for the others and keeps negative appraisal active.",
+  "ownedCases": [
+    {
+      "id": "ch02.example.beck",
+      "label": "Aaron Beck / cognitive therapy"
+    },
+    {
+      "id": "ch02.example.meditation",
+      "label": "Buddhist insight meditation / attentional training"
+    },
+    {
+      "id": "ch02.example.kramer",
+      "label": "Peter Kramer / Listening to Prozac"
+    },
+    {
+      "id": "ch02.example.pelham",
+      "label": "Brett Pelham and colleagues / implicit egotism"
+    }
+  ],
+  "notYours": [
+    "Alois Stutzer and Bruno Frey / commuting paradox",
+    "Antonio Damasio / ventromedial prefrontal patients",
+    "Aristotle / virtue and the mean",
+    "Aristotle / virtue plus external goods",
+    "Benjamin Franklin / thirteen-virtue chart",
+    "Buddhist nonattachment and Benjamin Franklin's striving",
+    "C. Daniel Batson / moral-hypocrisy task",
+    "Christopher Peterson and Martin Seligman / VIA classification",
+    "Cindy Hazan and Phillip Shaver / adult romantic attachment",
+    "Dacher Keltner and Jonathan Haidt / awe prototype",
+    "Dan McAdams / redemptive life stories",
+    "Dan McAdams / three levels of personality",
+    "Daniel Wegner / white-bear suppression experiments",
+    "David Burns / anger inventory",
+    "Deanna Kuhn and David Perkins / argument evaluation",
+    "Dennis Regan / Coca-Cola reciprocity experiment",
+    "Harry Harlow / cloth and wire surrogate mothers",
+    "Hazan and colleagues / transfer of attachment functions",
+    "Heraclitus / conflict of opposites",
+    "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    2,
+    2,
+    1,
+    1,
+    0,
+    2,
+    1,
+    0,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on characteristic adaptations and narrative identity",
+    "flavor (ch01): venue: a working note on cloth covered surrogate mother",
+    "flavor (ch01): venue: a dinner table",
+    "flavor (ch01): frame: a first attempt at anomie as weakened normative structure that gets corrected",
+    "flavor (ch01): frame: a first encounter with anomie as weakened normative structure that sets a benchmark",
+    "flavor (ch03): venue: a shared photo album"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a shared grocery list",
+    "venue: a walk around the block",
+    "venue: a morning routine",
+    "frame: two stakeholders disagree about anomie as weakened normative structure before deciding",
+    "frame: a first encounter with arguments about public policy issues that sets a benchmark"
+  ],
+  "architectureFamily": "misconception-reversal",
+  "openerType": "statistic",
+  "challengeFrame": "before-your-next-X",
+  "practiceShape": "two-step-sequence",
+  "exampleLenses": [
+    "before-after-ledger",
+    "postmortem",
+    "walkthrough"
+  ],
+  "practiceVerb": "mark",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "rather",
+    "across",
+    "different",
+    "life",
+    "repeated",
+    "consequences"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "failure",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script",
+    "measure-one-number"
+  ],
+  "quizStemShapes": [
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority"
+  ],
+  "quizFailureModes": [
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction"
+  ],
+  "questionFactOrder": [
+    5,
+    4,
+    3,
+    7,
+    2,
+    8,
+    9,
+    1,
+    6
+  ],
+  "memorableShapes": [
+    "cost-statement",
+    "pointed-question",
+    "imperative"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "cost-speak",
+    "question-speak"
+  ],
+  "shellRegister": "condition-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Aaron Beck / cognitive therapy",
+    "caseId": "ch02.example.beck",
+    "aliases": [
+      "Aaron Beck / cognitive therapy",
+      "Beck",
+      "Aaron"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because Severing major interhemispheric pathways can limit the spread of seizure activity from one hemisphere to the other.",
+    "next": "Because Receiving the favor activated a norm of repayment before the later request was made."
+  },
+  "totalChapters": 11
+}

@@ -1,0 +1,277 @@
+{
+  "schemaVersion": "chapterflow.researchRunManifest.v1",
+  "runId": "20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33",
+  "bookId": "nudge",
+  "createdAt": "2026-07-17T09:00:14.900Z",
+  "updatedAt": "2026-07-17T09:41:51.056Z",
+  "overallStatus": "complete",
+  "input": {
+    "title": "Nudge",
+    "author": "Richard H. Thaler and Cass R. Sunstein",
+    "bookIdHint": "nudge",
+    "hash": "d2c73b602047cd362439298cdd371c3cf034b72733b93b808ad49a00e64a8e29"
+  },
+  "bibliography": {
+    "hash": "13e5984c21ae87a4973d5c92c1abdcd5aee8116dfcb3c0a65fa9bfd32dcc954e",
+    "path": "source-freeze/bibliography.raw.json"
+  },
+  "expectedChapters": [
+    {
+      "number": 1,
+      "title": "Biases and Blunders"
+    },
+    {
+      "number": 2,
+      "title": "Resisting Temptation"
+    },
+    {
+      "number": 3,
+      "title": "Following the Herd"
+    },
+    {
+      "number": 4,
+      "title": "When Do We Need a Nudge?"
+    },
+    {
+      "number": 5,
+      "title": "Choice Architecture"
+    },
+    {
+      "number": 6,
+      "title": "But Wait, There's More"
+    },
+    {
+      "number": 7,
+      "title": "Smart Disclosure"
+    },
+    {
+      "number": 8,
+      "title": "#Sludge"
+    },
+    {
+      "number": 9,
+      "title": "Save More Tomorrow"
+    },
+    {
+      "number": 10,
+      "title": "Do Nudges Last Forever? Perhaps in Sweden"
+    },
+    {
+      "number": 11,
+      "title": "Borrow More Today: Mortgages and Credit Cards"
+    },
+    {
+      "number": 12,
+      "title": "Insurance: Don't Sweat the Small Stuff"
+    },
+    {
+      "number": 13,
+      "title": "Organ Donations: The Default Solution Illusion"
+    },
+    {
+      "number": 14,
+      "title": "Saving the Planet"
+    },
+    {
+      "number": 15,
+      "title": "Much Ado About Nudging"
+    }
+  ],
+  "expectedChaptersHash": "19de61e5c995361df806cd0862e41db7d61dae96eac889e68c55e98e4fb8a8af",
+  "compatibility": {
+    "codeVersion": "researcher-durable-resume-2026-06-23.1",
+    "promptHash": "c1295e78b23f27d32da0b6d6f55fc104bccfef947c5fd5a6dab8781c281afb2b",
+    "configHash": "84bc3493f018b7ff1f4100de1a09d08d580d455fe83b3d546ea04a6be07889b4",
+    "provider": "codex-live-web",
+    "model": "gpt-5"
+  },
+  "chapters": {
+    "10": {
+      "chapterNumber": 10,
+      "chapterTitle": "Do Nudges Last Forever? Perhaps in Sweden",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "accac52a80c3be18416c57f6232e4186d05e5341b51d31af5cb00881dd66d487",
+      "outputTextHash": "9a0a27a97e9424109e1cb2dd992952876ba38b7d608ebe8fd391da2a29b9a0d1",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "11": {
+      "chapterNumber": 11,
+      "chapterTitle": "Borrow More Today: Mortgages and Credit Cards",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "fa8610a1d817ccddbb7dafac55ba252bef2e002c8997bf54f36de823502803ce",
+      "outputTextHash": "48706463360193423bc6fd244dc5b3abfcf2d5d968ba1e330a0bf03147a8358b",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "12": {
+      "chapterNumber": 12,
+      "chapterTitle": "Insurance: Don't Sweat the Small Stuff",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "0b186afd9a3cfffd28b2f0f1ec4c78aafb5aa5bde67445a8b586e9b713b3c21f",
+      "outputTextHash": "6d3f22d7de91540a5056084332c3acdf506879b5447f1effbfdd1f8165f13822",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "13": {
+      "chapterNumber": 13,
+      "chapterTitle": "Organ Donations: The Default Solution Illusion",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "6f6d81a42e977fea1bdfb091d35e3592adf8b5cb68a2e7e471a7473b22c49501",
+      "outputTextHash": "8b280e76308560206ea15da530b38f899f891cbacf2ed3aba2da6667b4c67a59",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "14": {
+      "chapterNumber": 14,
+      "chapterTitle": "Saving the Planet",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "3a6486b5b8cda53d324bb05504602551579daf72e8a94da9960ac59b79741ad4",
+      "outputTextHash": "4d1388b8de6052dda6a40732039783f301009045f8724faa3f7079405a1c800d",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "15": {
+      "chapterNumber": 15,
+      "chapterTitle": "Much Ado About Nudging",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "38649780b3f3bc65ca199b3a5e2beb4d03663c9fb4deb071d6c3b1e6e16ee779",
+      "outputTextHash": "b639e948efe3cd0d4571585cce97abb5bfdaafb965fb06094a8150a44beb8807",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "01": {
+      "chapterNumber": 1,
+      "chapterTitle": "Biases and Blunders",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "33d1cbe007eef9d0af5b319d67a37108a7b47241e187730d6ad653962d62528d",
+      "outputTextHash": "0e70633629a5f00b5059eca51230e6fc23e5c222e4748e71699fb545353e6af8",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "02": {
+      "chapterNumber": 2,
+      "chapterTitle": "Resisting Temptation",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "992c6222bf891255d5fe8366212a5779f69fbff4c1a940f9c33e1c96107b9d00",
+      "outputTextHash": "03c86c4261a9e6b1f34c33f740bcadbf71e5f5c7cb4a02686cf860a4b9167a1a",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "03": {
+      "chapterNumber": 3,
+      "chapterTitle": "Following the Herd",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "c117b3e1399867ebf748606699eff11025eb6412c25826c293ba033285a37787",
+      "outputTextHash": "ed71106189476352d35a2ab1faf8f59d5aaa95469a12976dddce38ddfdcd7827",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "04": {
+      "chapterNumber": 4,
+      "chapterTitle": "When Do We Need a Nudge?",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "15d3f4933aae2e134e70ccea669a7c662fbeffe63a6bbd5655b00066b6068786",
+      "outputTextHash": "56ab8103eee41aa6d0c1cfafaa531c72481292e5dba3af5dd2ebdb502e2da766",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "05": {
+      "chapterNumber": 5,
+      "chapterTitle": "Choice Architecture",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:51.056Z",
+      "outputJsonHash": "07f08ed4810e4bbecfe7f9d4a905d62b6f7171be3c924de14f6dff210d140a51",
+      "outputTextHash": "1dd39d7c3eb456760cfcf0c6a34c15818dbf1a1c0c1314208f581924e9376bf4",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "06": {
+      "chapterNumber": 6,
+      "chapterTitle": "But Wait, There's More",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "cf1a940cc0c2a86fc2a99dbd302765113120f70c9dbf07426384e4ae5ed1f89a",
+      "outputTextHash": "6c8d03c5cd41dda71f942a858cbefca56055a342fbe4fa6074e4ddb46b555baf",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "07": {
+      "chapterNumber": 7,
+      "chapterTitle": "Smart Disclosure",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "f660064eebaa952c5d951f9b197e7d6ad4f544bb05e8d4f08032bf4de3b6e9b8",
+      "outputTextHash": "a57b6eb9c5c7a64663ce7bdab51a1cb428c2d238354e211272ed95487231067a",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "08": {
+      "chapterNumber": 8,
+      "chapterTitle": "#Sludge",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "3228c261e906cddae917821e4fc8fa6e549fd565f5f7513ae3de08e287669835",
+      "outputTextHash": "def5afadbe5e71b2723fbc0b10046be2e8dc807675602caa25bec8eacab386ce",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    },
+    "09": {
+      "chapterNumber": 9,
+      "chapterTitle": "Save More Tomorrow",
+      "status": "succeeded",
+      "attempts": 1,
+      "errors": [],
+      "updatedAt": "2026-07-17T09:41:15.413Z",
+      "outputJsonHash": "028b1a451af22dc422ddc2bcecb4eddb6c8bc3dad7dd8bb10a775693ef5ae1b1",
+      "outputTextHash": "1a045d9499a4da23a7a4efa32d13a0bbe507c617342f5d8eda1a971c155e70fe",
+      "completedAt": "2026-07-17T09:26:00.779Z"
+    }
+  },
+  "coherence": {
+    "status": "passed",
+    "checkedAt": "2026-07-17T09:26:00.779Z",
+    "blockerCount": 0
+  },
+  "events": [
+    {
+      "at": "2026-07-17T09:00:14.900Z",
+      "type": "run.created",
+      "message": "Created fresh live-research run manifest."
+    },
+    {
+      "at": "2026-07-17T09:26:00.779Z",
+      "type": "source_coherence.passed",
+      "message": "Source coherence PASS (0 blocker, 0 major, 0 minor)."
+    },
+    {
+      "at": "2026-07-17T09:26:00.779Z",
+      "type": "run.complete",
+      "message": "Fresh live-research sidecars, source freeze, and canonical chapter index completed."
+    }
+  ]
+}

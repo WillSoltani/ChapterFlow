@@ -1,0 +1,770 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch13",
+  "chapterNumber": 13,
+  "chapterTitle": "Organ Donations: The Default Solution Illusion",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch13.source.json",
+  "sourceHash": "sha256:94f78b754abe98176fe6eb79590322a80a0de8d66f6039e5557fa5558c010e3f",
+  "facts": [
+    {
+      "id": "ch13.fact.1",
+      "claim": "Johnson and Goldstein reported donor-registration figures near 12 percent in Germany and 99.98 percent in Austria.",
+      "mechanism": "This mechanism operates because germany required an affirmative opt-in while Austria treated nonresponse as donor status.",
+      "commonError": "The figures directly measure completed organ transplants.",
+      "whyWrong": "They describe recorded consent or non-objection, not clinical recovery.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "12",
+        "99.98"
+      ],
+      "groundedEntities": [
+        "Johnson",
+        "Goldstein",
+        "Germany",
+        "Austria. This",
+        "Austria",
+        "They"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch13.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch13.fact.2",
+      "claim": "Wales introduced soft deemed consent in 2015 and England's law took effect in May 2020.",
+      "mechanism": "This mechanism operates because the legal default changed while family consultation remained part of practice.",
+      "commonError": "Opt-out law authorizes routine recovery without contacting relatives.",
+      "whyWrong": "The systems are explicitly soft and families are consulted.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2015",
+        "2020"
+      ],
+      "groundedEntities": [
+        "Wales",
+        "England's",
+        "May",
+        "Opt-out"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch13.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch13.fact.3",
+      "claim": "US driver's-license and state-ID processes helped build donor registries covering roughly 170 million people.",
+      "mechanism": "This mechanism operates because a common recurring transaction prompts an explicit answer and makes registration immediate.",
+      "commonError": "Prompted choice can reach only people who visit transplant hospitals.",
+      "whyWrong": "Motor-vehicle agencies contact a far broader population.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "170",
+        "1000000"
+      ],
+      "groundedEntities": [
+        "Prompted",
+        "Motor-vehicle"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch13.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch13.fact.4",
+      "claim": "Presumed consent is a weaker signal of personal preference than an explicit recorded yes.",
+      "mechanism": "This mechanism operates because silence can result from inattention, ignorance, or inertia rather than endorsement.",
+      "commonError": "Failure to opt out proves considered support for donation.",
+      "whyWrong": "Nonresponse does not reveal why the person stayed with the default.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Presumed",
+        "Failure",
+        "Nonresponse"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch13.fact.4"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch13.fact.5",
+      "claim": "Prompted choice asks for a decision without presuming that silence reveals consent.",
+      "mechanism": "This mechanism operates because the prompt raises attention and records the answer the person actually supplies.",
+      "commonError": "Prompted choice requires coercing everyone to become a donor.",
+      "whyWrong": "A no remains available and can be recorded as clearly as a yes.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Prompted"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch13.fact.5"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch13.fact.6",
+      "claim": "First-person authorization gives a registered donor decision legal force after death.",
+      "mechanism": "This mechanism operates because procurement teams can rely on the individual's documented permission rather than treating it as an informal indication.",
+      "commonError": "A registry entry is always legally meaningless once family members object.",
+      "whyWrong": "State laws can make the donor's authorization binding, though teams still manage family conflict in practice.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "First-person",
+        "State"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch13.fact.6"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch13.fact.7",
+      "claim": "Soft opt-out may not increase donation if families refuse or cannot be consulted.",
+      "mechanism": "This mechanism operates because organ recovery depends on cooperation, medical suitability, timing, and clinical capacity beyond the legal default.",
+      "commonError": "Changing one form's default mechanically produces more transplantable organs.",
+      "whyWrong": "The clinical pathway contains several later gates.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Soft",
+        "Changing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch13.fact.7"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch13.fact.8",
+      "claim": "Family knowledge of the deceased person's wishes strengthens the donation decision.",
+      "mechanism": "This mechanism operates because a clear prior conversation reduces uncertainty during acute bereavement.",
+      "commonError": "Registry design makes family communication irrelevant.",
+      "whyWrong": "Families remain central in soft systems and in clinical practice.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Family",
+        "Registry",
+        "Families"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch13.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch13.fact.9",
+      "claim": "Organ-donation design must consider recipients, potential donors, donor families, and clinicians.",
+      "mechanism": "This mechanism operates because a policy that maximizes one group's outcome can impose consent uncertainty or operational burden on another.",
+      "commonError": "The number of people on the waiting list is the only relevant policy criterion.",
+      "whyWrong": "Autonomy, bereavement, and safe clinical execution also matter.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Organ-donation",
+        "Autonomy"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch13.fact.9"
+      ],
+      "teachingPriority": 5
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch13.ex.1",
+      "label": "Eric Johnson and Daniel Goldstein / European donor defaults",
+      "summary": "Johnson and Goldstein compared recorded consent under different national defaults, including roughly 12 percent in opt-in Germany and 99.98 percent in opt-out Austria. Their experiments also showed that a default could shift hypothetical donor choices.",
+      "realWorld": true,
+      "naturalSetting": "Eric Johnson",
+      "hardSpecifics": [
+        "Germany recorded about 12 percent donor consent",
+        "Austria recorded about 99.98 percent under opt-out"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch13.ex.2",
+      "label": "NHS England and Wales / soft opt-out",
+      "summary": "Wales adopted deemed consent in 2015 and England followed in May 2020. The systems remain soft: families are consulted, and if no relatives can be reached and no decision is recorded, donation does not proceed.",
+      "realWorld": true,
+      "naturalSetting": "NHS England",
+      "hardSpecifics": [
+        "Wales soft opt-out began in 2015",
+        "England deemed-consent law took effect in May 2020"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Wales soft opt-out began in 2015",
+        "England deemed-consent law took effect in May 2020"
+      ]
+    },
+    {
+      "id": "ch13.ex.3",
+      "label": "Donate Life America / motor-vehicle registration prompts",
+      "summary": "US states place donor questions in driver's-license and identification-card transactions and maintain registries covering roughly 170 million people. First-person authorization laws treat a recorded yes as legal permission rather than a tentative preference.",
+      "realWorld": true,
+      "naturalSetting": "Donate Life America",
+      "hardSpecifics": [
+        "roughly 170 million people in US donor registries",
+        "driver's-license or state-ID transactions prompt the decision"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "driver's-license or state-ID transactions prompt the decision"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Consent architectures",
+      "members": [
+        "explicit opt-in",
+        "presumed consent",
+        "prompted choice",
+        "mandated choice"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Affected parties",
+      "members": [
+        "recipients",
+        "potential donors",
+        "families",
+        "clinicians"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch13.concept",
+      "kind": "concept",
+      "label": "prompted organ-donor choice",
+      "text": "People are directly asked to record yes or no at a natural administrative touchpoint, with registration made simple. An explicit signal helps families and clinicians honor a person's preference while overcoming procrastination.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.ex.1",
+      "kind": "named_example",
+      "label": "Eric Johnson and Daniel Goldstein / European donor defaults",
+      "text": "Johnson and Goldstein compared recorded consent under different national defaults, including roughly 12 percent in opt-in Germany and 99.98 percent in opt-out Austria. Their experiments also showed that a default could shift hypothetical donor choices. Nonresponse rules have enormous effects on recorded consent.",
+      "hardSpecifics": [
+        "Germany recorded about 12 percent donor consent",
+        "Austria recorded about 99.98 percent under opt-out"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.ex.2",
+      "kind": "named_example",
+      "label": "NHS England and Wales / soft opt-out",
+      "text": "Wales adopted deemed consent in 2015 and England followed in May 2020. The systems remain soft: families are consulted, and if no relatives can be reached and no decision is recorded, donation does not proceed. A legal default does not translate mechanically into organ recovery.",
+      "hardSpecifics": [
+        "Wales soft opt-out began in 2015",
+        "England deemed-consent law took effect in May 2020"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.ex.3",
+      "kind": "named_example",
+      "label": "Donate Life America / motor-vehicle registration prompts",
+      "text": "US states place donor questions in driver's-license and identification-card transactions and maintain registries covering roughly 170 million people. First-person authorization laws treat a recorded yes as legal permission rather than a tentative preference. A recurring administrative touchpoint can create explicit, scalable consent.",
+      "hardSpecifics": [
+        "roughly 170 million people in US donor registries",
+        "driver's-license or state-ID transactions prompt the decision"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.fact.1",
+      "kind": "testable_fact",
+      "label": "Johnson and Goldstein reported donor-registration figures near 12 percent in Germany and 99.98 percent in Austria.",
+      "text": "Johnson and Goldstein reported donor-registration figures near 12 percent in Germany and 99.98 percent in Austria. This mechanism operates because germany required an affirmative opt-in while Austria treated nonresponse as donor status. The figures directly measure completed organ transplants. They describe recorded consent or non-objection, not clinical recovery.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.fact.2",
+      "kind": "testable_fact",
+      "label": "Wales introduced soft deemed consent in 2015 and England's law took effect in May 2020.",
+      "text": "Wales introduced soft deemed consent in 2015 and England's law took effect in May 2020. This mechanism operates because the legal default changed while family consultation remained part of practice. Opt-out law authorizes routine recovery without contacting relatives. The systems are explicitly soft and families are consulted.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.fact.3",
+      "kind": "testable_fact",
+      "label": "US driver's-license and state-ID processes helped build donor registries covering roughly 170 million people.",
+      "text": "US driver's-license and state-ID processes helped build donor registries covering roughly 170 million people. This mechanism operates because a common recurring transaction prompts an explicit answer and makes registration immediate. Prompted choice can reach only people who visit transplant hospitals. Motor-vehicle agencies contact a far broader population.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.fact.4",
+      "kind": "testable_fact",
+      "label": "Presumed consent is a weaker signal of personal preference than an explicit recorded yes.",
+      "text": "Presumed consent is a weaker signal of personal preference than an explicit recorded yes. This mechanism operates because silence can result from inattention, ignorance, or inertia rather than endorsement. Failure to opt out proves considered support for donation. Nonresponse does not reveal why the person stayed with the default.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.fact.5",
+      "kind": "testable_fact",
+      "label": "Prompted choice asks for a decision without presuming that silence reveals consent.",
+      "text": "Prompted choice asks for a decision without presuming that silence reveals consent. This mechanism operates because the prompt raises attention and records the answer the person actually supplies. Prompted choice requires coercing everyone to become a donor. A no remains available and can be recorded as clearly as a yes.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.fact.6",
+      "kind": "testable_fact",
+      "label": "First-person authorization gives a registered donor decision legal force after death.",
+      "text": "First-person authorization gives a registered donor decision legal force after death. This mechanism operates because procurement teams can rely on the individual's documented permission rather than treating it as an informal indication. A registry entry is always legally meaningless once family members object. State laws can make the donor's authorization binding, though teams still manage family conflict in practice.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.fact.7",
+      "kind": "testable_fact",
+      "label": "Soft opt-out may not increase donation if families refuse or cannot be consulted.",
+      "text": "Soft opt-out may not increase donation if families refuse or cannot be consulted. This mechanism operates because organ recovery depends on cooperation, medical suitability, timing, and clinical capacity beyond the legal default. Changing one form's default mechanically produces more transplantable organs. The clinical pathway contains several later gates.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.fact.8",
+      "kind": "testable_fact",
+      "label": "Family knowledge of the deceased person's wishes strengthens the donation decision.",
+      "text": "Family knowledge of the deceased person's wishes strengthens the donation decision. This mechanism operates because a clear prior conversation reduces uncertainty during acute bereavement. Registry design makes family communication irrelevant. Families remain central in soft systems and in clinical practice.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.fact.9",
+      "kind": "testable_fact",
+      "label": "Organ-donation design must consider recipients, potential donors, donor families, and clinicians.",
+      "text": "Organ-donation design must consider recipients, potential donors, donor families, and clinicians. This mechanism operates because a policy that maximizes one group's outcome can impose consent uncertainty or operational burden on another. The number of people on the waiting list is the only relevant policy criterion. Autonomy, bereavement, and safe clinical execution also matter.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.framework.consent.architectures",
+      "kind": "framework",
+      "label": "Consent architectures",
+      "text": "explicit opt-in, presumed consent, prompted choice, mandated choice",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch13.framework.affected.parties",
+      "kind": "framework",
+      "label": "Affected parties",
+      "text": "recipients, potential donors, families, clinicians",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "12",
+    "99.98",
+    "2015",
+    "2020",
+    "170",
+    "1000000",
+    "1"
+  ],
+  "allowedEntities": [
+    "Organ Donations",
+    "The Default Solution Illusion",
+    "Registration",
+    "Prompted",
+    "Organ-donation",
+    "People",
+    "Opt-in",
+    "Recorded",
+    "Soft",
+    "Silence",
+    "Driver's-license",
+    "First-person",
+    "Clinical",
+    "Eric Johnson",
+    "Daniel Goldstein",
+    "European",
+    "Johnson",
+    "Goldstein",
+    "Germany",
+    "Austria. Their",
+    "Nonresponse",
+    "Austria",
+    "NHS England",
+    "Wales",
+    "England",
+    "May",
+    "Donate Life America",
+    "High",
+    "The Final Edition",
+    "They",
+    "England's",
+    "Opt-out",
+    "Motor-vehicle",
+    "Presumed",
+    "Failure",
+    "State",
+    "Changing",
+    "Family",
+    "Registry",
+    "Families",
+    "Autonomy",
+    "Consent",
+    "Affected",
+    "Austria. Those",
+    "England's May",
+    "Both",
+    "Recipients",
+    "Optimizing",
+    "Final Edition",
+    "Grounding",
+    "Eric Johnson and Daniel Goldstein / European donor defaults",
+    "NHS England and Wales / soft opt-out",
+    "Donate Life America / motor-vehicle registration prompts"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch13.ex.1",
+      "warning": "Keep examples about Eric Johnson and Daniel Goldstein / European donor defaults source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch13.ex.2",
+      "warning": "Keep examples about NHS England and Wales / soft opt-out source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch13.ex.3",
+      "warning": "Keep examples about Donate Life America / motor-vehicle registration prompts source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch13.fact.1"
+}

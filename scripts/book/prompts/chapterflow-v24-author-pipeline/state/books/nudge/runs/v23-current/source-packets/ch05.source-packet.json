@@ -1,0 +1,751 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch05",
+  "chapterNumber": 5,
+  "chapterTitle": "Choice Architecture",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch05.source.json",
+  "sourceHash": "sha256:04cb72c58dbd71362ce178d7fc027a67de4f79eba0864d10d08cd17678316896",
+  "facts": [
+    {
+      "id": "ch05.fact.1",
+      "claim": "A handle that suggests pulling creates repeated errors when the door actually requires pushing.",
+      "mechanism": "This mechanism operates because the visible stimulus activates an incompatible response before reflective checking can intervene.",
+      "commonError": "Repeated door mistakes prove users are careless.",
+      "whyWrong": "The design reliably cues the wrong action across many users.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Repeated"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch05.fact.2",
+      "claim": "Paris Métro gates reduce presentation error by accepting a fare card in either orientation.",
+      "mechanism": "This mechanism operates because removing a nonessential orientation requirement prevents a common slip without adding a decision.",
+      "commonError": "Error prevention always requires more instructions.",
+      "whyWrong": "The gate solves the problem by accepting more natural inputs.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Paris M",
+        "Error"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch05.fact.3",
+      "claim": "Gmail can warn when attachment language appears in a message but no file is attached.",
+      "mechanism": "This mechanism operates because the prompt targets a postcompletion error at the exact moment the sender is about to finish.",
+      "commonError": "A generic reminder shown when composing would be equally precise.",
+      "whyWrong": "The conditional warning appears only when text and file state conflict.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Gmail"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch05.fact.4",
+      "claim": "A default specifies what occurs when the chooser takes no action.",
+      "mechanism": "This mechanism operates because inertia, inattention, and effort costs make nonresponse common, so the preassigned outcome receives disproportionate uptake.",
+      "commonError": "No default exists when a form leaves every box blank.",
+      "whyWrong": "The system still has a rule for nonresponse, even if that rule is no enrollment or no service.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.4"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch05.fact.5",
+      "claim": "Required choice is itself a form of choice architecture rather than the absence of architecture.",
+      "mechanism": "This mechanism operates because the designer selects a nonresponse rule that blocks continuation until an explicit answer is supplied.",
+      "commonError": "Forcing an active decision is neutral because no substantive option is preselected.",
+      "whyWrong": "The timing, burden, and mandate to decide are designed features.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Required",
+        "Forcing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.5"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch05.fact.6",
+      "claim": "Prompted choice requests an answer while retaining a fallback for people who do not respond.",
+      "mechanism": "This mechanism operates because the prompt increases attention without making completion depend entirely on active selection.",
+      "commonError": "Prompted choice and required choice are interchangeable.",
+      "whyWrong": "Required choice blocks nonresponse; prompted choice can preserve a default.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Prompted",
+        "Required"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.6"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch05.fact.7",
+      "claim": "Collaborative filtering orders options using patterns from people with similar past tastes.",
+      "mechanism": "This mechanism operates because shared preference data reduces a large set to items likely to map onto the user's interests.",
+      "commonError": "Collaborative filtering simply lists the overall most popular items.",
+      "whyWrong": "Its value comes from similarity-conditioned recommendations rather than one universal ranking.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Collaborative",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.7"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch05.fact.8",
+      "claim": "The incentive checklist asks who chooses, who uses, who pays, and who profits.",
+      "mechanism": "This mechanism operates because separating these roles reveals conflicts and hidden costs that a single price comparison misses.",
+      "commonError": "The chooser always bears the full cost and receives the full benefit.",
+      "whyWrong": "Many markets split selection, consumption, payment, and profit among different actors.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Many"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.8"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch05.fact.9",
+      "claim": "An incentive has less behavioral force when its cost is not salient at the moment of choice.",
+      "mechanism": "This mechanism operates because a delayed, bundled, or hidden charge is absent from attention when the action is evaluated.",
+      "commonError": "Equal economic costs always create equal behavior regardless of presentation.",
+      "whyWrong": "Timing and visibility determine whether the chooser mentally registers the cost.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Equal",
+        "Timing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch05.ex.1",
+      "label": "Richard Thaler / confusing classroom doors",
+      "summary": "Classroom doors carried handles that visually invited pulling but opened only by pushing. Students repeatedly made the same error because the physical cue conflicted with the required response.",
+      "realWorld": true,
+      "naturalSetting": "Richard Thaler",
+      "hardSpecifics": [
+        "large double door in Richard Thaler's business-school classroom",
+        "vertically mounted cylindrical wood handles about three feet long",
+        "doors required a push to open"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch05.ex.2",
+      "label": "Paris Métro / two-sided pass validation",
+      "summary": "Paris transit gates accepted fare cards regardless of which side faced up. The system removed an unnecessary orientation error instead of punishing passengers for presenting the card incorrectly.",
+      "realWorld": true,
+      "naturalSetting": "Paris M",
+      "hardSpecifics": [
+        "Paris Métro fare gates",
+        "magnetic-strip card accepted face up or face down",
+        "card accepted in either insertion direction"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch05.ex.3",
+      "label": "Gmail / forgotten-attachment warning",
+      "summary": "Gmail engineering intern Jon Kotker introduced the Forgotten Attachment Detector in Gmail Labs on September 15, 2008. It detects attachment-related wording when no file is attached and asks the sender to check before sending.",
+      "realWorld": true,
+      "naturalSetting": "Gmail",
+      "hardSpecifics": [
+        "Jon Kotker posted the Gmail Labs feature on September 15, 2008",
+        "Forgotten Attachment Detector developed during his Summer 2008 Gmail engineering internship",
+        "message text mentions an attachment",
+        "no file is present when Send is pressed"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Jon Kotker posted the Gmail Labs feature on September 15, 2008",
+        "Forgotten Attachment Detector developed during his Summer 2008 Gmail engineering internship"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Choice-architecture toolkit",
+      "members": [
+        "defaults",
+        "expect error",
+        "give feedback",
+        "understand mappings",
+        "structure complex choices",
+        "make incentives salient"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Incentive role check",
+      "members": [
+        "who chooses",
+        "who uses",
+        "who pays",
+        "who profits"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch05.concept",
+      "kind": "concept",
+      "label": "choice architecture",
+      "text": "The arrangement of options, defaults, cues, feedback, and incentives through which a choice is made. Design details influence behavior even when prices and available options do not change.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.ex.1",
+      "kind": "named_example",
+      "label": "Richard Thaler / confusing classroom doors",
+      "text": "Classroom doors carried handles that visually invited pulling but opened only by pushing. Students repeatedly made the same error because the physical cue conflicted with the required response. Bad stimulus-response compatibility manufactures mistakes that better hardware can prevent.",
+      "hardSpecifics": [
+        "large double door in Richard Thaler's business-school classroom",
+        "vertically mounted cylindrical wood handles about three feet long",
+        "doors required a push to open"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.ex.2",
+      "kind": "named_example",
+      "label": "Paris Métro / two-sided pass validation",
+      "text": "Paris transit gates accepted fare cards regardless of which side faced up. The system removed an unnecessary orientation error instead of punishing passengers for presenting the card incorrectly. Error-tolerant design eliminates a predictable failure at little marginal cost.",
+      "hardSpecifics": [
+        "Paris Métro fare gates",
+        "magnetic-strip card accepted face up or face down",
+        "card accepted in either insertion direction"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.ex.3",
+      "kind": "named_example",
+      "label": "Gmail / forgotten-attachment warning",
+      "text": "Gmail engineering intern Jon Kotker introduced the Forgotten Attachment Detector in Gmail Labs on September 15, 2008. It detects attachment-related wording when no file is attached and asks the sender to check before sending. A timely check can catch a predictable omission before it becomes costly.",
+      "hardSpecifics": [
+        "Jon Kotker posted the Gmail Labs feature on September 15, 2008",
+        "Forgotten Attachment Detector developed during his Summer 2008 Gmail engineering internship",
+        "message text mentions an attachment",
+        "no file is present when Send is pressed"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.1",
+      "kind": "testable_fact",
+      "label": "A handle that suggests pulling creates repeated errors when the door actually requires pushing.",
+      "text": "A handle that suggests pulling creates repeated errors when the door actually requires pushing. This mechanism operates because the visible stimulus activates an incompatible response before reflective checking can intervene. Repeated door mistakes prove users are careless. The design reliably cues the wrong action across many users.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.2",
+      "kind": "testable_fact",
+      "label": "Paris Métro gates reduce presentation error by accepting a fare card in either orientation.",
+      "text": "Paris Métro gates reduce presentation error by accepting a fare card in either orientation. This mechanism operates because removing a nonessential orientation requirement prevents a common slip without adding a decision. Error prevention always requires more instructions. The gate solves the problem by accepting more natural inputs.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.3",
+      "kind": "testable_fact",
+      "label": "Gmail can warn when attachment language appears in a message but no file is attached.",
+      "text": "Gmail can warn when attachment language appears in a message but no file is attached. This mechanism operates because the prompt targets a postcompletion error at the exact moment the sender is about to finish. A generic reminder shown when composing would be equally precise. The conditional warning appears only when text and file state conflict.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.4",
+      "kind": "testable_fact",
+      "label": "A default specifies what occurs when the chooser takes no action.",
+      "text": "A default specifies what occurs when the chooser takes no action. This mechanism operates because inertia, inattention, and effort costs make nonresponse common, so the preassigned outcome receives disproportionate uptake. No default exists when a form leaves every box blank. The system still has a rule for nonresponse, even if that rule is no enrollment or no service.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.5",
+      "kind": "testable_fact",
+      "label": "Required choice is itself a form of choice architecture rather than the absence of architecture.",
+      "text": "Required choice is itself a form of choice architecture rather than the absence of architecture. This mechanism operates because the designer selects a nonresponse rule that blocks continuation until an explicit answer is supplied. Forcing an active decision is neutral because no substantive option is preselected. The timing, burden, and mandate to decide are designed features.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.6",
+      "kind": "testable_fact",
+      "label": "Prompted choice requests an answer while retaining a fallback for people who do not respond.",
+      "text": "Prompted choice requests an answer while retaining a fallback for people who do not respond. This mechanism operates because the prompt increases attention without making completion depend entirely on active selection. Prompted choice and required choice are interchangeable. Required choice blocks nonresponse; prompted choice can preserve a default.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.7",
+      "kind": "testable_fact",
+      "label": "Collaborative filtering orders options using patterns from people with similar past tastes.",
+      "text": "Collaborative filtering orders options using patterns from people with similar past tastes. This mechanism operates because shared preference data reduces a large set to items likely to map onto the user's interests. Collaborative filtering simply lists the overall most popular items. Its value comes from similarity-conditioned recommendations rather than one universal ranking.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.8",
+      "kind": "testable_fact",
+      "label": "The incentive checklist asks who chooses, who uses, who pays, and who profits.",
+      "text": "The incentive checklist asks who chooses, who uses, who pays, and who profits. This mechanism operates because separating these roles reveals conflicts and hidden costs that a single price comparison misses. The chooser always bears the full cost and receives the full benefit. Many markets split selection, consumption, payment, and profit among different actors.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.9",
+      "kind": "testable_fact",
+      "label": "An incentive has less behavioral force when its cost is not salient at the moment of choice.",
+      "text": "An incentive has less behavioral force when its cost is not salient at the moment of choice. This mechanism operates because a delayed, bundled, or hidden charge is absent from attention when the action is evaluated. Equal economic costs always create equal behavior regardless of presentation. Timing and visibility determine whether the chooser mentally registers the cost.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.framework.choice.architecture.toolkit",
+      "kind": "framework",
+      "label": "Choice-architecture toolkit",
+      "text": "defaults, expect error, give feedback, understand mappings, structure complex choices, make incentives salient",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.framework.incentive.role.check",
+      "kind": "framework",
+      "label": "Incentive role check",
+      "text": "who chooses, who uses, who pays, who profits",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1",
+    "3",
+    "2",
+    "15",
+    "2008"
+  ],
+  "allowedEntities": [
+    "Choice Architecture",
+    "Good",
+    "Small",
+    "Every",
+    "Design",
+    "Stimulus-response",
+    "Defaults",
+    "Prompted",
+    "Error-tolerant",
+    "Feedback",
+    "Complex",
+    "Incentives",
+    "Richard Thaler",
+    "Classroom",
+    "Students",
+    "Bad",
+    "Richard Thaler's",
+    "Paris M",
+    "Paris",
+    "Gmail",
+    "Jon Kotker",
+    "Forgotten Attachment Detector",
+    "Gmail Labs",
+    "September",
+    "Summer",
+    "Send",
+    "Making",
+    "Ease",
+    "Make It Easy",
+    "Repeated",
+    "Error",
+    "Required",
+    "Forcing",
+    "Collaborative",
+    "Its",
+    "Many",
+    "Equal",
+    "Timing",
+    "Choice-architecture",
+    "Incentive",
+    "Confusing",
+    "Handles",
+    "Choice",
+    "Both",
+    "They",
+    "Neither",
+    "Large",
+    "Ask",
+    "Grounding",
+    "Richard Thaler / confusing classroom doors",
+    "Paris Métro / two-sided pass validation",
+    "Gmail / forgotten-attachment warning"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch05.ex.1",
+      "warning": "Keep examples about Richard Thaler / confusing classroom doors source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch05.ex.2",
+      "warning": "Keep examples about Paris Métro / two-sided pass validation source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch05.ex.3",
+      "warning": "Keep examples about Gmail / forgotten-attachment warning source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch05.fact.1"
+}

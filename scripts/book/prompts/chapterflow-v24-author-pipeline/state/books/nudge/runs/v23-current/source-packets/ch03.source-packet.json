@@ -1,0 +1,714 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch03",
+  "chapterNumber": 3,
+  "chapterTitle": "Following the Herd",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch03.source.json",
+  "sourceHash": "sha256:aac487f0afc241d2a1ecc7fa4b47d71e57974b1b5a012d6b43ed7983c748154d",
+  "facts": [
+    {
+      "id": "ch03.fact.1",
+      "claim": "About three quarters of Asch participants conformed to an obviously wrong unanimous line judgment at least once.",
+      "mechanism": "This mechanism operates because unanimity created informational doubt and social pressure even when the private visual answer was clear.",
+      "commonError": "Conformity requires an ambiguous stimulus.",
+      "whyWrong": "The matching-line task was intentionally easy and control participants made few errors.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "3"
+      ],
+      "groundedEntities": [
+        "About",
+        "Asch",
+        "Conformity"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch03.fact.2",
+      "claim": "Sacerdote's Dartmouth design randomly paired roommates within 32 housing categories.",
+      "mechanism": "This mechanism operates because conditional random assignment reduces selection bias, so later differences can be linked more credibly to peer exposure.",
+      "commonError": "Roommate studies merely compare friends who selected each other.",
+      "whyWrong": "The first-year pairs were administratively randomized within stated preference groups.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "32"
+      ],
+      "groundedEntities": [
+        "Sacerdote's Dartmouth",
+        "Roommate"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch03.fact.3",
+      "claim": "A same-room hotel norm increased towel reuse more than a generic environmental request.",
+      "mechanism": "This mechanism operates because the behavior of people in the identical setting forms a more immediate reference group than an abstract public.",
+      "commonError": "The broadest possible comparison group creates the strongest norm.",
+      "whyWrong": "Provincial, context-matched norms performed better in the field experiment.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Provincial"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.3"
+      ],
+      "replicationStatus": "mixed",
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch03.fact.4",
+      "claim": "Social influence operates through both information and peer pressure.",
+      "mechanism": "This mechanism operates because others' choices may signal hidden facts while their approval or disapproval changes the social cost of dissent.",
+      "commonError": "Following others always means a person privately believes they are correct.",
+      "whyWrong": "Compliance can occur to avoid standing apart even when private belief is unchanged.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Social",
+        "Following",
+        "Compliance"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.4"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch03.fact.5",
+      "claim": "Descriptive norm messages can increase undesirable behavior among people already performing better than the stated average.",
+      "mechanism": "This mechanism operates because the average supplies a target, so unusually good performers may move toward it from the favorable side.",
+      "commonError": "Publishing an average can only improve below-average behavior.",
+      "whyWrong": "The same reference point can pull observations from both directions.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Descriptive",
+        "Publishing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.5"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch03.fact.6",
+      "claim": "Adding an approval cue can prevent a descriptive-norm boomerang among already efficient households.",
+      "mechanism": "This mechanism operates because the cue communicates that the low-consumption behavior is socially approved rather than merely unusual.",
+      "commonError": "A smile or approval marker is decorative and cannot alter a numerical comparison.",
+      "whyWrong": "An injunctive signal changes the meaning of the descriptive information.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Adding"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.6"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch03.fact.7",
+      "claim": "The Don't Mess with Texas campaign targeted young men with Texas identity rather than relying only on an anti-litter lecture.",
+      "mechanism": "This mechanism operates because local pride and admired in-group messengers made proper disposal part of the audience's social identity.",
+      "commonError": "The slogan was originally a general state-tourism motto.",
+      "whyWrong": "It was created as an anti-littering campaign for Texas highways.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "The Don't Mess",
+        "Texas"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.7"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch03.fact.8",
+      "claim": "An informational cascade can persist after later people ignore their private signals and copy earlier public choices.",
+      "mechanism": "This mechanism operates because once enough visible choices point one way, each follower treats the accumulated behavior as stronger evidence than a private clue.",
+      "commonError": "A cascade proves that many independent people reached the same conclusion.",
+      "whyWrong": "Later choices may recycle the same early information rather than add independent evidence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Later"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.8"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch03.fact.9",
+      "claim": "Norm interventions require local testing because populations can interpret the same message differently.",
+      "mechanism": "This mechanism operates because reference-group identity, baseline behavior, and cultural meaning determine which social signal is salient.",
+      "commonError": "A successful social-norm message transfers unchanged to any audience.",
+      "whyWrong": "The causal mechanism depends on the audience recognizing and valuing the comparison group.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Norm"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch03.fact.9"
+      ],
+      "teachingPriority": 6
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch03.ex.1",
+      "label": "Solomon Asch / line-judgment experiments",
+      "summary": "Asch placed one participant among confederates who unanimously named an obviously wrong matching line. Across the critical trials, roughly three quarters of participants conformed at least once, while control errors were rare.",
+      "realWorld": true,
+      "naturalSetting": "Solomon Asch",
+      "hardSpecifics": [
+        "one participant surrounded by unanimous confederates",
+        "about 75 percent conformed at least once"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch03.ex.2",
+      "label": "Bruce Sacerdote / randomly assigned Dartmouth roommates",
+      "summary": "Dartmouth freshmen were assigned roommates within housing categories and then paired randomly. Sacerdote found peer effects on academic effort, GPA, and fraternity participation, but not across every life choice.",
+      "realWorld": true,
+      "naturalSetting": "Bruce Sacerdote",
+      "hardSpecifics": [
+        "Dartmouth freshman cohorts from 1997 and 1998",
+        "roommates randomly paired within 32 housing categories"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Dartmouth freshman cohorts from 1997 and 1998"
+      ]
+    },
+    {
+      "id": "ch03.ex.3",
+      "label": "Noah Goldstein, Robert Cialdini, and Vladas Griskevicius / hotel towels",
+      "summary": "Hotel-room cards comparing guests with other guests increased towel reuse more than a generic environmental appeal. A norm tied to people who had stayed in the same room was especially effective.",
+      "realWorld": true,
+      "naturalSetting": "Noah Goldstein",
+      "hardSpecifics": [
+        "hotel bathroom towel-reuse cards",
+        "same-room guest norm outperformed a general environmental appeal"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Two channels of social influence",
+      "members": [
+        "information",
+        "peer pressure"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch03.concept",
+      "kind": "concept",
+      "label": "social influence",
+      "text": "Choices respond to observed peer behavior and perceived peer approval. Norm messages can become low-cost interventions, but a badly chosen norm may legitimize the very behavior it is meant to reduce.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.ex.1",
+      "kind": "named_example",
+      "label": "Solomon Asch / line-judgment experiments",
+      "text": "Asch placed one participant among confederates who unanimously named an obviously wrong matching line. Across the critical trials, roughly three quarters of participants conformed at least once, while control errors were rare. A unanimous group can change stated perception without changing the visual evidence.",
+      "hardSpecifics": [
+        "one participant surrounded by unanimous confederates",
+        "about 75 percent conformed at least once"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.ex.2",
+      "kind": "named_example",
+      "label": "Bruce Sacerdote / randomly assigned Dartmouth roommates",
+      "text": "Dartmouth freshmen were assigned roommates within housing categories and then paired randomly. Sacerdote found peer effects on academic effort, GPA, and fraternity participation, but not across every life choice. Social influence can be causally identified and remains domain-specific.",
+      "hardSpecifics": [
+        "Dartmouth freshman cohorts from 1997 and 1998",
+        "roommates randomly paired within 32 housing categories"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.ex.3",
+      "kind": "named_example",
+      "label": "Noah Goldstein, Robert Cialdini, and Vladas Griskevicius / hotel towels",
+      "text": "Hotel-room cards comparing guests with other guests increased towel reuse more than a generic environmental appeal. A norm tied to people who had stayed in the same room was especially effective. A nearby and behaviorally relevant comparison group strengthens a descriptive norm.",
+      "hardSpecifics": [
+        "hotel bathroom towel-reuse cards",
+        "same-room guest norm outperformed a general environmental appeal"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.1",
+      "kind": "testable_fact",
+      "label": "About three quarters of Asch participants conformed to an obviously wrong unanimous line judgment at least once.",
+      "text": "About three quarters of Asch participants conformed to an obviously wrong unanimous line judgment at least once. This mechanism operates because unanimity created informational doubt and social pressure even when the private visual answer was clear. Conformity requires an ambiguous stimulus. The matching-line task was intentionally easy and control participants made few errors.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.2",
+      "kind": "testable_fact",
+      "label": "Sacerdote's Dartmouth design randomly paired roommates within 32 housing categories.",
+      "text": "Sacerdote's Dartmouth design randomly paired roommates within 32 housing categories. This mechanism operates because conditional random assignment reduces selection bias, so later differences can be linked more credibly to peer exposure. Roommate studies merely compare friends who selected each other. The first-year pairs were administratively randomized within stated preference groups.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.3",
+      "kind": "testable_fact",
+      "label": "A same-room hotel norm increased towel reuse more than a generic environmental request.",
+      "text": "A same-room hotel norm increased towel reuse more than a generic environmental request. This mechanism operates because the behavior of people in the identical setting forms a more immediate reference group than an abstract public. The broadest possible comparison group creates the strongest norm. Provincial, context-matched norms performed better in the field experiment.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.4",
+      "kind": "testable_fact",
+      "label": "Social influence operates through both information and peer pressure.",
+      "text": "Social influence operates through both information and peer pressure. This mechanism operates because others' choices may signal hidden facts while their approval or disapproval changes the social cost of dissent. Following others always means a person privately believes they are correct. Compliance can occur to avoid standing apart even when private belief is unchanged.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.5",
+      "kind": "testable_fact",
+      "label": "Descriptive norm messages can increase undesirable behavior among people already performing better than the stated average.",
+      "text": "Descriptive norm messages can increase undesirable behavior among people already performing better than the stated average. This mechanism operates because the average supplies a target, so unusually good performers may move toward it from the favorable side. Publishing an average can only improve below-average behavior. The same reference point can pull observations from both directions.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.6",
+      "kind": "testable_fact",
+      "label": "Adding an approval cue can prevent a descriptive-norm boomerang among already efficient households.",
+      "text": "Adding an approval cue can prevent a descriptive-norm boomerang among already efficient households. This mechanism operates because the cue communicates that the low-consumption behavior is socially approved rather than merely unusual. A smile or approval marker is decorative and cannot alter a numerical comparison. An injunctive signal changes the meaning of the descriptive information.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.7",
+      "kind": "testable_fact",
+      "label": "The Don't Mess with Texas campaign targeted young men with Texas identity rather than relying only on an anti-litter lecture.",
+      "text": "The Don't Mess with Texas campaign targeted young men with Texas identity rather than relying only on an anti-litter lecture. This mechanism operates because local pride and admired in-group messengers made proper disposal part of the audience's social identity. The slogan was originally a general state-tourism motto. It was created as an anti-littering campaign for Texas highways.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.8",
+      "kind": "testable_fact",
+      "label": "An informational cascade can persist after later people ignore their private signals and copy earlier public choices.",
+      "text": "An informational cascade can persist after later people ignore their private signals and copy earlier public choices. This mechanism operates because once enough visible choices point one way, each follower treats the accumulated behavior as stronger evidence than a private clue. A cascade proves that many independent people reached the same conclusion. Later choices may recycle the same early information rather than add independent evidence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.fact.9",
+      "kind": "testable_fact",
+      "label": "Norm interventions require local testing because populations can interpret the same message differently.",
+      "text": "Norm interventions require local testing because populations can interpret the same message differently. This mechanism operates because reference-group identity, baseline behavior, and cultural meaning determine which social signal is salient. A successful social-norm message transfers unchanged to any audience. The causal mechanism depends on the audience recognizing and valuing the comparison group.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch03.framework.two.channels.of.social.influence",
+      "kind": "framework",
+      "label": "Two channels of social influence",
+      "text": "information, peer pressure",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "3",
+    "32",
+    "1",
+    "75",
+    "1997",
+    "1998"
+  ],
+  "allowedEntities": [
+    "Following",
+    "Herd",
+    "Other",
+    "Social",
+    "Behavior",
+    "Choices",
+    "Norm",
+    "People",
+    "Unanimous",
+    "Randomly",
+    "Local",
+    "Descriptive",
+    "Solomon Asch",
+    "Asch",
+    "Across",
+    "Bruce Sacerdote",
+    "Dartmouth",
+    "Sacerdote",
+    "GPA",
+    "Noah Goldstein",
+    "Robert Cialdini",
+    "Vladas Griskevicius",
+    "Hotel-room",
+    "Announcing",
+    "About",
+    "Conformity",
+    "Sacerdote's Dartmouth",
+    "Roommate",
+    "Provincial",
+    "Compliance",
+    "Publishing",
+    "Adding",
+    "The Don't Mess",
+    "Texas",
+    "Later",
+    "Two",
+    "Solomon Asch's",
+    "One",
+    "Bruce Sacerdote's Dartmouth",
+    "Hotel",
+    "Their",
+    "Others",
+    "Grounding",
+    "Solomon Asch / line-judgment experiments",
+    "Bruce Sacerdote / randomly assigned Dartmouth roommates",
+    "Noah Goldstein, Robert Cialdini, and Vladas Griskevicius / hotel towels"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch03.ex.1",
+      "warning": "Keep examples about Solomon Asch / line-judgment experiments source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch03.ex.2",
+      "warning": "Keep examples about Bruce Sacerdote / randomly assigned Dartmouth roommates source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch03.ex.3",
+      "warning": "Keep examples about Noah Goldstein, Robert Cialdini, and Vladas Griskevicius / hotel towels source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch03.fact.1"
+}

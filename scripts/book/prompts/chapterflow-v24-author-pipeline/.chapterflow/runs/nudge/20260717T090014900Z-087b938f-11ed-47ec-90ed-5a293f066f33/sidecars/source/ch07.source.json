@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 7,
+  "chapterTitle": "Smart Disclosure",
+  "focus": "Disclosure becomes useful when complex information is timely, standardized, machine-readable, and available to trusted choice engines. Dense fine print can satisfy a legal formality while leaving the decision opaque.",
+  "coreClaim": "Information helps only when people or their tools can convert it into a comparison tied to actual use.",
+  "centralConcept": {
+    "id": "ch07.concept",
+    "name": "smart disclosure",
+    "plainDefinition": "The timely release of relevant data in standardized, machine-readable forms that consumers and intermediaries can use to compare options.",
+    "whyItMatters": "It shifts disclosure from unreadable paperwork to reusable data that can expose total cost and personalize recommendations."
+  },
+  "keyClaims": [
+    "Standard units make competing offers comparable.",
+    "Machine-readable formats let software process complexity that individuals cannot.",
+    "Personal usage history improves matching between plans and needs.",
+    "Choice engines can reveal hidden and partitioned prices.",
+    "Terms-and-conditions volume can obscure rather than inform.",
+    "Data portability limits the incumbent advantage created by stored customer history."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch07.ex.1",
+      "label": "White House OIRA / 2011 Smart Disclosure memorandum",
+      "summary": "The Office of Information and Regulatory Affairs issued a 2011 memorandum defining smart disclosure around timely, standardized, machine-readable data. It emphasized direct consumer access and third-party tools that translate complex records into decisions.",
+      "teachesWhat": "Disclosure policy should be designed for reuse, not merely publication.",
+      "hardSpecifics": [
+        "September 2011 OIRA memorandum",
+        "standardized machine-readable consumer data"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch07.ex.2",
+      "label": "United Kingdom midata initiative",
+      "summary": "The UK midata program encouraged firms to release personal transaction and usage data in portable electronic formats. Energy customers could combine their own consumption history with tariff data so comparison services could identify a better plan.",
+      "teachesWhat": "Personal data portability can turn a generic price table into a user-specific recommendation.",
+      "hardSpecifics": [
+        "UK midata consumer-data program",
+        "energy usage records paired with tariff comparisons"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch07.ex.3",
+      "label": "Federal Trade Commission / hotel drip pricing",
+      "summary": "Hotel booking can display a base room price before adding mandatory resort or service fees later in the path. FTC work on drip pricing shows how partitioning charges impedes comparison of the total price.",
+      "teachesWhat": "A visible headline price is not informative when unavoidable charges remain hidden until late.",
+      "hardSpecifics": [
+        "mandatory hotel resort fees",
+        "charges revealed after the initial room price"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "More disclosure is not automatically smarter disclosure. Dumping data, lengthening fine print, or giving a dominant platform exclusive access can increase burden and market power rather than improve choice.",
+  "voiceCues": [
+    "defines a policy term with operational criteria",
+    "uses a government memorandum as an anchor",
+    "moves across hotels, streaming, finance, and energy",
+    "focuses on intermediaries as well as individual readers"
+  ],
+  "forbiddenLeakage": [
+    "subscription-cancellation sludge",
+    "mortgage-file and credit-card applications",
+    "insurance dominance comparisons"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch07.fact.1",
+      "claim": "The 2011 OIRA memorandum defined smart disclosure around timely, standardized, machine-readable information.",
+      "becauseMechanism": "This mechanism operates because structured data can be processed and compared by software rather than requiring each consumer to decode prose.",
+      "commonError": "Smart disclosure means posting any technically public document online.",
+      "errorIsWhy": "Publication without standardization or usability does not support comparison.",
+      "derivedFrom": "ch07.ex.1"
+    },
+    {
+      "id": "ch07.fact.2",
+      "claim": "The UK midata initiative paired consumer access to personal records with third-party comparison tools.",
+      "becauseMechanism": "This mechanism operates because portable usage history lets an engine calculate which offer fits the individual's actual pattern.",
+      "commonError": "A generic cheapest-plan ranking is always enough.",
+      "errorIsWhy": "The cheapest plan can vary with timing and quantity of use.",
+      "derivedFrom": "ch07.ex.2"
+    },
+    {
+      "id": "ch07.fact.3",
+      "claim": "Hotel drip pricing reveals mandatory fees after presenting an initial room price.",
+      "becauseMechanism": "This mechanism operates because late partitioned charges anchor the shopper on an incomplete price and make cross-site comparison costly.",
+      "commonError": "A mandatory resort fee is optional because it is listed separately.",
+      "errorIsWhy": "A charge required to complete the stay belongs in the total price.",
+      "derivedFrom": "ch07.ex.3"
+    },
+    {
+      "id": "ch07.fact.4",
+      "claim": "Standard measurement units improve comparison across sellers.",
+      "becauseMechanism": "This mechanism operates because a common denominator prevents each firm from presenting quantity or cost in the format most favorable to its product.",
+      "commonError": "Consumers can easily compare any two truthful measurements.",
+      "errorIsWhy": "Conversion effort and unfamiliar units can obscure meaningful differences.",
+      "derivedFrom": "ch07.concept"
+    },
+    {
+      "id": "ch07.fact.5",
+      "claim": "A choice engine combines offer data with decision rules or user data to rank options.",
+      "becauseMechanism": "This mechanism operates because computation translates many attributes into a manageable comparison matched to stated needs.",
+      "commonError": "A choice engine merely hosts advertisements from participating sellers.",
+      "errorIsWhy": "Its distinguishing function is structured comparison and recommendation.",
+      "derivedFrom": "ch07.concept"
+    },
+    {
+      "id": "ch07.fact.6",
+      "claim": "Long terms-and-conditions documents can reduce effective understanding despite increasing nominal disclosure.",
+      "becauseMechanism": "This mechanism operates because attention and comprehension are limited, so essential costs disappear inside low-value legal detail.",
+      "commonError": "A longer disclosure necessarily creates a more informed consumer.",
+      "errorIsWhy": "Information volume and usable knowledge are not the same.",
+      "derivedFrom": "ch07.concept"
+    },
+    {
+      "id": "ch07.fact.7",
+      "claim": "A platform's stored viewing or purchase history can create a switching advantage over its customer.",
+      "becauseMechanism": "This mechanism operates because the incumbent remembers preferences and transactions that the user cannot easily reconstruct elsewhere.",
+      "commonError": "Data lock-in requires a contractual ban on switching.",
+      "errorIsWhy": "Loss of accumulated personalization can create a practical switching cost without a legal restriction.",
+      "derivedFrom": "ch07.concept"
+    },
+    {
+      "id": "ch07.fact.8",
+      "claim": "Smart disclosure can intensify competition by making hidden total costs easier to compare.",
+      "becauseMechanism": "This mechanism operates because when standardized data exposes fees, firms lose the ability to compete through opacity.",
+      "commonError": "Disclosure affects only buyer education and cannot change seller behavior.",
+      "errorIsWhy": "Comparable offers alter which firms win customers and therefore what firms choose to price.",
+      "derivedFrom": "ch07.concept"
+    },
+    {
+      "id": "ch07.fact.9",
+      "claim": "Timing is part of disclosure quality because information must appear before or during the relevant decision.",
+      "becauseMechanism": "This mechanism operates because a fact learned after commitment cannot guide the choice that created the cost.",
+      "commonError": "A disclosure is equally useful whenever it is delivered.",
+      "errorIsWhy": "Late information may support a complaint but cannot prevent the original mistake.",
+      "derivedFrom": "ch07.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Smart-disclosure requirements",
+      "members": [
+        "timely",
+        "standardized",
+        "machine-readable",
+        "consumer-accessible",
+        "usable by intermediaries"
+      ],
+      "acronym": false
+    }
+  ],
+  "paraphraseNotes": "Conventional disclosure often mistakes availability for usefulness. The Office of Information and Regulatory Affairs' September 2011 memorandum supplied a stricter test: relevant information should be timely, standardized, machine-readable, and available to consumers or intermediaries that can translate it. The United Kingdom's midata initiative shows the personalized version. An energy customer can release actual usage history and combine it with tariff data, allowing a comparison service to calculate which plan fits that household rather than naming one generic winner. Hotel drip pricing shows the failure smart disclosure is meant to correct. A booking path anchors the shopper on a base price, then reveals a mandatory resort fee after comparison effort has already been spent. The fee may be disclosed somewhere, but the total cost was not usable at the moment it mattered. Common units and structured fields let choice engines expose that total, compare many attributes, and incorporate past behavior. Data portability also matters because an incumbent such as a streaming platform may remember preferences better than the customer can reproduce them, creating lock-in without a formal ban. The hard edge is information overload. Long terms and conditions, raw data dumps, and exclusive platform access can satisfy a rule while deepening confusion. Smart disclosure is therefore an engineering standard: identify the decision, provide the consequential data before commitment, use common definitions, and let trusted tools perform the comparison. Grounding anchors: September 2011 OIRA memorandum; standardized machine-readable consumer data; UK midata consumer-data program; energy usage records paired with tariff comparisons; mandatory hotel resort fees; charges revealed after the initial room price."
+}

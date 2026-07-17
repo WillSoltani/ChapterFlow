@@ -1,0 +1,861 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "made-to-stick",
+  "chapterId": "made-to-stick-ch04",
+  "chapterNumber": 4,
+  "chapterTitle": "Credible",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/made-to-stick/20260717T093830230Z-96208fba-c8b1-451c-8c89-3b5434d80f07/sidecars/source/ch04.source.json",
+  "sourceHash": "sha256:165b5ed572059551663ca0dc28a1ac5285702545845b874be8db0223a243df1a",
+  "facts": [
+    {
+      "id": "ch04.fact.1",
+      "claim": "Barry Marshall drank a Helicobacter pylori culture in July 1984 and developed gastritis after the exposure.",
+      "mechanism": "Because the self-experiment connected the bacterium to a resulting gastric inflammation in a previously healthy host, it challenged the view that such organisms were harmless passengers.",
+      "commonError": "Marshall won acceptance by presenting only an expert title and never exposing himself to the bacterium.",
+      "whyWrong": "The unusually memorable credential was the documented self-experiment, not professional status by itself.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1984"
+      ],
+      "groundedEntities": [
+        "Barry Marshall",
+        "Helicobacter",
+        "July",
+        "Marshall"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch04.fact.2",
+      "claim": "Barry Marshall and Robin Warren received the 2005 Nobel Prize for the discovery of Helicobacter pylori and its role in gastritis and peptic ulcer disease.",
+      "mechanism": "Because their work established a bacterial cause, ulcer treatment could target infection rather than treating acid alone.",
+      "commonError": "The Nobel recognition established that every stomach symptom is caused by Helicobacter pylori.",
+      "whyWrong": "The award concerns the bacterium's causal role in specified gastric diseases, not a universal explanation for all symptoms.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2005"
+      ],
+      "groundedEntities": [
+        "Barry Marshall",
+        "Robin Warren",
+        "Nobel Prize",
+        "Helicobacter",
+        "The Nobel"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch04.fact.3",
+      "claim": "Pam Laffin developed emphysema at age 24 and had a lung removed before appearing in antismoking media.",
+      "mechanism": "Because her body and family bore visible costs of smoking, her warning had experience-based relevance that a detached endorsement lacked.",
+      "commonError": "Laffin was a healthy celebrity hired to recite a generic public-health script.",
+      "whyWrong": "She appeared as a patient and mother living with severe smoking-related disease, which is the basis of the antiauthority credential.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "24"
+      ],
+      "groundedEntities": [
+        "Pam Laffin",
+        "Laffin",
+        "She"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch04.fact.4",
+      "claim": "The Beyond War demonstration used 1 BB as the Hiroshima reference and thousands of BBs to represent the larger nuclear arsenal.",
+      "mechanism": "Because listeners could hear the contrast between a single impact and a prolonged cascade, the ratio became perceptible rather than remaining an abstract count.",
+      "commonError": "The BB demonstration replaced quantitative comparison with an unrelated scary noise.",
+      "whyWrong": "Each BB represented a consistent unit, so the sound preserved the scale relationship while translating it.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "The Beyond War",
+        "Hiroshima",
+        "BBs",
+        "The BB",
+        "Each BB"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.4"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch04.fact.5",
+      "claim": "On October 28, 1980, Ronald Reagan asked debate viewers whether they were better off than four years earlier.",
+      "mechanism": "Because each voter could compare present conditions with personal memory, the question outsourced part of the credibility test to the audience.",
+      "commonError": "The line asked viewers to trust Reagan's private economic calculations without consulting their lives.",
+      "whyWrong": "Its persuasive design points listeners toward their own comparison rather than an inaccessible calculation.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "4",
+        "28",
+        "1980"
+      ],
+      "groundedEntities": [
+        "On October",
+        "Ronald Reagan",
+        "Reagan's",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.5"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch04.fact.6",
+      "claim": "Safexpress's 2007 Harry Potter launch assignment involved an Indian first stock of about 240,000 copies.",
+      "mechanism": "Because a secretive, simultaneous, high-volume launch imposes demanding logistics constraints, successful execution serves as relevant proof for later distribution claims.",
+      "commonError": "A Sinatra Test is an unrelated famous client name that proves every possible capability.",
+      "whyWrong": "The prior performance must be difficult and relevant to the new claim; fame without task fit is weak evidence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2007",
+        "240000"
+      ],
+      "groundedEntities": [
+        "Safexpress's",
+        "Harry Potter",
+        "Indian",
+        "A Sinatra Test"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.6"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch04.fact.7",
+      "claim": "An antiauthority derives credibility from direct, costly experience rather than conventional prestige.",
+      "mechanism": "Because the source has borne the consequence under discussion, audiences can treat the testimony as relevant evidence rather than remote promotion.",
+      "commonError": "An antiauthority is simply an uninformed person chosen because experts are always untrustworthy.",
+      "whyWrong": "The source is persuasive only when lived experience creates special access to the claim's consequences.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.7"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch04.fact.8",
+      "claim": "The human-scale principle translates a statistic into a familiar comparison while preserving the original relationship.",
+      "mechanism": "Because working memory can simulate everyday units more readily than huge totals, the audience can grasp magnitude without discarding quantity.",
+      "commonError": "Human-scaling permits changing the ratio as long as the resulting image feels dramatic.",
+      "whyWrong": "A distorted comparison sacrifices truth; the translation must retain the quantitative structure it explains.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Human-scaling"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.8"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch04.fact.9",
+      "claim": "A testable credential lets the audience verify a claim through an accessible observation or comparison.",
+      "mechanism": "Because the listener can perform the check independently, belief no longer rests entirely on the communicator's asserted authority.",
+      "commonError": "A testable credential is a promise that only the speaker can evaluate using private data.",
+      "whyWrong": "Private evidence cannot be audience-tested and therefore leaves the original trust problem intact.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Private"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch04.ex.marshall",
+      "label": "Barry Marshall / Helicobacter pylori self-experiment",
+      "summary": "In July 1984, physician Barry Marshall drank a culture of Helicobacter pylori grown from a patient and subsequently developed gastritis. Marshall and Robin Warren received the 2005 Nobel Prize in Physiology or Medicine for establishing the bacterium's role in gastritis and peptic ulcer disease.",
+      "realWorld": true,
+      "naturalSetting": "Barry Marshall",
+      "hardSpecifics": [
+        "July 1984",
+        "2005 Nobel Prize"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "July 1984",
+        "2005 Nobel Prize"
+      ]
+    },
+    {
+      "id": "ch04.ex.laffin",
+      "label": "Pam Laffin antismoking campaign",
+      "summary": "Pam Laffin appeared in the Massachusetts antismoking campaign after developing emphysema at age 24 and having a lung removed. Her documented illness and family consequences made her an antiauthority whose experience carried the warning.",
+      "realWorld": true,
+      "naturalSetting": "Pam Laffin",
+      "hardSpecifics": [
+        "emphysema at age 24",
+        "lung removed"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch04.ex.bbs",
+      "label": "Beyond War nuclear BB demonstration",
+      "summary": "Beyond War made arsenal scale audible by dropping 1 BB into a bucket for the Hiroshima-scale reference and then pouring thousands of BBs for the contemporary stockpile. The contrast translated an incomprehensible count into duration and sound.",
+      "realWorld": true,
+      "naturalSetting": "Beyond War",
+      "hardSpecifics": [
+        "1 BB",
+        "thousands of BBs"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch04.ex.reagan",
+      "label": "Ronald Reagan's 1980 testable question",
+      "summary": "During the October 28, 1980 presidential debate, Ronald Reagan asked voters whether they were better off than four years earlier. The audience could answer from its own experience rather than accept a table of campaign statistics.",
+      "realWorld": true,
+      "naturalSetting": "Ronald Reagan's",
+      "hardSpecifics": [
+        "October 28, 1980",
+        "four years earlier"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "October 28, 1980"
+      ]
+    },
+    {
+      "id": "ch04.ex.safexpress",
+      "label": "Safexpress / Harry Potter launch logistics",
+      "summary": "Indian logistics company Safexpress handled the tightly timed 2007 distribution of 240,000 first-stock Harry Potter copies in India. That demanding launch functioned as a Sinatra Test for later distribution work.",
+      "realWorld": true,
+      "naturalSetting": "Safexpress",
+      "hardSpecifics": [
+        "2007 distribution",
+        "240,000 first-stock Harry Potter copies"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "2007 distribution"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Credibility sources",
+      "members": [
+        "authority",
+        "antiauthority",
+        "diagnostic detail",
+        "human-scale statistics",
+        "Sinatra Test",
+        "testable credential"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch04.concept",
+      "kind": "concept",
+      "label": "self-contained credibility",
+      "text": "Build proof into the message through a fitting source, revealing detail, comprehensible comparison, demonstrated capability, or audience-run test. A listener need not accept the communicator's status on faith when the claim exposes why it deserves belief.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.ex.marshall",
+      "kind": "named_example",
+      "label": "Barry Marshall / Helicobacter pylori self-experiment",
+      "text": "In July 1984, physician Barry Marshall drank a culture of Helicobacter pylori grown from a patient and subsequently developed gastritis. Marshall and Robin Warren received the 2005 Nobel Prize in Physiology or Medicine for establishing the bacterium's role in gastritis and peptic ulcer disease. A risky demonstration can force attention toward evidence when institutional authority rejects a claim.",
+      "hardSpecifics": [
+        "July 1984",
+        "2005 Nobel Prize"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.ex.laffin",
+      "kind": "named_example",
+      "label": "Pam Laffin antismoking campaign",
+      "text": "Pam Laffin appeared in the Massachusetts antismoking campaign after developing emphysema at age 24 and having a lung removed. Her documented illness and family consequences made her an antiauthority whose experience carried the warning. Lived cost can supply relevant credibility that a prestigious spokesperson cannot imitate.",
+      "hardSpecifics": [
+        "emphysema at age 24",
+        "lung removed"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.ex.bbs",
+      "kind": "named_example",
+      "label": "Beyond War nuclear BB demonstration",
+      "text": "Beyond War made arsenal scale audible by dropping 1 BB into a bucket for the Hiroshima-scale reference and then pouring thousands of BBs for the contemporary stockpile. The contrast translated an incomprehensible count into duration and sound. Human-scale translation preserves a quantitative relationship while making its magnitude perceptible.",
+      "hardSpecifics": [
+        "1 BB",
+        "thousands of BBs"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.ex.reagan",
+      "kind": "named_example",
+      "label": "Ronald Reagan's 1980 testable question",
+      "text": "During the October 28, 1980 presidential debate, Ronald Reagan asked voters whether they were better off than four years earlier. The audience could answer from its own experience rather than accept a table of campaign statistics. A claim becomes credible when listeners can run the relevant test against their own evidence.",
+      "hardSpecifics": [
+        "October 28, 1980",
+        "four years earlier"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.ex.safexpress",
+      "kind": "named_example",
+      "label": "Safexpress / Harry Potter launch logistics",
+      "text": "Indian logistics company Safexpress handled the tightly timed 2007 distribution of 240,000 first-stock Harry Potter copies in India. That demanding launch functioned as a Sinatra Test for later distribution work. One difficult, relevant performance can prove capability more efficiently than broad claims of excellence.",
+      "hardSpecifics": [
+        "2007 distribution",
+        "240,000 first-stock Harry Potter copies"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.1",
+      "kind": "testable_fact",
+      "label": "Barry Marshall drank a Helicobacter pylori culture in July 1984 and developed gastritis after the exposure.",
+      "text": "Barry Marshall drank a Helicobacter pylori culture in July 1984 and developed gastritis after the exposure. Because the self-experiment connected the bacterium to a resulting gastric inflammation in a previously healthy host, it challenged the view that such organisms were harmless passengers. Marshall won acceptance by presenting only an expert title and never exposing himself to the bacterium. The unusually memorable credential was the documented self-experiment, not professional status by itself.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.2",
+      "kind": "testable_fact",
+      "label": "Barry Marshall and Robin Warren received the 2005 Nobel Prize for the discovery of Helicobacter pylori and its role in gastritis and peptic ulcer disease.",
+      "text": "Barry Marshall and Robin Warren received the 2005 Nobel Prize for the discovery of Helicobacter pylori and its role in gastritis and peptic ulcer disease. Because their work established a bacterial cause, ulcer treatment could target infection rather than treating acid alone. The Nobel recognition established that every stomach symptom is caused by Helicobacter pylori. The award concerns the bacterium's causal role in specified gastric diseases, not a universal explanation for all symptoms.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.3",
+      "kind": "testable_fact",
+      "label": "Pam Laffin developed emphysema at age 24 and had a lung removed before appearing in antismoking media.",
+      "text": "Pam Laffin developed emphysema at age 24 and had a lung removed before appearing in antismoking media. Because her body and family bore visible costs of smoking, her warning had experience-based relevance that a detached endorsement lacked. Laffin was a healthy celebrity hired to recite a generic public-health script. She appeared as a patient and mother living with severe smoking-related disease, which is the basis of the antiauthority credential.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.4",
+      "kind": "testable_fact",
+      "label": "The Beyond War demonstration used 1 BB as the Hiroshima reference and thousands of BBs to represent the larger nuclear arsenal.",
+      "text": "The Beyond War demonstration used 1 BB as the Hiroshima reference and thousands of BBs to represent the larger nuclear arsenal. Because listeners could hear the contrast between a single impact and a prolonged cascade, the ratio became perceptible rather than remaining an abstract count. The BB demonstration replaced quantitative comparison with an unrelated scary noise. Each BB represented a consistent unit, so the sound preserved the scale relationship while translating it.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.5",
+      "kind": "testable_fact",
+      "label": "On October 28, 1980, Ronald Reagan asked debate viewers whether they were better off than four years earlier.",
+      "text": "On October 28, 1980, Ronald Reagan asked debate viewers whether they were better off than four years earlier. Because each voter could compare present conditions with personal memory, the question outsourced part of the credibility test to the audience. The line asked viewers to trust Reagan's private economic calculations without consulting their lives. Its persuasive design points listeners toward their own comparison rather than an inaccessible calculation.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.6",
+      "kind": "testable_fact",
+      "label": "Safexpress's 2007 Harry Potter launch assignment involved an Indian first stock of about 240,000 copies.",
+      "text": "Safexpress's 2007 Harry Potter launch assignment involved an Indian first stock of about 240,000 copies. Because a secretive, simultaneous, high-volume launch imposes demanding logistics constraints, successful execution serves as relevant proof for later distribution claims. A Sinatra Test is an unrelated famous client name that proves every possible capability. The prior performance must be difficult and relevant to the new claim; fame without task fit is weak evidence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.7",
+      "kind": "testable_fact",
+      "label": "An antiauthority derives credibility from direct, costly experience rather than conventional prestige.",
+      "text": "An antiauthority derives credibility from direct, costly experience rather than conventional prestige. Because the source has borne the consequence under discussion, audiences can treat the testimony as relevant evidence rather than remote promotion. An antiauthority is simply an uninformed person chosen because experts are always untrustworthy. The source is persuasive only when lived experience creates special access to the claim's consequences.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.8",
+      "kind": "testable_fact",
+      "label": "The human-scale principle translates a statistic into a familiar comparison while preserving the original relationship.",
+      "text": "The human-scale principle translates a statistic into a familiar comparison while preserving the original relationship. Because working memory can simulate everyday units more readily than huge totals, the audience can grasp magnitude without discarding quantity. Human-scaling permits changing the ratio as long as the resulting image feels dramatic. A distorted comparison sacrifices truth; the translation must retain the quantitative structure it explains.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.9",
+      "kind": "testable_fact",
+      "label": "A testable credential lets the audience verify a claim through an accessible observation or comparison.",
+      "text": "A testable credential lets the audience verify a claim through an accessible observation or comparison. Because the listener can perform the check independently, belief no longer rests entirely on the communicator's asserted authority. A testable credential is a promise that only the speaker can evaluate using private data. Private evidence cannot be audience-tested and therefore leaves the original trust problem intact.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.framework.credibility.sources",
+      "kind": "framework",
+      "label": "Credibility sources",
+      "text": "authority, antiauthority, diagnostic detail, human-scale statistics, Sinatra Test, testable credential",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1984",
+    "2005",
+    "24",
+    "1",
+    "4",
+    "28",
+    "1980",
+    "2007",
+    "240000"
+  ],
+  "allowedEntities": [
+    "Credible",
+    "Believability",
+    "Make",
+    "Build",
+    "Expert",
+    "Details",
+    "Statistics",
+    "Barry Marshall",
+    "Helicobacter",
+    "In July",
+    "Marshall",
+    "Robin Warren",
+    "Nobel Prize",
+    "Physiology",
+    "Medicine",
+    "July",
+    "Pam Laffin",
+    "Massachusetts",
+    "Her",
+    "Lived",
+    "Beyond War",
+    "Hiroshima-scale",
+    "BBs",
+    "Human-scale",
+    "Ronald Reagan's",
+    "During",
+    "October",
+    "Ronald Reagan",
+    "Safexpress",
+    "Harry Potter",
+    "Indian",
+    "India. That",
+    "Sinatra Test",
+    "One",
+    "Credibility",
+    "Evidence",
+    "Rokia",
+    "Texas",
+    "The Nobel",
+    "Laffin",
+    "She",
+    "The Beyond War",
+    "Hiroshima",
+    "The BB",
+    "Each BB",
+    "On October",
+    "Reagan's",
+    "Its",
+    "Safexpress's",
+    "A Sinatra Test",
+    "Human-scaling",
+    "Private",
+    "Belief",
+    "Barry Marshall's July",
+    "Emphysema",
+    "Demonstrated",
+    "India",
+    "The Sinatra Test",
+    "Ronald Reagan's October",
+    "Across",
+    "Barry Marshall / Helicobacter pylori self-experiment",
+    "Pam Laffin antismoking campaign",
+    "Beyond War nuclear BB demonstration",
+    "Ronald Reagan's 1980 testable question",
+    "Safexpress / Harry Potter launch logistics"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch04.ex.marshall",
+      "warning": "Keep examples about Barry Marshall / Helicobacter pylori self-experiment source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch04.ex.laffin",
+      "warning": "Keep examples about Pam Laffin antismoking campaign source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch04.ex.bbs",
+      "warning": "Keep examples about Beyond War nuclear BB demonstration source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch04.ex.reagan",
+      "warning": "Keep examples about Ronald Reagan's 1980 testable question source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch04.ex.safexpress",
+      "warning": "Keep examples about Safexpress / Harry Potter launch logistics source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch04.fact.1"
+}

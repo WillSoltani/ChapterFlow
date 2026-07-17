@@ -1,0 +1,774 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch15",
+  "chapterNumber": 15,
+  "chapterTitle": "Much Ado About Nudging",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch15.source.json",
+  "sourceHash": "sha256:51943b8ae7df10768980e2c388a90d1b0767233697f675a8dcdb60e850a1c25b",
+  "facts": [
+    {
+      "id": "ch15.fact.1",
+      "claim": "The Fernandes–Lynch–Netemeyer meta-analysis covered 168 papers and 201 prior studies.",
+      "mechanism": "This mechanism operates because pooling the literature allowed intervention effects to be compared across financial behaviors and delays.",
+      "commonError": "The 0.1-percent estimate came from one small classroom trial.",
+      "whyWrong": "It was a meta-analysis spanning a large research corpus.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "0.1",
+        "1",
+        "168",
+        "201"
+      ],
+      "groundedEntities": [
+        "The Fernandes",
+        "Lynch",
+        "Netemeyer"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch15.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch15.fact.2",
+      "claim": "The Bruns–Paunov review found 33 positive, 52 null, and two negative transparency effects across 87 tests.",
+      "mechanism": "This mechanism operates because making a nudge visible generally left the mechanism intact and sometimes improved acceptance or attention.",
+      "commonError": "Every transparent nudge stopped working once participants noticed it.",
+      "whyWrong": "Only two tests reported a negative effect.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2",
+        "33",
+        "52",
+        "87"
+      ],
+      "groundedEntities": [
+        "The Bruns",
+        "Paunov",
+        "Every",
+        "Only"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch15.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch15.fact.3",
+      "claim": "The publicity principle rejects a policy an architect could not acknowledge and defend publicly.",
+      "mechanism": "This mechanism operates because public justification disciplines self-serving or covert uses of behavioral power.",
+      "commonError": "A policy is ethical whenever its behavior effect is statistically significant.",
+      "whyWrong": "Legitimacy and public reasons are separate from efficacy.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Legitimacy"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch15.fact.3"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch15.fact.4",
+      "claim": "Paternalism of means helps people pursue their own ends rather than choosing those ends for them.",
+      "mechanism": "This mechanism operates because the intervention targets attention, information, or self-control obstacles while preserving the chooser's underlying goal.",
+      "commonError": "Any welfare-oriented nudge imposes the architect's preferred way of life.",
+      "whyWrong": "Chooser-centered design uses the person's own considered interests as the standard.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Paternalism",
+        "Any",
+        "Chooser-centered"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch15.fact.4"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch15.fact.5",
+      "claim": "Active choosing is itself a designed requirement and can be paternalistic.",
+      "mechanism": "This mechanism operates because the architect forces a decision at a selected time even when the person would prefer delegation.",
+      "commonError": "Required choice is the neutral absence of influence.",
+      "whyWrong": "Forcing, timing, and framing the decision are all architectural choices.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Active",
+        "Required",
+        "Forcing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch15.fact.5"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch15.fact.6",
+      "claim": "Financial-education effects were negligible on behavior 20 months or more after intervention in the 2014 meta-analysis.",
+      "mechanism": "This mechanism operates because knowledge and salience decay when instruction is separated from the decision context.",
+      "commonError": "One course permanently solves every later complex financial choice.",
+      "whyWrong": "Measured behavioral effects weakened with delay.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "20",
+        "2014"
+      ],
+      "groundedEntities": [
+        "Financial-education",
+        "One",
+        "Measured"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch15.fact.6"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch15.fact.7",
+      "claim": "Boosts and nudges can be combined rather than treated as mutually exclusive.",
+      "mechanism": "This mechanism operates because education builds competence while choice architecture supports action when time, attention, or complexity still constrain performance.",
+      "commonError": "Using a default prevents offering education.",
+      "whyWrong": "The tools operate on different barriers and can coexist.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Boosts",
+        "Using"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch15.fact.7"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch15.fact.8",
+      "claim": "Subliminal influence fails the transparency standard because the target cannot identify or contest it.",
+      "mechanism": "This mechanism operates because a hidden stimulus bypasses the opportunity for reflective scrutiny and public accountability.",
+      "commonError": "Subliminal advertising is an ideal nudge whenever it preserves nominal options.",
+      "whyWrong": "Formal choice does not cure covert manipulation.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Subliminal",
+        "Formal"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch15.fact.8"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch15.fact.9",
+      "claim": "Mandates are warranted for conduct such as assault or theft because the chooser's freedom would impose direct harm on others.",
+      "mechanism": "This mechanism operates because an easy opt-out would defeat the protective rule and leave victims exposed.",
+      "commonError": "A consistent nudge philosophy must oppose every ban and legal command.",
+      "whyWrong": "The presumption for choice is defeasible when serious third-party harm is at stake.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Mandates"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch15.fact.9"
+      ],
+      "teachingPriority": 7
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch15.ex.1",
+      "label": "Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis",
+      "summary": "The 2014 meta-analysis covered 168 papers and 201 prior studies. Financial-literacy interventions explained about 0.1 percent of variance in downstream behavior, and effects were negligible at delays of 20 months or more.",
+      "realWorld": true,
+      "naturalSetting": "Daniel Fernandes",
+      "hardSpecifics": [
+        "168 papers covering 201 prior studies",
+        "about 0.1 percent of behavioral variance and negligible effects after 20 months"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch15.ex.2",
+      "label": "Hendrik Bruns and Yavor Paunov / transparency review",
+      "summary": "A review of 14 articles collected 87 tests of transparency. It found 33 positive, 52 null, and only two negative effects on nudge effectiveness.",
+      "realWorld": true,
+      "naturalSetting": "Hendrik Bruns",
+      "hardSpecifics": [
+        "14 articles and 87 transparency tests",
+        "33 positive, 52 null, and two negative effects"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "33 positive, 52 null, and two negative effects"
+      ]
+    },
+    {
+      "id": "ch15.ex.3",
+      "label": "John Rawls / publicity principle",
+      "summary": "The publicity principle asks whether officials could acknowledge and defend a policy in public. Applied to choice architecture, it rejects subliminal or covert manipulation that depends on secrecy for legitimacy.",
+      "realWorld": true,
+      "naturalSetting": "John Rawls",
+      "hardSpecifics": [
+        "principle associated with John Rawls",
+        "policy must be publicly acknowledgeable and defensible"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Ethical nudge checks",
+      "members": [
+        "chooser-centered welfare",
+        "transparency",
+        "public defensibility",
+        "evidence",
+        "easy exit",
+        "proportionality",
+        "review"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Policy-tool continuum",
+      "members": [
+        "education and boosts",
+        "nudges",
+        "incentives",
+        "mandates"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch15.concept",
+      "kind": "concept",
+      "label": "ethical nudge governance",
+      "text": "Rules for selecting, disclosing, testing, and reviewing behavioral interventions while preserving meaningful choice. Choice architects are fallible and can be self-serving, so legitimacy depends on public reasons, evidence, and an escape route.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.ex.1",
+      "kind": "named_example",
+      "label": "Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis",
+      "text": "The 2014 meta-analysis covered 168 papers and 201 prior studies. Financial-literacy interventions explained about 0.1 percent of variance in downstream behavior, and effects were negligible at delays of 20 months or more. Education alone may not remain available when a later financial choice occurs.",
+      "hardSpecifics": [
+        "168 papers covering 201 prior studies",
+        "about 0.1 percent of behavioral variance and negligible effects after 20 months"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.ex.2",
+      "kind": "named_example",
+      "label": "Hendrik Bruns and Yavor Paunov / transparency review",
+      "text": "A review of 14 articles collected 87 tests of transparency. It found 33 positive, 52 null, and only two negative effects on nudge effectiveness. Disclosing a nudge's presence or mechanism usually need not destroy its behavioral effect.",
+      "hardSpecifics": [
+        "14 articles and 87 transparency tests",
+        "33 positive, 52 null, and two negative effects"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.ex.3",
+      "kind": "named_example",
+      "label": "John Rawls / publicity principle",
+      "text": "The publicity principle asks whether officials could acknowledge and defend a policy in public. Applied to choice architecture, it rejects subliminal or covert manipulation that depends on secrecy for legitimacy. Public defensibility is an ethical constraint separate from measured effectiveness.",
+      "hardSpecifics": [
+        "principle associated with John Rawls",
+        "policy must be publicly acknowledgeable and defensible"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.fact.1",
+      "kind": "testable_fact",
+      "label": "The Fernandes–Lynch–Netemeyer meta-analysis covered 168 papers and 201 prior studies.",
+      "text": "The Fernandes–Lynch–Netemeyer meta-analysis covered 168 papers and 201 prior studies. This mechanism operates because pooling the literature allowed intervention effects to be compared across financial behaviors and delays. The 0.1-percent estimate came from one small classroom trial. It was a meta-analysis spanning a large research corpus.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.fact.2",
+      "kind": "testable_fact",
+      "label": "The Bruns–Paunov review found 33 positive, 52 null, and two negative transparency effects across 87 tests.",
+      "text": "The Bruns–Paunov review found 33 positive, 52 null, and two negative transparency effects across 87 tests. This mechanism operates because making a nudge visible generally left the mechanism intact and sometimes improved acceptance or attention. Every transparent nudge stopped working once participants noticed it. Only two tests reported a negative effect.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.fact.3",
+      "kind": "testable_fact",
+      "label": "The publicity principle rejects a policy an architect could not acknowledge and defend publicly.",
+      "text": "The publicity principle rejects a policy an architect could not acknowledge and defend publicly. This mechanism operates because public justification disciplines self-serving or covert uses of behavioral power. A policy is ethical whenever its behavior effect is statistically significant. Legitimacy and public reasons are separate from efficacy.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.fact.4",
+      "kind": "testable_fact",
+      "label": "Paternalism of means helps people pursue their own ends rather than choosing those ends for them.",
+      "text": "Paternalism of means helps people pursue their own ends rather than choosing those ends for them. This mechanism operates because the intervention targets attention, information, or self-control obstacles while preserving the chooser's underlying goal. Any welfare-oriented nudge imposes the architect's preferred way of life. Chooser-centered design uses the person's own considered interests as the standard.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.fact.5",
+      "kind": "testable_fact",
+      "label": "Active choosing is itself a designed requirement and can be paternalistic.",
+      "text": "Active choosing is itself a designed requirement and can be paternalistic. This mechanism operates because the architect forces a decision at a selected time even when the person would prefer delegation. Required choice is the neutral absence of influence. Forcing, timing, and framing the decision are all architectural choices.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.fact.6",
+      "kind": "testable_fact",
+      "label": "Financial-education effects were negligible on behavior 20 months or more after intervention in the 2014 meta-analysis.",
+      "text": "Financial-education effects were negligible on behavior 20 months or more after intervention in the 2014 meta-analysis. This mechanism operates because knowledge and salience decay when instruction is separated from the decision context. One course permanently solves every later complex financial choice. Measured behavioral effects weakened with delay.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.fact.7",
+      "kind": "testable_fact",
+      "label": "Boosts and nudges can be combined rather than treated as mutually exclusive.",
+      "text": "Boosts and nudges can be combined rather than treated as mutually exclusive. This mechanism operates because education builds competence while choice architecture supports action when time, attention, or complexity still constrain performance. Using a default prevents offering education. The tools operate on different barriers and can coexist.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.fact.8",
+      "kind": "testable_fact",
+      "label": "Subliminal influence fails the transparency standard because the target cannot identify or contest it.",
+      "text": "Subliminal influence fails the transparency standard because the target cannot identify or contest it. This mechanism operates because a hidden stimulus bypasses the opportunity for reflective scrutiny and public accountability. Subliminal advertising is an ideal nudge whenever it preserves nominal options. Formal choice does not cure covert manipulation.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.fact.9",
+      "kind": "testable_fact",
+      "label": "Mandates are warranted for conduct such as assault or theft because the chooser's freedom would impose direct harm on others.",
+      "text": "Mandates are warranted for conduct such as assault or theft because the chooser's freedom would impose direct harm on others. This mechanism operates because an easy opt-out would defeat the protective rule and leave victims exposed. A consistent nudge philosophy must oppose every ban and legal command. The presumption for choice is defeasible when serious third-party harm is at stake.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.framework.ethical.nudge.checks",
+      "kind": "framework",
+      "label": "Ethical nudge checks",
+      "text": "chooser-centered welfare, transparency, public defensibility, evidence, easy exit, proportionality, review",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch15.framework.policy.tool.continuum",
+      "kind": "framework",
+      "label": "Policy-tool continuum",
+      "text": "education and boosts, nudges, incentives, mandates",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "0.1",
+    "1",
+    "168",
+    "201",
+    "2",
+    "33",
+    "52",
+    "87",
+    "20",
+    "2014",
+    "14"
+  ],
+  "allowedEntities": [
+    "Much Ado About Nudging",
+    "Ethical",
+    "Active",
+    "Use",
+    "Rules",
+    "Choice",
+    "Paternalism",
+    "Avoiding",
+    "Boosts",
+    "Education",
+    "Transparency",
+    "The Rawlsian",
+    "Mandates",
+    "Daniel Fernandes",
+    "John Lynch",
+    "Richard Netemeyer",
+    "Financial-literacy",
+    "Hendrik Bruns",
+    "Yavor Paunov",
+    "Disclosing",
+    "John Rawls",
+    "Applied",
+    "Public",
+    "Freedom",
+    "Transparent",
+    "The Fernandes",
+    "Lynch",
+    "Netemeyer",
+    "The Bruns",
+    "Paunov",
+    "Every",
+    "Only",
+    "Legitimacy",
+    "Any",
+    "Chooser-centered",
+    "Required",
+    "Forcing",
+    "Financial-education",
+    "One",
+    "Measured",
+    "Using",
+    "Subliminal",
+    "Formal",
+    "Policy-tool",
+    "Help",
+    "Richard Netemeyer's",
+    "Yavor Paunov's",
+    "Publicity",
+    "John Rawls's",
+    "Stronger",
+    "Nudges",
+    "Grounding",
+    "Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis",
+    "Hendrik Bruns and Yavor Paunov / transparency review",
+    "John Rawls / publicity principle"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch15.ex.1",
+      "warning": "Keep examples about Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch15.ex.2",
+      "warning": "Keep examples about Hendrik Bruns and Yavor Paunov / transparency review source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch15.ex.3",
+      "warning": "Keep examples about John Rawls / publicity principle source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch15.fact.1"
+}

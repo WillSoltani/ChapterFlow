@@ -206,13 +206,17 @@ test("(e) a zero-passing screening yields a STOP outcome with the owner-escalati
 
 // ── (f) corpus intake: real not-ready refuses; ready fixture proceeds ────────
 
-test("(f) the REAL (not-ready) corpus manifest makes intake refuse fail-closed", () => {
-  assert.throws(
-    () => intakeCorpus({ bookId: "nudge", chapters: [3] }),
-    (err: unknown) => err instanceof CorpusIntakeError && /not bakeoff-ready/.test((err as Error).message) && /UNRESOLVED/.test((err as Error).message),
-    "the real manifest is not-ready (authoringSource UNRESOLVED, D-7 pending) — intake must refuse",
-  );
+test("(f) the REAL corpus manifest is RESOLVED (Stage-B freeze, L-44) and intake proceeds against the real frozen inputs", () => {
+  // The freeze committed the shared inputs alongside the manifest, so the REAL
+  // intake path (on-disk manifest + real collectSharedInputPaths) must succeed.
+  const record = intakeCorpus({ bookId: "nudge", chapters: [3] });
+  assert.equal(record.corpusId, "bakeoff-corpus-v1");
+  assert.equal(record.units.length, 1);
+  assert.equal(record.units[0].unit, "nudge-ch03");
+  assert.ok(isResolvedAuthoringSource(record.units[0].authoringSource));
+  assert.ok(record.sharedInputCount > 0, "shared inputs verified via the freeze machinery");
 });
+
 
 const READY_FIXTURE = {
   schema: "bakeoff-corpus-manifest-v1",
@@ -239,6 +243,20 @@ test("(f) a READY fixture manifest makes intake proceed (resolved authoringSourc
   assert.equal(record.units[0].unit, "nudge-ch03");
   assert.ok(isResolvedAuthoringSource(record.units[0].authoringSource));
   assert.equal(record.sharedInputCount, 2);
+});
+
+test("(f) a NOT-READY manifest (pre-freeze shape) makes intake refuse fail-closed", () => {
+  const notReady = {
+    ...READY_FIXTURE,
+    corpusId: "bakeoff-corpus-v1-notready-fixture",
+    bakeoffReadiness: "not-ready-for-bakeoff",
+    units: [{ ...READY_FIXTURE.units[0], authoringSource: "UNRESOLVED" }],
+  };
+  assert.throws(
+    () => intakeCorpus({ bookId: "nudge", chapters: [3], deps: { readManifestText: () => JSON.stringify(notReady), collectSharedInputs: () => ["x"] } }),
+    (err: unknown) => err instanceof CorpusIntakeError && /not bakeoff-ready/.test((err as Error).message),
+    "a not-ready manifest must refuse intake",
+  );
 });
 
 test("(f) a READY manifest whose target unit is still UNRESOLVED refuses (authoringSource gate is independent of the readiness flag)", () => {

@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 3,
+  "chapterTitle": "Concrete",
+  "focus": "Concrete language gives abstract ideas sensory form, creates multiple retrieval cues, and lets groups coordinate around the same observable target. Cases, objects, simulations, and specific criteria make meaning easier to inspect and harder to interpret away.",
+  "coreClaim": "People understand, remember, and coordinate around ideas better when the intended meaning is tied to observable people, objects, actions, and outcomes.",
+  "centralConcept": {
+    "id": "ch03.concept",
+    "name": "concrete hooks",
+    "plainDefinition": "Express meaning through things that can be pictured, handled, enacted, or checked instead of relying only on category labels and abstractions.",
+    "whyItMatters": "Concrete hooks give memory more routes back to an idea and give collaborators a common object against which to test interpretations."
+  },
+  "keyClaims": [
+    "Sensory nouns and observable actions constrain ambiguity more effectively than broad conceptual labels.",
+    "A case can carry abstract instruction by placing it inside a sequence of decisions and consequences.",
+    "Simulations make a social mechanism felt rather than merely named.",
+    "Concrete design criteria coordinate specialists who otherwise attach different meanings to the same abstract goal.",
+    "A physical demonstration can make a simple intervention credible and teachable across language and expertise barriers."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch03.ex.accounting",
+      "label": "Georgia State Safe Night Out accounting case",
+      "summary": "Georgia State University instructors taught accounting through the Safe Night Out case, following co-founders Kris and Sandy as they built a startup. Transactions and statements acquired concrete consequences inside an unfolding business story.",
+      "teachesWhat": "A continuing case supplies people, motives, and consequences that abstract accounting terms can attach to.",
+      "hardSpecifics": ["Georgia State University", "Kris and Sandy"],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.ex.elliott",
+      "label": "Jane Elliott's blue-eyes/brown-eyes exercise",
+      "summary": "On April 5, 1968, Iowa teacher Jane Elliott divided her third-grade class by eye color, privileging one group and later reversing the roles. The blue-eyes/brown-eyes exercise turned discrimination from a definition into an experienced system of arbitrary status.",
+      "teachesWhat": "An enacted mechanism can reveal social consequences that an abstract lecture leaves distant.",
+      "hardSpecifics": ["April 5, 1968", "third-grade class"],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.ex.boeing",
+      "label": "Boeing 727 / LaGuardia Runway 4-22",
+      "summary": "The Boeing 727 design target included taking off fully loaded and landing on LaGuardia Runway 4-22. A named aircraft, payload condition, airport, and runway gave multiple engineering teams one inspectable performance test.",
+      "teachesWhat": "A shared concrete criterion aligns specialists better than a phrase such as high-performance airliner.",
+      "hardSpecifics": ["Boeing 727", "LaGuardia Runway 4-22"],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.ex.ors",
+      "label": "James P. Grant / oral rehydration salts packet",
+      "summary": "UNICEF executive director James P. Grant used a packet of sugar and salt to make oral rehydration therapy visible to policymakers. Oral rehydration salts are dissolved in clean water so coupled glucose and sodium absorption can replace fluid lost through severe diarrhoea.",
+      "teachesWhat": "A small physical object can carry a life-saving mechanism more effectively than an abstract program description.",
+      "hardSpecifics": ["James P. Grant", "packet of sugar and salt"],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.ex.aesop",
+      "label": "Aesop's Fox and the Grapes",
+      "summary": "The Fox and the Grapes gives sour grapes a fox, unreachable fruit, and a face-saving judgment. The fable packages an abstract pattern of devaluing what one cannot obtain inside concrete action.",
+      "teachesWhat": "A compact scene can preserve an abstract moral through recognizable objects and behavior.",
+      "hardSpecifics": ["fox", "unreachable grapes"],
+      "realWorld": false
+    }
+  ],
+  "hardEdge": "Concrete is not the same as adding arbitrary color, dates, or decoration. Detail earns its place when it clarifies the mechanism, creates a retrieval hook, or supplies a shared test; irrelevant specificity can distract as badly as abstraction.",
+  "voiceCues": [
+    "moves between fable, classroom simulation, engineering, and public health",
+    "turns abstract labels into objects or actions the reader can picture",
+    "uses the Velcro metaphor to explain multiple retrieval routes",
+    "asks whether different specialists would interpret a goal the same way"
+  ],
+  "forbiddenLeakage": [
+    "Do not recast the Boeing target as a surprise or a credibility credential; its function is shared coordination.",
+    "Do not import Pam Laffin or the nuclear-BB demonstration; those evidence patterns belong to credibility."
+  ],
+  "testableFacts": [
+    {
+      "id": "ch03.fact.1",
+      "claim": "Georgia State University's Safe Night Out case follows startup co-founders Kris and Sandy to teach accounting decisions.",
+      "becauseMechanism": "Because transactions change the fortunes of named people and their venture, accounting categories gain causal and narrative hooks.",
+      "commonError": "The Safe Night Out method removes financial statements and teaches only entrepreneurship anecdotes.",
+      "errorIsWhy": "The story supplies context for the accounting content; it does not replace the underlying concepts and records.",
+      "derivedFrom": "ch03.ex.accounting"
+    },
+    {
+      "id": "ch03.fact.2",
+      "claim": "Jane Elliott first ran the blue-eyes/brown-eyes exercise with her Iowa third-grade class on April 5, 1968.",
+      "becauseMechanism": "Because arbitrary eye color immediately changed status, privileges, and treatment, pupils encountered discrimination as an operating system rather than a vocabulary word.",
+      "commonError": "Elliott merely asked pupils to imagine discrimination without changing classroom roles.",
+      "errorIsWhy": "The exercise assigned superiority and disadvantage, then reversed the categories so pupils experienced both positions.",
+      "derivedFrom": "ch03.ex.elliott"
+    },
+    {
+      "id": "ch03.fact.3",
+      "claim": "The Boeing 727 design criterion named a fully loaded takeoff and a safe landing on LaGuardia Runway 4-22.",
+      "becauseMechanism": "Because the criterion specifies aircraft, load state, place, and runway, engineering teams can evaluate competing designs against the same outcome.",
+      "commonError": "The 727 teams coordinated around the unmeasurable instruction to build the world's best airplane.",
+      "errorIsWhy": "An abstract superlative permits conflicting interpretations, whereas the runway task supplies a common performance test.",
+      "derivedFrom": "ch03.ex.boeing"
+    },
+    {
+      "id": "ch03.fact.4",
+      "claim": "Oral rehydration salts combine sugar and salts for dissolution in clean water to treat dehydration from fluid loss.",
+      "becauseMechanism": "Because intestinal glucose transport remains coupled with sodium uptake during severe diarrhoea, the solution accelerates absorption of salt and water.",
+      "commonError": "Plain water alone replaces the electrolytes and uses the same intestinal transport mechanism as ORS.",
+      "errorIsWhy": "The therapeutic mechanism depends on correctly proportioned glucose and electrolytes, not water without solutes.",
+      "derivedFrom": "ch03.ex.ors"
+    },
+    {
+      "id": "ch03.fact.5",
+      "claim": "James P. Grant used a packet of sugar and salt as a concrete representation of oral rehydration therapy.",
+      "becauseMechanism": "Because policymakers could see and hold the intervention's ingredients, a large public-health program became a graspable action rather than a remote abstraction.",
+      "commonError": "Grant's packet was offered as a complete dry medicine to swallow without water or measurement.",
+      "errorIsWhy": "The ingredients must be prepared as a correctly diluted oral solution; the packet represented the intervention, not a dry dose.",
+      "derivedFrom": "ch03.ex.ors"
+    },
+    {
+      "id": "ch03.fact.6",
+      "claim": "The Fox and the Grapes makes self-protective devaluation visible through a fox dismissing fruit it cannot reach.",
+      "becauseMechanism": "Because the motive appears inside a physical failed attempt and a face-saving response, the abstract bias is easy to reconstruct later.",
+      "commonError": "The fable's mechanism is that unreachable objects objectively become lower quality.",
+      "errorIsWhy": "The fruit does not change; the fox changes its judgment to protect itself after failure.",
+      "derivedFrom": "ch03.ex.aesop"
+    },
+    {
+      "id": "ch03.fact.7",
+      "claim": "Concrete language is expressed through sensory or observable terms that different listeners can picture or inspect.",
+      "becauseMechanism": "Because observable referents constrain possible interpretations, people are more likely to attach the same meaning to the message.",
+      "commonError": "Concrete language is any sentence containing a large number, even when nobody can visualize its scale.",
+      "errorIsWhy": "A numeral can remain abstract; concreteness requires a perceptible referent, comparison, action, or test.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.8",
+      "claim": "The Velcro theory of memory treats concrete details as multiple hooks that can cue later retrieval.",
+      "becauseMechanism": "Because a scene can be reached through people, objects, sensations, actions, and consequences, forgetting one route need not erase the idea.",
+      "commonError": "Memory improves only when a message repeats the same abstract phrase many times.",
+      "errorIsWhy": "Repetition strengthens one route, while varied concrete hooks create several routes back to the same meaning.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.9",
+      "claim": "Concrete criteria improve coordination by giving specialists a shared definition of completion.",
+      "becauseMechanism": "Because each contributor can test work against the same observable result, disciplinary assumptions are less likely to produce incompatible outputs.",
+      "commonError": "Abstract goals coordinate experts better because each team can privately define success.",
+      "errorIsWhy": "Private definitions create hidden divergence; a common test exposes mismatches before integration.",
+      "derivedFrom": "ch03.concept"
+    }
+  ],
+  "frameworks": [
+    { "name": "Concrete hooks", "members": ["people", "objects", "actions", "sensations", "observable outcomes"], "acronym": false }
+  ],
+  "paraphraseNotes": "Abstraction is efficient for experts who already share a vocabulary, but it leaves everyone else with few retrieval cues and plenty of interpretive freedom. Aesop's fox and unreachable grapes show the alternative: motive, failed action, and face-saving judgment preserve a subtle psychological pattern in a scene. Georgia State University's Safe Night Out case similarly attaches accounting to Kris and Sandy, so transactions affect named founders rather than floating as entries without consequences.\n\nExperience makes the mechanism still more tangible. Jane Elliott's April 5, 1968 third-grade exercise assigned status by eye color and later reversed it. The value lies in enacted rules and felt consequences, not in treating the exercise as controlled proof that a short simulation solves systemic racism. Concrete targets also coordinate. The Boeing 727 requirement of a fully loaded takeoff and safe landing on LaGuardia Runway 4-22 gave engineers a shared test more useful than a broad demand for excellent performance.\n\nPublic health supplies the physical-object case. James P. Grant carried a packet of sugar and salt to make oral rehydration therapy visible. Oral rehydration salts dissolved in clean water exploit coupled glucose and sodium absorption to replace lost fluid. The packet turns global policy into ingredients, preparation, and a body mechanism that can be taught. These examples support a Velcro model of memory: people, objects, sensations, actions, and consequences create several hooks for retrieval. The hard edge is functional detail. A date or color that does not clarify mechanism, memory, or coordination is ornament; useful concreteness makes the intended meaning inspectable."
+}

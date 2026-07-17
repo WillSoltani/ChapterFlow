@@ -1,0 +1,718 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch02",
+  "chapterNumber": 2,
+  "chapterTitle": "Resisting Temptation",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch02.source.json",
+  "sourceHash": "sha256:66fd21330f1ae5c176abe9d8fc92e90594a840d0471423c9a0c710afcfdbdad4",
+  "facts": [
+    {
+      "id": "ch02.fact.1",
+      "claim": "People in a cold state systematically underpredict how strongly a later hot state will change desire and behavior.",
+      "mechanism": "This mechanism operates because current visceral conditions are difficult to simulate, so calm forecasts discount hunger, craving, pain, or arousal.",
+      "commonError": "Knowing that temptation exists is enough to forecast its strength accurately.",
+      "whyWrong": "Awareness of a future state does not reproduce its motivational force.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "People",
+        "Knowing",
+        "Awareness"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.1"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch02.fact.2",
+      "claim": "Removing the cashews made dinner guests better off by their own expressed judgment despite reducing their immediate option set.",
+      "mechanism": "This mechanism operates because the removed temptation protected their prior plan to preserve appetite for dinner.",
+      "commonError": "An additional available option can never make a chooser worse off.",
+      "whyWrong": "A tempting option changes behavior when present preferences conflict with advance preferences.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Removing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.2"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch02.fact.3",
+      "claim": "Christmas Club accounts traded interest and liquidity for a withdrawal restriction tied to holiday spending.",
+      "mechanism": "This mechanism operates because earmarking and delayed access prevented the Doer from spending savings before the intended date.",
+      "commonError": "A lower-return restricted account has no rational value to its depositor.",
+      "whyWrong": "The constraint supplies self-control that an unrestricted account does not.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Christmas Club",
+        "Doer"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.3"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch02.fact.4",
+      "claim": "Dynamic inconsistency occurs when a person's preferred action changes as the moment of temptation approaches.",
+      "mechanism": "This mechanism operates because immediate rewards gain disproportionate weight at short delays, so a plan made earlier can reverse later.",
+      "commonError": "A changed choice necessarily proves the earlier preference was insincere.",
+      "whyWrong": "Both preferences can be genuine but activated at different times.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Dynamic",
+        "Both"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.4"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch02.fact.5",
+      "claim": "A commitment device works by changing the future choice set or its consequences before temptation arrives.",
+      "mechanism": "Advance action transfers control to the calm planning state so that later impulse cannot act as freely.",
+      "commonError": "Commitment devices merely provide motivational slogans.",
+      "whyWrong": "Their defining feature is a concrete constraint, stake, or barrier.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Advance",
+        "Commitment",
+        "Their"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.5"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch02.fact.6",
+      "claim": "Mental accounting assigns nominally interchangeable dollars to separate purposes such as rent, leisure, or emergencies.",
+      "mechanism": "Labels create internal spending boundaries so that using one account feels different from using another.",
+      "commonError": "People naturally treat every dollar as perfectly fungible in practice.",
+      "whyWrong": "Household budgets and earmarked accounts display persistent category boundaries.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Mental",
+        "Labels",
+        "People",
+        "Household"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.6"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch02.fact.7",
+      "claim": "The Planner represents long-horizon welfare while the Doer gives heavier weight to immediate gratification.",
+      "mechanism": "The two-self model separates advance evaluation from state-dependent action so that self-control conflict becomes analyzable.",
+      "commonError": "Planner and Doer refer to two anatomical brain regions with fixed control.",
+      "whyWrong": "They are an economic model of competing time horizons, not a literal map of two organs.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2"
+      ],
+      "groundedEntities": [
+        "The Planner",
+        "Doer",
+        "Planner",
+        "They"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.7"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch02.fact.8",
+      "claim": "Large containers and portions can increase consumption when eating proceeds with little attention.",
+      "mechanism": "This mechanism operates because external cues substitute for an internal stopping rule, so quantity served influences quantity consumed.",
+      "commonError": "Portion size affects only people who consciously decide to finish everything.",
+      "whyWrong": "The proposed mechanism is mindless cue-following rather than an explicit clean-plate rule.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Large",
+        "Portion"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.8"
+      ],
+      "replicationStatus": "robust",
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch02.fact.9",
+      "claim": "Ulysses' mast strategy is a commitment device because the restraint is chosen before the Sirens can alter his behavior.",
+      "mechanism": "This mechanism operates because binding future action while calm prevents the later hot state from executing its preferred course.",
+      "commonError": "The story illustrates stronger willpower at the moment of temptation.",
+      "whyWrong": "The solution removes reliance on momentary willpower by imposing an earlier constraint.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Ulysses",
+        "Sirens"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.9"
+      ],
+      "teachingPriority": 8
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch02.ex.1",
+      "label": "George Loewenstein / hot–cold empathy gap",
+      "summary": "Loewenstein formalized how people in a calm state underpredict the force of hunger, arousal, craving, or pain. The 1996 analysis explains why advance plans fail precisely when the tempting state arrives.",
+      "realWorld": true,
+      "naturalSetting": "George Loewenstein",
+      "hardSpecifics": [
+        "George Loewenstein's 1996 analysis",
+        "cold-state forecasts underweight hot-state visceral forces"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "George Loewenstein's 1996 analysis",
+        "cold-state forecasts underweight hot-state visceral forces"
+      ]
+    },
+    {
+      "id": "ch02.ex.2",
+      "label": "Richard Thaler / dinner-party cashews",
+      "summary": "Before dinner, guests kept eating a bowl of cashews and thanked Thaler when he removed it. They preferred having the option beforehand yet felt better when the immediate temptation disappeared.",
+      "realWorld": true,
+      "naturalSetting": "Richard Thaler",
+      "hardSpecifics": [
+        "bowl of cashews removed before dinner",
+        "guests expressed relief after removal"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch02.ex.3",
+      "label": "Christmas Club savings accounts",
+      "summary": "Depositors historically accepted low-interest accounts that restricted withdrawals until the holiday season. The restriction made the money harder to spend early and converted a future intention into a commitment.",
+      "realWorld": true,
+      "naturalSetting": "Christmas Club",
+      "hardSpecifics": [
+        "withdrawals restricted until the holiday period",
+        "lower interest than ordinary savings accounts"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Planner–Doer model",
+      "members": [
+        "farsighted Planner",
+        "myopic Doer"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch02.concept",
+      "kind": "concept",
+      "label": "Planner–Doer conflict",
+      "text": "One set of preferences favors future welfare while another responds strongly to immediate rewards and arousal. A decision that seems inconsistent can be understood and improved by moving control to the earlier planning moment.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.ex.1",
+      "kind": "named_example",
+      "label": "George Loewenstein / hot–cold empathy gap",
+      "text": "Loewenstein formalized how people in a calm state underpredict the force of hunger, arousal, craving, or pain. The 1996 analysis explains why advance plans fail precisely when the tempting state arrives. Forecasting one's future preferences is state-dependent.",
+      "hardSpecifics": [
+        "George Loewenstein's 1996 analysis",
+        "cold-state forecasts underweight hot-state visceral forces"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.ex.2",
+      "kind": "named_example",
+      "label": "Richard Thaler / dinner-party cashews",
+      "text": "Before dinner, guests kept eating a bowl of cashews and thanked Thaler when he removed it. They preferred having the option beforehand yet felt better when the immediate temptation disappeared. More available options can reduce welfare when present desire conflicts with a prior plan.",
+      "hardSpecifics": [
+        "bowl of cashews removed before dinner",
+        "guests expressed relief after removal"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.ex.3",
+      "kind": "named_example",
+      "label": "Christmas Club savings accounts",
+      "text": "Depositors historically accepted low-interest accounts that restricted withdrawals until the holiday season. The restriction made the money harder to spend early and converted a future intention into a commitment. People willingly pay for constraints that protect earmarked savings.",
+      "hardSpecifics": [
+        "withdrawals restricted until the holiday period",
+        "lower interest than ordinary savings accounts"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.1",
+      "kind": "testable_fact",
+      "label": "People in a cold state systematically underpredict how strongly a later hot state will change desire and behavior.",
+      "text": "People in a cold state systematically underpredict how strongly a later hot state will change desire and behavior. This mechanism operates because current visceral conditions are difficult to simulate, so calm forecasts discount hunger, craving, pain, or arousal. Knowing that temptation exists is enough to forecast its strength accurately. Awareness of a future state does not reproduce its motivational force.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.2",
+      "kind": "testable_fact",
+      "label": "Removing the cashews made dinner guests better off by their own expressed judgment despite reducing their immediate option set.",
+      "text": "Removing the cashews made dinner guests better off by their own expressed judgment despite reducing their immediate option set. This mechanism operates because the removed temptation protected their prior plan to preserve appetite for dinner. An additional available option can never make a chooser worse off. A tempting option changes behavior when present preferences conflict with advance preferences.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.3",
+      "kind": "testable_fact",
+      "label": "Christmas Club accounts traded interest and liquidity for a withdrawal restriction tied to holiday spending.",
+      "text": "Christmas Club accounts traded interest and liquidity for a withdrawal restriction tied to holiday spending. This mechanism operates because earmarking and delayed access prevented the Doer from spending savings before the intended date. A lower-return restricted account has no rational value to its depositor. The constraint supplies self-control that an unrestricted account does not.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.4",
+      "kind": "testable_fact",
+      "label": "Dynamic inconsistency occurs when a person's preferred action changes as the moment of temptation approaches.",
+      "text": "Dynamic inconsistency occurs when a person's preferred action changes as the moment of temptation approaches. This mechanism operates because immediate rewards gain disproportionate weight at short delays, so a plan made earlier can reverse later. A changed choice necessarily proves the earlier preference was insincere. Both preferences can be genuine but activated at different times.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.5",
+      "kind": "testable_fact",
+      "label": "A commitment device works by changing the future choice set or its consequences before temptation arrives.",
+      "text": "A commitment device works by changing the future choice set or its consequences before temptation arrives. Advance action transfers control to the calm planning state so that later impulse cannot act as freely. Commitment devices merely provide motivational slogans. Their defining feature is a concrete constraint, stake, or barrier.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.6",
+      "kind": "testable_fact",
+      "label": "Mental accounting assigns nominally interchangeable dollars to separate purposes such as rent, leisure, or emergencies.",
+      "text": "Mental accounting assigns nominally interchangeable dollars to separate purposes such as rent, leisure, or emergencies. Labels create internal spending boundaries so that using one account feels different from using another. People naturally treat every dollar as perfectly fungible in practice. Household budgets and earmarked accounts display persistent category boundaries.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.7",
+      "kind": "testable_fact",
+      "label": "The Planner represents long-horizon welfare while the Doer gives heavier weight to immediate gratification.",
+      "text": "The Planner represents long-horizon welfare while the Doer gives heavier weight to immediate gratification. The two-self model separates advance evaluation from state-dependent action so that self-control conflict becomes analyzable. Planner and Doer refer to two anatomical brain regions with fixed control. They are an economic model of competing time horizons, not a literal map of two organs.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.8",
+      "kind": "testable_fact",
+      "label": "Large containers and portions can increase consumption when eating proceeds with little attention.",
+      "text": "Large containers and portions can increase consumption when eating proceeds with little attention. This mechanism operates because external cues substitute for an internal stopping rule, so quantity served influences quantity consumed. Portion size affects only people who consciously decide to finish everything. The proposed mechanism is mindless cue-following rather than an explicit clean-plate rule.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.9",
+      "kind": "testable_fact",
+      "label": "Ulysses' mast strategy is a commitment device because the restraint is chosen before the Sirens can alter his behavior.",
+      "text": "Ulysses' mast strategy is a commitment device because the restraint is chosen before the Sirens can alter his behavior. This mechanism operates because binding future action while calm prevents the later hot state from executing its preferred course. The story illustrates stronger willpower at the moment of temptation. The solution removes reliance on momentary willpower by imposing an earlier constraint.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.framework.planner.doer.model",
+      "kind": "framework",
+      "label": "Planner–Doer model",
+      "text": "farsighted Planner, myopic Doer",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1",
+    "2",
+    "1996"
+  ],
+  "allowedEntities": [
+    "Resisting Temptation",
+    "Preferences",
+    "Commitment",
+    "Planner",
+    "Doer",
+    "Self-control",
+    "One",
+    "Dynamic",
+    "Cold",
+    "Mindless",
+    "Mental",
+    "External",
+    "George Loewenstein",
+    "Loewenstein",
+    "Forecasting",
+    "George Loewenstein's",
+    "Richard Thaler",
+    "Before",
+    "Thaler",
+    "They",
+    "More",
+    "Christmas Club",
+    "Depositors",
+    "People",
+    "Its",
+    "Knowing",
+    "Awareness",
+    "Removing",
+    "Both",
+    "Advance",
+    "Their",
+    "Labels",
+    "Household",
+    "The Planner",
+    "Large",
+    "Portion",
+    "Ulysses",
+    "Sirens",
+    "Guests",
+    "Those",
+    "A Cochrane",
+    "Brian Wansink",
+    "Predict",
+    "Grounding",
+    "George Loewenstein / hot–cold empathy gap",
+    "Richard Thaler / dinner-party cashews",
+    "Christmas Club savings accounts"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch02.ex.1",
+      "warning": "Keep examples about George Loewenstein / hot–cold empathy gap source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch02.ex.2",
+      "warning": "Keep examples about Richard Thaler / dinner-party cashews source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch02.ex.3",
+      "warning": "Keep examples about Christmas Club savings accounts source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch02.fact.6"
+}

@@ -1,0 +1,722 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch04",
+  "chapterNumber": 4,
+  "chapterTitle": "When Do We Need a Nudge?",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch04.source.json",
+  "sourceHash": "sha256:b38c2e3cc13c62850d23823fde239b2070e6d51b74450e95d016634b614c73f1",
+  "facts": [
+    {
+      "id": "ch04.fact.1",
+      "claim": "Prompts asking when, where, and how a person would vote increased turnout in the 2008 election study.",
+      "mechanism": "This mechanism operates because forming an implementation plan linked an intention to concrete situational cues.",
+      "commonError": "A reminder can only help by supplying new information about candidates.",
+      "whyWrong": "The prompt changed action planning rather than political knowledge.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2008"
+      ],
+      "groundedEntities": [
+        "Prompts"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch04.fact.2",
+      "claim": "The WHO Surgical Safety Checklist pilot used 19 items across eight hospitals in eight cities.",
+      "mechanism": "This mechanism operates because a standardized pause made critical coordination and omission checks visible at the same points in each operation.",
+      "commonError": "The checklist was a long clinical manual replacing professional judgment.",
+      "whyWrong": "It was a short coordination tool layered onto existing expertise.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "8",
+        "19"
+      ],
+      "groundedEntities": [
+        "The WHO Surgical Safety Checklist"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch04.fact.3",
+      "claim": "Extended warranties are often priced well above the expected cost of repair for small consumer goods.",
+      "mechanism": "This mechanism operates because buyers overweight salient failure scenarios while sellers exploit opaque probabilities and high margins.",
+      "commonError": "A competitive retail market guarantees that warranty prices equal actuarial value.",
+      "whyWrong": "Profit from consumer error can sustain expensive add-ons across competitors.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Extended",
+        "Profit"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch04.fact.4",
+      "claim": "Rare choices are strong nudge candidates because people receive few chances to learn from experience.",
+      "mechanism": "This mechanism operates because learning requires repeated action and observable outcomes, which one-time decisions do not provide.",
+      "commonError": "High importance automatically makes people expert decision makers.",
+      "whyWrong": "Stakes increase consequences but do not create practice.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Rare",
+        "High",
+        "Stakes"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.4"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch04.fact.5",
+      "claim": "Delayed feedback weakens learning even when a decision is repeated.",
+      "mechanism": "This mechanism operates because a remote outcome is difficult to attribute to the earlier choice, so the error signal cannot update behavior cleanly.",
+      "commonError": "Repetition always teaches which option works.",
+      "whyWrong": "Practice without timely diagnostic feedback can repeat the same mistake.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Delayed",
+        "Repetition",
+        "Practice"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.5"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch04.fact.6",
+      "claim": "A mapping problem exists when product attributes do not translate transparently into the chooser's eventual experience.",
+      "mechanism": "This mechanism operates because technical dimensions such as fund fees or car features must be converted into welfare consequences before they can be compared.",
+      "commonError": "More disclosed attributes automatically make a difficult choice easy.",
+      "whyWrong": "Raw features remain unusable when people cannot connect them to outcomes.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "More",
+        "Raw"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.6"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch04.fact.7",
+      "claim": "Reminders are suited to inattention when the person already intends to act.",
+      "mechanism": "This mechanism operates because a timely cue restores the intended task to working attention without changing its payoff.",
+      "commonError": "Forgetting always requires a stronger financial incentive.",
+      "whyWrong": "The preference and incentive may already be adequate; only attention is missing.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Reminders",
+        "Forgetting"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.7"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch04.fact.8",
+      "claim": "The golden rule favors nudges that are unlikely to harm and likely to help.",
+      "mechanism": "This mechanism operates because choice architects are fallible, so low downside and easy avoidance limit damage from a mistaken design.",
+      "commonError": "Any intervention with a positive average effect satisfies the rule.",
+      "whyWrong": "Distributional harm and ease of escape also matter.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Any",
+        "Distributional"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch04.fact.9",
+      "claim": "Markets may preserve confusing choice environments when firms profit from consumer mistakes.",
+      "mechanism": "This mechanism operates because a seller loses revenue by educating a mistaken buyer if competitors continue monetizing the same error.",
+      "commonError": "Competition necessarily eliminates every exploitative choice design.",
+      "whyWrong": "Competition disciplines price only when consumers can recognize and compare the relevant cost.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Markets",
+        "Competition"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch04.fact.9"
+      ],
+      "teachingPriority": 4
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch04.ex.1",
+      "label": "Todd Rogers, David Nickerson, and voting-plan prompts",
+      "summary": "Before the 2008 US presidential election, eligible voters were prompted to specify when, where, and how they would vote. The planning questions raised turnout particularly among households with a single eligible voter.",
+      "realWorld": true,
+      "naturalSetting": "Todd Rogers",
+      "hardSpecifics": [
+        "2008 United States presidential election",
+        "questions specified when, where, and how to vote"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "2008 United States presidential election",
+        "questions specified when, where, and how to vote"
+      ]
+    },
+    {
+      "id": "ch04.ex.2",
+      "label": "World Health Organization / Surgical Safety Checklist",
+      "summary": "A WHO pilot introduced a 19-item checklist at eight hospitals in eight cities. The before-and-after study reported lower major complications and inpatient deaths after implementation.",
+      "realWorld": true,
+      "naturalSetting": "World Health Organization",
+      "hardSpecifics": [
+        "19-item surgical checklist",
+        "eight hospitals in eight cities"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "eight hospitals in eight cities"
+      ]
+    },
+    {
+      "id": "ch04.ex.3",
+      "label": "US extended-warranty market",
+      "summary": "Retailers sell protection on inexpensive electronics and appliances at prices far above expected repair cost. These rare, opaque failures are difficult for buyers to evaluate and highly profitable for sellers.",
+      "realWorld": true,
+      "naturalSetting": "Retailers",
+      "hardSpecifics": [
+        "extended warranties on electronics and appliances",
+        "retailer margins exceed expected repair value"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Strong nudge-candidate conditions",
+      "members": [
+        "rare",
+        "difficult",
+        "weak feedback",
+        "unclear mapping",
+        "low attention"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch04.concept",
+      "kind": "concept",
+      "label": "nudge need conditions",
+      "text": "A decision is a strong nudge candidate when people lack practice, prompt feedback, clear preference mapping, or enough attention. Choice architects can prioritize scarce effort where small design changes have the largest expected benefit and the least downside.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.ex.1",
+      "kind": "named_example",
+      "label": "Todd Rogers, David Nickerson, and voting-plan prompts",
+      "text": "Before the 2008 US presidential election, eligible voters were prompted to specify when, where, and how they would vote. The planning questions raised turnout particularly among households with a single eligible voter. A concrete plan can close the gap between intention and an easily forgotten action.",
+      "hardSpecifics": [
+        "2008 United States presidential election",
+        "questions specified when, where, and how to vote"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.ex.2",
+      "kind": "named_example",
+      "label": "World Health Organization / Surgical Safety Checklist",
+      "text": "A WHO pilot introduced a 19-item checklist at eight hospitals in eight cities. The before-and-after study reported lower major complications and inpatient deaths after implementation. A short prompt can protect a complex procedure from omission when teams already know the required steps.",
+      "hardSpecifics": [
+        "19-item surgical checklist",
+        "eight hospitals in eight cities"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.ex.3",
+      "kind": "named_example",
+      "label": "US extended-warranty market",
+      "text": "Retailers sell protection on inexpensive electronics and appliances at prices far above expected repair cost. These rare, opaque failures are difficult for buyers to evaluate and highly profitable for sellers. Markets can amplify mistakes when firms earn more from consumer confusion than from correcting it.",
+      "hardSpecifics": [
+        "extended warranties on electronics and appliances",
+        "retailer margins exceed expected repair value"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.1",
+      "kind": "testable_fact",
+      "label": "Prompts asking when, where, and how a person would vote increased turnout in the 2008 election study.",
+      "text": "Prompts asking when, where, and how a person would vote increased turnout in the 2008 election study. This mechanism operates because forming an implementation plan linked an intention to concrete situational cues. A reminder can only help by supplying new information about candidates. The prompt changed action planning rather than political knowledge.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.2",
+      "kind": "testable_fact",
+      "label": "The WHO Surgical Safety Checklist pilot used 19 items across eight hospitals in eight cities.",
+      "text": "The WHO Surgical Safety Checklist pilot used 19 items across eight hospitals in eight cities. This mechanism operates because a standardized pause made critical coordination and omission checks visible at the same points in each operation. The checklist was a long clinical manual replacing professional judgment. It was a short coordination tool layered onto existing expertise.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.3",
+      "kind": "testable_fact",
+      "label": "Extended warranties are often priced well above the expected cost of repair for small consumer goods.",
+      "text": "Extended warranties are often priced well above the expected cost of repair for small consumer goods. This mechanism operates because buyers overweight salient failure scenarios while sellers exploit opaque probabilities and high margins. A competitive retail market guarantees that warranty prices equal actuarial value. Profit from consumer error can sustain expensive add-ons across competitors.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.4",
+      "kind": "testable_fact",
+      "label": "Rare choices are strong nudge candidates because people receive few chances to learn from experience.",
+      "text": "Rare choices are strong nudge candidates because people receive few chances to learn from experience. This mechanism operates because learning requires repeated action and observable outcomes, which one-time decisions do not provide. High importance automatically makes people expert decision makers. Stakes increase consequences but do not create practice.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.5",
+      "kind": "testable_fact",
+      "label": "Delayed feedback weakens learning even when a decision is repeated.",
+      "text": "Delayed feedback weakens learning even when a decision is repeated. This mechanism operates because a remote outcome is difficult to attribute to the earlier choice, so the error signal cannot update behavior cleanly. Repetition always teaches which option works. Practice without timely diagnostic feedback can repeat the same mistake.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.6",
+      "kind": "testable_fact",
+      "label": "A mapping problem exists when product attributes do not translate transparently into the chooser's eventual experience.",
+      "text": "A mapping problem exists when product attributes do not translate transparently into the chooser's eventual experience. This mechanism operates because technical dimensions such as fund fees or car features must be converted into welfare consequences before they can be compared. More disclosed attributes automatically make a difficult choice easy. Raw features remain unusable when people cannot connect them to outcomes.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.7",
+      "kind": "testable_fact",
+      "label": "Reminders are suited to inattention when the person already intends to act.",
+      "text": "Reminders are suited to inattention when the person already intends to act. This mechanism operates because a timely cue restores the intended task to working attention without changing its payoff. Forgetting always requires a stronger financial incentive. The preference and incentive may already be adequate; only attention is missing.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.8",
+      "kind": "testable_fact",
+      "label": "The golden rule favors nudges that are unlikely to harm and likely to help.",
+      "text": "The golden rule favors nudges that are unlikely to harm and likely to help. This mechanism operates because choice architects are fallible, so low downside and easy avoidance limit damage from a mistaken design. Any intervention with a positive average effect satisfies the rule. Distributional harm and ease of escape also matter.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.fact.9",
+      "kind": "testable_fact",
+      "label": "Markets may preserve confusing choice environments when firms profit from consumer mistakes.",
+      "text": "Markets may preserve confusing choice environments when firms profit from consumer mistakes. This mechanism operates because a seller loses revenue by educating a mistaken buyer if competitors continue monetizing the same error. Competition necessarily eliminates every exploitative choice design. Competition disciplines price only when consumers can recognize and compare the relevant cost.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch04.framework.strong.nudge.candidate.conditions",
+      "kind": "framework",
+      "label": "Strong nudge-candidate conditions",
+      "text": "rare, difficult, weak feedback, unclear mapping, low attention",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "2008",
+    "8",
+    "19",
+    "1"
+  ],
+  "allowedEntities": [
+    "When Do We Need",
+    "Nudge",
+    "Nudges",
+    "Choice",
+    "Rare",
+    "Delayed",
+    "Complex",
+    "Forgetfulness",
+    "Checklists",
+    "Competitive",
+    "Todd Rogers",
+    "David Nickerson",
+    "Before",
+    "United States",
+    "World Health Organization",
+    "Surgical Safety Checklist",
+    "A WHO",
+    "Retailers",
+    "These",
+    "Markets",
+    "Difficulty",
+    "Prompts",
+    "The WHO Surgical Safety Checklist",
+    "Extended",
+    "Profit",
+    "High",
+    "Stakes",
+    "Repetition",
+    "Practice",
+    "More",
+    "Raw",
+    "Reminders",
+    "Forgetting",
+    "Any",
+    "Distributional",
+    "Competition",
+    "Strong",
+    "David Nickerson's",
+    "The World Health Organization's",
+    "Eight",
+    "Expertise",
+    "Failures",
+    "Ask",
+    "Then",
+    "Grounding",
+    "Todd Rogers, David Nickerson, and voting-plan prompts",
+    "World Health Organization / Surgical Safety Checklist",
+    "US extended-warranty market"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch04.ex.1",
+      "warning": "Keep examples about Todd Rogers, David Nickerson, and voting-plan prompts source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch04.ex.2",
+      "warning": "Keep examples about World Health Organization / Surgical Safety Checklist source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch04.ex.3",
+      "warning": "Keep examples about US extended-warranty market source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch04.fact.1"
+}

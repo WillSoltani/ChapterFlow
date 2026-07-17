@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "nudge-ch14",
+  "chapterNumber": 14,
+  "title": "Saving the Planet",
+  "coreMove": "This mechanism operates because neighbor comparison and tailored tips supplied salient feedback that ordinary bills lacked.",
+  "thesis": "OPOWER Home Energy Report trials across about 600,000 households reduced average electricity use by 2.0 percent.",
+  "readerPromise": "After this chapter, a reader can this mechanism operates because neighbor comparison and tailored tips supplied salient feedback that ordinary bills lacked.",
+  "ownedCases": [
+    {
+      "id": "ch14.ex.1",
+      "label": "Hunt Allcott / OPOWER Home Energy Reports"
+    },
+    {
+      "id": "ch14.ex.2",
+      "label": "US EPA / Toxics Release Inventory"
+    },
+    {
+      "id": "ch14.ex.3",
+      "label": "William Nordhaus / climate club proposal"
+    }
+  ],
+  "notYours": [
+    "Beijing tax authority / restaurant receipt lottery",
+    "Brigitte Madrian and Dennis Shea / automatic 401(k) enrollment",
+    "Bruce Sacerdote / randomly assigned Dartmouth roommates",
+    "Christmas Club savings accounts",
+    "Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis",
+    "Daniel Kahneman and Amos Tversky / anchoring wheel experiment",
+    "Donate Life America / motor-vehicle registration prompts",
+    "Eric Johnson and Daniel Goldstein / European donor defaults",
+    "Federal Trade Commission / hotel drip pricing",
+    "George Loewenstein / hot–cold empathy gap",
+    "Gmail / forgotten-attachment warning",
+    "Hendrik Bruns and Yavor Paunov / transparency review",
+    "Henrik Cronqvist and Richard Thaler / Swedish portfolio analysis",
+    "Howard Kunreuther / flood and earthquake insurance behavior",
+    "Hyde Park bookstores and Concord Bookshop versus Amazon",
+    "John Gathergood, Neale Mahoney, Neil Stewart, and Jörg Weber / balance matching",
+    "John Rawls / publicity principle",
+    "Kahneman and Tversky / Linda conjunction problem",
+    "NHS England and Wales / soft opt-out",
+    "Noah Goldstein, Robert Cialdini, and Vladas Griskevicius / hotel towels"
+  ],
+  "cast": [
+    "Pauline",
+    "Spencer",
+    "Vera",
+    "Suzanne"
+  ],
+  "answerIndexPattern": [
+    2,
+    2,
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a handwritten note on the counter",
+    "flavor (ch01): venue: a to-do list on the whiteboard",
+    "flavor (ch01): venue: a shared grocery list",
+    "flavor (ch01): frame: a first attempt at about treatment and control households that gets corrected",
+    "flavor (ch01): frame: a first encounter with about treatment and control households that sets a benchmark",
+    "flavor (ch02): venue: a text thread with a friend"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a shared calendar invite",
+    "venue: a saved draft message",
+    "venue: a phone call home",
+    "frame: owner handoff that changes who must act next",
+    "frame: a milestone reached and the small marker that seals it"
+  ],
+  "architectureFamily": "research-lead",
+  "openerType": "tension-thesis",
+  "challengeFrame": "timebox-N-minutes",
+  "practiceShape": "if-then-trigger",
+  "exampleLenses": [
+    "postmortem",
+    "walkthrough",
+    "counterfactual"
+  ],
+  "practiceVerb": "circle",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "mechanism",
+    "operates",
+    "rather",
+    "choice",
+    "attention",
+    "cost"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "partial",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "if-then-trigger",
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script"
+  ],
+  "quizStemShapes": [
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis"
+  ],
+  "quizFailureModes": [
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority"
+  ],
+  "questionFactOrder": [
+    2,
+    6,
+    4,
+    8,
+    1,
+    5,
+    3,
+    9,
+    7
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "question-speak",
+    "contrast-speak"
+  ],
+  "shellRegister": "cost-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Pauline",
+    "aliases": [
+      "Pauline"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "This mechanism operates because germany required an affirmative opt-in while Austria treated nonresponse as donor status.",
+    "next": "This mechanism operates because pooling the literature allowed intervention effects to be compared across financial behaviors and delays."
+  },
+  "totalChapters": 15
+}

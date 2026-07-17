@@ -52,32 +52,38 @@ These bindings (book + chapter number) are frozen. Nothing about them —
 the source text, the sealed adjudication, or the diagnostic — may change
 without unsealing this corpus and re-running the WP-701 verification test.
 
-## `authoringSource`: UNRESOLVED (owner decision D-7 pending)
+## `authoringSource`: RESOLVED (Stage-B freeze, D-7 option a — ledger L-37/L-44)
 
-Every unit's `authoringSource` field — the draft/manuscript pointer the
-bakeoff intake will use to hand each model the source it authors from — is
-currently the literal string `"UNRESOLVED"`. This is **not** a placeholder
-bug: the owner has not yet supplied the authoring-source draft for any of the
-three chapters (open decision **D-7**), and instruction 3 of WP-701 requires
-this state to be explicit and fail-closed rather than a silent default.
+Every unit's `authoringSource` now points at its **frozen chapter brief**
+(`…/state/books/<slug>/runs/v23-current/briefs/chNN.brief.json`), produced by
+the owner-authorized one-time compile-chain freeze executed 2026-07-17:
 
-Consequently the manifest's `bakeoffReadiness` field reads
-`"not-ready-for-bakeoff"`. This is not merely stated — the verification test
-independently re-derives the same verdict from the `units[].authoringSource`
-array and asserts it agrees with the stored field, and separately proves the
-derivation is state-driven (it flips to `"ready-for-bakeoff"` once every
-`authoringSource` is resolved, and a single remaining `"UNRESOLVED"` unit
-still vetoes the whole packet). **No WP may treat this corpus as bakeoff-ready
-while any `authoringSource` is `"UNRESOLVED"`.**
+1. **Compliant codex research** per book via the WP-701b `auto-research` verb
+   (role `research` → modelPolicy → `gpt-5.6-sol@high`, hermetic envelope,
+   one session per book, three sessions total, all in the WP-503 ledger under
+   `…/state/run-ledger/<slug>/auto-research-*.jsonl`).
+2. **Chapter-alignment gate** (pre-registered, L-40): each fresh index carries
+   the audited target chapter at the audited number with the audited title —
+   nudge ch3 "Following the Herd", made-to-stick ch4 "Credible",
+   the-happiness-hypothesis ch6 "Love and Attachments" (case-only difference
+   from the sealed record's "Love and attachments"; accepted and recorded).
+3. **Deterministic compile chain** (zero model calls): `compile-source-packets`
+   → `source-packet-gate` → `compile-book-design` → `book-design-gate` →
+   `compile-chapter-briefs` → `chapter-brief-gate` — every gate PASS,
+   0 blockers, for all three books.
+
+Each unit's `frozenInputs` array hash-binds the full shared-input set the
+candidates consume (chapter index, source-v2 sidecar, source packet, brief
+json+md, book design) — the verification test re-hashes every entry, so any
+post-freeze drift in the committed state fails the suite. The manifest's
+`bakeoffReadiness` reads `"ready-for-bakeoff"`, re-derived independently by
+the test from the resolved `units[].authoringSource` values; a single
+`"UNRESOLVED"` (or placeholder) unit still vetoes the packet.
 
 ## Consumers
 
 - **WP-703** (Stage-1 screening execution) authors the pre-registered
-  screening configs against these exact three chapters.
+  screening configs against these exact three chapters, from these exact
+  frozen inputs (the bakeoff's own freeze re-hashes them per run).
 - **WP-704** (Stage-2/3 confirmation) advances surviving configs against the
   same fixed corpus.
-
-Both are blocked from starting real authoring against this corpus until the
-owner resolves D-7 and every `authoringSource` is a real pointer — not a
-change to this README or the manifest's shape, a change to the underlying
-`authoringSource` values once the owner decision lands.

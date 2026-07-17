@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 8,
+  "chapterTitle": "The Felicity of Virtue",
+  "focus": "Virtue traditions trained perception, emotion, and habit through models and repeated practice, whereas modern rule-centered ethics often asks reason to decide each act. Flourishing depends on developing reliable excellences while preserving critical scrutiny of inherited norms.",
+  "coreClaim": "Virtue becomes rewarding when communities and repeated practice train good action into character rather than leaving morality as abstract rule compliance.",
+  "centralConcept": {
+    "id": "ch08.concept",
+    "name": "virtue as trained excellence",
+    "plainDefinition": "Virtue is a cultivated disposition to perceive, feel, and act well in recurring situations. It is broader than niceness and closer to excellence of character expressed in practice.",
+    "whyItMatters": "Moral development can focus on exemplars, environments, and rehearsal that shape automatic response, while rules remain available to challenge prejudice and harmful tradition."
+  },
+  "keyClaims": [
+    "The Greek arete concerns excellence in fulfilling a human capacity, not only compliance with prohibitions.",
+    "Aristotelian virtue aims at a context-sensitive mean between excess and deficiency rather than bland moderation in everything.",
+    "Stories, exemplars, maxims, and repeated practice train emotional perception more directly than abstract argument alone.",
+    "Benjamin Franklin turned thirteen virtues into a weekly practice and daily error record.",
+    "Kantian duty and Benthamite consequence calculation brought important impartiality while narrowing morality toward rules and decisions.",
+    "The VIA classification offers a modern vocabulary of twenty-four strengths grouped under six broad virtues, but its grouping remains a model rather than a discovered natural law."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch08.example.franklin",
+      "label": "Benjamin Franklin / thirteen-virtue chart",
+      "summary": "Franklin listed thirteen virtues, focused on one each week, and used a grid with days as columns to mark faults. Cycling through thirteen weeks allowed four complete rounds in a year, turning moral aspiration into repeated observation and practice. Verified anchors: thirteen named virtues; one virtue emphasized each week.",
+      "teachesWhat": "Character changes through tracked rehearsal and environmental structure, not admiration of a list alone.",
+      "hardSpecifics": [
+        "thirteen named virtues",
+        "one virtue emphasized each week",
+        "seven daily columns in a fault-marking chart",
+        "four thirteen-week cycles per year"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch08.example.aristotle",
+      "label": "Aristotle / virtue and the mean",
+      "summary": "Aristotle treated flourishing as activity that expresses cultivated excellence across a complete life. Courage, for example, responds appropriately to danger between rash excess and cowardly deficiency; the mean is relative to circumstance and practical judgment. Verified anchors: Nicomachean Ethics; eudaimonia as flourishing across a complete life.",
+      "teachesWhat": "Virtue is skilled calibration in action, not mechanical averaging or obedience to one formula.",
+      "hardSpecifics": [
+        "Nicomachean Ethics",
+        "eudaimonia as flourishing across a complete life",
+        "courage between rashness and cowardice",
+        "practical wisdom guides the context-sensitive mean"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch08.example.kantbentham",
+      "label": "Immanuel Kant and Jeremy Bentham / modern rule ethics",
+      "summary": "Kant centered duty and universalizable principle, while Bentham evaluated consequences through aggregate welfare. Both traditions supply powerful checks on favoritism, yet each can make moral life look primarily like solving explicit dilemmas rather than forming perception and character. Verified anchors: Kant's categorical imperative; Bentham's utilitarian calculus.",
+      "teachesWhat": "Rules and outcome tests are safeguards, but they do not replace the cultivation of automatic moral skill.",
+      "hardSpecifics": [
+        "Kant's categorical imperative",
+        "Bentham's utilitarian calculus",
+        "universal duty contrasted with aggregate consequences"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch08.example.via",
+      "label": "Christopher Peterson and Martin Seligman / VIA classification",
+      "summary": "The 2004 Character Strengths and Virtues project catalogued twenty-four measurable strengths under six broad virtue families after reviewing many cultural and historical traditions. It was designed as a positive counterpart to diagnostic classification. Verified anchors: Character Strengths and Virtues published in 2004; twenty-four character strengths.",
+      "teachesWhat": "A shared vocabulary can widen virtue beyond obedience while leaving room to debate how strengths cluster and conflict.",
+      "hardSpecifics": [
+        "Character Strengths and Virtues published in 2004",
+        "twenty-four character strengths",
+        "six virtue categories",
+        "Christopher Peterson and Martin E. P. Seligman"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Reviving virtue is not a license to restore every inherited norm or let communities suppress dissent. Rules and rights remain essential correctives; the target is integration, with principled criticism guiding the same habits and emotions that make good conduct reliable.",
+  "voiceCues": [
+    "moves from Greek excellence to a concrete American tracking practice",
+    "contrasts character formation with dilemma-centered moral philosophy",
+    "uses paired philosophers to show two modern reductions",
+    "returns to the rider-and-elephant distinction through moral training"
+  ],
+  "forbiddenLeakage": [
+    "post-traumatic-growth domains",
+    "autonomy, community, and divinity as cultural ethics",
+    "cross-level coherence and vital engagement"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch08.fact.1",
+      "claim": "Franklin's self-improvement plan tracked thirteen virtues.",
+      "becauseMechanism": "Because A finite list made faults observable and allowed focused practice instead of an undifferentiated demand for perfection.",
+      "commonError": "Franklin used a ten-commandment-style list of prohibitions.",
+      "errorIsWhy": "His plan contained thirteen positive and restraining dispositions with practical definitions.",
+      "derivedFrom": "ch08.example.franklin"
+    },
+    {
+      "id": "ch08.fact.2",
+      "claim": "Franklin emphasized one virtue per week while continuing to mark faults against all thirteen.",
+      "becauseMechanism": "Because Concentrated attention reduced overload while the full chart preserved accountability across the set.",
+      "commonError": "He attempted to perfect all thirteen with equal attention every day.",
+      "errorIsWhy": "The rotating weekly emphasis was central to the design.",
+      "derivedFrom": "ch08.example.franklin"
+    },
+    {
+      "id": "ch08.fact.3",
+      "claim": "A thirteen-week rotation can be completed four times in a fifty-two-week year.",
+      "becauseMechanism": "Because Thirteen multiplied by four equals fifty-two, giving the practice a repeatable annual cycle.",
+      "commonError": "Each virtue received attention only once in a year.",
+      "errorIsWhy": "The cycle was designed to repeat four times.",
+      "derivedFrom": "ch08.example.franklin"
+    },
+    {
+      "id": "ch08.fact.4",
+      "claim": "Aristotle's ethical mean is relative to the person and situation rather than an arithmetic midpoint.",
+      "becauseMechanism": "Because Appropriate action depends on circumstances, motives, objects, timing, and manner as judged by practical wisdom.",
+      "commonError": "Virtue always means choosing the numerically moderate option.",
+      "errorIsWhy": "Some situations require intense or decisive action, and the mean concerns fitting response rather than quantity alone.",
+      "derivedFrom": "ch08.example.aristotle"
+    },
+    {
+      "id": "ch08.fact.5",
+      "claim": "Aristotelian eudaimonia concerns activity across a complete life, not a passing pleasant mood.",
+      "becauseMechanism": "Because Flourishing evaluates how capacities and relationships are exercised over time under real conditions.",
+      "commonError": "Ancient happiness is simply the same feeling measured by a momentary mood scale.",
+      "errorIsWhy": "Eudaimonia is a judgment about living and functioning well, not only affect.",
+      "derivedFrom": "ch08.example.aristotle"
+    },
+    {
+      "id": "ch08.fact.6",
+      "claim": "Kant's categorical imperative tests whether a maxim can be willed as a universal law.",
+      "becauseMechanism": "Because Universalization blocks making a private exception for oneself while expecting others to follow a different rule.",
+      "commonError": "Kantian ethics asks which act produces the greatest total happiness.",
+      "errorIsWhy": "Aggregate welfare is a utilitarian criterion associated with Bentham, not Kant's duty test.",
+      "derivedFrom": "ch08.example.kantbentham"
+    },
+    {
+      "id": "ch08.fact.7",
+      "claim": "Benthamite utilitarianism evaluates actions by their consequences for aggregate pleasure and pain.",
+      "becauseMechanism": "Because It treats each affected person's welfare as part of the outcome to be compared.",
+      "commonError": "Utilitarianism defines morality as faithful adherence to inherited character roles.",
+      "errorIsWhy": "Its criterion is consequence, not tradition or role excellence.",
+      "derivedFrom": "ch08.example.kantbentham"
+    },
+    {
+      "id": "ch08.fact.8",
+      "claim": "The VIA classification contains twenty-four character strengths grouped under six broad virtue categories.",
+      "becauseMechanism": "Because Specific measurable traits provide behavioral routes through which broader virtues can be expressed.",
+      "commonError": "The VIA system consists of six strengths total.",
+      "errorIsWhy": "Six is the number of umbrella virtues; the inventory names twenty-four strengths.",
+      "derivedFrom": "ch08.example.via"
+    },
+    {
+      "id": "ch08.fact.9",
+      "claim": "The six VIA virtue categories are wisdom, courage, humanity, justice, temperance, and transcendence.",
+      "becauseMechanism": "Because The categories cluster cognitive, emotional, interpersonal, civic, restraining, and meaning-oriented strengths.",
+      "commonError": "The VIA's six virtues are identical to Franklin's first six entries.",
+      "errorIsWhy": "The VIA taxonomy was a separate cross-tradition project with different groupings.",
+      "derivedFrom": "ch08.example.via"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Franklin's thirteen virtues",
+      "members": [
+        "temperance",
+        "silence",
+        "order",
+        "resolution",
+        "frugality",
+        "industry",
+        "sincerity",
+        "justice",
+        "moderation",
+        "cleanliness",
+        "tranquillity",
+        "chastity",
+        "humility"
+      ]
+    },
+    {
+      "name": "VIA virtue categories",
+      "members": [
+        "wisdom",
+        "courage",
+        "humanity",
+        "justice",
+        "temperance",
+        "transcendence"
+      ]
+    }
+  ],
+  "paraphraseNotes": "Virtue once meant trained excellence of the whole person, not merely avoiding prohibited acts. Aristotle's arete joins perception, emotion, choice, and practice. Courage sits between rashness and cowardice, but the mean is not an arithmetic midpoint; practical wisdom judges what response fits a particular danger. Stories, admired models, maxims, and repeated action teach the automatic system what to notice and desire. Benjamin Franklin made that training concrete. He listed thirteen virtues, emphasized one each week, and marked daily faults in a seven-column grid. A thirteen-week sequence could run four times per year. The chart did not produce perfection, but it converted aspiration into feedback and rehearsal. Modern ethical theory supplied indispensable checks while changing the center of gravity. Immanuel Kant asks whether a maxim can be universalized, restricting self-serving exceptions. Jeremy Bentham asks about aggregate consequences, forcing attention beyond custom and private loyalty. Both can protect outsiders, yet moral life becomes thin if it is imagined only as a series of explicit puzzles solved by the rider. Christopher Peterson and Martin Seligman's 2004 VIA classification tries to recover a richer vocabulary: twenty-four character strengths organized under wisdom, courage, humanity, justice, temperance, and transcendence. The taxonomy is debatable, not a periodic table of character, but it restores distinctions lost when virtue shrinks to being nice. The workable synthesis keeps rights and consequence tests as correctives while rebuilding the environments that train good automatic responses. Character is social infrastructure plus repeated practice, not a trait produced by reading rules once."
+}

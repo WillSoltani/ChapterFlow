@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 2,
+  "chapterTitle": "Resisting Temptation",
+  "focus": "Preferences change between calm planning and immediate temptation. Commitment devices, mental accounts, and environmental controls let a farsighted Planner protect decisions from a myopic Doer.",
+  "coreClaim": "Self-control improves when people design constraints while calm instead of relying on willpower while aroused.",
+  "centralConcept": {
+    "id": "ch02.concept",
+    "name": "Planner–Doer conflict",
+    "plainDefinition": "One set of preferences favors future welfare while another responds strongly to immediate rewards and arousal.",
+    "whyItMatters": "A decision that seems inconsistent can be understood and improved by moving control to the earlier planning moment."
+  },
+  "keyClaims": [
+    "Dynamic inconsistency lets a person prefer restraint in advance but indulgence at the moment of choice.",
+    "Cold states underestimate how strongly hot states alter desire.",
+    "Commitment devices intentionally narrow future options.",
+    "Mindless consumption responds to portion and container cues.",
+    "Mental accounting assigns money to purposes even though dollars are interchangeable.",
+    "External controls can support the Planner without eliminating all choice."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch02.ex.1",
+      "label": "George Loewenstein / hot–cold empathy gap",
+      "summary": "Loewenstein formalized how people in a calm state underpredict the force of hunger, arousal, craving, or pain. The 1996 analysis explains why advance plans fail precisely when the tempting state arrives.",
+      "teachesWhat": "Forecasting one's future preferences is state-dependent.",
+      "hardSpecifics": [
+        "George Loewenstein's 1996 analysis",
+        "cold-state forecasts underweight hot-state visceral forces"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.ex.2",
+      "label": "Richard Thaler / dinner-party cashews",
+      "summary": "Before dinner, guests kept eating a bowl of cashews and thanked Thaler when he removed it. They preferred having the option beforehand yet felt better when the immediate temptation disappeared.",
+      "teachesWhat": "More available options can reduce welfare when present desire conflicts with a prior plan.",
+      "hardSpecifics": [
+        "bowl of cashews removed before dinner",
+        "guests expressed relief after removal"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.ex.3",
+      "label": "Christmas Club savings accounts",
+      "summary": "Depositors historically accepted low-interest accounts that restricted withdrawals until the holiday season. The restriction made the money harder to spend early and converted a future intention into a commitment.",
+      "teachesWhat": "People willingly pay for constraints that protect earmarked savings.",
+      "hardSpecifics": [
+        "withdrawals restricted until the holiday period",
+        "lower interest than ordinary savings accounts"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Commitment is not a license for someone else to impose arbitrary restrictions. Its value comes from a person's own advance judgment about a predictable future conflict, with the constraint calibrated to that conflict.",
+  "voiceCues": [
+    "opens with an intimate dinner-party scene",
+    "uses Planner and Doer as personified mechanisms",
+    "alternates myths, products, and household finance",
+    "turns an apparent irrationality into a design tool"
+  ],
+  "forbiddenLeakage": [
+    "peer conformity and social norms",
+    "retirement automatic-enrollment evidence",
+    "choice-architecture mapping checklist"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch02.fact.1",
+      "claim": "People in a cold state systematically underpredict how strongly a later hot state will change desire and behavior.",
+      "becauseMechanism": "This mechanism operates because current visceral conditions are difficult to simulate, so calm forecasts discount hunger, craving, pain, or arousal.",
+      "commonError": "Knowing that temptation exists is enough to forecast its strength accurately.",
+      "errorIsWhy": "Awareness of a future state does not reproduce its motivational force.",
+      "derivedFrom": "ch02.ex.1"
+    },
+    {
+      "id": "ch02.fact.2",
+      "claim": "Removing the cashews made dinner guests better off by their own expressed judgment despite reducing their immediate option set.",
+      "becauseMechanism": "This mechanism operates because the removed temptation protected their prior plan to preserve appetite for dinner.",
+      "commonError": "An additional available option can never make a chooser worse off.",
+      "errorIsWhy": "A tempting option changes behavior when present preferences conflict with advance preferences.",
+      "derivedFrom": "ch02.ex.2"
+    },
+    {
+      "id": "ch02.fact.3",
+      "claim": "Christmas Club accounts traded interest and liquidity for a withdrawal restriction tied to holiday spending.",
+      "becauseMechanism": "This mechanism operates because earmarking and delayed access prevented the Doer from spending savings before the intended date.",
+      "commonError": "A lower-return restricted account has no rational value to its depositor.",
+      "errorIsWhy": "The constraint supplies self-control that an unrestricted account does not.",
+      "derivedFrom": "ch02.ex.3"
+    },
+    {
+      "id": "ch02.fact.4",
+      "claim": "Dynamic inconsistency occurs when a person's preferred action changes as the moment of temptation approaches.",
+      "becauseMechanism": "This mechanism operates because immediate rewards gain disproportionate weight at short delays, so a plan made earlier can reverse later.",
+      "commonError": "A changed choice necessarily proves the earlier preference was insincere.",
+      "errorIsWhy": "Both preferences can be genuine but activated at different times.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.5",
+      "claim": "A commitment device works by changing the future choice set or its consequences before temptation arrives.",
+      "becauseMechanism": "Advance action transfers control to the calm planning state so that later impulse cannot act as freely.",
+      "commonError": "Commitment devices merely provide motivational slogans.",
+      "errorIsWhy": "Their defining feature is a concrete constraint, stake, or barrier.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.6",
+      "claim": "Mental accounting assigns nominally interchangeable dollars to separate purposes such as rent, leisure, or emergencies.",
+      "becauseMechanism": "Labels create internal spending boundaries so that using one account feels different from using another.",
+      "commonError": "People naturally treat every dollar as perfectly fungible in practice.",
+      "errorIsWhy": "Household budgets and earmarked accounts display persistent category boundaries.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.7",
+      "claim": "The Planner represents long-horizon welfare while the Doer gives heavier weight to immediate gratification.",
+      "becauseMechanism": "The two-self model separates advance evaluation from state-dependent action so that self-control conflict becomes analyzable.",
+      "commonError": "Planner and Doer refer to two anatomical brain regions with fixed control.",
+      "errorIsWhy": "They are an economic model of competing time horizons, not a literal map of two organs.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.8",
+      "claim": "Large containers and portions can increase consumption when eating proceeds with little attention.",
+      "becauseMechanism": "This mechanism operates because external cues substitute for an internal stopping rule, so quantity served influences quantity consumed.",
+      "commonError": "Portion size affects only people who consciously decide to finish everything.",
+      "errorIsWhy": "The proposed mechanism is mindless cue-following rather than an explicit clean-plate rule.",
+      "replicationStatus": "robust",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.9",
+      "claim": "Ulysses' mast strategy is a commitment device because the restraint is chosen before the Sirens can alter his behavior.",
+      "becauseMechanism": "This mechanism operates because binding future action while calm prevents the later hot state from executing its preferred course.",
+      "commonError": "The story illustrates stronger willpower at the moment of temptation.",
+      "errorIsWhy": "The solution removes reliance on momentary willpower by imposing an earlier constraint.",
+      "derivedFrom": "ch02.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Planner–Doer model",
+      "members": [
+        "farsighted Planner",
+        "myopic Doer"
+      ],
+      "acronym": false
+    }
+  ],
+  "paraphraseNotes": "A dinner-party bowl of cashews exposes a flaw in the claim that more choice can never hurt. Guests kept eating even though dinner was coming, then thanked Richard Thaler for removing the bowl. Their calm preference for preserving appetite lost to the food directly in front of them. George Loewenstein's 1996 hot–cold empathy-gap account explains the forecasting failure: a person can know that hunger, craving, pain, or arousal will matter while still underestimating its intensity from a calm state. The Planner–Doer model turns that temporal conflict into a design problem. The Planner values future welfare; the Doer reacts to what is vivid now. A good commitment device lets the Planner act first. Ulysses asks to be tied to the mast before hearing the Sirens, while Christmas Club depositors accept lower interest and restricted withdrawals so holiday money survives earlier spending opportunities. Those arrangements are useful precisely because unrestricted choice would not be neutral between the two selves. Mental accounting offers a softer boundary by labeling dollars for particular purposes. A Cochrane review of 72 randomized studies found moderate-quality evidence that larger portions, packages, and tableware increase food consumption. The best-known Brian Wansink cases nevertheless suffered serious credibility and replication failures, so they should not be used as the proof of that broader effect. Predict the hot state, choose the smallest effective barrier while calm, and distinguish self-chosen protection from control imposed for someone else's ends. Grounding anchors: George Loewenstein's 1996 analysis; cold-state forecasts underweight hot-state visceral forces; bowl of cashews removed before dinner; guests expressed relief after removal; withdrawals restricted until the holiday period; lower interest than ordinary savings accounts."
+}

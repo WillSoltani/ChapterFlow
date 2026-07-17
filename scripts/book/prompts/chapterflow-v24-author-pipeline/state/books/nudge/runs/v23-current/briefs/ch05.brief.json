@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "nudge-ch05",
+  "chapterNumber": 5,
+  "title": "Choice Architecture",
+  "coreMove": "This mechanism operates because the visible stimulus activates an incompatible response before reflective checking can intervene.",
+  "thesis": "A handle that suggests pulling creates repeated errors when the door actually requires pushing.",
+  "readerPromise": "After this chapter, a reader can this mechanism operates because the visible stimulus activates an incompatible response before reflective checking can intervene.",
+  "ownedCases": [
+    {
+      "id": "ch05.ex.1",
+      "label": "Richard Thaler / confusing classroom doors"
+    },
+    {
+      "id": "ch05.ex.2",
+      "label": "Paris Métro / two-sided pass validation"
+    },
+    {
+      "id": "ch05.ex.3",
+      "label": "Gmail / forgotten-attachment warning"
+    }
+  ],
+  "notYours": [
+    "Beijing tax authority / restaurant receipt lottery",
+    "Brigitte Madrian and Dennis Shea / automatic 401(k) enrollment",
+    "Bruce Sacerdote / randomly assigned Dartmouth roommates",
+    "Christmas Club savings accounts",
+    "Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis",
+    "Daniel Kahneman and Amos Tversky / anchoring wheel experiment",
+    "Donate Life America / motor-vehicle registration prompts",
+    "Eric Johnson and Daniel Goldstein / European donor defaults",
+    "Federal Trade Commission / hotel drip pricing",
+    "George Loewenstein / hot–cold empathy gap",
+    "Hendrik Bruns and Yavor Paunov / transparency review",
+    "Henrik Cronqvist and Richard Thaler / Swedish portfolio analysis",
+    "Howard Kunreuther / flood and earthquake insurance behavior",
+    "Hunt Allcott / OPOWER Home Energy Reports",
+    "Hyde Park bookstores and Concord Bookshop versus Amazon",
+    "John Gathergood, Neale Mahoney, Neil Stewart, and Jörg Weber / balance matching",
+    "John Rawls / publicity principle",
+    "Kahneman and Tversky / Linda conjunction problem",
+    "NHS England and Wales / soft opt-out",
+    "Noah Goldstein, Robert Cialdini, and Vladas Griskevicius / hotel towels"
+  ],
+  "cast": [
+    "Nora",
+    "Harriet",
+    "Blanche",
+    "Calvin"
+  ],
+  "answerIndexPattern": [
+    0,
+    1,
+    2,
+    2,
+    0,
+    0,
+    1,
+    2,
+    1
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a handwritten note on the counter",
+    "flavor (ch01): venue: a to-do list on the whiteboard",
+    "flavor (ch01): venue: a shared grocery list",
+    "flavor (ch01): frame: a first attempt at about treatment and control households that gets corrected",
+    "flavor (ch01): frame: a first encounter with about treatment and control households that sets a benchmark",
+    "flavor (ch02): venue: a text thread with a friend"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a kitchen table",
+    "venue: a shared calendar invite",
+    "venue: a saved draft message",
+    "frame: a first attempt at average electricity reduction of percent that gets corrected",
+    "frame: an unexpected kindness that lands and gets retold afterward"
+  ],
+  "architectureFamily": "two-way-contrast",
+  "openerType": "question",
+  "challengeFrame": "script-one-sentence",
+  "practiceShape": "say-aloud-script",
+  "exampleLenses": [
+    "prop-tableau",
+    "dialogue-beat",
+    "before-after-ledger"
+  ],
+  "practiceVerb": "schedule",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "mechanism",
+    "operates",
+    "rather",
+    "choice",
+    "attention",
+    "cost"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "failure",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "say-aloud-script",
+    "if-then-trigger",
+    "two-step-sequence",
+    "observe-then-note"
+  ],
+  "quizStemShapes": [
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority"
+  ],
+  "quizFailureModes": [
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure"
+  ],
+  "questionFactOrder": [
+    4,
+    9,
+    6,
+    3,
+    2,
+    5,
+    1,
+    7,
+    8
+  ],
+  "memorableShapes": [
+    "cost-statement",
+    "pointed-question",
+    "imperative"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "question-speak",
+    "contrast-speak"
+  ],
+  "shellRegister": "condition-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Richard Thaler / confusing classroom doors",
+    "caseId": "ch05.ex.1",
+    "aliases": [
+      "Richard Thaler / confusing classroom doors",
+      "Thaler",
+      "Richard"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "This mechanism operates because forming an implementation plan linked an intention to concrete situational cues.",
+    "next": "This mechanism operates because an immediate chance to win made diners more likely to request the document that registers the sale."
+  },
+  "totalChapters": 15
+}

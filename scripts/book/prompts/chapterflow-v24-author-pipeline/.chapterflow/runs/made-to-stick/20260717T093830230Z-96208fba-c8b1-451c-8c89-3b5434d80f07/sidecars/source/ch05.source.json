@@ -1,0 +1,148 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 5,
+  "chapterTitle": "Emotional",
+  "focus": "Belief does not produce action unless people care about the consequence. Care can be activated through an identifiable individual, a meaningful association, self-interest understood broadly, or an identity that tells people what someone like them does.",
+  "coreClaim": "Connect an idea to something the audience already values so understanding and belief acquire a reason to become action.",
+  "centralConcept": {
+    "id": "ch05.concept",
+    "name": "making people care",
+    "plainDefinition": "Translate an impersonal issue into stakes attached to a person, valued association, desired benefit, or identity the audience recognizes as its own.",
+    "whyItMatters": "A credible message can remain inert; emotional relevance supplies the motive to choose or act."
+  },
+  "keyClaims": [
+    "An identifiable individual can evoke stronger feeling than a large statistical population, even when the population represents greater aggregate need.",
+    "Analytical framing can sometimes dampen feeling instead of strengthening an individual appeal.",
+    "Associations lose force when a valued term is stretched across too many weak uses.",
+    "Self-interest includes belonging, mastery, pride, and meaning, not only money or convenience.",
+    "Identity-based appeals ask what a person like us does in a situation like this.",
+    "Emotional relevance should clarify authentic stakes rather than manufacture sentiment."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch05.ex.rokia-study",
+      "label": "Small, Loewenstein, and Slovic Rokia experiment",
+      "summary": "A Carnegie Mellon experiment by Deborah Small, George Loewenstein, and Paul Slovic used a constructed appeal about 7-year-old Rokia from Mali. Participants gave an average $2.38 to the identifiable appeal, compared with $1.14 for a statistics-only appeal; Rokia was a study vignette, not a verified beneficiary.",
+      "teachesWhat": "A single identifiable figure can activate feeling more readily than aggregate need, although the general effect is context-sensitive.",
+      "hardSpecifics": ["average $2.38", "$1.14 for a statistics-only appeal"],
+      "realWorld": true
+    },
+    {
+      "id": "ch05.ex.truth",
+      "label": "American Legacy Foundation truth campaign",
+      "summary": "The national American Legacy Foundation truth campaign launched in early 2000 and framed youth smoking as resistance to tobacco-industry manipulation. A quasi-experimental evaluation associated campaign exposure with about 22 percent of the decline in youth smoking prevalence from 1999 to 2002.",
+      "teachesWhat": "An appeal can recruit identity and defiance instead of repeating distant health consequences.",
+      "hardSpecifics": ["launched in early 2000", "about 22 percent of the decline"],
+      "realWorld": true
+    },
+    {
+      "id": "ch05.ex.floyd-lee",
+      "label": "Floyd Lee / Pegasus dining facility",
+      "summary": "Floyd Lee, retired after 25 years as a Marine Corps and Army cook, ran the Pegasus dining facility near Baghdad airport. He treated the mission as soldier morale rather than food service, improving lighting, presentation, and the dining experience despite working from the standard supply system.",
+      "teachesWhat": "A higher-order identity can turn a routine task into meaningful service.",
+      "hardSpecifics": ["25 years as a Marine Corps and Army cook", "Pegasus dining facility near Baghdad airport"],
+      "realWorld": true
+    },
+    {
+      "id": "ch05.ex.texas",
+      "label": "TxDOT Don't mess with Texas campaign",
+      "summary": "The Texas transportation department launched Don't mess with Texas as an anti-litter campaign in 1986, with Stevie Ray Vaughan among its inaugural messengers. The slogan linked clean roads to Texan identity instead of issuing a polite generic request.",
+      "teachesWhat": "Identity can make an unwanted behavior feel inconsistent with group membership.",
+      "hardSpecifics": ["anti-litter campaign in 1986", "Stevie Ray Vaughan"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Emotional does not mean tearful, manipulative, or opposed to evidence. The task is to reveal a genuine value connection; sentiment without a truthful stake is coercion, while statistics still matter for decisions that require scale and allocation.",
+  "voiceCues": [
+    "opens with donation behavior and then widens from individuals to identity",
+    "uses association, self-interest, and identity as distinct routes to care",
+    "contrasts rational belief with motivational relevance",
+    "shows routine work becoming meaningful through a changed mission"
+  ],
+  "forbiddenLeakage": [
+    "Do not present the constructed Rokia vignette as a real child or beneficiary.",
+    "Do not repeat Pam Laffin's illness as the governing case; her role is credibility through antiauthority.",
+    "Do not convert Floyd Lee's dining facility into a general story-plot lesson reserved for the final unit."
+  ],
+  "testableFacts": [
+    {
+      "id": "ch05.fact.1",
+      "claim": "In the Small, Loewenstein, and Slovic study, the Rokia-only appeal averaged $2.38 while a statistics-only appeal averaged $1.14.",
+      "becauseMechanism": "Because the constructed individual gave attention a single human target, participants could form an affective response more readily than from aggregate figures.",
+      "commonError": "The reported amounts prove that every individual story always raises exactly twice as much as any statistical appeal.",
+      "errorIsWhy": "They are means from one experimental design, and later work shows identifiable-victim effects vary with context and framing.",
+      "derivedFrom": "ch05.ex.rokia-study",
+      "replicationStatus": "mixed"
+    },
+    {
+      "id": "ch05.fact.2",
+      "claim": "The Rokia experiment used a constructed 7-year-old girl from Mali rather than documenting a real named beneficiary.",
+      "becauseMechanism": "Because identifiability was created inside controlled appeal text, the researchers could compare message framing without relying on a public person's biography.",
+      "commonError": "Rokia's personal history can be expanded as verified reportage about a real child.",
+      "errorIsWhy": "The figure was an experimental vignette, so adding scenes or biography would fabricate evidence.",
+      "derivedFrom": "ch05.ex.rokia-study"
+    },
+    {
+      "id": "ch05.fact.3",
+      "claim": "The national truth campaign launched in early 2000 to discourage smoking among U.S. youth.",
+      "becauseMechanism": "Because the campaign framed tobacco companies as manipulators, refusing cigarettes could express youthful independence rather than obedience to adult warnings.",
+      "commonError": "truth relied only on calm medical lectures delivered by tobacco executives.",
+      "errorIsWhy": "Its branded strategy used hard-hitting messages that challenged industry influence and recruited resistance.",
+      "derivedFrom": "ch05.ex.truth"
+    },
+    {
+      "id": "ch05.fact.4",
+      "claim": "A 2005 quasi-experimental evaluation estimated that truth accounted for about 22 percent of the 1999–2002 decline in youth smoking prevalence.",
+      "becauseMechanism": "Because researchers related varying campaign exposure to prevalence trends in a large national student sample, they could estimate an exposure-associated contribution while controlling measured alternatives.",
+      "commonError": "The estimate means the campaign single-handedly caused the entire decline in youth smoking.",
+      "errorIsWhy": "The study attributed a portion of the decline and used an observational pre/post design, so the result is not total or randomized causation.",
+      "derivedFrom": "ch05.ex.truth",
+      "replicationStatus": "mixed"
+    },
+    {
+      "id": "ch05.fact.5",
+      "claim": "Floyd Lee brought 25 years of Marine Corps and Army cooking experience to the Pegasus dining facility near Baghdad airport.",
+      "becauseMechanism": "Because he defined feeding soldiers as a morale mission, familiar supplies and routine service decisions were reorganized around emotional recovery.",
+      "commonError": "Pegasus succeeded only because Lee received a unique luxury-food supply unavailable to other facilities.",
+      "errorIsWhy": "The reported distinction was how standard resources were prepared and presented, guided by a different mission.",
+      "derivedFrom": "ch05.ex.floyd-lee"
+    },
+    {
+      "id": "ch05.fact.6",
+      "claim": "TxDOT has used Don't mess with Texas to mean don't litter since 1986.",
+      "becauseMechanism": "Because the phrase made roadside cleanliness part of Texas pride, littering could feel inconsistent with the target audience's group identity.",
+      "commonError": "The phrase originated as a general state threat with no transportation or litter purpose.",
+      "errorIsWhy": "Its institutional origin was a state anti-litter effort, even though later popular use broadened the phrase.",
+      "derivedFrom": "ch05.ex.texas"
+    },
+    {
+      "id": "ch05.fact.7",
+      "claim": "An identity decision can be framed through who I am, what situation this is, and what someone like me does here.",
+      "becauseMechanism": "Because group norms and self-concept supply behavioral defaults, the person need not calculate every consequence from scratch.",
+      "commonError": "Identity appeals work only by offering a direct cash reward to the audience.",
+      "errorIsWhy": "Cash belongs to narrow consequence-based self-interest; identity works through role and norm consistency.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.8",
+      "claim": "WIIFY means What's In It For You, but the relevant benefit can include meaning, belonging, mastery, or pride.",
+      "becauseMechanism": "Because people value psychological and social outcomes as well as material gain, a message can connect action to higher-order motives.",
+      "commonError": "WIIFY requires reducing every appeal to price, pay, or personal convenience.",
+      "errorIsWhy": "That narrow reading misses motives such as service identity and collective pride that can be more powerful than money.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.9",
+      "claim": "Semantic stretch weakens an emotional association when a valued word is applied to many weakly related things.",
+      "becauseMechanism": "Because repeated loose use makes the label less diagnostic of the original value, audiences stop feeling the intended association.",
+      "commonError": "Using a powerful value word in every message continuously strengthens its emotional force.",
+      "errorIsWhy": "Overextension dilutes the word's specificity and can make the appeal sound empty or promotional.",
+      "derivedFrom": "ch05.concept"
+    }
+  ],
+  "frameworks": [
+    { "name": "Routes to care", "members": ["identifiable individual", "association", "self-interest", "identity"], "acronym": false },
+    { "name": "Identity decision", "members": ["Who am I?", "What kind of situation is this?", "What does someone like me do here?"], "acronym": false }
+  ],
+  "paraphraseNotes": "Belief is not motivation. The Small, Loewenstein, and Slovic experiment shows the gap: a constructed appeal about 7-year-old Rokia from Mali averaged $2.38, while a statistics-only appeal averaged $1.14. Rokia was not a documented beneficiary, and the identifiable-victim effect is context-sensitive, so the safe lesson concerns message framing rather than a universal donation law. Analytical information remains necessary for allocation and scale even when it does not open the emotional door.\n\nCare can also come through association and identity. The national American Legacy Foundation truth campaign launched in early 2000 and made not smoking an act of resistance to tobacco-industry manipulation. A quasi-experimental evaluation associated exposure with about 22 percent of the 1999–2002 decline in youth prevalence; that estimate is partial and observational, not proof of sole causation. TxDOT's anti-litter campaign in 1986 used Stevie Ray Vaughan and Don't mess with Texas to connect clean roads with Texan pride.\n\nSelf-interest is broader than bargains. Floyd Lee brought 25 years as a Marine Corps and Army cook to the Pegasus dining facility near Baghdad airport, then defined his job as morale. Standard supplies acquired different meaning when lighting, presentation, and service were judged by what soldiers needed emotionally. The identity route asks who I am, what situation this is, and what someone like me does here. The hard edge is honesty: emotional communication should uncover authentic stakes, not invent a beneficiary, inflate causality, or paste a depleted value word over an unrelated request."
+}

@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 5,
+  "chapterTitle": "Choice Architecture",
+  "focus": "Good design aligns cues with actions, sets defensible defaults, expects error, supplies feedback, maps options to outcomes, structures complexity, and makes incentives salient. Small channel factors often decide whether an intention becomes behavior.",
+  "coreClaim": "Every choice environment has a structure, so responsible designers should make the beneficial path understandable and forgiving.",
+  "centralConcept": {
+    "id": "ch05.concept",
+    "name": "choice architecture",
+    "plainDefinition": "The arrangement of options, defaults, cues, feedback, and incentives through which a choice is made.",
+    "whyItMatters": "Design details influence behavior even when prices and available options do not change."
+  },
+  "keyClaims": [
+    "Stimulus-response compatibility makes the visible cue match the required action.",
+    "Defaults govern what happens when a person does nothing.",
+    "Prompted or required choice can replace a substantive default in suitable settings.",
+    "Error-tolerant systems make common slips reversible.",
+    "Feedback must be timely and interpretable.",
+    "Complex options need grouping, filtering, and useful mapping.",
+    "Incentives work differently when costs are not salient."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch05.ex.1",
+      "label": "Richard Thaler / confusing classroom doors",
+      "summary": "Classroom doors carried handles that visually invited pulling but opened only by pushing. Students repeatedly made the same error because the physical cue conflicted with the required response.",
+      "teachesWhat": "Bad stimulus-response compatibility manufactures mistakes that better hardware can prevent.",
+      "hardSpecifics": [
+        "large double door in Richard Thaler's business-school classroom",
+        "vertically mounted cylindrical wood handles about three feet long",
+        "doors required a push to open"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch05.ex.2",
+      "label": "Paris Métro / two-sided pass validation",
+      "summary": "Paris transit gates accepted fare cards regardless of which side faced up. The system removed an unnecessary orientation error instead of punishing passengers for presenting the card incorrectly.",
+      "teachesWhat": "Error-tolerant design eliminates a predictable failure at little marginal cost.",
+      "hardSpecifics": [
+        "Paris Métro fare gates",
+        "magnetic-strip card accepted face up or face down",
+        "card accepted in either insertion direction"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch05.ex.3",
+      "label": "Gmail / forgotten-attachment warning",
+      "summary": "Gmail engineering intern Jon Kotker introduced the Forgotten Attachment Detector in Gmail Labs on September 15, 2008. It detects attachment-related wording when no file is attached and asks the sender to check before sending.",
+      "teachesWhat": "A timely check can catch a predictable omission before it becomes costly.",
+      "hardSpecifics": [
+        "Jon Kotker posted the Gmail Labs feature on September 15, 2008",
+        "Forgotten Attachment Detector developed during his Summer 2008 Gmail engineering internship",
+        "message text mentions an attachment",
+        "no file is present when Send is pressed"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Making an action easy is not the same as making it good. Ease must serve a defensible outcome, preserve meaningful alternatives, and avoid hiding costs or steering through confusion.",
+  "voiceCues": [
+    "opens with a comic design failure",
+    "uses a repeated Make It Easy imperative",
+    "organizes material as a toolkit",
+    "adds caveats after each apparently universal tool"
+  ],
+  "forbiddenLeakage": [
+    "curation and fun as the separate addendum",
+    "machine-readable smart disclosure",
+    "subscription sludge and dark patterns"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch05.fact.1",
+      "claim": "A handle that suggests pulling creates repeated errors when the door actually requires pushing.",
+      "becauseMechanism": "This mechanism operates because the visible stimulus activates an incompatible response before reflective checking can intervene.",
+      "commonError": "Repeated door mistakes prove users are careless.",
+      "errorIsWhy": "The design reliably cues the wrong action across many users.",
+      "derivedFrom": "ch05.ex.1"
+    },
+    {
+      "id": "ch05.fact.2",
+      "claim": "Paris Métro gates reduce presentation error by accepting a fare card in either orientation.",
+      "becauseMechanism": "This mechanism operates because removing a nonessential orientation requirement prevents a common slip without adding a decision.",
+      "commonError": "Error prevention always requires more instructions.",
+      "errorIsWhy": "The gate solves the problem by accepting more natural inputs.",
+      "derivedFrom": "ch05.ex.2"
+    },
+    {
+      "id": "ch05.fact.3",
+      "claim": "Gmail can warn when attachment language appears in a message but no file is attached.",
+      "becauseMechanism": "This mechanism operates because the prompt targets a postcompletion error at the exact moment the sender is about to finish.",
+      "commonError": "A generic reminder shown when composing would be equally precise.",
+      "errorIsWhy": "The conditional warning appears only when text and file state conflict.",
+      "derivedFrom": "ch05.ex.3"
+    },
+    {
+      "id": "ch05.fact.4",
+      "claim": "A default specifies what occurs when the chooser takes no action.",
+      "becauseMechanism": "This mechanism operates because inertia, inattention, and effort costs make nonresponse common, so the preassigned outcome receives disproportionate uptake.",
+      "commonError": "No default exists when a form leaves every box blank.",
+      "errorIsWhy": "The system still has a rule for nonresponse, even if that rule is no enrollment or no service.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.5",
+      "claim": "Required choice is itself a form of choice architecture rather than the absence of architecture.",
+      "becauseMechanism": "This mechanism operates because the designer selects a nonresponse rule that blocks continuation until an explicit answer is supplied.",
+      "commonError": "Forcing an active decision is neutral because no substantive option is preselected.",
+      "errorIsWhy": "The timing, burden, and mandate to decide are designed features.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.6",
+      "claim": "Prompted choice requests an answer while retaining a fallback for people who do not respond.",
+      "becauseMechanism": "This mechanism operates because the prompt increases attention without making completion depend entirely on active selection.",
+      "commonError": "Prompted choice and required choice are interchangeable.",
+      "errorIsWhy": "Required choice blocks nonresponse; prompted choice can preserve a default.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.7",
+      "claim": "Collaborative filtering orders options using patterns from people with similar past tastes.",
+      "becauseMechanism": "This mechanism operates because shared preference data reduces a large set to items likely to map onto the user's interests.",
+      "commonError": "Collaborative filtering simply lists the overall most popular items.",
+      "errorIsWhy": "Its value comes from similarity-conditioned recommendations rather than one universal ranking.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.8",
+      "claim": "The incentive checklist asks who chooses, who uses, who pays, and who profits.",
+      "becauseMechanism": "This mechanism operates because separating these roles reveals conflicts and hidden costs that a single price comparison misses.",
+      "commonError": "The chooser always bears the full cost and receives the full benefit.",
+      "errorIsWhy": "Many markets split selection, consumption, payment, and profit among different actors.",
+      "derivedFrom": "ch05.concept"
+    },
+    {
+      "id": "ch05.fact.9",
+      "claim": "An incentive has less behavioral force when its cost is not salient at the moment of choice.",
+      "becauseMechanism": "This mechanism operates because a delayed, bundled, or hidden charge is absent from attention when the action is evaluated.",
+      "commonError": "Equal economic costs always create equal behavior regardless of presentation.",
+      "errorIsWhy": "Timing and visibility determine whether the chooser mentally registers the cost.",
+      "derivedFrom": "ch05.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Choice-architecture toolkit",
+      "members": [
+        "defaults",
+        "expect error",
+        "give feedback",
+        "understand mappings",
+        "structure complex choices",
+        "make incentives salient"
+      ],
+      "acronym": false
+    },
+    {
+      "name": "Incentive role check",
+      "members": [
+        "who chooses",
+        "who uses",
+        "who pays",
+        "who profits"
+      ],
+      "acronym": false
+    }
+  ],
+  "paraphraseNotes": "Confusing classroom doors make the governing idea physical. Handles invite a pull, but the doors require a push, so the environment repeatedly manufactures the same mistake. Choice architecture begins when the designer accepts responsibility for that cue. Paris Métro gates show an error-tolerant alternative by accepting fare cards with either side up. Gmail handles a different predictable slip: when message text refers to an attachment but no file is present, a prompt appears before sending. Both interventions remove or catch error rather than scolding the user afterward. Defaults then determine the outcome of inaction. They cannot be avoided, because even a blank form has a nonresponse rule. Required choice replaces a substantive preselection with a mandate to answer; prompted choice calls attention to the decision while retaining a fallback. Neither is automatically superior. Feedback must arrive soon enough to connect action and result, and product attributes must map onto experiences the chooser values. Large menus require structure: grouping, sensible ordering, or collaborative filtering based on similar tastes. Incentives remain part of the design, but their nominal size is not enough. Ask who chooses, uses, pays, and profits, then check whether the cost is visible when the action occurs. The common thread is not a bag of tricks. It is a discipline of expecting real users, making useful actions easy, allowing recovery, and testing whether the architecture serves rather than exploits them. Grounding anchors: large double door in Richard Thaler's business-school classroom; vertically mounted cylindrical wood handles about three feet long; doors required a push to open; Paris Métro fare gates; magnetic-strip card accepted face up or face down; card accepted in either insertion direction; Forgotten Attachment Detector added to Gmail Labs in September 2008; message text mentions an attachment; no file is present when Send is pressed. Jon Kotker posted the Gmail Labs feature on September 15, 2008; Forgotten Attachment Detector developed during his Summer 2008 Gmail engineering internship."
+}

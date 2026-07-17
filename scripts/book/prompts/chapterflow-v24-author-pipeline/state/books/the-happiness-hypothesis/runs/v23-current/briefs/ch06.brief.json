@@ -1,0 +1,199 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "the-happiness-hypothesis-ch06",
+  "chapterNumber": 6,
+  "title": "Love and Attachments",
+  "coreMove": "Because The WHO commission synthesized evidence about institutional care and prolonged separation to inform child welfare practice.",
+  "thesis": "Bowlby's Maternal Care and Mental Health was published by the World Health Organization in 1951.",
+  "readerPromise": "After this chapter, a reader can because The WHO commission synthesized evidence about institutional care and prolonged separation to inform child welfare practice.",
+  "ownedCases": [
+    {
+      "id": "ch06.example.bowlby",
+      "label": "John Bowlby / Maternal Care and Mental Health"
+    },
+    {
+      "id": "ch06.example.harlow",
+      "label": "Harry Harlow / cloth and wire surrogate mothers"
+    },
+    {
+      "id": "ch06.example.hazan",
+      "label": "Cindy Hazan and Phillip Shaver / adult romantic attachment"
+    },
+    {
+      "id": "ch06.example.hazanage",
+      "label": "Hazan and colleagues / transfer of attachment functions"
+    }
+  ],
+  "notYours": [
+    "Aaron Beck / cognitive therapy",
+    "Alois Stutzer and Bruno Frey / commuting paradox",
+    "Antonio Damasio / ventromedial prefrontal patients",
+    "Aristotle / virtue and the mean",
+    "Aristotle / virtue plus external goods",
+    "Benjamin Franklin / thirteen-virtue chart",
+    "Brett Pelham and colleagues / implicit egotism",
+    "Buddhist insight meditation / attentional training",
+    "Buddhist nonattachment and Benjamin Franklin's striving",
+    "C. Daniel Batson / moral-hypocrisy task",
+    "Christopher Peterson and Martin Seligman / VIA classification",
+    "Dacher Keltner and Jonathan Haidt / awe prototype",
+    "Dan McAdams / redemptive life stories",
+    "Dan McAdams / three levels of personality",
+    "Daniel Wegner / white-bear suppression experiments",
+    "David Burns / anger inventory",
+    "Deanna Kuhn and David Perkins / argument evaluation",
+    "Dennis Regan / Coca-Cola reciprocity experiment",
+    "Heraclitus / conflict of opposites",
+    "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    1,
+    2,
+    2,
+    0,
+    1,
+    1,
+    0,
+    0,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on characteristic adaptations and narrative identity",
+    "flavor (ch01): venue: a working note on cloth covered surrogate mother",
+    "flavor (ch01): venue: a dinner table",
+    "flavor (ch01): frame: a first attempt at anomie as weakened normative structure that gets corrected",
+    "flavor (ch01): frame: a first encounter with anomie as weakened normative structure that sets a benchmark",
+    "flavor (ch02): venue: a shared grocery list"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a wallet receipt",
+    "venue: a bedside notebook",
+    "venue: a lunch break",
+    "frame: two stakeholders disagree about automatic thoughts recorded in writing before deciding",
+    "frame: a small ceremony that marks a transition so it feels earned"
+  ],
+  "architectureFamily": "two-way-contrast",
+  "openerType": "claim",
+  "challengeFrame": "audit-one-artifact",
+  "practiceShape": "single-imperative",
+  "exampleLenses": [
+    "outsider-witness",
+    "numbers-detective",
+    "prop-tableau"
+  ],
+  "practiceVerb": "schedule",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "rather",
+    "across",
+    "different",
+    "life",
+    "repeated",
+    "consequences"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "failure",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "single-imperative",
+    "say-aloud-script",
+    "measure-one-number",
+    "if-then-trigger"
+  ],
+  "quizStemShapes": [
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis",
+    "choose-next-move"
+  ],
+  "quizFailureModes": [
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof"
+  ],
+  "questionFactOrder": [
+    9,
+    4,
+    3,
+    1,
+    6,
+    7,
+    8,
+    5,
+    2
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "motion-speak",
+    "ledger-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "John Bowlby / Maternal Care and Mental Health",
+    "caseId": "ch06.example.bowlby",
+    "aliases": [
+      "John Bowlby / Maternal Care and Mental Health",
+      "Health",
+      "John",
+      "Bowlby",
+      "Maternal",
+      "Care",
+      "Mental"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because Comparing extreme positive and negative changes with a control group allowed the researchers to test whether contrast and adaptation altered everyday pleasure and reported happiness.",
+    "next": "Because It operationalized perceived positive change after crisis across several distinguishable domains."
+  },
+  "totalChapters": 11
+}

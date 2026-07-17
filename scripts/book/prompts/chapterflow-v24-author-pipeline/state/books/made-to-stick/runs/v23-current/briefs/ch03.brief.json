@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "made-to-stick-ch03",
+  "chapterNumber": 3,
+  "title": "Concrete",
+  "coreMove": "Because arbitrary eye color immediately changed status, privileges, and treatment, pupils encountered discrimination as an operating system rather than a vocabulary word.",
+  "thesis": "Jane Elliott first ran the blue-eyes/brown-eyes exercise with her Iowa third-grade class on April 5, 1968.",
+  "readerPromise": "After this chapter, a reader can because arbitrary eye color immediately changed status, privileges, and treatment, pupils encountered discrimination as an operating system rather than a vocabulary word.",
+  "ownedCases": [
+    {
+      "id": "ch03.ex.accounting",
+      "label": "Georgia State Safe Night Out accounting case"
+    },
+    {
+      "id": "ch03.ex.elliott",
+      "label": "Jane Elliott's blue-eyes/brown-eyes exercise"
+    },
+    {
+      "id": "ch03.ex.boeing",
+      "label": "Boeing 727 / LaGuardia Runway 4-22"
+    },
+    {
+      "id": "ch03.ex.ors",
+      "label": "James P. Grant / oral rehydration salts packet"
+    },
+    {
+      "id": "ch03.ex.aesop",
+      "label": "Aesop's Fox and the Grapes"
+    }
+  ],
+  "notYours": [
+    "American Legacy Foundation truth campaign",
+    "Barry Marshall / Helicobacter pylori self-experiment",
+    "Beyond War nuclear BB demonstration",
+    "Floyd Lee / Pegasus dining facility",
+    "Galileo and Saturn's changing appearance",
+    "Herb Kelleher / Southwest Airlines",
+    "Jared Fogle / Subway campaign",
+    "Jeff Hawkins / PalmPilot wooden prototype",
+    "John F. Kennedy's lunar goal",
+    "Julian Orr / Xerox copier technicians",
+    "Masaru Ibuka / Sony pocketable radio",
+    "Nora Ephron's Journalism 101 lead",
+    "Nordstrom's shirt-ironing service story",
+    "Pam Laffin antismoking campaign",
+    "Pham and Taylor mental-simulation experiment",
+    "Ronald Reagan's 1980 testable question",
+    "Safexpress / Harry Potter launch logistics",
+    "Sheena Iyengar and Mark Lepper choice experiments",
+    "Small, Loewenstein, and Slovic Rokia experiment",
+    "Stephen Denning / World Bank Zambia story"
+  ],
+  "cast": [
+    "Odette",
+    "Sienna",
+    "Florence",
+    "Brett"
+  ],
+  "answerIndexPattern": [
+    1,
+    1,
+    2,
+    0,
+    1,
+    0,
+    0,
+    2,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on launched in early",
+    "flavor (ch01): venue: a shared calendar invite",
+    "flavor (ch01): venue: a handwritten note on the counter",
+    "flavor (ch01): frame: a first attempt at about percent of the decline that gets corrected",
+    "flavor (ch01): frame: a first encounter with about percent of the decline that sets a benchmark",
+    "flavor (ch02): venue: a text thread with a friend"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a sticky note on the fridge",
+    "venue: a phone call home",
+    "venue: a shared grocery list",
+    "frame: a first attempt at anti litter campaign in that gets corrected",
+    "frame: a first encounter with before the decade ended that sets a benchmark"
+  ],
+  "architectureFamily": "everyday-first-person",
+  "openerType": "scene",
+  "challengeFrame": "attach-to-existing-routine",
+  "practiceShape": "measure-one-number",
+  "exampleLenses": [
+    "postmortem",
+    "walkthrough",
+    "counterfactual"
+  ],
+  "practiceVerb": "move",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "rather",
+    "later",
+    "audience",
+    "first",
+    "story",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "partial",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "measure-one-number",
+    "single-imperative",
+    "if-then-trigger",
+    "two-step-sequence"
+  ],
+  "quizStemShapes": [
+    "failure-postmortem",
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence"
+  ],
+  "quizFailureModes": [
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope"
+  ],
+  "questionFactOrder": [
+    9,
+    3,
+    7,
+    2,
+    4,
+    8,
+    5,
+    6,
+    1
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "contrast-speak",
+    "motion-speak"
+  ],
+  "shellRegister": "actor-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Odette",
+    "aliases": [
+      "Odette"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because the pocket-sized target forced simultaneous miniaturization of the radio's components, a concrete unresolved goal coordinated extended engineering work.",
+    "next": "Because the self-experiment connected the bacterium to a resulting gastric inflammation in a previously healthy host, it challenged the view that such organisms were harmless passengers."
+  },
+  "totalChapters": 6
+}

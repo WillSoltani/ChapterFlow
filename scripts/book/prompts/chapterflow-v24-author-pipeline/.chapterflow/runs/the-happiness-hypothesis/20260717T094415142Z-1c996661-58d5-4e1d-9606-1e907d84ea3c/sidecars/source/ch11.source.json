@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 11,
+  "chapterTitle": "On Balance",
+  "focus": "Wisdom comes from holding partial truths in productive tension: acceptance with striving, individual freedom with social obligation, ancient practice with modern evidence, and inner cultivation with external reform. No single maxim survives as a complete operating system.",
+  "coreClaim": "A wise life coordinates opposing but interdependent goods instead of turning one valid insight into an absolute doctrine.",
+  "centralConcept": {
+    "id": "ch11.concept",
+    "name": "complementary balance",
+    "plainDefinition": "Some apparent opposites correct each other's excesses and become useful only in relationship. Balance is an active adjustment to context, not a permanent midpoint or refusal to choose.",
+    "whyItMatters": "Readers can use maxims as tools with boundary conditions, seeking the missing counterweight whenever one idea begins to explain everything."
+  },
+  "keyClaims": [
+    "Ancient traditions preserve tested observations about practice and character, while modern science supplies measurement, causal challenge, and revision.",
+    "Eastern acceptance corrects compulsive striving, while Western action corrects resignation toward changeable conditions.",
+    "Liberal attention to autonomy protects individuals, while conservative attention to community and continuity preserves forms of social knowledge.",
+    "Reason and intuition, self and society, virtue and external goods are interdependent rather than mutually exclusive.",
+    "Yin and Yang symbolize mutual dependence and transformation, not equal endorsement of every opposing claim.",
+    "Wisdom requires plural sources plus judgment about scope, evidence, cost, and context."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch11.example.yinyang",
+      "label": "Yin and Yang / interdependent opposites",
+      "summary": "The Chinese symbol places a contrasting seed within each side and joins the two into one dynamic figure. It represents forces that define, limit, and transform one another rather than a battle that ends with one side's elimination.",
+      "teachesWhat": "A counterweight can be internal to a sound idea and necessary for keeping that idea sound.",
+      "hardSpecifics": [
+        "ancient Chinese yin-yang tradition",
+        "dark and light halves joined in one circle",
+        "contrasting dot within each half",
+        "opposites understood as interdependent and transforming"
+      ],
+      "realWorld": false
+    },
+    {
+      "id": "ch11.example.heraclitus",
+      "label": "Heraclitus / conflict of opposites",
+      "summary": "Fragments associated with Heraclitus treat tension among opposites as constitutive of order rather than as mere failure. Harmony can depend on forces pulling against each other, as in a bow or lyre. Verified anchors: Heraclitus of Ephesus; pre-Socratic Greek philosopher.",
+      "teachesWhat": "Resolution does not always mean removing conflict; structure can require disciplined tension.",
+      "hardSpecifics": [
+        "Heraclitus of Ephesus",
+        "pre-Socratic Greek philosopher",
+        "bow-and-lyre image of tension and harmony"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch11.example.buddhafranklin",
+      "label": "Buddhist nonattachment and Benjamin Franklin's striving",
+      "summary": "Buddhist practice reduces compulsive clinging by changing the relationship to desire, while Franklin's virtue program deliberately changes habits through tracking and effort. Each corrects a different failure: futile grasping on one side, passive acceptance of revisable conduct on the other. Verified anchors: Buddhist practice of nonattachment; Franklin's thirteen-virtue tracking plan.",
+      "teachesWhat": "Acceptance and self-directed change are tools for different parts of the same divided person.",
+      "hardSpecifics": [
+        "Buddhist practice of nonattachment",
+        "Franklin's thirteen-virtue tracking plan",
+        "acceptance paired with active habit cultivation"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch11.example.aristotle",
+      "label": "Aristotle / virtue plus external goods",
+      "summary": "Aristotle tied flourishing to excellent activity while also acknowledging the need for friendship and sufficient external resources. Character matters greatly without making fortune, relationships, or political conditions irrelevant. Verified anchors: Aristotle's Nicomachean Ethics; flourishing through activity in accordance with virtue.",
+      "teachesWhat": "Inner excellence and outer conditions are complementary contributors rather than rival total explanations.",
+      "hardSpecifics": [
+        "Aristotle's Nicomachean Ethics",
+        "flourishing through activity in accordance with virtue",
+        "friends and external goods treated as conditions of flourishing"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Balance is not centrism, indecision, or the claim that truth always lies halfway between positions. Some claims are false and some practices are abusive; integration begins only after evidence and moral limits exclude what should not be preserved.",
+  "voiceCues": [
+    "returns to the opening problem of too many wisdom sayings",
+    "uses paired traditions rather than one final formula",
+    "compresses earlier mechanisms into tensions with explicit counterweights",
+    "closes with a visual symbol instead of a new empirical model"
+  ],
+  "forbiddenLeakage": [
+    "new empirical cases not established in the preceding research",
+    "a fixed arithmetic formula for balancing traditions",
+    "claims that political compromise is always morally superior"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch11.fact.1",
+      "claim": "Yin and Yang describe contrary forces as complementary and interdependent rather than absolutely separate.",
+      "becauseMechanism": "Because Each side acquires meaning through contrast with the other and can transform as conditions change.",
+      "commonError": "Yin and Yang means every two opposing claims are equally true.",
+      "errorIsWhy": "The tradition concerns dynamic relation, not automatic epistemic equality.",
+      "derivedFrom": "ch11.example.yinyang"
+    },
+    {
+      "id": "ch11.fact.2",
+      "claim": "The familiar taijitu places a contrasting dot within each of its two halves.",
+      "becauseMechanism": "Because The visual detail represents the presence or potential of one force within the other.",
+      "commonError": "The symbol depicts two sealed regions with no internal relation.",
+      "errorIsWhy": "Its curved boundary and opposite-colored dots depict mutual implication and transformation.",
+      "derivedFrom": "ch11.example.yinyang"
+    },
+    {
+      "id": "ch11.fact.3",
+      "claim": "Heraclitus used tension-based images such as the bow and lyre to connect opposition with harmony.",
+      "becauseMechanism": "Because Opposing pulls can generate a stable functional form rather than cancel one another.",
+      "commonError": "Heraclitean harmony requires eliminating one side of a conflict.",
+      "errorIsWhy": "The image depends on maintained tension.",
+      "derivedFrom": "ch11.example.heraclitus"
+    },
+    {
+      "id": "ch11.fact.4",
+      "claim": "Buddhist nonattachment changes one's relationship to craving rather than requiring indifference to all people and outcomes.",
+      "becauseMechanism": "Because Reducing compulsive identification with desire permits care and action without making well-being depend on total control.",
+      "commonError": "Nonattachment means emotional numbness and withdrawal from responsibility.",
+      "errorIsWhy": "Disciplined care can remain while clinging and possession are reduced.",
+      "derivedFrom": "ch11.example.buddhafranklin"
+    },
+    {
+      "id": "ch11.fact.5",
+      "claim": "Franklin's virtue plan used active measurement and repeated practice to alter conduct.",
+      "becauseMechanism": "Because Daily marks and weekly emphasis turned a general ideal into feedback about recurring behavior.",
+      "commonError": "Acceptance of temperament and circumstances makes deliberate habit training unnecessary.",
+      "errorIsWhy": "Some automatic responses remain changeable through structured repetition.",
+      "derivedFrom": "ch11.example.buddhafranklin"
+    },
+    {
+      "id": "ch11.fact.6",
+      "claim": "Aristotle's account of flourishing includes external goods as well as virtuous activity.",
+      "becauseMechanism": "Because Friendship, material sufficiency, and political conditions provide opportunities and instruments for excellent action.",
+      "commonError": "Aristotelian virtue makes circumstances completely irrelevant to a good life.",
+      "errorIsWhy": "The Nicomachean Ethics explicitly recognizes that severe deprivation can obstruct flourishing.",
+      "derivedFrom": "ch11.example.aristotle"
+    },
+    {
+      "id": "ch11.fact.7",
+      "claim": "Scientific findings and wisdom traditions answer partly different questions.",
+      "becauseMechanism": "Because Empirical methods test descriptive and causal claims, while traditions also preserve practices, interpretations, and normative aims.",
+      "commonError": "A laboratory result can by itself determine what ends a person ought to value.",
+      "errorIsWhy": "Evidence constrains means and consequences but does not generate a complete moral ranking without value premises.",
+      "derivedFrom": "ch11.concept"
+    },
+    {
+      "id": "ch11.fact.8",
+      "claim": "A valid principle can become harmful when applied beyond the conditions that make it valid.",
+      "becauseMechanism": "Because Every heuristic selects some features and omits others, so unbounded application magnifies its blind spots.",
+      "commonError": "Once a maxim helps in one domain, consistency requires applying it everywhere.",
+      "errorIsWhy": "Scope conditions are part of responsible use rather than exceptions that weaken a principle.",
+      "derivedFrom": "ch11.concept"
+    },
+    {
+      "id": "ch11.fact.9",
+      "claim": "Complementary balance differs from taking the numerical midpoint between two positions.",
+      "becauseMechanism": "Because The needed counterweight depends on evidence, stakes, and which excess is active in the present context.",
+      "commonError": "Wisdom always selects a fifty-fifty compromise.",
+      "errorIsWhy": "Some contexts require decisive action, rejection of a false claim, or an intentionally unequal weighting.",
+      "derivedFrom": "ch11.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Balancing pairs",
+      "members": [
+        "acceptance and striving",
+        "autonomy and community",
+        "reason and intuition",
+        "virtue and external goods",
+        "ancient practice and modern evidence",
+        "East and West",
+        "liberal and conservative"
+      ]
+    }
+  ],
+  "paraphraseNotes": "A flood of maxims becomes wisdom only after each claim is given a scope and a counterweight. Yin and Yang provide the final image: contrary forces define and transform one another, and each half contains a visible trace of the other. The image does not certify every opposition as equally true. It asks what a useful insight excludes and what must be restored before that insight hardens into doctrine. Heraclitus's bow and lyre make a related point: functioning harmony can require maintained tension. Acceptance and striving illustrate the method. Buddhist nonattachment reduces futile dependence on outcomes outside control. Benjamin Franklin's thirteen-virtue practice applies measurement and effort to conduct that can be changed. Acceptance without agency can become resignation; striving without acceptance can become chronic dissatisfaction. Aristotle similarly joins virtuous activity with friendship and sufficient external goods, refusing both the fantasy that circumstance determines everything and the fantasy that character makes circumstance irrelevant. The same balancing logic applies across larger traditions. Ancient religion preserves practices for training attention, emotion, community, and aspiration; modern science tests mechanisms and exposes failures. Liberal moral language protects autonomy and dissent; conservative language notices continuity, obligation, and institutional fragility. Either can become destructive when made complete. Balance therefore requires more judgment, not less. False empirical claims should be rejected, abusive practices should not be preserved for symmetry, and compromise is not automatically virtuous. The disciplined question is which partial truth is operating, where it stops working, and which neglected good can correct its excess without erasing its contribution."
+}

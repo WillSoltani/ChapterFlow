@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 6,
+  "chapterTitle": "But Wait, There's More",
+  "focus": "Curation and enjoyment can make a beneficial action attractive rather than merely easy. Smaller choice environments compete through selection and serendipity, while playful rewards can enlist voluntary participation.",
+  "coreClaim": "A well-designed experience can motivate action by making the path enjoyable and meaningfully curated.",
+  "centralConcept": {
+    "id": "ch06.concept",
+    "name": "fun and curation",
+    "plainDefinition": "Curation reduces a large universe to a purposeful selection, while fun supplies an intrinsic or symbolic reward for participation.",
+    "whyItMatters": "People are more likely to engage when design offers discovery, pleasure, or a memorable reward instead of another obligation."
+  },
+  "keyClaims": [
+    "Small retailers can compete with scale by curating what appears and how it is encountered.",
+    "Navigation solves search while curation can create surprise.",
+    "Play can reframe a chore as a scarce privilege.",
+    "Receipt lotteries make customers want the document needed for tax enforcement.",
+    "Symbolic or guilt-free rewards may motivate differently from cash.",
+    "Fun must serve the target behavior rather than distract from it."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch06.ex.1",
+      "label": "Taiwan Uniform Invoice Lottery",
+      "summary": "Taiwan attaches lottery numbers to standardized sales invoices and draws winning numbers on a regular schedule. Customers gain a reason to request receipts, which makes retail transactions harder to conceal from the tax authority.",
+      "teachesWhat": "A playful reward can align the customer's action with tax reporting.",
+      "hardSpecifics": [
+        "Taiwan Ministry of Finance program introduced on January 1, 1951",
+        "lottery numbers printed on uniform sales invoices",
+        "customers must retain receipts to claim prizes"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch06.ex.2",
+      "label": "Beijing tax authority / restaurant receipt lottery",
+      "summary": "Beijing's tax authority tested scratch-off prizes printed on restaurant invoices. Diners who wanted a chance to win asked for the official receipt, increasing the likelihood that the sale entered the tax system.",
+      "teachesWhat": "The target behavior becomes self-reinforcing when compliance carries immediate fun.",
+      "hardSpecifics": [
+        "Beijing trial launched August 1, 2002 in 11 districts and counties",
+        "scratch-off prizes on restaurant invoices",
+        "official receipt request exposes the transaction to tax reporting"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch06.ex.3",
+      "label": "Hyde Park bookstores and Concord Bookshop versus Amazon",
+      "summary": "The Final Edition contrasts Amazon's searchable catalog with bookstores in the University of Chicago's Hyde Park neighborhood and the Concord Bookshop in Massachusetts. Staff judgment, tables, and shelf placement can create discovery even with a smaller inventory.",
+      "teachesWhat": "Curation and navigation solve different problems in a large choice universe.",
+      "hardSpecifics": [
+        "Amazon catalog relies on navigation tools",
+        "bookstores in the University of Chicago's Hyde Park neighborhood",
+        "Concord Bookshop in Massachusetts uses curated selection"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Fun is not a substitute for truth or a justification for gambling-like manipulation. The reward should make a beneficial action inviting without hiding odds, costs, or the underlying purpose.",
+  "voiceCues": [
+    "treats an intermission as a design example",
+    "uses literary comedy to explain motivation",
+    "pairs retail browsing with tax administration",
+    "ends with a short imperative to make it fun"
+  ],
+  "forbiddenLeakage": [
+    "smart-disclosure machine readability",
+    "sludge and dark-pattern friction",
+    "social-norm conformity messages"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch06.fact.1",
+      "claim": "Taiwan's Uniform Invoice Lottery links prize eligibility to retaining an official sales receipt.",
+      "becauseMechanism": "This mechanism operates because customers request and keep invoices for the drawing, so merchants face more pressure to record taxable sales.",
+      "commonError": "The lottery rewards merchants for voluntarily reporting revenue.",
+      "errorIsWhy": "The consumer's demand for an official invoice is the enforcement lever.",
+      "derivedFrom": "ch06.ex.1"
+    },
+    {
+      "id": "ch06.fact.2",
+      "claim": "Beijing's 2002 restaurant receipt lottery used scratch-off prizes on official invoices.",
+      "becauseMechanism": "This mechanism operates because an immediate chance to win made diners more likely to request the document that registers the sale.",
+      "commonError": "The policy reduced tax evasion by raising restaurant fines at checkout.",
+      "errorIsWhy": "Its distinctive mechanism was a customer reward rather than a larger penalty.",
+      "derivedFrom": "ch06.ex.2"
+    },
+    {
+      "id": "ch06.fact.3",
+      "claim": "Hyde Park bookstores and the Concord Bookshop compete through curated selection even though they cannot match Amazon's catalog size.",
+      "becauseMechanism": "This mechanism operates because human judgment and physical arrangement reduce search burden while creating discovery and trust.",
+      "commonError": "A smaller inventory always produces a strictly worse choice experience.",
+      "errorIsWhy": "Selection can add informational value when the curator's taste is useful.",
+      "derivedFrom": "ch06.ex.3"
+    },
+    {
+      "id": "ch06.fact.4",
+      "claim": "Navigation and curation address different forms of choice overload.",
+      "becauseMechanism": "This mechanism operates because navigation helps locate a known target, whereas curation decides which unfamiliar options deserve attention.",
+      "commonError": "A better search box makes editorial selection unnecessary.",
+      "errorIsWhy": "Search cannot retrieve an option the chooser does not know to seek.",
+      "derivedFrom": "ch06.concept"
+    },
+    {
+      "id": "ch06.fact.5",
+      "claim": "Tom Sawyer makes fence painting desirable by presenting access to the task as scarce and enjoyable.",
+      "becauseMechanism": "This mechanism operates because the reframing changes the social meaning from imposed labor to a privilege others must earn.",
+      "commonError": "The fence scene motivates helpers with higher wages.",
+      "errorIsWhy": "The reward is perceived exclusivity and play, not cash.",
+      "derivedFrom": "ch06.concept"
+    },
+    {
+      "id": "ch06.fact.6",
+      "claim": "A reward can motivate more effectively when it feels like a guilt-free pleasure rather than fungible cash.",
+      "becauseMechanism": "This mechanism operates because a designated treat avoids the mental-accounting pressure to spend ordinary money on necessities.",
+      "commonError": "Only the monetary face value of a reward affects behavior.",
+      "errorIsWhy": "Label and form alter how recipients experience and use the reward.",
+      "derivedFrom": "ch06.concept"
+    },
+    {
+      "id": "ch06.fact.7",
+      "claim": "Frequent-flier rewards and coffee punch cards convert repeated transactions into visible progress.",
+      "becauseMechanism": "This mechanism operates because accumulating status or stamps supplies immediate feedback before the final reward arrives.",
+      "commonError": "Loyalty programs work only by cutting the unit price.",
+      "errorIsWhy": "Progress, status, and earmarked treats can motivate beyond a cash-equivalent discount.",
+      "derivedFrom": "ch06.concept"
+    },
+    {
+      "id": "ch06.fact.8",
+      "claim": "A playful nudge can change behavior without changing the underlying requirement or banning alternatives.",
+      "becauseMechanism": "This mechanism operates because it adds an attractive experience or symbolic payoff to the desired action.",
+      "commonError": "Any use of prizes is a mandate.",
+      "errorIsWhy": "Participation remains optional when the original alternatives stay available.",
+      "derivedFrom": "ch06.concept"
+    },
+    {
+      "id": "ch06.fact.9",
+      "claim": "Curation creates value only when the selector's judgment is credible to the chooser.",
+      "becauseMechanism": "This mechanism operates because a reduced menu helps when exclusions carry useful information rather than arbitrary limitation.",
+      "commonError": "Removing options automatically improves every large menu.",
+      "errorIsWhy": "A bad curator can discard valuable options and impose irrelevant taste.",
+      "derivedFrom": "ch06.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Two large-menu tools",
+      "members": [
+        "navigation",
+        "curation"
+      ],
+      "acronym": false
+    }
+  ],
+  "paraphraseNotes": "Ease is only part of good design. A large online catalog and an independent bookstore illustrate two different services. Amazon-scale navigation helps a shopper find a known title among millions, while a small shop uses staff judgment, table placement, and a constrained inventory to create surprise and trust. Curation makes selection itself informative. Fun supplies a second lever. In Mark Twain's fence scene, work becomes desirable when Tom Sawyer performs it as a scarce privilege rather than an assigned chore. Taiwan's Uniform Invoice Lottery turns that insight into tax administration: lottery numbers on official receipts give customers a reason to request and retain the document, making hidden sales harder. Chinese local authorities similarly placed scratch-off prizes on restaurant invoices so diners would pull transactions into the reporting system. The prize does not improve the tax form or increase a fine; it changes the experience of asking for the receipt. Loyalty programs use related mechanisms through stamps, miles, progress, and guilt-free treats. These tools demand ethical boundaries. Curation must express credible judgment rather than arbitrary exclusion, and play must not conceal odds or costs. The design question is whether enjoyment, discovery, or symbolic progress supports an action people have reason to value. When it does, the beneficial path can feel like an opportunity rather than another instruction. Grounding anchors: Taiwan Ministry of Finance program introduced on January 1, 1951; lottery numbers printed on uniform sales invoices; customers must retain receipts to claim prizes; Beijing trial launched August 1, 2002 in 11 districts and counties; official receipt request exposes the transaction to tax reporting; Amazon catalog relies on navigation tools; bookstores in the University of Chicago's Hyde Park neighborhood; Concord Bookshop in Massachusetts uses curated selection."
+}

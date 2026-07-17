@@ -1,0 +1,197 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "made-to-stick-ch05",
+  "chapterNumber": 5,
+  "title": "Emotional",
+  "coreMove": "Because the constructed individual gave attention a single human target, participants could form an affective response more readily than from aggregate figures.",
+  "thesis": "In the Small, Loewenstein, and Slovic study, the Rokia-only appeal averaged $2.38 while a statistics-only appeal averaged $1.14.",
+  "readerPromise": "After this chapter, a reader can because the constructed individual gave attention a single human target, participants could form an affective response more readily than from aggregate figures.",
+  "ownedCases": [
+    {
+      "id": "ch05.ex.rokia-study",
+      "label": "Small, Loewenstein, and Slovic Rokia experiment"
+    },
+    {
+      "id": "ch05.ex.truth",
+      "label": "American Legacy Foundation truth campaign"
+    },
+    {
+      "id": "ch05.ex.floyd-lee",
+      "label": "Floyd Lee / Pegasus dining facility"
+    },
+    {
+      "id": "ch05.ex.texas",
+      "label": "TxDOT Don't mess with Texas campaign"
+    }
+  ],
+  "notYours": [
+    "Aesop's Fox and the Grapes",
+    "Barry Marshall / Helicobacter pylori self-experiment",
+    "Beyond War nuclear BB demonstration",
+    "Boeing 727 / LaGuardia Runway 4-22",
+    "Galileo and Saturn's changing appearance",
+    "Georgia State Safe Night Out accounting case",
+    "Herb Kelleher / Southwest Airlines",
+    "James P. Grant / oral rehydration salts packet",
+    "Jane Elliott's blue-eyes/brown-eyes exercise",
+    "Jared Fogle / Subway campaign",
+    "Jeff Hawkins / PalmPilot wooden prototype",
+    "John F. Kennedy's lunar goal",
+    "Julian Orr / Xerox copier technicians",
+    "Masaru Ibuka / Sony pocketable radio",
+    "Nora Ephron's Journalism 101 lead",
+    "Nordstrom's shirt-ironing service story",
+    "Pam Laffin antismoking campaign",
+    "Pham and Taylor mental-simulation experiment",
+    "Ronald Reagan's 1980 testable question",
+    "Safexpress / Harry Potter launch logistics"
+  ],
+  "cast": [
+    "Yvette",
+    "Fabien",
+    "Shannon",
+    "Tyler"
+  ],
+  "answerIndexPattern": [
+    0,
+    1,
+    2,
+    2,
+    0,
+    0,
+    1,
+    2,
+    1
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on launched in early",
+    "flavor (ch01): venue: a shared calendar invite",
+    "flavor (ch01): venue: a handwritten note on the counter",
+    "flavor (ch01): frame: a first attempt at about percent of the decline that gets corrected",
+    "flavor (ch01): frame: a first encounter with about percent of the decline that sets a benchmark",
+    "flavor (ch02): venue: a text thread with a friend"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a to-do list on the whiteboard",
+    "venue: a car ride conversation",
+    "venue: a morning routine",
+    "frame: a first attempt at before the decade ended that gets corrected",
+    "frame: an unexpected kindness that lands and gets retold afterward"
+  ],
+  "architectureFamily": "historical-narrative",
+  "openerType": "statistic",
+  "challengeFrame": "replace-one-Y",
+  "practiceShape": "if-then-trigger",
+  "exampleLenses": [
+    "dialogue-beat",
+    "before-after-ledger",
+    "postmortem"
+  ],
+  "practiceVerb": "say",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "rather",
+    "later",
+    "audience",
+    "first",
+    "story",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "if-then-trigger",
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative"
+  ],
+  "quizStemShapes": [
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis"
+  ],
+  "quizFailureModes": [
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing"
+  ],
+  "questionFactOrder": [
+    3,
+    5,
+    1,
+    4,
+    2,
+    9,
+    7,
+    8,
+    6
+  ],
+  "memorableShapes": [
+    "imperative",
+    "reversal",
+    "redefinition"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "artifact-speak",
+    "cost-speak"
+  ],
+  "shellRegister": "cost-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Yvette",
+    "aliases": [
+      "Yvette"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because the self-experiment connected the bacterium to a resulting gastric inflammation in a previously healthy host, it challenged the view that such organisms were harmless passengers.",
+    "next": "Because repeated rehearsal occurred while real preparation choices were still available, the simulation could influence planning and study behavior."
+  },
+  "totalChapters": 6
+}

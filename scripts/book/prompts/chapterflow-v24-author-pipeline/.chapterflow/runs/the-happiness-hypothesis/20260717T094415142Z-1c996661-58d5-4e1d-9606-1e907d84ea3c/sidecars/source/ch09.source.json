@@ -1,0 +1,188 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 9,
+  "chapterTitle": "Divinity with or without God",
+  "focus": "Human moral experience includes a vertical dimension of degradation and elevation in addition to interpersonal harm and social duty. Disgust, moral elevation, and awe help explain how bodies, exemplars, sacred objects, and collective ideals acquire moral force in religious and secular life.",
+  "coreClaim": "Sacredness is a psychological capacity that can enrich moral life or justify exclusion, so it must be understood without either dismissing it or granting it unchecked authority.",
+  "centralConcept": {
+    "id": "ch09.concept",
+    "name": "vertical moral dimension",
+    "plainDefinition": "People experience some acts and objects as base, contaminating, noble, elevating, or sacred, as though conduct moved the self downward or upward. This dimension differs from liking and status even when it interacts with them.",
+    "whyItMatters": "Secular and religious moral languages become more mutually intelligible, and purity reactions can be examined for both meaning and danger."
+  },
+  "keyClaims": [
+    "Disgust began around rejection and contamination but expanded culturally into animal-reminder, interpersonal, and moral domains.",
+    "Purity rules often regulate food, sex, blood, corpses, washing, and boundaries of the body.",
+    "The ethics of autonomy, community, and divinity protect different moral objects and therefore generate different intuitions about the same practice.",
+    "Moral elevation responds to witnessed goodness with warmth, openness, and motivation to emulate or help.",
+    "Awe combines perceived vastness with a need to revise existing mental structures.",
+    "Sacredness can orient aspiration and solidarity, but purity language can also dehumanize people classified as polluted."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch09.example.rozin",
+      "label": "Paul Rozin, Clark McCauley, and colleagues / disgust research",
+      "summary": "Research began with core disgust around offensive foods, waste, and contamination, then mapped extensions to reminders of animal embodiment such as blood, sex, injury, and death. Cultural learning can recruit the same withdrawal response for social and moral boundaries. Verified anchors: Paul Rozin and Clark McCauley; core disgust centered on oral incorporation and contamination.",
+      "teachesWhat": "A bodily defense can become a moral metaphor with real motivational force.",
+      "hardSpecifics": [
+        "Paul Rozin and Clark McCauley",
+        "core disgust centered on oral incorporation and contamination",
+        "animal-reminder disgust includes death and body-envelope violations",
+        "body-to-soul preadaptation account published in 1999"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch09.example.shweder",
+      "label": "Richard Shweder and colleagues / moral discourse in Bhubaneswar",
+      "summary": "Comparative work in Bhubaneswar, India, and the United States identified three recurring moral languages. Autonomy protects individuals from harm and coercion, community protects roles and collective order, and divinity protects the sacred potential of persons and practices from degradation. Verified anchors: Richard Shweder's research team; Bhubaneswar, Odisha, India.",
+      "teachesWhat": "Moral disagreement can begin from different protected objects, not simply different factual beliefs.",
+      "hardSpecifics": [
+        "Richard Shweder's research team",
+        "Bhubaneswar, Odisha, India",
+        "ethics of autonomy, community, and divinity",
+        "comparative Indian and United States moral discourse"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch09.example.elevation",
+      "label": "Jonathan Haidt and Sara Algoe / moral elevation studies",
+      "summary": "Participants exposed to acts of moral beauty reported warm or open feelings and a desire to become better or help others. Elevation differs from amusement and from gratitude because its elicitor is witnessed excellence rather than personal benefit. Verified anchors: moral beauty as the elicitor; warm feelings often located in the chest.",
+      "teachesWhat": "Moral exemplars can train aspiration through emotion, not only through rule instruction.",
+      "hardSpecifics": [
+        "moral beauty as the elicitor",
+        "warm feelings often located in the chest",
+        "desire to emulate virtue or help",
+        "distinguished from gratitude and admiration of skill"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch09.example.keltner",
+      "label": "Dacher Keltner and Jonathan Haidt / awe prototype",
+      "summary": "Their 2003 model defines clear awe experiences through perceived vastness and a need for accommodation. Nature, authority, art, collective ritual, or moral greatness can overwhelm an existing frame and force it to expand. Verified anchors: Keltner and Haidt 2003 model; perceived vastness.",
+      "teachesWhat": "A sacred-feeling experience can arise from cognitive and emotional structure without settling a theological claim.",
+      "hardSpecifics": [
+        "Keltner and Haidt 2003 model",
+        "perceived vastness",
+        "need for accommodation",
+        "awe can be positive, threatening, or mixed"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Explaining divinity psychologically neither proves nor disproves God. It also does not sanctify every purity norm: the same vertical imagination that supports awe and aspiration can stigmatize bodies, minorities, and dissenters as contamination.",
+  "voiceCues": [
+    "begins with puzzling purity rules and traces their emotional logic",
+    "uses a third spatial dimension to name an overlooked moral experience",
+    "pairs a downward emotion, disgust, with upward emotions, elevation and awe",
+    "addresses secular-religious misunderstanding without resolving theology"
+  ],
+  "forbiddenLeakage": [
+    "the VIA six-virtue classification",
+    "vital engagement through love and work",
+    "Yin and Yang as the final balancing device"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch09.fact.1",
+      "claim": "Core disgust is strongly organized around oral incorporation, offensive foods, waste, and contamination.",
+      "becauseMechanism": "Because Withdrawal and rejection reduce contact with substances that may carry toxins or pathogens.",
+      "commonError": "Disgust originated as a judgment about immoral people.",
+      "errorIsWhy": "Moral disgust is an extension of a more basic bodily rejection system.",
+      "derivedFrom": "ch09.example.rozin"
+    },
+    {
+      "id": "ch09.fact.2",
+      "claim": "Animal-reminder disgust includes death, injury, sex, poor hygiene, and violations of the body envelope.",
+      "becauseMechanism": "Because Those elicitors make human vulnerability and animal embodiment salient beyond the immediate question of eating.",
+      "commonError": "Every disgust elicitor is literally a food-poisoning risk.",
+      "errorIsWhy": "The emotion has expanded into domains whose symbolic meaning exceeds oral contamination.",
+      "derivedFrom": "ch09.example.rozin"
+    },
+    {
+      "id": "ch09.fact.3",
+      "claim": "The ethic of autonomy centers individual harm, rights, liberty, and justice.",
+      "becauseMechanism": "Because It treats persons as independent choosers whose interests require protection from coercion and injury.",
+      "commonError": "Autonomy ethics is simply selfishness.",
+      "errorIsWhy": "It includes equal rights and protection of every individual's welfare, not just one's own preference.",
+      "derivedFrom": "ch09.example.shweder"
+    },
+    {
+      "id": "ch09.fact.4",
+      "claim": "The ethic of community centers duty, hierarchy, interdependence, and the integrity of social roles.",
+      "becauseMechanism": "Because It evaluates conduct by effects on the groups and relationships that sustain collective life.",
+      "commonError": "Community ethics asks only whether an act harms a consenting individual.",
+      "errorIsWhy": "Role violation and collective disorder can count as moral harms within this ethic.",
+      "derivedFrom": "ch09.example.shweder"
+    },
+    {
+      "id": "ch09.fact.5",
+      "claim": "The ethic of divinity centers purity, sacredness, and protection of perceived higher potential from degradation.",
+      "becauseMechanism": "Because It interprets body and conduct on a vertical scale between animal baseness and spiritual nobility.",
+      "commonError": "Divinity ethics is identical to belief in a particular deity.",
+      "errorIsWhy": "Sacredness and elevation can organize moral experience in religious or secular forms.",
+      "derivedFrom": "ch09.example.shweder"
+    },
+    {
+      "id": "ch09.fact.6",
+      "claim": "Moral elevation is elicited by witnessing moral beauty rather than by receiving a benefit oneself.",
+      "becauseMechanism": "Because The observed exemplar activates warmth and approach motivation directed toward virtue and prosocial action.",
+      "commonError": "Elevation is another name for gratitude toward a benefactor.",
+      "errorIsWhy": "Gratitude requires personal benefit; elevation can arise as a third-party witness.",
+      "derivedFrom": "ch09.example.elevation"
+    },
+    {
+      "id": "ch09.fact.7",
+      "claim": "Elevation commonly includes warm or open bodily feelings and motivation to help or improve oneself.",
+      "becauseMechanism": "Because Positive moral appraisal shifts attention toward affiliation and emulation rather than withdrawal.",
+      "commonError": "Witnessing virtue produces only a cool judgment that the actor followed a rule.",
+      "errorIsWhy": "The response includes affective and motivational components, not evaluation alone.",
+      "derivedFrom": "ch09.example.elevation",
+      "replicationStatus": "mixed"
+    },
+    {
+      "id": "ch09.fact.8",
+      "claim": "Keltner and Haidt's awe prototype requires perceived vastness and a need for accommodation.",
+      "becauseMechanism": "Because An experience too large for an existing frame pressures the mind to revise that frame.",
+      "commonError": "Awe is simply intense pleasure in beautiful scenery.",
+      "errorIsWhy": "Awe can be threatening or mixed and depends on vastness plus cognitive accommodation, not pleasantness alone.",
+      "derivedFrom": "ch09.example.keltner"
+    },
+    {
+      "id": "ch09.fact.9",
+      "claim": "Purity language can motivate both self-transcendence and social exclusion.",
+      "becauseMechanism": "Because The same contamination logic that protects a sacred object can be transferred to people treated as polluting.",
+      "commonError": "Sacredness is either wholly ennobling or wholly irrational.",
+      "errorIsWhy": "Its consequences depend on what is sacralized, who controls the boundary, and how violations are treated.",
+      "derivedFrom": "ch09.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Three ethics",
+      "members": [
+        "autonomy",
+        "community",
+        "divinity"
+      ]
+    },
+    {
+      "name": "Awe prototype",
+      "members": [
+        "perceived vastness",
+        "need for accommodation"
+      ]
+    },
+    {
+      "name": "Three dimensions of social space",
+      "members": [
+        "closeness or liking",
+        "hierarchy or status",
+        "divinity or elevation"
+      ]
+    }
+  ],
+  "paraphraseNotes": "Moral life occupies more than the horizontal dimensions of liking and social rank. Many cultures also organize conduct vertically, contrasting degradation with nobility, pollution with purity, and animal appetite with sacred aspiration. Paul Rozin and Clark McCauley's disgust research supplies the bodily route into that space. Core disgust rejects offensive foods, waste, and contamination. Animal-reminder disgust extends withdrawal to blood, sex, injury, death, and ruptures of the body envelope. Culture can then recruit the same logic for moral and religious boundaries. Richard Shweder's comparative work in Bhubaneswar and the United States distinguishes three protected objects. Autonomy guards individuals from harm and coercion; community guards duties, roles, and collective order; divinity guards sacred potential from degradation. None is a complete moral code, but the framework explains why one side sees a private choice while another sees desecration or betrayal. Upward emotions show the constructive side. Moral elevation follows witnessed generosity or courage with warm, open feelings and an impulse to emulate or help. Dacher Keltner and Jonathan Haidt define awe through vastness plus the need to accommodate an experience that exceeds the current frame. These reactions make sacredness psychologically real whether or not a supernatural interpretation is accepted. The danger is equally real. Contamination metaphors can turn people into pollutants, and imposed purity can suppress freedom or justify cruelty. Secular dismissal misses sources of aspiration and solidarity; religious certainty can miss the human costs of enforcing one sacred order. Mature use of the vertical dimension keeps elevation and awe while subjecting purity boundaries to rights, evidence, and compassion."
+}

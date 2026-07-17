@@ -1,0 +1,840 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "the-happiness-hypothesis",
+  "chapterId": "the-happiness-hypothesis-ch02",
+  "chapterNumber": 2,
+  "chapterTitle": "Changing Your Mind",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/the-happiness-hypothesis/20260717T094415142Z-1c996661-58d5-4e1d-9606-1e907d84ea3c/sidecars/source/ch02.source.json",
+  "sourceHash": "sha256:107f42ca6696e61e8396ac3a2b3b7c35ccdec0a0d055a3273436efaa64623f8f",
+  "facts": [
+    {
+      "id": "ch02.fact.1",
+      "claim": "Cognitive therapy targets recurring automatic interpretations rather than treating emotion as directly voluntary.",
+      "mechanism": "Because Changing how an event is construed changes the emotional consequences that follow from that appraisal.",
+      "commonError": "Cognitive therapy asks patients simply to replace sad thoughts with cheerful ones.",
+      "whyWrong": "The method tests accuracy and usefulness against evidence rather than demanding positivity.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Cognitive",
+        "Because Changing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.1"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch02.fact.2",
+      "claim": "Aaron Beck's model treats negative views of self, world, and future as mutually reinforcing features of depression.",
+      "mechanism": "Because Each interpretation supplies confirming material for the others and keeps negative appraisal active.",
+      "commonError": "Depressive cognition consists of one isolated mistaken belief.",
+      "whyWrong": "The cognitive triad describes a linked pattern across three domains.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "3"
+      ],
+      "groundedEntities": [
+        "Aaron Beck's",
+        "Because Each",
+        "Depressive"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.2"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch02.fact.3",
+      "claim": "Mindfulness practice trains observation of thoughts and feelings without immediate reaction.",
+      "mechanism": "Because Repeatedly noticing and returning attention weakens the automatic step from mental event to identification or action.",
+      "commonError": "Successful meditation eliminates thoughts from consciousness.",
+      "whyWrong": "The skill is nonreactive awareness, not permanent mental blankness.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Mindfulness",
+        "Because Repeatedly",
+        "Successful"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.3"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch02.fact.4",
+      "claim": "Fluoxetine is an SSRI used clinically to treat depression and other conditions.",
+      "mechanism": "Because It inhibits serotonin reuptake, altering serotonergic signaling over the course of treatment.",
+      "commonError": "Prozac produces immediate happiness in anyone who takes a dose.",
+      "whyWrong": "Therapeutic response takes time, varies among patients, and is not equivalent to a universal euphoric effect.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Fluoxetine",
+        "SSRI",
+        "Because It",
+        "Prozac",
+        "Therapeutic"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.4"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch02.fact.5",
+      "claim": "SSRI treatment can produce adverse effects and requires individualized clinical assessment.",
+      "mechanism": "Because Changing serotonin signaling affects multiple systems, and patients differ in benefit, tolerability, interactions, and risk.",
+      "commonError": "A biological treatment is automatically more precise and predictable than a psychological one.",
+      "whyWrong": "Mechanistic category does not guarantee uniform outcome or eliminate monitoring needs.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "SSRI",
+        "Because Changing",
+        "Mechanistic"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.5"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch02.fact.6",
+      "claim": "The name-letter effect is narrower and better supported than claims that names determine major careers or residential choices.",
+      "mechanism": "Because Small evaluative preferences can appear in low-stakes tasks while archival life outcomes contain cohort, ethnicity, and geographic confounds.",
+      "commonError": "People named Dennis are reliably drawn to dentistry because of their names.",
+      "whyWrong": "Reanalysis showed that broad occupational matching claims do not isolate name similarity as the cause.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Because Small",
+        "People",
+        "Dennis",
+        "Reanalysis"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.6"
+      ],
+      "replicationStatus": "contested",
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch02.fact.7",
+      "claim": "Temperament contributes to stable individual differences in positive and negative affect.",
+      "mechanism": "Because Genetic variation and early-developing neural sensitivity influence the threshold and intensity of emotional response.",
+      "commonError": "A heritable influence fixes one unchangeable lifetime happiness score.",
+      "whyWrong": "Heritability describes variation in a population under given conditions, not an individual's immutable destiny.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Temperament",
+        "Because Genetic",
+        "Heritability"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.7"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch02.fact.8",
+      "claim": "Negative appraisal can bias attention toward threat-consistent information.",
+      "mechanism": "Because Once a danger interpretation is active, selective attention and memory make confirming cues easier to retrieve.",
+      "commonError": "Pessimism is merely a spoken opinion with no effect on perception.",
+      "whyWrong": "Appraisal operates early enough to influence what evidence receives attention.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Negative",
+        "Because Once",
+        "Pessimism",
+        "Appraisal"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch02.fact.9",
+      "claim": "Meditation, cognitive therapy, and SSRIs intervene through distinguishable routes rather than one shared technique.",
+      "mechanism": "Because They primarily train attentional stance, revise interpretive habits, and alter neurochemical signaling, respectively.",
+      "commonError": "All three methods work by consciously deciding to feel better.",
+      "whyWrong": "Only part of their action is deliberate in the moment, and medication does not depend on conscious reappraisal.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "3"
+      ],
+      "groundedEntities": [
+        "Meditation",
+        "SSRIs",
+        "Because They",
+        "All",
+        "Only"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.9"
+      ],
+      "teachingPriority": 4
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch02.example.beck",
+      "label": "Aaron Beck / cognitive therapy",
+      "summary": "Aaron Beck identified recurring negative interpretations in depression and developed a structured method for examining them. A patient records an automatic thought, identifies the distortion, weighs evidence, and practices a more accurate alternative until the emotional response begins to change. Verified anchors: Aaron T. Beck; automatic thoughts recorded in writing.",
+      "realWorld": true,
+      "naturalSetting": "Aaron Beck",
+      "hardSpecifics": [
+        "Aaron T. Beck",
+        "automatic thoughts recorded in writing",
+        "evidence for and against an interpretation",
+        "cognitive therapy developed for depression"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch02.example.meditation",
+      "label": "Buddhist insight meditation / attentional training",
+      "summary": "Insight practice repeatedly returns attention to present experience and observes thoughts as passing events. The exercise changes the relationship to worry by reducing automatic identification with each mental event rather than proving every worry false. Verified anchors: repeated attention to present-moment experience; nonreactive observation of thoughts.",
+      "realWorld": true,
+      "naturalSetting": "Buddhist",
+      "hardSpecifics": [
+        "repeated attention to present-moment experience",
+        "nonreactive observation of thoughts",
+        "training across repeated practice sessions"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch02.example.kramer",
+      "label": "Peter Kramer / Listening to Prozac",
+      "summary": "Clinical reports surrounding fluoxetine described some patients as less socially inhibited or less trapped by depressive patterns. The cases raised an ethical question about whether medication restores a prior self or can alter traits a patient experiences as identity. Verified anchors: fluoxetine marketed as Prozac; selective serotonin reuptake inhibitor.",
+      "realWorld": true,
+      "naturalSetting": "Peter Kramer",
+      "hardSpecifics": [
+        "fluoxetine marketed as Prozac",
+        "selective serotonin reuptake inhibitor",
+        "Peter D. Kramer's 1993 Listening to Prozac"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Peter D. Kramer's 1993 Listening to Prozac"
+      ]
+    },
+    {
+      "id": "ch02.example.pelham",
+      "label": "Brett Pelham and colleagues / implicit egotism",
+      "summary": "Archival analyses proposed that shared name letters subtly attract people toward matching places, partners, or occupations. Later reanalyses showed that major-life-choice examples can be produced by confounds, so the broad claim is useful as a caution about automatic preference, not a secure predictive rule. Verified anchors: name-letter similarity; archival claims about occupations and places.",
+      "realWorld": true,
+      "naturalSetting": "Brett Pelham",
+      "hardSpecifics": [
+        "name-letter similarity",
+        "archival claims about occupations and places",
+        "Uri Simonsohn's confound-based reanalyses"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Three routes to changing automatic reactions",
+      "members": [
+        "meditation",
+        "cognitive therapy",
+        "SSRI medication"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "Beck's cognitive triad",
+      "members": [
+        "negative view of self",
+        "negative view of the world",
+        "negative view of the future"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch02.concept",
+      "kind": "concept",
+      "label": "automatic affective appraisal",
+      "text": "Events acquire a rapid positive or negative coloring before deliberate analysis. Repeated appraisals form a filter that can tilt experience toward threat, loss, safety, or opportunity. A person can stop treating every first feeling as a verdict and choose an intervention suited to attention, interpretation, or neurochemistry.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.example.beck",
+      "kind": "named_example",
+      "label": "Aaron Beck / cognitive therapy",
+      "text": "Aaron Beck identified recurring negative interpretations in depression and developed a structured method for examining them. A patient records an automatic thought, identifies the distortion, weighs evidence, and practices a more accurate alternative until the emotional response begins to change. Verified anchors: Aaron T. Beck; automatic thoughts recorded in writing. Reason changes the elephant through repeated, evidence-based retraining rather than a single argument.",
+      "hardSpecifics": [
+        "Aaron T. Beck",
+        "automatic thoughts recorded in writing",
+        "evidence for and against an interpretation",
+        "cognitive therapy developed for depression"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.example.meditation",
+      "kind": "named_example",
+      "label": "Buddhist insight meditation / attentional training",
+      "text": "Insight practice repeatedly returns attention to present experience and observes thoughts as passing events. The exercise changes the relationship to worry by reducing automatic identification with each mental event rather than proving every worry false. Verified anchors: repeated attention to present-moment experience; nonreactive observation of thoughts. Attention can be trained so that an appraisal is noticed without becoming an instruction.",
+      "hardSpecifics": [
+        "repeated attention to present-moment experience",
+        "nonreactive observation of thoughts",
+        "training across repeated practice sessions"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.example.kramer",
+      "kind": "named_example",
+      "label": "Peter Kramer / Listening to Prozac",
+      "text": "Clinical reports surrounding fluoxetine described some patients as less socially inhibited or less trapped by depressive patterns. The cases raised an ethical question about whether medication restores a prior self or can alter traits a patient experiences as identity. Verified anchors: fluoxetine marketed as Prozac; selective serotonin reuptake inhibitor. Biological change can affect the emotional filter directly, but effectiveness, side effects, and identity concerns require clinical judgment.",
+      "hardSpecifics": [
+        "fluoxetine marketed as Prozac",
+        "selective serotonin reuptake inhibitor",
+        "Peter D. Kramer's 1993 Listening to Prozac"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.example.pelham",
+      "kind": "named_example",
+      "label": "Brett Pelham and colleagues / implicit egotism",
+      "text": "Archival analyses proposed that shared name letters subtly attract people toward matching places, partners, or occupations. Later reanalyses showed that major-life-choice examples can be produced by confounds, so the broad claim is useful as a caution about automatic preference, not a secure predictive rule. Verified anchors: name-letter similarity; archival claims about occupations and places. An appealing demonstration of unconscious influence must be separated from its replication standing.",
+      "hardSpecifics": [
+        "name-letter similarity",
+        "archival claims about occupations and places",
+        "Uri Simonsohn's confound-based reanalyses"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.1",
+      "kind": "testable_fact",
+      "label": "Cognitive therapy targets recurring automatic interpretations rather than treating emotion as directly voluntary.",
+      "text": "Cognitive therapy targets recurring automatic interpretations rather than treating emotion as directly voluntary. Because Changing how an event is construed changes the emotional consequences that follow from that appraisal. Cognitive therapy asks patients simply to replace sad thoughts with cheerful ones. The method tests accuracy and usefulness against evidence rather than demanding positivity.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.2",
+      "kind": "testable_fact",
+      "label": "Aaron Beck's model treats negative views of self, world, and future as mutually reinforcing features of depression.",
+      "text": "Aaron Beck's model treats negative views of self, world, and future as mutually reinforcing features of depression. Because Each interpretation supplies confirming material for the others and keeps negative appraisal active. Depressive cognition consists of one isolated mistaken belief. The cognitive triad describes a linked pattern across three domains.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.3",
+      "kind": "testable_fact",
+      "label": "Mindfulness practice trains observation of thoughts and feelings without immediate reaction.",
+      "text": "Mindfulness practice trains observation of thoughts and feelings without immediate reaction. Because Repeatedly noticing and returning attention weakens the automatic step from mental event to identification or action. Successful meditation eliminates thoughts from consciousness. The skill is nonreactive awareness, not permanent mental blankness.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.4",
+      "kind": "testable_fact",
+      "label": "Fluoxetine is an SSRI used clinically to treat depression and other conditions.",
+      "text": "Fluoxetine is an SSRI used clinically to treat depression and other conditions. Because It inhibits serotonin reuptake, altering serotonergic signaling over the course of treatment. Prozac produces immediate happiness in anyone who takes a dose. Therapeutic response takes time, varies among patients, and is not equivalent to a universal euphoric effect.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.5",
+      "kind": "testable_fact",
+      "label": "SSRI treatment can produce adverse effects and requires individualized clinical assessment.",
+      "text": "SSRI treatment can produce adverse effects and requires individualized clinical assessment. Because Changing serotonin signaling affects multiple systems, and patients differ in benefit, tolerability, interactions, and risk. A biological treatment is automatically more precise and predictable than a psychological one. Mechanistic category does not guarantee uniform outcome or eliminate monitoring needs.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.6",
+      "kind": "testable_fact",
+      "label": "The name-letter effect is narrower and better supported than claims that names determine major careers or residential choices.",
+      "text": "The name-letter effect is narrower and better supported than claims that names determine major careers or residential choices. Because Small evaluative preferences can appear in low-stakes tasks while archival life outcomes contain cohort, ethnicity, and geographic confounds. People named Dennis are reliably drawn to dentistry because of their names. Reanalysis showed that broad occupational matching claims do not isolate name similarity as the cause.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.7",
+      "kind": "testable_fact",
+      "label": "Temperament contributes to stable individual differences in positive and negative affect.",
+      "text": "Temperament contributes to stable individual differences in positive and negative affect. Because Genetic variation and early-developing neural sensitivity influence the threshold and intensity of emotional response. A heritable influence fixes one unchangeable lifetime happiness score. Heritability describes variation in a population under given conditions, not an individual's immutable destiny.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.8",
+      "kind": "testable_fact",
+      "label": "Negative appraisal can bias attention toward threat-consistent information.",
+      "text": "Negative appraisal can bias attention toward threat-consistent information. Because Once a danger interpretation is active, selective attention and memory make confirming cues easier to retrieve. Pessimism is merely a spoken opinion with no effect on perception. Appraisal operates early enough to influence what evidence receives attention.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.9",
+      "kind": "testable_fact",
+      "label": "Meditation, cognitive therapy, and SSRIs intervene through distinguishable routes rather than one shared technique.",
+      "text": "Meditation, cognitive therapy, and SSRIs intervene through distinguishable routes rather than one shared technique. Because They primarily train attentional stance, revise interpretive habits, and alter neurochemical signaling, respectively. All three methods work by consciously deciding to feel better. Only part of their action is deliberate in the moment, and medication does not depend on conscious reappraisal.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.framework.three.routes.to.changing.automatic.reactions",
+      "kind": "framework",
+      "label": "Three routes to changing automatic reactions",
+      "text": "meditation, cognitive therapy, SSRI medication",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.framework.beck.s.cognitive.triad",
+      "kind": "framework",
+      "label": "Beck's cognitive triad",
+      "text": "negative view of self, negative view of the world, negative view of the future",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1",
+    "3",
+    "1993"
+  ],
+  "allowedEntities": [
+    "Changing Your Mind",
+    "Temperament",
+    "Meditation",
+    "SSRI",
+    "Lasting",
+    "Events",
+    "Repeated",
+    "Baseline",
+    "Negative",
+    "Cognitive",
+    "Selective",
+    "Evidence",
+    "Aaron Beck",
+    "Verified",
+    "Aaron T. Beck",
+    "Reason",
+    "Buddhist",
+    "Insight",
+    "Attention",
+    "Peter Kramer",
+    "Listening",
+    "Prozac",
+    "Clinical",
+    "Biological",
+    "Peter D. Kramer's",
+    "Brett Pelham",
+    "Archival",
+    "Later",
+    "Uri Simonsohn's",
+    "Each",
+    "Because Changing",
+    "Aaron Beck's",
+    "Because Each",
+    "Depressive",
+    "Mindfulness",
+    "Because Repeatedly",
+    "Successful",
+    "Fluoxetine",
+    "Because It",
+    "Therapeutic",
+    "Mechanistic",
+    "Because Small",
+    "People",
+    "Dennis",
+    "Reanalysis",
+    "Because Genetic",
+    "Heritability",
+    "Because Once",
+    "Pessimism",
+    "Appraisal",
+    "SSRIs",
+    "Because They",
+    "All",
+    "Only",
+    "Three",
+    "Beck's",
+    "Emotional",
+    "Recording",
+    "Peter Kramer's",
+    "Medication",
+    "Implicit-egotism",
+    "Small",
+    "Confounds",
+    "Change",
+    "Aaron Beck / cognitive therapy",
+    "Buddhist insight meditation / attentional training",
+    "Peter Kramer / Listening to Prozac",
+    "Brett Pelham and colleagues / implicit egotism"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch02.example.beck",
+      "warning": "Keep examples about Aaron Beck / cognitive therapy source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch02.example.meditation",
+      "warning": "Keep examples about Buddhist insight meditation / attentional training source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch02.example.kramer",
+      "warning": "Keep examples about Peter Kramer / Listening to Prozac source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch02.example.pelham",
+      "warning": "Keep examples about Brett Pelham and colleagues / implicit egotism source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch02.fact.2"
+}

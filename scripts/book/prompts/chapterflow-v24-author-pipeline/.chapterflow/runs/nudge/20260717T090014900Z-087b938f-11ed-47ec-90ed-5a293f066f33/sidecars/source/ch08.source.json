@@ -1,0 +1,157 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 8,
+  "chapterTitle": "#Sludge",
+  "focus": "Friction can prevent people from obtaining outcomes they want, whether by accident or deliberate exploitation. Sludge audits expose time, paperwork, confusion, and asymmetric processes as real costs.",
+  "coreClaim": "Administrative burden should be measured and justified because small frictions can operate like a wall.",
+  "centralConcept": {
+    "id": "ch08.concept",
+    "name": "sludge",
+    "plainDefinition": "Friction in a choice environment that makes it harder for people to reach an outcome that would improve their welfare by their own standards.",
+    "whyItMatters": "Time, confusion, and paperwork change take-up even when formal eligibility or available options remain unchanged."
+  },
+  "keyClaims": [
+    "Sludge can be intentional or the residue of neglected design.",
+    "Join-easy and leave-hard asymmetry traps subscribers.",
+    "Rebate sellers profit from overoptimism about future paperwork.",
+    "Shrouded attributes hide the full ownership cost.",
+    "Administrative burden disproportionately excludes people with fewer resources.",
+    "Government should count compliance time as a policy cost.",
+    "A sludge audit separates necessary safeguards from needless friction."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch08.ex.1",
+      "label": "Robert Letzler and Joshua Tasoff / rebate redemption experiment",
+      "summary": "Participants expected to redeem mail-in forms far more often than they actually did. Expected redemption exceeded actual redemption by 49 percentage points, and simplifying the task reduced the gap.",
+      "teachesWhat": "Firms can profit when people underestimate the future cost of paperwork.",
+      "hardSpecifics": [
+        "expected redemption exceeded actual redemption by 49 percentage points",
+        "simplification reduced overoptimism by about half"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch08.ex.2",
+      "label": "University of Michigan / HAIL Scholarship",
+      "summary": "The HAIL experiment sent high-achieving, low-income Michigan students an early, simple guarantee of four years of tuition and fees if admitted. The commitment reduced uncertainty and application burden before the normal aid process.",
+      "teachesWhat": "Removing procedural uncertainty can unlock an opportunity without changing academic eligibility.",
+      "hardSpecifics": [
+        "four-year tuition-and-fee guarantee",
+        "targeted high-achieving low-income Michigan residents"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch08.ex.3",
+      "label": "US federal paperwork burden",
+      "summary": "Federal information-collection estimates placed the annual public paperwork burden near eleven billion hours. The total includes compliance by households, businesses, health workers, students, and benefit applicants.",
+      "teachesWhat": "Administrative time is a policy cost large enough to require explicit accounting.",
+      "hardSpecifics": [
+        "approximately eleven billion hours per year",
+        "federal information-collection and paperwork requirements"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Not every friction is sludge. Identity checks, deliberation pauses, and safety reviews may prevent fraud or harm; the audit asks whether the burden is necessary, proportionate, and placed on the right party.",
+  "voiceCues": [
+    "defines a dark counterpart to nudging",
+    "uses subscriptions and rebates before public administration",
+    "turns hours into a visible policy cost",
+    "ends with a practical audit mindset"
+  ],
+  "forbiddenLeakage": [
+    "smart-disclosure choice engines as the primary solution",
+    "mortgage and credit-card remedies",
+    "insurance deductible aversion"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch08.fact.1",
+      "claim": "In the Letzler–Tasoff experiment, expected rebate redemption exceeded actual redemption by 49 percentage points.",
+      "becauseMechanism": "This mechanism operates because participants underweighted the future hassle of completing and returning the form.",
+      "commonError": "Low rebate redemption proves buyers never intended to claim the money.",
+      "errorIsWhy": "Their elicited expectations were much higher than their eventual completion.",
+      "derivedFrom": "ch08.ex.1"
+    },
+    {
+      "id": "ch08.fact.2",
+      "claim": "The HAIL Scholarship promised four years of tuition and fees to targeted high-achieving, low-income Michigan students who were admitted.",
+      "becauseMechanism": "This mechanism operates because an early unconditional-looking guarantee removed uncertainty about affordability before application effort was due.",
+      "commonError": "HAIL relaxed the university's academic admission standard.",
+      "errorIsWhy": "The intervention changed outreach and aid certainty, not eligibility for admission.",
+      "derivedFrom": "ch08.ex.2"
+    },
+    {
+      "id": "ch08.fact.3",
+      "claim": "US federal paperwork requirements were estimated at roughly eleven billion public burden hours annually.",
+      "becauseMechanism": "This mechanism operates because each form, record, and reporting rule consumes time across millions of affected people and organizations.",
+      "commonError": "A form is costless when the government charges no filing fee.",
+      "errorIsWhy": "Time and cognitive effort remain real resources.",
+      "derivedFrom": "ch08.ex.3"
+    },
+    {
+      "id": "ch08.fact.4",
+      "claim": "An unsubscribe trap makes joining substantially easier than leaving the same service.",
+      "becauseMechanism": "This mechanism operates because the firm places friction only on the action that reduces its revenue.",
+      "commonError": "A difficult cancellation process merely reflects equal administrative needs in both directions.",
+      "errorIsWhy": "The asymmetry reveals that equivalent account changes receive different burdens.",
+      "derivedFrom": "ch08.concept"
+    },
+    {
+      "id": "ch08.fact.5",
+      "claim": "Mail-in rebate redemption rates commonly fall between 10 and 40 percent.",
+      "becauseMechanism": "This mechanism operates because deadlines, forms, documentation, and forgetting prevent many purchasers from completing the later task.",
+      "commonError": "The advertised rebate reduces the effective price for nearly every buyer.",
+      "errorIsWhy": "Only completed claims receive the money.",
+      "derivedFrom": "ch08.concept"
+    },
+    {
+      "id": "ch08.fact.6",
+      "claim": "A shrouded attribute is a costly product feature that remains difficult to discover when the headline price is shown.",
+      "becauseMechanism": "This mechanism operates because sellers make the base product salient and defer attention to complementary costs such as printer ink.",
+      "commonError": "A low printer purchase price demonstrates a low total ownership cost.",
+      "errorIsWhy": "Replacement cartridges can dominate the lifetime expense.",
+      "derivedFrom": "ch08.concept"
+    },
+    {
+      "id": "ch08.fact.7",
+      "claim": "Administrative burden can reduce benefit take-up among people who are legally eligible.",
+      "becauseMechanism": "This mechanism operates because forms, documentation, waiting, and uncertainty impose costs before the benefit is received.",
+      "commonError": "Low take-up proves that eligible people do not value the program.",
+      "errorIsWhy": "Noncompletion can reflect process cost rather than preference.",
+      "derivedFrom": "ch08.concept"
+    },
+    {
+      "id": "ch08.fact.8",
+      "claim": "A sludge audit inventories time, steps, confusion, and psychological costs before deciding what to remove.",
+      "becauseMechanism": "This mechanism operates because making each burden explicit allows necessary safeguards to be separated from inherited or self-serving friction.",
+      "commonError": "A sludge audit begins by deleting every verification step.",
+      "errorIsWhy": "Some burdens protect safety, privacy, or program integrity and must be justified rather than automatically removed.",
+      "derivedFrom": "ch08.concept"
+    },
+    {
+      "id": "ch08.fact.9",
+      "claim": "Prefilling tax returns with information government already possesses can reduce duplicate reporting.",
+      "becauseMechanism": "This mechanism operates because reusing wage and withholding data removes transcription and search tasks from the taxpayer.",
+      "commonError": "Prefilling prevents taxpayers from correcting government errors.",
+      "errorIsWhy": "A prefilled return can remain reviewable and editable.",
+      "derivedFrom": "ch08.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Sludge-audit cost categories",
+      "members": [
+        "time",
+        "paperwork",
+        "confusion",
+        "waiting",
+        "psychological burden"
+      ],
+      "acronym": false
+    }
+  ],
+  "paraphraseNotes": "Sludge names friction that blocks an outcome people want by their own standards. It can arise from neglect, but its sharpest forms are asymmetric: a subscription takes one click to start and a phone call to cancel; a headline price is effortless to see while the cost of printer ink is buried. Robert Letzler and Joshua Tasoff quantified the rebate version. Participants' expected mail-in redemption exceeded actual completion by 49 percentage points, and simplification cut overoptimism roughly in half. Sellers can advertise the rebate to everyone while paying only those who survive the later task. Public sludge can be just as consequential. The University of Michigan's HAIL Scholarship sent high-achieving, low-income state residents an early four-year tuition-and-fee guarantee conditional on admission, reducing uncertainty and process burden before applications were due. Federal paperwork estimates near eleven billion hours per year show why a free form is not free: households, firms, clinicians, students, and benefit applicants all spend time satisfying it. A sludge audit therefore counts steps, waiting, search, documentation, confusion, and anxiety. It also asks who benefits from each burden. The goal is not frictionless administration at any cost. Verification can protect safety, privacy, and program integrity. The test is whether a burden is necessary and proportionate, whether information already held can be prefilled, and whether joining and leaving receive comparable treatment. Grounding anchors: expected redemption exceeded actual redemption by 49 percentage points; simplification reduced overoptimism by about half; targeted high-achieving low-income Michigan residents; approximately eleven billion hours per year; federal information-collection and paperwork requirements."
+}

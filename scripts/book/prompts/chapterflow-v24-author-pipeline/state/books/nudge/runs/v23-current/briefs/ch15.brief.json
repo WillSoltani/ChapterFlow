@@ -1,0 +1,192 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "nudge-ch15",
+  "chapterNumber": 15,
+  "title": "Much Ado About Nudging",
+  "coreMove": "This mechanism operates because pooling the literature allowed intervention effects to be compared across financial behaviors and delays.",
+  "thesis": "The Fernandes–Lynch–Netemeyer meta-analysis covered 168 papers and 201 prior studies.",
+  "readerPromise": "After this chapter, a reader can this mechanism operates because pooling the literature allowed intervention effects to be compared across financial behaviors and delays.",
+  "ownedCases": [
+    {
+      "id": "ch15.ex.1",
+      "label": "Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis"
+    },
+    {
+      "id": "ch15.ex.2",
+      "label": "Hendrik Bruns and Yavor Paunov / transparency review"
+    },
+    {
+      "id": "ch15.ex.3",
+      "label": "John Rawls / publicity principle"
+    }
+  ],
+  "notYours": [
+    "Beijing tax authority / restaurant receipt lottery",
+    "Brigitte Madrian and Dennis Shea / automatic 401(k) enrollment",
+    "Bruce Sacerdote / randomly assigned Dartmouth roommates",
+    "Christmas Club savings accounts",
+    "Daniel Kahneman and Amos Tversky / anchoring wheel experiment",
+    "Donate Life America / motor-vehicle registration prompts",
+    "Eric Johnson and Daniel Goldstein / European donor defaults",
+    "Federal Trade Commission / hotel drip pricing",
+    "George Loewenstein / hot–cold empathy gap",
+    "Gmail / forgotten-attachment warning",
+    "Henrik Cronqvist and Richard Thaler / Swedish portfolio analysis",
+    "Howard Kunreuther / flood and earthquake insurance behavior",
+    "Hunt Allcott / OPOWER Home Energy Reports",
+    "Hyde Park bookstores and Concord Bookshop versus Amazon",
+    "John Gathergood, Neale Mahoney, Neil Stewart, and Jörg Weber / balance matching",
+    "Kahneman and Tversky / Linda conjunction problem",
+    "NHS England and Wales / soft opt-out",
+    "Noah Goldstein, Robert Cialdini, and Vladas Griskevicius / hotel towels",
+    "Paris Métro / two-sided pass validation",
+    "Peter Huckfeldt and colleagues / pharmaceutical deductibles"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    2,
+    1,
+    2,
+    0,
+    2,
+    0,
+    1,
+    0,
+    1
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a handwritten note on the counter",
+    "flavor (ch01): venue: a to-do list on the whiteboard",
+    "flavor (ch01): venue: a shared grocery list",
+    "flavor (ch01): frame: a first attempt at about treatment and control households that gets corrected",
+    "flavor (ch01): frame: a first encounter with about treatment and control households that sets a benchmark",
+    "flavor (ch02): venue: a text thread with a friend"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a weekend plan",
+    "venue: a wallet receipt",
+    "venue: a bedside notebook",
+    "frame: before-after comparison with one visible behavior shift",
+    "frame: a break in the routine script that leaves a lasting after-image"
+  ],
+  "architectureFamily": "failure-autopsy",
+  "openerType": "question",
+  "challengeFrame": "audit-one-artifact",
+  "practiceShape": "two-step-sequence",
+  "exampleLenses": [
+    "outsider-witness",
+    "numbers-detective",
+    "prop-tableau"
+  ],
+  "practiceVerb": "schedule",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "mechanism",
+    "operates",
+    "rather",
+    "choice",
+    "attention",
+    "cost"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script",
+    "measure-one-number"
+  ],
+  "quizStemShapes": [
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation"
+  ],
+  "quizFailureModes": [
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof"
+  ],
+  "questionFactOrder": [
+    1,
+    4,
+    5,
+    7,
+    9,
+    8,
+    6,
+    2,
+    3
+  ],
+  "memorableShapes": [
+    "cost-statement",
+    "pointed-question",
+    "imperative"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "ledger-speak",
+    "sensory-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis",
+    "caseId": "ch15.ex.1",
+    "aliases": [
+      "Daniel Fernandes, John Lynch, and Richard Netemeyer / financial education meta-analysis",
+      "Netemeyer",
+      "Daniel",
+      "John",
+      "Richard"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "This mechanism operates because neighbor comparison and tailored tips supplied salient feedback that ordinary bills lacked."
+  },
+  "totalChapters": 15
+}

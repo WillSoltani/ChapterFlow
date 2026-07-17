@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 2,
+  "chapterTitle": "Unexpected",
+  "focus": "Surprise earns attention by breaking a relevant prediction, while curiosity holds attention by exposing a specific, closable gap in knowledge. The violation must serve the core message and become sensible after the missing information arrives.",
+  "coreClaim": "Break an audience's relevant expectation, then reveal a knowledge gap they can realistically close.",
+  "centralConcept": {
+    "id": "ch02.concept",
+    "name": "surprise plus curiosity gap",
+    "plainDefinition": "Interrupt a prediction to create attention, then make the audience aware of missing knowledge so it wants the resolution.",
+    "whyItMatters": "Attention that would otherwise fade becomes sustained inquiry tied to the message's central meaning."
+  },
+  "keyClaims": [
+    "A pattern break creates a brief orienting response, not durable interest by itself.",
+    "Useful surprise changes the audience's model of the subject instead of decorating it with a stunt.",
+    "A satisfying surprise becomes understandable in retrospect once the core is revealed.",
+    "Curiosity begins when people can locate a gap between present and desired knowledge.",
+    "A gap must feel consequential and closable; an unlimited unknown usually produces disengagement."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch02.ex.nordstrom",
+      "label": "Nordstrom's shirt-ironing service story",
+      "summary": "Nordstrom employees heard about a colleague who ironed a customer's shirt for an event that same afternoon. The shirt-ironing service story violates the ordinary boundary of retail service and resets expectations around initiative.",
+      "teachesWhat": "A relevant expectation violation can make a service standard memorable.",
+      "hardSpecifics": ["Nordstrom employees", "shirt-ironing service story"],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.ex.ephron",
+      "label": "Nora Ephron's Journalism 101 lead",
+      "summary": "Nora Ephron recalled a Journalism 101 exercise in which students buried the consequence of a faculty training announcement. The instructor's decisive lead was no school next Thursday, forcing the students to replace transcription with audience-centered judgment.",
+      "teachesWhat": "A surprise can repair a faulty professional schema when the reveal exposes what truly matters.",
+      "hardSpecifics": ["Nora Ephron", "no school next Thursday"],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.ex.sony",
+      "label": "Masaru Ibuka / Sony pocketable radio",
+      "summary": "Masaru Ibuka pushed Sony's engineers and suppliers toward a pocketable radio. Sony released the TR-63 in 1957 after miniaturizing components beyond its earlier transistor sets.",
+      "teachesWhat": "A concrete unresolved goal can sustain curiosity and engineering effort over years.",
+      "hardSpecifics": ["Sony TR-63", "1957 pocketable radio"],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.ex.kennedy",
+      "label": "John F. Kennedy's lunar goal",
+      "summary": "On May 25, 1961, John F. Kennedy asked the United States to land a person on the Moon and return him safely before the decade ended. The lunar goal named an outcome and deadline while leaving a vast technical gap to close.",
+      "teachesWhat": "A bounded mission can organize long-term attention around an unanswered how.",
+      "hardSpecifics": ["May 25, 1961", "before the decade ended"],
+      "realWorld": true
+    },
+    {
+      "id": "ch02.ex.saturn",
+      "label": "Galileo and Saturn's changing appearance",
+      "summary": "Galileo observed puzzling shapes beside Saturn in 1610 and later saw them disappear when the rings were edge-on. Christiaan Huygens resolved the puzzle in 1659 by describing a thin flat ring around the planet.",
+      "teachesWhat": "A carefully framed mystery turns missing information into a durable reason to keep listening.",
+      "hardSpecifics": ["Galileo in 1610", "Huygens in 1659"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Unexpected does not mean random, loud, or bizarre. A stunt that cannot be connected back to the core consumes attention without teaching; a useful violation is retrospectively coherent and opens a gap the message can actually close.",
+  "voiceCues": [
+    "opens with violated scripts and then separates momentary surprise from sustained curiosity",
+    "treats the mind as a prediction system whose missed guesses create attention",
+    "uses mysteries and deadlines to show how interest can persist",
+    "tests each surprise for relevance to the core rather than novelty alone"
+  ],
+  "forbiddenLeakage": [
+    "Do not reuse Commander’s Intent or Southwest's low-fare decision filter as the governing mechanism.",
+    "Do not turn Saturn, Sony, or the Moon goal into sensory-detail lessons; their role is the unresolved gap."
+  ],
+  "testableFacts": [
+    {
+      "id": "ch02.fact.1",
+      "claim": "Nordstrom's shirt-ironing story depicts an employee preparing a customer's shirt for use that same afternoon.",
+      "becauseMechanism": "Because ironing falls outside the ordinary retail transaction, the act breaks the service schema and makes initiative memorable.",
+      "commonError": "The Nordstrom example is a formal policy requiring every employee to offer laundry service.",
+      "errorIsWhy": "Its teaching force comes from an exceptional employee story, not from a universal checklist item.",
+      "derivedFrom": "ch02.ex.nordstrom"
+    },
+    {
+      "id": "ch02.fact.2",
+      "claim": "Nora Ephron's journalism exercise resolves with no school next Thursday as the audience-relevant lead.",
+      "becauseMechanism": "Because the students initially reproduced official facts instead of their consequence, the unexpected lead exposes the defect in their news judgment.",
+      "commonError": "The correct lead was the visiting officials' names and the sequence of their lectures.",
+      "errorIsWhy": "Those details mattered less to student readers than the immediate consequence that classes would be canceled.",
+      "derivedFrom": "ch02.ex.ephron"
+    },
+    {
+      "id": "ch02.fact.3",
+      "claim": "George Loewenstein's 1994 information-gap account links curiosity to attention focused on missing knowledge.",
+      "becauseMechanism": "Because awareness of a specific discrepancy between current and desired knowledge feels unresolved, people seek information that can close it.",
+      "commonError": "Curiosity is maximized by presenting a subject about which the audience knows absolutely nothing.",
+      "errorIsWhy": "Without enough prior structure to locate the missing piece, the audience cannot form a meaningful, closable gap.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.4",
+      "claim": "Sony introduced the TR-63 pocketable transistor radio in 1957.",
+      "becauseMechanism": "Because the pocket-sized target forced simultaneous miniaturization of the radio's components, a concrete unresolved goal coordinated extended engineering work.",
+      "commonError": "Sony's first 1955 transistor radio already fulfilled the pocketable goal without further redesign.",
+      "errorIsWhy": "The earlier TR-55 established transistor production, while the smaller TR-63 arrived two years later as the pocketable model.",
+      "derivedFrom": "ch02.ex.sony"
+    },
+    {
+      "id": "ch02.fact.5",
+      "claim": "John F. Kennedy announced the U.S. lunar landing-and-return goal to Congress on May 25, 1961.",
+      "becauseMechanism": "Because the goal fixed a vivid outcome and a deadline before the decade ended while leaving the route open, it concentrated attention on solving the technical gap.",
+      "commonError": "Kennedy's 1961 goal supplied NASA with a complete engineering plan for reaching the Moon.",
+      "errorIsWhy": "It specified destination, safe return, and time boundary; engineers still had to discover and execute the means.",
+      "derivedFrom": "ch02.ex.kennedy"
+    },
+    {
+      "id": "ch02.fact.6",
+      "claim": "Galileo first recorded Saturn's puzzling side structures in 1610, and Huygens explained a surrounding ring in 1659.",
+      "becauseMechanism": "Because the apparent companions changed and disappeared with viewing angle, the observations created a mystery that better optics and a ring model could resolve.",
+      "commonError": "Galileo immediately identified Saturn's side structures as a thin flat ring.",
+      "errorIsWhy": "His telescope made the planet look triple or handled; the ring explanation came decades later from Huygens.",
+      "derivedFrom": "ch02.ex.saturn"
+    },
+    {
+      "id": "ch02.fact.7",
+      "claim": "A useful surprise violates an audience prediction about the message's core rather than adding an unrelated shock.",
+      "becauseMechanism": "Because a missed relevant prediction forces the audience to revise its model, the attention serves understanding instead of distraction.",
+      "commonError": "Any bizarre image improves a message even when it has no relationship to the point.",
+      "errorIsWhy": "Unrelated novelty may be remembered while the intended idea is forgotten or displaced.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.8",
+      "claim": "A postdictable surprise becomes sensible after the missing explanation is supplied.",
+      "becauseMechanism": "Because the reveal lets the audience reconstruct why the outcome follows, surprise and coherence reinforce each other.",
+      "commonError": "The strongest surprise should remain arbitrary and inexplicable after the reveal.",
+      "errorIsWhy": "Permanent arbitrariness prevents the audience from updating a useful model and reduces the event to a gimmick.",
+      "derivedFrom": "ch02.concept"
+    },
+    {
+      "id": "ch02.fact.9",
+      "claim": "Surprise captures attention briefly, whereas an information gap can hold attention until resolution.",
+      "becauseMechanism": "Because the orienting response to novelty fades but an activated unanswered question remains incomplete, curiosity sustains information seeking.",
+      "commonError": "One startling opening guarantees that an audience will follow a long explanation.",
+      "errorIsWhy": "The initial prediction error does not supply an ongoing reason to listen once the momentary novelty passes.",
+      "derivedFrom": "ch02.concept"
+    }
+  ],
+  "frameworks": [
+    { "name": "Unexpectedness sequence", "members": ["break a relevant pattern", "open a knowledge gap", "close the gap"], "acronym": false }
+  ],
+  "paraphraseNotes": "Attention begins with a failed prediction. Nordstrom's shirt-ironing service story works because retail employees are not normally expected to prepare clothing for a customer's event that same afternoon. Nora Ephron's remembered classroom exercise is more exacting: students dutifully led with visiting officials and scheduled instruction, then learned that no school next Thursday was the consequence their audience cared about. The reveal is surprising yet retrospectively sensible, so it repairs the professional schema rather than merely startling the class.\n\nSurprise has a short half-life. Sustained interest needs an unanswered question with visible edges. George Loewenstein's 1994 information-gap account explains curiosity as attention to the distance between what someone knows and wants to know. The gap cannot be limitless. A small base of knowledge lets the listener see the missing piece, believe it can be recovered, and value the answer. Saturn supplies the mystery form: Galileo in 1610 saw changing side structures that his telescope could not explain; Huygens in 1659 supplied the ring model.\n\nLong projects use the same structure at a larger scale. Masaru Ibuka's demand for a pocketable radio made Sony's destination concrete while leaving component miniaturization unresolved; the Sony TR-63 arrived as the 1957 pocketable radio. John F. Kennedy's May 25, 1961 lunar goal named a safe landing and return before the decade ended but did not prescribe the engineering path. Both cases show a bounded unknown organizing work. The hard edge is relevance: an arbitrary stunt steals attention, while a core-linked violation makes a missed guess productive and a well-framed gap gives attention somewhere to go."
+}

@@ -1,0 +1,887 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "the-happiness-hypothesis",
+  "chapterId": "the-happiness-hypothesis-ch10",
+  "chapterNumber": 10,
+  "chapterTitle": "Happiness Comes from Between",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/the-happiness-hypothesis/20260717T094415142Z-1c996661-58d5-4e1d-9606-1e907d84ea3c/sidecars/source/ch10.source.json",
+  "sourceHash": "sha256:7560f0086eb6ffcf2175b174226a1d5c0e4f85322ebf2e37d3738e192d6d07c4",
+  "facts": [
+    {
+      "id": "ch10.fact.1",
+      "claim": "The GoodWork framework evaluates work through excellence, ethics, and engagement.",
+      "mechanism": "Because High-quality performance, responsibility to others, and personal meaning can diverge, so all three must be examined.",
+      "commonError": "Good work means only being highly skilled at a task.",
+      "whyWrong": "Technical excellence without ethical responsibility or engagement is incomplete in the framework.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "3"
+      ],
+      "groundedEntities": [
+        "The GoodWork",
+        "Because High-quality",
+        "Good",
+        "Technical"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch10.fact.2",
+      "claim": "Good Work by Gardner, Csikszentmihalyi, and Damon was published in 2001.",
+      "mechanism": "Because The book synthesized interview research on professionals and the institutions shaping their practice.",
+      "commonError": "The GoodWork Project was a survey of leisure happiness.",
+      "whyWrong": "Its central subject was professional work at the intersection of excellence and ethics.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2001"
+      ],
+      "groundedEntities": [
+        "Good Work",
+        "Gardner",
+        "Csikszentmihalyi",
+        "Damon",
+        "Because The",
+        "The GoodWork Project",
+        "Its"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch10.fact.3",
+      "claim": "Vital engagement combines flow with subjective meaning in a sustained relationship to an activity.",
+      "mechanism": "Because Absorption supplies immediate involvement while valued identity and purpose make the activity matter across time.",
+      "commonError": "Any enjoyable flow episode is automatically a calling.",
+      "whyWrong": "Vital engagement requires enduring significance in addition to temporary absorption.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Vital",
+        "Because Absorption",
+        "Any"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.3"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch10.fact.4",
+      "claim": "Vital engagement typically develops through repeated interaction between a person and a valued domain.",
+      "mechanism": "Because Practice increases skill, the domain supplies new challenges, and identity becomes invested in the relationship.",
+      "commonError": "A calling appears fully formed as an unmistakable inner revelation.",
+      "whyWrong": "The construct emphasizes developmental fit rather than instant discovery.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Vital",
+        "Because Practice"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.4"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch10.fact.5",
+      "claim": "McAdams's personality model distinguishes dispositional traits, characteristic adaptations, and narrative identity.",
+      "mechanism": "Because Broad tendencies, context-bound goals, and life stories answer different questions about what a person is like.",
+      "commonError": "Personality is exhausted by a score on broad traits.",
+      "whyWrong": "Traits do not specify a person's projects, values, or story of who they are becoming.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "McAdams's",
+        "Because Broad",
+        "Personality",
+        "Traits"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.5"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch10.fact.6",
+      "claim": "Characteristic adaptations include goals, values, coping strategies, and relationship patterns shaped by context.",
+      "mechanism": "Because They translate broad traits into what a person is trying to do in a particular social world.",
+      "commonError": "Goals and values are fixed biological traits.",
+      "whyWrong": "They develop in cultural and life-stage contexts and can be revised more readily than broad temperament.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Characteristic",
+        "Because They",
+        "Goals",
+        "They"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.6"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch10.fact.7",
+      "claim": "Durkheim's Suicide was published in 1897 and analyzed social integration and regulation.",
+      "mechanism": "Because Comparing population patterns allowed him to relate suicide rates to the strength and structure of social ties.",
+      "commonError": "Durkheim explained suicide only through individual mental illness.",
+      "whyWrong": "His distinctive contribution was a sociological account of patterned rates.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1897"
+      ],
+      "groundedEntities": [
+        "Durkheim's Suicide",
+        "Because Comparing",
+        "Durkheim",
+        "His"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.7"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch10.fact.8",
+      "claim": "Anomie describes weakened or disrupted normative regulation rather than freedom in a purely positive sense.",
+      "mechanism": "Because When expectations and obligations lose structure, desires and social roles become harder to orient.",
+      "commonError": "Fewer social constraints always produce more meaningful autonomy.",
+      "whyWrong": "Some shared limits make commitment, trust, and legible roles possible.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Anomie",
+        "Because When",
+        "Fewer",
+        "Some"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch10.fact.9",
+      "claim": "Purpose within life can be investigated through a person's commitments even when a cosmic purpose cannot be empirically established.",
+      "mechanism": "Because Relationships, work, and institutions create observable patterns of significance, obligation, and identity.",
+      "commonError": "Meaning is impossible unless everyone accepts one metaphysical answer to why the universe exists.",
+      "whyWrong": "Practical meaning can arise from coherent commitments without resolving the cosmic question.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Purpose",
+        "Because Relationships",
+        "Meaning",
+        "Practical"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch10.fact.9"
+      ],
+      "teachingPriority": 4
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch10.example.goodwork",
+      "label": "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project",
+      "summary": "Interviews with professionals examined work that was technically excellent, socially responsible, and personally meaningful. The project showed that a calling depends on the relation between individual standards, a field's practices, and institutions that reward or obstruct good work. Verified anchors: Howard Gardner, Mihaly Csikszentmihalyi, and William Damon; Good Work published in 2001.",
+      "realWorld": true,
+      "naturalSetting": "Howard Gardner",
+      "hardSpecifics": [
+        "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon",
+        "Good Work published in 2001",
+        "three criteria: excellence, ethics, and engagement",
+        "professional domains studied through interviews"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon",
+        "Good Work published in 2001",
+        "three criteria: excellence, ethics, and engagement"
+      ]
+    },
+    {
+      "id": "ch10.example.nakamura",
+      "label": "Jeanne Nakamura and Mihaly Csikszentmihalyi / vital engagement",
+      "summary": "Vital engagement describes a sustained relationship with an activity that offers both flow and meaning. It usually develops as skill, attention, identity, and the valued domain become increasingly connected over time. Verified anchors: Jeanne Nakamura and Mihaly Csikszentmihalyi; The Nature of Vital Engagement in Adulthood published in 2001.",
+      "realWorld": true,
+      "naturalSetting": "Jeanne Nakamura",
+      "hardSpecifics": [
+        "Jeanne Nakamura and Mihaly Csikszentmihalyi",
+        "The Nature of Vital Engagement in Adulthood published in 2001",
+        "flow joined with subjective meaning",
+        "sustained relationship to a valued domain"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "The Nature of Vital Engagement in Adulthood published in 2001"
+      ]
+    },
+    {
+      "id": "ch10.example.mcadams",
+      "label": "Dan McAdams / three levels of personality",
+      "summary": "McAdams distinguishes dispositional traits, characteristic adaptations such as goals and values, and an internalized life story. Coherence increases when these levels can be linked without forcing them into perfect consistency. Verified anchors: Dan P. McAdams; three personality levels.",
+      "realWorld": true,
+      "naturalSetting": "Dan McAdams",
+      "hardSpecifics": [
+        "Dan P. McAdams",
+        "three personality levels",
+        "dispositional traits",
+        "characteristic adaptations and narrative identity"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch10.example.durkheim",
+      "label": "Émile Durkheim / social integration and anomie",
+      "summary": "Durkheim's 1897 study of suicide connected social integration and regulation with population-level suicide patterns. The larger lesson is that unrestricted individual choice does not replace the protective structure of belonging, obligation, and shared practice. Verified anchors: Émile Durkheim; Suicide published in 1897.",
+      "realWorld": true,
+      "naturalSetting": "Durkheim",
+      "hardSpecifics": [
+        "Émile Durkheim",
+        "Suicide published in 1897",
+        "social integration and social regulation",
+        "anomie as weakened normative structure"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "Suicide published in 1897"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Three levels of personality",
+      "members": [
+        "dispositional traits",
+        "characteristic adaptations",
+        "narrative identity"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.2",
+      "name": "GoodWork criteria",
+      "members": [
+        "excellence",
+        "ethics",
+        "engagement"
+      ],
+      "completenessRequired": true
+    },
+    {
+      "id": "framework.3",
+      "name": "Primary relationships of meaning",
+      "members": [
+        "self and other people",
+        "self and work",
+        "self and something larger than self"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch10.concept",
+      "kind": "concept",
+      "label": "cross-level coherence",
+      "text": "A life is coherent when biological tendencies, personal aims, identity stories, relationships, practices, and cultural roles can be understood as parts of a workable whole. The search for meaning shifts from private introspection toward choosing and repairing the relationships between self and world.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.example.goodwork",
+      "kind": "named_example",
+      "label": "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project",
+      "text": "Interviews with professionals examined work that was technically excellent, socially responsible, and personally meaningful. The project showed that a calling depends on the relation between individual standards, a field's practices, and institutions that reward or obstruct good work. Verified anchors: Howard Gardner, Mihaly Csikszentmihalyi, and William Damon; Good Work published in 2001. Meaningful work is an ecosystem of skill, ethics, identity, and institutional support rather than private passion alone.",
+      "hardSpecifics": [
+        "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon",
+        "Good Work published in 2001",
+        "three criteria: excellence, ethics, and engagement",
+        "professional domains studied through interviews"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.example.nakamura",
+      "kind": "named_example",
+      "label": "Jeanne Nakamura and Mihaly Csikszentmihalyi / vital engagement",
+      "text": "Vital engagement describes a sustained relationship with an activity that offers both flow and meaning. It usually develops as skill, attention, identity, and the valued domain become increasingly connected over time. Verified anchors: Jeanne Nakamura and Mihaly Csikszentmihalyi; The Nature of Vital Engagement in Adulthood published in 2001. A calling is built where absorption meets significance, not discovered as a single hidden preference.",
+      "hardSpecifics": [
+        "Jeanne Nakamura and Mihaly Csikszentmihalyi",
+        "The Nature of Vital Engagement in Adulthood published in 2001",
+        "flow joined with subjective meaning",
+        "sustained relationship to a valued domain"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.example.mcadams",
+      "kind": "named_example",
+      "label": "Dan McAdams / three levels of personality",
+      "text": "McAdams distinguishes dispositional traits, characteristic adaptations such as goals and values, and an internalized life story. Coherence increases when these levels can be linked without forcing them into perfect consistency. Verified anchors: Dan P. McAdams; three personality levels. Meaning can be repaired at the level of goals or narrative even when broad temperament is relatively stable.",
+      "hardSpecifics": [
+        "Dan P. McAdams",
+        "three personality levels",
+        "dispositional traits",
+        "characteristic adaptations and narrative identity"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.example.durkheim",
+      "kind": "named_example",
+      "label": "Émile Durkheim / social integration and anomie",
+      "text": "Durkheim's 1897 study of suicide connected social integration and regulation with population-level suicide patterns. The larger lesson is that unrestricted individual choice does not replace the protective structure of belonging, obligation, and shared practice. Verified anchors: Émile Durkheim; Suicide published in 1897. Some constraints are constitutive supports for meaning rather than obstacles to authentic life.",
+      "hardSpecifics": [
+        "Émile Durkheim",
+        "Suicide published in 1897",
+        "social integration and social regulation",
+        "anomie as weakened normative structure"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.1",
+      "kind": "testable_fact",
+      "label": "The GoodWork framework evaluates work through excellence, ethics, and engagement.",
+      "text": "The GoodWork framework evaluates work through excellence, ethics, and engagement. Because High-quality performance, responsibility to others, and personal meaning can diverge, so all three must be examined. Good work means only being highly skilled at a task. Technical excellence without ethical responsibility or engagement is incomplete in the framework.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.2",
+      "kind": "testable_fact",
+      "label": "Good Work by Gardner, Csikszentmihalyi, and Damon was published in 2001.",
+      "text": "Good Work by Gardner, Csikszentmihalyi, and Damon was published in 2001. Because The book synthesized interview research on professionals and the institutions shaping their practice. The GoodWork Project was a survey of leisure happiness. Its central subject was professional work at the intersection of excellence and ethics.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.3",
+      "kind": "testable_fact",
+      "label": "Vital engagement combines flow with subjective meaning in a sustained relationship to an activity.",
+      "text": "Vital engagement combines flow with subjective meaning in a sustained relationship to an activity. Because Absorption supplies immediate involvement while valued identity and purpose make the activity matter across time. Any enjoyable flow episode is automatically a calling. Vital engagement requires enduring significance in addition to temporary absorption.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.4",
+      "kind": "testable_fact",
+      "label": "Vital engagement typically develops through repeated interaction between a person and a valued domain.",
+      "text": "Vital engagement typically develops through repeated interaction between a person and a valued domain. Because Practice increases skill, the domain supplies new challenges, and identity becomes invested in the relationship. A calling appears fully formed as an unmistakable inner revelation. The construct emphasizes developmental fit rather than instant discovery.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.5",
+      "kind": "testable_fact",
+      "label": "McAdams's personality model distinguishes dispositional traits, characteristic adaptations, and narrative identity.",
+      "text": "McAdams's personality model distinguishes dispositional traits, characteristic adaptations, and narrative identity. Because Broad tendencies, context-bound goals, and life stories answer different questions about what a person is like. Personality is exhausted by a score on broad traits. Traits do not specify a person's projects, values, or story of who they are becoming.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.6",
+      "kind": "testable_fact",
+      "label": "Characteristic adaptations include goals, values, coping strategies, and relationship patterns shaped by context.",
+      "text": "Characteristic adaptations include goals, values, coping strategies, and relationship patterns shaped by context. Because They translate broad traits into what a person is trying to do in a particular social world. Goals and values are fixed biological traits. They develop in cultural and life-stage contexts and can be revised more readily than broad temperament.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.7",
+      "kind": "testable_fact",
+      "label": "Durkheim's Suicide was published in 1897 and analyzed social integration and regulation.",
+      "text": "Durkheim's Suicide was published in 1897 and analyzed social integration and regulation. Because Comparing population patterns allowed him to relate suicide rates to the strength and structure of social ties. Durkheim explained suicide only through individual mental illness. His distinctive contribution was a sociological account of patterned rates.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.8",
+      "kind": "testable_fact",
+      "label": "Anomie describes weakened or disrupted normative regulation rather than freedom in a purely positive sense.",
+      "text": "Anomie describes weakened or disrupted normative regulation rather than freedom in a purely positive sense. Because When expectations and obligations lose structure, desires and social roles become harder to orient. Fewer social constraints always produce more meaningful autonomy. Some shared limits make commitment, trust, and legible roles possible.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.fact.9",
+      "kind": "testable_fact",
+      "label": "Purpose within life can be investigated through a person's commitments even when a cosmic purpose cannot be empirically established.",
+      "text": "Purpose within life can be investigated through a person's commitments even when a cosmic purpose cannot be empirically established. Because Relationships, work, and institutions create observable patterns of significance, obligation, and identity. Meaning is impossible unless everyone accepts one metaphysical answer to why the universe exists. Practical meaning can arise from coherent commitments without resolving the cosmic question.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.framework.three.levels.of.personality",
+      "kind": "framework",
+      "label": "Three levels of personality",
+      "text": "dispositional traits, characteristic adaptations, narrative identity",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.framework.goodwork.criteria",
+      "kind": "framework",
+      "label": "GoodWork criteria",
+      "text": "excellence, ethics, engagement",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch10.framework.primary.relationships.of.meaning",
+      "kind": "framework",
+      "label": "Primary relationships of meaning",
+      "text": "self and other people, self and work, self and something larger than self",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "3",
+    "2001",
+    "1897",
+    "1"
+  ],
+  "allowedEntities": [
+    "Happiness Comes",
+    "Between",
+    "Meaning",
+    "Love",
+    "Flourishing",
+    "Vital",
+    "Personality",
+    "Social",
+    "Religious",
+    "Howard Gardner",
+    "Mihaly Csikszentmihalyi",
+    "William Damon",
+    "GoodWork Project",
+    "Interviews",
+    "Verified",
+    "Good Work",
+    "Meaningful",
+    "Jeanne Nakamura",
+    "The Nature",
+    "Vital Engagement",
+    "Adulthood",
+    "Dan McAdams",
+    "McAdams",
+    "Coherence",
+    "Dan P. McAdams",
+    "Durkheim",
+    "Durkheim's",
+    "Suicide",
+    "Some",
+    "Cross-level",
+    "Healthy",
+    "Yin",
+    "Yang",
+    "The GoodWork",
+    "Because High-quality",
+    "Good",
+    "Technical",
+    "Gardner",
+    "Csikszentmihalyi",
+    "Damon",
+    "Because The",
+    "The GoodWork Project",
+    "Its",
+    "Because Absorption",
+    "Any",
+    "Because Practice",
+    "McAdams's",
+    "Because Broad",
+    "Traits",
+    "Characteristic",
+    "Because They",
+    "Goals",
+    "They",
+    "Durkheim's Suicide",
+    "Because Comparing",
+    "His",
+    "Anomie",
+    "Because When",
+    "Fewer",
+    "Purpose",
+    "Because Relationships",
+    "Practical",
+    "Three",
+    "GoodWork",
+    "Primary",
+    "William Damon's GoodWork",
+    "Institutions",
+    "Dan McAdams's",
+    "Broad",
+    "Obligations",
+    "Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project",
+    "Jeanne Nakamura and Mihaly Csikszentmihalyi / vital engagement",
+    "Dan McAdams / three levels of personality",
+    "Émile Durkheim / social integration and anomie"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch10.example.goodwork",
+      "warning": "Keep examples about Howard Gardner, Mihaly Csikszentmihalyi, and William Damon / GoodWork Project source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch10.example.nakamura",
+      "warning": "Keep examples about Jeanne Nakamura and Mihaly Csikszentmihalyi / vital engagement source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch10.example.mcadams",
+      "warning": "Keep examples about Dan McAdams / three levels of personality source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch10.example.durkheim",
+      "warning": "Keep examples about Émile Durkheim / social integration and anomie source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch10.fact.1"
+}

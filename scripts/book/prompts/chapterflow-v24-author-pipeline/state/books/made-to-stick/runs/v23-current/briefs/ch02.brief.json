@@ -1,0 +1,200 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "made-to-stick-ch02",
+  "chapterNumber": 2,
+  "title": "Unexpected",
+  "coreMove": "Because the pocket-sized target forced simultaneous miniaturization of the radio's components, a concrete unresolved goal coordinated extended engineering work.",
+  "thesis": "Sony introduced the TR-63 pocketable transistor radio in 1957.",
+  "readerPromise": "After this chapter, a reader can because the pocket-sized target forced simultaneous miniaturization of the radio's components, a concrete unresolved goal coordinated extended engineering work.",
+  "ownedCases": [
+    {
+      "id": "ch02.ex.nordstrom",
+      "label": "Nordstrom's shirt-ironing service story"
+    },
+    {
+      "id": "ch02.ex.ephron",
+      "label": "Nora Ephron's Journalism 101 lead"
+    },
+    {
+      "id": "ch02.ex.sony",
+      "label": "Masaru Ibuka / Sony pocketable radio"
+    },
+    {
+      "id": "ch02.ex.kennedy",
+      "label": "John F. Kennedy's lunar goal"
+    },
+    {
+      "id": "ch02.ex.saturn",
+      "label": "Galileo and Saturn's changing appearance"
+    }
+  ],
+  "notYours": [
+    "Aesop's Fox and the Grapes",
+    "American Legacy Foundation truth campaign",
+    "Barry Marshall / Helicobacter pylori self-experiment",
+    "Beyond War nuclear BB demonstration",
+    "Boeing 727 / LaGuardia Runway 4-22",
+    "Floyd Lee / Pegasus dining facility",
+    "Georgia State Safe Night Out accounting case",
+    "Herb Kelleher / Southwest Airlines",
+    "James P. Grant / oral rehydration salts packet",
+    "Jane Elliott's blue-eyes/brown-eyes exercise",
+    "Jared Fogle / Subway campaign",
+    "Jeff Hawkins / PalmPilot wooden prototype",
+    "Julian Orr / Xerox copier technicians",
+    "Pam Laffin antismoking campaign",
+    "Pham and Taylor mental-simulation experiment",
+    "Ronald Reagan's 1980 testable question",
+    "Safexpress / Harry Potter launch logistics",
+    "Sheena Iyengar and Mark Lepper choice experiments",
+    "Small, Loewenstein, and Slovic Rokia experiment",
+    "Stephen Denning / World Bank Zambia story"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    2,
+    2,
+    1,
+    1,
+    0,
+    2,
+    1,
+    0,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on launched in early",
+    "flavor (ch01): venue: a shared calendar invite",
+    "flavor (ch01): venue: a handwritten note on the counter",
+    "flavor (ch01): frame: a first attempt at about percent of the decline that gets corrected",
+    "flavor (ch01): frame: a first encounter with about percent of the decline that sets a benchmark",
+    "flavor (ch03): venue: a sticky note on the fridge"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a text thread with a friend",
+    "venue: a lunch break",
+    "venue: a bulletin board note",
+    "frame: two stakeholders disagree about about percent of the decline before deciding",
+    "frame: a first encounter with anti litter campaign in that sets a benchmark"
+  ],
+  "architectureFamily": "failure-autopsy",
+  "openerType": "question",
+  "challengeFrame": "pre-write-the-exact-line",
+  "practiceShape": "say-aloud-script",
+  "exampleLenses": [
+    "prop-tableau",
+    "dialogue-beat",
+    "before-after-ledger"
+  ],
+  "practiceVerb": "cross-out",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "rather",
+    "later",
+    "audience",
+    "first",
+    "story",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative",
+    "if-then-trigger"
+  ],
+  "quizStemShapes": [
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem"
+  ],
+  "quizFailureModes": [
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target"
+  ],
+  "questionFactOrder": [
+    4,
+    6,
+    9,
+    8,
+    7,
+    1,
+    2,
+    3,
+    5
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "artifact-speak",
+    "cost-speak"
+  ],
+  "shellRegister": "condition-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Nora Ephron's Journalism 101 lead",
+    "caseId": "ch02.ex.ephron",
+    "aliases": [
+      "Nora Ephron's Journalism 101 lead",
+      "Journalism",
+      "Nora",
+      "Ephron"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because evaluating many attractive alternatives raises comparison and commitment costs, the extensive sets drew interest but the limited sets more often produced action.",
+    "next": "Because arbitrary eye color immediately changed status, privileges, and treatment, pupils encountered discrimination as an operating system rather than a vocabulary word."
+  },
+  "totalChapters": 6
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 1,
+  "chapterTitle": "Biases and Blunders",
+  "focus": "Fast judgment is indispensable but predictably distorted by anchors, memorable examples, stereotypes, loss sensitivity, inertia, and framing. Better design anticipates those recurring errors instead of assuming unlimited calculation.",
+  "coreClaim": "Human mistakes are patterned enough that a choice environment can be designed around them.",
+  "centralConcept": {
+    "id": "ch01.concept",
+    "name": "predictable judgment error",
+    "plainDefinition": "Mental shortcuts simplify hard judgments by substituting an accessible cue for a full calculation, sometimes producing systematic error.",
+    "whyItMatters": "Recognizing the mechanism identifies where estimates, risk perceptions, and defaults will pull decisions away from a person's considered interests."
+  },
+  "keyClaims": [
+    "Automatic and reflective processing divide quick pattern recognition from effortful checking.",
+    "Anchors bias estimates because later adjustment is usually incomplete.",
+    "Availability turns ease of recall into an unreliable proxy for frequency or risk.",
+    "Representativeness encourages stereotype matching while neglecting base rates.",
+    "Loss aversion and status-quo bias make current holdings unusually sticky.",
+    "Equivalent outcome descriptions can produce different choices through framing."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch01.ex.1",
+      "label": "Daniel Kahneman and Amos Tversky / anchoring wheel experiment",
+      "summary": "Kahneman and Tversky asked people to spin a wheel rigged to stop at 10 or 65, then estimate the percentage of African countries in the United Nations. Median estimates shifted from 25 after the low anchor to 45 after the high anchor.",
+      "teachesWhat": "Even an explicitly arbitrary starting value can pull a later numerical judgment.",
+      "hardSpecifics": [
+        "wheel outcomes fixed at 10 or 65",
+        "median estimates of 25 and 45 percent"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch01.ex.2",
+      "label": "Kahneman and Tversky / Linda conjunction problem",
+      "summary": "Participants read a profile of Linda as outspoken and concerned with social justice. Many rated bank teller plus feminist activist as more likely than bank teller alone, violating the rule that a conjunction cannot be more probable than one of its components.",
+      "teachesWhat": "A vivid stereotype can displace the arithmetic of probability.",
+      "hardSpecifics": [
+        "Linda described as 31 years old",
+        "bank teller versus bank teller and feminist activist"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch01.ex.3",
+      "label": "Howard Kunreuther / flood and earthquake insurance behavior",
+      "summary": "Insurance research found that recent disasters sharply raise demand while coverage declines as memories fade. Floodplain residents who personally know a victim are more likely to buy coverage even when the underlying hazard has not changed.",
+      "teachesWhat": "Memorable events can dominate stable statistical risk through availability.",
+      "hardSpecifics": [
+        "floodplain insurance decisions",
+        "coverage demand rises after earthquakes then declines"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The useful takeaway is not that intuition is foolish or always wrong. Shortcuts work often enough to be essential; the design problem appears where their predictable failure modes meet high stakes, weak feedback, or sticky defaults.",
+  "voiceCues": [
+    "opens with a visual illusion",
+    "pairs a named bias with an ordinary estimate",
+    "uses Humans and Econs as a running contrast",
+    "moves from laboratory evidence to insurance and policy"
+  ],
+  "forbiddenLeakage": [
+    "Planner and Doer self-control conflict",
+    "social-norm conformity mechanisms",
+    "the full choice-architecture design checklist"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch01.fact.1",
+      "claim": "An arbitrary wheel result of 10 versus 65 shifted median estimates of African UN membership from 25 to 45 percent.",
+      "becauseMechanism": "The irrelevant number changed the starting point because people adjusted away from an anchor incompletely.",
+      "commonError": "Only informative or plausible starting values can anchor an estimate.",
+      "errorIsWhy": "The wheel value was random and openly irrelevant, yet estimates still separated.",
+      "derivedFrom": "ch01.ex.1"
+    },
+    {
+      "id": "ch01.fact.2",
+      "claim": "A conjunction such as bank teller and feminist activist cannot be more probable than bank teller alone.",
+      "becauseMechanism": "This mechanism operates because adding a condition narrows the set of possible cases, so its probability cannot exceed the broader category.",
+      "commonError": "The more detailed option is likelier when it better matches a person's description.",
+      "errorIsWhy": "Similarity to a stereotype does not override the subset relation.",
+      "derivedFrom": "ch01.ex.2"
+    },
+    {
+      "id": "ch01.fact.3",
+      "claim": "Recent disaster experience raises demand for hazard insurance even when the objective hazard has not risen.",
+      "becauseMechanism": "This mechanism operates because a fresh, vivid example is easier to retrieve, so availability inflates perceived frequency.",
+      "commonError": "Insurance demand closely tracks actuarial risk alone.",
+      "errorIsWhy": "Memory salience changes demand while the underlying hazard can remain constant.",
+      "derivedFrom": "ch01.ex.3"
+    },
+    {
+      "id": "ch01.fact.4",
+      "claim": "Availability can make homicide seem more common than suicide even though US suicides outnumber homicides.",
+      "becauseMechanism": "This mechanism operates because homicides receive more vivid coverage, so examples come to mind more readily than the larger but quieter category.",
+      "commonError": "The event recalled most easily is usually the event occurring most often.",
+      "errorIsWhy": "Media salience and population frequency are different quantities.",
+      "derivedFrom": "ch01.concept"
+    },
+    {
+      "id": "ch01.fact.5",
+      "claim": "Loss aversion makes a loss of a given size feel more consequential than an equal-sized gain.",
+      "becauseMechanism": "This mechanism operates because outcomes are evaluated relative to a reference point, so crossing below it carries extra psychological weight.",
+      "commonError": "People respond symmetrically to equal gains and losses.",
+      "errorIsWhy": "Observed willingness to trade and accept risk changes sharply between gain and loss frames.",
+      "derivedFrom": "ch01.concept"
+    },
+    {
+      "id": "ch01.fact.6",
+      "claim": "Status-quo bias gives a preselected option an advantage even when switching remains possible.",
+      "becauseMechanism": "This mechanism operates because inertia, attention costs, and anticipated regret make keeping the current state easier than changing it.",
+      "commonError": "A default matters only when alternatives are legally blocked.",
+      "errorIsWhy": "Optional defaults change uptake without removing any alternative.",
+      "derivedFrom": "ch01.concept"
+    },
+    {
+      "id": "ch01.fact.7",
+      "claim": "Describing survival as 90 of 100 alive can elicit a different response from describing mortality as 10 of 100 dead.",
+      "becauseMechanism": "This mechanism operates because the positive or negative reference frame makes gains or losses salient even though the arithmetic is identical.",
+      "commonError": "Equivalent numbers always produce equivalent choices.",
+      "errorIsWhy": "Human evaluation responds to presentation as well as formal equivalence.",
+      "derivedFrom": "ch01.concept"
+    },
+    {
+      "id": "ch01.fact.8",
+      "claim": "Unrealistic optimism can reduce preventive action when people regard themselves as less vulnerable than comparable others.",
+      "becauseMechanism": "This mechanism operates because personal risk feels exceptional, so general warnings are discounted before they motivate protection.",
+      "commonError": "Optimism only improves mood and has no behavioral cost.",
+      "errorIsWhy": "Underestimated personal exposure can suppress insurance, screening, or other precautions.",
+      "derivedFrom": "ch01.concept"
+    },
+    {
+      "id": "ch01.fact.9",
+      "claim": "Automatic processing is fast and associative, whereas reflective processing is slower and effortful.",
+      "becauseMechanism": "This mechanism operates because routine perception and learned patterns can run without deliberate calculation, while checking and deduction consume attention.",
+      "commonError": "Every choice begins with a deliberate comparison of all options.",
+      "errorIsWhy": "Many judgments occur before conscious review and may never receive it.",
+      "derivedFrom": "ch01.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Three classic heuristics",
+      "members": [
+        "anchoring and adjustment",
+        "availability",
+        "representativeness"
+      ],
+      "acronym": false
+    }
+  ],
+  "paraphraseNotes": "A visual illusion supplies the opening warning: certainty is not evidence of accuracy. The same split between quick perception and slower checking appears in judgment. Daniel Kahneman and Amos Tversky's rigged-wheel study gives anchoring a hard numerical spine: an irrelevant 10 or 65 pulled median estimates to 25 or 45 percent. Their Linda problem shows a different substitution. A socially engaged profile feels representative of a feminist activist, so many people choose a detailed conjunction that must be mathematically less likely than its broader component. Availability then moves the problem into risk. Howard Kunreuther's insurance work shows demand surging after a flood or earthquake and fading with memory; knowing a flood victim changes coverage behavior without changing the floodplain. These mechanisms are distinct: an anchor supplies a starting value, availability supplies retrievable examples, and representativeness supplies a stereotype. Loss aversion adds a reference point, making a setback loom larger than an equal gain, while status-quo bias turns the existing or preselected option into a powerful attractor. Framing demonstrates that even identical quantities can feel different when presented as survival rather than mortality. The operational lesson is diagnostic rather than cynical. Fast judgment remains useful, but confidence should trigger a reflective check when base rates are hidden, a recent event dominates memory, an arbitrary number is present, or the current option is sticky. The strongest intervention targets the specific error rather than treating every imperfect choice as irrational. Grounding anchors: wheel outcomes fixed at 10 or 65; median estimates of 25 and 45 percent; Linda described as 31 years old; bank teller versus bank teller and feminist activist; floodplain insurance decisions; coverage demand rises after earthquakes then declines."
+}

@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 3,
+  "chapterTitle": "Following the Herd",
+  "focus": "Other people's conduct supplies both information and pressure to conform. Social norms can improve behavior, backfire, or cascade, depending on which group and which signal are made salient.",
+  "coreClaim": "Behavior changes when people learn what relevant peers do or expect, even without a material incentive.",
+  "centralConcept": {
+    "id": "ch03.concept",
+    "name": "social influence",
+    "plainDefinition": "Choices respond to observed peer behavior and perceived peer approval.",
+    "whyItMatters": "Norm messages can become low-cost interventions, but a badly chosen norm may legitimize the very behavior it is meant to reduce."
+  },
+  "keyClaims": [
+    "People conform because others may possess useful information and because disagreement carries social cost.",
+    "Unanimous groups can overpower clear private perception.",
+    "Randomly assigned peers affect effort and social choices.",
+    "Local norms often outperform generic appeals.",
+    "Descriptive norms can boomerang among people already doing better than average.",
+    "A small early shift can produce an informational cascade."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch03.ex.1",
+      "label": "Solomon Asch / line-judgment experiments",
+      "summary": "Asch placed one participant among confederates who unanimously named an obviously wrong matching line. Across the critical trials, roughly three quarters of participants conformed at least once, while control errors were rare.",
+      "teachesWhat": "A unanimous group can change stated perception without changing the visual evidence.",
+      "hardSpecifics": [
+        "one participant surrounded by unanimous confederates",
+        "about 75 percent conformed at least once"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.ex.2",
+      "label": "Bruce Sacerdote / randomly assigned Dartmouth roommates",
+      "summary": "Dartmouth freshmen were assigned roommates within housing categories and then paired randomly. Sacerdote found peer effects on academic effort, GPA, and fraternity participation, but not across every life choice.",
+      "teachesWhat": "Social influence can be causally identified and remains domain-specific.",
+      "hardSpecifics": [
+        "Dartmouth freshman cohorts from 1997 and 1998",
+        "roommates randomly paired within 32 housing categories"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.ex.3",
+      "label": "Noah Goldstein, Robert Cialdini, and Vladas Griskevicius / hotel towels",
+      "summary": "Hotel-room cards comparing guests with other guests increased towel reuse more than a generic environmental appeal. A norm tied to people who had stayed in the same room was especially effective.",
+      "teachesWhat": "A nearby and behaviorally relevant comparison group strengthens a descriptive norm.",
+      "hardSpecifics": [
+        "hotel bathroom towel-reuse cards",
+        "same-room guest norm outperformed a general environmental appeal"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "A social norm is not automatically prosocial. Announcing that many people litter, evade taxes, or waste energy can normalize the conduct; effective messages identify a desirable norm and a reference group the audience recognizes.",
+  "voiceCues": [
+    "moves from a stark laboratory scene to field settings",
+    "separates information from peer pressure",
+    "uses campaign slogans and comparison messages",
+    "repeats the need to test on the actual population"
+  ],
+  "forbiddenLeakage": [
+    "automatic enrollment defaults",
+    "smart-disclosure data formats",
+    "climate-policy conditional cooperation"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch03.fact.1",
+      "claim": "About three quarters of Asch participants conformed to an obviously wrong unanimous line judgment at least once.",
+      "becauseMechanism": "This mechanism operates because unanimity created informational doubt and social pressure even when the private visual answer was clear.",
+      "commonError": "Conformity requires an ambiguous stimulus.",
+      "errorIsWhy": "The matching-line task was intentionally easy and control participants made few errors.",
+      "derivedFrom": "ch03.ex.1"
+    },
+    {
+      "id": "ch03.fact.2",
+      "claim": "Sacerdote's Dartmouth design randomly paired roommates within 32 housing categories.",
+      "becauseMechanism": "This mechanism operates because conditional random assignment reduces selection bias, so later differences can be linked more credibly to peer exposure.",
+      "commonError": "Roommate studies merely compare friends who selected each other.",
+      "errorIsWhy": "The first-year pairs were administratively randomized within stated preference groups.",
+      "derivedFrom": "ch03.ex.2"
+    },
+    {
+      "id": "ch03.fact.3",
+      "claim": "A same-room hotel norm increased towel reuse more than a generic environmental request.",
+      "becauseMechanism": "This mechanism operates because the behavior of people in the identical setting forms a more immediate reference group than an abstract public.",
+      "commonError": "The broadest possible comparison group creates the strongest norm.",
+      "errorIsWhy": "Provincial, context-matched norms performed better in the field experiment.",
+      "replicationStatus": "mixed",
+      "derivedFrom": "ch03.ex.3"
+    },
+    {
+      "id": "ch03.fact.4",
+      "claim": "Social influence operates through both information and peer pressure.",
+      "becauseMechanism": "This mechanism operates because others' choices may signal hidden facts while their approval or disapproval changes the social cost of dissent.",
+      "commonError": "Following others always means a person privately believes they are correct.",
+      "errorIsWhy": "Compliance can occur to avoid standing apart even when private belief is unchanged.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.5",
+      "claim": "Descriptive norm messages can increase undesirable behavior among people already performing better than the stated average.",
+      "becauseMechanism": "This mechanism operates because the average supplies a target, so unusually good performers may move toward it from the favorable side.",
+      "commonError": "Publishing an average can only improve below-average behavior.",
+      "errorIsWhy": "The same reference point can pull observations from both directions.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.6",
+      "claim": "Adding an approval cue can prevent a descriptive-norm boomerang among already efficient households.",
+      "becauseMechanism": "This mechanism operates because the cue communicates that the low-consumption behavior is socially approved rather than merely unusual.",
+      "commonError": "A smile or approval marker is decorative and cannot alter a numerical comparison.",
+      "errorIsWhy": "An injunctive signal changes the meaning of the descriptive information.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.7",
+      "claim": "The Don't Mess with Texas campaign targeted young men with Texas identity rather than relying only on an anti-litter lecture.",
+      "becauseMechanism": "This mechanism operates because local pride and admired in-group messengers made proper disposal part of the audience's social identity.",
+      "commonError": "The slogan was originally a general state-tourism motto.",
+      "errorIsWhy": "It was created as an anti-littering campaign for Texas highways.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.8",
+      "claim": "An informational cascade can persist after later people ignore their private signals and copy earlier public choices.",
+      "becauseMechanism": "This mechanism operates because once enough visible choices point one way, each follower treats the accumulated behavior as stronger evidence than a private clue.",
+      "commonError": "A cascade proves that many independent people reached the same conclusion.",
+      "errorIsWhy": "Later choices may recycle the same early information rather than add independent evidence.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.9",
+      "claim": "Norm interventions require local testing because populations can interpret the same message differently.",
+      "becauseMechanism": "This mechanism operates because reference-group identity, baseline behavior, and cultural meaning determine which social signal is salient.",
+      "commonError": "A successful social-norm message transfers unchanged to any audience.",
+      "errorIsWhy": "The causal mechanism depends on the audience recognizing and valuing the comparison group.",
+      "derivedFrom": "ch03.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Two channels of social influence",
+      "members": [
+        "information",
+        "peer pressure"
+      ],
+      "acronym": false
+    }
+  ],
+  "paraphraseNotes": "Social behavior is not noise around an individual decision; it changes what the decision means. Solomon Asch's line experiments make the pressure visible. One participant faced confederates who unanimously selected the wrong line, and about three quarters conformed at least once despite a clear stimulus. Bruce Sacerdote's Dartmouth evidence moves beyond the laboratory: 1997 and 1998 freshmen were randomly paired within 32 housing categories, revealing peer effects in effort, GPA, and fraternity participation but not in every domain. The boundary matters because herding is not a universal solvent. Hotel towel cards designed by Noah Goldstein, Robert Cialdini, and Vladas Griskevicius show how to convert the mechanism into design. Their original field experiment reported that a same-room norm beat a generic appeal, but a later hotel replication did not reproduce the provincial-norm advantage, making the result mixed rather than a settled design law. Social influence has two channels. Others may know something the chooser does not, or their approval may impose a social cost on dissent. The distinction explains both useful learning and blind cascades. It also explains boomerangs: telling efficient households that neighbors use more energy can grant permission to consume more. An approval cue can preserve the desirable behavior by adding an injunctive norm. The Don't Mess with Texas campaign similarly tied litter prevention to a valued in-group identity. A responsible choice architect therefore names a desirable behavior, chooses a credible comparison group, checks the baseline, and tests rather than assuming that any statistic about peers will help. Grounding anchors: one participant surrounded by unanimous confederates; about 75 percent conformed at least once; Dartmouth freshman cohorts from 1997 and 1998; roommates randomly paired within 32 housing categories; hotel bathroom towel-reuse cards; same-room guest norm outperformed a general environmental appeal."
+}

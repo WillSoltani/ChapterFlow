@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "the-happiness-hypothesis-ch09",
+  "chapterNumber": 9,
+  "title": "Divinity with or without God",
+  "coreMove": "Because It treats persons as independent choosers whose interests require protection from coercion and injury.",
+  "thesis": "The ethic of autonomy centers individual harm, rights, liberty, and justice.",
+  "readerPromise": "After this chapter, a reader can because It treats persons as independent choosers whose interests require protection from coercion and injury.",
+  "ownedCases": [
+    {
+      "id": "ch09.example.rozin",
+      "label": "Paul Rozin, Clark McCauley, and colleagues / disgust research"
+    },
+    {
+      "id": "ch09.example.shweder",
+      "label": "Richard Shweder and colleagues / moral discourse in Bhubaneswar"
+    },
+    {
+      "id": "ch09.example.elevation",
+      "label": "Jonathan Haidt and Sara Algoe / moral elevation studies"
+    },
+    {
+      "id": "ch09.example.keltner",
+      "label": "Dacher Keltner and Jonathan Haidt / awe prototype"
+    }
+  ],
+  "notYours": [
+    "Aaron Beck / cognitive therapy",
+    "Alois Stutzer and Bruno Frey / commuting paradox",
+    "Antonio Damasio / ventromedial prefrontal patients",
+    "Aristotle / virtue and the mean",
+    "Aristotle / virtue plus external goods",
+    "Benjamin Franklin / thirteen-virtue chart",
+    "Brett Pelham and colleagues / implicit egotism",
+    "Buddhist insight meditation / attentional training",
+    "Buddhist nonattachment and Benjamin Franklin's striving",
+    "C. Daniel Batson / moral-hypocrisy task",
+    "Christopher Peterson and Martin Seligman / VIA classification",
+    "Cindy Hazan and Phillip Shaver / adult romantic attachment",
+    "Dan McAdams / redemptive life stories",
+    "Dan McAdams / three levels of personality",
+    "Daniel Wegner / white-bear suppression experiments",
+    "David Burns / anger inventory",
+    "Deanna Kuhn and David Perkins / argument evaluation",
+    "Dennis Regan / Coca-Cola reciprocity experiment",
+    "Harry Harlow / cloth and wire surrogate mothers",
+    "Hazan and colleagues / transfer of attachment functions"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    0,
+    0,
+    2,
+    2,
+    1,
+    1,
+    0,
+    1,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a working note on characteristic adaptations and narrative identity",
+    "flavor (ch01): venue: a working note on cloth covered surrogate mother",
+    "flavor (ch01): venue: a dinner table",
+    "flavor (ch01): frame: a first attempt at anomie as weakened normative structure that gets corrected",
+    "flavor (ch01): frame: a first encounter with anomie as weakened normative structure that sets a benchmark",
+    "flavor (ch02): venue: a shared grocery list"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a walk around the block",
+    "venue: a morning routine",
+    "venue: a household chore chart",
+    "frame: post-decision consequence that forces a correction",
+    "frame: a shared ritual observed in mid-action as it builds connection"
+  ],
+  "architectureFamily": "everyday-first-person",
+  "openerType": "question",
+  "challengeFrame": "attach-to-existing-routine",
+  "practiceShape": "observe-then-note",
+  "exampleLenses": [
+    "numbers-detective",
+    "prop-tableau",
+    "dialogue-beat"
+  ],
+  "practiceVerb": "move",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "rather",
+    "across",
+    "different",
+    "life",
+    "repeated",
+    "consequences"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "observe-then-note",
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative"
+  ],
+  "quizStemShapes": [
+    "failure-postmortem",
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence"
+  ],
+  "quizFailureModes": [
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope"
+  ],
+  "questionFactOrder": [
+    5,
+    3,
+    8,
+    2,
+    1,
+    9,
+    4,
+    6,
+    7
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "motion-speak",
+    "ledger-speak"
+  ],
+  "shellRegister": "actor-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Paul Rozin, Clark McCauley, and colleagues / disgust research",
+    "caseId": "ch09.example.rozin",
+    "aliases": [
+      "Paul Rozin, Clark McCauley, and colleagues / disgust research",
+      "Clark",
+      "Paul"
+    ]
+  },
+  "adjacentJobs": {
+    "prev": "Because A finite list made faults observable and allowed focused practice instead of an undifferentiated demand for perfection.",
+    "next": "Because High-quality performance, responsibility to others, and personal meaning can diverge, so all three must be examined."
+  },
+  "totalChapters": 11
+}

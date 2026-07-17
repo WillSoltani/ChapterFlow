@@ -1,0 +1,713 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "nudge",
+  "chapterId": "nudge-ch12",
+  "chapterNumber": 12,
+  "chapterTitle": "Insurance: Don't Sweat the Small Stuff",
+  "sourceSidecarPath": "/private/tmp/cf-v25-s-tier-plan/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/nudge/20260717T090014900Z-087b938f-11ed-47ec-90ed-5a293f066f33/sidecars/source/ch12.source.json",
+  "sourceHash": "sha256:2795a7258661104b41262a5734d8907e7f44cd825cf8c8e8a540984c76cbe056",
+  "facts": [
+    {
+      "id": "ch12.fact.1",
+      "claim": "Employer-plan research found expected savings above 500 dollars per year from high-deductible options across a wide spending range.",
+      "mechanism": "This mechanism operates because premium savings and employer account contributions exceeded the extra deductible exposure in the compared designs.",
+      "commonError": "A lower deductible always produces lower total financial risk.",
+      "whyWrong": "Higher premiums can outweigh the reduced out-of-pocket payment in every spending state.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "500"
+      ],
+      "groundedEntities": [
+        "Employer-plan",
+        "Higher"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch12.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch12.fact.2",
+      "claim": "Prescription use fell more when drugs were subject to the consumer-directed plan deductible.",
+      "mechanism": "This mechanism operates because the upfront price made patients reduce utilization rather than selectively preserve every high-value medicine.",
+      "commonError": "Patients reliably distinguish essential from unnecessary care when cost sharing rises.",
+      "whyWrong": "Use declined for chronic-disease medicines as well as lower-value consumption.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Prescription",
+        "Patients",
+        "Use"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch12.fact.2"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch12.fact.3",
+      "claim": "Pitney Bowes lowered copayments for asthma, hypertension, and diabetes medicines.",
+      "mechanism": "This mechanism operates because reducing the price of high-value drugs increased adherence and could avoid more expensive complications.",
+      "commonError": "Value-based insurance applies the same deductible to every service.",
+      "whyWrong": "It varies cost sharing with clinical value.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Pitney Bowes",
+        "Value-based"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch12.fact.3"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch12.fact.4",
+      "claim": "Insurance is most valuable for a low-probability loss large enough to threaten financial stability.",
+      "mechanism": "This mechanism operates because risk pooling converts a potentially ruinous shock into a predictable premium.",
+      "commonError": "Insurance should cover every small repair because claims feel like getting value back.",
+      "whyWrong": "Administrative cost and insurer margin make routine small-loss coverage expensive.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Insurance",
+        "Administrative"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch12.fact.4"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch12.fact.5",
+      "claim": "A plan dominates another when it is no worse in every relevant spending state and better in at least one.",
+      "mechanism": "This mechanism operates because no possible outcome gives the dominated plan a financial advantage.",
+      "commonError": "A dominated plan may still be optimal simply because its deductible is lower.",
+      "whyWrong": "The premium difference can more than offset deductible savings everywhere.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch12.fact.5"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch12.fact.6",
+      "claim": "Deductible aversion is the tendency to pay too much premium to avoid out-of-pocket exposure.",
+      "mechanism": "This mechanism operates because a salient possible payment receives more weight than the certain annual premium difference.",
+      "commonError": "Selecting a low deductible always reflects greater objective risk protection.",
+      "whyWrong": "Some low-deductible plans raise cost even in the worst spending case.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Deductible",
+        "Selecting",
+        "Some"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch12.fact.6"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch12.fact.7",
+      "claim": "An extended warranty typically insures a manageable product loss while embedding seller cost and profit.",
+      "mechanism": "This mechanism operates because expected claims are smaller than the warranty price after administration and margin.",
+      "commonError": "A warranty is a bargain whenever replacement would be annoying.",
+      "whyWrong": "Annoyance does not make the expected payout exceed the premium.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Annoyance"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch12.fact.7"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch12.fact.8",
+      "claim": "Behavioral hazard occurs when cost sharing causes people to skip valuable care rather than only wasteful care.",
+      "mechanism": "This mechanism operates because limited information, present bias, and liquidity constraints make patients respond to price without perfect value sorting.",
+      "commonError": "Higher out-of-pocket prices reduce only medically unnecessary use.",
+      "whyWrong": "Evidence shows essential medications can be reduced too.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Behavioral",
+        "Higher",
+        "Evidence"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch12.fact.8"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch12.fact.9",
+      "claim": "An On My Own HSA earmarks premium savings for deductible expenses.",
+      "mechanism": "This mechanism operates because a visible health account makes self-insurance resources feel protected from ordinary spending.",
+      "commonError": "Choosing a high deductible requires leaving the possible deductible entirely unfunded.",
+      "whyWrong": "Premium savings and employer contributions can be reserved in the HSA.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "An On My Own HSA",
+        "Choosing",
+        "Premium",
+        "HSA"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch12.fact.9"
+      ],
+      "teachingPriority": 8
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch12.ex.1",
+      "label": "Saurabh Bhargava, George Loewenstein, and Justin Sydnor / employer health-plan choices",
+      "summary": "Researchers compared employees' plan selections across firms offering low- and high-deductible options. Many selected financially dominated low-deductible plans, while the high-deductible option produced expected savings above 500 dollars a year across a broad range of spending.",
+      "realWorld": true,
+      "naturalSetting": "Saurabh Bhargava",
+      "hardSpecifics": [
+        "expected savings above 500 dollars per year",
+        "employees chose financially dominated low-deductible plans"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch12.ex.2",
+      "label": "Peter Huckfeldt and colleagues / pharmaceutical deductibles",
+      "summary": "Two large firms switched employees to consumer-directed health plans, but only one subjected prescriptions to the deductible. Drug use fell most where prescriptions faced the deductible, including medicines for chronic disease.",
+      "realWorld": true,
+      "naturalSetting": "Peter Huckfeldt",
+      "hardSpecifics": [
+        "two large employers switched to consumer-directed plans",
+        "prescriptions faced the deductible at one firm but were exempt at the other"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch12.ex.3",
+      "label": "Pitney Bowes / value-based insurance design",
+      "summary": "Pitney Bowes reduced copayments for medicines treating asthma, hypertension, and diabetes. Adherence increased, and higher drug spending was offset by lower condition-related medical spending.",
+      "realWorld": true,
+      "naturalSetting": "Pitney Bowes",
+      "hardSpecifics": [
+        "reduced copayments for asthma, hypertension, and diabetes drugs",
+        "higher adherence accompanied lower condition-related medical costs"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "reduced copayments for asthma, hypertension, and diabetes drugs"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Insurance decision sequence",
+      "members": [
+        "identify ruinous risks",
+        "compare total cost",
+        "apply dominance",
+        "protect high-value care",
+        "fund self-insured exposure"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch12.concept",
+      "kind": "concept",
+      "label": "deductible design",
+      "text": "A deductible sets how much loss the insured pays before coverage begins, trading lower premiums against greater out-of-pocket exposure. Choosing the wrong deductible can guarantee higher expected cost, while poorly targeted cost sharing can suppress essential care.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.ex.1",
+      "kind": "named_example",
+      "label": "Saurabh Bhargava, George Loewenstein, and Justin Sydnor / employer health-plan choices",
+      "text": "Researchers compared employees' plan selections across firms offering low- and high-deductible options. Many selected financially dominated low-deductible plans, while the high-deductible option produced expected savings above 500 dollars a year across a broad range of spending. Deductible aversion can survive even when one plan is no better in any spending state.",
+      "hardSpecifics": [
+        "expected savings above 500 dollars per year",
+        "employees chose financially dominated low-deductible plans"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.ex.2",
+      "kind": "named_example",
+      "label": "Peter Huckfeldt and colleagues / pharmaceutical deductibles",
+      "text": "Two large firms switched employees to consumer-directed health plans, but only one subjected prescriptions to the deductible. Drug use fell most where prescriptions faced the deductible, including medicines for chronic disease. Patients do not reliably cut only low-value care when exposed to broad cost sharing.",
+      "hardSpecifics": [
+        "two large employers switched to consumer-directed plans",
+        "prescriptions faced the deductible at one firm but were exempt at the other"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.ex.3",
+      "kind": "named_example",
+      "label": "Pitney Bowes / value-based insurance design",
+      "text": "Pitney Bowes reduced copayments for medicines treating asthma, hypertension, and diabetes. Adherence increased, and higher drug spending was offset by lower condition-related medical spending. Cost sharing should be lower for care with high clinical value.",
+      "hardSpecifics": [
+        "reduced copayments for asthma, hypertension, and diabetes drugs",
+        "higher adherence accompanied lower condition-related medical costs"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.fact.1",
+      "kind": "testable_fact",
+      "label": "Employer-plan research found expected savings above 500 dollars per year from high-deductible options across a wide spending range.",
+      "text": "Employer-plan research found expected savings above 500 dollars per year from high-deductible options across a wide spending range. This mechanism operates because premium savings and employer account contributions exceeded the extra deductible exposure in the compared designs. A lower deductible always produces lower total financial risk. Higher premiums can outweigh the reduced out-of-pocket payment in every spending state.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.fact.2",
+      "kind": "testable_fact",
+      "label": "Prescription use fell more when drugs were subject to the consumer-directed plan deductible.",
+      "text": "Prescription use fell more when drugs were subject to the consumer-directed plan deductible. This mechanism operates because the upfront price made patients reduce utilization rather than selectively preserve every high-value medicine. Patients reliably distinguish essential from unnecessary care when cost sharing rises. Use declined for chronic-disease medicines as well as lower-value consumption.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.fact.3",
+      "kind": "testable_fact",
+      "label": "Pitney Bowes lowered copayments for asthma, hypertension, and diabetes medicines.",
+      "text": "Pitney Bowes lowered copayments for asthma, hypertension, and diabetes medicines. This mechanism operates because reducing the price of high-value drugs increased adherence and could avoid more expensive complications. Value-based insurance applies the same deductible to every service. It varies cost sharing with clinical value.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.fact.4",
+      "kind": "testable_fact",
+      "label": "Insurance is most valuable for a low-probability loss large enough to threaten financial stability.",
+      "text": "Insurance is most valuable for a low-probability loss large enough to threaten financial stability. This mechanism operates because risk pooling converts a potentially ruinous shock into a predictable premium. Insurance should cover every small repair because claims feel like getting value back. Administrative cost and insurer margin make routine small-loss coverage expensive.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.fact.5",
+      "kind": "testable_fact",
+      "label": "A plan dominates another when it is no worse in every relevant spending state and better in at least one.",
+      "text": "A plan dominates another when it is no worse in every relevant spending state and better in at least one. This mechanism operates because no possible outcome gives the dominated plan a financial advantage. A dominated plan may still be optimal simply because its deductible is lower. The premium difference can more than offset deductible savings everywhere.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.fact.6",
+      "kind": "testable_fact",
+      "label": "Deductible aversion is the tendency to pay too much premium to avoid out-of-pocket exposure.",
+      "text": "Deductible aversion is the tendency to pay too much premium to avoid out-of-pocket exposure. This mechanism operates because a salient possible payment receives more weight than the certain annual premium difference. Selecting a low deductible always reflects greater objective risk protection. Some low-deductible plans raise cost even in the worst spending case.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.fact.7",
+      "kind": "testable_fact",
+      "label": "An extended warranty typically insures a manageable product loss while embedding seller cost and profit.",
+      "text": "An extended warranty typically insures a manageable product loss while embedding seller cost and profit. This mechanism operates because expected claims are smaller than the warranty price after administration and margin. A warranty is a bargain whenever replacement would be annoying. Annoyance does not make the expected payout exceed the premium.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.fact.8",
+      "kind": "testable_fact",
+      "label": "Behavioral hazard occurs when cost sharing causes people to skip valuable care rather than only wasteful care.",
+      "text": "Behavioral hazard occurs when cost sharing causes people to skip valuable care rather than only wasteful care. This mechanism operates because limited information, present bias, and liquidity constraints make patients respond to price without perfect value sorting. Higher out-of-pocket prices reduce only medically unnecessary use. Evidence shows essential medications can be reduced too.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.fact.9",
+      "kind": "testable_fact",
+      "label": "An On My Own HSA earmarks premium savings for deductible expenses.",
+      "text": "An On My Own HSA earmarks premium savings for deductible expenses. This mechanism operates because a visible health account makes self-insurance resources feel protected from ordinary spending. Choosing a high deductible requires leaving the possible deductible entirely unfunded. Premium savings and employer contributions can be reserved in the HSA.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch12.framework.insurance.decision.sequence",
+      "kind": "framework",
+      "label": "Insurance decision sequence",
+      "text": "identify ruinous risks, compare total cost, apply dominance, protect high-value care, fund self-insured exposure",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "500",
+    "1",
+    "2"
+  ],
+  "allowedEntities": [
+    "Insurance",
+    "Don't Sweat",
+    "Small Stuff",
+    "High",
+    "Protect",
+    "Choosing",
+    "Extended",
+    "Deductible",
+    "Dominance",
+    "High-deductible",
+    "Cost",
+    "Health",
+    "Saurabh Bhargava",
+    "George Loewenstein",
+    "Justin Sydnor",
+    "Researchers",
+    "Many",
+    "Peter Huckfeldt",
+    "Two",
+    "Drug",
+    "Patients",
+    "Pitney Bowes",
+    "Adherence",
+    "Liquidity",
+    "HSA",
+    "Employer-plan",
+    "Higher",
+    "Prescription",
+    "Use",
+    "Value-based",
+    "Administrative",
+    "Selecting",
+    "Some",
+    "Annoyance",
+    "Behavioral",
+    "Evidence",
+    "An On My Own HSA",
+    "Premium",
+    "Covering",
+    "Deductibles",
+    "Broad",
+    "Grounding",
+    "Saurabh Bhargava, George Loewenstein, and Justin Sydnor / employer health-plan choices",
+    "Peter Huckfeldt and colleagues / pharmaceutical deductibles",
+    "Pitney Bowes / value-based insurance design"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch12.ex.1",
+      "warning": "Keep examples about Saurabh Bhargava, George Loewenstein, and Justin Sydnor / employer health-plan choices source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch12.ex.2",
+      "warning": "Keep examples about Peter Huckfeldt and colleagues / pharmaceutical deductibles source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch12.ex.3",
+      "warning": "Keep examples about Pitney Bowes / value-based insurance design source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch12.fact.1"
+}

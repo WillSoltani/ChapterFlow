@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 1,
+  "chapterTitle": "Simple",
+  "focus": "Simplicity begins with ruthless prioritization: find the one idea that must guide decisions, then compress it without stripping away its depth. Familiar schemas and generative analogies let a compact message carry more meaning than its word count suggests.",
+  "coreClaim": "A useful simple idea is both core and compact, so people can remember it and use it when circumstances change.",
+  "centralConcept": {
+    "id": "ch01.concept",
+    "name": "core plus compact",
+    "plainDefinition": "Find the single most important meaning, then express it in a form small enough to travel while retaining enough depth to guide action.",
+    "whyItMatters": "A prioritized message survives handoffs and gives people a decision rule when the original planner is absent."
+  },
+  "keyClaims": [
+    "Prioritization is harder than shortening because several ideas can be important while only one can be the core.",
+    "A compact core functions as a decision filter rather than a decorative slogan.",
+    "Schemas compress explanation by attaching new information to knowledge the audience already has.",
+    "Generative analogies do more than describe; they influence later choices in unfamiliar situations.",
+    "Too many comparable choices can suppress action, so exclusion is part of clear communication."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch01.ex.commanders-intent",
+      "label": "U.S. Army Commander's Intent",
+      "summary": "U.S. Army planning separates a commander's intent into purpose, key tasks, and end state. Those three elements preserve the mission's core even when battlefield conditions invalidate detailed instructions.",
+      "teachesWhat": "A simple core should enable local improvisation without losing the desired outcome.",
+      "hardSpecifics": ["purpose, key tasks, and end state", "U.S. Army planning"],
+      "realWorld": true
+    },
+    {
+      "id": "ch01.ex.southwest",
+      "label": "Herb Kelleher / Southwest Airlines",
+      "summary": "Herb Kelleher framed Southwest Airlines as THE low-fare airline. The phrase supplied a decision test: an attractive service idea mattered only if it supported the low-fare position.",
+      "teachesWhat": "A strategic core becomes useful when it rules choices in or out.",
+      "hardSpecifics": ["Herb Kelleher", "THE low-fare airline"],
+      "realWorld": true
+    },
+    {
+      "id": "ch01.ex.choice-study",
+      "label": "Sheena Iyengar and Mark Lepper choice experiments",
+      "summary": "Sheena Iyengar and Mark Lepper compared limited arrays of 6 options with extensive arrays of 24 or 30. Across jam, chocolate, and essay settings, the smaller choice set produced more purchasing or task completion than the larger set.",
+      "teachesWhat": "More available options can obstruct commitment instead of improving it.",
+      "hardSpecifics": ["6 options", "24 or 30"],
+      "realWorld": true
+    },
+    {
+      "id": "ch01.ex.palm",
+      "label": "Jeff Hawkins / PalmPilot wooden prototype",
+      "summary": "Jeff Hawkins carried a wooden PalmPilot prototype and pretended to check appointments, phone numbers, and buttons before the electronics existed. The wooden block forced the product vision into a pocket-sized, testable form.",
+      "teachesWhat": "A concrete compact representation can keep a complex development effort aligned with its core use.",
+      "hardSpecifics": ["Jeff Hawkins", "wooden PalmPilot prototype"],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Simple does not mean merely short, catchy, or stripped of nuance. A slogan that cannot settle a real choice is thin; the target is compact depth, with one governing idea and enough implied structure to generate action.",
+  "voiceCues": [
+    "moves from military planning to airline strategy before naming the principle",
+    "uses paired terms such as core and compact to prevent a shallow reading",
+    "tests abstractions against decisions rather than admiring phrasing",
+    "uses familiar cultural analogies to demonstrate information compression"
+  ],
+  "forbiddenLeakage": [
+    "Do not import Sony's pocketable-radio quest or JFK's moon deadline; those belong to unexpectedness and sustained curiosity.",
+    "Do not turn vivid sensory detail into the main lesson; concreteness receives its own treatment later."
+  ],
+  "testableFacts": [
+    {
+      "id": "ch01.fact.1",
+      "claim": "A U.S. Army Commander's Intent can be stated as purpose, key tasks, and end state.",
+      "becauseMechanism": "Because those elements specify why the mission exists, what must occur, and what success looks like, subordinates can adapt tactics without abandoning the objective.",
+      "commonError": "Commander's Intent is a condensed sequence of every maneuver in the original plan.",
+      "errorIsWhy": "A sequence becomes obsolete when conditions change; intent preserves the outcome and constraints rather than every step.",
+      "derivedFrom": "ch01.ex.commanders-intent"
+    },
+    {
+      "id": "ch01.fact.2",
+      "claim": "Herb Kelleher's phrase THE low-fare airline served Southwest Airlines as a strategic decision filter.",
+      "becauseMechanism": "Because proposed choices could be tested against the low-fare position, the phrase converted strategy into a repeatable operating judgment.",
+      "commonError": "Southwest's core meant approving any amenity that customers said they liked.",
+      "errorIsWhy": "Customer appeal alone did not settle the choice; the amenity also had to preserve the governing low-fare strategy.",
+      "derivedFrom": "ch01.ex.southwest"
+    },
+    {
+      "id": "ch01.fact.3",
+      "claim": "The journalistic inverted pyramid places the most important information first and arranges later details in descending importance.",
+      "becauseMechanism": "Because readers see the core immediately and editors can cut from the bottom, the structure protects the lead under attention and space constraints.",
+      "commonError": "News written as an inverted pyramid should begin with background and reveal the main event at the end.",
+      "errorIsWhy": "That mystery structure reverses the form's priority and risks hiding or cutting the decisive fact.",
+      "derivedFrom": "ch01.concept"
+    },
+    {
+      "id": "ch01.fact.4",
+      "claim": "Iyengar and Lepper's 2000 experiments compared limited sets of 6 choices with extensive sets of 24 or 30 choices.",
+      "becauseMechanism": "Because evaluating many attractive alternatives raises comparison and commitment costs, the extensive sets drew interest but the limited sets more often produced action.",
+      "commonError": "The experiments showed that people dislike having any choice at all.",
+      "errorIsWhy": "The comparison was limited choice versus extensive choice, and the smaller array still preserved meaningful agency.",
+      "derivedFrom": "ch01.ex.choice-study"
+    },
+    {
+      "id": "ch01.fact.5",
+      "claim": "Jeff Hawkins used a wooden block while designing the original PalmPilot to rehearse calendar, contact, and button use.",
+      "becauseMechanism": "Because pretending to use the object exposed form-factor and interaction problems before electronics were built, the prototype kept development tied to everyday behavior.",
+      "commonError": "The wooden block was a promotional mock-up created after the PalmPilot design was complete.",
+      "errorIsWhy": "Hawkins used it during design as a behavioral test, before a functioning electronic prototype existed.",
+      "derivedFrom": "ch01.ex.palm"
+    },
+    {
+      "id": "ch01.fact.6",
+      "claim": "A high-concept pitch such as Speed framed as Die Hard on a bus compresses a new premise through a familiar schema.",
+      "becauseMechanism": "Because the audience already knows the reference film's action structure, the analogy transfers many expectations without a long synopsis.",
+      "commonError": "A high-concept pitch works by listing the new film's cast, budget, and complete plot.",
+      "errorIsWhy": "Those details expand the message; the compression comes from mapping the unfamiliar project onto existing knowledge.",
+      "derivedFrom": "ch01.concept"
+    },
+    {
+      "id": "ch01.fact.7",
+      "claim": "The pomelo explanation becomes compact when the unfamiliar fruit is linked to the familiar grapefruit schema.",
+      "becauseMechanism": "Because an existing fruit schema supplies shape, texture, and category expectations, only the differences need fresh explanation.",
+      "commonError": "Schemas are technical definitions that require audiences to forget prior knowledge.",
+      "errorIsWhy": "Schemas are useful precisely because they reuse structured prior knowledge and reduce what must be taught from scratch.",
+      "derivedFrom": "ch01.concept"
+    },
+    {
+      "id": "ch01.fact.8",
+      "claim": "A proverb can be compact without being shallow because a short concrete phrase can support repeated interpretation across situations.",
+      "becauseMechanism": "Because the listener supplies familiar social experience around the phrase, a few words can carry a durable decision rule.",
+      "commonError": "Any short sentence automatically has the depth and usefulness of a proverb.",
+      "errorIsWhy": "Length alone does not create meaning; the phrase must preserve a core insight that transfers to new cases.",
+      "derivedFrom": "ch01.concept"
+    },
+    {
+      "id": "ch01.fact.9",
+      "claim": "Disney's label cast members is a generative analogy for employees, not merely a decorative synonym.",
+      "becauseMechanism": "Because the theater schema implies roles, audiences, performance, and backstage conduct, the label guides choices beyond the wording itself.",
+      "commonError": "A generative analogy only makes a message sound more imaginative and has no operational consequence.",
+      "errorIsWhy": "Its value lies in producing additional inferences that shape behavior when no script covers the situation.",
+      "derivedFrom": "ch01.concept"
+    }
+  ],
+  "frameworks": [
+    { "name": "Simple idea", "members": ["core", "compact"], "acronym": false },
+    { "name": "Commander's Intent", "members": ["purpose", "key tasks", "end state"], "acronym": false }
+  ],
+  "paraphraseNotes": "The governing tension is exclusion. An effective communicator often has several accurate, useful points, but a message cannot guide action until one of them receives priority. U.S. Army practice supplies the first operational model: purpose, key tasks, and end state preserve a mission when local conditions make the detailed plan unusable. Herb Kelleher makes the same move in business through THE low-fare airline, a compact rule that can reject an appealing idea when it conflicts with Southwest's position. The inverted pyramid offers a parallel editorial discipline by placing the decisive fact first.\n\nSelection becomes urgent when choice itself stalls action. Sheena Iyengar and Mark Lepper compared 6 options with 24 or 30 and found that restricted arrays more often led to purchase or task completion. The lesson is not to eliminate choice, but to protect the decision from undifferentiated importance. Compactness then builds on the chosen core. A high-concept pitch such as Speed mapped to Die Hard on a bus borrows an existing schema; a pomelo can be explained by starting with grapefruit and naming the differences. Disney's cast members works generatively because the theater schema suggests further conduct, not because the phrase is cute.\n\nJeff Hawkins makes compactness physical with a wooden PalmPilot prototype. Rehearsing calendar, contact, and button use against a pocket-sized object kept a complicated technical project attached to a simple use pattern. Across the cases, brevity is a consequence rather than the goal. The durable result is a small expression with enough embedded structure to survive transmission and help another person choose."
+}

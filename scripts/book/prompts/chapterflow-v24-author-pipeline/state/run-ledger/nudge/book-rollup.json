@@ -1,0 +1,29 @@
+{
+  "schema": "run-call-ledger-rollup-v1",
+  "bookId": "nudge",
+  "runId": "ALL_RUNS",
+  "at": "2026-07-17T09:43:01.709Z",
+  "totalCalls": 1,
+  "byFamily": {
+    "codex-exec": 1
+  },
+  "byStage": {
+    "other": 1
+  },
+  "byRole": {
+    "research": 1
+  },
+  "byModel": {
+    "gpt-5.6-sol": 1
+  },
+  "byOutcome": {
+    "content_completed": 1
+  },
+  "latency": {
+    "p50Ms": 2566441,
+    "p95Ms": 2566441,
+    "sampledCalls": 1,
+    "unknownLatencyCalls": 0
+  },
+  "cost": "NOT_METERED"
+}

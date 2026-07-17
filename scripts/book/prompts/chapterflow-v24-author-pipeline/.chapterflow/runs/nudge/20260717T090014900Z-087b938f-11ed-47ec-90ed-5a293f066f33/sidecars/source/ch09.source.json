@@ -1,0 +1,155 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 9,
+  "chapterTitle": "Save More Tomorrow",
+  "focus": "Retirement design must help people enroll, raise contributions, and invest sensibly. Automatic enrollment and future-pay-raise escalation redirect inertia and loss aversion toward long-term saving.",
+  "coreClaim": "Saving rises when enrollment and escalation happen automatically while exit remains available.",
+  "centralConcept": {
+    "id": "ch09.concept",
+    "name": "automatic retirement saving",
+    "plainDefinition": "A plan enrolls eligible workers by default and can schedule contribution increases unless they opt out.",
+    "whyItMatters": "It converts procrastination from a barrier into continuity while avoiding the felt loss of an immediate cut in take-home pay."
+  },
+  "keyClaims": [
+    "Defined-contribution systems shift enrollment and investment decisions to workers.",
+    "Automatic enrollment sharply increases participation.",
+    "The default contribution and fund also anchor behavior.",
+    "Save More Tomorrow schedules increases with future raises.",
+    "A cap and easy opt-out preserve control.",
+    "Low-cost diversified defaults protect inattentive savers.",
+    "Directional nudging is justified when many workers say they want to save more."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch09.ex.1",
+      "label": "Brigitte Madrian and Dennis Shea / automatic 401(k) enrollment",
+      "summary": "A large US firm changed from opt-in enrollment to automatic enrollment without changing the plan's economic terms. Participation after one year rose from 49 percent for the opt-in cohort to 86 percent for the automatically enrolled cohort.",
+      "teachesWhat": "The nonresponse rule can dominate participation even with unchanged incentives.",
+      "hardSpecifics": [
+        "one-year participation rose from 49 to 86 percent",
+        "automatic enrollment allowed employees to opt out"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch09.ex.2",
+      "label": "Richard Thaler and Shlomo Benartzi / Save More Tomorrow field trial",
+      "summary": "Workers were invited to commit future pay raises to automatic contribution increases. Among participants, average saving rose from 3.5 percent to 13.6 percent of pay over four raises and about 40 months.",
+      "teachesWhat": "Future escalation avoids an immediate nominal pay cut and lets inertia sustain the plan.",
+      "hardSpecifics": [
+        "saving rate rose from 3.5 to 13.6 percent",
+        "four pay raises over about 40 months"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch09.ex.3",
+      "label": "Vanguard / How America Saves 2018",
+      "summary": "Vanguard reported on 473 record-kept plans in 2018. Fifty-nine percent used automatic enrollment, and those plans averaged 93 percent participation.",
+      "teachesWhat": "Automatic enrollment scaled beyond one firm and became a mainstream plan design.",
+      "hardSpecifics": [
+        "473 retirement plans in the 2018 report",
+        "59 percent used automatic enrollment and averaged 93 percent participation"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "Automatic enrollment solves joining, not adequacy. A very low contribution rate or costly default fund can trap people in a bad plan, so defaults must be reviewed for level, fees, diversification, and distributional effects.",
+  "voiceCues": [
+    "takes an openly directional stance",
+    "uses employee self-reports to justify the direction",
+    "builds a three-problem retirement sequence",
+    "anchors the proposal in workplace field evidence"
+  ],
+  "forbiddenLeakage": [
+    "Sweden's 456-fund active-choice experiment",
+    "mortgage and credit-card borrowing",
+    "insurance deductible design"
+  ],
+  "testableFacts": [
+    {
+      "id": "ch09.fact.1",
+      "claim": "At the Madrian–Shea firm, one-year 401(k) participation rose from 49 percent under opt-in to 86 percent under automatic enrollment.",
+      "becauseMechanism": "This mechanism operates because the default converted nonresponse from nonparticipation into participation while preserving opt-out.",
+      "commonError": "The increase required a larger employer match.",
+      "errorIsWhy": "The economic terms were unchanged when the enrollment rule changed.",
+      "derivedFrom": "ch09.ex.1"
+    },
+    {
+      "id": "ch09.fact.2",
+      "claim": "Save More Tomorrow participants increased average saving from 3.5 to 13.6 percent over four pay raises and roughly 40 months.",
+      "becauseMechanism": "This mechanism operates because contribution increases coincided with raises, so saving grew without a nominal drop in take-home pay.",
+      "commonError": "The plan demanded an immediate ten-percentage-point contribution increase.",
+      "errorIsWhy": "Escalation was staged across future raises.",
+      "derivedFrom": "ch09.ex.2"
+    },
+    {
+      "id": "ch09.fact.3",
+      "claim": "Vanguard's 2018 sample covered 473 plans, 59 percent of which used automatic enrollment and averaged 93 percent participation.",
+      "becauseMechanism": "This mechanism operates because default enrollment reduces the active steps required across many workplaces.",
+      "commonError": "Automatic enrollment remained confined to the original field experiment.",
+      "errorIsWhy": "Large record-keeper data show broad employer adoption.",
+      "derivedFrom": "ch09.ex.3"
+    },
+    {
+      "id": "ch09.fact.4",
+      "claim": "Automatic enrollment also anchors many workers on the plan's default contribution rate.",
+      "becauseMechanism": "This mechanism operates because inertia affects both whether employees participate and whether they change the preassigned percentage.",
+      "commonError": "Once enrolled, workers routinely optimize their contribution immediately.",
+      "errorIsWhy": "Default-rate clustering persists after enrollment.",
+      "derivedFrom": "ch09.concept"
+    },
+    {
+      "id": "ch09.fact.5",
+      "claim": "Save More Tomorrow asks for a commitment before the future raise arrives.",
+      "becauseMechanism": "This mechanism operates because a calm advance decision captures the preference to save before present bias and loss aversion operate on current pay.",
+      "commonError": "Employees decide separately after every raise whether to increase saving.",
+      "errorIsWhy": "The schedule is chosen in advance and then continues automatically.",
+      "derivedFrom": "ch09.concept"
+    },
+    {
+      "id": "ch09.fact.6",
+      "claim": "Tying escalation to a pay raise reduces the felt loss associated with higher saving.",
+      "becauseMechanism": "This mechanism operates because take-home pay can still rise even as a larger fraction goes to retirement.",
+      "commonError": "Loss aversion disappears whenever saving earns a positive return.",
+      "errorIsWhy": "The salient reference point is current take-home pay, not only future wealth.",
+      "derivedFrom": "ch09.concept"
+    },
+    {
+      "id": "ch09.fact.7",
+      "claim": "A retirement default must specify both a contribution level and an investment allocation.",
+      "becauseMechanism": "This mechanism operates because automatic enrollment creates balances that require a destination even when the worker makes no fund choice.",
+      "commonError": "Enrollment can be automated while leaving investment entirely undefined.",
+      "errorIsWhy": "Contributions cannot enter the plan without being allocated.",
+      "derivedFrom": "ch09.concept"
+    },
+    {
+      "id": "ch09.fact.8",
+      "claim": "A diversified, low-fee lifecycle fund is a defensible default for workers who do not manage a portfolio.",
+      "becauseMechanism": "This mechanism operates because diversification limits idiosyncratic risk while age-based allocation reduces the need for repeated rebalancing.",
+      "commonError": "The employer's own stock is the safest default because employees know the company.",
+      "errorIsWhy": "Employment income and retirement wealth would then share the same firm-specific risk.",
+      "derivedFrom": "ch09.concept"
+    },
+    {
+      "id": "ch09.fact.9",
+      "claim": "Many employees in retirement-plan studies report that their current saving rate is too low.",
+      "becauseMechanism": "This mechanism operates because the self-assessment supplies welfare evidence that a directional increase aligns with participants' own stated goals.",
+      "commonError": "Any nudge toward higher saving necessarily imposes the architect's personal preference.",
+      "errorIsWhy": "Employee reports and easy opt-out can ground the direction in chooser welfare.",
+      "derivedFrom": "ch09.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Three retirement-saving tasks",
+      "members": [
+        "enroll",
+        "increase contributions",
+        "improve investment allocation"
+      ],
+      "acronym": false
+    }
+  ],
+  "paraphraseNotes": "Retirement saving is not one choice. Workers must enter a plan, contribute enough, and place the balance in a sensible portfolio. Brigitte Madrian and Dennis Shea's firm-level study isolates the first problem. Switching the nonresponse rule from opt-in to automatic enrollment raised one-year participation from 49 to 86 percent without changing economic terms. The same inertia can preserve a default contribution rate, so enrollment success can conceal inadequate saving. Richard Thaler and Shlomo Benartzi's Save More Tomorrow design addresses that second task. Workers commit in advance to contribution increases timed with future pay raises. Participants' average rate rose from 3.5 to 13.6 percent over four raises and about 40 months. Because take-home pay need not fall in nominal terms, the design reduces loss aversion; because increases continue automatically, inertia supports rather than blocks the plan. Vanguard's 2018 record-keeping data from 473 plans show the mechanism at scale: 59 percent used automatic enrollment, and those plans averaged 93 percent participation. Investment design completes the stack. A low-cost diversified lifecycle default gives inattentive participants a defensible portfolio and changes risk with age. Every default still requires scrutiny. A tiny contribution, a high-fee fund, or concentrated employer stock can turn stickiness into harm. The practical standard is automatic participation, gradual escalation, a sound fund, a transparent cap, and easy exit. Grounding anchors: one-year participation rose from 49 to 86 percent; automatic enrollment allowed employees to opt out; saving rate rose from 3.5 to 13.6 percent; four pay raises over about 40 months; 473 retirement plans in the 2018 report; 59 percent used automatic enrollment and averaged 93 percent participation."
+}
