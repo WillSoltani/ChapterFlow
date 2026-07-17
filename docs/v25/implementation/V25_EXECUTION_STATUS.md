@@ -14,6 +14,7 @@
 | /private/tmp/cf-wp-701 | wp/701-bakeoff-corpus | 11e0362ac | WP-701 model-free corpus packet (authoringSource UNRESOLVED until D-7 freeze runs) | impl sonnet-5@xhigh, rt opus@xhigh | ACTIVE |
 | /private/tmp/cf-wp-502 | wp/502-capability-probe | 11e0362ac | WP-502 probe build (live execution deferred to orchestrator post-integration) | impl opus-4.8@xhigh, rt opus@xhigh | ACTIVE |
 | /private/tmp/cf-wp-702 | wp/702-bakeoff-d7-judge | 416a73385 | WP-702 bakeoff harness re-point (D7 primary judge, floor veto, no 5.5 judge) | impl opus-4.8@xhigh, rt opus@xhigh | ACTIVE |
+| /private/tmp/cf-wp-701b | wp/701b-auto-research-verb | 498266021 | WP-701b (L-40) research-only stage verb reusing autopilot doResearch | impl opus-4.8@xhigh, rt opus@xhigh | ACTIVE |
 
 Integration SHAs will be appended per gate (G1–G8) after approval.
 
@@ -65,6 +66,7 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 701-mf | integrated | wp/701-bakeoff-corpus | 11e0362ac | 5b5343800 | rt PASS; 2 rt findings fixed pre-merge (allowlist readiness + record cross-binding); merged e912bf63f; packet not-ready-for-bakeoff pending D-7 freeze |
 | 502 | **accepted (built + live-executed)** | wp/502-capability-probe | 11e0362ac | 6187d3bf6 | rt PASS; RT-1 fixed pre-merge; live probe 2026-07-17: ALL 4 configs SUPPORTED (8 calls, 8/150 ceiling); results doc + ledger committed |
 | 702 | in progress | wp/702-bakeoff-d7-judge | 416a73385 | — | dispatched 2026-07-17 after 701-mf integration; model-free (injected D7-judge doubles) |
+| 701b (NEW, L-40) | in progress | wp/701b-auto-research-verb | 498266021 | — | compliant research-only verb — the missing freeze entry point; model-free build (injected spawn doubles) |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
