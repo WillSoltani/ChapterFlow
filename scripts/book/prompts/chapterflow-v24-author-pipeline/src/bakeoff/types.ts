@@ -36,6 +36,15 @@ export type BakeoffPhase = (typeof BAKEOFF_PHASES)[number];
 
 export type ReasoningEffort = "minimal" | "low" | "medium" | "high" | "xhigh";
 
+/**
+ * WP-E00 (Wave-0 shared-type freeze) — the D7 judging lifecycle of one candidate,
+ * used to gate selection minting (V25-AUD-03): selection is FINAL only when every
+ * candidate is terminal (`judged` or `instrument-fail`); otherwise it must carry
+ * `provisional: true`. `instrument-fail` is the capped terminal state a unit-role
+ * reaches after exhausting its rater attempt budget (V25-AUD-02).
+ */
+export type D7TerminalState = "pending" | "judged" | "instrument-fail";
+
 /** One candidate author model under comparison. */
 export type CandidateSpec = {
   /** Exact codex model id (e.g. "gpt-5.6-sol") — passed as `-c model=<id>`. */
@@ -293,10 +302,53 @@ export type CandidateD7JudgmentV1 = {
   meanPass: boolean;
   minPass: boolean;
   calibrationPass: boolean;
-  verdict: "PASS" | "FAIL" | "VOID_CALIBRATION" | null;
+  verdict: "PASS" | "FAIL" | "VOID_CALIBRATION" | "INSTRUMENT_FAIL" | null;
+  /** WP-E00 freeze: lifecycle state driving terminal-gated selection minting
+   *  (V25-AUD-03). Absent on legacy records ⇒ treat as "judged" iff verdict is
+   *  non-null, else "pending". */
+  terminalState?: D7TerminalState;
   chapters: CandidateD7ChapterResultV1[];
   /** Set (with d7Composite null) when the candidate's chapters could not be
    *  fail-closed-assembled into an audit package — the candidate is INELIGIBLE. */
+  ineligibleReason?: string;
+  judgedAt: string;
+};
+
+// ── Canonical-evaluator chapter diagnostic (WP-E00 freeze; owner policy §8.2) ─
+
+/**
+ * The adjudicated STANDALONE CHAPTER DIAGNOSTIC produced by the repo-local
+ * Codex ChapterFlow Book Evaluator run over a genuine 1-chapter package
+ * (dual mutually-blind raters + fresh adjudicator + dispatch receipts + pair
+ * seal). This — not the D7 composite — is the PRIMARY selection statistic for
+ * the model experiment. It is NEVER a full-book score: `fullBookScore` is
+ * null, certification unevaluable, Domain 9 unassessable, by construction
+ * (artifact schema `chapterflow_standalone_chapter_adjudication` 1.0.0).
+ */
+export type CandidateEvalDiagnosticV1 = {
+  schemaVersion: "model-bakeoff-candidate-eval-diagnostic-v1";
+  label: BlindLabel;
+  /** Combined content hash of the diagnosed chapter bytes (resume identity). */
+  contentSha256: string;
+  /** The evaluator run id (artifacts under the segregated chapter-diagnostics
+   *  root — never artifacts/chapterflow-evaluation/). */
+  evalRunId: string;
+  /** Adjudicated chapter_diagnostic_score (renormalized 8-domain scale), or
+   *  null when the audit could not complete (candidate stays INELIGIBLE for a
+   *  FINAL selection until terminal). */
+  chapterDiagnostic: number | null;
+  /** Adjudicator confidence from the adjudication record. */
+  confidence: "high" | "medium" | "low" | null;
+  /** Gate statuses 1-4 all pass (gate 5 external_accuracy is not_assessed). */
+  gatesPass: boolean | null;
+  /** Resolved rater model id per worker session when observable from the codex
+   *  envelope (null = unobservable). Uniformity across a campaign is a
+   *  pre-registered validity requirement. */
+  raterModels: { primary: string | null; verification: string | null; adjudicator: string | null };
+  terminalState: D7TerminalState;
+  /** Receipt-chain artifact paths (dispatch receipts, pair seal, adjudicated
+   *  record) relative to the diagnostic root. */
+  receipts: { primaryDispatch: string; verificationDispatch: string; pairSeal: string; adjudicated: string };
   ineligibleReason?: string;
   judgedAt: string;
 };
@@ -308,14 +360,23 @@ export type CandidateScorecardV1 = {
   label: BlindLabel;
   eligible: boolean;
   disqualifications: string[];
-  /** PRIMARY (WP-702): the Claude-side D7 chapter-diagnostic composite + gates —
-   *  the sole ranking metric and (with the deterministic floor) the eligibility gate. */
+  /** PRIMARY (WP-E32, owner policy §8.1/§10.5): the adjudicated canonical-
+   *  evaluator chapter diagnostic. When present it is the ranking metric; the
+   *  D7 fields below become the SECONDARY operational check (downgrade-only,
+   *  never select). Absent on legacy scorecards (pre-policy records, D7-ranked). */
+  evalDiagnostic?: number | null;
+  evalGatesPass?: boolean | null;
+  evalConfidence?: "high" | "medium" | "low" | null;
+  evalTerminalState?: D7TerminalState;
+  /** SECONDARY since WP-E32 (previously PRIMARY, WP-702): the D7 rubric-audit
+   *  composite + gates — operational reviewer routed per resolveD7RaterRoute();
+   *  may trigger inspection/downgrade, never selection. */
   d7Composite: number | null;
   d7CoreDomainMins: number[] | null;
   d7GatesPass: boolean | null;
   d7LayerIndependencePass: boolean | null;
   d7Min: number | null;
-  d7Verdict: "PASS" | "FAIL" | "VOID_CALIBRATION" | null;
+  d7Verdict: "PASS" | "FAIL" | "VOID_CALIBRATION" | "INSTRUMENT_FAIL" | null;
   /** ADVISORY (non-blocking): the codex whole-book panel read — recorded, never
    *  used for eligibility or ranking. */
   bookComposite: number | null;
@@ -332,6 +393,14 @@ export type CandidateScorecardV1 = {
 export type SelectionV1 = {
   schemaVersion: "model-bakeoff-selection-v1";
   selectedAt: string;
+  /** WP-E00 freeze (V25-AUD-03): true when minted while ANY candidate was
+   *  non-terminal (see D7TerminalState). A provisional selection is NOT
+   *  evidence; resume MUST re-derive it. Absent on legacy records ⇒ the record
+   *  predates terminal gating and must be read as provisional. */
+  provisional?: boolean;
+  /** ISO timestamp of the newest run-ledger entry observed at mint time — lets
+   *  a reader see exactly how much evidence the mint was based on. */
+  ledgerHighWaterAt?: string | null;
   winner: string | null;
   runnerUp: string | null;
   /** True when the top candidates were inside the ±2.0 D7 selection band and the
@@ -371,6 +440,13 @@ export type BakeoffManifestV1 = {
   updatedAt: string;
   candidates: CandidateSpec[];
   judge: { model: string; effort: ReasoningEffort };
+  /** WP-E00 freeze (V25-AUD-01): when true, the candidate-generation lane runs
+   *  deterministic readability checks (SEC12 tier targets + breakdown ease
+   *  floor) MEASURE-ONLY — the draft always completes, metrics are recorded as
+   *  outcome data, and ship-eligibility stays a separate recorded fact.
+   *  Production severity is untouched when absent/false. Set ONLY by the
+   *  bakeoff/screening lane, never by ship verbs. */
+  readabilityMeasureOnly?: boolean;
   maxParallel: number;
   /** Candidate runs are ALWAYS no-publish; this only gates the post-QC step of
    *  the SELECTED winner through the existing verified publish path. */

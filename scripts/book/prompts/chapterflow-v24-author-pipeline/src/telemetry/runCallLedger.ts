@@ -101,6 +101,15 @@ export type RunCallLedgerEntryV1 = {
   /** Cross-reference to the codex CHAPTERFLOW_SESSION_ID or an equivalent
    *  D7 dispatch identity, when one exists. */
   sessionId: string | null;
+  /** WP-E00 freeze (V25-AUD-08): distinguishes a REAL model session (`session`)
+   *  from a resume-time re-ingest of already-persisted bytes (`reingest`).
+   *  Only `session` entries count toward live-spend ceilings and economics.
+   *  Absent on legacy entries ⇒ unknown kind; rollups must count legacy entries
+   *  separately, never silently as sessions. */
+  sessionKind?: "session" | "reingest";
+  /** WP-E00 freeze (V25-AUD-02): 1-based attempt index for the (unit, role)
+   *  this call served, when the call site tracks attempts. */
+  attemptIndex?: number | null;
   cost: typeof LEDGER_COST_MARKER;
 };
 
@@ -113,6 +122,8 @@ export type RunCallLedgerEntryInput = {
   latencyMs: number | null;
   outcome: ProviderOutcomeV1;
   sessionId?: string | null;
+  sessionKind?: "session" | "reingest";
+  attemptIndex?: number | null;
 };
 
 /** Bounded retention: a single run's ledger never grows past this many lines
@@ -223,6 +234,16 @@ export type RunCallLedgerRollupV1 = {
      *  never folded into the percentile as a fabricated zero). */
     unknownLatencyCalls: number;
   };
+  /** WP-E00 freeze (V25-AUD-08), implemented by WP-E41: entry counts by
+   *  sessionKind (`session` / `reingest` / `unknown` for legacy). */
+  bySessionKind?: Record<string, number>;
+  /** Count of entries with sessionKind === "session" — the ONLY number that may
+   *  be compared against a live-spend ceiling. */
+  trueSessionCalls?: number;
+  /** WP-E00 freeze (NEW-06), implemented by WP-E42: the versioned price table a
+   *  cost estimate was computed against; null/absent ⇒ PRICE NOT VERIFIED and
+   *  no dollar figure anywhere in the rollup. */
+  priceVersion?: string | null;
   cost: typeof LEDGER_COST_MARKER;
 };
 
