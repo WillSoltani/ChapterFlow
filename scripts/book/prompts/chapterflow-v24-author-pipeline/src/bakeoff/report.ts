@@ -10,6 +10,7 @@
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import type {
   BakeoffManifestV1,
+  CandidateD7JudgmentV1,
   CandidateReviewV1,
   CandidateStateV1,
   CandidateValidationV1,
@@ -26,7 +27,10 @@ export type ReportInputs = {
     label: string;
     generation: CandidateStateV1 | null;
     validation: CandidateValidationV1 | null;
+    /** ADVISORY (non-blocking): the codex whole-book panel read. */
     review: CandidateReviewV1 | null;
+    /** PRIMARY: the Claude-side D7 rubric-audit judgment. */
+    d7: CandidateD7JudgmentV1 | null;
   }>;
   selection: SelectionV1 | null;
   qcOutcome: string | null;
@@ -72,7 +76,10 @@ export function buildReportJson(inputs: ReportInputs): Record<string, unknown> {
       blindLabel: c.label,
       generation: c.generation,
       validation: c.validation,
-      review: c.review,
+      /** PRIMARY judge. */
+      d7: c.d7,
+      /** ADVISORY (non-blocking) — recorded, never used for selection. */
+      advisoryReview: c.review,
     })),
     selection: inputs.selection,
     promotion: m.promotion ?? null,
@@ -109,7 +116,8 @@ export function buildReportMd(inputs: ReportInputs): string {
   lines.push(`- **Book**: ${m.intake?.title ?? m.bookId}${m.intake?.author ? ` by ${m.intake.author}` : ""} (\`${m.bookId}\`)`);
   lines.push(`- **Run**: \`${m.runId}\` (created ${m.createdAt})`);
   lines.push(`- **Candidates**: ${m.candidates.map((c) => `\`${c.model}\` @ ${c.effort}`).join(", ")}`);
-  lines.push(`- **Judge (fixed)**: \`${m.judge.model}\` @ ${m.judge.effort}`);
+  lines.push(`- **Primary judge**: Claude-side D7 rubric-audit instrument (chapter-diagnostic composite; selection band ±${sel?.tieBand ?? 2.0})`);
+  lines.push(`- **Advisory judge (non-blocking)**: \`${m.judge.model}\` @ ${m.judge.effort} — recorded cross-model read, never used for eligibility or ranking`);
   lines.push(`- **Codex version**: ${inputs.codexVersion ?? "unknown"}`);
   lines.push(`- **Shared-input identity**: \`${m.freeze?.combinedSha256?.slice(0, 16) ?? "—"}\` over ${m.freeze?.files.length ?? 0} frozen files, ${m.freeze?.chapterNumbers.length ?? 0} chapters`);
   lines.push(`- **Winner**: ${winner ? `**\`${winner}\`**` : "**none (no eligible candidate)**"}${sel?.runnerUp ? ` — runner-up \`${sel.runnerUp}\`` : ""}${sel?.decidedByTieBreak ? " *(quality effectively tied; decided on retries/latency)*" : ""}`);
@@ -124,12 +132,15 @@ export function buildReportMd(inputs: ReportInputs): string {
 
   lines.push("## Scoreboard");
   lines.push("");
-  lines.push("| Model | Label | Eligible | Book composite (blinded) | Gate | Churn | Mean ch | Min ch | Ch pass rate | 1st-attempt passes | Retries | Latency |");
+  lines.push("PRIMARY = **D7 composite** (Claude-side rubric audit). The codex *book composite* is ADVISORY only (recorded, never used for selection).");
+  lines.push("");
+  lines.push("| Model | Label | Eligible | **D7 composite** | D7 min | D7 gates | D7 verdict | *book composite (advisory)* | *gate (adv.)* | 1st-attempt passes | Retries | Latency |");
   lines.push("|---|---|---|---|---|---|---|---|---|---|---|---|");
   for (const sc of sel?.scorecards ?? []) {
     const gen = inputs.candidates.find((c) => c.model === sc.model)?.generation;
+    const d7gates = sc.d7GatesPass === null ? "—" : `${sc.d7GatesPass ? "pass" : "FAIL"}/${sc.d7LayerIndependencePass ? "layer✓" : "layer✗"}`;
     lines.push(
-      `| \`${sc.model}\` | ${sc.label} | ${sc.eligible ? "yes" : "**NO**"} | ${fmt(sc.bookComposite)} | ${sc.bookGate ?? "—"} | ${sc.churn} | ${fmt(sc.meanChapterComposite)} | ${fmt(sc.minChapterComposite)} | ${sc.chapterPassRate === null ? "—" : `${Math.round((sc.chapterPassRate ?? 0) * 100)}%`} | ${sc.firstAttemptPasses}/${gen?.chapters.length ?? "?"} | ${sc.totalRetries} | ${minutes(sc.totalDurationMs)} |`,
+      `| \`${sc.model}\` | ${sc.label} | ${sc.eligible ? "yes" : "**NO**"} | **${fmt(sc.d7Composite, 2)}** | ${fmt(sc.d7Min, 2)} | ${d7gates} | ${sc.d7Verdict ?? "—"} | *${fmt(sc.bookComposite)}* | *${sc.bookGate ?? "—"}* | ${sc.firstAttemptPasses}/${gen?.chapters.length ?? "?"} | ${sc.totalRetries} | ${minutes(sc.totalDurationMs)} |`,
     );
   }
   lines.push("");
@@ -147,7 +158,7 @@ export function buildReportMd(inputs: ReportInputs): string {
       if (!s.eligible) {
         lines.push(`- \`${s.model}\`: ineligible — ${s.disqualifications.join("; ")}`);
       } else {
-        lines.push(`- \`${s.model}\`: eligible, but ranked below the winner (book composite ${fmt(s.bookComposite)}, churn ${s.churn}, min chapter ${fmt(s.minChapterComposite)}).`);
+        lines.push(`- \`${s.model}\`: eligible, but ranked below the winner (D7 composite ${fmt(s.d7Composite, 2)}, worst-chapter D7 min ${fmt(s.d7Min, 2)}; advisory book composite ${fmt(s.bookComposite)}).`);
       }
     }
     lines.push("");
@@ -171,9 +182,9 @@ export function buildReportMd(inputs: ReportInputs): string {
   lines.push("");
   lines.push("- This is a SINGLE-BOOK comparison — one draft, one genre, one research snapshot. It identifies the winner **for this book** and an operational tendency, not a statistically significant model ranking.");
   if (sel?.decidedByTieBreak) {
-    lines.push(`- The top candidates scored inside the ±${sel.tieBand} noise band of the blinded rubric: treat the quality result as a TIE; the winner was chosen on retries/latency.`);
+    lines.push(`- The top candidates scored inside the ±${sel.tieBand} D7 selection band: treat the quality result as a TIE; the winner was deferred to the tie-break ladder (WP-705).`);
   }
-  lines.push("- Blinded reads are stochastic instruments (the pipeline's own acceptance machinery treats ±3.7 composite as noise). Chapter-level differences smaller than that band are not meaningful.");
+  lines.push(`- The PRIMARY metric is the Claude-side D7 chapter-diagnostic composite; D7 differences smaller than the ±${sel?.tieBand ?? 2.0} selection band are treated as a tie. The codex whole-book composite is ADVISORY only and never entered selection.`);
   lines.push(`- **Recommendation**: before changing ChapterFlow's permanent default author model${winner ? ` to \`${winner}\`` : ""}, run at least 2–3 more bake-offs on different books/genres and compare formal QC repair burden, not just first-pass scores. The permanent default (the central model policy, currently the provisional gpt-5.6-sol pending WP-705) was intentionally NOT changed by this run.`);
   lines.push("");
 

@@ -178,6 +178,14 @@ export type CandidateBookReadV1 = {
   invalidReason?: string;
 };
 
+/**
+ * WP-702: the codex whole-book panel review is DEMOTED to a NON-BLOCKING ADVISORY
+ * signal. Every field on this record (bookComposite / bookGate / bookChurn /
+ * meanChapterComposite / …) is ADVISORY only — a recorded cross-model read that
+ * NEVER changes eligibility or the primary ranking. The PRIMARY selection metric
+ * is the Claude-side D7 rubric-audit composite (CandidateD7JudgmentV1), mirrored
+ * onto the optional d7* fields below for report visibility.
+ */
 export type CandidateReviewV1 = {
   schemaVersion: "model-bakeoff-candidate-review-v1";
   /** The opaque label reviewers saw. The label→model mapping lives ONLY in the
@@ -188,7 +196,7 @@ export type CandidateReviewV1 = {
   contentSha256: string;
   chapterReviews: CandidateChapterReviewV1[];
   bookReads: CandidateBookReadV1[];
-  /** composeBookVerdict outputs pooled over the book reads. */
+  /** ADVISORY (non-blocking): composeBookVerdict outputs pooled over the book reads. */
   bookComposite: number | null;
   bookGate: "PASS" | "FAIL" | null;
   bookChurn: string;
@@ -197,6 +205,66 @@ export type CandidateReviewV1 = {
   chapterPassRate: number | null;
   sampledChapterNumbers: number[];
   reviewedAt: string;
+  /** PRIMARY (mirrored from the authoritative CandidateD7JudgmentV1 for report
+   *  visibility): the Claude-side D7 chapter-diagnostic composite + its gate
+   *  results. Undefined on an advisory-only record. */
+  d7Composite?: number | null;
+  d7CoreDomainMins?: number[] | null;
+  d7GatesPass?: boolean | null;
+  d7LayerIndependencePass?: boolean | null;
+};
+
+// ── D7 judge (PRIMARY selection metric — Claude-side rubric-audit) ─────────────
+
+export type CandidateD7ChapterResultV1 = {
+  unit: string;
+  chapterNumber: number;
+  chapterDiagnostic: number;
+  coreDomainMin: number;
+  coreDomainsPass: boolean;
+  gatesPass: boolean;
+  layerIndependencePass: boolean;
+  pass: boolean;
+};
+
+/**
+ * WP-702: the PRIMARY bake-off selection metric. Produced by driving the
+ * Claude-side D7 rubric-audit harness (rubricAuditHarness.ts) over an APP-FAITHFUL
+ * audit package assembled from the candidate's slot chapters — NEVER a codex
+ * model read. A null `d7Composite` (assembly refused / audit not driven) makes the
+ * candidate INELIGIBLE; it must never silently fall back to the codex advisory
+ * composite.
+ */
+export type CandidateD7JudgmentV1 = {
+  schemaVersion: "model-bakeoff-candidate-d7-v1";
+  label: BlindLabel;
+  /** Combined content hash of the judged chapters — a resumed run reuses this D7
+   *  judgment only while the candidate bytes are unchanged. */
+  contentSha256: string;
+  /** The retained rubric-audit id (kebab; e.g. `bakeoff-<runId>-<label>`). */
+  auditId: string;
+  /** report.summary.mean — the chapter-diagnostic composite (book CDS). Null when
+   *  the audit package could not fail-closed-assemble (candidate INELIGIBLE). */
+  d7Composite: number | null;
+  /** Per-chapter core-domain minimum averages (rubric Domains 1-6). */
+  d7CoreDomainMins: number[];
+  /** report.summary.allGatesPass — every required base gate passed on every chapter. */
+  d7GatesPass: boolean;
+  /** report.summary.allLayerIndependencePass — every read layer self-contained. */
+  d7LayerIndependencePass: boolean;
+  /** report.summary.allCoreDomainsPass — the core-domain floor held on every chapter. */
+  allCoreDomainsPass: boolean;
+  /** report.summary.min — the weakest chapter diagnostic. */
+  min: number | null;
+  meanPass: boolean;
+  minPass: boolean;
+  calibrationPass: boolean;
+  verdict: "PASS" | "FAIL" | "VOID_CALIBRATION" | null;
+  chapters: CandidateD7ChapterResultV1[];
+  /** Set (with d7Composite null) when the candidate's chapters could not be
+   *  fail-closed-assembled into an audit package — the candidate is INELIGIBLE. */
+  ineligibleReason?: string;
+  judgedAt: string;
 };
 
 // ── Selection ─────────────────────────────────────────────────────────────────
@@ -206,6 +274,16 @@ export type CandidateScorecardV1 = {
   label: BlindLabel;
   eligible: boolean;
   disqualifications: string[];
+  /** PRIMARY (WP-702): the Claude-side D7 chapter-diagnostic composite + gates —
+   *  the sole ranking metric and (with the deterministic floor) the eligibility gate. */
+  d7Composite: number | null;
+  d7CoreDomainMins: number[] | null;
+  d7GatesPass: boolean | null;
+  d7LayerIndependencePass: boolean | null;
+  d7Min: number | null;
+  d7Verdict: "PASS" | "FAIL" | "VOID_CALIBRATION" | null;
+  /** ADVISORY (non-blocking): the codex whole-book panel read — recorded, never
+   *  used for eligibility or ranking. */
   bookComposite: number | null;
   bookGate: "PASS" | "FAIL" | null;
   churn: string;
@@ -222,8 +300,9 @@ export type SelectionV1 = {
   selectedAt: string;
   winner: string | null;
   runnerUp: string | null;
-  /** True when the top candidates were inside the noise band and the winner was
-   *  chosen on the operational tiebreak (retries, then latency). */
+  /** True when the top candidates were inside the ±2.0 D7 selection band and the
+   *  winner was chosen on the tie-break ladder (worst-chapter D7 min, then retries,
+   *  then latency — WP-705 owns the full ladder). */
   decidedByTieBreak: boolean;
   tieBand: number;
   scorecards: CandidateScorecardV1[];

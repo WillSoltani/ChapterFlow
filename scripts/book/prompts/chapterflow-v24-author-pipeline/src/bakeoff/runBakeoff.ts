@@ -46,12 +46,15 @@ import { normSlug } from "../lib/chapterPaths.js";
 import type {
   BakeoffManifestV1,
   BakeoffPhase,
+  BlindLabel,
+  CandidateD7JudgmentV1,
   CandidateReviewV1,
   CandidateSpec,
   CandidateStateV1,
   CandidateValidationV1,
   ReasoningEffort,
 } from "./types.js";
+import type { ChapterV21 } from "../types.js";
 import { BAKEOFF_MANIFEST_SCHEMA } from "./types.js";
 import { PIPELINE_DIR, bakeoffRoots, candidateDir, modelSlug, pipelineRel, sha256File, type BakeoffRoots } from "./paths.js";
 import { intakeDraft, resolveBookIdForDraft, type ExtractorDeps, type IntakeOverrides } from "./intake.js";
@@ -63,10 +66,20 @@ import {
   persistCandidateChapters,
   validateCandidate,
 } from "./candidates.js";
-import { assignBlindLabels, combinedContentHash, forbiddenReviewTokens, reviewCandidate, BAKEOFF_NOISE_BAND } from "./review.js";
+import { assignBlindLabels, combinedContentHash, forbiddenReviewTokens, reviewCandidate } from "./review.js";
+import { judgeCandidateD7, unwiredD7Worker, type D7WorkerDispatch } from "./d7Judge.js";
 import { selectWinner, type SelectionInputs } from "./selection.js";
 import { promoteWinner } from "./promotion.js";
 import { writeReports, type ReportInputs } from "./report.js";
+
+/** The repo git root (resolves the retained D7 audit dir + the calibration
+ *  reference doc + the WP-503 call ledger). */
+const REPOSITORY_ROOT = resolve(PIPELINE_DIR, "../../../..");
+
+/** Default hidden calibration reference for the D7 judge. The caller (WP-703
+ *  execution) MUST pick a calibration unit from a book DISJOINT from the one
+ *  under test so its audit unit cannot collide with a candidate chapter. */
+export const DEFAULT_D7_CALIBRATION_UNIT = "made-to-stick-ch04";
 
 export const DEFAULT_BAKEOFF_MODELS = ["gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"];
 export const DEFAULT_BAKEOFF_EFFORT: ReasoningEffort = "xhigh";
@@ -90,6 +103,11 @@ export type BakeoffDeps = AutopilotDeps & {
   codexVersion: () => string | null;
   /** Long-running CLI delegation with live line streaming (book-autopilot). */
   delegate: DelegateVerb;
+  /** WP-702 — the PRIMARY judge's Claude-side worker dispatch. Drives one isolated
+   *  Claude session per D7 rater/adjudicator task. Fail-closed by default (never a
+   *  codex read, never a stubbed score); the execution lane (WP-703) wires the real
+   *  isolated-session dispatch. Tests inject a double. */
+  d7Worker: D7WorkerDispatch;
 };
 
 function defaultCodexVersion(): string | null {
@@ -132,8 +150,50 @@ export function resolveBakeoffDeps(d?: Partial<BakeoffDeps>): BakeoffDeps {
     rng: d?.rng ?? Math.random,
     codexVersion: d?.codexVersion ?? defaultCodexVersion,
     delegate: d?.delegate ?? defaultDelegate(),
+    d7Worker: d?.d7Worker ?? unwiredD7Worker,
   };
 }
+
+/** The PRIMARY (D7) judge stage — driven per blinded candidate. Injectable so
+ *  conductor tests exercise the phase logic (resume, blinding, floor gating) with
+ *  a synthetic judgment; the default drives the real Claude-side harness. */
+export type D7JudgeStageOptions = {
+  runId: string;
+  forbidden: string[];
+  calibrationUnit: string;
+  repositoryRoot: string;
+  log: (m: string) => void;
+  heartbeat?: () => boolean;
+};
+
+export type D7JudgeStage = (
+  bookId: string,
+  label: BlindLabel,
+  chapters: ChapterV21[],
+  deps: BakeoffDeps,
+  roots: BakeoffRoots,
+  opts: D7JudgeStageOptions,
+) => Promise<CandidateD7JudgmentV1>;
+
+/** Kebab audit id, unique per (run, blinded label). Stable so a resumed run
+ *  re-enters the same retained audit idempotently. */
+export function d7AuditId(runId: string, label: BlindLabel): string {
+  return `bakeoff-${runId.toLowerCase()}-${label.toLowerCase()}`;
+}
+
+export const defaultD7Judge: D7JudgeStage = (bookId, label, chapters, deps, _roots, opts) =>
+  judgeCandidateD7({
+    bookId,
+    label,
+    chapters,
+    repositoryRoot: opts.repositoryRoot,
+    auditId: d7AuditId(opts.runId, label),
+    calibrationUnit: opts.calibrationUnit,
+    worker: deps.d7Worker,
+    forbidden: opts.forbidden,
+    log: opts.log,
+    heartbeat: opts.heartbeat,
+  });
 
 /** The phase implementations, injectable so conductor tests drive the REAL
  *  phase logic (ordering, resume, blinding, halts, mutation boundaries) with
@@ -144,7 +204,10 @@ export type BakeoffStages = {
   verifyInputs: typeof verifySharedInputs;
   generate: typeof generateCandidate;
   validate: typeof validateCandidate;
+  /** ADVISORY (non-blocking, WP-702): the codex whole-book panel read. */
   review: typeof reviewCandidate;
+  /** PRIMARY (WP-702): the Claude-side D7 rubric-audit judge. */
+  d7Judge: D7JudgeStage;
   promote: typeof promoteWinner;
 };
 
@@ -155,6 +218,7 @@ function resolveStages(over?: Partial<BakeoffStages>): BakeoffStages {
     generate: over?.generate ?? generateCandidate,
     validate: over?.validate ?? validateCandidate,
     review: over?.review ?? reviewCandidate,
+    d7Judge: over?.d7Judge ?? defaultD7Judge,
     promote: over?.promote ?? promoteWinner,
   };
 }
@@ -171,6 +235,9 @@ export type RunBakeoffOptions = {
    *  judge id (the CLI requires `--judge-model`). */
   judgeModel: string;
   judgeEffort?: ReasoningEffort;
+  /** The hidden D7 calibration reference unit (must be from a book DISJOINT from
+   *  the one under test). Defaults to DEFAULT_D7_CALIBRATION_UNIT. */
+  calibrationUnit?: string;
   maxParallel?: number;
   /** Concurrent chapter writers WITHIN one candidate. */
   chapterParallel?: number;
@@ -242,6 +309,10 @@ function validationPath(roots: BakeoffRoots, slug: string): string {
 }
 function reviewPath(roots: BakeoffRoots, label: string): string {
   return resolve(roots.reviewsDir, label, "review.json");
+}
+/** The PRIMARY (D7) judgment sidecar, alongside the advisory review. */
+function d7JudgePath(roots: BakeoffRoots, label: string): string {
+  return resolve(roots.reviewsDir, label, "d7.json");
 }
 
 function readJsonIf<T>(p: string): T | null {
@@ -471,7 +542,10 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
       markDone(roots, manifest, "validate");
     }
 
-    // ── Phase: review (blinded, fixed judge, opaque labels) ──────────────────
+    // ── Phase: review — PRIMARY D7 judge + NON-BLOCKING codex advisory ───────
+    // The primary selection metric is the Claude-side D7 rubric-audit composite
+    // (stages.d7Judge). The codex whole-book panel (stages.review) is retained as
+    // a recorded, non-blocking advisory (WP-702) — its failure never fails the run.
     if (Object.keys(manifest.blindMap).length === 0) {
       manifest.blindMap = assignBlindLabels(specs, deps.rng);
       writeManifest(roots, manifest);
@@ -481,46 +555,69 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
       if (!found) throw new Error(`no blind label for ${model}`);
       return found[0];
     };
+    const calibrationUnit = opts.calibrationUnit ?? DEFAULT_D7_CALIBRATION_UNIT;
     if (!phaseDone(manifest, "review")) {
       const forbidden = forbiddenReviewTokens(specs);
       for (const spec of specs) {
-        const label = labelOf(spec.model) as "A";
+        const label = labelOf(spec.model) as BlindLabel;
         const generation = readJsonIf<CandidateStateV1>(generationPath(roots, spec.slug));
         const validation = readJsonIf<CandidateValidationV1>(validationPath(roots, spec.slug));
         if (generation?.status !== "complete" || !validation || validation.hardFailures.length > 0) {
-          log(`[bakeoff] review: skipping ${spec.model} (label ${label}) — ineligible before review (${generation?.status !== "complete" ? "incomplete book" : "deterministic hard failures"})`);
+          log(`[bakeoff] review: skipping ${spec.model} (label ${label}) — ineligible on the deterministic floor before the D7 judge (${generation?.status !== "complete" ? "incomplete book" : "deterministic hard failures"})`);
           continue;
         }
         const chapters = loadSlotChapters(roots, spec.slot);
-        const prior = readJsonIf<CandidateReviewV1>(reviewPath(roots, label));
-        if (!opts.force && prior && prior.contentSha256 === combinedContentHash(chapters)) {
-          log(`[bakeoff] review: label ${label} already reviewed at these bytes — reusing (resume)`);
-          continue;
-        }
-        log(`[bakeoff] review: label ${label} — ${chapters.length} blinded chapter reads + 2 whole-book reads (judge ${judge.model} @ ${judge.effort})`);
+        const contentSha = combinedContentHash(chapters);
         if (!heartbeat()) return halt("lost the run lock during review");
-        await stages.review(bookId, label as "A", chapters, deps, roots, {
-          runId,
-          judge,
-          forbidden,
-          heartbeat,
-          log,
-          chapterParallel: Math.max(1, opts.chapterParallel ?? 2),
-        });
+
+        // PRIMARY: the D7 rubric-audit judge (Claude-side, blinded, leak-checked).
+        const priorD7 = readJsonIf<CandidateD7JudgmentV1>(d7JudgePath(roots, label));
+        if (opts.force || !priorD7 || priorD7.contentSha256 !== contentSha) {
+          log(`[bakeoff] d7-judge: label ${label} — driving the Claude-side D7 rubric-audit over ${chapters.length} blinded chapter(s)`);
+          const d7 = await stages.d7Judge(bookId, label, chapters, deps, roots, {
+            runId, forbidden, calibrationUnit, repositoryRoot: REPOSITORY_ROOT, log, heartbeat,
+          });
+          mkdirSync(resolve(roots.reviewsDir, label), { recursive: true });
+          writeFileAtomic(d7JudgePath(roots, label), JSON.stringify(d7, null, 2) + "\n");
+        } else {
+          log(`[bakeoff] d7-judge: label ${label} already judged at these bytes — reusing (resume)`);
+        }
+
+        // ADVISORY (non-blocking): the codex whole-book panel read. A failure here
+        // is recorded but NEVER fails the run or changes selection.
+        const prior = readJsonIf<CandidateReviewV1>(reviewPath(roots, label));
+        if (!opts.force && prior && prior.contentSha256 === contentSha) {
+          log(`[bakeoff] advisory review: label ${label} already read at these bytes — reusing (resume)`);
+        } else {
+          log(`[bakeoff] advisory review: label ${label} — ${chapters.length} blinded chapter reads + 2 whole-book reads (advisory judge ${judge.model} @ ${judge.effort}; non-blocking)`);
+          try {
+            await stages.review(bookId, label, chapters, deps, roots, {
+              runId,
+              judge,
+              forbidden,
+              heartbeat,
+              log,
+              chapterParallel: Math.max(1, opts.chapterParallel ?? 2),
+            });
+          } catch (error) {
+            log(`[bakeoff] advisory review: label ${label} FAILED (non-blocking, recorded): ${(error as Error).message}`);
+          }
+        }
       }
       markDone(roots, manifest, "review");
     }
 
-    // ── Phase: select ─────────────────────────────────────────────────────────
+    // ── Phase: select (PRIMARY = D7 composite; codex read is advisory only) ──
     const selectionInputs: SelectionInputs = specs.map((spec) => ({
       spec,
       label: labelOf(spec.model),
       generation: readJsonIf<CandidateStateV1>(generationPath(roots, spec.slug)),
       validation: readJsonIf<CandidateValidationV1>(validationPath(roots, spec.slug)),
       review: readJsonIf<CandidateReviewV1>(reviewPath(roots, labelOf(spec.model))),
+      d7: readJsonIf<CandidateD7JudgmentV1>(d7JudgePath(roots, labelOf(spec.model))),
     }));
     if (!phaseDone(manifest, "select")) {
-      manifest.selection = selectWinner(selectionInputs, BAKEOFF_NOISE_BAND);
+      manifest.selection = selectWinner(selectionInputs);
       mkdirSync(roots.selectionDir, { recursive: true });
       writeFileAtomic(resolve(roots.selectionDir, "selection.json"), JSON.stringify(manifest.selection, null, 2) + "\n");
       for (const r of manifest.selection.reasons) log(`[bakeoff] select: ${r}`);
@@ -657,6 +754,7 @@ function finishReport(
       generation: s.generation,
       validation: s.validation,
       review: s.review,
+      d7: s.d7,
     })),
     selection: manifest.selection ?? null,
     qcOutcome,
