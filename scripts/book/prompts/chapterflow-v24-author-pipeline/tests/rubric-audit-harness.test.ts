@@ -17,7 +17,9 @@ import { mkTestRoots } from "./testRoots.js";
 import { PIPELINE_DIR } from "../src/bakeoff/paths.js";
 import {
   RUBRIC_CALIBRATION_REFERENCES,
+  RUBRIC_DOMAINS,
   RUBRIC_OWNER_RUN_REL_PATH,
+  RUBRIC_CHAPTER_WEIGHT_TOTAL,
   buildRubricAuditBatch,
   materializeRubricAuditBatch,
   renderAuditChapterDocument,
@@ -25,9 +27,13 @@ import {
   type RubricAuditBatchManifestV1,
 } from "../src/bakeoff/migration/rubricAuditInstrument.js";
 import {
+  RATER_SKELETON_BEGIN,
+  RATER_SKELETON_END,
+  extractRecordSkeleton,
   ingestAdjudicationRecord,
   ingestRaterRecord,
   raterBindingEnvelope,
+  renderRaterRecordSkeleton,
   renderRaterTaskDocument,
   summarizeAudit,
 } from "../src/bakeoff/migration/rubricAuditHarness.js";
@@ -324,6 +330,122 @@ test("ingestAdjudicationRecord: a failed adjudication ingest is ledgered (role a
     assert.equal(adjEntry!.outcome, "content_invalid");
     assert.equal(adjEntry!.family, "claude-side");
     assert.equal(adjEntry!.stage, "d7-rubric-audit");
+  } finally {
+    repo.dispose();
+  }
+});
+
+// ── task↔validator schema closure (the rendered skeleton) ─────────────────────
+
+/** Fill a rendered rater skeleton the way a compliant, task-following rater would:
+ *  every subcriterion gets the given integer rating, every "TODO:" placeholder a
+ *  concrete value, and every domain_score / weighted_points / chapter_diagnostic_score
+ *  is recomputed from the ratings per the task's stated arithmetic. */
+function fillSkeleton(skeleton: Record<string, unknown>, rating: number): Record<string, unknown> {
+  const record = JSON.parse(JSON.stringify(skeleton)) as Record<string, unknown>;
+  const domains = record.domains as Record<string, Record<string, unknown>>;
+  let weightedTotal = 0;
+  for (const spec of RUBRIC_DOMAINS) {
+    const domain = domains[spec.key];
+    const subs = domain.subcriteria as Record<string, Record<string, unknown>>;
+    for (const sub of spec.subcriteria) {
+      subs[sub].rating = rating;
+      subs[sub].anchor_rationale = `Anchor-linked rationale for ${sub}.`;
+      subs[sub].evidence = [{ locator: "Deep read, paragraph 2", paraphrase: "the text supports this rating" }];
+    }
+    const domainScore = rating; // four identical ratings ⇒ mean = rating
+    const weightedPoints = (domainScore / 4) * spec.weight;
+    weightedTotal += weightedPoints;
+    domain.domain_score = domainScore;
+    domain.weighted_points = weightedPoints;
+    domain.strengths = ["A concrete strength.", "A second concrete strength."];
+    domain.limitations = ["A concrete limitation."];
+    domain.within_chapter_pattern = "A consistent within-chapter pattern.";
+    domain.anchor_linked_rationale = "A domain-level anchor-linked rationale.";
+    domain.scope_note = "Scored on chapter-local support only.";
+  }
+  record.chapter_diagnostic_score = (weightedTotal / RUBRIC_CHAPTER_WEIGHT_TOTAL) * 100;
+  const gates = record.gates as Record<string, Record<string, unknown>>;
+  for (const gate of Object.values(gates)) gate.rationale = "A concrete gate rationale.";
+  (record.book as Record<string, unknown>).source_book_title = "A Source Book";
+  for (const key of [
+    "evaluation_construct", "diagnostic_band", "strongest_qualities", "weakest_qualities", "engagement_curve",
+    "comprehension_retention_analysis", "practical_use_judgment_analysis", "best_fit_readers", "struggling_readers", "verdict",
+  ]) {
+    record[key] = `A concrete ${key}.`;
+  }
+  record.improvements = ["First improvement.", "Second improvement.", "Third improvement."];
+  return record;
+}
+
+test("the rendered rater task teaches the EXACT ingestable record shape (literal skeleton)", () => {
+  const repo = makeAuditRepo("rubric-audit-skeleton-shape");
+  try {
+    const task = renderRaterTaskDocument({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary" });
+
+    // The task carries the fenced, extractable literal skeleton…
+    assert.ok(task.includes(RATER_SKELETON_BEGIN) && task.includes(RATER_SKELETON_END), "task fences a record skeleton");
+    // …with EVERY domain key AND EVERY subcriterion id present as a literal JSON
+    // object key (the prose contract alone left this ambiguous — the regression
+    // this closes: a rater emitting subcriteria as an ARRAY / renamed keys).
+    for (const spec of RUBRIC_DOMAINS) {
+      assert.ok(task.includes(`"${spec.key}":`), `task's skeleton shows the domain object key "${spec.key}"`);
+      for (const sub of spec.subcriteria) {
+        assert.ok(task.includes(`"${sub}":`), `task's skeleton shows the subcriterion object key "${sub}"`);
+      }
+    }
+
+    // The extracted skeleton IS a valid ingestable record as-is (placeholder
+    // ratings): parsing the exact bytes the task shows and ingesting them passes.
+    const skeleton = renderRaterRecordSkeleton({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary" });
+    const extracted = extractRecordSkeleton(task);
+    assert.deepEqual(extracted, skeleton, "the fenced skeleton parses back to the builder's object exactly");
+    const raw = ingestRaterRecord({
+      repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary",
+      recordText: JSON.stringify(skeleton, null, 2),
+    });
+    assert.equal(readFileSync(raw.persistedPath, "utf8"), JSON.stringify(skeleton, null, 2), "the raw skeleton ingests and persists");
+    // No filesystem path leaks into the shape the rater sees.
+    assert.ok(!task.includes(repo.base) && !task.includes("/Users/") && !task.includes("/private/"), "skeleton carries no filesystem path");
+  } finally {
+    repo.dispose();
+  }
+});
+
+test("a task-following rater that fills the rendered skeleton ingests (task↔validator loop closed)", () => {
+  const repo = makeAuditRepo("rubric-audit-skeleton-fill");
+  try {
+    // Render → extract the skeleton exactly as a driver would, fill ratings=3 and
+    // every prose field, recompute the arithmetic → the compliant record ingests.
+    const task = renderRaterTaskDocument({ repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary" });
+    const filled = fillSkeleton(extractRecordSkeleton(task), 3);
+    assert.equal(filled.chapter_diagnostic_score, 75, "uniform-3 ratings ⇒ a 75.0 chapter diagnostic");
+    const result = ingestRaterRecord({
+      repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary",
+      recordText: JSON.stringify(filled, null, 2),
+    });
+    assert.equal(result.kind, "candidate");
+    assert.ok(existsSync(result.persistedPath), "the filled compliant record ingests and persists");
+
+    // NEGATIVE CONTROL: the exact live-failure shape — subcriteria emitted as an
+    // ARRAY (Object.keys ⇒ "0".."3") — is still rejected fail-closed. Validation
+    // precedes persistence, so ingesting it as the same (primary) role surfaces
+    // ONLY the schema errors this skeleton exists to prevent.
+    const arrayShaped = fillSkeleton(extractRecordSkeleton(task), 3);
+    const arrDomains = arrayShaped.domains as Record<string, Record<string, unknown>>;
+    for (const spec of RUBRIC_DOMAINS) {
+      arrDomains[spec.key].subcriteria = spec.subcriteria.map((sub) => ({
+        name: sub, rating: 3, anchor_rationale: "r", evidence: [{ locator: "s", paraphrase: "p" }],
+      }));
+    }
+    assert.throws(
+      () => ingestRaterRecord({
+        repositoryRoot: repo.base, manifest: repo.manifest, unit: repo.unit, role: "primary",
+        recordText: JSON.stringify(arrayShaped, null, 2),
+      }),
+      /subcriteria keys are invalid/,
+      "an array-shaped subcriteria (the live symptom) is still rejected",
+    );
   } finally {
     repo.dispose();
   }
