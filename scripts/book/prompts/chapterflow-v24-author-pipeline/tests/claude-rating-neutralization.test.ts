@@ -86,6 +86,57 @@ test("CHAPTERFLOW_QC_REVIEWERS can add a reviewer role, but never a claude-* one
   });
 });
 
+// ── F4 (WP-E71 red-team): the WHOLE Claude-family alias set, not just claude-* ─
+// The model answers to several names (Opus/Sonnet/Haiku/Fable, all Anthropic),
+// so a bare "opus-qc" reviewer must be refused exactly like "claude-qc".
+
+test("the Claude-family alias set (opus/sonnet/haiku/fable/anthropic) is refused like claude-*, case-insensitive", () => {
+  const refused = [
+    "opus-qc:s1", "sonnet-reviewer:s1", "haiku:s1", "fable-5:s1", "anthropic-judge:s1",
+    "Opus-QC:s1", "SONNET:s1", "Haiku-3-5:s1",
+  ];
+  for (const reviewer of refused) {
+    assert.throws(() => isApprovedReviewer(reviewer), ClaudeRatingRoleRefusalError, `${reviewer} must be refused as a Claude-family identity`);
+  }
+  // The broadening is Claude-family ONLY — the real reviewer roles still work,
+  // and a genuinely unrelated role is an ordinary allowlist miss (false, no throw).
+  assert.equal(isApprovedReviewer("codex-qc:s1"), true);
+  assert.equal(isApprovedReviewer("harness:s1"), true);
+  assert.equal(isApprovedReviewer("human:s1"), true);
+  assert.equal(isApprovedReviewer("auditor:s1"), false);
+});
+
+test("CHAPTERFLOW_QC_REVIEWERS strips every Claude-family alias, not just claude-*", () => {
+  withEnv({ CHAPTERFLOW_QC_REVIEWERS: "opus-qc, sonnet-x, anthropic-j, codex-qc, human" }, () => {
+    assert.deepEqual(approvedReviewerRoles(), ["codex-qc", "human"], "only the non-Claude-family roles survive the env list");
+  });
+});
+
+test("writeAttestation refuses a Claude-family alias reviewer (opus-*) before it ever reaches disk", () => {
+  const ch = makeChapter(BOOK, 3);
+  const p = attestationPath(BOOK, ch.number);
+  try {
+    assert.throws(
+      () =>
+        writeAttestation({
+          schemaVersion: "qc-attest-v1",
+          bookId: BOOK,
+          chapterNumber: ch.number,
+          chapterId: ch.chapterId!,
+          verdict: "PUBLISHABLE",
+          contentHash: chapterContentHash(ch),
+          hashVersion: "v2",
+          reviewer: "opus-qc:direct-write",
+          reviewedAt: "2026-07-17T00:00:00.000Z",
+        }),
+      ClaudeRatingRoleRefusalError,
+    );
+    assert.equal(existsSync(p), false, "the refused alias attestation must never be written to disk");
+  } finally {
+    cleanup(3);
+  }
+});
+
 test("checkQcAttestation propagates the refusal (throws) rather than returning a soft finding for a claude-* reviewer", () => {
   const ch = makeChapter(BOOK, 1);
   try {

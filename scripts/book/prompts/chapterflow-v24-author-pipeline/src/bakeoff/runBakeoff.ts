@@ -129,6 +129,35 @@ export function assertBakeoffJudgeSupported(judgeModel: string): void {
   }
 }
 
+/**
+ * F1 (WP-E71 red-team): the readability MEASURE-ONLY lane (WP-E31/AUD-01) demotes
+ * the ship-readability floor from a hard blocker to a recorded measurement. That
+ * demotion is safe ONLY on a COMPARE-ONLY run — a corpus run or a chapter-subset
+ * run, where promotion / formal QC / publish are structurally skipped after
+ * selection (never a flag, by construction). On a NON-compare-only run,
+ * promotion of the winner IS reachable, so a full-index measure-only run would
+ * ship a book whose readability floor was never enforced. Refuse it up front —
+ * at flag-plumbing time, before any candidate generation — rather than trusting
+ * a downstream guard to notice. Thrown from `runBakeoff` the moment compare-only
+ * status is known.
+ */
+export class MeasureOnlyNotCompareOnlyError extends Error {
+  readonly bookId: string;
+  readonly runId: string;
+  constructor(bookId: string, runId: string) {
+    super(
+      `model-bakeoff: run ${runId} for ${bookId} sets readabilityMeasureOnly but is NOT compare-only. ` +
+      `The measure-only readability lane demotes the ship-readability floor to a recorded measurement; it is ` +
+      `valid ONLY on a compare-only run (a corpus run or a chapter subset), where promotion/QC/publish are ` +
+      `structurally skipped after selection. A full-index run would promote a winner whose readability floor ` +
+      `was never enforced — refusing before any candidate generation.`,
+    );
+    this.name = "MeasureOnlyNotCompareOnlyError";
+    this.bookId = bookId;
+    this.runId = runId;
+  }
+}
+
 export type DelegateVerb = (args: string[], env: Record<string, string>, onLine: (line: string) => void) => Promise<VerbResult>;
 
 export type BakeoffDeps = AutopilotDeps & {
@@ -665,6 +694,14 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
     // promoted/published), independent of how many chapters it froze.
     const fullIndexCount = deps.expectedChapterNumbers(bookId).length;
     const compareOnly = corpusMode || (fullIndexCount > 0 && freeze.chapterNumbers.length < fullIndexCount);
+
+    // F1: the readability measure-only lane is a screening-only demotion — valid
+    // ONLY when promotion is structurally unreachable (compare-only). A
+    // non-compare-only run carrying it could promote a book whose ship-readability
+    // floor was demoted to a measurement; refuse now, before any candidate spend.
+    if (manifest.readabilityMeasureOnly === true && !compareOnly) {
+      throw new MeasureOnlyNotCompareOnlyError(bookId, runId);
+    }
 
     // ── Phase: preflight (models must exist BEFORE expensive generation) ─────
     if (!phaseDone(manifest, "preflight")) {

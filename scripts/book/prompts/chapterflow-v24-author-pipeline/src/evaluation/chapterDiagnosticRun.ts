@@ -297,9 +297,18 @@ function walkStrings(value: unknown, visit: (s: string) => void): void {
 }
 
 /** Fail-closed scan for a model-identity token in a rater-visible artifact
- *  (package, prompt, or produced record). Throws on any whole-word hit. */
+ *  (package, prompt, or produced record). Throws on any whole-word hit.
+ *
+ *  E71 F-1 (WP-E71 red-team): the boundary is `(^|[^a-z0-9])TOKEN($|[^a-z0-9])`,
+ *  the SAME idiom as the sibling reviewer guard `bakeoff/review.assertNoIdentityLeak`
+ *  — NOT `\bTOKEN\b`. `_` is a JS regex WORD character, so `\bsol\b` misses the
+ *  `/root/sol_primary` reference-record leak form (mintRoleIdentity's own comment
+ *  calls it out); treating `_` as a separator closes that gap while still leaving
+ *  benign prose ("solution", "console") untouched. */
 export function assertNoModelIdentityLeak(value: unknown, where: string): void {
-  const patterns = MODEL_IDENTITY_TOKENS.map((t) => new RegExp(`\\b${t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i"));
+  const patterns = MODEL_IDENTITY_TOKENS.map(
+    (t) => new RegExp(`(^|[^a-z0-9])${t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|[^a-z0-9])`, "i"),
+  );
   walkStrings(value, (s) => {
     for (let i = 0; i < patterns.length; i += 1) {
       if (patterns[i].test(s)) {
