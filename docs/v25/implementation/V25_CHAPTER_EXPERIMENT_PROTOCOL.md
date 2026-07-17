@@ -122,13 +122,13 @@ E-audits total, pooled into a test-retest standard deviation `SD_retest`.
 **Equivalence band (frozen AFTER Stage 0b, from the pooled SD, never before):**
 
 ```
-W = clamp(2 × SD_retest, 2.0, 4.0)
+W = max(2 × SD_retest, 2.0)          — with a hard STOP if 2 × SD_retest > 4.0
 ```
 
-- The lower clamp (2.0) prevents an implausibly tight band from an unlucky low-variance sample.
-- The upper clamp (4.0) is a **noise STOP**, not a ceiling to design around: if the raw
-  `2 × SD_retest` exceeds 4.0, that means the instrument itself is too noisy to resolve a
-  model comparison at this sample size — Stage 0b **HALTS** and the finding is "the instrument
+- The floor (2.0) prevents an implausibly tight band from an unlucky low-variance sample.
+- 4.0 is a **noise STOP**, not an upper clamp (the band is never *set to* 4.0 — the STOP fires
+  first): if the raw `2 × SD_retest` exceeds 4.0, the instrument itself is too noisy to resolve
+  a model comparison at this sample size — Stage 0b **HALTS** and the finding is "the instrument
   needs work," never "widen the band and continue."
 - The retired ±3.0 band (WP-703's D7-only instrument) is **not carried over** — it was a property
   of the retired single-rater instrument, not a property of this experiment's dual-blind
@@ -144,6 +144,11 @@ W = clamp(2 × SD_retest, 2.0, 4.0)
 
 All three become fixed numbers once Stage 0b's `mean(A_high)` is known; they are never
 recalculated mid-experiment to rescue a candidate.
+
+**Scale precision (red-team F7):** `mean(A_high)` is the pooled **chapter-diagnostic re-score**
+of the A_high anchor chapter measured at Stage 0b — NEVER the book's 90.1 portfolio score. The
+portfolio score only *selects* the anchor book; using it in a floor formula would compare a
+full-book construct to chapter diagnostics (forbidden) and set an unclearable 82.1 floor.
 
 ### 4.5 Optional owner hand-adjudication (truth check)
 
@@ -161,28 +166,33 @@ codex sessions — every one bills the codex meter and every one is ledgered (WP
 | Stage | Runs | Planned → cap | Go / stop |
 |---|---|---|---|
 | 0a model-free | chapter-diagnostic exporter + scrub + leak tokens; attempt persistence/caps; terminal selection; known-effect fixture; exact spend recount from `state/run-ledger/**`; plan JSON byte-freeze | 0 | all suites green |
-| 0b calibration | 2 anchors × 2 E-audits (4) + D7-lite legacy-anchor drill (2); optional degraded-fixture E-audit (3) | 14 → 24 | noise STOP (§4.3); ≥6/8 first-attempt-valid; D7-lite `\|Δ\| ≤ 3.0` else demoted from start |
+| 0b calibration | 2 anchors × 2 E-audits (4 audits = 12 sessions) + D7-lite drill: 1 mid-band legacy unit + ≥1 **high-band unit from the sealed 2026-07-15 owner-adjudicated reference set (~90 band)** + 1 drift unit (3); optional degraded-fixture E-audit (3) | 15 → 24 | noise STOP (§4.3); ≥6/8 first-attempt-valid; D7-lite `\|Δ\| ≤ 3.0` at BOTH bands, else decision-rule 7's 75 gate is dropped as uncalibrated and D7 is descriptive-only (red-team F2 — the legacy mid-band anchors alone cannot validate a 75 threshold) |
 | 1 screening | 3 models × 3 blocks × 2 replicates = 18 author cells (≤1 in-lane retry) + 18 E-audits (54) + D7-lite (9 cells + 3 drift = 12) | 84 → 119 | advance ≤2: no candidate-attributable gate-2/3 failure ×2 cells; mean E ≥ advance floor; no block < block floor; 0 qualify → STOP (Sol stays provisional) |
 | 1b Sol@high arm | DROPPED by default (budget; owner-revivable with its own budget) | 0 | — |
 | 2 confirmation | top 2 × 2 blocks (1 pre-registered holdout archetype + max-separation block) × 2 fresh replicates = 8 author + 8 E-audits (24); D7-lite conditional (10) | 32 → 46 (58 w/ D7-lite) | leader's Δ sign holds on ≥3/4 cells; holdout not inverted |
-| 3 resolver | only if CI straddles the equivalence band; requires NEW owner authorization | 0 | pre-registered rule (§8) applies first |
+| 3 resolver | only if the pre-registered decision inputs are indeterminate (sign inconsistency across blocks, or `\|mean Δ\|` inside W); requires NEW owner authorization | 0 | pre-registered rule (§8) applies first |
 | 4 full-book pilot | outside this assignment (recommendation only) | — | entry: Stage-2 clear + BEFORE-PILOT items |
 
 ### 5.1 Budget truth (owner must see, both D-3 ceiling readings)
 
 Judges moved onto the codex meter (D7-lite is Sol-ultra via `ultraSession`, not the retired
-Claude-side rubric audit), so the **default (no-degradation) path spends ≈130 sessions**.
-Remaining budget depends on which D-3 reading is in force:
+Claude-side rubric audit), so every session bills against D-3 under BOTH readings. The honest
+default-path total **includes Stage-2 D7-lite** — the normal case when D7 survives §10's
+interaction analysis (red-team F3): 15 + 84 + 42 ≈ **141 sessions** (a D7-demoted path is
+15 + 72 + 32 ≈ 119). All "already spent" figures are ESTIMATES until the Stage-0a exact ledger
+recount replaces them:
 
-| Reading | Ceiling | Already spent | Remaining | Fits the default ~130-session path? |
+| Reading | Ceiling | Already spent (estimate) | Remaining | Fits the default ~141-session path? |
 |---|---|---|---|---|
-| Codex-only (D-3 as ratified, L-37) | 150 | ~17–21 | **≈129–133** | Yes, with thin headroom |
-| Conservative combined (+ retired Claude-side D7 spend) | 150 | ~30–34 (17–21 codex + 13 Claude) | **≈116–120** | **No** — does not fit |
+| Codex-only (D-3 as ratified, L-37) | 150 | ~17–21 | **≈129–133** | **No** — not reliably (short by ~8–12) |
+| Conservative combined (+ retired Claude-side D7 spend) | 150 | ~30–34 (17–21 codex + 13 Claude) | **≈116–120** | **No** — short by ~21–25 |
 
-**The combined reading no longer fits the default path.** This is disclosed exactly as computed
-in the execution plan (§5.3) — no reading is silently chosen for the owner; `ScreeningSessionBudget`
-enforces whichever ceiling the owner has authorized, and the exact recount at Stage 0a replaces
-both estimates before Stage 1 spends a session.
+**The default path does not reliably fit under EITHER reading.** This protocol therefore stays
+bound to the audit's conservative combined reading until the owner rules on D-3, and — unless
+the owner grants explicit additional headroom (no figure is proposed here; D-3 says 150 and this
+protocol invents no ceiling) — **the campaign starts at degradation rung R1 by default**.
+`ScreeningSessionBudget` enforces whichever ceiling the owner has authorized, and the exact
+recount at Stage 0a replaces both estimates before Stage 1 spends a session.
 
 ### 5.2 Handling order (registered, in this exact sequence)
 
@@ -212,9 +222,9 @@ Registered as `DEGRADATION_LADDER` in `src/bakeoff/screeningPlan.ts`. The ladder
 fallback order decided **before** any session runs; it is never re-derived to fit however the
 budget crunch actually looks, and it never uses which candidate is ahead as a selection input.
 
-| Rung | Session delta (vs. the default ~130-session path) | Action | Selection mechanism |
+| Rung | Session delta (vs. the default ~141-session path) | Action | Selection mechanism |
 |---|---|---|---|
-| **R1** | −6 | Drop Stage-1 D7-lite secondary sessions from 12 to 6 for **one block** | `selectSmallestSpreadBlock()` — the block with the smallest replicate-1 E-audit spread (an information criterion: least statistical signal lost by dropping its secondary reading) |
+| **R1** | −4 (red-team F8 corrected: one block's D7-lite = its 3 model cells + its 1 drift unit, 12 → 8) | Drop Stage-1 D7-lite entirely for **one block** | `selectSmallestSpreadBlock()` — the block with the smallest replicate-1 E-audit spread (an information criterion: least statistical signal lost by dropping its secondary reading) |
 | **R2** | −12 | Drop replicate 2 (E-audit and any surviving D7-lite) for the **SAME block R1 selected** — never a different block, and never applied without R1 first | reuses R1's selected block |
 | **R3** | 0 (halt) | Halt the campaign for **new owner re-authorization** | — |
 
@@ -303,29 +313,33 @@ report):
 |---|---|
 | **P1 — sign flip** | `sign(Δ_D7) ≠ sign(Δ_E)` in ≥2/3 blocks, while `\|mean(Δ_E)\| > W` (i.e. the E-audit sees a real effect and D7-lite disagrees on direction) |
 | **P2 — uniform self-inflation** | `mean(δ_E − δ_D7) > 1.0`, Sol-favoring (D7-lite systematically reads better for Sol than the blind E-audit does) |
-| **P3 — calibration miss** | either legacy anchor drift, or any drift-check unit, shows `\|Δ\| > 3.0` |
+| **P3 — calibration miss** | any drill anchor — the mid-band legacy unit OR the high-band 2026-07-15 reference unit — or any drift-check unit shows `\|Δ\| > 3.0` |
 
 The check is **one-sided by design**: it only looks for pro-Sol D7-lite bias, because that is the
 direction the cost policy most needs protected against (Sol is the expensive incumbent — a bias
 that favors it is the one that would silently entrench the status quo).
 
-### 10.2 (b) Evaluator rater = unpinned codex default (mostly common-mode)
+### 10.2 (b) Evaluator rater — PINNED Sol-ultra, same family as candidate Sol (red-team F1)
 
-The E-audit's rater/adjudicator model is whatever the codex default resolves to at dispatch time
-— not pinned by this protocol. Because it is common-mode across all three candidates, a
-resolution shift mid-experiment would not favor one candidate over another **unless** the default
-happens to resolve to one of the candidate models.
+The E-audit's rater/adjudicator sessions are **pinned to `resolveD7RaterRoute()`** (GPT-5.6 Sol @
+ultra through the same envelope as D7-lite) — never an ambient codex default. The primary
+instrument gets protections at least as strong as the secondary one:
 
-- **Resolved rater model is recorded per session.**
-- **Uniformity rule:** all Stage-1/Stage-2 E-audit sessions must resolve to the SAME rater model.
-  If they don't, the experiment **stratifies by resolved model and halts for an owner decision**
-  — it does not silently pool sessions rated by different models.
-- If the default resolves to a candidate model (Sol, Terra, or Luna), that triggers an
-  **elevated-risk disclosure**, and the owner blind Stage-2 read (§4.5-equivalent for Stage 2)
-  becomes load-bearing rather than optional.
-- **Under the no-Claude-rating policy, no cross-family judge exists for the E-audit.** This is
-  the single largest validity concession in this protocol and is stated verbatim in every report
-  this protocol produces — it is never omitted, softened, or buried in a footnote.
+- **Resolved rater model is recorded per session** (envelope manifest → receipts), and the
+  **uniformity rule** holds: all Stage-1/Stage-2 E-audit sessions must resolve to the SAME rater
+  model; if they don't, the experiment **stratifies by resolved model and halts for an owner
+  decision** — it does not silently pool sessions rated by different models.
+- Family-level bias is common-mode across the three candidates and largely differences out of
+  the paired Δs. The residual is **exact-model kinship** (Sol rating Sol-authored cells), which
+  no second in-house instrument can measure (D7-lite shares the same family). Pre-registered
+  protections: (i) the **owner blind Stage-2 read is REQUIRED**, recorded before unblinding;
+  (ii) if the owner's blind ranking of the Stage-2 cells disagrees **in sign** with the
+  E-ranking on the Sol-vs-winner comparison, the verdict is **INCONCLUSIVE-pending** — the owner
+  decides with the disagreement on the table; (iii) the kinship limitation is stated verbatim in
+  every report.
+- **Under the no-Claude-rating policy, no cross-family machine judge exists for the E-audit.**
+  This is the single largest validity concession in this protocol and is stated verbatim in every
+  report this protocol produces — it is never omitted, softened, or buried in a footnote.
 
 ## 11. Analysis and decision rule
 
@@ -333,10 +347,12 @@ happens to resolve to one of the candidate models.
 rater 2) scores are **adjudication inputs only** — they are never pooled or averaged as if they
 were independent observations.
 
-**Method:** per-block paired Δ vs. Sol → across-block mean → clustered bootstrap (resample
-blocks, then resample replicates within block) → within-model spread → worst cell → gate rates
-(hard-gate failures **stay in the denominator** — a failed cell is not dropped before computing a
-rate). **Sensitivity check:** recompute excluding chapter-strained subcriteria (3.3, 4.1, 5.2);
+**Method:** per-block paired Δ vs. Sol → across-block mean → within-model spread → worst cell →
+gate rates (hard-gate failures **stay in the denominator** — a failed cell is not dropped before
+computing a rate). A clustered bootstrap (resample blocks, then replicates within block) is
+reported as **indicative dispersion only** — with 3 block clusters it cannot support a stable CI
+(red-team F5), so **no decision rule keys on a CI**: decisions key on sign-consistency across
+blocks, the worst cell, the ±W band on the mean Δ, and Stage-2 replication. **Sensitivity check:** recompute excluding chapter-strained subcriteria (3.3, 4.1, 5.2);
 the winner's sign must hold under the recompute, else the result is **INCONCLUSIVE** regardless of
 what the full-criteria result said.
 

@@ -1,9 +1,9 @@
 {
   "schema": "v25-chapter-experiment-budget-plan-v1",
   "ceilingCodexOnlyReading": 150,
-  "remainingCodexOnlyReading": "129-133 (150 minus ~17-21 already spent)",
-  "remainingCombinedReading": "116-120 (further -13 Claude sessions) — does not fit the default ~130-session path",
-  "defaultPathSessions": "~130",
+  "remainingCodexOnlyReading": "129-133 (150 minus ~17-21 already spent; ESTIMATE pending the Stage-0a exact ledger recount)",
+  "remainingCombinedReading": "116-120 (further -13 Claude sessions) — the honest default path (~141, incl. Stage-2 D7-lite) does not reliably fit under EITHER reading",
+  "defaultPathSessions": "~141 incl. Stage-2 D7-lite (the normal case when D7 survives interaction analysis; ~119 if D7 is demoted) — the campaign starts at ladder rung R1 by default unless the owner grants explicit headroom",
   "stages": [
     {
       "stage": "0a",
@@ -15,9 +15,9 @@
     {
       "stage": "0b",
       "name": "calibration",
-      "planned": 14,
+      "planned": 15,
       "cap": 24,
-      "goStop": "noise STOP; >=6/8 first-attempt-valid; D7-lite |delta| <= 3.0 else demoted from start"
+      "goStop": "noise STOP; >=6/8 first-attempt-valid; D7-lite |delta| <= 3.0 at BOTH the mid band and the high band (>=1 sealed 2026-07-15 owner-adjudicated reference unit ~90) else decision-rule 7's 75 gate is dropped as uncalibrated and D7 is descriptive-only"
     },
     {
       "stage": "1",
@@ -46,7 +46,7 @@
       "name": "resolver",
       "planned": 0,
       "cap": 0,
-      "goStop": "only if CI straddles the equivalence band; requires NEW owner authorization; pre-registered rule applies first"
+      "goStop": "only if the pre-registered decision inputs are indeterminate (sign inconsistency across blocks, or |mean Delta| inside the W band); requires NEW owner authorization; pre-registered rule applies first"
     },
     {
       "stage": "4",
@@ -59,8 +59,8 @@
   "ladder": [
     {
       "id": "R1",
-      "deltaSessions": -6,
-      "action": "Drop Stage-1 D7-lite secondary sessions from 12 to 6 for the block selectSmallestSpreadBlock() selects (information criterion, never outcome-direction).",
+      "deltaSessions": -4,
+      "action": "Drop Stage-1 D7-lite entirely for the block selectSmallestSpreadBlock() selects — its 3 model cells + its 1 drift unit (12 -> 8 D7-lite sessions; information criterion, never outcome-direction).",
       "selection": "smallest-replicate1-e-spread-block"
     },
     {

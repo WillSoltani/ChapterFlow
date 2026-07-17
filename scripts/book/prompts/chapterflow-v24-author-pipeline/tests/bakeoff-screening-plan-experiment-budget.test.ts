@@ -83,7 +83,7 @@ test("(b) the registered stage table has exactly the 7 frozen §5.3 stages in or
 
 test("(b) Stage 0b/1/2 budgets match the frozen planned->cap numbers", () => {
   const byStage = new Map(EXPERIMENT_STAGE_BUDGETS.map((s) => [s.stage, s]));
-  assert.deepEqual({ planned: byStage.get("0b")!.planned, cap: byStage.get("0b")!.cap }, { planned: 14, cap: 24 });
+  assert.deepEqual({ planned: byStage.get("0b")!.planned, cap: byStage.get("0b")!.cap }, { planned: 15, cap: 24 });
   assert.deepEqual({ planned: byStage.get("1")!.planned, cap: byStage.get("1")!.cap }, { planned: 84, cap: 119 });
   assert.deepEqual({ planned: byStage.get("2")!.planned, cap: byStage.get("2")!.cap }, { planned: 32, cap: 46 });
   assert.equal(byStage.get("2")!.capWithD7Lite, 58, "Stage 2's D7-lite-inclusive cap reading is carried, not collapsed");
@@ -95,7 +95,9 @@ test("(b) both D-3 ceiling readings are disclosed ranges, not invented single nu
   assert.equal(EXPERIMENT_BUDGET_PLAN.ceilingCodexOnlyReading, 150);
   assert.match(EXPERIMENT_BUDGET_PLAN.remainingCodexOnlyReading, /129-133/);
   assert.match(EXPERIMENT_BUDGET_PLAN.remainingCombinedReading, /116-120/);
-  assert.match(EXPERIMENT_BUDGET_PLAN.remainingCombinedReading, /does not fit the default/);
+  assert.match(EXPERIMENT_BUDGET_PLAN.remainingCombinedReading, /does not\s+reliably fit under EITHER reading/);
+  assert.match(EXPERIMENT_BUDGET_PLAN.defaultPathSessions, /141/);
+  assert.match(EXPERIMENT_BUDGET_PLAN.defaultPathSessions, /rung R1 by default/);
 });
 
 // ── (c) ladder block selection: deterministic, never outcome-direction ─────
@@ -168,7 +170,7 @@ test("(c) the registered ladder has exactly R1/R2/R3 in order, R1/R2 select via 
   assert.equal(DEGRADATION_LADDER[0].selection, "smallest-replicate1-e-spread-block");
   assert.equal(DEGRADATION_LADDER[1].selection, "same-block-replicate-2");
   assert.equal(DEGRADATION_LADDER[2].selection, "halt-for-reauthorization");
-  assert.equal(DEGRADATION_LADDER[0].deltaSessions, -6);
+  assert.equal(DEGRADATION_LADDER[0].deltaSessions, -4);
   assert.equal(DEGRADATION_LADDER[1].deltaSessions, -12);
   assert.equal(DEGRADATION_LADDER[2].deltaSessions, 0, "R3 halts; it does not remove sessions");
 });

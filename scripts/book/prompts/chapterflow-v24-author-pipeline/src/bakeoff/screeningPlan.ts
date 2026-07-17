@@ -541,9 +541,12 @@ export const EXPERIMENT_STAGE_BUDGETS: ExperimentStageBudget[] = [
   {
     stage: "0b",
     name: "calibration",
-    planned: 14,
+    planned: 15,
     cap: 24,
-    goStop: "noise STOP; >=6/8 first-attempt-valid; D7-lite |delta| <= 3.0 else demoted from start",
+    goStop:
+      "noise STOP; >=6/8 first-attempt-valid; D7-lite |delta| <= 3.0 at BOTH the mid band and the high band " +
+      "(>=1 sealed 2026-07-15 owner-adjudicated reference unit ~90) else decision-rule 7's 75 gate is dropped " +
+      "as uncalibrated and D7 is descriptive-only",
   },
   {
     stage: "1",
@@ -572,7 +575,9 @@ export const EXPERIMENT_STAGE_BUDGETS: ExperimentStageBudget[] = [
     name: "resolver",
     planned: 0,
     cap: 0,
-    goStop: "only if CI straddles the equivalence band; requires NEW owner authorization; pre-registered rule applies first",
+    goStop:
+      "only if the pre-registered decision inputs are indeterminate (sign inconsistency across blocks, or " +
+      "|mean Delta| inside the W band); requires NEW owner authorization; pre-registered rule applies first",
   },
   {
     stage: "4",
@@ -594,7 +599,7 @@ export type DegradationSelectionMode =
 /** One rung of the frozen degradation ladder (§5.3, verbatim numbers). The
  *  ladder is DATA — a fixed, pre-registered fallback order, never computed or
  *  re-derived from the live outcome; `deltaSessions` is the session delta
- *  against the default ~130-session path as stated in the frozen plan. */
+ *  against the default ~141-session path as stated in the frozen plan. */
 export type DegradationRung = {
   id: DegradationRungId;
   deltaSessions: number;
@@ -602,19 +607,20 @@ export type DegradationRung = {
   selection: DegradationSelectionMode;
 };
 
-/** The registered degradation ladder (frozen plan §5.3): R1 drops Stage-1
- *  D7-lite from 12 to 6 sessions for ONE block, chosen by
- *  `selectSmallestSpreadBlock()` (an information criterion — never by which
- *  candidate is ahead); R2 drops replicate 2 of that SAME block (R2 never
- *  picks a different block, and never fires without R1 having selected one);
- *  R3 halts for new owner re-authorization rather than degrading further. */
+/** The registered degradation ladder (frozen plan §5.3, red-team F8 corrected):
+ *  R1 drops ALL Stage-1 D7-lite for ONE block — its 3 model cells + its 1
+ *  drift unit = 4 sessions (12 -> 8) — chosen by `selectSmallestSpreadBlock()`
+ *  (an information criterion — never by which candidate is ahead); R2 drops
+ *  replicate 2 of that SAME block (R2 never picks a different block, and never
+ *  fires without R1 having selected one); R3 halts for new owner
+ *  re-authorization rather than degrading further. */
 export const DEGRADATION_LADDER: DegradationRung[] = [
   {
     id: "R1",
-    deltaSessions: -6,
+    deltaSessions: -4,
     action:
-      "Drop Stage-1 D7-lite secondary sessions from 12 to 6 for the block selectSmallestSpreadBlock() selects " +
-      "(information criterion, never outcome-direction).",
+      "Drop Stage-1 D7-lite entirely for the block selectSmallestSpreadBlock() selects — its 3 model cells + " +
+      "its 1 drift unit (12 -> 8 D7-lite sessions; information criterion, never outcome-direction).",
     selection: "smallest-replicate1-e-spread-block",
   },
   {
@@ -670,9 +676,14 @@ export type ExperimentBudgetPlan = {
 export const EXPERIMENT_BUDGET_PLAN: ExperimentBudgetPlan = {
   schema: EXPERIMENT_BUDGET_PLAN_SCHEMA,
   ceilingCodexOnlyReading: 150,
-  remainingCodexOnlyReading: "129-133 (150 minus ~17-21 already spent)",
-  remainingCombinedReading: "116-120 (further -13 Claude sessions) — does not fit the default ~130-session path",
-  defaultPathSessions: "~130",
+  remainingCodexOnlyReading:
+    "129-133 (150 minus ~17-21 already spent; ESTIMATE pending the Stage-0a exact ledger recount)",
+  remainingCombinedReading:
+    "116-120 (further -13 Claude sessions) — the honest default path (~141, incl. Stage-2 D7-lite) does not " +
+    "reliably fit under EITHER reading",
+  defaultPathSessions:
+    "~141 incl. Stage-2 D7-lite (the normal case when D7 survives interaction analysis; ~119 if D7 is " +
+    "demoted) — the campaign starts at ladder rung R1 by default unless the owner grants explicit headroom",
   stages: EXPERIMENT_STAGE_BUDGETS,
   ladder: DEGRADATION_LADDER,
   stage1AtCapWithoutConfirmationRule: STAGE1_AT_CAP_WITHOUT_CONFIRMATION_RULE,
