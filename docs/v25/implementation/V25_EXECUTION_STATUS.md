@@ -69,7 +69,9 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 502 | **accepted (built + live-executed)** | wp/502-capability-probe | 11e0362ac | 6187d3bf6 | rt PASS; RT-1 fixed pre-merge; live probe 2026-07-17: ALL 4 configs SUPPORTED (8 calls, 8/150 ceiling); results doc + ledger committed |
 | 702 | integrated | wp/702-bakeoff-d7-judge | 416a73385 | 5763b359b | rt PASS; R1 calibration-collision guard fixed pre-merge; merged d7b626418; D7 = primary judge, floor = veto, no 5.5 |
 | 701b (NEW, L-40) | integrated | wp/701b-auto-research-verb | 498266021 | 2f50de373 | rt PASS zero new defects; structural stop proven; merged; F1 pre-existing ledger-stage cosmetic noted |
-| 703 (build half) | integrated | wp/703-screening-build | 5b9e5f3ba | cd86b1ddf | rt PASS; FINDING-1 finite-bar fixed pre-merge; R3 judge guard closed; screening EXECUTION pending corpus freeze |
+| 703 (build half) | integrated | wp/703-screening-build | 5b9e5f3ba | cd86b1ddf | rt PASS; FINDING-1 finite-bar fixed pre-merge; R3 judge guard closed |
+| 703x (driver) | integrated | wp/703x-screening-driver | 19a4a1b49 | 3a5ab1f23 | registered-invocation runner; isolated claude -p D7 sessions; ledger-mirror injection (runBakeoff gap #1); ≤40 = codex cap ruling (gap #2) |
+| 703 (execution) | **RUNNING** | plan branch (orchestrator custody) | — | — | Invocation 1/6 stage1-nudge-ch03-xhigh-trio LIVE (bg bw83do4br); sequential per book; resume-safe conductor |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
