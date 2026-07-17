@@ -6,7 +6,7 @@ import type {
 } from "./native-contract-types";
 
 const EXPECTED_OPERATION_COUNT = 83;
-const EXPECTED_PRODUCER_COUNT = 93;
+const EXPECTED_PRODUCER_COUNT = 92;
 const EXPECTED_MATRIX_ROW_COUNT = 29;
 const EXPECTED_CANONICALIZATION =
   "UTF-8 records; fixed field order; TAB-separated fields; null matrix row is empty; lexicographically sorted lines joined with LF and a terminal LF";
@@ -461,7 +461,7 @@ export function parseIosSourceInventoryManifest(value: unknown): IosSourceInvent
     relationalRecordCount !== EXPECTED_PRODUCER_COUNT ||
     matrixRowCount !== EXPECTED_MATRIX_ROW_COUNT
   ) {
-    throw new Error("iOS relational inventory must contain exactly 83 operations, 93 records, and 29 rows");
+    throw new Error("iOS relational inventory must contain exactly 83 operations, 92 records, and 29 rows");
   }
 
   const operationKeySha256 = requiredSha256(value.operationKeySha256, "operationKeySha256");

@@ -106,13 +106,6 @@ const BLOCKER_RESOLUTIONS: Record<string, BlockerResolution> = {
     decisionRequired: false,
     unresolvedDecision: null,
   },
-  "quiz-submit.post": {
-    owner: "ios",
-    rationale: "Backend canonical response validation is explicit; both online and replay iOS producers send older incompatible answer DTOs.",
-    dependency: "WP-SYNC-02",
-    decisionRequired: false,
-    unresolvedDecision: null,
-  },
   "referral-apply.post": {
     owner: "product_or_security_decision",
     rationale: "No backend route establishes referral eligibility, abuse controls, or entitlement effects for the visible native producer.",
@@ -508,11 +501,11 @@ function matched(seed: OperationSeed): NativeContractOperationDefinition {
     },
     {
       kind: "native_request_fixture_proof",
-      reason: "Native requests are source-inventoried and hand-registered; the backend exporter does not instantiate Swift factories, and only six of 93 producers currently have exact factory tests in the iOS consumer.",
+      reason: "Native requests are source-inventoried and hand-registered; the backend exporter does not instantiate Swift factories, and only six of 92 producers currently have exact factory tests in the iOS consumer.",
     },
     {
       kind: "native_response_consumer_proof",
-      reason: "Only 24 of 60 partial operations currently pass the bundle success payload through the production iOS decoder and a cache round-trip; the remaining success fixtures are schema evidence, not native-consumer execution proof.",
+      reason: "Only 24 of 61 partial operations currently pass the bundle success payload through the production iOS decoder and a cache round-trip; the remaining success fixtures are schema evidence, not native-consumer execution proof.",
     },
     {
       kind: "source_dependency_closure",
@@ -1036,7 +1029,7 @@ nativeContractOperationDefinitions.push(
 );
 
 nativeContractOperationDefinitions.push(
-  blocked({
+  matched({
     id: "quiz-submit.post",
     method: "POST",
     routeTemplate: "/book/me/quiz/{bookId}/{chapterNumber}/submit",
@@ -1046,44 +1039,103 @@ nativeContractOperationDefinitions.push(
         producer:
           "submitQuiz.online@Packages/QuizFeature/Sources/QuizFeature/Endpoints+Quiz.swift:9",
         body: jsonBody({
-          answers: [
-            { questionId: "question-synthetic-1", choiceId: "choice-a" },
+          attemptNumber: 1,
+          responses: [
+            {
+              questionId: "question-synthetic-1",
+              selectedChoiceId: "choice-a",
+            },
           ],
         }),
-        compatibility: "client_drift",
-      },
-      {
-        producer:
-          "submitQuiz.sync@Packages/Networking/Sources/Networking/Endpoint+Sync.swift:18",
-        body: jsonBody({
-          sessionId: "session-synthetic",
-          answers: { "question-synthetic-1": "choice-a" },
-        }),
-        compatibility: "client_drift",
       },
     ],
-    callSites: ["LiveQuizRepository.swift:109", "SyncDispatch.swift:50"],
+    callSites: ["LiveQuizRepository.swift:211"],
     iosModels: ["QuizAttemptResult"],
-    cacheNotes: "Pending offline grading must remain truthful; no synthetic local result is allowed.",
-    idempotencyNotes: "Only the sync variant carries sessionId, but neither native body matches the backend request schema.",
+    cacheNotes: "The authoritative no-store result may clear the matching local draft only after this request succeeds.",
+    idempotencyNotes: "This write is not replay-idempotent: attemptNumber is a freshness check, not an idempotency key, and no automatic replay contract is claimed.",
+    responseBody: json({
+      quiz: {
+        chapterId: "book-synthetic-ch01",
+        chapterNumber: 1,
+        title: "Synthetic quiz",
+        passingScorePercent: 80,
+        status: "passed",
+        attemptNumber: 1,
+        nextAttemptNumber: null,
+        attemptsCount: 1,
+        failureStreak: 0,
+        cooldownSeconds: 0,
+        nextAttemptAvailableAt: null,
+        highestScorePercent: 100,
+        unlockedNextChapter: true,
+        latestAttemptAt: "2026-07-17T12:00:00.000Z",
+        questions: [
+          {
+            questionId: "question-synthetic-1",
+            prompt: "Which option is synthetic?",
+            choices: [
+              { choiceId: "choice-a", text: "Option A" },
+              { choiceId: "choice-b", text: "Option B" },
+            ],
+            selectedChoiceId: "choice-a",
+            correctChoiceId: "choice-a",
+            isCorrect: true,
+          },
+        ],
+        result: {
+          attemptNumber: 1,
+          scorePercent: 100,
+          correctAnswers: 1,
+          totalQuestions: 1,
+          passed: true,
+          submittedAt: "2026-07-17T12:00:00.000Z",
+        },
+        history: [
+          {
+            attemptNumber: 1,
+            scorePercent: 100,
+            correctAnswers: 1,
+            totalQuestions: 1,
+            passed: true,
+            submittedAt: "2026-07-17T12:00:00.000Z",
+          },
+        ],
+      },
+      progress: {
+        currentChapterNumber: 2,
+        unlockedThroughChapterNumber: 2,
+        completedChapters: [1],
+      },
+    }),
+    responseHeaders: [{ name: "Cache-Control", value: "private, no-store" }],
+    responseSources: [
+      { path: "app/app/api/book/_lib/quiz-session.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/types.ts", role: "schema" },
+    ],
     authority: {
       classification: "server_decision",
-      pointers: ["/passed", "/scorePercent", "/unlockedNextChapter"],
-    },
-    blocker: {
-      kind: "request_mismatch",
-      reason: "Backend requires responses:[{questionId,selectedChoiceId|selectedIndex}]; both native producers send incompatible answers shapes.",
-      evidence: [
-        "app/app/api/book/me/quiz/[bookId]/[chapterNumber]/submit/route.ts:90-136",
-        "Packages/QuizFeature/Sources/QuizFeature/Endpoints+Quiz.swift:9-20",
-        "Packages/Networking/Sources/Networking/Endpoint+Sync.swift:18-35",
+      pointers: [
+        "/quiz/result/passed",
+        "/quiz/result/scorePercent",
+        "/quiz/unlockedNextChapter",
+        "/quiz/cooldownSeconds",
+        "/quiz/nextAttemptAvailableAt",
       ],
-      candidate: {
-        routeSource:
-          "app/app/api/book/me/quiz/[bookId]/[chapterNumber]/submit/route.ts",
-        methods: ["POST"],
-      },
     },
+    additionalErrorFixtures: [
+      {
+        status: 409,
+        code: "quiz_session_stale",
+        headers: [],
+        body: {
+          error: {
+            code: "quiz_session_stale",
+            message: "This quiz session is out of date. Refresh and try again.",
+            requestId: "req_synthetic_quiz_submit_stale",
+          },
+        },
+      },
+    ],
   }),
   matched({
     id: "reading-session.post",

@@ -177,7 +177,6 @@ public-profile.get:getpublicprofile
 quiz-check.post:checkquizanswer
 quiz-event.post:postquizevent
 quiz-submit.post:submitquiz-online
-quiz-submit.post:submitquiz-sync
 quiz.get:getquiz
 quiz.get:getquizfordownload
 reading-session.post:postaudiosessionevent
@@ -214,7 +213,7 @@ function buildBundle(): NativeContractBundle {
   return buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions);
 }
 
-test("native inventory equals the verified 83-operation / 93-producer iOS source inventory", () => {
+test("native inventory equals the verified 83-operation / 92-producer iOS source inventory", () => {
   const bundle = buildBundle();
   const actualOperationKeys = bundle.operations
     .map((operation) => `${operation.id}|${operation.method}|${operation.routeTemplate}`)
@@ -228,8 +227,10 @@ test("native inventory equals the verified 83-operation / 93-producer iOS source
   assert.deepEqual(actualOperationKeys, expectedOperationKeys);
   assert.deepEqual(actualVariantIds, expectedVariantIds);
   assert.equal(bundle.inventory.uniqueOperationCount, 83);
-  assert.equal(bundle.inventory.nativeProducerCount, 93);
+  assert.equal(bundle.inventory.nativeProducerCount, 92);
   assert.equal(bundle.inventory.matrixRowCount, 29);
+  assert.equal(bundle.operations.filter((operation) => operation.coverage === "partial").length, 61);
+  assert.equal(bundle.operations.filter((operation) => operation.coverage === "blocked").length, 22);
 });
 
 test("shared expected-missing route paths form a unique provenance input set", () => {
@@ -463,7 +464,7 @@ test("recent-auth routes that bypass the active-user guard use the precise auth 
 
 test("every blocker has closed resolution ownership and decision metadata", () => {
   const blocked = buildBundle().operations.filter((operation) => operation.coverage === "blocked");
-  assert.equal(blocked.length, 23);
+  assert.equal(blocked.length, 22);
   const validOwners = new Set([
     "ios",
     "backend",
@@ -501,9 +502,9 @@ test("authority metadata separates structural, production-consumer, and blocked 
     };
   };
   assert.deepEqual(bundle.authorityProofSummary, {
-    structuralFixtureVerifiedOperationCount: 51,
+    structuralFixtureVerifiedOperationCount: 52,
     productionConsumerVerifiedOperationCount: 4,
-    blockedOrUnprovenOperationCount: 1,
+    blockedOrUnprovenOperationCount: 0,
   });
 
   const expectedProductionConsumers = new Map([
@@ -538,16 +539,68 @@ test("authority metadata separates structural, production-consumer, and blocked 
     }
   }
   const submit = bundle.operations.find((operation) => operation.id === "quiz-submit.post");
+  assert.equal(submit?.coverage, "partial");
+  assert.equal(submit?.blocker, undefined);
   assert.equal(
     (submit?.authority as unknown as { proof?: { level?: string } }).proof?.level,
-    "blocked_unproven"
+    "structural_fixture_only"
+  );
+  assert.deepEqual(submit?.authority.expectedRequiredPointers, [
+    "/quiz/result/passed",
+    "/quiz/result/scorePercent",
+    "/quiz/unlockedNextChapter",
+    "/quiz/cooldownSeconds",
+    "/quiz/nextAttemptAvailableAt",
+  ]);
+  assert.equal(submit?.nativeRequestFixtures.length, 1);
+  assert.equal(
+    submit?.nativeRequestFixtures[0]?.operationVariantId,
+    "quiz-submit.post:submitquiz-online"
+  );
+  assert.deepEqual(submit?.nativeRequestFixtures[0]?.body, {
+    kind: "json",
+    value: {
+      attemptNumber: 1,
+      responses: [
+        {
+          questionId: "question-synthetic-1",
+          selectedChoiceId: "choice-a",
+        },
+      ],
+    },
+  });
+  assert.equal(submit?.idempotency.class, "unknown");
+  assert.match(submit?.idempotency.notes ?? "", /not replay-idempotent/i);
+  assert.ok(submit?.fixtures?.success.payload.kind === "json");
+  const submitPayload = submit.fixtures.success.payload.value as {
+    quiz?: {
+      result?: { passed?: boolean; scorePercent?: number };
+      unlockedNextChapter?: boolean;
+      cooldownSeconds?: number;
+      nextAttemptAvailableAt?: string | null;
+    };
+    progress?: { unlockedThroughChapterNumber?: number };
+  };
+  assert.equal(submitPayload.quiz?.result?.passed, true);
+  assert.equal(submitPayload.quiz?.result?.scorePercent, 100);
+  assert.equal(submitPayload.quiz?.unlockedNextChapter, true);
+  assert.equal(submitPayload.quiz?.cooldownSeconds, 0);
+  assert.equal(submitPayload.quiz?.nextAttemptAvailableAt, null);
+  assert.equal(submitPayload.progress?.unlockedThroughChapterNumber, 2);
+  assert.ok(
+    submit.fixtures.errors.some(
+      (error) => error.status === 409 && error.code === "quiz_session_stale"
+    )
   );
   const submitAuthorityGap = submit?.gaps.find(
     (gap) => gap.kind === "native_authority_consumer_proof"
   );
-  assert.equal(submitAuthorityGap?.owner, submit?.blocker?.resolution.owner);
-  assert.equal(submitAuthorityGap?.dependency, "WP-SYNC-02");
-  assert.match(submitAuthorityGap?.reason ?? "", /\/passed.*\/scorePercent.*\/unlockedNextChapter/);
+  assert.equal(submitAuthorityGap?.owner, "ios");
+  assert.equal(submitAuthorityGap?.dependency, "WP-CONTRACT-01 iOS authority-consumer follow-up");
+  assert.match(
+    submitAuthorityGap?.reason ?? "",
+    /\/quiz\/result\/passed.*\/quiz\/result\/scorePercent.*\/quiz\/unlockedNextChapter/
+  );
 });
 
 test("own-profile identity fixture follows the production identity.sub contract", () => {
@@ -575,9 +628,9 @@ test("backend inventory is pinned to an independent iOS source manifest without 
   assert.equal(createHash("sha256").update(rawManifest).digest("hex"), evidence.manifestSha256);
   assert.equal(manifest.schemaVersion, "chapterflow-ios-native-inventory-v2");
   assert.equal(evidence.manifestSchemaVersion, "chapterflow-ios-native-inventory-v2");
-  assert.equal(manifest.records?.length, 93);
+  assert.equal(manifest.records?.length, 92);
   assert.equal(manifest.matrixRows?.length, 29);
-  assert.equal(manifest.relationalRecordCount, 93);
+  assert.equal(manifest.relationalRecordCount, 92);
   assert.equal(manifest.relationalRecordSha256, evidence.relationalRecordSha256);
   assert.equal(evidence.iosBaseRevision, "92a5c351a42771f546b3d0e575b3b37a8cbfb588");
   assert.equal(evidence.iosSourceRevisionPhase, "committed_contract_branch");
@@ -585,7 +638,7 @@ test("backend inventory is pinned to an independent iOS source manifest without 
   assert.equal(evidence.backendRuntimeFactoryValidationPerformed, false);
   assert.equal(evidence.exactFactoryTestedProducerCount, 6);
   assert.equal(evidence.bundleSuccessDecoderTestedOperationCount, 24);
-  assert.equal(evidence.relationalRecordCount, 93);
+  assert.equal(evidence.relationalRecordCount, 92);
   assert.equal(evidence.matrixRowCount, 29);
   assert.match(evidence.producerIdentitySha256, /^[0-9a-f]{64}$/);
   assert.match(evidence.sourceInputTreeSha256, /^[0-9a-f]{64}$/);
@@ -805,7 +858,7 @@ test("book-state success requires an authoritative closed stateStatus", () => {
     ["book_not_found", "book_version_not_found"]
   );
   assert.equal(bundle.inventory.uniqueOperationCount, 83);
-  assert.equal(bundle.inventory.nativeProducerCount, 93);
+  assert.equal(bundle.inventory.nativeProducerCount, 92);
   assert.equal(bundle.inventory.matrixRowCount, 29);
 
   const missing = structuredClone(bundle);
