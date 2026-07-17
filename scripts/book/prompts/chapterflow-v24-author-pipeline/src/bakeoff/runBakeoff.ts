@@ -58,6 +58,8 @@ import type { ChapterV21 } from "../types.js";
 import { BAKEOFF_MANIFEST_SCHEMA } from "./types.js";
 import { PIPELINE_DIR, bakeoffRoots, candidateDir, modelSlug, pipelineRel, sha256File, type BakeoffRoots } from "./paths.js";
 import { intakeDraft, resolveBookIdForDraft, type ExtractorDeps, type IntakeOverrides } from "./intake.js";
+import { intakeCorpus, type CorpusIntakeDeps } from "./corpusIntake.js";
+import { resolveRoute, SUPPORTED_MODEL_IDS, UnsupportedModelConfigError } from "../orchestrator/modelPolicy.js";
 import { freezeSharedInputs, verifySharedInputs } from "./freeze.js";
 import {
   defaultValidateInputs,
@@ -93,6 +95,36 @@ export const DEFAULT_JUDGE_EFFORT: ReasoningEffort = "high";
 const RESEARCH_TIMEOUT_MS = 45 * 60 * 1000;
 const PREFLIGHT_TIMEOUT_MS = 5 * 60 * 1000;
 const SOURCE_REPAIR_MAX_PASSES = 3;
+
+/**
+ * rt702-R3 (WP-703): refuse a non-5.6 advisory judge id BEFORE any spawn.
+ *
+ * The advisory judge model is used in the preflight probe and the (non-blocking)
+ * codex review via `deps.spawn({ model: judgeModel })`. `spawnCodexAgent` resolves
+ * that model through `resolveRoute` with `requireSupportedModel: false`
+ * (codexAgent.ts:497) — it MUST, so the legacy multi-provider router can honestly
+ * record a foreign-provider id — so nothing downstream rejects a legacy-family
+ * `--judge-model` before a live probe reaches the provider. directive-1 forbids
+ * the legacy baseline family as a judge/benchmark, so enforce membership in the
+ * 5.6 candidate set HERE, at the conductor boundary, before any spawn. Raises the
+ * SAME typed `UnsupportedModelConfigError` (via `resolveRoute`) every other route
+ * refusal uses; re-wrapped with the judge context.
+ */
+export function assertBakeoffJudgeSupported(judgeModel: string): void {
+  try {
+    resolveRoute({ role: "bakeoff-judge", requestedModel: judgeModel, requireSupportedModel: true });
+  } catch (err) {
+    if (err instanceof UnsupportedModelConfigError) {
+      throw new UnsupportedModelConfigError({
+        reason: err.reason,
+        failingModel: judgeModel,
+        failingCheck: "advisory --judge-model is one of the supported 5.6 candidates",
+        detail: `the advisory judge must be a supported candidate (${[...SUPPORTED_MODEL_IDS].join(", ")}); the retired legacy baseline family is void as a judge/benchmark (directive-1) — refusing before any spawn`,
+      });
+    }
+    throw err;
+  }
+}
 
 export type DelegateVerb = (args: string[], env: Record<string, string>, onLine: (line: string) => void) => Promise<VerbResult>;
 
@@ -223,8 +255,26 @@ function resolveStages(over?: Partial<BakeoffStages>): BakeoffStages {
   };
 }
 
+/** WP-703 — a no-draft CORPUS run spec. Instead of an operator manuscript, the
+ *  run reads a book whose research/compile shared inputs are already frozen on
+ *  disk (the sealed bakeoff corpus). Mutually exclusive with `draftPath`. */
+export type CorpusRunSpec = {
+  /** The corpus book under test. */
+  bookId: string;
+  /** The chapter subset (compare-only; a strict subset of the book's index). */
+  chapters: number[];
+  /** Override the corpus manifest location (tests point at a fixture). */
+  manifestPath?: string;
+  /** Injected corpus-intake deps (tests supply a manifest reader + shared-input
+   *  collector so the ready path is provable without on-disk compile outputs). */
+  intakeDeps?: CorpusIntakeDeps;
+};
+
 export type RunBakeoffOptions = {
-  draftPath: string;
+  /** The operator manuscript. Required UNLESS `corpus` is set (a no-draft run). */
+  draftPath?: string;
+  /** WP-703 no-draft corpus run. Mutually exclusive with `draftPath`. */
+  corpus?: CorpusRunSpec;
   bookId?: string;
   runId?: string;
   models?: string[];
@@ -340,14 +390,42 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
         "is void per directive-1. Pass --judge-model; the target judge is the D7 rubric-audit instrument (WP-702).",
     );
   }
+  // rt702-R3 (WP-703): the advisory judge must be a supported 5.6 candidate —
+  // refuse a retired-baseline-family id BEFORE any spawn (intake/preflight/…).
+  assertBakeoffJudgeSupported(judgeModel);
   const judge = { model: judgeModel, effort: opts.judgeEffort ?? DEFAULT_JUDGE_EFFORT };
   const overrides = opts.overrides ?? {};
 
-  // Identity + run root. Default run id is DERIVED FROM THE DRAFT HASH so a
-  // re-paste of the same task resumes the same run without remembering ids.
-  const bookId = normSlug(opts.bookId ?? resolveBookIdForDraft(opts.draftPath, overrides, opts.extractor));
-  const draftSha = sha256File(resolve(opts.draftPath));
-  const runId = opts.runId ?? `bo-${draftSha.slice(0, 10)}`;
+  // WP-703: a run is EITHER a draft-intake run OR a no-draft corpus run.
+  const corpusMode = opts.corpus !== undefined;
+  if (corpusMode && opts.draftPath) {
+    throw new Error("model-bakeoff: pass EITHER --draft OR a corpus run spec, never both.");
+  }
+  if (!corpusMode && !opts.draftPath) {
+    throw new Error("model-bakeoff: a draft (--draft) or a corpus run spec is required.");
+  }
+  // The chapter subset under test: from the corpus spec (no-draft) or --chapters.
+  const requestedChapters = corpusMode
+    ? [...new Set(opts.corpus!.chapters)].sort((a, b) => a - b)
+    : opts.chapters;
+  if (corpusMode && (requestedChapters === undefined || requestedChapters.length === 0)) {
+    throw new Error("model-bakeoff: a corpus run requires a non-empty chapter subset (compare-only).");
+  }
+
+  // Identity + run root. A draft run derives its default run id from the draft
+  // hash (a re-paste resumes the same run); a corpus run derives a stable id from
+  // the book + frozen chapter subset (the sealed corpus is the run's identity).
+  const bookId = normSlug(
+    corpusMode ? opts.corpus!.bookId : (opts.bookId ?? resolveBookIdForDraft(opts.draftPath!, overrides, opts.extractor)),
+  );
+  let runId: string;
+  if (opts.runId) {
+    runId = opts.runId;
+  } else if (corpusMode) {
+    runId = `bo-corpus-${bookId}-ch${requestedChapters!.map((n) => String(n).padStart(2, "0")).join("-")}`;
+  } else {
+    runId = `bo-${sha256File(resolve(opts.draftPath!)).slice(0, 10)}`;
+  }
   const roots = bakeoffRoots(bookId, runId, opts.stateRoot);
 
   let manifest = readManifest(roots);
@@ -389,9 +467,12 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
   const specs = manifest.candidates;
 
   if (opts.plan) {
+    const sourceLine = corpusMode
+      ? `  corpus: ${bookId} chapters ${requestedChapters!.join(", ")} (manifest ${opts.corpus!.manifestPath ?? "docs/v25/bakeoff-corpus-v1/corpus-manifest.json"}) — no draft`
+      : `  draft: ${opts.draftPath} (sha256 ${sha256File(resolve(opts.draftPath!)).slice(0, 16)})`;
     const planLines = [
       `[bakeoff] PLAN for ${bookId} (run ${runId})`,
-      `  draft: ${opts.draftPath} (sha256 ${draftSha.slice(0, 16)})`,
+      sourceLine,
       `  candidates: ${specs.map((s) => `${s.model} @ ${s.effort} → work/${s.slot}`).join("; ")}`,
       `  judge (fixed): ${judge.model} @ ${judge.effort}`,
       `  publish: ${manifest.publish ? "true (verified publish path after formal QC)" : "false (halt at ready-to-publish)"}`,
@@ -421,17 +502,42 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
 
     // ── Phase: intake ─────────────────────────────────────────────────────────
     if (!phaseDone(manifest, "intake")) {
-      log(`[bakeoff] intake: ${opts.draftPath}`);
-      manifest.intake = intakeDraft(opts.draftPath, roots, overrides, opts.extractor);
-      log(`[bakeoff] intake: "${manifest.intake.title ?? "(title unresolved)"}"${manifest.intake.author ? ` by ${manifest.intake.author}` : ""} → bookId ${manifest.intake.bookId} (identity ${manifest.intake.identityConfident ? "confident" : "PROVISIONAL"})`);
+      if (corpusMode) {
+        // No-draft corpus intake: verify the sealed packet is bakeoff-ready, the
+        // target unit's authoringSource is resolved, and the shared inputs exist.
+        // Fail CLOSED (halt) with a truthful message when not-ready.
+        log(`[bakeoff] corpus-intake: ${bookId} chapters ${requestedChapters!.join(", ")}`);
+        try {
+          manifest.corpusIntake = intakeCorpus({
+            bookId,
+            chapters: requestedChapters!,
+            manifestPath: opts.corpus!.manifestPath,
+            deps: opts.corpus!.intakeDeps,
+          });
+        } catch (err) {
+          return halt(`corpus intake refused: ${(err as Error).message}`);
+        }
+        log(`[bakeoff] corpus-intake: ${manifest.corpusIntake.units.length} unit(s) ready from corpus ${manifest.corpusIntake.corpusId} (${manifest.corpusIntake.sharedInputCount} shared inputs on disk)`);
+      } else {
+        log(`[bakeoff] intake: ${opts.draftPath}`);
+        manifest.intake = intakeDraft(opts.draftPath!, roots, overrides, opts.extractor);
+        log(`[bakeoff] intake: "${manifest.intake.title ?? "(title unresolved)"}"${manifest.intake.author ? ` by ${manifest.intake.author}` : ""} → bookId ${manifest.intake.bookId} (identity ${manifest.intake.identityConfident ? "confident" : "PROVISIONAL"})`);
+      }
       markDone(roots, manifest, "intake");
     }
-    const intake = manifest.intake!;
+    // Undefined on a corpus run (its no-draft record is manifest.corpusIntake);
+    // the draft-only fields below are guarded by !corpusMode / `intake &&`.
+    const intake = manifest.intake;
 
     // ── Phase: research (ONCE, draft-grounded, existing handoff contract) ────
+    // A corpus run has NO draft to ground research in — its research + compile
+    // outputs are already frozen on disk, so the draft-research phase is skipped
+    // idempotently (never a spawn).
     if (!phaseDone(manifest, "research")) {
-      if (deps.expectedChapterNumbers(bookId).length > 0) {
-        log(`[bakeoff] research: chapter index already exists — reusing existing research (shared across all candidates)`);
+      if (corpusMode || deps.expectedChapterNumbers(bookId).length > 0) {
+        log(`[bakeoff] research: ${corpusMode ? "corpus run — research is frozen on disk" : "chapter index already exists"} — reusing existing research (shared across all candidates)`);
+      } else if (!intake) {
+        return halt("draft-intake record is missing — cannot run draft-grounded research");
       } else {
         const outcome = await doDraftResearch(bookId, intake.storedTextRelPath, intake.title, intake.author, deps, log);
         if (outcome) return halt(outcome);
@@ -440,45 +546,55 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
     }
 
     // ── Phase: freeze (compile chain once + hash everything) ─────────────────
+    // A corpus run's research/compile outputs are ALREADY frozen on disk, so the
+    // compile chain (and its bounded source-repair spawns) is skipped — the phase
+    // only re-hashes the existing shared inputs. This keeps the corpus run
+    // strictly model-free and never regenerates canonical compile state.
     if (!phaseDone(manifest, "freeze")) {
-      const src = await ensureSourceReady(bookId, deps, log, heartbeat);
-      if (src) return halt(src);
-      for (const verb of [
-        ["compile-source-packets"], ["source-packet-gate"],
-        ["compile-book-design"], ["book-design-gate"],
-        ["compile-chapter-briefs"], ["chapter-brief-gate"],
-      ]) {
-        const r = await deps.runVerb([...verb, bookId]);
-        if (r.code !== 0) return halt(`compile step '${verb[0]}' failed:\n${(r.stdout || r.stderr).slice(0, 1600)}`);
-        log(`[bakeoff] freeze: ${verb[0]} ok`);
+      if (corpusMode) {
+        log(`[bakeoff] freeze: corpus run — research/compile already frozen on disk; hashing the existing shared inputs (no compile chain, no source-repair)`);
+      } else {
+        const src = await ensureSourceReady(bookId, deps, log, heartbeat);
+        if (src) return halt(src);
+        for (const verb of [
+          ["compile-source-packets"], ["source-packet-gate"],
+          ["compile-book-design"], ["book-design-gate"],
+          ["compile-chapter-briefs"], ["chapter-brief-gate"],
+        ]) {
+          const r = await deps.runVerb([...verb, bookId]);
+          if (r.code !== 0) return halt(`compile step '${verb[0]}' failed:\n${(r.stdout || r.stderr).slice(0, 1600)}`);
+          log(`[bakeoff] freeze: ${verb[0]} ok`);
+        }
       }
       const indexChapters = deps.expectedChapterNumbers(bookId);
       let chapterNumbers = indexChapters;
-      if (opts.chapters?.length) {
-        const bad = opts.chapters.filter((n) => !indexChapters.includes(n));
+      if (requestedChapters?.length) {
+        const bad = requestedChapters.filter((n) => !indexChapters.includes(n));
         if (bad.length > 0) {
-          return halt(`--chapters names chapters not in the index: ${bad.join(", ")} (the index has ${indexChapters.join(", ")})`);
+          return halt(`${corpusMode ? "corpus" : "--chapters"} names chapters not in the index: ${bad.join(", ")} (the index has ${indexChapters.join(", ")})`);
         }
-        chapterNumbers = [...new Set(opts.chapters)].sort((a, b) => a - b);
+        chapterNumbers = [...new Set(requestedChapters)].sort((a, b) => a - b);
       }
       manifest.freeze = stages.freezeInputs(bookId, chapterNumbers);
       log(`[bakeoff] freeze: ${manifest.freeze.files.length} shared inputs frozen (combined ${manifest.freeze.combinedSha256.slice(0, 16)}); ${chapterNumbers.length} chapters; card templates hashed`);
       markDone(roots, manifest, "freeze");
     }
     const freeze = manifest.freeze!;
-    // A resumed run keeps its FROZEN chapter set; a different --chapters list
+    // A resumed run keeps its FROZEN chapter set; a different chapter subset
     // under the same run id is an operator error, never a silent re-mix.
-    if (opts.chapters?.length) {
-      const wanted = [...new Set(opts.chapters)].sort((a, b) => a - b);
+    if (requestedChapters?.length) {
+      const wanted = [...new Set(requestedChapters)].sort((a, b) => a - b);
       if (JSON.stringify(wanted) !== JSON.stringify(freeze.chapterNumbers)) {
         throw new Error(`run ${runId} froze chapters [${freeze.chapterNumbers.join(", ")}] — pass a new --run-id to compare a different chapter subset`);
       }
     }
     // COMPARE-ONLY: a chapter subset can answer "which model writes better" but
     // must never become a partial canonical book — promotion/QC/publish are
-    // skipped after selection, by construction rather than by flag.
+    // skipped after selection, by construction rather than by flag. A corpus run
+    // is ALWAYS compare-only (a sealed-corpus band-reachability probe is never
+    // promoted/published), independent of how many chapters it froze.
     const fullIndexCount = deps.expectedChapterNumbers(bookId).length;
-    const compareOnly = fullIndexCount > 0 && freeze.chapterNumbers.length < fullIndexCount;
+    const compareOnly = corpusMode || (fullIndexCount > 0 && freeze.chapterNumbers.length < fullIndexCount);
 
     // ── Phase: preflight (models must exist BEFORE expensive generation) ─────
     if (!phaseDone(manifest, "preflight")) {
@@ -687,7 +803,9 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
     // ── Publication identity gate (one concise question, never a guess) ──────
     let publishAuthorized = manifest.publish;
     let publicationQuestion: string | undefined;
-    if (manifest.publish && !intake.identityConfident) {
+    // Only a draft run reaches here (a corpus run is compare-only and returned
+    // above); `intake` is therefore set, but guard the type explicitly.
+    if (manifest.publish && intake && !intake.identityConfident) {
       publishAuthorized = false;
       publicationQuestion =
         `Publication identity is unconfirmed: is the book "${intake.title ?? "(unknown title)"}" by ` +

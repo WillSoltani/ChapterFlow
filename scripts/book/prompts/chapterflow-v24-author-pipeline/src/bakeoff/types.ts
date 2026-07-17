@@ -79,6 +79,40 @@ export type DraftIntakeV1 = {
   intakeAt: string;
 };
 
+// ── Corpus intake (no-draft; frozen corpus shared inputs already on disk) ─────
+
+/**
+ * WP-703: a corpus-intake record for a COMPARE-ONLY chapter-subset run over a
+ * book whose research/compile shared inputs already exist on disk (the frozen
+ * bakeoff corpus). There is NO draft — the research + compile phases are skipped
+ * idempotently. Recorded on the manifest exactly where a draft run records
+ * `intake` (`DraftIntakeV1`), so resume + report see a uniform intake record.
+ */
+export type CorpusIntakeV1 = {
+  schemaVersion: "model-bakeoff-corpus-intake-v1";
+  /** The sealed corpus this run reads (corpus-manifest.json `corpusId`). */
+  corpusId: string;
+  /** Repo-relative path of the corpus manifest verified at intake. */
+  manifestRelPath: string;
+  bookId: string;
+  /** The frozen chapter subset under test (compare-only). */
+  chapters: number[];
+  /** Per-chapter corpus binding (unit id + the resolved authoring-source pointer
+   *  + the sealed hashes) — proves each unit was ready before any authoring. */
+  units: Array<{
+    unit: string;
+    chapterNumber: number;
+    authoringSource: string;
+    sourceHash: string;
+    /** The sealed baseline diagnostic, or null when the manifest value is
+     *  absent/non-finite (rt703 FINDING-1: never mint NaN into evidence). */
+    sealedChapterDiagnostic: number | null;
+  }>;
+  /** How many shared-input files were verified present (via collectSharedInputPaths). */
+  sharedInputCount: number;
+  intakeAt: string;
+};
+
 // ── Shared-input freeze ───────────────────────────────────────────────────────
 
 export type FrozenFileV1 = {
@@ -347,6 +381,9 @@ export type BakeoffManifestV1 = {
   /** Highest fully-completed phase per BAKEOFF_PHASES order. */
   completedPhases: BakeoffPhase[];
   intake?: DraftIntakeV1;
+  /** Set instead of `intake` on a no-draft corpus run (WP-703). Mutually
+   *  exclusive with `intake`: a run is either draft-intake or corpus-intake. */
+  corpusIntake?: CorpusIntakeV1;
   freeze?: SharedInputsFreezeV1;
   preflight?: {
     checkedAt: string;
