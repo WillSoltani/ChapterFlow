@@ -384,6 +384,11 @@ function custodyPaths(repositoryRoot: string, auditId: string, unit: string): {
   dispatch: (role: DispatchRole) => string;
   seal: string;
   record: (role: DispatchRole) => string;
+  /** WP-E23 route proof: the sha256 of the ADJUDICATOR's ultra-session
+   *  effective-context manifest, retained beside its dispatch receipts. One per
+   *  unit (the adjudicator's session is the DECIDING one), matching the existing
+   *  single `adjudicationCanonicalSha256` custody field's per-unit granularity. */
+  envelopeManifest: string;
 } {
   const auditDir = resolve(repositoryRoot, rubricAuditDirRelPath(auditId));
   return {
@@ -391,6 +396,7 @@ function custodyPaths(repositoryRoot: string, auditId: string, unit: string): {
     dispatch: (role) => resolve(auditDir, `jobs/${unit}.receipts/${role}.dispatch.json`),
     seal: resolve(auditDir, `jobs/${unit}.receipts/pair.seal.json`),
     record: (role) => resolve(auditDir, `raw/${role}/${unit}.json`),
+    envelopeManifest: resolve(auditDir, `jobs/${unit}.receipts/adjudicator.envelope-manifest.json`),
   };
 }
 
@@ -929,19 +935,46 @@ function throwIfInvalid(errors: string[], label: string): void {
   }
 }
 
-/** WP-503 — the Claude-side D7 rater/adjudicator call ledger choke point. This
- *  harness is model-free CODE (`modelCalls: 0` on every ingest result above):
- *  the real model turn happens in an EXTERNAL Claude session this process never
- *  observes — renderRaterTaskDocument/renderAdjudicatorTask hand it a task, and
+/** WP-E23 (P3, route proof): observed dispatch metadata for a REAL rating call,
+ *  supplied by a caller that actually drove the session (the codex-exec D7
+ *  dispatch — `d7WorkerDispatch.ts`'s `createD7CodexWorkerDispatch` — already
+ *  ledgers its OWN dispatch-stage entry with these exact values; a caller wiring
+ *  that result through to ingest threads the SAME observed values here rather
+ *  than letting the ingest-stage ledger entry fall back to `null`). Omitted by
+ *  an external/CLI hand-off (`rubric-audit-ingest --file`) that genuinely never
+ *  observed a dispatch — that path keeps the honest `null` it always recorded. */
+export type D7IngestDispatchMetaV1 = {
+  model: string | null;
+  effort: string | null;
+  sessionKind?: "session" | "reingest";
+  attemptIndex?: number | null;
+  /** sha256 of the spawning session's effective-context manifest (the SAME
+   *  `UltraSessionResultV1.manifestSha256` ultraSession.ts returns) — proves the
+   *  exact argv/route that produced this record. Retained beside the ADJUDICATOR
+   *  custody only (role adjudicator; ignored on primary/verification — the ship
+   *  gate binds the DECIDING session, matching `adjudicationCanonicalSha256`'s
+   *  per-unit granularity), so the D7 ship-gate receipt can bind it
+   *  (`D7ShipGateCustody.envelopeManifestSha256`). */
+  envelopeManifestSha256?: string;
+};
+
+/** WP-503 — the D7 rater/adjudicator call ledger choke point. This harness is
+ *  model-free CODE (`modelCalls: 0` on every ingest result above): the real
+ *  model turn happens in an EXTERNAL session this process only OBSERVES —
+ *  renderRaterTaskDocument/renderAdjudicatorTask hand it a task, and
  *  ingestRaterRecord/ingestAdjudicationRecord are the ONLY place that session's
  *  outcome becomes visible to this codebase. So this is where it gets ledgered.
  *
  *  Unconditional (called before throwIfInvalid, on BOTH success and failure) —
- *  every real ingest attempt appends exactly one entry, never zero. model/
- *  effort/latencyMs are recorded `null`: this process genuinely cannot observe
- *  which model, effort, or wall-clock duration the external session used —
- *  never a guessed value standing in for that gap. Best-effort: a ledger bug
- *  must never turn a valid rating into a lost book audit. */
+ *  every real ingest attempt appends exactly one entry, never zero. WP-E23:
+ *  when the caller supplies `dispatchMeta` (the codex-exec dispatch already
+ *  observed real model/effort/sessionKind/attemptIndex — see
+ *  `D7IngestDispatchMetaV1`), those REAL values are ledgered under family
+ *  `codex-exec`, never a `null` standing in for a gap that is not actually
+ *  there. Absent `dispatchMeta` (a hand-off ingest with no observed dispatch),
+ *  model/effort/latencyMs stay the honest `null` they have always been, family
+ *  `claude-side` — never a guessed value. Best-effort: a ledger bug must never
+ *  turn a valid rating into a lost book audit. */
 function recordD7CallLedgerEntry(args: {
   repositoryRoot: string;
   auditId: string;
@@ -949,20 +982,30 @@ function recordD7CallLedgerEntry(args: {
   bookId: string;
   role: RubricAuditHarnessRole;
   outcome: "content_completed" | "content_invalid";
+  dispatchMeta?: D7IngestDispatchMetaV1;
+  /** Ledger-append seam (default `appendCallLedgerEntry`) — a test injects a
+   *  capturing double to assert the exact sessionKind/attemptIndex threaded
+   *  through, independent of the ledger's OWN persistence of those optional
+   *  fields (WP-E41's concern, not this choke point's). */
+  appendLedger?: typeof appendCallLedgerEntry;
 }): void {
+  const meta = args.dispatchMeta;
+  const append = args.appendLedger ?? appendCallLedgerEntry;
   try {
-    appendCallLedgerEntry({
+    append({
       pipelineDir: resolve(args.repositoryRoot, PIPELINE_REL),
       bookId: args.bookId,
       runId: args.auditId,
-      family: "claude-side",
+      family: meta !== undefined ? "codex-exec" : "claude-side",
       stage: "d7-rubric-audit",
       role: args.role,
-      model: null,
-      effort: null,
+      model: meta?.model ?? null,
+      effort: meta?.effort ?? null,
       latencyMs: null,
       outcome: args.outcome,
       sessionId: `${args.auditId}/${args.unit}/${args.role}`,
+      ...(meta?.sessionKind !== undefined ? { sessionKind: meta.sessionKind } : {}),
+      ...(meta?.attemptIndex !== undefined ? { attemptIndex: meta.attemptIndex } : {}),
     });
   } catch { /* telemetry must never brick the D7 audit ingest */ }
 }
@@ -976,8 +1019,14 @@ export function ingestRaterRecord(args: {
   unit: string;
   role: DispatchRole;
   recordText: string;
+  /** WP-E23: observed dispatch metadata, when the caller has it (see
+   *  `D7IngestDispatchMetaV1`). `envelopeManifestSha256` is ignored here — it is
+   *  only meaningful on the ADJUDICATOR ingest (`ingestAdjudicationRecord`). */
+  dispatchMeta?: D7IngestDispatchMetaV1;
+  /** Ledger-append seam (tests only; default `appendCallLedgerEntry`). */
+  appendLedger?: typeof appendCallLedgerEntry;
 }): RubricAuditIngestResultV1 {
-  const { repositoryRoot, manifest, unit, role, recordText } = args;
+  const { repositoryRoot, manifest, unit, role, recordText, dispatchMeta, appendLedger } = args;
   requireCondition(role === "primary" || role === "verification",
     "ingestRaterRecord role must be primary or verification");
   const resolution = resolveAuditUnit({ repositoryRoot, manifest, unit });
@@ -997,6 +1046,8 @@ export function ingestRaterRecord(args: {
   recordD7CallLedgerEntry({
     repositoryRoot, auditId: manifest.auditId, unit, bookId: resolution.bookId, role,
     outcome: errors.length > 0 ? "content_invalid" : "content_completed",
+    dispatchMeta,
+    appendLedger,
   });
   throwIfInvalid(errors, `${unit} ${role} rater record`);
 
@@ -1053,8 +1104,15 @@ export function ingestAdjudicationRecord(args: {
   manifest: RubricAuditBatchManifestV1;
   unit: string;
   recordText: string;
+  /** WP-E23: observed dispatch metadata, when the caller has it (see
+   *  `D7IngestDispatchMetaV1`). A supplied `envelopeManifestSha256` is retained
+   *  as the unit's route-proof custody artifact (`D7ShipGateCustody.
+   *  envelopeManifestSha256`) — the ADJUDICATOR is the deciding session. */
+  dispatchMeta?: D7IngestDispatchMetaV1;
+  /** Ledger-append seam (tests only; default `appendCallLedgerEntry`). */
+  appendLedger?: typeof appendCallLedgerEntry;
 }): RubricAuditIngestResultV1 {
-  const { repositoryRoot, manifest, unit, recordText } = args;
+  const { repositoryRoot, manifest, unit, recordText, dispatchMeta, appendLedger } = args;
   const resolution = resolveAuditUnit({ repositoryRoot, manifest, unit });
   const paths = custodyPaths(repositoryRoot, manifest.auditId, unit);
   const primary = loadRecord(readCustodyText(paths.record("primary"), "primary rater record"));
@@ -1079,11 +1137,30 @@ export function ingestAdjudicationRecord(args: {
   recordD7CallLedgerEntry({
     repositoryRoot, auditId: manifest.auditId, unit, bookId: resolution.bookId, role: "adjudicator",
     outcome: errors.length > 0 ? "content_invalid" : "content_completed",
+    dispatchMeta,
+    appendLedger,
   });
   throwIfInvalid(errors, `${unit} adjudication record`);
 
   const persistedPath = resolve(repositoryRoot, resolution.adjudicationRelPath);
   persistEvidence(persistedPath, recordText);
+  // WP-E23 route proof: retain the adjudicator's envelope-manifest sha256, when
+  // observed, as its own immutable custody artifact — the D7 ship gate reads it
+  // at mint time and re-verifies it at gate time (defense-in-depth, mirroring
+  // every other custody hash). Never required here (a hand-off ingest with no
+  // observed dispatch simply has no sidecar to bind — the gate treats that
+  // custody field as absent, not as a mismatch).
+  if (dispatchMeta?.envelopeManifestSha256 !== undefined) {
+    persistCreateOnce(paths.envelopeManifest, serializeRecord({
+      schema_version: "1.0.0",
+      artifact_type: "chapterflow_d7_envelope_manifest_binding",
+      unit,
+      role: "adjudicator",
+      envelope_manifest_sha256: dispatchMeta.envelopeManifestSha256,
+      model: dispatchMeta.model,
+      effort: dispatchMeta.effort,
+    }));
+  }
   return {
     schema: "rubric-audit-ingest-v1",
     auditId: manifest.auditId,

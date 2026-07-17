@@ -46,6 +46,15 @@ import {
   validatePairChain,
   type RubricInspection,
 } from "../bakeoff/migration/rubricAuditReceipts.js";
+// WP-E23 route proof: the receipt's rater_route is verified against the SAME
+// authorities the D7 dispatch itself is bound to — the recognized codex-exec
+// model family (not just today's provisional baseline, so a later WP-705
+// winner change does not retroactively invalidate an honest past route) and the
+// single ultra-effort token. Both are leaf/type-safe imports (no runtime cycle:
+// modelPolicy.ts and ultraSession.ts import neither this module nor
+// rubricAuditHarness.ts).
+import { SUPPORTED_MODEL_IDS } from "../orchestrator/modelPolicy.js";
+import { ULTRA_EFFORT } from "../exec/ultraSession.js";
 import { rubricAuditDirRelPath } from "../bakeoff/migration/rubricAuditInstrument.js";
 import { resolveAuditUnit } from "../bakeoff/migration/rubricAuditHarness.js";
 import {
@@ -71,9 +80,44 @@ export class D7ShipGateError extends Error {
 
 // ── Schema identity ───────────────────────────────────────────────────────────
 
-export const D7_SHIP_GATE_RECEIPT_SCHEMA_VERSION = "1.0.0" as const;
+/** WP-E23 (P3, "a prompt string claiming Sol Ultra is not proof"): bumped from
+ *  1.0.0 to add `rater_route` (§ below) — the receipt now PROVES which family/
+ *  model/effort rated the book, not merely a claim. A receipt sealed under the
+ *  PRIOR version predates this proof by honest construction (the D7 rater was a
+ *  Claude-side session before WP-E21/22 flipped it to codex-exec) — see
+ *  `D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1`. */
+export const D7_SHIP_GATE_RECEIPT_SCHEMA_VERSION = "1.1.0" as const;
+/** The sole prior schema version, still RECOGNIZED (not `D7.receipt_schema_
+ *  invalid`) so a book already shipped under it is never retroactively broken.
+ *  A receipt at this version verifies with `routeProof: "unproven"` — visible,
+ *  never silently reported as a proven route (see `deriveRouteProof`). */
+export const D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1 = "1.0.0" as const;
 export const D7_SHIP_GATE_RECEIPT_ARTIFACT_TYPE = "chapterflow_d7_ship_gate_receipt" as const;
 export const D7_SHIP_GATE_RECEIPT_ISSUER = "chapterflow_evaluation_orchestrator" as const;
+
+/** The only rater transport a D7 route may claim (V25-NEW-01: no Claude-family
+ *  model may rate a book or chapter). */
+export const D7_RATER_ROUTE_FAMILY = "codex-exec" as const;
+
+/** The D7 rater route PROOF carried on a current-schema receipt: which family/
+ *  model/effort rated the book, bound to the campaign's ultra-acceptance probe
+ *  (`ultraSession.ts` `UltraAcceptanceProbeV1.sidecarSha256`) so a claimed route
+ *  is tied to evidence the installed CLI actually accepted it. */
+export type D7ShipGateRaterRouteV1 = {
+  family: typeof D7_RATER_ROUTE_FAMILY;
+  model: string;
+  effort: string;
+  ultra_probe_sha256: string;
+};
+
+/** Whether a receipt's D7 rater route is backed by verifiable proof.
+ *   - `proven`   — current schema, `rater_route` present and structurally valid
+ *                  (family/model/effort/probe-hash-shape all check out).
+ *   - `unproven` — a legacy-schema receipt: the route was never recorded because
+ *                  the receipt predates this proof (honest gap, not a lie).
+ *   - `invalid`  — current schema but `rater_route` is missing or does not match
+ *                  the authorized route (a spoof/tamper) — always a blocker. */
+export type D7ShipGateRouteProofStatus = "proven" | "unproven" | "invalid";
 
 export const D7_SHIP_GATE_HALT_SCHEMA_VERSION = "1.0.0" as const;
 export const D7_SHIP_GATE_HALT_ARTIFACT_TYPE = "chapterflow_d7_ship_gate_halt" as const;
@@ -146,10 +190,22 @@ export type D7ShipGateCustody = {
   verificationDispatchSha256: string;
   pairSealSha256: string;
   adjudicationCanonicalSha256: string;
+  /** WP-E23 route proof: sha256 of the retained `adjudicator.envelope-manifest.
+   *  json` sidecar (rubricAuditHarness.ts persists it from
+   *  `D7IngestDispatchMetaV1.envelopeManifestSha256`, the sha of the adjudicator's
+   *  ultra-session effective-context manifest — same hashing convention as the
+   *  other four fields: the retained FILE's bytes, not a value parsed out of it).
+   *  Optional: absent for a pre-WP-E23 / hand-off ingest that never observed
+   *  dispatch metadata — never fabricated. When present, the gate re-verifies it
+   *  against the retained sidecar and a mismatch fails closed
+   *  (`verifyRetainedD7Custody`), exactly like the other four hashes. */
+  envelopeManifestSha256?: string;
 };
 
 export type D7ShipGateReceiptV1 = {
-  schema_version: typeof D7_SHIP_GATE_RECEIPT_SCHEMA_VERSION;
+  /** Current-schema receipts carry `rater_route` (proof); the recognized legacy
+   *  version predates it (see `D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1`). */
+  schema_version: typeof D7_SHIP_GATE_RECEIPT_SCHEMA_VERSION | typeof D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1;
   artifact_type: typeof D7_SHIP_GATE_RECEIPT_ARTIFACT_TYPE;
   issuer: typeof D7_SHIP_GATE_RECEIPT_ISSUER;
   book_id: string;
@@ -183,6 +239,12 @@ export type D7ShipGateReceiptV1 = {
   chapters: D7ShipGateChapterBinding[];
   custody: D7ShipGateCustody[];
   report_sha256: string;
+  /** WP-E23 route proof. Present on current-schema receipts; absent on a
+   *  recognized-legacy receipt (`routeProof` reports "unproven", never a silent
+   *  "proven"). Included in `binding_sha256` — tampering it invalidates the
+   *  seal, and `deriveRouteProof` independently checks it structurally so a
+   *  forger who ALSO recomputes the binding hash is still caught. */
+  rater_route?: D7ShipGateRaterRouteV1;
   binding_sha256: string;
 };
 
@@ -208,6 +270,36 @@ function barEquals(a: RubricAuditBar, b: RubricAuditBar): boolean {
     && a.meanMin === b.meanMin
     && a.coreDomainFloor === b.coreDomainFloor
     && a.calibrationTolerance === b.calibrationTolerance;
+}
+
+/** WP-E23 route proof (P3, "a prompt string claiming Sol Ultra is not proof"):
+ *  classify a receipt's D7 rater route. Pure, structural, independent of
+ *  `binding_sha256` — a forger who tampers `rater_route` and ALSO recomputes
+ *  the binding hash (a self-consistent forgery) is still caught here, because
+ *  this checks the route's CONTENT against the authorized shape, not merely
+ *  whether the receipt is internally consistent with itself.
+ *
+ *   - legacy schema           → "unproven" (honest gap; the receipt predates
+ *     this proof — see D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1).
+ *   - current schema, no `rater_route` → "invalid" (a current-schema receipt
+ *     without proof is inconsistent with its own schema claim — the real mint
+ *     path never produces this; only a hand-edited/forged receipt would).
+ *   - current schema, `rater_route` present → "proven" iff family is the sole
+ *     authorized transport, model is a RECOGNIZED codex-exec family member
+ *     (not pinned to today's provisional baseline — a later WP-705 winner
+ *     change must not retroactively invalidate an honest past route), effort
+ *     is the single ultra token, and the probe hash is sha256-shaped;
+ *     otherwise "invalid" (a Claude string, a spoofed family, or a malformed
+ *     probe hash all land here). */
+function deriveRouteProof(receipt: D7ShipGateReceiptV1): D7ShipGateRouteProofStatus {
+  if (receipt.schema_version === D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1) return "unproven";
+  const route = receipt.rater_route;
+  if (route === undefined) return "invalid";
+  const wellFormedProbe = typeof route.ultra_probe_sha256 === "string" && SHA256_RE.test(route.ultra_probe_sha256);
+  if (route.family !== D7_RATER_ROUTE_FAMILY || !SUPPORTED_MODEL_IDS.has(route.model) || route.effort !== ULTRA_EFFORT || !wellFormedProbe) {
+    return "invalid";
+  }
+  return "proven";
 }
 
 /** Bind hash over the receipt minus its own `binding_sha256` (rubricAuditReceipts
@@ -246,6 +338,11 @@ export function buildD7ShipGateReceiptCore(args: {
   /** unit → { chapterNumber, contentDocSha256, headingInventorySha256 } (from the batch manifest). */
   contentBindings: Map<string, { chapterNumber: number; contentDocSha256: string; headingInventorySha256: string }>;
   custody: D7ShipGateCustody[];
+  /** WP-E23: the proven D7 rater route for this receipt. Supplying it stamps
+   *  the CURRENT schema (route-proof carrying); omitting it stamps the
+   *  RECOGNIZED LEGACY schema — a receipt never claims proof it does not carry
+   *  (see `D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1`). */
+  raterRoute?: D7ShipGateRaterRouteV1;
 }): Omit<D7ShipGateReceiptV1, "binding_sha256"> {
   const { report } = args;
   const chapters: D7ShipGateChapterBinding[] = report.chapters.map((chapter) => {
@@ -267,7 +364,11 @@ export function buildD7ShipGateReceiptCore(args: {
     };
   });
   return {
-    schema_version: D7_SHIP_GATE_RECEIPT_SCHEMA_VERSION,
+    // A receipt never CLAIMS proof it does not carry: current schema only when
+    // a rater route was actually supplied, legacy otherwise (WP-E23).
+    schema_version: args.raterRoute !== undefined
+      ? D7_SHIP_GATE_RECEIPT_SCHEMA_VERSION
+      : D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1,
     artifact_type: D7_SHIP_GATE_RECEIPT_ARTIFACT_TYPE,
     issuer: D7_SHIP_GATE_RECEIPT_ISSUER,
     book_id: normSlug(args.bookId),
@@ -299,6 +400,7 @@ export function buildD7ShipGateReceiptCore(args: {
     chapters,
     custody: args.custody,
     report_sha256: report.reportSha256,
+    ...(args.raterRoute !== undefined ? { rater_route: args.raterRoute } : {}),
   };
 }
 
@@ -470,6 +572,12 @@ export function mintD7ShipGateReceiptFromAudit(args: {
   repositoryRoot: string;
   auditId: string;
   round?: number;
+  /** WP-E23: the proven D7 rater route for this mint. Omitting it mints a
+   *  RECOGNIZED-LEGACY receipt (honest — see `buildD7ShipGateReceiptCore`); the
+   *  production `rubric-audit-mint-ship-receipt` driver supplies it once it
+   *  resolves the campaign's route + ultra-acceptance-probe sha (out of this
+   *  module's scope — it never reads that proof off disk itself). */
+  raterRoute?: D7ShipGateRaterRouteV1;
 }): D7ShipGateReceiptV1 {
   if (!isSafeAuditId(args.auditId)) {
     throw new D7ShipGateError(
@@ -575,12 +683,25 @@ export function mintD7ShipGateReceiptFromAudit(args: {
       throw new D7ShipGateError(
         `cannot mint a D7 ship-gate receipt: the retained adjudication for ${unit} is invalid — ${adjudication.errors.join("; ")}`);
     }
+    // WP-E23 route proof (optional, non-fail-closed AT MINT when absent — a
+    // pre-WP-E23 / hand-off-ingested unit legitimately has no sidecar; the
+    // gate's re-verification is what fails closed on a MISMATCH, not on an
+    // absence). Hashed exactly like the other four custody artifacts (the
+    // retained FILE's bytes, not a field parsed out of it) — the sidecar
+    // itself (schema, model, effort, and the spawning session's manifest sha)
+    // is the retained evidence being bound.
+    const envelopeManifestPath = resolve(auditDir, `jobs/${unit}.receipts/adjudicator.envelope-manifest.json`);
+    const envelopeManifestSha256 = existsSync(envelopeManifestPath)
+      ? artifactSha256FromText(readFileSync(envelopeManifestPath, "utf8"))
+      : undefined;
+
     custody.push({
       unit,
       primaryDispatchSha256: artifactSha256FromText(primaryDispatchRaw),
       verificationDispatchSha256: artifactSha256FromText(verificationDispatchRaw),
       pairSealSha256: artifactSha256FromText(pairSealRaw),
       adjudicationCanonicalSha256: artifactSha256FromText(adjudicationRaw),
+      ...(envelopeManifestSha256 !== undefined ? { envelopeManifestSha256 } : {}),
     });
   }
 
@@ -591,6 +712,7 @@ export function mintD7ShipGateReceiptFromAudit(args: {
     report,
     contentBindings,
     custody,
+    raterRoute: args.raterRoute,
   });
   return sealD7ShipGateReceipt(core);
 }
@@ -697,7 +819,7 @@ export function verifyRetainedD7Custody(args: {
       const pairSealRaw = readArtifact(`jobs/${unit}.receipts/pair.seal.json`);
       const adjudicationRaw = readArtifact(`raw/adjudicated/${unit}.json`);
 
-      const retained: Record<keyof Omit<D7ShipGateCustody, "unit">, string> = {
+      const retained: Record<"primaryDispatchSha256" | "verificationDispatchSha256" | "pairSealSha256" | "adjudicationCanonicalSha256", string> = {
         primaryDispatchSha256: artifactSha256FromText(primaryDispatchRaw),
         verificationDispatchSha256: artifactSha256FromText(verificationDispatchRaw),
         pairSealSha256: artifactSha256FromText(pairSealRaw),
@@ -707,6 +829,25 @@ export function verifyRetainedD7Custody(args: {
         if (custody[key] !== retained[key]) {
           blockers.push(
             `D7.custody_mismatch: ${unit} ${key} in the receipt (${String(custody[key]).slice(0, 12)}…) does not match the retained artifact (${retained[key].slice(0, 12)}…).`);
+        }
+      }
+      // WP-E23 route proof: ONLY when the receipt's custody entry CLAIMS an
+      // envelope-manifest sha (a pre-WP-E23 / hand-off unit legitimately has
+      // none — nothing to re-verify there). When claimed, the retained sidecar
+      // MUST exist and MUST match — a claim with no retained backing, or one
+      // that does not match, is exactly the "manifest sha mismatch" this proof
+      // exists to catch (fail closed).
+      if (custody.envelopeManifestSha256 !== undefined) {
+        const manifestSidecarPath = resolve(auditDir, `jobs/${unit}.receipts/adjudicator.envelope-manifest.json`);
+        if (!existsSync(manifestSidecarPath)) {
+          blockers.push(
+            `D7.envelope_manifest_mismatch: ${unit} claims a rater-route envelope-manifest sha256 but no retained sidecar exists for it.`);
+        } else {
+          const retainedManifestSha = artifactSha256FromText(readFileSync(manifestSidecarPath, "utf8"));
+          if (custody.envelopeManifestSha256 !== retainedManifestSha) {
+            blockers.push(
+              `D7.envelope_manifest_mismatch: ${unit} envelopeManifestSha256 in the receipt (${custody.envelopeManifestSha256.slice(0, 12)}…) does not match the retained sidecar (${retainedManifestSha.slice(0, 12)}…).`);
+          }
         }
       }
       const chainErrors = validatePairChain({
@@ -790,6 +931,9 @@ export type D7ShipGateResult = {
    *  audit dir; seal + custody-shape only — mint-time is load-bearing), or
    *  `failed` (a custody hash / blind-pair chain did not verify). */
   custodyVerified: D7CustodyVerifyStatus;
+  /** WP-E23: the D7 rater route's proof status. `null` when no receipt was
+   *  evaluated (exempt / missing / corrupt) — there is no route to assess. */
+  routeProof: D7ShipGateRouteProofStatus | null;
   reason: string;
 };
 
@@ -821,6 +965,7 @@ export function evaluateD7ShipGate(input: {
       verdict: null,
       halt: null,
       custodyVerified: "retained-absent",
+      routeProof: null,
       reason: "D7 ship gate: candidate package is byte-identical to the already-shipped corpus package — no-retroactivity exemption (rt-D3).",
     };
   }
@@ -833,6 +978,7 @@ export function evaluateD7ShipGate(input: {
       verdict: null,
       halt: null,
       custodyVerified: "retained-absent",
+      routeProof: null,
       reason: "D7 ship gate BLOCKED: the receipt file is present but unreadable.",
     };
   }
@@ -846,6 +992,7 @@ export function evaluateD7ShipGate(input: {
         verdict: null,
         halt: null,
         custodyVerified: "retained-absent",
+        routeProof: null,
         reason: "D7 ship gate BLOCKED: a fresh D7 PASS receipt is required and none is present.",
       };
     }
@@ -855,6 +1002,7 @@ export function evaluateD7ShipGate(input: {
       verdict: null,
       halt: null,
       custodyVerified: "retained-absent",
+      routeProof: null,
       reason: `D7 ship gate: no receipt present; advisory (set ${CHAPTERFLOW_REQUIRE_D7_SHIP_GATE_ENV}=1 to require a sealed PASS bound to the shipped bytes).`,
     };
   }
@@ -866,10 +1014,20 @@ export function evaluateD7ShipGate(input: {
   if (receiptBindingHash(receipt as unknown as Record<string, unknown>) !== receipt.binding_sha256) {
     blockers.push("D7.receipt_tampered: binding_sha256 does not match the receipt payload.");
   }
-  if (receipt.schema_version !== D7_SHIP_GATE_RECEIPT_SCHEMA_VERSION
+  // WP-E23: the recognized LEGACY schema version is also accepted here — a
+  // receipt sealed under it predates route-proof by honest construction and is
+  // not retroactively invalid; `deriveRouteProof` below reports its route as
+  // "unproven" (a distinct, visible status), never a silently-proven one.
+  if ((receipt.schema_version !== D7_SHIP_GATE_RECEIPT_SCHEMA_VERSION
+      && receipt.schema_version !== D7_SHIP_GATE_RECEIPT_LEGACY_SCHEMA_VERSION_V1)
     || receipt.artifact_type !== D7_SHIP_GATE_RECEIPT_ARTIFACT_TYPE
     || receipt.issuer !== D7_SHIP_GATE_RECEIPT_ISSUER) {
     blockers.push("D7.receipt_schema_invalid: receipt schema/artifact_type/issuer is not the D7 ship-gate receipt identity.");
+  }
+  const routeProof = deriveRouteProof(receipt);
+  if (routeProof === "invalid") {
+    blockers.push(
+      "D7.rater_route_invalid: the receipt's rater_route is missing or does not match the authorized Sol-ultra codex-exec route (family/model/effort/probe-hash-shape) — a Claude-family or spoofed route can never ship.");
   }
   if (receipt.instrument?.rubric_version !== RUBRIC_AUDIT_RUBRIC_VERSION
     || !barEquals(receipt.instrument?.bar ?? ({} as RubricAuditBar), RUBRIC_AUDIT_BAR_D7)) {
@@ -906,6 +1064,12 @@ export function evaluateD7ShipGate(input: {
         .every((hash) => SHA256_RE.test(String(hash ?? "")));
       if (!wellFormed) {
         blockers.push(`D7.custody_shape: custody entry for '${entry.unit}' has a malformed artifact hash (every custody hash must be a lowercase SHA-256 digest).`);
+      }
+      // WP-E23: envelopeManifestSha256 is OPTIONAL (a pre-WP-E23 / hand-off unit
+      // legitimately has none), but when CLAIMED it must be well-formed — a
+      // malformed claim is fail-closed here just like the other four hashes.
+      if (entry.envelopeManifestSha256 !== undefined && !SHA256_RE.test(entry.envelopeManifestSha256)) {
+        blockers.push(`D7.custody_shape: custody entry for '${entry.unit}' has a malformed envelopeManifestSha256 (must be a lowercase SHA-256 digest).`);
       }
     }
   }
@@ -956,6 +1120,14 @@ export function evaluateD7ShipGate(input: {
       `D7.quality_bar_failed: D7 verdict is ${verdict} (mean ${receipt.summary.mean.toFixed(2)}, min ${receipt.summary.min.toFixed(2)}; bar mean>=${RUBRIC_AUDIT_BAR_D7.meanMin}, min>=${RUBRIC_AUDIT_BAR_D7.perChapterMin}, core>=${RUBRIC_AUDIT_BAR_D7.coreDomainFloor}, +-${RUBRIC_AUDIT_BAR_D7.calibrationTolerance} calibration).`);
   }
 
+  // WP-E23: an unproven route is NEVER silent — it rides visibly in `reason`
+  // even when it does not itself block (a legacy-schema receipt can still
+  // ship; see `deriveRouteProof`). An invalid route already added a blocker
+  // above, so this note only fires for the honest "unproven" case.
+  const routeProofNote = routeProof === "unproven"
+    ? " [D7 rater route: UNPROVEN — receipt predates route-proof (legacy schema); external rater identity not verifiable.]"
+    : "";
+
   if (blockers.length > 0) {
     const halt = verdict !== "PASS" ? buildHaltRecord(receipt, bookId) : null;
     return {
@@ -964,7 +1136,8 @@ export function evaluateD7ShipGate(input: {
       verdict,
       halt,
       custodyVerified: custodyStatus,
-      reason: `D7 ship gate BLOCKED: ${blockers.join(" ")}`,
+      routeProof,
+      reason: `D7 ship gate BLOCKED: ${blockers.join(" ")}${routeProofNote}`,
     };
   }
   return {
@@ -973,7 +1146,8 @@ export function evaluateD7ShipGate(input: {
     verdict,
     halt: null,
     custodyVerified: custodyStatus,
-    reason: `D7 ship gate PASS: verdict PASS bound to the shipped bytes (book CDS ${receipt.book_cds.toFixed(2)}, min ${receipt.summary.min.toFixed(2)}; custody ${custodyStatus}).`,
+    routeProof,
+    reason: `D7 ship gate PASS: verdict PASS bound to the shipped bytes (book CDS ${receipt.book_cds.toFixed(2)}, min ${receipt.summary.min.toFixed(2)}; custody ${custodyStatus}).${routeProofNote}`,
   };
 }
 
