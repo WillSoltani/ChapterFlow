@@ -210,9 +210,15 @@ Phase-6 authorization required.
 | **2** USAGE | Bad args, a FATAL preflight finding, `UNSUPPORTED_MODEL_CONFIG`, or `REFUSED_CLOBBER`. | If the label is `PREFLIGHT_FATAL`: re-run with `--validate-only` — the printed `DOCTOR` block AND the **preflight report** (`<runId>.preflight-report.json`) name every finding, including the exact fatal check (note the model-check step, below, runs BEFORE preflight, so a bad `--model` never reaches preflight and gets no preflight report). If the label is `UNSUPPORTED_MODEL_CONFIG`, re-read the printed message: it names whether the model/effort was outright unsupported, or valid-but-not-the-wired-route (no silent re-route — fix the flag, don't assume it "mostly worked"). If `REFUSED_CLOBBER`, decide `--resume` vs `--overwrite`. |
 | **3** BLOCKED | Either a **D7 quality-bar block** (`BLOCKED_QUALITY_BAR`) or a **lock refusal** (`LOCK_REFUSED`, the circuit-breaker class — a second concurrent run on the same book). | For a quality-bar block: open the **D7 halt sidecar** (`state/books/<bookId>.d7-ship-gate-halt.json`, printed as `D7 halt:` on this exact terminal) — it names the failing chapters + scores below the 85/80/3.0 bar (D-8/L-14). One re-author round runs automatically before this terminal state; a repeat block after that means the content genuinely needs a human look. For a lock refusal: another `generate-book`/`book-autopilot` process is (or recently was) running this book — check `state/autopilot-locks/` (or run `doctor` for a stale-lock report) before retrying. |
 
-The **run report** JSON is the fastest single artifact to check for ANY non-zero exit — it
-carries `status`, `exitCode`, `reason`, and `failedStep` together with every other artifact
-path in one place, so a triage script (or a human) never has to re-derive them from stdout.
+The **run report** JSON is the fastest single artifact to check for a run that reached the
+conductor — that is, **exit 1** (a halt after authoring began) and **exit 3** (a D7
+quality-bar block). It carries `status`, `exitCode`, `reason`, and `failedStep` together with
+every other artifact path in one place, so a triage script (or a human) never has to re-derive
+them from stdout. **Exit-2 USAGE-class failures** (bad args, `PREFLIGHT_FATAL`,
+`REFUSED_CLOBBER`, `UNSUPPORTED_MODEL_CONFIG`, a bad `--config` load) return *before* the
+conductor runs and therefore write **no** run report — for those, read the stdout reason and,
+where present, the `<runId>.preflight-report.json` (written for `PREFLIGHT_FATAL`/`REFUSED_CLOBBER`;
+`UNSUPPORTED_MODEL_CONFIG` fails before preflight and produces neither).
 
 ---
 
