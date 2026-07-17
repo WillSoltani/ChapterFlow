@@ -104,7 +104,9 @@ export type CorpusIntakeV1 = {
     chapterNumber: number;
     authoringSource: string;
     sourceHash: string;
-    sealedChapterDiagnostic: number;
+    /** The sealed baseline diagnostic, or null when the manifest value is
+     *  absent/non-finite (rt703 FINDING-1: never mint NaN into evidence). */
+    sealedChapterDiagnostic: number | null;
   }>;
   /** How many shared-input files were verified present (via collectSharedInputPaths). */
   sharedInputCount: number;

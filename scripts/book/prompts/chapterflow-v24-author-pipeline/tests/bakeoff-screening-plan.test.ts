@@ -164,7 +164,26 @@ test("(d) a hard-gate failure, a sub-75 mean, and a null mean each block advance
   assert.deepEqual(decision.advancing.map((a) => a.configId), ["gpt-5.6-sol@high"]);
   assert.ok(decision.reasons.some((r) => /gpt-5.6-sol@xhigh: NOT advancing — 1 hard-gate/.test(r)));
   assert.ok(decision.reasons.some((r) => /gpt-5.6-terra@xhigh: NOT advancing — D7 mean 74/.test(r)));
-  assert.ok(decision.reasons.some((r) => /gpt-5.6-luna@xhigh: NOT advancing — no D7 chapter-diagnostic mean/.test(r)));
+  assert.ok(decision.reasons.some((r) => /gpt-5.6-luna@xhigh: NOT advancing — no finite D7 chapter-diagnostic mean/.test(r)));
+});
+
+test("(d2) rt703 FINDING-1: a NON-FINITE D7 mean (NaN/Infinity) never advances — the bar is positive-form, not reject-guards", () => {
+  const results: ConfigScreeningResult[] = [
+    { configId: "gpt-5.6-sol@xhigh", hardGateFailures: 0, d7ChapterDiagnosticMean: Number.NaN },
+    { configId: "gpt-5.6-terra@xhigh", hardGateFailures: 0, d7ChapterDiagnosticMean: Number.POSITIVE_INFINITY },
+    { configId: "gpt-5.6-luna@xhigh", hardGateFailures: 0, d7ChapterDiagnosticMean: 76 },
+  ];
+  const decision = decideAdvancement(results);
+  assert.equal(decision.outcome, "ADVANCE");
+  assert.deepEqual(decision.advancing.map((a) => a.configId), ["gpt-5.6-luna@xhigh"],
+    "only the finite >=75 mean advances; NaN and Infinity are ineligible");
+  // And when EVERY mean is non-finite, the screening STOPs — no best-of-a-bad-lot.
+  const allBad = decideAdvancement([
+    { configId: "gpt-5.6-sol@xhigh", hardGateFailures: 0, d7ChapterDiagnosticMean: Number.NaN },
+    { configId: "gpt-5.6-terra@xhigh", hardGateFailures: 0, d7ChapterDiagnosticMean: Number.POSITIVE_INFINITY },
+  ]);
+  assert.equal(allBad.outcome, "STOP");
+  assert.equal(allBad.advancing.length, 0);
 });
 
 // ── (e) zero-passing screening → STOP + owner escalation ─────────────────────

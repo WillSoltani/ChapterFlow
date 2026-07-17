@@ -160,7 +160,10 @@ export function intakeCorpus(args: IntakeCorpusArgs): CorpusIntakeV1 {
       chapterNumber,
       authoringSource,
       sourceHash: String(unit.sourceHash ?? ""),
-      sealedChapterDiagnostic: typeof unit.sealedChapterDiagnostic === "number" ? unit.sealedChapterDiagnostic : NaN,
+      sealedChapterDiagnostic:
+        typeof unit.sealedChapterDiagnostic === "number" && Number.isFinite(unit.sealedChapterDiagnostic)
+          ? unit.sealedChapterDiagnostic
+          : null,
     });
   }
 

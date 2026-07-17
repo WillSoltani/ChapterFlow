@@ -447,8 +447,12 @@ export function decideAdvancement(
       reasons.push(`${r.configId}: NOT advancing — ${r.hardGateFailures} hard-gate failure(s) (bar allows ${bar.hardGateFailuresAllowed}).`);
       continue;
     }
-    if (r.d7ChapterDiagnosticMean === null) {
-      reasons.push(`${r.configId}: NOT advancing — no D7 chapter-diagnostic mean (ineligible / not scored).`);
+    // rt703 FINDING-1: the bar is applied in its POSITIVE form — a config is
+    // eligible only when its mean is a FINITE number >= the floor. Reject-guards
+    // alone let NaN/Infinity slip through (NaN < 75 is false), which would
+    // advance a config with no valid diagnostic past the pre-registered bar.
+    if (r.d7ChapterDiagnosticMean === null || !Number.isFinite(r.d7ChapterDiagnosticMean)) {
+      reasons.push(`${r.configId}: NOT advancing — no finite D7 chapter-diagnostic mean (ineligible / not scored).`);
       continue;
     }
     if (r.d7ChapterDiagnosticMean < bar.d7ChapterDiagnosticMeanMin) {
