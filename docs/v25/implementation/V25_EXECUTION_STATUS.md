@@ -15,6 +15,7 @@
 | /private/tmp/cf-wp-502 | wp/502-capability-probe | 11e0362ac | WP-502 probe build (live execution deferred to orchestrator post-integration) | impl opus-4.8@xhigh, rt opus@xhigh | ACTIVE |
 | /private/tmp/cf-wp-702 | wp/702-bakeoff-d7-judge | 416a73385 | WP-702 bakeoff harness re-point (D7 primary judge, floor veto, no 5.5 judge) | impl opus-4.8@xhigh, rt opus@xhigh | ACTIVE |
 | /private/tmp/cf-wp-701b | wp/701b-auto-research-verb | 498266021 | WP-701b (L-40) research-only stage verb reusing autopilot doResearch | impl opus-4.8@xhigh, rt opus@xhigh | ACTIVE |
+| /private/tmp/cf-wp-703 | wp/703-screening-build | 5b9e5f3ba | WP-703 BUILD half: registered screening plan + corpus intake + real D7WorkerDispatch + plan tests (execution live-gated, separate) | impl opus-4.8@xhigh, rt opus@xhigh | ACTIVE |
 
 Integration SHAs will be appended per gate (G1–G8) after approval.
 
@@ -67,6 +68,7 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 502 | **accepted (built + live-executed)** | wp/502-capability-probe | 11e0362ac | 6187d3bf6 | rt PASS; RT-1 fixed pre-merge; live probe 2026-07-17: ALL 4 configs SUPPORTED (8 calls, 8/150 ceiling); results doc + ledger committed |
 | 702 | integrated | wp/702-bakeoff-d7-judge | 416a73385 | 5763b359b | rt PASS; R1 calibration-collision guard fixed pre-merge; merged d7b626418; D7 = primary judge, floor = veto, no 5.5 |
 | 701b (NEW, L-40) | in progress | wp/701b-auto-research-verb | 498266021 | — | compliant research-only verb — the missing freeze entry point; model-free build (injected spawn doubles) |
+| 703 (build half) | in progress | wp/703-screening-build | 5b9e5f3ba | — | plan doc + corpus intake + D7WorkerDispatch wiring + plan tests; model-free; screening EXECUTION follows separately |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
