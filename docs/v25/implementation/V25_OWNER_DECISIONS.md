@@ -26,6 +26,8 @@ Format per §13 of the master plan. Answers are recorded in `V25_DECISION_LEDGER
 
 ## D-3 — Bakeoff live-call authorization and ceiling
 
+> **ANSWERED 2026-07-17 (L-37): AUTHORIZED — option (b) executed at Phase-6 entry after G5, full 150-session ceiling.** Owner selected "Authorize — 150 ceiling". Bundled D-8 ratification and the three acknowledgments (i)–(iii) below were included in the question text and are accepted. Phase 6 is OPEN.
+
 **Decision required:** Authorize Phase 6 live calls: capability probe (≤10) + staged bakeoff, hard ceiling **150 codex sessions total**, plus Claude-side D7 audits (all ledgered).
 **Why blocked:** Program rule: no live model calls without explicit owner authorization; first live calls occur at Phase 6.
 **Options:** (a) authorize at plan approval (fastest); (b) authorize at Phase-6 entry after G5 passes (RECOMMENDED — calls only spend once the pipeline they measure is stable); (c) reduced ceiling (e.g. 100 — risks an unfinished Stage 3).
@@ -58,12 +60,16 @@ Format per §13 of the master plan. Answers are recorded in `V25_DECISION_LEDGER
 
 ## D-7 — Bakeoff authoring source for the 3 fixed chapters
 
+> **ANSWERED 2026-07-17 (L-37): option (a)** — one-time compile-chain run against the books' source material; freeze + hash the resulting packets/briefs as the corpus; calls count against the Phase-6 ledger.
+
 **Decision required:** Supply or confirm the authoring INPUTS (draft/manuscript or a one-time-frozen compiled source-packets + chapter-briefs set) for nudge ch03, made-to-stick ch04, and the-happiness-hypothesis ch06, and authorize running the compile chain (research → packets → briefs) once to freeze them.
 **Why blocked:** The in-repo artifacts for these books are OUTPUTS (reader docs, shipped packages), not pipeline inputs. Without frozen inputs the fixed corpus cannot be authored by any candidate model, and WP-701/703 cannot run.
 **Options:** (a) authorize a one-time compile-chain run against the books' source material, freeze and hash the resulting packets/briefs as the corpus (RECOMMENDED — makes the comparison exactly reproducible); (b) hand-supply a curated source set per chapter (more owner effort, same effect).
 **Recommendation:** (a). **Default action:** WP-701 executes the one-time freeze; the compile-chain calls count against the Phase-6 ledger.
 
 ## D-8 — Formal D7 bar ratification + on-fail budget semantics
+
+> **RATIFIED 2026-07-17 via the D-3 bundle (L-37): option (a)** — 85/80/3.0 as frozen in the instrument; failing-chapters-only re-author, one round per book per audit; never retroactive on the 140 historical books.
 
 **Decision required:** Formally ratify the D7 ship-gate bar (chapter mean ≥85 / min ≥80, core domains ≥3.0, layer independence, ±3.0 calibration void) and the on-fail policy: re-author FAILING CHAPTERS ONLY, at most ONE re-author round per book per audit, then halt for owner.
 **Why blocked:** `docs/v25/reports/V25_OWNER_RUBRIC_RECONCILIATION.md` still marks D7/D8 "PENDING OWNER RATIFICATION — not yet in force", while the accepted audit treated them as ratified by delegated judgement. WP-401 wires a BLOCKING gate; that needs an unambiguous bar. The frozen instrument pins meanMin=85/perChapterMin=80/coreFloor=3.0.
@@ -78,6 +84,8 @@ Format per §13 of the master plan. Answers are recorded in `V25_DECISION_LEDGER
 
 
 ## D-10 — Old-line P6 stage-1 pilot vs the S-tier program (NEW 2026-07-16T12:10)
+
+> **ANSWERED 2026-07-17 (L-37): option (a)** — HALT old-line P6. The owner stops that session themselves; this program remains the sole authorized live-call vehicle and never touches that worktree.
 
 **Decision required:** The other active session is building P6 stage-1 SOL-pilot machinery on feat/v25-pipeline-live (a7bd9b761, b19b847b2, 9a9b18e14 — readiness-v6 qualification binding, stage-scoped campaign engine, driver pilot entrypoint). Construction only so far; no live calls observed. Should the old-line P6 pilot run?
 **Why blocked:** L-15 recorded that the S-tier program supersedes the old-line P6; a P6 pilot would spend live calls under the architecture the accepted audit retired (reviewer-lane ship gating, not D7). Only the owner can arbitrate between their two active lines.
@@ -94,6 +102,8 @@ Format per §13 of the master plan. Answers are recorded in `V25_DECISION_LEDGER
 
 
 ## D-12 — generate-book auto-publish default (NEW 2026-07-16, non-blocking)
+
+> **ANSWERED 2026-07-17 (L-37): option (b)** — flip to halt-at-ready default, --publish opt-in. The one-line default flip is booked into WP-802 (pilot).
 
 **Decision required:** Should the terminal generate-book command DEFAULT to auto-publish (commit + push to main on D7-gated convergence, opt-out via --no-publish), or to halt-at-ready (opt-IN via --publish)?
 **Why raised:** WP-601 inherits book-run's autoPublish=true default. It is git-only/reversible (NOT a live deploy), gated by the D7 REQUIRE ship gate (won't push unless the quality bar passes), and only fires on a Phase-6 authorized live run. But for THE operator-facing command, given this program's D3 history (owner rubric divergence, corpus freeze withheld), an opt-IN posture is the safer S-tier default.

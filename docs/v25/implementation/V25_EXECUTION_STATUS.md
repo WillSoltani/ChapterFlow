@@ -1,6 +1,6 @@
 # V25 S-Tier Program — Execution Status
 
-**Program state:** PAUSED AT PHASE-6 BOUNDARY — Phases 1–5 COMPLETE (G1–G5 passed; model-free pipeline done). Awaiting owner D-3 (bakeoff live-call authorization) before Phase 6. 28/42 WPs integrated; the remaining 14 all require live model calls. Live calls remain forbidden until Phase-6 written authorization (D-3; incl. the deferred WP-701 corpus freeze per L-25).
+**Program state:** **PHASE 6 OPEN** — owner D-3 AUTHORIZED 2026-07-17 (L-37): ceiling 150 codex sessions total (probe + corpus freeze + bakeoff + repairs), D-8 bar ratified, D-7 = compile-chain freeze, D-10 = old-line halt (owner-side), D-12 = halt-at-ready (booked into WP-802). Phases 1–5 COMPLETE (G1–G5). 28/42 WPs integrated. Live-call custody: only designated probe/freeze/bakeoff steps run live verbs; every call ledgered; cumulative count checked against the ceiling. In flight: WP-801 + WP-701-mf (model-free, wf_3c695a3b-192), WP-502 build.
 
 ## Branch / worktree registry
 
@@ -10,6 +10,9 @@
 | /private/tmp/ChapterFlow-books-v25-live | feat/v25-pipeline-live | (moving) | Other session's active campaign worktree | other session | DO NOT TOUCH |
 | /private/tmp/ChapterFlow-books-v25-recovery | recovery/v25-pipeline-repair | 97b78bf71 | Other session | other session | DO NOT TOUCH |
 | ~/ChapterFlow-books | feat/v25-pipeline | 96ba28179 | Owner's active checkout | owner | DO NOT TOUCH |
+| /private/tmp/cf-wp-801 | wp/801-failure-injection | 11e0362ac | WP-801 failure-injection suite | impl sonnet-5@xhigh, rt opus@xhigh | ACTIVE |
+| /private/tmp/cf-wp-701 | wp/701-bakeoff-corpus | 11e0362ac | WP-701 model-free corpus packet (authoringSource UNRESOLVED until D-7 freeze runs) | impl sonnet-5@xhigh, rt opus@xhigh | ACTIVE |
+| /private/tmp/cf-wp-502 | wp/502-capability-probe | 11e0362ac | WP-502 probe build (live execution deferred to orchestrator post-integration) | impl opus-4.8@xhigh, rt opus@xhigh | ACTIVE |
 
 Integration SHAs will be appended per gate (G1–G8) after approval.
 
@@ -57,6 +60,9 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 603 | integrated | wp-603-progress-logs | 61508ed88 | e1a7f72ec | rt PASS-WITH-NOTES; doc-claim scoped |
 | 604 | integrated | wp-604-cli-tests | 61508ed88 | 4c17a7d15 | rt PASS-WITH-NOTES; found L-33 defect |
 | 602b | integrated | wp-602b-fresh-preflight | 96998904 | 681189ac9 | rt PASS-WITH-NOTES; L-33 CLOSED (fresh book starts) |
+| 801 | in progress | wp/801-failure-injection | 11e0362ac | — | dispatched 2026-07-17 at D-3 authorization (wf_3c695a3b-192) |
+| 701-mf | in progress | wp/701-bakeoff-corpus | 11e0362ac | — | model-free portion; authoringSource UNRESOLVED fail-closed pending the D-7 compile freeze |
+| 502 | in progress (build) | wp/502-capability-probe | 11e0362ac | — | build model-free; live probe (≤3 calls/model) executes post-integration under L-37 authorization |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
