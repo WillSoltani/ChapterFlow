@@ -48,12 +48,15 @@ import type {
   BakeoffPhase,
   BlindLabel,
   CandidateD7JudgmentV1,
+  CandidateEvalDiagnosticV1,
   CandidateReviewV1,
   CandidateSpec,
   CandidateStateV1,
   CandidateValidationV1,
+  D7TerminalState,
   ReasoningEffort,
 } from "./types.js";
+import { readCallLedgerEntries } from "../telemetry/runCallLedger.js";
 import type { ChapterV21 } from "../types.js";
 import { BAKEOFF_MANIFEST_SCHEMA } from "./types.js";
 import { PIPELINE_DIR, bakeoffRoots, candidateDir, modelSlug, pipelineRel, sha256File, type BakeoffRoots } from "./paths.js";
@@ -364,6 +367,14 @@ function reviewPath(roots: BakeoffRoots, label: string): string {
 function d7JudgePath(roots: BakeoffRoots, label: string): string {
   return resolve(roots.reviewsDir, label, "d7.json");
 }
+/** WP-E32: the canonical-evaluator chapter-diagnostic sidecar, mirroring
+ *  d7JudgePath's convention. NOTHING in this worktree writes this file yet (the
+ *  evaluator lane, WP-E13, owns that) — reading a missing file returns null,
+ *  which keeps selectWinner in its legacy D7-primary mode (see selection.ts).
+ *  Flagged for integration reconciliation against WP-E13's actual write path. */
+function evalDiagnosticPath(roots: BakeoffRoots, label: string): string {
+  return resolve(roots.reviewsDir, label, "eval-diagnostic.json");
+}
 
 function readJsonIf<T>(p: string): T | null {
   try {
@@ -371,6 +382,65 @@ function readJsonIf<T>(p: string): T | null {
   } catch {
     return null;
   }
+}
+
+/**
+ * WP-E00 freeze (V25-AUD-03) — the D7 lifecycle state for one candidate, used to
+ * gate FINAL-selection minting. A legacy record (no explicit `terminalState`)
+ * infers per the frozen type's own comment: "judged" iff verdict is non-null,
+ * else "pending" — with one necessary refinement: a completed-but-INELIGIBLE
+ * judgment (audit package assembly refused / undriveable — see d7Judge.ts
+ * `ineligible()`) stamps `judgedAt` and `ineligibleReason` but leaves `verdict`
+ * PERMANENTLY null, and is never re-driven on resume once its content hash
+ * matches. Reading that as "pending" would wedge every future resume into a
+ * provisional selection forever; it is a conclusive terminal outcome, so read
+ * `ineligibleReason` as the judged signal too.
+ */
+function resolveD7Terminal(d7: CandidateD7JudgmentV1 | null): D7TerminalState {
+  if (!d7) return "pending";
+  if (d7.terminalState) return d7.terminalState;
+  if (d7.verdict !== null) return "judged";
+  return d7.ineligibleReason ? "judged" : "pending";
+}
+
+function isD7Terminal(d7: CandidateD7JudgmentV1 | null): boolean {
+  const state = resolveD7Terminal(d7);
+  return state === "judged" || state === "instrument-fail";
+}
+
+/** A candidate the review phase already skipped (deterministic floor failed
+ *  before any D7 spend — mirrors the exact skip condition in the review phase
+ *  below) is conclusively decided WITHOUT a D7 read; it is exempt from
+ *  terminal-gating rather than pinning every future selection to provisional. */
+function floorEligible(generation: CandidateStateV1 | null, validation: CandidateValidationV1 | null): boolean {
+  return generation?.status === "complete" && !!validation && validation.hardFailures.length === 0;
+}
+
+/**
+ * WP-E32 (finding register PM-7 disposition): mark a run's evidence INVALID
+ * without touching anything the run already wrote. Writes ONE new
+ * `INVALID-<slug>.json` marker file directly inside `runDir` (beside
+ * manifest.json) — it never opens, rewrites, or deletes the manifest or any
+ * candidate/review/selection record, and it never overwrites a prior marker
+ * (a colliding slug gets a numeric suffix instead). This is an OPERATOR action
+ * — nothing in this conductor calls it; apply it by hand to a specific stale
+ * run directory (e.g. an instrument-shakedown run) when the owner has decided
+ * its evidence is void.
+ */
+export function annotateInvalidRun(runDir: string, reason: string): string {
+  mkdirSync(runDir, { recursive: true });
+  const slugBase = reason.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "invalid";
+  let markerPath = resolve(runDir, `INVALID-${slugBase}.json`);
+  for (let n = 2; existsSync(markerPath); n += 1) {
+    markerPath = resolve(runDir, `INVALID-${slugBase}-${n}.json`);
+  }
+  const marker = {
+    schemaVersion: "model-bakeoff-invalid-marker-v1" as const,
+    reason,
+    annotatedAt: new Date().toISOString(),
+  };
+  writeFileAtomic(markerPath, JSON.stringify(marker, null, 2) + "\n");
+  return markerPath;
 }
 
 // ── The conductor ─────────────────────────────────────────────────────────────
@@ -742,12 +812,35 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
       validation: readJsonIf<CandidateValidationV1>(validationPath(roots, spec.slug)),
       review: readJsonIf<CandidateReviewV1>(reviewPath(roots, labelOf(spec.model))),
       d7: readJsonIf<CandidateD7JudgmentV1>(d7JudgePath(roots, labelOf(spec.model))),
+      // WP-E32: null on every run today (no evaluator writer wired yet) ⇒
+      // selectWinner stays in its legacy D7-primary mode (byte-stable).
+      evalDiagnostic: readJsonIf<CandidateEvalDiagnosticV1>(evalDiagnosticPath(roots, labelOf(spec.model))),
     }));
     if (!phaseDone(manifest, "select")) {
-      manifest.selection = selectWinner(selectionInputs);
+      // WP-E00 freeze / V25-AUD-03: a FINAL selection requires every candidate
+      // still in the running (floor-eligible) to be D7-terminal (judged or
+      // instrument-fail). Anything else mints a PROVISIONAL selection — NOT
+      // evidence, per SelectionV1's own comment — and leaves "select" incomplete
+      // so the NEXT resume re-derives it from whatever D7 records exist by then;
+      // it never re-marks done on a stale provisional read.
+      const allTerminal = selectionInputs.every(
+        (i) => !floorEligible(i.generation, i.validation) || isD7Terminal(i.d7),
+      );
+      const sel = selectWinner(selectionInputs);
+      if (!allTerminal) {
+        const entries = readCallLedgerEntries(PIPELINE_DIR, bookId, runId);
+        sel.provisional = true;
+        sel.ledgerHighWaterAt = entries.reduce<string | null>((newest, e) => (newest === null || e.at > newest ? e.at : newest), null);
+      }
+      manifest.selection = sel;
       mkdirSync(roots.selectionDir, { recursive: true });
       writeFileAtomic(resolve(roots.selectionDir, "selection.json"), JSON.stringify(manifest.selection, null, 2) + "\n");
       for (const r of manifest.selection.reasons) log(`[bakeoff] select: ${r}`);
+      if (!allTerminal) {
+        const pending = selectionInputs.filter((i) => floorEligible(i.generation, i.validation) && !isD7Terminal(i.d7)).map((i) => i.spec.model);
+        log(`[bakeoff] select: PROVISIONAL — not every candidate is D7-terminal yet (still pending: ${pending.join(", ") || "none named"}); nothing promoted or published; the next resume re-derives this selection.`);
+        return halt(`selection is PROVISIONAL (not evidence) — still D7-pending: ${pending.join(", ") || "none named"}. Re-run once every candidate reaches judged/instrument-fail to mint a final selection.`);
+      }
       markDone(roots, manifest, "select");
     }
     const selection = manifest.selection!;
