@@ -20,12 +20,19 @@ import {
   ROLLBACK_ORDER,
   ROUTE_POLICY_VERSION,
   RoutePreflightError,
+  SUPPORTED_MODEL_IDS,
+  UNSUPPORTED_MODEL_CONFIG,
+  UnsupportedModelConfigError,
   buildRouteResult,
   classifyProviderOutcome,
+  isSupportedModelId,
   normalRouteMatrix,
+  preflightOperatorModelSelection,
   profileMatrix,
+  resolveModelFallback,
   resolveRoute,
   routeDriftFingerprint,
+  unsupportedModelConfig,
   SAFEGUARD_MARKERS,
 } from "../src/orchestrator/modelPolicy.js";
 import { AGENT_ROLES } from "../src/contracts/executionProfile.js";
@@ -142,6 +149,161 @@ test("fail-closed: invalid model ids and efforts (including API-only 'max') are 
   assert.throws(() => resolveRoute({ role: "research", requestedModel: "not a model!!" }), RoutePreflightError);
   assert.throws(() => resolveRoute({ role: "research", requestedEffort: "max" }), (e: Error) => e instanceof RoutePreflightError && /max/.test(e.message));
   assert.throws(() => resolveRoute({ role: "research", requestedEffort: "ultra" }), RoutePreflightError);
+});
+
+// ── WP-504: fail-closed fallback/config policy (no 5.5; unsupported → halt) ────
+// The pipeline fails closed on an unsupported 5.6 config and NEVER silently
+// substitutes a model; an alternate 5.6 candidate is reachable ONLY by explicit
+// operator config. All refusals are ONE typed error (a RoutePreflightError
+// subclass), raised at route resolution BEFORE any spawn.
+
+function captureError(fn: () => unknown): Error {
+  try { fn(); } catch (e) { return e as Error; }
+  throw new assert.AssertionError({ message: "expected the call to throw, but it returned" });
+}
+
+test("WP-504 taxonomy: the unsupported-config error is ONE hierarchy under RoutePreflightError (not a fork); 'max' effort uses it", () => {
+  const maxErr = captureError(() => resolveRoute({ role: "research", requestedEffort: "max" }));
+  assert.ok(maxErr instanceof UnsupportedModelConfigError, "the existing 'max' preflight now raises the unified config error");
+  assert.ok(maxErr instanceof RoutePreflightError, "…which is STILL a RoutePreflightError (aligned with the prior taxonomy, not a second parallel error)");
+  assert.equal((maxErr as UnsupportedModelConfigError).reason, "unsupported-effort");
+  assert.equal((maxErr as UnsupportedModelConfigError).code, UNSUPPORTED_MODEL_CONFIG);
+  assert.equal((maxErr as UnsupportedModelConfigError).classification, "policy_preflight_failure", "inherits the frozen disjoint provider-outcome classification unchanged");
+  assert.match(maxErr.message, /max/);
+});
+
+test("WP-504: requireSupportedModel gates the 5.6 candidate set; the default foreign-provider recorder is preserved", () => {
+  // opt-in ON: any explicit model outside the 5.6 candidate set fails closed —
+  // the retired baseline AND a plausible-but-unqualified 5.6 sibling AND a foreign id.
+  for (const bad of ["gpt-5.5", "gpt-5.6-mars", "claude-opus-4-7"]) {
+    const e = captureError(() => resolveRoute({ role: "author-writer", requestedModel: bad, requireSupportedModel: true }));
+    assert.ok(e instanceof UnsupportedModelConfigError, `${bad} must fail closed under requireSupportedModel`);
+    assert.equal((e as UnsupportedModelConfigError).reason, "unsupported-model");
+    assert.equal((e as UnsupportedModelConfigError).failingModel, bad, "the halt names the failing model");
+    assert.equal((e as UnsupportedModelConfigError).code, UNSUPPORTED_MODEL_CONFIG);
+  }
+  // opt-in ON: every DECLARED 5.6 candidate passes membership (capability is a later WP-502 gate).
+  for (const c of CANDIDATE_MODELS) {
+    const r = resolveRoute({ role: "author-writer", requestedModel: c.family, requireSupportedModel: true });
+    assert.equal(r.model, c.family);
+    assert.ok(isSupportedModelId(r.model));
+  }
+  // opt-in OFF (default): the legacy multi-provider router records a foreign
+  // call-explicit model VERBATIM — membership is NOT enforced on that path.
+  const foreign = resolveRoute({ role: "cli-adhoc", requestedModel: "claude-opus-4-7" });
+  assert.equal(foreign.model, "claude-opus-4-7");
+  assert.equal(foreign.tier, "call-explicit");
+  // FORMAT is enforced unconditionally in BOTH modes (a malformed id always halts).
+  assert.throws(() => resolveRoute({ role: "cli-adhoc", requestedModel: "not a model!!" }), UnsupportedModelConfigError);
+  // SUPPORTED_MODEL_IDS is EXACTLY the candidate families (derived from WP-302/501 data, not a 2nd list).
+  assert.deepEqual([...SUPPORTED_MODEL_IDS].sort(), CANDIDATE_MODELS.map((c) => c.family).sort());
+});
+
+test("WP-504: preflightOperatorModelSelection validates an operator selection through the ONE validator and echoes it (or fails closed)", () => {
+  assert.deepEqual(preflightOperatorModelSelection({ model: "gpt-5.6-terra", effort: "high" }), { model: "gpt-5.6-terra", effort: "high" });
+  assert.deepEqual(preflightOperatorModelSelection({}), {}, "no selection is valid — the matrix decides downstream");
+  const badModel = captureError(() => preflightOperatorModelSelection({ model: "gpt-5.5" }));
+  assert.ok(badModel instanceof UnsupportedModelConfigError && badModel.reason === "unsupported-model");
+  const badEffort = captureError(() => preflightOperatorModelSelection({ effort: "max" }));
+  assert.ok(badEffort instanceof UnsupportedModelConfigError && (badEffort as UnsupportedModelConfigError).reason === "unsupported-effort");
+});
+
+test("WP-504: every entry point raises the IDENTICAL typed error for the same unsupported config (parametrized)", () => {
+  const entryPoints: Array<{ name: string; run: (model?: string, effort?: string) => void }> = [
+    // resolveRoute at the operator boundary (author route / run-start all funnel here).
+    { name: "resolveRoute(requireSupportedModel)", run: (model, effort) => { resolveRoute({ role: "author-writer", requestedModel: model, requestedEffort: effort, requireSupportedModel: true }); } },
+    // the CLI --model/--effort handling (WP-601) calls this.
+    { name: "preflightOperatorModelSelection", run: (model, effort) => { preflightOperatorModelSelection({ model, effort }); } },
+  ];
+  for (const ep of entryPoints) {
+    const em = captureError(() => ep.run("gpt-5.5", undefined));
+    assert.ok(em instanceof UnsupportedModelConfigError, `${ep.name}: unsupported model → unified error`);
+    assert.equal((em as UnsupportedModelConfigError).code, UNSUPPORTED_MODEL_CONFIG);
+    assert.equal((em as UnsupportedModelConfigError).reason, "unsupported-model");
+    assert.equal((em as UnsupportedModelConfigError).failingModel, "gpt-5.5");
+    assert.ok(em instanceof RoutePreflightError);
+
+    const ee = captureError(() => ep.run(undefined, "max"));
+    assert.ok(ee instanceof UnsupportedModelConfigError, `${ep.name}: 'max' effort → unified error`);
+    assert.equal((ee as UnsupportedModelConfigError).reason, "unsupported-effort");
+    assert.match(ee.message, /max/);
+  }
+});
+
+test("WP-504: an unsupported operator model fails closed BEFORE any spawn (0 spawns)", () => {
+  const spawns: string[] = [];
+  // A stand-in conductor: validate the operator selection, and ONLY on success
+  // proceed to the spawn. This is the shape WP-601/602 wire at run start.
+  const conduct = (model: string) => {
+    const sel = preflightOperatorModelSelection({ model }); // throws on unsupported config
+    spawns.push(sel.model!);                                // unreachable unless validation passed
+  };
+  const e = captureError(() => conduct("gpt-5.5"));
+  assert.ok(e instanceof UnsupportedModelConfigError && e.reason === "unsupported-model");
+  assert.equal(spawns.length, 0, "no spawn followed the UNSUPPORTED_MODEL_CONFIG halt");
+  // a supported candidate clears the gate and would proceed to spawn.
+  conduct("gpt-5.6-terra");
+  assert.deepEqual(spawns, ["gpt-5.6-terra"]);
+});
+
+test("WP-504 fallback: NO explicit alternate → fail-closed halt (the pipeline never silently substitutes a model)", () => {
+  const e = captureError(() => resolveModelFallback({ failingModel: "gpt-5.6-sol", failingCheck: "capability probe" }));
+  assert.ok(e instanceof UnsupportedModelConfigError);
+  assert.ok(e instanceof RoutePreflightError);
+  assert.equal((e as UnsupportedModelConfigError).reason, "no-fallback");
+  assert.equal((e as UnsupportedModelConfigError).code, UNSUPPORTED_MODEL_CONFIG);
+  assert.equal((e as UnsupportedModelConfigError).failingModel, "gpt-5.6-sol", "the halt names the failing model");
+  assert.match(e.message, /does not fall back|no explicit alternate/);
+});
+
+test("WP-504 fallback: last-qualified-sol is a fail-closed placeholder until WP-705 (file absent AND present both HALT)", () => {
+  const absent = captureError(() => resolveModelFallback({ failingModel: "gpt-5.6-sol", failingCheck: "preflight", explicitAlternateProfile: "last-qualified-sol" }));
+  assert.ok(absent instanceof UnsupportedModelConfigError);
+  assert.equal((absent as UnsupportedModelConfigError).reason, "unqualified-rollback");
+  assert.match(absent.message, /no WP-705 qualification file/);
+  // Even once a WP-705 decision file appears, this build has no concrete matrix → still HALT.
+  const present = captureError(() => resolveModelFallback({ failingModel: "gpt-5.6-sol", failingCheck: "preflight", explicitAlternateProfile: "last-qualified-sol", lastQualifiedSolDecisionFilePresent: true }));
+  assert.ok(present instanceof UnsupportedModelConfigError);
+  assert.equal((present as UnsupportedModelConfigError).reason, "unqualified-rollback");
+  assert.match(present.message, /no last-qualified-sol matrix/);
+});
+
+test("WP-504 fallback: an alternate 5.6 candidate is reachable ONLY by explicit config, and never routes to the retired baseline", () => {
+  const ok = resolveModelFallback({ failingModel: "gpt-5.6-sol", failingCheck: "capability probe", explicitAlternateProfile: "sol-xhigh-candidate" });
+  assert.equal(ok.profileName, "sol-xhigh-candidate");
+  assert.ok(ok.models.length > 0);
+  for (const m of ok.models) {
+    assert.ok(isSupportedModelId(m), `alternate must route only to 5.6 candidates; got ${m}`);
+    assert.ok(!m.startsWith("gpt-5.5"), "no rollback path returns the retired baseline");
+  }
+  // A call-explicit / capability-pending profile carries no routable matrix → HALT (never a silent non-5.6 route).
+  const callExplicit = captureError(() => resolveModelFallback({ failingModel: "gpt-5.6-sol", failingCheck: "preflight", explicitAlternateProfile: "terra-candidate" }));
+  assert.ok(callExplicit instanceof UnsupportedModelConfigError);
+  assert.equal((callExplicit as UnsupportedModelConfigError).reason, "unqualified-rollback");
+});
+
+test("WP-504: there is NO cross-model auto-retry loop — resolveModelFallback is a single pure decision, and ROLLBACK_ORDER carries no 5.5", () => {
+  // Structural: the fallback resolver never iterates model-after-model and never
+  // traverses ROLLBACK_ORDER as a silent fallback ladder.
+  const src = readFileSync(join(PIPELINE_DIR, "src/orchestrator/modelPolicy.ts"), "utf8");
+  const start = src.indexOf("export function resolveModelFallback");
+  const end = src.indexOf("export function preflightOperatorModelSelection");
+  assert.ok(start >= 0 && end > start, "located the resolveModelFallback body");
+  const body = src.slice(start, end);
+  assert.ok(!/\bfor\s*\(|\bwhile\s*\(/.test(body), "resolveModelFallback must contain no for/while retry loop");
+  assert.ok(!/ROLLBACK_ORDER/.test(body), "resolveModelFallback must not traverse ROLLBACK_ORDER as a silent fallback ladder");
+  // Data check: ROLLBACK_ORDER names no retired-baseline profile.
+  assert.ok(!ROLLBACK_ORDER.includes("baseline-55" as never));
+});
+
+test("WP-504: the WP-502 capability halt is the SAME typed error (unsupportedModelConfig factory)", () => {
+  const e = unsupportedModelConfig({ reason: "capability-absent", failingModel: "gpt-5.6-terra", failingCheck: "codex exec --output-schema / effort capability probe", detail: "probe: --output-schema unsupported" });
+  assert.ok(e instanceof UnsupportedModelConfigError);
+  assert.ok(e instanceof RoutePreflightError, "the capability halt shares the ONE preflight hierarchy");
+  assert.equal(e.code, UNSUPPORTED_MODEL_CONFIG);
+  assert.equal(e.reason, "capability-absent");
+  assert.equal(e.failingModel, "gpt-5.6-terra");
+  assert.equal(e.classification, "policy_preflight_failure");
 });
 
 test("provider outcomes are disjoint: timeout / infra / rate / clean; safeguard markers ship EMPTY (calibration-pending)", () => {

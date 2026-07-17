@@ -33,7 +33,7 @@ import { join } from "node:path";
 import { test } from "./harness.js";
 import { authorWriteOneChapter, type AuthorIo, resolveAuthorIo } from "../src/orchestrator/authorRun.js";
 import { doRepairOneChapter } from "../src/orchestrator/authorRepair.js";
-import { resolveRoute, RoutePreflightError } from "../src/orchestrator/modelPolicy.js";
+import { resolveRoute, RoutePreflightError, UnsupportedModelConfigError } from "../src/orchestrator/modelPolicy.js";
 import type { AutopilotDeps } from "../src/orchestrator/autopilot.js";
 import { chapterFileName } from "../src/lib/chapterPaths.js";
 import { CHAPTER_BRIEF_SCHEMA_VERSION, type ChapterBriefV1, type SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
@@ -240,6 +240,13 @@ test("WP-301 (e): an invalid resolved effort fails closed via RoutePreflightErro
     () => resolveRoute({ role: "author-writer", requestedEffort: "bogus" }),
     RoutePreflightError,
     "resolveRoute refuses an invalid effort",
+  );
+  // WP-504: the author route surfaces the SAME unified config-refusal the CLI and
+  // capability probe raise (an UnsupportedModelConfigError, still a RoutePreflightError).
+  assert.throws(
+    () => resolveRoute({ role: "author-writer", requestedEffort: "bogus" }),
+    (e: Error) => e instanceof UnsupportedModelConfigError && e.reason === "unsupported-effort" && e.code === "UNSUPPORTED_MODEL_CONFIG",
+    "the author route's out-of-union effort halt is the unified UNSUPPORTED_MODEL_CONFIG error",
   );
   // End-to-end: a write handed an invalid effort fails closed (rejects) rather
   // than silently falling back to a default model/effort.
