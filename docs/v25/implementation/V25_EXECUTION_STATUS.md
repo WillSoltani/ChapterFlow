@@ -55,7 +55,7 @@ All 42 packages: **not started** (see master plan §7 for the index). Status val
 | 601 | integrated | wp-601-generate-book | 14a0833da | (601-end) | rt PASS-WITH-NOTES; effort-symmetry fixed; auto-publish→D-12 |
 | 603 | integrated | wp-603-progress-logs | 61508ed88 | e1a7f72ec | rt PASS-WITH-NOTES; doc-claim scoped |
 | 604 | integrated | wp-604-cli-tests | 61508ed88 | 4c17a7d15 | rt PASS-WITH-NOTES; found L-33 defect |
-| 602b | in progress | wp-602b-fresh-preflight | (post-603/604) | — | dispatched: opus-4.8@xhigh — L-33 fix |
+| 602b | integrated | wp-602b-fresh-preflight | 96998904 | 681189ac9 | rt PASS-WITH-NOTES; L-33 CLOSED (fresh book starts) |
 | others | not started | — | — | — | — |
 
 ## Conventions (binding)
