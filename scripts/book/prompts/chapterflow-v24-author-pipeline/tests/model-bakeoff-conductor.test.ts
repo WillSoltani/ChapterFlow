@@ -17,6 +17,8 @@ import { combinedContentHash } from "../src/bakeoff/review.js";
 import { runBakeoff, type BakeoffStages, type RunBakeoffOptions } from "../src/bakeoff/runBakeoff.js";
 import type {
   BakeoffManifestV1,
+  BlindLabel,
+  CandidateD7JudgmentV1,
   CandidateReviewV1,
   CandidateStateV1,
   CandidateValidationV1,
@@ -39,7 +41,7 @@ function makeWorld(draftBody = CONFIDENT_DRAFT, compositesBySlot: Record<string,
   const stateRoot = join(dir, "state");
   const canonical = join(dir, "canonical-chapters");
   const bundle = fakeBakeoffDeps();
-  const calls = { generate: [] as string[], validate: [] as string[], review: [] as string[], promote: [] as string[] };
+  const calls = { generate: [] as string[], validate: [] as string[], review: [] as string[], d7: [] as string[], promote: [] as string[] };
 
   const freeze: SharedInputsFreezeV1 = {
     schemaVersion: "model-bakeoff-shared-inputs-v1",
@@ -108,6 +110,33 @@ function makeWorld(draftBody = CONFIDENT_DRAFT, compositesBySlot: Record<string,
       writeFileSync(p, JSON.stringify(review, null, 2));
       return review;
     }) as BakeoffStages["review"],
+    // PRIMARY (WP-702): the D7 judge. Injected here so the conductor test drives
+    // the phase logic (resume, floor gating, no 5.5 judge) with a synthetic
+    // judgment. The composite mirrors the slot's fixture score.
+    d7Judge: (async (_bookId: string, label: BlindLabel, chapters, _deps, _roots, _opts) => {
+      calls.d7.push(label);
+      const slot = (chapters[0].title.match(/w\d/) ?? ["w1"])[0];
+      const composite = compositesBySlot[slot] ?? 70;
+      const judgment: CandidateD7JudgmentV1 = {
+        schemaVersion: "model-bakeoff-candidate-d7-v1",
+        label,
+        contentSha256: combinedContentHash(chapters),
+        auditId: `bakeoff-bo-test-${label.toLowerCase()}`,
+        d7Composite: composite,
+        d7CoreDomainMins: [3.5],
+        d7GatesPass: true,
+        d7LayerIndependencePass: true,
+        allCoreDomainsPass: true,
+        min: composite,
+        meanPass: composite >= 85,
+        minPass: composite >= 80,
+        calibrationPass: true,
+        verdict: "PASS",
+        chapters: [{ unit: `${BOOK_ID}-ch01`, chapterNumber: 1, chapterDiagnostic: composite, coreDomainMin: 3.5, coreDomainsPass: true, gatesPass: true, layerIndependencePass: true, pass: composite >= 80 }],
+        judgedAt: "t",
+      };
+      return judgment;
+    }) as BakeoffStages["d7Judge"],
     promote: ((args) => {
       calls.promote.push(args.winner.model);
       mkdirSync(canonical, { recursive: true });
@@ -158,12 +187,19 @@ test("conductor happy path (PUBLISH=false): shared research reused, blinded sele
   const w = makeWorld();
   const outcome = await runBakeoff(w.opts());
   assert.equal(outcome.status, "ready");
-  assert.equal(outcome.winner, "gpt-5.6-sol", "slot w1 (highest blinded composite) wins");
+  assert.equal(outcome.winner, "gpt-5.6-sol", "slot w1 (highest D7 composite) wins");
+
+  // WP-702: the PRIMARY D7 judge ran for every eligible candidate, and NO gpt-5.5
+  // judge/model was EVER spawned (assert on the injected spawn calls).
+  assert.deepEqual(w.calls.d7.sort(), ["A", "B", "C"], "the D7 judge ran once per candidate");
+  for (const s of w.bundle.spawns) {
+    assert.ok(!/5\.5|gpt-?55/i.test(s.model ?? ""), `no gpt-5.5 judge/model ever spawned (saw ${s.model})`);
+  }
 
   // 3. shared research reused: expectedChapterNumbers → [1] means NO research spawn.
   assert.equal(w.bundle.spawns.filter((s) => s.task.includes("RESEARCH")).length, 0, "no research session — existing research shared");
-  // Preflight probed all 3 candidates + the explicit judge, each with a pinned
-  // model (WP-501: the judge is required, not the silent writer default).
+  // Preflight probed all 3 candidates + the explicit ADVISORY judge, each with a
+  // pinned model (WP-501: the advisory judge is required, not the silent writer default).
   const probes = w.bundle.spawns.filter((s) => s.task === "Reply with exactly: MODEL-OK");
   assert.deepEqual(probes.map((p) => p.model).sort(), [...MODELS, "gpt-5.6-sol"].sort());
 
@@ -312,7 +348,40 @@ test("a candidate with deterministic hard failures is skipped by the blinded rev
   const outcome = await runBakeoff(w.opts({ stages }));
   assert.equal(outcome.status, "ready");
   assert.equal(outcome.winner, "gpt-5.6-terra", "the next-best ELIGIBLE candidate wins");
-  assert.equal(w.calls.review.length, 2, "the disqualified candidate got no review spend");
+  assert.equal(w.calls.review.length, 2, "the disqualified candidate got no advisory-review spend");
+  assert.equal(w.calls.d7.length, 2, "the floor-disqualified candidate got no D7-judge spend");
+});
+
+// ── WP-702: resume re-enters the D7-judge phase idempotently ──────────────────
+
+test("resume re-enters the D7-judge phase idempotently: a completed candidate's D7 audit is reused, never re-driven; no gpt-5.5 judge ever spawned", async () => {
+  const w = makeWorld();
+  // First run: the D7 judge throws on the SECOND candidate it processes, AFTER the
+  // first candidate's D7 judgment (and advisory review) have been persisted.
+  let firstRun = true;
+  let d7Calls = 0;
+  const crashingStages: Partial<BakeoffStages> = {
+    ...w.stages,
+    d7Judge: (async (bookId, label, chapters, deps, roots, opts) => {
+      if (firstRun && d7Calls++ === 1) throw new Error("simulated d7 interrupt");
+      return (w.stages.d7Judge as BakeoffStages["d7Judge"])(bookId, label, chapters, deps, roots, opts);
+    }) as BakeoffStages["d7Judge"],
+  };
+  await assert.rejects(runBakeoff(w.opts({ stages: crashingStages, maxParallel: 1 })), /simulated d7 interrupt/);
+  assert.equal(w.calls.d7.length, 1, "only the first candidate's D7 audit completed before the interrupt");
+
+  // Resume, same run id: the completed candidate's D7 audit is REUSED (its bytes
+  // are unchanged), and only the two unfinished candidates are re-judged.
+  firstRun = false;
+  w.calls.d7.length = 0;
+  const outcome = await runBakeoff(w.opts({ maxParallel: 1 }));
+  assert.equal(outcome.status, "ready");
+  assert.equal(outcome.winner, "gpt-5.6-sol");
+  assert.equal(w.calls.d7.length, 2, "the completed candidate's D7 audit was reused (not re-driven); the other two were judged");
+  // No gpt-5.5 judge/model was ever spawned across BOTH runs.
+  for (const s of w.bundle.spawns) {
+    assert.ok(!/5\.5|gpt-?55/i.test(s.model ?? ""), `no gpt-5.5 judge/model ever spawned (saw ${s.model})`);
+  }
 });
 
 // ── chapter subset → compare-only (selection + report, no canonical crossing) ─

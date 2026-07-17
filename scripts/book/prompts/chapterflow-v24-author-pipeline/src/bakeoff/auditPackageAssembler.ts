@@ -174,3 +174,31 @@ export function assembleAuditPackage(args: {
     chapters,
   };
 }
+
+/** assembleAuditPackage-EQUIVALENT over an IN-MEMORY chapter set (WP-702). The
+ *  model bake-off holds each candidate's authored chapters in memory (loaded from
+ *  its isolated generation slot, never canonical state), so the D7 judge assembles
+ *  the app-faithful audit package straight from those objects — through the EXACT
+ *  same reader-facing transform (stripInternalFields) and the EXACT same
+ *  fail-closed integrity gate (toAuditChapter: refuse any chapter missing a quiz
+ *  answer key or an explanation). A candidate whose chapters cannot assemble is
+ *  INELIGIBLE by the caller — keys are never synthesized and the read is never
+ *  downgraded to a codex model score. */
+export function assembleAuditPackageFromChapters(args: {
+  bookId: string;
+  chapters: ChapterV21[];
+}): AssembledAuditPackage {
+  const bookId = normSlug(args.bookId);
+  if (!Array.isArray(args.chapters) || args.chapters.length === 0) {
+    throw new AuditPackageAssemblyError(
+      `no chapters supplied for '${bookId}' — nothing to audit`);
+  }
+  const chapters = [...args.chapters]
+    .sort((a, b) => (a.number ?? 0) - (b.number ?? 0))
+    .map((chapter) => stripInternalFields(chapter))
+    .map((chapter) => toAuditChapter(chapter, bookId));
+  return {
+    book: { id: bookId, slug: bookId, title: bookId },
+    chapters,
+  };
+}
