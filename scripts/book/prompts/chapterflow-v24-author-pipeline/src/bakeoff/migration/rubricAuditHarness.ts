@@ -45,6 +45,7 @@ import {
   RUBRIC_DOMAINS,
   RUBRIC_LAYER_INDEPENDENCE_GATE_KEY,
   buildRubricAuditBatch,
+  collectRatings,
   headingInventorySha256,
   rubricAuditDirRelPath,
   validateChapterAdjudicationRecord,
@@ -529,14 +530,9 @@ function raterGateSkeleton(profile: RubricAuditProfile): JsonRecord {
  *  ratings + non-empty placeholder prose): a rater who replaces the ratings/prose
  *  and recomputes the arithmetic per the contract emits exactly what ingest
  *  accepts, closing the task↔validator loop. */
-export function renderRaterRecordSkeleton(args: {
-  repositoryRoot: string;
-  manifest: RubricAuditBatchManifestV1;
-  unit: string;
-  role: DispatchRole;
-}): JsonRecord {
-  const resolution = resolveAuditUnit(args);
-  const envelope = raterBindingEnvelope(args);
+/** The eight-domain fill-in block shared by the rater and adjudication skeletons:
+ *  `domains` and each `subcriteria` as OBJECTS keyed by the exact rubric ids. */
+function domainsSkeleton(): JsonRecord {
   const domains: JsonRecord = {};
   for (const spec of RUBRIC_DOMAINS) {
     const subcriteria: JsonRecord = {};
@@ -559,6 +555,18 @@ export function renderRaterRecordSkeleton(args: {
       scope_note: "TODO: chapter-local scope note",
     };
   }
+  return domains;
+}
+
+export function renderRaterRecordSkeleton(args: {
+  repositoryRoot: string;
+  manifest: RubricAuditBatchManifestV1;
+  unit: string;
+  role: DispatchRole;
+}): JsonRecord {
+  const resolution = resolveAuditUnit(args);
+  const envelope = raterBindingEnvelope(args);
+  const domains = domainsSkeleton();
   return {
     schema_version: envelope.schema_version,
     artifact_type: envelope.artifact_type,
@@ -615,6 +623,134 @@ export function extractRecordSkeleton(taskText: string): JsonRecord {
   requireCondition(begin >= 0 && end > begin, "rater task has no record skeleton block");
   const json = taskText.slice(begin + RATER_SKELETON_BEGIN.length, end).trim();
   return loadRecord(json).value;
+}
+
+/** Build the literal fill-in ADJUDICATION record skeleton: the EXACT shape
+ *  validateChapterAdjudicationRecord accepts, with everything DERIVABLE from the
+ *  sealed blind pair already filled EXACTLY — run_id, source/chapter/scope
+ *  binding, blind_pair_seal_sha256, and the whole rater_agreement block
+ *  (mean/max/score-difference computed with the validator's own collectRatings
+ *  walk, the complete disagreements[] inventory with the true blind ratings, and
+ *  the input-record canonical hashes). Only the adjudicator's JUDGMENT remains:
+ *  final half-point ratings, prose, gates rationales, and calibration_changes.
+ *  Same defect class as the rater fix: the prose contract said
+ *  "{ path, original, final, reason, evidence }" without pinning the VALUE
+ *  shapes, so a live adjudicator emitted original as a descriptive STRING and
+ *  evidence as prose — failing "calibration change values invalid" +
+ *  "calibration change lacks reason/evidence". The skeleton (empty
+ *  calibration_changes + an explicit literal entry template in the task) is
+ *  itself ingest-valid as rendered. */
+export function renderAdjudicationRecordSkeleton(args: {
+  repositoryRoot: string;
+  manifest: RubricAuditBatchManifestV1;
+  unit: string;
+}): JsonRecord {
+  const resolution = resolveAuditUnit(args);
+  const paths = custodyPaths(args.repositoryRoot, args.manifest.auditId, resolution.unit);
+  const primary = loadRecord(readCustodyText(paths.record("primary"), "primary rater record"));
+  const verification = loadRecord(readCustodyText(paths.record("verification"), "verification rater record"));
+  const sealRaw = readCustodyText(paths.seal, "blind pair seal");
+  const envelope = raterBindingEnvelope({ ...args, role: "primary" });
+
+  const primaryRatings = collectRatings(primary.value);
+  const verificationRatings = collectRatings(verification.value);
+  requireCondition(primaryRatings !== null && verificationRatings !== null,
+    "sealed blind rater records are missing ratings — cannot build the adjudication skeleton");
+  const diffs = [...primaryRatings].map(([path, p]) => {
+    const v = verificationRatings.get(path) ?? Number.NaN;
+    return { path, primary: p, verification: v, diff: Math.abs(p - v) };
+  });
+  const disagreements = diffs.filter((d) => d.diff !== 0).map((d) => ({
+    path: d.path,
+    primary: d.primary,
+    verification: d.verification,
+    final: 0,
+    rationale: `TODO: which anchor the source best supports for this subcriterion and why`,
+    source_rechecked: true,
+    evidence: [{ locator: "TODO: section or paragraph locator", paraphrase: "TODO: what the cited text shows" }],
+  }));
+
+  return {
+    schema_version: "1.0.0",
+    artifact_type: "chapterflow_standalone_chapter_adjudication",
+    run_id: String(primary.value.run_id ?? ""),
+    rater_role: "adjudicated",
+    blind_pair_seal_sha256: artifactSha256FromText(sealRaw),
+    book: { book_id: envelope.book.book_id, source_book_title: "TODO: source book title inferred from the document only" },
+    source_hash: envelope.source_hash,
+    chapter: envelope.chapter,
+    scope: envelope.scope,
+    evaluation_construct: "TODO: what this chapter teaches and to whom",
+    gates: raterGateSkeleton(resolution.profile),
+    domains: domainsSkeleton(),
+    chapter_diagnostic_score: 0,
+    diagnostic_band: "TODO: chapter diagnostic band phrase (a CHAPTER diagnostic, never a full-book certification)",
+    strongest_qualities: "TODO: the chapter's strongest qualities",
+    weakest_qualities: "TODO: the chapter's weakest qualities",
+    engagement_curve: "TODO: the engagement curve across the chapter",
+    comprehension_retention_analysis: "TODO: comprehension and retention analysis",
+    practical_use_judgment_analysis: "TODO: practical-use and judgment analysis",
+    best_fit_readers: "TODO: readers this chapter fits best",
+    struggling_readers: "TODO: readers who will struggle",
+    improvements: ["TODO: highest-priority improvement", "TODO: second improvement", "TODO: third improvement"],
+    verdict: "TODO: two or three sentence chapter-diagnostic verdict",
+    rater_agreement: {
+      mean_absolute_subcriterion_difference: diffs.reduce((a, d) => a + d.diff, 0) / diffs.length,
+      maximum_subcriterion_difference: Math.max(...diffs.map((d) => d.diff)),
+      chapter_diagnostic_score_difference: Math.abs(
+        Number(primary.value.chapter_diagnostic_score) - Number(verification.value.chapter_diagnostic_score)),
+      gate_conflicts: [],
+      disagreements,
+      input_records: {
+        primary_canonical_sha256: artifactSha256FromText(primary.raw),
+        verification_canonical_sha256: artifactSha256FromText(verification.raw),
+      },
+    },
+    confidence: {
+      level: "TODO: low, medium, or high",
+      rationale: "TODO: confidence rationale",
+      supplied_chapter_completeness_ratio: 1.0,
+      actual_book_ambiguity: "material",
+      unresolved_issues: [],
+    },
+    calibration_changes: [],
+  };
+}
+
+/** The literal calibration_changes ENTRY template the adjudicator task shows —
+ *  the exact value shapes the validator enforces (original/final NUMBERS,
+ *  evidence an ARRAY of {locator, paraphrase} objects, never prose strings). */
+const CALIBRATION_CHANGE_ENTRY_TEMPLATE = [
+  "    {",
+  '      "path": "domains.<domain_id>.subcriteria.<subcriterion_id>",',
+  '      "original": <NUMBER: the blind rating your final departed from — never a description string>,',
+  '      "final": <NUMBER: your final half-point, equal to the rating you recorded at that path>,',
+  '      "reason": "<why the source review supports the departure>",',
+  '      "evidence": [{ "locator": "<where in the document>", "paraphrase": "<what the cited text shows>" }]',
+  "    }",
+].join("\n");
+
+/** The adjudicator task's record-skeleton section: shape instructions + the
+ *  fenced, extractable literal JSON the adjudicator fills. */
+function renderAdjudicationSkeletonSection(skeleton: JsonRecord): string {
+  return [
+    "── Record skeleton (the EXACT output shape — copy it, keep every key) ──",
+    "Return a JSON object with EXACTLY these keys. `domains` is an OBJECT keyed by the eight domain ids, and",
+    "each domain's `subcriteria` is an OBJECT keyed by that domain's four subcriterion ids (NEVER an array,",
+    "NEVER renamed keys). The identity, source, scope, blind_pair_seal_sha256, and the ENTIRE rater_agreement",
+    "block are already filled EXACTLY from the sealed pair — keep them verbatim. Replace every 0 rating with",
+    "your final half-point judgment, set each disagreements[].final to your final rating at that path (with",
+    'your rationale and {locator, paraphrase} evidence), replace every "TODO:" placeholder, RECOMPUTE each',
+    "domain_score, weighted_points, and chapter_diagnostic_score per the arithmetic above, and populate",
+    "calibration_changes: it stays [] unless a final rating differs from BOTH blind ratings; then add one",
+    "entry per such subcriterion shaped EXACTLY like this (original and final are NUMBERS; evidence is an",
+    "ARRAY of {locator, paraphrase} objects — never a prose string):",
+    CALIBRATION_CHANGE_ENTRY_TEMPLATE,
+    "Return ONLY the JSON object (no prose around it).",
+    RATER_SKELETON_BEGIN,
+    JSON.stringify(skeleton, null, 2),
+    RATER_SKELETON_END,
+  ].join("\n");
 }
 
 /** Render one self-contained rater/adjudicator task string. No filesystem paths
@@ -724,9 +860,15 @@ function renderAdjudicatorTask(
     `    { primary_canonical_sha256: "${primarySha}", verification_canonical_sha256: "${verificationSha}" }.`,
     "  - confidence: { level, rationale, supplied_chapter_completeness_ratio 1.0, actual_book_ambiguity",
     '    "material", unresolved_issues }.',
-    "  - calibration_changes: one record { path, original, final, reason, evidence } for every subcriterion whose",
-    "    final differs from BOTH blind ratings (empty array if none).",
-    "Return ONLY the JSON object.",
+    "  - calibration_changes: one record per subcriterion whose final differs from BOTH blind ratings (empty",
+    "    array if none). original and final are NUMBERS (the departed-from blind rating and your final",
+    "    half-point); evidence is an ARRAY of {locator, paraphrase} objects — never a prose string.",
+    "",
+    renderAdjudicationSkeletonSection(renderAdjudicationRecordSkeleton({
+      repositoryRoot,
+      manifest,
+      unit: resolution.unit,
+    })),
   ].filter((section) => section !== "").join("\n");
 }
 
