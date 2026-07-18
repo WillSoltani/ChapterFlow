@@ -14,13 +14,25 @@ Use the documents below based on the task you are doing.
 ## Product specific docs
 - [ChapterFlow architecture and content flow](BOOK_ACCELERATOR.md)
 - [ChapterFlow app admin guide](BOOKAPP_ADMIN_GUIDE.md)
+- [Two-axis completion (knowledge vs applied)](two-axis-completion.md)
 
 ## Operations docs
 - [Operations guide](OPERATIONS.md)
 - [CI and deployment notes](CI_CD.md)
 - [Environment & configuration reference](ENVIRONMENT.md)
+- [Data retention matrix](DATA-RETENTION.md)
 - [Production launch checklist](LAUNCH_CHECKLIST.md)
 - [Account lifecycle & erasure](ACCOUNT_LIFECYCLE.md)
+
+## Campaign & pipeline subdirectories
+Point-in-time working sets from past campaigns — reference records, not living
+docs:
+
+- [fix-prompts/](fix-prompts/) — 2026-06 audit fix-prompt pack + dispatch/run-order notes
+- [fix-notes/](fix-notes/) — notes from individual audit fixes
+- [pipeline-hardening/](pipeline-hardening/) — book-pipeline hardening verification records
+- [book-score/](book-score/) — book content-quality scoring baseline + design notes
+- [v24/](v24/) — v24 book-pipeline campaign reports (background tooling, not the web app)
 
 ## Archived audit artifacts
 Point-in-time campaign records (completed audits, fix logs, one-shot redesign
