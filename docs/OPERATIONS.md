@@ -149,6 +149,46 @@ pager integration is wired at deploy by setting `CHAPTERFLOW_OPS_PAGER_URL`;
 with it unset, CRITICAL alarms still page the ticket-grade email topic, but
 nothing pages off-hours.
 
+### Per-alarm runbook
+
+One row per alarm construct — read the one row for the alarm that fired, not
+this whole doc. Severity matches the table above exactly. `[-env]` is the
+`resourceSuffix` (empty for prod, `-dev`/`-staging` otherwise — see
+[env-config.ts](../infra/lib/env-config.ts)).
+
+**Backend stack** (`infra/lib/chapterflow-backend-stack.ts`):
+
+| Alarm | Severity | Meaning | First checks | Where to look |
+|---|---|---|---|---|
+| `ChapterFlowAppTableThrottlesAlarm` | CRITICAL | Operational table (`ChapterFlowApp[-env]`) throttled ≥1 request in 5 min — can wedge live reader traffic. | Look for a hot partition or a new unbounded Scan; the table is on-demand so this usually self-heals. | CloudWatch → DynamoDB `ChapterFlowApp[-env]` metrics; `ChapterFlowBackendOps[-env]` dashboard, "App table throttled requests" panel. |
+| `ChapterFlowAnalyticsTableThrottlesAlarm` | CRITICAL | Analytics table (`ChapterFlowInsights[-env]`) throttled ≥1 request in 5 min — same failure mode, on the insights path. | Same as above, scoped to the analytics table. | CloudWatch → DynamoDB `ChapterFlowInsights[-env]` metrics; `ChapterFlowBackendOps[-env]` dashboard, "Analytics table throttled requests" panel. |
+| `ChapterFlowOpsFailureAlarm` | CRITICAL | `ChapterFlow/Ops → OpsFailure` fired — a Stripe cancellation/customer-delete, Cognito delete, or partial account erasure failed and left an account inconsistent. | Open the admin Ops dashboard and retry/resolve the failing item; the metric's `kind` dimension says which subsystem. | Admin route `/app/api/book/admin/ops-failures`; `ChapterFlowBackendOps[-env]` dashboard, "OpsFailure" panel. |
+| `ChapterFlowCognitoPreSignUpErrorsAlarm` (only when `cognitoUserPoolId` is set) | CRITICAL — fails closed, blocks Sign in with Apple | PreSignUp linker Lambda (`ChapterFlowCognitoPreSignUp[-env]`) is erroring. It fails closed, so a persistent error blocks the affected user's Apple sign-in instead of risking a split account. | Inspect for `AdminLinkProviderForUser` / `ListUsers` failures (IAM, throttling, or a Cognito-side issue). | Log group `/aws/lambda/ChapterFlowCognitoPreSignUp[-env]`; `ChapterFlowBackendOps[-env]` dashboard, "Cognito PreSignUp ... errors" panel. |
+| `ChapterFlowReminderErrorsAlarm` | WARNING — async, DLQ-backed | Hourly reading-reminder cron (`ChapterFlowReadingReminder[-env]`) errored — e.g. an SSM/email-config failure at handler entry or a failing table Scan. | Confirm the failed hour's event landed in the DLQ; inspect/replay once the root cause is fixed. | Log group `/aws/lambda/ChapterFlowReadingReminder[-env]`; DLQ `ChapterFlowReminderDlq[-env]`; `ChapterFlowBackendOps[-env]` dashboard, "Reading-reminder cron errors" + "Reminder DLQ depth" panels. |
+| `ChapterFlowReminderDurationAlarm` | WARNING — async, DLQ-backed | Reminder cron duration ≥80% of its 10-minute timeout budget — a timed-out run drops that hour's reminders/nudges. | Check for a growing user count or a slow per-user step; raise the timeout/memory or shard the workload if this recurs. | `ChapterFlowBackendOps[-env]` dashboard, "Reading-reminder cron duration vs 10-min budget" panel. |
+| `ChapterFlowSuppressionErrorsAlarm` | WARNING — async, DLQ-backed | SES suppression handler (`ChapterFlowSuppressionHandler[-env]`) is erroring, most likely a DynamoDB write failure — bounces/complaints aren't being recorded to the suppression store. | Confirm the failed event landed in the DLQ; inspect/replay once the write failure is fixed. | Log group `/aws/lambda/ChapterFlowSuppressionHandler[-env]`; DLQ `ChapterFlowSuppressionDlq[-env]`; `ChapterFlowBackendOps[-env]` dashboard, "Email suppression handler errors" + "Suppression DLQ depth" panels. |
+
+**Frontend stack** (`infra/lib/chapterflow-frontend-stack.ts`):
+
+| Alarm | Severity | Meaning | First checks | Where to look |
+|---|---|---|---|---|
+| `ServerFnErrorsAlarm` | CRITICAL | Server Lambda (`ChapterFlowServer[-env]`) returned ≥5 errors in 5 min — elevated 5xx on live traffic. | Check the latest deploy for a regression; tail the function's logs for the stack trace. | Log group `/aws/lambda/ChapterFlowServer[-env]`; `ChapterFlowGoldenSignals[-env]` dashboard, "Server Lambda errors" panel; X-Ray service map (ACTIVE tracing). |
+| `ServerFnThrottlesAlarm` | CRITICAL | Server Lambda hit its concurrency limit — requests are being throttled. | Check for a traffic spike or a reserved-concurrency ceiling that's too low; raise it if legitimate. | `ChapterFlowGoldenSignals[-env]` dashboard, "Server Lambda throttles" panel. |
+| `ServerFnDurationAlarm` | WARNING — early-warning threshold, below the hard timeout | Server Lambda p99 duration ≥20s, 2 of 3 periods — trending toward the 45s hard timeout. | Use X-Ray to find the slow hop (DynamoDB, S3, Stripe, Anthropic, ElevenLabs). | `ChapterFlowGoldenSignals[-env]` dashboard, "Server Lambda duration — p50/p95/p99" panel; X-Ray service map. |
+| `RevalidationFnErrorsAlarm` | WARNING — async, DLQ-backed | ISR revalidation Lambda (`ChapterFlowRevalidation[-env]`) is erroring — cached pages may be going stale. | Tail the function's logs for the failure; confirm messages land in the DLQ (redrive after 5 receives). | Log group `/aws/lambda/ChapterFlowRevalidation[-env]`. |
+| `RevalidationDlqDepthAlarm` | CRITICAL | ≥1 message on the revalidation DLQ (`ChapterFlowRevalidationDlq[-env].fifo`) — ISR revalidation is failing outright. | Inspect/replay the DLQ; check the revalidation-fn logs for the underlying cause. | SQS queue `ChapterFlowRevalidationDlq[-env].fifo`; log group `/aws/lambda/ChapterFlowRevalidation[-env]`; `ChapterFlowGoldenSignals[-env]` dashboard, "Revalidation DLQ depth" panel. |
+| `RevalidationQueueAgeAlarm` | WARNING — async, DLQ-backed | Oldest message on the revalidation queue (`ChapterFlowRevalidation[-env].fifo`) is >5 min old — the queue is backing up. | Check revalidation-fn throughput/errors; the queue is FIFO, so one stuck message-group head-of-lines the rest. | SQS queue `ChapterFlowRevalidation[-env].fifo`; `ChapterFlowGoldenSignals[-env]` dashboard, "Revalidation queue oldest message age" panel. |
+| `CloudFront5xxAlarm` | CRITICAL | CloudFront edge `5xxErrorRate` >1%, sustained over 3×5-min periods. | Rule out server-Lambda-driven (see `ServerFnErrorsAlarm`) vs. an origin/WAF/ACM issue. If the SLO burn-rate composites below are also firing, this is budget-relevant, not just a blip. | `ChapterFlowGoldenSignals[-env]` dashboard, "CloudFront 5xxErrorRate" panel; [SLOS.md §2a](./SLOS.md). |
+| `StripeWebhookFailureAlarm` | CRITICAL | `ChapterFlow/Ops → StripeWebhookFailure` fired — a webhook delivery failed to process after signature verification (Stripe will retry). | Check the billing webhook logs for the failure, then reconcile once fixed. | Log group `/aws/lambda/ChapterFlowServer[-env]` (webhook route); admin route `/app/api/book/admin/reconciliation`; `ChapterFlowGoldenSignals[-env]` dashboard, "StripeWebhookFailure" panel. |
+| `SloFastBurnAlarm` — composite `ChapterFlowSloFastBurn[-env]` (members `SloFastBurn1hAlarm` / `SloFastBurn5mAlarm` carry no actions of their own; this row covers both) | CRITICAL — budget exhausted in ~50h | Edge availability is burning the 99.9%/43.2-min-per-month error budget at ≥14.4× sustainable on BOTH the 1h and 5m windows. | Treat as a live outage — same triage as `CloudFront5xxAlarm`, but budget-driven rather than a fixed threshold. | [SLOS.md §2a/§3](./SLOS.md) (burn-rate method + error-budget policy); `ChapterFlowGoldenSignals[-env]` dashboard. |
+| `SloSlowBurnAlarm` — composite `ChapterFlowSloSlowBurn[-env]` (members `SloSlowBurn6hAlarm` / `SloSlowBurn30mAlarm` carry no actions of their own; this row covers both) | WARNING — budget exhausted in ~5 days | Edge availability is burning the monthly error budget at ≥6× sustainable on BOTH the 6h and 30m windows — a slower leak than the fast-burn pair. | Triage at the next working session; find the leak before it accelerates into fast-burn. | [SLOS.md §2a/§3](./SLOS.md). |
+
+> **Keep this in sync:** any new alarm added to either stack must add a row
+> here in the same commit — a table with a gap is worse than no table,
+> because it teaches the responder to stop trusting it. (A future
+> improvement would generate these rows from each alarm's `alarmDescription`
+> at build time to make drift impossible; no such tooling exists yet.)
+
 ## 5) Deploy & rollback runbook
 
 **Deploy:** see [CI_CD.md §3](./CI_CD.md). prod requires approval. Deploy
