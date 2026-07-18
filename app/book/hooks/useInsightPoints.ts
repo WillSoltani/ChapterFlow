@@ -5,7 +5,14 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
-import { BOOK_STORAGE_EVENT, emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
+import {
+  fetchBookJsonCached,
+  invalidateBookCache,
+  subscribeBookCache,
+} from "@/app/book/_lib/book-api-cache";
+import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
+
+const FLOW_POINTS_KEY = "/app/api/book/me/flow-points";
 
 export type InsightPointsPayload = {
   summary: {
@@ -97,7 +104,7 @@ export function useInsightPoints(enabled = true) {
 
     setState((current) => ({ ...current, loading: true, error: null }));
     try {
-      const payload = await fetchBookJson<InsightPointsPayload>("/app/api/book/me/flow-points");
+      const payload = await fetchBookJsonCached<InsightPointsPayload>(FLOW_POINTS_KEY);
       setState((current) => ({
         ...current,
         loading: false,
@@ -119,18 +126,15 @@ export function useInsightPoints(enabled = true) {
     void refresh();
   }, [refresh]);
 
+  // Focus/storage/book-storage revalidation is owned by the shared cache; a
+  // background refresh of the flow-points key pulls the new value into local
+  // state. Only subscribe when enabled so a disabled hook triggers no fetches.
   useEffect(() => {
-    function onStorageChange() {
+    if (!enabled) return;
+    return subscribeBookCache(FLOW_POINTS_KEY, () => {
       void refresh();
-    }
-
-    window.addEventListener(BOOK_STORAGE_EVENT, onStorageChange as EventListener);
-    window.addEventListener("focus", onStorageChange);
-    return () => {
-      window.removeEventListener(BOOK_STORAGE_EVENT, onStorageChange as EventListener);
-      window.removeEventListener("focus", onStorageChange);
-    };
-  }, [refresh]);
+    });
+  }, [enabled, refresh]);
 
   const redeemReward = useCallback(
     async (rewardId: string): Promise<RedeemFeedback> => {
@@ -150,6 +154,9 @@ export function useInsightPoints(enabled = true) {
           redeemingRewardId: null,
           redeemMessage: feedback,
         }));
+        // The redeem mutated the balance — drop the cached flow-points read so the
+        // refresh below (and any co-mounted reader) pulls the new balance, not a hit.
+        invalidateBookCache(FLOW_POINTS_KEY);
         emitBookStorageChanged("insight-points");
         await refresh();
         return feedback;

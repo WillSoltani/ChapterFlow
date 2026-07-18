@@ -92,7 +92,6 @@ const LOOP_STEP_MAP: Record<string, { step: LearningStep; stepNumber: StepNumber
 const DAY_MS = 86_400_000;
 
 // Cache keys for this page's independent server reads (WS3-022).
-const ENTITLEMENTS_KEY = "/app/api/book/me/entitlements";
 const REVIEWS_ALL_KEY = "/app/api/book/me/reviews?mode=all";
 const STREAK_KEY = "/app/api/book/me/streak";
 
@@ -485,15 +484,11 @@ export function ProgressPage() {
 
   const viewerName = viewerIdentity.displayName || "Reader";
 
-  // Fetch real entitlement status. The route returns a NESTED shape
-  // ({ entitlement: { plan }, paywall: {...} }) — bookOk does not flatten an
-  // envelope — so the plan lives under `entitlement.plan`, not at the top level.
-  const [isPro, setIsPro] = useState(false);
-  useEffect(() => {
-    fetchBookJsonCached<{ entitlement?: { plan?: string } }>(ENTITLEMENTS_KEY)
-      .then((e) => setIsPro(e.entitlement?.plan === "PRO"))
-      .catch(() => {});
-  }, []);
+  // isPro derives from the dashboard aggregate's `entitlement.plan` (already
+  // loaded by useBookAnalytics) — no separate /me/entitlements round trip
+  // (WS3-023). The entitlement is CRITICAL dashboard data, so an outage surfaces
+  // as a dashboard error and NEVER silently collapses PRO to FREE.
+  const isPro = analytics?.isPro ?? false;
 
   // Source the KnowledgeReview counts, the "Review 5 concepts" quest, and the
   // Streak Shield count from the server (FSRS deck + streak store) so this page
@@ -551,24 +546,30 @@ export function ProgressPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, reviewData, reviewedTodayCount, shieldsHeld, refreshKey]);
 
-  // Fetch daily reader metrics for active books.
+  // Fetch daily reader metrics for the active books in ONE batched request
+  // (WS3-023) instead of an HTTP fan-out of one /books/[id]/metrics call per book.
   const [readerMetrics, setReaderMetrics] = useState<Record<string, number>>({});
   useEffect(() => {
     if (!data?.activeBooks.length) return;
     const ids = data.activeBooks.map((b) => b.id);
-    Promise.allSettled(
-      ids.map((bookId) =>
-        fetchBookJson<{ readersToday?: number }>(
-          `/app/api/book/books/${encodeURIComponent(bookId)}/metrics`
-        ).then((res) => [bookId, res.readersToday ?? 0] as const)
-      )
-    ).then((results) => {
-      const map: Record<string, number> = {};
-      for (const r of results) {
-        if (r.status === "fulfilled") map[r.value[0]] = r.value[1];
-      }
-      setReaderMetrics(map);
-    });
+    let cancelled = false;
+    fetchBookJson<{ metrics?: Record<string, { readersToday?: number }> }>(
+      "/app/api/book/books/reader-metrics",
+      { method: "POST", body: JSON.stringify({ bookIds: ids }) }
+    )
+      .then((res) => {
+        if (cancelled) return;
+        const map: Record<string, number> = {};
+        for (const id of ids) {
+          const readersToday = res.metrics?.[id]?.readersToday;
+          if (typeof readersToday === "number") map[id] = readersToday;
+        }
+        setReaderMetrics(map);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
   }, [data?.activeBooks.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Allow switching primary book via ContinueLearningCard
