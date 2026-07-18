@@ -10,6 +10,7 @@ import {
   invalidateBookCache,
   subscribeBookCache,
 } from "@/app/book/_lib/book-api-cache";
+import { isBookCacheRefreshEvent } from "@/app/book/_lib/book-api-cache-core";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 
 const FLOW_POINTS_KEY = "/app/api/book/me/flow-points";
@@ -131,8 +132,23 @@ export function useInsightPoints(enabled = true) {
   // state. Only subscribe when enabled so a disabled hook triggers no fetches.
   useEffect(() => {
     if (!enabled) return;
-    return subscribeBookCache(FLOW_POINTS_KEY, () => {
-      void refresh();
+    return subscribeBookCache(FLOW_POINTS_KEY, (event) => {
+      if (isBookCacheRefreshEvent(event)) {
+        void refresh();
+        return;
+      }
+      if (event.type === "clear") {
+        setState((current) => ({
+          ...current,
+          loading: false,
+          payload: null,
+          error: null,
+        }));
+        return;
+      }
+      const message =
+        event.error instanceof Error ? event.error.message : "Unable to load Insight Points.";
+      setState((current) => ({ ...current, loading: false, error: message }));
     });
   }, [enabled, refresh]);
 

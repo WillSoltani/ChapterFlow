@@ -21,9 +21,14 @@
 // runs in the browser), so importing it server-side is inert.
 
 import { useCallback, useEffect, useState } from "react";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
 import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";
-import { createBookCache } from "@/app/book/_lib/book-api-cache-core";
+import {
+  beginBookCacheMountLoad,
+  createBookCache,
+  type BookCacheEvent,
+  type BookCacheListener,
+} from "@/app/book/_lib/book-api-cache-core";
 
 /** Fresh window: within 30s a read is served from memory with no network call. */
 const CACHE_TTL_MS = 30_000;
@@ -32,6 +37,10 @@ const cache = createBookCache({
   ttlMs: CACHE_TTL_MS,
   now: () => Date.now(),
   defaultFetcher: (key) => fetchBookJson(key),
+  // A 401/403 is an authentication boundary, not a transient data-plane
+  // failure. Never retain one user's private payload after the session is gone.
+  shouldClearOnError: (error) =>
+    error instanceof BookClientError && (error.status === 401 || error.status === 403),
 });
 
 let listenersAttached = false;
@@ -66,7 +75,7 @@ export function fetchBookJsonCached<T>(
 }
 
 /** Subscribe `listener` to updates (revalidations + invalidations) for `key`. */
-export function subscribeBookCache(key: string, listener: () => void): () => void {
+export function subscribeBookCache(key: string, listener: BookCacheListener): () => void {
   ensureGlobalListeners();
   return cache.subscribe(key, listener);
 }
@@ -115,34 +124,40 @@ export function useBookQuery<T>(key: string | null): BookQueryResult<T> {
 
     // Data is delivered from ONE place — the cache, via peek — so a background
     // revalidation triggered by any co-mounted consumer updates this hook too.
-    const sync = () => {
+    const sync = (event: BookCacheEvent) => {
+      if (event.type === "clear") {
+        setState({ data: undefined, error: undefined, loading: false });
+        return;
+      }
+      if (event.type === "error") {
+        setState((prev) => ({ ...prev, error: event.error, loading: false }));
+        return;
+      }
       const peeked = cache.peek(key);
       if (peeked !== undefined) {
-        setState((prev) => ({ ...prev, data: peeked.value as T, loading: false }));
+        setState({ data: peeked.value as T, error: undefined, loading: false });
       }
     };
     const unsubscribe = subscribeBookCache(key, sync);
 
-    const initial = cache.peek(key);
-    sync();
-    if (!initial || !initial.fresh) {
-      setState((prev) => ({ ...prev, loading: initial === undefined }));
-      cache
-        .load(key, { force: initial !== undefined })
-        .then(() => setState((prev) => ({ ...prev, error: undefined, loading: false })))
-        .catch((err) => setState((prev) => ({ ...prev, error: err, loading: false })));
-    }
+    const { initial, request } = beginBookCacheMountLoad(cache, key);
+    setState({
+      data: initial?.value as T | undefined,
+      error: undefined,
+      loading: initial === undefined,
+    });
+    // Success and failure are delivered through the cache subscription so every
+    // co-mounted consumer observes the same result. Swallow only the duplicate
+    // promise channel to avoid an unhandled rejection.
+    void request.catch(() => {});
 
     return unsubscribe;
   }, [key]);
 
   const refetch = useCallback(() => {
     if (!key) return;
-    setState((prev) => ({ ...prev, error: null }));
-    cache
-      .load(key, { force: true })
-      .then(() => setState((prev) => ({ ...prev, error: undefined, loading: false })))
-      .catch((err) => setState((prev) => ({ ...prev, error: err, loading: false })));
+    setState((prev) => ({ ...prev, error: undefined }));
+    void cache.load(key, { force: true }).catch(() => {});
   }, [key]);
 
   return { data: state.data, error: state.error, loading: state.loading, refetch };

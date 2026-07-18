@@ -1,7 +1,12 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { createBookCache } from "./book-api-cache-core";
+import {
+  beginBookCacheMountLoad,
+  createBookCache,
+  isBookCacheRefreshEvent,
+  type BookCacheEvent,
+} from "./book-api-cache-core";
 
 const KEY = "/app/api/book/me/dashboard";
 
@@ -187,4 +192,158 @@ test("a failed revalidation keeps the last-good cached value", async () => {
   clock.advance(40_000);
   await assert.rejects(() => cache.load(KEY, { force: true }), /network down/);
   assert.deepEqual(cache.peek(KEY), { value: "V1", fresh: false }, "cache is not wiped by a failed refresh");
+});
+
+test("mount load revalidates a fresh value and still deduplicates concurrent consumers", async () => {
+  const clock = fakeClock();
+  let calls = 0;
+  const gate = deferred<string>();
+  const cache = createBookCache({
+    ttlMs: 30_000,
+    now: clock.now,
+    defaultFetcher: () => {
+      calls += 1;
+      if (calls === 1) return Promise.resolve("V1");
+      return gate.promise;
+    },
+  });
+
+  await cache.load(KEY);
+  const first = beginBookCacheMountLoad(cache, KEY);
+  const second = beginBookCacheMountLoad(cache, KEY);
+
+  assert.deepEqual(first.initial, { value: "V1", fresh: true });
+  assert.deepEqual(second.initial, { value: "V1", fresh: true });
+  assert.equal(calls, 2, "fresh mount loads share one forced background request");
+
+  gate.resolve("V2");
+  assert.deepEqual(await Promise.all([first.request, second.request]), ["V2", "V2"]);
+});
+
+test("background failure and recovery are both broadcast while retaining last-good data", async () => {
+  const clock = fakeClock();
+  let calls = 0;
+  const failure = new Error("network down");
+  const cache = createBookCache({
+    ttlMs: 30_000,
+    now: clock.now,
+    defaultFetcher: () => {
+      calls += 1;
+      if (calls === 1) return Promise.resolve("V1");
+      if (calls === 2) return Promise.reject(failure);
+      return Promise.resolve("V2");
+    },
+  });
+
+  await cache.load(KEY);
+  const events: BookCacheEvent[] = [];
+  cache.subscribe(KEY, (event) => events.push(event));
+
+  await assert.rejects(() => cache.load(KEY, { force: true }), failure);
+  assert.deepEqual(cache.peek(KEY), { value: "V1", fresh: true });
+  assert.equal(events.length, 1);
+  assert.equal(events[0]?.type, "error");
+  if (events[0]?.type === "error") assert.equal(events[0].error, failure);
+
+  await cache.load(KEY, { force: true });
+  assert.deepEqual(cache.peek(KEY), { value: "V2", fresh: true });
+  assert.equal(events.at(-1)?.type, "success", "later success tells hooks to clear the error");
+});
+
+test("an authentication failure clears every private entry and blocks late repopulation", async () => {
+  const clock = fakeClock();
+  const OTHER = "/app/api/book/me/profile";
+  const LATE = "/app/api/book/me/is-admin";
+  const authFailure = Object.assign(new Error("signed out"), { status: 401 });
+  const lateGate = deferred<string>();
+  let keyCalls = 0;
+  const cache = createBookCache({
+    ttlMs: 30_000,
+    now: clock.now,
+    shouldClearOnError: (error) =>
+      typeof error === "object" && error !== null && "status" in error &&
+      ((error as { status?: unknown }).status === 401 ||
+        (error as { status?: unknown }).status === 403),
+    defaultFetcher: (key) => {
+      if (key === LATE) return lateGate.promise;
+      if (key === KEY) {
+        keyCalls += 1;
+        return keyCalls === 1 ? Promise.resolve("dashboard-A") : Promise.reject(authFailure);
+      }
+      return Promise.resolve("profile-A");
+    },
+  });
+
+  await cache.load(KEY);
+  await cache.load(OTHER);
+  const lateRequest = cache.load(LATE);
+  const keyEvents: BookCacheEvent[] = [];
+  const otherEvents: BookCacheEvent[] = [];
+  cache.subscribe(KEY, (event) => keyEvents.push(event));
+  cache.subscribe(OTHER, (event) => otherEvents.push(event));
+
+  await assert.rejects(() => cache.load(KEY, { force: true }), authFailure);
+  assert.equal(cache.peek(KEY), undefined);
+  assert.equal(cache.peek(OTHER), undefined);
+  assert.equal(keyEvents[0]?.type, "clear");
+  assert.equal(keyEvents[1]?.type, "error");
+  assert.equal(otherEvents[0]?.type, "clear");
+
+  lateGate.resolve("admin-A");
+  assert.equal(await lateRequest, "admin-A");
+  assert.equal(cache.peek(LATE), undefined, "a pre-clear request cannot repopulate the cache");
+});
+
+test("manual subscribers refresh only for success and explicit invalidation", () => {
+  assert.equal(isBookCacheRefreshEvent({ type: "success" }), true);
+  assert.equal(isBookCacheRefreshEvent({ type: "invalidate" }), true);
+  assert.equal(isBookCacheRefreshEvent({ type: "clear" }), false);
+  assert.equal(isBookCacheRefreshEvent({ type: "error", error: new Error("offline") }), false);
+});
+
+test("late old-generation rejections cannot clear or notify the current generation", async () => {
+  async function runScenario(staleFailure: Error) {
+    const AUTH = "/app/api/book/me/dashboard";
+    const STALE = "/app/api/book/me/profile";
+    const FRESH = "/app/api/book/me/is-admin";
+    const authFailure = Object.assign(new Error("signed out"), { status: 401 });
+    const staleGate = deferred<string>();
+    let authCalls = 0;
+    const cache = createBookCache({
+      ttlMs: 30_000,
+      shouldClearOnError: (error) =>
+        typeof error === "object" && error !== null && "status" in error &&
+        ((error as { status?: unknown }).status === 401 ||
+          (error as { status?: unknown }).status === 403),
+      defaultFetcher: (key) => {
+        if (key === STALE) return staleGate.promise;
+        if (key === AUTH) {
+          authCalls += 1;
+          return authCalls === 1 ? Promise.resolve("dashboard-A") : Promise.reject(authFailure);
+        }
+        return Promise.resolve("admin-B");
+      },
+    });
+
+    await cache.load(AUTH);
+    const staleRequest = cache.load(STALE);
+    const staleEvents: BookCacheEvent[] = [];
+    const freshEvents: BookCacheEvent[] = [];
+    cache.subscribe(STALE, (event) => staleEvents.push(event));
+    cache.subscribe(FRESH, (event) => freshEvents.push(event));
+
+    await assert.rejects(() => cache.load(AUTH, { force: true }), authFailure);
+    await cache.load(FRESH);
+    staleEvents.length = 0;
+    freshEvents.length = 0;
+
+    staleGate.reject(staleFailure);
+    await assert.rejects(() => staleRequest, staleFailure);
+    assert.deepEqual(cache.peek(FRESH), { value: "admin-B", fresh: true });
+    assert.deepEqual(staleEvents, [], "obsolete failure must not reach current subscribers");
+    assert.deepEqual(freshEvents, [], "obsolete auth failure must not clear current subscribers");
+  }
+
+  await runScenario(new Error("old request failed"));
+  await runScenario(Object.assign(new Error("old session unauthorized"), { status: 401 }));
 });
