@@ -5,7 +5,7 @@ import { ArrowUpRight, ChevronDown, Lock, Sparkles, Trophy, Zap } from "lucide-r
 import { Button } from "@/app/book/components/ui/Button";
 import { Card } from "@/app/book/components/ui/Card";
 import { Chip, ChipButton } from "@/app/book/components/ui/Chip";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON, type BadgeFilter, type BadgeState } from "@/app/book/badges/lib/badge-ui-definitions";
 
 type NextMilestone = {

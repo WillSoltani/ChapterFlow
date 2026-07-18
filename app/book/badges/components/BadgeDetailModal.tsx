@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { X, Share2, Check } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import { Dialog } from "@/components/ui/Dialog";
 import type { BadgeWithProgress } from "../lib/badge-types";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";

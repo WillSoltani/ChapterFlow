@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import type { BadgeFilter, BadgeWithProgress } from "../lib/badge-types";
 import { FILTER_OPTIONS } from "../lib/badge-utils";
 

@@ -35,7 +35,7 @@ import { DUR, EASE } from "@/lib/motion";
 import { Button } from "@/app/book/components/ui/Button";
 import { Card } from "@/app/book/components/ui/Card";
 import { BookCover } from "@/components/ui/BookCover";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 
 /* ─── Inline markdown helper ─── */
 

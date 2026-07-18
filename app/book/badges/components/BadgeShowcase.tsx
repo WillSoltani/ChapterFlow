@@ -1,7 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import type { BadgeWithProgress } from "../lib/badge-types";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
 

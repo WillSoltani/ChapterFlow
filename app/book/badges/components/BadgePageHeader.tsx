@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import type { UserAchievementProfile } from "../lib/badge-types";
 import { ProgressRing } from "./ProgressRing";
 

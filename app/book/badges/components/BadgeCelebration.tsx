@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import { Dialog } from "@/components/ui/Dialog";
 import { Confetti } from "@/components/ui/Confetti";
 import type { BadgeWithProgress, BadgeTier } from "../lib/badge-types";
