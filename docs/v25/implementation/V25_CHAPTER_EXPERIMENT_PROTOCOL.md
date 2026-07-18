@@ -150,6 +150,17 @@ of the A_high anchor chapter measured at Stage 0b — NEVER the book's 90.1 port
 portfolio score only *selects* the anchor book; using it in a floor formula would compare a
 full-book construct to chapter diagnostics (forbidden) and set an unclearable 82.1 floor.
 
+> **STAGE-0B OUTCOME + OWNER RULING (2026-07-18; results doc `V25_STAGE0B_DRILL_RESULTS.md`):**
+> the sanity stop FIRED — mean(A_high) = 70.59 (A_mid 69.56; separation 1.04 < W). Book-score
+> anchoring does not transfer to the chapter construct, so the anchor-keyed floor FORMULAS above
+> are retired. **Owner ruled: ABSOLUTE-BAND FLOORS — screening advance floor = 75.0** (rubric
+> "valuable-but-uneven" boundary; matches the registered legacy screening floor; splits the
+> observed candidate range 75.2–85.3), **block floor = 65.0**. Anchors are retained as
+> noise/drift sentinels only. **W = 2.0 frozen** (measured 2×SD 0.678, clamped to the floor).
+> First-attempt gate 8/8 PASS; rater uniformly gpt-5.6-sol; ultra route runtime-proven.
+> D7-lite drill authorized (3 sessions); Stage 1 authorized to launch once these floors landed
+> (this note is that landing).
+
 ### 4.5 Optional owner hand-adjudication (truth check)
 
 If the owner hand-adjudicates the 2 anchor chapters, that becomes a **truth check**:
