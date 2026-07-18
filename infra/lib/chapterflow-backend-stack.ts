@@ -460,6 +460,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       timeout: reminderTimeout,
       deadLetterQueue: reminderDlq,
       logRetention: logs.RetentionDays.ONE_MONTH,
+      // WS6-029: this Lambda is multi-hop (DynamoDB read/write + SES send + SSM),
+      // so ACTIVE tracing lets an operator see where a slow/erroring run spent time.
+      tracing: lambda.Tracing.ACTIVE,
       environment: {
         BOOK_TABLE_NAME: this.appTable.tableName,
         SES_SENDER_EMAIL: reminderSenderEmail,
@@ -649,6 +652,8 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       environment: { BOOK_TABLE_NAME: this.appTable.tableName },
       deadLetterQueue: suppressionDlq,
       logRetention: logs.RetentionDays.ONE_MONTH,
+      // WS6-029: SNS -> DynamoDB write hop; ACTIVE tracing surfaces DynamoDB latency.
+      tracing: lambda.Tracing.ACTIVE,
     });
     this.appTable.grantWriteData(suppressionFn);
     emailEventsTopic.addSubscription(new snsSubscriptions.LambdaSubscription(suppressionFn));
@@ -713,6 +718,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         // hung ListUsers/AdminLink can never wedge the user's sign-in.
         timeout: cdk.Duration.seconds(10),
         logRetention: logs.RetentionDays.ONE_MONTH,
+        // WS6-029: inline on the auth path and calls Cognito (ListUsers/
+        // AdminLinkProviderForUser); ACTIVE tracing shows where a slow sign-in went.
+        tracing: lambda.Tracing.ACTIVE,
       });
 
       // Least privilege: ONLY the two calls the linker makes, scoped to THIS pool.

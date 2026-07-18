@@ -6,6 +6,30 @@ import { S3Client } from "@aws-sdk/client-s3";
 import { SFNClient } from "@aws-sdk/client-sfn";
 import { mustServerEnv } from "./server-env";
 
+// WS6-029: passive X-Ray instrumentation. When the server Lambda runs with
+// ACTIVE tracing (frontend ServerFn), the daemon address env var is set and we
+// wrap each AWS SDK client so its calls become DynamoDB/S3/SFN subsegments under
+// the request trace. This MUST NOT change request behavior: we only wrap when a
+// tracing context is actually present (the daemon var is unset locally/in tests/
+// at build), we tell the SDK to swallow a missing-segment context instead of
+// throwing or log-spamming, and any failure in capture falls back to the raw
+// client. `client` is `unknown`-typed by captureAWSv3Client so we thread the
+// concrete type through a generic and cast the result back.
+function traceClient<T>(client: T): T {
+  if (!process.env.AWS_XRAY_DAEMON_ADDRESS) return client;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const xray = require("aws-xray-sdk-core");
+    // A subsegment can be requested outside an active segment (e.g. a warm
+    // invoke that isn't sampled); IGNORE_ERROR makes that a no-op rather than
+    // an exception or an error log per call.
+    xray.setContextMissingStrategy("IGNORE_ERROR");
+    return xray.captureAWSv3Client(client) as T;
+  } catch {
+    return client;
+  }
+}
+
 export async function mustEnv(name: string): Promise<string> {
   return mustServerEnv(name);
 }
@@ -15,7 +39,9 @@ export const REGION =
   process.env.AWS_DEFAULT_REGION ||
   "us-east-1";
 
-const ddb = new DynamoDBClient({ region: REGION });
+// Wrap the base client before building the DocumentClient so DynamoDB calls
+// issued through the doc client still surface as X-Ray subsegments.
+const ddb = traceClient(new DynamoDBClient({ region: REGION }));
 
 export const ddbDoc = DynamoDBDocumentClient.from(ddb, {
   // NOTE: convertEmptyValues is intentionally OFF. With it on, the SDK rewrites
@@ -30,6 +56,6 @@ export const ddbDoc = DynamoDBDocumentClient.from(ddb, {
   marshallOptions: { removeUndefinedValues: true },
 });
 
-export const s3 = new S3Client({ region: REGION });
+export const s3 = traceClient(new S3Client({ region: REGION }));
 
-export const sfn = new SFNClient({ region: REGION });
+export const sfn = traceClient(new SFNClient({ region: REGION }));

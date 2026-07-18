@@ -83,6 +83,12 @@ ARN**, so alarms from both stacks page the same inbox.
 > dimensions-only emit: CloudWatch does not roll dimensioned datapoints into the
 > dimensionless series, so the alarms would silently stop firing.
 
+The server Lambda and the three backend Lambdas (reminder / suppression /
+pre-signup) run with X-Ray **ACTIVE** tracing so a slow request (e.g. the
+`Duration` p99 alarm above) can be broken down by hop in the X-Ray service map;
+cost is bounded by X-Ray's default sampling (1 req/s reservoir + 5% of the
+overflow) with no custom sampling rule.
+
 Signals worth watching in CloudWatch Logs / metrics: server-fn 5xx and duration
 p95, DynamoDB throttles, and the per-day analytics EVENT volume.
 

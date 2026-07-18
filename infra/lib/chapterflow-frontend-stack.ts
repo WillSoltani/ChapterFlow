@@ -465,6 +465,12 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       environment: commonEnv,
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
+      // WS6-029: the server Lambda is the fan-out hop (DynamoDB/S3/Stripe/
+      // Cognito/Anthropic/ElevenLabs) that ServerFnDurationAlarm watches at
+      // p99>=20s; ACTIVE tracing is what lets an operator see WHERE that time
+      // went. The auxiliary OpenNext functions below (Image/Revalidation/
+      // Warmer/DynamoProvider) are single-hop plumbing and stay untraced.
+      tracing: lambda.Tracing.ACTIVE,
     });
 
     // authType NONE — public Function URL fronted by CloudFront. An earlier
