@@ -1108,12 +1108,28 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     );
     const opsAction = new cloudwatchActions.SnsAction(opsTopic);
 
+    // Critical (paging) topic (WS6-034) — reconstructed by ARN, same
+    // cross-stack-by-name convention as opsTopic above. Subscriptions live on
+    // the backend topic (CHAPTERFLOW_OPS_PAGER_URL / CHAPTERFLOW_OPS_CRITICAL_ALERT_EMAIL).
+    const opsCriticalTopic = sns.Topic.fromTopicArn(
+      this,
+      "OpsCriticalTopic",
+      `arn:${cdk.Aws.PARTITION}:sns:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:ChapterFlowOpsCritical${suffix}`,
+    );
+    const criticalAction = new cloudwatchActions.SnsAction(opsCriticalTopic);
+
     const makeAlarm = (
       id: string,
       metric: cloudwatch.IMetric,
       threshold: number,
       alarmDescription: string,
-      opts?: { evaluationPeriods?: number; datapointsToAlarm?: number },
+      opts?: {
+        evaluationPeriods?: number;
+        datapointsToAlarm?: number;
+        // WS6-034: "critical" ADDS criticalAction alongside opsAction (never
+        // instead of) so the existing inbox keeps full visibility.
+        severity?: "critical" | "warning";
+      },
     ): cloudwatch.Alarm => {
       const alarm = new cloudwatch.Alarm(this, id, {
         metric,
@@ -1126,6 +1142,9 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         alarmDescription,
       });
       alarm.addAlarmAction(opsAction);
+      if (opts?.severity === "critical") {
+        alarm.addAlarmAction(criticalAction);
+      }
       return alarm;
     };
 
@@ -1137,12 +1156,14 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       this.serverFunction.metricErrors({ period: alarmPeriod, statistic: "sum" }),
       5,
       "ChapterFlow server Lambda returned ≥5 errors in 5 minutes (elevated 5xx).",
+      { severity: "critical" },
     );
     makeAlarm(
       "ServerFnThrottlesAlarm",
       this.serverFunction.metricThrottles({ period: alarmPeriod, statistic: "sum" }),
       1,
       "ChapterFlow server Lambda is being throttled (concurrency limit hit).",
+      { severity: "critical" },
     );
     makeAlarm(
       "ServerFnDurationAlarm",
@@ -1167,6 +1188,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
       1,
       "Revalidation messages have landed in the DLQ — ISR revalidation is failing.",
+      { severity: "critical" },
     );
     makeAlarm(
       "RevalidationQueueAgeAlarm",
@@ -1185,7 +1207,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       this.distribution.metric5xxErrorRate({ period: alarmPeriod, statistic: "Average" }),
       1,
       "CloudFront is serving >1% 5xx responses at the edge.",
-      { evaluationPeriods: 3, datapointsToAlarm: 3 },
+      { evaluationPeriods: 3, datapointsToAlarm: 3, severity: "critical" },
     );
 
     // Stripe webhook processing failures — the server emits this custom metric
@@ -1201,6 +1223,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
       1,
       "A Stripe webhook delivery failed to process (post-signature). Stripe will retry; check the billing webhook logs and reconciliation tool.",
+      { severity: "critical" },
     );
 
     // -------------------------------------------------------------------
@@ -1295,9 +1318,10 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       "SLO edge-availability slow-burn member (30m window): edge 5xx burn ≥6× sustainable. Short window of the slow-burn pair — clears within one period on recovery.",
     );
 
-    // Composite alarms carry the paging action. Wired to the shared opsAction
-    // today; a later severity-routing step re-routes these to a paging channel
-    // distinct from the ticket-grade alarms above.
+    // Composite alarms carry the paging action. Fast-burn additionally pages
+    // opsCriticalTopic (WS6-034) — a budget exhausted in ~50h is a "needs a
+    // human NOW" outage; slow-burn (~5 days to exhaustion) stays on the
+    // existing ticket-grade topic only.
     const sloFastBurnAlarm = new cloudwatch.CompositeAlarm(this, "SloFastBurnAlarm", {
       compositeAlarmName: `ChapterFlowSloFastBurn${suffix}`,
       alarmRule: cloudwatch.AlarmRule.allOf(
@@ -1308,6 +1332,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         "PAGE — SLO edge-availability FAST burn (99.9% monthly). Edge 5xx is burning the 43.2-min/mo error budget at ≥14.4× sustainable on BOTH the 1h and 5m windows (5xx ≥1.44%); at this rate the whole month's budget is exhausted in ~50h (2% per hour). Runbook: docs/OPERATIONS.md §4 → docs/SLOS.md.",
     });
     sloFastBurnAlarm.addAlarmAction(opsAction);
+    sloFastBurnAlarm.addAlarmAction(criticalAction);
 
     const sloSlowBurnAlarm = new cloudwatch.CompositeAlarm(this, "SloSlowBurnAlarm", {
       compositeAlarmName: `ChapterFlowSloSlowBurn${suffix}`,

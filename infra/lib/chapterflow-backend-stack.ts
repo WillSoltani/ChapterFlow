@@ -328,6 +328,40 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     }
     const opsAlarmAction = new cloudwatchActions.SnsAction(opsAlertsTopic);
 
+    // Critical (paging) SNS topic (WS6-034). Email is not a pager — a 3am
+    // outage can sit unread in opsAlertsTopic above. This topic is ADDITIVE:
+    // the small set of "needs a human NOW" alarms (severity table in
+    // docs/OPERATIONS.md §4) add this action ALONGSIDE opsAlarmAction, so the
+    // existing inbox keeps full visibility and nothing is removed from it.
+    // Subscribe a pager by setting CHAPTERFLOW_OPS_PAGER_URL (an https
+    // PagerDuty/Opsgenie/ntfy webhook) and/or CHAPTERFLOW_OPS_CRITICAL_ALERT_EMAIL
+    // at synth time.
+    const opsCriticalTopic = new sns.Topic(this, "ChapterFlowOpsCritical", {
+      topicName: `ChapterFlowOpsCritical${suffix}`,
+      displayName: "ChapterFlow critical (paging) alerts",
+    });
+    const opsCriticalAlertEmail = process.env.CHAPTERFLOW_OPS_CRITICAL_ALERT_EMAIL;
+    if (opsCriticalAlertEmail) {
+      opsCriticalTopic.addSubscription(
+        new snsSubscriptions.EmailSubscription(opsCriticalAlertEmail),
+      );
+    }
+    const opsPagerUrl = process.env.CHAPTERFLOW_OPS_PAGER_URL;
+    if (opsPagerUrl) {
+      // SNS HTTPS delivery requires https — an http (or malformed) endpoint
+      // would silently never deliver, so fail soft (warn + skip) rather than
+      // wiring a subscription that can never page anyone.
+      if (opsPagerUrl.startsWith("https://")) {
+        opsCriticalTopic.addSubscription(new snsSubscriptions.UrlSubscription(opsPagerUrl));
+      } else {
+        console.warn(
+          "⚠ CHAPTERFLOW_OPS_PAGER_URL is set but does not start with https:// — " +
+            "skipping the pager subscription (SNS HTTPS delivery requires it).",
+        );
+      }
+    }
+    const criticalAlarmAction = new cloudwatchActions.SnsAction(opsCriticalTopic);
+
     const appTableThrottlesAlarm = new cloudwatch.Alarm(this, "ChapterFlowAppTableThrottlesAlarm", {
       metric: buildThrottleMetric(this.appTable),
       threshold: 1,
@@ -337,6 +371,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       alarmDescription: "Alerts when ChapterFlow operational table experiences throttling.",
     });
     appTableThrottlesAlarm.addAlarmAction(opsAlarmAction);
+    // CRITICAL (WS6-034): throttling on the operational table can wedge live
+    // reader traffic — page in addition to the existing email.
+    appTableThrottlesAlarm.addAlarmAction(criticalAlarmAction);
 
     const analyticsTableThrottlesAlarm = new cloudwatch.Alarm(this, "ChapterFlowAnalyticsTableThrottlesAlarm", {
       metric: buildThrottleMetric(this.analyticsTable),
@@ -347,6 +384,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       alarmDescription: "Alerts when ChapterFlow analytics table experiences throttling.",
     });
     analyticsTableThrottlesAlarm.addAlarmAction(opsAlarmAction);
+    // CRITICAL (WS6-034): throttling here is the same failure mode as the app
+    // table above — page in addition to the existing email.
+    analyticsTableThrottlesAlarm.addAlarmAction(criticalAlarmAction);
 
     // Alarm on the unified `OpsFailure` metric the server Lambda emits
     // (recordOpsFailure → putOpsMetric, namespace "ChapterFlow/Ops"). One metric
@@ -374,6 +414,10 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       },
     );
     opsFailureAlarm.addAlarmAction(opsAlarmAction);
+    // CRITICAL (WS6-034): a failed Stripe cancellation/customer-delete or
+    // Cognito delete leaves the user's account in an inconsistent state —
+    // page in addition to the existing email.
+    opsFailureAlarm.addAlarmAction(criticalAlarmAction);
 
     // -------------------------------------------------------------------
     // Lambda — Reading reminder cron (hourly)
@@ -858,6 +902,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         }
       );
       preSignUpErrorsAlarm.addAlarmAction(opsAlarmAction);
+      // CRITICAL (WS6-034): this trigger fails closed and blocks the
+      // affected Apple sign-in — page in addition to the existing email.
+      preSignUpErrorsAlarm.addAlarmAction(criticalAlarmAction);
 
       // preSignUpFn only exists in this conditional block (external pool id
       // known at synth), so its dashboard widget is added here too.
@@ -898,6 +945,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
     new cdk.CfnOutput(this, "OpsAlertsTopicArn", {
       value: opsAlertsTopic.topicArn,
+    });
+    new cdk.CfnOutput(this, "OpsCriticalTopicArn", {
+      value: opsCriticalTopic.topicArn,
     });
     new cdk.CfnOutput(this, "BackendOpsDashboardName", {
       value: backendOpsDashboard.dashboardName,

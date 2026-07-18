@@ -52,10 +52,22 @@ config lives at `/chapterflow/<env>/*` in SSM and is read by the running Lambda.
 
 ## 4) Monitoring & alerting
 
-CloudWatch alarms publish to the `ChapterFlowOpsAlerts[-env]` SNS topic
-(subscribe an inbox via the `CHAPTERFLOW_OPS_ALERT_EMAIL` secret at synth time,
-then confirm the subscription). The frontend stack references that topic **by
-ARN**, so alarms from both stacks page the same inbox.
+CloudWatch alarms publish to one or both of two SNS topics (WS6-034):
+
+- **`ChapterFlowOpsAlerts[-env]`** — the original ticket-grade topic. Every
+  alarm in both stacks sends here; subscribe an inbox via the
+  `CHAPTERFLOW_OPS_ALERT_EMAIL` secret at synth time, then confirm the
+  subscription.
+- **`ChapterFlowOpsCritical[-env]`** — the paging topic, added ADDITIVELY on
+  top of the topic above. A small "needs a human NOW" subset of alarms (the
+  severity table below) publishes to **both** topics — the existing inbox
+  never loses visibility. Subscribe a pager by setting
+  `CHAPTERFLOW_OPS_PAGER_URL` (an `https://` PagerDuty / Opsgenie / ntfy
+  webhook) and/or `CHAPTERFLOW_OPS_CRITICAL_ALERT_EMAIL` at synth time.
+
+The frontend stack references both topics **by ARN** (same convention as the
+`ChapterFlow/Ops` custom metrics below), so alarms from both stacks route
+through the same two topics.
 
 For the reliability *targets* these alarms defend — the 99.9% edge-availability
 SLO, its 43.2 min/month error budget, the multi-window burn-rate pages
@@ -97,15 +109,62 @@ overflow) with no custom sampling rule.
 Signals worth watching in CloudWatch Logs / metrics: server-fn 5xx and duration
 p95, DynamoDB throttles, and the per-day analytics EVENT volume.
 
+### Alarm severity
+
+CRITICAL alarms page both topics; WARNING alarms stay on the ticket-grade
+topic only (async, retried, and/or DLQ-backed — no need to wake anyone).
+
+| Alarm | Severity |
+|---|---|
+| `ChapterFlowAppTableThrottlesAlarm` | CRITICAL |
+| `ChapterFlowAnalyticsTableThrottlesAlarm` | CRITICAL |
+| `ChapterFlowOpsFailureAlarm` | CRITICAL |
+| `ChapterFlowCognitoPreSignUpErrorsAlarm` | CRITICAL — blocks Sign in with Apple, fails closed |
+| `ChapterFlowReminderErrorsAlarm` | WARNING — async, DLQ-backed |
+| `ChapterFlowReminderDurationAlarm` | WARNING — async, DLQ-backed |
+| `ChapterFlowSuppressionErrorsAlarm` | WARNING — async, DLQ-backed |
+| `ServerFnErrorsAlarm` | CRITICAL |
+| `ServerFnThrottlesAlarm` | CRITICAL |
+| `ServerFnDurationAlarm` | WARNING — early-warning threshold, below the hard timeout |
+| `RevalidationFnErrorsAlarm` | WARNING — async, DLQ-backed |
+| `RevalidationDlqDepthAlarm` | CRITICAL |
+| `RevalidationQueueAgeAlarm` | WARNING — async, DLQ-backed |
+| `CloudFront5xxAlarm` | CRITICAL |
+| `StripeWebhookFailureAlarm` | CRITICAL |
+| `ChapterFlowSloFastBurn` (composite) | CRITICAL — budget exhausted in ~50h |
+| `ChapterFlowSloSlowBurn` (composite) | WARNING — budget exhausted in ~5 days |
+
+### On-call & escalation
+
+ChapterFlow is solo-operated — the owner is the only on-call. Ack
+expectations:
+
+- **CRITICAL** — act within 15 minutes of the page.
+- **WARNING** — triage at the next working session; no off-hours expectation.
+
+**Escalation:** a CRITICAL page that goes unacked re-pages through the pager
+service's own escalation policy (configure repeat/escalate rules in
+PagerDuty/Opsgenie/ntfy itself — SNS just delivers the initial webhook). The
+pager integration is wired at deploy by setting `CHAPTERFLOW_OPS_PAGER_URL`;
+with it unset, CRITICAL alarms still page the ticket-grade email topic, but
+nothing pages off-hours.
+
 ## 5) Deploy & rollback runbook
 
 **Deploy:** see [CI_CD.md §3](./CI_CD.md). prod requires approval. Deploy
 **through GitHub Actions**, not a local `cdk deploy` — the CI infra job injects
-synth-time secrets the stacks depend on. In particular, the ops-alert SNS
-**email subscription is created only when `CHAPTERFLOW_OPS_ALERT_EMAIL` is set at
-synth**, so a local backend deploy without it exported **deletes the subscription
-and silences every alarm**. (A local `cdk diff` is read-only — it will *show*
-that subscription as a delete when the var is unset, but applies nothing.)
+synth-time secrets the stacks depend on. In particular, each of these
+subscriptions is created only when its var is set at synth — an unset var
+**deletes that subscription and silences that channel**:
+
+- `CHAPTERFLOW_OPS_ALERT_EMAIL` — the ticket-grade topic's email subscription.
+- `CHAPTERFLOW_OPS_CRITICAL_ALERT_EMAIL` — the paging topic's email subscription.
+- `CHAPTERFLOW_OPS_PAGER_URL` — the paging topic's webhook (PagerDuty/Opsgenie/ntfy)
+  subscription.
+
+So a local backend deploy without these exported **deletes those subscriptions
+and silences those channels**. (A local `cdk diff` is read-only — it will
+*show* a subscription as a delete when its var is unset, but applies nothing.)
 
 **Before a prod deploy**, confirm no stateful resource will be replaced. The
 **backend** (data-bearing) stack synthesizes standalone:
