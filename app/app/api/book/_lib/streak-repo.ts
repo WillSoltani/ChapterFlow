@@ -18,6 +18,7 @@ import {
   streakSk,
 } from "@/app/app/api/book/_lib/keys";
 import type { BookUserStreakItem } from "@/app/app/api/book/_lib/types";
+import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 import {
   awardFlowPoints,
@@ -168,6 +169,30 @@ export async function getOrCreateStreak(
   return initial;
 }
 
+/**
+ * Strongly-consistent re-read of the streak row, used only by the
+ * loop-complete compare-and-set retry loop. getOrCreateStreak reads at the
+ * eventually-consistent default; after a lost compare-and-set that read could
+ * still surface the PRE-conflict snapshot, so the recompute would carry the same
+ * stale :prevLad and lose the guard again — spinning to attempt exhaustion.
+ * ConsistentRead guarantees we observe the committed winner's lastActiveDate.
+ * (getOrCreateStreak's create branch is skipped here — by the time we contend on
+ * a write the row provably exists.)
+ */
+async function readStreakConsistent(
+  tableName: string,
+  userId: string
+): Promise<BookUserStreakItem> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: { PK: bookUserPk(userId), SK: streakSk() },
+      ConsistentRead: true,
+    })
+  );
+  return parseStreakItem(res.Item as Record<string, unknown> | undefined, userId);
+}
+
 // ── Consistency Score computation (§2.3) ────────────────────────────────────
 
 async function computeConsistencyLast30(
@@ -222,176 +247,269 @@ export async function updateStreakOnLoopComplete(
    */
   options?: { mode?: StreakMode; skipDays?: number },
 ): Promise<StreakUpdateResult> {
-  const streak = await getOrCreateStreak(tableName, userId);
   const today = getTodayInTimezone(userTimezone);
-  const now = nowIso();
 
-  const result: StreakUpdateResult = {
-    streak,
-    streakDayAwarded: false,
-    welcomeBackAwarded: false,
-    milestonesAwarded: [],
-    shieldsConsumed: 0,
-    streakReset: false,
-    flexibleSkipApplied: false,
-    gapDays: 0,
-  };
+  // Concurrency invariant: the streak row is mutated by TWO independent writers —
+  // this loop-complete path AND purchaseStreakShield's TransactWrite (ADD
+  // streakShieldsHeld +1, −100 IP). A blind `SET streakShieldsHeld = <stale read>`
+  // here silently reverts a purchase that commits inside the read→write window
+  // (IP spent, shield lost). The fix keeps EVERY shield mutation relative (ADD,
+  // never SET) and serializes concurrent same-day loop-completes with a
+  // compare-and-set on lastActiveDate, retrying on the guard failure. Mirrors
+  // recordQuizAttemptOutcome's progressRev optimistic-retry (repo.ts).
+  const MAX_ATTEMPTS = 4;
 
-  // Already counted today — no streak change needed
-  if (streak.lastActiveDate === today) {
+  let streak = await getOrCreateStreak(tableName, userId);
+
+  for (let attemptNo = 0; attemptNo < MAX_ATTEMPTS; attemptNo += 1) {
+    const now = nowIso();
+
+    const result: StreakUpdateResult = {
+      streak,
+      streakDayAwarded: false,
+      welcomeBackAwarded: false,
+      milestonesAwarded: [],
+      shieldsConsumed: 0,
+      streakReset: false,
+      flexibleSkipApplied: false,
+      gapDays: 0,
+    };
+
+    // Already counted today — no streak change needed
+    if (streak.lastActiveDate === today) {
+      return result;
+    }
+
+    // Pure decision (calendar math + state transition) — see streak-policy.ts.
+    const decision = decideStreakOnActiveDay({
+      lastActiveDate: streak.lastActiveDate,
+      today,
+      currentStreak: streak.currentStreak,
+      shieldsHeld: streak.streakShieldsHeld,
+      mode: options?.mode ?? DEFAULT_STREAK_MODE,
+      // Fail SAFE when a caller omits skipDays: 0 = no tolerance (degrades to
+      // standard reset), never inflates a streak. This is deliberately distinct
+      // from streak-mode.ts DEFAULT_STREAK_SKIP_DAYS (the product default applied
+      // by resolveStreakSkipDays when the *user setting* is absent); the engine
+      // must not assume a tolerance the caller didn't resolve from settings.
+      skipDays: options?.skipDays ?? 0,
+    });
+
+    const newCurrentStreak = decision.newCurrentStreak;
+    const newShieldsHeld = decision.newShieldsHeld;
+    const newShieldUsedDates = [...streak.shieldUsedDates, ...decision.appendedShieldDates];
+    const gapDays = decision.gapDays;
+
+    result.shieldsConsumed = decision.shieldsConsumed;
+    result.streakReset = decision.streakReset;
+    result.flexibleSkipApplied = decision.flexibleSkipApplied;
+    result.gapDays = gapDays;
+
+    const newLongestStreak = Math.max(streak.longestStreak, newCurrentStreak);
+
+    // Compute consistency (§2.3). The query already includes today once the
+    // reading-session beacon has written today's READINGDAY record, so no +1 is
+    // added here — adding one double-counted today and let the score exceed 100%
+    // (e.g. 31/30 -> 103% when the beacon already wrote today's READINGDAY).
+    // Recomputed on every attempt (it is SET in the write below); cheap and keeps
+    // the retry snapshot self-consistent.
+    const consistencyLast30 = await computeConsistencyLast30(tableName, userId);
+
+    // Track consistency above 80% for Steady State achievement.
+    const consistencyPercent = Math.round((consistencyLast30 / 30) * 100);
+    let consistencyAbove80Since = streak.consistencyAbove80Since;
+    if (consistencyPercent >= 80) {
+      if (!consistencyAbove80Since) {
+        consistencyAbove80Since = today;
+      }
+    } else {
+      consistencyAbove80Since = null;
+    }
+
+    // Write updated streak. streakShieldsHeld is DELIBERATELY absent from the SET
+    // list: it is only ever mutated relatively (ADD −shieldsConsumed) so a
+    // concurrent purchase's `ADD streakShieldsHeld +1` composes with this write
+    // instead of being clobbered by a stale absolute value. decideStreakOnActiveDay
+    // guarantees newShieldsHeld = shieldsHeld − shieldsConsumed, so −shieldsConsumed
+    // is exactly the delta this write owns; on the no-consumption path we touch the
+    // column not at all (any reference — even a same-value SET — would race the
+    // purchase's ADD).
+    const values: Record<string, unknown> = {
+      ":cs": newCurrentStreak,
+      ":ls": newLongestStreak,
+      ":lad": today,
+      ":lat": userTimezone,
+      ":sud": newShieldUsedDates,
+      ":c30": consistencyLast30, // query already counts today's READINGDAY
+      ":ca80": consistencyAbove80Since,
+      ":now": now,
+      ":prevLad": streak.lastActiveDate,
+    };
+
+    let updateExpression =
+      "SET currentStreak = :cs, longestStreak = :ls, lastActiveDate = :lad, lastActiveTimezone = :lat, shieldUsedDates = :sud, consistencyLast30 = :c30, consistencyAbove80Since = :ca80, updatedAt = :now";
+
+    // Compare-and-set on lastActiveDate serializes concurrent same-day
+    // loop-completes: only the writer whose snapshot still matches the stored
+    // lastActiveDate commits; a second same-day writer's guard fails and retries
+    // into the no-op path (below), so a day is counted exactly once.
+    // purchaseStreakShield never touches lastActiveDate, so a concurrent purchase
+    // composes with the relative shield ADD rather than tripping this guard.
+    // attribute_not_exists covers legacy rows written before this column existed;
+    // the initial row stores an explicit null and NULL = NULL is true in DynamoDB,
+    // so the `= :prevLad` arm also matches a never-active snapshot.
+    let conditionExpression =
+      "(attribute_not_exists(lastActiveDate) OR lastActiveDate = :prevLad)";
+
+    if (decision.shieldsConsumed > 0) {
+      // Relative decrement (exact delta, see above). Guard `streakShieldsHeld >=
+      // :consumed` fails the write closed if a concurrent consumption already
+      // dropped the stored count below what we intend to burn, so the ADD can
+      // never drive the balance negative.
+      updateExpression += " ADD streakShieldsHeld :negConsumed";
+      values[":negConsumed"] = -decision.shieldsConsumed;
+      values[":consumed"] = decision.shieldsConsumed;
+      conditionExpression = `streakShieldsHeld >= :consumed AND ${conditionExpression}`;
+    }
+
+    try {
+      await ddbDoc.send(
+        new UpdateCommand({
+          TableName: tableName,
+          Key: { PK: bookUserPk(userId), SK: streakSk() },
+          UpdateExpression: updateExpression,
+          ConditionExpression: conditionExpression,
+          ExpressionAttributeValues: values,
+        })
+      );
+    } catch (error: unknown) {
+      if (isConditionalCheckFailed(error)) {
+        // Lost the compare-and-set (a concurrent same-day loop-complete won, or a
+        // concurrent consumption dropped shields below :consumed). Re-read
+        // strongly-consistently so we observe the committed winner — an
+        // eventually-consistent read could return the pre-conflict snapshot and
+        // spin the retry to exhaustion on the same stale :prevLad.
+        const fresh = await readStreakConsistent(tableName, userId);
+        if (fresh.lastActiveDate === today) {
+          // Another writer already counted today — return the already-counted
+          // no-op over the FRESH stored state (currentStreak/shields reflect the
+          // winner, shieldsConsumed 0), exactly like the fast path above.
+          return {
+            streak: fresh,
+            streakDayAwarded: false,
+            welcomeBackAwarded: false,
+            milestonesAwarded: [],
+            shieldsConsumed: 0,
+            streakReset: false,
+            flexibleSkipApplied: false,
+            gapDays: 0,
+          };
+        }
+        // Today not yet counted by the winner (e.g. a bare shield-count change) —
+        // recompute the decision from the fresh snapshot (its shields drive the
+        // next :consumed guard) and retry.
+        streak = fresh;
+        continue;
+      }
+      throw error;
+    }
+
+    result.streak = {
+      ...streak,
+      currentStreak: newCurrentStreak,
+      longestStreak: newLongestStreak,
+      lastActiveDate: today,
+      lastActiveTimezone: userTimezone,
+      streakShieldsHeld: newShieldsHeld,
+      shieldUsedDates: newShieldUsedDates,
+      consistencyLast30,
+      consistencyAbove80Since,
+      updatedAt: now,
+    };
+
+    // §1.1 — Streak day bonus (15 IP, first loop of the day on active streak)
+    // The grant is deduped per user-tz day (the same day the streak decision uses
+    // above) rather than the UTC day. For negative UTC offsets two consecutive
+    // local days can collapse onto a single UTC date, which would reject the
+    // second day's bonus as a duplicate; keying by the local day prevents that
+    // drift. Scoping the sourceId by userId keeps per-user-per-local-day
+    // uniqueness, so timezone switching can shift the day boundary by at most one
+    // award — it can never multiply the bonus.
+    const streakDaySourceId = `${userId}:${today}`;
+    if (newCurrentStreak >= 1) {
+      const streakDayAward = await awardFlowPoints(tableName, {
+        userId,
+        amount: INSIGHT_POINTS_AMOUNTS.streakDayBonus,
+        sourceType: "streak_day",
+        sourceId: streakDaySourceId,
+        metadata: { currentStreak: newCurrentStreak, date: today },
+      });
+      result.streakDayAwarded = streakDayAward.awarded;
+    }
+
+    // §1.1 — Welcome back bonus (30 IP, returning after 7+ inactive days)
+    // Keyed by the same per-user local day as the streak decision (see above).
+    if (gapDays >= 7) {
+      const welcomeBackAward = await awardFlowPoints(tableName, {
+        userId,
+        amount: INSIGHT_POINTS_AMOUNTS.welcomeBack,
+        sourceType: "welcome_back",
+        sourceId: streakDaySourceId,
+        metadata: { inactiveDays: gapDays, returnDate: today },
+      });
+      result.welcomeBackAwarded = welcomeBackAward.awarded;
+    }
+
+    // §2.4 — Streak milestone awards
+    const newMilestones: number[] = [];
+    for (const milestone of STREAK_MILESTONES) {
+      if (
+        newCurrentStreak >= milestone.days &&
+        !streak.milestonesReached.includes(milestone.days)
+      ) {
+        const milestoneAward = await awardFlowPoints(tableName, {
+          userId,
+          amount: milestone.ip,
+          sourceType: "streak_milestone",
+          sourceId: `streak-${milestone.days}`,
+          metadata: { days: milestone.days, currentStreak: newCurrentStreak },
+        });
+        if (milestoneAward.awarded) {
+          newMilestones.push(milestone.days);
+          result.milestonesAwarded.push(milestone);
+        }
+      }
+    }
+
+    // Persist newly reached milestones
+    if (newMilestones.length > 0) {
+      const allMilestones = [...streak.milestonesReached, ...newMilestones];
+      await ddbDoc.send(
+        new UpdateCommand({
+          TableName: tableName,
+          Key: { PK: bookUserPk(userId), SK: streakSk() },
+          UpdateExpression: "SET milestonesReached = :mr, updatedAt = :now",
+          ExpressionAttributeValues: {
+            ":mr": allMilestones,
+            ":now": nowIso(),
+          },
+        })
+      );
+      result.streak.milestonesReached = allMilestones;
+    }
+
     return result;
   }
 
-  // Pure decision (calendar math + state transition) — see streak-policy.ts.
-  const decision = decideStreakOnActiveDay({
-    lastActiveDate: streak.lastActiveDate,
-    today,
-    currentStreak: streak.currentStreak,
-    shieldsHeld: streak.streakShieldsHeld,
-    mode: options?.mode ?? DEFAULT_STREAK_MODE,
-    // Fail SAFE when a caller omits skipDays: 0 = no tolerance (degrades to
-    // standard reset), never inflates a streak. This is deliberately distinct
-    // from streak-mode.ts DEFAULT_STREAK_SKIP_DAYS (the product default applied
-    // by resolveStreakSkipDays when the *user setting* is absent); the engine
-    // must not assume a tolerance the caller didn't resolve from settings.
-    skipDays: options?.skipDays ?? 0,
-  });
-
-  const newCurrentStreak = decision.newCurrentStreak;
-  const newShieldsHeld = decision.newShieldsHeld;
-  const newShieldUsedDates = [...streak.shieldUsedDates, ...decision.appendedShieldDates];
-  const gapDays = decision.gapDays;
-
-  result.shieldsConsumed = decision.shieldsConsumed;
-  result.streakReset = decision.streakReset;
-  result.flexibleSkipApplied = decision.flexibleSkipApplied;
-  result.gapDays = gapDays;
-
-  const newLongestStreak = Math.max(streak.longestStreak, newCurrentStreak);
-
-  // Compute consistency (§2.3). The query already includes today once the
-  // reading-session beacon has written today's READINGDAY record, so no +1 is
-  // added here — adding one double-counted today and let the score exceed 100%
-  // (e.g. 31/30 -> 103% when the beacon already wrote today's READINGDAY).
-  const consistencyLast30 = await computeConsistencyLast30(tableName, userId);
-
-  // Track consistency above 80% for Steady State achievement.
-  const consistencyPercent = Math.round((consistencyLast30 / 30) * 100);
-  let consistencyAbove80Since = streak.consistencyAbove80Since;
-  if (consistencyPercent >= 80) {
-    if (!consistencyAbove80Since) {
-      consistencyAbove80Since = today;
-    }
-  } else {
-    consistencyAbove80Since = null;
-  }
-
-  // Write updated streak
-  await ddbDoc.send(
-    new UpdateCommand({
-      TableName: tableName,
-      Key: { PK: bookUserPk(userId), SK: streakSk() },
-      UpdateExpression:
-        "SET currentStreak = :cs, longestStreak = :ls, lastActiveDate = :lad, lastActiveTimezone = :lat, streakShieldsHeld = :ssh, shieldUsedDates = :sud, consistencyLast30 = :c30, consistencyAbove80Since = :ca80, updatedAt = :now",
-      ExpressionAttributeValues: {
-        ":cs": newCurrentStreak,
-        ":ls": newLongestStreak,
-        ":lad": today,
-        ":lat": userTimezone,
-        ":ssh": newShieldsHeld,
-        ":sud": newShieldUsedDates,
-        ":c30": consistencyLast30, // query already counts today's READINGDAY
-        ":ca80": consistencyAbove80Since,
-        ":now": now,
-      },
-    })
+  // Every attempt lost the same-day compare-and-set to a concurrent writer
+  // without the winner having stamped today (which would have short-circuited to
+  // the no-op above). Surface a retriable 503 rather than silently dropping the
+  // loop completion. Mirrors repo.ts's progress_write_contended.
+  throw new BookApiError(
+    503,
+    "streak_write_contended",
+    "Saving your streak hit heavy contention. Please try again."
   );
-
-  result.streak = {
-    ...streak,
-    currentStreak: newCurrentStreak,
-    longestStreak: newLongestStreak,
-    lastActiveDate: today,
-    lastActiveTimezone: userTimezone,
-    streakShieldsHeld: newShieldsHeld,
-    shieldUsedDates: newShieldUsedDates,
-    consistencyLast30,
-    consistencyAbove80Since,
-    updatedAt: now,
-  };
-
-  // §1.1 — Streak day bonus (15 IP, first loop of the day on active streak)
-  // The grant is deduped per user-tz day (the same day the streak decision uses
-  // above) rather than the UTC day. For negative UTC offsets two consecutive
-  // local days can collapse onto a single UTC date, which would reject the
-  // second day's bonus as a duplicate; keying by the local day prevents that
-  // drift. Scoping the sourceId by userId keeps per-user-per-local-day
-  // uniqueness, so timezone switching can shift the day boundary by at most one
-  // award — it can never multiply the bonus.
-  const streakDaySourceId = `${userId}:${today}`;
-  if (newCurrentStreak >= 1) {
-    const streakDayAward = await awardFlowPoints(tableName, {
-      userId,
-      amount: INSIGHT_POINTS_AMOUNTS.streakDayBonus,
-      sourceType: "streak_day",
-      sourceId: streakDaySourceId,
-      metadata: { currentStreak: newCurrentStreak, date: today },
-    });
-    result.streakDayAwarded = streakDayAward.awarded;
-  }
-
-  // §1.1 — Welcome back bonus (30 IP, returning after 7+ inactive days)
-  // Keyed by the same per-user local day as the streak decision (see above).
-  if (gapDays >= 7) {
-    const welcomeBackAward = await awardFlowPoints(tableName, {
-      userId,
-      amount: INSIGHT_POINTS_AMOUNTS.welcomeBack,
-      sourceType: "welcome_back",
-      sourceId: streakDaySourceId,
-      metadata: { inactiveDays: gapDays, returnDate: today },
-    });
-    result.welcomeBackAwarded = welcomeBackAward.awarded;
-  }
-
-  // §2.4 — Streak milestone awards
-  const newMilestones: number[] = [];
-  for (const milestone of STREAK_MILESTONES) {
-    if (
-      newCurrentStreak >= milestone.days &&
-      !streak.milestonesReached.includes(milestone.days)
-    ) {
-      const milestoneAward = await awardFlowPoints(tableName, {
-        userId,
-        amount: milestone.ip,
-        sourceType: "streak_milestone",
-        sourceId: `streak-${milestone.days}`,
-        metadata: { days: milestone.days, currentStreak: newCurrentStreak },
-      });
-      if (milestoneAward.awarded) {
-        newMilestones.push(milestone.days);
-        result.milestonesAwarded.push(milestone);
-      }
-    }
-  }
-
-  // Persist newly reached milestones
-  if (newMilestones.length > 0) {
-    const allMilestones = [...streak.milestonesReached, ...newMilestones];
-    await ddbDoc.send(
-      new UpdateCommand({
-        TableName: tableName,
-        Key: { PK: bookUserPk(userId), SK: streakSk() },
-        UpdateExpression: "SET milestonesReached = :mr, updatedAt = :now",
-        ExpressionAttributeValues: {
-          ":mr": allMilestones,
-          ":now": nowIso(),
-        },
-      })
-    );
-    result.streak.milestonesReached = allMilestones;
-  }
-
-  return result;
 }
 
 // ── Streak Shield purchase (§2.2) ───────────────────────────────────────────
