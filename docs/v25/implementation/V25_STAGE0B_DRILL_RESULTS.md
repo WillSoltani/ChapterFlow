@@ -40,4 +40,14 @@ All values are **CHAPTER DIAGNOSTICS — NOT BOOK SCORES**.
 (c) **Owner hand-adjudication of the 2 anchor chapters** on the chapter construct (the originally-offered truth check) — resolves whether ~70 is instrument compression or true standalone-chapter quality, then floors follow.
 (d) **Halt Stage 1** pending a floor redesign.
 
-D7-lite drill (3 sessions, both bands) remains a separate follow-up; if not run before Stage 1, decision-rule 7 is dropped as uncalibrated per protocol §10.1-P3.
+## D7-lite drill result (run 2026-07-18, 3 sessions, probe reused)
+
+| Unit | Sol-ultra single-rater derived | Owner adjudication | \|Δ\| | Pass (±3.0) |
+|---|---|---|---|---|
+| made-to-stick-ch04 | 91.25 | 67.664 | 23.59 | **MISS** |
+| the-happiness-hypothesis-ch06 | 76.842 | 68.816 | 8.03 | **MISS** |
+| nudge-ch03 | 78.026 | 70.757 | 7.27 | **MISS** |
+
+**Verdict: 0/3 — P3 fires, decision-rule 7 is DROPPED; D7-lite is descriptive-only for the entire campaign** (pre-registered fail-closed outcome, protocol §10.1-P3). The single-rater Sol-ultra instrument systematically inflates +7 to +24 points against owner adjudications and is not calibratable as-is. Contrast: the dual-blind + adjudicated E-audit scored the same-class units 69.3–70.9 — within ~2 points of the owner's 67.7–70.8 adjudications. **The receipt-chained dual-blind protocol is what keeps the instrument honest; the canonical evaluator carries the model decision alone, with the owner blind Stage-2 read as the human check.** Standing high-band caveat: no ~85-92 owner adjudication exists anywhere, so even a re-drilled D7 could only ever be mid-band-calibrated.
+
+**Budget consequence (recommended, owner-revivable):** with rule 7 dead, the 12 Stage-1 + 10 Stage-2 D7-lite sessions buy only descriptive data from an uncalibrated instrument — **skip them**. Stage 1 becomes 18 authoring + 54 E-audit = **72 sessions**; spend to date 41 (24 pre + 14 E-drill + 3 D7-drill) → 129 remaining → Stage 1 + Stage 2 (32) fit with ~25 margin.
