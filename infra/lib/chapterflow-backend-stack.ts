@@ -9,6 +9,7 @@ import * as events from "aws-cdk-lib/aws-events";
 import * as targets from "aws-cdk-lib/aws-events-targets";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as logs from "aws-cdk-lib/aws-logs";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as ses from "aws-cdk-lib/aws-ses";
 import * as sqs from "aws-cdk-lib/aws-sqs";
@@ -458,6 +459,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       memorySize: 512,
       timeout: reminderTimeout,
       deadLetterQueue: reminderDlq,
+      logRetention: logs.RetentionDays.ONE_MONTH,
       environment: {
         BOOK_TABLE_NAME: this.appTable.tableName,
         SES_SENDER_EMAIL: reminderSenderEmail,
@@ -646,6 +648,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       timeout: cdk.Duration.minutes(1),
       environment: { BOOK_TABLE_NAME: this.appTable.tableName },
       deadLetterQueue: suppressionDlq,
+      logRetention: logs.RetentionDays.ONE_MONTH,
     });
     this.appTable.grantWriteData(suppressionFn);
     emailEventsTopic.addSubscription(new snsSubscriptions.LambdaSubscription(suppressionFn));
@@ -709,6 +712,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         // A sign-in trigger runs inline on the auth path — keep it short so a
         // hung ListUsers/AdminLink can never wedge the user's sign-in.
         timeout: cdk.Duration.seconds(10),
+        logRetention: logs.RetentionDays.ONE_MONTH,
       });
 
       // Least privilege: ONLY the two calls the linker makes, scoped to THIS pool.
