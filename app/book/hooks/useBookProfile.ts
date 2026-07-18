@@ -2,6 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJsonCached, invalidateBookCache } from "@/app/book/_lib/book-api-cache";
+
+const PROFILE_KEY = "/app/api/book/me/profile";
 
 export type ProfileVisibility = "private" | "friends" | "public";
 
@@ -163,7 +166,8 @@ export function useBookProfile(seed: BookProfileSeed) {
 
   useEffect(() => {
     let mounted = true;
-    fetchBookJson<{ profile: Partial<BookProfileState> | null }>("/app/api/book/me/profile")
+    // Cached GET — dedups with useBookViewer's /me/profile read when co-mounted.
+    fetchBookJsonCached<{ profile: Partial<BookProfileState> | null }>(PROFILE_KEY)
       .then((payload) => {
         if (!mounted || !payload.profile) return;
         setState((prev) => ({
@@ -191,12 +195,18 @@ export function useBookProfile(seed: BookProfileSeed) {
     const timeout = window.setTimeout(() => {
       dirtyRef.current = false;
       setLastSaveError(null);
-      fetchBookJson("/app/api/book/me/profile", {
+      fetchBookJson(PROFILE_KEY, {
         method: "PATCH",
         body: JSON.stringify({ profile: state }),
-      }).catch((err) => {
-        setLastSaveError(err instanceof Error ? err.message : "Profile save failed");
-      });
+      })
+        .then(() => {
+          // The write changed server-side profile state — drop the cached GET so
+          // co-mounted readers (e.g. useBookViewer) revalidate against fresh data.
+          invalidateBookCache(PROFILE_KEY);
+        })
+        .catch((err) => {
+          setLastSaveError(err instanceof Error ? err.message : "Profile save failed");
+        });
     }, 250);
     return () => window.clearTimeout(timeout);
   }, [hydrated, serverReady, state]);

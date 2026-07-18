@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJsonCached, subscribeBookCache } from "@/app/book/_lib/book-api-cache";
 import { getBookErrorMessage } from "@/app/book/_lib/error-messages";
 import type { LibraryCatalogBook } from "@/app/book/_lib/library-data";
 import type { StoredReaderStateSnapshot } from "@/app/book/_lib/reader-storage";
@@ -18,12 +19,12 @@ import {
 } from "@/app/book/_lib/badge-stats";
 import type { BadgeProgressStats } from "@/app/book/badges/lib/badge-ui-definitions";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
-import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";
 import {
   toDayKey,
 } from "@/app/book/library/hooks/readingActivityStorage";
 
 const DEFAULT_LAST_ACTIVITY = new Date(0).toISOString();
+const DASHBOARD_KEY = "/app/api/book/me/dashboard";
 
 type DashboardPayload = {
   catalog?: LibraryCatalogBook[];
@@ -443,19 +444,13 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
     [dailyGoalMinutes, selectedBookIds]
   );
 
+  // Focus/storage/book-storage revalidation is owned by the shared cache now;
+  // subscribing to the dashboard key re-runs the analytics parse whenever the
+  // cache refreshes the aggregate in the background.
   useEffect(() => {
-    function onStorageChange() {
+    return subscribeBookCache(DASHBOARD_KEY, () => {
       setRevision((value) => value + 1);
-    }
-
-    window.addEventListener(BOOK_STORAGE_EVENT, onStorageChange as EventListener);
-    window.addEventListener("storage", onStorageChange);
-    window.addEventListener("focus", onStorageChange);
-    return () => {
-      window.removeEventListener(BOOK_STORAGE_EVENT, onStorageChange as EventListener);
-      window.removeEventListener("storage", onStorageChange);
-      window.removeEventListener("focus", onStorageChange);
-    };
+    });
   }, []);
 
   useEffect(() => {
@@ -463,7 +458,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
 
     const load = async () => {
       try {
-        const payload = await fetchBookJson<DashboardPayload>("/app/api/book/me/dashboard");
+        const payload = await fetchBookJsonCached<DashboardPayload>(DASHBOARD_KEY);
         if (!mounted) return;
 
         // Surface the server's partial-load flag (#2). Critical data is present

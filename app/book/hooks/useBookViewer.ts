@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJsonCached } from "@/app/book/_lib/book-api-cache";
 
 export type BookViewerIdentity = {
   sub: string;
@@ -109,7 +109,8 @@ export function useBookViewer() {
 
   useEffect(() => {
     let mounted = true;
-    fetchBookJson<ViewerPayload>("/app/api/book/me/profile")
+    // Cached GET — dedups with useBookProfile's /me/profile read when co-mounted.
+    fetchBookJsonCached<ViewerPayload>("/app/api/book/me/profile")
       .then((payload) => {
         if (!mounted) return;
         const avatarFromProfile =

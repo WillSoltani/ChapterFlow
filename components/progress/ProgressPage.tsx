@@ -23,6 +23,10 @@ import type {
 import { getBookCoverPath } from "@/lib/book-covers";
 import { deriveReaderLevel, deriveReaderLevelProgress } from "@/lib/reader-levels";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import {
+  fetchBookJsonCached,
+  invalidateBookCache,
+} from "@/app/book/_lib/book-api-cache";
 import { aggregateHourlyForDay } from "@/app/book/library/hooks/readingActivityStorage";
 import { ReviewSessionFSRS } from "@/app/book/components/ReviewSessionFSRS";
 import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
@@ -86,6 +90,11 @@ const LOOP_STEP_MAP: Record<string, { step: LearningStep; stepNumber: StepNumber
 // localStorage SRS, so the two surfaces no longer contradict each other.
 
 const DAY_MS = 86_400_000;
+
+// Cache keys for this page's independent server reads (WS3-022).
+const ENTITLEMENTS_KEY = "/app/api/book/me/entitlements";
+const REVIEWS_ALL_KEY = "/app/api/book/me/reviews?mode=all";
+const STREAK_KEY = "/app/api/book/me/streak";
 
 /** Lite shape of an FSRS card row as returned by GET /me/reviews?mode=all. */
 type FSRSCardLite = { dueAt: string; lastReviewAt: string; reps: number };
@@ -481,9 +490,7 @@ export function ProgressPage() {
   // envelope — so the plan lives under `entitlement.plan`, not at the top level.
   const [isPro, setIsPro] = useState(false);
   useEffect(() => {
-    fetchBookJson<{ entitlement?: { plan?: string } }>(
-      "/app/api/book/me/entitlements"
-    )
+    fetchBookJsonCached<{ entitlement?: { plan?: string } }>(ENTITLEMENTS_KEY)
       .then((e) => setIsPro(e.entitlement?.plan === "PRO"))
       .catch(() => {});
   }, []);
@@ -496,13 +503,13 @@ export function ProgressPage() {
   const [reviewedTodayCount, setReviewedTodayCount] = useState(0);
   const [shieldsHeld, setShieldsHeld] = useState(0);
   useEffect(() => {
-    fetchBookJson<{ cards: FSRSCardLite[] }>("/app/api/book/me/reviews?mode=all")
+    fetchBookJsonCached<{ cards: FSRSCardLite[] }>(REVIEWS_ALL_KEY)
       .then(({ cards }) => {
         setReviewData(buildReviewDataFromCards(cards));
         setReviewedTodayCount(countReviewedToday(cards));
       })
       .catch(() => {});
-    fetchBookJson<{ shieldsHeld?: number }>("/app/api/book/me/streak")
+    fetchBookJsonCached<{ shieldsHeld?: number }>(STREAK_KEY)
       .then((s) => setShieldsHeld(s.shieldsHeld ?? 0))
       .catch(() => {});
   }, [refreshKey]);
@@ -804,6 +811,10 @@ export function ProgressPage() {
           key={refreshKey}
           onClose={() => {
             setShowReviewSession(false);
+            // The session mutated the FSRS deck + streak store — drop their cached
+            // reads so the refreshKey-driven refetch pulls fresh data, not a hit.
+            invalidateBookCache(REVIEWS_ALL_KEY);
+            invalidateBookCache(STREAK_KEY);
             setRefreshKey((k) => k + 1);
           }}
         />

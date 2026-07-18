@@ -20,7 +20,7 @@ import {
   Trophy,
   User,
 } from "lucide-react";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { useBookQuery } from "@/app/book/_lib/book-api-cache";
 import { Sheet } from "@/components/ui/Dialog";
 import { SearchBox } from "@/app/book/home/components/SearchBox";
 import { GlobalSearchPanel } from "@/app/book/home/components/GlobalSearchPanel";
@@ -102,24 +102,14 @@ export function TopNav({
   const [showSearchPanel, setShowSearchPanel] = useState(false);
   const [showMoreSheet, setShowMoreSheet] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  // Cached admin check — dedups and shares across every TopNav mount instead of
+  // firing a fresh /me/is-admin request on each. A non-admin/unauthenticated
+  // response simply leaves `isAdmin` false.
+  const { data: adminData } = useBookQuery<{ isAdmin: boolean }>("/app/api/book/me/is-admin");
+  const isAdmin = Boolean(adminData?.isAdmin);
   // Keyboard navigation over the GlobalSearchPanel results (combobox + listbox).
   const [searchActiveIndex, setSearchActiveIndex] = useState(-1);
   const [searchResultHrefs, setSearchResultHrefs] = useState<string[]>([]);
-
-  useEffect(() => {
-    let cancelled = false;
-    fetchBookJson<{ isAdmin: boolean }>("/app/api/book/me/is-admin")
-      .then((res) => {
-        if (!cancelled) setIsAdmin(Boolean(res.isAdmin));
-      })
-      .catch(() => {
-        // not admin or unauthenticated — silently ignore
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   const headerRef = useRef<HTMLDivElement | null>(null);
   const desktopSearchRef = useRef<HTMLInputElement | null>(null);
