@@ -57,6 +57,11 @@ CloudWatch alarms publish to the `ChapterFlowOpsAlerts[-env]` SNS topic
 then confirm the subscription). The frontend stack references that topic **by
 ARN**, so alarms from both stacks page the same inbox.
 
+For the reliability *targets* these alarms defend — the 99.9% edge-availability
+SLO, its 43.2 min/month error budget, the multi-window burn-rate pages
+(`ChapterFlowSloFastBurn` / `ChapterFlowSloSlowBurn`), and the error-budget
+policy — see [SLOS.md](./SLOS.md).
+
 **Backend stack** (`infra/lib/chapterflow-backend-stack.ts`):
 
 - **App / analytics table throttling** — any throttled DynamoDB op in a 5-min

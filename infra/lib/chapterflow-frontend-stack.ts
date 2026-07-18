@@ -1204,6 +1204,123 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     );
 
     // -------------------------------------------------------------------
+    // SLO burn-rate alerting — edge availability (WS6-030)
+    // -------------------------------------------------------------------
+    // Multi-window multi-burn-rate alerts on the edge-availability SLI, per the
+    // Google SRE Workbook (Ch. 5) and docs/SLOS.md. The static CloudFront5xx
+    // alarm above pages on a fixed 1% threshold regardless of how fast the
+    // monthly error budget is actually burning — it over-pages on a low-traffic
+    // blip and under-pages on a slow leak. These page on budget burn RATE
+    // instead, so the alert stays calibrated as traffic grows.
+    //
+    // SLI: edge availability = 1 − CloudFront 5xxErrorRate. This is the paging
+    // SLI because it is what users see, including cached / CDN-served paths the
+    // server Lambda never handles (see docs/SLOS.md).
+    //
+    // These constants ARE the SLO objective — every threshold below is derived
+    // from them; changing one here must change docs/SLOS.md too.
+    const SLO_EDGE_AVAILABILITY_TARGET = 0.999; // 99.9% monthly = 43.2 min/mo budget — docs/SLOS.md
+    const SLO_FAST_BURN_MULTIPLE = 14.4; // page: 2% of the monthly budget in 1h — docs/SLOS.md
+    const SLO_SLOW_BURN_MULTIPLE = 6; // page: 5% of the monthly budget in 6h — docs/SLOS.md
+
+    // burn rate = (5xxErrorRate% / 100) / (1 − target). One MathExpression per
+    // window; the window is set by the underlying metric's period (kept equal to
+    // the expression's to avoid a period-mismatch warning).
+    const edgeBurnRateMetric = (
+      label: string,
+      window: cdk.Duration,
+    ): cloudwatch.MathExpression =>
+      new cloudwatch.MathExpression({
+        expression: `rate5xx / 100 / (1 - ${SLO_EDGE_AVAILABILITY_TARGET})`,
+        usingMetrics: {
+          rate5xx: this.distribution.metric5xxErrorRate({
+            period: window,
+            statistic: "Average",
+          }),
+        },
+        period: window,
+        label,
+      });
+
+    // Four threshold alarms with NO actions of their own — the two
+    // CompositeAlarms below (long-window AND short-window) carry the paging
+    // action. Requiring the short window too stops stale paging: once the
+    // incident clears, the 5m/30m window recovers within one period and drops
+    // the composite, instead of holding ALARM for the whole long window.
+    const burnAlarm = (
+      id: string,
+      alarmName: string,
+      metric: cloudwatch.IMetric,
+      multiple: number,
+      alarmDescription: string,
+    ): cloudwatch.Alarm =>
+      new cloudwatch.Alarm(this, id, {
+        alarmName,
+        metric,
+        threshold: multiple,
+        evaluationPeriods: 1,
+        datapointsToAlarm: 1,
+        comparisonOperator:
+          cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+        treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
+        alarmDescription,
+      });
+
+    const sloFastBurn1h = burnAlarm(
+      "SloFastBurn1hAlarm",
+      `ChapterFlowSloFastBurn1h${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (1h)", cdk.Duration.hours(1)),
+      SLO_FAST_BURN_MULTIPLE,
+      "SLO edge-availability fast-burn member (1h window): edge 5xx burning the 99.9% monthly budget at ≥14.4× sustainable (5xx ≥1.44%). Long window of the fast-burn pair; page only via ChapterFlowSloFastBurn.",
+    );
+    const sloFastBurn5m = burnAlarm(
+      "SloFastBurn5mAlarm",
+      `ChapterFlowSloFastBurn5m${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (5m)", cdk.Duration.minutes(5)),
+      SLO_FAST_BURN_MULTIPLE,
+      "SLO edge-availability fast-burn member (5m window): edge 5xx burn ≥14.4× sustainable. Short window of the fast-burn pair — clears within one period on recovery.",
+    );
+    const sloSlowBurn6h = burnAlarm(
+      "SloSlowBurn6hAlarm",
+      `ChapterFlowSloSlowBurn6h${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (6h)", cdk.Duration.hours(6)),
+      SLO_SLOW_BURN_MULTIPLE,
+      "SLO edge-availability slow-burn member (6h window): edge 5xx burning the 99.9% monthly budget at ≥6× sustainable (5xx ≥0.6%). Long window of the slow-burn pair; page only via ChapterFlowSloSlowBurn.",
+    );
+    const sloSlowBurn30m = burnAlarm(
+      "SloSlowBurn30mAlarm",
+      `ChapterFlowSloSlowBurn30m${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (30m)", cdk.Duration.minutes(30)),
+      SLO_SLOW_BURN_MULTIPLE,
+      "SLO edge-availability slow-burn member (30m window): edge 5xx burn ≥6× sustainable. Short window of the slow-burn pair — clears within one period on recovery.",
+    );
+
+    // Composite alarms carry the paging action. Wired to the shared opsAction
+    // today; a later severity-routing step re-routes these to a paging channel
+    // distinct from the ticket-grade alarms above.
+    const sloFastBurnAlarm = new cloudwatch.CompositeAlarm(this, "SloFastBurnAlarm", {
+      compositeAlarmName: `ChapterFlowSloFastBurn${suffix}`,
+      alarmRule: cloudwatch.AlarmRule.allOf(
+        cloudwatch.AlarmRule.fromAlarm(sloFastBurn1h, cloudwatch.AlarmState.ALARM),
+        cloudwatch.AlarmRule.fromAlarm(sloFastBurn5m, cloudwatch.AlarmState.ALARM),
+      ),
+      alarmDescription:
+        "PAGE — SLO edge-availability FAST burn (99.9% monthly). Edge 5xx is burning the 43.2-min/mo error budget at ≥14.4× sustainable on BOTH the 1h and 5m windows (5xx ≥1.44%); at this rate the whole month's budget is exhausted in ~50h (2% per hour). Runbook: docs/OPERATIONS.md §4 → docs/SLOS.md.",
+    });
+    sloFastBurnAlarm.addAlarmAction(opsAction);
+
+    const sloSlowBurnAlarm = new cloudwatch.CompositeAlarm(this, "SloSlowBurnAlarm", {
+      compositeAlarmName: `ChapterFlowSloSlowBurn${suffix}`,
+      alarmRule: cloudwatch.AlarmRule.allOf(
+        cloudwatch.AlarmRule.fromAlarm(sloSlowBurn6h, cloudwatch.AlarmState.ALARM),
+        cloudwatch.AlarmRule.fromAlarm(sloSlowBurn30m, cloudwatch.AlarmState.ALARM),
+      ),
+      alarmDescription:
+        "PAGE — SLO edge-availability SLOW burn (99.9% monthly). Edge 5xx is burning the 43.2-min/mo error budget at ≥6× sustainable on BOTH the 6h and 30m windows (5xx ≥0.6%); at this rate the whole month's budget is exhausted in ~5 days (5% per 6h). Runbook: docs/OPERATIONS.md §4 → docs/SLOS.md.",
+    });
+    sloSlowBurnAlarm.addAlarmAction(opsAction);
+
+    // -------------------------------------------------------------------
     // CloudWatch dashboard — golden signals (WS6-033)
     // -------------------------------------------------------------------
     // Version-controlled, out-of-band view of this stack's health. The in-app
