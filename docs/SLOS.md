@@ -150,11 +150,14 @@ the resource suffix (`""` prod, `-dev` / `-staging`).
 | `SloSlowBurn30mAlarm` | `ChapterFlowSloSlowBurn30m[-env]` | slow-burn short window, no action |
 | `SloSlowBurnAlarm` (composite) | `ChapterFlowSloSlowBurn[-env]` | **AllOf(6h, 30m) → pages** |
 
-Only the two composites carry an action; today they page the shared
-`ChapterFlowOpsAlerts[-env]` SNS topic (same inbox as every other alarm). A
-later severity-routing step re-routes them to a page-grade channel distinct
-from the ticket-grade alarms. The four member alarms have no action of their
-own — they exist only to feed the composites.
+Only the two composites carry an action; severity routing is additive (WS6-034).
+`SloFastBurnAlarm` pages BOTH `ChapterFlowOpsAlerts[-env]` (ticket) and
+`ChapterFlowOpsCritical[-env]` (the page-grade channel) — a fast burn is a live
+outage. `SloSlowBurnAlarm` pages only `ChapterFlowOpsAlerts[-env]` — a slow leak
+is a next-working-session warning. The severity table in
+[OPERATIONS.md §4](./OPERATIONS.md) is the single source of truth for
+alarm→topic routing. The four member alarms have no action of their own — they
+exist only to feed the composites.
 
 ## 4) Error budget policy
 
