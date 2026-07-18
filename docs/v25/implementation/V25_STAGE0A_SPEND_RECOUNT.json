@@ -1,0 +1,13 @@
+{
+  "schema": "v25-stage0a-spend-recount-v1",
+  "recountedAt": "2026-07-17",
+  "source": "state/run-ledger/**/*.jsonl at plan/v25-s-tier-implementation head worktree (11 files, read-only)",
+  "trueCodexSessions": 24,
+  "codexBreakdown": "4 capability probes + 3 auto-research + invocation-1 writer/advisory sessions (24 distinct sessionIds, family codex-exec)",
+  "retiredClaudeDispatchSessions": 14,
+  "claudeNote": "history under the retired Claude-D7 instrument; NOT codex spend under the amended codex-only D-3 reading",
+  "ceiling": 170,
+  "remaining": 146,
+  "fits": "default ~141-session path fits (margin 5); Stage 0b planned 15 (cap 24) leaves >= 122-131 for Stages 1-2 (planned 126)",
+  "rule": "estimates in the frozen plan/protocol are REPLACED by this recount; ScreeningSessionBudget enforces the 170 ceiling on sessionKind=session entries only"
+}
