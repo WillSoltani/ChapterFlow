@@ -6,6 +6,7 @@ import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getCatalogBook, getUserProgress } from "@/app/app/api/book/_lib/repo";
 import { queryDailyReaderMetricsRange } from "@/app/app/api/book/_lib/book-metrics-repo";
+import { collectReaderMetricEntries } from "./reader-metrics-core";
 
 export const runtime = "nodejs";
 
@@ -72,21 +73,17 @@ export async function POST(req: Request) {
     // Per-book authorization mirrors books/[bookId]/metrics EXACTLY: the book must
     // be a published catalog title AND the caller must have started it. Books that
     // fail either check are simply omitted (no error), so the page still renders.
-    const entries = await Promise.all(
-      bookIds.map(async (bookId): Promise<readonly [string, BookReaderMetrics] | null> => {
+    const metrics = await collectReaderMetricEntries(
+      bookIds,
+      async (bookId): Promise<readonly [string, BookReaderMetrics] | null> => {
         const catalog = await getCatalogBook(tableName, bookId);
         if (!catalog || !catalog.currentPublishedVersion) return null;
         const progress = await getUserProgress(tableName, user.sub, bookId);
         if (!progress) return null;
         const items = await queryDailyReaderMetricsRange(tableName, bookId, weekAgo, today);
         return [bookId, aggregateMetrics(items, today)] as const;
-      }),
+      },
     );
-
-    const metrics: Record<string, BookReaderMetrics> = {};
-    for (const entry of entries) {
-      if (entry) metrics[entry[0]] = entry[1];
-    }
 
     return bookOk({ metrics });
   });
