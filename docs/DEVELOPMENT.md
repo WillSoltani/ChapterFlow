@@ -83,10 +83,14 @@ Update docs when changes affect:
 Run the checks that match your change set:
 
 ```bash
-npm run verify                                    # typecheck + tests + build (the CI gate)
+npm run verify                                    # typecheck + tests + style-drift scan (scan:style) + build (the CI gate)
 npm run lint                                       # advisory — known in-scope debt
 npm --prefix infra run build
 npm --prefix infra run cdk -- synth -c env=dev ChapterFlowBackend-dev
 ```
 
 Not every task needs every command, but build verification is the minimum standard for UI and route changes.
+
+The complete catalogue of root `package.json` scripts — test tiers, scanners,
+the native-contract generator/checker, and the live-sync tools (`verify:live`,
+`register:api`) — is in [SCRIPTS.md](./SCRIPTS.md).

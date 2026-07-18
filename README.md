@@ -68,10 +68,14 @@ npm run dev:3001
 
 ### Verification
 ```bash
-npm run verify   # typecheck + unit tests + next build (the CI hard gate)
+npm run verify   # typecheck + unit tests + style-drift scan (scan:style) + next build (the CI hard gate)
 npm test         # unit tests only (node test runner via tsx)
 npm run lint     # advisory — known in-scope debt, not a blocking gate
 ```
+
+The full script catalogue (test tiers, scanners, native-contract generator,
+live-sync tools, pipeline scripts) is documented in
+[docs/SCRIPTS.md](docs/SCRIPTS.md).
 
 ## Deployment & environments
 Three environments run in one AWS account, suffixed `dev` / `staging` / `prod`
@@ -90,8 +94,9 @@ order. In short:
 
 - **Local dev:** `npm run dev` injects the standalone single-host URLs and
   `DEV_AUTH_BYPASS=1`, so the UI loads with no AWS and no login. To hit real
-  data locally, add AWS credentials + either the `BOOK_*` table/bucket names or
-  `SSM_PARAMETER_PREFIX=/chapterflow/dev` to a gitignored `.env.local`.
+  data locally, copy the committed [`.env.example`](.env.example) template to a
+  gitignored `.env.local` and fill in AWS credentials + either the `BOOK_*`
+  table/bucket names or `SSM_PARAMETER_PREFIX=/chapterflow/dev`.
 - **Deployed envs:** the data-plane names (`BOOK_TABLE_NAME`,
   `BOOK_CONTENT_BUCKET`, …) are auto-injected by CDK; secrets (Cognito, Stripe,
   `AUTH_STATE_SECRET`, `ANTHROPIC_API_KEY`, …) come from per-environment GitHub
@@ -103,8 +108,8 @@ order. In short:
 > `site` / `app` / `auth` URL helpers all resolve to one origin
 > (`app/_lib/chapterflow-brand.ts`); `middleware.ts` / `next.config.ts` do no
 > host routing. The multi-subdomain shape in older docs is config-only. Note the
-> domain inconsistency called out in [docs/ENVIRONMENT.md §5](docs/ENVIRONMENT.md)
-> (`siliconx.ca` vs `chapterflow.ca`) — pin the real origin with
+> legacy-default domain inconsistency called out in
+> [docs/ENVIRONMENT.md §5](docs/ENVIRONMENT.md) — pin the real origin with
 > `CHAPTERFLOW_APP_BASE_URL` rather than relying on a default.
 
 ## Notes

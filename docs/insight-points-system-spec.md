@@ -1,5 +1,15 @@
 # ChapterFlow Insight Points System: Complete Design Specification
 
+> **Status: Implemented** (original design spec, May 2026). The system this
+> spec designs is live: earning ledger + referrals in
+> `app/app/api/book/_lib/flow-points-repo.ts`, streaks in
+> `app/app/api/book/_lib/streak-repo.ts`, user-facing routes under
+> `app/app/api/book/me/` (`flow-points`, `shop`, `badges`, `streak`), and the
+> admin adjustment route at `app/app/api/book/admin/insight-points/adjust/`.
+> The shipped UI presents the currency as **Flow Points**. This document is the
+> point-in-time design specification — where it and the code disagree, the code
+> is the source of truth.
+
 ---
 
 ## Design Philosophy

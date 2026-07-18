@@ -32,6 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# …the committed values-free template is the one exception:
+!.env.example
 
 # vercel
 .vercel
