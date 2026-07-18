@@ -357,6 +357,13 @@ export type BookUserEntitlement = {
    * apple-entitlement-write-core.ts. The Apple mirror of lastStripeEventAt.
    */
   lastAppleSignedDate?: number;
+  /**
+   * Sticky chargeback marker set by charge.dispute.created and cleared only when
+   * the dispute is won. Blocks Stripe re-activation (the webhook grant write is
+   * refused by attribute_not_exists(disputeOpen)) and new Stripe Checkout until
+   * the dispute is resolved. Absent when no dispute is open.
+   */
+  disputeOpen?: boolean;
   updatedAt: string;
 };
 

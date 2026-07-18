@@ -815,6 +815,7 @@ function decodeUserEntitlementItem(
     appleOriginalTransactionId: readStr(item.appleOriginalTransactionId),
     appleProductId: readStr(item.appleProductId),
     lastAppleSignedDate: readNum(item.lastAppleSignedDate),
+    disputeOpen: item.disputeOpen === true ? true : undefined,
     updatedAt: readStr(item.updatedAt) || "",
   };
 }

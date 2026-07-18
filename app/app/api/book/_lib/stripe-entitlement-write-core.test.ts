@@ -114,6 +114,21 @@ const downgrade = (
   stripeEventCreatedAt,
 });
 
+// WS4-014: the webhook sends plan:"PRO" with proStatus:"past_due" on FAILED
+// payments (invoice.payment_failed, invoice.payment_action_required, and
+// customer.subscription.updated via mapSubscriptionStatus). This fixture
+// mirrors that exact shape — it must NOT be treated as a paid activation.
+const proPastDue = (
+  stripeEventCreatedAt?: number,
+): StripeEntitlementWriteParams => ({
+  plan: "PRO",
+  proStatus: "past_due",
+  proSource: "stripe",
+  stripeCustomerId: "cus_1",
+  failedPaymentLastReason: "card_declined",
+  stripeEventCreatedAt,
+});
+
 // ── Structural assertions ────────────────────────────────────────────────────
 
 test("PRO-activation: proSource + ordering + disputeOpen guards present, stamps lastStripeEventAt", () => {
@@ -209,6 +224,48 @@ test("every Stripe write emits exactly the DynamoDB values it references", () =>
   }
 });
 
+// WS4-014 (RED): a failed-payment write (plan:"PRO", proStatus:"past_due") is
+// NOT a paid activation. Pinning the fix contract: isPaidActivation must key
+// off proStatus === "active", not merely plan === "PRO" — otherwise this
+// past_due write both stamps a paid-intent high-water mark it never earned
+// AND carries the Apple-takeover clause, letting a FAILED payment overwrite a
+// proSource:"apple" entitlement. Currently (pre-fix) isProActivation is true
+// for every plan==="PRO" write regardless of proStatus, so this test fails
+// red: the buggy build includes activePaidIntentAtMs/:appleSource and the
+// ACTIVATION_PROSOURCE_GUARD instead of the plain PROSOURCE_GUARD.
+test("WS4-014 RED: failed-payment (past_due) write is not a paid intent", () => {
+  const built = buildEntitlementUpdateFromStripe(proPastDue(1000), UPDATED_AT);
+
+  assert.ok(
+    !built.setParts.includes("activePaidIntentAtMs = :paidIntentAtMs"),
+    "a past_due write must never stamp the paid-intent high-water mark",
+  );
+  assert.ok(
+    !(":appleSource" in built.expressionAttributeValues),
+    "a past_due write must not carry the Apple-takeover eav",
+  );
+  assert.ok(
+    !(":paidIntentAtMs" in built.expressionAttributeValues),
+    "a past_due write must not carry a paid-intent timestamp eav",
+  );
+  assert.ok(
+    built.conditionParts.includes(PROSOURCE_GUARD),
+    "a past_due write must use the PLAIN proSource guard, not the activation/takeover guard",
+  );
+  assert.ok(
+    !built.conditionParts.includes(ACTIVATION_PROSOURCE_GUARD),
+    "a past_due write must not carry the Apple-takeover condition clause",
+  );
+  // The ordering guard and disputeOpen guard stay keyed on ALL plan==="PRO"
+  // writes — a past_due PRO write still stamps lastStripeEventAt and is still
+  // refused while disputeOpen exists.
+  assert.ok(built.conditionParts.includes(ORDERING_GUARD));
+  assert.ok(built.conditionParts.includes(DISPUTE_GUARD));
+  assert.ok(built.setParts.includes(STAMP_SET));
+
+  assertExactExpressionValues(built);
+});
+
 // ── Semantic sequence assertions (the actual leak) ───────────────────────────
 
 test("canonical reorder: a stale invoice.paid (older event) is REJECTED after a newer cancellation", () => {
@@ -302,6 +359,54 @@ test("Stripe activation cannot displace a newer Apple paid intent", () => {
     ),
     false,
     "legacy rows fall back to Apple's millisecond high-water mark",
+  );
+});
+
+// WS4-014 (RED): the actual leak. A FAILED payment (past_due) must never be
+// able to take over — let alone overwrite — an Apple-source entitlement. The
+// stored Apple mark here (1_000) is OLDER than the failed-payment event's
+// paid-intent timestamp (2_000ms, from stripeEventCreatedAt=2), so under the
+// CURRENT buggy code the takeover clause's "stored mark is not newer than the
+// (bogus) paid intent" test is satisfied and the write would apply — flipping
+// a legitimate Apple subscriber's proSource to "stripe" off of a bounced card.
+test("WS4-014 RED: past_due cannot take over an Apple entitlement", () => {
+  const built = buildEntitlementUpdateFromStripe(proPastDue(2), UPDATED_AT);
+  assert.equal(
+    conditionApplies(built.conditionParts, built.expressionAttributeValues, {
+      proSource: "apple",
+      lastAppleSignedDate: 1_000,
+    }),
+    false,
+    "a failed payment must never take over an Apple entitlement",
+  );
+});
+
+// WS4-014 (PINS FR-2): the ordering guard and the disputeOpen guard remain
+// keyed on every plan==="PRO" write (activation OR past_due) — only the
+// paid-intent stamp and the Apple-takeover clause are scoped down to
+// proStatus==="active". These pin the parts of the contract the fix must NOT
+// change; they are expected to hold both before and after the fix.
+test("WS4-014 PIN: past_due still blocked by disputeOpen and ordering", () => {
+  const disputeBlocked = buildEntitlementUpdateFromStripe(proPastDue(1000), UPDATED_AT);
+  assert.equal(
+    conditionApplies(
+      disputeBlocked.conditionParts,
+      disputeBlocked.expressionAttributeValues,
+      { proSource: null, disputeOpen: true },
+    ),
+    false,
+    "an unresolved chargeback must still block a past_due PRO write",
+  );
+
+  const staleOrdering = buildEntitlementUpdateFromStripe(proPastDue(1000), UPDATED_AT);
+  assert.equal(
+    conditionApplies(
+      staleOrdering.conditionParts,
+      staleOrdering.expressionAttributeValues,
+      { proSource: "stripe", lastStripeEventAt: 5000 },
+    ),
+    false,
+    "a stale (out-of-order) past_due write must still be rejected by the ordering guard",
   );
 });
 
