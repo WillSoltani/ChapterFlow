@@ -73,6 +73,10 @@ npm test         # unit tests only (node test runner via tsx)
 npm run lint     # advisory — known in-scope debt, not a blocking gate
 ```
 
+The full script catalogue (test tiers, scanners, native-contract generator,
+live-sync tools, pipeline scripts) is documented in
+[docs/SCRIPTS.md](docs/SCRIPTS.md).
+
 ## Deployment & environments
 Three environments run in one AWS account, suffixed `dev` / `staging` / `prod`
 (prod is the unsuffixed, data-bearing set). Push to `main` auto-deploys **dev**;

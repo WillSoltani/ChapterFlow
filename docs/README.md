@@ -10,6 +10,7 @@ Use the documents below based on the task you are doing.
 - [Repository architecture](ARCHITECTURE.md)
 - [Development guide](DEVELOPMENT.md)
 - [Contribution guide](CONTRIBUTING.md)
+- [Scripts reference](SCRIPTS.md)
 
 ## Product specific docs
 - [ChapterFlow architecture and content flow](BOOK_ACCELERATOR.md)
