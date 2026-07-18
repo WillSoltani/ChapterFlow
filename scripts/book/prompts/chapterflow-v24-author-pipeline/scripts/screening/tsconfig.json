@@ -9,5 +9,11 @@
   // It inherits the pipeline's exact compilerOptions (ESNext / Bundler / strict),
   // so the driver is checked the same way tsx executes it.
   "extends": "../../tsconfig.json",
-  "include": ["run-invocation.mts"]
+  "include": [
+    "run-invocation.mts",
+    "d7liteCore.mts",
+    "run-d7lite-drill.mts",
+    "run-stage1-screening.mts",
+    "stage1Core.mts"
+  ]
 }
