@@ -94,8 +94,9 @@ order. In short:
 
 - **Local dev:** `npm run dev` injects the standalone single-host URLs and
   `DEV_AUTH_BYPASS=1`, so the UI loads with no AWS and no login. To hit real
-  data locally, add AWS credentials + either the `BOOK_*` table/bucket names or
-  `SSM_PARAMETER_PREFIX=/chapterflow/dev` to a gitignored `.env.local`.
+  data locally, copy the committed [`.env.example`](.env.example) template to a
+  gitignored `.env.local` and fill in AWS credentials + either the `BOOK_*`
+  table/bucket names or `SSM_PARAMETER_PREFIX=/chapterflow/dev`.
 - **Deployed envs:** the data-plane names (`BOOK_TABLE_NAME`,
   `BOOK_CONTENT_BUCKET`, …) are auto-injected by CDK; secrets (Cognito, Stripe,
   `AUTH_STATE_SECRET`, `ANTHROPIC_API_KEY`, …) come from per-environment GitHub
