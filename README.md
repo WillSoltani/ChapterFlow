@@ -103,8 +103,8 @@ order. In short:
 > `site` / `app` / `auth` URL helpers all resolve to one origin
 > (`app/_lib/chapterflow-brand.ts`); `middleware.ts` / `next.config.ts` do no
 > host routing. The multi-subdomain shape in older docs is config-only. Note the
-> domain inconsistency called out in [docs/ENVIRONMENT.md §5](docs/ENVIRONMENT.md)
-> (`siliconx.ca` vs `chapterflow.ca`) — pin the real origin with
+> legacy-default domain inconsistency called out in
+> [docs/ENVIRONMENT.md §5](docs/ENVIRONMENT.md) — pin the real origin with
 > `CHAPTERFLOW_APP_BASE_URL` rather than relying on a default.
 
 ## Notes
