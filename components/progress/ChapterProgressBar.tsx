@@ -1,5 +1,3 @@
-"use client";
-
 import type { StepNumber } from "./progressTypes";
 
 interface ChapterProgressBarProps {
