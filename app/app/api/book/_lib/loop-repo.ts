@@ -1,10 +1,11 @@
 // This module was split out of repo.ts (WS3-004). Code moved verbatim.
 
-import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
+import { PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { batchDeleteKeys } from "./ddb-batch-delete";
 import {
   bookUserPk,
+  loopSk,
   loopSkPrefix,
   quizAttemptPkFromQuizStateSk,
   quizStateSk,
@@ -41,6 +42,81 @@ export async function markLoopPipelineCompleted(
       ExpressionAttributeValues: {
         ":ts": completedAt,
       },
+    })
+  );
+}
+
+/**
+ * Create the per-loop BOOK_USER_LOOP marker for a passed quiz. Idempotent by
+ * construction: the `attribute_not_exists` ConditionExpression makes a re-pass /
+ * retry a ConditionalCheckFailed (which the caller swallows). Extracted verbatim
+ * from the quiz-submit route (WS3-003) — the raw item shape is unchanged.
+ */
+export async function putLoopRecord(
+  tableName: string,
+  params: {
+    userId: string;
+    bookId: string;
+    chapterNumber: number;
+    completedAt: string;
+    quizScore: number;
+    learningMode: string;
+    isFirstAttempt: boolean;
+    category: string;
+    loopCompleteIPAmount: number;
+    createdAt: string;
+  }
+): Promise<void> {
+  await ddbDoc.send(
+    new PutCommand({
+      TableName: tableName,
+      Item: {
+        PK: bookUserPk(params.userId),
+        SK: loopSk(params.bookId, params.chapterNumber),
+        entity: "BOOK_USER_LOOP",
+        userId: params.userId,
+        bookId: params.bookId,
+        chapterNumber: params.chapterNumber,
+        completedAt: params.completedAt,
+        quizScore: params.quizScore,
+        learningMode: params.learningMode,
+        isFirstAttempt: params.isFirstAttempt,
+        category: params.category,
+        loopCompleteIPAmount: params.loopCompleteIPAmount,
+        createdAt: params.createdAt,
+      },
+      ConditionExpression:
+        "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+    })
+  );
+}
+
+/**
+ * Stamp a single per-step completion marker (`streakUpdatedAt`, `fsrsSeededAt`,
+ * …) on the BOOK_USER_LOOP record so a partially-failed loop can be detected +
+ * repaired. `field` is an internal constant, never user input. Extracted verbatim
+ * from the quiz-submit route (WS3-003). Callers fire this best-effort — a failure
+ * here must not fail the loop, so they swallow rejections.
+ */
+export async function markLoopStepCompleted(
+  tableName: string,
+  params: {
+    userId: string;
+    bookId: string;
+    chapterNumber: number;
+    field: string;
+    ts: string;
+  }
+): Promise<void> {
+  await ddbDoc.send(
+    new UpdateCommand({
+      TableName: tableName,
+      Key: {
+        PK: bookUserPk(params.userId),
+        SK: loopSk(params.bookId, params.chapterNumber),
+      },
+      UpdateExpression: `SET ${params.field} = :ts`,
+      ExpressionAttributeValues: { ":ts": params.ts },
     })
   );
 }

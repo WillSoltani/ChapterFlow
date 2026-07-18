@@ -9,7 +9,9 @@ import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
   RETENTION_DAYS_18_MONTHS,
   badgeAwardSk,
+  bookMetricsPk,
   bookUserPk,
+  dailyMetricsSk,
   engagementSk,
   nowIso,
   readingDaySk,
@@ -214,6 +216,35 @@ export async function putBadgeAward(
     if (isConditionalCheckFailed(error)) return false;
     throw error;
   }
+}
+
+/**
+ * Increment the per-book, per-day reader metrics (unique readers + loop
+ * completions) surfaced on the Progress page's per-title KPIs. Extracted verbatim
+ * from the quiz-submit route (WS3-003) — the raw BOOKMETRICS#<bookId> /
+ * BOOK_CHAPTER_DAILY_METRICS update is unchanged. Read back by
+ * books/[bookId]/metrics/route.ts. Callers fire this best-effort (a metrics
+ * write must never fail a loop), so they swallow rejections.
+ */
+export async function incrementDailyReaderMetrics(
+  tableName: string,
+  params: { bookId: string; dayKey: string; ts: string }
+): Promise<void> {
+  await ddbDoc.send(
+    new UpdateCommand({
+      TableName: tableName,
+      Key: { PK: bookMetricsPk(params.bookId), SK: dailyMetricsSk(params.dayKey) },
+      UpdateExpression:
+        "SET entity = :entity, bookId = :bookId, dayKey = :day, updatedAt = :now ADD uniqueReaders :one, loopCompletions :one",
+      ExpressionAttributeValues: {
+        ":entity": "BOOK_CHAPTER_DAILY_METRICS",
+        ":bookId": params.bookId,
+        ":day": params.dayKey,
+        ":now": params.ts,
+        ":one": 1,
+      },
+    })
+  );
 }
 
 export async function putShareEvent(
