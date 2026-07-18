@@ -454,13 +454,20 @@ export function countTrueSessions(
   entries: readonly RunCallLedgerEntryV1[],
   opts?: { family?: LedgerCallFamily },
 ): number {
-  let count = 0;
+  // One REAL session may be observed at more than one choke point (the D7
+  // dispatch AND the harness ingest both append with the SAME sessionId — the
+  // AUD-08 dispatch/ingest double-entry, now live). The ceiling currency is
+  // real sessions, so non-null sessionIds dedupe; a null-sessionId entry has
+  // no cross-reference and counts individually (conservative).
+  const seen = new Set<string>();
+  let nullIdCount = 0;
   for (const e of entries) {
     if (e.sessionKind !== "session") continue;
     if (opts?.family !== undefined && e.family !== opts.family) continue;
-    count += 1;
+    if (e.sessionId === null || e.sessionId === undefined || e.sessionId === "") nullIdCount += 1;
+    else seen.add(e.sessionId);
   }
-  return count;
+  return seen.size + nullIdCount;
 }
 
 export function writeCallLedgerRollup(pipelineDir: string, rollup: RunCallLedgerRollupV1): string {
