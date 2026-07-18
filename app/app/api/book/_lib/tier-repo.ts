@@ -425,3 +425,24 @@ export function computeTierProgress(tier: BookUserTierItem): TierProgressInfo {
       : null,
   };
 }
+
+/**
+ * Cheap, read-only tier-name lookup for gate checks (defaults to "reader"
+ * when the row doesn't exist yet — no row creation, unlike getOrCreateTier).
+ * Moved verbatim from me/shop/route.ts (WS3-002), where it was inlined
+ * identically at two call sites (GET's catalog gating + POST's tier-gated
+ * item purchase check).
+ */
+export async function getCurrentTierName(
+  tableName: string,
+  userId: string
+): Promise<TierName> {
+  const tierRes = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: { PK: bookUserPk(userId), SK: tierSk() },
+      ProjectionExpression: "currentTier",
+    })
+  );
+  return ((tierRes.Item?.currentTier as string) ?? "reader") as TierName;
+}

@@ -3,6 +3,7 @@
 import {
   GetCommand,
   PutCommand,
+  QueryCommand,
   UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
@@ -245,6 +246,32 @@ export async function incrementDailyReaderMetrics(
       },
     })
   );
+}
+
+/**
+ * Query the daily reader/loop KPI rows for one book across a SK range
+ * (inclusive). Moved verbatim from books/[bookId]/metrics/route.ts
+ * (WS3-002) — the per-item aggregation (today vs week totals) stays in the
+ * route, unchanged.
+ */
+export async function queryDailyReaderMetricsRange(
+  tableName: string,
+  bookId: string,
+  startDayKey: string,
+  endDayKey: string
+): Promise<Record<string, unknown>[]> {
+  const res = await ddbDoc.send(
+    new QueryCommand({
+      TableName: tableName,
+      KeyConditionExpression: "PK = :pk AND SK BETWEEN :start AND :end",
+      ExpressionAttributeValues: {
+        ":pk": bookMetricsPk(bookId),
+        ":start": dailyMetricsSk(startDayKey),
+        ":end": dailyMetricsSk(endDayKey),
+      },
+    })
+  );
+  return res.Items ?? [];
 }
 
 export async function putShareEvent(

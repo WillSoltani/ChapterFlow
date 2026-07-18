@@ -1,6 +1,6 @@
 // This module was split out of repo.ts (WS3-004). Code moved verbatim.
 
-import { PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
+import { GetCommand, PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { batchDeleteKeys } from "./ddb-batch-delete";
 import {
@@ -89,6 +89,30 @@ export async function putLoopRecord(
         "attribute_not_exists(PK) AND attribute_not_exists(SK)",
     })
   );
+}
+
+/**
+ * Read the raw BOOK_USER_LOOP record for one chapter. Moved verbatim from
+ * me/chapters/[bookId]/[chapterNumber]/unlock/route.ts (WS3-002) — the item
+ * is returned unparsed, matching the route's own field-by-field reads
+ * (learningMode, isFirstAttempt, loopCompleteIPAmount).
+ */
+export async function getLoopRecord(
+  tableName: string,
+  userId: string,
+  bookId: string,
+  chapterNumber: number
+): Promise<Record<string, unknown> | null> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: {
+        PK: bookUserPk(userId),
+        SK: loopSk(bookId, chapterNumber),
+      },
+    })
+  );
+  return (res.Item as Record<string, unknown> | undefined) ?? null;
 }
 
 /**

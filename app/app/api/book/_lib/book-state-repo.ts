@@ -3,6 +3,7 @@
 import {
   GetCommand,
   PutCommand,
+  QueryCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
@@ -197,4 +198,31 @@ export async function listUserChapterStates(
       } satisfies BookUserChapterStateItem;
     });
   return items.filter((item): item is BookUserChapterStateItem => item !== null);
+}
+
+/**
+ * Single-page (unpaginated) raw scan of a user's CHAPTERSTATE# rows for the
+ * Notebook feed. Moved verbatim from me/notebook/route.ts's GET handler
+ * (WS3-002) — deliberately distinct from `listUserChapterStates` above,
+ * which paginates to completion AND maps to the typed
+ * `BookUserChapterStateItem` shape (dropping `bookTitle`/`chapterTitle`,
+ * which the typed shape doesn't carry but the Notebook route reads directly
+ * off the raw item). Reusing `listUserChapterStates` here would both drop
+ * those fields and read more than one page, which is a behavior change.
+ */
+export async function queryChapterStatesForNotebook(
+  tableName: string,
+  userId: string
+): Promise<Record<string, unknown>[]> {
+  const res = await ddbDoc.send(
+    new QueryCommand({
+      TableName: tableName,
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+      ExpressionAttributeValues: {
+        ":pk": bookUserPk(userId),
+        ":prefix": "CHAPTERSTATE#",
+      },
+    }),
+  );
+  return res.Items ?? [];
 }

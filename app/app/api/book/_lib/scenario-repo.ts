@@ -5,7 +5,9 @@ import {
   GetCommand,
   PutCommand,
   QueryCommand,
+  UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
+import { ConditionalCheckFailedException } from "@aws-sdk/client-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
   approvedScenarioPk,
@@ -361,4 +363,46 @@ export async function listApprovedScenariosForChapter(
     } satisfies BookApprovedScenarioItem;
   });
   return items.filter((item): item is BookApprovedScenarioItem => item !== null);
+}
+
+/**
+ * Atomically reserve one scenario submission against a user's daily cap
+ * (L41), BEFORE the Haiku moderation call runs. Moved verbatim from
+ * me/books/[bookId]/chapters/[chapterNumber]/scenarios/route.ts (WS3-002).
+ * Returns true when reserved, false when the daily cap is already reached.
+ */
+export async function reserveScenarioSubmitSlot(
+  tableName: string,
+  userId: string,
+  submitDay: string,
+  limit: number,
+  now: string,
+  ttlEpochSeconds: number
+): Promise<boolean> {
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: { PK: bookUserPk(userId), SK: `SCENARIO_SUBMIT_LIMIT#${submitDay}` },
+        UpdateExpression:
+          "SET #count = if_not_exists(#count, :zero) + :one, updatedAt = :now, entity = :entity, #ttl = :ttl",
+        ConditionExpression: "attribute_not_exists(#count) OR #count < :limit",
+        ExpressionAttributeNames: { "#count": "count", "#ttl": "ttl" },
+        ExpressionAttributeValues: {
+          ":zero": 0,
+          ":one": 1,
+          ":now": now,
+          ":entity": "SCENARIO_SUBMIT_LIMIT",
+          ":ttl": ttlEpochSeconds,
+          ":limit": limit,
+        },
+      }),
+    );
+    return true;
+  } catch (e) {
+    if (e instanceof ConditionalCheckFailedException) {
+      return false;
+    }
+    throw e;
+  }
 }

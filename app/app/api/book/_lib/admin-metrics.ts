@@ -1,6 +1,10 @@
 import "server-only";
 
-import { QueryCommand, ScanCommand } from "@aws-sdk/lib-dynamodb";
+import {
+  QueryCommand,
+  ScanCommand,
+  type ScanCommandOutput,
+} from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 
 export type EntitlementSnapshot = {
@@ -768,4 +772,70 @@ export async function listRecentUsersByPlan(
     }),
   );
   return res.Items ?? [];
+}
+
+// ── Admin dashboard, single-page scan wrappers (WS3-002) ─────────────────────
+//
+// These three are deliberately THIN — one ScanCommand per call, returning the
+// raw SDK page — rather than a full paginate-to-completion helper like
+// scanAllEntitlements/scanAllUserSnapshots above. Their callers
+// (admin/metrics/acquisition, admin/metrics/notifications route.ts) wrap the
+// do-while pagination loop in a try/catch that keeps whatever partial results
+// were accumulated before a mid-scan failure and reports a "database scan
+// failed" warning instead of 500ing the whole dashboard. Collapsing the loop
+// into this module would lose that partial-results-on-error behavior, so only
+// the raw command construction+send moved — the loop, the partial-accumulation
+// variables, and the try/catch all stay in the routes, unchanged.
+
+/** One page of a BOOK_USER_PROFILE scan, projected to just `profile`. */
+export async function scanBookUserProfilesPage(
+  tableName: string,
+  exclusiveStartKey?: Record<string, unknown>,
+): Promise<ScanCommandOutput> {
+  return ddbDoc.send(
+    new ScanCommand({
+      TableName: tableName,
+      FilterExpression: "entity = :e",
+      ExpressionAttributeValues: { ":e": "BOOK_USER_PROFILE" },
+      ProjectionExpression: "profile",
+      ExclusiveStartKey: exclusiveStartKey,
+      Limit: 1000,
+    }),
+  );
+}
+
+/** One page of a BOOK_USER_NOTIFICATION scan, bounded to `createdAt >= cutoff`. */
+export async function scanBookUserNotificationsPage(
+  tableName: string,
+  cutoff: string,
+  exclusiveStartKey?: Record<string, unknown>,
+): Promise<ScanCommandOutput> {
+  return ddbDoc.send(
+    new ScanCommand({
+      TableName: tableName,
+      FilterExpression: "entity = :e AND createdAt >= :cut",
+      ExpressionAttributeValues: { ":e": "BOOK_USER_NOTIFICATION", ":cut": cutoff },
+      ProjectionExpression: "#t, channel, readAt, createdAt",
+      ExpressionAttributeNames: { "#t": "type" },
+      ExclusiveStartKey: exclusiveStartKey,
+      Limit: 1000,
+    }),
+  );
+}
+
+/** One page of a BOOK_USER_SETTINGS scan, projected to just `settings`. */
+export async function scanBookUserSettingsPage(
+  tableName: string,
+  exclusiveStartKey?: Record<string, unknown>,
+): Promise<ScanCommandOutput> {
+  return ddbDoc.send(
+    new ScanCommand({
+      TableName: tableName,
+      FilterExpression: "entity = :e",
+      ExpressionAttributeValues: { ":e": "BOOK_USER_SETTINGS" },
+      ProjectionExpression: "settings",
+      ExclusiveStartKey: exclusiveStartKey,
+      Limit: 1000,
+    }),
+  );
 }

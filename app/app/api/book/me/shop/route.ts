@@ -5,7 +5,6 @@ import "server-only";
 // Separate from the bridge redemption endpoint (flow-points/redeem) which
 // handles the 3 preserved freeOnly sinks.
 
-import { GetCommand, TransactWriteCommand } from "@aws-sdk/lib-dynamodb";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   getBookAnalyticsTableName,
@@ -18,25 +17,20 @@ import {
   requireString,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
+import { nowIso } from "@/app/app/api/book/_lib/keys";
 import {
-  bookUserPk,
-  engagementSk,
-  flowPointsLedgerSk,
-  giftCodePk,
-  giftCodeSk,
-  inventorySk,
-  nowIso,
-  tierSk,
-} from "@/app/app/api/book/_lib/keys";
-import { getUserFlowPointsState } from "@/app/app/api/book/_lib/flow-points-repo";
+  getUserFlowPointsState,
+  hasInventoryItem,
+  purchaseGiftAFriend,
+  purchasePersonalizationItem,
+} from "@/app/app/api/book/_lib/flow-points-repo";
+import { getCurrentTierName } from "@/app/app/api/book/_lib/tier-repo";
 import { analyticsTrackFlowPointsTransaction } from "@/app/app/api/book/_lib/analytics-repo";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
   getPersonalizationItem,
   GIFT_A_FRIEND,
   meetsTeamGate,
 } from "@/app/book/_lib/personalization-catalog";
-import type { TierName } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
 
@@ -66,14 +60,7 @@ export async function GET(req: Request) {
     const tableName = await getBookTableName();
 
     // Fetch tier for gate checks
-    const tierRes = await ddbDoc.send(
-      new GetCommand({
-        TableName: tableName,
-        Key: { PK: bookUserPk(user.sub), SK: tierSk() },
-        ProjectionExpression: "currentTier",
-      })
-    );
-    const currentTier = ((tierRes.Item?.currentTier as string) ?? "reader") as TierName;
+    const currentTier = await getCurrentTierName(tableName, user.sub);
 
     const state = await getUserFlowPointsState(tableName, user.sub);
 
@@ -133,71 +120,18 @@ export async function POST(req: Request) {
       const giftCode = generateGiftCode();
 
       // Atomic: deduct IP + record ledger entry + persist the gift code.
-      try {
-        await ddbDoc.send(
-          new TransactWriteCommand({
-            TransactItems: [
-              {
-                Update: {
-                  TableName: tableName,
-                  Key: { PK: bookUserPk(user.sub), SK: engagementSk() },
-                  UpdateExpression:
-                    "SET updatedAt = :now ADD points :negativeCost, lifetimeSpent :cost, totalSpendEvents :one",
-                  ConditionExpression: "attribute_exists(points) AND points >= :cost",
-                  ExpressionAttributeValues: {
-                    ":now": now,
-                    ":negativeCost": -cost,
-                    ":cost": cost,
-                    ":one": 1,
-                  },
-                },
-              },
-              {
-                Put: {
-                  TableName: tableName,
-                  Item: {
-                    PK: bookUserPk(user.sub),
-                    SK: flowPointsLedgerSk(now, transactionId),
-                    entity: "BOOK_USER_FLOW_POINTS_LEDGER",
-                    userId: user.sub,
-                    transactionId,
-                    direction: "spend",
-                    amount: cost,
-                    sourceType: "reward_redemption",
-                    sourceId: GIFT_A_FRIEND.id,
-                    metadata: { rewardName: GIFT_A_FRIEND.name },
-                    createdAt: now,
-                    updatedAt: now,
-                  },
-                  ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
-                },
-              },
-              {
-                Put: {
-                  TableName: tableName,
-                  Item: {
-                    PK: giftCodePk(),
-                    SK: giftCodeSk(giftCode),
-                    entity: "BOOK_USER_GIFT_CODE",
-                    code: giftCode,
-                    giverUserId: user.sub,
-                    giftType: "pro_week",
-                    ipCost: cost,
-                    status: "available",
-                    createdAt: now,
-                  },
-                  ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
-                },
-              },
-            ],
-          })
-        );
-      } catch (error: unknown) {
-        if (error && typeof error === "object" && (error as Record<string, unknown>).name === "TransactionCanceledException") {
-          throw new BookApiError(400, "insufficient_points", "Insufficient Insight Points balance.");
-        }
-        throw error;
-      }
+      // Extracted verbatim into flow-points-repo.ts (WS3-002) — the
+      // TransactWriteCommand shape and the TransactionCanceledException → 400
+      // mapping are unchanged.
+      await purchaseGiftAFriend(tableName, {
+        userId: user.sub,
+        cost,
+        giftCode,
+        now,
+        transactionId,
+        sourceId: GIFT_A_FRIEND.id,
+        rewardName: GIFT_A_FRIEND.name,
+      });
 
       // Fire-and-forget analytics
       getBookAnalyticsTableName()
@@ -232,14 +166,7 @@ export async function POST(req: Request) {
 
     // Tier gate check
     if (item.tierGate) {
-      const tierRes = await ddbDoc.send(
-        new GetCommand({
-          TableName: tableName,
-          Key: { PK: bookUserPk(user.sub), SK: tierSk() },
-          ProjectionExpression: "currentTier",
-        })
-      );
-      const currentTier = ((tierRes.Item?.currentTier as string) ?? "reader") as TierName;
+      const currentTier = await getCurrentTierName(tableName, user.sub);
       if (!meetsTeamGate(currentTier, item.tierGate)) {
         throw new BookApiError(
           400,
@@ -251,90 +178,26 @@ export async function POST(req: Request) {
 
     // One-time check: see if already owned
     if (item.oneTimePerUser) {
-      const existing = await ddbDoc.send(
-        new GetCommand({
-          TableName: tableName,
-          Key: {
-            PK: bookUserPk(user.sub),
-            SK: inventorySk(item.type, item.id),
-          },
-          ProjectionExpression: "PK",
-        })
-      );
-      if (existing.Item) {
+      const owned = await hasInventoryItem(tableName, user.sub, item.type, item.id);
+      if (owned) {
         throw new BookApiError(400, "already_owned", "You already own this item.");
       }
     }
 
     const cost = item.ipCost;
 
-    // Atomic: deduct IP + create inventory record + ledger entry
-    try {
-      await ddbDoc.send(
-        new TransactWriteCommand({
-          TransactItems: [
-            {
-              Update: {
-                TableName: tableName,
-                Key: { PK: bookUserPk(user.sub), SK: engagementSk() },
-                UpdateExpression:
-                  "SET updatedAt = :now ADD points :negativeCost, lifetimeSpent :cost, totalSpendEvents :one",
-                ConditionExpression: "attribute_exists(points) AND points >= :cost",
-                ExpressionAttributeValues: {
-                  ":now": now,
-                  ":negativeCost": -cost,
-                  ":cost": cost,
-                  ":one": 1,
-                },
-              },
-            },
-            {
-              Put: {
-                TableName: tableName,
-                Item: {
-                  PK: bookUserPk(user.sub),
-                  SK: inventorySk(item.type, item.id),
-                  entity: "BOOK_USER_INVENTORY",
-                  userId: user.sub,
-                  itemId: item.id,
-                  itemType: item.type,
-                  acquiredAt: now,
-                  equipped: false,
-                  ipCost: cost,
-                  createdAt: now,
-                },
-                ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
-              },
-            },
-            {
-              Put: {
-                TableName: tableName,
-                Item: {
-                  PK: bookUserPk(user.sub),
-                  SK: flowPointsLedgerSk(now, transactionId),
-                  entity: "BOOK_USER_FLOW_POINTS_LEDGER",
-                  userId: user.sub,
-                  transactionId,
-                  direction: "spend",
-                  amount: cost,
-                  sourceType: "reward_redemption",
-                  sourceId: item.id,
-                  metadata: { rewardName: item.name, itemType: item.type },
-                  createdAt: now,
-                  updatedAt: now,
-                },
-                ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
-              },
-            },
-          ],
-        })
-      );
-    } catch (error: unknown) {
-      if (error && typeof error === "object" && (error as Record<string, unknown>).name === "TransactionCanceledException") {
-        throw new BookApiError(400, "insufficient_points", "Insufficient Insight Points balance.");
-      }
-      throw error;
-    }
+    // Atomic: deduct IP + create inventory record + ledger entry. Extracted
+    // verbatim into flow-points-repo.ts (WS3-002) — the TransactWriteCommand
+    // shape and the TransactionCanceledException → 400 mapping are unchanged.
+    await purchasePersonalizationItem(tableName, {
+      userId: user.sub,
+      cost,
+      itemId: item.id,
+      itemType: item.type,
+      itemName: item.name,
+      now,
+      transactionId,
+    });
 
     // Fire-and-forget analytics
     getBookAnalyticsTableName()

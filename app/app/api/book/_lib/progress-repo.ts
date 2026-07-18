@@ -515,3 +515,97 @@ export function summarizeProgress(
     unlockedBooksCount: ent?.unlockedBookIds.length ?? 0,
   };
 }
+
+/**
+ * Reset the canonical gating entitlement (BOOK_PROGRESS row) back to chapter
+ * 1, conditioned on the row still existing. Moved verbatim from
+ * me/books/[bookId]/state/reset/route.ts (WS3-002). Returns true when the
+ * reset was applied, false when the row vanished between the caller's read
+ * and this write (e.g. a racing account erasure) — the caller must not
+ * resurrect it or write the denormalised projection in that case.
+ */
+export async function resetProgressGating(
+  tableName: string,
+  userId: string,
+  bookId: string,
+  now: string
+): Promise<boolean> {
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: { PK: bookUserPk(userId), SK: progressSk(bookId) },
+        ConditionExpression: "attribute_exists(SK)",
+        // Bump progressRev as part of the reset. The quiz-pass write is guarded by an
+        // optimistic `progressRev = :expectedRev` check (buildQuizPassProgressUpdate);
+        // incrementing it here CANCELS any concurrently in-flight quiz-pass that read
+        // the pre-reset rev, so it can't commit a completion on top of the just-reset
+        // row using its stale snapshot. (if_not_exists covers legacy rows with no rev.)
+        UpdateExpression:
+          "SET currentChapterNumber = :one, unlockedThroughChapterNumber = :one, completedChapters = :empty, bestScoreByChapter = :emptyMap, lastOpenedAt = :now, lastActiveAt = :now, updatedAt = :now, progressRev = if_not_exists(progressRev, :zero) + :one",
+        ExpressionAttributeValues: {
+          ":one": 1,
+          ":zero": 0,
+          ":empty": [] as number[],
+          ":emptyMap": {} as Record<string, number>,
+          ":now": now,
+        },
+      })
+    );
+    return true;
+  } catch (error: unknown) {
+    const name =
+      error && typeof error === "object"
+        ? (error as Record<string, unknown>).name ??
+          (error as Record<string, unknown>).__type
+        : undefined;
+    if (name === "ConditionalCheckFailedException") {
+      // The entitlement row vanished between read and write — do not resurrect it.
+      return false;
+    }
+    throw error;
+  }
+}
+
+/**
+ * Apply one field-scoped conditional Update to the BOOK_PROGRESS row's cursor
+ * / activity-timestamp fields (a `buildInteractionTouchUpdate` spec half —
+ * either the `timestamps` or the `cursor` half). Moved verbatim from the
+ * `sync` closure in me/books/[bookId]/state/route.ts's PATCH handler
+ * (WS3-002): a `ConditionalCheckFailedException` (the row vanished, or the
+ * cursor's forward-only guard lost a race) is swallowed as a benign no-op;
+ * any other error is rethrown.
+ */
+export async function applyProgressCursorTouch(
+  tableName: string,
+  userId: string,
+  bookId: string,
+  spec: {
+    UpdateExpression: string;
+    ConditionExpression?: string;
+    ExpressionAttributeNames?: Record<string, string>;
+    ExpressionAttributeValues?: Record<string, unknown>;
+  }
+): Promise<void> {
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: { PK: bookUserPk(userId), SK: progressSk(bookId) },
+        UpdateExpression: spec.UpdateExpression,
+        ConditionExpression: spec.ConditionExpression,
+        ExpressionAttributeNames: spec.ExpressionAttributeNames,
+        ExpressionAttributeValues: spec.ExpressionAttributeValues,
+      })
+    );
+  } catch (error: unknown) {
+    const name =
+      error && typeof error === "object"
+        ? (error as Record<string, unknown>).name ??
+          (error as Record<string, unknown>).__type
+        : undefined;
+    if (name !== "ConditionalCheckFailedException") {
+      throw error;
+    }
+  }
+}

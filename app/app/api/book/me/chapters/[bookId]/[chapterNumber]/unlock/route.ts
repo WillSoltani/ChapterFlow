@@ -7,11 +7,8 @@ import {
   bookOk,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
-import { getUserQuizState } from "@/app/app/api/book/_lib/repo";
+import { getLoopRecord, getUserQuizState } from "@/app/app/api/book/_lib/repo";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
-import { bookUserPk, loopSk } from "@/app/app/api/book/_lib/keys";
-import { GetCommand } from "@aws-sdk/lib-dynamodb";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { LOOP_COMPLETE_IP } from "@/app/book/_lib/flow-points-economy";
 import type { LearningMode } from "@/app/book/settings/types/settings";
 
@@ -54,16 +51,7 @@ export async function POST(
     }
 
     // Read the LOOP record to get learning mode and attempt info.
-    const loopRes = await ddbDoc.send(
-      new GetCommand({
-        TableName: tableName,
-        Key: {
-          PK: bookUserPk(user.sub),
-          SK: loopSk(bookId, chapterNumber),
-        },
-      })
-    );
-    const loopRecord = loopRes.Item;
+    const loopRecord = await getLoopRecord(tableName, user.sub, bookId, chapterNumber);
     if (!loopRecord) {
       throw new BookApiError(
         400,

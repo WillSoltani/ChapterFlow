@@ -19,6 +19,7 @@ import {
 } from "@/app/app/api/book/_lib/progress-write-core";
 import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
 import {
+  applyProgressCursorTouch,
   getUserBookState,
   getUserProgress,
   putUserBookState,
@@ -34,9 +35,7 @@ import type {
   BookUserBookStateItem,
   ChapterApplicationState,
 } from "@/app/app/api/book/_lib/types";
-import { bookUserPk, nowIso, progressSk } from "@/app/app/api/book/_lib/keys";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
+import { nowIso } from "@/app/app/api/book/_lib/keys";
 
 function parseStringRecord(value: unknown): Record<string, string> {
   if (!value || typeof value !== "object" || Array.isArray(value)) return {};
@@ -350,36 +349,8 @@ export async function PATCH(
         lastActiveAt: now,
         updatedAt: now,
       });
-      const Key = { PK: bookUserPk(user.sub), SK: progressSk(bookId) };
-      const sync = async (spec: typeof timestamps): Promise<void> => {
-        try {
-          await ddbDoc.send(
-            new UpdateCommand({
-              TableName: tableName,
-              Key,
-              UpdateExpression: spec.UpdateExpression,
-              ConditionExpression: spec.ConditionExpression,
-              ExpressionAttributeNames: spec.ExpressionAttributeNames,
-              ExpressionAttributeValues: spec.ExpressionAttributeValues,
-            })
-          );
-        } catch (error: unknown) {
-          // Progress row vanished between read and write (attribute_exists(PK) failed,
-          // e.g. account erasure) OR the cursor lost its forward-only guard — both are
-          // benign no-ops. We must never (re)create a partial BOOK_PROGRESS item; any
-          // other error is real and re-thrown.
-          const name =
-            error && typeof error === "object"
-              ? (error as Record<string, unknown>).name ??
-                (error as Record<string, unknown>).__type
-              : undefined;
-          if (name !== "ConditionalCheckFailedException") {
-            throw error;
-          }
-        }
-      };
-      await sync(timestamps);
-      await sync(cursor);
+      await applyProgressCursorTouch(tableName, user.sub, bookId, timestamps);
+      await applyProgressCursorTouch(tableName, user.sub, bookId, cursor);
     }
 
     return bookOk({ state: nextState });

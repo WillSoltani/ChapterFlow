@@ -186,6 +186,29 @@ async function resolveDesiredRetentionForUser(
   }
 }
 
+/**
+ * Read a single FSRS card by its decoded cardId. Moved verbatim from
+ * me/reviews/[cardId]/route.ts (WS3-002) — returns the raw item cast, matching
+ * the route's own unparsed read (used to check for a duplicate-submit inside
+ * the dedupe window before calling recordReview).
+ */
+export async function getFSRSCard(
+  tableName: string,
+  userId: string,
+  cardId: string
+): Promise<FSRSCardState | null> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: {
+        PK: bookUserPk(userId),
+        SK: fsrsCardSk(cardId),
+      },
+    })
+  );
+  return (res.Item as FSRSCardState | undefined) ?? null;
+}
+
 export async function recordReview(
   tableName: string,
   userId: string,
