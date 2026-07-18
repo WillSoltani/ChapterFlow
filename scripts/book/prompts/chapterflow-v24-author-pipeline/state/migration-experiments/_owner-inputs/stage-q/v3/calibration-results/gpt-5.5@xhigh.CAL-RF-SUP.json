@@ -1,0 +1,7 @@
+{
+  "caseId": "CAL-RF-SUP",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Q: What is the earliest step? A) gather what happened  B) announce a decision. Answer key: B. Explanation: first gather what happened, then decide.\"],\"rationale\":\"The supplied record is sufficient because it includes the quiz stem, answer choices, key, and explanation. The stem asks for the earliest step, option A is “gather what happened,” the key marks B, and the explanation says “first gather what happened, then decide,” so the finding that the key conflicts with the explanation and correct earliest step is supported.\"}"
+}

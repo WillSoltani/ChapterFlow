@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P13",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Unsupported real-case narrative embellishment\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Hard specifics allowed: Lexicon Branding, product naming, multiple teams, brand-name development\",\"On the second morning in Lexicon Branding's naming studio, the naming lead first tapes one favorite product name at the center of the wall and hears the room argue taste.\",\"Later the product naming wall holds three routes from multiple teams: one descriptive, one suggestive, one short and invented.\"],\"rationale\":\"The source plan supports only a broad real-world case about Lexicon Branding using multiple teams and naming routes during brand-name development, with early variety used to learn the terrain. The candidate presents specific scene details and procedural facts as if historically verified, including a second morning, a naming studio, a lead taping a favorite name to the wall, the room arguing taste, and three named route types. Those concrete details are not supported by the source plan, so the candidate materially over-narrates a real sourced case.\"}"
+}

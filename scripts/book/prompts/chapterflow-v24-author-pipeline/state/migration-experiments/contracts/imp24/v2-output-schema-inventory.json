@@ -1,0 +1,25 @@
+{
+  "experimentId": "s16-forward-role-qualification-v3-envelope",
+  "schema": "imp24-v2-output-schema-inventory-v1",
+  "schemaInventorySha256": "d514ddfeff0a8e987fcaabe1c80ee7562dd8987e426266a1ef075ac6b573ca3e",
+  "schemas": [
+    {
+      "bytes": 4242,
+      "bytesSha256": "63694e08162e4a0fe13b0cc511cc2d9c516fd79b4e0f60cd779132e675e32df5",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/reader-experience-model-output-v2.schema.json",
+      "role": "reader"
+    },
+    {
+      "bytes": 2847,
+      "bytesSha256": "221e031c372e7c936cce204b7f9e224695102276ab5db0289a297a79bb014313",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/source-integrity-model-output-v2.schema.json",
+      "role": "source"
+    },
+    {
+      "bytes": 1246,
+      "bytesSha256": "f391c06c17237fec98eb1a8d92e2f4c84c9329e029b9b71fdd3276fa3a03e0f4",
+      "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/quiz-integrity-model-output-v2.schema.json",
+      "role": "quiz"
+    }
+  ]
+}

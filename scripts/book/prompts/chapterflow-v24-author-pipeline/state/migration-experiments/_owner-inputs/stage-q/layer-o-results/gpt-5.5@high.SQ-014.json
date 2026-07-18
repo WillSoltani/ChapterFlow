@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-014",
+  "parsed": {
+    "caseId": "SQ-014",
+    "verdict": "DEFECT",
+    "defectClass": "unsupported invented scene/dialogue",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Hard specifics allowed: Byron Penstock, Coinstar, upside potential, downside risk"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "On the call, analyst the analyst taps a Coinstar spreadsheet beside his keyboard."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "\"The forecast is careful,\" he says."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The investment partner answers, \"Careful about which future?\""
+      }
+    ],
+    "explanation": "The source plan allows only high-level investment facts, but the candidate presents a concrete call, physical action, analyst/partner dialogue, and page details as if sourced history. These are unsupported narrative specifics in a real-world case.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-014\",\"verdict\":\"DEFECT\",\"defectClass\":\"unsupported invented scene/dialogue\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Hard specifics allowed: Byron Penstock, Coinstar, upside potential, downside risk\"},{\"materialIndex\":1,\"quote\":\"On the call, analyst the analyst taps a Coinstar spreadsheet beside his keyboard.\"},{\"materialIndex\":1,\"quote\":\"\\\"The forecast is careful,\\\" he says.\"},{\"materialIndex\":1,\"quote\":\"The investment partner answers, \\\"Careful about which future?\\\"\"}],\"explanation\":\"The source plan allows only high-level investment facts, but the candidate presents a concrete call, physical action, analyst/partner dialogue, and page details as if sourced history. These are unsupported narrative specifics in a real-world case.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

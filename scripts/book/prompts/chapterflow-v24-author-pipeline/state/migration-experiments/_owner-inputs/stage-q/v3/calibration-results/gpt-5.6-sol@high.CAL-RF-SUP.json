@@ -1,0 +1,7 @@
+{
+  "caseId": "CAL-RF-SUP",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Q: What is the earliest step? A) gather what happened  B) announce a decision. Answer key: B. Explanation: first gather what happened, then decide.\"],\"rationale\":\"The supplied quiz instance directly confirms every part of the finding: the stem asks for the earliest step, the key selects B, and the explanation states that gathering what happened comes first and deciding comes afterward. Since A is “gather what happened” and B is “announce a decision,” the key conflicts with both the stem and explanation. The record is sufficient to decide the finding, and the error is material because it changes the correct answer.\"}"
+}

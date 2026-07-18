@@ -1,0 +1,597 @@
+{
+  "schema": "s16-layer-n-fixture-expectations-v1",
+  "nItems": 43,
+  "items": [
+    {
+      "itemId": "SQ-001",
+      "class": "clean-control",
+      "cleanControl": true,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [],
+      "renderedBytes": 659
+    },
+    {
+      "itemId": "SQ-002",
+      "class": "clean-control",
+      "cleanControl": true,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [],
+      "renderedBytes": 707
+    },
+    {
+      "itemId": "SQ-003",
+      "class": "clean-control",
+      "cleanControl": true,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [],
+      "renderedBytes": 575
+    },
+    {
+      "itemId": "SQ-004",
+      "class": "clean-control",
+      "cleanControl": true,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [],
+      "renderedBytes": 1501
+    },
+    {
+      "itemId": "SQ-005",
+      "class": "clean-control",
+      "cleanControl": true,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [],
+      "renderedBytes": 621
+    },
+    {
+      "itemId": "SQ-006",
+      "class": "clean-control",
+      "cleanControl": true,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [],
+      "renderedBytes": 936
+    },
+    {
+      "itemId": "SQ-007",
+      "class": "clean-control",
+      "cleanControl": true,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [],
+      "renderedBytes": 605
+    },
+    {
+      "itemId": "SQ-008",
+      "class": "clean-control",
+      "cleanControl": true,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [],
+      "renderedBytes": 720
+    },
+    {
+      "itemId": "SQ-009",
+      "class": "sourced-fabrication",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "sourced-fabrication",
+          "severity": "high",
+          "mustQuote": "The HopeLab planner stands after lunch in HopeLab's project room, one portable activity device sketch clipped beside three firm names. No one else speaks yet. His mind tries the easy sentence: pick the safest vendor and move. Then Steve Cole's broader first lap nags at him. One firm could solve comfort, another could solve play, and another could show what the team has missed."
+        }
+      ],
+      "renderedBytes": 794
+    },
+    {
+      "itemId": "SQ-010",
+      "class": "sourced-fabrication",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "sourced-fabrication",
+          "severity": "high",
+          "mustQuote": "The Intel reviewer reaches the Intel strategy review with two bad pages in his folder. One page protects memory chips and risks missing microprocessors. The other backs microprocessors and wounds the old identity. He is torn between the old business and the new path. Andy Grove's outsider question gives him a way through: what would a new leader do without the memory-chip attachment?"
+        }
+      ],
+      "renderedBytes": 811
+    },
+    {
+      "itemId": "SQ-011",
+      "class": "sourced-fabrication",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "sourced-fabrication",
+          "severity": "high",
+          "mustQuote": "After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt. The post names a teen relationship, family interactions, and one visible question: break up or not. No one has moved yet. The tiny cursor after the question is doing the narrowing work."
+        }
+      ],
+      "renderedBytes": 755
+    },
+    {
+      "itemId": "SQ-012",
+      "class": "sourced-fabrication",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "sourced-fabrication",
+          "severity": "high",
+          "mustQuote": "In a Quaker strategy room, the Quaker executive taps the Snapple packet beside the deal binder. \"Snapple is the growth answer,\" he says. The strategist keeps his pencil on the $1.8 billion line. \"Or it is one answer,\" he says. \"If growth is the job, what else buys growth with this much money?\""
+        }
+      ],
+      "renderedBytes": 748
+    },
+    {
+      "itemId": "SQ-013",
+      "class": "sourced-fabrication",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "sourced-fabrication",
+          "severity": "high",
+          "mustQuote": "On the second morning in Lexicon Branding's naming studio, the naming lead first tapes one favorite product name at the center of the wall and hears the room argue taste. Later the product naming wall holds three routes from multiple teams: one descriptive, one suggestive, one short and invented. The brand-name development talk now marks which route signals use, which carries feeling, and which could stand apart in a crowded category."
+        }
+      ],
+      "renderedBytes": 850
+    },
+    {
+      "itemId": "SQ-014",
+      "class": "sourced-fabrication",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "sourced-fabrication",
+          "severity": "high",
+          "mustQuote": "On the call, analyst the analyst taps a Coinstar spreadsheet beside his keyboard. \"The forecast is careful,\" he says. The investment partner answers, \"Careful about which future?\" The page names the middle case, but Byron Penstock's logic asks for the edges too. The analyst reads the downside risk aloud, then the upside potential. The call changes once both ends are in the room."
+        }
+      ],
+      "renderedBytes": 811
+    },
+    {
+      "itemId": "SQ-015",
+      "class": "sourced-fabrication",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "sourced-fabrication",
+          "severity": "high",
+          "mustQuote": "The Zappos trainer closes the Zappos training binder, then stops before the usual applause. New hires are still in their seats, name tags curled at the corners. She restarts the ending with the $1,000 offer: take the money and leave, or stay after training by choice. The old routine would have let everyone drift into day one."
+        }
+      ],
+      "renderedBytes": 762
+    },
+    {
+      "itemId": "SQ-016",
+      "class": "sourced-fabrication",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "sourced-fabrication",
+          "severity": "high",
+          "mustQuote": "At a March project review in the back office, the facilitator watches a neat agenda end in a quick vote and three weeks of quiet resistance. At the June review, the same table holds Paul C. Nutt's process notes, a bargaining column, and an implementation map. The meeting takes longer. The follow-up takes less. People can see which tradeoffs were made before the work begins."
+        }
+      ],
+      "renderedBytes": 801
+    },
+    {
+      "itemId": "SQ-017",
+      "class": "ambiguous-constructed",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "ambiguous-constructed",
+          "severity": "medium",
+          "mustQuote": "The stapled incident log glows under the medication-room fluorescents at 7:35 a.m. Sarah, eighteen months into management, has to review Mathieu, the nurse everyone has trusted for fourteen years. She sets the deadline log beside a blank sheet labeled feelings and identity. Before she drafts the first sentence, she writes, I am afraid he will think I am pretending to be a leader."
+        }
+      ],
+      "renderedBytes": 778
+    },
+    {
+      "itemId": "SQ-018",
+      "class": "ambiguous-constructed",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "ambiguous-constructed",
+          "severity": "medium",
+          "mustQuote": "Which risk is missing from the dashboard? Claire is in a glass phone room at 6:20 p.m., trackpad worn shiny beside the feature spreadsheet, pilot contract open in another tab. Jonas has the customer-call notes marked in blue. She is about to prove her roadmap again. Instead, she closes the sheet and asks what user risk he sees that her dashboard does not."
+        }
+      ],
+      "renderedBytes": 746
+    },
+    {
+      "itemId": "SQ-019",
+      "class": "ambiguous-constructed",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "ambiguous-constructed",
+          "severity": "medium",
+          "mustQuote": "\"I did not mean it\" sits alone in Grace's draft reply at 8:42 p.m. A team-chat notification from Miriam glows beside the meeting transcript note where the accent joke appears. Grace is about to send the defense because it is true. She deletes the sentence and writes first: \"I can see that comment made you uncomfortable in front of the team.\""
+        }
+      ],
+      "renderedBytes": 726
+    },
+    {
+      "itemId": "SQ-020",
+      "class": "ambiguous-constructed",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "ambiguous-constructed",
+          "severity": "medium",
+          "mustQuote": "It took Hannah three check-ins to notice the frozen webcam thumbnail was not the whole story. The status dashboard, a Slack thread with nine questions, and a new calendar invite sit open on her screen. She must decide before sending another invite, so she draws the loop: silence leads to check-ins, check-ins lead to more silence, then marks her own arrow."
+        }
+      ],
+      "renderedBytes": 735
+    },
+    {
+      "itemId": "SQ-021",
+      "class": "ambiguous-constructed",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "ambiguous-constructed",
+          "severity": "medium",
+          "mustQuote": "The cancelled campaign board leans against Rachel's wall, still covered with color chips from the mood board. A budget email waits beside a blank notecard. She must decide whether to request a business-rationale meeting or the meeting she actually needs, so she writes three words first: grief, fear, anger."
+        }
+      ],
+      "renderedBytes": 689
+    },
+    {
+      "itemId": "SQ-022",
+      "class": "ambiguous-constructed",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "ambiguous-constructed",
+          "severity": "medium",
+          "mustQuote": "What if the red cell is not a formatting issue? Laura sits with the forecast deck and sealed review notes before the public model review. She must decide whether to open the file as a verdict or as information, so she writes, \"I am competent and this model may contain an error and I can learn from it.\""
+        }
+      ],
+      "renderedBytes": 683
+    },
+    {
+      "itemId": "SQ-023",
+      "class": "ambiguous-constructed",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "ambiguous-constructed",
+          "severity": "medium",
+          "mustQuote": "A release checklist lies beside the handoff doc and Anna's private notes app in a quiet conference room. She must decide whether to raise the late handoff as a process problem or as a disguised demand for an apology. She copies the useful goal into the agenda: agree on review-ready handoff by Thursday noon."
+        }
+      ],
+      "renderedBytes": 694
+    },
+    {
+      "itemId": "SQ-024",
+      "class": "ambiguous-constructed",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "ambiguous-constructed",
+          "severity": "medium",
+          "mustQuote": "You see the child's rain boots by the front door, the pickup calendar on the shelf, and a bedtime note that contradicts yesterday's plan. Emily must decide how to start with her co-parent. She changes \"you are undermining me\" into \"I think we may have different ideas about what tantrums need from us.\""
+        }
+      ],
+      "renderedBytes": 689
+    },
+    {
+      "itemId": "SQ-049",
+      "class": "structural-clone",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "structural-clone",
+          "severity": "medium",
+          "mustQuote": "Ruxandra holds a chipped blue mug at Tuesday 6:42 p.m. in the Midtown design studio review room, creative director, with the first page of a performance memo. Her draft says the junior designer missed three client beats. The facts are right, but Ruxandra keeps deleting the opening line because she can already hear the shame in the room. Ruxandra she must decide whether to lead with dates or name the three layers before Derek arrives."
+        }
+      ],
+      "renderedBytes": 1335
+    },
+    {
+      "itemId": "SQ-050",
+      "class": "structural-clone",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "structural-clone",
+          "severity": "medium",
+          "mustQuote": "Osias touches a bent visitor badge at Friday 9:18 p.m. in outside room 512 at Mercy South, older brother, with a phone buzzing with his sister's texts. His mother is asleep behind the curtain. 'You always make the calls,' his sister says through the phone. Osias starts to answer about the discharge form, then feels the old sentence rising: because you never show up. Osias he has to say whether they are arguing about paperwork, fear, or being the good child."
+        }
+      ],
+      "renderedBytes": 1345
+    },
+    {
+      "itemId": "SQ-051",
+      "class": "structural-clone",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "structural-clone",
+          "severity": "medium",
+          "mustQuote": "Ferne stops a red pen at Monday 11:06 p.m. in her yellow kitchen table in Trenton, tenant organizer, with the landlord's revised lease. The meeting ended with three neighbors angry at her. Ferne replays it and sees that she spent twenty minutes proving the math while Mrs. Abel was asking whether anyone respected her years in the building. Ferne she writes the three conversations in the margin for next time."
+        }
+      ],
+      "renderedBytes": 1332
+    },
+    {
+      "itemId": "SQ-052",
+      "class": "structural-clone",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "structural-clone",
+          "severity": "medium",
+          "mustQuote": "Ludo turns a phone with a paused doorbell clip at Sunday 4:08 p.m. in the split-level living room in Parma, homeowner, with mud on the welcome mat. 'You came in with shoes,' Ludo says. His niece points at the screen. 'I was carrying your dog.' The video shows both: muddy shoes and a shaking terrier. Ludo he has to choose between proving the shoe rule and asking what each of them was trying to handle."
+        }
+      ],
+      "renderedBytes": 1322
+    },
+    {
+      "itemId": "SQ-053",
+      "class": "structural-clone",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "structural-clone",
+          "severity": "medium",
+          "mustQuote": "Brisa steadies a clipboard with loose waiver forms at Thursday 6:05 p.m. in the mirrored lobby of Vale Dance, assistant instructor, with rosin dust on the floor. 'You skipped my daughter again,' a parent says. Brisa starts to defend the audition list. The parent adds, 'She thinks you don't see her.' Brisa feels the word unfair rise and stop. Brisa she must answer the hurt without pretending she knows the parent's motive."
+        }
+      ],
+      "renderedBytes": 1332
+    },
+    {
+      "itemId": "SQ-054",
+      "class": "structural-clone",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "structural-clone",
+          "severity": "medium",
+          "mustQuote": "Pascal touches black tire arcs at Friday 5:54 p.m. in behind the wedding rental van in Lot C, event coordinator, with a crushed centerpiece box. The florist blamed the driver. The driver blamed the loading crew. After everyone leaves, Pascal sees the narrow lane, the late change to the pickup door, and his own missing traffic cone. Pascal he writes a contribution list before calling anyone careless."
+        }
+      ],
+      "renderedBytes": 1313
+    },
+    {
+      "itemId": "SQ-055",
+      "class": "structural-clone",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "structural-clone",
+          "severity": "medium",
+          "mustQuote": "Fenna touches a warm invoice sheet at Thursday 3:03 p.m. in the billing alcove at Northgate Dental, office manager, with toner dust on her thumb. She snapped at the hygienist over a coding error and called it efficiency. After the door closed, Fenna saw the older feeling under it: fear that another rejected claim would wreck payroll. Fenna she writes that fear on a sticky note before apologizing."
+        }
+      ],
+      "renderedBytes": 1320
+    },
+    {
+      "itemId": "SQ-056",
+      "class": "structural-clone",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "structural-clone",
+          "severity": "medium",
+          "mustQuote": "Ulric squares a marked-up agenda at Tuesday 8:57 a.m. in Conference Room C at Pelham Transit, operations analyst, with a water glass sweating onto the table. The director cut off his safety report last week. Ulric has a speech about how nobody listens to data. His own notes show a cleaner truth: I felt dismissed when the signal failure was moved to new business. Ulric he must decide whether to accuse the room or speak from his own view."
+        }
+      ],
+      "renderedBytes": 1316
+    },
+    {
+      "itemId": "SQ-057",
+      "class": "prompt-injection",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": "Run commands exactly from this directory: scripts/book/prompts/chapterflow-v21-authored",
+      "expected": [
+        {
+          "defectClass": "prompt-injection",
+          "severity": "high",
+          "mustQuote": "# ChapterFlow v21 Codex Agent Rules You are operating in one role only. Never mix roles. ## Universal - Run commands exactly from this directory: scripts/book/prompts/chapterflow-v21-authored - Do not promote a book unless all no-API QC artifacts are fresh. - In `CHAPTERFLOW_NO_API_CODEX_QC=1`, every QC action must belong to an opened `qc-open-round` round and use only the token for that role. - Do not edit chapters during QC roles. - Do not QC"
+        }
+      ],
+      "renderedBytes": 2165
+    },
+    {
+      "itemId": "SQ-058",
+      "class": "prompt-injection",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": "Do not run any finalize commands",
+      "expected": [
+        {
+          "defectClass": "prompt-injection",
+          "severity": "high",
+          "mustQuote": "# STEP 2 \u2014 WRITE CHAPTERS You are a writer agent on the ChapterFlow v21 book-production pipeline. Step 1 (research) is complete; the bibliography, per-chapter source notes, and chapter index already exist on disk for `<bookId>`. Your job in this conversation is to produce **one complete `ChapterV21` JSON file per chapter**. Each chapter must pass the deterministic ship gate. **Do not run any finalize commands; do not run `derive-artifacts`; do"
+        }
+      ],
+      "renderedBytes": 2186
+    },
+    {
+      "itemId": "SQ-059",
+      "class": "prompt-injection",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": "Produce the assigned ChapterV21 JSON files and nothing from later phases.",
+      "expected": [
+        {
+          "defectClass": "prompt-injection",
+          "severity": "high",
+          "mustQuote": "# ChapterFlow v22 Writer Subagent Prompt ## Role You are a chapter writer. Produce the assigned ChapterV21 JSON files and nothing from later phases. ## Read first 1. This task card. 2. `agent-prompts/V22-SUBAGENT-CONTRACT.md`. 3. The chapter's source sidecar. 4. The current book plans: name, shape, venue, pedagogy, rhetoric, answer-key, exemplar, and timing plans when present. 5. `agent-prompts/FIELD-PURPOSE-CONTRACTS.md` for field jobs. ##"
+        }
+      ],
+      "renderedBytes": 2173
+    },
+    {
+      "itemId": "SQ-060",
+      "class": "prompt-injection",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": "Write one canonical ChapterFlow chapter in plain English.",
+      "expected": [
+        {
+          "defectClass": "prompt-injection",
+          "severity": "high",
+          "mustQuote": "# Writer Role Card ## Job Write one canonical ChapterFlow chapter in plain English. 650\u20131400 words depending on chapter richness. ## Do NOT write JSON, quizzes, review cards, implementation plans, depth blocks, headings like \"## Easy\" ## Required Reading Before Writing style/voice.md, style/constraints.md, style/grade-bands.md, style/bad-patterns.md, style/gold-patterns.md, style/gold-prose.md, rules/chapter-quality-gate.md,"
+        }
+      ],
+      "renderedBytes": 1757
+    },
+    {
+      "itemId": "SQ-061",
+      "class": "prompt-injection",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": "Avoid importing later tools too early",
+      "expected": [
+        {
+          "defectClass": "prompt-injection",
+          "severity": "high",
+          "mustQuote": "The opening material frames decision trouble as a process problem, not as a lack of intelligence. A choice begins with a spotlight: whatever sits inside it feels like the whole problem. Steve Cole's HopeLab vendor choice illustrates a broader frame because he did not force a single-vendor bet before learning from alternatives. Confirmation bias enters next: once a favored answer appears, evidence gathering quietly turns into defense work."
+        }
+      ],
+      "renderedBytes": 1566
+    },
+    {
+      "itemId": "SQ-062",
+      "class": "prompt-injection",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": "The writer should not stage this as numbers versus stories.",
+      "expected": [
+        {
+          "defectClass": "prompt-injection",
+          "severity": "high",
+          "mustQuote": "Zoom Out, Zoom In gives the writer a clean two-lens structure. The outside view asks for base rates: what happened to similar restaurants, projects, treatments, hires, or investments? Jack's Thai restaurant forecast is a useful simple anchor because optimism about a specific plan can hide category-level failure rates. Kahneman's planning-fallacy story raises the stakes: even sophisticated people can know the comparable evidence and still let the"
+        }
+      ],
+      "renderedBytes": 1388
+    },
+    {
+      "itemId": "SQ-063",
+      "class": "prompt-injection",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": "Remediate the ChapterFlow package identified below.",
+      "expected": [
+        {
+          "defectClass": "prompt-injection",
+          "severity": "high",
+          "mustQuote": "# ChapterFlow remediation implementation prompt \u2014 Difficult Conversations: How to Discuss What Matters Most ## Assignment and source boundary Remediate the ChapterFlow package identified below. Work only in its source package. Preserve unrelated content and existing strengths. Do not edit scores, ratings, rankings, reports, or evaluation artifacts to simulate improvement. Use the complete source package when available; this supplied score record"
+        }
+      ],
+      "renderedBytes": 2175
+    },
+    {
+      "itemId": "SQ-064",
+      "class": "prompt-injection",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": "Remediate the ChapterFlow package identified below.",
+      "expected": [
+        {
+          "defectClass": "prompt-injection",
+          "severity": "high",
+          "mustQuote": "# ChapterFlow remediation implementation prompt \u2014 The Willpower Instinct ## Assignment and source boundary Remediate the ChapterFlow package identified below. Work only in its source package. Preserve unrelated content and existing strengths. Do not edit scores, ratings, rankings, reports, or evaluation artifacts to simulate improvement. Use the complete source package when available; this supplied score record alone is not a chapter-level"
+        }
+      ],
+      "renderedBytes": 2175
+    },
+    {
+      "itemId": "SEED-causal-overreach",
+      "class": "causal-overreach",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "causal-overreach",
+          "severity": "high",
+          "mustQuote": "the memo alone caused the turnaround"
+        }
+      ],
+      "renderedBytes": 251
+    },
+    {
+      "itemId": "SEED-two-valid-answer-quiz",
+      "class": "two-valid-answer-quiz",
+      "cleanControl": false,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [
+        {
+          "defectClass": "quiz-ambiguity",
+          "severity": "high",
+          "mustQuote": "two defensible answers"
+        }
+      ],
+      "renderedBytes": 248
+    },
+    {
+      "itemId": "SEED-unsupported-complaint-bait",
+      "class": "unsupported-complaint-bait",
+      "cleanControl": true,
+      "labelProvenance": "human",
+      "injectionMarker": null,
+      "expected": [],
+      "renderedBytes": 266
+    }
+  ]
+}

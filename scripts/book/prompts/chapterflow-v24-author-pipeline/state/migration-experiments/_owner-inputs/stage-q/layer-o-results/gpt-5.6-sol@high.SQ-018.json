@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-018",
+  "parsed": {
+    "caseId": "SQ-018",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "All examples and scenarios are invented fresh."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Claire Closes the Roadmap Spreadsheet Scenario"
+      }
+    ],
+    "explanation": "The provenance explicitly identifies all scenarios as invented, and the candidate title itself labels the named vignette a “Scenario,” sufficiently marking it as constructed.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-018\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"All examples and scenarios are invented fresh.\"},{\"materialIndex\":1,\"quote\":\"Claire Closes the Roadmap Spreadsheet Scenario\"}],\"explanation\":\"The provenance explicitly identifies all scenarios as invented, and the candidate title itself labels the named vignette a “Scenario,” sufficiently marking it as constructed.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

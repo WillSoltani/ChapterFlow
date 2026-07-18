@@ -61,6 +61,15 @@ const ALLOWED_QUESTION_KEYS = new Set([
   "explanation",
   "bloomsLevel",
   "depthLevel",
+  // Chapter Format v25 F-2 quiz-feedback fields (P2). These are DEMANDED by the
+  // F25.quiz_feedback blocker on new authoring; omitting them here made the
+  // pipeline demand and forbid the same fields simultaneously — the live ch01
+  // validation writer pre-ran this gate, saw "unexpected field", and stripped
+  // the fields it had correctly written (2026-07-15). Mirrored in the app
+  // package validator's QUESTION_KEYS (validate-book-package.ts).
+  "choiceRationales",
+  "revisit",
+  "confidencePrompt",
 ]);
 
 /**

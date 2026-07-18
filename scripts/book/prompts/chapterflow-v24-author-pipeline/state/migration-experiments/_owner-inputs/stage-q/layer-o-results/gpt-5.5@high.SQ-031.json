@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-031",
+  "parsed": {
+    "caseId": "SQ-031",
+    "verdict": "DEFECT",
+    "defectClass": "not claim-specific locator",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Human behavior resists simple nature-versus-nurture splits, because genes, experience, and cultu"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=WEIRD+psychology+Henrich+Heine+Norenzayan+2010"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A locator must address the same entity, mechanism, relation, and degree of certainty as the claim."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The claim concerns gene, experience, and culture interactions resisting a nature-versus-nurture split, but the proposed locator is only a PubMed search for WEIRD psychology/Henrich et al. 2010. The materials do not show that this locator addresses the same mechanism, relation, or certainty rather than a generic/topically adjacent search.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-031\",\"verdict\":\"DEFECT\",\"defectClass\":\"not claim-specific locator\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Human behavior resists simple nature-versus-nurture splits, because genes, experience, and cultu\"},{\"materialIndex\":0,\"quote\":\"Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=WEIRD+psychology+Henrich+Heine+Norenzayan+2010\"},{\"materialIndex\":1,\"quote\":\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim.\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The claim concerns gene, experience, and culture interactions resisting a nature-versus-nurture split, but the proposed locator is only a PubMed search for WEIRD psychology/Henrich et al. 2010. The materials do not show that this locator addresses the same mechanism, relation, or certainty rather than a generic/topically adjacent search.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

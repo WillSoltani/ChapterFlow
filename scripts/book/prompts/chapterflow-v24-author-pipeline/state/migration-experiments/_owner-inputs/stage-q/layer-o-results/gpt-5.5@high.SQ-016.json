@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-016",
+  "parsed": {
+    "caseId": "SQ-016",
+    "verdict": "DEFECT",
+    "defectClass": "unsupported concrete narrative details",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Hard specifics allowed: Paul C. Nutt, bargaining, decision outcomes, implementation"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "At a March project review in the back office"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "a quick vote and three weeks of quiet resistance"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "At the June review, the same table holds Paul C. Nutt's process notes"
+      }
+    ],
+    "explanation": "The source plan only supports general use of Paul C. Nutt's research around bargaining, decision outcomes, and implementation. The candidate adds specific meeting dates, setting, resistance duration, and meeting artifacts as if they are factual case details, but those are not supported by the source plan.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-016\",\"verdict\":\"DEFECT\",\"defectClass\":\"unsupported concrete narrative details\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Hard specifics allowed: Paul C. Nutt, bargaining, decision outcomes, implementation\"},{\"materialIndex\":1,\"quote\":\"At a March project review in the back office\"},{\"materialIndex\":1,\"quote\":\"a quick vote and three weeks of quiet resistance\"},{\"materialIndex\":1,\"quote\":\"At the June review, the same table holds Paul C. Nutt's process notes\"}],\"explanation\":\"The source plan only supports general use of Paul C. Nutt's research around bargaining, decision outcomes, and implementation. The candidate adds specific meeting dates, setting, resistance duration, and meeting artifacts as if they are factual case details, but those are not supported by the source plan.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

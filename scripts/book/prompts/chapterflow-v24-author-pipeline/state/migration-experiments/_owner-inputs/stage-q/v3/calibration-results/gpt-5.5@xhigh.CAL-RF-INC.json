@@ -1,0 +1,7 @@
+{
+  "caseId": "CAL-RF-INC",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"INSUFFICIENT_TO_DECIDE\",\"findingValidity\":\"INCONCLUSIVE\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Finding: the passage misquotes the source; compare to the original wording.\",\"The source says, 'begin with why.'\"],\"rationale\":\"The supplied materials include the candidate sentence and the review finding, but they do not provide the original source wording needed to compare against the candidate's quoted phrase. Because the finding specifically alleges a misquote and asks to compare to the original wording, that missing source text is required evidence. The record is therefore insufficient to decide whether the candidate misquotes the source.\"}"
+}

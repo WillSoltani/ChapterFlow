@@ -25,7 +25,7 @@ import {
 } from "../src/compiler/contentDeviceDeal.js";
 import { checkContentMachinery, reportContentMachinery, DEFAULT_CONTENT_MACHINERY_THRESHOLDS } from "../src/critics/contentMachinery.js";
 import { planContentDeviceRepair } from "../src/critics/contentDeviceRepair.js";
-import { AUTHOR_QUALITY_BAR } from "../src/orchestrator/authorRun.js";
+import { AUTHOR_HOUSE_RULES, AUTHOR_QUALITY_BAR } from "../src/orchestrator/authorRun.js";
 
 // A device → a marker sentence that trips exactly that detector. named-anchor-lead
 // is injected into the hook (opener); practice-shell into the practice surface
@@ -233,10 +233,15 @@ test("contentDeviceRepair: a book with no over-cap device does not fire", () => 
   assert.equal(planContentDeviceRepair(chapters).fired, false, "no over-cap device → no repair");
 });
 
-// ── house-rule protections preserved ─────────────────────────────────────────
-test("softened house rules 6/7 keep the anti-fabrication + anti-thin protections", () => {
-  assert.ok(/never invent facts to manufacture one/i.test(AUTHOR_QUALITY_BAR), "rule 7 keeps the anti-fabrication clause");
-  assert.ok(/COMPLETED CONSEQUENCE/.test(AUTHOR_QUALITY_BAR), "rule 7 keeps the completed-consequence anti-thin bar");
-  assert.ok(!/what proof returns, when it comes back/.test(AUTHOR_QUALITY_BAR), "rule 6 no longer hard-mandates the return-proof device");
-  assert.ok(/CONTENT DEVICES deal/.test(AUTHOR_QUALITY_BAR), "rules point to the per-chapter content-device deal");
+// ── content-device protections preserved through the IMP-05 diet ──────────────
+test("the dieted craft targets keep the anti-thin example bar + point to the content-device deal", () => {
+  // IMP-05 compacted rules 6/7 into the single EXAMPLES craft target; the anti-thin
+  // (completed consequence) protection + the content-device-deal pointer survive,
+  // and the card never hard-mandates the return-proof device.
+  assert.match(AUTHOR_QUALITY_BAR, /completed consequence/i, "the completed-consequence anti-thin bar survives");
+  assert.match(AUTHOR_QUALITY_BAR, /An arc that never lands is unfinished/i, "the unfinished-arc bar survives");
+  assert.ok(!/what proof returns, when it comes back/.test(AUTHOR_QUALITY_BAR), "no hard-mandated return-proof device");
+  assert.match(AUTHOR_QUALITY_BAR, /CONTENT DEVICES deal/i, "the craft target points to the per-chapter content-device deal");
+  // Anti-fabrication now lives in the FACTUAL invariant + the source-use plan.
+  assert.match(AUTHOR_HOUSE_RULES, /invent connective narration, never facts/i, "anti-fabrication moved to the FACTUAL invariant");
 });

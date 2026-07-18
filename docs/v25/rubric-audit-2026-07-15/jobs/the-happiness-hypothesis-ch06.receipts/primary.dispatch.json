@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "chapterflow_worker_dispatch_receipt",
+  "issuer": "chapterflow_evaluation_orchestrator",
+  "pair_id": "the-happiness-hypothesis-ch06-pair-20260715T110908Z",
+  "issued_at_utc": "2026-07-15T11:11:46Z",
+  "run_id": "20260715T110908Z",
+  "book_id": "the-happiness-hypothesis-ch06",
+  "source_hash": "98fb3e50e070ca44543881613f39dbaf5c478bfff7e2aea838688f2b3d0e5dd2",
+  "inventory_sha256": "321cce1f5ab5eb923cfeb0a2346669622fc9022fa8e234d6f36bd39bdf40d259",
+  "role": "primary",
+  "job_id": "the-happiness-hypothesis-ch06-primary-20260715T110908Z",
+  "worker_task_id": "/root/happiness_primary",
+  "worker_session_id": "/root/happiness_primary@20260715T110908Z",
+  "binding_sha256": "762e13b6e653e3a4d3852b21551f6bc011639f6e9426baa0767962e5be35fc1c"
+}

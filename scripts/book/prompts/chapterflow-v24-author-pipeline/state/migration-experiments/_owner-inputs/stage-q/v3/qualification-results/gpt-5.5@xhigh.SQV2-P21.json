@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P21",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"topically_unrelated_generic_locator\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Claim record: Checked claim mechanism for ch01.fact.6: Good behavior and bad behavior can share substrates, because empathy, threat detection, bonding, Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=Dutch+Hunger+Winter+prenatal+exposure ; locator=ch01.fact.6\",\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim. A generic or topically unrelated search is not verification.\"],\"rationale\":\"The recorded mechanism concerns shared substrates for good and bad behavior involving empathy, threat detection, and bonding, but the proposed locator is only a PubMed search for Dutch Hunger Winter prenatal exposure. The materials show no shared entity, mechanism, relation, or certainty between that locator and the claim, and the contract explicitly says a generic or topically unrelated search is not verification.\"}"
+}

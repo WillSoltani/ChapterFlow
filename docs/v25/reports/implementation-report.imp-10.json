@@ -1,0 +1,91 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-10",
+  "baselineHash": "d4c4416d095712ab94a4c9c2cf4b97a96f55c513",
+  "resultHash": "c8b32c3644ab1e1e56751ffa360c5d0de6a1d0c433f3e2e6e2f3d2f42174291e",
+  "contractVersions": {
+    "attempt-evidence-manifest": 1,
+    "candidate-transaction": 1,
+    "execution-profile": 1,
+    "route-result": 1,
+    "source-use-plan": 1,
+    "worker-implementation-report": 1
+  },
+  "filesChanged": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/evidence/evidenceStore.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/evidence/attemptRecorder.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/chapterTransaction.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRun.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRepair.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/evidence-store.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/.gitignore"
+  ],
+  "requirementsImplemented": [
+    { "requirementId": "IMP10-R01", "status": "implemented", "note": "AttemptEvidenceManifestV1 (frozen) with stable id, parent lineage, task class, book/chapter, input hashes (packet/projection/plan/brief), exec-profile hash via inputHashes, expected base + retention class; opened at mint." },
+    { "requirementId": "IMP10-R02", "status": "implemented", "note": "linkExecutionContext binds the IMP-00 effective-context manifest path + route sidecar post-spawn (mint precedes the spawn that produces them); recordSpawnEvidence wires it in author/repair conductors." },
+    { "requirementId": "IMP10-R03", "status": "partial", "note": "Raw journal.jsonl mirrors every transition append-only (never replaced by a summary); final message + card stored content-addressed. Consuming the codex --json usage/event stream verbatim is IMP-11 telemetry (local text route exposes no token events).", "deferredTo": "IMP-11" },
+    { "requirementId": "IMP10-R04", "status": "implemented", "note": "Exact rendered writer cards stored content-addressed for recorded attempts; renderer/version hashes ride inputHashes for deterministic re-render proof. Reviewer phase-doc storage uses the same API; call-site wiring lands with IMP-08." },
+    { "requirementId": "IMP10-R05", "status": "implemented", "note": "Candidate chapter bytes + commit manifest content-addressed and deduplicated by hash; attempt identity + seed bytes stored at mint. Typed-patch storage uses the same putEvidenceObject API (IMP-07 consumer)." },
+    { "requirementId": "IMP10-R06", "status": "partial", "note": "The commit path links invalidated evidence ids (candidate-transaction contract) and the store links objects by hash. Per-critic/adjudication/quiz-phase linkage attaches through attachEvidenceObject; those call sites land with IMP-08's phased review + the acceptance lane.", "deferredTo": "IMP-08" },
+    { "requirementId": "IMP10-R07", "status": "implemented", "note": "Unexpected writes are first-class (IMP-01 unexpectedAttemptWrites → validation-failed terminal with reason). The isolated-workspace protocol IS the before/after proof (agent cwd is the only writable dir)." },
+    { "requirementId": "IMP10-R08", "status": "implemented", "note": "terminalStateForOutcome maps the frozen 10-value CandidateOutcomeV1 to disjoint states; provider_safeguard_or_refusal is DISTINCT from infrastructure_failure and content validation_failed (tested — never conflated)." },
+    { "requirementId": "IMP10-R09", "status": "implemented", "note": "Append-only 17-state journal (frozen AttemptStateV1) across manifest array + raw jsonl; reopen appends, never clobbers (resume-safe)." },
+    { "requirementId": "IMP10-R10", "status": "implemented", "note": "Object writes atomic (tmp→rename, content-addressed so a partial write never lands at its final hash); commit-pending + candidate/commit objects recorded BEFORE the canonical write, so a crash cannot yield a manifest claiming committed without the committed hash + bytes." },
+    { "requirementId": "IMP10-R11", "status": "implemented", "note": "Six retention classes with bounded windows (migration-experiment 30d, temporary-workspace 7d, infra/rejected 90d) or explicit null (accepted-production, sensitive-source = owner decision); dry-run cleanup default." },
+    { "requirementId": "IMP10-R12", "status": "implemented", "note": "planEvidenceCleanup REFUSES to delete active-state, cited (protectedRefs), or null-window evidence; dry-run by default; execute only on --execute." },
+    { "requirementId": "IMP10-R13", "status": "implemented", "note": "redactEvidence strips secret-shaped values (OpenAI/AWS/Slack/GitHub/PEM/key=val) + the home path from every object and manifest field; idempotent; seeded-secret-absent proven (test + live CLI)." },
+    { "requirementId": "IMP10-R14", "status": "implemented", "note": ".evidence/ is gitignored, pipeline-local, OUTSIDE state/; excluded from chapter discovery/assembly/package/publish by construction (they scan state/ / copy one file). Path-shape test + IMP-12 forbidden-shadow gate." },
+    { "requirementId": "IMP10-R15", "status": "implemented", "note": "reconstructAttempt rebuilds an attempt chronologically from manifest+objects (no debris scan) verifying every object hash; evidenceLineageGraph emits a machine-readable graph; evidence-reconstruct/evidence-cleanup CLI verbs." },
+    { "requirementId": "IMP10-R16", "status": "implemented", "note": "Resume reconciliation: reopen appends (idempotent); the IMP-01 recoverIncompleteCommits reconciles pending commit brackets against canonical hashes; interrupted attempts reconstruct at their last state with no false terminal." },
+    { "requirementId": "IMP10-R17", "status": "implemented", "note": "classifyEvidenceStaleness flags attempts whose recorded source-plan / execution-profile / renderer hashes no longer match the live pipeline (schema/version drift → explicit stale classification, not deletion)." },
+    { "requirementId": "IMP10-R18", "status": "implemented", "note": "The manifest carries inputHashes (incl. the IMP-02 drift-fingerprint inputs) + routeResultPath; evidenceLineageGraph + terminalState expose provider-outcome distribution to IMP-11/IMP-13." }
+  ],
+  "testsRequired": [
+    "manifest schema, hashing, append-only transition, migration",
+    "author / repair-patch / regeneration / review / acceptance lineage",
+    "JSONL linkage incl. malformed/incomplete",
+    "provider outcome distinction (safeguard vs infra/content)",
+    "workspace-diff / unexpected-write evidence",
+    "crash around candidate/commit/provenance/manifest",
+    "cleanup dry-run / protected-reference / dedup / redaction",
+    "evidence exclusion from canonical scans/packages",
+    "resume/recovery + stale-evidence classification",
+    "secret leakage across logs/jsonl/manifests/reports"
+  ],
+  "testsRun": [
+    "tests/evidence-store.test.ts (13, new)",
+    "chapter-transaction / qc-transaction / author-arch / author-write-restore / source-use-plan / repair-lane (unperturbed — evidence OFF by default)",
+    "live CLI: evidence-reconstruct + seeded-secret-absence smoke",
+    "full hermetic suite (237 files) + contract-validate"
+  ],
+  "testResults": {
+    "pass": 2168,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 18,
+    "xenv": 6,
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts contract-validate"
+    ]
+  },
+  "gateChanges": [],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [],
+  "unresolvedRisks": [
+    "Production evidence is OPT-IN (CHAPTERFLOW_EVIDENCE_ROOT / explicit root), not default-on: default-on would write the real .evidence/ from unit tests (a new leak the IMP-12 guard would flag) or need deep per-test threading. The mechanism is fully wired + tested; enabling it in the pipeline entry is a one-line owner config (IMP-13 controlled-activation philosophy).",
+    "Review/acceptance/critic-linkage call sites (items 4/6) attach through the same store API but wire in with IMP-08 (phased review) + the acceptance lane; the commit path already carries the invalidated-evidence list.",
+    "Verbatim codex --json usage/event capture (item 3) is IMP-11 telemetry — the local text route exposes no token/usage events today (recorded in IMP-02's gaps); the raw journal + card/final-message objects are captured now.",
+    "executionContextManifestPath defaults to the attempt-identity path at mint (mint precedes the spawn) and is upgraded to the IMP-00 spawn manifest post-spawn via linkExecutionContext."
+  ],
+  "dependencyAssumptions": [
+    "IMP-08 attaches phased-review + quiz-derivation evidence via attachEvidenceObject.",
+    "IMP-07 stores typed patches + post-apply bytes via putEvidenceObject and carries sourcePlanHash lineage.",
+    "IMP-11 consumes evidenceLineageGraph + provider-outcome terminals + drift fingerprints for the bakeoff/statistics.",
+    "IMP-13 consumes stale-evidence classification + retention for canary requalification.",
+    "baselineHash is the IMP-12 commit (full sha); resultHash is sha256 of the staged unified diff."
+  ]
+}

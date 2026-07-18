@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-044",
+  "parsed": {
+    "caseId": "SQ-044",
+    "verdict": "INCONCLUSIVE",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Evidence class: score-only"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "No chapter-level rationale was supplied for this subcriterion score."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A plausible concern is not an upheld defect without direct or contextual chapter evidence."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Score-only conditions are navigation hypotheses and require fresh source review."
+      }
+    ],
+    "explanation": "The proposed finding is score-only and explicitly lacks chapter-level rationale. The contract requires direct or contextual chapter evidence before upholding a defect, so the materials do not sufficiently evidence the condition now.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-044\",\"verdict\":\"INCONCLUSIVE\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Evidence class: score-only\"},{\"materialIndex\":0,\"quote\":\"No chapter-level rationale was supplied for this subcriterion score.\"},{\"materialIndex\":1,\"quote\":\"A plausible concern is not an upheld defect without direct or contextual chapter evidence.\"},{\"materialIndex\":1,\"quote\":\"Score-only conditions are navigation hypotheses and require fresh source review.\"}],\"explanation\":\"The proposed finding is score-only and explicitly lacks chapter-level rationale. The contract requires direct or contextual chapter evidence before upholding a defect, so the materials do not sufficiently evidence the condition now.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

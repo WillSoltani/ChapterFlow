@@ -1,0 +1,110 @@
+{
+  "schema": "s16-confirmatory-substitution-v1",
+  "status": "PRE_LIVE_EXPERIMENT_INPUT_CORRECTION",
+  "directive": "owner message 2026-07-11 (confirmatory corpus substitution, NOT a B2 evidence waiver)",
+  "originalBookId": "multipliers",
+  "replacementBookId": "radical-candor",
+  "reasonForOriginalIneligibility": "The authoritative V24_CF_J archive (sha256 5e7ec1179d444e99f2a30d6a0c0cfd0c5cd33ead945b1c0cd8778fbf8c8149a2) contains no state/indexes/multipliers.json and no .chapterflow/runs/multipliers source-v2 sidecars (exhaustive listing search); the owner prohibits reconstruction and prohibits treating the CF-I-4 backup source packets as equivalent replacements.",
+  "candidateEligibilityMatrix": [
+    {
+      "bookId": "radical-candor",
+      "archiveComplete": "index + 9/9 source-v2 sidecars + research-run manifest + source-freeze TOC + 9 briefs (json+md, +ch09 lead-override) + 9 source packets",
+      "stratumCoverage": "4/4 strata assessable from archive briefs (see stratumMatchEvidence)",
+      "overlap": "none \u2014 not the diagnostic book; not the other confirmatory book; Stage-Q corpus grounded in 5 other books",
+      "chapterCount": 9,
+      "distanceFrom9": 0,
+      "verdict": "ELIGIBLE \u2014 SELECTED (evaluated first per directive; count rule confirms; tie-break unused)"
+    },
+    {
+      "bookId": "start-with-why",
+      "archiveComplete": "index + 14/14 sidecars + inputs",
+      "stratumCoverage": "4/4 (already in use)",
+      "overlap": "PROHIBITED \u2014 it IS the diagnostic corpus book and confirmatory book 1",
+      "chapterCount": 14,
+      "distanceFrom9": 5,
+      "verdict": "INELIGIBLE (overlap)"
+    },
+    {
+      "bookId": "the-culture-code",
+      "archiveComplete": "index + 16 sidecars + briefs/packets present",
+      "stratumCoverage": "not assessed (moot \u2014 loses on chapter-count distance)",
+      "overlap": "none apparent",
+      "chapterCount": 16,
+      "distanceFrom9": 7,
+      "verdict": "eligible candidate; NOT selected (7 > 0)"
+    }
+  ],
+  "intendedStratum": "multipliers' confirmatory role: the SECOND complete-input v24 book (cross-book generalization) in the Leadership category family, contributing 4 chapters covering the four frozen strata (research-heavy, abstract-conceptual, example-heavy, causal-quiz-sensitive)",
+  "stratumMatchEvidence": {
+    "category": "radical-candor = Management/Leadership (same category family multipliers represented: Leadership/Decision-Making)",
+    "research-heavy \u2192 ch01": "brief architectureFamily 'research-lead'; thesis anchored to documented trust-model claims ('Care Personally is documented at Ch. 1 pp. 12-13'); cases: Kim Scott at Google/Apple, Sheryl Sandberg",
+    "abstract-conceptual \u2192 ch06": "brief architectureFamily 'direct-conceptual' (IDENTICAL family to multipliers ch06, the chapter it replaces in this stratum); HHIPP checklist / CORE framework conceptual exposition",
+    "example-heavy \u2192 ch02": "exampleCount 6, failure-autopsy family built on named cases (Sheryl Sandberg direct feedback, Bob at Juice Software, Order of Operations)",
+    "causal-quiz-sensitive \u2192 ch04": "coreMove is an explicit causal chain ('Because each step does a different job, skipping one creates a specific collaboration failure' \u2014 GSD Wheel); misconception-reversal family; quiz failure modes wrong-scope/half-measure \u2014 the overreach-prone mechanism shape multipliers ch05 (Challenger) represented"
+  },
+  "overlapCheck": {
+    "diagnosticBook": "start-with-why \u2260 radical-candor \u2713",
+    "otherConfirmatorySamples": "confirmatory book 1 is start-with-why (ch 4/3/9/7); no shared book or chapter \u2713",
+    "stageQCorpus": "the 64 owner cases are grounded exclusively in 01_Difficult_Conversations / 02_The_Willpower_Instinct / 03_The_Power_of_Moments / 04_Decisive / 05_Behave (evidence-and-provenance.json relativePath sweep) \u2014 radical-candor absent \u2713; detectQualificationOverlap additionally halts on any corpus\u2229candidate content-hash collision at analyze",
+    "layerNCarriers": "synthetic ChapterV21 carriers derived from those five books' case materials \u2014 no radical-candor content \u2713"
+  },
+  "originalChapterCount": 9,
+  "replacementChapterCount": 9,
+  "selectedChapterMapping": [
+    {
+      "stratum": "research-heavy",
+      "multipliers": 9,
+      "radical-candor": 1
+    },
+    {
+      "stratum": "abstract-conceptual",
+      "multipliers": 6,
+      "radical-candor": 6
+    },
+    {
+      "stratum": "example-heavy",
+      "multipliers": 4,
+      "radical-candor": 2
+    },
+    {
+      "stratum": "causal-quiz-sensitive",
+      "multipliers": 5,
+      "radical-candor": 4
+    }
+  ],
+  "indexSourcePath": "V24_CF_J_BUNDLE/chapterflow-v24-author-pipeline/state/indexes/radical-candor.json",
+  "indexSHA256": "53a719b2b24ab98390c26c77950d75c4952241564f505862ae316dfbcf577120",
+  "sourceSidecarPaths": [
+    ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch01.source.json",
+    ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch02.source.json",
+    ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch03.source.json",
+    ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch04.source.json",
+    ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch05.source.json",
+    ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch06.source.json",
+    ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch07.source.json",
+    ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch08.source.json",
+    ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch09.source.json"
+  ],
+  "sourceSidecarSHA256s": {
+    "ch01": "2dc9c07336175c39dc7ace8012cd4433924a7f990d112c791e48b371d8c451e9",
+    "ch02": "1bcd8e2b0729ff99acce0b911d9ea0f15acca48ee100994314ee8019c440e3d4",
+    "ch03": "7571e2accd82cbfd653cab58c15ea9a61d357aa26430b23c1cd2ab5ec7f8c824",
+    "ch04": "edf68e02c00d64e0d101324d96000538ca9677ee94967a9f90a91c3d0c5b4579",
+    "ch05": "41611d19a6d2ed3f101f811039d7d20949a142f6c961d3a06676db1749bac3d0",
+    "ch06": "ac009455b60f313919ac885164a762c94619fb18031392e75e1e96a1252f2558",
+    "ch07": "83c18da2c98324e91d60466442c0e052ab025d0ca7367e6bf491ef30c529ccdf",
+    "ch08": "d8e73be861eaf94be77d5e60981157a15b67f2e75484ecdc69ded990e61d38af",
+    "ch09": "9b01a1a20e611e77b56cddad5aa032c0d5cbfe5e81c38b9c177c7d48396198ba"
+  },
+  "fullExtractionLedger": "radical-candor-extraction.manifest.json (50 files; sha256(zip-stream)==sha256(staging)==sha256(installed); 0 overwrites)",
+  "scheduleChanges": "confirmatory schedule regenerated at seal over the substituted design: 96 entries (64 screening + 32 expansion), scheduleSha256 e5396064440206716fc8f3c052dfac61c714ac7a2b81fc6b5906796f1094bd45 (prior spec was never sealed \u2014 no prior schedule existed)",
+  "expectedCallCountChanges": "NONE \u2014 identical design shape (2 books \u00d7 4 chapters \u00d7 4 cells, screening 2\u2192max 3): expected 577 screening / 673 if expanded",
+  "maximumCallCountChanges": "NONE \u2014 sealed max 1,346 (campaign max 2,372 unchanged)",
+  "attestations": {
+    "substitutionBeforeFirstLiveOutput": true,
+    "noModelResultAvailableAtSelection": "zero live model calls have occurred campaign-wide (0 subscription-route sidecars); selection used only archive completeness, brief-derived strata, overlap rules, and the frozen count/tie-break procedure",
+    "noRuleChanged": "no threshold, endpoint, judge-qualification rule, retry rule, or decision rule changed (thresholds r2 sha 6a90acea\u2026 byte-identical before/after substitution; contract manifest unchanged; policy caps unchanged)",
+    "sameFrozenInputsForAllFourCells": "all four model-effort cells read the same sealed briefs/packets/sidecars/cards for radical-candor (single sealed stack, seal-verified before every guarded phase)",
+    "experimentInputCorrectionNotProductionBranch": "no production routing, catalog, publish, or book-specific pipeline logic references this substitution; it exists only in the experiment spec/seal and this record"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P28",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"DUPLICATED_GENERIC_ITEM_WITH_SKILL_RELABELING\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose.\",\"The best choice keeps the conversation tied to three layers and creates room for new information.\",\"The best choice keeps the conversation tied to feelings and creates room for new information.\"],\"rationale\":\"The two instances use the identical scenario, choices, correct index, and generic recommended action; only the chapter-skill label and a few words in the explanation change. Although sorting facts from feelings loosely relates to emotional awareness, the item does not distinctly assess the Three Conversations mechanism versus the Have Your Feelings mechanism. The unexplained substitution of “three layers” with “feelings” is relabeling rather than evidence that both chapter skills are genuinely tested.\"}"
+}

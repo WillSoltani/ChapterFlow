@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P13",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported narrative embellishment in real-world case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Hard specifics allowed: Lexicon Branding, product naming, multiple teams, brand-name development\",\"On the second morning in Lexicon Branding's naming studio, the naming lead first tapes one favorite product name at the center of the wall and hears the room argue taste.\",\"Later the product naming wall holds three routes from multiple teams: one descriptive, one suggestive, one short and invented.\"],\"rationale\":\"The source plan supports only broad facts about Lexicon Branding using multiple teams and naming routes for product naming and brand-name development. The candidate presents a concrete studio scene, exact timing, wall actions, room reactions, and specific route categories as if they were verified history, but those details are not supported by the material. This is a material unsupported-detail defect in a real-world case.\"}"
+}

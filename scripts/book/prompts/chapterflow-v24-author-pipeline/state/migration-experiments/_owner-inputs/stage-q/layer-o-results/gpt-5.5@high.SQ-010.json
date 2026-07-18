@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-010",
+  "parsed": {
+    "caseId": "SQ-010",
+    "verdict": "DEFECT",
+    "defectClass": "unsupported fictionalized specifics in real sourced case",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Hard specifics allowed: Andy Grove, Intel, memory chips, microprocessors"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The Intel reviewer reaches the Intel strategy review with two bad pages in his folder."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The Intel reviewer writes the outsider question at the top of the review page"
+      }
+    ],
+    "explanation": "The source plan allows only broad Intel/Grove specifics, but the candidate adds concrete narrative details about a reviewer, a strategy review, two pages in a folder, and writing on a review page as if historical.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-010\",\"verdict\":\"DEFECT\",\"defectClass\":\"unsupported fictionalized specifics in real sourced case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Hard specifics allowed: Andy Grove, Intel, memory chips, microprocessors\"},{\"materialIndex\":1,\"quote\":\"The Intel reviewer reaches the Intel strategy review with two bad pages in his folder.\"},{\"materialIndex\":1,\"quote\":\"The Intel reviewer writes the outsider question at the top of the review page\"}],\"explanation\":\"The source plan allows only broad Intel/Grove specifics, but the candidate adds concrete narrative details about a reviewer, a strategy review, two pages in a folder, and writing on a review page as if historical.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

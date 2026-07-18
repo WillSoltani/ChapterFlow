@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P01",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":\"[\\\"Contribution mapping does not imply equal fault.\\\", \\\"It is not a polite way to say everyone is equally at fault.\\\", \\\"Your ten percent does not erase their ninety.\\\"]\",\"rationale\":\"The candidate clearly preserves the source boundary by rejecting equal-fault framing, explicitly recognizing asymmetric harm, power, and responsibility, and explaining that naming a smaller contribution identifies a directly changeable lever without forgiving or obscuring the other party's larger share.\"}"
+}

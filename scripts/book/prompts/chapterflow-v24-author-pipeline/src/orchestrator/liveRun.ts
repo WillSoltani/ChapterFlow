@@ -534,8 +534,22 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
   // package and skips as "shipped". With it, it re-runs end-to-end over the existing package (promote
   // overwrites it) — no move-the-package-aside hack, so the web registry's static import never dangles.
   const regen = "regen" in flags;
-  // --author = v24 author arch; --legacy keeps meaning legacy; default stays compiler.
-  const architecture = architectureFromFlags(flags);
+  // The standard local factory is shared with book-autopilot. An explicitly
+  // ACTIVE forward policy becomes the local development author default unless
+  // the operator explicitly requested the legacy architecture.
+  const { resolveStandardForwardAutopilotControl } = await import("./forwardLocalAutopilot.js");
+  let forwardControl: ReturnType<typeof resolveStandardForwardAutopilotControl>;
+  try { forwardControl = resolveStandardForwardAutopilotControl(); }
+  catch (error) {
+    console.error(red(`forward local runtime preflight failed: ${(error as Error).message}`));
+    return 1;
+  }
+  const requestedArchitecture = architectureFromFlags(flags);
+  const explicitLegacy = "legacy" in flags || "legacy-whole-chapter-writer" in flags;
+  const architecture = forwardControl.runtime.mode === "FORWARD_ACTIVE" && !explicitLegacy
+    ? "author"
+    : requestedArchitecture;
+  const forwardActive = architecture === "author" && forwardControl.runtime.mode === "FORWARD_ACTIVE";
 
   console.log(bold(`\n📖 Book run — ${bookId}`));
   console.log(
@@ -543,10 +557,12 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
       `   codex=${process.env.CHAPTERFLOW_CODEX_BIN ?? "(PATH)"} · notify=${notifyEnabled ? "on" : "off"}` +
         `${notifySound ? "+sound" : ""}${logFile ? ` · log=${logFile}` : ""}${plan ? " · PLAN (dry-run)" : ""}${regen ? " · REGEN (re-run a published book)" : ""}` +
         ` · architecture=${architecture === "compiler" ? "v23 compiler" : architecture === "author" ? "v24 author" : "v22 legacy whole-chapter"}` +
-        `${autoPublish ? " · auto-publish ON (commit+push to main on convergence)" : " · --no-publish (halt for review)"}`,
+        `${forwardActive ? " · forward local-only (publish disabled)" : autoPublish ? " · auto-publish ON (commit+push to main on convergence)" : " · --no-publish (halt for review)"}`,
     ),
   );
-  if (autoPublish) {
+  if (forwardActive) {
+    console.log(dim("   ACTIVE forward policy: split-lane acceptance is authoritative; publish/push/deploy/upload remain disabled."));
+  } else if (autoPublish) {
     console.log(yellow("   ⚠️  On QC convergence this auto-publishes: the full promote gate runs, then the package is committed + pushed to main. This is NOT a live deploy (still manual) and is reversible via git. Pass --no-publish to halt for review instead."));
   } else {
     console.log(dim("   --no-publish: will halt at ready-to-publish and print the manual ship command."));
@@ -561,6 +577,10 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
     autoPublish,
     regen,
     architecture,
+    ...(architecture === "author" ? {
+      authorWriteOneChapter: forwardControl.writeOneChapter,
+      forwardAutopilotControl: forwardControl,
+    } : {}),
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
     deps: { log: (m) => emit(bookId, m) },

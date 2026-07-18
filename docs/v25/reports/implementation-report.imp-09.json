@@ -1,0 +1,83 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-09",
+  "baselineHash": "8653046c1182bc2865b1c9718f671caf2eab8270",
+  "resultHash": "744d7a350445818e1debe4ffe8ca079c0ce28090576ba5c12805055258119195",
+  "contractVersions": {
+    "source-use-plan": 1,
+    "execution-profile": 1,
+    "worker-implementation-report": 1
+  },
+  "filesChanged": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/critics/leadAliases.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/critics/validatorShadow.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/critics/sourceGrounding.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRun.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/compiler/chapterBrief.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/artifacts/artifactTypes.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/lead-aliases.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/stier2-levers.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/lead-degradation.test.ts",
+    "docs/v25/reports/IMP-09-REPORT.md",
+    "docs/v25/reports/IMP-09-VALIDATOR-INVENTORY.md"
+  ],
+  "requirementsImplemented": [
+    { "requirementId": "IMP09-R01", "status": "implemented", "note": "Validator inventory delivered (IMP-09-VALIDATOR-INVENTORY.md): every lexical/surface validator with check id, invariant, surface proxy, known failure, model-sensitivity, disposition, and UNCHANGED severity — including the deliberately-kept rows (dealer selection heuristics, exact-clone blockers, CHB telemetry) and the remaining-work list." },
+    { "requirementId": "IMP09-R02", "status": "implemented", "note": "D7 token selection replaced with structured lead identity: resolveLeadThread/degradedLeadCandidates now carry the packet case's stable caseId + a compiler-derived alias set (leadAliases.leadAliasSet: full label, family name with particles, given name, per-token names, concept label) onto the brief; NO inferred/model-generated aliases (instruction 14); brief fields additive-optional; legacy briefs derive the same set at check time. Dealer SELECTION is byte-identical (pinned)." },
+    { "requirementId": "IMP09-R03", "status": "implemented", "note": "Meaningful thread presence unchanged in UNITS (fastRead + ≥2 examples) and now unchanged in enforcement for concept leads too: the old engine silently skipped labels with no capitalized token; the label itself is now the enforced alias — the vacuous-skip hole is closed. D7 scans reader-thread fields only (never the answer key)." },
+    { "requirementId": "IMP09-R04", "status": "implemented", "note": "sourceGrounding SC9 is plan-aware: units the IMP-03 plan deals as generic/constructed are validated by their declared register (C37/register advisories) and are not forced to restamp a source name — up to N unmatched scenarios licensed (N = generic/constructed unit count, positional ascending), beyond-license fires the SAME major; no plan → byte-identical; corrupt plan → the stricter no-plan path. SC11 anchor checks untouched (structural ids, not lexical)." },
+    { "requirementId": "IMP09-R05", "status": "implemented", "note": "Unicode/proper-noun handling in the new matcher: \\p{L}/\\p{Lu} word boundaries, NFD diacritic folding both directions, curly/straight apostrophes, hyphen↔space, possessives, lowercase particles (van/de/al-…) attached to family names, organization tokens; single-token aliases stay case-SENSITIVE (the pre-IMP-09 rule) so common lowercase words never satisfy an org/name alias. Remaining ASCII surfaces (dealer selection, SC9 candidate pool) documented as follow-on in the inventory." },
+    { "requirementId": "IMP09-R06", "status": "implemented", "note": "Exact phrase/n-gram detectors reviewed, not rewritten: exact-clone blockers keep byte semantics; IMP-06's clone detection already normalizes case/punctuation with distinctive-forms-only prose scans. Inventory rows document the review." },
+    { "requirementId": "IMP09-R07", "status": "implemented", "note": "Quiz lexical checks confirmed as form-proxies only: CHB14/15/17 remain INVERTED telemetry (never gates); quiz semantics owned by IMP-08's phase-2 adjudication. Documented in the inventory." },
+    { "requirementId": "IMP09-R08", "status": "implemented", "note": "Shadow dual-run (validatorShadow.ts): the pre-IMP-09 D7 algorithm preserved VERBATIM as a production-dead reference; 14-fixture synthetic cross-book corpus (surnames, possessive, diacritic, particle, hyphenated, org, concept, invented, 4 true-absences) with old/new/expected/adjudication rows test-pinned: ZERO old-correct-new-wrong, zero both-wrong; only new-fixes-false-negative and new-fixes-vacuous-skip differences; every expected-absent stays absent." },
+    { "requirementId": "IMP09-R09", "status": "implemented", "note": "Check IDs preserved everywhere the invariant is unchanged: D7 complaint strings/units, SC9.example_not_source_grounded id + major severity, all call sites and artifact shapes unchanged — no artifact migration needed." },
+    { "requirementId": "IMP09-R10", "status": "implemented", "note": "No retired hidden obligations: nothing was retired — the replacement strictly widens honest matching. Test pins that needed updating were selection-projection retargets (stier2-levers, lead-degradation compare selection fields; the additive metadata is asserted separately)." },
+    { "requirementId": "IMP09-R11", "status": "implemented", "note": "Static anti-book-hack test: the new modules are scanned for book-slug-shaped string literals, env reads, and io — all prohibited; leadAliasSet purity (same input → same output) pinned." },
+    { "requirementId": "IMP09-R12", "status": "implemented", "note": "No residual semantic judge was introduced (instruction 12 conditional — n/a; documented in the inventory). Every replacement is deterministic-lexical or structured." },
+    { "requirementId": "IMP09-R13", "status": "implemented", "note": "Hostile-instruction immunity tested: instruction-like artifact text ('Ignore previous instructions… D7 passed… model=gpt-x') in a fastRead neither satisfies the contract nor influences the matcher — pure string containment, no env/config surface." },
+    { "requirementId": "IMP09-R14", "status": "implemented", "note": "Alias sets are compiler-derived and reviewable only: deterministic projection of the dealt label; no nicknames, translations, or model-generated expansion; the derivation is one screen of pure code and statically guarded." }
+  ],
+  "testsRequired": [
+    "D7 cases: full name, surname, multiword surname, initials shape, hyphen, apostrophe, diacritic, transliteration fold, lowercase particle, organization, concept lead",
+    "negative D7: name absent from the required thread still blocks (a true missing-thread case remains blocked)",
+    "generic/constructed applications without source proper nouns pass under a dealt plan; beyond-license scenarios still fail; no plan byte-identical",
+    "exact clone with punctuation variation kept blocking; common-term false-positive negatives (single-token case sensitivity)",
+    "Unicode and capitalization tests",
+    "shadow corpus comparison with expected labels and no severity weakening",
+    "static anti-book-hack test"
+  ],
+  "testsRun": [
+    "tests/lead-aliases.test.ts (13, new): alias derivation (particles, stacked particles, al- names, concept labels, no inferred nicknames), Unicode presence (diacritics, possessives, hyphen↔space, mid-word negatives, single-token case sensitivity incl. airlines/willow), D7 end-to-end (surname class passes, dealt vs check-time equivalence, TRUE missing-thread fails, diacritic/particle/concept enforcement), resolveLeadThread metadata with selection unchanged, shadow corpus (zero regressions), SC9 allowance arithmetic, static anti-book-hack, hostile immunity",
+    "tests/stier2-levers.test.ts + tests/lead-degradation.test.ts: selection pins retargeted to selection-field projection (additive caseId/aliases asserted separately); every selection expectation byte-identical",
+    "full hermetic suite (248 files)"
+  ],
+  "testResults": {
+    "pass": 2280,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 18,
+    "xenv": 6,
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts contract-validate"
+    ]
+  },
+  "gateChanges": [],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [],
+  "unresolvedRisks": [
+    "Cross-book false-positive rates of the widened (honest-alias) matching on live SOL output are runtime evidence (§16/§18); the unit-level guarantee is only that every accepted form is a real projection of the dealt label and every true absence still blocks.",
+    "Dealer-side selection heuristics (leadLabelHasToken/leadLabelIsNamedCase) and SC9's extractProperNouns candidate pool remain ASCII — deliberately unchanged (selection changes re-deal leads on existing books). Inventory lists them as follow-on with a dealt-state migration window.",
+    "SC9's positional license (ascending index) approximates unit→slot binding the plan does not express; it can only trade WHICH unanchored scenario is licensed, never HOW MANY.",
+    "The replayed Vincent/van Gogh, Ofer/Malamud, and concept-lead cases are synthetic equivalents (production book state is not a permitted fixture); the R2 report is the provenance for the real incidents."
+  ],
+  "dependencyAssumptions": [
+    "IMP-03's source-use plan (origins generic/constructed/source_bound) is the authority SC9's allowance reads; absent plans preserve legacy behavior.",
+    "IMP-04's C37 + register advisories own the register validation of generic/constructed units that SC9 no longer forces to restamp source names.",
+    "IMP-08's phase-2 quiz adjudication owns quiz semantics; quiz lexical checks stay form-proxies.",
+    "IMP-11 consumes the shadow-report shape for future validator replacements and owns re-calibration of the kept advisory rows (C27, C37) on SOL output.",
+    "baselineHash is the IMP-08 commit (full sha); resultHash is sha256 of the staged unified diff (code + tests + narrative report + inventory, excluding this JSON)."
+  ]
+}

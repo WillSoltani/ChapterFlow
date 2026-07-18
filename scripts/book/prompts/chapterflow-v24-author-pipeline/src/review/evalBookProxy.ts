@@ -29,7 +29,8 @@ import { REPO_ROOT, FORBIDDEN_STATE } from "../lib/chapterPaths.js";
 import { writeFileAtomic, ensureTrailingNewline } from "../lib/atomicWrite.js";
 import { spawnCodexAgent, codexAvailable } from "../orchestrator/codexAgent.js";
 import { REVIEW_WEIGHTS, DocIntegrityError } from "./readerReview.js";
-import { renderChapterReaderDoc } from "./renderReaderDoc.js";
+import { renderChapterReaderDoc, renderChapterReaderDocPhase1 } from "./renderReaderDoc.js";
+import { buildReviewerWorkspace } from "./reviewerWorkspace.js";
 
 export { DocIntegrityError } from "./readerReview.js";
 
@@ -206,6 +207,56 @@ export function assertBookSampleDocIntegrity(docText: string, chapters: ChapterV
   }
 }
 
+// ── IMP-08 phase-1 book-sample instrument (key-free acceptance reads) ─────────
+
+/** The phase-1 book-sample document: every sampled chapter's phase-1 body
+ *  (reader-facing content, NO key, NO explanations) under the same
+ *  `==== CHAPTER n ====` markers — and NO combined key block. Acceptance
+ *  readers derive; the conductor compares (adjudicateBookReview already does
+ *  the key comparison deterministically). The shipped-control read renders
+ *  with THIS function too, so both sides of the beat-shipped comparison stay
+ *  on one instrument. */
+export function renderBookSampleDocPhase1(chapters: ChapterV21[]): string {
+  const parts: string[] = [];
+  for (const ch of chapters) {
+    parts.push(`==== CHAPTER ${ch.number}: ${ch.title} ====`, "", renderChapterReaderDocPhase1(ch).replace(/\s+$/, ""), "");
+  }
+  // Same trailing-newline guarantee as the legacy renderer (the wc-l trap).
+  return parts.join("\n").replace(/\s+$/, "") + "\n";
+}
+
+/** A combined-key row (`CHAPTER 4 Q3: b`) or chapter key row (`Q3: b — …`)
+ *  anywhere — the leak shapes a phase-1 doc must not contain. */
+const PHASE1_BOOK_KEY_ROW_RE = /^(?:CHAPTER \d+ )?Q\d+: [abc?](?: — .*)?$/m;
+
+/** Q2's phase-1 analog for the book-sample doc: structural integrity (trailing
+ *  newline + per-chapter question-line counts) AND key isolation (no key
+ *  header, no key-row line in either shape, no explanation text — explanations
+ *  argue for the stored key). Throws DocIntegrityError; callers halt infra
+ *  rather than spawn a reader over a key-contaminated doc. */
+export function assertBookSamplePhase1Integrity(docText: string, chapters: ChapterV21[]): void {
+  const problems: string[] = [];
+  if (!docText.endsWith("\n")) problems.push("doc does not end with a trailing newline (the wc-l/sed under-read trap)");
+  if (docText.includes(ANSWER_KEY_HEADER)) problems.push("ANSWER KEY header present in a phase-1 book doc");
+  if (PHASE1_BOOK_KEY_ROW_RE.test(docText)) problems.push("answer-key row line present in a phase-1 book doc");
+  if (/\bcorrectIndex\b/.test(docText)) problems.push("raw correctIndex metadata present in a phase-1 book doc");
+  const docNorm = docText.toLowerCase();
+  for (const ch of chapters) {
+    const expected = (ch.quiz?.questions ?? []).length;
+    const questionLines = chapterQuestionLineIndexes(docText, ch.number).length;
+    if (questionLines !== expected) problems.push(`chapter ${ch.number}: ${questionLines} question line(s) in the doc vs ${expected} quiz question(s) in the chapter`);
+    (ch.quiz?.questions ?? []).forEach((q, i) => {
+      const expl = typeof q.explanation === "string" ? q.explanation.trim().toLowerCase() : "";
+      if (expl.length >= 12 && docNorm.includes(expl)) {
+        problems.push(`chapter ${ch.number} Q${i + 1}: explanation text leaked into the phase-1 book doc`);
+      }
+    });
+  }
+  if (problems.length > 0) {
+    throw new DocIntegrityError(`book-sample PHASE-1 key-isolation check FAILED — no key-blind reader may score this document:\n  ${problems.join("\n  ")}`);
+  }
+}
+
 // ── Q3 — structural key-coverage claim screen ─────────────────────────────────
 //
 // A gate-FAIL reader sometimes asserts a MECHANICAL/structural defect —
@@ -271,6 +322,12 @@ export function screenStructuralClaims(
 ): StructuralScreen {
   const screen: StructuralScreen = { claimsScanned: 0, decisions: [] };
   if (parsed.gate_verdict !== "FAIL") return screen; // only a FAIL veto can be screened away
+  // IMP-08: a PHASE-1 book doc has no combined key BY DESIGN (certified by
+  // assertBookSamplePhase1Integrity pre-spawn) — key-coverage omission claims
+  // have no key section to be about, so the screen is a structural NO-OP
+  // (otherwise reader confusion would "confirm" against the empty map and
+  // halt infra on a doc that is provably correct).
+  if (!docText.includes(ANSWER_KEY_HEADER)) return screen;
   const sampled = new Set(chapters.map((c) => c.number));
   for (const field of rationaleFields(parsed)) {
     for (const fragment of claimFragments(field)) {
@@ -320,6 +377,37 @@ Read ONLY this file. Do not write any files. Chapters are separated by "==== CHA
 PROCESS (strict order):
 1. Read EVERY chapter in the sample, top to bottom. For each chapter, answer its quiz YOURSELF from the prose BEFORE looking at the combined ANSWER KEY at the bottom. Record your per-chapter answers and any disagreement with the key.
 2. CORRECTNESS GATE (veto, not a score): gate_verdict is "FAIL" if you find any hard correctness failure — a keyed quiz answer the chapter's own prose contradicts or cannot support, corrupted/incoherent prose, facts that smell fabricated or unsupported by the material, or template-paste artifacts (scaffold text leaking into reader prose). Otherwise "PASS".
+3. CROSS-CHAPTER CHURN: having read the whole sample, book3_churn is "LOW" if chapters feel individually authored; "MEDIUM" if noticeable scaffolding repeats across chapters (same scene skeletons, same practice shells, same rhetorical moves with nouns swapped); "HIGH" if the chapters read as one template stamped repeatedly.
+4. Score the BOOK (the whole sample, not any single chapter) 0-100 on each factor:
+${FACTOR_RUBRIC}
+   Calibration: 90+ premium · 80-90 strong/ships · 70-80 solid draft · 60-70 mediocre · <60 not-publishable. Score as a demanding professional editor; use the full scale — most shipped material lands in the 70s and low 80s, and 85+ means genuinely excellent on that factor.
+5. EVIDENCE: 3-6 VERBATIM quotes (exact copy-paste substrings of the file, each <=200 chars): the strongest moments and the worst defects across the sample, each with a one-line why. Quotes are mechanically byte-verified — one altered character invalidates your review. Do not paraphrase inside quote fields.
+
+FINAL MESSAGE: exactly one fenced json block, no prose outside it:
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "LOW",
+  "quizDerivation": { "<chapterNumber>": { "answers": ["a|b|c", ...], "keyDisagreements": ["..."] } },
+  "scores": {"retention": 0, "quizzes": 0, "transfer": 0, "practical": 0, "summaries": 0, "tone": 0, "limits": 0, "insight": 0, "density": 0, "beginner": 0},
+  "quotes": [{"quote": "...", "why": "..."}],
+  "oneParagraphVerdict": "..."
+}`;
+}
+
+/** IMP-08 phase-1 variant of the book reader task: same rubric, same gate,
+ *  same output contract — but the doc carries NO answer key, so step 1 is pure
+ *  derivation and the correctness gate judges what the prose supports rather
+ *  than agreement with a visible key. The conductor still compares derivations
+ *  against the real keys deterministically (adjudicateBookReview, unchanged). */
+export function buildBookReviewTaskPhase1(docRelPath: string): string {
+  return `BLINDED BOOK-SAMPLE REVIEW — you are one independent reader on a scoring panel. You do not know how this book was produced; judge only what is on the page.
+
+A sample of chapters from one book of a book-learning product is at: ${docRelPath}
+Read ONLY this file. Do not write any files. Chapters are separated by "==== CHAPTER N: title ====" lines. This document contains NO answer key — your own derivations are the review's key evidence.
+
+PROCESS (strict order):
+1. Read EVERY chapter in the sample, top to bottom. For each chapter, answer its quiz YOURSELF from the prose and record your per-chapter answers. Note any question where a second choice is also defensible or the wording under-determines the answer (record it in that chapter's "keyDisagreements" array).
+2. CORRECTNESS GATE (veto, not a score): gate_verdict is "FAIL" if you find any hard correctness failure — a quiz question whose prose supports no choice (or two choices equally), corrupted/incoherent prose, facts that smell fabricated or unsupported by the material, or template-paste artifacts (scaffold text leaking into reader prose). Otherwise "PASS".
 3. CROSS-CHAPTER CHURN: having read the whole sample, book3_churn is "LOW" if chapters feel individually authored; "MEDIUM" if noticeable scaffolding repeats across chapters (same scene skeletons, same practice shells, same rhetorical moves with nouns swapped); "HIGH" if the chapters read as one template stamped repeatedly.
 4. Score the BOOK (the whole sample, not any single chapter) 0-100 on each factor:
 ${FACTOR_RUBRIC}
@@ -548,16 +636,20 @@ export async function runEvalBookProxy(args: string[], flags: Record<string, str
       continue;
     }
     const sampled = selectSeededChapters(id, loaded.pkg.chapters, 4);
-    const docText = renderBookSampleDoc(sampled);
-    const docRelPath = `scratch/eval-proxy/${id}/book-sample.txt`;
+    // IMP-08: the eval proxy runs the SAME phase-1 instrument as acceptance
+    // (key-free doc, workspace-isolated readers) so its scores stay comparable.
+    const docText = renderBookSampleDocPhase1(sampled);
+    assertBookSamplePhase1Integrity(docText, sampled);
+    const docFileName = "book-sample.txt";
+    const docRelPath = `scratch/eval-proxy/${id}/book-sample.phase1.txt`;
     const docAbs = resolve(REPO_ROOT, docRelPath);
     mkdirSync(dirname(docAbs), { recursive: true });
-    // Q1: reader-facing doc always ends with a newline (renderBookSampleDoc
-    // already appends it; ensureTrailingNewline keeps this write-site robust).
+    // Q1: reader-facing doc always ends with a newline (the renderer already
+    // appends it; ensureTrailingNewline keeps this forensic write robust).
     writeFileAtomic(docAbs, ensureTrailingNewline(docText));
     log(`[eval-book] ${id}: sampled ch ${sampled.map((c) => c.number).join(", ")} → ${docText.length} chars; spawning ${readerCount} readers`);
 
-    const task = buildBookReviewTask(docRelPath);
+    const task = buildBookReviewTaskPhase1(docFileName);
     const readers = await mapWithConcurrency(
       Array.from({ length: readerCount }, (_, i) => i + 1),
       READER_CONCURRENCY,
@@ -565,14 +657,24 @@ export async function runEvalBookProxy(args: string[], flags: Record<string, str
         for (let attempt = 1; attempt <= 2; attempt++) {
           const sessionId = `eval-book-${id}-r${readerNo}-${Date.now()}`;
           log(`[eval-book] ${id} r${readerNo}: attempt ${attempt} (session ${sessionId})`);
-          const r = await spawnCodexAgent({
-            task,
-            sessionId,
-            cwd: REPO_ROOT,
-            sandbox: "read-only",
-            skipGitRepoCheck: true,
-            reasoningEffort: "high",
+          const ws = buildReviewerWorkspace({
+            role: "acceptance-reader",
+            artifacts: [{ kind: "phase1-doc", relPath: docFileName, content: ensureTrailingNewline(docText) }],
           });
+          let r;
+          try {
+            r = await spawnCodexAgent({
+              task,
+              role: "eval-book",
+              sessionId,
+              cwd: ws.dir,
+              sandbox: "read-only",
+              skipGitRepoCheck: true,
+              reasoningEffort: "high",
+            });
+          } finally {
+            ws.cleanup();
+          }
           const parsed = parseBookReview(r.finalMessage) ?? parseBookReview(r.stdout);
           if (!parsed) {
             log(`[eval-book] ${id} r${readerNo}: attempt ${attempt} unparseable (exit ${r.exitCode})`);

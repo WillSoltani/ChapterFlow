@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P38",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"same narrative machinery reused across examples\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Scenario: Pascal touches black tire arcs at Friday 5:54 p.m. in behind the wedding rental van in Lot C, event coordinator, with a crushed centerpiece box.\",\"Scenario: Gita turns a glowing shared calendar at Monday 9:24 p.m. in the dark dining table in her rowhouse, co-parent, with two cold mugs of tea.\",\"After everyone leaves, Pascal sees the narrow lane, the late change to the pickup door, and his own missing traffic cone.\",\"The calendar shows a narrower start: we both touched the schedule and one of us was surprised.\",\"Pascal he writes a contribution list before calling anyone careless.\",\"Gita she must decide whether to open with accusation or a story they can both recognize.\"],\"rationale\":\"The two examples use the same underlying narrative mechanism: a concrete object is examined in a timestamped, role-specific scene with a prop; an initial blame or accusation frame is introduced; the character then discovers a narrower/shared contribution frame; and the ending turns on choosing a less accusatory story before assigning fault. The nouns and domains differ, but the causal progression and lesson delivery are substantially reused, so this is a material defect.\"}"
+}

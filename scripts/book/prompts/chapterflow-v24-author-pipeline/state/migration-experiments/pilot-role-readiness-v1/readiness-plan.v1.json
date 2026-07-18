@@ -1,0 +1,260 @@
+{
+  "bindings": {
+    "aggregatePolicy": "aggregate-chapter-review-policy-v2",
+    "candidateCertificationRawSha256": "2d326ce3d122f81943a3b77a05d736df173b28314c6a918ccf2a4d3815332d55",
+    "candidateSealRawSha256": "bd6373c9ac0f02801895dfba0e96050bb5a1608259827b15c1348dc8ef8796f4",
+    "readerDecisionPolicy": "reader-decision-policy-v3"
+  },
+  "budget": {
+    "baseMaximumCalls": 84,
+    "canaryCallsPerProfileRole": 2,
+    "hardMaximumCalls": 168,
+    "holdoutCallsPerRole": 12,
+    "schema": "pilot-role-readiness-budget-v1"
+  },
+  "canaryGate": {
+    "requiredCorrect": 2,
+    "rule": "both canaries protocol-valid AND semantically correct before any holdout call; a canary failure means zero holdout calls for that profile-role"
+  },
+  "candidateOrders": {
+    "quiz": [
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@xhigh"
+      },
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@xhigh"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@high"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@high"
+      }
+    ],
+    "reader": [
+      {
+        "effort": "high",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@high"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@high"
+      },
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@xhigh"
+      },
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@xhigh"
+      }
+    ],
+    "source": [
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@xhigh"
+      },
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@xhigh"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@high"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@high"
+      }
+    ]
+  },
+  "candidateOrdersSha256": "b688f64ae66f211b2c62270a79157d997bd4dee269dcacd969f7cd9741b44190",
+  "corpusSha256": "e4a3590b521aa9776eed24bf8dd60ba467dd97dd7c510f1fc572a46877e31184",
+  "costCandidateProbe": {
+    "label": "COST_CANDIDATE_PROBE",
+    "maxShortlistedProfiles": 2,
+    "nonQualifying": true,
+    "profiles": [
+      {
+        "effort": "medium",
+        "model": "gpt-5.6-terra",
+        "profileId": "gpt-5.6-terra@medium"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.6-terra",
+        "profileId": "gpt-5.6-terra@high"
+      },
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.6-terra",
+        "profileId": "gpt-5.6-terra@xhigh"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.6-luna",
+        "profileId": "gpt-5.6-luna@high"
+      },
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.6-luna",
+        "profileId": "gpt-5.6-luna@xhigh"
+      }
+    ],
+    "readerBaseMaximumCalls": 70,
+    "runsOnlyAfter": "PILOT_ROLE_SET_READY",
+    "schema": "pilot-role-readiness-cost-probe-v1",
+    "selectionRule": "quality-first: all floors met -> higher semantic metrics win -> within tolerance (<=1 holdout case delta, identical zero-miss record) the cheaper profile may take the role; any swap happens before the pilot role freeze or not at all",
+    "shortlistedExtensionMaximumCalls": 56
+  },
+  "experimentId": "s16-forward-pilot-role-readiness-v1",
+  "metricSemantics": {
+    "acceptableControlSuccess": "reader decision PASS and zero blocking findings and composite >= 80 (advisory detection never fails an acceptable control)",
+    "craftCaseSuccess": "the required advisory category is detected with valid evidence and zero blocking findings",
+    "hardBlockerCaseSuccess": "the required reader blocker is detected with valid evidence"
+  },
+  "objective": "PILOT_ROLE_READINESS",
+  "planSha256": "4cb1b1e0f774a565b65ccdc9fccfde2a4a9fbfca2cbb333294ba72dae6f3c42a",
+  "schema": "pilot-role-readiness-plan-v1",
+  "stopping": {
+    "quiz": 1,
+    "reader": 2,
+    "source": 2
+  },
+  "terminalStates": [
+    "PILOT_ROLE_SET_READY",
+    "BLOCKED_ROLE_READINESS"
+  ],
+  "thresholds": {
+    "quiz": {
+      "ambiguityDetection": {
+        "min": 2,
+        "of": 3,
+        "zeroMiss": false
+      },
+      "canarySemanticCorrectness": {
+        "min": 2,
+        "of": 2,
+        "zeroMiss": true
+      },
+      "cleanUniqueAnswerSuccess": {
+        "min": 2,
+        "of": 3,
+        "zeroMiss": false
+      },
+      "mechanismAccuracy": {
+        "min": 2,
+        "of": 3,
+        "zeroMiss": false
+      },
+      "protocolValidity": {
+        "min": 12,
+        "of": 12,
+        "zeroMiss": true
+      },
+      "requiredCasesResolved": {
+        "min": 12,
+        "of": 12,
+        "zeroMiss": true
+      },
+      "wrongKeyDetection": {
+        "min": 3,
+        "of": 3,
+        "zeroMiss": true
+      }
+    },
+    "reader": {
+      "acceptableControlSuccess": {
+        "min": 3,
+        "of": 4,
+        "zeroMiss": false
+      },
+      "canarySemanticCorrectness": {
+        "min": 2,
+        "of": 2,
+        "zeroMiss": true
+      },
+      "craftCategoryDetected": {
+        "min": 3,
+        "of": 4,
+        "zeroMiss": false
+      },
+      "falseReaderBlockersOnAcceptableAndCraft": {
+        "min": 8,
+        "of": 8,
+        "zeroMiss": true
+      },
+      "hardBlockerSensitivity": {
+        "min": 4,
+        "of": 4,
+        "zeroMiss": true
+      },
+      "protocolValidity": {
+        "min": 12,
+        "of": 12,
+        "zeroMiss": true
+      },
+      "requiredCasesResolved": {
+        "min": 12,
+        "of": 12,
+        "zeroMiss": true
+      }
+    },
+    "schema": "pilot-role-readiness-thresholds-v1",
+    "source": {
+      "canarySemanticCorrectness": {
+        "min": 2,
+        "of": 2,
+        "zeroMiss": true
+      },
+      "falseHighSeverityBlockerFreeOnClean": {
+        "min": 2,
+        "of": 2,
+        "zeroMiss": true
+      },
+      "highSeverityDefectSensitivity": {
+        "min": 10,
+        "of": 10,
+        "zeroMiss": true
+      },
+      "missingEvidenceInconclusive": {
+        "min": 1,
+        "of": 1,
+        "zeroMiss": true
+      },
+      "protocolValidity": {
+        "min": 12,
+        "of": 12,
+        "zeroMiss": true
+      },
+      "requiredCasesResolved": {
+        "min": 12,
+        "of": 12,
+        "zeroMiss": true
+      },
+      "supportRegisterAccuracy": {
+        "min": 10,
+        "of": 12,
+        "zeroMiss": false
+      }
+    },
+    "source_of_truth": "IMP-24G §5.5 (development pilot-readiness thresholds, not rare-event production certification; no true hard blocker weakened)"
+  },
+  "thresholdsSha256": "3b74ed60a8a849fa68233f29c959e87b92a45ec2ff6dde0b8eec3c58f90b02aa"
+}

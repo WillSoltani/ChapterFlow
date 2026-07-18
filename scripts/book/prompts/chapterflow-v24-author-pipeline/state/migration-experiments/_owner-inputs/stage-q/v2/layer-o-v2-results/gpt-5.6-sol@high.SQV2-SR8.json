@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR8",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"Consider, as a thought experiment, an engineer who keeps shipping on Fridays and keeps spending Mondays on rollbacks.\",\"Change the day and the lesson survives, which is how you know it was never about a specific incident.\"],\"rationale\":\"The passage clearly frames the engineer as a thought experiment and explicitly states that the lesson does not concern a specific incident, so a reader would not reasonably mistake the scenario for a sourced real-world event.\"}"
+}

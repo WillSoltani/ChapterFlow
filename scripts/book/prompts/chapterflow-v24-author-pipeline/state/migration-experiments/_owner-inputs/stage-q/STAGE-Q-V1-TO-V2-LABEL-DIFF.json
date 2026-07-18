@@ -1,0 +1,133 @@
+{
+  "schema": "s16-stage-q-v1-to-v2-label-diff-v1",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "note": "Re-adjudication of the eight v1 AMBIGUOUS_SOURCE_REGISTER cases under Stage-Q v2 rule C (judge from reader-facing framing only; a visible 'Scenario:' label is not automatically sufficient; hidden provenance neither rescues nor condemns). v1 labeled ALL EIGHT as DEFECT/MATERIAL. These re-adjudications are owner-approved development labels for the diagnostic set; they are NOT the v2 qualification gate (that uses fresh holdout cases). Reasonable adjudicators may differ on the INCONCLUSIVE cases; that is itself evidence the v1 labels were not stable.",
+  "v1Family": "AMBIGUOUS_SOURCE_REGISTER",
+  "v1LabelForAll": {
+    "verdict": "DEFECT",
+    "defectClass": "AMBIGUOUS_CONSTRUCTED_SCENARIO_FRAMING",
+    "severity": "MATERIAL"
+  },
+  "panelV1Reading": "all three judges ruled CLEAN on all eight (reader-facing scenario label + generic names = adequately constructed)",
+  "cases": [
+    {
+      "caseId": "SQ-017",
+      "title": "Sarah Marks the Blank Page Before the Review",
+      "assessment": {
+        "visibleOriginFraming": "AMBIGUOUS",
+        "containsUnsupportedNamedSpecificity": true,
+        "reasonableReaderCouldMistakeAsReal": true,
+        "framingAdequate": false
+      },
+      "v2ContentVerdict": "DEFECT",
+      "v2Severity": "MATERIAL",
+      "reason": "Two named individuals (Sarah, Mathieu) + exact tenures ('eighteen months', 'trusted for fourteen years') + exact time (7:35 a.m.) + specific setting narrated in present tense. The 'Scenario:' label alone does not clearly mark this heavy documentary texture as hypothetical (rule C: 'Scenario' by itself is not automatically sufficient). RETAINS a defect verdict.",
+      "changeFromV1": "retained (DEFECT), but reclassified as reader-facing framing inadequacy, not provenance-metadata mismatch"
+    },
+    {
+      "caseId": "SQ-018",
+      "title": "Claire Closes the Roadmap Spreadsheet",
+      "assessment": {
+        "visibleOriginFraming": "AMBIGUOUS",
+        "containsUnsupportedNamedSpecificity": true,
+        "reasonableReaderCouldMistakeAsReal": null,
+        "framingAdequate": null
+      },
+      "v2ContentVerdict": "INCONCLUSIVE",
+      "v2Severity": "NONE",
+      "reason": "Two names (Claire, Jonas) + specific time/props, but opens with a reflective question and lacks tenure anchoring. Genuinely borderline: a reader might or might not take it as a specific real incident.",
+      "changeFromV1": "FLIP: DEFECT \u2192 INCONCLUSIVE"
+    },
+    {
+      "caseId": "SQ-019",
+      "title": "Grace Deletes the First Defense",
+      "assessment": {
+        "visibleOriginFraming": "AMBIGUOUS",
+        "containsUnsupportedNamedSpecificity": true,
+        "reasonableReaderCouldMistakeAsReal": null,
+        "framingAdequate": null
+      },
+      "v2ContentVerdict": "INCONCLUSIVE",
+      "v2Severity": "NONE",
+      "reason": "Two names (Grace, Miriam) + exact time (8:42 p.m.), but generic chat/transcript props and a clearly illustrative decision beat. Borderline.",
+      "changeFromV1": "FLIP: DEFECT \u2192 INCONCLUSIVE"
+    },
+    {
+      "caseId": "SQ-020",
+      "title": "Hannah Marks Her Own Arrow",
+      "assessment": {
+        "visibleOriginFraming": "CLEARLY_GENERIC",
+        "containsUnsupportedNamedSpecificity": true,
+        "reasonableReaderCouldMistakeAsReal": false,
+        "framingAdequate": true
+      },
+      "v2ContentVerdict": "CLEAN",
+      "v2Severity": "NONE",
+      "reason": "Single generic first name, no second person, no exact time/tenure, generic tools (dashboard, Slack). Past-tense illustrative teaching vignette under a Scenario label \u2014 a reasonable reader would not take it as a documented real event.",
+      "changeFromV1": "FLIP: DEFECT \u2192 CLEAN (panel-vindicating)"
+    },
+    {
+      "caseId": "SQ-021",
+      "title": "Rachel Writes the Real Meeting",
+      "assessment": {
+        "visibleOriginFraming": "CLEARLY_GENERIC",
+        "containsUnsupportedNamedSpecificity": true,
+        "reasonableReaderCouldMistakeAsReal": false,
+        "framingAdequate": true
+      },
+      "v2ContentVerdict": "CLEAN",
+      "v2Severity": "NONE",
+      "reason": "Single generic name, generic office props (campaign board, budget email), no anchoring specifics. Illustrative vignette.",
+      "changeFromV1": "FLIP: DEFECT \u2192 CLEAN (panel-vindicating)"
+    },
+    {
+      "caseId": "SQ-022",
+      "title": "Laura Opens the Review Notes",
+      "assessment": {
+        "visibleOriginFraming": "EXPLICITLY_HYPOTHETICAL",
+        "containsUnsupportedNamedSpecificity": true,
+        "reasonableReaderCouldMistakeAsReal": false,
+        "framingAdequate": true
+      },
+      "v2ContentVerdict": "CLEAN",
+      "v2Severity": "NONE",
+      "reason": "Opens 'What if the red cell is not a formatting issue?' \u2014 an explicit hypothetical marker framing the whole vignette. Rule C: explicit hypothetical framing is normally adequate.",
+      "changeFromV1": "FLIP: DEFECT \u2192 CLEAN (strongest \u2014 explicit hypothetical marker)"
+    },
+    {
+      "caseId": "SQ-023",
+      "title": "Anna Separates Repair from Apology",
+      "assessment": {
+        "visibleOriginFraming": "CLEARLY_GENERIC",
+        "containsUnsupportedNamedSpecificity": true,
+        "reasonableReaderCouldMistakeAsReal": false,
+        "framingAdequate": true
+      },
+      "v2ContentVerdict": "CLEAN",
+      "v2Severity": "NONE",
+      "reason": "Single generic name, generic release-process props, no time/tenure/real-entity anchor. Illustrative vignette.",
+      "changeFromV1": "FLIP: DEFECT \u2192 CLEAN (panel-vindicating)"
+    },
+    {
+      "caseId": "SQ-024",
+      "title": "Emily Rewrites the Co-Parent Opener",
+      "assessment": {
+        "visibleOriginFraming": "EXPLICITLY_HYPOTHETICAL",
+        "containsUnsupportedNamedSpecificity": true,
+        "reasonableReaderCouldMistakeAsReal": false,
+        "framingAdequate": true
+      },
+      "v2ContentVerdict": "CLEAN",
+      "v2Severity": "NONE",
+      "reason": "Opens in second person ('You see the child's rain boots...'), addressing the reader as a hypothetical actor before naming Emily. The second-person instructional frame is visibly hypothetical.",
+      "changeFromV1": "FLIP: DEFECT \u2192 CLEAN"
+    }
+  ],
+  "summary": {
+    "v1": "8/8 DEFECT",
+    "v2": "1 DEFECT (SQ-017), 2 INCONCLUSIVE (SQ-018/019), 5 CLEAN (SQ-020/021/022/023/024)",
+    "interpretation": "The v1 labels were NOT stable: 7 of 8 change under the corrected reader-facing standard. The panel's uniform CLEAN reading matches v2 on 5, is defensible on 2, and diverges only on the single heaviest case (SQ-017) \u2014 confirming STAGE_Q_INSTRUMENT_INVALID rather than judge incapacity.",
+    "disposition": "All 8 move to the v2 DEVELOPMENT/diagnostic set; NONE gate v2 qualification. Fresh source-register holdout cases (deterministic, complete-evidence) qualify the panel."
+  }
+}

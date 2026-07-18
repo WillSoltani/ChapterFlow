@@ -366,6 +366,15 @@ export type CriticCheckId =
   | "C33.beat_vocabulary_echo"
   | "C34.citation_date_doorway"
   | "C35.lineage_key_quiz"
+  // IMP-04 source-register family (C37) — advisory, plan-aware. Operationalizes
+  // the compiler-owned source-use plan (IMP-03): claim-strength overreach
+  // (causal language where no unit permits causal), unsupported scene completion
+  // (staged scene where no unit has a scene license), and generic-scenario
+  // specifics (dates/exact metrics/credentials where the plan has no source-bound
+  // support). See critics/sourceRegister.ts. MINOR; calibration-pending.
+  | "C37.claim_strength_overreach"
+  | "C37.unsupported_scene_completion"
+  | "C37.generic_specific_leak"
   // Uniform success — every example resolves in clean instant success, no
   // friction-bearing scene anywhere in the chapter's slate (advisory).
   | "C28.uniform_success"
@@ -624,6 +633,19 @@ export type QuizV21 = {
     explanation: string;                 // 120–300 chars
     bloomsLevel: "remember" | "understand" | "apply" | "analyze" | "evaluate" | "create";
     depthLevel: "simple" | "standard" | "deep";
+    /** Chapter Format v25 (F-2) feedback block — optional in the schema so the
+     *  shipped v21 corpus still parses; REQUIRED of new authoring by the
+     *  format-v25 ship-gate check. One rationale PER CHOICE, in choice order:
+     *  why the key is right, why each distractor specifically fails (the
+     *  misconception it encodes). */
+    choiceRationales?: string[];         // exactly choices.length when present
+    /** F-2: where a reader who missed this question re-learns the idea. */
+    revisit?: {
+      component: string;                 // reader-facing component name, e.g. "Deep read", "Example 2", "Card 3"
+      ref: string;                       // one plain sentence locating the reteach
+    };
+    /** F-2: optional pre-answer confidence prompt (app adoption later). */
+    confidencePrompt?: string;
   }>;
 };
 

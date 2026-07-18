@@ -1,0 +1,88 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-04",
+  "baselineHash": "5007056685b1198fc5566b9eb5747af125892726",
+  "resultHash": "72ba0fcae6303d3acfc25e08bcaacc2a6c05f8bc3137fd41a53eb834a03cd464",
+  "contractVersions": {
+    "source-use-plan": 1,
+    "repair": 1,
+    "worker-implementation-report": 1
+  },
+  "filesChanged": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/critics/sourceRegister.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/critics/registerAdvisories.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRun.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRepair.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/compiler/sourceUsePlanCompiler.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/compiler/chapterBrief.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/types.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/source-register.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/source-use-plan.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/chapter-brief.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-arch.test.ts",
+    "docs/v25/reports/IMP-04-REPORT.md"
+  ],
+  "requirementsImplemented": [
+    { "requirementId": "IMP04-R01", "status": "implemented", "note": "Plan consumed immutable: fail-closed load (IMP-03), embedded-plan-mutation candidate scan, C37 repair findings pin all five plan fields in prohibitedChanges, and the decision policy's fifth arm routes insufficiency upstream. The writer can report, never relabel." },
+    { "requirementId": "IMP04-R02", "status": "implemented", "note": "One compact decision policy (~570 chars) on renderSourceUsePlanLines: sourced form / direct explanation / generic operational scenario / constructed application with first-entry framing / stop-and-route-upstream. All five arms test-pinned." },
+    { "requirementId": "IMP04-R03", "status": "implemented", "note": "Concreteness = observable decision/action/sequence/tradeoff/consequence, carried by the generic-scenario and sourced-facts license lines ('Concrete is fine; a scene is not required'; 'never force a cast, prop, setting, or scene'). No biographical/sensory/temporal/quantitative demand anywhere on the card." },
+    { "requirementId": "IMP04-R04", "status": "implemented", "note": "CAST block: invented people default to ROLE LABELS; a reserved name spends only inside a clearly-framed constructed application (the dealt lead thread qualifies) where it materially helps. The DEAL is unchanged (book-disjoint reservation, protected-name union, proxy-cast ban + cast-emptying intact); only the rendered register changed, so dealt state, lineage keys, and regen budgets are byte-identical." },
+    { "requirementId": "IMP04-R05", "status": "partial", "note": "Sourced-identity-in-invented-event is prevented structurally at the deal (protected-name union: an invented cast name can never be a real source person) and prohibited on the constructed-license card line ('Never merge a real person or organization into an invented event'); C37.unsupported_scene_completion catches unlicensed scene staging. Entity-level cross-referencing of prose names against packet identities is IMP-09's named-entity work.", "deferredTo": "IMP-09" },
+    { "requirementId": "IMP04-R06", "status": "partial", "note": "First-entry register: framingRequired renders on constructed/analogy licenses; the invented lead thread is now TYPED as a constructed application with first-entry non-factual clarity in varied natural wording ('no single fixed phrase') plus the never-report-as-history rule; varied-framing tests prove no magic phrase. REJECTION of deceptive conditional-then-history prose is semantic and deferred to the blinded review + calibration.", "deferredTo": "IMP-08/IMP-11" },
+    { "requirementId": "IMP04-R07", "status": "implemented", "note": "C37.claim_strength_overreach checks causal/inevitability register across the full instruction-7 surface (breakdowns, quiz explanations, implementation plan, memorable lines, hook/takeaway) against the plan's strongest permitted strength; license-gated; advisory pending IMP-11 calibration. The card's claim-ceiling line (IMP-03) is the write-time rule." },
+    { "requirementId": "IMP04-R08", "status": "partial", "note": "Pre-commit FAIL-CLOSED checks: plan/hash match + embedded-plan-mutation scan (IMP-03, unchanged). C37 adds prohibited-specifics / unsupported-scene-completion / claim-strength checks at chapter-aggregate as ADVISORY (conflict matrix mandates shadow-first for new semantic critics; blockers stay owned by sourceGrounding/sourceRealness). Per-unit prose-to-unit attribution is impossible pre-write (prose carries no unit ids) and belongs to IMP-08's structured review.", "deferredTo": "IMP-08/IMP-11" },
+    { "requirementId": "IMP04-R09", "status": "implemented", "note": "sourceRegisterRepairFindings emits frozen RepairFindingV1: unit ids from the plan, implicated plan field in sourcePlanDependencies, offending span in evidenceQuotes, severity, bounded permittedRepairScope per check, prohibitedChanges pinning all five plan fields. Scope mapping is a code constant — tested under INJECTION_STRINGS in prose and plan ids; free-form text cannot broaden edits." },
+    { "requirementId": "IMP04-R10", "status": "implemented", "note": "Generic and constructed applications pass CLEAN with zero proper nouns under the most restrictive plan (tested); integration note recorded for IMP-09 that named-entity presence must not be a grounding proxy." },
+    { "requirementId": "IMP04-R11", "status": "implemented", "note": "The IMP-05 dieted self-verify already carries the compact plan-mismatch/unsupported-detail check (FACTS: every name, number, quote, event must appear in the packet — cut it otherwise) and cannot self-waive anything: C37 and all critics run conductor-side on the candidate. No fifth check added (diet discipline)." },
+    { "requirementId": "IMP04-R12", "status": "implemented", "note": "No new unenveloped data path: source projection, prior findings, and repair criteria ride the IMP-03 typed untrusted envelope with the control instruction; the plan card block is conductor-rendered instruction text from the hash-bound compiler artifact (a tampered plan fails validation/staleness, and hostile strings in plan fields were tested inert)." },
+    { "requirementId": "IMP04-R13", "status": "implemented", "note": "Upstream routing: the decision policy's stop arm, C37 message text ('Route a genuine causal claim upstream to source-plan recompile'), recommendedRoute=surgical for prose softening, and prohibitedChanges preventing any local metadata relabel." },
+    { "requirementId": "IMP04-R14", "status": "implemented", "note": "Bounded-patch preservation: permittedRepairScope confines each C37 repair to the implicated fields (claim -> breakdown/quiz/keyTakeaway/memorableLines; scene -> examples; leak -> examples/breakdown), the RepairFindingV1 interface IMP-07's patch lane consumes." }
+  ],
+  "testsRequired": [
+    "valid sourced case / sourced explanation / direct explanation / generic operational scenario / constructed application fixtures",
+    "sparse-source fixtures proving no invented completion and no forced scene",
+    "negative fixtures: invented person/company/date/dialogue/outcome/statistic, sourced identity in invented event, deceptive conditional framing, claim-strength escalation",
+    "valid varied hypothetical framing (no magic phrase)",
+    "lead/cast anonymous role default + justified constructed names",
+    "plan-mismatch and attempted writer reclassification",
+    "prompt-injection strings inside source facts, briefs, case labels",
+    "pre-commit critic result schema and evidence-binding",
+    "cross-book abstract-concept and rich-historical-evidence cases"
+  ],
+  "testsRun": [
+    "tests/source-register.test.ts (20, new: valid forms clean, varied framing no-magic-phrase, per-check negatives + license gating, legacy no-plan + 1-arg signature, RepairFindingV1 schema/evidence/scope under injection, decision-policy render, CAST role-label + constructed-lead framing + owned-case register)",
+    "tests/source-use-plan.test.ts (plan-block budget 2800 -> 3200 for the decision policy)",
+    "tests/chapter-brief.test.ts (brief-md budget 9600 -> 10000 for the instr-4 render additions)",
+    "tests/author-arch.test.ts (golden-fixture card-diet pin 15000 -> 15200, justified: instr-4 register text after one tightening pass; control-block and directive-line pins unchanged)",
+    "full hermetic suite (239 files) + contract-validate"
+  ],
+  "testResults": {
+    "pass": 2198,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 18,
+    "xenv": 6,
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts contract-validate"
+    ]
+  },
+  "gateChanges": [],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [],
+  "unresolvedRisks": [
+    "C37 is a lexical-aggregate approximation of a semantic property, shipped ADVISORY (never blocks, surfaces only on retry/repair cards a blocking reason already triggered). Known FP class: a licensed constructed application staging framed dialogue on a chapter whose sourced cases are explanation-only draws the scene advisory. IMP-11 owns the FP-rate calibration and any promotion to blocker; promoting without that data would violate the conflict matrix.",
+    "Deceptive conditional framing (opens hypothetical, later asserts the event as history) has NO deterministic detector — a lexical one would be FP-heavy or a de-facto magic-phrase test, both forbidden. Mitigated by the framing card rules + the C37 symptom checks; owned semantically by IMP-08's blinded review.",
+    "Quoted offending spans on retry/repair fix lines embed draft text bounded at 40/160 chars (same posture as C31-C36); the full-fidelity draft/review text rides the typed untrusted envelope. Not expanded by this package, noted for completeness.",
+    "No prose-quality improvement is claimed from static tests; whether the register additions help or harm first-draft quality is IMP-11 bakeoff evidence."
+  ],
+  "dependencyAssumptions": [
+    "IMP-07 consumes sourceRegisterRepairFindings' RepairFindingV1 records as the typed, scope-bounded patch input (recommendedRoute=surgical, permittedRepairScope = the patch surface).",
+    "IMP-08's blinded review owns the semantic register judgments C37 cannot make deterministically (historical-register ambiguity, deceptive conditional framing).",
+    "IMP-09 must not treat proper-noun presence as a grounding proxy: role-label generic scenarios legitimately contain none (pinned here).",
+    "IMP-11 calibrates C37's false-positive rate on the gold corpus before any advisory-to-blocker promotion, and measures the card-size additions' quality effect in the bakeoff.",
+    "baselineHash is the IMP-05 commit (full sha); resultHash is sha256 of the staged unified diff (code + narrative report, excluding this JSON)."
+  ]
+}

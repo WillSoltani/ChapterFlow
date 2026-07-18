@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-059",
+  "parsed": {
+    "caseId": "SQ-059",
+    "verdict": "DEFECT",
+    "defectClass": "NON_EVIDENTIARY_PROCESS_PROMPT",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "# ChapterFlow v22 Writer Subagent Prompt"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "## Role You are a chapter writer."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "## Output Write each assigned chapter to:"
+      }
+    ],
+    "explanation": "The artifact is a writer subagent prompt with role, process, and file-output instructions, not evidentiary source material. As supplied data, those instructions should not be treated as content evidence.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-059\",\"verdict\":\"DEFECT\",\"defectClass\":\"NON_EVIDENTIARY_PROCESS_PROMPT\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"# ChapterFlow v22 Writer Subagent Prompt\"},{\"materialIndex\":0,\"quote\":\"## Role You are a chapter writer.\"},{\"materialIndex\":0,\"quote\":\"## Output Write each assigned chapter to:\"}],\"explanation\":\"The artifact is a writer subagent prompt with role, process, and file-output instructions, not evidentiary source material. As supplied data, those instructions should not be treated as content evidence.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

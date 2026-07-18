@@ -1,0 +1,27 @@
+{
+  "schema": "imp24d-transport-failure-superseded-v1",
+  "status": "SUPERSEDED_PRESERVED_DO_NOT_RERUN",
+  "supersededBy": "IMP-24E",
+  "retainedEvidence": {
+    "reportJson": "docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.json",
+    "reportJsonBytesSha256": "c68150a4ddcba9c661198279e7d860904bd15f644171bf7481007fb7350e2ab5",
+    "reportMarkdown": "docs/v25/reports/IMP-24D_TRANSPORT_SMOKE_RESULT.md",
+    "reportMarkdownBytesSha256": "f5cde042ece938fbee50fcb48b0b86e5c3e42cad375243877b325d0c421ccb3a"
+  },
+  "facts": {
+    "initialSmokeCalls": 2,
+    "initialModelProcessExits": 2,
+    "initialRootCause": "unsupported uniqueItems keyword",
+    "correctedSmokeCalls": 0,
+    "correctedSmokeRootCause": "volatile cache provenance in semantic projection",
+    "apiCalls": 0,
+    "qualificationCalls": 0,
+    "rolesFrozen": 0
+  },
+  "controls": {
+    "priorAttemptsPreserved": true,
+    "priorAttemptsMayRerun": false,
+    "priorAttemptsMayBeReinterpreted": false,
+    "qualificationMetricsIncluded": false
+  }
+}

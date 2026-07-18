@@ -1,0 +1,30 @@
+{
+  "closureSha256": "sha256:c4e23ca74b3575266c20647026a28bd5ca693737716ef8d72f854d8ab01ecc72",
+  "identities": [
+    {
+      "attestable": false,
+      "experimentId": "s16-forward-role-qualification-v1",
+      "gitTreeId": "6e8b88c60ddf6972dc5f296926d4221c459d713f",
+      "holdoutStarted": false,
+      "invalidationDecision": "INVALID_INSTRUMENT_DO_NOT_ATTEST",
+      "lsTreeSha256": "599d2ebd695b42817754bf6e12039184234b5ccae85b8887f64d983e2b2daf76",
+      "reinterpretable": false,
+      "repositoryPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v1",
+      "resumable": false
+    },
+    {
+      "attestable": false,
+      "experimentId": "s16-forward-role-qualification-v2",
+      "gitTreeId": "2522d62da3b17cc3de799c85172c5f5780df532c",
+      "holdoutStarted": false,
+      "invalidationDecision": "BLOCKED_CALIBRATION_INVALID",
+      "lsTreeSha256": "d1968f2e31c639d84bf136b33b61edd76c796e95d68c8f52fe7288257ade03d7",
+      "reinterpretable": false,
+      "repositoryPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v2",
+      "resumable": false
+    }
+  ],
+  "schema": "imp24-legacy-evidence-closure-v1",
+  "status": "PRESERVED_CLOSED_NON_RESUMABLE",
+  "successorExperimentId": "s16-forward-role-qualification-v3-envelope"
+}

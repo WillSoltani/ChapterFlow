@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P01",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"It is not a polite way to say everyone is equally at fault.\",\"Your ten percent does not erase their ninety.\"],\"rationale\":\"The candidate preserves the source boundary by explicitly rejecting equal-fault framing and maintaining asymmetry between parties. It also keeps the source’s point that naming one’s smaller contribution matters because it identifies a controllable lever, without implying forgiveness or equal responsibility.\"}"
+}

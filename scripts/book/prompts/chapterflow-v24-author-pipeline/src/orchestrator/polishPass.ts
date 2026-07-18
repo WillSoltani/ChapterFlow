@@ -296,6 +296,7 @@ async function runOnePolish(bookId: string, deps: AutopilotDeps, target: PolishT
   deps.log(`[autopilot] compiler polish ch${String(task.chapterNumber).padStart(2, "0")} ${kind}${attempt > 0 ? ` (retry ${attempt})` : ""}: ${target.metrics.failingReasons.join("; ") || "always-mode"}`);
   const r = await deps.spawn({
     task: buildPolishTask(target),
+    role: "compiler-polish",
     sessionId,
     cwd: process.cwd(),
     sandbox: "workspace-write",

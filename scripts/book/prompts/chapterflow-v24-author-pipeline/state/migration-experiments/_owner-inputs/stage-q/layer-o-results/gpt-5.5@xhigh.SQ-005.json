@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-005",
+  "parsed": {
+    "caseId": "SQ-005",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "with contested science hedged in the sidecar when applicable"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "That claim is debated, so do not read it as proof"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "reported that obesity clustered in the Framingham Heart Study network"
+      }
+    ],
+    "explanation": "The candidate states the supported finding as a reported clustering claim, explicitly marks it as debated, and warns against treating it as proof of direct contagion. The remaining mechanism is phrased cautiously as standards that can shift, matching proportionate uncertainty.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-005\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"with contested science hedged in the sidecar when applicable\"},{\"materialIndex\":1,\"quote\":\"That claim is debated, so do not read it as proof\"},{\"materialIndex\":1,\"quote\":\"reported that obesity clustered in the Framingham Heart Study network\"}],\"explanation\":\"The candidate states the supported finding as a reported clustering claim, explicitly marks it as debated, and warns against treating it as proof of direct contagion. The remaining mechanism is phrased cautiously as standards that can shift, matching proportionate uncertainty.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -39,6 +39,8 @@ import {
   buildChurnEvidenceReport,
   checkReaderBudgets,
   rankSaturationContributors,
+  CHB12_STRAWMAN_RATE_CAP,
+  STRAWMAN_LEXICON,
   type BudgetFinding,
 } from "../src/critics/readerBudgets.js";
 import {
@@ -159,11 +161,19 @@ test("P1/P2/P4: briefVarietyInstructionLines renders the new dealt lines; legacy
     frameworkNouns: ["cadence", "promise"],
   } as ChapterBriefV1);
   const text = full.join("\n");
-  assert.ok(text.includes("EXAMPLE SCENES"), "lens block present");
+  // IMP-06 (F-008/F-016): the S-tier lens taxonomy + practice-verb register were
+  // demoted from the writer surface — the deal still allocates them; the card
+  // states compact outcomes with no internal label. Friction stays a dealt outcome.
+  // The #15 dialogue-fabrication guardrail that rode LENS_INSTRUCTION now lives
+  // with its enforcement owners: the FACTUAL invariant (card-diet I2: every quote
+  // appears in the packet), the SOURCE-USE PLAN case license ("never invent
+  // dialogue"), and C37.unsupported_scene_completion (source-register tests).
+  assert.ok(text.includes("EXAMPLES: write EXACTLY"), "compact example outcome present");
   assert.ok(text.includes("failing or only partially working"), "dealt friction requirement present");
-  assert.ok(text.includes("dialogue-beat:"), "per-lens instruction rendered");
-  assert.ok(text.includes("never given invented quotes"), "dialogue fabrication guardrail shipped (#15)");
-  assert.ok(text.includes('around "circle"'), "practice verb dealt");
+  assert.ok(!text.includes("EXAMPLE SCENES"), "the lens block no longer renders");
+  assert.ok(!text.includes("dialogue-beat"), "no lens taxonomy label on the card");
+  assert.ok(!text.includes('around "circle"'), "no practice-verb register line");
+  assert.ok(text.includes("PRACTICE & FIELD VARIETY"), "the compact verb/field outcome survives the demotion");
   assert.ok(text.includes("FRAMEWORK VOCABULARY BUDGET"), "vocabulary budget present");
   assert.ok(text.includes("cadence, promise"), "hot nouns listed");
   assert.ok(text.includes("owner, leader, manager"), "emergent role-noun rule present (#12)");
@@ -177,30 +187,23 @@ test("P1/P2/P4: briefVarietyInstructionLines renders the new dealt lines; legacy
 
 // ── P3/P5/P7: the card ─────────────────────────────────────────────────────────
 
-test("P3/P5/P7: QUALITY BAR rule 5 + band protocol + stem ban; PREMIUM block and sharedSpine line ride the card", () => {
-  // STIER-2 rebase (documented, plan §B P12): rule 5 became the TRANSFORM recipe —
-  // key-first, dealt failure modes, echo symmetry. The scan-only version just moved
-  // the wrongness monoculture to the next lexicon (all 5 halted-run tiebreaks led
-  // with quiz-tell must-fixes).
-  assert.ok(AUTHOR_QUALITY_BAR.includes("5. DISTRACTOR TRANSFORM"), "rule 5 exists (transform recipe)");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("TRANSFORM it"), "key-first transform derivation named");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("ECHO SYMMETRY"), "echo symmetry named");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("NEVER a fixed stem"), "#16 explanation-stem ban");
-  // B12+B14 rebase (STIER-2 rerun rounds 1-3, documented): "longest in at most 3"
-  // CONTRADICTED the binding tellRate gate (≤0.2 → at most ONE uniquely-longest key
-  // per 9); the first fix then swung 3 chapters into the SHORTEST-side tell
-  // (lenTell 5-6 vs W2 shortestMax 4). The card now states BOTH gates as hard caps
-  // with the anti-pendulum instruction.
-  assert.ok(AUTHOR_QUALITY_BAR.includes("AT MOST ONE of the 9 questions"), "#18/B12 the longest-key band matches the tellRate gate");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("uniquely SHORTEST in AT MOST FOUR"), "#18/B14 the shortest-key cap matches W2 shortestMax as a GATE");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("Do not fix one tell by minting the other"), "#18/B14 anti-pendulum instruction present");
-  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("REVERSE a default"), "insight demand");
-  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("does NOT apply"), "limits demand");
+test("P3/P5/P7 (IMP-05 dieted): the QUIZ DISTRACTOR craft target + PREMIUM axes + sharedSpine line ride the card", () => {
+  // IMP-05 moved the verbose STIER-2 rule-5 transform recipe (key-first, echo
+  // symmetry, mechanical-word list, longest/shortest audit protocol) OFF the card
+  // to its enforcement owners — the quizQuality tellRate/lenTell/strawman gates and
+  // the C35 detector. The card now states the compact craft target; the tell caps
+  // and the mechanical-word gate are unchanged (see the quiz-quality tests).
+  assert.ok(AUTHOR_QUALITY_BAR.includes("QUIZ DISTRACTORS [GATED]"), "the quiz-distractor craft target is present");
+  assert.match(AUTHOR_QUALITY_BAR, /warp it into each distractor by one of the brief's dealt failure modes/i, "key-first warp-by-failure-mode derivation named");
+  assert.match(AUTHOR_QUALITY_BAR, /caps uniquely-longest keys at one of nine and uniquely-shortest at four/i, "the tell caps are stated compactly, matching the gate");
+  assert.match(AUTHOR_QUALITY_BAR, /A key tests a move the reader makes, never a source/i, "key-is-a-move invariant on the craft target");
+  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("reverses a default"), "insight axis");
+  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("does NOT apply"), "limits axis");
   const card = buildAuthorCard({
     bookId: BOOK, chapterNumber: 1, briefMd: "# Chapter 1\nbrief body", voice: null,
     packet: mkPacket(1, ["A cadence claim"]),
   });
-  assert.ok(card.includes("WHAT PREMIUM MEANS"), "premium block in card");
+  assert.ok(card.includes("WHAT THE REVIEWERS SCORE"), "reviewer-axes block in card");
   assert.ok(card.includes("sharedSpine"), "spine instruction in card");
   assert.ok(card.includes("teach it in full"), "#19 own-core-move counter-instruction");
   assert.ok(card.length < 26000, `card stays near budget (${card.length})`);
@@ -541,7 +544,12 @@ test("C3 integration: a tiebreak SPLIT (1 ship / 1 no-ship) upholds the FAIL —
     spawn: (async (o: { sessionId: string; task: string }) => {
       spawns.push(o.sessionId);
       let msg: string;
-      if (o.sessionId.includes("tiebreak")) {
+      if (o.sessionId.includes("author-quizadj")) {
+        // IMP-08 phase-2 adjudicator: unparseable → recorded "unavailable"
+        // (advisory instrument; never affects the tiebreak under test) — and
+        // NEVER captured as a writer task by the catch-all below.
+        msg = "not an adjudication";
+      } else if (o.sessionId.includes("tiebreak")) {
         tiebreakCount++;
         msg = tiebreakCount % 2 === 1
           ? readerReply(chapters[0], { ship: true, score: 88 })
@@ -873,8 +881,11 @@ test("P1b/P3b: scene-furniture budget rides the brief; rule 5 carries the mechan
   } as ChapterBriefV1).join("\n");
   assert.ok(lines.includes("SCENE-FURNITURE BUDGET"), "furniture budget present");
   assert.ok(lines.includes("review, meeting, room, plan, work"), "static furniture list present");
-  // STIER-2 rebase: the "scan ALL 18" protocol is subsumed by the TRANSFORM recipe;
-  // the banned mechanical families + the deterministic 7% stake stay named (grill 2b #17).
-  assert.ok(AUTHOR_QUALITY_BAR.includes("polish/announce/slides"), "rule 5 still names the banned mechanical families");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("blocks above 7%"), "rule 5 names the deterministic stake");
+  // IMP-05: the mechanical-distractor word list + the 7% stake were REMOVED from the
+  // card (naming banned words on the card is the "X not Y" anti-pattern) — their
+  // ENFORCEMENT OWNER, the CHB12 strawman gate in readerBudgets, is unchanged and
+  // still names the banned families and blocks above 7%.
+  assert.ok(STRAWMAN_LEXICON.test("polish the deck"), "CHB12 gate lexicon still catches the banned mechanical families");
+  assert.ok(STRAWMAN_LEXICON.test("announce it on a slide"), "CHB12 gate lexicon catches announce/slide");
+  assert.equal(CHB12_STRAWMAN_RATE_CAP, 0.07, "the deterministic 7% strawman stake is unchanged");
 });

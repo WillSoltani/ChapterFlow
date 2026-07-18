@@ -1,0 +1,7 @@
+{
+  "caseId": "CAL-RF-INC",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"INSUFFICIENT_TO_DECIDE\",\"findingValidity\":\"INCONCLUSIVE\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Finding: the passage misquotes the source; compare to the original wording.\",\"The source says, 'begin with why.'\"],\"rationale\":\"The finding specifically requires comparison with the source's original wording, but the supplied record contains only the candidate quotation and the allegation; it does not provide the original source text. The alleged misquotation therefore cannot be verified or disproved from the materials.\"}"
+}

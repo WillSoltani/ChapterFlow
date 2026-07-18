@@ -1,0 +1,7 @@
+{
+  "caseId": "CAL-RF-PART",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"PARTIALLY_SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Because we shipped weekly, quality rose — shipping alone fixed everything.\",\"(Two sentences total.)\"],\"rationale\":\"The record is sufficient to assess both parts. The absolute statement that shipping alone fixed everything supports the finding that the causal claim overreaches. However, the passage is expressly only two sentences and is plainly brief, so the claim that it is far too long is unsupported.\"}"
+}

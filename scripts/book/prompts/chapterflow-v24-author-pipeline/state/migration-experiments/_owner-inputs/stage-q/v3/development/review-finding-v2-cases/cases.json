@@ -1,0 +1,311 @@
+{
+  "schema": "s16-stage-q-v3-development-review-finding-v2-cases-v1",
+  "developmentUseOnly": true,
+  "note": "The eight original v2 review-finding cases, moved here per owner directive. NOT v3 qualification holdouts. Paired with STAGE-Q-V2-REVIEW-FINDING-READJUDICATION.json.",
+  "cases": [
+    {
+      "case": {
+        "caseId": "SQV2-RF1",
+        "primaryTarget": "REVIEW_FINDING",
+        "task": "Judge the VALIDITY of the proposed review finding against the candidate content and the review contract. Report findingValidity (is the complaint itself supported?) and, separately, candidateContentVerdict (is the underlying passage actually defective?). A complaint that cannot be upheld while the passage is clean is findingValidity=UNSUPPORTED with candidateContentVerdict=CLEAN \u2014 you are NOT required to call a clean passage defective.",
+        "materials": [
+          {
+            "role": "REVIEW_FINDING",
+            "text": "Finding C-11-03: instructional alignment weak. Priority P2. Current 2 / target 4. Evidence class: score-only. No chapter-level rationale supplied."
+          },
+          {
+            "role": "CANDIDATE",
+            "text": "The section states its one job in the first line, gives a worked example, then a two-question check that maps to that job. Each step names what it is doing."
+          },
+          {
+            "role": "REVIEW_CONTRACT",
+            "text": "A plausible concern is not an upheld defect without direct or contextual chapter evidence. Score-only conditions are hypotheses. A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported. Uphold a finding only to the extent the evidence proves it."
+          }
+        ],
+        "requiredOutput": {
+          "findingValidity": "SUPPORTED|PARTIALLY_SUPPORTED|UNSUPPORTED|INCONCLUSIVE",
+          "candidateContentVerdict": "CLEAN|DEFECT|INCONCLUSIVE",
+          "severityIfSupported": "HIGH|MATERIAL|MINOR|NONE",
+          "evidenceSpans": "[verbatim quotes from the materials]",
+          "rationale": "one paragraph"
+        }
+      },
+      "oldV2Gold": {
+        "caseId": "SQV2-RF1",
+        "primaryTarget": "REVIEW_FINDING",
+        "family": "REVIEW_FINDING_FRESH",
+        "findingValidity": "UNSUPPORTED",
+        "candidateContentVerdict": "CLEAN",
+        "severityIfSupported": "NONE",
+        "reason": "score-only finding with no rationale; the passage is actually well aligned \u2014 complaint cannot be upheld, passage is clean"
+      }
+    },
+    {
+      "case": {
+        "caseId": "SQV2-RF2",
+        "primaryTarget": "REVIEW_FINDING",
+        "task": "Judge the VALIDITY of the proposed review finding against the candidate content and the review contract. Report findingValidity (is the complaint itself supported?) and, separately, candidateContentVerdict (is the underlying passage actually defective?). A complaint that cannot be upheld while the passage is clean is findingValidity=UNSUPPORTED with candidateContentVerdict=CLEAN \u2014 you are NOT required to call a clean passage defective.",
+        "materials": [
+          {
+            "role": "REVIEW_FINDING",
+            "text": "Finding C-04-09: the opening example is fabricated and must be cut. Priority P1."
+          },
+          {
+            "role": "CANDIDATE",
+            "text": "Imagine, as a hypothetical, a manager who opens a review by asking what the team already knows is wrong. The scene is explicitly invented to isolate the ordering."
+          },
+          {
+            "role": "REVIEW_CONTRACT",
+            "text": "A plausible concern is not an upheld defect without direct or contextual chapter evidence. Score-only conditions are hypotheses. A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported. Uphold a finding only to the extent the evidence proves it."
+          }
+        ],
+        "requiredOutput": {
+          "findingValidity": "SUPPORTED|PARTIALLY_SUPPORTED|UNSUPPORTED|INCONCLUSIVE",
+          "candidateContentVerdict": "CLEAN|DEFECT|INCONCLUSIVE",
+          "severityIfSupported": "HIGH|MATERIAL|MINOR|NONE",
+          "evidenceSpans": "[verbatim quotes from the materials]",
+          "rationale": "one paragraph"
+        }
+      },
+      "oldV2Gold": {
+        "caseId": "SQV2-RF2",
+        "primaryTarget": "REVIEW_FINDING",
+        "family": "REVIEW_FINDING_FRESH",
+        "findingValidity": "UNSUPPORTED",
+        "candidateContentVerdict": "CLEAN",
+        "severityIfSupported": "NONE",
+        "reason": "the complaint alleges fabrication, but the passage is explicitly and visibly hypothetical \u2014 the complaint is unsupported and the passage is clean"
+      }
+    },
+    {
+      "case": {
+        "caseId": "SQV2-RF3",
+        "primaryTarget": "REVIEW_FINDING",
+        "task": "Judge the VALIDITY of the proposed review finding against the candidate content and the review contract. Report findingValidity (is the complaint itself supported?) and, separately, candidateContentVerdict (is the underlying passage actually defective?). A complaint that cannot be upheld while the passage is clean is findingValidity=UNSUPPORTED with candidateContentVerdict=CLEAN \u2014 you are NOT required to call a clean passage defective.",
+        "materials": [
+          {
+            "role": "REVIEW_FINDING",
+            "text": "Finding Q-07-02: the quiz key marks option B correct, but the stem asks for the FIRST step and option B is the second step. Quoted: stem 'Which step comes first?' key 'B) escalate'."
+          },
+          {
+            "role": "CANDIDATE",
+            "text": "Q: Which step comes first? A) gather the facts  B) escalate  C) schedule a review. Answer key: B. Explanation: escalation ensures visibility."
+          },
+          {
+            "role": "QUIZ_INSTANCE_A",
+            "text": "Q: Which step comes first? A) gather the facts  B) escalate  C) schedule a review. Answer key: B."
+          },
+          {
+            "role": "REVIEW_CONTRACT",
+            "text": "A plausible concern is not an upheld defect without direct or contextual chapter evidence. Score-only conditions are hypotheses. A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported. Uphold a finding only to the extent the evidence proves it."
+          }
+        ],
+        "requiredOutput": {
+          "findingValidity": "SUPPORTED|PARTIALLY_SUPPORTED|UNSUPPORTED|INCONCLUSIVE",
+          "candidateContentVerdict": "CLEAN|DEFECT|INCONCLUSIVE",
+          "severityIfSupported": "HIGH|MATERIAL|MINOR|NONE",
+          "evidenceSpans": "[verbatim quotes from the materials]",
+          "rationale": "one paragraph"
+        }
+      },
+      "oldV2Gold": {
+        "caseId": "SQV2-RF3",
+        "primaryTarget": "REVIEW_FINDING",
+        "family": "REVIEW_FINDING_FRESH",
+        "findingValidity": "SUPPORTED",
+        "candidateContentVerdict": "DEFECT",
+        "severityIfSupported": "MATERIAL",
+        "reason": "the complaint's quoted evidence demonstrates the key/stem mismatch; the finding is supported and the passage is defective"
+      }
+    },
+    {
+      "case": {
+        "caseId": "SQV2-RF4",
+        "primaryTarget": "REVIEW_FINDING",
+        "task": "Judge the VALIDITY of the proposed review finding against the candidate content and the review contract. Report findingValidity (is the complaint itself supported?) and, separately, candidateContentVerdict (is the underlying passage actually defective?). A complaint that cannot be upheld while the passage is clean is findingValidity=UNSUPPORTED with candidateContentVerdict=CLEAN \u2014 you are NOT required to call a clean passage defective.",
+        "materials": [
+          {
+            "role": "REVIEW_FINDING",
+            "text": "Finding S-02-01: the passage states a specific invented statistic as established fact. Quoted: 'a 2016 Stanford study of 4,200 first-time managers found that those who ran weekly one-on-ones were 2.3 times more likely to retain their reports'. No such study is cited or supportable."
+          },
+          {
+            "role": "CANDIDATE",
+            "text": "A 2016 Stanford study of 4,200 first-time managers found that those who ran weekly one-on-ones were 2.3 times more likely to retain their reports over two years."
+          },
+          {
+            "role": "REVIEW_CONTRACT",
+            "text": "A plausible concern is not an upheld defect without direct or contextual chapter evidence. Score-only conditions are hypotheses. A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported. Uphold a finding only to the extent the evidence proves it."
+          }
+        ],
+        "requiredOutput": {
+          "findingValidity": "SUPPORTED|PARTIALLY_SUPPORTED|UNSUPPORTED|INCONCLUSIVE",
+          "candidateContentVerdict": "CLEAN|DEFECT|INCONCLUSIVE",
+          "severityIfSupported": "HIGH|MATERIAL|MINOR|NONE",
+          "evidenceSpans": "[verbatim quotes from the materials]",
+          "rationale": "one paragraph"
+        }
+      },
+      "oldV2Gold": {
+        "caseId": "SQV2-RF4",
+        "primaryTarget": "REVIEW_FINDING",
+        "family": "REVIEW_FINDING_FRESH",
+        "findingValidity": "SUPPORTED",
+        "candidateContentVerdict": "DEFECT",
+        "severityIfSupported": "HIGH",
+        "reason": "the complaint quotes the exact invented statistic presented as fact; supported, and the underlying defect is high-severity invented specificity"
+      }
+    },
+    {
+      "case": {
+        "caseId": "SQV2-RF5",
+        "primaryTarget": "REVIEW_FINDING",
+        "task": "Judge the VALIDITY of the proposed review finding against the candidate content and the review contract. Report findingValidity (is the complaint itself supported?) and, separately, candidateContentVerdict (is the underlying passage actually defective?). A complaint that cannot be upheld while the passage is clean is findingValidity=UNSUPPORTED with candidateContentVerdict=CLEAN \u2014 you are NOT required to call a clean passage defective.",
+        "materials": [
+          {
+            "role": "REVIEW_FINDING",
+            "text": "Finding M-05-04: two problems \u2014 (a) the causal claim overreaches, and (b) the section is far too long. Priority P2."
+          },
+          {
+            "role": "CANDIDATE",
+            "text": "Because the team adopted weekly demos, morale rose \u2014 the demos alone turned the quarter around. (The section is four sentences.)"
+          },
+          {
+            "role": "REVIEW_CONTRACT",
+            "text": "A plausible concern is not an upheld defect without direct or contextual chapter evidence. Score-only conditions are hypotheses. A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported. Uphold a finding only to the extent the evidence proves it."
+          }
+        ],
+        "requiredOutput": {
+          "findingValidity": "SUPPORTED|PARTIALLY_SUPPORTED|UNSUPPORTED|INCONCLUSIVE",
+          "candidateContentVerdict": "CLEAN|DEFECT|INCONCLUSIVE",
+          "severityIfSupported": "HIGH|MATERIAL|MINOR|NONE",
+          "evidenceSpans": "[verbatim quotes from the materials]",
+          "rationale": "one paragraph"
+        }
+      },
+      "oldV2Gold": {
+        "caseId": "SQV2-RF5",
+        "primaryTarget": "REVIEW_FINDING",
+        "family": "REVIEW_FINDING_FRESH",
+        "findingValidity": "PARTIALLY_SUPPORTED",
+        "candidateContentVerdict": "DEFECT",
+        "severityIfSupported": "MATERIAL",
+        "reason": "the causal-overreach claim is supported (real defect); the length claim is refuted by the four-sentence passage \u2014 partially supported"
+      }
+    },
+    {
+      "case": {
+        "caseId": "SQV2-RF6",
+        "primaryTarget": "REVIEW_FINDING",
+        "task": "Judge the VALIDITY of the proposed review finding against the candidate content and the review contract. Report findingValidity (is the complaint itself supported?) and, separately, candidateContentVerdict (is the underlying passage actually defective?). A complaint that cannot be upheld while the passage is clean is findingValidity=UNSUPPORTED with candidateContentVerdict=CLEAN \u2014 you are NOT required to call a clean passage defective.",
+        "materials": [
+          {
+            "role": "REVIEW_FINDING",
+            "text": "Finding M-09-02: SEVERE \u2014 the example is entirely fabricated and misleading, must block. Priority P0."
+          },
+          {
+            "role": "CANDIDATE",
+            "text": "Consider a generic anonymous case: a team that ships on Fridays and spends Mondays on rollbacks. The wording 'consider a generic case' frames it, though it could be signposted a touch more clearly."
+          },
+          {
+            "role": "REVIEW_CONTRACT",
+            "text": "A plausible concern is not an upheld defect without direct or contextual chapter evidence. Score-only conditions are hypotheses. A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported. Uphold a finding only to the extent the evidence proves it."
+          }
+        ],
+        "requiredOutput": {
+          "findingValidity": "SUPPORTED|PARTIALLY_SUPPORTED|UNSUPPORTED|INCONCLUSIVE",
+          "candidateContentVerdict": "CLEAN|DEFECT|INCONCLUSIVE",
+          "severityIfSupported": "HIGH|MATERIAL|MINOR|NONE",
+          "evidenceSpans": "[verbatim quotes from the materials]",
+          "rationale": "one paragraph"
+        }
+      },
+      "oldV2Gold": {
+        "caseId": "SQV2-RF6",
+        "primaryTarget": "REVIEW_FINDING",
+        "family": "REVIEW_FINDING_FRESH",
+        "findingValidity": "PARTIALLY_SUPPORTED",
+        "candidateContentVerdict": "DEFECT",
+        "severityIfSupported": "MINOR",
+        "reason": "the complaint's severity (P0/fabricated/block) overstates a minor signposting nit; a small real improvement exists but not a severe fabrication \u2014 partially supported at MINOR"
+      }
+    },
+    {
+      "case": {
+        "caseId": "SQV2-RF7",
+        "primaryTarget": "REVIEW_FINDING",
+        "task": "Judge the VALIDITY of the proposed review finding against the candidate content and the review contract. Report findingValidity (is the complaint itself supported?) and, separately, candidateContentVerdict (is the underlying passage actually defective?). A complaint that cannot be upheld while the passage is clean is findingValidity=UNSUPPORTED with candidateContentVerdict=CLEAN \u2014 you are NOT required to call a clean passage defective.",
+        "materials": [
+          {
+            "role": "REVIEW_FINDING",
+            "text": "Finding S-06-05: the passage misrepresents the source's claim about diffusion timing."
+          },
+          {
+            "role": "CANDIDATE",
+            "text": "The idea spread once a critical share of the team had adopted it, which is when the rest followed quickly."
+          },
+          {
+            "role": "REVIEW_CONTRACT",
+            "text": "A plausible concern is not an upheld defect without direct or contextual chapter evidence. Score-only conditions are hypotheses. A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported. Uphold a finding only to the extent the evidence proves it."
+          }
+        ],
+        "requiredOutput": {
+          "findingValidity": "SUPPORTED|PARTIALLY_SUPPORTED|UNSUPPORTED|INCONCLUSIVE",
+          "candidateContentVerdict": "CLEAN|DEFECT|INCONCLUSIVE",
+          "severityIfSupported": "HIGH|MATERIAL|MINOR|NONE",
+          "evidenceSpans": "[verbatim quotes from the materials]",
+          "rationale": "one paragraph"
+        }
+      },
+      "oldV2Gold": {
+        "caseId": "SQV2-RF7",
+        "primaryTarget": "REVIEW_FINDING",
+        "family": "REVIEW_FINDING_FRESH",
+        "findingValidity": "INCONCLUSIVE",
+        "candidateContentVerdict": "INCONCLUSIVE",
+        "severityIfSupported": "NONE",
+        "reason": "the complaint alleges a source-misrepresentation but NO source material is provided to check it against \u2014 genuinely undecidable on the evidence supplied"
+      }
+    },
+    {
+      "case": {
+        "caseId": "SQV2-RF8",
+        "primaryTarget": "REVIEW_FINDING",
+        "task": "Judge the VALIDITY of the proposed review finding against the candidate content and the review contract. Report findingValidity (is the complaint itself supported?) and, separately, candidateContentVerdict (is the underlying passage actually defective?). A complaint that cannot be upheld while the passage is clean is findingValidity=UNSUPPORTED with candidateContentVerdict=CLEAN \u2014 you are NOT required to call a clean passage defective.",
+        "materials": [
+          {
+            "role": "REVIEW_FINDING",
+            "text": "Finding C-08-07: the passage contradicts the source contract, which says contribution mapping does not imply equal fault. Quoted from passage: 'naming your part does not mean the split was even'."
+          },
+          {
+            "role": "SOURCE_CONTRACT",
+            "text": "Contribution mapping does not imply equal fault. Naming your smaller contribution still matters because it identifies what you can change."
+          },
+          {
+            "role": "CANDIDATE",
+            "text": "Naming your part does not mean the split was even; one person may hold most of the responsibility, and identifying your piece is still what lets you change something."
+          },
+          {
+            "role": "REVIEW_CONTRACT",
+            "text": "A plausible concern is not an upheld defect without direct or contextual chapter evidence. Score-only conditions are hypotheses. A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported. Uphold a finding only to the extent the evidence proves it."
+          }
+        ],
+        "requiredOutput": {
+          "findingValidity": "SUPPORTED|PARTIALLY_SUPPORTED|UNSUPPORTED|INCONCLUSIVE",
+          "candidateContentVerdict": "CLEAN|DEFECT|INCONCLUSIVE",
+          "severityIfSupported": "HIGH|MATERIAL|MINOR|NONE",
+          "evidenceSpans": "[verbatim quotes from the materials]",
+          "rationale": "one paragraph"
+        }
+      },
+      "oldV2Gold": {
+        "caseId": "SQV2-RF8",
+        "primaryTarget": "REVIEW_FINDING",
+        "family": "REVIEW_FINDING_FRESH",
+        "findingValidity": "UNSUPPORTED",
+        "candidateContentVerdict": "CLEAN",
+        "severityIfSupported": "NONE",
+        "reason": "the quoted passage AGREES with the contract; the complaint's own evidence does not demonstrate the alleged contradiction \u2014 unsupported, passage clean"
+      }
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 3,
+  "chapterTitle": "The Golden Circle",
+  "focus": "Influential communication moves from WHY to HOW to WHAT rather than listing features first. A reader learns to make purpose the organizing center before proof points and products.",
+  "coreClaim": "The Golden Circle turns Golden Circle into a practical decision rule backed by named cases and checkable details.",
+  "centralConcept": {
+    "id": "ch03.concept",
+    "name": "Golden Circle",
+    "plainDefinition": "Influential communication moves from WHY to HOW to WHAT rather than listing features first.",
+    "whyItMatters": "A reader learns to make purpose the organizing center before proof points and products."
+  },
+  "keyClaims": [
+    "Golden Circle becomes usable only when tied to visible behavior.",
+    "Apple Inc. gives the first concrete anchor.",
+    "Wright brothers creates contrast so the idea is not one anecdote.",
+    "Martin Luther King Jr. adds a boundary case for application.",
+    "WHY, HOW, WHAT keep the unit from collapsing into generic purpose talk."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch03.ex.apple-inc",
+      "label": "Apple Inc.",
+      "summary": "Apple Inc., founded in 1976 and based in Cupertino, is the recurring Golden Circle case: Macintosh and later products are WHATs made coherent by a challenger identity.",
+      "teachesWhat": "Apple Inc. turns Apple Inc. into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Apple Inc.",
+        "1976",
+        "Cupertino",
+        "Macintosh"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.ex.wright-brothers",
+      "label": "Wright brothers",
+      "summary": "Orville Wright and Wilbur Wright flew at Kitty Hawk on December 17, 1903. Their case makes purpose and persistence visible before credentials.",
+      "teachesWhat": "Wright brothers turns Wright brothers into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "December 17, 1903",
+        "Kitty Hawk",
+        "Orville Wright",
+        "Wilbur Wright"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch03.ex.martin-luther-king-jr",
+      "label": "Martin Luther King Jr.",
+      "summary": "Martin Luther King Jr. spoke at the Lincoln Memorial in Washington, D.C. on August 28, 1963. The civil-rights case shows belief attracting people before a policy checklist.",
+      "teachesWhat": "Martin Luther King Jr. turns Martin Luther King Jr. into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "August 28, 1963",
+        "Washington, D.C.",
+        "Lincoln Memorial",
+        "I Have a Dream"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to turn Golden Circle into a universal slogan and ignore the cases. The stricter reading keeps the claim tied to the specific examples and uses the framework only where the details support it.",
+  "voiceCues": [
+    "plain business language with short contrasts",
+    "case first, principle second",
+    "second-person diagnostic questions",
+    "simple framework names repeated sparingly"
+  ],
+  "forbiddenLeakage": [
+    "Do not overteach limbic biology",
+    "Do not use the celery test"
+  ],
+  "paraphraseNotes": "The Golden Circle works from Golden Circle: Influential communication moves from WHY to HOW to WHAT rather than listing features first. A reader learns to make purpose the organizing center before proof points and products. Apple Inc., founded in 1976 and based in Cupertino, is the recurring Golden Circle case: Macintosh and later products are WHATs made coherent by a challenger identity. Orville Wright and Wilbur Wright flew at Kitty Hawk on December 17, 1903. Their case makes purpose and persistence visible before credentials. Martin Luther King Jr. spoke at the Lincoln Memorial in Washington, D.C. on August 28, 1963. The civil-rights case shows belief attracting people before a policy checklist. WHY starts the local logic for The Golden Circle; HOW, WHAT complete the sequence. Keep the Apple, Wright, and King material centered on sequence; brain-region language belongs elsewhere.",
+  "testableFacts": [
+    {
+      "id": "ch03.fact.1",
+      "claim": "Apple Inc. makes Golden Circle concrete through Apple Inc. and 1976.",
+      "becauseMechanism": "Because Apple Inc. gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Apple Inc. as colorful background.",
+      "errorIsWhy": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "derivedFrom": "ch03.ex.apple-inc"
+    },
+    {
+      "id": "ch03.fact.2",
+      "claim": "Wright brothers adds a second anchor for Golden Circle with December 17, 1903 and Kitty Hawk.",
+      "becauseMechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "errorIsWhy": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "derivedFrom": "ch03.ex.wright-brothers"
+    },
+    {
+      "id": "ch03.fact.3",
+      "claim": "Martin Luther King Jr. supplies a third checkable scene using August 28, 1963 and Washington, D.C..",
+      "becauseMechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "errorIsWhy": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "derivedFrom": "ch03.ex.martin-luther-king-jr"
+    },
+    {
+      "id": "ch03.fact.4",
+      "claim": "Golden Circle depends on the sequence WHY before HOW.",
+      "becauseMechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "errorIsWhy": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.5",
+      "claim": "WHY, HOW, WHAT form the local framework for The Golden Circle.",
+      "becauseMechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "errorIsWhy": "Shortening removes the distinctions the quiz and examples need to test.",
+      "derivedFrom": "ch03.concept"
+    },
+    {
+      "id": "ch03.fact.6",
+      "claim": "Cupertino is a hard detail that should stay attached to Apple Inc..",
+      "becauseMechanism": "Because hard specifics are portable only inside their case, moving Cupertino to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "errorIsWhy": "A true detail becomes misleading when it is attached to the wrong case.",
+      "derivedFrom": "ch03.ex.apple-inc"
+    },
+    {
+      "id": "ch03.fact.7",
+      "claim": "Orville Wright gives Wright brothers a different factual token from Apple Inc..",
+      "becauseMechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "errorIsWhy": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "derivedFrom": "ch03.ex.wright-brothers"
+    },
+    {
+      "id": "ch03.fact.8",
+      "claim": "Lincoln Memorial helps mark the boundary of Golden Circle.",
+      "becauseMechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "errorIsWhy": "The mechanism changes by venue; boundary details keep the application honest.",
+      "derivedFrom": "ch03.ex.martin-luther-king-jr"
+    },
+    {
+      "id": "ch03.fact.9",
+      "claim": "The Golden Circle should teach Golden Circle through Apple Inc., Wright brothers, and Martin Luther King Jr., not through generic leadership advice.",
+      "becauseMechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "errorIsWhy": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "derivedFrom": "ch03.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "The Golden Circle framework",
+      "members": [
+        "WHY",
+        "HOW",
+        "WHAT"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Apple Inc.",
+    "Wright brothers",
+    "Martin Luther King Jr."
+  ]
+}

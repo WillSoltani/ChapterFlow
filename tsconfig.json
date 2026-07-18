@@ -45,6 +45,7 @@
     "infra/**",
     "cdk.out/**",
     "scripts/book/prompts/*/scratch/**",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/**",
     ".next-chapterflow/**",
     ".next-cf-dev/**"
   ]

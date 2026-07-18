@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-008",
+  "parsed": {
+    "caseId": "SQ-008",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "The AND/BOTH version gives the self-image more structure."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "I am a strong analyst and this model may contain an error and I can use the review without becoming incompetent."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "I love my daughter and I sometimes have effects that hurt her and I can listen without making her comfort me."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "This relationship is in trouble tonight and I am still worthy of love."
+      }
+    ],
+    "explanation": "The candidate explicitly uses AND/BOTH identity statements that preserve self-worth while admitting possible error, harmful impact, or relationship trouble. This avoids both false certainty and self-erasure.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-008\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"The AND/BOTH version gives the self-image more structure.\"},{\"materialIndex\":1,\"quote\":\"I am a strong analyst and this model may contain an error and I can use the review without becoming incompetent.\"},{\"materialIndex\":1,\"quote\":\"I love my daughter and I sometimes have effects that hurt her and I can listen without making her comfort me.\"},{\"materialIndex\":1,\"quote\":\"This relationship is in trouble tonight and I am still worthy of love.\"}],\"explanation\":\"The candidate explicitly uses AND/BOTH identity statements that preserve self-worth while admitting possible error, harmful impact, or relationship trouble. This avoids both false certainty and self-erasure.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

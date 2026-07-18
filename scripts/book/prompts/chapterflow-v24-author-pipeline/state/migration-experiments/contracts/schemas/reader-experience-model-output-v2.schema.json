@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IMP-24 ReaderExperienceModelOutputV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "scores",
+    "quizDerivation",
+    "recommendation",
+    "blockingFindings",
+    "escalationSignals",
+    "advisoryFindings",
+    "strongestEvidenceRefIds",
+    "weakestEvidenceRefIds",
+    "oneParagraphVerdict"
+  ],
+  "properties": {
+    "schema": { "type": "string", "enum": ["reader-experience-model-output-v2"] },
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["retention", "quizzes", "transfer", "practical", "summaries", "tone", "limits", "insight", "density", "beginner"],
+      "properties": {
+        "retention": { "type": "number", "minimum": 0, "maximum": 100 },
+        "quizzes": { "type": "number", "minimum": 0, "maximum": 100 },
+        "transfer": { "type": "number", "minimum": 0, "maximum": 100 },
+        "practical": { "type": "number", "minimum": 0, "maximum": 100 },
+        "summaries": { "type": "number", "minimum": 0, "maximum": 100 },
+        "tone": { "type": "number", "minimum": 0, "maximum": 100 },
+        "limits": { "type": "number", "minimum": 0, "maximum": 100 },
+        "insight": { "type": "number", "minimum": 0, "maximum": 100 },
+        "density": { "type": "number", "minimum": 0, "maximum": 100 },
+        "beginner": { "type": "number", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "quizDerivation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["answers", "mechanisms", "confidence", "ambiguities", "tells", "evidenceRefIds"],
+      "properties": {
+        "answers": { "type": "array", "minItems": 1, "items": { "type": "string", "enum": ["a", "b", "c"] } },
+        "mechanisms": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+        "confidence": { "type": "array", "minItems": 1, "items": { "type": "string", "enum": ["low", "medium", "high"] } },
+        "ambiguities": { "type": "array", "items": { "type": "string" } },
+        "tells": { "type": "array", "items": { "type": "string" } },
+        "evidenceRefIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/nonEmptyRefs" }
+        }
+      }
+    },
+    "recommendation": { "type": "string", "enum": ["SHIP", "REVISE", "BLOCK"] },
+    "blockingFindings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/blockingFinding" }
+    },
+    "escalationSignals": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/escalationFinding" }
+    },
+    "advisoryFindings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/advisoryFinding" }
+    },
+    "strongestEvidenceRefIds": { "$ref": "#/$defs/nonEmptyRefs" },
+    "weakestEvidenceRefIds": { "$ref": "#/$defs/nonEmptyRefs" },
+    "oneParagraphVerdict": { "type": "string" }
+  },
+  "$defs": {
+    "nonEmptyRefs": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "blockingFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["category", "unit", "problem", "evidenceRefIds"],
+      "properties": {
+        "category": { "type": "string", "enum": ["unsafe", "internal_contradiction", "structurally_invalid", "schema_or_app_breaking", "unusable"] },
+        "unit": { "type": "string" },
+        "problem": { "type": "string" },
+        "evidenceRefIds": { "$ref": "#/$defs/nonEmptyRefs" }
+      }
+    },
+    "escalationFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["category", "unit", "problem", "evidenceRefIds"],
+      "properties": {
+        "category": { "type": "string", "enum": ["origin_ambiguous_to_reader", "possible_real_world_claim", "possible_attribution_issue"] },
+        "unit": { "type": "string" },
+        "problem": { "type": "string" },
+        "evidenceRefIds": { "$ref": "#/$defs/nonEmptyRefs" }
+      }
+    },
+    "advisoryFinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["category", "unit", "problem", "evidenceRefIds"],
+      "properties": {
+        "category": { "type": "string", "enum": ["thin_example", "quiz_cue", "repetition", "tone", "density", "pacing", "other_craft"] },
+        "unit": { "type": "string" },
+        "problem": { "type": "string" },
+        "evidenceRefIds": { "$ref": "#/$defs/nonEmptyRefs" }
+      }
+    }
+  }
+}

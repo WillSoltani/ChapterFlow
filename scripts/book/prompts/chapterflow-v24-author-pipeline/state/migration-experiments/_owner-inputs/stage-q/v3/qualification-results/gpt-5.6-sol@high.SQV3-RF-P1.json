@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-P1",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"PARTIALLY_SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Q: Which comes first, listen or decide? A) listen  B) decide. Answer key: B. Explanation: you must hear the context before choosing, so listening precedes deciding.\",\"Suppose a hypothetical lead who listens before deciding. (The example is explicitly imagined; no real person is named.)\"],\"rationale\":\"The supplied record is sufficient to assess both allegations. Part (a) is supported: the explanation states that listening precedes deciding, so option A is correct and the key naming B is wrong. Part (b) is unsupported: the candidate explicitly describes an imagined lead and says no real person is named. The combined finding is therefore partially supported, with the demonstrated quiz-key error constituting a material issue but not substantiating the broader P1 claim.\"}"
+}

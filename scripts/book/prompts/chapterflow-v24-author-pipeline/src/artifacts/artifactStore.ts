@@ -217,6 +217,19 @@ export function blueprintPath(bookId: string, chapterNumber: number, roots: Comp
   return resolve(artifactDir(bookId, "blueprints", roots), `ch${String(chapterNumber).padStart(2, "0")}.blueprint.json`);
 }
 
+/** IMP-03 source-use plan — a per-run compiled artifact like packets/briefs,
+ *  written by compileSourcePackets in the same pass as the packet it is
+ *  hash-bound to. AUTHORING-ONLY: lives under runs/<runId>/source-plans/, a
+ *  directory no package/promote/publish path reads (publishToLive copies exactly
+ *  one file, state/books/<id>.v21.json). DELIBERATELY side-effect-free (no
+ *  artifactDir/mkdir) for the same reason as leadOverridePath above: this path
+ *  is READ on every author write call, including fixture book ids in tests —
+ *  a read must never mint state/books/<book>/runs/ dirs. Writers mkdir
+ *  themselves (writeJsonFile does). */
+export function sourceUsePlanPath(bookId: string, chapterNumber: number, roots: CompilerStoreRoots = {}): string {
+  return resolve(compilerRunRoot(normSlug(bookId), roots), "source-plans", `ch${String(chapterNumber).padStart(2, "0")}.plan.json`);
+}
+
 /** v24 chapter brief (B1) — the machine-readable one-page reservation sheet. Lives inside the
  *  compiler run (runs/<runId>/briefs/) like blueprints: briefs are per-run compiled artifacts. */
 export function chapterBriefPath(bookId: string, chapterNumber: number, roots: CompilerStoreRoots = {}): string {

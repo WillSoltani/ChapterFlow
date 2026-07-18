@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-032",
+  "parsed": {
+    "caseId": "SQ-032",
+    "verdict": "DEFECT",
+    "defectClass": "generic_or_mismatched_locator",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "A careful causal account begins with what happened, because vague moral names hide the operation"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=Milgram+obedience+experiment"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The proposed locator is a generic PubMed search for Milgram obedience experiments, while the claim is about a causal-account mechanism involving vague moral names hiding operations. It does not show claim-specific evidence for the same mechanism, relation, or certainty required by the contract.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-032\",\"verdict\":\"DEFECT\",\"defectClass\":\"generic_or_mismatched_locator\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"A careful causal account begins with what happened, because vague moral names hide the operation\"},{\"materialIndex\":0,\"quote\":\"Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=Milgram+obedience+experiment\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The proposed locator is a generic PubMed search for Milgram obedience experiments, while the claim is about a causal-account mechanism involving vague moral names hiding operations. It does not show claim-specific evidence for the same mechanism, relation, or certainty required by the contract.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

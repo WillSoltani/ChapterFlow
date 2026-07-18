@@ -296,6 +296,22 @@ function validateQuizV21(c: Collector, quiz: Record<string, unknown>, path: stri
     requiredString(c, item, "explanation", qPath);
     requiredString(c, item, "bloomsLevel", qPath);
     requiredString(c, item, "depthLevel", qPath);
+    // Chapter Format v25 (F-2) feedback block — optional at the schema layer
+    // (shipped v21 packages predate it); when present it must be shape-valid.
+    // Presence is enforced for NEW authoring by the format-v25 ship-gate check.
+    if (item.choiceRationales !== undefined) {
+      const rationales = requiredArray(c, item, "choiceRationales", qPath);
+      stringArray(c, rationales, child(qPath, "choiceRationales"), { exact: 3 });
+    }
+    if (item.revisit !== undefined) {
+      if (!isRecord(item.revisit)) {
+        c.issue(child(qPath, "revisit"), "object { component, ref }", item.revisit);
+      } else {
+        requiredString(c, item.revisit, "component", child(qPath, "revisit"));
+        requiredString(c, item.revisit, "ref", child(qPath, "revisit"));
+      }
+    }
+    optionalString(c, item, "confidencePrompt", qPath);
   });
 }
 

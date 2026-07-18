@@ -1,0 +1,34 @@
+{
+  "schema": "s16-layer-n-v2-fabricated-example-finding-v1",
+  "date": "2026-07-12",
+  "severity": "MAJOR — candidate-model behavioral divergence, migration-wide implications",
+  "summary": "In run-3 (fully-corrected instrument, thresholds unchanged), gpt-5.5@high QUALIFIED cleanly. gpt-5.6-sol (the candidate model) then FAILED — NOT on craft, but by systematically classifying the top-approved books' NAMED ILLUSTRATIVE EXAMPLES (invented characters in teaching scenarios) as reserved-category-7 'FABRICATED/MISLEADING EXAMPLE' mustFixes, because they are 'presented as factual narrative rather than labeled hypothetical'. This fails ~6/8 clean-pass items -> gpt-5.6-sol not qualified on cleanPass (~0.25).",
+  "divergenceEvidence": {
+    "note": "Same clean chapters, fabricated-example mustFix count: gpt-5.5@high vs gpt-5.6-sol",
+    "CLEAN-decisive-ch01": { "gpt-5.5@high": "0 (pass)", "gpt-5.6-sol": "6 (fail)" },
+    "CLEAN-the-power-of-moments-ch01": { "gpt-5.5@high": "0 (pass)", "gpt-5.6-sol": "6 (fail)" },
+    "CLEAN-the-power-of-moments-ch02": { "gpt-5.5@high": "0 (pass)", "gpt-5.6-sol": "6 (fail)" },
+    "CLEAN-peak-ch01": { "gpt-5.5@high": "0 (pass)", "gpt-5.6-sol": "1 (fail)" },
+    "CLEAN-the-willpower-instinct-ch01": { "gpt-5.5@high": "0 (pass)", "gpt-5.6-sol": "1 (fail)" },
+    "exampleComplaint": "gpt-5.6-sol on power-of-moments-ch2 ex1: 'Aiden and his specific John Deere first-day event appear invented but are presented as factual narrative rather than a hypothetical scenario; this is a fabricated/misleading example.' (raised on ALL SIX examples)."
+  },
+  "rootQuestion": "Reviewer rubric category 7 (readerReview.ts) literally reads 'FABRICATED / MISLEADING EXAMPLE — invents a person, event, quote, or number that did not happen'. Taken LITERALLY it flags EVERY illustrative named example (all self-help teaching examples 'invent a person/event'). Taken by INTENT (a misleading fabrication of a SOURCED/real-world claim) it flags none of these. gpt-5.6-sol applies the literal reading; gpt-5.5 applies the intent reading. Neither is obviously wrong.",
+  "isThisAJudgeIssueOrGoldIssue": {
+    "candidateModelProperty": "gpt-5.6-sol systematically over-flags unlabeled named examples as fabrication. As a production reviewer it would OVER-BLOCK chapters with illustrative characters (a real calibration behavior). As a writer it may avoid/label named examples. This is genuine SIGNAL about the candidate model surfaced by the instrument.",
+    "goldConventionProperty": "The corpus clean bases (top-approved 140-eval books) use named illustrative characters WITHOUT explicit 'hypothetical/illustrative' framing. If the intended standard is that examples must be labeled illustrative, then gpt-5.6-sol is correct and gpt-5.5 is too lenient (its clean-passes would be the false results).",
+    "notCraft": "This is NOT the bounded craft-filler scenario (the craft fix worked — all 4 craft fillers calibrated for judge-1). It is a distinct, systematic example-labeling standard.",
+    "notAScoringBug": "Unlike the run-1 ship84 defect, the scorer is behaving correctly: a reserved-category mustFix on a clean-control's example legitimately fails clean-pass. The question is the CONTENT/rubric standard, not the scoring."
+  },
+  "qualificationOutcome_run3": {
+    "judge_gpt-5.5-high": "QUALIFIED (28/28; hardBlocker 1.0, keyMismatch 1.0, ambiguity 1.0, craft 1.0, cleanPass 0.88, all metrics pass)",
+    "judge_gpt-5.6-sol-high": "NOT QUALIFIED (stopped at 20/28; systematic fabricated-example flags -> cleanPass ~0.25). Failure is the example-labeling standard, not craft.",
+    "judge_gpt-5.5-xhigh": "UNRUN (0/28). Same base model as judge-1 -> likely lenient/qualify; running it would confirm the strictness is gpt-5.6-sol-specific (candidate) vs effort-related.",
+    "panel": "Does NOT qualify (gpt-5.6-sol fails). But the reason is a fundamental finding requiring owner adjudication, not a fixable instrument/gold defect."
+  },
+  "options": {
+    "A_acceptAsCandidateFinding": "Treat this as the instrument correctly surfacing a real gpt-5.6-sol behavioral property (over-flags illustrative examples as fabrication -> over-blocks). Record LAYER_N_V2_JUDGE_NOT_QUALIFIED (gpt-5.6-sol) with THIS as the reason. Optionally complete judge-3 to confirm gpt-5.6-sol-specificity. Stop before diagnostic. This is important migration signal about the candidate.",
+    "B_rubricInterpretation": "Decide the intended standard for illustrative named examples (is category 7 meant to catch them or not?) and, if the intent is that they are acceptable, clarify the reviewer rubric. This is a rubric/instrument change with campaign-wide effect (touches the sealed diagnostic + §8) — owner-only.",
+    "C_completeJudge3First": "Run judge-3 (gpt-5.5@xhigh, ~36 calls) to confirm the fabricated-example strictness is gpt-5.6-sol-specific before deciding A vs B."
+  },
+  "state": { "run3": "judge1 28/28 QUALIFIED, judge2 20/28 stopped, judge3 0/28", "consumedNow": "~675", "ceiling": 2096, "canonicalWrites": 0, "noThresholdChanged": true }
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P14",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported scene narration in sourced real-world case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Hard specifics allowed: Byron Penstock, Coinstar, upside potential, downside risk Real-world case: True\",\"Scenario: On the call, analyst the analyst taps a Coinstar spreadsheet beside his keyboard.\",\"\\\"The forecast is careful,\\\" he says. The investment partner answers, \\\"Careful about which future?\\\"\",\"The analyst reads the downside risk aloud, then the upside potential. The call changes once both ends are in the room.\"],\"rationale\":\"The source plan establishes a real-world case and only supports the hard specifics of Byron Penstock, Coinstar, upside potential, and downside risk. The candidate goes beyond those supported facts by presenting a concrete call scene, physical spreadsheet detail, invented dialogue, an investment partner, and actions such as reading risks aloud. These details are narrated in the same factual register as the case rather than clearly framed as hypothetical, so the candidate introduces unsupported specifics into a sourced real-world case.\"}"
+}

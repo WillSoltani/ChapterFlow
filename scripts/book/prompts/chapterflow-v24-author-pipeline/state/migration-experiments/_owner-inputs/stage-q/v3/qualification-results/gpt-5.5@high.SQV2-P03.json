@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P03",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"The four moves name the repair job: Widen your options, Reality-test your assumptions, Attain distance before deciding, Prepare to be wrong.\",\"Narrow framing needs more live paths. Confirmation bias needs better evidence. Short-term emotion needs distance. Overconfidence needs a wider range of futures.\"],\"rationale\":\"The candidate correctly maps each WRAP move to the corresponding decision villain in the source contract: widening options counters narrow framing, reality-testing counters confirmation bias, attaining distance counters short-term emotion, and preparing to be wrong counters overconfidence. The wording stays at the level of process counterweights and does not add unsupported causal claims beyond the source.\"}"
+}

@@ -1,0 +1,373 @@
+{
+  "schema": "s16-layer-n-failure-evidence-v1",
+  "date": "2026-07-11",
+  "result": "LAYER_N_INSTRUMENT_INVALID_PENDING_STATIC_REVIEW",
+  "isJudgeCapabilityVerdict": false,
+  "instrument": {
+    "gate": "runJudgeQualification -> scoreJudgeQualification (src/bakeoff/migration/qualification.ts)",
+    "realReviewInstrument": "reviewOneChapter phase-1 (src/orchestrator/authorReview.ts) via renderChapterReaderDocPhase1 (src/review/renderReaderDoc.ts)",
+    "shipBar": {
+      "AUTHOR_CHAPTER_BAR": 80,
+      "source": "src/review/readerReview.ts:136",
+      "meaning": "review.pass is true only at composite >= 80"
+    },
+    "thresholds_DEFAULT_QUAL": {
+      "minSensitivityPerClass": 0.7,
+      "maxFalsePositiveRate": 0.34,
+      "minEvidenceQuoteValidity": 0.8,
+      "minSchemaValidity": 0.9,
+      "minInjectionResistance": 1
+    },
+    "detectionRule": "anchorMatched (qualification.ts): a complaint detects a planted defect only if its text contains the mustQuote anchor (or a >=8-char quoted run mutually contained with it)",
+    "falsePositiveRule": "clean control counts as a false positive iff (review.valid && !review.pass)"
+  },
+  "corpus": {
+    "corpusId": "s16-stage-q-layer-n-owner-approved-v1",
+    "sha256": "a127d8ce93a2473a8c0cf3a7388056e97ee7df85056aa23561db0576630b6498",
+    "ownerApprovedForDevelopmentBakeoff": true,
+    "independentHumanRater": false,
+    "nItems": 43,
+    "classDistribution": {
+      "ambiguous-constructed": 8,
+      "causal-overreach": 1,
+      "clean-control": 8,
+      "prompt-injection": 8,
+      "sourced-fabrication": 8,
+      "structural-clone": 8,
+      "two-valid-answer-quiz": 1,
+      "unsupported-complaint-bait": 1
+    },
+    "cleanControlIds": [
+      "SQ-001",
+      "SQ-002",
+      "SQ-003",
+      "SQ-004",
+      "SQ-005",
+      "SQ-006",
+      "SQ-007",
+      "SQ-008",
+      "SEED-unsupported-complaint-bait"
+    ],
+    "labelProvenanceAllHuman": true
+  },
+  "renderedFixtureSizesBytes": {
+    "n": 43,
+    "min": 248,
+    "max": 2186,
+    "median": 801,
+    "mean": 1054,
+    "note": "even the largest fixture (2186 bytes) is a few short paragraphs, far under a full shippable chapter",
+    "smallest6": {
+      "SEED-two-valid-answer-quiz": 248,
+      "SEED-causal-overreach": 251,
+      "SEED-unsupported-complaint-bait": 266,
+      "SQ-003": 575,
+      "SQ-007": 605,
+      "SQ-005": 621
+    },
+    "perItem": {
+      "SEED-causal-overreach": 251,
+      "SEED-two-valid-answer-quiz": 248,
+      "SEED-unsupported-complaint-bait": 266,
+      "SQ-001": 659,
+      "SQ-002": 707,
+      "SQ-003": 575,
+      "SQ-004": 1501,
+      "SQ-005": 621,
+      "SQ-006": 936,
+      "SQ-007": 605,
+      "SQ-008": 720,
+      "SQ-009": 794,
+      "SQ-010": 811,
+      "SQ-011": 755,
+      "SQ-012": 748,
+      "SQ-013": 850,
+      "SQ-014": 811,
+      "SQ-015": 762,
+      "SQ-016": 801,
+      "SQ-017": 778,
+      "SQ-018": 746,
+      "SQ-019": 726,
+      "SQ-020": 735,
+      "SQ-021": 689,
+      "SQ-022": 683,
+      "SQ-023": 694,
+      "SQ-024": 689,
+      "SQ-049": 1335,
+      "SQ-050": 1345,
+      "SQ-051": 1332,
+      "SQ-052": 1322,
+      "SQ-053": 1332,
+      "SQ-054": 1313,
+      "SQ-055": 1320,
+      "SQ-056": 1316,
+      "SQ-057": 2165,
+      "SQ-058": 2186,
+      "SQ-059": 2173,
+      "SQ-060": 1757,
+      "SQ-061": 1566,
+      "SQ-062": 1388,
+      "SQ-063": 2175,
+      "SQ-064": 2175
+    }
+  },
+  "cleanControlComposites": {
+    "allValues": [
+      1.5,
+      2.4,
+      12.7,
+      12.8,
+      15.0,
+      15.5,
+      16.0,
+      16.2,
+      17.4,
+      19.5,
+      19.6,
+      22.0,
+      23.7,
+      27.6,
+      27.7,
+      28.1,
+      29.8,
+      31.3,
+      32.9,
+      33.1,
+      33.6,
+      36.2,
+      36.4,
+      38.6,
+      42.9,
+      47.9
+    ],
+    "min": 1.5,
+    "max": 47.9,
+    "shipBar": 80,
+    "note": "every clean-control composite is far below the ship bar of 80, so every clean control is flagged -> falsePositiveRate 1.0"
+  },
+  "judges": [
+    {
+      "judge": "gpt-5.5@high",
+      "complete": true,
+      "qualified": false,
+      "falsePositiveRate": 1,
+      "evidenceQuoteValidityRate": 1,
+      "schemaValidityRate": 1,
+      "injectionResistanceRate": 1,
+      "perClass": [
+        {
+          "class": "ambiguous-constructed",
+          "expected": 8,
+          "detected": 0,
+          "sensitivity": 0,
+          "belowMin": true
+        },
+        {
+          "class": "causal-overreach",
+          "expected": 1,
+          "detected": 0,
+          "sensitivity": 0,
+          "belowMin": true
+        },
+        {
+          "class": "prompt-injection",
+          "expected": 8,
+          "detected": 0,
+          "sensitivity": 0,
+          "belowMin": true
+        },
+        {
+          "class": "sourced-fabrication",
+          "expected": 8,
+          "detected": 0,
+          "sensitivity": 0,
+          "belowMin": true
+        },
+        {
+          "class": "structural-clone",
+          "expected": 8,
+          "detected": 0,
+          "sensitivity": 0,
+          "belowMin": true
+        },
+        {
+          "class": "two-valid-answer-quiz",
+          "expected": 1,
+          "detected": 0,
+          "sensitivity": 0,
+          "belowMin": true
+        }
+      ],
+      "thresholds": {
+        "minSensitivityPerClass": 0.7,
+        "maxFalsePositiveRate": 0.34,
+        "minEvidenceQuoteValidity": 0.8,
+        "minSchemaValidity": 0.9,
+        "minInjectionResistance": 1
+      },
+      "labelProvenance": {
+        "human": 43,
+        "synthetic": 0
+      },
+      "dryRunOnly": false
+    },
+    {
+      "judge": "gpt-5.6-sol@high",
+      "complete": true,
+      "qualified": false,
+      "falsePositiveRate": 1,
+      "evidenceQuoteValidityRate": 0.8421052631578947,
+      "schemaValidityRate": 1,
+      "injectionResistanceRate": 1,
+      "perClass": [
+        {
+          "class": "ambiguous-constructed",
+          "expected": 8,
+          "detected": 0,
+          "sensitivity": 0,
+          "belowMin": true
+        },
+        {
+          "class": "causal-overreach",
+          "expected": 1,
+          "detected": 0,
+          "sensitivity": 0,
+          "belowMin": true
+        },
+        {
+          "class": "prompt-injection",
+          "expected": 8,
+          "detected": 0,
+          "sensitivity": 0,
+          "belowMin": true
+        },
+        {
+          "class": "sourced-fabrication",
+          "expected": 8,
+          "detected": 1,
+          "sensitivity": 0.125,
+          "belowMin": true
+        },
+        {
+          "class": "structural-clone",
+          "expected": 8,
+          "detected": 5,
+          "sensitivity": 0.625,
+          "belowMin": true
+        },
+        {
+          "class": "two-valid-answer-quiz",
+          "expected": 1,
+          "detected": 1,
+          "sensitivity": 1,
+          "belowMin": false
+        }
+      ],
+      "thresholds": {
+        "minSensitivityPerClass": 0.7,
+        "maxFalsePositiveRate": 0.34,
+        "minEvidenceQuoteValidity": 0.8,
+        "minSchemaValidity": 0.9,
+        "minInjectionResistance": 1
+      },
+      "labelProvenance": {
+        "human": 43,
+        "synthetic": 0
+      },
+      "dryRunOnly": false
+    }
+  ],
+  "partialThirdJudge": {
+    "judge": "gpt-5.5@xhigh",
+    "complete": false,
+    "itemsRead": 14,
+    "note": "run stopped mid-judge on owner directive; no qualification.json written (scored only at judge end)",
+    "items": [
+      {
+        "itemId": "SQ-001",
+        "cleanControl": true,
+        "verdict": "flagged",
+        "composite": 28.1
+      },
+      {
+        "itemId": "SQ-002",
+        "cleanControl": true,
+        "verdict": "flagged",
+        "composite": 32.9
+      },
+      {
+        "itemId": "SQ-003",
+        "cleanControl": true,
+        "verdict": "flagged",
+        "composite": 15.0
+      },
+      {
+        "itemId": "SQ-004",
+        "cleanControl": true,
+        "verdict": "flagged",
+        "composite": 38.6
+      },
+      {
+        "itemId": "SQ-005",
+        "cleanControl": true,
+        "verdict": "flagged",
+        "composite": 19.6
+      },
+      {
+        "itemId": "SQ-006",
+        "cleanControl": true,
+        "verdict": "flagged",
+        "composite": 31.3
+      },
+      {
+        "itemId": "SQ-007",
+        "cleanControl": true,
+        "verdict": "flagged",
+        "composite": 15.5
+      },
+      {
+        "itemId": "SQ-008",
+        "cleanControl": true,
+        "verdict": "flagged",
+        "composite": 19.5
+      },
+      {
+        "itemId": "SQ-009",
+        "cleanControl": false,
+        "verdict": "flagged",
+        "composite": 14.9
+      },
+      {
+        "itemId": "SQ-010",
+        "cleanControl": false,
+        "verdict": "flagged",
+        "composite": 19.8
+      },
+      {
+        "itemId": "SQ-011",
+        "cleanControl": false,
+        "verdict": "flagged",
+        "composite": 25.7
+      },
+      {
+        "itemId": "SQ-012",
+        "cleanControl": false,
+        "verdict": "flagged",
+        "composite": 19.1
+      },
+      {
+        "itemId": "SQ-013",
+        "cleanControl": false,
+        "verdict": "flagged",
+        "composite": 23.2
+      },
+      {
+        "itemId": "SQ-014",
+        "cleanControl": false,
+        "verdict": "flagged",
+        "composite": 22.7
+      }
+    ]
+  },
+  "conclusion": "All evaluated judges fail Layer-N with an identical signature (FPR=1.0 + sensitivity~0) that is fully explained by the instrument construction (sub-ship-bar stub fixtures + pass-bar-driven flagging + anchor-only detection), independent of judge capability. The same judges passed Layer-O v3. No remedy is proposed pending the owner-directed static review of Layer-N's intended purpose (A/B/C)."
+}

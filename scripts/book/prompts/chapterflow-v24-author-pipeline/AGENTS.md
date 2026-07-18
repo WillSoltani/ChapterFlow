@@ -1,10 +1,16 @@
-# ChapterFlow v21 Codex Agent Rules
+# ChapterFlow v24 Codex Agent Rules
 
 You are operating in one role only. Never mix roles.
 
 ## Universal
-- Run commands exactly from this directory:
-  scripts/book/prompts/chapterflow-v21-authored
+- Before any pipeline command or file operation, enter the active pipeline root:
+  `cd "$(git rev-parse --show-toplevel)/scripts/book/prompts/chapterflow-v24-author-pipeline"`.
+- Stay in that directory and use only package-relative paths: `src/cli.ts`,
+  `.chapterflow/**`, `state/**`, and `book-packages/**`.
+- Never run a pipeline command from the outer repository root, never point
+  `CHAPTERFLOW_STATE_DIR` at the outer `state/`, and never write chapters or
+  run artifacts outside this pipeline directory. The outer repository contains
+  shadow `state/` and `.chapterflow/` directories that are not authoritative.
 - Do not promote a book unless all no-API QC artifacts are fresh.
 - In `CHAPTERFLOW_NO_API_CODEX_QC=1`, every QC action must belong to an opened
   `qc-open-round` round and use only the token for that role.
@@ -16,9 +22,14 @@ You are operating in one role only. Never mix roles.
   publishability; start a fresh `qc-auto "<bookId>" --pass` round.
 
 ## Writer role
-- Read STEP-2-WRITE-CHAPTERS.md.
+- Read `agent-prompts/STEP-2-WRITE-CHAPTERS.md`.
 - Read the chapter's source-v2 sidecar.
 - Use only the dealt name/shape/pedagogy/venue/exemplar plan.
+- Chapter Format v25 (docs/v25/CHAPTER_FORMAT_V25.md) applies to every new
+  chapter: each read tier stands alone (the app shows a reader exactly one);
+  every quiz question carries choiceRationales (one per choice) and a revisit
+  pointer to a real component. The gate blocks a missing feedback block
+  (F25.quiz_feedback).
 - Save the chapter.
 - Run author-check and gate-chapter until both are clean.
 - Never run qc-attest, key-derive, sweep-attest, or promote-book.

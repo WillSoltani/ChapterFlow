@@ -1,0 +1,4 @@
+interface:
+  display_name: "ChapterFlow Book Evaluator"
+  short_description: "Run source-bound, all-chapter book evaluations"
+  default_prompt: "Use $chapterflow-book-evaluator to evaluate the requested ChapterFlow book packages by reading every chapter, running two blind raters and adjudication, and validating exact source-inventory coverage before updating the report."

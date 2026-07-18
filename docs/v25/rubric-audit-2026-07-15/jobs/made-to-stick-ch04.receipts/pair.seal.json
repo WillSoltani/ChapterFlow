@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "chapterflow_blind_pair_seal",
+  "issuer": "chapterflow_evaluation_orchestrator",
+  "pair_id": "made-to-stick-ch04-pair-20260715T110908Z",
+  "sealed_at_utc": "2026-07-15T11:32:24Z",
+  "run_id": "20260715T110908Z",
+  "book_id": "made-to-stick-ch04",
+  "source_hash": "9a20a3afd9612faf43ea26575e0f471401c180f58fdef2bcaceedd4a54194120",
+  "inventory_sha256": "4c45e21bfab8ee0ee263151eef56557cd0046fa8043d6b7096417d59834382b4",
+  "workers": {
+    "primary": {
+      "job_id": "made-to-stick-ch04-primary-20260715T110908Z",
+      "worker_task_id": "/root/stick_primary",
+      "worker_session_id": "/root/stick_primary@20260715T110908Z",
+      "dispatch_receipt_sha256": "5e21d17c7cabdfe948aa690afa0b515bedd725a75563bc1bd7d92c7672f50787",
+      "result_canonical_sha256": "4bbbbaa608def291850032f45f146c1ec601680640ad9f544b046347812af6a5",
+      "judgment_sha256": "3455a11837da2cd88f6c647d1e87b9407b4eea17d19536ce2a756be4e20a87fa"
+    },
+    "verification": {
+      "job_id": "made-to-stick-ch04-verification-20260715T110908Z",
+      "worker_task_id": "/root/stick_verification",
+      "worker_session_id": "/root/stick_verification@20260715T110908Z",
+      "dispatch_receipt_sha256": "0c16e886360a3620f8de0026722851d9f6bec732946f340187eca876f6569d7d",
+      "result_canonical_sha256": "d7343518606dca06536a89621fffa6117eda76aceaa0b13bfb390bc38ff66482",
+      "judgment_sha256": "da307708568bfb59cce73567eb5577228746adc7724b1213db4f80ed4176d75b"
+    }
+  },
+  "binding_sha256": "ff29a529b56ee22bd641c219c4bef59f17103f2ba7db033045eaedd2a7eff335"
+}

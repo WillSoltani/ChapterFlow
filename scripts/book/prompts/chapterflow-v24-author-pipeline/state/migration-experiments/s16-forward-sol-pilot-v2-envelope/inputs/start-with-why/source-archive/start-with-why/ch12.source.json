@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "source-v2",
+  "chapterNumber": 12,
+  "chapterTitle": "Split Happens",
+  "focus": "As organizations scale, the people who hold the founding WHY and the people who manage the WHAT can drift apart. A reader learns why continuity systems matter before a founder leaves or scale creates distance.",
+  "coreClaim": "Split Happens turns WHY-WHAT split into a practical decision rule backed by named cases and checkable details.",
+  "centralConcept": {
+    "id": "ch12.concept",
+    "name": "WHY-WHAT split",
+    "plainDefinition": "As organizations scale, the people who hold the founding WHY and the people who manage the WHAT can drift apart.",
+    "whyItMatters": "A reader learns why continuity systems matter before a founder leaves or scale creates distance."
+  },
+  "keyClaims": [
+    "WHY-WHAT split becomes usable only when tied to visible behavior.",
+    "Apple after Steve Jobs's 1985 exit gives the first concrete anchor.",
+    "Walmart leadership after Sam Walton creates contrast so the idea is not one anecdote.",
+    "Ford Motor Company founder legacy adds a boundary case for application.",
+    "WHY holder, HOW operators, WHAT scale, Succession keep the unit from collapsing into generic purpose talk."
+  ],
+  "namedExamples": [
+    {
+      "id": "ch12.ex.apple-after-steve-jobs-s-1985-exit",
+      "label": "Apple after Steve Jobs's 1985 exit",
+      "summary": "Steve Jobs left Apple in 1985 and returned in 1997. The Apple case makes the split between founding WHY and operating WHAT concrete.",
+      "teachesWhat": "Apple after Steve Jobs's 1985 exit turns Steve Jobs into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Steve Jobs",
+        "1985",
+        "Apple",
+        "1997 return"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch12.ex.walmart-leadership-after-sam-walton",
+      "label": "Walmart leadership after Sam Walton",
+      "summary": "Sam Walton died in 1992 after building Walmart from Bentonville. The case shows how leadership succession can separate scale from founder memory.",
+      "teachesWhat": "Walmart leadership after Sam Walton turns Sam Walton into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Sam Walton",
+        "1992",
+        "Walmart",
+        "Bentonville"
+      ],
+      "realWorld": true
+    },
+    {
+      "id": "ch12.ex.ford-motor-company-founder-legacy",
+      "label": "Ford Motor Company founder legacy",
+      "summary": "Henry Ford founded Ford Motor Company in 1903, and the Model T and Dearborn legacy show how a founding idea can become institutional memory.",
+      "teachesWhat": "Ford Motor Company founder legacy turns Ford Motor Company into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Henry Ford",
+        "1903",
+        "Model T",
+        "Dearborn"
+      ],
+      "realWorld": true
+    }
+  ],
+  "hardEdge": "The tempting misread is to turn WHY-WHAT split into a universal slogan and ignore the cases. The stricter reading keeps the claim tied to the specific examples and uses the framework only where the details support it.",
+  "voiceCues": [
+    "plain business language with short contrasts",
+    "case first, principle second",
+    "second-person diagnostic questions",
+    "simple framework names repeated sparingly"
+  ],
+  "forbiddenLeakage": [
+    "Do not make personal origin discovery the unit",
+    "Do not repeat the celery test"
+  ],
+  "paraphraseNotes": "Split Happens works from WHY-WHAT split: As organizations scale, the people who hold the founding WHY and the people who manage the WHAT can drift apart. A reader learns why continuity systems matter before a founder leaves or scale creates distance. Steve Jobs left Apple in 1985 and returned in 1997. The Apple case makes the split between founding WHY and operating WHAT concrete. Sam Walton died in 1992 after building Walmart from Bentonville. The case shows how leadership succession can separate scale from founder memory. Henry Ford founded Ford Motor Company in 1903, and the Model T and Dearborn legacy show how a founding idea can become institutional memory. WHY holder starts the local logic for Split Happens; HOW operators, WHAT scale, Succession complete the sequence. Keep Jobs, Walton, and Ford on succession and institutional memory; personal WHY discovery is a separate problem.",
+  "testableFacts": [
+    {
+      "id": "ch12.fact.1",
+      "claim": "Apple after Steve Jobs's 1985 exit makes WHY-WHAT split concrete through Steve Jobs and 1985.",
+      "becauseMechanism": "Because Steve Jobs gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Apple after Steve Jobs's 1985 exit as colorful background.",
+      "errorIsWhy": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "derivedFrom": "ch12.ex.apple-after-steve-jobs-s-1985-exit"
+    },
+    {
+      "id": "ch12.fact.2",
+      "claim": "Walmart leadership after Sam Walton adds a second anchor for WHY-WHAT split with Sam Walton and 1992.",
+      "becauseMechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "errorIsWhy": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "derivedFrom": "ch12.ex.walmart-leadership-after-sam-walton"
+    },
+    {
+      "id": "ch12.fact.3",
+      "claim": "Ford Motor Company founder legacy supplies a third checkable scene using Henry Ford and 1903.",
+      "becauseMechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "errorIsWhy": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "derivedFrom": "ch12.ex.ford-motor-company-founder-legacy"
+    },
+    {
+      "id": "ch12.fact.4",
+      "claim": "WHY-WHAT split depends on the sequence WHY holder before HOW operators.",
+      "becauseMechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "errorIsWhy": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "derivedFrom": "ch12.concept"
+    },
+    {
+      "id": "ch12.fact.5",
+      "claim": "WHY holder, HOW operators, WHAT scale, Succession form the local framework for Split Happens.",
+      "becauseMechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "errorIsWhy": "Shortening removes the distinctions the quiz and examples need to test.",
+      "derivedFrom": "ch12.concept"
+    },
+    {
+      "id": "ch12.fact.6",
+      "claim": "Apple is a hard detail that should stay attached to Apple after Steve Jobs's 1985 exit.",
+      "becauseMechanism": "Because hard specifics are portable only inside their case, moving Apple to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "errorIsWhy": "A true detail becomes misleading when it is attached to the wrong case.",
+      "derivedFrom": "ch12.ex.apple-after-steve-jobs-s-1985-exit"
+    },
+    {
+      "id": "ch12.fact.7",
+      "claim": "Walmart gives Walmart leadership after Sam Walton a different factual token from Apple after Steve Jobs's 1985 exit.",
+      "becauseMechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "errorIsWhy": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "derivedFrom": "ch12.ex.walmart-leadership-after-sam-walton"
+    },
+    {
+      "id": "ch12.fact.8",
+      "claim": "Model T helps mark the boundary of WHY-WHAT split.",
+      "becauseMechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "errorIsWhy": "The mechanism changes by venue; boundary details keep the application honest.",
+      "derivedFrom": "ch12.ex.ford-motor-company-founder-legacy"
+    },
+    {
+      "id": "ch12.fact.9",
+      "claim": "Split Happens should teach WHY-WHAT split through Apple after Steve Jobs's 1985 exit, Walmart leadership after Sam Walton, and Ford Motor Company founder legacy, not through generic leadership advice.",
+      "becauseMechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "errorIsWhy": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "derivedFrom": "ch12.concept"
+    }
+  ],
+  "frameworks": [
+    {
+      "name": "Split Happens framework",
+      "members": [
+        "WHY holder",
+        "HOW operators",
+        "WHAT scale",
+        "Succession"
+      ],
+      "acronym": false
+    }
+  ],
+  "properNouns": [
+    "Apple after Steve Jobs's 1985 exit",
+    "Walmart leadership after Sam Walton",
+    "Ford Motor Company founder legacy"
+  ]
+}

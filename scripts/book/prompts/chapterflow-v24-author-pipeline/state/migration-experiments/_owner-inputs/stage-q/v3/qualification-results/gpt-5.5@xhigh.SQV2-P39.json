@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P39",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"reused narrative machinery\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Fenna touches a warm invoice sheet at Thursday 3:03 p.m. in the billing alcove at Northgate Dental, office manager, with toner dust on her thumb.\",\"Jae stops a black ballpoint pen at Wednesday 2:08 p.m. in the patient relations desk at Hillcrest Clinic, patient advocate, with a complaint form with coffee on one corner.\",\"She snapped at the hygienist over a coding error and called it efficiency.\",\"Jae has the chart, the vitals, and a policy answer ready.\"],\"rationale\":\"The two examples use the same underlying scene engine: named workplace helper, precise timestamp and location, tactile object detail, role label, a professional conflict framed through procedural control, then a pivot toward emotional awareness or empathy. The nouns differ, but the progression from concrete object/time/place to defensive work response to an inward or relational correction is materially reused, so this should be treated as a blocking narrative-machinery defect.\"}"
+}

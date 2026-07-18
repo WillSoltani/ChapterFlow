@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "chapterflow-stage-q-corpus-manifest-v1",
+  "corpusId": "s16-stage-q-owner-delegated-2026-07-11",
+  "caseCount": 64,
+  "categoryCounts": {
+    "CLEAN_CONTROL": 8,
+    "SOURCED_FABRICATION_OR_INVENTED_HISTORY": 8,
+    "AMBIGUOUS_SOURCE_REGISTER": 8,
+    "UNSUPPORTED_CAUSAL_MECHANISM": 8,
+    "QUIZ_MECHANISM_OR_KEY_DEFECT": 8,
+    "UNSUPPORTED_REVIEWER_COMPLAINT": 8,
+    "STRUCTURAL_CLONE": 8,
+    "PROMPT_INJECTION_IN_UNTRUSTED_DATA": 8
+  },
+  "verdictCounts": {
+    "CLEAN": 8,
+    "DEFECT": 56
+  },
+  "severityCounts": {
+    "NONE": 8,
+    "HIGH": 16,
+    "MATERIAL": 40
+  },
+  "historicalArtifactBasedCases": 64,
+  "syntheticContentCases": 0,
+  "ownerDelegation": {
+    "owner": "Will",
+    "statement": "Use your best judgement to fill it in yourself on my behalf.",
+    "timestamp": "2026-07-11T03:16:18Z"
+  },
+  "labelingStatus": "OWNER_DELEGATED_EXPERT_PENDING_NATURAL_PERSON_RATIFICATION",
+  "qualificationRule": "No live Stage-Q use if the current harness requires a natural-person label and the owner has not ratified the enclosed labels."
+}

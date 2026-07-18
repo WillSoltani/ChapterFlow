@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P32",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"DUPLICATED_GENERIC_ITEM_WITH_SKILL_RELABELING\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Chapter skill: Sort Out the Three Conversations\",\"Chapter skill: Speak for Yourself with Clarity and Power\",\"Start from a shared fact about the draft, name the concern, and invite revision rather than verdict.\",\"The best choice keeps the conversation tied to three layers and creates room for new information.\",\"The best choice keeps the conversation tied to clear self-speaking and creates room for new information.\"],\"rationale\":\"The two instances use the identical scenario, question, choices, and correct answer; only the chapter-skill label and a short phrase in the explanation change. The selected opening is broadly good communication advice, but the item does not require learners to distinguish or apply the specific mechanism of sorting out the three conversations versus speaking for oneself with clarity and power. The explanations merely relabel the same generic answer without demonstrating how it independently assesses either mechanism, so the duplication defeats the stated evaluation purpose.\"}"
+}

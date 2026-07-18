@@ -1,0 +1,36 @@
+{
+  "caseId": "SQ-009",
+  "parsed": {
+    "caseId": "SQ-009",
+    "verdict": "DEFECT",
+    "defectClass": "Unsupported narrative fabrication in sourced real-world case",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Hard specifics allowed: Steve Cole, HopeLab, portable activity device, multiple design firms"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "stands after lunch in HopeLab's project room"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "one portable activity device sketch clipped beside three firm names"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "No one else speaks yet"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "One firm could solve comfort, another could solve play"
+      }
+    ],
+    "explanation": "The source plan permits only broad verified specifics about Steve Cole, HopeLab, a portable activity device, and multiple firms. The candidate adds concrete scene-setting, staging, silence, firm count, and capability claims that are not supported by the source plan but are narrated like factual case history.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-009\",\"verdict\":\"DEFECT\",\"defectClass\":\"Unsupported narrative fabrication in sourced real-world case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Hard specifics allowed: Steve Cole, HopeLab, portable activity device, multiple design firms\"},{\"materialIndex\":1,\"quote\":\"stands after lunch in HopeLab's project room\"},{\"materialIndex\":1,\"quote\":\"one portable activity device sketch clipped beside three firm names\"},{\"materialIndex\":1,\"quote\":\"No one else speaks yet\"},{\"materialIndex\":1,\"quote\":\"One firm could solve comfort, another could solve play\"}],\"explanation\":\"The source plan permits only broad verified specifics about Steve Cole, HopeLab, a portable activity device, and multiple firms. The candidate adds concrete scene-setting, staging, silence, firm count, and capability claims that are not supported by the source plan but are narrated like factual case history.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-017",
+  "parsed": {
+    "caseId": "SQ-017",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "All examples and scenarios are invented fresh."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Review Scenario:"
+      }
+    ],
+    "explanation": "The provenance explicitly states that all scenarios are invented, and the candidate itself labels the named narrative as a scenario rather than presenting it as a documented event.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-017\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"All examples and scenarios are invented fresh.\"},{\"materialIndex\":1,\"quote\":\"Review Scenario:\"}],\"explanation\":\"The provenance explicitly states that all scenarios are invented, and the candidate itself labels the named narrative as a scenario rather than presenting it as a documented event.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

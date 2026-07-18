@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-035",
+  "parsed": {
+    "caseId": "SQ-035",
+    "verdict": "DEFECT",
+    "defectClass": "duplicated item relabels generic answer for different chapter mechanisms",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Don't Assume They Meant It"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Ground Your Identity"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "State the impact, own the concern, and ask for a specific repair date or alternative plan."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "State the impact, own the concern, and ask for a specific repair date or alternative plan."
+      }
+    ],
+    "explanation": "The two instances use different chapter skills but the same scenario, answer choices, and correct answer. The Ground Your Identity version only swaps the explanation label to identity without making the item test that distinct mechanism.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-035\",\"verdict\":\"DEFECT\",\"defectClass\":\"duplicated item relabels generic answer for different chapter mechanisms\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Don't Assume They Meant It\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Ground Your Identity\"},{\"materialIndex\":0,\"quote\":\"Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\"},{\"materialIndex\":1,\"quote\":\"Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\"},{\"materialIndex\":0,\"quote\":\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\"},{\"materialIndex\":1,\"quote\":\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\"}],\"explanation\":\"The two instances use different chapter skills but the same scenario, answer choices, and correct answer. The Ground Your Identity version only swaps the explanation label to identity without making the item test that distinct mechanism.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

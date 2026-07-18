@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR2",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Unframed invented or unsupported research claim presented as factual\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"A 2016 Stanford study of 4,200 first-time managers found that those who ran weekly one-on-ones were 2.3 times more likely to retain their reports over two years.\",\"The effect held across every industry the researchers sampled.\"],\"rationale\":\"The passage presents a precise empirical finding as a real Stanford study, with sample size, date, effect size, retention period, and a broad cross-industry generalization, but gives the reader no visible citation, source details, or hypothetical/example framing. Since the reader-facing prose asserts institutional research authority rather than marking the material as illustrative or invented, this is a material source-register defect that should block publication.\"}"
+}

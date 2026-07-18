@@ -244,7 +244,13 @@ export type ChapterBriefV1 = {
   /** STIER-2 P11 (v3): the section-thread lead — either the chapter's invented cast[0] or its
    *  own ownedCases[0] real case (threading fastRead + ≥2 examples through the case's real
    *  actors; de-stamps the universal invented-proxy device). */
-  leadThread?: { kind: "invented" | "owned-case"; name: string };
+  /** The dealt lead thread. IMP-09 additive fields: `caseId` preserves the
+   *  packet case's stable id (it existed at deal time and was discarded
+   *  pre-IMP-09), and `aliases` is the COMPILER-DERIVED reviewable alias set
+   *  (leadAliases.leadAliasSet over the label — full label, family name with
+   *  particles, given name; never inferred). D7 checks alias presence; legacy
+   *  briefs without these fields derive the same set at check time. */
+  leadThread?: { kind: "invented" | "owned-case"; name: string; caseId?: string; aliases?: string[] };
   /** STIER-3 P17 (v4): the 2 idiom families this chapter verbalizes the shared framework
    *  through (the round-2 book panel churned on identical framework idiom book-wide). */
   idiomFamilies?: string[];
@@ -258,6 +264,13 @@ export type ChapterBriefV1 = {
    *  packets, so a recompile is byte-derivable (F-1 sidecar invariant). Optional —
    *  omitted for a single-chapter book and absent on briefs compiled before CF-C. */
   adjacentJobs?: { prev?: string; next?: string };
+  /** Content-excellence (D9 whole-book coherence): the book's total chapter count,
+   *  carried so the single-brief writer card can render the ch1 DEFINE-THE-MODEL and
+   *  final-chapter SYNTHESIS directives (final iff chapterNumber === totalChapters).
+   *  Compiled deterministically (index.chapters.length), so a recompile is byte-stable.
+   *  Optional — absent on briefs compiled before this field; NOT part of the regen
+   *  lineage (authorRegenLedger allowlists rotation fields only). */
+  totalChapters?: number;
 };
 
 /** v24 W4 rotation vocabularies — mirrored from src/compiler/briefRotation.ts (kept here as string
@@ -619,15 +632,54 @@ export type ChapterReviewV1 = {
    *  only when the current phase bar equals this. */
   bar?: number;
   /** sha256 (full hex) of the EXACT rendered reader doc the reader scored —
-   *  ensureTrailingNewline(renderChapterReaderDoc(chapter)) — hashed at the
-   *  write site. A doc-render drift (even one that leaves contentHash equal)
-   *  invalidates the carry. */
+   *  hashed at the write site. v2 = the legacy key-bearing renderChapterReaderDoc;
+   *  v3 (IMP-08) = the key-free renderChapterReaderDocPhase1 bytes. A doc-render
+   *  drift (even one that leaves contentHash equal) invalidates the carry. */
   docHash?: string;
   /** Which docHash algorithm produced docHash. "v2" = sha256 over the trailing-
-   *  newline-terminated rendered doc. A mismatch (or absence) blocks reuse. */
-  hashVersion?: "v2";
+   *  newline-terminated LEGACY rendered doc; "v3" = over the phase-1 (key-free)
+   *  doc (IMP-08). A mismatch (or absence) blocks reuse — bumping the live
+   *  constant is the explicit carry-invalidation switch. */
+  hashVersion?: "v2" | "v3";
   /** ISO timestamp the review was adjudicated. Audit only (never gates reuse). */
   reviewedAt?: string;
+  // ── IMP-08 instrument-binding evidence (ADDITIVE, all OPTIONAL) ────────────
+  /** Phase-1 renderer version the scored document was produced by. */
+  phase1DocVersion?: string;
+  /** Reader-rubric (task card) version the review was produced under. */
+  rubricVersion?: string;
+  /** The reviewer AgentRole's frozen execution-profile hash, resolved by the
+   *  CONDUCTOR (plan instruction 10) — recorded evidence; the hash never
+   *  appears in any reviewer-visible artifact. */
+  executionProfileHash?: string;
+  /** hashCanonical({role, files}) of the reviewer workspace the reader ran in
+   *  — binds the review to the exact file set the reviewer could see. */
+  workspaceManifestSha256?: string;
+  /** IMP-08 phase-2 quiz-key adjudication evidence (ADVISORY in v1 — feeds no
+   *  pass predicate; the blocking key channel stays keyCheck.matches===of).
+   *  status "unavailable" records an explicit bounded-attempt failure — the
+   *  review itself remains decided by the phase-1 instrument;
+   *  "skipped-extra-read" marks a non-persisting tiebreak/second-opinion read
+   *  (the adjudication for those chapter bytes rides the persisted primary). */
+  quizAdjudication?: {
+    status: "adjudicated" | "unavailable" | "skipped-no-quiz" | "skipped-extra-read";
+    derivationSha256?: string;
+    phase2DocSha256?: string;
+    reviewerSessionId?: string;
+    /** Per-question verdicts, verified against the conductor's own committed
+     *  derivation + real key (validateQuizAdjudication). */
+    items?: Array<{
+      itemId: string;
+      keyedAnswerIndex: number;
+      derivedAnswerIndex: number;
+      agreement: boolean;
+      keyCorrect: "correct" | "ambiguous" | "wrong";
+      rationale: string;
+    }>;
+    ambiguousCount?: number;
+    keyWrongCount?: number;
+    reason?: string;
+  };
   scores: Record<ReviewFactor, number>;
   /** Weighted composite = sum(weight * score) / 100, rounded to 1 decimal. */
   composite: number;

@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-057",
+  "parsed": {
+    "caseId": "SQ-057",
+    "verdict": "DEFECT",
+    "defectClass": "NON_EVIDENTIARY_PROCESS_INSTRUCTIONS",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "You are operating in one role only. Never mix roles."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Run commands exactly from this directory: scripts/book/prompts/chapterflow-v21-authored"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "You must use the role token supplied by the operator."
+      }
+    ],
+    "explanation": "The artifact consists of operational commands, role assignments, and workflow restrictions rather than evidence supporting a substantive claim. It therefore cannot serve as valid evidentiary material and should be blocked.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-057\",\"verdict\":\"DEFECT\",\"defectClass\":\"NON_EVIDENTIARY_PROCESS_INSTRUCTIONS\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"You are operating in one role only. Never mix roles.\"},{\"materialIndex\":0,\"quote\":\"Run commands exactly from this directory: scripts/book/prompts/chapterflow-v21-authored\"},{\"materialIndex\":0,\"quote\":\"You must use the role token supplied by the operator.\"}],\"explanation\":\"The artifact consists of operational commands, role assignments, and workflow restrictions rather than evidence supporting a substantive claim. It therefore cannot serve as valid evidentiary material and should be blocked.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

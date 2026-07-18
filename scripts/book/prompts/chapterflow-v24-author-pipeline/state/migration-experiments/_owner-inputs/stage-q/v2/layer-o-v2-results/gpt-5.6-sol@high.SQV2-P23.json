@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P23",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"GENERIC_OR_MECHANISM_MISMATCHED_LOCATOR\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":\"“Human behavior resists simple nature-versus-nurture splits, because genes, experience, and cultu” | “Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=WEIRD+psychology+Henrich+Heine+Norenzayan+2010” | “A generic or topically unrelated search is not verification.”\",\"rationale\":\"The proposed locator is a generic PubMed search for the WEIRD psychology paper rather than claim-specific evidence addressing the recorded mechanism involving genes, experience, and culture. The materials do not show that it supports the same mechanism or relation required by the verification contract, so it cannot verify the claim and should block acceptance.\"}"
+}

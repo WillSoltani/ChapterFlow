@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P39",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"same narrative machinery / template reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Fenna touches a warm invoice sheet at Thursday 3:03 p.m. in the billing alcove at Northgate Dental, office manager, with toner dust on her thumb.\",\"Jae stops a black ballpoint pen at Wednesday 2:08 p.m. in the patient relations desk at Hillcrest Clinic, patient advocate, with a complaint form with coffee on one corner.\",\"She snapped at the hygienist over a coding error and called it efficiency.\",\"Jae has the chart, the vitals, and a policy answer ready.\",\"After the door closed, Fenna saw the older feeling under it: fear that another rejected claim would wreck payroll.\",\"His hands keep rubbing the same spot on his knee. Jae Jae must decide whether to defend the chart or ask what the morning felt like from his side.\"],\"rationale\":\"The two examples use the same underlying scene engine with different surface nouns: a named healthcare-adjacent worker is fixed in an exact weekday/time/location, holding or stopping at a tactile office object with a small sensory detail, then faces a workplace/patient conflict where an efficient or policy-based response masks a deeper internal issue, ending in a self-regulation or empathy choice. The repeated beat structure is strong enough to be material reuse rather than merely shared genre or format.\"}"
+}

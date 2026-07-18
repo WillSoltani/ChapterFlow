@@ -1,0 +1,820 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "chapterflow_standalone_chapter_rating",
+  "run_id": "20260715T110908Z",
+  "job_id": "the-happiness-hypothesis-ch06-primary-20260715T110908Z",
+  "rater_role": "primary",
+  "worker_task_id": "/root/happiness_primary",
+  "worker_session_id": "/root/happiness_primary@20260715T110908Z",
+  "worker_dispatch_receipt_sha256": "ee5d802764135d5113b00cb0190072f3dd06d827992b3af7144482c4f2750316",
+  "book": {
+    "book_id": "the-happiness-hypothesis-ch06",
+    "source_book_title": "The Happiness Hypothesis"
+  },
+  "source_hash": "98fb3e50e070ca44543881613f39dbaf5c478bfff7e2aea838688f2b3d0e5dd2",
+  "chapter": {
+    "chapter_id": "ch06",
+    "number": 6,
+    "title": "Love and attachments",
+    "source_path": "/Users/radinsoltani/Desktop/the-happiness-hypothesis-ch06.md",
+    "heading_inventory_sha256": "9fe9c1352e5f75908305a66edac1d60131adc707e096d9f826eb67b1cf5c4a7f",
+    "read_status": "full",
+    "section_inventory": [
+      {"level": 2, "title": "Hook", "line": 5},
+      {"level": 2, "title": "Counterintuition", "line": 8},
+      {"level": 2, "title": "Fast read", "line": 11},
+      {"level": 2, "title": "Deep read", "line": 14},
+      {"level": 2, "title": "Full read", "line": 23},
+      {"level": 2, "title": "Examples", "line": 40},
+      {"level": 3, "title": "Example 1: Continuity Costs", "line": 41},
+      {"level": 3, "title": "Example 2: Cloth Before Milk", "line": 46},
+      {"level": 3, "title": "Example 3: Gap in the Reply", "line": 51},
+      {"level": 3, "title": "Example 4: Wrong First Guess", "line": 56},
+      {"level": 3, "title": "Example 5: Seen Under the Typing Dots", "line": 61},
+      {"level": 3, "title": "Example 6: Doorway Reset", "line": 66},
+      {"level": 2, "title": "Quiz (answer key withheld)", "line": 71},
+      {"level": 3, "title": "Question 1", "line": 72},
+      {"level": 3, "title": "Question 2", "line": 78},
+      {"level": 3, "title": "Question 3", "line": 84},
+      {"level": 3, "title": "Question 4", "line": 90},
+      {"level": 3, "title": "Question 5", "line": 96},
+      {"level": 3, "title": "Question 6", "line": 102},
+      {"level": 3, "title": "Question 7", "line": 108},
+      {"level": 3, "title": "Question 8", "line": 114},
+      {"level": 3, "title": "Question 9", "line": 120},
+      {"level": 2, "title": "Review cards", "line": 126},
+      {"level": 3, "title": "Card 1", "line": 127},
+      {"level": 3, "title": "Card 2", "line": 131},
+      {"level": 3, "title": "Card 3", "line": 135},
+      {"level": 3, "title": "Card 4", "line": 139},
+      {"level": 3, "title": "Card 5", "line": 143},
+      {"level": 3, "title": "Card 6", "line": 147},
+      {"level": 2, "title": "Implementation plan", "line": 151},
+      {"level": 2, "title": "Try this now", "line": 159},
+      {"level": 2, "title": "Key takeaway", "line": 162},
+      {"level": 2, "title": "Memorable lines", "line": 165}
+    ]
+  },
+  "scope": {
+    "scope_type": "standalone_chapter_audit",
+    "actual_book_inventory_complete": false,
+    "full_book_score": null,
+    "full_book_certification": "unevaluable",
+    "domain_9": "unassessable"
+  },
+  "evaluation_construct": {
+    "audience": "Inferred ordinary interested non-expert adults who want to understand closeness, withdrawal, and security in important relationships.",
+    "assumed_prior_knowledge": "No formal psychology knowledge is assumed; attachment, contact comfort, adult attachment patterns, and reciprocal self-disclosure are introduced in plain language.",
+    "nonfiction_type": "Popular psychology and well-being instruction with relationship-focused application.",
+    "purpose": "Reframe attachment need as compatible with courage and autonomy, explain a secure-base model of love, and help readers replace disappearance, testing, or pressure with a clear request and a reliable return signal.",
+    "intended_outcomes": [
+      "Explain why reliable care can support exploration rather than weaken independence.",
+      "Recognize secure, anxious, and avoidant responses without treating them as fixed identities.",
+      "Distinguish attachment, caregiving, romantic passion, commitment, and reciprocal disclosure.",
+      "Use a small reach-back behavior during anxiety or withdrawal while respecting safety and separateness."
+    ],
+    "contexts": [
+      "Child caregiving and continuity of care",
+      "Adult romantic closeness and conflict",
+      "Trusted close relationships where both people can respond voluntarily"
+    ],
+    "exclusions": [
+      "The chapter does not provide clinical diagnosis or treatment.",
+      "Its reach-back practice is not presented as a reason to remain in cruel, controlling, or otherwise harmful bonds.",
+      "External validity of the named research is outside this isolated audit."
+    ],
+    "default_reader_fit": {
+      "status": "strong",
+      "rationale": "The prose defines central terms, uses familiar relationship situations, and asks for no specialist background, although the audience and prerequisite burden are inferred rather than explicitly declared."
+    }
+  },
+  "gates": {
+    "chapter_artifact_completeness": {
+      "status": "pass",
+      "rationale": "The assigned source hash matched, all 168 source lines were read, and all 33 H2/H3 reader-facing sections were reconciled in order to the immutable heading inventory."
+    },
+    "epistemic_instructional_safety": {
+      "status": "pass",
+      "rationale": "No central internal contradiction, wrong mapping, or advice that predictably teaches harm was found. Research support is compressed and quiz feedback is weak, but these are quality limitations rather than a material internal safety failure in the supplied chapter."
+    },
+    "ethics_reader_autonomy": {
+      "status": "pass",
+      "rationale": "The chapter normalizes need without coercion, separates attachment from monitoring and control, permits space, and explicitly allows exit from cruel or harmful bonds."
+    },
+    "purpose_audience_declaration": {
+      "status": "conditional",
+      "rationale": "The relationship-learning purpose and non-expert audience are defensibly inferable from the source, but neither is formally declared with prerequisites or usage boundaries."
+    },
+    "external_accuracy": {
+      "status": "not_assessed",
+      "rationale": "External factual verification was intentionally excluded; named researchers and historical claims were assessed only for their internal instructional use."
+    },
+    "actual_book_completeness": {
+      "status": "unevaluable",
+      "rationale": "Only chapter 6 was supplied, so completeness, certification, and coherence of the actual book cannot be assessed."
+    }
+  },
+  "domains": {
+    "epistemic_integrity": {
+      "weight": 15,
+      "subcriteria": {
+        "claim_support_fit": {
+          "rating": 2,
+          "rationale": "Rating 2 (adequate or mixed): the chapter links its model to named research and gives intelligible reasoning, but several broad psychological and causal claims receive only compressed narrative support and little separation of finding, interpretation, and recommendation.",
+          "evidence": [
+            {
+              "locator": "Deep read, paragraphs 1-4 (lines 15-21)",
+              "paraphrase": "Bowlby, Harlow, and Hazan-Shaver are used to support steady care, contact comfort, and adult attachment patterns, but methods, limits, and strength of inference are not developed."
+            },
+            {
+              "locator": "Full read, paragraphs 3-4 (lines 28-30)",
+              "paraphrase": "Belonging is presented as a basic motive and ordinary gaps are mapped to attachment expectations with strong confidence, while the evidential bridge remains brief."
+            }
+          ]
+        },
+        "uncertainty_limitations": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): important exceptions are placed near the advice, attachment patterns are explicitly non-fixed, and the chapter distinguishes healthy dependence from detachment, control, and staying in harm; remaining uncertainty about individual and cultural variation is limited but visible.",
+          "evidence": [
+            {
+              "locator": "Full read, opening and closing paragraphs (lines 24 and 38)",
+              "paraphrase": "Distance is allowed during a jealous spiral, exit is allowed from a cruel bond, and secure attachment is bounded against monitoring, demands, and loss of a separate life."
+            },
+            {
+              "locator": "Deep read, paragraph 4 (line 21)",
+              "paraphrase": "Secure, anxious, and avoidant tendencies are framed as observable patterns rather than permanent categories."
+            }
+          ]
+        },
+        "internal_consistency_qa": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): terminology and the safe-base model remain aligned through the layered reads, examples, quiz items, cards, and action plan, with no visible contradiction or mismatched teaching; the withheld answer key prevents exemplary end-to-end feedback QA.",
+          "evidence": [
+            {
+              "locator": "Fast read through Key takeaway (lines 11-163)",
+              "paraphrase": "The chapter consistently connects reliable contact with lower threat, safer exploration, repair, and return after distance."
+            },
+            {
+              "locator": "Quiz Questions 1-9 and Review Cards 1-6 (lines 71-149)",
+              "paraphrase": "Question stems and card answers track the chapter's distinctions among steady care, contact comfort, adult patterns, secure exploration, disclosure, and commitment."
+            }
+          ]
+        },
+        "misuse_safeguards": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): the chapter repeatedly marks consent, separateness, non-control, and leaving harm as boundaries, though it does not give a concrete escalation or support pathway for unsafe or nonreciprocal situations.",
+          "evidence": [
+            {
+              "locator": "Full read, paragraphs 1, 6, and 8 (lines 24, 34, and 38)",
+              "paraphrase": "It permits a walk, an exit from cruelty, and conflict repair without making commitment a duty to stay; it rejects monitoring and control as secure attachment."
+            },
+            {
+              "locator": "Example 6: Doorway Reset (lines 66-69)",
+              "paraphrase": "A partner takes needed space while stating a return, preserving both self-regulation and relational predictability."
+            }
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 10.3125,
+      "strengths": [
+        {
+          "locator": "Deep read, paragraph 4 and Full read, paragraph 8 (lines 21 and 38)",
+          "evidence": "The chapter resists both fixed attachment labels and the equation of love with control."
+        },
+        {
+          "locator": "Full read, paragraphs 1 and 6 (lines 24 and 34)",
+          "evidence": "Caveats about distance, exit, harm, and commitment appear at the points where the advice could otherwise be misused."
+        }
+      ],
+      "limitations": [
+        {
+          "locator": "Deep read (lines 15-21)",
+          "evidence": "Named studies carry substantial explanatory weight without enough detail about design, evidential limits, or alternative interpretations."
+        }
+      ],
+      "within_chapter_pattern": "Ethical and relational qualifications are integrated well, while research uncertainty is handled more lightly than practical boundaries.",
+      "anchor_rationale": "The domain is strong on limitations, consistency, and misuse safeguards but mixed on proportional support for broad claims, yielding 2.75 rather than a uniformly strong 3.0.",
+      "scope_note": "This is a chapter-local integrity judgment; external accuracy and consistency with unsupplied chapters are not assessed."
+    },
+    "audience_fit": {
+      "weight": 12,
+      "subcriteria": {
+        "language_clarity": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): definitions are plain, transitions expose the argument, and memorable metaphors clarify rather than replace most concepts; occasional poetic compression makes a few claims feel broader than their explanation.",
+          "evidence": [
+            {
+              "locator": "Fast read (line 12) and Deep read, paragraphs 3-4 (lines 19-21)",
+              "paraphrase": "Attachment, contact comfort, and secure, anxious, and avoidant patterns are defined in ordinary language immediately around their use."
+            },
+            {
+              "locator": "Counterintuition and Key takeaway (lines 8-9 and 162-163)",
+              "paraphrase": "The handrail and safe-bond formulations make the relation between dependence and courage easy to reconstruct."
+            }
+          ]
+        },
+        "beginner_onboarding": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): the chapter begins with a familiar behavior, defines core terms, and progresses from infant care to adult relationships before asking for action; it supplies little background on what the named research can and cannot establish.",
+          "evidence": [
+            {
+              "locator": "Hook through Deep read (lines 5-21)",
+              "paraphrase": "A stalled text introduces the felt problem before the chapter adds the safe-base model, contact comfort, and adult attachment categories."
+            },
+            {
+              "locator": "Full read, paragraphs 4-7 (lines 30-36)",
+              "paraphrase": "The adult-pattern map is extended into distinct love systems, commitment, and reciprocal disclosure in a usable sequence."
+            }
+          ]
+        },
+        "signal_noise_framework_load": {
+          "rating": 2,
+          "rationale": "Rating 2 (adequate or mixed): the core model stays recoverable, but layered reads, two near-duplicate Harlow examples, nine quiz items, and six cards repeat a relatively compact idea enough that consolidation would materially improve cognitive economy.",
+          "evidence": [
+            {
+              "locator": "Example 2: Cloth Before Milk and Example 4: Wrong First Guess (lines 46-59)",
+              "paraphrase": "Both cases stage the same wire-feeder versus cloth-comfort inference with only a small change in observer framing."
+            },
+            {
+              "locator": "Fast read, Deep read, Full read, Review cards, and Memorable lines (lines 11-38, 126-149, and 165-168)",
+              "paraphrase": "The safe-base and need-is-not-failure ideas recur across many components, sometimes as useful retrieval and sometimes as restatement."
+            }
+          ]
+        },
+        "audience_context_accessibility": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): texting, conflict, caregiving, clinics, and ordinary bids for closeness make the chapter accessible to non-specialists, while the action guidance is most directly usable in reciprocal close relationships and needs adaptation elsewhere.",
+          "evidence": [
+            {
+              "locator": "Examples 1, 3, 5, and 6 (lines 41-44, 51-54, and 61-69)",
+              "paraphrase": "The model is shown in care scheduling, couple conflict, medical support, and taking space after an argument."
+            },
+            {
+              "locator": "Implementation plan (lines 151-157)",
+              "paraphrase": "The reach-back practice assumes access to a trusted person who can give a return signal or offer feedback."
+            }
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 8.25,
+      "strengths": [
+        {
+          "locator": "Fast read and Deep read (lines 11-21)",
+          "evidence": "Technical ideas are introduced through familiar experience and immediately defined in clear language."
+        },
+        {
+          "locator": "Examples 1, 3, 5, and 6 (lines 41-44, 51-54, and 61-69)",
+          "evidence": "Multiple ordinary contexts help non-experts translate the concept beyond abstract psychology terminology."
+        }
+      ],
+      "limitations": [
+        {
+          "locator": "Examples 2 and 4 plus Quiz and Review cards (lines 46-59 and 71-149)",
+          "evidence": "Repeated treatment of the same distinctions increases component volume without proportional conceptual gain."
+        }
+      ],
+      "within_chapter_pattern": "Clarity and novice entry are consistently strong, but the chapter's template volume occasionally works against its otherwise compact model.",
+      "anchor_rationale": "Three subcriteria operate strongly for an ordinary non-expert; signal-to-noise remains mixed because meaningful compression is readily available.",
+      "scope_note": "Audience access is assessed only for this chapter; accessibility and terminology across the full book are unassessable."
+    },
+    "mental_model_coherence": {
+      "weight": 15,
+      "subcriteria": {
+        "central_model": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): attachment as a secure base that reduces threat and supports exploration is clear, memorable, and repeatedly usable across the chapter, with limited oversimplification rather than a broken model.",
+          "evidence": [
+            {
+              "locator": "Counterintuition, Fast read, and Deep read, paragraph 2 (lines 8-17)",
+              "paraphrase": "A handrail and home-base model explains how dependable care can make risk and separation easier rather than create weakness."
+            },
+            {
+              "locator": "Key takeaway (lines 162-163)",
+              "paraphrase": "The close restates the model as sturdy bonds that calm fear, support risk, and enable return after distance."
+            }
+          ]
+        },
+        "mechanism_causal_explanation": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): major recommendations are connected to an explicit threat-regulation and safe-return mechanism, although the evidence for those causal links is summarized rather than examined in depth.",
+          "evidence": [
+            {
+              "locator": "Deep read, paragraph 2 (line 17)",
+              "paraphrase": "Expected responsiveness is said to reduce danger scanning, which makes work, truth-telling, exploration, and time apart easier."
+            },
+            {
+              "locator": "Examples 3 and 6 (lines 51-54 and 66-69)",
+              "paraphrase": "A return signal interrupts the anxious-reach and avoidant-retreat loop by making temporary distance less ambiguous."
+            }
+          ]
+        },
+        "cross_concept_integration": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong, scope-limited): the chapter integrates infant security, contact comfort, adult patterns, distinct love systems, commitment, disclosure, and a behavioral rule around one safe-base model; integration with unsupplied chapters cannot be judged.",
+          "evidence": [
+            {
+              "locator": "Deep read and Full read (lines 15-38)",
+              "paraphrase": "The account moves from steady caregiving and comfort-seeking to adult expectations, then separates attachment from passion and caregiving before adding commitment and disclosure."
+            },
+            {
+              "locator": "Review Card 5 (lines 143-145)",
+              "paraphrase": "A prior appraisal concept is briefly recruited to reframe closeness from shame or danger toward support, providing one explicit cross-chapter bridge."
+            }
+          ]
+        },
+        "nuance_diagnostic_power": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): the chapter distinguishes a gap from a threat interpretation, anxious reaching from avoidant retreat, attachment from other love systems, and secure dependence from control; it does not fully address mixed patterns, power asymmetry, or cases where a return request is refused.",
+          "evidence": [
+            {
+              "locator": "Full read, paragraphs 4-5 and 8 (lines 30-32 and 38)",
+              "paraphrase": "Readers receive a three-pattern diagnostic map, a separation of love systems, and a two-way test for reaching and allowing space."
+            },
+            {
+              "locator": "Examples 3 and 6 (lines 51-54 and 66-69)",
+              "paraphrase": "The same conflict is diagnosed differently for the partner who writes a threatening ending and the partner who protects through distance."
+            }
+          ]
+        }
+      },
+      "domain_score": 3.0,
+      "weighted_points": 11.25,
+      "strengths": [
+        {
+          "locator": "Counterintuition through Deep read (lines 8-21)",
+          "evidence": "The secure-base model gives one compact explanation for why reliable dependence can enable exploration."
+        },
+        {
+          "locator": "Full read, paragraphs 4-8 and Examples 3 and 6 (lines 30-38, 51-54, and 66-69)",
+          "evidence": "Concept distinctions are converted into a useful diagnosis of anxious reach, avoidant retreat, return, space, and control."
+        }
+      ],
+      "limitations": [
+        {
+          "locator": "Deep read, paragraphs 1-4 (lines 15-21)",
+          "evidence": "The developmental-to-adult causal bridge is compressed, leaving readers with a strong organizing story but limited help evaluating competing explanations."
+        }
+      ],
+      "within_chapter_pattern": "One stable safe-base model organizes the prose, cases, retrieval components, and action plan, while causal depth remains lighter than conceptual integration.",
+      "anchor_rationale": "All four chapter-local functions are reliably strong and diagnostically useful, but none reaches an exceptional anchor because difficult causal and contextual cases remain underdeveloped.",
+      "scope_note": "Cross-concept integration is judged within chapter 6 only; whole-book model coherence and chapter-to-chapter accumulation are not assessed."
+    },
+    "learning_architecture": {
+      "weight": 12,
+      "subcriteria": {
+        "sequencing_scaffolding": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong, scope-limited): the chapter moves from a felt problem to a concise model, research illustrations, complication, cases, retrieval, and action in a defensible local sequence; component repetition prevents exceptional scaffolding.",
+          "evidence": [
+            {
+              "locator": "Hook through Full read (lines 5-38)",
+              "paraphrase": "A stalled reply opens the problem, the fast and deep reads introduce the model, and the full read adds distinctions, boundaries, and practices."
+            },
+            {
+              "locator": "Examples through Try this now (lines 40-160)",
+              "paraphrase": "Cases precede quiz and review, after which the chapter turns the model into if-then practice and one immediate action."
+            }
+          ]
+        },
+        "worked_examples_contrasts": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): the chapter includes success cases, a deliberately wrong prediction, contrasting partner responses, and a boundary between secure space and desertion; two Harlow cases are unnecessarily duplicative.",
+          "evidence": [
+            {
+              "locator": "Example 3: Gap in the Reply and Example 6: Doorway Reset (lines 51-54 and 66-69)",
+              "paraphrase": "The cases expose the reasoning behind naming a pattern, asking for return, and taking space without making distance ambiguous."
+            },
+            {
+              "locator": "Example 4: Wrong First Guess (lines 56-59)",
+              "paraphrase": "An observer predicts feeding will dominate, then revises the measurement when the frightened infant chooses soft contact."
+            }
+          ]
+        },
+        "active_processing": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): readers must discriminate among interpretations in scenario questions, notice body signals, make a clear request, use if-then plans, and solicit weekly observation; the quiz still allows substantial recognition and test-wise elimination.",
+          "evidence": [
+            {
+              "locator": "Quiz Questions 1-9 (lines 71-124)",
+              "paraphrase": "Scenario-based items ask the reader to select among competing interpretations of care, comfort, patterns, commitment, and disclosure."
+            },
+            {
+              "locator": "Implementation plan and Try this now (lines 151-160)",
+              "paraphrase": "The reader is asked to observe an urge, count bodily signals, formulate a specific ask, and compare notes with a trusted person."
+            }
+          ]
+        },
+        "feedback_metacognitive_calibration": {
+          "rating": 2,
+          "rationale": "Rating 2 (adequate or mixed): why-it-matters notes and peer observation provide some explanatory and behavioral feedback, but the quiz withholds its key, offers no rationale for alternatives, and rarely asks for confidence or error diagnosis.",
+          "evidence": [
+            {
+              "locator": "Examples 1-6, Why it matters fields (lines 44, 49, 54, 59, 64, and 69)",
+              "paraphrase": "Each case explains the intended inference after the action, which supports local correction."
+            },
+            {
+              "locator": "Quiz and Weekly practice (lines 71-124 and 157)",
+              "paraphrase": "The quiz supplies no answer feedback, while the weekly practice adds only a lightweight interpersonal observation-and-compare loop."
+            }
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 8.25,
+      "strengths": [
+        {
+          "locator": "Hook through Full read and Examples 3-6 (lines 5-38 and 51-69)",
+          "evidence": "The local sequence progresses from problem to model to nuance and then makes the reasoning visible in relational cases."
+        },
+        {
+          "locator": "Implementation plan and Try this now (lines 151-160)",
+          "evidence": "Active processing culminates in a time-bound cue, bodily observation, clear request, and peer-feedback practice."
+        }
+      ],
+      "limitations": [
+        {
+          "locator": "Quiz (lines 71-124)",
+          "evidence": "Withheld answers, no alternative explanations, and conspicuously weak distractors limit error detection and confidence calibration."
+        }
+      ],
+      "within_chapter_pattern": "The chapter is well scaffolded toward action and supplies meaningful processing, but feedback quality does not match the breadth of its assessment component.",
+      "anchor_rationale": "Sequencing, examples, and active processing are strong; metacognitive calibration remains mixed, producing a 2.75 chapter-local mean.",
+      "scope_note": "Only within-chapter sequencing and processing are rated; whole-book prerequisite order and cumulative scaffolding are unassessable."
+    },
+    "retention_retrieval": {
+      "weight": 10,
+      "subcriteria": {
+        "meaningful_retrieval_cues": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): safe base, handrail, return signal, Reach-Back Rule, and base-versus-cage distinctions are semantically tied to function and easy to recover without relying on arbitrary acronyms.",
+          "evidence": [
+            {
+              "locator": "Counterintuition, Full read closing, and Implementation plan (lines 8-9, 38, and 151-157)",
+              "paraphrase": "The handrail, base-not-cage contrast, and reach-back label each cue a distinct relationship function."
+            },
+            {
+              "locator": "Memorable lines (lines 165-168)",
+              "paraphrase": "Three short formulations retrieve need normalization, secure courage, and the risk of treating every bond as a chain."
+            }
+          ]
+        },
+        "cumulative_reinforcement": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong, scope-limited): the chapter revisits its central ideas through layered explanations, varied cases, questions, cards, and action, usually changing the retrieval task; spacing beyond this chapter cannot be assessed.",
+          "evidence": [
+            {
+              "locator": "Fast read through Review cards (lines 11-149)",
+              "paraphrase": "Secure support moves from explanation to historical case, couple diagnosis, scenario selection, and direct recall."
+            },
+            {
+              "locator": "Review Card 5 (lines 143-145)",
+              "paraphrase": "One earlier chapter idea is explicitly retrieved and applied to interpreting closeness, showing a narrow cumulative bridge."
+            }
+          ]
+        },
+        "quiz_retrieval_depth": {
+          "rating": 2,
+          "rationale": "Rating 2 (adequate or mixed): questions cover the chapter's core content and use short applications, but they are chapter-local multiple choice with often implausible distractors, no answer explanations, and substantial recognition cues.",
+          "evidence": [
+            {
+              "locator": "Quiz Questions 1-9 (lines 71-124)",
+              "paraphrase": "Most correct interpretations closely mirror chapter language, while alternatives frequently deny attachment altogether or make obviously extreme claims."
+            },
+            {
+              "locator": "Question 9 (lines 120-124)",
+              "paraphrase": "The commitment item asks for application to conflict but can be solved largely by rejecting an absolute no-leaving option and an implausible passion claim."
+            }
+          ]
+        },
+        "interference_control_consolidation": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): related constructs are explicitly separated and consolidated within a common map, although duplicated examples and overlapping restatements create some avoidable interference.",
+          "evidence": [
+            {
+              "locator": "Full read, paragraphs 4-5 (lines 30-32)",
+              "paraphrase": "The chapter contrasts three attachment responses and separates caregiving, passion, and attachment rather than blending them into a generic love concept."
+            },
+            {
+              "locator": "Review cards 1-6 (lines 126-149)",
+              "paraphrase": "Cards consolidate each major distinction into a short question-and-answer map."
+            }
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 6.875,
+      "strengths": [
+        {
+          "locator": "Counterintuition, Full read closing, Implementation plan, and Memorable lines (lines 8-9, 38, 151-157, and 165-168)",
+          "evidence": "Compact cues are meaningful because each preserves a functional part of the model rather than serving as a decorative slogan."
+        },
+        {
+          "locator": "Full read, paragraphs 4-5 and Review cards (lines 30-32 and 126-149)",
+          "evidence": "Contrast and consolidation reduce confusion among attachment patterns and types of love."
+        }
+      ],
+      "limitations": [
+        {
+          "locator": "Quiz Questions 1-9 (lines 71-124)",
+          "evidence": "Recognition-heavy options and absent feedback weaken retrieval difficulty, discrimination, and consolidation after error."
+        }
+      ],
+      "within_chapter_pattern": "Meaningful cues and varied recurrence support retention, but the quiz is much less demanding and diagnostic than the prose, cases, and cards could support.",
+      "anchor_rationale": "Cues, recurrence, and consolidation are strong within the chapter; retrieval depth is only adequate, yielding 2.75.",
+      "scope_note": "Long-term spacing and cumulative retrieval across the actual book are unassessable from this single chapter."
+    },
+    "transfer_action_judgment": {
+      "weight": 15,
+      "subcriteria": {
+        "concrete_actions": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): the reader knows what to notice, what to say, when to take space, and what a competent first attempt looks like; the action remains a small relationship tool rather than a complete response for complex cases.",
+          "evidence": [
+            {
+              "locator": "Implementation plan (lines 151-157)",
+              "paraphrase": "The Reach-Back Rule asks for one plain need, one feasible form of contact, a return time when leaving, and a weekly sentence chosen from observed behavior."
+            },
+            {
+              "locator": "Try this now (lines 159-160)",
+              "paraphrase": "A physical cue, three body signals, and one clear ask make the immediate practice observable and time bounded."
+            }
+          ]
+        },
+        "cross_context_transfer": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): the deep structure of reliable return and safe dependence is shown in caregiving, research observation, medical support, conflict, and disclosure, though far transfer outside close relationships is not taught.",
+          "evidence": [
+            {
+              "locator": "Examples 1-6 (lines 41-69)",
+              "paraphrase": "The safe-base principle appears in continuity of care, comfort-seeking, couple dialogue, measurement revision, support during an appointment, and a temporary exit."
+            },
+            {
+              "locator": "Full read, paragraphs 5-7 (lines 32-36)",
+              "paraphrase": "The chapter helps readers distinguish when the transferable issue is caregiving, passion, attachment, commitment, or reciprocal disclosure."
+            }
+          ]
+        },
+        "implementation_feedback_support": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): cues, barrier-specific if-then plans, immediate practice, peer observation, comparison, and selection of a next sentence create a credible adjustment loop; no longer-term tracking or fallback plan is supplied.",
+          "evidence": [
+            {
+              "locator": "Implementation plan, if-then items and practices (lines 153-157)",
+              "paraphrase": "Silence, need for distance, and shame each receive a distinct response, followed by a 24-hour cue and a weekly trusted-person feedback check."
+            },
+            {
+              "locator": "Example 5: Seen Under the Typing Dots (lines 61-64)",
+              "paraphrase": "The model demonstrates a concrete request, a menu of feasible responses, and negotiation of the form of contact."
+            }
+          ]
+        },
+        "boundaries_adaptation_tradeoffs": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): the reader is told when distance, exit, separateness, and non-control take priority and how to adapt space with a return signal; power differences, repeated refusal, and unsafe disclosure need more operational treatment.",
+          "evidence": [
+            {
+              "locator": "Full read, paragraphs 1, 6, and 8 (lines 24, 34, and 38)",
+              "paraphrase": "The teaching permits regulation and exit, rejects commitment as staying in harm, and describes a healthy bond as allowing both reach and breathing room."
+            },
+            {
+              "locator": "Example 6 and Implementation plan (lines 66-69 and 153-155)",
+              "paraphrase": "Taking space is adapted by stating a return, while an anxious check-in is framed as a request rather than a test or demand."
+            }
+          ]
+        }
+      },
+      "domain_score": 3.0,
+      "weighted_points": 11.25,
+      "strengths": [
+        {
+          "locator": "Implementation plan and Try this now (lines 151-160)",
+          "evidence": "The chapter converts its model into feasible if-then responses, a bodily cue, one clear ask, and a lightweight feedback cycle."
+        },
+        {
+          "locator": "Full read closing and Examples 5-6 (lines 38 and 61-69)",
+          "evidence": "Transfer includes practical judgment about reciprocity, space, return, and the difference between a request and control."
+        }
+      ],
+      "limitations": [
+        {
+          "locator": "Full read, paragraphs 1, 6, and 8 plus Implementation plan (lines 24, 34, 38, and 151-157)",
+          "evidence": "Safety boundaries are stated, but the action plan does not tell a reader what to do when a partner is coercive, repeatedly nonresponsive, or unsafe to approach."
+        }
+      ],
+      "within_chapter_pattern": "The chapter consistently progresses from recognition to a specific relationship behavior and includes useful tradeoffs, with the thinnest transfer support at the safety boundary.",
+      "anchor_rationale": "All four transfer functions are strong across the supplied chapter, while missing difficult-case implementation keeps them below exceptional.",
+      "scope_note": "Transfer is assessed for observable chapter-local examples and practices; actual behavior change is not claimed or measured."
+    },
+    "motivation_autonomy": {
+      "weight": 8,
+      "subcriteria": {
+        "personal_relevance": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): the material repeatedly connects attachment to familiar moments of texting, conflict, medical support, loneliness, and asking for care without claiming that all readers share the same pattern.",
+          "evidence": [
+            {
+              "locator": "Hook, Fast read, and Examples 3, 5, and 6 (lines 5-12, 51-54, and 61-69)",
+              "paraphrase": "Everyday choices to soften a message, interpret silence, seek support, or take space make the stakes personally recognizable."
+            }
+          ]
+        },
+        "achievable_progress": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): change is framed as one clear signal, one return time, one normal need, and short daily and weekly practices rather than a personality transformation; recovery after failed attempts is only lightly addressed.",
+          "evidence": [
+            {
+              "locator": "Implementation plan and Try this now (lines 151-160)",
+              "paraphrase": "The reader receives small, time-bounded steps that can be attempted during the next relevant urge and reviewed with one trusted person."
+            }
+          ]
+        },
+        "autonomy_non_shaming_tone": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): need is normalized, patterns are not insults or prisons, and readers may take space, leave harm, and preserve a separate life; the chapter invites change without blaming people for attachment responses.",
+          "evidence": [
+            {
+              "locator": "Fast read, Deep read closing, and Full read closing (lines 12, 21, and 38)",
+              "paraphrase": "Dependence is treated as human, attachment categories as revisable tendencies, and healthy closeness as compatible with boundaries and breathing room."
+            }
+          ]
+        },
+        "calibrated_confidence": {
+          "rating": 2,
+          "rationale": "Rating 2 (adequate or mixed): the chapter pairs encouragement with rehearsal and peer observation, but it gives limited guidance for recognizing skill limits, interpreting unsuccessful attempts, or deciding when relational complexity requires outside help.",
+          "evidence": [
+            {
+              "locator": "Implementation plan (lines 151-157)",
+              "paraphrase": "Practice and trusted-person feedback support some calibration, but no criteria define success, failure, repeated nonresponse, or need for additional support."
+            },
+            {
+              "locator": "Full read, paragraphs 1 and 8 (lines 24 and 38)",
+              "paraphrase": "Harm and control are named as boundaries without a corresponding decision path."
+            }
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 5.5,
+      "strengths": [
+        {
+          "locator": "Hook through Fast read and Examples 3, 5, and 6 (lines 5-12, 51-54, and 61-69)",
+          "evidence": "The chapter grounds change in emotionally familiar decisions rather than generic assertions of relevance."
+        },
+        {
+          "locator": "Deep read closing, Full read closing, and Implementation plan (lines 21, 38, and 151-157)",
+          "evidence": "It protects dignity and autonomy while offering small, achievable actions."
+        }
+      ],
+      "limitations": [
+        {
+          "locator": "Implementation plan (lines 151-157)",
+          "evidence": "The practice does not specify how readers should interpret a failed reach-back attempt or recalibrate confidence in unsafe, nonreciprocal, or persistently distressed relationships."
+        }
+      ],
+      "within_chapter_pattern": "Motivation comes from normalizing dependence and making change small and relationally respectful; calibration lags behind encouragement at difficult-case boundaries.",
+      "anchor_rationale": "Relevance, progress, and autonomy are strong, while confidence calibration remains mixed, yielding 2.75.",
+      "scope_note": "This score describes motivational and autonomy support in the chapter; it does not establish reader confidence or behavior change."
+    },
+    "engagement_momentum": {
+      "weight": 8,
+      "subcriteria": {
+        "curiosity_momentum": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): the counterintuitive question about need and bravery creates useful tension, and the progression from infant attachment to adult action generally sustains it; the long component tail slows momentum before the implementation section.",
+          "evidence": [
+            {
+              "locator": "Hook and Counterintuition (lines 5-9)",
+              "paraphrase": "A stalled reply leads directly into the puzzle of why dependence might increase courage rather than diminish it."
+            },
+            {
+              "locator": "Full read through Examples (lines 23-69)",
+              "paraphrase": "The argument adds successive complications about pain, patterns, love systems, commitment, disclosure, control, and return."
+            }
+          ]
+        },
+        "narrative_example_vividness": {
+          "rating": 2,
+          "rationale": "Rating 2 (adequate or mixed): cases are concrete and emotionally legible, but repeated named characters, staged props, institutional settings, and the duplicate Harlow reveal often feel formulaic rather than naturally evidentiary.",
+          "evidence": [
+            {
+              "locator": "Examples 1-6 (lines 41-69)",
+              "paraphrase": "Clipboards, typing dots, a swollen door, and named observers add visibility, yet several details do not change the inference being taught."
+            },
+            {
+              "locator": "Examples 2 and 4 (lines 46-59)",
+              "paraphrase": "The wire-versus-cloth result is staged twice, making the second narrative less revealing despite a changed observer."
+            }
+          ]
+        },
+        "emotional_relevance": {
+          "rating": 3,
+          "rationale": "Rating 3 (strong): vulnerability, fear of abandonment, pride, regret, and relief consistently deepen the relationship problem without replacing the chapter's reasoning.",
+          "evidence": [
+            {
+              "locator": "Full read, paragraphs 1-3 (lines 24-28)",
+              "paraphrase": "The costs of detachment are made emotionally concrete through jealousy, missed care, postponed apology, and prideful self-protection."
+            },
+            {
+              "locator": "Examples 3, 5, and 6 (lines 51-54 and 61-69)",
+              "paraphrase": "Couple exchanges show fear, withdrawal, direct need, relief, and temporary separation in ways that clarify the attachment loop."
+            }
+          ]
+        },
+        "instructional_alignment": {
+          "rating": 2,
+          "rationale": "Rating 2 (adequate or mixed): most hooks and cases advance the model, but decorative specificity, duplicate examples, and a long sequence of similar quiz and card items consume attention without proportionate instructional gain.",
+          "evidence": [
+            {
+              "locator": "Examples 1-6 (lines 41-69)",
+              "paraphrase": "The core actions generally serve diagnosis, but several names, locations, and props could be removed without weakening the lesson."
+            },
+            {
+              "locator": "Quiz and Review cards (lines 71-149)",
+              "paraphrase": "Fifteen retrieval items cover a compact concept set, and many repeat phrasing already established in the layered reads."
+            }
+          ]
+        }
+      },
+      "domain_score": 2.5,
+      "weighted_points": 5.0,
+      "strengths": [
+        {
+          "locator": "Hook and Counterintuition (lines 5-9)",
+          "evidence": "The opening creates curiosity from a psychologically meaningful contradiction rather than a detached teaser."
+        },
+        {
+          "locator": "Full read, paragraphs 1-3 and Examples 3, 5, and 6 (lines 24-28, 51-54, and 61-69)",
+          "evidence": "Emotional stakes illuminate why attachment expectations shape interpretation and behavior."
+        }
+      ],
+      "limitations": [
+        {
+          "locator": "Examples 2 and 4 plus Quiz and Review cards (lines 46-59 and 71-149)",
+          "evidence": "Formulaic detail, a repeated reveal, and component volume create a noticeable momentum dip before practical action resumes."
+        }
+      ],
+      "within_chapter_pattern": "Curiosity and emotion are instructionally productive in the prose and strongest relationship cases, while template repetition lowers narrative authenticity and pacing in the middle-to-late components.",
+      "anchor_rationale": "Curiosity and emotional relevance are strong; vividness and alignment remain mixed because a meaningful share of detail and repetition does not earn its cognitive cost.",
+      "scope_note": "Engagement is assessed within this chapter only; reading momentum across the actual book is unassessable."
+    }
+  },
+  "chapter_diagnostic_score": 70.19736842105263,
+  "diagnostic_band": "Chapter diagnostic: Valuable but materially uneven; targeted redesign needed",
+  "strongest_qualities": [
+    "A coherent secure-base model makes the apparent conflict between dependence and autonomy understandable and usable.",
+    "Practical guidance turns the model into specific requests, return signals, if-then plans, and a lightweight feedback practice.",
+    "Ethical boundaries consistently distinguish secure attachment from control, compulsory closeness, or staying in harm."
+  ],
+  "weakest_qualities": [
+    "Broad psychological claims and named research are compressed into an explanatory story without enough visible evidential qualification.",
+    "The quiz relies on recognition-friendly options, withholds answers, and supplies no alternative explanations or confidence calibration.",
+    "Two near-duplicate Harlow cases and a large quiz-card tail create formulaic repetition and reduce cognitive economy."
+  ],
+  "engagement_curve": "The opening is immediately strong: a stalled message and the need-versus-bravery puzzle create personal stakes and curiosity. Momentum remains high through the safe-base explanation and adult-pattern distinctions, dips across repetitive Harlow cases and the long quiz-card sequence, then recovers when the Reach-Back Rule offers a concrete next move.",
+  "comprehension_retention_analysis": "Plain definitions, a stable safe-base model, meaningful cues, explicit contrasts, varied cases, and review cards strongly support chapter-local comprehension and recall. Retention support is weakened by duplicated content, recognition-heavy distractors, absent quiz feedback, and the inability of a single supplied chapter to demonstrate spacing or cumulative retrieval across the book.",
+  "practical_use_judgment_analysis": "The Reach-Back Rule is feasible and tied to common triggers, bodily observation, clear requests, return timing, and trusted-person feedback. Judgment support is good for reciprocal relationships, but readers facing coercion, repeated nonresponse, unsafe disclosure, or clinically significant distress receive boundary statements without a concrete decision or support pathway.",
+  "best_fit_readers": [
+    "Non-expert adults who recognize anxiety, withdrawal, or shame around ordinary bids for closeness.",
+    "Readers in basically safe, reciprocal close relationships who want one small communication practice.",
+    "Readers who benefit from a concise model reinforced through examples, cards, and implementation cues."
+  ],
+  "struggling_readers": [
+    "Readers who need methodological detail or carefully qualified evidence for the research claims.",
+    "Readers in coercive, abusive, chronically nonreciprocal, or clinically complex relationships who need a safer decision pathway.",
+    "Readers who are sensitive to formulaic scenarios or who learn poorly from recognition-heavy multiple choice without feedback."
+  ],
+  "improvements": [
+    {
+      "priority": 1,
+      "action": "Add a compact evidence-and-limits bridge that distinguishes what each named research example observed, what the chapter infers, and where individual, developmental, or contextual variation could change the recommendation.",
+      "rationale": "This would strengthen claim-support fit and calibrated confidence without turning the chapter into an academic review.",
+      "local_locators": [
+        "Deep read, paragraphs 1-4 (lines 15-21)",
+        "Full read, paragraphs 3-7 (lines 28-36)"
+      ]
+    },
+    {
+      "priority": 2,
+      "action": "Provide answer explanations for every quiz item, replace the easiest denial-and-absolute distractors with plausible misconceptions, and add a confidence or error-revision prompt.",
+      "rationale": "The current assessment checks recognition but gives readers little help diagnosing mistakes, calibrating understanding, or consolidating distinctions.",
+      "local_locators": [
+        "Quiz Questions 1-9 (lines 71-124)",
+        "Review cards (lines 126-149)"
+      ]
+    },
+    {
+      "priority": 3,
+      "action": "Remove one of the two Harlow wire-versus-cloth cases and use the space for a difficult boundary case in which a reach-back request is refused, unsafe, or inappropriate, including a clear stop-or-seek-support path.",
+      "rationale": "This would reduce repetition while improving practical judgment, safety adaptation, and narrative authenticity where the current action plan is thinnest.",
+      "local_locators": [
+        "Example 2: Cloth Before Milk (lines 46-49)",
+        "Example 4: Wrong First Guess (lines 56-59)",
+        "Full read, boundary passages (lines 24, 34, and 38)",
+        "Implementation plan (lines 151-157)"
+      ]
+    }
+  ],
+  "verdict": "As a standalone chapter, this is a clear, humane, and practically useful treatment of attachment as a secure base, with especially strong conceptual coherence, transfer support, and autonomy safeguards. Its 70.2 chapter diagnostic reflects material weaknesses in evidential qualification, assessment feedback, and repetitive template load; it is not a full-book score or certification."
+}

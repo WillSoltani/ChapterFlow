@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF1",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"CLEAN\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Finding C-11-03: instructional alignment weak. Priority P2. Current 2 / target 4. Evidence class: score-only. No chapter-level rationale supplied.\",\"The section states its one job in the first line, gives a worked example, then a two-question check that maps to that job. Each step names what it is doing.\",\"Score-only conditions are hypotheses.\",\"A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported.\"],\"rationale\":\"The review finding is explicitly score-only and supplies no chapter-level rationale, while the contract says score-only conditions are hypotheses and unsupported unless the evidence demonstrates the alleged problem. The candidate passage directly describes instructional alignment: it states a single job, provides a worked example, includes a two-question check mapped to that job, and names each step. On the materials shown, the complaint is not supported and the underlying passage appears clean.\"}"
+}

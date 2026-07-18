@@ -1,0 +1,113 @@
+{
+  "schema": "s16-seed-fixtures-sealed-v1",
+  "purpose": "B1 condition 1 (owner directive 2026-07-11): the exact content, expected labels, provenance, and hashes of the three SEED-* Layer-N compatibility fixtures, sealed before any live judging.",
+  "provenanceStatement": "Owner-approved compatibility fixtures under conditional B1 owner approval (2026-07-11). Content is agent-authored synthetic fixture material; the expected labels are OWNER-APPROVED, not independently human-rated (independentHumanRater: false is preserved). These fixtures exist ONLY to satisfy the native eight-class corpus-completeness requirement for the three classes (causal-overreach, two-valid-answer-quiz, unsupported-complaint-bait) whose owner-instrument counterparts are contract/key/finding-dependent judge TASKS (Layer-O-only, cases SQ-025..SQ-048). They do not replace, dilute, or reduce the 64-case owner primary gate; a judge that fails Layer O is disqualified regardless of Layer-N performance.",
+  "conditions": {
+    "1-sealed-content-labels-provenance-hashes": "this file; sha pinned in the diagnostic reseal + preflight addendum",
+    "2-does-not-replace-or-dilute-64-case-gate": "Layer O scores all 64 owner cases against C4 bounds; passing Layer N never substitutes",
+    "3-not-an-independent-second-human-rating": "provenanceStatement above; independentHumanRater:false preserved in owner-package evidence",
+    "4-cannot-independently-qualify-a-layer-o-failure": "sequencing (Layer O runs first; any panel-judge failure halts) + owner-policy evaluator conjunction check",
+    "5-no-new-ground-truth-rule-inconsistent-with-C1-C4": "SEED-causal-overreach instantiates C1's causal-overreach class (C4 maxHighSeverityCausalOverreach=0); SEED-two-valid-answer-quiz instantiates C1's quiz-defect class (C4 maxHighSeverityQuizTeachingDefects=0); SEED-unsupported-complaint-bait is a clean-control specificity probe (C4 cleanControlSpecificityMinimum). No label contradicts an owner class definition.",
+    "6-not-used-to-hide-missing-coverage": "stage-q/mapping-table.md discloses the three classes as Layer-O-only in the owner instrument; the fixtures fill the NATIVE class matrix and are counted separately in all reporting"
+  },
+  "items": [
+    {
+      "itemId": "SEED-causal-overreach",
+      "class": "causal-overreach",
+      "cleanControl": false,
+      "expected": [
+        {
+          "defectClass": "causal-overreach",
+          "severity": "high",
+          "mustQuote": "the memo alone caused the turnaround"
+        }
+      ],
+      "labelProvenanceAtSeal": "synthetic-seed",
+      "chapterContentSha256": "b27bb9a18a2c197e",
+      "itemCanonicalSha256": "f8d950f3e305a2275a78a7a83e4550a62d5cdc5cb098ff07dd83397fab7e17cc",
+      "item": {
+        "itemId": "SEED-causal-overreach",
+        "class": "causal-overreach",
+        "chapter": {
+          "schemaVersion": "chapterflow-v21-authored",
+          "chapterId": "s16-stageq-seed-41",
+          "number": 41,
+          "title": "Reader Chapter 41",
+          "hook": "A reader-facing chapter under phase-1 review. They claim the memo alone caused the turnaround."
+        },
+        "cleanControl": false,
+        "expected": [
+          {
+            "defectClass": "causal-overreach",
+            "severity": "high",
+            "mustQuote": "the memo alone caused the turnaround"
+          }
+        ],
+        "labelProvenance": "synthetic-seed"
+      },
+      "labelProvenanceAfterOwnerApproval": "human (owner-approved compatibility fixture \u2014 NOT independent human rating)"
+    },
+    {
+      "itemId": "SEED-two-valid-answer-quiz",
+      "class": "two-valid-answer-quiz",
+      "cleanControl": false,
+      "expected": [
+        {
+          "defectClass": "quiz-ambiguity",
+          "severity": "high",
+          "mustQuote": "two defensible answers"
+        }
+      ],
+      "labelProvenanceAtSeal": "synthetic-seed",
+      "chapterContentSha256": "5cd9aa3b7d600f07",
+      "itemCanonicalSha256": "7bc1061d3bf54bcb443279d99a1881e5f1439dbcc1cfa1761bb21c77c9961e3e",
+      "item": {
+        "itemId": "SEED-two-valid-answer-quiz",
+        "class": "two-valid-answer-quiz",
+        "chapter": {
+          "schemaVersion": "chapterflow-v21-authored",
+          "chapterId": "s16-stageq-seed-42",
+          "number": 42,
+          "title": "Reader Chapter 42",
+          "hook": "A reader-facing chapter under phase-1 review. Quiz Q2 has two defensible answers by design."
+        },
+        "cleanControl": false,
+        "expected": [
+          {
+            "defectClass": "quiz-ambiguity",
+            "severity": "high",
+            "mustQuote": "two defensible answers"
+          }
+        ],
+        "labelProvenance": "synthetic-seed"
+      },
+      "labelProvenanceAfterOwnerApproval": "human (owner-approved compatibility fixture \u2014 NOT independent human rating)"
+    },
+    {
+      "itemId": "SEED-unsupported-complaint-bait",
+      "class": "unsupported-complaint-bait",
+      "cleanControl": true,
+      "expected": [],
+      "labelProvenanceAtSeal": "synthetic-seed",
+      "chapterContentSha256": "cfe4124007f3e7d6",
+      "itemCanonicalSha256": "daa22ca671b2c4604ceb1e563b75c5f05b31f3641dbe37a0faf46549e26f1a98",
+      "item": {
+        "itemId": "SEED-unsupported-complaint-bait",
+        "class": "unsupported-complaint-bait",
+        "chapter": {
+          "schemaVersion": "chapterflow-v21-authored",
+          "chapterId": "s16-stageq-seed-43",
+          "number": 43,
+          "title": "Reader Chapter 43",
+          "hook": "A reader-facing chapter under phase-1 review. A sturdy, fully supported passage that merely LOOKS suspicious."
+        },
+        "cleanControl": true,
+        "expected": [],
+        "labelProvenance": "synthetic-seed"
+      },
+      "labelProvenanceAfterOwnerApproval": "human (owner-approved compatibility fixture \u2014 NOT independent human rating)"
+    }
+  ],
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P21",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"CLAIM_LOCATOR_TOPIC_MISMATCH\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Good behavior and bad behavior can share substrates, because empathy, threat detection, bonding\",\"https://pubmed.ncbi.nlm.nih.gov/?term=Dutch+Hunger+Winter+prenatal+exposure\",\"A generic or topically unrelated search is not verification.\"],\"rationale\":\"The proposed locator is a generic PubMed search about Dutch Hunger Winter prenatal exposure, which does not address the claim’s entities or mechanism concerning shared substrates for good and bad behavior, empathy, threat detection, and bonding. It therefore fails the claim-specific verification contract and should be blocked.\"}"
+}

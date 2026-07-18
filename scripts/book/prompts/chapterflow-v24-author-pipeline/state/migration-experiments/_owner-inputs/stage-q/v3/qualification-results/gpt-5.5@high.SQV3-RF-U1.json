@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-U1",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"UNSUPPORTED\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Deliver corrective feedback close in time to the behavior, while the specifics are still fresh.\",\"Give the correction close to the moment, while the details are still fresh enough to be useful.\"],\"rationale\":\"The supplied record is sufficient to decide the finding because it includes both the source contract and the candidate passage needed to compare feedback timing. The candidate's instruction to give correction close to the moment while details remain fresh is consistent with the source contract's requirement to deliver corrective feedback close in time to the behavior while specifics are still fresh. The alleged contradiction is therefore not supported by the supplied materials.\"}"
+}

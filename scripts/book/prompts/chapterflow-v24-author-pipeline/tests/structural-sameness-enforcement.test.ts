@@ -175,6 +175,30 @@ test("bookGate (F-06): a below-threshold (1-axis) book passes in BOTH modes — 
   assert.equal(advisory.findings.some((f) => f.catalogId === "ARCH0.architecture_monoculture"), false, "no ARCH0 aggregate on a 1-axis book");
 });
 
+// ── the NEW-authoring opt-in option (content-excellence Track B 2026-07-15) ─────
+
+test("bookGate (Track B): the structuralSamenessMode OPTION forces enforcement independent of the env flag (NEW-authoring path)", () => {
+  const book = saturatedBook();
+  // NEW-authoring path (generateBook): the option forces enforce even with the env
+  // UNSET (advisory) → a severe-mold fresh book FAILS the gate.
+  const forced = quiet(() => withEnv(undefined, () => runBookGate(BOOK, book, { ...GATE_OPTS, structuralSamenessMode: "enforce" })));
+  assert.equal(forced.passed, false, "the enforce option fails a severe-mold book even with the env unset");
+  assert.equal(
+    forced.findings.find((f) => f.catalogId === "ARCH0.architecture_monoculture")?.severity,
+    "blocker",
+    "the option promotes the SEVERE ARCH0 aggregate to a blocker",
+  );
+
+  // Replay/gold/repair/promotion: omitting the option inherits the env default
+  // (advisory) → the SAME book PASSES, byte-identical to before this change.
+  const inherited = quiet(() => withEnv(undefined, () => runBookGate(BOOK, book, GATE_OPTS)));
+  assert.equal(inherited.passed, true, "without the option, the env default (advisory) governs — gold/replay unchanged");
+
+  // The explicit option WINS over the env: an advisory option beats an enforce env.
+  const optAdvisory = quiet(() => withEnv("enforce", () => runBookGate(BOOK, book, { ...GATE_OPTS, structuralSamenessMode: "advisory" })));
+  assert.equal(optAdvisory.passed, true, "an explicit advisory option overrides an enforce env");
+});
+
 // ── the deterministic snapshot builder ─────────────────────────────────────────
 
 test("structuralSamenessSnapshot: reports a compact deterministic saturation snapshot; empty on a varied book", () => {

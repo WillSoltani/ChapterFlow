@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P31",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"DUPLICATED_ITEM_RELABELED_WITHOUT_DISTINCT_MECHANISM_COVERAGE\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":\"\\\"Chapter skill: Sort Out the Three Conversations\\\"; \\\"Chapter skill: Abandon Blame\\\"; \\\"Map each person's contribution and the system pressures before deciding what must change next time.\\\"; \\\"The best choice keeps the conversation tied to three layers and creates room for new information.\\\"; \\\"The best choice keeps the conversation tied to contribution and creates room for new information.\\\"\",\"rationale\":\"The two instances use the identical scenario, choices, and correct answer, while only changing the skill label and a phrase in the explanation. The correct choice specifically assesses contribution and systemic pressures, which fits abandoning blame, but it does not distinctly require sorting the three conversations or demonstrate their separate mechanisms. Calling this same answer \\\"tied to three layers\\\" does not add or test those layers, so the duplicate merely relabels a generic contribution-focused response and fails to assess both stated chapter mechanisms.\"}"
+}

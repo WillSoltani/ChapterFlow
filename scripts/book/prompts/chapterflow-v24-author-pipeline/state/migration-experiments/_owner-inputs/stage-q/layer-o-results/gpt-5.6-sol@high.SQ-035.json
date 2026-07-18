@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-035",
+  "parsed": {
+    "caseId": "SQ-035",
+    "verdict": "DEFECT",
+    "defectClass": "MECHANISM_RELABELING",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "State the impact, own the concern, and ask for a specific repair date or alternative plan."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "State the impact, own the concern, and ask for a specific repair date or alternative plan."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "tied to intent and impact and creates room for new information"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "tied to identity and creates room for new information"
+      }
+    ],
+    "explanation": "Both instances use the identical scenario, choices, and correct answer. Only the skill label and one explanation term change, so the duplicated item does not distinctly assess the two chapter mechanisms.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-035\",\"verdict\":\"DEFECT\",\"defectClass\":\"MECHANISM_RELABELING\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\"},{\"materialIndex\":1,\"quote\":\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\"},{\"materialIndex\":0,\"quote\":\"tied to intent and impact and creates room for new information\"},{\"materialIndex\":1,\"quote\":\"tied to identity and creates room for new information\"}],\"explanation\":\"Both instances use the identical scenario, choices, and correct answer. Only the skill label and one explanation term change, so the duplicated item does not distinctly assess the two chapter mechanisms.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

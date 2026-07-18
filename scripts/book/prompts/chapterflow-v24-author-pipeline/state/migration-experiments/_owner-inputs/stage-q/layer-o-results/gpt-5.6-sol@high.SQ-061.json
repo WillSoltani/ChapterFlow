@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-061",
+  "parsed": {
+    "caseId": "SQ-061",
+    "verdict": "DEFECT",
+    "defectClass": "AUTHORING_DIRECTIVE_CONTAMINATION",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "The writer should keep the setup crisp: four villains, four counters, and a repeated spotlight image."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Avoid importing later tools too early; the main job is to establish why process beats mere awareness."
+      }
+    ],
+    "explanation": "The artifact mixes topical synthesis with explicit instructions governing how later content should be written. Those authoring directives make it planning material rather than clean evidentiary source content.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-061\",\"verdict\":\"DEFECT\",\"defectClass\":\"AUTHORING_DIRECTIVE_CONTAMINATION\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"The writer should keep the setup crisp: four villains, four counters, and a repeated spotlight image.\"},{\"materialIndex\":0,\"quote\":\"Avoid importing later tools too early; the main job is to establish why process beats mere awareness.\"}],\"explanation\":\"The artifact mixes topical synthesis with explicit instructions governing how later content should be written. Those authoring directives make it planning material rather than clean evidentiary source content.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

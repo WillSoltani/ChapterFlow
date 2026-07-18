@@ -1,0 +1,622 @@
+{
+  "artifactSha256": "2c128391ee361670c43bb5d921e46350fea9e0d4d7e754627282a03af49c6ee3",
+  "corpusId": "imp24-quiz-role-corpus-v3-envelope",
+  "experimentId": "s16-forward-role-qualification-v3-envelope",
+  "partition": "canary",
+  "payload": {
+    "cases": [
+      {
+        "adversarialAmbiguityProof": null,
+        "baseBookId": "decisive",
+        "baseChapter": 2,
+        "caseId": "QUIZ-V3-CANARY-key-mismatch-decisive-ch02-q01",
+        "chapter": {
+          "breakdown": {
+            "deepRead": "The trap works because attention obeys the first wording it hears. Once the teen reader reads the problem as \"break up or not,\" every fact starts serving that ballot. A sister's comment becomes evidence for leaving. A sweet text becomes evidence for staying. The relationship, the family pressure, and the timing all get flattened into one door.\n\nQuaker's Snapple deal shows the same squeeze at corporate size. The Quaker executive studies a packet with Snapple on the cover and about $1.8 billion on the price line. The page says acquisition, but the deeper problem is growth. If the meeting treats Snapple as the growth plan, the group may argue valuation while skipping other paths.\n\nMoney makes the missing path easier to see. Opportunity cost is plain: every dollar, hour, or bit of attention used here cannot be used there. A price tag is also a mirror. It asks what else the same resources could do.\n\nTwo small tests help. First, listen for whether-or-not wording. Should we buy Snapple? Should the teen reader end it? That wording is a warning light, not a verdict. Second, make the visible options disappear for a moment. If this choice vanished, what would you try next? The test does not pick the winner. It makes the room less captive.\n\nA bigger frame is not a bigger mess. Wider does not mean endless. It means at least one more real path before judgment begins. You cannot compare what you never allowed on the table.",
+            "fastRead": "The teen reader's thumb rests over a message posted under the handle claireabelle. The teen problem looks simple: break up or stay. Family tension sits behind it, but the wording has already shrunk the whole life of the relationship into a yes-or-no vote.\n\nA narrow frame is a choice worded so tightly that one option looks like the whole decision. The first fix is not better analysis. It is a wider first frame. A framed choice becomes a hidden choice. Ask what else could solve the real problem, what the same time or money could buy, and what you would do if the visible options disappeared.",
+            "fullRead": "Too much widening can become a fog machine. A team can add ten weak options, praise its own creativity, and still dodge the hard work. The teen reader can list every possible text, talk, pause, and apology without ever facing the relationship pattern. Quaker could have filled a whiteboard with growth words while leaving Snapple as the only serious bet.\n\nThe useful move is narrower than brainstorming. It asks for a credible alternative that serves the same need. For the teen reader, the need may be relief from family pressure, clearer boundaries, or an honest talk about the relationship. \"Break up\" and \"stay\" are not the only handles. The problem may ask for a conversation with the partner, a boundary with family, or a slower decision after the latest fight cools.\n\nIn a company, the need may be growth. A Snapple acquisition is one possible answer. The wider frame asks what else could use about $1.8 billion. Better distribution, product repair, smaller tests, or a different deal might appear. Those paths may still lose. The gain is that the deal must beat something real.\n\nThe four frame wideners keep the work practical: Spot whether-or-not wording, Name opportunity costs, Run the Vanishing Options Test, and Ask for both-and possibilities. The exact names matter because each one catches a different squeeze. Whether-or-not wording catches the false ballot. Opportunity cost catches the hidden tradeoff. The Vanishing Options Test catches fixation. Both-and questions catch a tradeoff that may be designed around.\n\nBoth-and does not mean magic. Some choices truly conflict. A teen may not be able to protect every relationship at once. A company may not be able to buy Snapple and fund every other plan. The move is to test the tradeoff before bowing to it. A false either-or is expensive even when the stakes are small.\n\nThe corporate case also warns against status heat. A large deal can start to feel brave because it is large. A board packet, a price tag, and a public story make the option look serious. Other paths can look timid because they are less dramatic. Drama is not proof. Size can make a narrow frame louder.\n\nDecision research is useful in the background here: many organizations have treated one real alternative as enough. That pattern should make the reader suspicious of a polished single option. A clean memo can still be cramped. A confident team can still be arguing inside a box.\n\nThe overcorrection is option tourism. People wander from idea to idea so they never have to commit. Widening the frame is not a license to delay forever. It earns a better decision by making one extra serious path visible, then comparing. The work begins before judgment, but it must end in judgment. A wider frame is a doorway, not a place to live."
+          },
+          "chapterId": "decisive-ch02",
+          "counterintuition": "Focus feels responsible, but a too-tight frame can hide the better choice before evidence starts.",
+          "examples": [
+            {
+              "exampleId": "decisive-ch02-ex01",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt. The post names a teen relationship, family interactions, and one visible question: break up or not. No one has moved yet. The tiny cursor after the question is doing the narrowing work.",
+              "tags": [
+                "claireabelle",
+                "relationship",
+                "whether-or-not"
+              ],
+              "title": "The Phone-Screen Ballot",
+              "whatToDo": "Claire underlines the break-up-or-not wording, then writes two missing questions in the margin: what needs repair with the partner, and what boundary belongs with family.",
+              "whyItMatters": "The pause keeps a personal choice from becoming a false ballot. When the first wording shrinks the problem, the reader can widen it before feelings harden."
+            },
+            {
+              "exampleId": "decisive-ch02-ex02",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "In a Quaker strategy room, the Quaker executive taps the Snapple packet beside the deal binder. \"Snapple is the growth answer,\" he says. The strategist keeps his pencil on the $1.8 billion line. \"Or it is one answer,\" he says. \"If growth is the job, what else buys growth with this much money?\"",
+              "tags": [
+                "Quaker",
+                "Snapple",
+                "acquisition"
+              ],
+              "title": "Snapple At The Table",
+              "whatToDo": "The Quaker executive changes the meeting question from \"Should Quaker buy Snapple?\" to \"What are the growth paths this money could fund?\" The deal becomes one path.",
+              "whyItMatters": "The exchange moves the group from advocacy to comparison. A large acquisition should beat other growth paths, not merely sound bold inside its own frame."
+            },
+            {
+              "exampleId": "decisive-ch02-ex03",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "The memo writer's Quaker memo has three pages on Snapple and no page for anything else. Her cursor blinks after the phrase \"recommended acquisition.\" She notices the mistake before the printer warms: the $1.8 billion line has no rival use beside it.",
+              "tags": [
+                "Quaker",
+                "Snapple",
+                "opportunity cost"
+              ],
+              "title": "Quaker Memo Catch",
+              "whatToDo": "The memo writer inserts an opportunity-cost page before the recommendation. She lists what the same capital could fund and marks which options also answer the growth need.",
+              "whyItMatters": "The correction happens before the argument gathers speed. Opportunity cost makes the hidden alternative visible while there is still time to compare."
+            },
+            {
+              "exampleId": "decisive-ch02-ex04",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "The adviser's unsent draft to claireabelle starts with a heading: \"If the break-up-or-not frame were off the table.\" Below it, he writes three lines for the teen relationship. Talk to the partner about the family interactions; set one family boundary; wait until the fight is not fresh.",
+              "tags": [
+                "claireabelle",
+                "Vanishing Options Test",
+                "family"
+              ],
+              "title": "Vanishing Options Draft",
+              "whatToDo": "The adviser sends the Vanishing Options Test, not a verdict. He gives claireabelle a way to search for options before choosing among them.",
+              "whyItMatters": "The test protects the other person's agency. It widens the frame without pretending the new list automatically contains the answer."
+            },
+            {
+              "exampleId": "decisive-ch02-ex05",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "One strategist fills one column with reasons Quaker should buy Snapple. Another strategist writes a different page: acquire, partner, improve distribution, or test smaller brands. One strategist's page makes the acquisition feel inevitable. Another strategist's page makes the $1.8 billion choice compete.",
+              "tags": [
+                "Quaker",
+                "Snapple",
+                "both-and"
+              ],
+              "title": "Two Growth Lists",
+              "whatToDo": "One strategist tests the deal on its own terms. Another strategist tests the frame first, then asks which path solves growth with the least avoidable downside.",
+              "whyItMatters": "Both lists look serious, but only one creates comparison. A wide frame forces the visible option to earn its place against real alternatives."
+            },
+            {
+              "exampleId": "decisive-ch02-ex06",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "On a short call about the claireabelle post, Claire lets the silence sit after describing the family conflict. The strategist answers, \"Do not let the first box call itself the whole map.\" Then he asks what repair and boundary could both look like.",
+              "tags": [
+                "claireabelle",
+                "coach talk",
+                "both-and"
+              ],
+              "title": "Naming the Box",
+              "whatToDo": "The strategist names the box before giving advice. He asks Claire to separate the relationship issue from the family-pressure issue and look for both-and moves.",
+              "whyItMatters": "The reframe gives the reader a sentence to borrow. Some choices stay hard, but they should be hard for the right reason."
+            }
+          ],
+          "hook": "The first option can look like the whole decision.",
+          "implementationPlan": {
+            "coreSkill": "Practice catching the first wording of a decision before you evaluate it. Use Widen the First Frame: name the whether-or-not wording, state the resource at stake, then add one credible alternative. The skill is not brainstorming forever. It is making sure the visible option has to compete.",
+            "ifThenPlans": [
+              {
+                "context": "When a choice arrives as approve-or-reject",
+                "plan": "If the choice arrives as approve-or-reject, then use Widen the First Frame. Ask what problem the option solves and name one other path."
+              },
+              {
+                "context": "When money, time, or attention is about to be spent",
+                "plan": "If the resource is scarce, then name what the same resource could do instead. Keep that option beside the visible one."
+              },
+              {
+                "context": "When the same two options keep looping",
+                "plan": "If the same two options keep looping, then pretend both vanished. Write the next practical move before returning to judgment."
+              },
+              {
+                "context": "When the room says one aim must lose",
+                "plan": "If the tradeoff sounds automatic, then ask what design might protect both aims. Only accept the tradeoff after that test."
+              }
+            ],
+            "title": "Practice catching the first wording of a decision before you evaluate it",
+            "twentyFourHourChallenge": "At your next handoff between tasks, stage one rehearsal. Say the visible option aloud, name the resource it would use, ask one person for a missing option, and walk through adding it.",
+            "weeklyPractice": "Ask one other person this week to flag when you turn a choice into a yes-or-no box. Compare notes once and choose one future wording you will widen first."
+          },
+          "keyTakeaway": "Before judging the visible option, ask what the same money, time, or attention could buy instead.",
+          "memorableLines": [
+            {
+              "location": "breakdown",
+              "text": "A framed choice becomes a hidden choice.",
+              "why": "A memorable distillation of the chapter's core idea."
+            },
+            {
+              "location": "breakdown",
+              "text": "A price tag is also a mirror.",
+              "why": "A memorable distillation of the chapter's core idea."
+            },
+            {
+              "location": "breakdown",
+              "text": "Size can make a narrow frame louder.",
+              "why": "A memorable distillation of the chapter's core idea."
+            }
+          ],
+          "number": 2,
+          "quiz": {
+            "passingScorePercent": 80,
+            "questions": [
+              {
+                "bloomsLevel": "apply",
+                "choices": [
+                  "Ask for stronger data on the proposal before anyone names other paths.",
+                  "Ask what problem the proposal solves and what other paths could solve it.",
+                  "Ask the team to vote quickly so the important option gets full attention."
+                ],
+                "correctIndex": 2,
+                "depthLevel": "standard",
+                "explanation": "A whether-or-not question starts with one candidate answer. The stronger move creates options before the team starts defending the visible one.",
+                "prompt": "You hear a teammate ask only whether to approve one proposal. Which response best catches the narrow frame?",
+                "questionId": "decisive-ch02-q01"
+              }
+            ]
+          },
+          "readingTimeMinutes": 12,
+          "reviewCards": [
+            {
+              "back": "Listen for a choice worded as whether to accept or reject one option. That wording turns attention toward defending the visible answer instead of creating alternatives.",
+              "cardId": "decisive-ch02-card01",
+              "difficulty": "easy",
+              "front": "How can you spot a narrow frame in plain language?"
+            },
+            {
+              "back": "The price makes the hidden alternatives expensive to ignore. A large acquisition has to compete with what the same capital could have done elsewhere.",
+              "cardId": "decisive-ch02-card02",
+              "difficulty": "medium",
+              "front": "Why does Quaker's roughly $1.8 billion Snapple price sharpen the lesson?"
+            },
+            {
+              "back": "It asks what you would try if the visible options were gone. It creates new options, but it does not rank them or choose the final answer.",
+              "cardId": "decisive-ch02-card03",
+              "difficulty": "easy",
+              "front": "What does the Vanishing Options Test do, and what does it not do?"
+            },
+            {
+              "back": "The four villains are narrow framing, confirmation bias, short-term emotion, and overconfidence. Here, the first villain appears when one visible option crowds out the rest.",
+              "cardId": "decisive-ch02-card04",
+              "difficulty": "medium",
+              "front": "How would you restate Four decision villains (Ch 1) in your own words, then use it on today's problem?"
+            },
+            {
+              "back": "Spot whether-or-not wording, Name opportunity costs, Run the Vanishing Options Test, and Ask for both-and possibilities. Each one opens a different stuck frame.",
+              "cardId": "decisive-ch02-card05",
+              "difficulty": "hard",
+              "front": "What are the four frame wideners for a narrow frame?"
+            }
+          ],
+          "title": "Avoid a Narrow Frame",
+          "tryThisNow": "At your next handoff between tasks, ask one person, \"What option am I not naming here?\" Write the exact answer on a scrap, then rehearse saying it once before you move on."
+        },
+        "cleanItemProof": {
+          "curatorRationale": "Only the keyed response widens the whether-or-not frame by asking about the problem and alternatives; more data and a quick vote preserve the narrow frame. Calibration only; not independent-human gold.",
+          "defensibleAnswerIndices": [
+            1
+          ],
+          "evidencePath": "/quiz/questions/0/explanation",
+          "evidenceSha256": "sha256:563dfa6253737637b7f30ff532bd4838b66583337364c1bd6b5d8225be460da4",
+          "independentHumanRater": false,
+          "keyedAnswerIndex": 1,
+          "sourceDesignation": "curator-inspected calibration item from chapter 2; chapter 1 question 4 is explicitly excluded as a known wrong-key item",
+          "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD"
+        },
+        "curation": {
+          "curatorRationale": "The stored key alone is rotated away from a curator-verified unique answer; question, choices, and explanation remain protected.",
+          "independentHumanRater": false,
+          "labelProvenance": "curator-authored-development-fixture",
+          "ownerApprovedForDevelopmentBakeoff": true,
+          "sourceDesignation": "controlled pair of decisive-ch02-q01"
+        },
+        "expected": {
+          "defensibleAnswerIndices": [
+            1
+          ],
+          "goldResult": "BLOCK",
+          "keyCorrect": "wrong",
+          "keyedMechanismSupported": true,
+          "mutatedCorrectIndex": 2,
+          "originalCorrectIndex": 1,
+          "uniqueAnswer": true
+        },
+        "imp24": {
+          "canaryExcludedFromMetrics": true,
+          "controlledMutation": {
+            "declaredPaths": [
+              "/quiz/questions/0/correctIndex"
+            ],
+            "mutationId": "QUIZ-V3-CANARY-key-mismatch-decisive-ch02-q01-controlled-mutation",
+            "operationCount": 1,
+            "primaryDefect": "wrong_key",
+            "protectedProjectionSha256": "sha256:f2ccf209894fbf7130d65c8fba2e5861aad8e36d829898e3c50ce6278f6d1d6f",
+            "schema": "imp24-controlled-mutation-v1",
+            "secondaryCategories": [],
+            "specificityKind": null
+          },
+          "eligibleForPreLiveFreeze": true,
+          "goldProvenance": "fresh-model-free-audit-of-frozen-v2-fixture",
+          "schema": "imp24-case-governance-v1",
+          "v2InputCaseId": "QUIZ-V2-CALIBRATION-key-mismatch-decisive-ch02-q01",
+          "v2InputCaseSha256": "sha256:2f140135fc4725c4aa7363f84fcf08451728ba399491de42b2d1e7cf55b36a38"
+        },
+        "kind": "key-mismatch",
+        "mechanismProof": null,
+        "partition": "canary",
+        "provenance": {
+          "basePackageCanonicalSha256": "sha256:acfe0c7728267558844451ade4172fb1e7ce195fa7d699c4f698f0982c67dcd1",
+          "cleanBaseGates": {
+            "epistemic": "Pass",
+            "ethics": "Pass",
+            "externalAccuracy": "Not assessed"
+          },
+          "cleanBaseScore": 88,
+          "isolatedBaseContentSha256": "sha256:50d38231e5437a58b942a93e57bd751979e1b6174e0b86c85696ae1e477458e0",
+          "mutationOps": [
+            {
+              "op": "replace",
+              "path": "/quiz/questions/0/correctIndex",
+              "value": 2
+            }
+          ],
+          "mutationOpsSha256": "sha256:5ed113c56fd6d181db50148c28dfa32f6e70442578f7996b34f12f0892ed3ea5",
+          "protectedContentSha256": "sha256:f2ccf209894fbf7130d65c8fba2e5861aad8e36d829898e3c50ce6278f6d1d6f",
+          "renderedBytes": 12469,
+          "sourceChapterContentSha256": "sha256:ffc9b27f836e0a6517657990a19e8ce9475ad281320f580e9ec9121fe2d3d4da",
+          "variantContentSha256": "sha256:1bfcd73f9370b3283956122b515c70040bb275f94a19e653178b4ad73b5b5728"
+        },
+        "questionIndex1": 1,
+        "requiresPhase2": true,
+        "role": "quiz",
+        "sourceQuestionIndex1": 1,
+        "sourceSemanticsStatus": "MISSING",
+        "substantiveCaseSha256": "sha256:0e221539363b8574a10fd4f8e44c6687d24c64ec2c9f14f25972bd32e8e313d6"
+      },
+      {
+        "adversarialAmbiguityProof": null,
+        "baseBookId": "decisive",
+        "baseChapter": 2,
+        "caseId": "QUIZ-V3-CANARY-uniquely-correct-clean-decisive-ch02-q01",
+        "chapter": {
+          "breakdown": {
+            "deepRead": "The trap works because attention obeys the first wording it hears. Once the teen reader reads the problem as \"break up or not,\" every fact starts serving that ballot. A sister's comment becomes evidence for leaving. A sweet text becomes evidence for staying. The relationship, the family pressure, and the timing all get flattened into one door.\n\nQuaker's Snapple deal shows the same squeeze at corporate size. The Quaker executive studies a packet with Snapple on the cover and about $1.8 billion on the price line. The page says acquisition, but the deeper problem is growth. If the meeting treats Snapple as the growth plan, the group may argue valuation while skipping other paths.\n\nMoney makes the missing path easier to see. Opportunity cost is plain: every dollar, hour, or bit of attention used here cannot be used there. A price tag is also a mirror. It asks what else the same resources could do.\n\nTwo small tests help. First, listen for whether-or-not wording. Should we buy Snapple? Should the teen reader end it? That wording is a warning light, not a verdict. Second, make the visible options disappear for a moment. If this choice vanished, what would you try next? The test does not pick the winner. It makes the room less captive.\n\nA bigger frame is not a bigger mess. Wider does not mean endless. It means at least one more real path before judgment begins. You cannot compare what you never allowed on the table.",
+            "fastRead": "The teen reader's thumb rests over a message posted under the handle claireabelle. The teen problem looks simple: break up or stay. Family tension sits behind it, but the wording has already shrunk the whole life of the relationship into a yes-or-no vote.\n\nA narrow frame is a choice worded so tightly that one option looks like the whole decision. The first fix is not better analysis. It is a wider first frame. A framed choice becomes a hidden choice. Ask what else could solve the real problem, what the same time or money could buy, and what you would do if the visible options disappeared.",
+            "fullRead": "Too much widening can become a fog machine. A team can add ten weak options, praise its own creativity, and still dodge the hard work. The teen reader can list every possible text, talk, pause, and apology without ever facing the relationship pattern. Quaker could have filled a whiteboard with growth words while leaving Snapple as the only serious bet.\n\nThe useful move is narrower than brainstorming. It asks for a credible alternative that serves the same need. For the teen reader, the need may be relief from family pressure, clearer boundaries, or an honest talk about the relationship. \"Break up\" and \"stay\" are not the only handles. The problem may ask for a conversation with the partner, a boundary with family, or a slower decision after the latest fight cools.\n\nIn a company, the need may be growth. A Snapple acquisition is one possible answer. The wider frame asks what else could use about $1.8 billion. Better distribution, product repair, smaller tests, or a different deal might appear. Those paths may still lose. The gain is that the deal must beat something real.\n\nThe four frame wideners keep the work practical: Spot whether-or-not wording, Name opportunity costs, Run the Vanishing Options Test, and Ask for both-and possibilities. The exact names matter because each one catches a different squeeze. Whether-or-not wording catches the false ballot. Opportunity cost catches the hidden tradeoff. The Vanishing Options Test catches fixation. Both-and questions catch a tradeoff that may be designed around.\n\nBoth-and does not mean magic. Some choices truly conflict. A teen may not be able to protect every relationship at once. A company may not be able to buy Snapple and fund every other plan. The move is to test the tradeoff before bowing to it. A false either-or is expensive even when the stakes are small.\n\nThe corporate case also warns against status heat. A large deal can start to feel brave because it is large. A board packet, a price tag, and a public story make the option look serious. Other paths can look timid because they are less dramatic. Drama is not proof. Size can make a narrow frame louder.\n\nDecision research is useful in the background here: many organizations have treated one real alternative as enough. That pattern should make the reader suspicious of a polished single option. A clean memo can still be cramped. A confident team can still be arguing inside a box.\n\nThe overcorrection is option tourism. People wander from idea to idea so they never have to commit. Widening the frame is not a license to delay forever. It earns a better decision by making one extra serious path visible, then comparing. The work begins before judgment, but it must end in judgment. A wider frame is a doorway, not a place to live."
+          },
+          "chapterId": "decisive-ch02",
+          "counterintuition": "Focus feels responsible, but a too-tight frame can hide the better choice before evidence starts.",
+          "examples": [
+            {
+              "exampleId": "decisive-ch02-ex01",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt. The post names a teen relationship, family interactions, and one visible question: break up or not. No one has moved yet. The tiny cursor after the question is doing the narrowing work.",
+              "tags": [
+                "claireabelle",
+                "relationship",
+                "whether-or-not"
+              ],
+              "title": "The Phone-Screen Ballot",
+              "whatToDo": "Claire underlines the break-up-or-not wording, then writes two missing questions in the margin: what needs repair with the partner, and what boundary belongs with family.",
+              "whyItMatters": "The pause keeps a personal choice from becoming a false ballot. When the first wording shrinks the problem, the reader can widen it before feelings harden."
+            },
+            {
+              "exampleId": "decisive-ch02-ex02",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "In a Quaker strategy room, the Quaker executive taps the Snapple packet beside the deal binder. \"Snapple is the growth answer,\" he says. The strategist keeps his pencil on the $1.8 billion line. \"Or it is one answer,\" he says. \"If growth is the job, what else buys growth with this much money?\"",
+              "tags": [
+                "Quaker",
+                "Snapple",
+                "acquisition"
+              ],
+              "title": "Snapple At The Table",
+              "whatToDo": "The Quaker executive changes the meeting question from \"Should Quaker buy Snapple?\" to \"What are the growth paths this money could fund?\" The deal becomes one path.",
+              "whyItMatters": "The exchange moves the group from advocacy to comparison. A large acquisition should beat other growth paths, not merely sound bold inside its own frame."
+            },
+            {
+              "exampleId": "decisive-ch02-ex03",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "The memo writer's Quaker memo has three pages on Snapple and no page for anything else. Her cursor blinks after the phrase \"recommended acquisition.\" She notices the mistake before the printer warms: the $1.8 billion line has no rival use beside it.",
+              "tags": [
+                "Quaker",
+                "Snapple",
+                "opportunity cost"
+              ],
+              "title": "Quaker Memo Catch",
+              "whatToDo": "The memo writer inserts an opportunity-cost page before the recommendation. She lists what the same capital could fund and marks which options also answer the growth need.",
+              "whyItMatters": "The correction happens before the argument gathers speed. Opportunity cost makes the hidden alternative visible while there is still time to compare."
+            },
+            {
+              "exampleId": "decisive-ch02-ex04",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "The adviser's unsent draft to claireabelle starts with a heading: \"If the break-up-or-not frame were off the table.\" Below it, he writes three lines for the teen relationship. Talk to the partner about the family interactions; set one family boundary; wait until the fight is not fresh.",
+              "tags": [
+                "claireabelle",
+                "Vanishing Options Test",
+                "family"
+              ],
+              "title": "Vanishing Options Draft",
+              "whatToDo": "The adviser sends the Vanishing Options Test, not a verdict. He gives claireabelle a way to search for options before choosing among them.",
+              "whyItMatters": "The test protects the other person's agency. It widens the frame without pretending the new list automatically contains the answer."
+            },
+            {
+              "exampleId": "decisive-ch02-ex05",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "One strategist fills one column with reasons Quaker should buy Snapple. Another strategist writes a different page: acquire, partner, improve distribution, or test smaller brands. One strategist's page makes the acquisition feel inevitable. Another strategist's page makes the $1.8 billion choice compete.",
+              "tags": [
+                "Quaker",
+                "Snapple",
+                "both-and"
+              ],
+              "title": "Two Growth Lists",
+              "whatToDo": "One strategist tests the deal on its own terms. Another strategist tests the frame first, then asks which path solves growth with the least avoidable downside.",
+              "whyItMatters": "Both lists look serious, but only one creates comparison. A wide frame forces the visible option to earn its place against real alternatives."
+            },
+            {
+              "exampleId": "decisive-ch02-ex06",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "On a short call about the claireabelle post, Claire lets the silence sit after describing the family conflict. The strategist answers, \"Do not let the first box call itself the whole map.\" Then he asks what repair and boundary could both look like.",
+              "tags": [
+                "claireabelle",
+                "coach talk",
+                "both-and"
+              ],
+              "title": "Naming the Box",
+              "whatToDo": "The strategist names the box before giving advice. He asks Claire to separate the relationship issue from the family-pressure issue and look for both-and moves.",
+              "whyItMatters": "The reframe gives the reader a sentence to borrow. Some choices stay hard, but they should be hard for the right reason."
+            }
+          ],
+          "hook": "The first option can look like the whole decision.",
+          "implementationPlan": {
+            "coreSkill": "Practice catching the first wording of a decision before you evaluate it. Use Widen the First Frame: name the whether-or-not wording, state the resource at stake, then add one credible alternative. The skill is not brainstorming forever. It is making sure the visible option has to compete.",
+            "ifThenPlans": [
+              {
+                "context": "When a choice arrives as approve-or-reject",
+                "plan": "If the choice arrives as approve-or-reject, then use Widen the First Frame. Ask what problem the option solves and name one other path."
+              },
+              {
+                "context": "When money, time, or attention is about to be spent",
+                "plan": "If the resource is scarce, then name what the same resource could do instead. Keep that option beside the visible one."
+              },
+              {
+                "context": "When the same two options keep looping",
+                "plan": "If the same two options keep looping, then pretend both vanished. Write the next practical move before returning to judgment."
+              },
+              {
+                "context": "When the room says one aim must lose",
+                "plan": "If the tradeoff sounds automatic, then ask what design might protect both aims. Only accept the tradeoff after that test."
+              }
+            ],
+            "title": "Practice catching the first wording of a decision before you evaluate it",
+            "twentyFourHourChallenge": "At your next handoff between tasks, stage one rehearsal. Say the visible option aloud, name the resource it would use, ask one person for a missing option, and walk through adding it.",
+            "weeklyPractice": "Ask one other person this week to flag when you turn a choice into a yes-or-no box. Compare notes once and choose one future wording you will widen first."
+          },
+          "keyTakeaway": "Before judging the visible option, ask what the same money, time, or attention could buy instead.",
+          "memorableLines": [
+            {
+              "location": "breakdown",
+              "text": "A framed choice becomes a hidden choice.",
+              "why": "A memorable distillation of the chapter's core idea."
+            },
+            {
+              "location": "breakdown",
+              "text": "A price tag is also a mirror.",
+              "why": "A memorable distillation of the chapter's core idea."
+            },
+            {
+              "location": "breakdown",
+              "text": "Size can make a narrow frame louder.",
+              "why": "A memorable distillation of the chapter's core idea."
+            }
+          ],
+          "number": 2,
+          "quiz": {
+            "passingScorePercent": 80,
+            "questions": [
+              {
+                "bloomsLevel": "apply",
+                "choices": [
+                  "Ask for stronger data on the proposal before anyone names other paths.",
+                  "Ask what problem the proposal solves and what other paths could solve it.",
+                  "Ask the team to vote quickly so the important option gets full attention."
+                ],
+                "correctIndex": 1,
+                "depthLevel": "standard",
+                "explanation": "A whether-or-not question starts with one candidate answer. The stronger move creates options before the team starts defending the visible one.",
+                "prompt": "You hear a teammate ask only whether to approve one proposal. Which response best catches the narrow frame?",
+                "questionId": "decisive-ch02-q01"
+              }
+            ]
+          },
+          "readingTimeMinutes": 12,
+          "reviewCards": [
+            {
+              "back": "Listen for a choice worded as whether to accept or reject one option. That wording turns attention toward defending the visible answer instead of creating alternatives.",
+              "cardId": "decisive-ch02-card01",
+              "difficulty": "easy",
+              "front": "How can you spot a narrow frame in plain language?"
+            },
+            {
+              "back": "The price makes the hidden alternatives expensive to ignore. A large acquisition has to compete with what the same capital could have done elsewhere.",
+              "cardId": "decisive-ch02-card02",
+              "difficulty": "medium",
+              "front": "Why does Quaker's roughly $1.8 billion Snapple price sharpen the lesson?"
+            },
+            {
+              "back": "It asks what you would try if the visible options were gone. It creates new options, but it does not rank them or choose the final answer.",
+              "cardId": "decisive-ch02-card03",
+              "difficulty": "easy",
+              "front": "What does the Vanishing Options Test do, and what does it not do?"
+            },
+            {
+              "back": "The four villains are narrow framing, confirmation bias, short-term emotion, and overconfidence. Here, the first villain appears when one visible option crowds out the rest.",
+              "cardId": "decisive-ch02-card04",
+              "difficulty": "medium",
+              "front": "How would you restate Four decision villains (Ch 1) in your own words, then use it on today's problem?"
+            },
+            {
+              "back": "Spot whether-or-not wording, Name opportunity costs, Run the Vanishing Options Test, and Ask for both-and possibilities. Each one opens a different stuck frame.",
+              "cardId": "decisive-ch02-card05",
+              "difficulty": "hard",
+              "front": "What are the four frame wideners for a narrow frame?"
+            }
+          ],
+          "title": "Avoid a Narrow Frame",
+          "tryThisNow": "At your next handoff between tasks, ask one person, \"What option am I not naming here?\" Write the exact answer on a scrap, then rehearse saying it once before you move on."
+        },
+        "cleanItemProof": {
+          "curatorRationale": "Only the keyed response widens the whether-or-not frame by asking about the problem and alternatives; more data and a quick vote preserve the narrow frame. Calibration only; not independent-human gold.",
+          "defensibleAnswerIndices": [
+            1
+          ],
+          "evidencePath": "/quiz/questions/0/explanation",
+          "evidenceSha256": "sha256:563dfa6253737637b7f30ff532bd4838b66583337364c1bd6b5d8225be460da4",
+          "independentHumanRater": false,
+          "keyedAnswerIndex": 1,
+          "sourceDesignation": "curator-inspected calibration item from chapter 2; chapter 1 question 4 is explicitly excluded as a known wrong-key item",
+          "status": "CURATOR_VERIFIED_UNIQUE_DEVELOPMENT_GOLD"
+        },
+        "curation": {
+          "curatorRationale": "Only the keyed response widens the whether-or-not frame by asking about the problem and alternatives; more data and a quick vote preserve the narrow frame. Calibration only; not independent-human gold.",
+          "independentHumanRater": false,
+          "labelProvenance": "curator-authored-development-fixture",
+          "ownerApprovedForDevelopmentBakeoff": true,
+          "sourceDesignation": "curator-inspected calibration item from chapter 2; chapter 1 question 4 is explicitly excluded as a known wrong-key item"
+        },
+        "expected": {
+          "defensibleAnswerIndices": [
+            1
+          ],
+          "goldResult": "PASS",
+          "keyCorrect": "correct",
+          "keyedMechanismSupported": true,
+          "uniqueAnswer": true
+        },
+        "imp24": {
+          "canaryExcludedFromMetrics": true,
+          "controlledMutation": null,
+          "eligibleForPreLiveFreeze": true,
+          "goldProvenance": "fresh-model-free-audit-of-frozen-v2-fixture",
+          "schema": "imp24-case-governance-v1",
+          "v2InputCaseId": "QUIZ-V2-CALIBRATION-uniquely-correct-clean-decisive-ch02-q01",
+          "v2InputCaseSha256": "sha256:325bdf19201cd117abbaa34288b2e7072afa19dac3295aad4d7fe32779a1634e"
+        },
+        "kind": "uniquely-correct-clean",
+        "mechanismProof": null,
+        "partition": "canary",
+        "provenance": {
+          "basePackageCanonicalSha256": "sha256:acfe0c7728267558844451ade4172fb1e7ce195fa7d699c4f698f0982c67dcd1",
+          "cleanBaseGates": {
+            "epistemic": "Pass",
+            "ethics": "Pass",
+            "externalAccuracy": "Not assessed"
+          },
+          "cleanBaseScore": 88,
+          "isolatedBaseContentSha256": "sha256:50d38231e5437a58b942a93e57bd751979e1b6174e0b86c85696ae1e477458e0",
+          "mutationOps": [],
+          "mutationOpsSha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "protectedContentSha256": "sha256:50d38231e5437a58b942a93e57bd751979e1b6174e0b86c85696ae1e477458e0",
+          "renderedBytes": 12469,
+          "sourceChapterContentSha256": "sha256:ffc9b27f836e0a6517657990a19e8ce9475ad281320f580e9ec9121fe2d3d4da",
+          "variantContentSha256": "sha256:50d38231e5437a58b942a93e57bd751979e1b6174e0b86c85696ae1e477458e0"
+        },
+        "questionIndex1": 1,
+        "requiresPhase2": true,
+        "role": "quiz",
+        "sourceQuestionIndex1": 1,
+        "sourceSemanticsStatus": "MISSING",
+        "substantiveCaseSha256": "sha256:64fe705db1cb1860143d932cfa6d27e47ea449636a910a12499b4257685420b1"
+      }
+    ],
+    "expectedCount": 2,
+    "generatedComposition": {
+      "key-mismatch": 1,
+      "total": 2,
+      "uniquely-correct-clean": 1
+    },
+    "partition": "canary",
+    "substantivePartitionSha256": "sha256:be56433f5a7078c055cdbbe22775cf04098958ae24e48639ff181f0bb7f0a835"
+  },
+  "role": "quiz",
+  "schema": "imp24-role-qualification-corpus-partition-v1",
+  "sourceV2CorpusId": "imp22-forward-sol-quiz-corpus-v2",
+  "sourceV2RawSha256": "9d59ac17cdc79df71eac763a78450f32faea4b535136cf8ef944c63d9d470c4b",
+  "sourceV2SubstantiveCorpusSha256": "sha256:bc7a9ede537e85394d7a794d09a62462bbfda2684df8426072b8a38ac25aadad"
+}

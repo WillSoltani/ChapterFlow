@@ -1,0 +1,62 @@
+{
+  "schema": "imp-24b-zero-call-lifecycle-closure-v1",
+  "promptId": "IMP-24",
+  "continuationPromptId": "IMP-24B",
+  "executionId": "s16-forward-role-qualification-v3-envelope",
+  "disposition": "BLOCKED_ZERO_CALL_CONTROL_PLANE_DEFECT",
+  "implementationCommit": "e9a90bc17cd997fe1707b5cd62d86ef7a4e743b8",
+  "terminalEvidenceCommit": "7af0f8f91f5892166f534f4438a46343c6251e82",
+  "terminalAttestationCommit": "0ba1b168e350fa5d6c05480a28c7c944411f54ee",
+  "commitTreeBindings": {
+    "implementation": "05418c0886a4b844e3917954b6404f2e9b701174",
+    "terminalEvidence": "d29aa0bd58152cde21d65cd656dd97183881ce05",
+    "terminalAttestation": "9b71a2cc7acd435ff8b8c0f275ecb5cddd6211e8"
+  },
+  "implementationCiRun": 29267830570,
+  "implementationCiResult": "SUCCESS",
+  "evidenceCiRun": 29270320757,
+  "evidenceCiResult": "SUCCESS",
+  "terminalAttestationCiRuns": [
+    29271151495,
+    29271155385
+  ],
+  "terminalAttestationCiResult": "FAILURE_CLEAN_WORKTREE_ONLY",
+  "liveCalls": 0,
+  "apiCalls": 0,
+  "rolesQualified": 0,
+  "terminalReason": "CONTROL_PLANE_IMPLEMENTATION_DEFECTS",
+  "mayResume": false,
+  "mayQualifyProfiles": false,
+  "stateTreeBinding": {
+    "path": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope",
+    "commit": "7af0f8f91f5892166f534f4438a46343c6251e82",
+    "gitTreeSha1": "6acb571faf639291327280389e2e5d34379c1d7a"
+  },
+  "artifactBindings": [
+    {
+      "path": "docs/v25/reports/ROLE_QUALIFICATION_V3_EVIDENCE_MANIFEST.json",
+      "gitBlobSha1": "56ff8cd9b56b4ac678827b71b3b4ee043f273c57",
+      "bytesSha256": "cb2b0d1197f2a776b017fc05e2603dbec5a040b8edaf9cd8de04e9c817b0781f"
+    },
+    {
+      "path": "docs/v25/reports/ROLE_QUALIFICATION_V3_LIVE_RESULT.json",
+      "gitBlobSha1": "b52543bc3a1cb6175c4f7cd1905e5d4dc0ee86de",
+      "bytesSha256": "74786ec30d06b752f5e41fe2bdaec4602b3942d9d2f2646a55a5265700a13002"
+    },
+    {
+      "path": "docs/v25/reports/ROLE_QUALIFICATION_V3_LIVE_RESULT.md",
+      "gitBlobSha1": "84f8e11801503c3351550d4fa89076e8fc0bdf5e",
+      "bytesSha256": "520d7d27eb0b3fc97ae4bd18f0164220f83ea9c47c4e6d7ee76c546cb9c4d848"
+    },
+    {
+      "path": "docs/v25/reports/implementation-report.imp-24.json",
+      "gitBlobSha1": "03813f1130775805df3520741fcd4927dddc6d06",
+      "bytesSha256": "abdb1abcc08c09395618c52e2ba0b895c5b8a12fed15e0c29a2847be60cb7347"
+    }
+  ],
+  "supersededBy": {
+    "continuationPromptId": "IMP-24C",
+    "executionId": "s16-forward-role-qualification-v3-envelope-r1"
+  },
+  "modelCalls": 0
+}

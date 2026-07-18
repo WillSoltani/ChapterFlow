@@ -1,0 +1,57 @@
+{
+  "schema": "s16-execution-policy-v2",
+  "status": "FROZEN_PRE_LIVE",
+  "concurrency": {
+    "maxParallel": 1,
+    "rationale": "Serial execution in sealed executionOrder = perfectly equal cell exposure (C5 concurrencyMustBeFrozenAndEqualAcrossCells satisfied trivially); a Max-plan capacity event lands on a randomized-order sample, never systematically on one cell. The conductor is invoked with maxParallel=1 (its default is 2; the sealed value governs)."
+  },
+  "interleaving": {
+    "mechanism": "sealed SampleScheduleV1: deterministic seeded shuffle (mulberry32/fnv1a over the sealed randomizationSeed), blocked by (bookId, chapterNumber) with every cell represented inside each block; executionOrder is a total order the serial worker follows exactly",
+    "balanced": "by construction \u2014 no cell can lead or trail systematically; schedule bytes are hashed into the seal and re-verified before every guarded phase"
+  },
+  "retryAndReplay": {
+    "writer": "exactly 1 attempt per sample (firstWriteOnly); <=1 infrastructure replay per sample, SAME blindSampleId, only for {infrastructure_failure, timeout, provider_rate_or_capacity}; NEVER for content_invalid or provider_safeguard_or_refusal; the original outcome + redacted spawn tail are retained on the record and in evidence",
+    "reviewPhase1": "<=2 in-instrument reader attempts (authorReview.ts:884)",
+    "reviewPhase2": "<=2 in-instrument adjudicator attempts (authorReview.ts:977); failure -> typed 'unavailable' on an advisory instrument, never a verdict",
+    "stageQ": "<=2 attempts per (case x judge) in both qualification layers",
+    "hiddenReplay": "none exists: a replay is a recorded field (outcome.replayed + originalProviderOutcome), never a substitution"
+  },
+  "planCapacityInterruption": {
+    "classification": "provider_rate_or_capacity \u2014 a DISTINCT recorded outcome, reported separately from content defects, safeguards, and infrastructure failures",
+    "shortInterruption": "the <=1 bounded replay may absorb a transient capacity event; if the replay also fails, the sample stands as capacity-terminal \u2014 retained, never discarded, never rerun",
+    "longInterruption": "operator stops the run; the durable manifest + per-sample records make resume idempotent: completed samples are SKIPPED (no re-calls), incomplete ones resume under the SAME sealed schedule and blindSampleIds; the interruption boundary is visible in record timestamps and is reported",
+    "fairness": "capacity events are counted per cell by the sealed owner-policy evaluator; materially unequal, unbalanceable exposure => operational comparison INCONCLUSIVE (C5.quotaOrRateLimitHandling.differentialExposureThatCannotBeBalanced)"
+  },
+  "adjudicationPause": {
+    "point": "conductor runs through=analyze and STOPS before unblind",
+    "steps": "blind adjudication packet built per C3 blindness list -> owner completes ALL required cases -> completed human-adjudication.json placed in the experiment root and hashed -> unblind -> decide -> report",
+    "enforcement": "zero-tolerance threshold groups evaluate INCONCLUSIVE (never pass) without the completed file; unblind independently refuses if metric tables or the thresholds copy drifted from the seal"
+  },
+  "noOutputInformedChanges": "the stopping decision is evaluated ONCE on interim screening metrics and persisted; thresholds/spec/schedule/stack hashes are sealed; unblind hash-gates; post-live-output changes to any endpoint, threshold, or stopping rule are barred (owner C4/C5 decisionPolicy + seal mechanics)",
+  "supersedes": {
+    "schema": "s16-execution-policy-v1",
+    "sha256": "1e39ed2c22af042fabbe08cec43917bd604ffaa9c56b971d97ffa641a97000be",
+    "reason": "owner route-invariant directive + B1 conditional ratification 2026-07-11"
+  },
+  "executionRoute": {
+    "authorizedRoute": "codex exec authenticated by ChatGPT-subscription OAuth \u2014 the ONLY model route for every \u00a716 model-bearing operation (Stage-Q reads, authoring, reviews, judge panel, replays)",
+    "broker": "spawnCodexAgent (src/orchestrator/codexAgent.ts) \u2014 every \u00a716 spawn site resolves to it via AutopilotDeps.spawn or direct import; roles declared at every site",
+    "failClosed": "buildIsolatedSession(requireAuth) asserts the COPIED auth.json proves auth_mode=\"chatgpt\", no usable OPENAI_API_KEY, OAuth tokens present \u2014 ExecPreflightError BEFORE any process otherwise (commit d6f25f1c8); forbidden provider env (OPENAI_API_KEY, CODEX_API_KEY, base-URL overrides, Azure/Anthropic) refused at the caller-env seam and absent from the allowlist",
+    "perAttemptTelemetry": "every spawn writes a RouteResultV1 v2 sidecar recording executionRoute=codex_exec_chatgpt_subscription, authMode=chatgpt, apiKeyPresent=false, apiFallbackAllowed=false (+ outcome, model, effort, drift fingerprint) beside its effective-context manifest in logs/exec/",
+    "noFallback": "no API-provider fallback branch exists; provider_rate_or_capacity is a recorded outcome eligible only for the sealed <=1 bounded replay on the same route",
+    "conductorProcessEnv": "the live run-driver asserts, before the first spawn: no OPENAI_API_KEY/CODEX_API_KEY/OPENAI_BASE_URL/ANTHROPIC_API_KEY in its own environment, and CHAPTERFLOW_NO_API_CODEX_QC=1 set",
+    "secretHygiene": "auth.json contents never appear in reports/manifests/seals/logs/commits; per-spawn copies are 0700-dir/0600-file in tmpdir OUTSIDE the repository and are deleted in finally (stale-sweep crash net)"
+  },
+  "stageQSequencing": {
+    "order": "Layer O (owner 64-case instrument, C4 bounds incl. pairwise kappa) runs FIRST; any panel judge failing Layer O HALTS the campaign before any Layer-N or candidate call \u2014 judge substitution is a protocol change and is NOT authorized",
+    "conjunction": "a judge is qualified ONLY as (Layer-O pass \u2227 Layer-N pass on the owner-approved corpus a127d8ce93a2473a8c0cf3a7388056e97ee7df85056aa23561db0576630b6498 (ownerApprovedForDevelopmentBakeoff: true; independentHumanRater: false)); enforced by sequencing + the owner-policy evaluator stageQ verdicts (fail-closed on missing evidence)",
+    "seedFixtures": "the 3 SEED-* Layer-N compatibility fixtures are sealed in stage-q/seed-fixtures.sealed.json (sha 3a952e0ede7b2f0c99195fc60cf8a861754532e4977cb3c97ca5e4cc4e561ca7) under the owner B1 conditional approval; they can never rescue a Layer-O failure and are not an independent human rating"
+  },
+  "terminologyNote": "Owner directive 2026-07-11: development-facing documentation says \"owner approved\", never \"ratified\"; evidence status preserved as ownerApprovedForDevelopmentBakeoff: true + independentHumanRater: false.",
+  "b2Substitution": {
+    "originalBookId": "multipliers",
+    "replacementBookId": "radical-candor",
+    "record": "confirmatory-substitution.2026-07-11.json (this directory)",
+    "preLive": true
+  }
+}

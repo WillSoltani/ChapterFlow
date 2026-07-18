@@ -56,6 +56,12 @@ export type BookPackageQuizQuestion = {
   explanation?: string | ToneKeyed;
   bloomsLevel?: string;
   depthLevel?: string;
+  /** Chapter Format v25 (F-2) quiz feedback — optional, additive. One rationale
+   *  per choice in choice order; a revisit pointer naming the reader-facing
+   *  component that reteaches the idea; an optional confidence prompt. */
+  choiceRationales?: string[];
+  revisit?: { component: string; ref: string };
+  confidencePrompt?: string;
 };
 
 export type BookPackageQuiz = {

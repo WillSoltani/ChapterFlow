@@ -1,0 +1,180 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-23",
+  "baselineHash": "37cb0804e157758272e7ec06c2aaf96ebdec6724",
+  "resultHash": "a2c03c294583ae605e2113523b499fd44c0583baa9cfe1cf3aff0bb966f7596f",
+  "contractVersions": {
+    "aggregated-chapter-review": 1,
+    "attempt-evidence-manifest": 1,
+    "candidate-transaction": 1,
+    "effective-context-manifest": 1,
+    "execution-profile": 1,
+    "judge-capability-qualification": 1,
+    "quiz-integrity-result": 1,
+    "reader-experience-review": 1,
+    "repair": 1,
+    "review-output": 1,
+    "route-result": 2,
+    "source-integrity-review": 1,
+    "source-use-plan": 1,
+    "worker-implementation-report": 1
+  },
+  "checkpointBranch": "feat/v25-pipeline",
+  "checkpointHead": "96ba2817967885a27d4248888889e622ad81ec8d",
+  "cleanBranch": "feat/v25-pipeline-live",
+  "cleanBase": "37cb0804e157758272e7ec06c2aaf96ebdec6724",
+  "cleanHead": "5642a803dec6c04c2f63e78f379edfe66fc14bd1",
+  "draftPrNumber": 401,
+  "draftPrUrl": "https://github.com/WillSoltani/ChapterFlow/pull/401",
+  "dedicatedCiStatus": "SUCCESS",
+  "dedicatedCiRun": 29220367933,
+  "dedicatedCiUrl": "https://github.com/WillSoltani/ChapterFlow/actions/runs/29220367933",
+  "sealedFilesMatched": 426,
+  "unexpectedCheckpointFilesExcluded": 1589,
+  "productionSealHash": "a2c03c294583ae605e2113523b499fd44c0583baa9cfe1cf3aff0bb966f7596f",
+  "productionSealFileCount": 428,
+  "calibrationValid": false,
+  "calibrationCalls": 49,
+  "calibrationRuns": [
+    {
+      "experimentId": "s16-forward-role-qualification-v1",
+      "calibrationSha256": "4cd4ad8254bf1a8cbfdcb528996554064d8058533568c9b1c69c2f08bbdfdf66",
+      "scheduledCases": 24,
+      "codexExecCalls": 24,
+      "infrastructureReplays": 0,
+      "maxPlanCapacityEvents": 0,
+      "apiCalls": 0,
+      "valid": false,
+      "disposition": "INVALIDATED_INSTRUMENT"
+    },
+    {
+      "experimentId": "s16-forward-role-qualification-v2",
+      "specBytesSha256": "ebf799376a22627c5f7b1fedc5cc8b40b383e2c1353010c0ca466b30f1261106",
+      "calibrationSha256": "f52c247feaeb67864e5dbcb3e2ac396ec359b01811bc11578f55c5a84ec5b9d5",
+      "scheduledCases": 24,
+      "codexExecCalls": 25,
+      "infrastructureReplays": 1,
+      "maxPlanCapacityEvents": 1,
+      "apiCalls": 0,
+      "valid": false,
+      "disposition": "BLOCKED_CALIBRATION_INVALID"
+    }
+  ],
+  "qualificationRoleSetReady": false,
+  "readerPrimary": null,
+  "readerAudit": null,
+  "sourcePrimary": null,
+  "sourceAdjudicator": null,
+  "quizSemanticAdjudicator": null,
+  "pilotAccepted": false,
+  "pilotFirstWritePassRate": 0,
+  "pilotFinalPassRate": 0,
+  "pilotCorrectionCycles": 0,
+  "goldAccepted": false,
+  "goldFirstWritePassRate": 0,
+  "goldFinalPassRate": 0,
+  "contentDesignScore": null,
+  "hardGateFailures": [
+    "BLOCKED_CALIBRATION_INVALID"
+  ],
+  "liveCodexExecCalls": 49,
+  "apiCalls": 0,
+  "maxPlanCapacityEvents": 1,
+  "gateWeakening": false,
+  "holdoutRelabeling": false,
+  "outputInformedResampling": false,
+  "unboundedRetries": false,
+  "bookSpecificProductionHacks": [],
+  "localSolActivation": false,
+  "publishActivated": false,
+  "promoteActivated": false,
+  "deploymentActivated": false,
+  "uploadActivated": false,
+  "checkpointForcePushed": false,
+  "mainMerged": false,
+  "finalDecision": "BLOCKED",
+  "rollbackProfile": "gpt-5.5@xhigh",
+  "filesChanged": [
+    ".github/workflows/chapterflow-v25-pipeline.yml",
+    "docs/v25/reports/",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/"
+  ],
+  "requirementsImplemented": [
+    {
+      "requirementId": "IMP23-R01-CLEAN-BRANCH-RECONCILIATION",
+      "status": "implemented",
+      "note": "Checkpoint preserved and intended V25 tree reconstructed from the mandated clean base with byte-level seal verification."
+    },
+    {
+      "requirementId": "IMP23-R02-DEDICATED-GITHUB-CI",
+      "status": "implemented",
+      "note": "Dedicated V25 workflow passed on the exact corrected calibration code head."
+    },
+    {
+      "requirementId": "IMP23-R03-CORRECTED-CALIBRATION",
+      "status": "partial",
+      "note": "The one permitted corrected live calibration ran and retained complete evidence, but failed closed as instrument-invalid."
+    },
+    {
+      "requirementId": "IMP23-R04-LIVE-HOLDOUT-AND-ROLE-FREEZE",
+      "status": "deferred",
+      "deferredTo": "A future owner-approved protocol change; IMP-23 forbids another corrected calibration rerun."
+    },
+    {
+      "requirementId": "IMP23-R05-PILOT-GOLD-ACTIVATION",
+      "status": "deferred",
+      "deferredTo": "A valid future calibration, holdout, and role freeze under a separately authorized protocol."
+    }
+  ],
+  "testsRequired": [
+    "Dedicated V25 CI on the exact correction head",
+    "Full no-API repository suite",
+    "TypeScript typecheck and contract validation",
+    "Secret, artifact, private-path, and merge-marker scans",
+    "Production instrument seal verification",
+    "Live route and retained calibration artifact inspection"
+  ],
+  "testsRun": [
+    "CHAPTERFLOW_NO_API_CODEX_QC=1 npm_config_cache=/private/tmp/npm-cache-v25-repair npx tsx tests/run.ts",
+    "npx tsc -p . --noEmit",
+    "node --import tsx src/cli.ts contract-validate",
+    "bash scripts/ci/scan-secrets-and-artifacts.sh --all",
+    "node --import tsx src/cli.ts migration-bakeoff forward-materialize-production-instrument-seal --json",
+    "GitHub Actions run 29220367933",
+    "Read-only audit of all corrected calibration requests, receipts, routes, manifests, structured outputs, and seal evaluations"
+  ],
+  "testResults": {
+    "pass": 2691,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 39,
+    "xenv": 10,
+    "commands": [
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npm_config_cache=/private/tmp/npm-cache-v25-repair npx tsx tests/run.ts",
+      "npx tsc -p . --noEmit",
+      "node --import tsx src/cli.ts contract-validate",
+      "bash scripts/ci/scan-secrets-and-artifacts.sh --all",
+      "node --import tsx src/cli.ts migration-bakeoff forward-materialize-production-instrument-seal --json"
+    ]
+  },
+  "gateChanges": [],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [
+    "The no-API test suite left untracked fixture/runtime state under state/autopilot-logs, state/books, state/metrics, state/provenance, state/qc, and state/qc-orchestrator; these outputs are excluded from the evidence commit."
+  ],
+  "unresolvedRisks": [
+    "The corrected v2 calibration instrument is invalid across reader, source, and quiz roles.",
+    "Qualification, role assignment, pilot, gold, and local SOL activation remain unproven because the mandatory stop gate fired."
+  ],
+  "dependencyAssumptions": [
+    "GitHub run 29220367933 is the dedicated V25 validation of correction head 5642a803dec6c04c2f63e78f379edfe66fc14bd1.",
+    "A future continuation requires a real protocol change outside IMP-23 because its one corrected calibration identity has been consumed."
+  ],
+  "remainingRisks": [
+    "The corrected v2 calibration instrument is invalid across reader, source, and quiz roles.",
+    "Qualification, role assignment, pilot, gold, and local SOL activation remain unproven because the mandatory stop gate fired."
+  ]
+}

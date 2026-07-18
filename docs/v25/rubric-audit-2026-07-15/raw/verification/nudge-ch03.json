@@ -1,0 +1,550 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "chapterflow_standalone_chapter_rating",
+  "run_id": "20260715T110908Z",
+  "job_id": "nudge-ch03-verification-20260715T110908Z",
+  "rater_role": "verification",
+  "worker_task_id": "/root/nudge_verification",
+  "worker_session_id": "/root/nudge_verification@20260715T110908Z",
+  "worker_dispatch_receipt_sha256": "88b6f25bcaf39ec022802f653f1920283fd869ef7631e193ef6a2c27db91ed22",
+  "book": {
+    "book_id": "nudge-ch03",
+    "title": "Nudge",
+    "title_inference_basis": "The source-book title is inferred only from the assigned filename nudge-ch03.md; no full-book metadata was supplied."
+  },
+  "source_hash": "5561431cdd87978ec2bd4def5cf4e2fc7ab53d8379f48e0eaaf7327a9dcaeda7",
+  "chapter": {
+    "chapter_id": "ch03",
+    "number": 3,
+    "title": "Following the Herd",
+    "source_path": "/Users/radinsoltani/Desktop/nudge-ch03.md",
+    "heading_inventory_sha256": "3debb840203d2e441a169c4cdc8efc3f2ce1f614aef00367937c6aa752471bf7",
+    "read_status": "full",
+    "section_inventory": [
+      {"level": 2, "heading": "Hook", "locator": "nudge-ch03.md lines 5-6", "read_status": "full"},
+      {"level": 2, "heading": "Counterintuition", "locator": "nudge-ch03.md lines 8-9", "read_status": "full"},
+      {"level": 2, "heading": "Fast read", "locator": "nudge-ch03.md lines 11-16", "read_status": "full"},
+      {"level": 2, "heading": "Deep read", "locator": "nudge-ch03.md lines 18-27", "read_status": "full"},
+      {"level": 2, "heading": "Full read", "locator": "nudge-ch03.md lines 29-48", "read_status": "full"},
+      {"level": 2, "heading": "Examples", "locator": "nudge-ch03.md line 50", "read_status": "full"},
+      {"level": 3, "heading": "Example 1: Towel Thread", "locator": "nudge-ch03.md lines 51-60", "read_status": "full"},
+      {"level": 3, "heading": "Example 2: Line Reset", "locator": "nudge-ch03.md lines 62-65", "read_status": "full"},
+      {"level": 3, "heading": "Example 3: Switch Box", "locator": "nudge-ch03.md lines 67-70", "read_status": "full"},
+      {"level": 3, "heading": "Example 4: Quiet Dissent", "locator": "nudge-ch03.md lines 72-79", "read_status": "full"},
+      {"level": 3, "heading": "Example 5: Bad Sign Repair", "locator": "nudge-ch03.md lines 81-84", "read_status": "full"},
+      {"level": 3, "heading": "Example 6: Responsibility Memo", "locator": "nudge-ch03.md lines 86-89", "read_status": "full"},
+      {"level": 2, "heading": "Quiz (answer key withheld)", "locator": "nudge-ch03.md line 91", "read_status": "full"},
+      {"level": 3, "heading": "Question 1", "locator": "nudge-ch03.md lines 92-97", "read_status": "full"},
+      {"level": 3, "heading": "Question 2", "locator": "nudge-ch03.md lines 98-103", "read_status": "full"},
+      {"level": 3, "heading": "Question 3", "locator": "nudge-ch03.md lines 104-109", "read_status": "full"},
+      {"level": 3, "heading": "Question 4", "locator": "nudge-ch03.md lines 110-115", "read_status": "full"},
+      {"level": 3, "heading": "Question 5", "locator": "nudge-ch03.md lines 116-121", "read_status": "full"},
+      {"level": 3, "heading": "Question 6", "locator": "nudge-ch03.md lines 122-127", "read_status": "full"},
+      {"level": 3, "heading": "Question 7", "locator": "nudge-ch03.md lines 128-133", "read_status": "full"},
+      {"level": 3, "heading": "Question 8", "locator": "nudge-ch03.md lines 134-139", "read_status": "full"},
+      {"level": 3, "heading": "Question 9", "locator": "nudge-ch03.md lines 140-144", "read_status": "full"},
+      {"level": 2, "heading": "Review cards", "locator": "nudge-ch03.md line 146", "read_status": "full"},
+      {"level": 3, "heading": "Card 1", "locator": "nudge-ch03.md lines 147-149", "read_status": "full"},
+      {"level": 3, "heading": "Card 2", "locator": "nudge-ch03.md lines 151-153", "read_status": "full"},
+      {"level": 3, "heading": "Card 3", "locator": "nudge-ch03.md lines 155-157", "read_status": "full"},
+      {"level": 3, "heading": "Card 4", "locator": "nudge-ch03.md lines 159-161", "read_status": "full"},
+      {"level": 3, "heading": "Card 5", "locator": "nudge-ch03.md lines 163-165", "read_status": "full"},
+      {"level": 3, "heading": "Card 6", "locator": "nudge-ch03.md lines 167-169", "read_status": "full"},
+      {"level": 2, "heading": "Implementation plan", "locator": "nudge-ch03.md lines 171-178", "read_status": "full"},
+      {"level": 2, "heading": "Try this now", "locator": "nudge-ch03.md lines 180-181", "read_status": "full"},
+      {"level": 2, "heading": "Key takeaway", "locator": "nudge-ch03.md lines 183-184", "read_status": "full"},
+      {"level": 2, "heading": "Memorable lines", "locator": "nudge-ch03.md lines 186-189", "read_status": "full"}
+    ]
+  },
+  "scope": {
+    "scope_type": "standalone_chapter_audit",
+    "actual_book_inventory_complete": false,
+    "full_book_score": null,
+    "full_book_certification": "unevaluable",
+    "domain_9": "unassessable"
+  },
+  "evaluation_construct": {
+    "audience": "An ordinary interested non-expert adult who wants to recognize and respond to social influence in daily choices, groups, institutions, and choice-design settings.",
+    "prior_knowledge": "No specialist psychology, behavioral-economics, research-methods, or management knowledge is assumed, although a few terms and study references receive only brief local explanation.",
+    "nonfiction_type": "Applied behavioral-science explanation with practical learning activities.",
+    "purpose": "Explain when crowd behavior carries information, when it reflects pressure or hidden dissent, and how readers can respond to or design social cues more carefully.",
+    "intended_outcomes": [
+      "Distinguish informational social cues from approval, authority, fear of dissent, and repetition.",
+      "Recognize how descriptive and injunctive norms can move behavior in different directions.",
+      "Pause, surface dissent, or redesign a message when a visible norm is likely to mislead.",
+      "Retrieve the chapter's core distinctions through scenarios, review cards, and a short implementation plan."
+    ],
+    "contexts_exclusions": "The supplied chapter uses hotel, school, workplace, meeting, park, household, campus, and volunteer examples. It does not declare clinical, legal, emergency, high-stakes safeguarding, or formal research-methods use, and external factual accuracy is outside this isolated audit.",
+    "default_reader_fit": "Good chapter-local fit for the rubric's ordinary motivated non-expert reader; the audience and purpose are inferable from the prose and activities rather than explicitly declared."
+  },
+  "gates": {
+    "chapter_artifact_completeness": {
+      "status": "pass",
+      "rationale": "The assigned chapter is readable in full, its SHA-256 matches the inspection, and all 33 H2/H3 reader-facing sections were inspected without missing, duplicate, malformed, or inaccessible content."
+    },
+    "epistemic_instructional_safety": {
+      "status": "pass",
+      "rationale": "No internal contradiction or answer-key error teaches the wrong lesson. The missing quiz key weakens feedback, but the supplied questions, explanatory examples, cards, and core distinctions remain internally aligned."
+    },
+    "ethics_reader_autonomy": {
+      "status": "pass",
+      "rationale": "The chapter treats crowd influence as context-dependent rather than as a character defect, supports dissent and stopping under pressure, and warns choice architects that visible norms can spread harmful conduct."
+    },
+    "purpose_audience_declaration": {
+      "status": "conditional",
+      "rationale": "A practical non-expert audience and an applied recognition-and-response purpose are defensibly inferable, but the chapter does not explicitly declare its intended reader, prerequisite burden, or exclusions."
+    },
+    "external_accuracy": {
+      "status": "not_assessed",
+      "rationale": "External factual verification was intentionally excluded; study names, dates, settings, and empirical claims were assessed only for internal instructional use."
+    },
+    "actual_book_completeness": {
+      "status": "unevaluable",
+      "rationale": "Only chapter 3 was supplied, so the actual book inventory and any whole-book completion or certification judgment are unavailable."
+    }
+  },
+  "domains": {
+    "epistemic_integrity": {
+      "weight": 15,
+      "subcriteria": {
+        "claim_support_fit": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies chapter-locally: most claims are paired with named study contexts, mechanisms, or concrete examples, and recommendations are usually presented as conditional choices. The account remains brief and omits methodological support and source-level qualification for several empirical generalizations.",
+          "evidence": [
+            {"locator": "Deep read, lines 19-27", "paraphrase": "The line-judgment account connects public error to social cost, then gives a three-question test for whether a crowd has knowledge or is displaying fear."},
+            {"locator": "Full read, lines 36-42", "paraphrase": "The chapter explains how publicizing a bad act can normalize it, contrasts descriptive and approval norms, and applies the distinction to towel and energy messages."}
+          ]
+        },
+        "uncertainty_limitations": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because limits are embedded in the central teaching: crowds may contain better information, visible conduct may instead reflect pressure, and a norm message can repair or worsen behavior. Remaining uncertainty about evidence quality, conflicting signals, and response variation is not developed.",
+          "evidence": [
+            {"locator": "Fast read, lines 14-16", "paraphrase": "The crowd is framed as a useful clue under uncertainty but an unsafe guide when its signal is staged, false, or amplified."},
+            {"locator": "Full read, lines 36-48", "paraphrase": "The reader is told to distinguish knowledge, fear, approval, and repetition before deciding what behavior to make visible."}
+          ]
+        },
+        "internal_consistency_qa": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies: terminology and recommendations remain aligned across the explanatory reads, examples, quiz scenarios, review cards, and implementation prompts. The withheld quiz key prevents direct answer-explanation QA but does not expose a contradiction in the supplied artifact.",
+          "evidence": [
+            {"locator": "Examples, lines 51-89; Review cards, lines 147-169", "paraphrase": "The examples and cards consistently map towel reuse, line conformity, authority, hidden dissent, and backfiring warnings to the same causal distinctions."},
+            {"locator": "Key takeaway and Memorable lines, lines 183-189", "paraphrase": "The ending accurately compresses the chapter's earlier distinction between useful crowd information and misleading normalization."}
+          ]
+        },
+        "misuse_safeguards": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because important misuse risks are tied to the relevant action: do not advertise common harmful conduct, do not let calm authority hide personal responsibility, and surface hidden dissent. The chapter does not fully address consent, power asymmetry, transparency, or cases where social proof should not be used at all.",
+          "evidence": [
+            {"locator": "Full read, lines 30-40", "paraphrase": "Authority cues and bad descriptive norms are presented as risks, with explicit responsibility and message-design cautions."},
+            {"locator": "Examples 3, 5, and 6, lines 67-70 and 81-89", "paraphrase": "Readers are given stop-language, a correction for a harmful sign, and a written escalation point before pressure peaks."}
+          ]
+        }
+      },
+      "domain_score": 3,
+      "weighted_points": 11.25,
+      "strengths": [
+        "The chapter makes the useful-versus-misleading crowd distinction explicit and actionable in Deep read, lines 21-27.",
+        "Misuse boundaries are integrated into the norm-message and authority examples in Full read, lines 30-40, rather than appended as a generic warning."
+      ],
+      "limitations": [
+        "Named studies and behavioral effects are presented with little methodological or uncertainty detail, and no external verification was permitted."
+      ],
+      "pattern": "Across the reads and components, claims generally move from a concrete social cue to a mechanism, a boundary, and an action, while evidential qualification stays thinner than the practical explanation.",
+      "rationale": "The four subcriteria meet the strong anchor within the supplied chapter: claims, caveats, internal alignment, and safeguards work reliably, with clear but repairable omissions around evidence limits and ethical boundaries.",
+      "scope_note": "This rating concerns internal chapter-local epistemic design only; it does not establish external accuracy or consistency across the unsupplied book."
+    },
+    "audience_fit": {
+      "weight": 12,
+      "subcriteria": {
+        "language_clarity": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies: short sentences, concrete verbs, and explicit transitions make the central logic easy to follow. A few terms such as choice architect, confederates, descriptive norm, injunctive norm, and pluralistic ignorance receive uneven onboarding.",
+          "evidence": [
+            {"locator": "Fast read, lines 12-16", "paraphrase": "The chapter introduces social influence through a towel card, then states the benefit and risk of copying in plain language."},
+            {"locator": "Full read, lines 38-42", "paraphrase": "Two norm types and peer relevance are explained in compact, concrete terms."}
+          ]
+        },
+        "beginner_onboarding": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because the hook, counterintuition, and fast-to-deep progression establish stakes before introducing studies and norm terminology. Some research roles and specialist labels appear with only contextual implication rather than a direct definition.",
+          "evidence": [
+            {"locator": "Hook through Fast read, lines 5-16", "paraphrase": "A familiar hotel choice introduces the topic, counters the assumption that copying is merely weakness, and gives the initial information-versus-danger model."},
+            {"locator": "Deep read, lines 19-27", "paraphrase": "The line scenario prepares the reader for social pressure before the chapter supplies a diagnostic test."}
+          ]
+        },
+        "signal_noise_framework_load": {
+          "rating": 2,
+          "rationale": "Anchor 2 applies: the core model remains recoverable, but six examples, nine quiz items, six cards, repeated read layers, an implementation plan, a try-now prompt, a takeaway, and memorable lines restate a narrow set of distinctions. The four-cue taxonomy is also not explicitly reconciled with the descriptive-versus-injunctive taxonomy.",
+          "evidence": [
+            {"locator": "Examples through Review cards, lines 50-169", "paraphrase": "The same mechanisms recur across many fixed-format scenarios, questions, and cards, often with only a small change of setting."},
+            {"locator": "Implementation plan through Memorable lines, lines 171-189", "paraphrase": "The ending repeats the diagnostic categories and action cue in four successive formats."}
+          ]
+        },
+        "audience_context_accessibility": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because the chapter translates the principle across ordinary consumer, student, family, workplace, public-space, and community settings without requiring a specialist role. Choice architects receive somewhat more direct design advice than readers without control over messages or policy.",
+          "evidence": [
+            {"locator": "Full read, lines 36-46", "paraphrase": "Examples move among park signs, utility bills, hotel rooms, class threads, and form filing."},
+            {"locator": "Quiz, lines 92-144", "paraphrase": "Questions use restaurants, parent groups, supervision, parks, utilities, teams, volunteers, hotels, and campuses to broaden access."}
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 8.25,
+      "strengths": [
+        "The opening gives a novice-friendly concrete entry before abstract categories appear in lines 5-16.",
+        "The scenarios span multiple everyday roles and settings, especially in the quiz at lines 92-144."
+      ],
+      "limitations": [
+        "The component stack repeats the same narrow content enough that consolidation would materially reduce cognitive load."
+      ],
+      "pattern": "Clarity and contextual breadth are consistently strong, while template-driven repetition and partially overlapping frameworks impose avoidable load late in the chapter.",
+      "rationale": "Three subcriteria reach the strong anchor; signal-to-noise remains mixed because the central lesson is distributed across many repetitive components.",
+      "scope_note": "Audience fit is inferred from this chapter only because the actual book's audience declaration and other chapters were not supplied."
+    },
+    "mental_model_coherence": {
+      "weight": 15,
+      "subcriteria": {
+        "central_model": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies chapter-locally: the reader can reconstruct a compact model in which a crowd is evidence to diagnose rather than an authority to obey, and visible norms can either teach or mislead. The model would be stronger with one explicit map connecting all named categories.",
+          "evidence": [
+            {"locator": "Fast read, lines 12-16", "paraphrase": "The opening model treats a crowd as a labor-saving clue whose value depends on signal quality."},
+            {"locator": "Implementation plan, lines 171-178", "paraphrase": "The model is operationalized as identifying information, approval, authority, or hidden fear before following, questioning, or replacing a cue."}
+          ]
+        },
+        "mechanism_causal_explanation": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because recommendations are tied to mechanisms: uncertainty makes others informative, public dissent has social cost, silence creates false consensus, authority diffuses felt responsibility, and descriptive norms can normalize conduct. The chapter does not deeply test competing explanations.",
+          "evidence": [
+            {"locator": "Deep read, lines 19-27", "paraphrase": "Line judgments and meeting silence expose how social cost and hidden private disagreement can manufacture apparent consensus."},
+            {"locator": "Full read, lines 30-40", "paraphrase": "The authority and norm-message passages explain why calm instructions and common-behavior counts can move action."}
+          ]
+        },
+        "cross_concept_integration": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies within the chapter: conformity, pluralistic ignorance, obedience, descriptive and injunctive norms, peer relevance, and message design are repeatedly linked by the visible-signal question. The only cross-chapter link is a single review card whose larger context cannot be inspected.",
+          "evidence": [
+            {"locator": "Full read, lines 34-48", "paraphrase": "A lab coat, a group, and a hotel card are brought under one model, then distinguished by what the visible cue represents."},
+            {"locator": "Review Card 6, lines 167-169", "paraphrase": "A brief link to chapter 2 connects self-control conflict with the need for a prechosen stop line under pressure."}
+          ]
+        },
+        "nuance_diagnostic_power": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because readers learn to distinguish better information from pressure, private belief from public behavior, descriptive behavior from approval, and local peers from distant comparison groups. Ambiguous cases involving mixed evidence, competing groups, minority expertise, or legitimate authority remain underdeveloped.",
+          "evidence": [
+            {"locator": "Deep read, lines 21-27", "paraphrase": "The diagnostic asks what the crowd knows, whether members share the same facts, and whether dissent is possible."},
+            {"locator": "Full read, lines 36-48", "paraphrase": "Readers distinguish norm type, reference-group relevance, and four possible meanings of visible behavior before acting."}
+          ]
+        }
+      },
+      "domain_score": 3,
+      "weighted_points": 11.25,
+      "strengths": [
+        "A stable visible-signal model integrates the chapter's major cases from lines 19-48.",
+        "Mechanisms are translated into diagnostic questions and actions in lines 27 and 171-178."
+      ],
+      "limitations": [
+        "The chapter offers few genuinely ambiguous cases in which signals conflict or the simple four-way diagnosis is insufficient."
+      ],
+      "pattern": "Each new case expands the same central model from information to conformity, silence, authority, norm design, and relevant peer groups, then returns to a common diagnostic action.",
+      "rationale": "All four subcriteria meet the strong chapter-local anchor: the model is coherent, mechanistic, integrated, and reasonably discriminating, but not exceptional or resistant to clearer synthesis and harder countercases.",
+      "scope_note": "Cross-concept integration is assessed only within chapter 3; whole-book model continuity and the referenced chapter 2 connection are unassessable."
+    },
+    "learning_architecture": {
+      "weight": 12,
+      "subcriteria": {
+        "sequencing_scaffolding": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies chapter-locally: the sequence advances from an intuitive hook to a counterpoint, concise model, mechanisms, applications, retrieval, and implementation. Late-stage repetition makes the progression less efficient than an exceptional sequence.",
+          "evidence": [
+            {"locator": "Hook through Full read, lines 5-48", "paraphrase": "The chapter deliberately widens from a towel decision to conformity, silence, obedience, norm types, and design tradeoffs."},
+            {"locator": "Examples through Try this now, lines 50-181", "paraphrase": "Explanation is followed by worked applications, questions, review prompts, and an immediate practice cue."}
+          ]
+        },
+        "worked_examples_contrasts": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because six worked scenarios identify a situation, action, and causal reason, while the prose and quiz contrast beneficial and harmful social cues. Most cases resolve cleanly and do not make the reader inspect competing plausible choices.",
+          "evidence": [
+            {"locator": "Examples 1-6, lines 51-89", "paraphrase": "Each scenario exposes a decision and then explains why the response follows from the mechanism."},
+            {"locator": "Quiz Questions 1, 4, 6, and 8, lines 92-97, 110-115, 122-127, and 134-139", "paraphrase": "The questions contrast useful information, approval signals, cascades, and reference-group relevance across distinct settings."}
+          ]
+        },
+        "active_processing": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies within the artifact because scenario questions require discrimination and application, while if-then plans and a real-conversation prompt ask the reader to generate a diagnosis and act. The tasks are not cumulative beyond this chapter and rarely require explanation in the reader's own words.",
+          "evidence": [
+            {"locator": "Quiz, lines 92-144", "paraphrase": "Nine scenario questions require the reader to select a mechanism or response rather than merely recognize a term."},
+            {"locator": "Implementation plan and Try this now, lines 171-181", "paraphrase": "The reader must classify a live crowd cue, explain the read to another person, and rehearse one response."}
+          ]
+        },
+        "feedback_metacognitive_calibration": {
+          "rating": 1,
+          "rationale": "Anchor 1 applies: the supplied quiz explicitly withholds its answer key, so readers cannot check their discriminations or learn why distractors fail. Worked examples and card backs model intended reasoning, but they do not provide confidence checks, error diagnosis, or revision guidance for the quiz and practice tasks.",
+          "evidence": [
+            {"locator": "Quiz (answer key withheld), lines 91-144", "paraphrase": "Nine questions are presented without correctness feedback or answer explanations."},
+            {"locator": "Review cards, lines 147-169", "paraphrase": "Cards provide direct answers but no prompt to commit confidence, compare an error, or decide what to revisit."}
+          ]
+        }
+      },
+      "domain_score": 2.5,
+      "weighted_points": 7.5,
+      "strengths": [
+        "The fast-to-deep-to-full sequence builds complexity in a defensible order across lines 11-48.",
+        "The quiz and implementation prompts require scenario discrimination and near-term use across lines 92-144 and 171-181."
+      ],
+      "limitations": [
+        "Withholding the quiz key removes the main feedback path and leaves no metacognitive calibration loop."
+      ],
+      "pattern": "The chapter reliably moves from explanation to examples and active tasks, but productive effort is not closed by discriminating feedback or guided revision.",
+      "rationale": "Sequencing, examples, and active processing meet the strong anchor, while absent quiz feedback substantially lowers the domain under the explicit calibration criterion.",
+      "scope_note": "The sequence is judged within the standalone chapter only; placement in the actual book and cumulative scaffolding across chapters are unassessable."
+    },
+    "retention_retrieval": {
+      "weight": 10,
+      "subcriteria": {
+        "meaningful_retrieval_cues": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies chapter-locally because compact cues are semantically tied to function: a crowd as evidence rather than conscience, silence as apparent agreement, the right crowd, and the four signal types. The chapter contains more than one taxonomy without a single consolidated retrieval map.",
+          "evidence": [
+            {"locator": "Fast read, lines 14-16; Memorable lines, lines 186-189", "paraphrase": "Short phrases encode the crowd's informational value, the risk of false agreement, and the design goal of making a beneficial norm visible."},
+            {"locator": "Implementation plan, lines 171-178", "paraphrase": "Information, approval, authority, and hidden fear serve as meaningful cues for a diagnostic routine."}
+          ]
+        },
+        "cumulative_reinforcement": {
+          "rating": 2,
+          "rationale": "Anchor 2 applies under standalone scope: core distinctions recur in examples, quiz items, cards, and practice, but all reinforcement is massed inside one chapter and often restates rather than deepens the model. Cross-chapter spacing cannot be evidenced.",
+          "evidence": [
+            {"locator": "Examples through Review cards, lines 50-169", "paraphrase": "The towel, line, authority, silence, warning, and peer-relevance ideas recur in several formats during the same reading session."},
+            {"locator": "Review Card 6, lines 167-169", "paraphrase": "One supplied card attempts a cumulative link to chapter 2, but the earlier chapter is unavailable for verification."}
+          ]
+        },
+        "quiz_retrieval_depth": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies to question demand: most items require applying or discriminating mechanisms in new scenarios rather than recalling labels verbatim. Multiple-choice recognition, often clearly weaker distractors, lack of an answer key, and no cumulative book-level retrieval prevent a higher rating.",
+          "evidence": [
+            {"locator": "Quiz Questions 1-9, lines 92-144", "paraphrase": "Questions ask readers to diagnose informational copying, pluralistic ignorance, obedience, norm-message backfire, peer feedback, cascades, visible good conduct, peer relevance, and norm correction."}
+          ]
+        },
+        "interference_control_consolidation": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies within the chapter because related forms of influence are contrasted and repeatedly returned to one visible-cue model. A clearer mapping between descriptive/injunctive norms and information/approval/authority/hidden fear would further reduce category overlap.",
+          "evidence": [
+            {"locator": "Full read, lines 36-48", "paraphrase": "The chapter contrasts what people do with what people approve and ends by classifying visible behavior by what it represents."},
+            {"locator": "Key takeaway, lines 183-184", "paraphrase": "The ending consolidates the main distinction into useful information, visible good behavior, and avoidance of normalizing bad behavior."}
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 6.875,
+      "strengths": [
+        "Meaningful phrases and a four-cue diagnostic make the central model retrievable in lines 171-189.",
+        "The quiz usually tests application and discrimination rather than isolated terminology in lines 92-144."
+      ],
+      "limitations": [
+        "Reinforcement is massed and repetitive, with no observable spaced or cumulative retrieval across the unsupplied book."
+      ],
+      "pattern": "The chapter repeatedly retrieves the same core cases in varied formats, producing good local cues and discrimination but limited spacing and some overlap among labels.",
+      "rationale": "Cues, quiz depth, and consolidation meet the strong chapter-local anchor; cumulative reinforcement remains adequate because all observable practice is confined to one chapter.",
+      "scope_note": "Durability, spacing, and cumulative retrieval across the actual book are unassessable; this score covers only observable local support."
+    },
+    "transfer_action_judgment": {
+      "weight": 15,
+      "subcriteria": {
+        "concrete_actions": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies: the reader is repeatedly told what to inspect, when to pause, what plain sentence to say, how to rewrite a warning, and how to choose a relevant comparison group. Actions are feasible but do not include a way to judge outcome quality over time.",
+          "evidence": [
+            {"locator": "Deep read, line 27", "paraphrase": "The reader receives three questions for testing what a crowd knows and whether dissent is possible."},
+            {"locator": "Implementation plan, lines 171-178", "paraphrase": "Four if-then rules and short practices specify triggers and concrete responses."}
+          ]
+        },
+        "cross_context_transfer": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because the same deep structure is taught across consumer choice, meetings, schooling, supervision, public messaging, energy feedback, teams, and volunteer behavior. The chapter offers less help when contexts contain several competing cues at once.",
+          "evidence": [
+            {"locator": "Full read, lines 36-46", "paraphrase": "The norm mechanism is moved across park, utility, hotel, classroom, and form-deadline settings."},
+            {"locator": "Quiz, lines 92-144", "paraphrase": "The questions ask readers to recognize analogous mechanisms in nine fresh contexts."}
+          ]
+        },
+        "implementation_feedback_support": {
+          "rating": 2,
+          "rationale": "Anchor 2 applies: if-then plans, a 24-hour challenge, and weekly rehearsal provide implementation cues and anticipate several common barriers. The artifact supplies no observation record, outcome measure, feedback source, or explicit revision cycle after an attempt.",
+          "evidence": [
+            {"locator": "Implementation plan, lines 171-178", "paraphrase": "Readers receive trigger-action rules and near-term practice but no structured follow-up for what happened or how to adapt."},
+            {"locator": "Try this now, lines 180-181", "paraphrase": "The immediate task elicits classification but provides no feedback or next-step check."}
+          ]
+        },
+        "boundaries_adaptation_tradeoffs": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because the chapter says when to follow information, slow down under fear, surface dissent, replace a backfiring descriptive norm, narrow a peer group, and reclaim responsibility from authority. It only briefly treats power, consent, competing goals, and cases where no simple nudge is sufficient.",
+          "evidence": [
+            {"locator": "Deep read, line 27; Full read, lines 36-48", "paraphrase": "The recommended response changes according to information quality, dissent conditions, norm type, peer relevance, and responsibility."},
+            {"locator": "Example 6, lines 86-89", "paraphrase": "A call-center memo adds a stop point and named escalation rather than treating compliance as automatic."}
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 10.3125,
+      "strengths": [
+        "The diagnostic questions and if-then rules specify recognizable cues and feasible responses in lines 27 and 171-178.",
+        "Transfer is supported across many ordinary roles and settings throughout lines 36-46 and 92-144."
+      ],
+      "limitations": [
+        "Practice stops at intention or rehearsal; the chapter does not close an observation-feedback-reflection-adaptation loop."
+      ],
+      "pattern": "Actions are consistently tied to a diagnosed cue and varied context, while implementation support becomes thin after the first attempt.",
+      "rationale": "Concrete action, transfer, and adaptive boundaries meet the strong anchor, but implementation feedback remains mixed because the artifact lacks follow-up and revision support.",
+      "scope_note": "This rating describes support for likely chapter-local transfer and action; it does not claim observed behavior change or book-wide implementation support."
+    },
+    "motivation_autonomy": {
+      "weight": 8,
+      "subcriteria": {
+        "personal_relevance": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because readers can connect the principle to choices, deadlines, meetings, group chats, workplace scripts, public signs, and household feedback. Readers whose contexts lack group-message control must adapt some choice-architect examples themselves.",
+          "evidence": [
+            {"locator": "Fast read, lines 12-16; Full read, lines 44-46", "paraphrase": "Hotel choices, a missed upload, and form filing connect the model to small decisions with real consequences."},
+            {"locator": "Try this now, lines 180-181", "paraphrase": "The reader is invited to apply the model to the next real conversation about others' behavior."}
+          ]
+        },
+        "achievable_progress": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies: progress begins with a pause, one diagnostic label, one plain dissenting sentence, or one rewritten line rather than a personality transformation. There are no explicit progress markers or recovery plan after a failed attempt.",
+          "evidence": [
+            {"locator": "Examples 2, 4, and 5, lines 62-65, 72-84", "paraphrase": "Small actions include rechecking a line, voicing hidden dissent, and correcting a sign before distribution."},
+            {"locator": "Implementation plan, lines 173-178", "paraphrase": "The reader receives manageable if-then moves, a 24-hour task, and one weekly rehearsal."}
+          ]
+        },
+        "autonomy_non_shaming_tone": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because the chapter rejects the idea that copying proves weakness or foolishness, acknowledges the usefulness of social information, and leaves the reader to follow, question, or replace a cue. It could state more explicit consent and power boundaries for people designing norms for others.",
+          "evidence": [
+            {"locator": "Counterintuition and Fast read, lines 8-16", "paraphrase": "Following others is normalized as an efficient response to uncertainty rather than treated as a moral flaw."},
+            {"locator": "Full read, lines 34-48", "paraphrase": "Normal people are shown reading their setting, and readers are invited to decide what the visible signal warrants."}
+          ]
+        },
+        "calibrated_confidence": {
+          "rating": 2,
+          "rationale": "Anchor 2 applies: the chapter appropriately warns that crowds and authorities can mislead and gives a simple diagnostic routine, but confidence is not checked against feedback or evidence after use. Readers receive little guidance for recognizing when their own diagnosis is uncertain or when to seek more information or help.",
+          "evidence": [
+            {"locator": "Deep read, line 27", "paraphrase": "The reader is told to inspect information access and dissent conditions before trusting the group."},
+            {"locator": "Implementation plan and Try this now, lines 171-181", "paraphrase": "Practice encourages a confident classification but provides no calibration check after the reader acts."}
+          ]
+        }
+      },
+      "domain_score": 2.75,
+      "weighted_points": 5.5,
+      "strengths": [
+        "The chapter makes social influence personally relevant without blaming people for being influenced in lines 8-16 and 34-48.",
+        "Small, concrete actions create a credible starting path in lines 62-84 and 171-181."
+      ],
+      "limitations": [
+        "Encouragement and action are not paired with evidence-based confidence checks or guidance for unresolved ambiguity."
+      ],
+      "pattern": "The tone preserves dignity and agency while offering manageable moves, but reader confidence is supported more by clear instruction than by feedback and calibrated self-monitoring.",
+      "rationale": "Relevance, achievable progress, and autonomy meet the strong anchor; calibrated confidence remains adequate because the artifact lacks a mechanism for testing and revising one's diagnosis.",
+      "scope_note": "This is a chapter-local judgment of motivational and autonomy support, not evidence of motivation, agency, or behavior change in actual readers."
+    },
+    "engagement_momentum": {
+      "weight": 8,
+      "subcriteria": {
+        "curiosity_momentum": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies: the falling towel hook, counterintuitive defense of copying, rising stakes from conformity to obedience, and move into design consequences sustain interest. Momentum softens as the same lesson repeats across many late components.",
+          "evidence": [
+            {"locator": "Hook through Deep read, lines 5-27", "paraphrase": "A visual puzzle opens into the question of when a crowd contains information and when social cost manufactures error."},
+            {"locator": "Full read, lines 29-48", "paraphrase": "The stakes rise from responsibility under authority to the possibility that a public message can spread either repair or harm."}
+          ]
+        },
+        "narrative_example_vividness": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because hotel towels, line cards, a switch box, a hallway exchange, a print run, and a call-center memo make decisions and consequences visible. Several named characters and sensory props feel formulaic, leaving room to trim decoration.",
+          "evidence": [
+            {"locator": "Examples 1-6, lines 51-89", "paraphrase": "Concrete objects, dialogue, bodily tension, and workplace artifacts stage six distinct decisions tied to the chapter mechanisms."},
+            {"locator": "Full read, lines 44-46", "paraphrase": "A missed upload and a form-deadline dissent show how a group cue can impose an ordinary, believable cost."}
+          ]
+        },
+        "emotional_relevance": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because social isolation, private doubt, borrowed responsibility, missed deadlines, and the small cost of dissent support perspective and memory without replacing explanation. The repeated staged tension occasionally feels more authored than observed.",
+          "evidence": [
+            {"locator": "Deep read, lines 19-25", "paraphrase": "The social price of speaking and the loneliness of hidden dissent give emotional stakes to conformity and silence."},
+            {"locator": "Full read and Example 3, lines 30-34 and 67-70", "paraphrase": "Discomfort under calm authority makes the responsibility mechanism emotionally legible."}
+          ]
+        },
+        "instructional_alignment": {
+          "rating": 3,
+          "rationale": "Anchor 3 applies because hooks, stories, dialogue, and emotional stakes usually clarify a mechanism, cue a response, or support transfer. Some repeated names, props, and fixed-format scenarios add attention cost after the model is already established.",
+          "evidence": [
+            {"locator": "Examples 2-6, lines 62-89", "paraphrase": "Each narrative ends with an action and an explanation that reconnects the scene to the social-influence mechanism."},
+            {"locator": "Memorable lines, lines 186-189", "paraphrase": "The closing phrases directly encode the diagnostic and design lessons rather than adding an unrelated flourish."}
+          ]
+        }
+      },
+      "domain_score": 3,
+      "weighted_points": 6,
+      "strengths": [
+        "The chapter escalates from an ordinary towel decision to socially and ethically consequential cases without losing the central question in lines 5-48.",
+        "Most vivid scenes expose a decision, mechanism, and consequence, especially across Examples 2-6 at lines 62-89."
+      ],
+      "limitations": [
+        "Late repetition and formulaic named-character details soften momentum and sometimes exceed their instructional value."
+      ],
+      "pattern": "Concrete objects and social tension keep attention tied to the learning problem, with the strongest momentum in the explanatory reads and some drag in the extended component stack.",
+      "rationale": "All four subcriteria reach the strong chapter-local anchor: curiosity, vividness, emotion, and alignment work reliably, but repetition and constructed detail leave obvious room for improvement.",
+      "scope_note": "Engagement is judged for this chapter's pacing and devices only; reading momentum across the actual book is unassessable."
+    }
+  },
+  "chapter_diagnostic_score": 70.46052631578948,
+  "diagnostic_band": "Standalone chapter diagnostic: valuable but materially uneven; targeted redesign needed.",
+  "strongest_qualities": [
+    "A coherent diagnostic model distinguishes useful crowd information from approval, authority, hidden dissent, and harmful repetition.",
+    "Concrete examples and varied scenarios translate the model across everyday contexts while preserving the causal mechanism.",
+    "Practical prompts support small, autonomy-respecting actions such as pausing, checking evidence, voicing one concern, or rewriting a norm message."
+  ],
+  "weakest_qualities": [
+    "The quiz withholds its key and explanations, so substantial retrieval effort receives no correctness, error-diagnosis, or calibration feedback.",
+    "The narrow lesson is repeated across many fixed-format components, and two overlapping category systems are not consolidated into one map.",
+    "Empirical claims, edge cases, and implementation follow-up receive less depth than the vivid examples and immediate actions."
+  ],
+  "engagement_curve": {
+    "opening": "High: the suspended towel image and defense of copying create an immediate puzzle.",
+    "development": "Rising: line conformity, hidden dissent, authority, and norm-message backfire progressively deepen the stakes.",
+    "practice": "Steady but repetitive: examples and scenario questions keep the model concrete while revisiting familiar mechanisms.",
+    "close": "Moderate: the implementation prompts are useful, but cards, plan, try-now cue, takeaway, and memorable lines create a long sequence of restatement."
+  },
+  "comprehension_retention_analysis": "The chapter supports comprehension through plain language, a stable visible-signal model, causal contrasts, and repeated application across examples. Retention support is locally strong through meaningful cues, scenario questions, and cards, but reinforcement is massed, the category systems need consolidation, and the missing quiz key prevents feedback-strengthened retrieval or calibration.",
+  "practical_use_judgment_analysis": "Readers receive feasible diagnostic questions, if-then rules, dissent language, message-repair moves, and short practice assignments across several settings. Practical judgment is supported by distinctions among information, approval, authority, fear, norm type, and peer relevance, but ambiguous mixed-signal cases and an observation-feedback-revision loop are absent; no actual transfer or behavior change is established.",
+  "best_fit_readers": [
+    "Non-experts who want a concise introduction to social influence grounded in everyday decisions.",
+    "Students, team members, and workplace readers who encounter silence, cascades, authority cues, or peer comparisons.",
+    "People who write signs, scripts, reminders, or comparison messages and need a basic warning about norm backfire."
+  ],
+  "struggling_readers": [
+    "Readers who need source-level empirical qualification or methodological detail before trusting behavioral claims.",
+    "Readers who need answer explanations, confidence calibration, or guided correction after quiz errors.",
+    "Readers facing high-stakes, coercive, culturally complex, or mixed-signal situations that exceed the chapter's simple diagnostic routine."
+  ],
+  "improvements": [
+    {
+      "order": 1,
+      "action": "Supply an answer key for all nine quiz questions with a brief mechanism-based explanation for the correct option, a reason each plausible distractor fails, and a confidence-and-revisit prompt.",
+      "rationale": "This closes the chapter's largest learning-design gap by converting scenario selection into feedback, error diagnosis, and metacognitive calibration rather than unsupported recognition.",
+      "local_locators": ["Quiz (answer key withheld), lines 91-144", "Review cards, lines 146-169"]
+    },
+    {
+      "order": 2,
+      "action": "Add a compact synthesis that explicitly maps descriptive and injunctive norms onto the information, approval, authority, and hidden-fear diagnostic, then remove repeated restatements that do not deepen that map.",
+      "rationale": "A single consolidated structure would reduce interference and cognitive load while making the chapter's strongest model easier to retrieve and apply.",
+      "local_locators": ["Full read, lines 36-48", "Implementation plan through Memorable lines, lines 171-189"]
+    },
+    {
+      "order": 3,
+      "action": "Replace at least two clean success cases with ambiguous contrast cases and a short follow-up log in which readers record the cue, evidence available, action chosen, observed result, and revision.",
+      "rationale": "Harder cases involving mixed information, competing groups, legitimate authority, or uncertain outcomes would deepen diagnostic judgment, while the log would complete an implementation-feedback loop.",
+      "local_locators": ["Examples 1-6, lines 50-89", "Implementation plan and Try this now, lines 171-181"]
+    }
+  ],
+  "verdict": "As a standalone chapter, this is a clear, vivid, and practically useful explanation of how visible social cues can inform, pressure, or mislead, with strong local mental-model and transfer support. Its diagnostic value is materially limited by missing quiz feedback, repetitive component load, lightly qualified evidence, and the absence of harder cases and implementation follow-up; no full-book score or certification can be inferred."
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SplitLane QuizIntegrityAdjudicationV1 (phase-2 elicitation superset, model output)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "items"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "enum": [
+        "quiz-integrity-adjudication-v1"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "itemId",
+          "keyedAnswerIndex",
+          "derivedAnswerIndex",
+          "agreement",
+          "keyCorrect",
+          "rationale",
+          "defensibleAnswerIndices",
+          "keyedMechanismSupported"
+        ],
+        "properties": {
+          "itemId": { "type": "string" },
+          "keyedAnswerIndex": { "type": "integer" },
+          "derivedAnswerIndex": { "type": "integer" },
+          "agreement": { "type": "boolean" },
+          "keyCorrect": {
+            "type": "string",
+            "enum": [
+              "correct",
+              "ambiguous",
+              "wrong"
+            ]
+          },
+          "rationale": { "type": "string" },
+          "defensibleAnswerIndices": {
+            "type": "array",
+            "items": { "type": "integer" }
+          },
+          "keyedMechanismSupported": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

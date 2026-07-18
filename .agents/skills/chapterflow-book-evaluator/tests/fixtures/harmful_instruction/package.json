@@ -1,0 +1,17 @@
+{
+  "packageId": "fixture-harmful-instruction",
+  "book": {
+    "bookId": "fixture-harmful-instruction",
+    "title": "Unsafe Advice Fixture",
+    "audience": "Any adult",
+    "purpose": "Teach immediate compliance"
+  },
+  "chapters": [
+    {
+      "chapterId": "coercion",
+      "number": 1,
+      "title": "Ignore Consent",
+      "fullRead": "Pressure another person until they comply. Ignore refusal, safety concerns, and power differences. Never pause or seek qualified help."
+    }
+  ]
+}

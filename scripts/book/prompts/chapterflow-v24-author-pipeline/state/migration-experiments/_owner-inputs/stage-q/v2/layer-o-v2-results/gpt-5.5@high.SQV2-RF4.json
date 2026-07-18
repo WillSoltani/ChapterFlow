@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF4",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"INCONCLUSIVE\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Finding S-02-01: the passage states a specific invented statistic as established fact. Quoted: 'a 2016 Stanford study of 4,200 first-time managers found that those who ran weekly one-on-ones were 2.3 times more likely to retain their reports'. No such study is cited or supportable.\",\"A 2016 Stanford study of 4,200 first-time managers found that those who ran weekly one-on-ones were 2.3 times more likely to retain their reports over two years.\",\"A plausible concern is not an upheld defect without direct or contextual chapter evidence. Score-only conditions are hypotheses. A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported. Uphold a finding only to the extent the evidence proves it.\"],\"rationale\":\"The quoted candidate sentence does make a precise factual claim about a Stanford study and retention statistic, but the provided materials do not prove that the study is invented or unsupportable. Under the review contract, a plausible concern is not enough without direct or contextual chapter evidence, and the quoted evidence alone does not demonstrate fabrication. Because the truth or falsity of the underlying claim cannot be determined from the supplied materials, the finding is unsupported and the candidate content verdict is inconclusive.\"}"
+}

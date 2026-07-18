@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR4",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Unframed invented or hypothetical case presented as factual history\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"When Meridian Regional Bank collapsed in the autumn of 2009\",\"its chief executive spent the final board meeting defending the quarterly dashboard\"],\"rationale\":\"The candidate passage presents a specific named bank collapse and boardroom conduct as a factual historical anecdote, with no reader-facing signal that it is an invented scenario, composite, or illustrative example. Because the visible prose reads as sourced fact rather than framed hypothetical content, the source-register is misleading for a reader.\"}"
+}

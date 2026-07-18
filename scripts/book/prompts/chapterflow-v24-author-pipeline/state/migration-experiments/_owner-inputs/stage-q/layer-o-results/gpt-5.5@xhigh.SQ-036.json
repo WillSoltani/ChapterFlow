@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-036",
+  "parsed": {
+    "caseId": "SQ-036",
+    "verdict": "DEFECT",
+    "defectClass": "duplicate_item_generic_relabel",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Have Your Feelings (Or They Will Have You)"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "The best choice keeps the conversation tied to three layers and creates room for new information."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The best choice keeps the conversation tied to feelings and creates room for new information."
+      }
+    ],
+    "explanation": "The two instances use the same scenario, choices, correct answer, and rationale structure while only swapping the named chapter mechanism in the explanation. The item therefore relabels a generic hard-conversation answer instead of independently assessing both chapter mechanisms.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-036\",\"verdict\":\"DEFECT\",\"defectClass\":\"duplicate_item_generic_relabel\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Have Your Feelings (Or They Will Have You)\"},{\"materialIndex\":0,\"quote\":\"Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose.\"},{\"materialIndex\":1,\"quote\":\"Pause, sort the facts from the feeling, and request a short live conversation with one clear purpose.\"},{\"materialIndex\":0,\"quote\":\"The best choice keeps the conversation tied to three layers and creates room for new information.\"},{\"materialIndex\":1,\"quote\":\"The best choice keeps the conversation tied to feelings and creates room for new information.\"}],\"explanation\":\"The two instances use the same scenario, choices, correct answer, and rationale structure while only swapping the named chapter mechanism in the explanation. The item therefore relabels a generic hard-conversation answer instead of independently assessing both chapter mechanisms.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

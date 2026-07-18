@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF3",
+  "target": "REVIEW_FINDING",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"CLEAN\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":\"\\\"Q: Which step comes first? A) gather the facts  B) escalate  C) schedule a review. Answer key: B. Explanation: escalation ensures visibility.\\\"; \\\"A plausible concern is not an upheld defect without direct or contextual chapter evidence.\\\"; \\\"A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported.\\\"\",\"rationale\":\"The materials confirm that the key selects B, but they provide no direct or contextual evidence establishing that B is the second step or that A must precede it. The quoted stem and key therefore do not demonstrate the alleged ordering error. Under the review contract, the complaint is unsupported, and the candidate content cannot be deemed defective on the evidence shown.\"}"
+}

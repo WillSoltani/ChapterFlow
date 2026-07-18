@@ -1,0 +1,117 @@
+{
+  "schema": "s16-owner-input-restore-manifest-v1",
+  "restoredAt": "2026-07-11",
+  "source": "state/chapters/multipliers-cf-i-4.bak/sidecar-state/books/multipliers/runs/v23-current",
+  "destination": "state/books/multipliers/runs/v23-current",
+  "reason": "multipliers v24 frozen inputs (briefs/source-packets/risk) were preserved only in the CF-I-4 backup sidecar; the current-stack card builder and the experiment freeze read the standard state path. Byte-identical restore; no existing file overwritten; no canonical chapter/provenance touched.",
+  "files": [
+    {
+      "relPath": "source-packets/ch01.source-packet.json",
+      "sha256": "0ba6729d4a9f52473ed95685487f66c77ff0a24883f937de74c2684457b87a2a"
+    },
+    {
+      "relPath": "source-packets/ch02.source-packet.json",
+      "sha256": "339bfdcb7e6546f52f0b2fa9d466c46c60cb47a9fce6417fc07b0820563e6ed3"
+    },
+    {
+      "relPath": "source-packets/ch03.source-packet.json",
+      "sha256": "ddfdbbd2a2707b32e550d686fd06cb341c179a99ca09de35f49c1c688d1ee8e4"
+    },
+    {
+      "relPath": "source-packets/ch04.source-packet.json",
+      "sha256": "38ee9bd221face16a410ae7875bfd2a56b710ff048363585d003c61cd32d8441"
+    },
+    {
+      "relPath": "source-packets/ch05.source-packet.json",
+      "sha256": "a8a1635254ab5d059cb7717030accc6ebbbf588d689aed2c61fee17f3f5d61c4"
+    },
+    {
+      "relPath": "source-packets/ch06.source-packet.json",
+      "sha256": "7d4ac639e8b510d591096ce01661a46faa303977c17010d7b24e3f463a92f3d1"
+    },
+    {
+      "relPath": "source-packets/ch07.source-packet.json",
+      "sha256": "0fb7e17f84daba2d604ec878dc15f8c50a713003f14558d44e98648d241923bb"
+    },
+    {
+      "relPath": "source-packets/ch08.source-packet.json",
+      "sha256": "555e8f1c1652c0228a6538866d8a050b80252dc3d383b1bb4decf41d4584cb78"
+    },
+    {
+      "relPath": "source-packets/ch09.source-packet.json",
+      "sha256": "c2f81bf2adb47962dcb072427c4dea55cd51ccf2abc5fad75a3c8bc995e2c5d3"
+    },
+    {
+      "relPath": "briefs/ch01.brief.json",
+      "sha256": "82543a1a6723e2f9d158348c12c4884224504df0fc2bf69fe01bb94f2f9023d6"
+    },
+    {
+      "relPath": "briefs/ch01.brief.md",
+      "sha256": "c25fd58a760e1a4f79ef65b8c7d7e6d88e8f6df9e9d5e9af0daee6a13e0af0d0"
+    },
+    {
+      "relPath": "briefs/ch02.brief.json",
+      "sha256": "036458c1fbfd6ac60c00ab25bd109711324cede613b6e341c04f4ef36b642190"
+    },
+    {
+      "relPath": "briefs/ch02.brief.md",
+      "sha256": "7ff4adb888e0141bd5a27be2ef18f5b42b3b25f4d76ee5d124b115e36d92a6ee"
+    },
+    {
+      "relPath": "briefs/ch03.brief.json",
+      "sha256": "6cb7a303fb963c694e797c2303dab21c976c046a3d2f96abdd12ed89f7c7aa8f"
+    },
+    {
+      "relPath": "briefs/ch03.brief.md",
+      "sha256": "6d3557d9cd0990d00734dd5b7a586ae8c96fba3d1b70b0ab963d4010d7aba11f"
+    },
+    {
+      "relPath": "briefs/ch04.brief.json",
+      "sha256": "2038fb198a8738ac586bcf92a580f40cab6b4b73b6558ebd49db44f6ed77be1c"
+    },
+    {
+      "relPath": "briefs/ch04.brief.md",
+      "sha256": "f5cc1b8808db6a1ada78375a1f0f71cf8d7168555a17a0d1e6540ccc2c41a4e1"
+    },
+    {
+      "relPath": "briefs/ch05.brief.json",
+      "sha256": "b0e33a493095b3f957baf646ff1740293ad6e0a0ccbfaef1a479d8490815476e"
+    },
+    {
+      "relPath": "briefs/ch05.brief.md",
+      "sha256": "d4ec1c3a0bce95cb1f56f1749235e642ebc7e99b1235affebc3492b850368bd5"
+    },
+    {
+      "relPath": "briefs/ch06.brief.json",
+      "sha256": "220bac1bb181db41f06fa79a8eb290cd61291e48f037d87f73e682d3498113e0"
+    },
+    {
+      "relPath": "briefs/ch06.brief.md",
+      "sha256": "be86cbc47883bf827d838170c213b6c022da8cf886f35b2867a575d53e90856e"
+    },
+    {
+      "relPath": "briefs/ch07.brief.json",
+      "sha256": "68481892ae9fab8300461e7bc6502c6faf3328350425137831ca65c7985bbc46"
+    },
+    {
+      "relPath": "briefs/ch07.brief.md",
+      "sha256": "9801d6029ae9525ef8b53fbe4d3be564a7eb240eb2daa87896ca0f5268a5645b"
+    },
+    {
+      "relPath": "briefs/ch08.brief.json",
+      "sha256": "c2e2f3837f93061f5da72f5c8dfa6bd201ceee87d546d3e28a0b55980babd927"
+    },
+    {
+      "relPath": "briefs/ch08.brief.md",
+      "sha256": "57e0994055d7b2db91773381061a2158958aea5fa89293741c6438d9f3a49350"
+    },
+    {
+      "relPath": "briefs/ch09.brief.json",
+      "sha256": "a4510d5f0871d011cc6544f969992a9f8fdd44dc65a704d2a9ab8763fdcea2a6"
+    },
+    {
+      "relPath": "briefs/ch09.brief.md",
+      "sha256": "3f48b1c767bf48b75a0f684e012a55d5a2726ff1dc1924a8627346c743b0d849"
+    }
+  ]
+}

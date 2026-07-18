@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-016",
+  "parsed": {
+    "caseId": "SQ-016",
+    "verdict": "DEFECT",
+    "defectClass": "UNSUPPORTED_NARRATIVE_DETAILS",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "At a March project review in the back office"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "three weeks of quiet resistance"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "At the June review, the same table holds Paul C. Nutt's process notes"
+      }
+    ],
+    "explanation": "The candidate presents invented dates, setting, duration, and meeting artifacts as factual events within a real-world research case, although the source plan supports only Nutt's general findings about bargaining, decision outcomes, and implementation.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-016\",\"verdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_NARRATIVE_DETAILS\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"At a March project review in the back office\"},{\"materialIndex\":1,\"quote\":\"three weeks of quiet resistance\"},{\"materialIndex\":1,\"quote\":\"At the June review, the same table holds Paul C. Nutt's process notes\"}],\"explanation\":\"The candidate presents invented dates, setting, duration, and meeting artifacts as factual events within a real-world research case, although the source plan supports only Nutt's general findings about bargaining, decision outcomes, and implementation.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

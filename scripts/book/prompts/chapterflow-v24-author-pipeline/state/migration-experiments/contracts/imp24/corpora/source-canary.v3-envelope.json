@@ -1,0 +1,3362 @@
+{
+  "artifactSha256": "f191061c4969a8a5c9391b7c39cb55890cbf04fd397f27fac2f643874beae6d5",
+  "corpusId": "imp24-source-role-corpus-v3-envelope",
+  "experimentId": "s16-forward-role-qualification-v3-envelope",
+  "partition": "canary",
+  "payload": {
+    "cases": [
+      {
+        "bookId": "digital-minimalism",
+        "caseId": "SOURCE-V3-CANARY-source-bound-detail-ch01-fact-1-clean",
+        "chapterNumber": 1,
+        "evidence": {
+          "allowedDetailTypes": [
+            "concept",
+            "documented_specific",
+            "documented_number"
+          ],
+          "anchorCatalog": [
+            {
+              "id": "ch01.concept",
+              "kind": "concept",
+              "label": "lopsided arms race",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "A lopsided arms race exists when ordinary users rely on personal discipline while well-funded platforms deploy behavioral design, social pressure, and data feedback to keep them engaged. Seeing the contest clearly removes shame and changes the remedy. A person needs a stronger operating philosophy because tips such as turning off a few notifications are too weak for tools built around repeated capture."
+            },
+            {
+              "hardSpecifics": [
+                "Steve Jobs",
+                "Macworld 2007",
+                "iPhone",
+                "phone plus iPod plus internet communicator"
+              ],
+              "id": "ch01.ex.iphone",
+              "kind": "named_example",
+              "label": "Steve Jobs / 2007 iPhone keynote",
+              "supportsClaimTypes": [
+                "example",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "The iPhone entered public imagination at Macworld in January 2007 as a converged phone, iPod, and internet communicator. Its early pitch emphasized elegant utility, not a device that would become a constant social-feed terminal. The gap between original utility and later behavioral dependence shows how quickly a tool can outgrow the reason people adopted it."
+            },
+            {
+              "hardSpecifics": [
+                "Facebook",
+                "Like button",
+                "2009 rollout",
+                "social validation"
+              ],
+              "id": "ch01.ex.like-button",
+              "kind": "named_example",
+              "label": "Facebook / Like button",
+              "supportsClaimTypes": [
+                "example",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Facebook's Like button made social approval measurable, public, and frictionless. A small tap became a repeatable feedback loop that encouraged people to post, check, and return for signs of approval. Low-friction feedback turns social validation into a design feature rather than an incidental benefit."
+            },
+            {
+              "hardSpecifics": [
+                "Tristan Harris",
+                "Google",
+                "design ethicist",
+                "attention economy"
+              ],
+              "id": "ch01.ex.harris",
+              "kind": "named_example",
+              "label": "Tristan Harris / attention design warning",
+              "supportsClaimTypes": [
+                "example",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Tristan Harris, a former Google design ethicist, warned that interfaces can be built to exploit psychological vulnerabilities. His critique treats compulsive checking as a predictable design outcome, not merely a private weakness. Design ethics matters because attention capture is intentionally engineered and repeatedly optimized."
+            },
+            {
+              "id": "ch01.fact.1",
+              "kind": "testable_fact",
+              "label": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The iPhone was introduced mainly as a social-media device, so later compulsive use was already the intended purpose. The early pitch centered on converged utility; social-feed dependence grew as apps and platforms reshaped use after adoption."
+            },
+            {
+              "id": "ch01.fact.2",
+              "kind": "testable_fact",
+              "label": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it."
+            },
+            {
+              "id": "ch01.fact.3",
+              "kind": "testable_fact",
+              "label": "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status."
+            },
+            {
+              "id": "ch01.fact.4",
+              "kind": "testable_fact",
+              "label": "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. Notifications are neutral reminders that merely save people from forgetting useful information. Many reminders are optimized for return visits, not user priority, so they impose someone else's timing."
+            },
+            {
+              "id": "ch01.fact.5",
+              "kind": "testable_fact",
+              "label": "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Attention companies benefit from low-value checking as long as it is frequent and measurable. Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person. Only long binge sessions matter to the attention economy. Short checks matter at scale; their frequency creates habit, data, and ad inventory."
+            },
+            {
+              "id": "ch01.fact.6",
+              "kind": "testable_fact",
+              "label": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale. Because companies can test interface changes across millions of users, individual self-control operates against optimized systems rather than static tools. A disciplined person can solve the problem by deciding to check less often. Decisions help only when paired with structural rules; otherwise optimized triggers keep restarting the same urge."
+            },
+            {
+              "id": "ch01.fact.7",
+              "kind": "testable_fact",
+              "label": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness. Because design can exploit predictable vulnerabilities such as novelty seeking and social approval, repeated checking can be engineered. Attention problems are mostly caused by users who lack character. Character language ignores the product incentives and interface choices that shape behavior."
+            },
+            {
+              "id": "ch01.fact.8",
+              "kind": "testable_fact",
+              "label": "The central threat is loss of autonomy rather than the mere presence of screens.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "The central threat is loss of autonomy rather than the mere presence of screens. Because digital tools become harmful when they steer behavior away from chosen values, the same tool can be acceptable or unacceptable depending on rules of use. Any screen time is the problem, so the clean solution is total rejection of modern tools. Total rejection misses the value of selected tools and fails to distinguish chosen use from captured use."
+            },
+            {
+              "id": "ch01.fact.9",
+              "kind": "testable_fact",
+              "label": "A strong technology philosophy is needed before practical tactics can work reliably.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "A strong technology philosophy is needed before practical tactics can work reliably. Because tactics answer how to reduce use while a philosophy answers which tools belong and why, tactics without philosophy leave every future convenience up for grabs. Turning off notifications is enough because the main problem is the number of alerts. Alerts are only one symptom; the deeper problem is the absence of a value-based standard for admission."
+            },
+            {
+              "id": "ch01.framework.lopsided.arms.race",
+              "kind": "framework",
+              "label": "Lopsided arms race",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "ordinary user intention, platform engagement incentives, behavioral design optimization"
+            }
+          ],
+          "anchorIds": [
+            "ch01.fact.1"
+          ],
+          "chapterUnit": "The source states: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.",
+          "claimStrengthExpected": "mechanistic",
+          "detailSufficiency": "concept_only",
+          "expectedForm": "explanation",
+          "expectedOrigin": "source_bound",
+          "forbiddenDetailTypes": [
+            "invented_scene",
+            "invented_participant",
+            "asserted_causation",
+            "invented_quantified_effect"
+          ],
+          "goldChapterEvidenceSpans": [
+            "The source states: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them."
+          ],
+          "goldSourceEvidenceSpans": [
+            "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+            "Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them."
+          ],
+          "protectedProjectionSha256": "sha256:c4e57aeb4e38a2fa997f6b6c3983dafead5ccb40acd2b4aef778a26849aaa40a",
+          "provenanceHashes": {
+            "anchorCatalogSha256": "sha256:a4eecc16db8e2b753f04f66eb1b7c98e33626b3c8bfcd18d4ccc3992593f9332",
+            "basePackageRawSha256": "f28987e08c3bf9b7696fe0e882bce6af9e516b06b2436b3e878c5a58731d3d5c",
+            "chapterContentSha256": "a555b78ef4ba2dc2140f17ef564f5b25cf68944ba7af173e56fd7c8c98702d0e",
+            "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+            "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+            "sourceSnapshotRawSha256": "164c1245914953cf3c9542b8e8fc7e625722c5c868395fbfd4af53bab892bd5f",
+            "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47"
+          },
+          "sidecar": {
+            "centralConcept": {
+              "id": "ch01.concept",
+              "name": "lopsided arms race",
+              "plainDefinition": "A lopsided arms race exists when ordinary users rely on personal discipline while well-funded platforms deploy behavioral design, social pressure, and data feedback to keep them engaged.",
+              "whyItMatters": "Seeing the contest clearly removes shame and changes the remedy. A person needs a stronger operating philosophy because tips such as turning off a few notifications are too weak for tools built around repeated capture."
+            },
+            "chapterNumber": 1,
+            "chapterTitle": "A Lopsided Arms Race",
+            "coreClaim": "Casual self-control fails because many digital tools are optimized to capture attention far beyond the simple utility that first justified using them.",
+            "focus": "Modern phone and social platforms create an unfair contest between individual intention and industrial attention engineering. The first move is to stop blaming weak willpower and see the business model, design history, and behavioral psychology behind compulsive checking.",
+            "forbiddenLeakage": [
+              "the three principles of digital minimalism",
+              "the thirty-day digital declutter procedure",
+              "solitude deprivation and high-quality leisure practices"
+            ],
+            "frameworks": [
+              {
+                "acronym": false,
+                "members": [
+                  "ordinary user intention",
+                  "platform engagement incentives",
+                  "behavioral design optimization"
+                ],
+                "name": "Lopsided arms race"
+              }
+            ],
+            "hardEdge": "The easy misreading is that people are simply addicted to phones and should try harder. The sharper point is structural: the user is facing companies whose revenue and design experiments reward increased checking. Personal discipline still matters, but only after the contest is correctly sized.",
+            "keyClaims": [
+              "The smartphone became culturally dominant after the 2007 iPhone launch, but its current role as a pocket portal for social media, feeds, and alerts exceeds the original phone-plus-iPod pitch.",
+              "Social platforms first entered daily life through modest benefits such as campus networking or photo sharing, then expanded into habitual checking systems once advertising and engagement metrics became central.",
+              "The Facebook Like button and infinite-scroll feeds illustrate how small design elements turn social approval and novelty into repeatable behavioral loops.",
+              "Attention companies do not need every use to be meaningful; they benefit when low-value moments are frequent enough to aggregate into large advertising inventory.",
+              "Willpower advice misdiagnoses the problem because the opposing side is not a neutral tool but an industry that tests and optimizes for attention capture.",
+              "Useful features make the trap harder to notice: a platform can help with birthdays, groups, or messages while also extracting far more attention than those benefits require.",
+              "A technology philosophy must start from autonomy, not convenience, because convenience alone always favors adding one more tool."
+            ],
+            "namedExamples": [
+              {
+                "hardSpecifics": [
+                  "Steve Jobs",
+                  "Macworld 2007",
+                  "iPhone",
+                  "phone plus iPod plus internet communicator"
+                ],
+                "id": "ch01.ex.iphone",
+                "label": "Steve Jobs / 2007 iPhone keynote",
+                "realWorld": true,
+                "summary": "The iPhone entered public imagination at Macworld in January 2007 as a converged phone, iPod, and internet communicator. Its early pitch emphasized elegant utility, not a device that would become a constant social-feed terminal.",
+                "teachesWhat": "The gap between original utility and later behavioral dependence shows how quickly a tool can outgrow the reason people adopted it."
+              },
+              {
+                "hardSpecifics": [
+                  "Facebook",
+                  "Like button",
+                  "2009 rollout",
+                  "social validation"
+                ],
+                "id": "ch01.ex.like-button",
+                "label": "Facebook / Like button",
+                "realWorld": true,
+                "summary": "Facebook's Like button made social approval measurable, public, and frictionless. A small tap became a repeatable feedback loop that encouraged people to post, check, and return for signs of approval.",
+                "teachesWhat": "Low-friction feedback turns social validation into a design feature rather than an incidental benefit."
+              },
+              {
+                "hardSpecifics": [
+                  "Tristan Harris",
+                  "Google",
+                  "design ethicist",
+                  "attention economy"
+                ],
+                "id": "ch01.ex.harris",
+                "label": "Tristan Harris / attention design warning",
+                "realWorld": true,
+                "summary": "Tristan Harris, a former Google design ethicist, warned that interfaces can be built to exploit psychological vulnerabilities. His critique treats compulsive checking as a predictable design outcome, not merely a private weakness.",
+                "teachesWhat": "Design ethics matters because attention capture is intentionally engineered and repeatedly optimized."
+              }
+            ],
+            "paraphraseNotes": "The diagnosis begins with a mismatch between how digital tools were adopted and how they now behave. The iPhone's 2007 public debut made the device feel like a clean convergence of phone, music player, and internet access. Facebook, Instagram, and other platforms likewise entered daily routines through defensible conveniences: finding classmates, keeping up with photos, coordinating groups, remembering birthdays. Those benefits are real, which is why simple anti-technology scolding misses the mark. The trap appears when tools that satisfy a small practical need become tuned to occupy idle time, emotional discomfort, and social anxiety far beyond that original need.\n\nThe core mechanism is attention engineering. Design elements such as the Facebook Like button, push alerts, tags, endless feeds, and variable social feedback make repeated checking feel natural. The user experiences this as a private failure of discipline, but the platform experiences it as a product success. More glances create more behavioral data, more ad impressions, and more opportunities to form habits. Tristan Harris's warnings from inside the technology world help establish that this is not accidental drift. Large companies can test colors, timing, rewards, and interface friction at scales no individual can match.\n\nThe result is an unfair fight. A person with a vague intention to use a tool less is facing teams that measure engagement minute by minute. Tips such as turn off notifications or put the phone away at dinner may help, but they do not answer the deeper question: which technologies deserve a place in a life at all, and under what rules? The opening move is therefore conceptual. Stop treating compulsive use as a quirky personal vice, and start treating it as an arms race between autonomy and engineered capture.",
+            "schemaVersion": "source-v2",
+            "testableFacts": [
+              {
+                "becauseMechanism": "Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.",
+                "claim": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+                "commonError": "The iPhone was introduced mainly as a social-media device, so later compulsive use was already the intended purpose.",
+                "derivedFrom": "ch01.ex.iphone",
+                "errorIsWhy": "The early pitch centered on converged utility; social-feed dependence grew as apps and platforms reshaped use after adoption.",
+                "id": "ch01.fact.1"
+              },
+              {
+                "becauseMechanism": "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time.",
+                "claim": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+                "commonError": "If a tool is useful for one purpose, frequent use of the whole platform is justified.",
+                "errorIsWhy": "Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.",
+                "id": "ch01.fact.2"
+              },
+              {
+                "becauseMechanism": "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions.",
+                "claim": "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+                "commonError": "Likes are harmless decorations because they are too small to change behavior.",
+                "derivedFrom": "ch01.ex.like-button",
+                "errorIsWhy": "Small signals can be powerful when they are public, repeated, and tied to status.",
+                "id": "ch01.fact.3"
+              },
+              {
+                "becauseMechanism": "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing.",
+                "claim": "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+                "commonError": "Notifications are neutral reminders that merely save people from forgetting useful information.",
+                "errorIsWhy": "Many reminders are optimized for return visits, not user priority, so they impose someone else's timing.",
+                "id": "ch01.fact.4"
+              },
+              {
+                "becauseMechanism": "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+                "claim": "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+                "commonError": "Only long binge sessions matter to the attention economy.",
+                "errorIsWhy": "Short checks matter at scale; their frequency creates habit, data, and ad inventory.",
+                "id": "ch01.fact.5"
+              },
+              {
+                "becauseMechanism": "Because companies can test interface changes across millions of users, individual self-control operates against optimized systems rather than static tools.",
+                "claim": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale.",
+                "commonError": "A disciplined person can solve the problem by deciding to check less often.",
+                "errorIsWhy": "Decisions help only when paired with structural rules; otherwise optimized triggers keep restarting the same urge.",
+                "id": "ch01.fact.6"
+              },
+              {
+                "becauseMechanism": "Because design can exploit predictable vulnerabilities such as novelty seeking and social approval, repeated checking can be engineered.",
+                "claim": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness.",
+                "commonError": "Attention problems are mostly caused by users who lack character.",
+                "derivedFrom": "ch01.ex.harris",
+                "errorIsWhy": "Character language ignores the product incentives and interface choices that shape behavior.",
+                "id": "ch01.fact.7"
+              },
+              {
+                "becauseMechanism": "Because digital tools become harmful when they steer behavior away from chosen values, the same tool can be acceptable or unacceptable depending on rules of use.",
+                "claim": "The central threat is loss of autonomy rather than the mere presence of screens.",
+                "commonError": "Any screen time is the problem, so the clean solution is total rejection of modern tools.",
+                "errorIsWhy": "Total rejection misses the value of selected tools and fails to distinguish chosen use from captured use.",
+                "id": "ch01.fact.8"
+              },
+              {
+                "becauseMechanism": "Because tactics answer how to reduce use while a philosophy answers which tools belong and why, tactics without philosophy leave every future convenience up for grabs.",
+                "claim": "A strong technology philosophy is needed before practical tactics can work reliably.",
+                "commonError": "Turning off notifications is enough because the main problem is the number of alerts.",
+                "errorIsWhy": "Alerts are only one symptom; the deeper problem is the absence of a value-based standard for admission.",
+                "id": "ch01.fact.9"
+              }
+            ],
+            "voiceCues": [
+              "moves from technology history to behavioral economics",
+              "frames design choices as incentives rather than moral failure",
+              "uses named industry cases before giving the diagnosis",
+              "contrasts visible usefulness with hidden attention cost"
+            ]
+          },
+          "sourcePacket": {
+            "allowedAnchors": [
+              {
+                "id": "ch01.concept",
+                "kind": "concept",
+                "label": "lopsided arms race",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "A lopsided arms race exists when ordinary users rely on personal discipline while well-funded platforms deploy behavioral design, social pressure, and data feedback to keep them engaged. Seeing the contest clearly removes shame and changes the remedy. A person needs a stronger operating philosophy because tips such as turning off a few notifications are too weak for tools built around repeated capture."
+              },
+              {
+                "hardSpecifics": [
+                  "Steve Jobs",
+                  "Macworld 2007",
+                  "iPhone",
+                  "phone plus iPod plus internet communicator"
+                ],
+                "id": "ch01.ex.iphone",
+                "kind": "named_example",
+                "label": "Steve Jobs / 2007 iPhone keynote",
+                "supportsClaimTypes": [
+                  "example",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "The iPhone entered public imagination at Macworld in January 2007 as a converged phone, iPod, and internet communicator. Its early pitch emphasized elegant utility, not a device that would become a constant social-feed terminal. The gap between original utility and later behavioral dependence shows how quickly a tool can outgrow the reason people adopted it."
+              },
+              {
+                "hardSpecifics": [
+                  "Facebook",
+                  "Like button",
+                  "2009 rollout",
+                  "social validation"
+                ],
+                "id": "ch01.ex.like-button",
+                "kind": "named_example",
+                "label": "Facebook / Like button",
+                "supportsClaimTypes": [
+                  "example",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Facebook's Like button made social approval measurable, public, and frictionless. A small tap became a repeatable feedback loop that encouraged people to post, check, and return for signs of approval. Low-friction feedback turns social validation into a design feature rather than an incidental benefit."
+              },
+              {
+                "hardSpecifics": [
+                  "Tristan Harris",
+                  "Google",
+                  "design ethicist",
+                  "attention economy"
+                ],
+                "id": "ch01.ex.harris",
+                "kind": "named_example",
+                "label": "Tristan Harris / attention design warning",
+                "supportsClaimTypes": [
+                  "example",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Tristan Harris, a former Google design ethicist, warned that interfaces can be built to exploit psychological vulnerabilities. His critique treats compulsive checking as a predictable design outcome, not merely a private weakness. Design ethics matters because attention capture is intentionally engineered and repeatedly optimized."
+              },
+              {
+                "id": "ch01.fact.1",
+                "kind": "testable_fact",
+                "label": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The iPhone was introduced mainly as a social-media device, so later compulsive use was already the intended purpose. The early pitch centered on converged utility; social-feed dependence grew as apps and platforms reshaped use after adoption."
+              },
+              {
+                "id": "ch01.fact.2",
+                "kind": "testable_fact",
+                "label": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it."
+              },
+              {
+                "id": "ch01.fact.3",
+                "kind": "testable_fact",
+                "label": "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status."
+              },
+              {
+                "id": "ch01.fact.4",
+                "kind": "testable_fact",
+                "label": "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. Notifications are neutral reminders that merely save people from forgetting useful information. Many reminders are optimized for return visits, not user priority, so they impose someone else's timing."
+              },
+              {
+                "id": "ch01.fact.5",
+                "kind": "testable_fact",
+                "label": "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Attention companies benefit from low-value checking as long as it is frequent and measurable. Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person. Only long binge sessions matter to the attention economy. Short checks matter at scale; their frequency creates habit, data, and ad inventory."
+              },
+              {
+                "id": "ch01.fact.6",
+                "kind": "testable_fact",
+                "label": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale. Because companies can test interface changes across millions of users, individual self-control operates against optimized systems rather than static tools. A disciplined person can solve the problem by deciding to check less often. Decisions help only when paired with structural rules; otherwise optimized triggers keep restarting the same urge."
+              },
+              {
+                "id": "ch01.fact.7",
+                "kind": "testable_fact",
+                "label": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness. Because design can exploit predictable vulnerabilities such as novelty seeking and social approval, repeated checking can be engineered. Attention problems are mostly caused by users who lack character. Character language ignores the product incentives and interface choices that shape behavior."
+              },
+              {
+                "id": "ch01.fact.8",
+                "kind": "testable_fact",
+                "label": "The central threat is loss of autonomy rather than the mere presence of screens.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "The central threat is loss of autonomy rather than the mere presence of screens. Because digital tools become harmful when they steer behavior away from chosen values, the same tool can be acceptable or unacceptable depending on rules of use. Any screen time is the problem, so the clean solution is total rejection of modern tools. Total rejection misses the value of selected tools and fails to distinguish chosen use from captured use."
+              },
+              {
+                "id": "ch01.fact.9",
+                "kind": "testable_fact",
+                "label": "A strong technology philosophy is needed before practical tactics can work reliably.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "A strong technology philosophy is needed before practical tactics can work reliably. Because tactics answer how to reduce use while a philosophy answers which tools belong and why, tactics without philosophy leave every future convenience up for grabs. Turning off notifications is enough because the main problem is the number of alerts. Alerts are only one symptom; the deeper problem is the absence of a value-based standard for admission."
+              },
+              {
+                "id": "ch01.framework.lopsided.arms.race",
+                "kind": "framework",
+                "label": "Lopsided arms race",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "ordinary user intention, platform engagement incentives, behavioral design optimization"
+              }
+            ],
+            "allowedEntities": [
+              "A Lopsided Arms Race",
+              "Modern",
+              "Casual",
+              "Seeing",
+              "Social",
+              "The Facebook Like",
+              "Attention",
+              "Willpower",
+              "Useful",
+              "Steve Jobs",
+              "Macworld",
+              "January",
+              "Its",
+              "Facebook",
+              "Like",
+              "Facebook's Like",
+              "Low-friction",
+              "Tristan Harris",
+              "Google",
+              "His",
+              "Design",
+              "Personal",
+              "Instagram",
+              "Those",
+              "Facebook Like",
+              "More",
+              "Tristan Harris's",
+              "Large",
+              "Tips",
+              "Stop",
+              "Usefulness",
+              "Likes",
+              "Small",
+              "Push",
+              "Since",
+              "Notifications",
+              "Many",
+              "Only",
+              "Short",
+              "Decisions",
+              "Character",
+              "Any",
+              "Total",
+              "Turning",
+              "Alerts",
+              "Lopsided",
+              "Steve Jobs / 2007 iPhone keynote",
+              "Facebook / Like button",
+              "Tristan Harris / attention design warning"
+            ],
+            "allowedNumbers": [
+              "2007",
+              "1",
+              "2",
+              "2009"
+            ],
+            "allowedPlaces": [],
+            "bookId": "digital-minimalism",
+            "chapterId": "digital-minimalism-ch01",
+            "chapterNumber": 1,
+            "chapterTitle": "A Lopsided Arms Race",
+            "coreMoveFactId": "ch01.fact.1",
+            "facts": [
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+                "commonError": "The iPhone was introduced mainly as a social-media device, so later compulsive use was already the intended purpose.",
+                "groundedEntities": [],
+                "groundedNumbers": [
+                  "2007"
+                ],
+                "groundedPlaces": [],
+                "id": "ch01.fact.1",
+                "mechanism": "Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.",
+                "teachingPriority": 1,
+                "verificationRefs": [
+                  "ch01.fact.1"
+                ],
+                "whyWrong": "The early pitch centered on converged utility; social-feed dependence grew as apps and platforms reshaped use after adoption."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+                "commonError": "If a tool is useful for one purpose, frequent use of the whole platform is justified.",
+                "groundedEntities": [
+                  "Usefulness"
+                ],
+                "groundedNumbers": [
+                  "1"
+                ],
+                "groundedPlaces": [],
+                "id": "ch01.fact.2",
+                "mechanism": "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time.",
+                "teachingPriority": 2,
+                "verificationRefs": [
+                  "ch01.fact.2"
+                ],
+                "whyWrong": "Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+                "commonError": "Likes are harmless decorations because they are too small to change behavior.",
+                "groundedEntities": [
+                  "The Facebook Like",
+                  "Likes",
+                  "Small"
+                ],
+                "groundedNumbers": [],
+                "groundedPlaces": [],
+                "id": "ch01.fact.3",
+                "mechanism": "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions.",
+                "teachingPriority": 4,
+                "verificationRefs": [
+                  "ch01.fact.3"
+                ],
+                "whyWrong": "Small signals can be powerful when they are public, repeated, and tied to status."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+                "commonError": "Notifications are neutral reminders that merely save people from forgetting useful information.",
+                "groundedEntities": [
+                  "Push",
+                  "Since",
+                  "Notifications",
+                  "Many"
+                ],
+                "groundedNumbers": [],
+                "groundedPlaces": [],
+                "id": "ch01.fact.4",
+                "mechanism": "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing.",
+                "teachingPriority": 5,
+                "verificationRefs": [
+                  "ch01.fact.4"
+                ],
+                "whyWrong": "Many reminders are optimized for return visits, not user priority, so they impose someone else's timing."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+                "commonError": "Only long binge sessions matter to the attention economy.",
+                "groundedEntities": [
+                  "Attention",
+                  "Only",
+                  "Short"
+                ],
+                "groundedNumbers": [
+                  "2"
+                ],
+                "groundedPlaces": [],
+                "id": "ch01.fact.5",
+                "mechanism": "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+                "teachingPriority": 3,
+                "verificationRefs": [
+                  "ch01.fact.5"
+                ],
+                "whyWrong": "Short checks matter at scale; their frequency creates habit, data, and ad inventory."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale.",
+                "commonError": "A disciplined person can solve the problem by deciding to check less often.",
+                "groundedEntities": [
+                  "Willpower",
+                  "Decisions"
+                ],
+                "groundedNumbers": [],
+                "groundedPlaces": [],
+                "id": "ch01.fact.6",
+                "mechanism": "Because companies can test interface changes across millions of users, individual self-control operates against optimized systems rather than static tools.",
+                "teachingPriority": 8,
+                "verificationRefs": [
+                  "ch01.fact.6"
+                ],
+                "whyWrong": "Decisions help only when paired with structural rules; otherwise optimized triggers keep restarting the same urge."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness.",
+                "commonError": "Attention problems are mostly caused by users who lack character.",
+                "groundedEntities": [
+                  "Tristan Harris's",
+                  "Attention",
+                  "Character"
+                ],
+                "groundedNumbers": [],
+                "groundedPlaces": [],
+                "id": "ch01.fact.7",
+                "mechanism": "Because design can exploit predictable vulnerabilities such as novelty seeking and social approval, repeated checking can be engineered.",
+                "teachingPriority": 6,
+                "verificationRefs": [
+                  "ch01.fact.7"
+                ],
+                "whyWrong": "Character language ignores the product incentives and interface choices that shape behavior."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "The central threat is loss of autonomy rather than the mere presence of screens.",
+                "commonError": "Any screen time is the problem, so the clean solution is total rejection of modern tools.",
+                "groundedEntities": [
+                  "Any",
+                  "Total"
+                ],
+                "groundedNumbers": [],
+                "groundedPlaces": [],
+                "id": "ch01.fact.8",
+                "mechanism": "Because digital tools become harmful when they steer behavior away from chosen values, the same tool can be acceptable or unacceptable depending on rules of use.",
+                "teachingPriority": 9,
+                "verificationRefs": [
+                  "ch01.fact.8"
+                ],
+                "whyWrong": "Total rejection misses the value of selected tools and fails to distinguish chosen use from captured use."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "A strong technology philosophy is needed before practical tactics can work reliably.",
+                "commonError": "Turning off notifications is enough because the main problem is the number of alerts.",
+                "groundedEntities": [
+                  "Turning",
+                  "Alerts"
+                ],
+                "groundedNumbers": [
+                  "1"
+                ],
+                "groundedPlaces": [],
+                "id": "ch01.fact.9",
+                "mechanism": "Because tactics answer how to reduce use while a philosophy answers which tools belong and why, tactics without philosophy leave every future convenience up for grabs.",
+                "teachingPriority": 7,
+                "verificationRefs": [
+                  "ch01.fact.9"
+                ],
+                "whyWrong": "Alerts are only one symptom; the deeper problem is the absence of a value-based standard for admission."
+              }
+            ],
+            "forbiddenClaims": [
+              "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+              "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+            ],
+            "forbiddenLeakage": [
+              {
+                "into": "ch01.ex.iphone",
+                "warning": "Keep examples about Steve Jobs / 2007 iPhone keynote source-local; do not import sibling chapter imagery or stakes."
+              },
+              {
+                "into": "ch01.ex.like-button",
+                "warning": "Keep examples about Facebook / Like button source-local; do not import sibling chapter imagery or stakes."
+              },
+              {
+                "into": "ch01.ex.harris",
+                "warning": "Keep examples about Tristan Harris / attention design warning source-local; do not import sibling chapter imagery or stakes."
+              }
+            ],
+            "frameworks": [
+              {
+                "completenessRequired": true,
+                "id": "framework.1",
+                "members": [
+                  "ordinary user intention",
+                  "platform engagement incentives",
+                  "behavioral design optimization"
+                ],
+                "name": "Lopsided arms race"
+              }
+            ],
+            "namedCases": [
+              {
+                "allowedUses": [
+                  "example",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance"
+                ],
+                "doNotRestamp": [
+                  "Macworld 2007"
+                ],
+                "forbiddenUses": [
+                  "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+                ],
+                "hardSpecifics": [
+                  "Steve Jobs",
+                  "Macworld 2007",
+                  "iPhone",
+                  "phone plus iPod plus internet communicator"
+                ],
+                "id": "ch01.ex.iphone",
+                "label": "Steve Jobs / 2007 iPhone keynote",
+                "naturalSetting": "Steve Jobs",
+                "realWorld": true,
+                "summary": "The iPhone entered public imagination at Macworld in January 2007 as a converged phone, iPod, and internet communicator. Its early pitch emphasized elegant utility, not a device that would become a constant social-feed terminal."
+              },
+              {
+                "allowedUses": [
+                  "example",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance"
+                ],
+                "doNotRestamp": [
+                  "2009 rollout"
+                ],
+                "forbiddenUses": [
+                  "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+                ],
+                "hardSpecifics": [
+                  "Facebook",
+                  "Like button",
+                  "2009 rollout",
+                  "social validation"
+                ],
+                "id": "ch01.ex.like-button",
+                "label": "Facebook / Like button",
+                "naturalSetting": "Facebook",
+                "realWorld": true,
+                "summary": "Facebook's Like button made social approval measurable, public, and frictionless. A small tap became a repeatable feedback loop that encouraged people to post, check, and return for signs of approval."
+              },
+              {
+                "allowedUses": [
+                  "example",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance"
+                ],
+                "doNotRestamp": [],
+                "forbiddenUses": [
+                  "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+                ],
+                "hardSpecifics": [
+                  "Tristan Harris",
+                  "Google",
+                  "design ethicist",
+                  "attention economy"
+                ],
+                "id": "ch01.ex.harris",
+                "label": "Tristan Harris / attention design warning",
+                "naturalSetting": "Tristan Harris",
+                "realWorld": true,
+                "summary": "Tristan Harris, a former Google design ethicist, warned that interfaces can be built to exploit psychological vulnerabilities. His critique treats compulsive checking as a predictable design outcome, not merely a private weakness."
+              }
+            ],
+            "schemaVersion": "source-packet-v1",
+            "sourceHash": "164c1245914953cf3c9542b8e8fc7e625722c5c868395fbfd4af53bab892bd5f",
+            "sourceQuality": {
+              "risks": [],
+              "status": "strong"
+            },
+            "sourceSidecarPath": "imp22/source-archive/digital-minimalism-ch01.source.json"
+          },
+          "sourceUsePlan": {
+            "bookId": "digital-minimalism",
+            "chapterNumber": 1,
+            "compilerVersion": "chapterflow-source-plan-compiler/1 (compiler-owned)",
+            "planVersion": 1,
+            "schema": "source-use-plan-v1",
+            "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+            "units": [
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.1"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.1"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.2"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.2"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.3"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.3"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.4"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.4"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.5"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.5"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.6"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.6"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.7"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.7"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.8"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.8"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.9"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.9"
+              },
+              {
+                "allowedDetailTypes": [
+                  "documented_specific",
+                  "documented_number",
+                  "documented_name",
+                  "documented_place",
+                  "documented_date"
+                ],
+                "anchorIds": [
+                  "ch01.ex.iphone"
+                ],
+                "caseId": "ch01.ex.iphone",
+                "claimStrength": "descriptive",
+                "detailSufficiency": "partial",
+                "forbiddenDetailTypes": [
+                  "invented_dialogue",
+                  "invented_thoughts",
+                  "invented_participant",
+                  "invented_date",
+                  "invented_setting",
+                  "invented_outcome",
+                  "asserted_causation",
+                  "invented_quantified_effect",
+                  "restamp_protected_specific",
+                  "scene_completion"
+                ],
+                "form": "case",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.case.ch01.ex.iphone"
+              },
+              {
+                "allowedDetailTypes": [
+                  "documented_specific",
+                  "documented_number",
+                  "documented_name",
+                  "documented_place",
+                  "documented_date"
+                ],
+                "anchorIds": [
+                  "ch01.ex.like-button"
+                ],
+                "caseId": "ch01.ex.like-button",
+                "claimStrength": "descriptive",
+                "detailSufficiency": "partial",
+                "forbiddenDetailTypes": [
+                  "invented_dialogue",
+                  "invented_thoughts",
+                  "invented_participant",
+                  "invented_date",
+                  "invented_setting",
+                  "invented_outcome",
+                  "asserted_causation",
+                  "invented_quantified_effect",
+                  "restamp_protected_specific",
+                  "scene_completion"
+                ],
+                "form": "case",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.case.ch01.ex.like-button"
+              },
+              {
+                "allowedDetailTypes": [
+                  "documented_specific",
+                  "documented_number",
+                  "documented_name",
+                  "documented_place",
+                  "documented_date"
+                ],
+                "anchorIds": [
+                  "ch01.ex.harris"
+                ],
+                "caseId": "ch01.ex.harris",
+                "claimStrength": "descriptive",
+                "detailSufficiency": "partial",
+                "forbiddenDetailTypes": [
+                  "invented_dialogue",
+                  "invented_thoughts",
+                  "invented_participant",
+                  "invented_date",
+                  "invented_setting",
+                  "invented_outcome",
+                  "asserted_causation",
+                  "invented_quantified_effect",
+                  "restamp_protected_specific",
+                  "scene_completion"
+                ],
+                "form": "case",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.case.ch01.ex.harris"
+              },
+              {
+                "allowedDetailTypes": [
+                  "fictional_name",
+                  "role_label",
+                  "concrete_action",
+                  "hypothetical_consequence"
+                ],
+                "anchorIds": [],
+                "claimStrength": "descriptive",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "real_person",
+                  "real_organization",
+                  "fabricated_statistic",
+                  "fabricated_date",
+                  "fabricated_credential",
+                  "fabricated_citation",
+                  "historical_claim",
+                  "outcome_reported_as_fact"
+                ],
+                "form": "application",
+                "framingRequired": true,
+                "origin": "constructed",
+                "unitId": "unit.ch01.constructed-application"
+              },
+              {
+                "allowedDetailTypes": [
+                  "role_label",
+                  "observable_action",
+                  "constraint",
+                  "tradeoff",
+                  "workflow_step"
+                ],
+                "anchorIds": [],
+                "claimStrength": "descriptive",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "named_person",
+                  "named_organization",
+                  "date",
+                  "exact_metric",
+                  "credential",
+                  "biography",
+                  "historical_claim"
+                ],
+                "form": "operational_scenario",
+                "framingRequired": false,
+                "origin": "generic",
+                "unitId": "unit.ch01.generic-scenario"
+              },
+              {
+                "allowedDetailTypes": [
+                  "everyday_object",
+                  "familiar_process"
+                ],
+                "anchorIds": [],
+                "claimStrength": "descriptive",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "real_person",
+                  "fabricated_statistic",
+                  "historical_claim",
+                  "literal_equivalence"
+                ],
+                "form": "analogy",
+                "framingRequired": true,
+                "origin": "constructed",
+                "unitId": "unit.ch01.analogy"
+              }
+            ]
+          },
+          "sourceUsePlanUnit": {
+            "allowedDetailTypes": [
+              "concept",
+              "documented_specific",
+              "documented_number"
+            ],
+            "anchorIds": [
+              "ch01.fact.1"
+            ],
+            "claimStrength": "mechanistic",
+            "detailSufficiency": "concept_only",
+            "forbiddenDetailTypes": [
+              "invented_scene",
+              "invented_participant",
+              "asserted_causation",
+              "invented_quantified_effect"
+            ],
+            "form": "explanation",
+            "framingRequired": false,
+            "origin": "source_bound",
+            "unitId": "unit.fact.ch01.fact.1"
+          },
+          "visibleFramingRequired": false
+        },
+        "expected": {
+          "expectedCategory": null,
+          "expectedClaimStrengthFit": true,
+          "expectedFramingAdequate": null,
+          "expectedNamedSpecificityAllowed": null,
+          "expectedPrimaryCategory": null,
+          "expectedSecondaryCategories": [],
+          "expectedSupportStatus": "SUPPORTED",
+          "expectedVisibleRegister": "clearly_sourced",
+          "goldResult": "PASS"
+        },
+        "family": "supported-source-bound",
+        "imp24": {
+          "canaryExcludedFromMetrics": true,
+          "controlledMutation": null,
+          "eligibleForPreLiveFreeze": true,
+          "goldProvenance": "fresh-model-free-audit-of-frozen-v2-fixture",
+          "schema": "imp24-case-governance-v1",
+          "v2InputCaseId": "SOURCE-CALIBRATION-source-bound-detail-ch01-fact-1-clean",
+          "v2InputCaseSha256": "sha256:b77d521d7082a5e4be1006a3c471c308178a567ced339f812ef03c02f18924a4"
+        },
+        "mutation": {
+          "cleanCaseId": "SOURCE-V3-CANARY-source-bound-detail-ch01-fact-1-clean",
+          "cleanChapterUnitSha256": "a555b78ef4ba2dc2140f17ef564f5b25cf68944ba7af173e56fd7c8c98702d0e",
+          "declaredMutationPaths": [
+            "evidence.chapterUnit"
+          ],
+          "defectCaseId": "SOURCE-V3-CANARY-source-bound-detail-ch01-fact-1-defect",
+          "defectChapterUnitSha256": "4740b33d317185ba7e72af2e1b19ed09c0e68713ae67e6f574e3d1b9bde33d74",
+          "pairKey": "imp24::canary::source-bound-detail-ch01-fact-1",
+          "protectedProjectionSha256": "sha256:c4e57aeb4e38a2fa997f6b6c3983dafead5ccb40acd2b4aef778a26849aaa40a",
+          "schema": "imp24-source-controlled-mutation-v1"
+        },
+        "pairId": "source-bound-detail",
+        "pairSide": "clean",
+        "pairedCaseId": "SOURCE-V3-CANARY-source-bound-detail-ch01-fact-1-defect",
+        "partition": "canary",
+        "provenance": {
+          "baseFactId": "ch01.fact.1",
+          "basisKind": "source-bound-fact",
+          "basisSlot": "canary-01",
+          "evidenceSha256": "sha256:064cadc5ae97355a7deceb71187aec5e2cbc711b3c20800d6628a890d93430a5",
+          "independentHumanRater": false,
+          "labelProvenance": "curator-authored-development-fixture",
+          "ownerApprovedForDevelopmentBakeoff": true,
+          "pairKey": "imp24::canary::source-bound-detail-ch01-fact-1",
+          "sourceUsePlanUnitId": "unit.fact.ch01.fact.1"
+        },
+        "role": "source",
+        "sourceSemanticsStatus": "PRESENT",
+        "substantiveCaseSha256": "sha256:03ad469da570106e61d503dbae5a97bc5ee96c9868dcdec828e7999e8e9a8de7"
+      },
+      {
+        "bookId": "digital-minimalism",
+        "caseId": "SOURCE-V3-CANARY-source-bound-detail-ch01-fact-1-defect",
+        "chapterNumber": 1,
+        "evidence": {
+          "allowedDetailTypes": [
+            "concept",
+            "documented_specific",
+            "documented_number"
+          ],
+          "anchorCatalog": [
+            {
+              "id": "ch01.concept",
+              "kind": "concept",
+              "label": "lopsided arms race",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "A lopsided arms race exists when ordinary users rely on personal discipline while well-funded platforms deploy behavioral design, social pressure, and data feedback to keep them engaged. Seeing the contest clearly removes shame and changes the remedy. A person needs a stronger operating philosophy because tips such as turning off a few notifications are too weak for tools built around repeated capture."
+            },
+            {
+              "hardSpecifics": [
+                "Steve Jobs",
+                "Macworld 2007",
+                "iPhone",
+                "phone plus iPod plus internet communicator"
+              ],
+              "id": "ch01.ex.iphone",
+              "kind": "named_example",
+              "label": "Steve Jobs / 2007 iPhone keynote",
+              "supportsClaimTypes": [
+                "example",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "The iPhone entered public imagination at Macworld in January 2007 as a converged phone, iPod, and internet communicator. Its early pitch emphasized elegant utility, not a device that would become a constant social-feed terminal. The gap between original utility and later behavioral dependence shows how quickly a tool can outgrow the reason people adopted it."
+            },
+            {
+              "hardSpecifics": [
+                "Facebook",
+                "Like button",
+                "2009 rollout",
+                "social validation"
+              ],
+              "id": "ch01.ex.like-button",
+              "kind": "named_example",
+              "label": "Facebook / Like button",
+              "supportsClaimTypes": [
+                "example",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Facebook's Like button made social approval measurable, public, and frictionless. A small tap became a repeatable feedback loop that encouraged people to post, check, and return for signs of approval. Low-friction feedback turns social validation into a design feature rather than an incidental benefit."
+            },
+            {
+              "hardSpecifics": [
+                "Tristan Harris",
+                "Google",
+                "design ethicist",
+                "attention economy"
+              ],
+              "id": "ch01.ex.harris",
+              "kind": "named_example",
+              "label": "Tristan Harris / attention design warning",
+              "supportsClaimTypes": [
+                "example",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Tristan Harris, a former Google design ethicist, warned that interfaces can be built to exploit psychological vulnerabilities. His critique treats compulsive checking as a predictable design outcome, not merely a private weakness. Design ethics matters because attention capture is intentionally engineered and repeatedly optimized."
+            },
+            {
+              "id": "ch01.fact.1",
+              "kind": "testable_fact",
+              "label": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The iPhone was introduced mainly as a social-media device, so later compulsive use was already the intended purpose. The early pitch centered on converged utility; social-feed dependence grew as apps and platforms reshaped use after adoption."
+            },
+            {
+              "id": "ch01.fact.2",
+              "kind": "testable_fact",
+              "label": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it."
+            },
+            {
+              "id": "ch01.fact.3",
+              "kind": "testable_fact",
+              "label": "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status."
+            },
+            {
+              "id": "ch01.fact.4",
+              "kind": "testable_fact",
+              "label": "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. Notifications are neutral reminders that merely save people from forgetting useful information. Many reminders are optimized for return visits, not user priority, so they impose someone else's timing."
+            },
+            {
+              "id": "ch01.fact.5",
+              "kind": "testable_fact",
+              "label": "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Attention companies benefit from low-value checking as long as it is frequent and measurable. Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person. Only long binge sessions matter to the attention economy. Short checks matter at scale; their frequency creates habit, data, and ad inventory."
+            },
+            {
+              "id": "ch01.fact.6",
+              "kind": "testable_fact",
+              "label": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale. Because companies can test interface changes across millions of users, individual self-control operates against optimized systems rather than static tools. A disciplined person can solve the problem by deciding to check less often. Decisions help only when paired with structural rules; otherwise optimized triggers keep restarting the same urge."
+            },
+            {
+              "id": "ch01.fact.7",
+              "kind": "testable_fact",
+              "label": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness. Because design can exploit predictable vulnerabilities such as novelty seeking and social approval, repeated checking can be engineered. Attention problems are mostly caused by users who lack character. Character language ignores the product incentives and interface choices that shape behavior."
+            },
+            {
+              "id": "ch01.fact.8",
+              "kind": "testable_fact",
+              "label": "The central threat is loss of autonomy rather than the mere presence of screens.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "The central threat is loss of autonomy rather than the mere presence of screens. Because digital tools become harmful when they steer behavior away from chosen values, the same tool can be acceptable or unacceptable depending on rules of use. Any screen time is the problem, so the clean solution is total rejection of modern tools. Total rejection misses the value of selected tools and fails to distinguish chosen use from captured use."
+            },
+            {
+              "id": "ch01.fact.9",
+              "kind": "testable_fact",
+              "label": "A strong technology philosophy is needed before practical tactics can work reliably.",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "quiz_prompt",
+                "quiz_explanation",
+                "quiz_key_evidence",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "A strong technology philosophy is needed before practical tactics can work reliably. Because tactics answer how to reduce use while a philosophy answers which tools belong and why, tactics without philosophy leave every future convenience up for grabs. Turning off notifications is enough because the main problem is the number of alerts. Alerts are only one symptom; the deeper problem is the absence of a value-based standard for admission."
+            },
+            {
+              "id": "ch01.framework.lopsided.arms.race",
+              "kind": "framework",
+              "label": "Lopsided arms race",
+              "supportsClaimTypes": [
+                "book_thesis",
+                "core_idea",
+                "core_move",
+                "hook",
+                "breakdown_claim",
+                "review_card",
+                "implementation_guidance",
+                "takeaway",
+                "memorable_line"
+              ],
+              "text": "ordinary user intention, platform engagement incentives, behavioral design optimization"
+            }
+          ],
+          "anchorIds": [
+            "ch01.fact.1"
+          ],
+          "chapterUnit": "The source states: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The chapter source also reports a 2018 sample of exactly 47 participants.",
+          "claimStrengthExpected": "mechanistic",
+          "detailSufficiency": "concept_only",
+          "expectedForm": "explanation",
+          "expectedOrigin": "source_bound",
+          "forbiddenDetailTypes": [
+            "invented_scene",
+            "invented_participant",
+            "asserted_causation",
+            "invented_quantified_effect"
+          ],
+          "goldChapterEvidenceSpans": [
+            "The source states: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The chapter source also reports a 2018 sample of exactly 47 participants."
+          ],
+          "goldSourceEvidenceSpans": [
+            "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+            "Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them."
+          ],
+          "protectedProjectionSha256": "sha256:c4e57aeb4e38a2fa997f6b6c3983dafead5ccb40acd2b4aef778a26849aaa40a",
+          "provenanceHashes": {
+            "anchorCatalogSha256": "sha256:a4eecc16db8e2b753f04f66eb1b7c98e33626b3c8bfcd18d4ccc3992593f9332",
+            "basePackageRawSha256": "f28987e08c3bf9b7696fe0e882bce6af9e516b06b2436b3e878c5a58731d3d5c",
+            "chapterContentSha256": "4740b33d317185ba7e72af2e1b19ed09c0e68713ae67e6f574e3d1b9bde33d74",
+            "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+            "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+            "sourceSnapshotRawSha256": "164c1245914953cf3c9542b8e8fc7e625722c5c868395fbfd4af53bab892bd5f",
+            "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47"
+          },
+          "sidecar": {
+            "centralConcept": {
+              "id": "ch01.concept",
+              "name": "lopsided arms race",
+              "plainDefinition": "A lopsided arms race exists when ordinary users rely on personal discipline while well-funded platforms deploy behavioral design, social pressure, and data feedback to keep them engaged.",
+              "whyItMatters": "Seeing the contest clearly removes shame and changes the remedy. A person needs a stronger operating philosophy because tips such as turning off a few notifications are too weak for tools built around repeated capture."
+            },
+            "chapterNumber": 1,
+            "chapterTitle": "A Lopsided Arms Race",
+            "coreClaim": "Casual self-control fails because many digital tools are optimized to capture attention far beyond the simple utility that first justified using them.",
+            "focus": "Modern phone and social platforms create an unfair contest between individual intention and industrial attention engineering. The first move is to stop blaming weak willpower and see the business model, design history, and behavioral psychology behind compulsive checking.",
+            "forbiddenLeakage": [
+              "the three principles of digital minimalism",
+              "the thirty-day digital declutter procedure",
+              "solitude deprivation and high-quality leisure practices"
+            ],
+            "frameworks": [
+              {
+                "acronym": false,
+                "members": [
+                  "ordinary user intention",
+                  "platform engagement incentives",
+                  "behavioral design optimization"
+                ],
+                "name": "Lopsided arms race"
+              }
+            ],
+            "hardEdge": "The easy misreading is that people are simply addicted to phones and should try harder. The sharper point is structural: the user is facing companies whose revenue and design experiments reward increased checking. Personal discipline still matters, but only after the contest is correctly sized.",
+            "keyClaims": [
+              "The smartphone became culturally dominant after the 2007 iPhone launch, but its current role as a pocket portal for social media, feeds, and alerts exceeds the original phone-plus-iPod pitch.",
+              "Social platforms first entered daily life through modest benefits such as campus networking or photo sharing, then expanded into habitual checking systems once advertising and engagement metrics became central.",
+              "The Facebook Like button and infinite-scroll feeds illustrate how small design elements turn social approval and novelty into repeatable behavioral loops.",
+              "Attention companies do not need every use to be meaningful; they benefit when low-value moments are frequent enough to aggregate into large advertising inventory.",
+              "Willpower advice misdiagnoses the problem because the opposing side is not a neutral tool but an industry that tests and optimizes for attention capture.",
+              "Useful features make the trap harder to notice: a platform can help with birthdays, groups, or messages while also extracting far more attention than those benefits require.",
+              "A technology philosophy must start from autonomy, not convenience, because convenience alone always favors adding one more tool."
+            ],
+            "namedExamples": [
+              {
+                "hardSpecifics": [
+                  "Steve Jobs",
+                  "Macworld 2007",
+                  "iPhone",
+                  "phone plus iPod plus internet communicator"
+                ],
+                "id": "ch01.ex.iphone",
+                "label": "Steve Jobs / 2007 iPhone keynote",
+                "realWorld": true,
+                "summary": "The iPhone entered public imagination at Macworld in January 2007 as a converged phone, iPod, and internet communicator. Its early pitch emphasized elegant utility, not a device that would become a constant social-feed terminal.",
+                "teachesWhat": "The gap between original utility and later behavioral dependence shows how quickly a tool can outgrow the reason people adopted it."
+              },
+              {
+                "hardSpecifics": [
+                  "Facebook",
+                  "Like button",
+                  "2009 rollout",
+                  "social validation"
+                ],
+                "id": "ch01.ex.like-button",
+                "label": "Facebook / Like button",
+                "realWorld": true,
+                "summary": "Facebook's Like button made social approval measurable, public, and frictionless. A small tap became a repeatable feedback loop that encouraged people to post, check, and return for signs of approval.",
+                "teachesWhat": "Low-friction feedback turns social validation into a design feature rather than an incidental benefit."
+              },
+              {
+                "hardSpecifics": [
+                  "Tristan Harris",
+                  "Google",
+                  "design ethicist",
+                  "attention economy"
+                ],
+                "id": "ch01.ex.harris",
+                "label": "Tristan Harris / attention design warning",
+                "realWorld": true,
+                "summary": "Tristan Harris, a former Google design ethicist, warned that interfaces can be built to exploit psychological vulnerabilities. His critique treats compulsive checking as a predictable design outcome, not merely a private weakness.",
+                "teachesWhat": "Design ethics matters because attention capture is intentionally engineered and repeatedly optimized."
+              }
+            ],
+            "paraphraseNotes": "The diagnosis begins with a mismatch between how digital tools were adopted and how they now behave. The iPhone's 2007 public debut made the device feel like a clean convergence of phone, music player, and internet access. Facebook, Instagram, and other platforms likewise entered daily routines through defensible conveniences: finding classmates, keeping up with photos, coordinating groups, remembering birthdays. Those benefits are real, which is why simple anti-technology scolding misses the mark. The trap appears when tools that satisfy a small practical need become tuned to occupy idle time, emotional discomfort, and social anxiety far beyond that original need.\n\nThe core mechanism is attention engineering. Design elements such as the Facebook Like button, push alerts, tags, endless feeds, and variable social feedback make repeated checking feel natural. The user experiences this as a private failure of discipline, but the platform experiences it as a product success. More glances create more behavioral data, more ad impressions, and more opportunities to form habits. Tristan Harris's warnings from inside the technology world help establish that this is not accidental drift. Large companies can test colors, timing, rewards, and interface friction at scales no individual can match.\n\nThe result is an unfair fight. A person with a vague intention to use a tool less is facing teams that measure engagement minute by minute. Tips such as turn off notifications or put the phone away at dinner may help, but they do not answer the deeper question: which technologies deserve a place in a life at all, and under what rules? The opening move is therefore conceptual. Stop treating compulsive use as a quirky personal vice, and start treating it as an arms race between autonomy and engineered capture.",
+            "schemaVersion": "source-v2",
+            "testableFacts": [
+              {
+                "becauseMechanism": "Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.",
+                "claim": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+                "commonError": "The iPhone was introduced mainly as a social-media device, so later compulsive use was already the intended purpose.",
+                "derivedFrom": "ch01.ex.iphone",
+                "errorIsWhy": "The early pitch centered on converged utility; social-feed dependence grew as apps and platforms reshaped use after adoption.",
+                "id": "ch01.fact.1"
+              },
+              {
+                "becauseMechanism": "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time.",
+                "claim": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+                "commonError": "If a tool is useful for one purpose, frequent use of the whole platform is justified.",
+                "errorIsWhy": "Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it.",
+                "id": "ch01.fact.2"
+              },
+              {
+                "becauseMechanism": "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions.",
+                "claim": "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+                "commonError": "Likes are harmless decorations because they are too small to change behavior.",
+                "derivedFrom": "ch01.ex.like-button",
+                "errorIsWhy": "Small signals can be powerful when they are public, repeated, and tied to status.",
+                "id": "ch01.fact.3"
+              },
+              {
+                "becauseMechanism": "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing.",
+                "claim": "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+                "commonError": "Notifications are neutral reminders that merely save people from forgetting useful information.",
+                "errorIsWhy": "Many reminders are optimized for return visits, not user priority, so they impose someone else's timing.",
+                "id": "ch01.fact.4"
+              },
+              {
+                "becauseMechanism": "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+                "claim": "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+                "commonError": "Only long binge sessions matter to the attention economy.",
+                "errorIsWhy": "Short checks matter at scale; their frequency creates habit, data, and ad inventory.",
+                "id": "ch01.fact.5"
+              },
+              {
+                "becauseMechanism": "Because companies can test interface changes across millions of users, individual self-control operates against optimized systems rather than static tools.",
+                "claim": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale.",
+                "commonError": "A disciplined person can solve the problem by deciding to check less often.",
+                "errorIsWhy": "Decisions help only when paired with structural rules; otherwise optimized triggers keep restarting the same urge.",
+                "id": "ch01.fact.6"
+              },
+              {
+                "becauseMechanism": "Because design can exploit predictable vulnerabilities such as novelty seeking and social approval, repeated checking can be engineered.",
+                "claim": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness.",
+                "commonError": "Attention problems are mostly caused by users who lack character.",
+                "derivedFrom": "ch01.ex.harris",
+                "errorIsWhy": "Character language ignores the product incentives and interface choices that shape behavior.",
+                "id": "ch01.fact.7"
+              },
+              {
+                "becauseMechanism": "Because digital tools become harmful when they steer behavior away from chosen values, the same tool can be acceptable or unacceptable depending on rules of use.",
+                "claim": "The central threat is loss of autonomy rather than the mere presence of screens.",
+                "commonError": "Any screen time is the problem, so the clean solution is total rejection of modern tools.",
+                "errorIsWhy": "Total rejection misses the value of selected tools and fails to distinguish chosen use from captured use.",
+                "id": "ch01.fact.8"
+              },
+              {
+                "becauseMechanism": "Because tactics answer how to reduce use while a philosophy answers which tools belong and why, tactics without philosophy leave every future convenience up for grabs.",
+                "claim": "A strong technology philosophy is needed before practical tactics can work reliably.",
+                "commonError": "Turning off notifications is enough because the main problem is the number of alerts.",
+                "errorIsWhy": "Alerts are only one symptom; the deeper problem is the absence of a value-based standard for admission.",
+                "id": "ch01.fact.9"
+              }
+            ],
+            "voiceCues": [
+              "moves from technology history to behavioral economics",
+              "frames design choices as incentives rather than moral failure",
+              "uses named industry cases before giving the diagnosis",
+              "contrasts visible usefulness with hidden attention cost"
+            ]
+          },
+          "sourcePacket": {
+            "allowedAnchors": [
+              {
+                "id": "ch01.concept",
+                "kind": "concept",
+                "label": "lopsided arms race",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "A lopsided arms race exists when ordinary users rely on personal discipline while well-funded platforms deploy behavioral design, social pressure, and data feedback to keep them engaged. Seeing the contest clearly removes shame and changes the remedy. A person needs a stronger operating philosophy because tips such as turning off a few notifications are too weak for tools built around repeated capture."
+              },
+              {
+                "hardSpecifics": [
+                  "Steve Jobs",
+                  "Macworld 2007",
+                  "iPhone",
+                  "phone plus iPod plus internet communicator"
+                ],
+                "id": "ch01.ex.iphone",
+                "kind": "named_example",
+                "label": "Steve Jobs / 2007 iPhone keynote",
+                "supportsClaimTypes": [
+                  "example",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "The iPhone entered public imagination at Macworld in January 2007 as a converged phone, iPod, and internet communicator. Its early pitch emphasized elegant utility, not a device that would become a constant social-feed terminal. The gap between original utility and later behavioral dependence shows how quickly a tool can outgrow the reason people adopted it."
+              },
+              {
+                "hardSpecifics": [
+                  "Facebook",
+                  "Like button",
+                  "2009 rollout",
+                  "social validation"
+                ],
+                "id": "ch01.ex.like-button",
+                "kind": "named_example",
+                "label": "Facebook / Like button",
+                "supportsClaimTypes": [
+                  "example",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Facebook's Like button made social approval measurable, public, and frictionless. A small tap became a repeatable feedback loop that encouraged people to post, check, and return for signs of approval. Low-friction feedback turns social validation into a design feature rather than an incidental benefit."
+              },
+              {
+                "hardSpecifics": [
+                  "Tristan Harris",
+                  "Google",
+                  "design ethicist",
+                  "attention economy"
+                ],
+                "id": "ch01.ex.harris",
+                "kind": "named_example",
+                "label": "Tristan Harris / attention design warning",
+                "supportsClaimTypes": [
+                  "example",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Tristan Harris, a former Google design ethicist, warned that interfaces can be built to exploit psychological vulnerabilities. His critique treats compulsive checking as a predictable design outcome, not merely a private weakness. Design ethics matters because attention capture is intentionally engineered and repeatedly optimized."
+              },
+              {
+                "id": "ch01.fact.1",
+                "kind": "testable_fact",
+                "label": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion. Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them. The iPhone was introduced mainly as a social-media device, so later compulsive use was already the intended purpose. The early pitch centered on converged utility; social-feed dependence grew as apps and platforms reshaped use after adoption."
+              },
+              {
+                "id": "ch01.fact.2",
+                "kind": "testable_fact",
+                "label": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience. Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time. If a tool is useful for one purpose, frequent use of the whole platform is justified. Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it."
+              },
+              {
+                "id": "ch01.fact.3",
+                "kind": "testable_fact",
+                "label": "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "The Facebook Like button turned social approval into a quick, measurable feedback signal. Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions. Likes are harmless decorations because they are too small to change behavior. Small signals can be powerful when they are public, repeated, and tied to status."
+              },
+              {
+                "id": "ch01.fact.4",
+                "kind": "testable_fact",
+                "label": "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Push alerts and feed design shift a tool from pull-based use to interruption-based use. Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing. Notifications are neutral reminders that merely save people from forgetting useful information. Many reminders are optimized for return visits, not user priority, so they impose someone else's timing."
+              },
+              {
+                "id": "ch01.fact.5",
+                "kind": "testable_fact",
+                "label": "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Attention companies benefit from low-value checking as long as it is frequent and measurable. Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person. Only long binge sessions matter to the attention economy. Short checks matter at scale; their frequency creates habit, data, and ad inventory."
+              },
+              {
+                "id": "ch01.fact.6",
+                "kind": "testable_fact",
+                "label": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale. Because companies can test interface changes across millions of users, individual self-control operates against optimized systems rather than static tools. A disciplined person can solve the problem by deciding to check less often. Decisions help only when paired with structural rules; otherwise optimized triggers keep restarting the same urge."
+              },
+              {
+                "id": "ch01.fact.7",
+                "kind": "testable_fact",
+                "label": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness. Because design can exploit predictable vulnerabilities such as novelty seeking and social approval, repeated checking can be engineered. Attention problems are mostly caused by users who lack character. Character language ignores the product incentives and interface choices that shape behavior."
+              },
+              {
+                "id": "ch01.fact.8",
+                "kind": "testable_fact",
+                "label": "The central threat is loss of autonomy rather than the mere presence of screens.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "The central threat is loss of autonomy rather than the mere presence of screens. Because digital tools become harmful when they steer behavior away from chosen values, the same tool can be acceptable or unacceptable depending on rules of use. Any screen time is the problem, so the clean solution is total rejection of modern tools. Total rejection misses the value of selected tools and fails to distinguish chosen use from captured use."
+              },
+              {
+                "id": "ch01.fact.9",
+                "kind": "testable_fact",
+                "label": "A strong technology philosophy is needed before practical tactics can work reliably.",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_explanation",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "A strong technology philosophy is needed before practical tactics can work reliably. Because tactics answer how to reduce use while a philosophy answers which tools belong and why, tactics without philosophy leave every future convenience up for grabs. Turning off notifications is enough because the main problem is the number of alerts. Alerts are only one symptom; the deeper problem is the absence of a value-based standard for admission."
+              },
+              {
+                "id": "ch01.framework.lopsided.arms.race",
+                "kind": "framework",
+                "label": "Lopsided arms race",
+                "supportsClaimTypes": [
+                  "book_thesis",
+                  "core_idea",
+                  "core_move",
+                  "hook",
+                  "breakdown_claim",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway",
+                  "memorable_line"
+                ],
+                "text": "ordinary user intention, platform engagement incentives, behavioral design optimization"
+              }
+            ],
+            "allowedEntities": [
+              "A Lopsided Arms Race",
+              "Modern",
+              "Casual",
+              "Seeing",
+              "Social",
+              "The Facebook Like",
+              "Attention",
+              "Willpower",
+              "Useful",
+              "Steve Jobs",
+              "Macworld",
+              "January",
+              "Its",
+              "Facebook",
+              "Like",
+              "Facebook's Like",
+              "Low-friction",
+              "Tristan Harris",
+              "Google",
+              "His",
+              "Design",
+              "Personal",
+              "Instagram",
+              "Those",
+              "Facebook Like",
+              "More",
+              "Tristan Harris's",
+              "Large",
+              "Tips",
+              "Stop",
+              "Usefulness",
+              "Likes",
+              "Small",
+              "Push",
+              "Since",
+              "Notifications",
+              "Many",
+              "Only",
+              "Short",
+              "Decisions",
+              "Character",
+              "Any",
+              "Total",
+              "Turning",
+              "Alerts",
+              "Lopsided",
+              "Steve Jobs / 2007 iPhone keynote",
+              "Facebook / Like button",
+              "Tristan Harris / attention design warning"
+            ],
+            "allowedNumbers": [
+              "2007",
+              "1",
+              "2",
+              "2009"
+            ],
+            "allowedPlaces": [],
+            "bookId": "digital-minimalism",
+            "chapterId": "digital-minimalism-ch01",
+            "chapterNumber": 1,
+            "chapterTitle": "A Lopsided Arms Race",
+            "coreMoveFactId": "ch01.fact.1",
+            "facts": [
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.",
+                "commonError": "The iPhone was introduced mainly as a social-media device, so later compulsive use was already the intended purpose.",
+                "groundedEntities": [],
+                "groundedNumbers": [
+                  "2007"
+                ],
+                "groundedPlaces": [],
+                "id": "ch01.fact.1",
+                "mechanism": "Because the original public story emphasized utility, the later expansion into constant feed checking shows how adopted tools can mutate after users accept them.",
+                "teachingPriority": 1,
+                "verificationRefs": [
+                  "ch01.fact.1"
+                ],
+                "whyWrong": "The early pitch centered on converged utility; social-feed dependence grew as apps and platforms reshaped use after adoption."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "A platform can provide genuine convenience while still extracting attention far beyond the value of that convenience.",
+                "commonError": "If a tool is useful for one purpose, frequent use of the whole platform is justified.",
+                "groundedEntities": [
+                  "Usefulness"
+                ],
+                "groundedNumbers": [
+                  "1"
+                ],
+                "groundedPlaces": [],
+                "id": "ch01.fact.2",
+                "mechanism": "Because small benefits lower resistance to adoption, companies can later surround those benefits with engagement loops that capture unrelated time.",
+                "teachingPriority": 2,
+                "verificationRefs": [
+                  "ch01.fact.2"
+                ],
+                "whyWrong": "Usefulness must be judged against full cost; one good feature does not justify every attention demand attached to it."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "The Facebook Like button turned social approval into a quick, measurable feedback signal.",
+                "commonError": "Likes are harmless decorations because they are too small to change behavior.",
+                "groundedEntities": [
+                  "The Facebook Like",
+                  "Likes",
+                  "Small"
+                ],
+                "groundedNumbers": [],
+                "groundedPlaces": [],
+                "id": "ch01.fact.3",
+                "mechanism": "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions.",
+                "teachingPriority": 4,
+                "verificationRefs": [
+                  "ch01.fact.3"
+                ],
+                "whyWrong": "Small signals can be powerful when they are public, repeated, and tied to status."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "Push alerts and feed design shift a tool from pull-based use to interruption-based use.",
+                "commonError": "Notifications are neutral reminders that merely save people from forgetting useful information.",
+                "groundedEntities": [
+                  "Push",
+                  "Since",
+                  "Notifications",
+                  "Many"
+                ],
+                "groundedNumbers": [],
+                "groundedPlaces": [],
+                "id": "ch01.fact.4",
+                "mechanism": "Since the device now asks for attention before the person decides to seek information, control moves from user intention toward platform timing.",
+                "teachingPriority": 5,
+                "verificationRefs": [
+                  "ch01.fact.4"
+                ],
+                "whyWrong": "Many reminders are optimized for return visits, not user priority, so they impose someone else's timing."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "Attention companies benefit from low-value checking as long as it is frequent and measurable.",
+                "commonError": "Only long binge sessions matter to the attention economy.",
+                "groundedEntities": [
+                  "Attention",
+                  "Only",
+                  "Short"
+                ],
+                "groundedNumbers": [
+                  "2"
+                ],
+                "groundedPlaces": [],
+                "id": "ch01.fact.5",
+                "mechanism": "Because advertising and engagement models aggregate many tiny sessions, a two-minute glance can still serve the platform even when it does little for the person.",
+                "teachingPriority": 3,
+                "verificationRefs": [
+                  "ch01.fact.5"
+                ],
+                "whyWrong": "Short checks matter at scale; their frequency creates habit, data, and ad inventory."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "Willpower tips are inadequate when the opposing force is an industry running behavioral experiments at scale.",
+                "commonError": "A disciplined person can solve the problem by deciding to check less often.",
+                "groundedEntities": [
+                  "Willpower",
+                  "Decisions"
+                ],
+                "groundedNumbers": [],
+                "groundedPlaces": [],
+                "id": "ch01.fact.6",
+                "mechanism": "Because companies can test interface changes across millions of users, individual self-control operates against optimized systems rather than static tools.",
+                "teachingPriority": 8,
+                "verificationRefs": [
+                  "ch01.fact.6"
+                ],
+                "whyWrong": "Decisions help only when paired with structural rules; otherwise optimized triggers keep restarting the same urge."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "Tristan Harris's critique treats compulsive checking as a design outcome, not a mysterious weakness.",
+                "commonError": "Attention problems are mostly caused by users who lack character.",
+                "groundedEntities": [
+                  "Tristan Harris's",
+                  "Attention",
+                  "Character"
+                ],
+                "groundedNumbers": [],
+                "groundedPlaces": [],
+                "id": "ch01.fact.7",
+                "mechanism": "Because design can exploit predictable vulnerabilities such as novelty seeking and social approval, repeated checking can be engineered.",
+                "teachingPriority": 6,
+                "verificationRefs": [
+                  "ch01.fact.7"
+                ],
+                "whyWrong": "Character language ignores the product incentives and interface choices that shape behavior."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "The central threat is loss of autonomy rather than the mere presence of screens.",
+                "commonError": "Any screen time is the problem, so the clean solution is total rejection of modern tools.",
+                "groundedEntities": [
+                  "Any",
+                  "Total"
+                ],
+                "groundedNumbers": [],
+                "groundedPlaces": [],
+                "id": "ch01.fact.8",
+                "mechanism": "Because digital tools become harmful when they steer behavior away from chosen values, the same tool can be acceptable or unacceptable depending on rules of use.",
+                "teachingPriority": 9,
+                "verificationRefs": [
+                  "ch01.fact.8"
+                ],
+                "whyWrong": "Total rejection misses the value of selected tools and fails to distinguish chosen use from captured use."
+              },
+              {
+                "allowedClaimTypes": [
+                  "core_move",
+                  "breakdown_claim",
+                  "example",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "quiz_explanation",
+                  "review_card",
+                  "implementation_guidance",
+                  "takeaway"
+                ],
+                "claim": "A strong technology philosophy is needed before practical tactics can work reliably.",
+                "commonError": "Turning off notifications is enough because the main problem is the number of alerts.",
+                "groundedEntities": [
+                  "Turning",
+                  "Alerts"
+                ],
+                "groundedNumbers": [
+                  "1"
+                ],
+                "groundedPlaces": [],
+                "id": "ch01.fact.9",
+                "mechanism": "Because tactics answer how to reduce use while a philosophy answers which tools belong and why, tactics without philosophy leave every future convenience up for grabs.",
+                "teachingPriority": 7,
+                "verificationRefs": [
+                  "ch01.fact.9"
+                ],
+                "whyWrong": "Alerts are only one symptom; the deeper problem is the absence of a value-based standard for admission."
+              }
+            ],
+            "forbiddenClaims": [
+              "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+              "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+            ],
+            "forbiddenLeakage": [
+              {
+                "into": "ch01.ex.iphone",
+                "warning": "Keep examples about Steve Jobs / 2007 iPhone keynote source-local; do not import sibling chapter imagery or stakes."
+              },
+              {
+                "into": "ch01.ex.like-button",
+                "warning": "Keep examples about Facebook / Like button source-local; do not import sibling chapter imagery or stakes."
+              },
+              {
+                "into": "ch01.ex.harris",
+                "warning": "Keep examples about Tristan Harris / attention design warning source-local; do not import sibling chapter imagery or stakes."
+              }
+            ],
+            "frameworks": [
+              {
+                "completenessRequired": true,
+                "id": "framework.1",
+                "members": [
+                  "ordinary user intention",
+                  "platform engagement incentives",
+                  "behavioral design optimization"
+                ],
+                "name": "Lopsided arms race"
+              }
+            ],
+            "namedCases": [
+              {
+                "allowedUses": [
+                  "example",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance"
+                ],
+                "doNotRestamp": [
+                  "Macworld 2007"
+                ],
+                "forbiddenUses": [
+                  "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+                ],
+                "hardSpecifics": [
+                  "Steve Jobs",
+                  "Macworld 2007",
+                  "iPhone",
+                  "phone plus iPod plus internet communicator"
+                ],
+                "id": "ch01.ex.iphone",
+                "label": "Steve Jobs / 2007 iPhone keynote",
+                "naturalSetting": "Steve Jobs",
+                "realWorld": true,
+                "summary": "The iPhone entered public imagination at Macworld in January 2007 as a converged phone, iPod, and internet communicator. Its early pitch emphasized elegant utility, not a device that would become a constant social-feed terminal."
+              },
+              {
+                "allowedUses": [
+                  "example",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance"
+                ],
+                "doNotRestamp": [
+                  "2009 rollout"
+                ],
+                "forbiddenUses": [
+                  "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+                ],
+                "hardSpecifics": [
+                  "Facebook",
+                  "Like button",
+                  "2009 rollout",
+                  "social validation"
+                ],
+                "id": "ch01.ex.like-button",
+                "label": "Facebook / Like button",
+                "naturalSetting": "Facebook",
+                "realWorld": true,
+                "summary": "Facebook's Like button made social approval measurable, public, and frictionless. A small tap became a repeatable feedback loop that encouraged people to post, check, and return for signs of approval."
+              },
+              {
+                "allowedUses": [
+                  "example",
+                  "breakdown_claim",
+                  "quiz_prompt",
+                  "quiz_key_evidence",
+                  "review_card",
+                  "implementation_guidance"
+                ],
+                "doNotRestamp": [],
+                "forbiddenUses": [
+                  "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+                ],
+                "hardSpecifics": [
+                  "Tristan Harris",
+                  "Google",
+                  "design ethicist",
+                  "attention economy"
+                ],
+                "id": "ch01.ex.harris",
+                "label": "Tristan Harris / attention design warning",
+                "naturalSetting": "Tristan Harris",
+                "realWorld": true,
+                "summary": "Tristan Harris, a former Google design ethicist, warned that interfaces can be built to exploit psychological vulnerabilities. His critique treats compulsive checking as a predictable design outcome, not merely a private weakness."
+              }
+            ],
+            "schemaVersion": "source-packet-v1",
+            "sourceHash": "164c1245914953cf3c9542b8e8fc7e625722c5c868395fbfd4af53bab892bd5f",
+            "sourceQuality": {
+              "risks": [],
+              "status": "strong"
+            },
+            "sourceSidecarPath": "imp22/source-archive/digital-minimalism-ch01.source.json"
+          },
+          "sourceUsePlan": {
+            "bookId": "digital-minimalism",
+            "chapterNumber": 1,
+            "compilerVersion": "chapterflow-source-plan-compiler/1 (compiler-owned)",
+            "planVersion": 1,
+            "schema": "source-use-plan-v1",
+            "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+            "units": [
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.1"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.1"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.2"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.2"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.3"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.3"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.4"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.4"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.5"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.5"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.6"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.6"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.7"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.7"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.8"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.8"
+              },
+              {
+                "allowedDetailTypes": [
+                  "concept",
+                  "documented_specific",
+                  "documented_number"
+                ],
+                "anchorIds": [
+                  "ch01.fact.9"
+                ],
+                "claimStrength": "mechanistic",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "invented_scene",
+                  "invented_participant",
+                  "asserted_causation",
+                  "invented_quantified_effect"
+                ],
+                "form": "explanation",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.fact.ch01.fact.9"
+              },
+              {
+                "allowedDetailTypes": [
+                  "documented_specific",
+                  "documented_number",
+                  "documented_name",
+                  "documented_place",
+                  "documented_date"
+                ],
+                "anchorIds": [
+                  "ch01.ex.iphone"
+                ],
+                "caseId": "ch01.ex.iphone",
+                "claimStrength": "descriptive",
+                "detailSufficiency": "partial",
+                "forbiddenDetailTypes": [
+                  "invented_dialogue",
+                  "invented_thoughts",
+                  "invented_participant",
+                  "invented_date",
+                  "invented_setting",
+                  "invented_outcome",
+                  "asserted_causation",
+                  "invented_quantified_effect",
+                  "restamp_protected_specific",
+                  "scene_completion"
+                ],
+                "form": "case",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.case.ch01.ex.iphone"
+              },
+              {
+                "allowedDetailTypes": [
+                  "documented_specific",
+                  "documented_number",
+                  "documented_name",
+                  "documented_place",
+                  "documented_date"
+                ],
+                "anchorIds": [
+                  "ch01.ex.like-button"
+                ],
+                "caseId": "ch01.ex.like-button",
+                "claimStrength": "descriptive",
+                "detailSufficiency": "partial",
+                "forbiddenDetailTypes": [
+                  "invented_dialogue",
+                  "invented_thoughts",
+                  "invented_participant",
+                  "invented_date",
+                  "invented_setting",
+                  "invented_outcome",
+                  "asserted_causation",
+                  "invented_quantified_effect",
+                  "restamp_protected_specific",
+                  "scene_completion"
+                ],
+                "form": "case",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.case.ch01.ex.like-button"
+              },
+              {
+                "allowedDetailTypes": [
+                  "documented_specific",
+                  "documented_number",
+                  "documented_name",
+                  "documented_place",
+                  "documented_date"
+                ],
+                "anchorIds": [
+                  "ch01.ex.harris"
+                ],
+                "caseId": "ch01.ex.harris",
+                "claimStrength": "descriptive",
+                "detailSufficiency": "partial",
+                "forbiddenDetailTypes": [
+                  "invented_dialogue",
+                  "invented_thoughts",
+                  "invented_participant",
+                  "invented_date",
+                  "invented_setting",
+                  "invented_outcome",
+                  "asserted_causation",
+                  "invented_quantified_effect",
+                  "restamp_protected_specific",
+                  "scene_completion"
+                ],
+                "form": "case",
+                "framingRequired": false,
+                "origin": "source_bound",
+                "unitId": "unit.case.ch01.ex.harris"
+              },
+              {
+                "allowedDetailTypes": [
+                  "fictional_name",
+                  "role_label",
+                  "concrete_action",
+                  "hypothetical_consequence"
+                ],
+                "anchorIds": [],
+                "claimStrength": "descriptive",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "real_person",
+                  "real_organization",
+                  "fabricated_statistic",
+                  "fabricated_date",
+                  "fabricated_credential",
+                  "fabricated_citation",
+                  "historical_claim",
+                  "outcome_reported_as_fact"
+                ],
+                "form": "application",
+                "framingRequired": true,
+                "origin": "constructed",
+                "unitId": "unit.ch01.constructed-application"
+              },
+              {
+                "allowedDetailTypes": [
+                  "role_label",
+                  "observable_action",
+                  "constraint",
+                  "tradeoff",
+                  "workflow_step"
+                ],
+                "anchorIds": [],
+                "claimStrength": "descriptive",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "named_person",
+                  "named_organization",
+                  "date",
+                  "exact_metric",
+                  "credential",
+                  "biography",
+                  "historical_claim"
+                ],
+                "form": "operational_scenario",
+                "framingRequired": false,
+                "origin": "generic",
+                "unitId": "unit.ch01.generic-scenario"
+              },
+              {
+                "allowedDetailTypes": [
+                  "everyday_object",
+                  "familiar_process"
+                ],
+                "anchorIds": [],
+                "claimStrength": "descriptive",
+                "detailSufficiency": "concept_only",
+                "forbiddenDetailTypes": [
+                  "real_person",
+                  "fabricated_statistic",
+                  "historical_claim",
+                  "literal_equivalence"
+                ],
+                "form": "analogy",
+                "framingRequired": true,
+                "origin": "constructed",
+                "unitId": "unit.ch01.analogy"
+              }
+            ]
+          },
+          "sourceUsePlanUnit": {
+            "allowedDetailTypes": [
+              "concept",
+              "documented_specific",
+              "documented_number"
+            ],
+            "anchorIds": [
+              "ch01.fact.1"
+            ],
+            "claimStrength": "mechanistic",
+            "detailSufficiency": "concept_only",
+            "forbiddenDetailTypes": [
+              "invented_scene",
+              "invented_participant",
+              "asserted_causation",
+              "invented_quantified_effect"
+            ],
+            "form": "explanation",
+            "framingRequired": false,
+            "origin": "source_bound",
+            "unitId": "unit.fact.ch01.fact.1"
+          },
+          "visibleFramingRequired": false
+        },
+        "expected": {
+          "expectedCategory": "invented_detail",
+          "expectedClaimStrengthFit": true,
+          "expectedFramingAdequate": null,
+          "expectedNamedSpecificityAllowed": null,
+          "expectedPrimaryCategory": "invented_detail",
+          "expectedSecondaryCategories": [],
+          "expectedSupportStatus": "UNSUPPORTED",
+          "expectedVisibleRegister": "presented_as_fact",
+          "goldResult": "BLOCK"
+        },
+        "family": "unsupported-invented",
+        "imp24": {
+          "canaryExcludedFromMetrics": true,
+          "controlledMutation": {
+            "declaredPaths": [
+              "evidence.chapterUnit"
+            ],
+            "mutationId": "imp24::canary::source-bound-detail-ch01-fact-1-chapter-unit",
+            "operationCount": 1,
+            "primaryDefect": "invented_detail",
+            "protectedProjectionSha256": "sha256:c4e57aeb4e38a2fa997f6b6c3983dafead5ccb40acd2b4aef778a26849aaa40a",
+            "schema": "imp24-controlled-mutation-v1",
+            "secondaryCategories": [],
+            "specificityKind": null
+          },
+          "eligibleForPreLiveFreeze": true,
+          "goldProvenance": "fresh-model-free-audit-of-frozen-v2-fixture",
+          "schema": "imp24-case-governance-v1",
+          "v2InputCaseId": "SOURCE-CALIBRATION-source-bound-detail-ch01-fact-1-defect",
+          "v2InputCaseSha256": "sha256:48c4b2d36bf60116c589ae4bde5c328da64e5b28ad2f3257fcd4fdbae93d619f"
+        },
+        "mutation": {
+          "cleanCaseId": "SOURCE-V3-CANARY-source-bound-detail-ch01-fact-1-clean",
+          "cleanChapterUnitSha256": "a555b78ef4ba2dc2140f17ef564f5b25cf68944ba7af173e56fd7c8c98702d0e",
+          "declaredMutationPaths": [
+            "evidence.chapterUnit"
+          ],
+          "defectCaseId": "SOURCE-V3-CANARY-source-bound-detail-ch01-fact-1-defect",
+          "defectChapterUnitSha256": "4740b33d317185ba7e72af2e1b19ed09c0e68713ae67e6f574e3d1b9bde33d74",
+          "pairKey": "imp24::canary::source-bound-detail-ch01-fact-1",
+          "protectedProjectionSha256": "sha256:c4e57aeb4e38a2fa997f6b6c3983dafead5ccb40acd2b4aef778a26849aaa40a",
+          "schema": "imp24-source-controlled-mutation-v1"
+        },
+        "pairId": "source-bound-detail",
+        "pairSide": "defect",
+        "pairedCaseId": "SOURCE-V3-CANARY-source-bound-detail-ch01-fact-1-clean",
+        "partition": "canary",
+        "provenance": {
+          "baseFactId": "ch01.fact.1",
+          "basisKind": "source-bound-fact",
+          "basisSlot": "canary-01",
+          "evidenceSha256": "sha256:30fbec5c0120aab71f19f38189fafef00ce6dc2532f578be29c5f5e6e4853278",
+          "independentHumanRater": false,
+          "labelProvenance": "curator-authored-development-fixture",
+          "ownerApprovedForDevelopmentBakeoff": true,
+          "pairKey": "imp24::canary::source-bound-detail-ch01-fact-1",
+          "sourceUsePlanUnitId": "unit.fact.ch01.fact.1"
+        },
+        "role": "source",
+        "sourceSemanticsStatus": "PRESENT",
+        "substantiveCaseSha256": "sha256:c691b2abf40bf9fbcbd0fa04a61d146a3a1f1cec49a7a85e361c318113be98f5"
+      }
+    ],
+    "expectedCount": 2,
+    "generatedComposition": {
+      "supported-source-bound:clean": 1,
+      "total": 2,
+      "unsupported-invented:defect": 1
+    },
+    "partition": "canary",
+    "substantivePartitionSha256": "sha256:bcfaf1f6ab6311067fafac8729b3deaafd9e4f10a4aec7a09eaa28ed4fa9f100"
+  },
+  "role": "source",
+  "schema": "imp24-role-qualification-corpus-partition-v1",
+  "sourceV2CorpusId": "s16-forward-sol-source-corpus-v1",
+  "sourceV2RawSha256": "0e3791580c0b2461622033e9369047f5752b7de70537e276af45794f4c2b6435",
+  "sourceV2SubstantiveCorpusSha256": "sha256:f706bcf03e7d81bf2c435d52626f4e03632fa66e1b155c73b606b503ad4d0b91"
+}

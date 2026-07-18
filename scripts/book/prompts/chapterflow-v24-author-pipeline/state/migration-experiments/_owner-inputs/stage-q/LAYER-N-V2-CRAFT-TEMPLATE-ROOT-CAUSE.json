@@ -1,0 +1,21 @@
+{
+  "schema": "s16-layer-n-v2-craft-root-cause-v1",
+  "date": "2026-07-11",
+  "context": "Run-2 (resealed, scorer v2.2 + surgical difficult-conversations fix). Judge-1 gpt-5.5@high: 28/28, NOT QUALIFIED, solely on nonBlockerCalibrationRate 0.75 (threshold 0.85). ALL other metrics perfect: hardBlocker 1.0, keyMismatch 1.0, ambiguity 1.0, cleanPass 0.875, observableDefect 1.0, protocol 1.0, quoteEvidence 1.0, directionality 1.0, unresolved 0.",
+  "rootCause": "The craft-nonblocker filler TEMPLATE is systematically borderline. All 4 craft items append 'In the end, it really just comes down to [being careful / applying this / paying attention] and not over[think/complicate] it.' This makes a 'just do the simple thing, do not overthink' META-CLAIM that DEFENSIBLY contradicts the deliberate-method thesis of a self-help chapter (every such chapter teaches a specific method; 'do not overthink it' undercuts it).",
+  "evidence": {
+    "run1_flagged": "LNV2-CRAFT-difficult-conversations-ch01 ('instead of overcomplicating it' vs 'sort the three conversations, do not oversimplify') — fixed surgically.",
+    "run2_flagged": "LNV2-CRAFT-the-checklist-manifesto-ch01 ('being careful and not overthinking it' vs 'responsible work requires explicit ownership at seams rather than individual carefulness'). Judge-1 mustFix: 'contradicts the chapter's central claim'. DEFENSIBLE read.",
+    "pattern": "2 of 4 craft items flagged across 2 runs, by defensible SOURCE-CONTRADICTORY reads. The surgical (1-item) fix was insufficient because the template, not the item, is the defect."
+  },
+  "whyItMatters": "nonBlockerCalibration uses a 0.85 bar over 4 items => a judge must get 4/4 (one flag = 0.75 = fail). A borderline filler that a defensible reviewer flags makes the gold penalize CORRECT reviewer behavior (the U2 lesson) AND is fragile to reviewer run-to-run variance.",
+  "instrumentIsOtherwiseCorrect": "The v2.2 hard-blocker scoring fix is validated and working live (judge-1 8/8 hard blockers, 1.00). key-mismatch, ambiguity, clean-pass, protocol, evidence all score correctly. The ONLY remaining issue is the craft filler gold.",
+  "honestFraming": "This is genuinely borderline (both reads defensible). Framed as gold-fault: the filler is not unambiguously mild -> fix it. Framed as judge-fault: gpt-5.5@high over-escalates a vague platitude -> JUDGE_NOT_QUALIFIED. The U2-consistent resolution is to make the gold unambiguous (option A), but bounded: ONE root-cause fix + ONE rerun, then ACCEPT the result (no craft whack-a-mole).",
+  "constraint_no_threshold_change": "§8 forbids threshold changes / gate weakening after live execution began. So making craft ADVISORY / lowering the 0.85 bar is NOT on the table on implementation authority — that would require the owner to explicitly revise their own frozen §3 decision, and must not be proposed merely to rescue a failing judge.",
+  "options": {
+    "A_rootCauseFix": "Re-word ALL 4 craft fillers to genuinely-neutral mild weaknesses that make NO meta-claim about the chapter's method (e.g. a redundant/padded closing line) -> reseal -> rerun ONCE. If a judge STILL fails craft on neutral fillers, ACCEPT the outcome (bounded, no further craft fixes). Recommended, U2-consistent.",
+    "D_acceptFailure": "Accept LAYER_N_V2_JUDGE_NOT_QUALIFIED now (treat the escalations as genuine over-escalation by gpt-5.5@high). Honest if the owner deems the fillers fair non-blockers. Penalizes a defensible reviewer read.",
+    "E_finishPanelFirst": "Complete judges 2/3 (~72 calls) to see whether the craft over-escalation is systematic (all judges) or gpt-5.5-specific, before deciding A vs D."
+  },
+  "run2State": { "judge1": "28/28 NOT QUALIFIED (nonBlockerCalibration 0.75)", "judge2": "2/28 partial", "judge3": "0/28", "consumedNow": 615, "ceiling": 2096, "canonicalWrites": 0 }
+}

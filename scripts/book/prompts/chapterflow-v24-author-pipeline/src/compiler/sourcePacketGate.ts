@@ -1,9 +1,14 @@
+import { existsSync } from "fs";
+
 import type { SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import { SOURCE_PACKET_SCHEMA_VERSION } from "../artifacts/artifactTypes.js";
 import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
-import { readJsonFile, sourcePacketPath, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
+import { readJsonFile, sourcePacketPath, sourceUsePlanPath, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
 import { normSlug } from "../lib/chapterPaths.js";
+import type { SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
+import { validateSourceUsePlan } from "../contracts/sourceUsePlan.js";
 import { rankTeachingFacts, WEAK_RANKING_MIN_SCORE } from "./sourcePacketFacts.js";
+import { sourceUsePlanStale } from "./sourceUsePlanCompiler.js";
 
 export type PacketGateFinding = {
   checkId: string;
@@ -101,6 +106,49 @@ export function validateSourcePacket(packet: SourcePacketV1): PacketGateFinding[
   return findings;
 }
 
+/** IMP-03 (SP15/SP16): a PRESENT source-use plan must be contract-valid and
+ *  hash-fresh against the packet on disk — invalid or stale is a BLOCKER
+ *  (authoring would fail-close on it anyway; the gate says so earlier and
+ *  names the fix). An ABSENT plan is an advisory only: legacy/pre-IMP-03 books
+ *  author exactly as before, and absence never grants any license. Additive
+ *  strengthening — no existing check is loosened. */
+function validateSourceUsePlanArtifact(
+  bookId: string,
+  chapterNumber: number,
+  packet: SourcePacketV1,
+  roots: CompilerStoreRoots,
+): PacketGateFinding[] {
+  const findings: PacketGateFinding[] = [];
+  const planPath = sourceUsePlanPath(bookId, chapterNumber, roots);
+  if (!existsSync(planPath)) {
+    findings.push({
+      checkId: "SP15.plan_missing",
+      severity: "advisory",
+      chapterNumber,
+      path: planPath,
+      message: "no source-use plan compiled for this packet (pre-IMP-03 book) — recompile source packets to mint one; absence grants nothing",
+    });
+    return findings;
+  }
+  let plan: SourceUsePlanV1;
+  try {
+    plan = readJsonFile<SourceUsePlanV1>(planPath);
+  } catch (err) {
+    findings.push({ checkId: "SP15.plan_unreadable", severity: "blocker", chapterNumber, path: planPath, message: `source-use plan unreadable: ${(err as Error).message}` });
+    return findings;
+  }
+  const errors = validateSourceUsePlan(plan);
+  if (errors.length > 0) {
+    findings.push({ checkId: "SP15.plan_invalid", severity: "blocker", chapterNumber, path: planPath, message: `source-use plan fails its frozen contract: ${errors.slice(0, 4).join("; ")}` });
+    return findings;
+  }
+  const stale = sourceUsePlanStale(plan, packet);
+  if (stale) {
+    findings.push({ checkId: "SP16.plan_stale", severity: "blocker", chapterNumber, path: planPath, message: `source-use plan is stale — ${stale}; recompile source packets` });
+  }
+  return findings;
+}
+
 export function checkSourcePacketGate(bookId: string, roots: CompilerStoreRoots = {}): PacketGateReport {
   const normalized = normSlug(bookId);
   const findings: PacketGateFinding[] = [];
@@ -115,6 +163,7 @@ export function checkSourcePacketGate(bookId: string, roots: CompilerStoreRoots 
     try {
       const packet = readJsonFile<SourcePacketV1>(path);
       findings.push(...validateSourcePacket(packet));
+      findings.push(...validateSourceUsePlanArtifact(normalized, chapterNumber, packet, roots));
     } catch (err) {
       findings.push({ checkId: "SP0.missing_or_malformed", severity: "blocker", chapterNumber, path, message: `missing/unreadable source packet: ${(err as Error).message}` });
     }

@@ -18,6 +18,7 @@
 
 import { existsSync as existsSyncFs, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, rmSync, renameSync } from "fs";
 import { execSync, execFileSync } from "child_process";
+import { homedir } from "os";
 import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
@@ -297,6 +298,68 @@ Commands:
                                      gate / QC round + publishable tally / repair / warnings / final). One
                                      input, walk away, get pinged. --no-notify = terminal only; --log appends
                                      an event log. Changes no pipeline behavior; same gates, env, exit code.
+  migration-bakeoff <plan|seal|qualify|run|analyze|decide|status> --experiment <spec.json|id> [--corpus <corpus.json>] [--state-root <dir>] [--max-parallel N] [--allow-synthetic-qualification] [--json]
+                                     IMP-11 NO-PUBLISH migration harness: Stage Q judge qualification →
+                                     Stage D prompt-stack diagnostic → Stage C confirmatory four-way
+                                     (55-H/55-XH/56S-H/56S-XH) under frozen sealed manifests: one-attempt
+                                     samples (no retry/repair), blinded QUALIFIED judges, cluster-aware
+                                     stats, precision-honest thresholds, machine-readable decision file.
+                                     Never promotes, publishes, or touches canonical state; activation is
+                                     IMP-13's separately authorized package.
+  migration-bakeoff <close-legacy-campaign|build-reader-corpus|build-source-corpus|build-quiz-corpus|build-reader-corpus-v2|build-source-corpus-v2|build-quiz-corpus-v2|retrospective|recovery-preflight|recovery-pilot-dryrun> [--write] [--json]
+                                     IMP-20 split-lane reviewer & §16-recovery subverbs. ALL no-model,
+                                     no-write by default (pass --write to persist committed artifacts):
+                                     verify the mechanical §16 closure freeze; build the hermetic
+                                     reader/source/quiz role corpora (fail-closed, never shrink); regenerate
+                                     the static Layer-N v2 retrospective; preflight the recovery spec/seal-prep
+                                     (fail-closed until a role-qualified reviewer set exists); and the no-model
+                                     recovery pilot dry run (ZERO model/API calls). Never spawns, never
+                                     promotes/publishes; live qualification + pilot need SEPARATE authorization.
+  migration-bakeoff <role-qualification-calibrate|role-qualification-holdout|role-qualification-attest-calibration>
+                                     Historical V1/V2 qualification mutation paths are CLOSED and always
+                                     fail with their exact retained disposition before auth, files, or writes.
+  migration-bakeoff imp24-role-qualification-v3 --execute-live --head-sha SHA
+                                     --workflow-run-id ID [--models-cache FILE] [--timeout-ms N] [--json]
+                                     IMP-24 ChatGPT-subscription codex-exec qualification over exact V3
+                                     envelope artifacts. Local model-cache discovery only; crash-safe retained
+                                     attempts; no API, provider fallback, publication, promotion, or deployment.
+  migration-bakeoff <imp24e-schema-probes|imp24e-schema-probes-r2> --execute-live
+                                     --head-sha SHA --workflow-run-id ID [--json]
+                                     IMP-24E fixed reader/source/quiz synthetic schema probes. Exactly three
+                                     calls per cycle, one fresh-head repeat maximum, excluded from qualification
+                                     metrics, ChatGPT-authenticated codex exec only, retained process diagnostics.
+  migration-bakeoff <imp24e-transport-smoke|imp24e-transport-smoke-r2> --execute-live
+                                     --head-sha SHA --workflow-run-id ID [--models-cache FILE] [--json]
+                                     IMP-24E fresh fixed reader/source canary transport smoke. Exactly two calls
+                                     per cycle, one exact-CI correction repeat maximum, no replay or qualification
+                                     metrics, ChatGPT-authenticated codex exec only, retained process diagnostics.
+  migration-bakeoff imp24-materialize-pre-live-freeze [--write|--verify] [--json]
+                                     IMP-24C zero-model/API fixed-path pre-live freeze. Derives the six physical
+                                     corpus partitions, provenance/audits, prompt/schema/order/policy/schedule/budget
+                                     bundles, runbook, preliminary implementation report, and terminal self-hashed
+                                     freeze from the retained certified instrument and production seal. Verify mode
+                                     compares committed bytes and semantic bindings without writing.
+  migration-bakeoff imp24-materialize-final-attestation --implementation-commit SHA
+                                     --evidence-commit SHA --terminal-result FILE --ci-evidence FILE
+                                     [--role-assignment FILE] [--write|--verify|--verify-retained] [--json]
+                                     Deterministic IMP-24C terminal-only materializer. Validates exact Git commits
+                                     and ancestry; never writes pre-live artifacts or requires its future commit SHA.
+  migration-bakeoff forward-materialize-production-instrument-seal [--output FILE] [--write] [--json]
+                                     IMP-22 zero-model/API production-instrument materializer. Dry mode
+                                     prints the current hash and target path; --write atomically writes and
+                                     validates the retained canonical artifact. Default artifact:
+                                     state/migration-experiments/contracts/imp22/forward-production-instrument-seal.json
+  migration-bakeoff <imp24-materialize-pilot-v2-envelope|imp24-materialize-gold-v2-envelope> [--write] [--json]
+                                     Model-free, fixed-path fresh-envelope artifact materialization from the
+                                     exact retained V3 qualification/certificate/corpus/seal/fixed roles and
+                                     IMP-24 input freeze. Pilot=8 chapters; gold=full 13-chapter book after a
+                                     freshly verified accepted pilot. Create-once exact; no path substitutions.
+  migration-bakeoff <imp24-pilot-v2-envelope|imp24-gold-v2-envelope> --execute-live [--json]
+                                     Fixed-path IMP-24 live validation through only the explicit V3 adapter.
+                                     Dry by default with zero reads/auth/writes/calls; every model call is a
+                                     ChatGPT-authenticated codex exec. No API/fallback or external capability.
+                                     Legacy forward-pilot/forward-gold and their V2 artifact/freeze subverbs are
+                                     closed with BLOCKED_CALIBRATION_INVALID before any observable activity.
   compile-source-packets <bookId>    v23 compiler: compile source-v2 sidecars into compact source packets.
   source-packet-gate <bookId>        v23 compiler: validate compiled source packets before blueprints.
   compile-book-design <bookId>       v23 compiler: derive the per-book variety pools artifact.
@@ -4049,8 +4112,20 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
     return 2;
   }
   const { runAutopilot, formatOutcome, architectureFromFlags } = await import("./orchestrator/autopilot.js");
+  const { resolveStandardForwardAutopilotControl } = await import("./orchestrator/forwardLocalAutopilot.js");
   const maxRepair = typeof flags["max-repair"] === "string" ? parseInt(flags["max-repair"], 10) : undefined;
   const maxParallel = typeof flags["max-parallel"] === "string" ? parseInt(flags["max-parallel"], 10) : undefined;
+  let forwardControl: ReturnType<typeof resolveStandardForwardAutopilotControl>;
+  try { forwardControl = resolveStandardForwardAutopilotControl(); }
+  catch (error) {
+    console.error(`forward local runtime preflight failed: ${(error as Error).message}`);
+    return 1;
+  }
+  const requestedArchitecture = architectureFromFlags(flags);
+  const explicitLegacy = "legacy" in flags || "legacy-whole-chapter-writer" in flags;
+  const architecture = forwardControl.runtime.mode === "FORWARD_ACTIVE" && !explicitLegacy
+    ? "author"
+    : requestedArchitecture;
   const outcome = await runAutopilot({
     bookId,
     plan: flags["plan"] === true,
@@ -4060,7 +4135,11 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
     autoPublish: !("no-publish" in flags),
     regen: "regen" in flags,
     // --author = v24 author arch; --legacy keeps meaning legacy; default stays compiler.
-    architecture: architectureFromFlags(flags),
+    architecture,
+    ...(architecture === "author" ? {
+      authorWriteOneChapter: forwardControl.writeOneChapter,
+      forwardAutopilotControl: forwardControl,
+    } : {}),
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
   });
@@ -4380,6 +4459,169 @@ async function runReaderBudgetCheck(args: string[], flags: Record<string, string
   return blockers > 0 ? 1 : 0;
 }
 
+/** `exec-qualify` — IMP-00 operator preflight: probe the installed codex binary
+ *  (`--version` + `exec --help`, NO model call), report which envelope-required
+ *  flags it supports, and persist the qualification record the hermetic spawn
+ *  path caches against. Run after any codex upgrade; a missing required flag
+ *  means every real spawn will fail closed until the CLI supports it. */
+async function runExecQualify(flags: Record<string, string | boolean>): Promise<number> {
+  const { findCodexBinary, codexAvailable } = await import("./orchestrator/codexAgent.js");
+  const { qualifyCodexCli, PROBED_FLAGS } = await import("./exec/cliQualification.js");
+  const { defaultManifestSink, EXECUTION_PROFILES } = await import("./exec/executionEnvelope.js");
+  const bin = typeof flags["bin"] === "string" ? flags["bin"] : findCodexBinary();
+  if (!codexAvailable(bin)) {
+    console.error(`codex binary not found (${bin}). Install codex or set CHAPTERFLOW_CODEX_BIN.`);
+    return 2;
+  }
+  const qual = await qualifyCodexCli({ bin, cacheDir: defaultManifestSink() });
+  console.log(`codex: ${qual.version} (${qual.binPath})`);
+  const required = new Set<string>();
+  for (const p of Object.values(EXECUTION_PROFILES)) for (const f of p.requiredCliFlags) required.add(f);
+  let missingRequired = 0;
+  for (const flag of PROBED_FLAGS) {
+    const ok = qual.flags[flag];
+    const req = required.has(flag);
+    if (req && !ok) missingRequired++;
+    console.log(`  ${ok ? "✓" : "✗"} ${flag}${req ? "  (required)" : ""}`);
+  }
+  console.log(missingRequired === 0
+    ? "exec-qualify: PASS — every envelope-required flag is supported; qualification cached."
+    : `exec-qualify: FAIL — ${missingRequired} required flag(s) unsupported; hermetic spawns will fail closed.`);
+  return missingRequired === 0 ? 0 : 1;
+}
+
+/** `contract-validate` — IMP-12 CI entry point (no model/network): assert the
+ *  Phase-0 frozen contract manifest still matches the live contract source, and
+ *  validate every landed worker report against the frozen worker-report schema.
+ *  A parallel agent that forked a schema, or a report that dropped an adverse
+ *  field, fails CI here before any suite runs. */
+async function runContractValidate(): Promise<number> {
+  const { existsSync, readFileSync, readdirSync } = await import("fs");
+  const { resolve, dirname } = await import("path");
+  const { fileURLToPath } = await import("url");
+  const { contractFreezeDivergences } = await import("./contracts/index.js");
+  const { validateWorkerReport } = await import("./contracts/workerReport.js");
+  let failures = 0;
+  const divergences = contractFreezeDivergences();
+  if (divergences.length > 0) {
+    failures += divergences.length;
+    console.log(`contract-freeze: FAIL — ${divergences.length} divergence(s) from the frozen manifest:`);
+    for (const d of divergences) console.log(`  ✗ ${d}`);
+    console.log("  Fix: bump the changed contract's version and rerun `npx tsx src/contracts/generateManifest.ts`.");
+  } else {
+    console.log("contract-freeze: PASS — the live contracts match the frozen manifest.");
+  }
+  const here = dirname(fileURLToPath(import.meta.url));
+  const reportsDir = resolve(here, "..", "..", "..", "..", "..", "docs", "v25", "reports");
+  if (existsSync(reportsDir)) {
+    const reports = readdirSync(reportsDir).filter((f) => /^implementation-report\.imp-\d\d\.json$/.test(f)).sort();
+    for (const file of reports) {
+      let errors: string[] = [];
+      try { errors = validateWorkerReport(JSON.parse(readFileSync(resolve(reportsDir, file), "utf8"))); }
+      catch (err) { errors = [`unreadable: ${(err as Error).message}`]; }
+      if (errors.length > 0) { failures += errors.length; console.log(`worker-report ${file}: FAIL — ${errors.slice(0, 4).join("; ")}`); }
+      else console.log(`worker-report ${file}: PASS`);
+    }
+    if (reports.length === 0) console.log("worker-report: (no landed reports found — nothing to validate)");
+  } else {
+    console.log(`worker-report: (reports dir not present at ${reportsDir} — skipped)`);
+  }
+  console.log(failures === 0 ? "contract-validate: PASS" : `contract-validate: FAIL — ${failures} issue(s)`);
+  return failures === 0 ? 0 : 1;
+}
+
+/** `evidence-reconstruct <attemptId>` — IMP-10: rebuild one attempt's lineage
+ *  chronologically from the durable evidence store (no debris scan). With no
+ *  attemptId, prints the whole-store lineage graph. Non-network. */
+async function runEvidenceReconstruct(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const { resolveEvidenceRoot } = await import("./evidence/attemptRecorder.js");
+  const { reconstructAttempt, evidenceLineageGraph, evidenceStoreSize, validateStoredManifest } = await import("./evidence/evidenceStore.js");
+  const root = resolveEvidenceRoot(typeof flags["root"] === "string" ? flags["root"] : undefined);
+  if (!root) { console.error("no evidence root — set CHAPTERFLOW_EVIDENCE_ROOT or pass --root <dir>"); return 2; }
+  const attemptId = args[0];
+  if (!attemptId) {
+    const graph = evidenceLineageGraph(root);
+    console.log(`evidence store: ${root} (${graph.length} attempt(s), ${Math.round(evidenceStoreSize(root) / 1024)} KiB)`);
+    for (const n of graph) console.log(`  ${n.attemptId}  [${n.taskClass}] → ${n.terminalState ?? "?"}  (${n.retentionClass})${n.parentAttemptId ? `  ⤸ ${n.parentAttemptId}` : ""}`);
+    return 0;
+  }
+  const recon = reconstructAttempt(root, attemptId);
+  if (!recon) { console.error(`no evidence for attempt ${attemptId}`); return 1; }
+  const schemaErrors = validateStoredManifest(root, attemptId);
+  console.log(`attempt ${attemptId}  [${recon.manifest.taskClass}]  book ${recon.manifest.bookId}${recon.manifest.chapterNumber ? ` ch${recon.manifest.chapterNumber}` : ""}`);
+  console.log(`  schema: ${schemaErrors.length === 0 ? "valid" : `INVALID — ${schemaErrors.join("; ")}`}`);
+  console.log(`  exec-context: ${recon.manifest.executionContextManifestPath}${recon.manifest.routeResultPath ? `  route: ${recon.manifest.routeResultPath}` : ""}`);
+  console.log("  transitions:");
+  for (const t of recon.transitions) console.log(`    ${t.atIso}  ${t.state}`);
+  console.log("  objects:");
+  for (const o of recon.objectsVerified) console.log(`    ${o.ok ? "✓" : "✗"} ${o.kind}  ${o.sha256.slice(0, 16)}…`);
+  const bad = recon.objectsVerified.filter((o) => !o.ok).length;
+  console.log(`evidence-reconstruct: ${schemaErrors.length === 0 && bad === 0 ? "PASS" : "FAIL"} (terminal ${recon.terminalState ?? "?"}, ${bad} unverified object(s))`);
+  return schemaErrors.length === 0 && bad === 0 ? 0 : 1;
+}
+
+/** `evidence-cleanup [--execute]` — IMP-10: bounded retention cleanup. Dry-run by
+ *  default; refuses to delete active or cited evidence. Non-network. */
+async function runEvidenceCleanup(flags: Record<string, string | boolean>): Promise<number> {
+  const { resolveEvidenceRoot } = await import("./evidence/attemptRecorder.js");
+  const { planEvidenceCleanup } = await import("./evidence/evidenceStore.js");
+  const root = resolveEvidenceRoot(typeof flags["root"] === "string" ? flags["root"] : undefined);
+  if (!root) { console.error("no evidence root — set CHAPTERFLOW_EVIDENCE_ROOT or pass --root <dir>"); return 2; }
+  const plan = planEvidenceCleanup(root, { now: Date.now(), execute: flags["execute"] === true });
+  console.log(`evidence-cleanup (${plan.dryRun ? "DRY-RUN — pass --execute to delete" : "EXECUTED"}): ${plan.deletable.length} deletable, ${plan.protected.length} protected`);
+  for (const id of plan.deletable) console.log(`  delete: ${id}`);
+  for (const p of plan.protected.slice(0, 40)) console.log(`  keep:   ${p.attemptId} — ${p.reason}`);
+  return 0;
+}
+
+/** `diversity-report <bookId>` — IMP-06: the SHADOW diversity report. Feature
+ *  concentration over the immutable FIRST-WRITE ledger records (never inferred
+ *  from final chapters) + exact/near clone scan of the CURRENT canonical
+ *  chapters (labeled as such). Report-only: no gate, no rejection, no writer
+ *  effect — activation is governed by the versioned diversity config. */
+async function runDiversityReport(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) { console.error("usage: diversity-report <bookId> [--root <ledger-dir>]"); return 2; }
+  const { resolveDiversityLedgerRoot, readDiversityLedger, firstWriteRecords, featureConcentration } = await import("./telemetry/diversityLedger.js");
+  const { detectClones } = await import("./critics/cloneDetection.js");
+  const { DEFAULT_DIVERSITY_CONFIG, diversityConfigHash, validateDiversityConfig } = await import("./telemetry/diversityConfig.js");
+  const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
+
+  const config = DEFAULT_DIVERSITY_CONFIG;
+  const configErrors = validateDiversityConfig(config);
+  console.log(`diversity-report ${bookId} (config ${diversityConfigHash(config).slice(0, 12)}, all-shadow${configErrors.length ? ` — CONFIG INVALID: ${configErrors.join("; ")}` : ""})`);
+
+  const root = resolveDiversityLedgerRoot(typeof flags["root"] === "string" ? flags["root"] : undefined);
+  if (!root) {
+    console.log("  first-write ledger: DISABLED (set CHAPTERFLOW_DIVERSITY_LEDGER_ROOT or pass --root) — first-write concentration unavailable");
+  } else {
+    const records = readDiversityLedger(root, bookId);
+    const first = firstWriteRecords(records);
+    console.log(`  first-write ledger: ${records.length} record(s), ${first.length} immutable first write(s)`);
+    if (first.length > 0) {
+      const maxShareBar = config.checks["feature-concentration"].thresholds.maxShare ?? 0.67;
+      for (const c of featureConcentration(first)) {
+        const flag = c.maxShare >= maxShareBar && first.length >= 4 ? "  ⚠ concentrated (shadow — report only)" : "";
+        console.log(`    ${String(c.feature).padEnd(22)} max ${(c.maxShare * 100).toFixed(0)}% = ${c.dominantValue}${flag}`);
+      }
+      const leaks = first.flatMap((r) => r.taxonomyLeaks.map((l) => `ch${r.chapterNumber}:${l}`));
+      if (leaks.length > 0) console.log(`    taxonomy leaks in prose: ${leaks.join(", ")}`);
+    }
+  }
+
+  const chapters = loadBookChapters(bookId);
+  if (chapters.length === 0) {
+    console.log("  clone scan: no canonical chapters on disk");
+    return 0;
+  }
+  const clones = detectClones(chapters, config);
+  console.log(`  clone scan (CURRENT canonical bytes, ${chapters.length} chapter(s)): ${clones.length} finding(s)`);
+  for (const f of clones) {
+    console.log(`    [${f.class}] ${f.kind} ch${f.chapters.join("+ch")} (${f.measure}) — ${f.evidence}`);
+  }
+  return 0;
+}
+
 /** `codex-agent-run <task-file>` — debug verb: spawn ONE headless codex agent with
  *  a task file as its instruction and print the result. Proves `codex exec` works
  *  in-environment before relying on the autopilot. Needs a real codex binary. */
@@ -4398,7 +4640,7 @@ async function runCodexAgentRun(args: string[], flags: Record<string, string | b
   const sessionId = typeof flags["session"] === "string" ? flags["session"] : `debug-${Date.now().toString(36)}`;
   const sandbox = (typeof flags["sandbox"] === "string" ? flags["sandbox"] : "workspace-write") as "read-only" | "workspace-write" | "danger-full-access";
   const timeoutMs = typeof flags["timeout-ms"] === "string" ? parseInt(flags["timeout-ms"], 10) : undefined;
-  const r = await spawnCodexAgent({ task, sessionId, cwd: process.cwd(), sandbox, timeoutMs });
+  const r = await spawnCodexAgent({ task, role: "cli-adhoc", sessionId, cwd: process.cwd(), sandbox, timeoutMs });
   console.log(`codex-agent-run: exit ${r.exitCode} (${r.durationMs}ms), session ${r.sessionId}`);
   console.log(`--- final message ---\n${r.finalMessage}`);
   if (!r.ok && r.stderr) console.error(r.stderr.slice(0, 1000));
@@ -5439,7 +5681,6 @@ async function runGateChapter(args: string[]): Promise<number> {
     console.error("Usage: gate-chapter <path/to/chapter.json>");
     return 2;
   }
-  const { runShipGate, formatGateReport } = await import("./critics/finalGate.js");
   let chapter: ChapterV21;
   try {
     chapter = JSON.parse(readFileSync(resolve(chapterFile), "utf8")) as ChapterV21;
@@ -5447,164 +5688,21 @@ async function runGateChapter(args: string[]): Promise<number> {
     console.error(`Could not read/parse ${chapterFile}: ${(err as Error).message}`);
     return 2;
   }
-  // H5 defense: a malformed authored chapter could make a critic throw. The repair agent runs
-  // gate-chapter to converge — it needs an actionable BLOCK report, not a raw stack trace (which
-  // gives it nothing to fix and drives the conductor's no-progress HALT). Surface a crash as a
-  // gate failure with the message instead.
-  let report;
-  try {
-    report = runShipGate(chapter);
-  } catch (err) {
-    console.error(`gate-chapter: ship gate CRASHED on a malformed chapter (${(err as Error)?.message ?? String(err)}). Fix the malformed field (likely a quiz question: missing/null choices, out-of-range correctIndex, or non-string bloomsLevel) and re-run.`);
+  // IMP-01: the full composition (ship gate + intra-book siblings + IDN identity
+  // + advisory layers + the combined "Gate verdict:" line + the STUCK/FORM-SHIFTING
+  // circuit breakers) lives in critics/chapterGateComposite — shared VERBATIM with
+  // the conductor's candidate validation so the CLI and the transaction can never
+  // drift. Sibling context = the file's own path; the gate-attempt history stays
+  // keyed by the RAW argument spelling (relative "state/chapters/…" for the
+  // conductor's calls), preserving pre-refactor history rows.
+  const { runChapterGateComposite } = await import("./critics/chapterGateComposite.js");
+  const result = await runChapterGateComposite(chapter, chapterFile, chapterFile);
+  if (result.crashed) {
+    console.error(result.report);
     return 1;
   }
-  console.log(formatGateReport(report));
-
-  // Intra-book quiz similarity check — runs AFTER the chapter-only ship gate.
-  // Loads sibling chapters of the same book from state/chapters/ and checks
-  // for templated quiz content (AS5 prompt similarity + AS6 distractor reuse).
-  // This is the early-detection version of AS4 / BP20 which only fire at
-  // book-gate time. Catches the May 2026 "7 Habits Step 2" defect class:
-  // writer agents producing one quiz and reusing it across chapters with
-  // name substitution. Without this, the writer wastes 10+ chapters of work
-  // before book-gate surfaces the structural issue.
-  const { runIntraBookChecks, loadSiblingChapters } = await import("./critics/intraBook.js");
-  const siblingLoad = loadSiblingChapters(chapter, chapterFile);
-  if (siblingLoad.warning) console.log(`  WARN: ${siblingLoad.warning}`);
-  const intraFindings = runIntraBookChecks(chapter, siblingLoad.siblings);
-  let extraBlockers = 0;
-  let extraMajors = 0;
-  if (intraFindings.length > 0) {
-    console.log("");
-    console.log("Intra-book quiz similarity findings (compared against prior chapters of same book):");
-    for (const f of intraFindings) {
-      console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
-      if (f.severity === "blocker") extraBlockers++;
-    }
-  }
-
-  // ── Identity guard (IDN, Phase 0) — chapterId must equal its filename stem ──
-  // The intra-book critics above match siblings on chapterId; a mismatch can
-  // silently skip them (the verified casing bug). Surface it here. Ships as
-  // `major` (shadow) so the casing fix doesn't simultaneously hard-block the
-  // already-mismatched chapters; promotes to blocker after `fix-chapter-ids`.
-  const identityFindings = checkChapterIdentity(chapter, chapterFile);
-  if (identityFindings.length > 0) {
-    console.log("");
-    console.log("Identity findings (chapterId vs filename):");
-    for (const f of identityFindings) {
-      console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
-      if (f.severity === "blocker") extraBlockers++;
-      else if (f.severity === "major") extraMajors++;
-    }
-  }
-
-  // ── Authoring-contract findings (Phase 1, advisory/shadow) ──────────────
-  // The field-JOB layer the structural gate lacks (concept-as-actor, templated
-  // loops, echo-template explanations, bare-label card fronts, scaffold leaks,
-  // proposition-whatToDo). Calibrated to ZERO fires on the clean corpus. SHADOW:
-  // surfaced for the writer to fix in-session via `author-check`, but does NOT
-  // affect the ship-gate blocker count until promoted out of shadow.
-  try {
-    const { checkAuthoringContract } = await import("./critics/authoringContract.js");
-    const { loadChapterSidecar } = await import("./critics/sourceGrounding.js");
-    const acFindings = checkAuthoringContract(chapter, { sidecar: loadChapterSidecar(chapter.chapterId), filePath: resolve(chapterFile) });
-    if (acFindings.length > 0) {
-      console.log("");
-      console.log(`Authoring-contract findings (advisory/shadow — ${acFindings.length}; run \`author-check\` for the full JOB report):`);
-      for (const f of acFindings) console.log(`  [${f.checkId}] ${f.unit}: ${f.message.slice(0, 140)}`);
-    }
-  } catch {
-    /* non-fatal — advisory layer */
-  }
-
-  // ── Quiz answer-key judge (advisory) ────────────────────────────────────
-  // Surface any wrong-key result the model judge recorded for this chapter
-  // (run out-of-band via `quiz-judge`). ADVISORY here so authoring iteration is
-  // never blocked by it; it BLOCKS at promote (QC1.wrong_quiz_key). A missing
-  // result is silent — gate-chapter never requires the judge to have run.
-  try {
-    const { checkKeyJudge } = await import("./critics/quizKeyGate.js");
-    const kjFindings = checkKeyJudge(chapter, false);
-    if (kjFindings.length > 0) {
-      console.log("");
-      console.log("Quiz answer-key judge findings (advisory — blocks at promote):");
-      for (const f of kjFindings) console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
-    }
-  } catch {
-    /* non-fatal — advisory layer */
-  }
-
-  // ── Authoritative combined verdict ──────────────────────────────────────
-  // formatGateReport prints "Ship gate: PASS/BLOCK" for the CHAPTER-ONLY ship
-  // gate. The intra-book blockers above are computed separately and are NOT in
-  // that count, so a chapter with 0 chapter-blockers but an AS5/AS6 intra-book
-  // blocker used to print "Ship gate: PASS" up top while exiting non-zero —
-  // the headline disagreed with the exit code (a trust hazard: a human or a
-  // writer agent reads "PASS" and ships a templated chapter). Print a single
-  // final line that combines both sources and matches the exit code exactly.
-  const combinedBlockers = report.blockers.length + extraBlockers;
-  console.log("");
-  if (combinedBlockers > 0) {
-    console.log(
-      `Gate verdict: BLOCK — ${report.blockers.length} chapter blocker(s) + ${extraBlockers} intra-book blocker(s) = ${combinedBlockers} total. (exit 1)`,
-    );
-  } else {
-    console.log(
-      `Gate verdict: PASS — 0 blockers (${report.majors.length + extraMajors} major(s), ${report.minors.length} minor(s) above are non-blocking). (exit 0)`,
-    );
-  }
-
-  // Gate-attempt tracking — added after the May 2026 Covey incident. We persist
-
-  // Gate-attempt tracking — added after the May 2026 Covey incident. We persist
-  // a per-chapter counter of (attempt, blocker_signature) so an agent that
-  // re-runs the gate against the same chapter many times with the same blocker
-  // pattern gets a SCREAMING warning that it's probably trying to game the
-  // critic. Most legitimate fixes converge in 1-3 attempts; 4+ on the same
-  // blocker is a structural issue requiring upstream resolution, not retry.
-  // Record the COMBINED failure (chapter + intra-book blockers) so the breakers
-  // engage for intra-book-only failures too (the common case — a chapter can pass
-  // the chapter-only gate while failing AS5–AS12 against its siblings).
-  const intraBlockerSig = intraFindings.filter((f) => f.severity === "blocker").map((f) => ({ catalogId: f.checkId }));
-  const combinedReport = {
-    blockers: [...report.blockers, ...intraBlockerSig],
-    passed: report.blockers.length === 0 && extraBlockers === 0,
-  };
-  const attempts = recordGateAttempt(chapterFile, combinedReport);
-  // Two circuit-breakers: STUCK (same blocker repeats) and FORM-SHIFTING (the
-  // blocker relocates each attempt — the writer editing surface to dodge the
-  // critic, the let-them-theory failure mode). Either trips a halt (exit 3).
-  let breakerTripped = false;
-  if (attempts.sameBlockerStreak >= 3) {
-    breakerTripped = true;
-    console.log("");
-    console.log("⚠️  STUCK-BLOCKER — CIRCUIT BREAKER TRIPPED ⚠️");
-    console.log(`This chapter has been gate-checked ${attempts.total} times; the SAME blocker signature fired ${attempts.sameBlockerStreak} times in a row:`);
-    console.log(`  ${attempts.lastSignature}`);
-    console.log("");
-    console.log("STOP. A blocker that survives 3+ attempts is structural, not a surface edit.");
-    console.log("Re-author the field from the source notes, or surface a one-paragraph status to");
-    console.log("the user (the source notes may not differentiate this chapter — a Step-1 issue).");
-  } else if (attempts.distinctSigStreak >= 3 && attempts.nonPassTotal >= 3) {
-    breakerTripped = true;
-    console.log("");
-    console.log("⚠️  FORM-SHIFTING REPAIR — CIRCUIT BREAKER TRIPPED ⚠️");
-    console.log(`This chapter has failed ${attempts.nonPassTotal} times and the blocker MOVED each attempt:`);
-    console.log(`  ${attempts.recentSigs.join("  →  ")}`);
-    console.log("");
-    console.log("A defect that relocates instead of resolving means you are editing SURFACE FORM");
-    console.log("to evade the critic, not fixing the field — the underlying template just hides in");
-    console.log("whichever field isn't yet covered. STOP patching surfaces. Re-author the failing");
-    console.log("field from the source notes (the Bind Block), or escalate to the user / a different");
-    console.log("author. Do NOT run gate-chapter again on another surface edit — it will just relocate.");
-  }
-  if (breakerTripped) console.log("\n(gate-chapter exit code 3 — halt the repair loop.)");
-
-  // Combined block: ship-gate blockers OR intra-book similarity blockers. Exit 3
-  // when a circuit-breaker tripped (so an orchestrating loop halts, not spins).
-  if (breakerTripped) return 3;
-  return report.blockers.length === 0 && extraBlockers === 0 ? 0 : 1;
+  console.log(result.report);
+  return result.exitCode;
 }
 
 
@@ -5612,67 +5710,26 @@ function escapeRegex(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-/** Persists gate-attempt history per chapter file to track stuck-blocker
- *  patterns. Returns the running totals so the caller can warn the operator. */
-type GateAttemptEntry = {
-  total: number;
-  lastSignature: string;
-  sameBlockerStreak: number;
-  /** ++ each attempt where the non-PASS signature CHANGED from the prior one. */
-  distinctSigStreak: number;
-  /** count of consecutive non-PASS attempts (resets on PASS). */
-  nonPassTotal: number;
-  /** last few non-PASS signatures, for the form-shift message. */
-  recentSigs: string[];
-};
-
-function recordGateAttempt(
-  chapterFile: string,
-  report: { blockers: Array<{ catalogId: string }>; passed: boolean },
-): { total: number; sameBlockerStreak: number; lastSignature: string; distinctSigStreak: number; nonPassTotal: number; recentSigs: string[] } {
-  const STATE_FILE = resolve(__dirname, "../state/gate-attempts.json");
-  let state: Record<string, GateAttemptEntry> = {};
-  try {
-    if (existsSyncFs(STATE_FILE)) state = JSON.parse(readFileSync(STATE_FILE, "utf8"));
-  } catch {
-    state = {};
-  }
-  // Signature: sorted unique blocker catalogIds (e.g., "AS4,BP20"). Used to
-  // detect "same blocker repeating" (stuck) vs "blocker changing each attempt"
-  // (form-shifting — the writer relocating the defect to dodge the critic).
-  const sig = report.passed
-    ? "PASS"
-    : [...new Set(report.blockers.map((b) => b.catalogId))].sort().join(",");
-  const prev: GateAttemptEntry = state[chapterFile] ?? { total: 0, lastSignature: "", sameBlockerStreak: 0, distinctSigStreak: 0, nonPassTotal: 0, recentSigs: [] };
-  const isPass = sig === "PASS";
-  const sameBlockerStreak = !isPass && sig === prev.lastSignature ? prev.sameBlockerStreak + 1 : isPass ? 0 : 1;
-  const shifted = !isPass && prev.lastSignature && prev.lastSignature !== "PASS" && sig !== prev.lastSignature;
-  const distinctSigStreak = isPass ? 0 : shifted ? prev.distinctSigStreak + 1 : prev.distinctSigStreak;
-  const nonPassTotal = isPass ? 0 : prev.nonPassTotal + 1;
-  const recentSigs = isPass ? [] : [...(prev.recentSigs ?? []), sig].slice(-4);
-  state[chapterFile] = { total: prev.total + 1, lastSignature: sig, sameBlockerStreak, distinctSigStreak, nonPassTotal, recentSigs };
-  try {
-    mkdirSync(dirname(STATE_FILE), { recursive: true });
-    writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), "utf8");
-  } catch {
-    // Non-fatal — tracking is informational.
-  }
-  return { total: state[chapterFile].total, sameBlockerStreak, lastSignature: sig, distinctSigStreak, nonPassTotal, recentSigs };
-}
+// (gate-attempt tracking moved to critics/chapterGateComposite.ts — IMP-01)
 
 async function main() {
   const { cmd, args, flags } = parseArgs(process.argv.slice(2));
-  // CANONICAL-WORKSPACE TRIPWIRE (2026-06-12). The legacy checkout at
-  // ~/ChapterFlow (app campaigns, other branches) carries stale pipeline
-  // state; commands run there embed wrong paths into generated prompts/
-  // workflows and judge/edit stale copies — this burned a full QC run and a
-  // fanout round. Path-specific on purpose (no effect in CI or future
-  // machines); remove when the legacy checkout retires.
-  if (__dirname.startsWith("/Users/radinsoltani/ChapterFlow/") && flags["allow-noncanonical"] !== true) {
+  // Optional canonical-workspace tripwire. Operators that maintain multiple
+  // worktrees can bind the approved repository root without baking a private
+  // home path into production source or generated evidence.
+  const canonicalWorkspaceRoot = process.env.CHAPTERFLOW_CANONICAL_WORKSPACE_ROOT?.trim();
+  const canonicalPipelineRoot = canonicalWorkspaceRoot
+    ? resolve(canonicalWorkspaceRoot, "scripts/book/prompts/chapterflow-v24-author-pipeline")
+    : undefined;
+  if (
+    canonicalPipelineRoot
+    && !resolve(__dirname).startsWith(`${canonicalPipelineRoot}/`)
+    && flags["allow-noncanonical"] !== true
+  ) {
     console.error(
-      "REFUSED — you are running the pipeline from the legacy checkout (~/ChapterFlow).\n" +
-        "All pipeline work runs in ~/ChapterFlow-books (worktree pinned to main).\n" +
-        `  cd /Users/radinsoltani/ChapterFlow-books\n` +
+      "REFUSED — this pipeline is outside CHAPTERFLOW_CANONICAL_WORKSPACE_ROOT.\n" +
+        `Expected pipeline root: ${canonicalPipelineRoot}\n` +
+        `  cd ${canonicalWorkspaceRoot}\n` +
         "Override only if you truly mean it: --allow-noncanonical",
     );
     return 3;
@@ -5746,6 +5803,16 @@ async function main() {
       return runBookStatus(args, flags);
     case "doctor":
       return runDoctor(args, flags);
+    case "exec-qualify":
+      return runExecQualify(flags);
+    case "contract-validate":
+      return runContractValidate();
+    case "evidence-reconstruct":
+      return runEvidenceReconstruct(args, flags);
+    case "evidence-cleanup":
+      return runEvidenceCleanup(flags);
+    case "diversity-report":
+      return runDiversityReport(args, flags);
     case "authoring-guardrails":
       return runAuthoringGuardrails(args, flags);
     case "promote-book":
@@ -5806,6 +5873,14 @@ async function main() {
       return runBookAutopilot(args, flags);
     case "book-run":
       return (await import("./orchestrator/liveRun.js")).runLive(args, flags);
+    case "migration-bakeoff": {
+      const codexHome = process.env.CODEX_HOME?.trim() || resolve(homedir(), ".codex");
+      return (await import("./bakeoff/migration/cli.js")).runMigrationBakeoffCli(args, flags, {
+        imp24RoleQualificationV3: {
+          modelsCachePath: resolve(codexHome, "models_cache.json"),
+        },
+      });
+    }
     case "diversify-book":
       return (await import("./orchestrator/liveRun.js")).runDiversify(args, flags);
     case "content-repair-book":

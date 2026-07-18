@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR3",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"invented or unsupported quotation presented as factual source material\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Reference material for the ChapterFlow pipeline. No verbatim book text. Examples may be invented.\",\"As Toyota's chief production engineer Kenji Watanabe put it in his 2011 leadership address, 'A stopped line is not a failure; it is the system telling the truth.'\"],\"rationale\":\"The candidate presents a named Toyota executive, a dated leadership address, and a direct quotation as factual source-register material visible to the reader, with no reader-facing framing that it is illustrative, hypothetical, or invented. The provenance says the reference material contains no verbatim book text and that examples may be invented, which heightens the source-register risk, but the defect is in the passage itself: it reads as an authentic attributed quotation rather than an example or scenario.\"}"
+}

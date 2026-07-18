@@ -6,12 +6,18 @@
   "engines": {
     "node": ">=20.20.0 <21"
   },
+  "dependencies": {
+    "ajv": "6.15.0"
+  },
   "scripts": {
     "cli": "tsx src/cli.ts",
     "typecheck": "tsc -p . --noEmit",
     "test": "CHAPTERFLOW_NO_API_CODEX_QC=1 tsx tests/run.ts",
     "test:no-api": "CHAPTERFLOW_NO_API_CODEX_QC=1 tsx tests/run.ts",
     "test:focused": "CHAPTERFLOW_NO_API_CODEX_QC=1 tsx tests/run.ts package-contract provider-contract gold-corpus qc-finalize-evidence publish-after-qc-git",
+    "contract-validate": "CHAPTERFLOW_NO_API_CODEX_QC=1 tsx src/cli.ts contract-validate",
+    "test:hermetic": "CHAPTERFLOW_NO_API_CODEX_QC=1 CHAPTERFLOW_LEAK_GUARD=1 tsx tests/run.ts",
+    "ci": "npm run typecheck && npm run contract-validate && npm run test",
     "build": "npm run typecheck",
     "doctor": "CHAPTERFLOW_NO_API_CODEX_QC=1 tsx src/cli.ts doctor",
     "flow": "CHAPTERFLOW_ALLOW_MODEL_GEN=1 tsx src/cli.ts flow",

@@ -1,0 +1,1444 @@
+{
+  "schema": "reader-gold-dev-adjudication-run-record-v1",
+  "adjudicator": "gpt-5.6-sol-a-side",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "run": 1,
+  "judgedDocsManifestSha256": "10fb9bc18e7930f2a547c3d19cb5def2b19a52f4716a4919390dcac0111c626d",
+  "disposition": "AUTHORITATIVE_A_SIDE",
+  "policy": "reader-decision-policy-v3",
+  "codexLoginStatus": "Logged in using ChatGPT",
+  "baseCalls": 24,
+  "replayCalls": 0,
+  "apiCalls": 0,
+  "verdicts": {
+    "factfulness-ch01.md": {
+      "scores": {
+        "retention": 90,
+        "quizzes": 70,
+        "transfer": 91,
+        "practical": 89,
+        "summaries": 93,
+        "tone": 68,
+        "limits": 95,
+        "insight": 89,
+        "density": 72,
+        "beginner": 87
+      },
+      "composite": 84.5,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 6",
+          "problem": "The question tests a distinction between global extreme-poverty and rich-country poverty lines that the chapter never teaches, so the intended answer is not derivable from the lesson itself.",
+          "evidence": "“Extreme poverty uses a far lower global line than many rich-country poverty measures.”"
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 7",
+          "problem": "The mortality-to-survival reframing is reasonably inferable, but it is not explicitly explained or demonstrated in the chapter.",
+          "evidence": "“The same data now frames movement upward, which can make progress easier to see.”"
+        },
+        {
+          "category": "tone",
+          "unit": "Examples",
+          "problem": "The minute-by-minute training-room setup feels mechanically generated and weakens the otherwise authored voice.",
+          "evidence": "“At 8:05 a.m., a teacher in the Gapminder training room marks bubble chart 1-6”"
+        },
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Several examples restate the same bubble-chart and child-mortality material instead of adding distinct applications of the skill.",
+          "evidence": "“Use the second chart to locate the largest group before naming the world.”"
+        },
+        {
+          "category": "other_craft",
+          "unit": "Quiz — Question 1",
+          "problem": "The scenario shifts abruptly from a manager to a teacher, creating a small but noticeable continuity error.",
+          "evidence": "“A manager at a board review applies the gap instinct before answering. The teacher sees the 1965 chart”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Hook",
+          "problem": "The precise percentage is presented without on-page sourcing or explanation.",
+          "evidence": "“the old rich/poor split missed the 68% in the middle.”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Full read",
+          "problem": "The country mortality figures and elapsed-time comparison are specific real-world claims that cannot be verified from the document alone.",
+          "evidence": "“Sweden needed 77 years, from 1869 to 1946, to get below 35 child deaths per 1,000 births.”"
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Full read",
+          "problem": "The account attributes a terminology change to a World Bank lecture and blog without identifying the lecture or post on-page.",
+          "evidence": "“A later World Bank blog announced plans to phase that wording out.”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Deep read",
+          "problem": "The income thresholds are presented as definitive levels without an on-page date, currency basis, or source.",
+          "evidence": "“Level 1: less than $2 per day. Level 2: $2-$8 per day. Level 3: $8-$32 per day. Level 4: more than $32 per day.”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "Each question has one clearly preferable lettered answer. Questions 6 and 7 are weakly grounded in the taught material, especially Question 6, but their distractors do not create multiple equally defensible answers or leave the questions without any defensible choice.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "factfulness-ch04.md": {
+      "scores": {
+        "retention": 92,
+        "quizzes": 90,
+        "transfer": 92,
+        "practical": 91,
+        "summaries": 95,
+        "tone": 80,
+        "limits": 94,
+        "insight": 88,
+        "density": 81,
+        "beginner": 91
+      },
+      "composite": 89.7,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "The six examples reuse the same minute-by-minute briefing-room frame, making the section feel mechanically staged and limiting contextual variety.",
+          "evidence": "At 8:18 a.m., an analyst in the Fukushima briefing room marks risk table 4-1"
+        },
+        {
+          "category": "thin_example",
+          "unit": "Examples",
+          "problem": "Several examples restate the principle without showing a complete worked comparison or the resulting decision.",
+          "evidence": "Keep raw counts and per-person rates together."
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 8",
+          "problem": "The correct choice is conspicuously broader and more nuanced than two restrictive distractors, allowing test-wise elimination; it also introduces anxiety and stress more explicitly than the lesson does.",
+          "evidence": "Measured harm can include anxiety, stress, and evacuation damage as well as radiation questions."
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Deep read",
+          "problem": "The precise historical disaster figures and calculated decline are externally checkable factual claims, though they are coherent on the page.",
+          "evidence": "The old ten-year average was 325,742 annual disaster deaths in 1907-1916."
+        },
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Full read",
+          "problem": "The chapter invokes supporting notes that are not present in this reader document, so the reader cannot inspect the cited basis.",
+          "evidence": "Official sources cited in the notes reported no confirmed direct deaths from the nuclear leak itself."
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Fast read",
+          "problem": "The characterization of two named polling organizations' fear rankings is an externally checkable attribution.",
+          "evidence": "Gallup in the United States and YouGov in the United Kingdom. Snakes, heights, and public speaking sit near the top."
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer from the document. Question 8 is somewhat over-cued and extends the chapter's wording, but option b remains uniquely defensible because the chapter explicitly includes evacuation harm and broader public-health consequences.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "factfulness-ch06.md": {
+      "scores": {
+        "retention": 91,
+        "quizzes": 96,
+        "transfer": 91,
+        "practical": 90,
+        "summaries": 94,
+        "tone": 77,
+        "limits": 91,
+        "insight": 89,
+        "density": 83,
+        "beginner": 91
+      },
+      "composite": 89.6,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "tone",
+          "unit": "Examples",
+          "problem": "The repeated timestamp, job, desk, and row-number framing feels mechanically templated, especially when imposed on medical, family-planning, and chemical examples.",
+          "evidence": "At 8:32 a.m., an image editor in the Dollar Street studio desk marks photo row 6-3"
+        },
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Several examples largely restate material already explained in the deep and full reads instead of adding new application contexts or complications.",
+          "evidence": "Origin alone cannot decide safety."
+        },
+        {
+          "category": "other_craft",
+          "unit": "Review cards — Card 4",
+          "problem": "The cross-chapter denominator connection is only briefly reconstructed and does not clearly show how a numerical denominator resolves the broader category problem.",
+          "evidence": "For a broad label, ask what share the category actually covers"
+        },
+        {
+          "category": "pacing",
+          "unit": "Quiz",
+          "problem": "Nine closely similar recognition questions make the assessment longer than necessary and test recall more than difficult category selection in ambiguous cases.",
+          "evidence": "Which response fits Category Hygiene?"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Deep read",
+          "problem": "The precise distance comparison reads as an externally checkable geographic claim.",
+          "evidence": "Monrovia to Mombasa: 3,555 miles. Then lay another from London to Tehran: 2,734 miles."
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Full read",
+          "problem": "The account of historical infant-sleep guidance and later SIDS campaigns is a real-world medical-history claim.",
+          "evidence": "Later SIDS campaigns reversed that kind of advice."
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Deep read",
+          "problem": "The description of the CAS registry is an externally checkable institutional claim.",
+          "evidence": "CAS, the Chemical Abstracts Service registry, includes natural toxins and synthetic compounds."
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer supported by the document; the distractors either contradict the stated method or overcorrect beyond it.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "factfulness-ch09.md": {
+      "scores": {
+        "retention": 94,
+        "quizzes": 80,
+        "transfer": 93,
+        "practical": 91,
+        "summaries": 94,
+        "tone": 76,
+        "limits": 88,
+        "insight": 91,
+        "density": 83,
+        "beginner": 89
+      },
+      "composite": 88.1,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 9",
+          "problem": "The question tests a historical fact that was not taught elsewhere, and the correct-looking option contains the entire fact needed to select it.",
+          "evidence": "“Danish Jews escaped by boat in World War II, with accounts citing 7,220 saved.”"
+        },
+        {
+          "category": "tone",
+          "unit": "Examples",
+          "problem": "The repeated timestamps, room name, and numbered handoff forms make distinct examples feel mechanically generated rather than naturally situated.",
+          "evidence": "“At 8:48 a.m., a trainer in the Senge operations room marks handoff form 9-1”"
+        },
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Several examples largely restate cases already explained in the deep and full reads, adding limited new practice or decision complexity.",
+          "evidence": "“Low UNICEF prices come from tenders, standards, suppliers, and delivery routines.”"
+        },
+        {
+          "category": "other_craft",
+          "unit": "Example 6: The Institution Made Visible",
+          "problem": "The explanation refers to a dialogue even though the example contains no dialogue.",
+          "evidence": "“The dialogue turns a big word into visible labor.”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Fast read",
+          "problem": "The chapter makes a specific attribution about popularizing systems thinking that cannot be verified from the reader document.",
+          "evidence": "“Peter Senge made that habit famous in The Fifth Discipline 1990.”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Full read",
+          "problem": "The account links refugee routes to specific legal and regulatory forces without on-page sourcing.",
+          "evidence": "“Ask what EU carrier rules, confiscation risks, and asylum rules did to the safer route.”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Quiz — Question 9",
+          "problem": "The precise historical rescue count is a real-world factual claim introduced only inside an answer choice.",
+          "evidence": "“with accounts citing 7,220 saved.”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "Every question has one defensible best answer among its choices. Question 9 is weakly grounded because its historical fact is not taught beforehand, but option (a) still uniquely supplies a counterexample to the claim that all refugee boat transport is the same kind of crime.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "factfulness-ch11.md": {
+      "scores": {
+        "retention": 92,
+        "quizzes": 88,
+        "transfer": 91,
+        "practical": 86,
+        "summaries": 94,
+        "tone": 73,
+        "limits": 92,
+        "insight": 85,
+        "density": 79,
+        "beginner": 88
+      },
+      "composite": 87.2,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "tone",
+          "unit": "Examples",
+          "problem": "The repeated minute-by-minute school-office wrapper feels mechanically generated and does not naturally fit the business, journalism, and economic-complexity examples.",
+          "evidence": "At 9:04 a.m., a teacher in the Berners-Lee school office marks worksheet 11-5"
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 9",
+          "problem": "Two distractors begin with the same conclusion, making the differently shaped correct option unusually easy to spot without fully applying the lesson.",
+          "evidence": "The lecture script fits best"
+        },
+        {
+          "category": "other_craft",
+          "unit": "Deep read",
+          "problem": "The unexplained pronoun briefly obscures who is doing the business planning.",
+          "evidence": "He starts with the old line"
+        },
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Several examples restate points already established in the deep and full reads without adding much procedural detail.",
+          "evidence": "Keep chart and source path together."
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "The chapter attributes broad shifts in business thinking to named authors without giving enough on-page detail to evaluate the attribution.",
+          "evidence": "Thomas L. Friedman 2005 helped people see services moving across borders."
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Full read",
+          "problem": "The proposed movement of textile production toward Kenya reads as a real-world economic claim that cannot be checked from the chapter alone.",
+          "evidence": "Rising incomes can move textile work toward newer lower-cost regions such as Kenya."
+        },
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Full read",
+          "problem": "The referenced statistics talk is not identified sufficiently for a reader to locate or contextualize it.",
+          "evidence": "Alan Smith's statistics talk points to the same lesson:"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Review cards — Card 2",
+          "problem": "The description of Gapminder Teach's current offerings is an externally checkable factual claim rather than something established within the document.",
+          "evidence": "Gapminder Teach gives free teaching materials and a teacher community"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "Every question has one defensible answer derivable from the document. Question 9 has repetitive distractors that cue the answer, but they do not create multiple defensible answers.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "made-to-stick-ch01.md": {
+      "scores": {
+        "retention": 94,
+        "quizzes": 91,
+        "transfer": 95,
+        "practical": 93,
+        "summaries": 96,
+        "tone": 92,
+        "limits": 94,
+        "insight": 90,
+        "density": 84,
+        "beginner": 94
+      },
+      "composite": 92.5,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Six extended scenarios repeatedly demonstrate the same priority-filter operation, strengthening recall but adding reading effort faster than new insight.",
+          "evidence": "“Teach the cold-stock rule first.”"
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 2",
+          "problem": "Several correct choices closely echo the chapter’s signature language while distractors are conspicuously off-model, making recognition easier than genuine application.",
+          "evidence": "“Name the priority that wins when two values collide”"
+        },
+        {
+          "category": "other_craft",
+          "unit": "Deep read",
+          "problem": "The named doctrine appears malformed or inconsistently styled, creating a small editorial distraction.",
+          "evidence": "“Commanders Intent”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "A named person and publication are presented as evidence without enough context to tell whether the account is historical, adapted, or illustrative.",
+          "evidence": "“Hoover Adams shows the same discipline in a newsroom.”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Full read",
+          "problem": "The claim about a real airline’s governing priority is plausible but not established within the document.",
+          "evidence": "“Southwest's low-fare priority works because it settles tradeoffs before the next local question arrives.”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have a defensible unique answer among the lettered choices when judged against the chapter’s stated rule. Some are strongly cued, but none is answerless or genuinely double-keyed.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "made-to-stick-ch02.md": {
+      "scores": {
+        "retention": 93,
+        "quizzes": 86,
+        "transfer": 94,
+        "practical": 91,
+        "summaries": 95,
+        "tone": 88,
+        "limits": 92,
+        "insight": 89,
+        "density": 83,
+        "beginner": 94
+      },
+      "composite": 90.6,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz",
+          "problem": "Several distractors are conspicuously unreasonable, making recognition easier than genuine application.",
+          "evidence": "“It withholds all context so students feel confused”"
+        },
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Six similarly structured examples reinforce the mechanism well but add reading effort without equally expanding its decision boundaries.",
+          "evidence": "“Ask for the prediction before showing the pin.”"
+        },
+        {
+          "category": "thin_example",
+          "unit": "Example 4: Thomas Moves the Missed Visit First",
+          "problem": "The proposed holiday-visit opener does not clearly demonstrate how the question leads to the vaccine appointment, so it is harder to imitate than the other examples.",
+          "evidence": "“Move the consequence to the first line, then ask which appointment protects the holiday visit.”"
+        },
+        {
+          "category": "tone",
+          "unit": "Full read",
+          "problem": "A missing possessive apostrophe creates a small but visible copyediting blemish.",
+          "evidence": "“JFKs moonshot”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Deep read",
+          "problem": "The named theory is introduced without identifying its origin, leaving attribution unclear from the page alone.",
+          "evidence": "“The phrase gap theory gives the mechanism a name.”"
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "The chapter invokes a named person’s journalism lesson without providing enough on-page context to assess that attribution.",
+          "evidence": "“Nora Ephron's journalism lesson works because the lead changes what the room thought the story was about.”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Full read",
+          "problem": "The Sony example reads as a real-world historical or product claim that cannot be verified from the document alone.",
+          "evidence": "“Sony's pocket radio carries a similar force because the smallness is not a stunt.”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "Every question has one defensible answer grounded in the chapter. The uniquely keyed sequence is 1-b, 2-c, 3-a, 4-a, 5-b, 6-c, 7-a, 8-c, 9-b.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "made-to-stick-ch03.md": {
+      "scores": {
+        "retention": 95,
+        "quizzes": 92,
+        "transfer": 95,
+        "practical": 92,
+        "summaries": 96,
+        "tone": 88,
+        "limits": 91,
+        "insight": 91,
+        "density": 85,
+        "beginner": 93
+      },
+      "composite": 92.1,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Fast read / Deep read / Examples",
+          "problem": "The baggage-decals and flour-trail scenarios recur at length, slightly reducing reading efficiency after the lesson is already clear.",
+          "evidence": "The yellow decals remove the private guesswork."
+        },
+        {
+          "category": "tone",
+          "unit": "Examples",
+          "problem": "The repeated scenario/choice/action/rationale structure gives parts of the example set a generated, formulaic cadence.",
+          "evidence": "Marco must choose whether to lecture on cross-contact or let the glowing trail teach the route."
+        },
+        {
+          "category": "thin_example",
+          "unit": "Example 6: Marta Sorts Rent Escrow into Envelopes",
+          "problem": "The example promises a repeatable physical sequence but never identifies the three envelope labels, limiting direct implementation for beginners.",
+          "evidence": "Now three labeled envelopes sit beside a lease copy and repair photos."
+        },
+        {
+          "category": "other_craft",
+          "unit": "Quiz — Question 8",
+          "problem": "Using real customer names is unnecessary to the concreteness lesson and introduces an avoidable privacy concern; anonymized cards would preserve the teaching mechanism.",
+          "evidence": "Line up ten chairs with actual customer names"
+        },
+        {
+          "category": "other_craft",
+          "unit": "Deep read",
+          "problem": "A missing possessive apostrophe creates a visible copyediting blemish.",
+          "evidence": "Aesops sour grapes travels through centuries"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Deep read",
+          "problem": "The named organizational example appears without enough context for readers to know what specific case or message is being referenced.",
+          "evidence": "The Nature Conservancy example turns acreage into something a person can picture protecting."
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "A named memory theory is invoked without attribution or explanation of its origin.",
+          "evidence": "the way Velcro Theory of Memory suggests"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Full read",
+          "problem": "The chapter invokes a real-world classroom exercise and its effects without providing on-page context or sourcing.",
+          "evidence": "Jane Elliott's classroom exercise shows how a social idea changes when students can feel the difference in the room."
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have a defensible, uniquely best lettered answer from the chapter. Question 8's keyed option raises a privacy concern, but it remains structurally distinguishable from the two weaker alternatives.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "made-to-stick-ch04.md": {
+      "scores": {
+        "retention": 94,
+        "quizzes": 96,
+        "transfer": 95,
+        "practical": 94,
+        "summaries": 96,
+        "tone": 92,
+        "limits": 93,
+        "insight": 91,
+        "density": 87,
+        "beginner": 94
+      },
+      "composite": 93.5,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Several examples substantially replay scenarios already developed in the main reads, slightly reducing information density.",
+          "evidence": "“The committee room table trembles when the freight train passes outside.”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Deep read",
+          "problem": "The named historical example implies a real-world evidentiary dispute that cannot be assessed from the chapter alone.",
+          "evidence": "“Barry Marshall and Robin Warren matter here because proof can push past what expert habit refuses to see.”"
+        },
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Deep read",
+          "problem": "The named witness appears without enough context for a reader to identify the event, campaign, or source being referenced.",
+          "evidence": "“Pam Laffin carries credibility from cost, not credentials.”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have a defensible, uniquely best answer grounded in the chapter’s distinctions among checkable proof, human-scale translation, lived-cost witnesses, and unsupported emotion or authority.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "made-to-stick-ch05.md": {
+      "scores": {
+        "retention": 94,
+        "quizzes": 92,
+        "transfer": 93,
+        "practical": 91,
+        "summaries": 95,
+        "tone": 94,
+        "limits": 94,
+        "insight": 91,
+        "density": 88,
+        "beginner": 95
+      },
+      "composite": 92.8,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Several examples closely restage scenarios already developed in the full read, slightly reducing information gained per page.",
+          "evidence": "Play the recording, let the loss of the voice land, then point to the earplugs as protection for a relationship people want to keep hearing."
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 1",
+          "problem": "The distractors are conspicuously weaker than the keyed human-stake revision, so recognition requires little discrimination.",
+          "evidence": "Use a brighter poster color so the campaign feels urgent"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Full read",
+          "problem": "A named real-world illustration is presented without enough on-page context to establish its origin or attribution.",
+          "evidence": "Floyd Lee's dining room in Iraq points to dignity, not sentimentality, as the emotional engine."
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer supported by the chapter. Some distractors are easy to reject, but none create an absent or equally defensible key.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "made-to-stick-ch06.md": {
+      "scores": {
+        "retention": 95,
+        "quizzes": 91,
+        "transfer": 94,
+        "practical": 93,
+        "summaries": 96,
+        "tone": 94,
+        "limits": 85,
+        "insight": 92,
+        "density": 85,
+        "beginner": 95
+      },
+      "composite": 92.3,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "The six expanded examples substantially repeat cases already developed in the deep and full reads, adding reading effort without equivalent new instruction.",
+          "evidence": "At 3:18 a.m., Nicolas taps two proofing baskets dusted with rice flour."
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 9",
+          "problem": "Two near-duplicate constraint-story distractors make the trust-story answer conspicuously easy to identify by option structure.",
+          "evidence": "a) The constraint story because creative ingenuity fits client work\nb) The constraint story because creativity is more impressive"
+        },
+        {
+          "category": "other_craft",
+          "unit": "Example 3: Frida Starts with the Mother’s Observation",
+          "problem": "Because this is a safety-critical setting, the example could distinguish more explicitly between a story that reinforces judgment and the protocol that governs action.",
+          "evidence": "Put the mother’s observation, the nurse’s pause, and the escalation step in order before naming the protocol."
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Deep read",
+          "problem": "The named three-plot taxonomy reads like an established framework, but the document does not tell the reader whether it is original, adapted, or attributed elsewhere.",
+          "evidence": "The challenge, connection, and creativity plots give story power three different engines instead of one vague praise of narrative."
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Example 3: Frida Starts with the Mother’s Observation",
+          "problem": "This categorical claim about protocol instruction and clinical judgment is not supported within the document.",
+          "evidence": "A protocol list alone cannot carry that judgment into a busy shift."
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have a defensible, uniquely best lettered answer based on the chapter. Question 9 has weak, duplicative distractors, but option c remains uniquely correct rather than structurally ambiguous.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "nudge-ch01.md": {
+      "scores": {
+        "retention": 88,
+        "quizzes": 78,
+        "transfer": 90,
+        "practical": 91,
+        "summaries": 91,
+        "tone": 86,
+        "limits": 89,
+        "insight": 84,
+        "density": 82,
+        "beginner": 90
+      },
+      "composite": 86.9,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 7",
+          "problem": "The quiz introduces overconfidence without teaching or naming it elsewhere, so the answer is inferable from the choices more than recoverable from the lesson.",
+          "evidence": "“Personal risk feels lower than population risk, so warnings may not defeat overconfidence.”"
+        },
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "The later examples largely restate mechanisms already explained in the main reads, adding length with limited new complexity.",
+          "evidence": "“A nearby reference can pull two careful people in opposite directions.”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Example 6: Pattern Before Blame",
+          "problem": "The dialogue assigns a specific design principle directly to Kahneman without establishing that attribution on-page.",
+          "evidence": "“Kahneman would start with the pattern, not the blame.”"
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Example 4: Default Memo",
+          "problem": "The memo loosely associates Kahneman and Tversky with the chapter’s treatment of defaults, while the earlier attribution connects the Human/Econ framing to Thaler and Sunstein.",
+          "evidence": "“Kahneman and Tversky made bias visible, and the checked box is not empty space.”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "Question 7 is under-taught, but option (a) remains uniquely defensible from the scenario: saying the danger happens to others implies lower perceived personal risk. The other choices contradict that setup. All other questions have clear, document-supported answers.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "nudge-ch03.md": {
+      "scores": {
+        "retention": 94,
+        "quizzes": 95,
+        "transfer": 94,
+        "practical": 93,
+        "summaries": 96,
+        "tone": 92,
+        "limits": 88,
+        "insight": 92,
+        "density": 89,
+        "beginner": 95
+      },
+      "composite": 93,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Implementation plan",
+          "problem": "The 24-hour challenge and weekly practice prescribe nearly the same exercise, limiting progression between immediate and sustained practice.",
+          "evidence": "“During your next conversation about what others are doing” / “Once this week, rehearse the move in a real group conversation.”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "The named conformity-study attribution cannot be verified from the reader document alone.",
+          "evidence": "“In Solomon Asch's conformity trials, public agreement pushed many people toward wrong line judgments.”"
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Full read",
+          "problem": "The named obedience-study attribution and institutional setting require external verification.",
+          "evidence": "“Stanley Milgram's obedience study at Yale is disturbing for that reason.”"
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Examples — Example 1: Towel Thread",
+          "problem": "The named hotel-study attribution requires external verification.",
+          "evidence": "“Goldstein, Cialdini, and Griskevicius tested hotel towels.”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Full read",
+          "problem": "The empirical claim about the hotel message's effectiveness is not established within the document itself.",
+          "evidence": "“The hotel towel study worked by making a nearby norm visible: guests like you reuse towels.”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible best answer among the lettered choices. Each key is derivable from the chapter’s distinctions among informational influence, silent dissent, shifted responsibility, descriptive versus injunctive norms, peer feedback, cascades, visible beneficial behavior, and relevant comparison groups.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "nudge-ch06.md": {
+      "scores": {
+        "retention": 93,
+        "quizzes": 90,
+        "transfer": 88,
+        "practical": 87,
+        "summaries": 94,
+        "tone": 89,
+        "limits": 95,
+        "insight": 90,
+        "density": 84,
+        "beginner": 92
+      },
+      "composite": 90.3,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Six examples repeatedly establish the same visible-exit principle, adding reading effort without proportionate new learning.",
+          "evidence": "A future yes helps only when the worker also sees a usable no."
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 2",
+          "problem": "The two distractors use implausibly absolute claims, making the keyed answer unusually easy to identify without fully understanding defaults.",
+          "evidence": "only direct persuasion changes behavior"
+        },
+        {
+          "category": "other_craft",
+          "unit": "Implementation plan — 24-hour challenge",
+          "problem": "Changing one word is too small a prescribed response when the diagnosed refusal barrier may be procedural, social, or technical.",
+          "evidence": "change one word if the answer is no"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "The chapter attributes the automatic-enrollment mechanism to named researchers without supplying on-page support sufficient to verify that attribution.",
+          "evidence": "Brigitte Madrian and Dennis Shea show the companion move through automatic enrollment in a 401(k)."
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Full read",
+          "problem": "A specific liberty claim is attributed to named authors but cannot be verified from the reader document alone.",
+          "evidence": "Thaler and Sunstein's liberty claim earns its keep."
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer from the document: 1-b, 2-a, 3-a, 4-b, 5-c, 6-c, 7-a, 8-c, and 9-b.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "nudge-ch08.md": {
+      "scores": {
+        "retention": 95,
+        "quizzes": 97,
+        "transfer": 94,
+        "practical": 93,
+        "summaries": 96,
+        "tone": 93,
+        "limits": 96,
+        "insight": 92,
+        "density": 88,
+        "beginner": 95
+      },
+      "composite": 94.1,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "thin_example",
+          "unit": "Implementation plan",
+          "problem": "The Total Cost Line is highly actionable, but the chapter never shows a completed line using concrete numbers, leaving beginners to assemble the first model themselves.",
+          "evidence": "“Write the Total Cost Line by naming the APR, the fee most likely to hit, and when that fee would arrive.”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Fast read",
+          "problem": "The document makes a specific historical claim about the effect of federal legislation that cannot be verified from the chapter alone.",
+          "evidence": "“The Truth in Lending Act pushed lenders to state an APR”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Deep read",
+          "problem": "The document asserts a specific CFPB accomplishment without on-page support.",
+          "evidence": "“The Consumer Financial Protection Bureau has made credit-card agreements easier to find and inspect”"
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Example 3: Fee Notice Memo",
+          "problem": "The scenario attributes a broad effect on fees and billing practices to the Credit CARD Act; that attribution requires external verification.",
+          "evidence": "“the Credit CARD Act made fees and billing practices harder to hide”"
+        },
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Full read",
+          "problem": "The phrase points to an unidentified source even though the reader document does not name or provide it.",
+          "evidence": "“The source idea has four levers”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer among the lettered choices, with the keyed distinction directly supported by the chapter. No distractor is equally defensible from the document alone.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "nudge-ch11.md": {
+      "scores": {
+        "retention": 92,
+        "quizzes": 84,
+        "transfer": 91,
+        "practical": 90,
+        "summaries": 88,
+        "tone": 82,
+        "limits": 93,
+        "insight": 88,
+        "density": 80,
+        "beginner": 89
+      },
+      "composite": 87.9,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "density",
+          "unit": "Example 4: Marc at the Kiosk",
+          "problem": "Incidental physical detail lengthens the scenario without improving the lesson about visible refusal.",
+          "evidence": "the slot grips it halfway before flashing the organ donor registry screen"
+        },
+        {
+          "category": "tone",
+          "unit": "Example 5: Elaine's Four Levers",
+          "problem": "The fragmented opening and contrived reply-all setting feel more constructed than naturally authored.",
+          "evidence": "Four levers. Elaine writes them at the top of the reply-all draft"
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 6",
+          "problem": "The correct choice is distinguishable mainly because the other choices make sweeping claims; it tests rejection of overstatement more than understanding of defaults.",
+          "evidence": "A real anchor proves every country should copy the same donor rule."
+        },
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Several scenarios repeat the visible-exit and silence-as-choice lesson after it is already firmly established, slowing the chapter's middle.",
+          "evidence": "Same counter, same rush, one changed rule: delay no longer writes the answer."
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "The chapter attributes the donation-default lesson to named researchers without supplying on-page source details.",
+          "evidence": "Eric Johnson and Daniel Goldstein made this point vivid in their work on donation defaults."
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Full read",
+          "problem": "The account of Spain's system and its explanatory factors is a real-world policy claim that cannot be verified from the chapter alone.",
+          "evidence": "Its donation system is often linked with presumed consent, but the stronger lesson is mixed"
+        },
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Review Card 4",
+          "problem": "The card introduces a Chapter 8 concept that is not defined anywhere in this standalone reader document.",
+          "evidence": "transparent borrowing (Ch 8)"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Key takeaway",
+          "problem": "The claim that defaults can save more lives is plausible but not established with on-page evidence.",
+          "evidence": "Donation defaults can save more lives"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have a defensible unique answer from the document: 1c, 2a, 3b, 4c, 5c, 6a, 7b, 8a, and 9b. Question 6 is weakly constructed but not structurally wrong.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "nudge-ch13.md": {
+      "scores": {
+        "retention": 92,
+        "quizzes": 86,
+        "transfer": 92,
+        "practical": 93,
+        "summaries": 94,
+        "tone": 89,
+        "limits": 95,
+        "insight": 91,
+        "density": 85,
+        "beginner": 94
+      },
+      "composite": 91,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples, review cards, and implementation plan",
+          "problem": "The same five-part checklist is repeated enough that the later material adds less value per paragraph.",
+          "evidence": "“Put odds, deadlines, travel, fit, and exit in one place”"
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 5",
+          "problem": "The correct liberty-preserving answer is strong, but the distractors are conspicuously absolute or evasive, allowing test-taking cues to substitute for comprehension.",
+          "evidence": "“a better average outcome settles the design question”"
+        },
+        {
+          "category": "tone",
+          "unit": "Examples",
+          "problem": "Several incidental sensory details feel inserted to manufacture scene texture rather than advance the lesson.",
+          "evidence": "“The folder zipper sticks, and Harriet has to pull twice”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Fast read and deep read",
+          "problem": "The chapter invokes a named scholar as factual grounding without identifying the particular work, evidence, or finding being attributed to her.",
+          "evidence": "“Caroline Hoxby's work keeps the policy claim from floating away.”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Fast read",
+          "problem": "The asserted relationship between Hoxby's research and New York City admissions reads as a real-world synthesis but cannot be evaluated from the chapter itself.",
+          "evidence": "“point to the same fix”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer among the lettered choices. Question 6 is somewhat loosely phrased because Hoxby's work is not specified, but option c remains the only answer consistent with the chapter's stated purpose for using real-world grounding.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "nudge-ch16.md": {
+      "scores": {
+        "retention": 91,
+        "quizzes": 84,
+        "transfer": 89,
+        "practical": 92,
+        "summaries": 92,
+        "tone": 86,
+        "limits": 95,
+        "insight": 88,
+        "density": 84,
+        "beginner": 90
+      },
+      "composite": 89.2,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Question 6",
+          "problem": "The question introduces an airport story that appears nowhere else in the document, making the intended answer depend more on an obvious contrast than on chapter learning.",
+          "evidence": "“Stuart wants to teach every small nudge with one airport story.”"
+        },
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Several examples revisit essentially the same future-income pledge and visible-exit mechanism, reducing conceptual range despite changing characters and settings.",
+          "evidence": "“Give More Tomorrow charitable giving pledge starts with next paycheck.”"
+        },
+        {
+          "category": "tone",
+          "unit": "Implementation plan",
+          "problem": "Repeated title-casing of the core instruction feels mechanically branded and slightly interrupts the otherwise natural voice.",
+          "evidence": "“then Place The Choice Cue”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Deep read",
+          "problem": "The capitalized program name reads like a specific external initiative, but its origin or status is not explained on-page.",
+          "evidence": "“Give More Tomorrow uses the same logic in a warmer setting.”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Full read",
+          "problem": "The statement about tax-office data and prefilled returns reads as a real-world administrative claim that cannot be verified from the document alone.",
+          "evidence": "“A tax office can send a prefilled return because wage data is already there.”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer among their lettered choices. Question 6 is weakly grounded because its airport story is absent from the chapter, but option b remains uniquely defensible from the question’s own contrast and the chapter’s use of Give More Tomorrow as an anchor.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "nudge-ch18.md": {
+      "scores": {
+        "retention": 93,
+        "quizzes": 87,
+        "transfer": 92,
+        "practical": 93,
+        "summaries": 95,
+        "tone": 84,
+        "limits": 92,
+        "insight": 88,
+        "density": 82,
+        "beginner": 94
+      },
+      "composite": 90.2,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Several scenarios reiterate the visible, low-cost exit test without adding much conceptual range.",
+          "evidence": "The exit route is not a detail when it decides whether choice is real."
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz — Questions 6–7",
+          "problem": "These questions test recognition of named publication anchors more than application of the chapter’s central decision test; the distractors are also conspicuously implausible.",
+          "evidence": "What would the University of Chicago Law Review anchor add?"
+        },
+        {
+          "category": "tone",
+          "unit": "Examples — Example 3",
+          "problem": "Repeated insertion of full scholarly titles into character scenarios makes portions of the chapter feel engineered rather than naturally authored.",
+          "evidence": "The University of Chicago Law Review claim in Libertarian Paternalism Is Not an Oxymoron said choice can be steered without being closed."
+        },
+        {
+          "category": "density",
+          "unit": "Memorable lines",
+          "problem": "The central exit principle is repeated across the fast read, full read, examples, cards, plan, takeaway, and memorable lines, adding reading effort after the idea is already secure.",
+          "evidence": "Freedom needs a working exit."
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "The document makes a specific bibliographic and framing attribution that cannot be verified from the reader document alone.",
+          "evidence": "The 2003 American Economic Review article called this stance Libertarian Paternalism."
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Deep read",
+          "problem": "The behavioral generalization reads as an empirical claim but is not supported on-page.",
+          "evidence": "People often follow the path that is easiest to see, easiest to finish, and least awkward to leave alone."
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "Questions 1–9 each have one defensible answer from the document: 1b, 2b, 3c, 4b, 5a, 6a, 7a, 8c, and 9c. Questions 6–7 are weakly constructed but not structurally ambiguous.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "the-happiness-hypothesis-ch01.md": {
+      "scores": {
+        "retention": 92,
+        "quizzes": 96,
+        "transfer": 87,
+        "practical": 84,
+        "summaries": 94,
+        "tone": 89,
+        "limits": 96,
+        "insight": 91,
+        "density": 87,
+        "beginner": 90
+      },
+      "composite": 90.7,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples 4 and 6",
+          "problem": "Two examples rehearse nearly the same delayed-message problem and cue-changing solution, adding length without much new transfer value.",
+          "evidence": "“Maddox answers with one honest line, then moves the thread out of the flood.”"
+        },
+        {
+          "category": "other_craft",
+          "unit": "Implementation plan",
+          "problem": "The instruction blurs the distinction between an unwanted trigger and the desired action, so making the trigger “easier” could be read as strengthening the wrong behavior.",
+          "evidence": "“make that trigger easier, smaller, or less tempting”"
+        },
+        {
+          "category": "density",
+          "unit": "Weekly practice",
+          "problem": "The comparison exercise lacks a simple tracking measure, weakening the usefulness of the proposed before-and-after test.",
+          "evidence": "“compare which side made action easier”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Deep read",
+          "problem": "The split-brain account presents specific historical and neurological claims that cannot be verified from the document alone.",
+          "evidence": "“Roger Sperry and Michael Gazzaniga studied people whose corpus callosum had been cut.”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Full read",
+          "problem": "The tumor case presents a specific clinical recurrence claim that requires external verification.",
+          "evidence": "“When the tumor returned, the behavior returned too.”"
+        },
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Full read",
+          "problem": "The clinical report is identified only by an abbreviated journal name and year, leaving readers without enough bibliographic detail to locate it confidently.",
+          "evidence": "“In the Arch Neurol 2002 report”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer clearly supported by the chapter, with distractors that are materially inconsistent with the document.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "the-happiness-hypothesis-ch04.md": {
+      "scores": {
+        "retention": 94,
+        "quizzes": 86,
+        "transfer": 94,
+        "practical": 95,
+        "summaries": 93,
+        "tone": 92,
+        "limits": 97,
+        "insight": 90,
+        "density": 87,
+        "beginner": 91
+      },
+      "composite": 92,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "The two coin-procedure examples teach nearly the same lesson, adding length without much additional transfer value.",
+          "evidence": "“Fairness can become a costume” / “the better task slides toward his side.”"
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz",
+          "problem": "Several distractors use conspicuously absolute wording, making the intended answers easier to identify without fully understanding the lesson.",
+          "evidence": "“must know” / “proves” / “normally agree”"
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Question 4",
+          "problem": "The question introduces a technical label not explicitly named or defined in the teaching sections, although the correct answer remains derivable from the discussion of recruited reasons and self-explanations.",
+          "evidence": "“Which reply follows from limited introspective access?”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Example 1: Coin Between Friends",
+          "problem": "The fictional named participants are placed directly inside Batson’s lab, making it unclear whether this is a reconstruction, composite, or documented episode.",
+          "evidence": "“2 chairs face the assignment card in Daniel Batson's lab.”"
+        },
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Example 2: One-Sided Board",
+          "problem": "The passage blends a fictional classroom scene with a named researchers’ exercise without marking where sourced findings end and invention begins.",
+          "evidence": "“In a Deanna Kuhn and David Perkins everyday reasoning exercise”"
+        },
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Fast read",
+          "problem": "The chapter makes specific claims about named researchers’ findings without providing on-page sourcing or qualification.",
+          "evidence": "“Daniel Batson's moral hypocrisy work shows how a person can keep the feeling of fairness while arranging the better outcome for himself.”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer grounded in the document. Question 4 uses terminology not explicitly taught, but option b is still uniquely supported by the chapter’s account of reasons being recruited after a verdict and motives feeling clearer than they are.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "the-happiness-hypothesis-ch06.md": {
+      "scores": {
+        "retention": 93,
+        "quizzes": 88,
+        "transfer": 92,
+        "practical": 88,
+        "summaries": 94,
+        "tone": 90,
+        "limits": 92,
+        "insight": 89,
+        "density": 85,
+        "beginner": 92
+      },
+      "composite": 90.3,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples",
+          "problem": "Two examples teach essentially the same Harlow cloth-versus-wire lesson, reducing the value of an otherwise varied example set.",
+          "evidence": "The infant runs past the feeder and grips the cloth mother"
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz",
+          "problem": "Several distractors are conspicuously absolute or plainly contrary to the chapter, making recognition easier than genuine retrieval.",
+          "evidence": "adult love has no stable patterns"
+        },
+        {
+          "category": "other_craft",
+          "unit": "Implementation plan",
+          "problem": "The body-awareness step is actionable in form but does not explain what qualifies as one of the three signals, leaving beginners to improvise.",
+          "evidence": "Count three body signals"
+        },
+        {
+          "category": "density",
+          "unit": "Try this now",
+          "problem": "The immediate exercise mostly compresses the preceding 24-hour challenge rather than adding a distinct practice opportunity.",
+          "evidence": "move one cup beside your phone; count three need-signs, then send one clear ask"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_real_world_claim",
+          "unit": "Deep read",
+          "problem": "The research conclusion is presented as factual but cannot be substantiated from the reader document alone.",
+          "evidence": "The infant monkeys went to a soft cloth mother for comfort, even when a wire mother supplied food."
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "A specific institutional and scholarly attribution is asserted without on-page sourcing.",
+          "evidence": "In the world John Bowlby described for the WHO, maternal care was not a soft extra after food and blankets."
+        },
+        {
+          "category": "origin_ambiguous_to_reader",
+          "unit": "Deep read",
+          "problem": "The text refers to a named character's artifact before establishing that the character belongs to a constructed example, which can blur vignette and historical evidence.",
+          "evidence": "Charlotte's schedule sheet makes the mechanism plain."
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer among the lettered choices based on the document. Question 5's phrase “caregiving attachment” is less precise than the chapter's three-system distinction, but choice b remains uniquely preferable to a and c.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "the-happiness-hypothesis-ch09.md": {
+      "scores": {
+        "retention": 94,
+        "quizzes": 96,
+        "transfer": 93,
+        "practical": 91,
+        "summaries": 93,
+        "tone": 90,
+        "limits": 94,
+        "insight": 92,
+        "density": 87,
+        "beginner": 94
+      },
+      "composite": 92.6,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "repetition",
+          "unit": "Examples 5–6",
+          "problem": "Two consecutive examples make nearly the same point about secular ritual, conduct, James, and Maslow, reducing marginal learning value.",
+          "evidence": "“William James helps us ask what an experience does. Abraham Maslow gives a plain phrase”"
+        },
+        {
+          "category": "thin_example",
+          "unit": "Example 6: Bell And Boundary",
+          "problem": "The contrast assigns better conduct to ritual participation too quickly, making the causal lesson feel staged rather than demonstrated.",
+          "evidence": "“Her side works steadier. His corner gets careless.”"
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz",
+          "problem": "Several distractors are absolute or obviously inconsistent with the chapter, so recognition is easier than genuine discrimination.",
+          "evidence": "“Only believers can have transcendent moments with real force.”"
+        },
+        {
+          "category": "other_craft",
+          "unit": "Try this now",
+          "problem": "Shortening a low-value block is introduced without explanation and is less clearly connected to the chapter’s central skill than the adjacent protected-value reflection.",
+          "evidence": "“Shorten one low-value block”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "The document attributes a specific account of disgust’s movement into moral judgment to named researchers without giving on-page sourcing.",
+          "evidence": "“Paul Rozin, Jonathan Haidt, and Clark McCauley showed why that matters for moral life”"
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "The characterization of William James’s method is externally checkable but not substantiated within the reader document.",
+          "evidence": "“He studied religious experience by its effects on conduct and meaning”"
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "The chapter attributes secular peak-experience language to Maslow without on-page support.",
+          "evidence": "“Abraham Maslow later gave secular words to peak experiences.”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer among the lettered choices, and each answer is derivable from the document. Some distractors are weak, but none creates ambiguity or removes the correct option.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    },
+    "the-happiness-hypothesis-ch11.md": {
+      "scores": {
+        "retention": 94,
+        "quizzes": 94,
+        "transfer": 93,
+        "practical": 91,
+        "summaries": 95,
+        "tone": 90,
+        "limits": 94,
+        "insight": 92,
+        "density": 88,
+        "beginner": 94
+      },
+      "composite": 92.6,
+      "blockingFindings": [],
+      "advisoryFindings": [
+        {
+          "category": "thin_example",
+          "unit": "Example 4: Dryer Row Tradeoff",
+          "problem": "The example identifies both legitimate claims but stops before demonstrating the chapter’s crucial final step: deciding which truth leads.",
+          "evidence": "“Laura writes both claims in plain words before acting: keep the rent covered, and do not vanish from the neighbor who asked for help.”"
+        },
+        {
+          "category": "repetition",
+          "unit": "Implementation plan",
+          "problem": "The central three-part handoff formula is repeated so often across the chapter, examples, cards, and plan that later repetitions add little learning value.",
+          "evidence": "“what each side protects, what each side risks, and which truth should lead now”"
+        },
+        {
+          "category": "quiz_cue",
+          "unit": "Quiz",
+          "problem": "Several distractors use conspicuously absolute or self-defeating language, allowing readers to identify answers through tone without fully recalling the lesson.",
+          "evidence": "“Modern research should be ignored when a ritual already feels meaningful.”"
+        }
+      ],
+      "escalationSignals": [
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Full read",
+          "problem": "The wording attributes the stated account of value pluralism specifically to this named work, but the document provides no on-page support for that bibliographic connection.",
+          "evidence": "“In The Hedgehog and the Fox, his value pluralism says that several human goods can be real and still collide.”"
+        },
+        {
+          "category": "possible_attribution_issue",
+          "unit": "Deep read",
+          "problem": "The chapter makes a specific claim about a named Buddhist text that cannot be verified from the reader document alone.",
+          "evidence": "“the Dhammacakkappavattana Sutta, where the Buddhist middle way rejects both indulgence and harsh asceticism”"
+        }
+      ],
+      "structurallyWrongQuiz": false,
+      "wrongQuizDetail": "All nine questions have one defensible answer supported by the chapter; no lettered set contains multiple equally defensible answers or omits the supported answer.",
+      "acceptableControlEligible": true,
+      "confidence": "high"
+    }
+  }
+}

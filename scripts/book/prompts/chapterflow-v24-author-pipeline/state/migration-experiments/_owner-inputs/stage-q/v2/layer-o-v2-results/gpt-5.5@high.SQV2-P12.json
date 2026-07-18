@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P12",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported dramatized scene and dialogue presented within a real case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Hard specifics allowed: Quaker, Snapple, $1.8 billion, acquisition Real-world case: True\",\"In a Quaker strategy room, the Quaker executive taps the Snapple packet beside the deal binder.\",\"\\\"Snapple is the growth answer,\\\" he says.\",\"The strategist keeps his pencil on the $1.8 billion line.\",\"The Quaker executive changes the meeting question from \\\"Should Quaker buy Snapple?\\\" to \\\"What are the growth paths this money could fund?\\\"\"],\"rationale\":\"The source plan permits only broad verified specifics about Quaker, Snapple, the $1.8 billion acquisition, and the strategic lesson. The candidate adds a specific strategy-room scene, physical actions, named meeting behavior, and direct dialogue between an executive and strategist without source support. Although the scenario reflects the allowed lesson about reframing the acquisition as one growth path, the invented meeting details are narrated in the same factual register as the real Quaker/Snapple case, creating a material unsupported-history defect.\"}"
+}

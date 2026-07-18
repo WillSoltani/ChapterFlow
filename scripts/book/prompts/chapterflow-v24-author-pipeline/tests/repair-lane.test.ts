@@ -253,6 +253,12 @@ test("CHB2 routing: an over-ceiling length blocker routes a targeted trim compla
   assert.equal(lines.length, 1, "routes to ch01");
   assert.ok(lines[0].includes("Land the chapter at 18400\u201318900 chars"), `landing zone computed from the window: ${lines[0]}`);
   assert.ok(lines[0].includes("never touch the quiz keys"), "trim guardrails present");
+  // Track B (2026-07-15): the trim directive targets restatements in ANY tier
+  // (not "the longest breakdown tier") and PROTECTS mechanism + evidence-bridge
+  // prose from deletion, so length repair stops amputating the depth D3 rewards.
+  assert.ok(lines[0].includes("in ANY tier"), `trim targets restatements in any tier, not the deepest: ${lines[0]}`);
+  assert.ok(/PROTECT the mechanism/.test(lines[0]) && /evidence-bridge/.test(lines[0]), `trim protects mechanism + evidence sentences: ${lines[0]}`);
+  assert.ok(!/longest breakdown tier/.test(lines[0]), "old 'starting with the longest breakdown tier' directive is gone");
   assert.equal((routed.get(2) ?? []).length + (routed.get(3) ?? []).length, 0, "no bleed to other chapters");
 });
 

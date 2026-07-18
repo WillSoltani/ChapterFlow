@@ -1,0 +1,96 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-03",
+  "baselineHash": "365d5b3c61dd7c49b15f0f3efd34abda728de735",
+  "resultHash": "df6130bf573be356688b74acab28908c815649793b3ddfdb0d335f778a1f8ab0",
+  "contractVersions": {
+    "source-use-plan": 1,
+    "candidate-transaction": 1,
+    "execution-profile": 1,
+    "repair": 1,
+    "review-output": 1,
+    "route-result": 1,
+    "attempt-evidence-manifest": 1,
+    "worker-implementation-report": 1
+  },
+  "filesChanged": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/compiler/sourceUsePlanCompiler.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/exec/untrustedArtifact.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/compiler/sourcePacket.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/compiler/sourcePacketGate.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/compiler/sourcePacketProjection.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/artifacts/artifactStore.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRun.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRepair.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/chapterTransaction.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/source-use-plan.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/untrusted-artifact.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-arch.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/packet-projection.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/fixtures/writer-projection-legacy.golden.json"
+  ],
+  "requirementsImplemented": [
+    { "requirementId": "IMP03-R01", "status": "implemented", "note": "Orthogonal SourceOrigin/UnitForm/ClaimStrength types were frozen in Phase 0 (source-use-plan v1, unchanged); the compiler now derives them independently — never one overloaded enum." },
+    { "requirementId": "IMP03-R02", "status": "implemented", "note": "Sourced case / constructed application / generic scenario are validated compositions; the frozen validator rejects every forbidden combination (tested)." },
+    { "requirementId": "IMP03-R03", "status": "implemented", "note": "Direct conceptual explanation is a first-class minted unit per fact (concept_only, no cast/prop/scene demandable); rendered affirmatively on the card. Critic-side enforcement is IMP-04's package (integration note)." },
+    { "requirementId": "IMP03-R04", "status": "implemented", "note": "Per-unit plan at state/books/<book>/runs/<runId>/source-plans/chNN.plan.json (authoring-only): stable unitId, origin, form, claimStrength, caseId, anchorIds, allowed/forbidden detail categories, sufficiency, framing, sourcePacketSha256, planVersion, compilerVersion carrying the ownership marker." },
+    { "requirementId": "IMP03-R05", "status": "implemented", "note": "compileSourcePackets (sole production packet writer) compiles+writes plans in the same pass; writers/repairs cannot mutate ownership fields (workspace isolation + reserved-key rejection + splice scan); disputes route upstream via the retry card." },
+    { "requirementId": "IMP03-R06", "status": "partial", "note": "Plan-hash lineage: sourcePlanHash + inputHashes on every attempt; entry/gate/pre-commit staleness rejection; prose-evidence invalidation rides existing content/doc hashes. Full evidence-graph invalidation lands with IMP-10 (contract slot already wired).", "deferredTo": "IMP-10" },
+    { "requirementId": "IMP03-R07", "status": "implemented", "note": "Named cases normalize into compact writer-safe policy: plan case units (categorical permissions, partial sufficiency, framing) + projection v2 doNotRestamp/naturalSetting; allowedUses/forbiddenUses boilerplate mapped categorically instead of copied." },
+    { "requirementId": "IMP03-R08", "status": "implemented", "note": "Causal permission is never inferred from mechanism strings/sequence/association: mechanism→mechanistic ceiling, below-robust replication→descriptive, causal/inferential/correlational never minted; compiler self-checks its own ceiling and tests pin it." },
+    { "requirementId": "IMP03-R09", "status": "implemented", "note": "Card projects only the compact policy + anchor IDs: projection 0.303x packet; plan block 2,330 chars grouped; bulky provenance/ranking/anchor bodies stay out (allowlist test extended by exactly the four safety fields)." },
+    { "requirementId": "IMP03-R10", "status": "implemented", "note": "Combinations validate before authoring: fail-closed at entry (invalid/stale/corrupt plans refuse to spawn), at the source-packet gate (SP15/SP16 blockers), and at pre-commit freshness." },
+    { "requirementId": "IMP03-R11", "status": "implemented", "note": "Backward compatible: absent plan = byte-identical legacy path (pinned); absence grants nothing; empty anchor catalogs mint no source-bound units (loudly). No persisted schema changed; plans mint on next compile-source-packets." },
+    { "requirementId": "IMP03-R12", "status": "implemented", "note": "renderUntrustedSourceBlock generalized into the typed envelope (src/exec/untrustedArtifact.ts): artifact type, stable id, version, content sha256, stable delimiters, fence escalation, delimiter-forgery defusal. Adopted at author-card projection/complaints and repair-card criteria/advisories." },
+    { "requirementId": "IMP03-R13", "status": "implemented", "note": "Control-authority quarantine is structural: policy resolved pre-card and never parsed from artifact data (frozen FINDING_FORBIDDEN_CONTROL_FIELDS covers structured findings); spawn-boundary test proves injection payloads cannot alter the resolved route/profile. Lexical detection deliberately not attempted (IMP-02 lesson)." },
+    { "requirementId": "IMP03-R14", "status": "implemented", "note": "Plan/packet/projection/brief/renderer hashes bind into the card (plan hash line), attempt identity (sourcePlanHash + inputHashes), and the freshness lineage; missing/conflicting/stale hashes reject at entry, gate, and commit." },
+    { "requirementId": "IMP03-R15", "status": "implemented", "note": "Package exclusion: plans live under runs/<runId>/source-plans/ (never read by promote/publish; publishToLive copies exactly one file); chapters cannot carry plan fields (reserved-key rejection at the only canonical write path); public chapter schema untouched." }
+  ],
+  "testsRequired": [
+    "origin/form/claim-strength/sufficiency/permission combinations (valid + all invalid)",
+    "direct explanation with concept_only evidence and no cast",
+    "writer/repair relabel attempts fail and route upstream",
+    "plan-hash changes invalidate dependent attempts (stale at entry and at commit)",
+    "prompt-injection strings inside artifacts stay data (route/profile immune)",
+    "projection size + restriction preservation",
+    "legacy missing-field compatibility",
+    "package exclusion and plan-hash freshness"
+  ],
+  "testsRun": [
+    "tests/source-use-plan.test.ts (20, new)",
+    "tests/untrusted-artifact.test.ts (6, new)",
+    "tests/packet-projection.test.ts (golden regenerated deliberately; allowlist extended)",
+    "tests/author-arch.test.ts (card pins: v2 projection, envelope, complaint framing, budget)",
+    "full hermetic pipeline suite (239 files)"
+  ],
+  "testResults": {
+    "pass": 2135,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 18,
+    "xenv": 6,
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts"
+    ]
+  },
+  "gateChanges": [
+    "source-packet-gate: ADDITIVE checks SP15 (plan unreadable/contract-invalid = blocker; plan missing = advisory) and SP16 (plan stale vs packet = blocker). Nothing loosened."
+  ],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [],
+  "unresolvedRisks": [
+    "The plan is a license catalog; prose exceeding a license is fully policed only when IMP-04's plan-aware critics and IMP-09's ontology-aware validators land (existing source critics remain in force meanwhile).",
+    "inferential/correlational strengths are dormant until research emits an explicit relation field; ladder is effectively descriptive/mechanistic today.",
+    "Card grew +665 (envelope) and +~2,330 on plan-bearing books; W1 fixture pin raised 18,940 → 20,000 with history note — IMP-05 owns the diet (conflict-matrix order: data first, diet second).",
+    "The write-contract D7 lead rule still pressures a named lead through fastRead+2 examples; reconciling it with explanation-unit rights is IMP-04 scope."
+  ],
+  "dependencyAssumptions": [
+    "IMP-04 consumes SourceUsePlanUnitV1, renderSourceUsePlanLines, the detail-category vocabularies, and the plan store path.",
+    "IMP-07 carries sourcePlanHash in typed patches and keeps a post-apply reserved-key scan.",
+    "IMP-08 wraps prior outputs/briefs-as-evidence in the typed envelope (artifact types defined + tested, unconsumed).",
+    "IMP-10 consumes inputHashes/sourcePlanHash for the full evidence-graph invalidation.",
+    "baselineHash is the IMP-02 commit (full sha); resultHash is sha256 of the staged unified diff."
+  ]
+}

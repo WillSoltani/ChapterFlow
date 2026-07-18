@@ -108,3 +108,7 @@ scripts/book/prompts/chapterflow-v21-authored/state/qc/*.sweep-history.jsonl
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# ChapterFlow 140-book evaluation snapshot. The current snapshot is force-added;
+# subsequent untracked generated files in this directory remain local.
+/docs/v25/chapterflow-140-evaluation/

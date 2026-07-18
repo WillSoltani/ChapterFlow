@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Offline ChapterFlow book evaluation report">
+  <title>[[REPORT_TITLE]]</title>
+  <style>
+[[REPORT_CSS]]
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to report content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="eyebrow">ChapterFlow evaluation · rubric v[[RUBRIC_VERSION]]</p>
+      <h1>[[REPORT_TITLE]]</h1>
+      <p class="lede">Evidence, learning design, and reader experience—evaluated from repository-local package content only.</p>
+      [[SCOPE_BANNER]]
+      <div class="header-status" aria-label="Report status">[[HEADER_STATUS]]</div>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Report sections">
+    <div class="section-nav-inner">
+      <a href="#overview">Overview</a>
+      <a href="#dashboard">[[NAV_RESULTS_LABEL]]</a>
+      <a href="#remediation">Remediation</a>
+      <a href="#comparison">Compare</a>
+      <a href="#rubric">Rubric</a>
+      <a href="#books">Books</a>
+      <a href="#chapters">Chapters</a>
+      <a href="#qa">QA</a>
+      <a href="#agreement">Agreement</a>
+      <a href="#cross-book">Recommendations</a>
+      <a href="#methods">Data &amp; methods</a>
+    </div>
+  </nav>
+
+  <main id="main-content" tabindex="-1">
+    <section id="overview" class="report-section" aria-labelledby="overview-heading">
+      <div class="section-heading">
+        <p class="section-kicker">01 · Run</p>
+        <h2 id="overview-heading">Run overview</h2>
+      </div>
+      [[OVERVIEW_HTML]]
+    </section>
+
+    <section id="dashboard" class="report-section" aria-labelledby="dashboard-heading">
+      <div class="section-heading">
+        <p class="section-kicker">02 · Results</p>
+        <h2 id="dashboard-heading">[[DASHBOARD_HEADING]]</h2>
+        <p>[[DASHBOARD_INTRO]]</p>
+      </div>
+      [[DASHBOARD_HTML]]
+    </section>
+
+    <section id="remediation" class="report-section" aria-labelledby="remediation-heading">
+      <div class="section-heading">
+        <p class="section-kicker">03 · Improve</p>
+        <h2 id="remediation-heading">Below-80 Remediation Center</h2>
+        <p>Every strict-below-80 score condition remains traceable in a ledger; each book receives one comprehensive, deduplicated implementation prompt.</p>
+      </div>
+      <div class="toolbar remediation-toolbar" id="remediation-toolbar" hidden aria-label="Remediation filters">
+        <label for="remediation-search">Search books and conditions<input type="search" id="remediation-search" autocomplete="off" placeholder="Book, condition, domain, or evidence"></label>
+        <label for="remediation-priority">Priority<select id="remediation-priority"><option value="all">All priorities</option><option value="P0">P0 blockers</option><option value="P1">P1 high</option><option value="P2">P2 material</option><option value="P3">P3 enhancement</option></select></label>
+        <label for="remediation-domain">Domain<select id="remediation-domain"><option value="all">All domains</option></select></label>
+        <button type="button" id="remediation-reset" class="button secondary align-end">Reset remediation filters</button>
+        <button type="button" id="download-remediation-prompts" class="button secondary align-end">Download all prompts</button>
+      </div>
+      <p id="remediation-result-count" class="live-message" role="status" aria-live="polite"></p>
+      [[REMEDIATION_HTML]]
+    </section>
+
+    <section id="comparison" class="report-section" aria-labelledby="comparison-heading">
+      <div class="section-heading">
+        <p class="section-kicker">04 · Explore</p>
+        <h2 id="comparison-heading">[[COMPARISON_HEADING]]</h2>
+        <p>[[COMPARISON_INTRO]]</p>
+      </div>
+      <div id="comparison-app" class="interactive-shell" hidden>
+        <div class="comparison-controls panel" id="comparison-controls" aria-label="Comparison controls"></div>
+        <p id="comparison-message" class="live-message" role="status" aria-live="polite"></p>
+        <div class="chart-grid">
+          <figure class="panel chart-panel">
+            <figcaption><strong>Domain profile</strong><span>Parallel-coordinate view</span></figcaption>
+            <div id="parallel-chart" class="chart" tabindex="0"></div>
+          </figure>
+          <figure class="panel chart-panel">
+            <figcaption><strong>Domain contributions</strong><span>Grouped bar view</span></figcaption>
+            <div id="bar-chart" class="chart" tabindex="0"></div>
+          </figure>
+        </div>
+        <div class="panel">
+          <div class="panel-heading-row">
+            <div><h3>All 36 subcriteria</h3><p>Cell labels carry the numeric value; tooltips add definitions and evidence summaries.</p></div>
+            <button type="button" id="export-comparison" class="button secondary">Export visible comparison CSV</button>
+          </div>
+          <div id="heatmap" class="table-scroll" tabindex="0" aria-label="Subcriterion comparison heatmap"></div>
+        </div>
+      </div>
+      <noscript><p class="notice">Interactive comparison requires JavaScript. The score tables remain available in the results and book detail sections.</p></noscript>
+    </section>
+
+    <section id="rubric" class="report-section" aria-labelledby="rubric-heading">
+      <div class="section-heading">
+        <p class="section-kicker">05 · Standard</p>
+        <h2 id="rubric-heading">Rubric explorer</h2>
+      </div>
+      <div class="toolbar" id="rubric-toolbar" hidden>
+        <label for="rubric-search">Search rubric definitions and anchors</label>
+        <div class="input-row">
+          <input type="search" id="rubric-search" autocomplete="off" placeholder="Try “uncertainty” or “retrieval”">
+          <button type="button" id="rubric-expand" class="button secondary">Expand all</button>
+          <button type="button" id="rubric-collapse" class="button secondary">Collapse all</button>
+        </div>
+      </div>
+      [[RUBRIC_HTML]]
+    </section>
+
+    <section id="books" class="report-section" aria-labelledby="books-heading">
+      <div class="section-heading">
+        <p class="section-kicker">06 · Detail</p>
+        <h2 id="books-heading">[[BOOKS_HEADING]]</h2>
+      </div>
+      <div class="toolbar" id="score-table-toolbar" hidden>
+        <fieldset class="inline-fieldset">
+          <legend>Score-table detail</legend>
+          <label class="toggle"><input type="checkbox" id="show-disagreements"> Show only disagreements</label>
+          <label class="toggle"><input type="checkbox" id="show-evidence"> Show evidence</label>
+        </fieldset>
+      </div>
+      [[BOOK_DETAILS_HTML]]
+    </section>
+
+    <section id="chapters" class="report-section" aria-labelledby="chapters-heading">
+      <div class="section-heading">
+        <p class="section-kicker">07 · Evidence</p>
+        <h2 id="chapters-heading">[[CHAPTERS_HEADING]]</h2>
+        <p>Search matches chapter titles, observations, paraphrased evidence, issues, and recommendations. Detailed panels render in batches when JavaScript is available.</p>
+      </div>
+      <div id="chapter-browser" hidden>
+        <p class="method-note">Domain filters use only chapter-resolved evidence from final adjudicated ratings. Severity filters use only chapter-scoped structured technical findings; free-text QA and safety observations remain searchable but are not assigned a severity.</p>
+        <div class="toolbar filter-grid" aria-label="Chapter evidence filters">
+          <label for="chapter-search">Search chapter evidence<input type="search" id="chapter-search" autocomplete="off" placeholder="Search evidence and issues"></label>
+          <label for="chapter-book-filter">Book<select id="chapter-book-filter"></select></label>
+          <label for="chapter-domain-filter">Domain<select id="chapter-domain-filter"></select></label>
+          <label for="chapter-severity-filter">Structured finding severity<select id="chapter-severity-filter"><option value="all">All severities</option><option value="error">Error</option><option value="warning">Warning</option><option value="info">Information</option><option value="none">No chapter-scoped structured finding</option></select></label>
+          <label for="chapter-status-filter">Read status<select id="chapter-status-filter"><option value="all">All statuses</option><option value="full">Full</option><option value="partial">Partial</option><option value="inaccessible">Inaccessible</option></select></label>
+          <button type="button" id="reset-filters" class="button secondary align-end">Reset filters</button>
+        </div>
+        <p id="chapter-result-count" class="live-message" role="status" aria-live="polite"></p>
+        <div id="chapter-results"></div>
+        <button type="button" id="load-more-chapters" class="button secondary load-more" hidden>Load more chapters</button>
+      </div>
+      <noscript>
+        <div class="notice">JavaScript is disabled. The available, unfiltered chapter evidence follows.</div>
+        [[CHAPTER_FALLBACK_HTML]]
+      </noscript>
+    </section>
+
+    <section id="qa" class="report-section" aria-labelledby="qa-heading">
+      <div class="section-heading">
+        <p class="section-kicker">08 · Integrity</p>
+        <h2 id="qa-heading">QA and technical findings</h2>
+        <p>Automated counts are diagnostic signals, not quality judgments. A rater inspected content before using a signal as evidence.</p>
+      </div>
+      [[QA_HTML]]
+    </section>
+
+    <section id="agreement" class="report-section" aria-labelledby="agreement-heading">
+      <div class="section-heading">
+        <p class="section-kicker">09 · Reliability</p>
+        <h2 id="agreement-heading">Rater agreement and calibration</h2>
+        <p>Final ratings were adjudicated from evidence and anchor fit; they are not automatic averages.</p>
+      </div>
+      [[AGREEMENT_HTML]]
+    </section>
+
+    <section id="cross-book" class="report-section" aria-labelledby="cross-book-heading">
+      <div class="section-heading">
+        <p class="section-kicker">10 · Synthesis</p>
+        <h2 id="cross-book-heading">[[CROSS_BOOK_HEADING]]</h2>
+      </div>
+      [[CROSS_BOOK_HTML]]
+    </section>
+
+    <section id="methods" class="report-section" aria-labelledby="methods-heading">
+      <div class="section-heading">
+        <p class="section-kicker">11 · Audit</p>
+        <h2 id="methods-heading">Data and methods</h2>
+      </div>
+      [[METHODS_HTML]]
+      <div class="panel">
+        <h3>Embedded artifact downloads</h3>
+        <p>Downloads are generated locally from the canonical embedded dataset. Nothing is sent over the network.</p>
+        <div id="downloads" class="download-list" hidden></div>
+        <noscript><p>The complete canonical JSON is embedded in this file. Enable JavaScript to create local JSON and CSV downloads.</p></noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Generated deterministically by the repository-scoped ChapterFlow Book Evaluator. No external factual verification or actual reader outcomes are claimed.</p>
+    <a href="#main-content">Back to top</a>
+  </footer>
+
+  <script type="application/json" id="chapterflow-report-data">[[REPORT_DATA_JSON]]</script>
+  <script>
+[[REPORT_JS]]
+  </script>
+</body>
+</html>

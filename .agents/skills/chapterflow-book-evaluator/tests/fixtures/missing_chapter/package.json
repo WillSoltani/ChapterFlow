@@ -1,0 +1,22 @@
+{
+  "packageId": "fixture-missing-chapter",
+  "book": {
+    "bookId": "fixture-missing-chapter",
+    "title": "A Book With a Gap",
+    "expectedChapterCount": 3
+  },
+  "chapters": [
+    {
+      "chapterId": "chapter-1",
+      "number": 1,
+      "title": "Opening",
+      "fullRead": "The sequence begins here."
+    },
+    {
+      "chapterId": "chapter-3",
+      "number": 3,
+      "title": "Ending",
+      "fullRead": "The sequence jumps directly to its ending."
+    }
+  ]
+}

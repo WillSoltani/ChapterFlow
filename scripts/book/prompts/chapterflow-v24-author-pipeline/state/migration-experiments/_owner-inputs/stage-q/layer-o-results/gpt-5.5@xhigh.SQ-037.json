@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-037",
+  "parsed": {
+    "caseId": "SQ-037",
+    "verdict": "DEFECT",
+    "defectClass": "duplicate_generic_relabeling",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Write the purpose in one sentence and remove any line whose real aim is punishment."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: What's Your Purpose? When to Raise It, When to Let Go"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Write the purpose in one sentence and remove any line whose real aim is punishment."
+      }
+    ],
+    "explanation": "The two instances use the same scenario, choices, and correct answer. The answer is explicitly about defining purpose and removing punitive intent, so it fits the purpose chapter but does not genuinely assess sorting the three conversations; that label is only asserted in the explanation.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-037\",\"verdict\":\"DEFECT\",\"defectClass\":\"duplicate_generic_relabeling\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":0,\"quote\":\"Write the purpose in one sentence and remove any line whose real aim is punishment.\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: What's Your Purpose? When to Raise It, When to Let Go\"},{\"materialIndex\":1,\"quote\":\"Write the purpose in one sentence and remove any line whose real aim is punishment.\"}],\"explanation\":\"The two instances use the same scenario, choices, and correct answer. The answer is explicitly about defining purpose and removing punitive intent, so it fits the purpose chapter but does not genuinely assess sorting the three conversations; that label is only asserted in the explanation.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

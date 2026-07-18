@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-039",
+  "parsed": {
+    "caseId": "SQ-039",
+    "verdict": "DEFECT",
+    "defectClass": "DUPLICATE_GENERIC_RELABEL",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Abandon Blame"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Which move would most likely change the pattern? Choices: [\"Map each person's contribution and the system pressures before deciding what must change next time.\""
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Which move would most likely change the pattern? Choices: [\"Map each person's contribution and the system pressures before deciding what must change next time.\""
+      },
+      {
+        "materialIndex": 0,
+        "quote": "The best choice keeps the conversation tied to three layers"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The best choice keeps the conversation tied to contribution"
+      }
+    ],
+    "explanation": "The two instances use the same scenario, question, choices, and correct answer for different chapter skills. Only the skill label and a small explanation phrase change, while the answer remains a broad contribution/system-pressure move rather than distinctly assessing both mechanisms.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-039\",\"verdict\":\"DEFECT\",\"defectClass\":\"DUPLICATE_GENERIC_RELABEL\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Abandon Blame\"},{\"materialIndex\":0,\"quote\":\"Which move would most likely change the pattern? Choices: [\\\"Map each person's contribution and the system pressures before deciding what must change next time.\\\"\"},{\"materialIndex\":1,\"quote\":\"Which move would most likely change the pattern? Choices: [\\\"Map each person's contribution and the system pressures before deciding what must change next time.\\\"\"},{\"materialIndex\":0,\"quote\":\"The best choice keeps the conversation tied to three layers\"},{\"materialIndex\":1,\"quote\":\"The best choice keeps the conversation tied to contribution\"}],\"explanation\":\"The two instances use the same scenario, question, choices, and correct answer for different chapter skills. Only the skill label and a small explanation phrase change, while the answer remains a broad contribution/system-pressure move rather than distinctly assessing both mechanisms.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

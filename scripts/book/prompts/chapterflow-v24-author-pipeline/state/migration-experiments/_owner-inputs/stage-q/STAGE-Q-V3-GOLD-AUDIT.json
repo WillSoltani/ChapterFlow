@@ -1,0 +1,26 @@
+{
+  "schema": "s16-stage-q-v3-gold-audit-v1",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "procedure": "Two independent read-only verifiers per owner \u00a74. Neither is the codex judge panel (no holdout exposure to qualification models).",
+  "verifierB_definitions": {
+    "identity": "independent Claude subagent (opus-4-8), applied ONLY the written definitions",
+    "result": "14/14 MATCH, 0 MISMATCH on the original holdout(8)+calibration(6); explicitly confirmed the UNSUPPORTED(U2) vs INCONCLUSIVE(I1/I2) boundary is drawn correctly (unbacked assertion vs named-missing-comparator)"
+  },
+  "verifierA_adversarial": {
+    "identity": "inline adversarial pass (this agent), maximal skepticism, tried to construct a defensible alternative for every label",
+    "result": "7 of 8 holdout AGREE + all 6 calibration AGREE; SQV3-RF-P2 FLAGGED CONTESTED (PARTIALLY_SUPPORTED vs UNSUPPORTED \u2014 'completely broken/unusable' over a correct-key quiz with one duplicate distractor is the RF6-class severity ambiguity) \u2192 BLOCKED and REPLACED per 'any disagreement blocks the case'"
+  },
+  "p2Replacement": {
+    "from": "single-question quiz, correct key + duplicate distractor (severity-overstatement, contestable)",
+    "to": "three-question quiz where Q1/Q2 keys match their explanations and Q3 key contradicts its explanation; finding claims 'ALL THREE wrong / entire quiz broken' \u2192 exactly one real key defect + scope overstatement \u2192 unambiguous PARTIALLY_SUPPORTED",
+    "deterministicCheck": "1/3 keys contradict their own explanation (mechanically verifiable, model-independent)"
+  },
+  "finalVerdict": "all 8 fresh holdout + 6 calibration labels AGREE across both verifier roles after the P2 replacement; corpus sealed on this basis",
+  "corpusHashesAfterFix": {
+    "review-fresh-holdout.jsonl": "40ea52368ec1f8a02732d86b5019a72d347dde65d7188ddfbbac764375e0bd08",
+    "review-fresh-holdout-gold.json": "d969779b97e261c877abbbdc802648a635a448948704666f0fecabd626502f7d",
+    "blind-cases.jsonl": "8742da899e3167319367dc1477d859419257ef167dbd3fe52f7c970c2875a5a6",
+    "gold-labels.json": "3381ceb2c81a8aff078e0de6cb039dec5fdc99581de412f45d79cd18879a7596"
+  }
+}

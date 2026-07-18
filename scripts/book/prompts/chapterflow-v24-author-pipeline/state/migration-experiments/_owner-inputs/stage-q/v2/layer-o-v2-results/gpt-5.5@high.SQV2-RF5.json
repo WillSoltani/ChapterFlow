@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF5",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"findingValidity\":\"PARTIALLY_SUPPORTED\",\"candidateContentVerdict\":\"DEFECT\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Finding M-05-04: two problems — (a) the causal claim overreaches, and (b) the section is far too long. Priority P2.\",\"Because the team adopted weekly demos, morale rose — the demos alone turned the quarter around. (The section is four sentences.)\",\"A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported. Uphold a finding only to the extent the evidence proves it.\"],\"rationale\":\"The causal-overreach portion is supported because the candidate asserts that weekly demos not only raised morale but that \\\"the demos alone turned the quarter around,\\\" which is an exclusive causal claim unsupported by the shown context. The length complaint is not supported: the only evidence says the section is four sentences, and the contract requires direct or contextual evidence rather than a plausible or score-only hypothesis. Therefore the finding is upheld only in part, while the candidate passage is defective due to the overreaching causal claim.\"}"
+}

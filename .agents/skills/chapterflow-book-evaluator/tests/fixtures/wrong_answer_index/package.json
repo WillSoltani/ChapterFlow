@@ -1,0 +1,26 @@
+{
+  "packageId": "fixture-wrong-answer-index",
+  "book": {
+    "bookId": "fixture-wrong-answer-index",
+    "title": "A Quiz With an Invalid Answer Index"
+  },
+  "chapters": [
+    {
+      "chapterId": "index-check",
+      "number": 1,
+      "title": "Index Check",
+      "fullRead": "A correct answer must point to an available choice.",
+      "quiz": {
+        "questions": [
+          {
+            "questionId": "q-invalid-index",
+            "prompt": "Which choice exists?",
+            "choices": ["First", "Second"],
+            "correctIndex": 7,
+            "explanation": "The configured index points outside the choice list."
+          }
+        ]
+      }
+    }
+  ]
+}

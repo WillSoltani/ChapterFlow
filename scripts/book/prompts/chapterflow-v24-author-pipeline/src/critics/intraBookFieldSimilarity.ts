@@ -584,6 +584,37 @@ export function checkIntraBookQuizPositionMatch(
  * tiers. If LCS ≥ 150 chars, the tiers contain a copy-paste block and the
  * gate blocks. This is independent of B8 and intentionally more aggressive.
  */
+/**
+ * Content-excellence Track B (2026-07-15): the app renders exactly ONE read tier
+ * per reading MODE, so a reader who opens deepRead or fullRead has NOT seen the
+ * shallower tier. A deeper tier is therefore allowed — encouraged — to OPEN by
+ * re-orienting the reader with one standalone context-setting sentence, even if
+ * that leading sentence echoes the tier above. We exempt exactly the FIRST
+ * sentence of deepRead and the FIRST sentence of fullRead from the cross-tier
+ * verbatim/overlap MASS measures (BP24 + B15). fastRead is never exempt (it is
+ * the shallowest tier — there is nothing above it to re-orient from), and the
+ * deepRead↔fullRead pair strips BOTH leads (each is a re-orienting deeper tier).
+ * E2/tiersProgressive (distinct opening LINES) is unaffected — that guards
+ * against IDENTICAL openers; this exemption only relaxes the similarity/verbatim
+ * mass. Exempting exactly one leading sentence keeps the rule crisp + deterministic.
+ */
+const REORIENTING_LEAD_TIERS: ReadonlySet<string> = new Set(["deepRead", "fullRead"]);
+
+/** Drop the first sentence of a re-orienting deeper tier (deepRead/fullRead);
+ *  return other tiers unchanged. If the tier is a single sentence, keep it whole
+ *  (stripping to empty would just skip the pair — the fail-safe direction). The
+ *  first-sentence match is deterministic: up to and including the first
+ *  sentence-final punctuation run followed by whitespace or end-of-string. An
+ *  abbreviation may split it early, which only SHRINKS the exemption — failing
+ *  safe toward MORE gate coverage, never less. */
+function stripReorientingLead(tierName: string, text: string): string {
+  if (!REORIENTING_LEAD_TIERS.has(tierName)) return text;
+  const m = /^\s*\S[\s\S]*?[.!?]+["'”’)\]]*(?=\s|$)/.exec(text);
+  if (!m) return text;
+  const rest = text.slice(m[0].length);
+  return rest.trim().length > 0 ? rest : text;
+}
+
 export function checkBreakdownCrossTierVerbatim(chapter: ChapterV21): CriticFinding[] {
   const findings: CriticFinding[] = [];
   const tiers = chapter.breakdown;
@@ -597,9 +628,13 @@ export function checkBreakdownCrossTierVerbatim(chapter: ChapterV21): CriticFind
   ];
 
   for (const [aName, bName] of pairs) {
-    const a = tiers[aName];
-    const b = tiers[bName];
-    if (typeof a !== "string" || typeof b !== "string" || !a || !b) continue;
+    const rawA = tiers[aName];
+    const rawB = tiers[bName];
+    if (typeof rawA !== "string" || typeof rawB !== "string" || !rawA || !rawB) continue;
+    // Exempt each deeper tier's leading re-orientation sentence (see above).
+    const a = stripReorientingLead(aName, rawA);
+    const b = stripReorientingLead(bName, rawB);
+    if (!a || !b) continue;
     const lcs = longestCommonSubstring(a, b);
     if (lcs.length >= CROSS_TIER_VERBATIM_BLOCKER) {
       findings.push(
@@ -698,9 +733,14 @@ export function findCrossTierContentOverlap(chapter: ChapterV21): CrossTierOverl
     ["deepRead", "fullRead"],
   ];
   for (const [aName, bName] of pairs) {
-    const a = tiers[aName];
-    const b = tiers[bName];
-    if (typeof a !== "string" || typeof b !== "string" || !a || !b) continue;
+    const rawA = tiers[aName];
+    const rawB = tiers[bName];
+    if (typeof rawA !== "string" || typeof rawB !== "string" || !rawA || !rawB) continue;
+    // Exempt each deeper tier's leading re-orientation sentence (a deeper tier
+    // may open by re-orienting the reader — see stripReorientingLead above).
+    const a = stripReorientingLead(aName, rawA);
+    const b = stripReorientingLead(bName, rawB);
+    if (!a || !b) continue;
     // BP24 owns the verbatim case; B15 is only the paraphrase proxy BELOW it.
     if (longestCommonSubstring(a, b).length >= CROSS_TIER_VERBATIM_BLOCKER) continue;
     const la = contentLemmaSet(a);

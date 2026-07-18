@@ -1,0 +1,7 @@
+{
+  "caseId": "CAL-CC1",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNMARKED_POSSIBLY_INVENTED_ANECDOTE\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"In 2015, Diane Okafor, VP of operations at Halcyon Freight, personally rerouted 300 trucks overnight and saved the quarter\",\"as she recounted at the company retreat\"],\"rationale\":\"The passage presents a named executive, company, date, precise truck count, and business outcome as historical fact, while offering only an inaccessible retreat recollection as attribution. Because the provenance permits invented examples and the prose gives readers no hypothetical or illustrative marker, its source register misleadingly treats a potentially fabricated anecdote as verified fact.\"}"
+}

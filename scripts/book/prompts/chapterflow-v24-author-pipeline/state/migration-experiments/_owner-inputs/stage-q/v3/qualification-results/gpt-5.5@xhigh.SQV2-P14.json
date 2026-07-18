@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P14",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported_narrative_fabrication\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"On the call, analyst the analyst taps a Coinstar spreadsheet beside his keyboard.\",\"\\\"The forecast is careful,\\\" he says. The investment partner answers, \\\"Careful about which future?\\\"\"],\"rationale\":\"The source plan only supports Byron Penstock, Coinstar, and the comparison of upside potential with downside risk. The candidate goes beyond those allowed facts by inventing a call, an analyst tapping a spreadsheet, direct dialogue, an investment partner, and actions taken during the conversation. These details are presented as a concrete scenario within a real-world case, so they read like verified historical particulars rather than clearly marked hypotheticals.\"}"
+}

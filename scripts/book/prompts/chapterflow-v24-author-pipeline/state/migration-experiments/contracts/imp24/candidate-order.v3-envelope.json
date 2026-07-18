@@ -1,0 +1,74 @@
+{
+  "artifactSha256": "4d11a5aeb1d3dfd8df76e9cf2f2192967d173bcbd26f4797786386b563078bfc",
+  "candidateOrderSha256": "b688f64ae66f211b2c62270a79157d997bd4dee269dcacd969f7cd9741b44190",
+  "experimentId": "s16-forward-role-qualification-v3-envelope",
+  "order": {
+    "quiz": [
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@xhigh"
+      },
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@xhigh"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@high"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@high"
+      }
+    ],
+    "reader": [
+      {
+        "effort": "high",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@high"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@high"
+      },
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@xhigh"
+      },
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@xhigh"
+      }
+    ],
+    "source": [
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@xhigh"
+      },
+      {
+        "effort": "xhigh",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@xhigh"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.6-sol",
+        "profileId": "gpt-5.6-sol@high"
+      },
+      {
+        "effort": "high",
+        "model": "gpt-5.5",
+        "profileId": "gpt-5.5@high"
+      }
+    ]
+  },
+  "schema": "imp24-candidate-order-v1"
+}

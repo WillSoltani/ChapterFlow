@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-038",
+  "parsed": {
+    "caseId": "SQ-038",
+    "verdict": "DEFECT",
+    "defectClass": "Duplicated item relabeled across chapter mechanisms",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations Question: A coach hears a player reject feedback as favoritism."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Begin from the Third Story Question: A coach hears a player reject feedback as favoritism."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Say what you heard in the player's story, then add your own view as one view, not the whole truth."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Say what you heard in the player's story, then add your own view as one view, not the whole truth."
+      }
+    ],
+    "explanation": "The two instances use the same scenario, choices, and correct answer, with only the chapter skill and explanation wording relabeled. The answer specifically fits sharing stories/third story framing, but does not separately assess sorting the three conversations mechanism.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-038\",\"verdict\":\"DEFECT\",\"defectClass\":\"Duplicated item relabeled across chapter mechanisms\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations Question: A coach hears a player reject feedback as favoritism.\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Begin from the Third Story Question: A coach hears a player reject feedback as favoritism.\"},{\"materialIndex\":0,\"quote\":\"Say what you heard in the player's story, then add your own view as one view, not the whole truth.\"},{\"materialIndex\":1,\"quote\":\"Say what you heard in the player's story, then add your own view as one view, not the whole truth.\"}],\"explanation\":\"The two instances use the same scenario, choices, and correct answer, with only the chapter skill and explanation wording relabeled. The answer specifically fits sharing stories/third story framing, but does not separately assess sorting the three conversations mechanism.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

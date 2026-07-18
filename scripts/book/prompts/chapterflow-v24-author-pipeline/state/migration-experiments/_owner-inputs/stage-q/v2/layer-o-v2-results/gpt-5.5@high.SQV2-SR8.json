@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR8",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"Consider, as a thought experiment, an engineer who keeps shipping on Fridays and keeps spending Mondays on rollbacks.\",\"The pattern — not any particular Friday — is the thing to notice.\",\"Change the day and the lesson survives, which is how you know it was never about a specific incident.\"],\"rationale\":\"The candidate passage is visibly framed to the reader as hypothetical rather than sourced fact: it opens with “as a thought experiment” and explicitly says the point is the pattern, “not any particular Friday.” It further clarifies that the lesson is not about “a specific incident,” so the reader-facing prose does not misleadingly present an invented or generalized example as real source material.\"}"
+}

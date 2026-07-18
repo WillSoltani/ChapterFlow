@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P29",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"DUPLICATED_ITEM_GENERIC_RELABELING_WITH_MECHANISM_MISMATCH\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":\"\\\"Chapter skill: Sort Out the Three Conversations\\\"; \\\"Write the purpose in one sentence and remove any line whose real aim is punishment.\\\"; \\\"Chapter skill: What's Your Purpose? When to Raise It, When to Let Go\\\"; \\\"The best choice keeps the conversation tied to three layers and creates room for new information.\\\"; \\\"The best choice keeps the conversation tied to purpose and creates room for new information.\\\"\",\"rationale\":\"The two instances duplicate the same scenario, choices, and correct answer, while changing only the chapter-skill label and a phrase in the explanation. The correct choice directly assesses clarifying purpose and avoiding punishment, which fits the purpose chapter, but it does not require the learner to sort the facts, feelings, and identity layers associated with the Three Conversations mechanism. Merely asserting that the answer is tied to \\\"three layers\\\" does not make that mechanism necessary to solve the question, so the duplicate fails to genuinely assess both stated skills.\"}"
+}

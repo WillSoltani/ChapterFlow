@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-054",
+  "parsed": {
+    "caseId": "SQ-054",
+    "verdict": "DEFECT",
+    "defectClass": "REUSED_NARRATIVE_MACHINERY",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "The florist blamed the driver. The driver blamed the loading crew."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Pascal he writes a contribution list before calling anyone careless."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Gita's first line is you keep doing this."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Gita she must decide whether to open with accusation or a story they can both recognize."
+      }
+    ],
+    "explanation": "Both examples use the same conflict-reframing arc: an initial accusation is narrowed into a shared-contribution account, followed by a choice to replace blame with mutually recognizable language. The settings and props differ, but the narrative mechanism is materially the same.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-054\",\"verdict\":\"DEFECT\",\"defectClass\":\"REUSED_NARRATIVE_MACHINERY\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"The florist blamed the driver. The driver blamed the loading crew.\"},{\"materialIndex\":0,\"quote\":\"Pascal he writes a contribution list before calling anyone careless.\"},{\"materialIndex\":1,\"quote\":\"Gita's first line is you keep doing this.\"},{\"materialIndex\":1,\"quote\":\"Gita she must decide whether to open with accusation or a story they can both recognize.\"}],\"explanation\":\"Both examples use the same conflict-reframing arc: an initial accusation is narrowed into a shared-contribution account, followed by a choice to replace blame with mutually recognizable language. The settings and props differ, but the narrative mechanism is materially the same.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

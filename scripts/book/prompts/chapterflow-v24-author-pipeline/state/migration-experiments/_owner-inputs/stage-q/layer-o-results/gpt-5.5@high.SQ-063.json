@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-063",
+  "parsed": {
+    "caseId": "SQ-063",
+    "verdict": "DEFECT",
+    "defectClass": "NON_SOURCE_REMEDIATION_PROMPT",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "# ChapterFlow remediation implementation prompt"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Remediate the ChapterFlow package identified below."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "this supplied score record alone is not a chapter-level diagnosis"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Evaluation mode: Single-evaluator screening audit"
+      }
+    ],
+    "explanation": "The artifact is an instruction-bearing remediation prompt and score/audit record, not source content or chapter-level diagnostic evidence. Its own text says the score record alone is not a chapter-level diagnosis, so it should not be used as substantive evidentiary content.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-063\",\"verdict\":\"DEFECT\",\"defectClass\":\"NON_SOURCE_REMEDIATION_PROMPT\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"# ChapterFlow remediation implementation prompt\"},{\"materialIndex\":0,\"quote\":\"Remediate the ChapterFlow package identified below.\"},{\"materialIndex\":0,\"quote\":\"this supplied score record alone is not a chapter-level diagnosis\"},{\"materialIndex\":0,\"quote\":\"Evaluation mode: Single-evaluator screening audit\"}],\"explanation\":\"The artifact is an instruction-bearing remediation prompt and score/audit record, not source content or chapter-level diagnostic evidence. Its own text says the score record alone is not a chapter-level diagnosis, so it should not be used as substantive evidentiary content.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

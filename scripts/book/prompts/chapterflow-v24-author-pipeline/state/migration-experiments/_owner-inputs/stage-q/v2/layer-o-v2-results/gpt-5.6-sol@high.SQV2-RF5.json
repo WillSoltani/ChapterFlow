@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF5",
+  "target": "REVIEW_FINDING",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"findingValidity\":\"PARTIALLY_SUPPORTED\",\"candidateContentVerdict\":\"DEFECT\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":\"\\\"Because the team adopted weekly demos, morale rose — the demos alone turned the quarter around.\\\"; \\\"(The section is four sentences.)\\\"\",\"rationale\":\"The categorical statement that \\\"the demos alone turned the quarter around\\\" directly supports the complaint that the causal claim overreaches, because the candidate provides no evidence establishing sole causation. However, the claim that the section is far too long is not demonstrated; the material expressly says it is four sentences. The finding is therefore supported only as to the causal overreach, and the candidate passage contains a material defect on that basis.\"}"
+}

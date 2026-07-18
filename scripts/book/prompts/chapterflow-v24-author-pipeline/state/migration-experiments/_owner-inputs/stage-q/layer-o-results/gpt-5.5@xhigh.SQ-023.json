@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-023",
+  "parsed": {
+    "caseId": "SQ-023",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "All examples and scenarios are invented fresh."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Title: Anna Separates Repair from Apology Scenario:"
+      }
+    ],
+    "explanation": "The provenance explicitly states the examples and scenarios are invented, and the candidate labels the named vignette as a scenario rather than presenting it as a documented event.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-023\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"All examples and scenarios are invented fresh.\"},{\"materialIndex\":1,\"quote\":\"Title: Anna Separates Repair from Apology Scenario:\"}],\"explanation\":\"The provenance explicitly states the examples and scenarios are invented, and the candidate labels the named vignette as a scenario rather than presenting it as a documented event.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-003",
+  "parsed": {
+    "caseId": "SQ-003",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "Narrow framing needs more live paths. Confirmation bias needs better evidence. Short-term emotion needs distance. Overconfidence needs a wider range of futures."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "The WRAP process exists because each villain needs a process counterweight, not merely a warning label."
+      }
+    ],
+    "explanation": "The candidate correctly pairs Widen with narrow framing, Reality-test with confirmation bias, Attain distance with short-term emotion, and Prepare to be wrong with overconfidence. Its counterweight language stays within the source contract and makes no unsupported causal claim.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-003\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"Narrow framing needs more live paths. Confirmation bias needs better evidence. Short-term emotion needs distance. Overconfidence needs a wider range of futures.\"},{\"materialIndex\":0,\"quote\":\"The WRAP process exists because each villain needs a process counterweight, not merely a warning label.\"}],\"explanation\":\"The candidate correctly pairs Widen with narrow framing, Reality-test with confirmation bias, Attain distance with short-term emotion, and Prepare to be wrong with overconfidence. Its counterweight language stays within the source contract and makes no unsupported causal claim.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

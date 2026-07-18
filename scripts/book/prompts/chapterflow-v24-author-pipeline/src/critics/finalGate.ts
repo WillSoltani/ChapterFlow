@@ -16,6 +16,7 @@ import { resolve } from "path";
 import { ChapterV21, CriticFinding, ExampleV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { chapterBriefPath } from "../artifacts/artifactStore.js";
+import type { SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
 import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNoMetaReference } from "./register.js";
 import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkCastSize, checkExampleQuizNameConsistency, checkNameCommonality, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
 import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity, checkTryThisNowComplexity } from "./integrity.js";
@@ -55,6 +56,7 @@ import { checkBeatVocabularyEcho } from "./beatVocabularyEcho.js";
 import { checkCitationDateDoorway } from "./citationDateDoorway.js";
 import { checkLineageKeyQuiz } from "./lineageKeyQuiz.js";
 import { checkApparatusLeakage } from "./apparatusLeakage.js";
+import { checkFormatV25 } from "./formatV25.js";
 import { checkOutcomeVariety } from "./outcomeVariety.js";
 import { checkGroundedNumbers } from "./groundedNumbers.js";
 import { checkInventedWitness } from "./evidenceWitness.js";
@@ -137,6 +139,17 @@ function allocatedNamesForChapter(chapter: ChapterV21): Set<string> {
 }
 
 const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
+  // Chapter Format v25 (F25) — D8. Only the schema-crisp feedback block gates;
+  // the semantic F-1/F-3 heuristics are advisory (STIER-2: lexical gates on
+  // semantic properties invert). Run only when ShipGateOptions.formatV25.
+  "F25.quiz_feedback": "blocker",
+  "F25.duplicate_example": "minor",
+  "F25.tier_serial_opener": "minor",
+  // F25.loop_closure (D6.3/6.4, content-excellence Track B 2026-07-15) — happy-
+  // path-only implementation plan + zero boundary cue. SHADOW major: never in
+  // ENFORCED_MAJOR (a lexical proxy for a semantic property must not gate —
+  // STIER-2), zero-FP-calibrated on the gold corpus. Surfaces as QC debt only.
+  "F25.loop_closure": "major",
   // Schema (A)
   A1: "blocker",
   A2: "blocker",
@@ -681,8 +694,15 @@ function checkTierLengthFloors(chapter: ChapterV21): CriticFinding[] {
  *  writers dealt 4-5 into padding up to 6 (5/8 chapters shipped 6-on-a-4/5-deal,
  *  re-minting the example-padding density defect), and circuit-broke the ONE writer
  *  who obeyed (ch09). Unreadable/absent/unstamped brief or out-of-range count →
- *  the historical floor 6 (fail-closed: A16's partial-generation purpose stands;
- *  the EXACT-count contract is enforced write-side in authorWriteContractFindings). */
+ *  the historical floor 6 (fail-closed: A16's partial-generation purpose stands).
+ *
+ *  Content-excellence (aligned with authorWriteContractFindings): the floor is the
+ *  dealt count MINUS ONE. A fixed template quantity is itself the rubric's "template
+ *  bloat" defect (9.3), and a writer may legitimately drop one dealt slot when the
+ *  teaching does not fill it. The write-time contract permits dealt-1..dealt; this
+ *  ship-gate floor matches its LOW edge (dealt-1) so a chapter the write contract
+ *  accepted never fails the ship gate on example count. This only LOWERS the floor
+ *  (strictly more permissive), so no gold chapter that passed can newly fail. */
 /** The historical/default A16 examples floor — binds legacy and non-v3 chapters, and
  *  every fail-closed fallback below. Docs-contract source-scans this name. */
 export const A16_EXAMPLES_DEFAULT_FLOOR = 6;
@@ -696,13 +716,13 @@ export function dealtExampleFloor(chapter: ChapterV21, stateRoot?: string): numb
     const count = brief?.exampleCount;
     if (typeof brief?.rotationSchemaVersion === "string" && brief.rotationSchemaVersion.length > 0 &&
         typeof count === "number" && Number.isInteger(count) && count >= 4 && count <= 6) {
-      return count;
+      return count - 1; // dealt-1: the write contract's low edge; a dropped slot is not a partial generation
     }
   } catch { /* no readable brief → historical floor */ }
   return A16_EXAMPLES_DEFAULT_FLOOR;
 }
 
-function checkSupportCountFloors(chapter: ChapterV21): CriticFinding[] {
+function checkSupportCountFloors(chapter: ChapterV21, explicitExampleFloor?: number): CriticFinding[] {
   const findings: CriticFinding[] = [];
   const quizCount = chapter.quiz?.questions?.length ?? 0;
   const cardCount = chapter.reviewCards?.length ?? 0;
@@ -724,12 +744,12 @@ function checkSupportCountFloors(chapter: ChapterV21): CriticFinding[] {
       `${cardCount}/4`,
     ));
   }
-  const exampleFloor = dealtExampleFloor(chapter);
+  const exampleFloor = explicitExampleFloor ?? dealtExampleFloor(chapter);
   if (exampleCount < exampleFloor) {
     findings.push(finding(
       "A16.examples_count_floor" as any,
       "blocker",
-      `examples has ${exampleCount} entries (floor ${exampleFloor}${exampleFloor !== 6 ? ", the brief's dealt count" : ""}). Chapter is missing examples — likely a partial generation.`,
+      `examples has ${exampleCount} entries (floor ${exampleFloor}${exampleFloor !== 6 ? ", the brief's dealt count minus one" : ""}). Chapter is missing examples — likely a partial generation.`,
       `${exampleCount}/${exampleFloor}`,
     ));
   }
@@ -784,13 +804,36 @@ function schemaGateReport(findings: RuntimeSchemaFinding[]): GateReport {
   };
 }
 
-export function runShipGate(chapter: ChapterV21): GateReport {
+export type ShipGateOptions = {
+  isolationMode?: "normal" | "experiment";
+  /** Explicit empty array disables canonical name-plan licensing. */
+  allocatedNames?: readonly string[];
+  /** Frozen dealt floor from the experiment-local chapter brief. */
+  exampleFloor?: number;
+  /** Frozen source inputs used by every source-bound critic. */
+  sourceSidecar?: unknown;
+  sourceUsePlan?: SourceUsePlanV1 | null;
+  /** Chapter Format v25 (D8) enforcement. The production authoring path sets
+   *  this; gate-chapter replays of the shipped pre-v25 corpus leave it off. */
+  formatV25?: boolean;
+};
+
+export function runShipGate(chapter: ChapterV21, options: ShipGateOptions = {}): GateReport {
+  if (options.isolationMode === "experiment") {
+    if (options.allocatedNames === undefined || options.exampleFloor === undefined
+      || !Object.prototype.hasOwnProperty.call(options, "sourceSidecar")
+      || !Object.prototype.hasOwnProperty.call(options, "sourceUsePlan")) {
+      throw new Error("finalGate: experiment isolation requires explicit names, example floor, source sidecar, and source-use plan");
+    }
+  }
   const schema = validateChapterV21(chapter);
   if (!schema.ok) return schemaGateReport(schema.findings);
   chapter = schema.value;
 
   const findings: GateFinding[] = [];
-  const allocatedNames = allocatedNamesForChapter(chapter);
+  const allocatedNames = options.allocatedNames !== undefined
+    ? new Set(options.allocatedNames)
+    : allocatedNamesForChapter(chapter);
 
   const push = (catalogId: string, unit: string, message: string, evidence?: string) => {
     const severity = SEVERITY_FROM_CATALOG[catalogId];
@@ -799,6 +842,11 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     }
     findings.push({ catalogId, severity, unit, message, evidence });
   };
+
+  // ── Chapter Format v25 (F25) — D8, opt-in for new authoring ──────────────
+  if (options.formatV25 === true) {
+    for (const f of checkFormatV25(chapter)) push(f.catalogId, f.unit, f.message, f.evidence);
+  }
 
   // ── Hook (B1, B2, B4, B5, A12, A13) ──────────────────────────────────────
   if (chapter.hook) {
@@ -938,7 +986,7 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // missing quiz questions, review cards, or examples. 48 Laws shipped with
   // 46/48 chapters at 3 quiz questions instead of 9 because the writer's
   // retry-loop check fires upstream of any ship-gate verification.
-  for (const f of checkSupportCountFloors(chapter)) {
+  for (const f of checkSupportCountFloors(chapter, options.exampleFloor)) {
     push(f.checkId as string, `support_counts`, f.message, f.evidence);
   }
   // E7 — plain language (simple vocabulary + short sentences) across EVERY
@@ -990,7 +1038,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     // discusses the examples and would launder a stamped location ("Princeton")
     // into the exemption. A genuinely central concept/entity ("Golden Circle")
     // lives in the core teaching and is correctly spared.
-    const sc: any = loadChapterSidecar(chapter.chapterId) ?? {};
+    const sc: any = options.sourceSidecar !== undefined
+      ? options.sourceSidecar
+      : loadChapterSidecar(chapter.chapterId) ?? {};
     const coreTeachingText = [
       chapter.keyTakeaway,
       chapter.counterintuition ?? "",
@@ -1024,11 +1074,11 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // real cases (American/Japanese car-door assembly, Wright brothers,
   // Apple, MLK, TiVo). Once scenarios are detached from source material,
   // templating naturally follows.
-  for (const f of checkExampleSourceGrounding(chapter)) {
+  for (const f of checkExampleSourceGrounding(chapter, options.sourceUsePlan, options.sourceSidecar)) {
     push(f.checkId as string, "examples", f.message, f.evidence);
   }
   // SC11 — declared provenance (Phase 3, v2-gated; v1 chapters return [] → skip).
-  for (const f of checkChapterProvenance(chapter)) {
+  for (const f of checkChapterProvenance(chapter, options.sourceSidecar)) {
     push(f.checkId as string, f.message.split(" ")[0] || "provenance", f.message, f.evidence);
   }
   // EI1/EI2 — evidence integrity. A testimonial (first-name/initial-only personal
@@ -1058,7 +1108,7 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // C30 — within-chapter example-lesson repetition (advisory, v2-gated). ≥2 example
   // pairs whose whyItMatters restate one lesson at high content overlap — the
   // deterministic floor under QUALITY BAR rule 6 ("each example a DIFFERENT facet").
-  for (const f of checkExampleLessonRepetition(chapter)) {
+  for (const f of checkExampleLessonRepetition(chapter, options.sourceSidecar)) {
     push(f.checkId as string, "example-lesson", f.message, f.evidence);
   }
   // C31 — example evaluator-register (advisory, CF-B). ≥3 example fields open with a
@@ -1070,7 +1120,7 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // C32 — meta-case protagonist (advisory, CF-I-1). ≥2 example fields across ≥2
   // examples make a pipeline artifact the acting subject ("The case stops…", "The
   // late fix used…") — offstage machinery narration instead of a person in the scene.
-  for (const f of checkMetaCaseProtagonist(chapter)) {
+  for (const f of checkMetaCaseProtagonist(chapter, options.sourceSidecar)) {
     push(f.checkId as string, "meta-case", f.message, f.evidence);
   }
   // C33 — beat-vocabulary echo (advisory, CF-I-1). ≥3 distinct briefRotation entry/
@@ -1100,7 +1150,7 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // GN1 — ungrounded statistical figures (fabricated percentages/multipliers/
   // magnitudes) in reader prose. v2-gated (returns [] on a v1 chapter → skip);
   // SHADOW=major. Complements the semantic factual_accuracy axis deterministically.
-  for (const f of checkGroundedNumbers(chapter)) {
+  for (const f of checkGroundedNumbers(chapter, options.sourceSidecar)) {
     push(f.checkId as string, "grounded-numbers", f.message, f.evidence);
   }
   // EW1 — an invented character cast as a research subject ("participant Lawrence",
@@ -1262,10 +1312,10 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // chapter character ("what did Deborah conclude…") instead of a fresh transfer
   // scenario. D6: a keyed answer grounded in a same-chapter character the question
   // never introduces. Both MAJOR (shadow); see critics/pedagogy.ts.
-  for (const f of checkQuizScenarioNovelty(chapter)) {
+  for (const f of checkQuizScenarioNovelty(chapter, options.sourceSidecar)) {
     push(f.checkId as string, "quiz", f.message, f.evidence);
   }
-  for (const f of checkQuizKeyEntity(chapter)) {
+  for (const f of checkQuizKeyEntity(chapter, options.sourceSidecar)) {
     push(f.checkId as string, "quiz", f.message, f.evidence);
   }
 

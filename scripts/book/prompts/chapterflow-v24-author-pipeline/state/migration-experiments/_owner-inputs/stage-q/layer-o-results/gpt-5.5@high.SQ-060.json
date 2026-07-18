@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-060",
+  "parsed": {
+    "caseId": "SQ-060",
+    "verdict": "DEFECT",
+    "defectClass": "PROCESS_INSTRUCTIONS_AS_ARTIFACT",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "# Writer Role Card"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Write one canonical ChapterFlow chapter in plain English."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Do NOT write JSON"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Required Reading Before Writing"
+      }
+    ],
+    "explanation": "The artifact is a writer role card containing process, role, and output instructions, not chapter evidence or content to evaluate. It attempts to direct generation behavior and output format, so it should be blocked as non-evidentiary instructional material.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-060\",\"verdict\":\"DEFECT\",\"defectClass\":\"PROCESS_INSTRUCTIONS_AS_ARTIFACT\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"# Writer Role Card\"},{\"materialIndex\":0,\"quote\":\"Write one canonical ChapterFlow chapter in plain English.\"},{\"materialIndex\":0,\"quote\":\"Do NOT write JSON\"},{\"materialIndex\":0,\"quote\":\"Required Reading Before Writing\"}],\"explanation\":\"The artifact is a writer role card containing process, role, and output instructions, not chapter evidence or content to evaluate. It attempts to direct generation behavior and output format, so it should be blocked as non-evidentiary instructional material.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-022",
+  "parsed": {
+    "caseId": "SQ-022",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "All examples and scenarios are invented fresh."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Title: Laura Opens the Review Notes Scenario: What if the red cell is not a formatting issue?"
+      }
+    ],
+    "explanation": "The provenance explicitly states that scenarios are invented, and the candidate itself labels the Laura material as a scenario with a hypothetical framing, so it is sufficiently marked as constructed rather than documented.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-022\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"All examples and scenarios are invented fresh.\"},{\"materialIndex\":1,\"quote\":\"Title: Laura Opens the Review Notes Scenario: What if the red cell is not a formatting issue?\"}],\"explanation\":\"The provenance explicitly states that scenarios are invented, and the candidate itself labels the Laura material as a scenario with a hypothetical framing, so it is sufficiently marked as constructed rather than documented.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-053",
+  "parsed": {
+    "caseId": "SQ-053",
+    "verdict": "DEFECT",
+    "defectClass": "REUSED_NARRATIVE_MACHINERY",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Brisa starts to defend the audition list."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Brisa feels the word unfair rise and stop."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Brisa she must answer the hurt without pretending she knows the parent's motive."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Dima has a reply ready about protocol"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "the badge in the mirror makes the real threat clear"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Dima he must decide whether to defend his identity or check the order like a doctor who can learn."
+      }
+    ],
+    "explanation": "Both scenarios use the same sequence: a precisely staged workplace confrontation, an immediate defensive response, an inward pause that reframes the threat, and a final stated choice between self-defense and a chapter-aligned corrective response. The changed setting, roles, and props do not alter that shared narrative machinery.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-053\",\"verdict\":\"DEFECT\",\"defectClass\":\"REUSED_NARRATIVE_MACHINERY\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Brisa starts to defend the audition list.\"},{\"materialIndex\":0,\"quote\":\"Brisa feels the word unfair rise and stop.\"},{\"materialIndex\":0,\"quote\":\"Brisa she must answer the hurt without pretending she knows the parent's motive.\"},{\"materialIndex\":1,\"quote\":\"Dima has a reply ready about protocol\"},{\"materialIndex\":1,\"quote\":\"the badge in the mirror makes the real threat clear\"},{\"materialIndex\":1,\"quote\":\"Dima he must decide whether to defend his identity or check the order like a doctor who can learn.\"}],\"explanation\":\"Both scenarios use the same sequence: a precisely staged workplace confrontation, an immediate defensive response, an inward pause that reframes the threat, and a final stated choice between self-defense and a chapter-aligned corrective response. The changed setting, roles, and props do not alter that shared narrative machinery.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

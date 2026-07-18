@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P19",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"generic_or_unrelated_locator\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Claim record: Checked claim mechanism for ch01.fact.4: Fast neural events and slow social histories can both affect one response, since each layer chan Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=testosterone+challenge+hypothesis+Wingfield ; locator=ch01.fact.4\",\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim. A generic or topically unrelated search is not verification.\"],\"rationale\":\"The proposed locator is a PubMed search URL for \\\"testosterone challenge hypothesis Wingfield,\\\" not a claim-specific source showing that fast neural events and slow social histories can both affect one response. The materials provide no evidence that this locator addresses the same entity, mechanism, relation, or certainty as the recorded claim, and the contract explicitly rejects generic or topically unrelated searches as verification.\"}"
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P09",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_NARRATIVE_DETAILS_IN_REAL_SOURCED_CASE\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"The HopeLab planner stands after lunch in HopeLab's project room, one portable activity device sketch clipped beside three firm names.\",\"No one else speaks yet.\",\"His mind tries the easy sentence: pick the safest vendor and move.\",\"One firm could solve comfort, another could solve play, and another could show what the team has missed.\"],\"rationale\":\"The candidate presents invented scene-setting, a precise number of firms, silence, internal thoughts, and firm-specific design strengths in the same factual register as the verified HopeLab case. The source plan supports only Steve Cole, HopeLab, a portable activity device, multiple design firms, and a parallel first phase used to compare and combine ideas; it does not support these narrated particulars. Because the embellishments are substantial and embedded within a real-world case without clear hypothetical labeling at the sentence level, the content should be blocked.\"}"
+}

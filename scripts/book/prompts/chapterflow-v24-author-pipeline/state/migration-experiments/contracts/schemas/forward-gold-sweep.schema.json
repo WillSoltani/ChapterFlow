@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chapterflow.local/schemas/forward-gold-sweep.schema.json",
+  "title": "IMP-22 Independent Forward Gold Book Sweep",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_hash", "worker_dispatch_receipt_sha256", "sweep"],
+  "properties": {
+    "source_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "worker_dispatch_receipt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "sweep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "bookId",
+        "roundId",
+        "verdict",
+        "reviewer",
+        "attestedAt",
+        "reviewerSessionId",
+        "contentHashes",
+        "checkedFamilies",
+        "findings"
+      ],
+      "properties": {
+        "schemaVersion": {"const": "sweep-attest-v1"},
+        "bookId": {"type": "string", "minLength": 1},
+        "roundId": {"type": "string", "minLength": 1},
+        "verdict": {"enum": ["PASS", "REVISE", "CORRUPTION"]},
+        "reviewer": {"type": "string", "minLength": 1},
+        "attestedAt": {"type": "string", "format": "date-time"},
+        "reviewerSessionId": {"type": "string", "minLength": 1},
+        "contentHashes": {
+          "type": "object",
+          "minProperties": 8,
+          "propertyNames": {"pattern": "^[1-9][0-9]*$"},
+          "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{16}$"}
+        },
+        "checkedFamilies": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"]
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["family", "severity", "chapters", "unitId", "quote", "problem", "expectedFix"],
+            "properties": {
+              "family": {
+                "enum": ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"]
+              },
+              "severity": {"enum": ["blocker", "advisory"]},
+              "chapters": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {"type": "integer", "minimum": 1}
+              },
+              "unitId": {"type": "string", "minLength": 1},
+              "quote": {"type": "string", "minLength": 1},
+              "problem": {"type": "string", "minLength": 1},
+              "expectedFix": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    }
+  }
+}

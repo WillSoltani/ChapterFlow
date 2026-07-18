@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-001",
+  "parsed": {
+    "caseId": "SQ-001",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Contribution mapping does not imply equal fault."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "It is not a polite way to say everyone is equally at fault."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Your ten percent does not erase their ninety."
+      }
+    ],
+    "explanation": "The candidate explicitly rejects equal-fault framing, preserves the 90/10 asymmetry, and explains that naming a smaller contribution identifies a personally actionable lever without forgiving or obscuring the larger responsibility.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-001\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Contribution mapping does not imply equal fault.\"},{\"materialIndex\":1,\"quote\":\"It is not a polite way to say everyone is equally at fault.\"},{\"materialIndex\":1,\"quote\":\"Your ten percent does not erase their ninety.\"}],\"explanation\":\"The candidate explicitly rejects equal-fault framing, preserves the 90/10 asymmetry, and explains that naming a smaller contribution identifies a personally actionable lever without forgiving or obscuring the larger responsibility.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

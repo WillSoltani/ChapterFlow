@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-I2",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"INSUFFICIENT_TO_DECIDE\",\"findingValidity\":\"INCONCLUSIVE\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Finding S-11-02: the retention statistic contradicts the cited study's actual finding. Verify against the study's reported effect size.\",\"The cited longitudinal study reported a moderate positive effect on one-year retention.\"],\"rationale\":\"The record contains the candidate's characterization and the reviewer's allegation, but not the cited study or its reported effect size. Because comparison with that specifically required evidence is necessary to determine whether a contradiction exists, the finding is inconclusive on the supplied record.\"}"
+}

@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-013",
+  "parsed": {
+    "caseId": "SQ-013",
+    "verdict": "DEFECT",
+    "defectClass": "UNSUPPORTED_REAL_WORLD_SCENE_DETAIL",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "On the second morning in Lexicon Branding's naming studio"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "the naming lead first tapes one favorite product name at the center of the wall and hears the room argue taste"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "one descriptive, one suggestive, one short and invented"
+      }
+    ],
+    "explanation": "The candidate presents a specific time, setting, actions, reactions, and exact naming-route taxonomy as factual events at a real company, although the source plan supports only the general use of multiple teams and naming routes.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-013\",\"verdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_REAL_WORLD_SCENE_DETAIL\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"On the second morning in Lexicon Branding's naming studio\"},{\"materialIndex\":1,\"quote\":\"the naming lead first tapes one favorite product name at the center of the wall and hears the room argue taste\"},{\"materialIndex\":1,\"quote\":\"one descriptive, one suggestive, one short and invented\"}],\"explanation\":\"The candidate presents a specific time, setting, actions, reactions, and exact naming-route taxonomy as factual events at a real company, although the source plan supports only the general use of multiple teams and naming routes.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

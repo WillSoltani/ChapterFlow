@@ -1,0 +1,800 @@
+{
+  "artifactSha256": "01902605da8fec03535e49f6282da2194414180f43dc2e4e28216b28bccbe5bd",
+  "corpusId": "imp24-reader-role-corpus-v3-envelope",
+  "experimentId": "s16-forward-role-qualification-v3-envelope",
+  "partition": "canary",
+  "payload": {
+    "cases": [
+      {
+        "baseBookId": "make-it-stick",
+        "baseChapter": 2,
+        "baseCleanControlAudit": {
+          "curatorRationale": "The complete chapter and stored feedback are coherent on the page. This development calibration label is neither independent-human nor external-source gold.",
+          "independentHumanRater": false,
+          "knownDefects": [],
+          "sourceDesignation": "curator-inspected calibration coordinate; never part of the qualification holdout",
+          "status": "DEVELOPMENT_CLEAN_CONTROL"
+        },
+        "caseId": "READER-V3-CANARY-clean-make-it-stick-ch02",
+        "chapter": {
+          "breakdown": {
+            "deepRead": "At 1:17 a.m., James wipes flour from the gas-valve label and predicts the oven shutdown order while the laminated card stays face down. He gets the oven key right. He gets the steam valve late. The night supervisor lets him check the card, mark the missed valve, and run the whole sequence again.\n\nThat second run is the learning event. Retrieval practice does not need a grade, a threat, or a formal exam. It needs a memory attempt honest enough to reveal a gap and feedback close enough to repair it before the wrong version hardens.\n\nThe testing effect is the finding that recall itself can strengthen later memory. Roediger and Karpicke helped make that point visible: a test is not only a way to measure learning after the fact. When it asks for real recall and is followed by correction, it can become part of learning.\n\nThe miss still has to be handled cleanly. If James guesses, shrugs, and moves on, the gap stays a gap. If Megan is shamed for not knowing the third action, the quiz becomes theater. If the miss points to the exact place where memory failed, feedback turns it into a repair target. Then the next retrieval asks whether the repair holds.\n\nThat is why low-stakes quizzing matters. It lowers the social cost enough for memory to be honest. A blank page, a covered protocol, an oral explanation, or a short practice question can all work when they follow the same sequence: retrieve, check, repair, retrieve again.",
+            "fastRead": "\"Tell me before you look,\" the charge nurse says, and Megan feels the infusion protocol leave her hands before it has left her life. The mock monitor is quiet. The saline bag hangs untouched. Three steps should come first, but only two arrive.\n\nThat blank is not proof that quizzing failed. It is the first useful signal. Retrieval practice means trying to produce an answer before seeing it. Rereading can hide a weak step because the answer is visible; retrieval exposes whether the step can be produced.\n\nA miss becomes learning when Megan checks it, repairs the exact missing action, and retrieves again. Pressure is not the mechanism. Production plus feedback is.",
+            "fullRead": "A plastic infant mannequin lies under the exam lamp while Luca stares at the weight tape and a calculator with one wrong conversion still on the screen. He missed kilograms to pounds by one step. The feedback sheet does not say fail. It says where. Before the simulated call begins, Luca has to decide what kind of miss this is: a verdict to fear or information he can use.\n\nRetrieval feels rough because it removes the prop. The answer is no longer sitting in the margin. The protocol is covered. The card is face down. The teacher has stopped giving the first word. In that exposed moment, memory either finds a path or shows where the path breaks. Both outcomes can help, but only if the break is inspected.\n\nMike Ebersold had rehearsed enough hard cases that the hidden danger under the wound was already available before the incision. Called to a Wisconsin emergency room in late 2011 for a hunter with a 12-gauge slug lodged in the skull, he had to anticipate what the visible injury might be hiding. That readiness does not come from recognition alone. It comes from prior retrieval, reflection, correction, and cases that have been brought back to mind before the body on the table demands them.\n\nThe practical question is whether the recall attempt leaves the learner with a next action.\n\nIf it does, the miss is useful. Claire walks the empty gallery with the binder closed and tries to retrieve three turning points at each bronze label. When she blanks on the second case, she checks the script, writes the missing transition in her own words, and returns to that case at the end of the walk. Marta learns the same lesson after an outage: her searchable escalation tree felt safe until the knowledge base was unavailable and customers were waiting. A five-minute blank-page recall each day would have exposed the missing handoff before the pager did.\n\nForgetting is not a moral failure. Since Hermann Ebbinghaus mapped the forgetting curve in 1885, the problem has been plain: memory fades unless it is asked to recover. Spaced retrieval uses that fading instead of pretending it will not happen. You wait long enough for recall to require effort, then you pull the answer back, check it, and repair what did not return.\n\nThere are limits. Retrieval is powerful, not magical. If a learner lacks the first explanation, repeated blank attempts can become confusion. If feedback never arrives, errors can rehearse themselves. If the environment turns every miss into embarrassment, people learn to hide gaps rather than expose them.\n\nKiran hears the pause before the Czech noun ending arrives and stops flipping the flashcard immediately. He says the ending aloud, checks it, puts a pencil tick on the missed card, and moves it to a sooner box. The card did not punish him. It told him where to come back.\n\nMake memory reach. Let the miss be specific. Fix the break. Then reach again."
+          },
+          "chapterId": "make-it-stick-ch02",
+          "counterintuition": "A quiz looks like a verdict, but its teaching power comes from the attempt itself: memory reaches, feedback identifies the break, and a second attempt strengthens the repair.",
+          "examples": [
+            {
+              "exampleId": "ch02-ex01-megan-protocol",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "\"Tell me before you look,\" the charge nurse says in simulation bay 4, lifting the laminated protocol from Megan's tray. The mock monitor is quiet, a saline bag hangs from the pole, and the instructor's thumb is near the deterioration button. Megan can picture the page but not the third action. Before the monitor starts chirping, she must choose between reaching for the covered protocol or calling out what memory can produce.",
+              "tags": [
+                "clinical",
+                "retrieval",
+                "feedback"
+              ],
+              "title": "Megan Recalls the First Three Infusion Steps",
+              "whatToDo": "Call out the first three actions from memory, mark the missing one after feedback, and repeat the sequence before the mock patient deteriorates.",
+              "whyItMatters": "The covered protocol turns uncertainty into useful evidence. Megan learns the exact step that needs repair while the stakes are still low enough to practice again."
+            },
+            {
+              "exampleId": "ch02-ex02-james-steam-valve",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "At 1:17 a.m., James wipes flour from the gas-valve label while the oven key hangs from a hook and the laminated shutdown card stays face down. He predicts the order: fan, gas, steam, proofing line. The reveal is immediate. The card puts the steam valve second, not third. James must choose now: treat the miss as proof he is too tired or use the card to repair the order and run it again.",
+              "tags": [
+                "bakery",
+                "shutdown",
+                "prediction"
+              ],
+              "title": "James Finds the Missed Steam Valve at 1:17 a.m.",
+              "whatToDo": "Use the card only after the prediction. Circle the steam-valve miss, say the corrected order, and run the whole shutdown once more without looking.",
+              "whyItMatters": "The prediction makes the gap visible. Checking after the attempt repairs a real weakness instead of letting another reread feel productive at 1:17 a.m."
+            },
+            {
+              "exampleId": "ch02-ex03-claire-gallery-walk",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "The gallery is empty except for the hum behind the glass cases. Claire carries a closed binder against her hip, stops at the bronze label, and says the first turning point into her audio-guide earpiece. A school group will not ask in script order tomorrow. At the third case, the second turning point vanishes. Her finger tightens on the binder clip, and she must choose how to handle the blank.",
+              "tags": [
+                "museum",
+                "tour",
+                "oral"
+              ],
+              "title": "Claire Walks the Gallery With the Binder Closed",
+              "whatToDo": "Keep walking before opening the binder. Say what returns, check the missing transition at the end of the row, then revisit that case after another display.",
+              "whyItMatters": "The empty gallery gives Claire a low-stakes retrieval round. The blank shows which part of the tour needs repair before children ask from a different angle."
+            },
+            {
+              "exampleId": "ch02-ex04-luca-weight-tape",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "A plastic infant mannequin lies under the exam lamp while Luca holds the weight tape in one hand and a calculator in the other. The feedback sheet shows the error: he converted the kilos correctly, then used the wrong range on the chart. The next simulated call starts in four minutes. Luca's pen rests over the sheet. He must choose between hiding the mistake under another full review or marking the exact conversion step and trying a fresh calculation.",
+              "tags": [
+                "paramedic",
+                "dosage",
+                "repair"
+              ],
+              "title": "Luca Repairs the Weight Conversion Before the Call",
+              "whatToDo": "Mark the conversion step, ask for quick feedback, cover the chart, and calculate a new weight from scratch before the simulation begins.",
+              "whyItMatters": "A missed calculation becomes useful only when it points to the failed step. Full review can blur the error; targeted repair gives Luca a second retrieval with cleaner information."
+            },
+            {
+              "exampleId": "ch02-ex05-marta-status-page",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "In the Denver support room at 10:42 a.m., Marta sees the gap on a silent status page. During the outage, the knowledge base stalled, customers filled the chat queue, and the pager transcript shows six minutes lost before anyone named the handoff to infrastructure. In the postmortem, the escalation tree sits printed beside the timeline. Marta writes one sentence at the top: five minutes of blank-page recall would have found this before the page went silent.",
+              "tags": [
+                "support",
+                "outage",
+                "postmortem"
+              ],
+              "title": "Marta Sees the Handoff Gap After the Outage",
+              "whatToDo": "Add a daily blank-page recall of the escalation steps, then compare it with the tree and rehearse any missed handoff later in the shift.",
+              "whyItMatters": "Searchable docs feel safe until search is gone. A short recall routine exposes missing handoffs while the team still has time to repair them."
+            },
+            {
+              "exampleId": "ch02-ex06-kiran-czech-case",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "On the 6:18 p.m. tram platform in Brno, you can hear the pause before Kiran finds the noun ending. He has an index-card box open on the bench, one pencil tick beside the Czech case ending he keeps recognizing too late. Before, he flipped fast and felt progress when the answer side looked familiar. After, he says the declension aloud first, checks it, and moves the missed card to a sooner slot. The pause becomes the practice.",
+              "tags": [
+                "language",
+                "flashcards",
+                "selfquiz"
+              ],
+              "title": "Kiran Stops Before Flipping the Czech Card",
+              "whatToDo": "Say the ending before flipping, check it, mark the miss with one pencil tick, and move that card forward so the repaired answer gets retrieved again sooner.",
+              "whyItMatters": "Recognition after the flip can hide weak production. Speaking first makes memory do the work, and the sooner box turns the miss into the next useful rep."
+            }
+          ],
+          "hook": "Megan covers the infusion protocol and finds the missing step while it is still small enough to repair.",
+          "implementationPlan": {
+            "coreSkill": "The skill is using recall as practice, not as a final verdict. You ask memory to produce, check the result quickly, repair the specific gap, and retrieve again after enough delay to make the repair work.",
+            "ifThenPlans": [
+              {
+                "context": "school",
+                "plan": "If you finish reading a section, then write one question from memory and answer it before checking the source."
+              },
+              {
+                "context": "clinical training",
+                "plan": "If a protocol looks familiar, then cover it and call out the first actions before reviewing the card."
+              },
+              {
+                "context": "work",
+                "plan": "If a procedure lives in a searchable document, then run a two-minute closed-source recall before the next live shift."
+              },
+              {
+                "context": "self-study",
+                "plan": "If a flashcard answer looks familiar after flipping, then move that card earlier and produce the answer before the next flip."
+              }
+            ],
+            "title": "The skill is using recall as practice, not as a final verdict",
+            "twentyFourHourChallenge": "Make one recall question from today's material, answer it without looking, check it, and schedule a second retrieval of the repaired part tomorrow.",
+            "weeklyPractice": "Pick three days each week for low-stakes retrieval: one blank-page recall, one oral explanation, and one mixed self-quiz. Mark misses as repair targets, not scores."
+          },
+          "keyTakeaway": "Use retrieval practice as low-stakes production plus prompt feedback. The learner should know exactly what broke and get another chance to retrieve the repaired step.",
+          "memorableLines": [
+            {
+              "location": "breakdown",
+              "text": "That second run is the learning event.",
+              "why": "A memorable distillation of the chapter's core idea."
+            },
+            {
+              "location": "breakdown",
+              "text": "Retrieval feels rough because it removes the prop.",
+              "why": "A memorable distillation of the chapter's core idea."
+            },
+            {
+              "location": "breakdown",
+              "text": "If it does, the miss is useful.",
+              "why": "A memorable distillation of the chapter's core idea."
+            }
+          ],
+          "number": 2,
+          "quiz": {
+            "passingScorePercent": 70,
+            "questions": [
+              {
+                "bloomsLevel": "understand",
+                "choices": [
+                  "It forces recall, exposes precise gaps, and creates a repaired second attempt.",
+                  "It scares technicians into paying attention during every lecture.",
+                  "It replaces feedback because the score already tells them enough."
+                ],
+                "correctIndex": 0,
+                "depthLevel": "standard",
+                "explanation": "The quiz works because recall plus feedback produces repair targets and a second retrieval. Fear is not the mechanism, and a score without correction leaves gaps vague.",
+                "prompt": "A trainer gives new technicians a five-question no-grade quiz before review, then shows the answer key and has them retry the missed items the next day. What makes the quiz a learning tool rather than only a measurement?",
+                "questionId": "q01"
+              },
+              {
+                "bloomsLevel": "apply",
+                "choices": [
+                  "Tell her to reread the whole protocol until she feels fluent again.",
+                  "Show the missed step, have her say the full sequence again, and revisit it after a short delay.",
+                  "Record the miss as a failure and stop the drill so the wrong answer is not reinforced."
+                ],
+                "correctIndex": 1,
+                "depthLevel": "standard",
+                "explanation": "Feedback, full-sequence recall, and delay turn the miss into repair. Rereading alone can restore fluency without recall, while stopping the drill wastes the information.",
+                "prompt": "A nursing student misses the third step in a reaction protocol during a practice callout. Which response best turns the miss into retrieval practice?",
+                "questionId": "q02"
+              },
+              {
+                "bloomsLevel": "apply",
+                "choices": [
+                  "Copy the tour script into shorter bullet points.",
+                  "Read the script aloud twice before each shift.",
+                  "Walk the gallery with the binder closed, retrieve the main points at each display, then check missing parts."
+                ],
+                "correctIndex": 2,
+                "depthLevel": "standard",
+                "explanation": "Closed-binder retrieval in the gallery matches the future demand: produce points without visible support and repair blanks. Shorter bullets and rereading keep support nearby.",
+                "prompt": "A museum docent can recite exhibit notes while holding her binder but blanks when a visitor asks out of order. What practice would most directly strengthen the needed skill?",
+                "questionId": "q03"
+              },
+              {
+                "bloomsLevel": "apply",
+                "choices": [
+                  "Circle the exact valve miss, say the corrected full sequence, and rerun the order without the card.",
+                  "Repeat the card silently until the sequence feels smooth in his head.",
+                  "Skip the valve in the next drill so the mistake does not create anxiety."
+                ],
+                "correctIndex": 0,
+                "depthLevel": "standard",
+                "explanation": "The exact miss should guide a corrected retrieval. Silent repetition may feel smoother without testing production, and skipping the valve preserves the weakest step.",
+                "prompt": "A bakery manager predicts an oven shutdown order and gets one valve wrong. He wants to repeat the card silently ten times. What would make the practice stronger?",
+                "questionId": "q04"
+              },
+              {
+                "bloomsLevel": "analyze",
+                "choices": [
+                  "The flashcards are useless because recognition never helps learning.",
+                  "He needs longer sessions with the same cards in the same order.",
+                  "He is letting recognition replace retrieval, so production is not being trained."
+                ],
+                "correctIndex": 2,
+                "depthLevel": "standard",
+                "explanation": "The issue is not cards themselves but flipping before production. Longer same-order sessions can deepen recognition while still avoiding the hard recall move.",
+                "prompt": "A language learner flips flashcards quickly and recognizes every answer side, but cannot produce endings in conversation. What is the best diagnosis?",
+                "questionId": "q05"
+              },
+              {
+                "bloomsLevel": "analyze",
+                "choices": [
+                  "Make the quizzes private, low stakes, followed by immediate feedback, and focused on retrying misses.",
+                  "Make the quiz count for promotion so people take it seriously.",
+                  "Avoid quizzes and rely on polished reference documents instead."
+                ],
+                "correctIndex": 0,
+                "depthLevel": "standard",
+                "explanation": "Low stakes and repair shift the quiz away from judgment and toward practice. Promotion pressure turns it into a scoreboard, and documents alone do not exercise recall.",
+                "prompt": "A manager says retrieval quizzes are just disguised exams and will make her team defensive. Which design choice best answers that concern?",
+                "questionId": "q06"
+              },
+              {
+                "bloomsLevel": "apply",
+                "choices": [
+                  "Wait a month so he forgets the whole procedure and has to relearn it.",
+                  "Give quick feedback on the exact failed step, then ask for a new calculation without the chart.",
+                  "Let him discover the error only after the final simulation is graded."
+                ],
+                "correctIndex": 1,
+                "depthLevel": "standard",
+                "explanation": "Quick targeted feedback keeps the miss specific and makes the next retrieval cleaner. Waiting too long or saving the error for grading turns useful information into discouragement.",
+                "prompt": "A paramedic student keeps failing pediatric dose conversions because the first chart step is shaky. Which feedback timing gives retrieval the best chance to help?",
+                "questionId": "q07"
+              },
+              {
+                "bloomsLevel": "evaluate",
+                "choices": [
+                  "Move the scripts into a faster search tool.",
+                  "Ask every analyst to sign that they have read the scripts.",
+                  "Add a blank-page recall of the escalation path, check it, and repeat missed handoffs later."
+                ],
+                "correctIndex": 2,
+                "depthLevel": "standard",
+                "explanation": "Blank-page recall tests whether the handoff sequence is portable when search fails. Faster tools and signatures improve access or compliance, not memory production.",
+                "prompt": "A software team reads outage scripts every Friday. In a live incident, the knowledge base freezes and the first handoff is missed. Which change best fits retrieval practice?",
+                "questionId": "q08"
+              },
+              {
+                "bloomsLevel": "analyze",
+                "choices": [
+                  "Use the misses to identify gaps, study those parts, and retrieve them again after a delay.",
+                  "Throw out self-quizzing and return to rereading until confidence comes back.",
+                  "Keep taking new quizzes without checking answers so she does not memorize them."
+                ],
+                "correctIndex": 0,
+                "depthLevel": "standard",
+                "explanation": "A miss can be valuable when it points to repair and another retrieval. Rereading hides the gap again, while unchecked quizzes risk repeating errors without correction.",
+                "prompt": "A student misses half a self-quiz and says the bad score proves self-quizzing does not work. What should she do next if the material is not completely unfamiliar?",
+                "questionId": "q09"
+              }
+            ]
+          },
+          "readingTimeMinutes": 12,
+          "reviewCards": [
+            {
+              "back": "Check the exact missing step, repair it, and retrieve the full sequence again. The miss is useful only when it becomes specific feedback for another attempt.",
+              "cardId": "rc01",
+              "difficulty": "easy",
+              "front": "A recall attempt feels bad because you missed a step. What turns that miss into learning?"
+            },
+            {
+              "back": "The low-stakes quiz is designed to make memory produce while correction is still available. Its value is recall plus feedback, not ranking or pressure.",
+              "cardId": "rc02",
+              "difficulty": "medium",
+              "front": "Why is a low-stakes quiz different from a grade-focused exam?"
+            },
+            {
+              "back": "Produce the answer before flipping. Recognition after the reveal can hide weak retrieval, so say or write the answer first and move missed cards to an earlier review.",
+              "cardId": "rc03",
+              "difficulty": "medium",
+              "front": "You can recognize every flashcard answer after flipping. What should you change?"
+            },
+            {
+              "back": "It becomes frustration when the learner lacks enough prior understanding, gets no feedback, or is punished for misses. Productive retrieval needs support and repair.",
+              "cardId": "rc04",
+              "difficulty": "hard",
+              "front": "When can retrieval practice become unhelpful frustration?"
+            },
+            {
+              "back": "Use short closed-source recalls of the procedure, compare with the source, and revisit missed handoffs later. The goal is portable sequence memory when tools fail.",
+              "cardId": "rc05",
+              "difficulty": "hard",
+              "front": "A team relies on searchable procedures during incidents. What retrieval habit should it add?"
+            }
+          ],
+          "title": "To Learn, Retrieve",
+          "tryThisNow": "Write one question from memory about something you studied today, answer without looking, then reopen the source and rewrite only the missing part."
+        },
+        "curation": {
+          "curatorRationale": "The complete chapter and stored feedback are coherent on the page. This development calibration label is neither independent-human nor external-source gold.",
+          "independentHumanRater": false,
+          "labelProvenance": "curator-authored-development-fixture",
+          "ownerApprovedForDevelopmentBakeoff": true,
+          "sourceDesignation": "curator-inspected calibration coordinate; never part of the qualification holdout"
+        },
+        "expected": {
+          "expectedRecommendation": "SHIP",
+          "prohibitBlockingFindings": true,
+          "readerAuthorityOnly": true
+        },
+        "imp24": {
+          "canaryExcludedFromMetrics": true,
+          "controlledMutation": null,
+          "eligibleForPreLiveFreeze": true,
+          "goldProvenance": "fresh-model-free-audit-of-frozen-v2-fixture",
+          "schema": "imp24-case-governance-v1",
+          "v2InputCaseId": "READER-V2-CALIBRATION-clean-make-it-stick-ch02",
+          "v2InputCaseSha256": "sha256:81aee04b1844b1eea38b57eb48dcbf54d9e4109c4eda8a255bb482e917773876"
+        },
+        "kind": "clean",
+        "partition": "canary",
+        "provenance": {
+          "baseContentSha256": "sha256:d4155809845301e88856e744ad6af3d4eae771b4c32fefdf013c5970895b10b4",
+          "basePackageCanonicalSha256": "sha256:21f0c1c8aa73cb2ed01e58f4dc0778d20f7b71a2d3fee13584a12f26190efa6d",
+          "cleanBaseGates": {
+            "epistemic": "Pass",
+            "ethics": "Pass",
+            "externalAccuracy": "Not assessed"
+          },
+          "cleanBaseScore": 87.4,
+          "mutationOps": [],
+          "mutationOpsSha256": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "protectedContentSha256": "sha256:d4155809845301e88856e744ad6af3d4eae771b4c32fefdf013c5970895b10b4",
+          "renderedBytes": 16961,
+          "variantContentSha256": "sha256:d4155809845301e88856e744ad6af3d4eae771b4c32fefdf013c5970895b10b4"
+        },
+        "requiresPhase2": false,
+        "role": "reader",
+        "sourceSemanticsStatus": "MISSING",
+        "substantiveCaseSha256": "sha256:10ea41bbe64fb94de65164bd7391af935181138e8b0cea8919137f036d760232"
+      },
+      {
+        "baseBookId": "make-it-stick",
+        "baseChapter": 2,
+        "baseCleanControlAudit": {
+          "curatorRationale": "The complete chapter and stored feedback are coherent on the page. This development calibration label is neither independent-human nor external-source gold.",
+          "independentHumanRater": false,
+          "knownDefects": [],
+          "sourceDesignation": "curator-inspected calibration coordinate; never part of the qualification holdout",
+          "status": "DEVELOPMENT_CLEAN_CONTROL"
+        },
+        "caseId": "READER-V3-CANARY-reader-visible-hard-blocker-make-it-stick-ch02",
+        "chapter": {
+          "breakdown": {
+            "deepRead": "At 1:17 a.m., James wipes flour from the gas-valve label and predicts the oven shutdown order while the laminated card stays face down. He gets the oven key right. He gets the steam valve late. The night supervisor lets him check the card, mark the missed valve, and run the whole sequence again.\n\nThat second run is the learning event. Retrieval practice does not need a grade, a threat, or a formal exam. It needs a memory attempt honest enough to reveal a gap and feedback close enough to repair it before the wrong version hardens.\n\nThe testing effect is the finding that recall itself can strengthen later memory. Roediger and Karpicke helped make that point visible: a test is not only a way to measure learning after the fact. When it asks for real recall and is followed by correction, it can become part of learning.\n\nThe miss still has to be handled cleanly. If James guesses, shrugs, and moves on, the gap stays a gap. If Megan is shamed for not knowing the third action, the quiz becomes theater. If the miss points to the exact place where memory failed, feedback turns it into a repair target. Then the next retrieval asks whether the repair holds.\n\nThat is why low-stakes quizzing matters. It lowers the social cost enough for memory to be honest. A blank page, a covered protocol, an oral explanation, or a short practice question can all work when they follow the same sequence: retrieve, check, repair, retrieve again.",
+            "fastRead": "\"Tell me before you look,\" the charge nurse says, and Megan feels the infusion protocol leave her hands before it has left her life. The mock monitor is quiet. The saline bag hangs untouched. Three steps should come first, but only two arrive.\n\nThat blank is not proof that quizzing failed. It is the first useful signal. Retrieval practice means trying to produce an answer before seeing it. Rereading can hide a weak step because the answer is visible; retrieval exposes whether the step can be produced.\n\nA miss becomes learning when Megan checks it, repairs the exact missing action, and retrieves again. Pressure is not the mechanism. Production plus feedback is.",
+            "fullRead": "A plastic infant mannequin lies under the exam lamp while Luca stares at the weight tape and a calculator with one wrong conversion still on the screen. He missed kilograms to pounds by one step. The feedback sheet does not say fail. It says where. Before the simulated call begins, Luca has to decide what kind of miss this is: a verdict to fear or information he can use.\n\nRetrieval feels rough because it removes the prop. The answer is no longer sitting in the margin. The protocol is covered. The card is face down. The teacher has stopped giving the first word. In that exposed moment, memory either finds a path or shows where the path breaks. Both outcomes can help, but only if the break is inspected.\n\nMike Ebersold had rehearsed enough hard cases that the hidden danger under the wound was already available before the incision. Called to a Wisconsin emergency room in late 2011 for a hunter with a 12-gauge slug lodged in the skull, he had to anticipate what the visible injury might be hiding. That readiness does not come from recognition alone. It comes from prior retrieval, reflection, correction, and cases that have been brought back to mind before the body on the table demands them.\n\nThe practical question is whether the recall attempt leaves the learner with a next action.\n\nIf it does, the miss is useful. Claire walks the empty gallery with the binder closed and tries to retrieve three turning points at each bronze label. When she blanks on the second case, she checks the script, writes the missing transition in her own words, and returns to that case at the end of the walk. Marta learns the same lesson after an outage: her searchable escalation tree felt safe until the knowledge base was unavailable and customers were waiting. A five-minute blank-page recall each day would have exposed the missing handoff before the pager did.\n\nForgetting is not a moral failure. Since Hermann Ebbinghaus mapped the forgetting curve in 1885, the problem has been plain: memory fades unless it is asked to recover. Spaced retrieval uses that fading instead of pretending it will not happen. You wait long enough for recall to require effort, then you pull the answer back, check it, and repair what did not return.\n\nThere are limits. Retrieval is powerful, not magical. If a learner lacks the first explanation, repeated blank attempts can become confusion. If feedback never arrives, errors can rehearse themselves. If the environment turns every miss into embarrassment, people learn to hide gaps rather than expose them.\n\nKiran hears the pause before the Czech noun ending arrives and stops flipping the flashcard immediately. He says the ending aloud, checks it, puts a pencil tick on the missed card, and moves it to a sooner box. The card did not punish him. It told him where to come back.\n\nMake memory reach. Let the miss be specific. Fix the break. Then reach again."
+          },
+          "chapterId": "make-it-stick-ch02",
+          "counterintuition": "A quiz looks like a verdict, but its teaching power comes from the attempt itself: memory reaches, feedback identifies the break, and a second attempt strengthens the repair.",
+          "examples": [
+            {
+              "exampleId": "ch02-ex01-megan-protocol",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "\"Tell me before you look,\" the charge nurse says in simulation bay 4, lifting the laminated protocol from Megan's tray. The mock monitor is quiet, a saline bag hangs from the pole, and the instructor's thumb is near the deterioration button. Megan can picture the page but not the third action. Before the monitor starts chirping, she must choose between reaching for the covered protocol or calling out what memory can produce.",
+              "tags": [
+                "clinical",
+                "retrieval",
+                "feedback"
+              ],
+              "title": "Megan Recalls the First Three Infusion Steps",
+              "whatToDo": "Call out the first three actions from memory, mark the missing one after feedback, and repeat the sequence before the mock patient deteriorates.",
+              "whyItMatters": "The covered protocol turns uncertainty into useful evidence. Megan learns the exact step that needs repair while the stakes are still low enough to practice again."
+            },
+            {
+              "exampleId": "ch02-ex02-james-steam-valve",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "At 1:17 a.m., James wipes flour from the gas-valve label while the oven key hangs from a hook and the laminated shutdown card stays face down. He predicts the order: fan, gas, steam, proofing line. The reveal is immediate. The card puts the steam valve second, not third. James must choose now: treat the miss as proof he is too tired or use the card to repair the order and run it again.",
+              "tags": [
+                "bakery",
+                "shutdown",
+                "prediction"
+              ],
+              "title": "James Finds the Missed Steam Valve at 1:17 a.m.",
+              "whatToDo": "Use the card only after the prediction. Circle the steam-valve miss, say the corrected order, and run the whole shutdown once more without looking.",
+              "whyItMatters": "The prediction makes the gap visible. Checking after the attempt repairs a real weakness instead of letting another reread feel productive at 1:17 a.m."
+            },
+            {
+              "exampleId": "ch02-ex03-claire-gallery-walk",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "The gallery is empty except for the hum behind the glass cases. Claire carries a closed binder against her hip, stops at the bronze label, and says the first turning point into her audio-guide earpiece. A school group will not ask in script order tomorrow. At the third case, the second turning point vanishes. Her finger tightens on the binder clip, and she must choose how to handle the blank.",
+              "tags": [
+                "museum",
+                "tour",
+                "oral"
+              ],
+              "title": "Claire Walks the Gallery With the Binder Closed",
+              "whatToDo": "Keep walking before opening the binder. Say what returns, check the missing transition at the end of the row, then revisit that case after another display.",
+              "whyItMatters": "The empty gallery gives Claire a low-stakes retrieval round. The blank shows which part of the tour needs repair before children ask from a different angle."
+            },
+            {
+              "exampleId": "ch02-ex04-luca-weight-tape",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "A plastic infant mannequin lies under the exam lamp while Luca holds the weight tape in one hand and a calculator in the other. The feedback sheet shows the error: he converted the kilos correctly, then used the wrong range on the chart. The next simulated call starts in four minutes. Luca's pen rests over the sheet. He must choose between hiding the mistake under another full review or marking the exact conversion step and trying a fresh calculation.",
+              "tags": [
+                "paramedic",
+                "dosage",
+                "repair"
+              ],
+              "title": "Luca Repairs the Weight Conversion Before the Call",
+              "whatToDo": "Mark the conversion step, ask for quick feedback, cover the chart, and calculate a new weight from scratch before the simulation begins.",
+              "whyItMatters": "A missed calculation becomes useful only when it points to the failed step. Full review can blur the error; targeted repair gives Luca a second retrieval with cleaner information."
+            },
+            {
+              "exampleId": "ch02-ex05-marta-status-page",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "In the Denver support room at 10:42 a.m., Marta sees the gap on a silent status page. During the outage, the knowledge base stalled, customers filled the chat queue, and the pager transcript shows six minutes lost before anyone named the handoff to infrastructure. In the postmortem, the escalation tree sits printed beside the timeline. Marta writes one sentence at the top: five minutes of blank-page recall would have found this before the page went silent.",
+              "tags": [
+                "support",
+                "outage",
+                "postmortem"
+              ],
+              "title": "Marta Sees the Handoff Gap After the Outage",
+              "whatToDo": "Add a daily blank-page recall of the escalation steps, then compare it with the tree and rehearse any missed handoff later in the shift.",
+              "whyItMatters": "Searchable docs feel safe until search is gone. A short recall routine exposes missing handoffs while the team still has time to repair them."
+            },
+            {
+              "exampleId": "ch02-ex06-kiran-czech-case",
+              "planSpec": {
+                "audience": "unspecified",
+                "domain": "unspecified",
+                "format": "unspecified",
+                "requiredBeat": "unspecified",
+                "stakes": "unspecified"
+              },
+              "scenario": "On the 6:18 p.m. tram platform in Brno, you can hear the pause before Kiran finds the noun ending. He has an index-card box open on the bench, one pencil tick beside the Czech case ending he keeps recognizing too late. Before, he flipped fast and felt progress when the answer side looked familiar. After, he says the declension aloud first, checks it, and moves the missed card to a sooner slot. The pause becomes the practice.",
+              "tags": [
+                "language",
+                "flashcards",
+                "selfquiz"
+              ],
+              "title": "Kiran Stops Before Flipping the Czech Card",
+              "whatToDo": "Say the ending before flipping, check it, mark the miss with one pencil tick, and move that card forward so the repaired answer gets retrieved again sooner.",
+              "whyItMatters": "Recognition after the flip can hide weak production. Speaking first makes memory do the work, and the sooner box turns the miss into the next useful rep."
+            }
+          ],
+          "hook": "Megan covers the infusion protocol and finds the missing step while it is still small enough to repair.",
+          "implementationPlan": {
+            "coreSkill": "The skill is using recall as practice, not as a final verdict. You ask memory to produce, check the result quickly, repair the specific gap, and retrieve again after enough delay to make the repair work.",
+            "ifThenPlans": [
+              {
+                "context": "school",
+                "plan": "If you finish reading a section, then write one question from memory and answer it before checking the source."
+              },
+              {
+                "context": "clinical training",
+                "plan": "If a protocol looks familiar, then cover it and call out the first actions before reviewing the card."
+              },
+              {
+                "context": "work",
+                "plan": "If a procedure lives in a searchable document, then run a two-minute closed-source recall before the next live shift."
+              },
+              {
+                "context": "self-study",
+                "plan": "If a flashcard answer looks familiar after flipping, then move that card earlier and produce the answer before the next flip."
+              }
+            ],
+            "title": "The skill is using recall as practice, not as a final verdict",
+            "twentyFourHourChallenge": "Make one recall question from today's material, answer it without looking, check it, and schedule a second retrieval of the repaired part tomorrow.",
+            "weeklyPractice": "Pick three days each week for low-stakes retrieval: one blank-page recall, one oral explanation, and one mixed self-quiz. Mark misses as repair targets, not scores."
+          },
+          "keyTakeaway": "Use retrieval practice as low-stakes production plus prompt feedback. The learner should know exactly what broke and get another chance to retrieve the repaired step.",
+          "memorableLines": [
+            {
+              "location": "breakdown",
+              "text": "That second run is the learning event.",
+              "why": "A memorable distillation of the chapter's core idea."
+            },
+            {
+              "location": "breakdown",
+              "text": "Retrieval feels rough because it removes the prop.",
+              "why": "A memorable distillation of the chapter's core idea."
+            },
+            {
+              "location": "breakdown",
+              "text": "If it does, the miss is useful.",
+              "why": "A memorable distillation of the chapter's core idea."
+            }
+          ],
+          "number": 2,
+          "quiz": {
+            "passingScorePercent": 70,
+            "questions": [
+              {
+                "bloomsLevel": "understand",
+                "choices": [
+                  "It forces recall, exposes precise gaps, and creates a repaired second attempt.",
+                  "It scares technicians into paying attention during every lecture.",
+                  "It replaces feedback because the score already tells them enough."
+                ],
+                "correctIndex": 0,
+                "depthLevel": "standard",
+                "explanation": "The quiz works because recall plus feedback produces repair targets and a second retrieval. Fear is not the mechanism, and a score without correction leaves gaps vague.",
+                "prompt": "A trainer gives new technicians a five-question no-grade quiz before review, then shows the answer key and has them retry the missed items the next day. What makes the quiz a learning tool rather than only a measurement?",
+                "questionId": "q01"
+              },
+              {
+                "bloomsLevel": "apply",
+                "choices": [
+                  "Tell her to reread the whole protocol until she feels fluent again.",
+                  "Show the missed step, have her say the full sequence again, and revisit it after a short delay.",
+                  "Record the miss as a failure and stop the drill so the wrong answer is not reinforced."
+                ],
+                "correctIndex": 1,
+                "depthLevel": "standard",
+                "explanation": "Feedback, full-sequence recall, and delay turn the miss into repair. Rereading alone can restore fluency without recall, while stopping the drill wastes the information.",
+                "prompt": "A nursing student misses the third step in a reaction protocol during a practice callout. Which response best turns the miss into retrieval practice?",
+                "questionId": "q02"
+              },
+              {
+                "bloomsLevel": "apply",
+                "choices": [
+                  "Copy the tour script into shorter bullet points.",
+                  "Read the script aloud twice before each shift.",
+                  "Walk the gallery with the binder closed, retrieve the main points at each display, then check missing parts."
+                ],
+                "correctIndex": 2,
+                "depthLevel": "standard",
+                "explanation": "Closed-binder retrieval in the gallery matches the future demand: produce points without visible support and repair blanks. Shorter bullets and rereading keep support nearby.",
+                "prompt": "A museum docent can recite exhibit notes while holding her binder but blanks when a visitor asks out of order. What practice would most directly strengthen the needed skill?",
+                "questionId": "q03"
+              },
+              {
+                "bloomsLevel": "apply",
+                "choices": [
+                  "Circle the exact valve miss, say the corrected full sequence, and rerun the order without the card.",
+                  "Repeat the card silently until the sequence feels smooth in his head.",
+                  "Skip the valve in the next drill so the mistake does not create anxiety."
+                ],
+                "correctIndex": 0,
+                "depthLevel": "standard",
+                "explanation": "The exact miss should guide a corrected retrieval. Silent repetition may feel smoother without testing production, and skipping the valve preserves the weakest step.",
+                "prompt": "A bakery manager predicts an oven shutdown order and gets one valve wrong. He wants to repeat the card silently ten times. What would make the practice stronger?",
+                "questionId": "q04"
+              },
+              {
+                "bloomsLevel": "analyze",
+                "choices": [
+                  "The flashcards are useless because recognition never helps learning.",
+                  "He needs longer sessions with the same cards in the same order.",
+                  "He is letting recognition replace retrieval, so production is not being trained."
+                ],
+                "correctIndex": 2,
+                "depthLevel": "standard",
+                "explanation": "The issue is not cards themselves but flipping before production. Longer same-order sessions can deepen recognition while still avoiding the hard recall move.",
+                "prompt": "A language learner flips flashcards quickly and recognizes every answer side, but cannot produce endings in conversation. What is the best diagnosis?",
+                "questionId": "q05"
+              },
+              {
+                "bloomsLevel": "analyze",
+                "choices": [
+                  "Make the quizzes private, low stakes, followed by immediate feedback, and focused on retrying misses.",
+                  "Make the quiz count for promotion so people take it seriously.",
+                  "Avoid quizzes and rely on polished reference documents instead."
+                ],
+                "correctIndex": 0,
+                "depthLevel": "standard",
+                "explanation": "Low stakes and repair shift the quiz away from judgment and toward practice. Promotion pressure turns it into a scoreboard, and documents alone do not exercise recall.",
+                "prompt": "A manager says retrieval quizzes are just disguised exams and will make her team defensive. Which design choice best answers that concern?",
+                "questionId": "q06"
+              },
+              {
+                "bloomsLevel": "apply",
+                "choices": [
+                  "Wait a month so he forgets the whole procedure and has to relearn it.",
+                  "Give quick feedback on the exact failed step, then ask for a new calculation without the chart.",
+                  "Let him discover the error only after the final simulation is graded."
+                ],
+                "correctIndex": 1,
+                "depthLevel": "standard",
+                "explanation": "Quick targeted feedback keeps the miss specific and makes the next retrieval cleaner. Waiting too long or saving the error for grading turns useful information into discouragement.",
+                "prompt": "A paramedic student keeps failing pediatric dose conversions because the first chart step is shaky. Which feedback timing gives retrieval the best chance to help?",
+                "questionId": "q07"
+              },
+              {
+                "bloomsLevel": "evaluate",
+                "choices": [
+                  "Move the scripts into a faster search tool.",
+                  "Ask every analyst to sign that they have read the scripts.",
+                  "Add a blank-page recall of the escalation path, check it, and repeat missed handoffs later."
+                ],
+                "correctIndex": 2,
+                "depthLevel": "standard",
+                "explanation": "Blank-page recall tests whether the handoff sequence is portable when search fails. Faster tools and signatures improve access or compliance, not memory production.",
+                "prompt": "A software team reads outage scripts every Friday. In a live incident, the knowledge base freezes and the first handoff is missed. Which change best fits retrieval practice?",
+                "questionId": "q08"
+              },
+              {
+                "bloomsLevel": "analyze",
+                "choices": [
+                  "Use the misses to identify gaps, study those parts, and retrieve them again after a delay.",
+                  "Throw out self-quizzing and return to rereading until confidence comes back.",
+                  "Keep taking new quizzes without checking answers so she does not memorize them."
+                ],
+                "correctIndex": 0,
+                "depthLevel": "standard",
+                "explanation": "A miss can be valuable when it points to repair and another retrieval. Rereading hides the gap again, while unchecked quizzes risk repeating errors without correction.",
+                "prompt": "A student misses half a self-quiz and says the bad score proves self-quizzing does not work. What should she do next if the material is not completely unfamiliar?",
+                "questionId": "q09"
+              }
+            ]
+          },
+          "readingTimeMinutes": 12,
+          "reviewCards": [
+            {
+              "back": "Check the exact missing step, repair it, and retrieve the full sequence again. The miss is useful only when it becomes specific feedback for another attempt.",
+              "cardId": "rc01",
+              "difficulty": "easy",
+              "front": "A recall attempt feels bad because you missed a step. What turns that miss into learning?"
+            },
+            {
+              "back": "The low-stakes quiz is designed to make memory produce while correction is still available. Its value is recall plus feedback, not ranking or pressure.",
+              "cardId": "rc02",
+              "difficulty": "medium",
+              "front": "Why is a low-stakes quiz different from a grade-focused exam?"
+            },
+            {
+              "back": "Produce the answer before flipping. Recognition after the reveal can hide weak retrieval, so say or write the answer first and move missed cards to an earlier review.",
+              "cardId": "rc03",
+              "difficulty": "medium",
+              "front": "You can recognize every flashcard answer after flipping. What should you change?"
+            },
+            {
+              "back": "It becomes frustration when the learner lacks enough prior understanding, gets no feedback, or is punished for misses. Productive retrieval needs support and repair.",
+              "cardId": "rc04",
+              "difficulty": "hard",
+              "front": "When can retrieval practice become unhelpful frustration?"
+            },
+            {
+              "back": "Use short closed-source recalls of the procedure, compare with the source, and revisit missed handoffs later. The goal is portable sequence memory when tools fail.",
+              "cardId": "rc05",
+              "difficulty": "hard",
+              "front": "A team relies on searchable procedures during incidents. What retrieval habit should it add?"
+            }
+          ],
+          "title": "To Learn, Retrieve",
+          "tryThisNow": "Test learning by checking whether learning seems learned. Use any material, any interval, and any response, but do not record an answer, compare it with feedback, or schedule another attempt."
+        },
+        "curation": {
+          "curatorRationale": "The text is structurally valid yet intentionally prevents execution and feedback, producing a calibration-only unusable instruction.",
+          "independentHumanRater": false,
+          "labelProvenance": "curator-authored-development-fixture",
+          "ownerApprovedForDevelopmentBakeoff": true,
+          "sourceDesignation": "IMP-22 unusable controlled mutation"
+        },
+        "expected": {
+          "expectedBlockingCategory": "unusable",
+          "expectedRecommendation": "BLOCK",
+          "onPageDecidable": true
+        },
+        "imp24": {
+          "canaryExcludedFromMetrics": true,
+          "controlledMutation": {
+            "declaredPaths": [
+              "/tryThisNow"
+            ],
+            "mutationId": "READER-V3-CANARY-reader-visible-hard-blocker-make-it-stick-ch02-controlled-mutation",
+            "operationCount": 1,
+            "primaryDefect": "unusable",
+            "protectedProjectionSha256": "sha256:ed04a612109b5ea2383401d69de39ba054949c6fa3d049dfd6a66513766a9f43",
+            "schema": "imp24-controlled-mutation-v1",
+            "secondaryCategories": [],
+            "specificityKind": null
+          },
+          "eligibleForPreLiveFreeze": true,
+          "goldProvenance": "fresh-model-free-audit-of-frozen-v2-fixture",
+          "schema": "imp24-case-governance-v1",
+          "v2InputCaseId": "READER-V2-CALIBRATION-reader-visible-hard-blocker-make-it-stick-ch02",
+          "v2InputCaseSha256": "sha256:dd01c27d17b49d028c73455e4e94c8cc8a4cfa473da000ffe3d23936e95404ec"
+        },
+        "kind": "reader-visible-hard-blocker",
+        "partition": "canary",
+        "provenance": {
+          "baseContentSha256": "sha256:d4155809845301e88856e744ad6af3d4eae771b4c32fefdf013c5970895b10b4",
+          "basePackageCanonicalSha256": "sha256:21f0c1c8aa73cb2ed01e58f4dc0778d20f7b71a2d3fee13584a12f26190efa6d",
+          "cleanBaseGates": {
+            "epistemic": "Pass",
+            "ethics": "Pass",
+            "externalAccuracy": "Not assessed"
+          },
+          "cleanBaseScore": 87.4,
+          "mutationOps": [
+            {
+              "op": "replace",
+              "path": "/tryThisNow",
+              "value": "Test learning by checking whether learning seems learned. Use any material, any interval, and any response, but do not record an answer, compare it with feedback, or schedule another attempt."
+            }
+          ],
+          "mutationOpsSha256": "sha256:f85906d8d254d3d6954f506a0f0571b89fa4c6c889ef754508c5583246a2046b",
+          "protectedContentSha256": "sha256:ed04a612109b5ea2383401d69de39ba054949c6fa3d049dfd6a66513766a9f43",
+          "renderedBytes": 17005,
+          "variantContentSha256": "sha256:f6dcc62191c4c8176ac84b197eb7342b94105c0639a000279cb3d85e9dc05da7"
+        },
+        "requiresPhase2": false,
+        "role": "reader",
+        "sourceSemanticsStatus": "MISSING",
+        "substantiveCaseSha256": "sha256:71bb31c5201fe43509fcd21dfd1d27a67727d6ffa9b9366089ea53bd4f4615bf"
+      }
+    ],
+    "expectedCount": 2,
+    "generatedComposition": {
+      "clean": 1,
+      "reader-visible-hard-blocker": 1,
+      "total": 2
+    },
+    "partition": "canary",
+    "substantivePartitionSha256": "sha256:7655002e357a6d82b837f32d57a8c4088380d4c5840d5768f671c41517eb8d33"
+  },
+  "role": "reader",
+  "schema": "imp24-role-qualification-corpus-partition-v1",
+  "sourceV2CorpusId": "imp22-forward-sol-reader-corpus-v2",
+  "sourceV2RawSha256": "efaf5a3d80cbf46bcae9511030fba8fc02fbcb4a055241ca867b8c0a1729ccbe",
+  "sourceV2SubstantiveCorpusSha256": "sha256:5743b9acec5e71c6e536cd32cd9b518b75418eb34ac4f8a14073b5f82e531cc8"
+}

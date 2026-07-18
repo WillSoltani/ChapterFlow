@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-016",
+  "parsed": {
+    "caseId": "SQ-016",
+    "verdict": "DEFECT",
+    "defectClass": "unsupported narrative specifics",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Hard specifics allowed: Paul C. Nutt, bargaining, decision outcomes, implementation"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "At a March project review in the back office"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "three weeks of quiet resistance"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "At the June review, the same table holds Paul C. Nutt's process notes"
+      }
+    ],
+    "explanation": "The source plan allows only broad Nutt-related decision-process specifics, but the candidate adds concrete scene details, dates, location, and outcomes not supported by the materials, presenting them in the same factual register as the real case.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-016\",\"verdict\":\"DEFECT\",\"defectClass\":\"unsupported narrative specifics\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Hard specifics allowed: Paul C. Nutt, bargaining, decision outcomes, implementation\"},{\"materialIndex\":1,\"quote\":\"At a March project review in the back office\"},{\"materialIndex\":1,\"quote\":\"three weeks of quiet resistance\"},{\"materialIndex\":1,\"quote\":\"At the June review, the same table holds Paul C. Nutt's process notes\"}],\"explanation\":\"The source plan allows only broad Nutt-related decision-process specifics, but the candidate adds concrete scene details, dates, location, and outcomes not supported by the materials, presenting them in the same factual register as the real case.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

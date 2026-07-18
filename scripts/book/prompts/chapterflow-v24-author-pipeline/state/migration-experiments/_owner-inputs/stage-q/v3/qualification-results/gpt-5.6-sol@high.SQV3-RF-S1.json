@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-S1",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"A) a problem to inspect  B) a scheduled break  C) a finished shift. Answer key: C.\",\"Explanation: it lets any worker flag a defect the moment they see it.\"],\"rationale\":\"The quiz instance directly shows that the key selects C, “a finished shift,” while its explanation describes a worker flagging a defect, which corresponds to A, “a problem to inspect.” No specifically required evidence is missing, so the record is sufficient and the finding is fully supported. The defect is material because the keyed response contradicts the explanation and would cause the quiz to score the substantively matching answer incorrectly.\"}"
+}

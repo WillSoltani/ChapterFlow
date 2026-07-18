@@ -38,6 +38,7 @@ import { computeBookStatus, type BookStatus } from "../lifecycle/bookStatus.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 import { REPO_ROOT, normSlug, CANONICAL_STATE } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
+import { hashCanonical } from "../contracts/contractUtil.js";
 import { recordAuthorProvenance } from "../qc/sessionProvenance.js";
 import { loadBookChapters, keyPackDir, quarantineCorruptChapterFiles } from "../qc/manualKeyJudge.js";
 import { normalizeChapterProvenance } from "../qc/normalizeProvenance.js";
@@ -66,7 +67,7 @@ import type { FinalizeQcRoundResult } from "../qc/orchestrator/finalize.js";
 import { spawnCodexAgent, type CodexAgentResult, type CodexSandbox } from "./codexAgent.js";
 import { researchFreshnessViolation } from "./researchFreshness.js";
 import { doCompilerWrite } from "./compilerRun.js";
-import { doAuthorWrite } from "./authorRun.js";
+import { doAuthorWrite, type AuthorWriteOneInvoker } from "./authorRun.js";
 import { doAuthorReview, AUTHOR_BOOK_READERS, type AuthorReviewIo } from "./authorReview.js";
 import { deriveDurableAcceptance, loadNewestAcceptanceRecord } from "./authorAcceptanceState.js";
 import { SessionLedger, newRunManifest, writeCostReport, formatCostReport, writeRunManifest, type RunManifest } from "./sessionLedger.js";
@@ -74,6 +75,7 @@ import { runRoutedRedeals, runArtifactSync } from "./repairRouting.js";
 import { bookRiskPath } from "../artifacts/artifactStore.js";
 import { RISK_SCORE_SCHEMA_VERSION, type BookRiskScoreV1, type ChapterRiskScoreV1 } from "../artifacts/artifactTypes.js";
 import { NOT_METERED_MESSAGE } from "../cost-tracker.js";
+import type { ForwardAutopilotControlV1 } from "./forwardLocalAutopilot.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -246,6 +248,14 @@ export type AutopilotOptions = {
   /** v24 author arch only: injectable IO for doAuthorWrite/doAuthorReview so tests
    *  drive the author phases against fixtures/tmp roots. Ignored by compiler/legacy. */
   authorIo?: Partial<AuthorReviewIo>;
+  /** Optional central future-authoring chapter route. When absent, author mode
+   * remains on the explicit baseline. A validated ACTIVE local runtime supplies
+   * this hook; doAuthorWrite consults it for every missing chapter. */
+  authorWriteOneChapter?: AuthorWriteOneInvoker;
+  /** Resolved by the single standard local factory used by book-run and
+   * book-autopilot. ACTIVE changes QC/ready semantics as well as the writer;
+   * callers must not infer ACTIVE from the presence of a callback alone. */
+  forwardAutopilotControl?: ForwardAutopilotControlV1;
   deps?: Partial<AutopilotDeps>;
 };
 
@@ -1080,6 +1090,7 @@ async function runAutopilotCore(opts: AutopilotOptions, deps: AutopilotDeps, led
   const autoPublish = opts.autoPublish ?? false;
   const regen = opts.regen ?? false;
   const architecture = opts.architecture; // required — no silent default (see AutopilotOptions)
+  const forwardActive = architecture === "author" && opts.forwardAutopilotControl?.runtime.mode === "FORWARD_ACTIVE";
 
   // plan is a read-only dry-run (takes no action, acquires no lock). Guard the status read so a
   // corrupt chapter surfaces as a clean infra halt instead of an uncaught crash (this path runs
@@ -1157,7 +1168,7 @@ async function runAutopilotCore(opts: AutopilotOptions, deps: AutopilotDeps, led
       // READY (0 re-review sessions). Preserve the original lazy short-circuit: authorAccepted
       // is consulted only when this run hasn't already accepted in-memory.
       let authorDurable = false;
-      if (architecture === "author" && !authorBookAccepted) {
+      if (architecture === "author" && !forwardActive && !authorBookAccepted) {
         authorDurable = deps.authorAccepted(bookId);
         // WS6: record the carry decision ONCE per run (first author iteration).
         if (!carryRecorded) {
@@ -1165,10 +1176,24 @@ async function runAutopilotCore(opts: AutopilotOptions, deps: AutopilotDeps, led
           try { if (authorDurable) ledger.carryHit(); else ledger.carryMiss(); } catch { /* telemetry never halts */ }
         }
       }
+      const forwardAcceptance = forwardActive
+        ? opts.forwardAutopilotControl!.readBookAcceptance(bookId)
+        : null;
       const sweepConfirmed = architecture === "author"
-        ? (authorBookAccepted || authorDurable)
+        ? (forwardActive ? forwardAcceptance?.accepted === true : authorBookAccepted || authorDurable)
         : deps.sweepConfirmed(bookId);
-      const phase = decidePhase(status, sweepConfirmed, regen);
+      const allWritten = status.expectedChapters != null && status.writtenChapters >= status.expectedChapters && status.writtenChapters > 0;
+      const allGated = allWritten
+        && status.gatedChapters === status.writtenChapters
+        && status.bookGatePass === true
+        && status.deterministicClean !== false;
+      const phase = forwardActive
+        ? forwardAcceptance?.accepted === true
+          ? "ready"
+          : allWritten
+            ? "gate"
+            : decidePhase(status, false, regen)
+        : decidePhase(status, sweepConfirmed, regen);
       try { ledger.setPhase(phase); } catch { /* telemetry never halts a run */ }
       // sweepConfirmed is in the signature so a confirming round (which leaves the chapter counts
       // unchanged but flips confirmation) counts as PROGRESS, not a no-progress halt.
@@ -1176,7 +1201,16 @@ async function runAutopilotCore(opts: AutopilotOptions, deps: AutopilotDeps, led
       deps.log(`[autopilot] phase=${phase} written=${status.writtenChapters}/${status.expectedChapters ?? "?"} gated=${status.gatedChapters} qcd=${status.qcdChapters}`);
 
       if (phase === "shipped") return { status: "shipped", bookId };
-      if (phase === "ready") return handleReady(bookId, status, autoPublish, deps, architecture);
+      if (phase === "ready") {
+        if (forwardActive) {
+          return {
+            status: "ready",
+            bookId,
+            message: "FORWARD LOCAL READY — current split-lane chapter evidence and forward book sweep are accepted. Publish, promotion, deployment, upload, and push remain disabled by the ACTIVE local policy.",
+          };
+        }
+        return handleReady(bookId, status, autoPublish, deps, architecture);
+      }
 
       // No-progress guard: if the same (phase, counts) recur after we acted, the
       // phase isn't advancing — escalate instead of looping forever.
@@ -1192,7 +1226,12 @@ async function runAutopilotCore(opts: AutopilotOptions, deps: AutopilotDeps, led
       }
       if (phase === "write") {
         const halt = architecture === "author"
-          ? await doAuthorWrite(bookId, deps, { maxParallel, heartbeat, io: opts.authorIo })
+          ? await doAuthorWrite(bookId, deps, {
+              maxParallel,
+              heartbeat,
+              io: opts.authorIo,
+              writeOneChapter: opts.authorWriteOneChapter,
+            })
           : architecture === "compiler"
             ? await doCompilerWrite(bookId, deps, { maxParallel, heartbeat })
             : await doWrite(bookId, status, maxParallel, deps, heartbeat);
@@ -1200,6 +1239,67 @@ async function runAutopilotCore(opts: AutopilotOptions, deps: AutopilotDeps, led
         continue;
       }
       if (phase === "gate") {
+        if (forwardActive) {
+          // ACTIVE never enters legacy doGate: that loop owns canonical repair
+          // agents. Run the deterministic verb once as a read-only content
+          // check, prove chapter bytes did not move, and fail closed on every
+          // finding. No legacy repair session is reachable from this branch.
+          const activeLoadChapters = opts.authorIo?.loadChapters ?? loadBookChapters;
+          const before = Object.fromEntries(activeLoadChapters(bookId).map((chapter) => [String(chapter.number), chapterContentHash(chapter)]));
+          const checked = await deps.runVerb(["qc-converge", bookId]);
+          const after = Object.fromEntries(activeLoadChapters(bookId).map((chapter) => [String(chapter.number), chapterContentHash(chapter)]));
+          if (hashCanonical(before) !== hashCanonical(after)) {
+            return mkHalt(bookId, "gate", "governance", "ACTIVE read-only deterministic gate changed canonical chapter bytes; refusing the legacy mutation path");
+          }
+          if (checked.code >= 2) {
+            return mkHalt(bookId, "gate", "infra", `ACTIVE read-only deterministic gate errored (exit ${checked.code}): ${(checked.stderr || checked.stdout).slice(0, 1200)}`);
+          }
+          if (checked.code !== 0) {
+            const report = `${checked.stdout}\n${checked.stderr}`.trim();
+            const expected = deps.expectedChapterNumbers(bookId);
+            const targets = expected.filter((chapterNumber) => {
+              const nn = String(chapterNumber).padStart(2, "0");
+              return new RegExp(`\\b(?:ch(?:apter)?\\s*0*${chapterNumber}|ch${nn})\\b`, "i").test(report);
+            });
+            if (targets.length === 0) {
+              return mkHalt(bookId, "gate", "content", `ACTIVE read-only deterministic gate found non-targetable blockers; legacy canonical repair is disabled and no chapter can safely be regenerated.\n${report.slice(0, 1800)}`);
+            }
+            const claimGateCorrection = opts.forwardAutopilotControl!.claimGateCorrection;
+            if (!claimGateCorrection) {
+              return mkHalt(bookId, "gate", "governance", "ACTIVE forward runtime has no durable bounded gate-correction claim surface");
+            }
+            for (const chapterNumber of targets) {
+              const complaintLines = report.split("\n")
+                .filter((line) => new RegExp(`\\b(?:ch(?:apter)?\\s*0*${chapterNumber}|ch${String(chapterNumber).padStart(2, "0")})\\b`, "i").test(line))
+                .slice(0, 20);
+              const complaints = complaintLines.length > 0 ? complaintLines : [report.slice(0, 1200)];
+              const claim = claimGateCorrection(bookId, chapterNumber, complaints);
+              if (!claim.claimed) return mkHalt(bookId, "gate", "content", `${claim.reason}; refusing an unbounded ACTIVE correction loop`);
+              const corrected = await opts.forwardAutopilotControl!.writeOneChapter(bookId, chapterNumber, deps, {
+                ...(opts.authorIo ? { io: opts.authorIo } : {}),
+                complaints,
+                firstWriteOnly: true,
+              });
+              if (!corrected.ok || !("committed" in corrected) || corrected.committed !== true) {
+                return mkHalt(bookId, "gate", "content", `ACTIVE bounded gate correction ch${String(chapterNumber).padStart(2, "0")} failed through the deferred writer/fixed panel: ${corrected.ok ? "commit not confirmed" : corrected.reason}`);
+              }
+            }
+            // Chapter content changed through the only safe commit seam; permit
+            // one fresh phase read instead of tripping the count-only no-progress
+            // signature used by legacy paths.
+            lastSignature = "";
+            continue;
+          }
+          const finalizeForward = opts.forwardAutopilotControl!.finalizeBookAcceptance;
+          if (!finalizeForward) {
+            return mkHalt(bookId, "gate", "governance", "ACTIVE forward runtime has no transactional book-sweep/acceptance finalizer");
+          }
+          const finalized = await finalizeForward(bookId, deps, opts.authorIo);
+          if (!finalized.accepted) {
+            return mkHalt(bookId, "gate", "content", finalized.reason);
+          }
+          continue;
+        }
         // Pre-QC readiness scouts (cross-chapter VARIETY + semantic ALIGNMENT + narrow QC-shadow)
         // run for EVERY architecture, including the compiler. The compiler route originally skipped
         // them on the bet that the section gate's cross-chapter checks (SEC80/SEC83/AS5/AS10) covered
@@ -1222,6 +1322,15 @@ async function runAutopilotCore(opts: AutopilotOptions, deps: AutopilotDeps, led
       }
       if (phase === "qc") {
         if (architecture === "author") {
+          if (forwardActive) {
+            return mkHalt(
+              bookId,
+              "qc",
+              "governance",
+              `${forwardAcceptance?.reason ?? "forward book acceptance is unavailable"}. `
+                + "ACTIVE forward authoring never calls legacy doAuthorReview/ship84; produce a fresh hash-bound forward book sweep/acceptance artifact, then resume.",
+            );
+          }
           // v24 author arch: blinded per-chapter reader review + regeneration + the
           // two-reader book acceptance, INSTEAD of doQcWithRepair. Same outcome shapes:
           // an AutopilotOutcome halts; null = phase complete → re-loop (the acceptance
@@ -1315,6 +1424,7 @@ async function doResearch(bookId: string, deps: AutopilotDeps): Promise<Autopilo
     const passStartMs = Date.now();
     const r = await spawnAndLog(bookId, {
       task,
+      role: "research",
       sessionId: deps.mkSessionId(pass === 1 ? "research" : `research-retry-${pass}`),
       cwd: PIPELINE_DIR,
       sandbox: "workspace-write",
@@ -1445,6 +1555,7 @@ async function ensureSourceReadyBeforeWrite(bookId: string, deps: AutopilotDeps,
     const task = buildSourcePrewriteRepairTask(bookId, lastReport, attempt + 1, SOURCE_REPAIR_MAX_PASSES);
     const r = await spawnAndLog(bookId, {
       task,
+      role: "source-repair",
       sessionId: deps.mkSessionId(`source-repair-${attempt + 1}`),
       cwd: PIPELINE_DIR,
       sandbox: "workspace-write",
@@ -1482,7 +1593,7 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
     const writerSessionId = deps.mkSessionId(`write-ch${n}`);
     deps.log(`[autopilot] write ch${n}: writer working`); // per-chapter START (one writer agent per chapter)
     const task = `${deps.readTask(card)}\n\n---\nYou are a fresh Writer subagent for bookId ${bookId}, chapter ${n}. Author the chapter per the dispatch card above.\n\n${WRITER_SELF_VERIFY}`;
-    const r = await spawnAndLog(bookId, { task, sessionId: writerSessionId, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+    const r = await spawnAndLog(bookId, { task, role: "author-writer", sessionId: writerSessionId, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] write ch${n} session exited ${r.exitCode}`);
     else deps.log(`[autopilot] write ch${n}: done`); // per-chapter SUCCESS
     // Record the authoring session so finalize's author≠reviewer invariant has a real AUTHOR
@@ -1567,7 +1678,7 @@ TARGETED REPAIR PLAYBOOK
 Run gate-chapter on every changed chapter and then qc-converge once at the end. If the same AS5/AS6/AS8/AS10 family remains after a real rewrite, stop surface edits and re-author that whole field from the source packet instead of nudging words.
 
 ${converge.stdout}`;
-      const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`gate-repair-${attempt}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+      const r = await spawnAndLog(bookId, { task, role: "autopilot-repair", sessionId: deps.mkSessionId(`gate-repair-${attempt}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
       if (!r.ok) deps.log(`[autopilot] gate repair session exited ${r.exitCode}`);
       continue;
     }
@@ -1657,7 +1768,7 @@ ${converge.stdout}`;
       heartbeat();
       deps.log(`[autopilot] gate major repair ${shard.label}: working (${shard.majors.length} major(s))`);
       const task = buildGateMajorRepairTask(bookId, shard.majors, deps);
-      const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`gate-major-repair-${gateContentAttempts}-${shard.label}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+      const r = await spawnAndLog(bookId, { task, role: "autopilot-repair", sessionId: deps.mkSessionId(`gate-major-repair-${gateContentAttempts}-${shard.label}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
       deps.log(`[autopilot] gate major repair ${shard.label}: exited ${r.exitCode}`);
       return r;
     });
@@ -1696,7 +1807,7 @@ ${chapterList}
 For each chapter listed, read state/chapters/${bookId}-ch<NN>.v21-native.chapter.json and its source-v2 sidecar under .chapterflow/runs/${bookId}/**/sidecars/source/ch<NN>.source.json. Report ONLY concrete claims, numbers, or named cases in the chapter that are NOT visible in that chapter's source sidecar. Output a concise plain-text summary; no file edits, no required JSON shape.`;
   const sessionId = deps.mkSessionId("qc-shadow-review");
   try {
-    const r = await spawnAndLog(bookId, { task, sessionId, cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "medium" }, deps);
+    const r = await spawnAndLog(bookId, { task, role: "autopilot-scout", sessionId, cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "medium" }, deps);
     deps.log(`[autopilot] qc-shadow review (${highRisk.length} high-risk chapter(s)) ${r.ok ? "completed" : `exited ${r.exitCode}`} — advancing to formal QC regardless (shadow review never gates)`);
   } catch (e) {
     deps.log(`[autopilot] qc-shadow review spawn error: ${(e as Error)?.message ?? String(e)} — advancing to formal QC (shadow review is best-effort and never blocks)`);
@@ -1924,7 +2035,7 @@ export async function scoutCrossChapterVariety(bookId: string, deps: AutopilotDe
   const empty: VarietyScoutResult = { rewrites: [], blockingFindings: [], submission: null, fingerprints: [] };
   let r: CodexAgentResult;
   try {
-    r = await spawnAndLog(bookId, { task: buildVarietyScoutTask(bookId), sessionId: deps.mkSessionId("pre-qc-variety-scout"), cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "high" }, deps);
+    r = await spawnAndLog(bookId, { task: buildVarietyScoutTask(bookId), role: "autopilot-scout", sessionId: deps.mkSessionId("pre-qc-variety-scout"), cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "high" }, deps);
   } catch (e) {
     deps.log(`[autopilot] pre-QC variety scout spawn error: ${(e as Error)?.message ?? String(e)} — advancing to QC`);
     return empty;
@@ -2013,7 +2124,7 @@ HOW: ${rw.instruction}
 
 After editing, run \`npx tsx src/cli.ts qc-converge ${bookId}\` (must stay DETERMINISTIC-CLEAN) and \`npx tsx src/cli.ts gate-chapter state/chapters/${bookId}-ch${pad(n)}.v21-native.chapter.json\` (0 blockers).${dealt}`;
     const sid = deps.mkSessionId(`pre-qc-variety-${pass}-ch${n}`);
-    const r = await spawnAndLog(bookId, { task, sessionId: sid, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+    const r = await spawnAndLog(bookId, { task, role: "autopilot-repair", sessionId: sid, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] pre-QC variety repair ch${n} exited ${r.exitCode}`);
     // A real edit re-authors the chapter → author provenance moves to this session; a no-op
     // repair leaves content identical so the create-once guard throws and the prior author stands.
@@ -2076,7 +2187,7 @@ No markdown outside that JSON fence.`;
 async function scoutPreQcAlignment(bookId: string, deps: AutopilotDeps): Promise<PreQcAlignmentRepair[]> {
   let r: CodexAgentResult;
   try {
-    r = await spawnAndLog(bookId, { task: buildPreQcAlignmentScoutTask(bookId), sessionId: deps.mkSessionId("pre-qc-readiness-scout"), cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "high" }, deps);
+    r = await spawnAndLog(bookId, { task: buildPreQcAlignmentScoutTask(bookId), role: "autopilot-scout", sessionId: deps.mkSessionId("pre-qc-readiness-scout"), cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "high" }, deps);
   } catch (e) {
     deps.log(`[autopilot] pre-QC readiness scout spawn error: ${(e as Error)?.message ?? String(e)} — advancing to QC`);
     return [];
@@ -2147,7 +2258,7 @@ After editing, run:
   npx tsx src/cli.ts qc-converge ${bookId}
 Both must stay clean before you report done.${dealt}`;
     const sid = deps.mkSessionId(`pre-qc-readiness-${pass}-ch${n}`);
-    const r = await spawnAndLog(bookId, { task, sessionId: sid, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+    const r = await spawnAndLog(bookId, { task, role: "autopilot-repair", sessionId: sid, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] pre-QC readiness repair ch${n} exited ${r.exitCode}`);
     try { recordAuthorProvenance(`${bookId}-ch${pad(n)}`, sid, chapterContentHashByNumber(bookId, n)); }
     catch { /* provenance unchanged (no-op repair) — best-effort */ }
@@ -2720,7 +2831,7 @@ export async function brokerReviewer(bookId: string, roundId: string, card: stri
   // pass can't emit a flickering blocking finding. Other roles keep the codex default.
   const reasoningEffort: "high" | undefined = role === "sweep" ? "high" : undefined;
   const attempt = async (taskText: string, sid: string, fileLabel: string): Promise<{ agentOk: boolean; json: string | null; submitOk: boolean; rejection?: string }> => {
-    const r = await spawnAndLog(bookId, { task: taskText, sessionId: sid, cwd: ws.cwd, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort }, deps);
+    const r = await spawnAndLog(bookId, { task: taskText, role: "qc-reviewer", sessionId: sid, cwd: ws.cwd, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort }, deps);
     if (!r.ok) { deps.log(`[autopilot] reviewer ${label} exited ${r.exitCode}`); return { agentOk: false, json: null, submitOk: false, rejection: `agent exited ${r.exitCode}` }; }
     // Extract from the FULL stdout first: spawnCodexAgent's finalMessage is only the LAST
     // non-empty line (the closing ``` of a fenced block), so `finalMessage || stdout` would

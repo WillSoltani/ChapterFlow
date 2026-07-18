@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P18",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"CLAIM_LOCATOR_MISMATCH\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Biological explanation is not moral pardon, because identifying causes can support prediction, p\",\"https://pubmed.ncbi.nlm.nih.gov/?term=oxytocin+trust+game+Kosfeld+2005\",\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim. A generic or topically unrelated search is not verification.\"],\"rationale\":\"The proposed locator is a generic PubMed search about oxytocin, trust games, and Kosfeld (2005), whereas the recorded mechanism concerns why biological causation does not imply moral pardon and how identifying causes supports prediction. It therefore does not address the same entity, mechanism, or relation and cannot verify the claim.\"}"
+}

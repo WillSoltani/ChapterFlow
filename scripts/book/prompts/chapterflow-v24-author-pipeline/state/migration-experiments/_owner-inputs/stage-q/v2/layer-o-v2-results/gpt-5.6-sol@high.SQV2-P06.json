@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P06",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":\"\\\"The 90-second trial did not become shorter because it ended less painfully.\\\" \\\"People still endured more total discomfort than in the 60-second trial.\\\" \\\"It also warns you not to use a better ending as cover for needless pain.\\\"\",\"rationale\":\"The candidate preserves the study’s duration distinction and explicitly states that the longer trial involved more total discomfort. It presents the better ending as a finding about how experiences are judged while repeatedly rejecting its use to excuse needless pain, unsafe conditions, broken promises, or inadequate support.\"}"
+}

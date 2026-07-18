@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "artifact_type": "chapterflow_blind_pair_seal",
+  "issuer": "chapterflow_evaluation_orchestrator",
+  "pair_id": "the-happiness-hypothesis-ch06-pair-20260715T110908Z",
+  "sealed_at_utc": "2026-07-15T11:39:45Z",
+  "run_id": "20260715T110908Z",
+  "book_id": "the-happiness-hypothesis-ch06",
+  "source_hash": "98fb3e50e070ca44543881613f39dbaf5c478bfff7e2aea838688f2b3d0e5dd2",
+  "inventory_sha256": "321cce1f5ab5eb923cfeb0a2346669622fc9022fa8e234d6f36bd39bdf40d259",
+  "workers": {
+    "primary": {
+      "job_id": "the-happiness-hypothesis-ch06-primary-20260715T110908Z",
+      "worker_task_id": "/root/happiness_primary",
+      "worker_session_id": "/root/happiness_primary@20260715T110908Z",
+      "dispatch_receipt_sha256": "ee5d802764135d5113b00cb0190072f3dd06d827992b3af7144482c4f2750316",
+      "result_canonical_sha256": "f39fad85526f066130d96461de6b3c786f5baa0ad874d5355e154e2b63e8010a",
+      "judgment_sha256": "b57a428fb8b13c8d8f48fb40074e6a4aefb43326de7f5ccbbfdb265097a471eb"
+    },
+    "verification": {
+      "job_id": "the-happiness-hypothesis-ch06-verification-20260715T110908Z",
+      "worker_task_id": "/root/happiness_verification",
+      "worker_session_id": "/root/happiness_verification@20260715T110908Z",
+      "dispatch_receipt_sha256": "a5b308a97d60e49c456f86b0a717185e9f29c113bbe2ec7d3412bf2da75632ad",
+      "result_canonical_sha256": "3e488872d62b009c3663dc47ed09b13dae67fed77578e68136cd0bbbcad2854e",
+      "judgment_sha256": "34c76398a998ba5383b9b12bbd3cfd450fdc1f37aba7aacf4c1c8c6894c6eb09"
+    }
+  },
+  "binding_sha256": "57f4a3aa3261e322fe3ae159097903cf36fa908c3fdc87e5f8ef16a5e08f03f2"
+}

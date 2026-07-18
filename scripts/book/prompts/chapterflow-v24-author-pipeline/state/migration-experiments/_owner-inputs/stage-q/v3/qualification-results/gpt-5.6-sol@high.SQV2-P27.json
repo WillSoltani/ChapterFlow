@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P27",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"DUPLICATED_GENERIC_ITEM_WITH_MECHANISM_RELABELING\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"The best choice keeps the conversation tied to intent and impact and creates room for new information.\",\"The best choice keeps the conversation tied to identity and creates room for new information.\"],\"rationale\":\"The two instances use the same scenario, question, choices, correct index, and distractor rationale; only the chapter-skill label and a few words in the explanation change. The selected answer concerns impact and repair planning but does not distinctly test grounding one’s identity, so the duplicate merely relabels a generic difficult-conversation answer rather than genuinely assessing both chapter mechanisms.\"}"
+}

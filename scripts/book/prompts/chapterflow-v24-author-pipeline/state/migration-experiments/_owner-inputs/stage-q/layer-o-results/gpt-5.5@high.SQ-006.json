@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-006",
+  "parsed": {
+    "caseId": "SQ-006",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "The 90-second trial did not become shorter because it ended less painfully."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "People still endured more total discomfort than in the 60-second trial."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "It also warns you not to use a better ending as cover for needless pain."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A soft ending cannot make honest harm harmless."
+      }
+    ],
+    "explanation": "The candidate preserves the duration and total-discomfort distinction while explicitly rejecting the use of a better ending to excuse needless pain or harm.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-006\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"The 90-second trial did not become shorter because it ended less painfully.\"},{\"materialIndex\":1,\"quote\":\"People still endured more total discomfort than in the 60-second trial.\"},{\"materialIndex\":1,\"quote\":\"It also warns you not to use a better ending as cover for needless pain.\"},{\"materialIndex\":1,\"quote\":\"A soft ending cannot make honest harm harmless.\"}],\"explanation\":\"The candidate preserves the duration and total-discomfort distinction while explicitly rejecting the use of a better ending to excuse needless pain or harm.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "imp22-candidate-availability-policy-v1",
+  "source": "codex-local-models-cache",
+  "sourceFile": "models_cache.json",
+  "maximumCacheAgeSeconds": 86400,
+  "maximumFutureSkewSeconds": 300,
+  "requiredVisibility": "list",
+  "requireExactModelSlug": true,
+  "requireReasoningEffortSupport": true,
+  "requireAtLeastOneAvailablePerRole": true,
+  "skipUnavailableWithoutReordering": true,
+  "candidateReorderingAllowed": false,
+  "networkCalls": 0,
+  "modelCalls": 0,
+  "apiCalls": 0
+}

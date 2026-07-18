@@ -1,0 +1,413 @@
+{
+  "schema": "imp24c-model-free-verification-ledger-v1",
+  "continuationPromptId": "IMP-24C",
+  "startingHead": "0ba1b168e350fa5d6c05480a28c7c944411f54ee",
+  "branch": "feat/v25-pipeline-live",
+  "executionId": "s16-forward-role-qualification-v3-envelope-r1",
+  "capturedAtIso": "2026-07-14T06:11:46.000Z",
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "status": "RECOVERY_COMMIT_A_LOCALLY_READY",
+  "attempts": [
+    {
+      "attemptId": 1,
+      "check": "partial successor integration compatibility suite",
+      "result": "FAIL",
+      "counts": { "pass": 1, "fail": 20 },
+      "classification": "implementation integration regression",
+      "detail": "The first compatibility run occurred while the successor execution identity was only partially wired. It was retained as adverse evidence and was not treated as authorization."
+    },
+    {
+      "attemptId": 2,
+      "check": "TypeScript after partial successor integration",
+      "result": "FAIL",
+      "counts": { "errors": 15 },
+      "classification": "implementation integration regression",
+      "detail": "Fixtures and shared campaign types still referenced the old identity and pre-binding role-freeze shape."
+    },
+    {
+      "attemptId": 3,
+      "check": "local-activation compatibility before first correction",
+      "result": "FAIL",
+      "counts": null,
+      "classification": "implementation integration regression",
+      "detail": "The exact test count was not retained in the terminal excerpt. The failure itself is retained; it exposed successor/pre-live fixture incompatibility and was corrected without changing activation semantics."
+    },
+    {
+      "attemptId": 4,
+      "check": "focused successor CLI audit",
+      "result": "FAIL",
+      "counts": { "pass": 4, "fail": 1 },
+      "classification": "stale test expectation",
+      "detail": "The CLI test still expected the closed protocol identity where the successor execution identity was required."
+    },
+    {
+      "attemptId": 5,
+      "check": "focused successor CLI audit after correction",
+      "result": "PASS",
+      "counts": { "pass": 5, "fail": 0 }
+    },
+    {
+      "attemptId": 6,
+      "check": "role-freeze binding regression",
+      "result": "FAIL",
+      "counts": { "pass": 10, "fail": 1 },
+      "classification": "test assertion mismatch",
+      "detail": "The new Recovery Commit A / CI gate / call-ledger binding was correct; one assertion expected obsolete error wording."
+    },
+    {
+      "attemptId": 7,
+      "check": "role-freeze binding regression after assertion correction",
+      "result": "PASS",
+      "counts": { "pass": 11, "fail": 0 }
+    },
+    {
+      "attemptId": 8,
+      "check": "retained activation-boundary compatibility after role-freeze binding",
+      "result": "FAIL",
+      "counts": { "pass": 1, "fail": 20 },
+      "classification": "fixture integration regression",
+      "detail": "The activation fixtures did not yet bind the exact implementation CI gate and call ledger required by the strengthened role freeze."
+    },
+    {
+      "attemptId": 9,
+      "check": "retained activation-boundary compatibility after fixture correction",
+      "result": "PASS",
+      "counts": { "pass": 21, "fail": 0 }
+    },
+    {
+      "attemptId": 10,
+      "check": "CI collector, lifecycle, CLI, successor, and live-boundary focused suites",
+      "result": "PASS",
+      "counts": { "pass": 44, "fail": 0 }
+    },
+    {
+      "attemptId": 11,
+      "check": "final combined CI collector, CLI, successor, and attestation suites",
+      "result": "PASS",
+      "counts": { "pass": 29, "fail": 0 }
+    },
+    {
+      "attemptId": 12,
+      "check": "pre-live lifecycle and actual read-only workflow commands",
+      "result": "PASS",
+      "counts": { "pass": 5, "fail": 0 },
+      "detail": "Verify-mode commands preserved the dirty-checkout snapshot byte-for-byte and did not write lifecycle artifacts."
+    },
+    {
+      "attemptId": 13,
+      "check": "TypeScript",
+      "result": "PASS"
+    },
+    {
+      "attemptId": 14,
+      "check": "registered contracts",
+      "result": "PASS",
+      "counts": { "pass": 16, "fail": 0 }
+    },
+    {
+      "attemptId": 15,
+      "check": "full no-API suite in primary dirty development checkout",
+      "result": "FAIL",
+      "counts": { "pass": 2821, "fail": 7, "xfail": 0, "xpass": 0, "xenv": 10, "skip": 39 },
+      "classification": "host npm-cache permission environment",
+      "detail": "All seven failures were isolated to publish-final.test.ts. Six stopped during fixture catalog regeneration when inherited npx attempted to open /Users/radinsoltani/.npm/_cacache/tmp and received EPERM. The seventh was the same early cache failure before its intended sync step; a broad assertion first matched the fixture path segment sync-fail. The isolated publish-final control reproduced 5 pass / 7 fail, while the dedicated workflow environment with npm_config_cache=/tmp/npm-cache-v25 passed 12/12. No IMP-24C source correction was indicated. The attempt also produced known untracked test debris, which was excluded and removed."
+    },
+    {
+      "attemptId": 16,
+      "check": "secret and artifact scan",
+      "result": "PASS",
+      "command": "bash scripts/ci/scan-secrets-and-artifacts.sh --all"
+    },
+    {
+      "attemptId": 17,
+      "check": "active-code private-path scan",
+      "result": "PASS",
+      "detail": "git grep returned no matches in active source, config, or package metadata; scratch source was excluded exactly as in the dedicated workflow."
+    },
+    {
+      "attemptId": 18,
+      "check": "merge-marker scan",
+      "result": "PASS",
+      "detail": "git grep returned no merge markers in the dedicated V25 scope."
+    },
+    {
+      "attemptId": 19,
+      "check": "independent frozen-semantics and historical-evidence audit against starting HEAD",
+      "result": "PASS",
+      "detail": "All 16 frozen semantic artifacts, corpus counts and labels, prompts, schemas, thresholds, candidate order, schedule, replay policy, Review Evidence Envelope implementation, V1/V2 qualification evidence, all three completed IMP-24B commits, and 13 retained IMP-24B lifecycle artifacts matched their starting-HEAD identities. Only authorized implementation-bound seal, certification, parity, and implementation-set hashes changed."
+    },
+    {
+      "attemptId": 20,
+      "check": "complete no-API suite in a clean same-branch clone with isolated suite-wide npm cache",
+      "result": "PASS",
+      "counts": { "pass": 2828, "fail": 0, "xfail": 0, "xpass": 0, "xenv": 10, "skip": 39 },
+      "detail": "The disposable clone reproduced the pending Recovery Commit A source and tests on feat/v25-pipeline-live. It used CHAPTERFLOW_NO_API_CODEX_QC=1, CHAPTERFLOW_ALLOW_MODEL_GEN=0, empty provider keys, and an isolated suite-wide npm_config_cache. No model or API route was invoked."
+    },
+    {
+      "attemptId": 21,
+      "check": "secret and artifact guard",
+      "result": "PASS",
+      "detail": "The repository-wide --all guard found no credential or prohibited artifact."
+    },
+    {
+      "attemptId": 22,
+      "check": "active private-path and merge-marker scans",
+      "result": "PASS",
+      "detail": "Both dedicated-workflow git-grep scans returned no matches."
+    },
+    {
+      "attemptId": 23,
+      "check": "tracked and untracked binary scan",
+      "result": "PASS",
+      "detail": "The base-to-worktree numstat contained no binary delta and every intended untracked file was text or JSON."
+    },
+    {
+      "attemptId": 24,
+      "check": "legacy closure, thresholds, model-free certification, production/qualification parity, and production seal",
+      "result": "PASS",
+      "counts": { "certifiedCases": 116, "productionSealFiles": 456 },
+      "detail": "Legacy closure remained frozen; threshold bytes matched; certification returned CERTIFIED_MODEL_FREE; parity and the retained production seal reproduced with model/API calls 0/0."
+    },
+    {
+      "attemptId": 25,
+      "check": "final pre-live artifact-manifest closure audit",
+      "result": "FAIL",
+      "classification": "evidence binding gap",
+      "detail": "The preliminary changed-file inventory listed the IMP-24C control-plane, protocol, and model-free ledger reports, but the pre-live artifact manifest did not byte-bind them. Recovery Commit A was held. The manifest builder and focused test were corrected without changing qualification semantics."
+    },
+    {
+      "attemptId": 26,
+      "check": "post-binding TypeScript and model-free identity remint",
+      "result": "PASS",
+      "counts": { "certifiedCases": 116, "productionSealFiles": 456 },
+      "detail": "TypeScript passed. Threshold semantics and production/qualification parity remained unchanged; the implementation-bound production seal and certification were reminted with model/API calls 0/0."
+    },
+    {
+      "attemptId": 27,
+      "check": "focused pre-live suite before rematerializing implementation-bound successor artifacts",
+      "result": "FAIL",
+      "counts": { "pass": 4, "fail": 1 },
+      "classification": "expected stale deterministic artifact",
+      "detail": "Four lifecycle tests passed. The read-only workflow-command test correctly rejected the retained successor execution spec because it still carried the pre-binding production seal and certification identities. No source change was indicated; write-mode pre-live rematerialization was required before verification."
+    },
+    {
+      "attemptId": 28,
+      "check": "final complete no-API suite after binding correction and deterministic rematerialization",
+      "result": "PASS",
+      "counts": { "pass": 2828, "fail": 0, "xfail": 0, "xpass": 0, "xenv": 10, "skip": 39 },
+      "detail": "A fresh same-branch clone reproduced the complete pending Recovery Commit A tree with the dedicated workflow environment and isolated suite-wide npm cache. The corrected 41-entry manifest and read-only lifecycle test passed. No model or API route was invoked."
+    },
+    {
+      "attemptId": 29,
+      "check": "independent final-attestation cross-binding audit",
+      "result": "FAIL",
+      "classification": "terminal evidence binding gap",
+      "detail": "The final materializer accepted a different committed, self-rehashed role-assignment freeze with the same five selected profile IDs because it did not cross-bind the exact freeze bytes, Recovery Commit A, CI gate, qualification result/freeze, call ledger, certification, seal, and parity to the retained terminal campaign. Recovery Commit A was held. The materializer and retained campaign report were strengthened without changing prompts, schemas, corpora, gold labels, thresholds, or candidate order."
+    },
+    {
+      "attemptId": 30,
+      "check": "post-cross-binding TypeScript and focused certification, activation, pre-live, live, and final-attestation suites before remint",
+      "result": "FAIL",
+      "counts": { "pass": 53, "fail": 1 },
+      "classification": "expected stale deterministic artifact",
+      "detail": "TypeScript passed and the final-attestation suite passed 3/3, including rejection of a committed self-rehashed same-profile role-freeze substitute. The broader focused run passed 50 tests and the read-only workflow-command test correctly failed because the retained production seal predated the attestation/campaign source correction. Deterministic seal, certification, and pre-live rematerialization were required; no semantic input change was indicated."
+    },
+    {
+      "attemptId": 31,
+      "check": "second independent final-attestation and retained-freeze red-team audit",
+      "result": "FAIL",
+      "classification": "typed evidence validation gap",
+      "detail": "The audit proved two additional fail-closed gaps before Commit A: a role freeze outer self-hash did not validate its internal judge model/effort, deterministic quiz checker, route, policy, profile-binding, and conductor-config identities; and the final campaign parser allowed top-level count fields to override the typed nested callCounts object, including a false zero-API projection. Commit A remained held."
+    },
+    {
+      "attemptId": 32,
+      "check": "TypeScript and focused final-attestation regressions after strict campaign and role-freeze validation",
+      "result": "PASS",
+      "counts": { "pass": 5, "fail": 0 },
+      "detail": "TypeScript passed. Final-attestation fixtures now reject a committed internally consistent cross-binding substitution, a same-profile outer model substitution, and a top-level zero-API override of nonzero typed campaign counts."
+    },
+    {
+      "attemptId": 33,
+      "check": "qualification, live, retained-activation, and final-attestation boundary suite after internal freeze validation",
+      "result": "FAIL",
+      "counts": { "pass": 31, "fail": 24 },
+      "classification": "validator representation regression",
+      "detail": "The new internal validator initially required an untagged 64-character corpus hash even though the frozen substantive corpus identity intentionally uses the canonical sha256:<digest> representation. All 24 failures had that single pre-validation cause; no qualification judgment or semantic input ran or changed."
+    },
+    {
+      "attemptId": 34,
+      "check": "qualification, live, retained-activation, and final-attestation boundary suite after tagged-corpus correction",
+      "result": "PASS",
+      "counts": { "pass": 55, "fail": 0 }
+    },
+    {
+      "attemptId": 35,
+      "check": "TypeScript after tagged-corpus validator correction",
+      "result": "PASS"
+    },
+    {
+      "attemptId": 36,
+      "check": "terminal NOT_READY retained-evidence regression before fixture hash correction",
+      "result": "FAIL",
+      "counts": { "pass": 21, "fail": 1 },
+      "classification": "test fixture identity regression",
+      "detail": "The new all-unavailable terminal verifier path correctly recomputed the frozen inputs; the test helper had retained the earlier candidate-availability self hash. The helper was corrected by recomputing the immutable availability snapshot hash. No threshold, candidate, holdout, or judgment changed."
+    },
+    {
+      "attemptId": 37,
+      "check": "terminal NOT_READY and local-activation boundary suite after fixture hash correction",
+      "result": "PASS",
+      "counts": { "pass": 22, "fail": 0 }
+    },
+    {
+      "attemptId": 38,
+      "check": "corrected CI gate and final-attestation focused suite",
+      "result": "PASS",
+      "counts": { "pass": 26, "fail": 0 }
+    },
+    {
+      "attemptId": 39,
+      "check": "local-activation boundary after CI-gate v4 integration",
+      "result": "PASS",
+      "counts": { "pass": 22, "fail": 0 }
+    },
+    {
+      "attemptId": 40,
+      "check": "independent CI provenance red-team audit",
+      "result": "FAIL",
+      "classification": "CI provenance validation gaps",
+      "detail": "The audit found that the repository host was not exact-bound, retained run provenance could be self-rehashed, gate timestamps and object keys were not exact, and retained verifiedAt could be reused before validation. Commit A remained held. The collector now uses an explicit github.com repository, retains and revalidates raw evidence preimages, requires exact keys/canonical ISO time, validates a retained gate before reuse, and exact-C CI rechecks the immutable run and current draft PR read-only."
+    },
+    {
+      "attemptId": 41,
+      "check": "mid-integration CI-gate/final focused suite after repository URL became required",
+      "result": "FAIL",
+      "counts": { "pass": 28, "fail": 29 },
+      "classification": "fixture integration regression",
+      "detail": "Gate fixtures still supplied only nameWithOwner after the production schema began requiring the exact github.com repository URL. The failures were retained and the fixtures were updated without weakening production validation."
+    },
+    {
+      "attemptId": 42,
+      "check": "TypeScript immediately after exact repository URL became required",
+      "result": "FAIL",
+      "counts": { "errors": 5 },
+      "classification": "fixture integration regression",
+      "detail": "Five fixture builders were missing the new required repository URL field."
+    },
+    {
+      "attemptId": 43,
+      "check": "incorrect direct tsx --test invocation",
+      "result": "FAIL",
+      "counts": { "registeredTests": 0 },
+      "classification": "test harness misuse",
+      "detail": "The repository requires tests/run.ts; the direct --test invocation imported four files but registered zero harness tests and exited nonzero. It was not treated as verification evidence."
+    },
+    {
+      "attemptId": 44,
+      "check": "proper combined harness before all exact repository URL fixtures were corrected",
+      "result": "FAIL",
+      "counts": { "pass": 25, "fail": 35 },
+      "classification": "fixture integration regression",
+      "detail": "All 35 failures stopped at the newly exact trusted-repository evidence shape."
+    },
+    {
+      "attemptId": 45,
+      "check": "final-attestation suite after exact repository fixture correction",
+      "result": "PASS",
+      "counts": { "pass": 11, "fail": 0 }
+    },
+    {
+      "attemptId": 46,
+      "check": "local-activation retained-evidence suite after strict ledger and preflight controls",
+      "result": "PASS",
+      "counts": { "pass": 24, "fail": 0 }
+    },
+    {
+      "attemptId": 47,
+      "check": "final-attestation suite after exact-C GitHub least-privilege workflow correction",
+      "result": "PASS",
+      "counts": { "pass": 12, "fail": 0 }
+    },
+    {
+      "attemptId": 48,
+      "check": "combined retained-boundary harness after fixture correction but before final remint",
+      "result": "FAIL",
+      "counts": { "pass": 41, "fail": 25 },
+      "classification": "expected stale deterministic seal",
+      "detail": "All remaining failures stopped at production instrument bytes drifted from the retained live seal after the control-plane source and tests changed. This was the expected fail-closed remint barrier; no qualification semantic failure occurred."
+    },
+    {
+      "attemptId": 49,
+      "check": "independent terminal-state and exact-C lifecycle audit",
+      "result": "FAIL",
+      "classification": "terminal evidence and CI execution gaps",
+      "detail": "The audit found stale blocked-role markdown was not rejected, partial-qualifier NOT_READY lacked a nonzero-call production regression, per-attempt receipt/retention/execution objects accepted contradictory extra fields, and exact-C CI lacked GitHub read permissions/token. It also found the live PR recheck was placed in deterministic materialization. Commit A remained held. All gaps were corrected without changing semantic inputs; the live recheck now runs only in retained exact-C verification."
+    },
+    {
+      "attemptId": 50,
+      "check": "gate, blocked-state, replay chronology, workflow shape, and final-attestation suite after terminal hardening",
+      "result": "PASS",
+      "counts": { "pass": 33, "fail": 0 }
+    },
+    {
+      "attemptId": 51,
+      "check": "TypeScript after terminal-state and per-attempt exactness hardening",
+      "result": "PASS"
+    },
+    {
+      "attemptId": 52,
+      "check": "independent final control-plane audit",
+      "result": "PASS",
+      "counts": { "focusedPass": 41, "expectedStaleSealFailures": 1 },
+      "detail": "No fail-open or lifecycle blocker remained. The only observed focused failure was the required stale production-seal barrier before deterministic remint."
+    },
+    {
+      "attemptId": 53,
+      "check": "independent immutable evidence and frozen-semantics audit against starting HEAD",
+      "result": "PASS",
+      "counts": { "v1EvidenceFiles": 154, "v2EvidenceFiles": 157, "frozenSemanticFiles": 19, "certificationCases": 116 },
+      "detail": "The complete V1 tree, complete V2 tree, closed zero-call V3 tree, frozen prompts/corpora/thresholds/candidate order/schemas, and all 116 gold-bearing certification case records are byte-identical to starting HEAD. Only authorized successor execution and control-plane identities changed."
+    },
+    {
+      "attemptId": 54,
+      "check": "deterministic production-seal, certification, parity, and preliminary-freeze remint",
+      "result": "PASS",
+      "counts": { "productionSealFiles": 456, "certificationCases": 116, "preLiveOutputs": 23 },
+      "detail": "Threshold identity remained unchanged. The implementation-bound seal, model-free certification, production/qualification parity, and preliminary freeze reminted with model/API calls 0/0. The preliminary freeze will be rematerialized once more after this ledger records the new identities."
+    },
+    {
+      "attemptId": 55,
+      "check": "first seal-dependent focused boundary suite after terminal hardening remint",
+      "result": "FAIL",
+      "counts": { "pass": 90, "fail": 1 },
+      "classification": "stale test assertion",
+      "detail": "The hardened shared preflight validator correctly rejected a self-rehashed object-shaped forbidden-provider-key marker earlier than the retained wrapper. One test still expected the wrapper's obsolete error wording. The assertion was corrected without changing the rejection condition or any qualification semantics."
+    },
+    {
+      "attemptId": 56,
+      "check": "affected retained qualification and activation suite after assertion correction",
+      "result": "PASS",
+      "counts": { "pass": 26, "fail": 0 },
+      "detail": "The all-unavailable and nonzero-call partial NOT_READY paths, strict per-attempt and preflight controls, replay evidence, and activation barriers all passed against the reminted identities."
+    },
+    {
+      "attemptId": 57,
+      "check": "complete no-API suite in a disposable clean clone of the pending Recovery Commit A tree",
+      "result": "PASS",
+      "counts": { "pass": 2846, "fail": 0, "xfail": 0, "xpass": 0, "xenv": 10, "skip": 39 },
+      "detail": "A clean disposable clone staged the exact pending Recovery Commit A tree and committed it only to a local verification branch. The complete suite ran with ChatGPT/model generation disabled, API keys empty, and the isolated workflow npm cache. No model or API call was made. This local-only verification commit was not created in, or pushed from, the authoritative worktree."
+    }
+  ],
+  "currentIdentities": {
+    "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa",
+    "productionSealSha256": "22bda57b70062160cc560adb46b9ab32b2ba316c901898727cafba10faaabab5",
+    "certificationSha256": "cd3c6450337a3c29be5812c52608f9805cb50606d8de066c6ac1e8f94ca2bc4f",
+    "productionQualificationParitySha256": "7ab47df0aeea82c83c7e6c8db8c7fbeaa7e9488dc76916ea6ddace105aa508d4"
+  },
+  "authorization": {
+    "recoveryCommitAReady": true,
+    "liveCallsAuthorized": false,
+    "reason": "The hardened control plane, reminted implementation identities, focused regressions, immutable-evidence audits, scans, and a complete clean-clone no-API suite passed locally. Recovery Commit A may be created after this ledger is bound into a byte-identical verified preliminary freeze and the exact final tree passes the same clean-clone verification. Live calls remain prohibited until exact-A dedicated V25 CI and the corrected preflight collector both pass."
+  }
+}

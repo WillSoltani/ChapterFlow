@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-056",
+  "parsed": {
+    "caseId": "SQ-056",
+    "verdict": "DEFECT",
+    "defectClass": "reused narrative machinery / structural template reuse",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Ulric squares a marked-up agenda at Tuesday 8:57 a.m. in Conference Room C at Pelham Transit, operations analyst, with a water glass sweating onto the table."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Hester touches two untouched coffees at Monday 7:03 a.m. in a corner table at Rowan's Cafe, school counselor, with a notebook with five bullet points."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Ulric has a speech about how nobody listens to data."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "the old angry speech rushes back."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Ulric he must decide whether to accuse the room or speak from his own view."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Hester she must decide whether to follow the sequence or chase the heat."
+      }
+    ],
+    "explanation": "Both examples use the same scaffold: precise time/place/prop staging, a workplace/interpersonal grievance, a prepared or impulsive speech, and a final binary choice between the reactive path and the lesson-aligned response. The repeated awkward 'Name he/she must decide whether' construction reinforces shared machinery despite changed nouns.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-056\",\"verdict\":\"DEFECT\",\"defectClass\":\"reused narrative machinery / structural template reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Ulric squares a marked-up agenda at Tuesday 8:57 a.m. in Conference Room C at Pelham Transit, operations analyst, with a water glass sweating onto the table.\"},{\"materialIndex\":1,\"quote\":\"Hester touches two untouched coffees at Monday 7:03 a.m. in a corner table at Rowan's Cafe, school counselor, with a notebook with five bullet points.\"},{\"materialIndex\":0,\"quote\":\"Ulric has a speech about how nobody listens to data.\"},{\"materialIndex\":1,\"quote\":\"the old angry speech rushes back.\"},{\"materialIndex\":0,\"quote\":\"Ulric he must decide whether to accuse the room or speak from his own view.\"},{\"materialIndex\":1,\"quote\":\"Hester she must decide whether to follow the sequence or chase the heat.\"}],\"explanation\":\"Both examples use the same scaffold: precise time/place/prop staging, a workplace/interpersonal grievance, a prepared or impulsive speech, and a final binary choice between the reactive path and the lesson-aligned response. The repeated awkward 'Name he/she must decide whether' construction reinforces shared machinery despite changed nouns.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

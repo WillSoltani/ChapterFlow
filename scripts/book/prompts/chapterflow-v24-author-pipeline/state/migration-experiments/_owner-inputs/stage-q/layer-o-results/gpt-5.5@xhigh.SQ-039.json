@@ -1,0 +1,36 @@
+{
+  "caseId": "SQ-039",
+  "parsed": {
+    "caseId": "SQ-039",
+    "verdict": "DEFECT",
+    "defectClass": "Relabeled duplicate does not assess both chapter mechanisms",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Map each person's contribution and the system pressures before deciding what must change next time."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "The best choice keeps the conversation tied to three layers and creates room for new information."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Abandon Blame"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The best choice keeps the conversation tied to contribution and creates room for new information."
+      }
+    ],
+    "explanation": "The duplicated item uses the same contribution/system-pressure answer for both skills. That directly fits Abandon Blame, while the Three Conversations version only relabels the rationale as 'three layers' without testing distinct three-conversation mechanisms such as feelings or identity.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-039\",\"verdict\":\"DEFECT\",\"defectClass\":\"Relabeled duplicate does not assess both chapter mechanisms\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":0,\"quote\":\"Map each person's contribution and the system pressures before deciding what must change next time.\"},{\"materialIndex\":0,\"quote\":\"The best choice keeps the conversation tied to three layers and creates room for new information.\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Abandon Blame\"},{\"materialIndex\":1,\"quote\":\"The best choice keeps the conversation tied to contribution and creates room for new information.\"}],\"explanation\":\"The duplicated item uses the same contribution/system-pressure answer for both skills. That directly fits Abandon Blame, while the Three Conversations version only relabels the rationale as 'three layers' without testing distinct three-conversation mechanisms such as feelings or identity.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P25",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"duplicate_item_generic_relabel\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation? Choices: [\\\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\\\", \\\"Lead with the strongest proof so the other person cannot dodge the facts.\\\", \\\"Wait until the feeling fades, then avoid the topic unless it comes up again.\\\"] Correct index: 0\",\"Chapter skill: Sort Out the Three Conversations\",\"Chapter skill: Stop Arguing About Who's Right\",\"Explanation: The best choice keeps the conversation tied to three layers and creates room for new information.\",\"Explanation: The best choice keeps the conversation tied to different stories and creates room for new information.\"],\"rationale\":\"The two quiz instances use the same scenario, question wording, answer choices, and correct index while only swapping the chapter skill label and a short explanatory phrase. The item therefore does not create distinct evidence that it assesses both chapter mechanisms; it rewards the same generic difficult-conversation draft in both cases and merely relabels the explanation from \\\"three layers\\\" to \\\"different stories.\\\"\"}"
+}

@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-058",
+  "parsed": {
+    "caseId": "SQ-058",
+    "verdict": "DEFECT",
+    "defectClass": "INSTRUCTIONAL_ARTIFACT_MISCLASSIFIED_AS_CONTENT",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "You are a writer agent on the ChapterFlow v21 book-production pipeline."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Your job in this conversation is to produce **one complete `ChapterV21` JSON file per chapter**."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Open `.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json`."
+      }
+    ],
+    "explanation": "The artifact is an operational prompt containing role assignment, output commands, and file-access instructions, not substantive source evidence suitable for chapter composition. Treating it as content would permit instruction contamination.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-058\",\"verdict\":\"DEFECT\",\"defectClass\":\"INSTRUCTIONAL_ARTIFACT_MISCLASSIFIED_AS_CONTENT\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"You are a writer agent on the ChapterFlow v21 book-production pipeline.\"},{\"materialIndex\":0,\"quote\":\"Your job in this conversation is to produce **one complete `ChapterV21` JSON file per chapter**.\"},{\"materialIndex\":0,\"quote\":\"Open `.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json`.\"}],\"explanation\":\"The artifact is an operational prompt containing role assignment, output commands, and file-access instructions, not substantive source evidence suitable for chapter composition. Treating it as content would permit instruction contamination.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

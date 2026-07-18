@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SplitLane SourceIntegrityReviewV1 (model output)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "units",
+    "result",
+    "blockingFindingIds",
+    "rationale"
+  ],
+  "properties": {
+    "schema": {
+      "type": "string",
+      "enum": [
+        "source-integrity-review-v1"
+      ]
+    },
+    "units": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "unitId",
+          "expectedOrigin",
+          "expectedForm",
+          "claimStrengthExpected",
+          "visibleRegister",
+          "supportStatus",
+          "framingAdequate",
+          "claimStrengthFit",
+          "namedSpecificityAllowed",
+          "chapterEvidenceSpans",
+          "sourceEvidenceSpans",
+          "findings"
+        ],
+        "properties": {
+          "unitId": { "type": "string" },
+          "expectedOrigin": {
+            "type": "string",
+            "enum": [
+              "source_bound",
+              "constructed",
+              "generic"
+            ]
+          },
+          "expectedForm": {
+            "type": "string",
+            "enum": [
+              "case",
+              "application",
+              "operational_scenario",
+              "explanation",
+              "analogy"
+            ]
+          },
+          "claimStrengthExpected": {
+            "type": "string",
+            "enum": [
+              "descriptive",
+              "inferential",
+              "correlational",
+              "mechanistic",
+              "causal"
+            ]
+          },
+          "visibleRegister": {
+            "type": "string",
+            "enum": [
+              "clearly_sourced",
+              "clearly_constructed",
+              "clearly_generic",
+              "ambiguous",
+              "presented_as_fact"
+            ]
+          },
+          "supportStatus": {
+            "type": "string",
+            "enum": [
+              "SUPPORTED",
+              "PARTIALLY_SUPPORTED",
+              "UNSUPPORTED",
+              "NOT_APPLICABLE",
+              "INCONCLUSIVE"
+            ]
+          },
+          "framingAdequate": { "type": ["boolean", "null"] },
+          "claimStrengthFit": { "type": ["boolean", "null"] },
+          "namedSpecificityAllowed": { "type": ["boolean", "null"] },
+          "chapterEvidenceSpans": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "sourceEvidenceSpans": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "findings": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "category",
+                "severity",
+                "explanation"
+              ],
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "invented_detail",
+                    "source_contradiction",
+                    "missing_visible_framing",
+                    "generic_specificity_leak",
+                    "claim_strength_overreach",
+                    "unsupported_attribution",
+                    "missing_required_evidence"
+                  ]
+                },
+                "severity": {
+                  "type": "string",
+                  "enum": [
+                    "blocker",
+                    "major",
+                    "minor"
+                  ]
+                },
+                "explanation": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "result": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "BLOCK",
+        "INCONCLUSIVE"
+      ]
+    },
+    "blockingFindingIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rationale": { "type": "string" }
+  }
+}

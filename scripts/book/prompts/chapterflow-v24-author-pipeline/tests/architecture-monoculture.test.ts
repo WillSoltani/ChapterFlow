@@ -174,7 +174,10 @@ test("architecture-family directive renders as the FIRST structural writer instr
   } as ChapterBriefV1;
   const lines = briefVarietyInstructionLines(brief);
   assert.match(lines[0], /CHAPTER ARCHITECTURE \(single-deep-case\)/, "architecture directive leads");
-  assert.match(lines[0], /Do NOT add a 'second setting proves it travels'/, "prohibits the default 3-anchor skeleton");
+  // IMP-06: the directive states the shape OUTCOME; the ban prose moved to its
+  // single owner (the CONTENT DEVICES deal) — no overlapping ban text here.
+  assert.match(lines[0], /ONE case, developed end to end/, "states the shape outcome");
+  assert.ok(!/Do NOT/.test(lines[0]), "no overlapping device-ban prose on the architecture line");
   // A pre-v5 brief without the field renders exactly the original opener line first (compat).
   const legacy = { openerType: "scene", challengeFrame: "audit-one-artifact", practiceShape: "two-step-sequence" } as ChapterBriefV1;
   assert.match(briefVarietyInstructionLines(legacy)[0], /^- OPENER:/, "legacy brief unchanged");

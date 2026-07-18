@@ -1,0 +1,117 @@
+{
+  "branch": "feat/v25-pipeline-live",
+  "capabilities": {
+    "apiCalls": 0,
+    "deploy": false,
+    "forcePush": false,
+    "merge": false,
+    "modelCalls": 0,
+    "promote": false,
+    "publish": false,
+    "upload": false
+  },
+  "continuationPromptId": "IMP-24D",
+  "currentImplementation": {
+    "certificationBytesSha256": "021e74accfaa8313942ba63e9fd22a6ba8a20ebf8de04e68ecc2e1357a527bca",
+    "certificationSha256": "b7eb50d0700b824efd7bc126ba29331d36c78546edcfa865457f088d6049f15f",
+    "productionInstrumentSealBytesSha256": "e262056cc87eec936f277d3a3791e097d56bdc2e17bc16083c1bed4233cd4897",
+    "productionInstrumentSealSha256": "13c0e7cd05f38a0420765b2d9b36d788b2c5602ca80d3585d9aea009339e56a5",
+    "productionQualificationParityBytesSha256": "ead0c7d56cbcb20a803f8514f0b539a1c2520c37c8dfaa93134272c8f2ecd89b",
+    "productionQualificationParitySha256": "1cf48ebfca83dfa81f72eb5ad2735183daf3b102c1f4b2ab8aa41dfff0a1e8d7"
+  },
+  "draftPullRequest": 401,
+  "freezeSha256": "7f64acc3fe526a2decad38873331d929ed5ad521146c4919812c1604bdb1b658",
+  "frozenSemantics": {
+    "callBudgetSha256": "6251236d264e79f38b2d418d82d3448ac0aabfca805f2d213c439e480c87ccb5",
+    "candidateAvailabilityPolicySha256": "1f7801eb55bc848b34525c0abb7fb572b16bfad75301c10e3f306ad3f32db90d",
+    "candidateOrderSha256": "b688f64ae66f211b2c62270a79157d997bd4dee269dcacd969f7cd9741b44190",
+    "corpusAuditAgreementSha256": "sha256:3e3b582d440f4d22ce1c177136831b5f6c9bee096e9f9e51cbefd9f987ed4269",
+    "corpusBundleSha256": "sha256:4501809686161a541ad776bdbfea9c716ec402d89ef397a072f93143ce28fcac",
+    "corpusPartitionHashes": {
+      "quiz": {
+        "canary": "sha256:be56433f5a7078c055cdbbe22775cf04098958ae24e48639ff181f0bb7f0a835",
+        "holdout": "sha256:dbb63878eb3ff13bb2f696694528a134c4ddbe7d9c131fe626d98ca120083179"
+      },
+      "reader": {
+        "canary": "sha256:7655002e357a6d82b837f32d57a8c4088380d4c5840d5768f671c41517eb8d33",
+        "holdout": "sha256:391cfae09e3f34e8e23f94d1b3b6663dd619d44fd9e54434285b90d83cf60d03"
+      },
+      "source": {
+        "canary": "sha256:bcfaf1f6ab6311067fafac8729b3deaafd9e4f10a4aec7a09eaa28ed4fa9f100",
+        "holdout": "sha256:182d86d5146f8831a6bd06de30b71689f19c94611abaee24a1232cb251159106"
+      }
+    },
+    "promptBundleHashes": {
+      "quiz": "0410e806c808ffc8265105947d872611e116565c598f81cfb239d103c08c7b48",
+      "reader": "a9c4b9fc62cbf56186172fc09c7aaa377d58056dcb8d6cf8a2ccf1b80e2fcf7f",
+      "source": "2e63ba2c639c652c9ef35456ca440cabece6d341e7e123f5f18564c3d8a4d4ff"
+    },
+    "scheduleSha256": "dd7c3c1235c86cbbaf20c954398bcb57880efd5c7629f95bc494cb4d0fa8e22c",
+    "schemaInventorySha256": "d514ddfeff0a8e987fcaabe1c80ee7562dd8987e426266a1ef075ac6b573ca3e",
+    "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa"
+  },
+  "historicalR1": {
+    "closureJson": {
+      "bytes": 17974,
+      "bytesSha256": "c54e9bd566043ebb733826dcb7bf8b4098c560c93a54fa322dbc0c29d49c47f4",
+      "relativePath": "docs/v25/reports/IMP-24C_R1_OBSERVABILITY_GAP.json"
+    },
+    "closureMarkdown": {
+      "bytes": 5385,
+      "bytesSha256": "50f31e16a266445e8c3d8ab16147046270a973b414dc92408cd6607c9ab051ee",
+      "relativePath": "docs/v25/reports/IMP-24C_R1_OBSERVABILITY_GAP.md"
+    },
+    "disposition": "BLOCKED_OBSERVABILITY_INCOMPLETE",
+    "executionId": "s16-forward-role-qualification-v3-envelope-r1",
+    "historicalArtifacts": [
+      {
+        "bytes": 16893,
+        "bytesSha256": "06ca9f6e9e191b829efa14244ac038b610d4546230c3a88749f17811d1929eb5",
+        "relativePath": "docs/v25/reports/IMP-24C_PRE_LIVE_FREEZE.json"
+      },
+      {
+        "bytes": 8737,
+        "bytesSha256": "5c24c1892fb0a984a9c8bd3d010d88d715f593740c556ca9630c69c0ad327d91",
+        "relativePath": "docs/v25/reports/IMP-24C_PRE_LIVE_FREEZE.md"
+      },
+      {
+        "bytes": 13857,
+        "bytesSha256": "7cde3f57fc246e9a323a7ba7d1501cb47f9ef9cf74c6164965d8cb0e571191a2",
+        "relativePath": "docs/v25/reports/implementation-report.imp-24.pre-live.json"
+      },
+      {
+        "bytes": 2803,
+        "bytesSha256": "1396924c5f18134531ec8999365dab44258cc340a799497086f3f89f9772ff76",
+        "relativePath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-r1/execution-spec.json"
+      }
+    ],
+    "mayQualifyProfiles": false,
+    "mayResume": false,
+    "preLiveFreezeSha256": "0155f4753c92cdabf66d975c95eda9e69c212367c4485769ead1b6ed06b56aa9",
+    "stateRoot": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-r1"
+  },
+  "promptId": "IMP-24",
+  "protocolId": "s16-forward-role-qualification-v3-envelope",
+  "schema": "imp24d-observability-freeze-v1",
+  "semanticAssertions": {
+    "callBudgetUnchanged": true,
+    "candidateAvailabilityPolicyUnchanged": true,
+    "candidateOrderUnchanged": true,
+    "corpusUnchanged": true,
+    "goldUnchanged": true,
+    "promptsUnchanged": true,
+    "scheduleUnchanged": true,
+    "schemasUnchanged": true,
+    "thresholdsUnchanged": true
+  },
+  "startingHead": "3b060fb0a7f6e64e04386b84ff6b5a10e42868ec",
+  "status": "FROZEN_MODEL_FREE_OBSERVABILITY_RECOVERY",
+  "successor": {
+    "executionId": "s16-forward-role-qualification-v3-envelope-r2",
+    "mayCreateBeforeTransportSmokePass": false,
+    "stateRoot": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-r2",
+    "stateRootCreatedByMaterializer": false,
+    "transportSmokePassedAtFreeze": false,
+    "transportSmokeRequired": true
+  }
+}

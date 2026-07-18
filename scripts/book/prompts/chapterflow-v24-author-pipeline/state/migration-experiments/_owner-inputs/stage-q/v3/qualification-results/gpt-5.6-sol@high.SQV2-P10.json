@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P10",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_HISTORICAL_NARRATION\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"The Intel reviewer reaches the Intel strategy review with two bad pages in his folder.\",\"The Intel reviewer writes the outsider question at the top of the review page and judges the options from that cooler vantage point.\"],\"rationale\":\"The source plan supports Intel’s painful shift from memory chips to microprocessors and Andy Grove’s outsider question, but it does not support a particular reviewer, a strategy-review scene, two pages in a folder, or the act of writing the question on a review page. The candidate presents these invented particulars in the same factual register as the verified case, making the scenario materially misleading.\"}"
+}

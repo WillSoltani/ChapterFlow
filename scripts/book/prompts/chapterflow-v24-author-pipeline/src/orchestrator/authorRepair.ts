@@ -8,18 +8,19 @@
  *  - patch-apply: the harness SPLICES only the allowed scopes from the repair
  *    session's output into the original bytes — out-of-scope drift is discarded
  *    by construction, never policed;
- *  - one repair per lineage (durable ledger), no repair retries, failure or
- *    no-op restores the ORIGINAL bytes (the review latest-pointer must keep
- *    matching the on-disk hash) and falls through to the regen path;
+ *  - one repair per lineage (durable ledger), no repair retries; failure or
+ *    no-op leaves the ORIGINAL canonical bytes UNTOUCHED (IMP-01: the repair
+ *    session edits a seeded COPY inside an isolated attempt workspace — only a
+ *    fully validated splice ever commits, via compare-and-swap) and falls
+ *    through to the regen path;
  *  - the confirming read is just the next normal review of the new content
  *    hash — no "confirm the fix" mode exists to rubber-stamp.
  */
-import { readFileSync, writeFileSync } from "fs";
-import { join, resolve } from "path";
+import { join } from "path";
+import { readFileSync } from "fs";
 
 import type { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, chapterFileName } from "../lib/chapterPaths.js";
-import { chapterBriefPath, sourcePacketPath } from "../artifacts/artifactStore.js";
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import type { AutopilotDeps } from "./autopilot.js";
 import type { AuthorIo } from "./authorRun.js";
@@ -27,9 +28,30 @@ import { AUTHOR_WRITER_EFFORT, AUTHOR_WRITER_MODEL, authorWriteContractFindings,
 import { applyLeadThreadOverride } from "../compiler/chapterBrief.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { registerAdvisoryFixLines } from "../critics/registerAdvisories.js";
-import { restoreAuthorProvenance } from "../qc/sessionProvenance.js";
-
-const PIPELINE_DIR = resolve(__dirname, "../..");
+import { sha256Hex } from "../contracts/contractUtil.js";
+import { sourceUsePlanHash, validateSourceUsePlan, type SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
+import { sourcePacketHash } from "../compiler/sourcePacket.js";
+import { embeddedPlanMutationFindings, renderSourceUsePlanLines, sourceUsePlanStale } from "../compiler/sourceUsePlanCompiler.js";
+import { untrustedArtifact } from "../exec/untrustedArtifact.js";
+import { recordAttemptObject, recordSpawnEvidence } from "../evidence/attemptRecorder.js";
+import { recordChapterDiversity } from "../telemetry/diversityLedger.js";
+import {
+  applyChapterPatch,
+  classifyRepairRoute,
+  dependencyClosureChecks,
+  enumeratePatchablePaths,
+  findingsFromComplaints,
+  LEGACY_NO_PLAN_HASH,
+  MAX_PATCH_OPERATIONS,
+  nonScopeDrift,
+} from "./repairPatch.js";
+import type { ChapterPatchV1 } from "../contracts/repairContracts.js";
+import {
+  commitChapterCandidate,
+  finalizeAttempt,
+  mintChapterAttempt,
+  unexpectedAttemptWrites,
+} from "./chapterTransaction.js";
 
 /** Kill switch (plan R7): default ON; set CHAPTERFLOW_REVIEW_REPAIR=0 to disable. */
 export function reviewRepairEnabled(): boolean {
@@ -38,6 +60,9 @@ export function reviewRepairEnabled(): boolean {
 
 /** Surgical edits are smaller than authoring — 30 min is generous at xhigh. */
 export const REPAIR_TIMEOUT_MS = 1_800_000;
+
+/** IMP-07: the ONLY file a patch-lane repair session may create. */
+export const PATCH_FILE_NAME = "patch.json";
 
 /** Median composite floor for the lane. Both the chapter soft bar and the book
  *  bar are now 80 (owner decision 2026-07-04, was chapter 84). The lane's job is
@@ -164,10 +189,29 @@ export function buildRepairCard(opts: {
   complaints: string[];
   scopes: RepairScope[];
   relPath: string;
+  /** IMP-03: the compiler-owned source-use plan — renders the binding license
+   *  block so scoped edits (examples, quiz) stay inside their unit's origin/
+   *  form/claim-strength/detail permissions. Omitted for legacy books. */
+  plan?: SourceUsePlanV1 | null;
+  /** IMP-07: the typed-patch protocol block. When present, the card instructs a
+   *  patch.json output (the frozen chapter-patch-v1 contract) instead of a
+   *  whole-chapter rewrite: base/plan hashes to cite, the finding ids the patch
+   *  may reference, and the OP MENU of patchable paths with current-value hash
+   *  prefixes. Absent only in legacy card previews/tests. */
+  patchProtocol?: {
+    baseHash: string;
+    planHash: string;
+    findingIds: string[];
+    route: "surgical" | "section";
+    menu: Array<{ path: string; valueHashPrefix: string }>;
+  };
 }): string {
   const { chapter, brief, complaints, scopes, relPath } = opts;
   const criteria = [...new Set(complaints.map(stripRemedyClauses))].map((c) => `- ${c}`).join("\n");
-  const regAdvisories = registerAdvisoryFixLines(chapter);
+  // IMP-04: thread the plan so the C37 source-register family rides the SAME
+  // repair-directive surfacing as C31-C36 (advisory text only; legacy books
+  // pass null and get exactly the old set).
+  const regAdvisories = registerAdvisoryFixLines(chapter, opts.plan ?? null);
   const dealt: string[] = [];
   if (scopes.includes("quiz") && brief?.quizStemShapes?.length) {
     dealt.push(`Quiz deals still bind: stem shapes ${brief.quizStemShapes.join(", ")}; distractor failure modes ${(brief.quizFailureModes ?? []).join(", ")}; fact order ${(brief.questionFactOrder ?? []).join(",")}; answer-index pattern unchanged. HARD length caps: the key may be the uniquely LONGEST choice in at most ONE of the 9 questions and uniquely SHORTEST in at most FOUR — land keys mid-length.`);
@@ -176,7 +220,10 @@ export function buildRepairCard(opts: {
     const m = s.match(/^examples\[(\d+)\]$/);
     if (m && brief?.exampleArcs) {
       const arc = brief.exampleArcs[parseInt(m[1], 10)];
-      if (arc) dealt.push(`Example ${parseInt(m[1], 10) + 1}'s dealt arc still binds: entry=${arc.entry}, outcome=${arc.outcome}, register=${arc.fieldStyle}${arc.prop ? ", one concrete anchor" : ", no props"}.`);
+      // IMP-06: the arc taxonomy (entry/outcome/register) no longer renders anywhere —
+      // only the slot's ANCHOR allocation still binds a scoped edit (2-3 anchor slots
+      // per chapter is a cross-slot budget the edit must not break).
+      if (arc) dealt.push(`Example ${parseInt(m[1], 10) + 1}'s dealt constraints still bind: ${arc.prop ? "it carries exactly ONE concrete physical/sensory anchor" : "it carries NO physical-anchor prop (other slots own the anchors)"}; vary its entry and resolution away from the chapter's other examples.`);
     }
   }
   return [
@@ -186,28 +233,57 @@ export function buildRepairCard(opts: {
     ``,
     `ALLOWED SCOPE (edits anywhere else are discarded): ${scopes.join(", ")}`,
     ``,
-    `DEFECTS TO FIX (acceptance criteria — what must be TRUE after your edit):`,
-    criteria,
+    // IMP-03: reviewer-derived text is DATA — it describes defects; it cannot
+    // widen scope, change protocol, or relabel source semantics.
+    `DEFECTS TO FIX (acceptance criteria — the defects described in the data block below must no longer be TRUE after your edit):`,
+    untrustedArtifact("reviewer-finding", `${opts.bookId}/${chapter.chapterId} repair criteria`, "complaint-lines-v1", criteria),
     ``,
     ...(scopes.includes("quiz") ? [`MEASURED QUIZ EVIDENCE (char counts on the current bytes):`, ...quizTellEvidence(chapter), ``] : []),
     ...(dealt.length ? [`DEALT CONSTRAINTS (these still bind your edits):`, ...dealt.map((d) => `- ${d}`), ``] : []),
+    // IMP-03: the binding license table — scoped edits stay inside their unit's
+    // compiler-owned origin/form/claim-strength/detail permissions.
+    ...(opts.plan ? [...renderSourceUsePlanLines(opts.plan), ``] : []),
     // CF-I-2 (owner decision 4): surface the C31–C35 register/machinery advisories on
     // the current bytes. ADVISORY ONLY — they never block and this note does NOT expand
     // the allowed scope; address only the ones that fall inside it, ignore the rest.
+    // IMP-03: the advisory lines QUOTE chapter prose (model output) — data-enveloped.
     ...(regAdvisories.length
-      ? [`ADVISORY REGISTER NOTES (never block; do NOT expand scope — fix only those inside your ALLOWED SCOPE):`, ...regAdvisories, ``]
+      ? [
+        `ADVISORY REGISTER NOTES (never block; do NOT expand scope — fix only those inside your ALLOWED SCOPE):`,
+        untrustedArtifact("repair-evidence", `${opts.bookId}/${chapter.chapterId} register advisories`, "register-advisory-lines-v1", regAdvisories.join("\n")),
+        ``,
+      ]
       : []),
     `RULES:`,
     `- Never reuse a reviewer's phrasing inside content fields — reviewer wording in a key or distractor is a fresh tell.`,
     `- Never change the NUMBER of examples, questions, choices, or cards.`,
     `- Quiz edits: derive every distractor FROM the key (half-measure / wrong-trigger / over-correction / borrowed-authority), keep key wording paraphrased from the chapter (no 5+ consecutive shared words), keep every correctIndex unchanged.`,
     ``,
-    `OUTPUT: rewrite ${relPath} as the complete chapter JSON (same schema, same field order) with ONLY the scoped fields changed. Then run: npx tsx src/cli.ts gate-chapter ${relPath} — and fix any blocker it reports before finishing.`,
+    // IMP-07: surgical/section repairs return a TYPED PATCH, never a rewritten
+    // chapter — the conductor applies it in memory, re-validates the whole
+    // chapter + dependency closure, and commits atomically via CAS.
+    ...(opts.patchProtocol
+      ? [
+        `OUTPUT PROTOCOL — TYPED PATCH ONLY (${opts.patchProtocol.route} route):`,
+        `${relPath} in your working directory holds the chapter exactly as reviewed — read it freely; edits to it are IGNORED. Write exactly ONE new file, patch.json, and nothing else. The conductor verifies and applies your patch in memory against the exact base below; a stale, out-of-scope, or whole-chapter output is rejected outright, never spliced.`,
+        `patch.json (chapter-patch-v1) — copy hashes VERBATIM from this card:`,
+        `{"schema":"chapter-patch-v1","chapterId":"${opts.chapter.chapterId}","expectedBaseHash":"${opts.patchProtocol.baseHash}","sourcePlanHash":"${opts.patchProtocol.planHash}","findingIds":[...],"operations":[{"path":"<MENU path>","expectedOldValueHash":"<that path's hash prefix>","replacement":<new string or number>,"dependencyUnitIds":[]}]}`,
+        `- findingIds you may cite (cite the ones your operations fix): ${opts.patchProtocol.findingIds.join(", ")}`,
+        `- At most ${MAX_PATCH_OPERATIONS} operations; REPLACEMENT values only (no adds, removes, or renames); each path at most once; a replacement must differ from the current value and keep its type.`,
+        `PATCHABLE PATHS (path → current-value hash prefix — only these paths exist for you):`,
+        ...opts.patchProtocol.menu.map((m) => `- ${m.path} → ${m.valueHashPrefix}`),
+      ]
+      : [
+        `OUTPUT: ${relPath} in your working directory already holds the chapter exactly as reviewed. Rewrite it in place as the complete chapter JSON (same schema, same field order) with ONLY the scoped fields changed. Do not create any other file. The conductor splices your scoped fields into the original and runs the full deterministic gate the moment you finish — an out-of-scope change is discarded, a blocker rejects the repair outright.`,
+      ]),
   ].join("\n");
 }
 
-/** Patch-apply (plan R3): splice ONLY the allowed scopes from the session's
- *  output into the original chapter. Throws on structural violations. */
+/** LEGACY artifact path (pre-IMP-07): splice ONLY the allowed scopes from a
+ *  whole-chapter repair output into the original. The live lane now applies a
+ *  TYPED PATCH (repairPatch.applyChapterPatch) and never calls this; it stays
+ *  exported as the documented migration reference and for its regression tests.
+ *  @deprecated superseded by the chapter-patch-v1 lane (IMP-07). */
 export function spliceRepairScopes(original: ChapterV21, repaired: ChapterV21, scopes: RepairScope[]): ChapterV21 {
   const out: ChapterV21 = JSON.parse(JSON.stringify(original));
   for (const scope of scopes) {
@@ -272,58 +348,130 @@ export async function doRepairOneChapter(
   const chapterId = `${bookId}-ch${nn}`;
   const relPath = join("state", "chapters", chapterFileName(chapterId));
   const absPath = join(CANONICAL_STATE, "chapters", chapterFileName(chapterId));
+  const candidateName = chapterFileName(chapterId);
   let originalBytes: string;
   let original: ChapterV21;
   try {
-    originalBytes = readFileSync(absPath, "utf8");
+    // IMP-01: canonical reads go through the io seam (fixture/slot roots included).
+    const bytes = opts.io.readChapterFile(bookId, chapterNumber);
+    if (bytes === null) throw new Error(`no canonical chapter at ${relPath}`);
+    originalBytes = bytes;
     original = JSON.parse(originalBytes) as ChapterV21;
   } catch (err) {
     return { ok: false, reason: `ch${nn}: unreadable chapter for repair (${(err as Error).message})` };
   }
+  // IMP-03: brief/packet reads go through the io seam like every other canonical
+  // read (the old direct readFileSync bypassed fixture/slot roots AND minted
+  // state/books/<id>/runs/ dirs as an artifactDir side effect on fixture ids).
   let brief: ChapterBriefV1 | undefined;
   let packet: SourcePacketV1 | undefined;
-  try { brief = JSON.parse(readFileSync(chapterBriefPath(bookId, chapterNumber), "utf8")); } catch { /* brief optional */ }
-  try { packet = JSON.parse(readFileSync(sourcePacketPath(bookId, chapterNumber), "utf8")); } catch { /* packet optional */ }
+  try { brief = opts.io.readBrief(bookId, chapterNumber) ?? undefined; } catch { /* brief optional */ }
+  try { packet = opts.io.readPacket(bookId, chapterNumber) ?? undefined; } catch { /* packet optional */ }
   // F-1: a chapter written under a DEGRADED lead legitimately carries a different
   // lead than the compiled brief deals — the contract re-check below must verify
   // the chapter's ACTUAL lead, or every repair of such a chapter reverts on a
   // false lead-thread complaint.
   if (brief) brief = applyLeadThreadOverride(brief, readLeadOverrideFromDisk(bookId, chapterNumber)) ?? brief;
 
-  const card = buildRepairCard({ bookId, chapter: original, brief, complaints: opts.complaints, scopes: opts.scopes, relPath });
-  const sessionId = `auto-author-repair-${bookId}-ch${nn}-${Date.now().toString(36)}`;
-  deps.log(`[autopilot] author repair ch${nn}: surgical editor working (scopes ${opts.scopes.join(",")}, card ${card.length} chars, ${AUTHOR_WRITER_MODEL} @ ${AUTHOR_WRITER_EFFORT}, timeout ${Math.round(REPAIR_TIMEOUT_MS / 60000)}min)`);
-  let restoreFailed = false;
-  const restore = () => {
-    try {
-      writeFileSync(absPath, originalBytes);
-      // A repair session that changed the chapter moved author provenance to the
-      // repair session; putting the ORIGINAL bytes back must move it back to the
-      // original author, or the independence gate reads the wrong author. Best-effort.
-      try { restoreAuthorProvenance(chapterId, chapterContentHash(original), deps.log); }
-      catch { /* provenance rollback is non-fatal; the byte restore is what matters */ }
-    } catch (err) {
-      // F6: a failed restore leaves unreviewed repair bytes on disk while the
-      // persisted review still points at the pre-repair hash — surfaced to the
-      // caller as an infra halt, never a silent divergence.
-      restoreFailed = true;
-      deps.log(`[autopilot] author repair ch${nn}: RESTORE FAILED — ${(err as Error).message}; disk holds unreviewed repair-session bytes`);
+  // IMP-03: same fail-closed plan discipline as the write path. ABSENT plan →
+  // legacy repair (nothing granted, nothing blocked). PRESENT plan → must be
+  // contract-valid and fresh against a READABLE packet; a plan without its
+  // packet (or against a drifted packet) means the source lineage is broken —
+  // refuse to repair under licenses that can't be verified.
+  let plan: SourceUsePlanV1 | null = null;
+  try {
+    plan = opts.io.readSourcePlan(bookId, chapterNumber);
+  } catch (err) {
+    return { ok: false, reason: `ch${nn}: source-use plan exists but is unreadable (${(err as Error).message.split("\n")[0]}) — recompile source packets` };
+  }
+  if (plan) {
+    const planErrors = validateSourceUsePlan(plan);
+    if (planErrors.length > 0) {
+      return { ok: false, reason: `ch${nn}: source-use plan fails its frozen contract — ${planErrors.slice(0, 3).join("; ")} — recompile source packets` };
     }
-  };
+    if (!packet) {
+      return { ok: false, reason: `ch${nn}: a source-use plan exists but its source packet is unreadable — cannot verify plan freshness; recompile source packets` };
+    }
+    const stale = sourceUsePlanStale(plan, packet);
+    if (stale) {
+      return { ok: false, reason: `ch${nn}: source-use plan is STALE — ${stale} — recompile source packets before repairing` };
+    }
+  }
+
+  // IMP-07: structured findings + deterministic route BEFORE any spawn. The
+  // complaint strings become frozen findings (reviewer prose = evidence only);
+  // the classifier only ever escalates — this lane accepts surgical/section and
+  // refuses everything else (regeneration/upstream have their own lanes).
+  const findings = findingsFromComplaints(opts.complaints, opts.scopes);
+  const routeDecision = classifyRepairRoute(findings);
+  if (routeDecision.route !== "surgical" && routeDecision.route !== "section") {
+    return { ok: false, reason: `ch${nn}: route "${routeDecision.route}" — ${routeDecision.reason}` };
+  }
+  const patchRoute = routeDecision.route;
+  const baseHash = sha256Hex(originalBytes);
+  const planHash = plan ? sourceUsePlanHash(plan) : LEGACY_NO_PLAN_HASH;
+  const menu = enumeratePatchablePaths(original, patchRoute, opts.scopes);
+  if (menu.length === 0) {
+    return { ok: false, reason: `ch${nn}: no patchable path exists for scopes ${opts.scopes.join(",")} on the ${patchRoute} route` };
+  }
+  const card = buildRepairCard({
+    bookId, chapter: original, brief, complaints: opts.complaints, scopes: opts.scopes, relPath: candidateName, plan,
+    patchProtocol: { baseHash, planHash, findingIds: findings.map((f) => f.findingId), route: patchRoute, menu },
+  });
+  const sessionId = `auto-author-repair-${bookId}-ch${nn}-${Date.now().toString(36)}`;
+  // IMP-01 (F-001/F-020): the repair session edits a SEEDED COPY of the chapter
+  // inside an isolated attempt workspace (its cwd + only writable dir). The
+  // canonical file is untouched until a fully validated splice commits via
+  // compare-and-swap — so the old byte-restore lane (and its F6 restore-failure
+  // halt) is structurally unnecessary: there is never anything to restore.
+  const chAttempt = mintChapterAttempt({
+    bookId,
+    chapterNumber,
+    chapterId,
+    attemptKind: "surgical-repair",
+    attemptSequence: 1,
+    promptSha256: sha256Hex(card),
+    // IMP-03 lineage: the repair attempt binds the exact plan/packet it edits under.
+    sourcePlanHash: plan ? sourceUsePlanHash(plan) : undefined,
+    inputHashes: {
+      ...(packet ? { sourcePacket: sourcePacketHash(packet) } : {}),
+      ...(plan ? { sourceUsePlan: sourceUsePlanHash(plan) } : {}),
+    },
+    io: opts.io,
+    seedBytes: originalBytes,
+    attemptsRoot: opts.io.attemptsRoot(),
+  });
+  deps.log(`[autopilot] author repair ch${nn}: surgical editor working (scopes ${opts.scopes.join(",")}, card ${card.length} chars, ${AUTHOR_WRITER_MODEL} @ ${AUTHOR_WRITER_EFFORT}, timeout ${Math.round(REPAIR_TIMEOUT_MS / 60000)}min)`);
   try {
     const r = await deps.spawn({
       task: card,
+      role: "author-repair",
       sessionId,
-      cwd: PIPELINE_DIR,
+      cwd: chAttempt.workspaceDir,
       sandbox: "workspace-write",
+      skipGitRepoCheck: true,
       model: AUTHOR_WRITER_MODEL,
       reasoningEffort: AUTHOR_WRITER_EFFORT,
       timeoutMs: REPAIR_TIMEOUT_MS,
     });
     try { deps.logSession(bookId, `author-repair-ch${nn}`, r); } catch { /* best-effort */ }
-    if (r.exitCode !== 0) { restore(); return { ok: false, reason: `ch${nn}: repair session exited ${r.exitCode}`, sessionId, restoreFailed }; }
+    // IMP-10: durable spawn evidence (no-op unless evidence is enabled).
+    if (chAttempt.evidenceRoot) {
+      recordSpawnEvidence({
+        evidenceRoot: chAttempt.evidenceRoot,
+        attemptId: chAttempt.identity.attemptId,
+        taskCard: card,
+        finalMessage: r.finalMessage,
+        executionContextManifestPath: (r as { manifestPath?: string }).manifestPath,
+        atIso: new Date().toISOString(),
+      });
+    }
+    if (r.exitCode !== 0) {
+      finalizeAttempt(chAttempt, "validation_failed", `repair session exited ${r.exitCode}`);
+      return { ok: false, reason: `ch${nn}: repair session exited ${r.exitCode}`, sessionId };
+    }
   } catch (err) {
-    restore();
+    finalizeAttempt(chAttempt, "infrastructure_failure", (err as Error).message.slice(0, 300));
     // Honest-accounting: a died repair spawn was minted but not logged on the
     // success path — record a synthetic failed session so the cost-report
     // invariant stays honest (same fix as the writer spawn in authorRun).
@@ -333,42 +481,117 @@ export async function doRepairOneChapter(
         stderr: (err as Error)?.message ?? String(err), durationMs: 0, sessionId,
       });
     } catch { /* best-effort */ }
-    return { ok: false, reason: `ch${nn}: repair session died (${(err as Error).message.slice(0, 200)})`, sessionId, restoreFailed };
+    return { ok: false, reason: `ch${nn}: repair session died (${(err as Error).message.slice(0, 200)})`, sessionId };
   }
-  // Patch-apply: splice allowed scopes from the session's file into the original.
-  let spliced: ChapterV21;
+  // Workspace containment: exactly ONE file (the seeded candidate) may exist.
+  const smuggled = unexpectedAttemptWrites(chAttempt, [PATCH_FILE_NAME]);
+  if (smuggled.length > 0) {
+    const reason = `ch${nn}: repair session wrote unexpected workspace file(s): ${smuggled.join(", ")}`;
+    finalizeAttempt(chAttempt, "unexpected_write", reason);
+    return { ok: false, reason, sessionId };
+  }
+  // IMP-07 patch-apply: the session returned a TYPED PATCH (patch.json); the
+  // conductor verifies base/plan/old-value hashes + the route allowlist and
+  // applies it entirely in memory. A whole-chapter output, a stale patch, or an
+  // out-of-scope path REJECTS — nothing is spliced, nothing is rebased.
+  let rawPatch: string;
   try {
-    const written = JSON.parse(readFileSync(absPath, "utf8")) as ChapterV21;
-    spliced = spliceRepairScopes(original, written, opts.scopes);
+    rawPatch = readFileSync(join(chAttempt.workspaceDir, PATCH_FILE_NAME), "utf8");
+  } catch {
+    finalizeAttempt(chAttempt, "validation_failed", "no patch.json produced (whole-chapter outputs are not accepted on the patch lane)");
+    return { ok: false, reason: `ch${nn}: repair session produced no ${PATCH_FILE_NAME} — whole-chapter outputs are rejected on the ${patchRoute} route`, sessionId };
+  }
+  if (chAttempt.evidenceRoot) {
+    recordAttemptObject(chAttempt.evidenceRoot, chAttempt.identity.attemptId, "repair-findings", JSON.stringify(findings, null, 2) + "\n");
+    recordAttemptObject(chAttempt.evidenceRoot, chAttempt.identity.attemptId, "chapter-patch", rawPatch);
+  }
+  let parsedPatch: ChapterPatchV1;
+  try {
+    parsedPatch = JSON.parse(rawPatch) as ChapterPatchV1;
   } catch (err) {
-    restore();
-    return { ok: false, reason: `ch${nn}: repair output rejected at splice (${(err as Error).message})`, sessionId, restoreFailed };
+    finalizeAttempt(chAttempt, "validation_failed", `unparseable patch.json: ${(err as Error).message.slice(0, 200)}`);
+    return { ok: false, reason: `ch${nn}: unparseable ${PATCH_FILE_NAME} (${(err as Error).message.slice(0, 120)})`, sessionId };
+  }
+  const applied = applyChapterPatch({
+    originalBytes, original, patch: parsedPatch, route: patchRoute, plan,
+    issuedFindingIds: findings.map((f) => f.findingId),
+  });
+  if (!applied.ok) {
+    finalizeAttempt(chAttempt, "validation_failed", `patch rejected: ${applied.reason.slice(0, 300)}`);
+    return { ok: false, reason: `ch${nn}: patch rejected — ${applied.reason}`, sessionId };
+  }
+  const spliced: ChapterV21 = applied.chapter;
+  // Instruction 11: prove every non-scope leaf is byte-identical before the
+  // battery even runs (drift here would be an apply bug, never a writer choice).
+  const drifted = nonScopeDrift(original, spliced, applied.touchedPaths);
+  if (drifted.length > 0) {
+    finalizeAttempt(chAttempt, "validation_failed", `non-scope drift: ${drifted.slice(0, 5).join(", ")}`);
+    return { ok: false, reason: `ch${nn}: non-scope field(s) drifted under the patch: ${drifted.slice(0, 5).join(", ")}`, sessionId };
+  }
+  deps.log(`[autopilot] author repair ch${nn}: patch verified (${applied.touchedPaths.length} op(s): ${applied.touchedPaths.join(", ")}); dependency closure: ${dependencyClosureChecks(applied.touchedPaths).join(", ")}`);
+  // IMP-03: belt-and-braces — leaf-only string/number replacements cannot embed
+  // a plan-control KEY, but the scan is cheap and guards any future widening of
+  // the allowlist. Any hit is an attempted relabel and rejects the repair.
+  const planMutation = embeddedPlanMutationFindings(spliced);
+  if (planMutation.length > 0) {
+    const reason = `ch${nn}: repair output embedded source-plan control field(s) (${planMutation.slice(0, 5).join(", ")}) — plan changes route upstream, never through repair output`;
+    finalizeAttempt(chAttempt, "validation_failed", reason);
+    return { ok: false, reason, sessionId };
   }
   const splicedBytes = JSON.stringify(spliced, null, 2) + "\n";
-  if (JSON.stringify(spliced) === JSON.stringify(original)) {
-    restore();
-    return { ok: false, reason: `ch${nn}: repair was a no-op inside its scope`, sessionId, restoreFailed };
-  }
-  writeFileSync(absPath, splicedBytes);
-  // Full deterministic stack on the SPLICED bytes (plan R4) — any FAIL restores.
-  const gate = await deps.runVerb(["gate-chapter", relPath]);
+  // Full deterministic stack on the SPLICED chapter (plan R4) — against candidate
+  // bytes with COMMITTED siblings as context; any FAIL simply never commits.
+  const gate = await opts.io.gateCandidate(spliced, absPath, relPath);
   const gateOut = [gate.stdout, gate.stderr].join("\n");
   if (!/Gate verdict: PASS/.test(gateOut)) {
-    restore();
-    return { ok: false, reason: `ch${nn}: spliced repair fails the gate`, sessionId, restoreFailed };
+    finalizeAttempt(chAttempt, "validation_failed", "patched repair fails the gate");
+    return { ok: false, reason: `ch${nn}: patched repair fails the gate`, sessionId };
   }
-  const rubric = await deps.runVerb(["rubric-metrics", bookId]);
+  const rubric = await opts.io.rubricWithCandidate(bookId, chapterNumber, spliced);
   const verdictLine = [rubric.stdout, rubric.stderr].join("\n").split("\n").find((l) => l.trim().startsWith(`ch${nn}:`)) ?? "";
   if (verdictLine.includes("FAIL")) {
-    restore();
-    return { ok: false, reason: `ch${nn}: spliced repair fails the rubric preflight — ${verdictLine.trim()}`, sessionId, restoreFailed };
+    finalizeAttempt(chAttempt, "validation_failed", `rubric preflight FAIL — ${verdictLine.trim().slice(0, 200)}`);
+    return { ok: false, reason: `ch${nn}: patched repair fails the rubric preflight — ${verdictLine.trim()}`, sessionId };
   }
   if (brief && packet) {
     const contract = authorWriteContractFindings(spliced, brief, packet);
     if (contract.length > 0) {
-      restore();
-      return { ok: false, reason: `ch${nn}: spliced repair breaks the write contract — ${contract.join(" | ").slice(0, 300)}`, sessionId, restoreFailed };
+      finalizeAttempt(chAttempt, "validation_failed", `write contract — ${contract.join(" | ").slice(0, 200)}`);
+      return { ok: false, reason: `ch${nn}: patched repair breaks the write contract — ${contract.join(" | ").slice(0, 300)}`, sessionId };
     }
+  }
+  // IMP-03 freshness: same pre-commit lineage re-check as the write path — a
+  // packet recompiled mid-repair invalidates the licenses this edit ran under.
+  if (plan) {
+    let freshPacket: SourcePacketV1 | undefined;
+    try { freshPacket = opts.io.readPacket(bookId, chapterNumber) ?? undefined; } catch { freshPacket = undefined; }
+    if (!freshPacket || sourceUsePlanStale(plan, freshPacket)) {
+      const reason = `ch${nn}: source lineage went STALE mid-repair (the source packet changed since this attempt's plan was verified) — candidate rejected; recompile packets+plans`;
+      finalizeAttempt(chAttempt, "validation_failed", reason);
+      return { ok: false, reason, sessionId };
+    }
+  }
+  // Commit: compare-and-swap against the canonical bytes this repair was minted
+  // from. A mismatch (anything committed since) is a losing stale attempt.
+  const committed = commitChapterCandidate({ attempt: chAttempt, bytes: splicedBytes, io: opts.io });
+  if (!committed.ok) {
+    finalizeAttempt(chAttempt, "stale_base", committed.reason);
+    return { ok: false, reason: `ch${nn}: ${committed.reason}`, sessionId };
+  }
+  finalizeAttempt(chAttempt, "committed");
+  // IMP-06: diagnosis-version diversity snapshot (repaired bytes are never the
+  // first-write denominator — firstWrite stays false on repair kinds). OPT-IN,
+  // never throws.
+  const divRec = recordChapterDiversity({
+    bookId,
+    chapterNumber,
+    chapter: spliced,
+    plan,
+    attemptKind: chAttempt.identity.attemptKind,
+    committedGeneration: chAttempt.identity.expectedBaseGeneration + 1,
+  });
+  if (divRec && chAttempt.evidenceRoot) {
+    recordAttemptObject(chAttempt.evidenceRoot, chAttempt.identity.attemptId, "diversity-features", JSON.stringify(divRec) + "\n");
   }
   return { ok: true, sessionId };
 }

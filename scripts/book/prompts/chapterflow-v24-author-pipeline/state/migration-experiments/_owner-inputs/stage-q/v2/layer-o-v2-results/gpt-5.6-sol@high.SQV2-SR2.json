@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR2",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNFRAMED_INVENTED_EMPIRICAL_CLAIM\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"A 2016 Stanford study of 4,200 first-time managers\",\"2.3 times more likely to retain their reports over two years\",\"The effect held across every industry the researchers sampled.\",\"Examples may be invented.\"],\"rationale\":\"The passage presents a highly specific study attribution, sample size, effect size, duration, and universal cross-industry result as established fact, with no visible indication that it may be hypothetical or invented. Because the provenance explicitly allows invented examples but the reader-facing prose uses an authoritative factual register, the source-register is materially misleading and should be blocked.\"}"
+}

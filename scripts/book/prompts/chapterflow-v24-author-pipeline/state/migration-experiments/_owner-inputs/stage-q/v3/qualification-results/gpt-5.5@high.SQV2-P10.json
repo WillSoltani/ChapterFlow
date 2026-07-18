@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P10",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Unsupported invented factual details in a real case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"The Intel reviewer reaches the Intel strategy review with two bad pages in his folder.\",\"The Intel reviewer writes the outsider question at the top of the review page and judges the options from that cooler vantage point.\"],\"rationale\":\"The source plan permits only the broad verified case elements: Andy Grove, Intel, memory chips, microprocessors, and the outsider-question framing. The candidate adds specific scene mechanics and artifacts, including an unnamed Intel reviewer, a strategy review, two pages in a folder, and writing the question at the top of a review page. These details are narrated in the same factual register as the sourced history but are not supported by the source plan, so the content has a material grounding defect.\"}"
+}

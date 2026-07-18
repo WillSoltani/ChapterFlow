@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-005",
+  "parsed": {
+    "caseId": "SQ-005",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "Nicholas Christakis and James Fowler reported that obesity clustered in the Framingham Heart Study network."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "That claim is debated, so do not read it as proof that body size jumps from mind to mind."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "your standards can shift"
+      }
+    ],
+    "explanation": "The candidate accurately attributes the reported finding, explicitly identifies the claim as debated, rejects an overstrong causal interpretation, and uses qualified language for the possible social mechanism.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-005\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"Nicholas Christakis and James Fowler reported that obesity clustered in the Framingham Heart Study network.\"},{\"materialIndex\":1,\"quote\":\"That claim is debated, so do not read it as proof that body size jumps from mind to mind.\"},{\"materialIndex\":1,\"quote\":\"your standards can shift\"}],\"explanation\":\"The candidate accurately attributes the reported finding, explicitly identifies the claim as debated, rejects an overstrong causal interpretation, and uses qualified language for the possible social mechanism.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,16 @@
+{
+  "apiCalls": 0,
+  "candidateReorderingAllowed": false,
+  "maximumCacheAgeSeconds": 86400,
+  "maximumFutureSkewSeconds": 300,
+  "modelCalls": 0,
+  "networkCalls": 0,
+  "policySha256": "18273dba06ad95a8bb49d202872f0e18e8762e8847d0560a80673f42d64847e9",
+  "requireExactModelSlug": true,
+  "requireReasoningEffortSupport": true,
+  "requiredVisibility": "list",
+  "schema": "imp24-candidate-availability-policy-v1",
+  "skipUnavailableWithoutReordering": true,
+  "source": "codex-local-models-cache",
+  "sourceFile": "models_cache.json"
+}

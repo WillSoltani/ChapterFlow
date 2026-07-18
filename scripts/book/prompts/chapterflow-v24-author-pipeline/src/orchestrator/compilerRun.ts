@@ -78,6 +78,7 @@ async function convergeSourceReadiness(bookId: string, deps: AutopilotDeps, hear
     const task = sourcePrewriteRepairPrompt(bookId, lastReport, attempt + 1, SOURCE_REPAIR_MAX_PASSES);
     const r = await spawnAndLog(bookId, deps, `compiler-source-repair-${attempt + 1}`, {
       task,
+      role: "source-repair",
       sessionId: deps.mkSessionId(`compiler-source-repair-${attempt + 1}`),
       cwd: process.cwd(),
       sandbox: "workspace-write",
@@ -110,6 +111,7 @@ async function spawnOneSectionWriter(bookId: string, deps: AutopilotDeps, task: 
   deps.log(`[autopilot] section ch${String(task.chapterNumber).padStart(2, "0")} ${task.kind}: writer working`);
   const r = await spawnAndLog(bookId, deps, `section-${task.kind}-ch${task.chapterNumber}`, {
     task: prompt,
+    role: "source-compiler",
     sessionId: sid,
     cwd: process.cwd(),
     sandbox: "workspace-write",
@@ -289,6 +291,7 @@ export async function convergeAssembly(bookId: string, deps: AutopilotDeps, maxP
       const label = `compiler-assembly-repair-${attempt + 1}-ch${String(chapterNumber).padStart(2, "0")}`;
       const r2 = await spawnAndLog(bookId, deps, label, {
         task: assemblyRepairPrompt(bookId, [chapterNumber], chapterReport, attempt + 1, SECTION_REPAIR_MAX_PASSES),
+        role: "source-compiler",
         sessionId: deps.mkSessionId(label),
         cwd: process.cwd(),
         sandbox: "workspace-write",
@@ -314,6 +317,7 @@ async function convergeSections(bookId: string, deps: AutopilotDeps, maxParallel
     deps.log(`[autopilot] compiler section repair attempt ${attempt + 1}/${SECTION_REPAIR_MAX_PASSES}`);
     const r = await spawnAndLog(bookId, deps, `compiler-section-repair-${attempt + 1}`, {
       task: sectionRepairPrompt(bookId, reportOf(gate)),
+      role: "source-compiler",
       sessionId: deps.mkSessionId(`compiler-section-repair-${attempt + 1}`),
       cwd: process.cwd(),
       sandbox: "workspace-write",

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR2",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Unframed synthetic or unsupported empirical citation presented as fact\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"A 2016 Stanford study of 4,200 first-time managers found that those who ran weekly one-on-ones were 2.3 times more likely to retain their reports over two years.\",\"The effect held across every industry the researchers sampled.\"],\"rationale\":\"The candidate presents a highly specific empirical research claim as real source-backed fact, naming Stanford, a year, sample size, retention multiplier, time window, and industry-wide generalization, but gives no reader-visible framing that this may be an invented example, hypothetical scenario, or illustrative data. For source-register judging, that makes the passage misleading on its face because a reader would naturally understand it as reporting an actual study rather than illustrative or synthetic material.\"}"
+}

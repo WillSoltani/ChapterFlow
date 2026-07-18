@@ -1,0 +1,121 @@
+{
+  "schema": "reader-acceptable-controls-v1",
+  "poolId": "reader-gold-dev-pool-v1",
+  "judgedDocsManifestSha256": "10fb9bc18e7930f2a547c3d19cb5def2b19a52f4716a4919390dcac0111c626d",
+  "policy": "reader-decision-policy-v3",
+  "ratification": {
+    "document": "docs/v25/reports/V25_PILOT_READINESS_OWNER_RATIFICATION.md",
+    "ownerApprovedForDevelopmentBakeoff": true,
+    "independentHumanRater": false,
+    "publicationCertification": false,
+    "candidateOutputsUsedForLabels": false,
+    "selectionFrozenBeforeRoleCalls": true
+  },
+  "selectionRule": "agreed-eligible (both adjudicators; blockers/wrong-quiz on either side disqualify) ranked by agreed composite (mean of A/B) -> fewer material advisories -> manifest rank -> lexicographic; max 4 per book, exactly 10 controls, >=3 books",
+  "controls": [
+    {
+      "doc": "made-to-stick-ch04.md",
+      "readerDocumentSha256": "9a20a3afd9612faf43ea26575e0f471401c180f58fdef2bcaceedd4a54194120",
+      "agreedComposite": 89.95,
+      "aComposite": 93.5,
+      "bComposite": 86.4
+    },
+    {
+      "doc": "made-to-stick-ch05.md",
+      "readerDocumentSha256": "b653ebd004187fe20ebc0ecf18ecfd5bf69bc9cf532a48ab1cb546a25ed4ef8d",
+      "agreedComposite": 89.9,
+      "aComposite": 92.8,
+      "bComposite": 87.0
+    },
+    {
+      "doc": "made-to-stick-ch01.md",
+      "readerDocumentSha256": "fba5a84da0b771aba42f854946219d79d669446a3b7b886bc1257b1d6da006c1",
+      "agreedComposite": 89.8,
+      "aComposite": 92.5,
+      "bComposite": 87.1
+    },
+    {
+      "doc": "made-to-stick-ch03.md",
+      "readerDocumentSha256": "98be81ccc2cfca411c84ab70d13e9177b2cc17a415d7c69574158538932dfd2d",
+      "agreedComposite": 89.6,
+      "aComposite": 92.1,
+      "bComposite": 87.1
+    },
+    {
+      "doc": "the-happiness-hypothesis-ch04.md",
+      "readerDocumentSha256": "cad5e1595b2efe5c8d62f2d7f66a8ccaebf4bec713e15f4f421686da802e9df3",
+      "agreedComposite": 88.65,
+      "aComposite": 92,
+      "bComposite": 85.3
+    },
+    {
+      "doc": "the-happiness-hypothesis-ch11.md",
+      "readerDocumentSha256": "054ba8e8b2d2ad3f6ef5df2011a5ad740940f31f5eb0e0547d6e3b0f311a2c83",
+      "agreedComposite": 88.05,
+      "aComposite": 92.6,
+      "bComposite": 83.5
+    },
+    {
+      "doc": "nudge-ch08.md",
+      "readerDocumentSha256": "ff88feb0fcaf04c0e24219ce3120ebd1af374fa9f3c25213ce442a88e727b75e",
+      "agreedComposite": 87.55,
+      "aComposite": 94.1,
+      "bComposite": 81.0
+    },
+    {
+      "doc": "the-happiness-hypothesis-ch09.md",
+      "readerDocumentSha256": "135401c4a75b0c569ce4369e91eea88d9a9b2d64df6b4d98d838252093558214",
+      "agreedComposite": 87.5,
+      "aComposite": 92.6,
+      "bComposite": 82.4
+    },
+    {
+      "doc": "the-happiness-hypothesis-ch06.md",
+      "readerDocumentSha256": "98fb3e50e070ca44543881613f39dbaf5c478bfff7e2aea838688f2b3d0e5dd2",
+      "agreedComposite": 87.1,
+      "aComposite": 90.3,
+      "bComposite": 83.9
+    },
+    {
+      "doc": "nudge-ch03.md",
+      "readerDocumentSha256": "5561431cdd87978ec2bd4def5cf4e2fc7ab53d8379f48e0eaaf7327a9dcaeda7",
+      "agreedComposite": 86.95,
+      "aComposite": 93,
+      "bComposite": 80.9
+    }
+  ],
+  "booksRepresented": [
+    "made-to-stick",
+    "nudge",
+    "the-happiness-hypothesis"
+  ],
+  "ownerSpotCheck": {
+    "required": 3,
+    "flagged": [
+      "made-to-stick-ch04.md",
+      "the-happiness-hypothesis-ch06.md",
+      "nudge-ch03.md"
+    ],
+    "status": "PENDING_OWNER \u2014 required before the readiness corpus freeze",
+    "rationale": "highest-ranked control; lowest-ranked selected control; boundary pick carrying the origin-ambiguity staging escalation (fictional characters inside real Asch/Milgram experiments)"
+  },
+  "arbitration": {
+    "eligibilityDisputes": [
+      {
+        "doc": "factfulness-ch11.md",
+        "aEligible": true,
+        "bEligible": false,
+        "resolution": "EXCLUDED_CONSERVATIVELY \u2014 agreed composite 82.35 is far below the selection cutoff (86.95), so the dispute is moot for control selection; when adjudicators disagree on gold eligibility the chapter does not become gold"
+      }
+    ],
+    "calibrationNote": "A-side (sol@xhigh) scores a systematic ~+7.6 offset vs B-side (Claude); orderings compatible; agreed means used throughout; zero blockers and zero structurally-wrong quizzes on BOTH sides across all 24 docs",
+    "aSideRecord": "adjudication/a-side/a-side-run1.json",
+    "bSideRecord": "adjudication/b-side-run2.json",
+    "aSideCalls": {
+      "base": 24,
+      "replays": 0,
+      "api": 0
+    }
+  },
+  "controlsSha256": "f3b3a85e47365db8ab7722cef0caebfcd5fee4387a85ec24ee49f41e392fbcc8"
+}

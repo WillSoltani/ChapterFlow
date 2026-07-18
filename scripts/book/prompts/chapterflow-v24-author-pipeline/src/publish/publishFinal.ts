@@ -70,7 +70,7 @@ export type PublishFinalStep = {
 // grading/ask/audio read the package from S3 (book-content/packages/<id>.v21.json),
 // synced out-of-band by scripts/book/upload-book-packages-to-s3.ts, and served by
 // a separate web deploy — none of which publish triggers. The API catalog the
-// native iOS app reads is a THIRD surface again (DynamoDB rows + per-version S3
+// native iOS app reads is a THIRD surface again (catalog-table rows + per-version S3
 // artifacts, populated only by scripts/book/register-api-books.ts): a book can be
 // live on the web and still 404 on the API — 37 books shipped that way before
 // 2026-07-10. The sentinel is the tracked, machine-readable "deploy owed" flag:
