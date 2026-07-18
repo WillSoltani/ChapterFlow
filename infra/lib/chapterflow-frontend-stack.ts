@@ -1,3 +1,4 @@
+import * as fs from "fs";
 import * as path from "path";
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
@@ -52,6 +53,19 @@ export interface ChapterFlowFrontendStackProps extends cdk.StackProps {
    * GitHub Secrets → CDK context/env at deploy time.
    */
   readonly serverEnv?: Record<string, string>;
+  /**
+   * WS6-002 interim origin lock. When set, CloudFront injects it as the
+   * x-origin-verify custom header on both public Function URL origins and it is
+   * enforced by middleware.ts (server) + the image wrapper. Unset → no header,
+   * no enforcement (today's behavior; keeps currently-deployed envs diff-clean
+   * until the secret is introduced).
+   */
+  readonly originVerifySecret?: string;
+  /**
+   * "enforce" (default) rejects unverified requests; "log" only warns and lets
+   * them through — the observation half of a two-phase rollout.
+   */
+  readonly originVerifyMode?: "enforce" | "log";
 }
 
 // ---------------------------------------------------------------------------
@@ -393,6 +407,21 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       NODE_ENV: "production",
     };
 
+    // WS6-002 interim origin lock. Only the two inbound-HTTP functions (server +
+    // image) enforce the shared secret, so it goes ONLY into their env — never
+    // into baseInfraEnv, which is spread into the revalidation / warmer / dynamo
+    // provider functions. (The revalidation fn separately receives the SECRET
+    // alone — not via baseInfraEnv — because its outbound ISR self-fetch hits
+    // the raw server Function URL and must stamp the header; see its wrapper.)
+    // Emitted only when the secret is set, so unset = no env diff.
+    const originVerifySecret = props.originVerifySecret;
+    const originVerifyEnv: Record<string, string> = originVerifySecret
+      ? {
+          ORIGIN_VERIFY_SECRET: originVerifySecret,
+          ORIGIN_VERIFY_MODE: props.originVerifyMode ?? "enforce",
+        }
+      : {};
+
     // Server-only env: the infra vars PLUS the caller-provided secrets (Stripe
     // secret/webhook/price keys, Anthropic + ElevenLabs API keys,
     // AUTH_STATE_SECRET, full Cognito config — see infra/bin/app.ts). Only the
@@ -402,6 +431,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       ...baseInfraEnv,
       // Merge caller-provided env vars (secrets come from here)
       ...(props.serverEnv ?? {}),
+      ...originVerifyEnv,
     };
 
     // -------------------------------------------------------------------
@@ -431,10 +461,19 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // signing against a RESPONSE_STREAM Function URL was rejected at runtime:
     // every route 403'd with Lambda "Forbidden / Function URL authorization"
     // (AccessDeniedException), a failure cdk synth cannot catch. Reverted to
-    // restore service. Data is still gated by the app's own auth (requireUser /
-    // requireActiveBookUser); re-locking via OAC is a tracked follow-up that MUST
-    // be validated on a non-prod deploy (custom origin-request policy excluding
-    // Host + Authorization, and UNSIGNED-PAYLOAD signing for the stream).
+    // restore service.
+    //
+    // WS6-002 interim mitigation (current): when originVerifySecret is set,
+    // CloudFront injects a shared-secret x-origin-verify header on this origin
+    // and middleware.ts rejects any request lacking it (the image origin is
+    // guarded the same way by the origin-verify wrapper). That closes the
+    // direct-Function-URL bypass without SigV4. Data is also still gated by the
+    // app's own auth (requireUser / requireActiveBookUser).
+    //
+    // The AWS_IAM + OAC re-lock remains the tracked follow-up and MUST be
+    // validated on a non-prod deploy before shipping (custom origin-request
+    // policy excluding Host + Authorization, and UNSIGNED-PAYLOAD signing for the
+    // stream) — cdk synth cannot catch the runtime 403 failure mode.
     const serverFnUrl = this.serverFunction.addFunctionUrl({
       authType: lambda.FunctionUrlAuthType.NONE,
       invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
@@ -444,22 +483,53 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // Lambda — Image optimization
     // -------------------------------------------------------------------
 
+    // The image Function URL is authType NONE too, so it gets the same interim
+    // origin lock — but as a Lambda (no middleware in front), the check runs in a
+    // thin wrapper prepended to the generated handler. Bundle the generated dir
+    // PLUS infra/assets/origin-verify-wrapper.mjs into the asset and point the
+    // handler at the wrapper. The wrapper no-ops without ORIGIN_VERIFY_SECRET, so
+    // it is applied unconditionally. Bundling uses a LOCAL bundler only (a plain
+    // fs.cpSync copy) and never docker: tryBundle throws on failure rather than
+    // returning false, so CDK cannot silently fall back to the (unavailable)
+    // docker path. The `image` is a required field but is never invoked.
+    const imageSourceDir = path.join(openNextDir, "image-optimization-function");
+    const originVerifyWrapper = path.join(
+      __dirname,
+      "../assets/origin-verify-wrapper.mjs",
+    );
     const imageFn = new lambda.Function(this, "ImageFn", {
       functionName: name("ChapterFlowImage"),
       runtime: lambda.Runtime.NODEJS_20_X,
-      handler: "index.handler",
-      code: lambda.Code.fromAsset(
-        path.join(openNextDir, "image-optimization-function"),
-      ),
+      handler: "origin-verify-wrapper.handler",
+      code: lambda.Code.fromAsset(imageSourceDir, {
+        bundling: {
+          image: cdk.DockerImage.fromRegistry(
+            "public.ecr.aws/docker/library/node:20",
+          ),
+          local: {
+            tryBundle(outputDir: string): boolean {
+              fs.cpSync(imageSourceDir, outputDir, { recursive: true });
+              fs.cpSync(
+                originVerifyWrapper,
+                path.join(outputDir, "origin-verify-wrapper.mjs"),
+              );
+              return true;
+            },
+          },
+        },
+      }),
       memorySize: 1536,
       timeout: cdk.Duration.seconds(25),
       // Least-privilege: its own auto-created role (basic execution) plus read
       // on the assets bucket only (granted below). No app secrets, no
       // DynamoDB / SES / Cognito access — image optimization needs none of it.
+      // The origin-verify secret (server-only class) is added ONLY when set so
+      // the wrapper can enforce; unset = no env diff.
       environment: {
         BUCKET_NAME: assetsBucket.bucketName,
         BUCKET_KEY_PREFIX: "_assets",
         ...baseInfraEnv,
+        ...originVerifyEnv,
       },
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
@@ -476,18 +546,59 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // Lambda — Revalidation (triggered by SQS)
     // -------------------------------------------------------------------
 
+    // The revalidation adapter re-renders a stale ISR page with a HEAD request
+    // to the host the server saw when enqueuing — which is the RAW server
+    // Function URL domain (CloudFront strips the viewer Host header), so the
+    // self-fetch bypasses CloudFront and would be 403'd by the origin lock in
+    // enforce mode (breaking ISR and paging RevalidationDlqDepthAlarm). The
+    // wrapper injects x-origin-verify into this function's outbound HTTPS so the
+    // self-fetch stays authorized — see origin-verify-revalidation-wrapper.mjs.
+    // Same local-only bundling contract as ImageFn above (throws, never docker).
+    const revalidationSourceDir = path.join(
+      openNextDir,
+      "revalidation-function",
+    );
+    const revalidationWrapper = path.join(
+      __dirname,
+      "../assets/origin-verify-revalidation-wrapper.mjs",
+    );
     const revalidationFn = new lambda.Function(this, "RevalidationFn", {
       functionName: name("ChapterFlowRevalidation"),
       runtime: lambda.Runtime.NODEJS_20_X,
-      handler: "index.handler",
-      code: lambda.Code.fromAsset(
-        path.join(openNextDir, "revalidation-function"),
-      ),
+      handler: "origin-verify-revalidation-wrapper.handler",
+      code: lambda.Code.fromAsset(revalidationSourceDir, {
+        bundling: {
+          image: cdk.DockerImage.fromRegistry(
+            "public.ecr.aws/docker/library/node:20",
+          ),
+          local: {
+            tryBundle(outputDir: string): boolean {
+              fs.cpSync(revalidationSourceDir, outputDir, { recursive: true });
+              fs.cpSync(
+                revalidationWrapper,
+                path.join(
+                  outputDir,
+                  "origin-verify-revalidation-wrapper.mjs",
+                ),
+              );
+              return true;
+            },
+          },
+        },
+      }),
       memorySize: 256,
       timeout: cdk.Duration.seconds(30),
       // Least-privilege: its own auto-created role plus the ISR cache table; SQS
-      // consume permissions are granted by addEventSource() below. No secrets.
-      environment: baseInfraEnv,
+      // consume permissions are granted by addEventSource() below. No app
+      // secrets — the origin-verify secret is the one exception, carried ONLY so
+      // the wrapper can stamp the OUTBOUND self-fetch (this fn takes no inbound
+      // HTTP); emitted only when set, so unset = no env diff.
+      environment: {
+        ...baseInfraEnv,
+        ...(originVerifySecret
+          ? { ORIGIN_VERIFY_SECRET: originVerifySecret }
+          : {}),
+      },
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
     });
@@ -649,19 +760,31 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     );
 
     // Plain Function URL origins (no OAC). The OAC lock (X2) is reverted here —
-    // see the serverFnUrl note above for why and the re-locking follow-up.
+    // see the serverFnUrl note above for why and the re-locking follow-up. The
+    // interim origin lock rides on custom origin headers instead: CloudFront
+    // injects x-origin-verify (WS6-002) alongside the existing x-forwarded-host.
+    const serverCustomHeaders: Record<string, string> = {
+      // Tell OpenNext the public host (custom domain). With no custom domain
+      // (dev/staging), omit it — OpenNext falls back to the CloudFront host.
+      ...(appDomain ? { "x-forwarded-host": appDomain } : {}),
+      // WS6-002 shared secret; omitted when unset so the header (and its diff)
+      // only appear once the secret is introduced.
+      ...(originVerifySecret ? { "x-origin-verify": originVerifySecret } : {}),
+    };
     const serverOrigin = new origins.FunctionUrlOrigin(serverFnUrl, {
       // Must exceed ServerFn's timeout so CloudFront never closes first during
       // the official verifier's worst-case OCSP timeout path.
       readTimeout: cdk.Duration.seconds(60),
-      // Tell OpenNext the public host (custom domain). With no custom domain
-      // (dev/staging), omit it — OpenNext falls back to the CloudFront host.
-      ...(appDomain
-        ? { customHeaders: { "x-forwarded-host": appDomain } }
+      ...(Object.keys(serverCustomHeaders).length > 0
+        ? { customHeaders: serverCustomHeaders }
         : {}),
     });
 
-    const imageOrigin = new origins.FunctionUrlOrigin(imageFnUrl);
+    const imageOrigin = originVerifySecret
+      ? new origins.FunctionUrlOrigin(imageFnUrl, {
+          customHeaders: { "x-origin-verify": originVerifySecret },
+        })
+      : new origins.FunctionUrlOrigin(imageFnUrl);
 
     // Cache policies
     const serverCachePolicy = new cloudfront.CachePolicy(
@@ -1027,9 +1150,9 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       value: this.serverFunction.functionArn,
     });
 
-    new cdk.CfnOutput(this, "ServerFunctionUrl", {
-      value: serverFnUrl.url,
-    });
+    // WS6-002: the ServerFunctionUrl output was removed — it leaked the raw
+    // public Function URL (the very endpoint the origin lock exists to keep
+    // traffic off) and no workflow consumes it. ServerFunctionArn stays.
 
     if (certificate) {
       new cdk.CfnOutput(this, "AppUrl", {

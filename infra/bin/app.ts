@@ -124,6 +124,7 @@ if (!skipFrontend && openNextExists) {
       "COGNITO_USER_POOL_ID",
       "COGNITO_REDIRECT_URI",
       "AUTH_STATE_SECRET",
+      "CHAPTERFLOW_ORIGIN_VERIFY_SECRET",
       "CHAPTERFLOW_APP_BASE_URL",
       "ANTHROPIC_API_KEY",
       "APPLE_IAP_BUNDLE_ID",
@@ -161,6 +162,25 @@ if (!skipFrontend && openNextExists) {
           "before deploying.",
       );
     }
+
+    // WS6-002: CHAPTERFLOW_ORIGIN_VERIFY_SECRET is the shared secret CloudFront
+    // injects as x-origin-verify and that middleware.ts / the image wrapper
+    // enforce as the interim lock on the public Function URLs. A short, guessable
+    // value defeats the lock, so mirror the AUTH_STATE_SECRET floor and fail the
+    // prod synth loudly rather than ship a weak header. dev/staging stay optional
+    // (no secret → no header, no enforcement — today's behavior).
+    const ORIGIN_VERIFY_SECRET_MIN_LENGTH = 32;
+    const originVerifySecret =
+      process.env.CHAPTERFLOW_ORIGIN_VERIFY_SECRET ?? "";
+    if (originVerifySecret.length < ORIGIN_VERIFY_SECRET_MIN_LENGTH) {
+      throw new Error(
+        "Refusing to synth the prod ChapterFlowFrontend stack — " +
+          "CHAPTERFLOW_ORIGIN_VERIFY_SECRET must be at least " +
+          `${ORIGIN_VERIFY_SECRET_MIN_LENGTH} characters (got ` +
+          `${originVerifySecret.length}). Set a long random prod secret before ` +
+          "deploying.",
+      );
+    }
   }
 
   new ChapterFlowFrontendStack(app, cfg.frontendStackId, {
@@ -173,6 +193,16 @@ if (!skipFrontend && openNextExists) {
     contentBucketName,
     ssmPrefix: cfg.ssmPrefix,
     domainName: cfg.domainName,
+    // WS6-002 interim origin lock. Secret unset → byte-identical to today (no
+    // header, no enforcement). Mode is passed through ONLY when exactly "log"
+    // (the two-phase observation window); anything else leaves it undefined so
+    // the stack defaults to "enforce".
+    originVerifySecret:
+      process.env.CHAPTERFLOW_ORIGIN_VERIFY_SECRET?.trim() || undefined,
+    originVerifyMode:
+      process.env.CHAPTERFLOW_ORIGIN_VERIFY_MODE?.trim() === "log"
+        ? "log"
+        : undefined,
     serverEnv: {
       // These are populated from GitHub Secrets in CI/CD.
       // For local synth/deploy, set them as env vars or omit for dry-run.
