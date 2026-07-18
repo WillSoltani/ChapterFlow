@@ -18,7 +18,7 @@ import {
   ANNUAL_TOTAL_AMOUNT,
   formatAmountWithCurrency,
 } from "@/lib/pricing";
-import { shouldBlockStripeCheckout } from "@/app/app/api/book/_lib/stripe-checkout-entitlement-core";
+import { stripeCheckoutBlockReason } from "@/app/app/api/book/_lib/stripe-checkout-entitlement-core";
 
 export const runtime = "nodejs";
 
@@ -64,14 +64,24 @@ export async function POST(req: Request) {
     // who is already Pro by ANY source — Stripe, license, gift_code,
     // flow_points, admin. Also block an attached Apple lineage after its
     // effective period expires: Stripe's webhook cannot overwrite Apple, so
-    // charging first would create paid-without-access. The Stripe-subscription
+    // charging first would create paid-without-access. A third case: an
+    // unresolved chargeback (disputeOpen) blocks the webhook's grant write, so
+    // charging first is paid-without-access as well. The Stripe-subscription
     // lookup below only catches Stripe-Pro users (customerExisted); this catches
     // the rest BEFORE we mint a customer or checkout session.
-    if (shouldBlockStripeCheckout(entitlement)) {
+    const blockReason = stripeCheckoutBlockReason(entitlement);
+    if (blockReason === "already_pro") {
       throw new BookApiError(
         409,
         "already_pro",
         "You already have Pro access. Manage your plan from your account settings."
+      );
+    }
+    if (blockReason === "billing_disputed") {
+      throw new BookApiError(
+        409,
+        "billing_disputed",
+        "There's an unresolved billing dispute on your account, so a new subscription can't be started. Please contact support@chapterflow.ca to resolve it."
       );
     }
 
