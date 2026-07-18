@@ -673,6 +673,103 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
     suppressionErrorsAlarm.addAlarmAction(opsAlarmAction);
 
+    // -------------------------------------------------------------------
+    // CloudWatch dashboard — backend ops (WS6-033)
+    // -------------------------------------------------------------------
+    // Version-controlled, out-of-band view of this stack's health. The in-app
+    // admin Ops dashboard is served BY the frontend stack's server Lambda, so
+    // it disappears exactly when an incident takes that Lambda down; this
+    // dashboard reads straight from CloudWatch and survives that failure
+    // mode. One dashboard per stack — this one binds only metrics the
+    // backend stack can reference in-stack (constructs) or by name
+    // (ChapterFlow/Ops, same convention as the OpsFailure alarm above). The
+    // Cognito PreSignUp widget is added further down, inside the conditional
+    // block where preSignUpFn is actually created.
+    const backendOpsDashboard = new cloudwatch.Dashboard(this, "BackendOpsDashboard", {
+      dashboardName: `ChapterFlowBackendOps${suffix}`,
+      // Keep each widget's own 5-minute period (matching the alarms) instead
+      // of letting it drift with the dashboard's selected time range.
+      periodOverride: cloudwatch.PeriodOverride.INHERIT,
+    });
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Reading-reminder cron errors (sum)",
+        left: [reminderFn.metricErrors({ period: cdk.Duration.minutes(5), statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Reading-reminder cron duration vs 10-min budget (max, ms)",
+        left: [
+          reminderFn.metricDuration({ period: cdk.Duration.minutes(5), statistic: "Maximum" }),
+        ],
+        leftAnnotations: [
+          {
+            value: reminderTimeout.toMilliseconds() * 0.8,
+            label: "80% of budget",
+            color: cloudwatch.Color.ORANGE,
+          },
+        ],
+        width: 12,
+      }),
+    );
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Email suppression handler errors (sum)",
+        left: [suppressionFn.metricErrors({ period: cdk.Duration.minutes(5), statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "OpsFailure (ChapterFlow/Ops, dimensionless rollup — sum)",
+        left: [
+          new cloudwatch.Metric({
+            namespace: "ChapterFlow/Ops",
+            metricName: "OpsFailure",
+            statistic: "Sum",
+            period: cdk.Duration.minutes(5),
+          }),
+        ],
+        width: 12,
+      }),
+    );
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Reminder DLQ depth (messages visible, max)",
+        left: [
+          reminderDlq.metricApproximateNumberOfMessagesVisible({
+            period: cdk.Duration.minutes(5),
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Suppression DLQ depth (messages visible, max)",
+        left: [
+          suppressionDlq.metricApproximateNumberOfMessagesVisible({
+            period: cdk.Duration.minutes(5),
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+    );
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "App table throttled requests (sum)",
+        left: [buildThrottleMetric(this.appTable)],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Analytics table throttled requests (sum)",
+        left: [buildThrottleMetric(this.analyticsTable)],
+        width: 12,
+      }),
+    );
+
     // Expose the config-set name to the app runtime (read via getServerEnv → SSM).
     new ssm.StringParameter(this, "SesConfigurationSetParameter", {
       parameterName: `${this.ssmPrefix}/SES_CONFIGURATION_SET`,
@@ -762,6 +859,18 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       );
       preSignUpErrorsAlarm.addAlarmAction(opsAlarmAction);
 
+      // preSignUpFn only exists in this conditional block (external pool id
+      // known at synth), so its dashboard widget is added here too.
+      backendOpsDashboard.addWidgets(
+        new cloudwatch.GraphWidget({
+          title: "Cognito PreSignUp (Sign-in-with-Apple linking) errors (sum)",
+          left: [
+            preSignUpFn.metricErrors({ period: cdk.Duration.minutes(5), statistic: "sum" }),
+          ],
+          width: 24,
+        }),
+      );
+
       // The pool is external, so surface the ARN operators must wire to it.
       new cdk.CfnOutput(this, "CognitoPreSignUpFunctionArn", {
         value: preSignUpFn.functionArn,
@@ -789,6 +898,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
     new cdk.CfnOutput(this, "OpsAlertsTopicArn", {
       value: opsAlertsTopic.topicArn,
+    });
+    new cdk.CfnOutput(this, "BackendOpsDashboardName", {
+      value: backendOpsDashboard.dashboardName,
     });
   }
 }

@@ -23,6 +23,58 @@ import * as logs from "aws-cdk-lib/aws-logs";
 import * as wafv2 from "aws-cdk-lib/aws-wafv2";
 import { type EnvName } from "./env-config";
 import { buildWebAclRules } from "./waf-rules";
+
+// ---------------------------------------------------------------------------
+// WS6-033: DynamoDB metrics by table NAME (this stack only has
+// props.appTableName/analyticsTableName strings — see the ARN-by-name
+// construction above — not the dynamodb.Table constructs the backend stack
+// owns, so it can't call table.metricThrottledRequestsForOperation() etc.
+// directly). Mirrors the shape of buildThrottleMetric in
+// chapterflow-backend-stack.ts for the golden-signals dashboard below.
+// ---------------------------------------------------------------------------
+
+function buildThrottleMetricByName(tableName: string): cloudwatch.MathExpression {
+  const operations = [
+    "BatchGetItem",
+    "BatchWriteItem",
+    "DeleteItem",
+    "GetItem",
+    "PutItem",
+    "Query",
+    "TransactWriteItems",
+    "UpdateItem",
+  ];
+
+  const usingMetrics = Object.fromEntries(
+    operations.map((operation, index) => [
+      `m${index}`,
+      new cloudwatch.Metric({
+        namespace: "AWS/DynamoDB",
+        metricName: "ThrottledRequests",
+        dimensionsMap: { TableName: tableName, Operation: operation },
+        statistic: "sum",
+        period: cdk.Duration.minutes(5),
+      }),
+    ]),
+  );
+
+  return new cloudwatch.MathExpression({
+    expression: Object.keys(usingMetrics).join(" + "),
+    usingMetrics,
+    period: cdk.Duration.minutes(5),
+  });
+}
+
+function tableLatencyMetricByName(tableName: string): cloudwatch.Metric {
+  return new cloudwatch.Metric({
+    namespace: "AWS/DynamoDB",
+    metricName: "SuccessfulRequestLatency",
+    dimensionsMap: { TableName: tableName },
+    statistic: "Average",
+    period: cdk.Duration.minutes(5),
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
@@ -1152,6 +1204,175 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     );
 
     // -------------------------------------------------------------------
+    // CloudWatch dashboard — golden signals (WS6-033)
+    // -------------------------------------------------------------------
+    // Version-controlled, out-of-band view of this stack's health. The in-app
+    // admin Ops dashboard is served BY the server Lambda, so it disappears
+    // exactly when an incident takes that Lambda down; this dashboard reads
+    // straight from CloudWatch and survives that failure mode. One dashboard
+    // per stack — this one binds only metrics the frontend stack can
+    // reference without a cross-stack CloudFormation export (constructs
+    // in-stack; ChapterFlow/Ops + the DynamoDB table names by-name, same
+    // convention as the alarms above).
+    const goldenSignalsDashboard = new cloudwatch.Dashboard(this, "GoldenSignalsDashboard", {
+      dashboardName: `ChapterFlowGoldenSignals${suffix}`,
+      // Keep each widget's own 5-minute period (matching the alarms) instead
+      // of letting it drift with the dashboard's selected time range.
+      periodOverride: cloudwatch.PeriodOverride.INHERIT,
+    });
+
+    // TRAFFIC
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda invocations (sum)",
+        left: [this.serverFunction.metricInvocations({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "CloudFront requests (sum)",
+        left: [this.distribution.metricRequests({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+    );
+
+    // LATENCY
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda duration — p50 / p95 / p99 (ms)",
+        left: [
+          this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p50" }),
+          this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p95" }),
+          this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p99" }),
+        ],
+        width: 24,
+      }),
+    );
+
+    // ERRORS
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda errors (sum)",
+        left: [this.serverFunction.metricErrors({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda throttles (sum)",
+        left: [this.serverFunction.metricThrottles({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "CloudFront 4xxErrorRate (%)",
+        left: [this.distribution.metric4xxErrorRate({ period: alarmPeriod, statistic: "Average" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "CloudFront 5xxErrorRate (%)",
+        left: [this.distribution.metric5xxErrorRate({ period: alarmPeriod, statistic: "Average" })],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "OpsFailure (ChapterFlow/Ops, dimensionless rollup — sum)",
+        left: [
+          new cloudwatch.Metric({
+            namespace: "ChapterFlow/Ops",
+            metricName: "OpsFailure",
+            statistic: "Sum",
+            period: alarmPeriod,
+          }),
+        ],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "StripeWebhookFailure (ChapterFlow/Ops, dimensionless rollup — sum)",
+        left: [
+          new cloudwatch.Metric({
+            namespace: "ChapterFlow/Ops",
+            metricName: "StripeWebhookFailure",
+            statistic: "Sum",
+            period: alarmPeriod,
+          }),
+        ],
+        width: 12,
+      }),
+    );
+
+    // SATURATION
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda concurrent executions (max)",
+        left: [this.serverFunction.metric("ConcurrentExecutions", { period: alarmPeriod, statistic: "max" })],
+        width: 24,
+      }),
+    );
+
+    // ISR — revalidation queue + DLQ
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Revalidation queue depth (messages visible, max)",
+        left: [
+          revalidationQueue.metricApproximateNumberOfMessagesVisible({
+            period: alarmPeriod,
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Revalidation queue oldest message age (s, max)",
+        left: [
+          revalidationQueue.metricApproximateAgeOfOldestMessage({
+            period: alarmPeriod,
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Revalidation DLQ depth (messages visible, max)",
+        left: [
+          revalidationDlq.metricApproximateNumberOfMessagesVisible({
+            period: alarmPeriod,
+            statistic: "max",
+          }),
+        ],
+        width: 24,
+      }),
+    );
+
+    // DYNAMODB — app + analytics tables, referenced by name (see
+    // buildThrottleMetricByName/tableLatencyMetricByName above).
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "App table throttled requests (sum)",
+        left: [buildThrottleMetricByName(props.appTableName)],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Analytics table throttled requests (sum)",
+        left: [buildThrottleMetricByName(props.analyticsTableName)],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "App table successful request latency (avg, ms)",
+        left: [tableLatencyMetricByName(props.appTableName)],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Analytics table successful request latency (avg, ms)",
+        left: [tableLatencyMetricByName(props.analyticsTableName)],
+        width: 12,
+      }),
+    );
+
+    // -------------------------------------------------------------------
     // Stack Outputs
     // -------------------------------------------------------------------
 
@@ -1165,6 +1386,10 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
 
     new cdk.CfnOutput(this, "ServerFunctionArn", {
       value: this.serverFunction.functionArn,
+    });
+
+    new cdk.CfnOutput(this, "GoldenSignalsDashboardName", {
+      value: goldenSignalsDashboard.dashboardName,
     });
 
     // WS6-002: the ServerFunctionUrl output was removed — it leaked the raw
