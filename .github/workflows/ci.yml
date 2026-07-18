@@ -60,7 +60,7 @@ jobs:
 
   # ── Lambda handler unit tests ─────────────────────────────────────────────
   # infra/lambda has its own package.json (aws-sdk-client-mock + tsx) and is NOT
-  # covered by the app's `npm run test` glob (app/ + lib/ only). Run it here so
+  # covered by the app's `npm run test` glob (app/, lib/, components/, tests/). Run it here so
   # the cron sub-handlers (e.g. the commitment follow-up exactly-once logic) are
   # regression-gated on every PR — the deploy workflow only bundles them.
   lambda-checks:
