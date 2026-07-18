@@ -68,6 +68,7 @@ import type { LearningMode, ContentTone } from "@/app/book/settings/types/settin
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 import type { LibraryBookDetail } from "@/app/book/_lib/library-data";
+import type { ApiChapterResponse } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterFromApi";
 import { TRIAL_CTA_LABEL, UPGRADE_RETURN_PATH, MONTHLY_PRICE_WITH_CURRENCY, PRICING } from "@/lib/pricing";
 
 const SCENARIO_SUBMISSION_POINTS = INSIGHT_POINTS_AMOUNTS.scenarioApproved;
@@ -120,11 +121,21 @@ function computeProgressPercent(
 export function ChapterReaderClient({
   bookId,
   chapterId,
+  chapterOrder,
   initialBook,
+  initialChapter,
 }: {
   bookId: string;
   chapterId: string;
+  /**
+   * Server-resolved chapter number (from the manifest, page.tsx). Available at
+   * mount independent of the content fetch, so effects that only need the number
+   * (scenarios) key off this instead of the fetched `chapter` object (WS3-024).
+   */
+  chapterOrder?: number;
   initialBook?: LibraryBookDetail;
+  /** Server-hydrated entry-chapter content (WS3-024) — see useChapterContent. */
+  initialChapter?: ApiChapterResponse;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -259,6 +270,9 @@ export function ChapterReaderClient({
     book: bookMeta,
     localFallback,
     refetchKey: contentRefetchKey,
+    // Server-hydrated entry chapter: the hook seeds from this and skips its
+    // initial network fetch when it matches `chapterNumber` (WS3-024).
+    initialChapter,
   });
   // We're serving a cached/offline copy: the live fetch failed for a CONNECTIVITY
   // reason (network error → no HTTP status) and we fell back to the local
@@ -712,15 +726,21 @@ export function ChapterReaderClient({
     }
   }, [searchParams]);
 
+  // WS3-024 — de-waterfall the scenarios request. Key it off the server-resolved
+  // chapter number (`chapterOrder`, available at mount from the manifest) rather
+  // than the fetched `chapter` object, so it starts on mount concurrently with
+  // the content fetch instead of waiting for content to resolve first. Same URL,
+  // same response handling, same refetch behavior. `chapterOrder === chapter.order`
+  // (both are the manifest number), so the request target is unchanged.
   useEffect(() => {
-    if (!chapter) return;
+    if (!chapterOrder) return;
     let mounted = true;
     fetchBookJson<{
       approvedScenarios: ChapterExample[];
       mySubmissions: UserScenarioSubmission[];
       points: number;
     }>(
-      `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${chapter.order}/scenarios`
+      `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${chapterOrder}/scenarios`
     )
       .then((payload) => {
         if (!mounted) return;
@@ -738,7 +758,7 @@ export function ChapterReaderClient({
     return () => {
       mounted = false;
     };
-  }, [bookId, chapter, scenariosRefetchKey]);
+  }, [bookId, chapterOrder, scenariosRefetchKey]);
 
   const dailyGoalMinutes = bookPrefs.extended.dailyGoalPreset || 10;
   const readingSession = useReadingSessionTracker({
