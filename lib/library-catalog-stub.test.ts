@@ -89,39 +89,12 @@ test("assertNoStubCatalogEntries accepts extra fields (structural superset typin
   assert.doesNotThrow(() => assertNoStubCatalogEntries(seedRows));
 });
 
-// --- List-path floor behavior (documents the DI-4 symptom and its fix) -----
-//
-// Mirrors the chapter-count resolution in
-// app/app/api/book/_lib/library-catalog.ts buildLibraryCatalogBook (~lines
-// 74 and 92). The real function is server-only and unexported, so the exact
-// floor is reproduced inline to lock in the contract: with a presentation-index
-// entry the list renders the TRUE count; without one it collapses to 1 (the bug,
-// = "1 chapter · ~24 min"); the detail path is always correct because it passes
-// the manifest count.
-function resolveListChapterCount(
-  extraChapterCount: number | undefined,
-  chapterCountParam: number | undefined
-): number {
-  const resolved =
-    extraChapterCount && extraChapterCount > 0 ? extraChapterCount : chapterCountParam ?? 0;
-  return Math.max(1, Math.round(resolved || 1));
-}
-
-test("list path renders the TRUE count when the presentation index has the book", () => {
-  // After PAR-1, every published book has an index entry, so extra.chapterCount
-  // is populated and the list shows the real number — DI-4's structural fix.
-  assert.equal(resolveListChapterCount(12, undefined), 12);
-  assert.equal(resolveListChapterCount(11, undefined), 11);
-});
-
-test("list path collapses to 1 ONLY when the index lacks the book (the DI-4 symptom)", () => {
-  assert.equal(resolveListChapterCount(undefined, undefined), 1);
-  assert.equal(resolveListChapterCount(0, undefined), 1);
-});
-
-test("detail path stays correct because it passes the manifest chapter count", () => {
-  assert.equal(resolveListChapterCount(undefined, 11), 11);
-});
+// List-path chapter-count floor behavior (the DI-4 symptom and its fix) is
+// tested in app/app/api/book/_lib/library-catalog-index-core.test.ts against
+// the real `resolveListChapterCount` (WS3-005) — it exercises
+// library-catalog.ts's own list-building logic, not this module's exports, so
+// it moved next to the function it tests instead of a hand-reproduced copy
+// living here just because that function used to be server-only and unexported.
 
 // ===========================================================================
 // Boilerplate-synopsis guard (DETAIL-BOILERPLATE-SYNOPSIS)
