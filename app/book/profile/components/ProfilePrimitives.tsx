@@ -9,6 +9,7 @@ import {
 } from "react";
 import Image from "next/image";
 import { MONTHLY_PRICE_WITH_CURRENCY, TRIAL_CTA_LABEL } from "@/lib/pricing";
+import type { ProSource } from "@/lib/entitlement-types";
 import {
   APPLE_MANAGE_SUBSCRIPTIONS_URL,
   APPLE_MANAGED_SUBSCRIPTION_LABEL,
@@ -1199,8 +1200,9 @@ export function ProStatusCard({
   booksAccessedCount: number;
   proSinceLabel: string;
   /** When "apple", subscription is billed through the App Store — show Apple's
-   *  management link rather than the Stripe billing portal. */
-  proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code";
+   *  management link rather than the Stripe billing portal. Derived from the
+   *  shared `ProSource` source of truth so it cannot drift (WS3-014). */
+  proSource?: ProSource;
   onManage: () => void;
 }) {
   return (

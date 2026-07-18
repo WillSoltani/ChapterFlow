@@ -1,3 +1,5 @@
+import type { ProSource } from "@/lib/entitlement-types";
+
 // ── BookPackage domain model (RAW / tone-keyed stage) ───────────────────────
 //
 // The BookPackage type family is single-sourced in `lib/book-package-types.ts`
@@ -135,8 +137,10 @@ export type BookUserEntitlement = {
   userId: string;
   plan: "FREE" | "PRO";
   proStatus?: "inactive" | "active" | "past_due" | "canceled";
-  /** How the user obtained PRO — "stripe" for a paid Stripe subscription, "apple" for an App Store / StoreKit in-app subscription, "license" for a free-pass key, "flow_points" for a timed reward pass, "gift_code" for a gifted Pro window. Apple and promotional sources expire at read time; signed notifications also reconcile stored state (see getUserEntitlement). */
-  proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code" | "admin";
+  /** How the user obtained PRO. Single-sourced as `ProSource` in
+   *  lib/entitlement-types.ts so the client billing hook cannot drift from this
+   *  server definition (WS3-014). See that module for the per-value semantics. */
+  proSource?: ProSource;
   freeBookSlots: number;
   unlockedBookIds: string[];
   stripeCustomerId?: string;
