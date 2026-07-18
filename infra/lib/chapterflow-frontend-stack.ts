@@ -23,6 +23,58 @@ import * as logs from "aws-cdk-lib/aws-logs";
 import * as wafv2 from "aws-cdk-lib/aws-wafv2";
 import { type EnvName } from "./env-config";
 import { buildWebAclRules } from "./waf-rules";
+
+// ---------------------------------------------------------------------------
+// WS6-033: DynamoDB metrics by table NAME (this stack only has
+// props.appTableName/analyticsTableName strings — see the ARN-by-name
+// construction above — not the dynamodb.Table constructs the backend stack
+// owns, so it can't call table.metricThrottledRequestsForOperation() etc.
+// directly). Mirrors the shape of buildThrottleMetric in
+// chapterflow-backend-stack.ts for the golden-signals dashboard below.
+// ---------------------------------------------------------------------------
+
+function buildThrottleMetricByName(tableName: string): cloudwatch.MathExpression {
+  const operations = [
+    "BatchGetItem",
+    "BatchWriteItem",
+    "DeleteItem",
+    "GetItem",
+    "PutItem",
+    "Query",
+    "TransactWriteItems",
+    "UpdateItem",
+  ];
+
+  const usingMetrics = Object.fromEntries(
+    operations.map((operation, index) => [
+      `m${index}`,
+      new cloudwatch.Metric({
+        namespace: "AWS/DynamoDB",
+        metricName: "ThrottledRequests",
+        dimensionsMap: { TableName: tableName, Operation: operation },
+        statistic: "sum",
+        period: cdk.Duration.minutes(5),
+      }),
+    ]),
+  );
+
+  return new cloudwatch.MathExpression({
+    expression: Object.keys(usingMetrics).join(" + "),
+    usingMetrics,
+    period: cdk.Duration.minutes(5),
+  });
+}
+
+function tableLatencyMetricByName(tableName: string): cloudwatch.Metric {
+  return new cloudwatch.Metric({
+    namespace: "AWS/DynamoDB",
+    metricName: "SuccessfulRequestLatency",
+    dimensionsMap: { TableName: tableName },
+    statistic: "Average",
+    period: cdk.Duration.minutes(5),
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
@@ -465,6 +517,12 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       environment: commonEnv,
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
+      // WS6-029: the server Lambda is the fan-out hop (DynamoDB/S3/Stripe/
+      // Cognito/Anthropic/ElevenLabs) that ServerFnDurationAlarm watches at
+      // p99>=20s; ACTIVE tracing is what lets an operator see WHERE that time
+      // went. The auxiliary OpenNext functions below (Image/Revalidation/
+      // Warmer/DynamoProvider) are single-hop plumbing and stay untraced.
+      tracing: lambda.Tracing.ACTIVE,
     });
 
     // authType NONE — public Function URL fronted by CloudFront. An earlier
@@ -1050,12 +1108,28 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     );
     const opsAction = new cloudwatchActions.SnsAction(opsTopic);
 
+    // Critical (paging) topic (WS6-034) — reconstructed by ARN, same
+    // cross-stack-by-name convention as opsTopic above. Subscriptions live on
+    // the backend topic (CHAPTERFLOW_OPS_PAGER_URL / CHAPTERFLOW_OPS_CRITICAL_ALERT_EMAIL).
+    const opsCriticalTopic = sns.Topic.fromTopicArn(
+      this,
+      "OpsCriticalTopic",
+      `arn:${cdk.Aws.PARTITION}:sns:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:ChapterFlowOpsCritical${suffix}`,
+    );
+    const criticalAction = new cloudwatchActions.SnsAction(opsCriticalTopic);
+
     const makeAlarm = (
       id: string,
       metric: cloudwatch.IMetric,
       threshold: number,
       alarmDescription: string,
-      opts?: { evaluationPeriods?: number; datapointsToAlarm?: number },
+      opts?: {
+        evaluationPeriods?: number;
+        datapointsToAlarm?: number;
+        // WS6-034: "critical" ADDS criticalAction alongside opsAction (never
+        // instead of) so the existing inbox keeps full visibility.
+        severity?: "critical" | "warning";
+      },
     ): cloudwatch.Alarm => {
       const alarm = new cloudwatch.Alarm(this, id, {
         metric,
@@ -1068,6 +1142,9 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         alarmDescription,
       });
       alarm.addAlarmAction(opsAction);
+      if (opts?.severity === "critical") {
+        alarm.addAlarmAction(criticalAction);
+      }
       return alarm;
     };
 
@@ -1079,12 +1156,14 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       this.serverFunction.metricErrors({ period: alarmPeriod, statistic: "sum" }),
       5,
       "ChapterFlow server Lambda returned ≥5 errors in 5 minutes (elevated 5xx).",
+      { severity: "critical" },
     );
     makeAlarm(
       "ServerFnThrottlesAlarm",
       this.serverFunction.metricThrottles({ period: alarmPeriod, statistic: "sum" }),
       1,
       "ChapterFlow server Lambda is being throttled (concurrency limit hit).",
+      { severity: "critical" },
     );
     makeAlarm(
       "ServerFnDurationAlarm",
@@ -1109,6 +1188,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
       1,
       "Revalidation messages have landed in the DLQ — ISR revalidation is failing.",
+      { severity: "critical" },
     );
     makeAlarm(
       "RevalidationQueueAgeAlarm",
@@ -1127,7 +1207,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       this.distribution.metric5xxErrorRate({ period: alarmPeriod, statistic: "Average" }),
       1,
       "CloudFront is serving >1% 5xx responses at the edge.",
-      { evaluationPeriods: 3, datapointsToAlarm: 3 },
+      { evaluationPeriods: 3, datapointsToAlarm: 3, severity: "critical" },
     );
 
     // Stripe webhook processing failures — the server emits this custom metric
@@ -1143,6 +1223,295 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
       1,
       "A Stripe webhook delivery failed to process (post-signature). Stripe will retry; check the billing webhook logs and reconciliation tool.",
+      { severity: "critical" },
+    );
+
+    // -------------------------------------------------------------------
+    // SLO burn-rate alerting — edge availability (WS6-030)
+    // -------------------------------------------------------------------
+    // Multi-window multi-burn-rate alerts on the edge-availability SLI, per the
+    // Google SRE Workbook (Ch. 5) and docs/SLOS.md. The static CloudFront5xx
+    // alarm above pages on a fixed 1% threshold regardless of how fast the
+    // monthly error budget is actually burning — it over-pages on a low-traffic
+    // blip and under-pages on a slow leak. These page on budget burn RATE
+    // instead, so the alert stays calibrated as traffic grows.
+    //
+    // SLI: edge availability = 1 − CloudFront 5xxErrorRate. This is the paging
+    // SLI because it is what users see, including cached / CDN-served paths the
+    // server Lambda never handles (see docs/SLOS.md).
+    //
+    // These constants ARE the SLO objective — every threshold below is derived
+    // from them; changing one here must change docs/SLOS.md too.
+    const SLO_EDGE_AVAILABILITY_TARGET = 0.999; // 99.9% monthly = 43.2 min/mo budget — docs/SLOS.md
+    const SLO_FAST_BURN_MULTIPLE = 14.4; // page: 2% of the monthly budget in 1h — docs/SLOS.md
+    const SLO_SLOW_BURN_MULTIPLE = 6; // page: 5% of the monthly budget in 6h — docs/SLOS.md
+
+    // burn rate = (5xxErrorRate% / 100) / (1 − target). One MathExpression per
+    // window; the window is set by the underlying metric's period (kept equal to
+    // the expression's to avoid a period-mismatch warning).
+    const edgeBurnRateMetric = (
+      label: string,
+      window: cdk.Duration,
+    ): cloudwatch.MathExpression =>
+      new cloudwatch.MathExpression({
+        expression: `rate5xx / 100 / (1 - ${SLO_EDGE_AVAILABILITY_TARGET})`,
+        usingMetrics: {
+          rate5xx: this.distribution.metric5xxErrorRate({
+            period: window,
+            statistic: "Average",
+          }),
+        },
+        period: window,
+        label,
+      });
+
+    // Four threshold alarms with NO actions of their own — the two
+    // CompositeAlarms below (long-window AND short-window) carry the paging
+    // action. Requiring the short window too stops stale paging: once the
+    // incident clears, the 5m/30m window recovers within one period and drops
+    // the composite, instead of holding ALARM for the whole long window.
+    const burnAlarm = (
+      id: string,
+      alarmName: string,
+      metric: cloudwatch.IMetric,
+      multiple: number,
+      alarmDescription: string,
+    ): cloudwatch.Alarm =>
+      new cloudwatch.Alarm(this, id, {
+        alarmName,
+        metric,
+        threshold: multiple,
+        evaluationPeriods: 1,
+        datapointsToAlarm: 1,
+        comparisonOperator:
+          cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+        treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
+        alarmDescription,
+      });
+
+    const sloFastBurn1h = burnAlarm(
+      "SloFastBurn1hAlarm",
+      `ChapterFlowSloFastBurn1h${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (1h)", cdk.Duration.hours(1)),
+      SLO_FAST_BURN_MULTIPLE,
+      "SLO edge-availability fast-burn member (1h window): edge 5xx burning the 99.9% monthly budget at ≥14.4× sustainable (5xx ≥1.44%). Long window of the fast-burn pair; page only via ChapterFlowSloFastBurn.",
+    );
+    const sloFastBurn5m = burnAlarm(
+      "SloFastBurn5mAlarm",
+      `ChapterFlowSloFastBurn5m${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (5m)", cdk.Duration.minutes(5)),
+      SLO_FAST_BURN_MULTIPLE,
+      "SLO edge-availability fast-burn member (5m window): edge 5xx burn ≥14.4× sustainable. Short window of the fast-burn pair — clears within one period on recovery.",
+    );
+    const sloSlowBurn6h = burnAlarm(
+      "SloSlowBurn6hAlarm",
+      `ChapterFlowSloSlowBurn6h${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (6h)", cdk.Duration.hours(6)),
+      SLO_SLOW_BURN_MULTIPLE,
+      "SLO edge-availability slow-burn member (6h window): edge 5xx burning the 99.9% monthly budget at ≥6× sustainable (5xx ≥0.6%). Long window of the slow-burn pair; page only via ChapterFlowSloSlowBurn.",
+    );
+    const sloSlowBurn30m = burnAlarm(
+      "SloSlowBurn30mAlarm",
+      `ChapterFlowSloSlowBurn30m${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (30m)", cdk.Duration.minutes(30)),
+      SLO_SLOW_BURN_MULTIPLE,
+      "SLO edge-availability slow-burn member (30m window): edge 5xx burn ≥6× sustainable. Short window of the slow-burn pair — clears within one period on recovery.",
+    );
+
+    // Composite alarms carry the paging action. Fast-burn additionally pages
+    // opsCriticalTopic (WS6-034) — a budget exhausted in ~50h is a "needs a
+    // human NOW" outage; slow-burn (~5 days to exhaustion) stays on the
+    // existing ticket-grade topic only.
+    const sloFastBurnAlarm = new cloudwatch.CompositeAlarm(this, "SloFastBurnAlarm", {
+      compositeAlarmName: `ChapterFlowSloFastBurn${suffix}`,
+      alarmRule: cloudwatch.AlarmRule.allOf(
+        cloudwatch.AlarmRule.fromAlarm(sloFastBurn1h, cloudwatch.AlarmState.ALARM),
+        cloudwatch.AlarmRule.fromAlarm(sloFastBurn5m, cloudwatch.AlarmState.ALARM),
+      ),
+      alarmDescription:
+        "PAGE — SLO edge-availability FAST burn (99.9% monthly). Edge 5xx is burning the 43.2-min/mo error budget at ≥14.4× sustainable on BOTH the 1h and 5m windows (5xx ≥1.44%); at this rate the whole month's budget is exhausted in ~50h (2% per hour). Runbook: docs/OPERATIONS.md §4 → docs/SLOS.md.",
+    });
+    sloFastBurnAlarm.addAlarmAction(opsAction);
+    sloFastBurnAlarm.addAlarmAction(criticalAction);
+
+    const sloSlowBurnAlarm = new cloudwatch.CompositeAlarm(this, "SloSlowBurnAlarm", {
+      compositeAlarmName: `ChapterFlowSloSlowBurn${suffix}`,
+      alarmRule: cloudwatch.AlarmRule.allOf(
+        cloudwatch.AlarmRule.fromAlarm(sloSlowBurn6h, cloudwatch.AlarmState.ALARM),
+        cloudwatch.AlarmRule.fromAlarm(sloSlowBurn30m, cloudwatch.AlarmState.ALARM),
+      ),
+      alarmDescription:
+        "PAGE — SLO edge-availability SLOW burn (99.9% monthly). Edge 5xx is burning the 43.2-min/mo error budget at ≥6× sustainable on BOTH the 6h and 30m windows (5xx ≥0.6%); at this rate the whole month's budget is exhausted in ~5 days (5% per 6h). Runbook: docs/OPERATIONS.md §4 → docs/SLOS.md.",
+    });
+    sloSlowBurnAlarm.addAlarmAction(opsAction);
+
+    // -------------------------------------------------------------------
+    // CloudWatch dashboard — golden signals (WS6-033)
+    // -------------------------------------------------------------------
+    // Version-controlled, out-of-band view of this stack's health. The in-app
+    // admin Ops dashboard is served BY the server Lambda, so it disappears
+    // exactly when an incident takes that Lambda down; this dashboard reads
+    // straight from CloudWatch and survives that failure mode. One dashboard
+    // per stack — this one binds only metrics the frontend stack can
+    // reference without a cross-stack CloudFormation export (constructs
+    // in-stack; ChapterFlow/Ops + the DynamoDB table names by-name, same
+    // convention as the alarms above).
+    const goldenSignalsDashboard = new cloudwatch.Dashboard(this, "GoldenSignalsDashboard", {
+      dashboardName: `ChapterFlowGoldenSignals${suffix}`,
+      // Keep each widget's own 5-minute period (matching the alarms) instead
+      // of letting it drift with the dashboard's selected time range.
+      periodOverride: cloudwatch.PeriodOverride.INHERIT,
+    });
+
+    // TRAFFIC
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda invocations (sum)",
+        left: [this.serverFunction.metricInvocations({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "CloudFront requests (sum)",
+        left: [this.distribution.metricRequests({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+    );
+
+    // LATENCY
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda duration — p50 / p95 / p99 (ms)",
+        left: [
+          this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p50" }),
+          this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p95" }),
+          this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p99" }),
+        ],
+        width: 24,
+      }),
+    );
+
+    // ERRORS
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda errors (sum)",
+        left: [this.serverFunction.metricErrors({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda throttles (sum)",
+        left: [this.serverFunction.metricThrottles({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "CloudFront 4xxErrorRate (%)",
+        left: [this.distribution.metric4xxErrorRate({ period: alarmPeriod, statistic: "Average" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "CloudFront 5xxErrorRate (%)",
+        left: [this.distribution.metric5xxErrorRate({ period: alarmPeriod, statistic: "Average" })],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "OpsFailure (ChapterFlow/Ops, dimensionless rollup — sum)",
+        left: [
+          new cloudwatch.Metric({
+            namespace: "ChapterFlow/Ops",
+            metricName: "OpsFailure",
+            statistic: "Sum",
+            period: alarmPeriod,
+          }),
+        ],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "StripeWebhookFailure (ChapterFlow/Ops, dimensionless rollup — sum)",
+        left: [
+          new cloudwatch.Metric({
+            namespace: "ChapterFlow/Ops",
+            metricName: "StripeWebhookFailure",
+            statistic: "Sum",
+            period: alarmPeriod,
+          }),
+        ],
+        width: 12,
+      }),
+    );
+
+    // SATURATION
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda concurrent executions (max)",
+        left: [this.serverFunction.metric("ConcurrentExecutions", { period: alarmPeriod, statistic: "max" })],
+        width: 24,
+      }),
+    );
+
+    // ISR — revalidation queue + DLQ
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Revalidation queue depth (messages visible, max)",
+        left: [
+          revalidationQueue.metricApproximateNumberOfMessagesVisible({
+            period: alarmPeriod,
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Revalidation queue oldest message age (s, max)",
+        left: [
+          revalidationQueue.metricApproximateAgeOfOldestMessage({
+            period: alarmPeriod,
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Revalidation DLQ depth (messages visible, max)",
+        left: [
+          revalidationDlq.metricApproximateNumberOfMessagesVisible({
+            period: alarmPeriod,
+            statistic: "max",
+          }),
+        ],
+        width: 24,
+      }),
+    );
+
+    // DYNAMODB — app + analytics tables, referenced by name (see
+    // buildThrottleMetricByName/tableLatencyMetricByName above).
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "App table throttled requests (sum)",
+        left: [buildThrottleMetricByName(props.appTableName)],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Analytics table throttled requests (sum)",
+        left: [buildThrottleMetricByName(props.analyticsTableName)],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "App table successful request latency (avg, ms)",
+        left: [tableLatencyMetricByName(props.appTableName)],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Analytics table successful request latency (avg, ms)",
+        left: [tableLatencyMetricByName(props.analyticsTableName)],
+        width: 12,
+      }),
     );
 
     // -------------------------------------------------------------------
@@ -1159,6 +1528,10 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
 
     new cdk.CfnOutput(this, "ServerFunctionArn", {
       value: this.serverFunction.functionArn,
+    });
+
+    new cdk.CfnOutput(this, "GoldenSignalsDashboardName", {
+      value: goldenSignalsDashboard.dashboardName,
     });
 
     // WS6-002: the ServerFunctionUrl output was removed — it leaked the raw

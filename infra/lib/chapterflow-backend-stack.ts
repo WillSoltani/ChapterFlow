@@ -9,6 +9,7 @@ import * as events from "aws-cdk-lib/aws-events";
 import * as targets from "aws-cdk-lib/aws-events-targets";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as logs from "aws-cdk-lib/aws-logs";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as ses from "aws-cdk-lib/aws-ses";
 import * as sqs from "aws-cdk-lib/aws-sqs";
@@ -327,6 +328,40 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     }
     const opsAlarmAction = new cloudwatchActions.SnsAction(opsAlertsTopic);
 
+    // Critical (paging) SNS topic (WS6-034). Email is not a pager — a 3am
+    // outage can sit unread in opsAlertsTopic above. This topic is ADDITIVE:
+    // the small set of "needs a human NOW" alarms (severity table in
+    // docs/OPERATIONS.md §4) add this action ALONGSIDE opsAlarmAction, so the
+    // existing inbox keeps full visibility and nothing is removed from it.
+    // Subscribe a pager by setting CHAPTERFLOW_OPS_PAGER_URL (an https
+    // PagerDuty/Opsgenie/ntfy webhook) and/or CHAPTERFLOW_OPS_CRITICAL_ALERT_EMAIL
+    // at synth time.
+    const opsCriticalTopic = new sns.Topic(this, "ChapterFlowOpsCritical", {
+      topicName: `ChapterFlowOpsCritical${suffix}`,
+      displayName: "ChapterFlow critical (paging) alerts",
+    });
+    const opsCriticalAlertEmail = process.env.CHAPTERFLOW_OPS_CRITICAL_ALERT_EMAIL;
+    if (opsCriticalAlertEmail) {
+      opsCriticalTopic.addSubscription(
+        new snsSubscriptions.EmailSubscription(opsCriticalAlertEmail),
+      );
+    }
+    const opsPagerUrl = process.env.CHAPTERFLOW_OPS_PAGER_URL;
+    if (opsPagerUrl) {
+      // SNS HTTPS delivery requires https — an http (or malformed) endpoint
+      // would silently never deliver, so fail soft (warn + skip) rather than
+      // wiring a subscription that can never page anyone.
+      if (opsPagerUrl.startsWith("https://")) {
+        opsCriticalTopic.addSubscription(new snsSubscriptions.UrlSubscription(opsPagerUrl));
+      } else {
+        console.warn(
+          "⚠ CHAPTERFLOW_OPS_PAGER_URL is set but does not start with https:// — " +
+            "skipping the pager subscription (SNS HTTPS delivery requires it).",
+        );
+      }
+    }
+    const criticalAlarmAction = new cloudwatchActions.SnsAction(opsCriticalTopic);
+
     const appTableThrottlesAlarm = new cloudwatch.Alarm(this, "ChapterFlowAppTableThrottlesAlarm", {
       metric: buildThrottleMetric(this.appTable),
       threshold: 1,
@@ -336,6 +371,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       alarmDescription: "Alerts when ChapterFlow operational table experiences throttling.",
     });
     appTableThrottlesAlarm.addAlarmAction(opsAlarmAction);
+    // CRITICAL (WS6-034): throttling on the operational table can wedge live
+    // reader traffic — page in addition to the existing email.
+    appTableThrottlesAlarm.addAlarmAction(criticalAlarmAction);
 
     const analyticsTableThrottlesAlarm = new cloudwatch.Alarm(this, "ChapterFlowAnalyticsTableThrottlesAlarm", {
       metric: buildThrottleMetric(this.analyticsTable),
@@ -346,6 +384,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       alarmDescription: "Alerts when ChapterFlow analytics table experiences throttling.",
     });
     analyticsTableThrottlesAlarm.addAlarmAction(opsAlarmAction);
+    // CRITICAL (WS6-034): throttling here is the same failure mode as the app
+    // table above — page in addition to the existing email.
+    analyticsTableThrottlesAlarm.addAlarmAction(criticalAlarmAction);
 
     // Alarm on the unified `OpsFailure` metric the server Lambda emits
     // (recordOpsFailure → putOpsMetric, namespace "ChapterFlow/Ops"). One metric
@@ -373,6 +414,10 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       },
     );
     opsFailureAlarm.addAlarmAction(opsAlarmAction);
+    // CRITICAL (WS6-034): a failed Stripe cancellation/customer-delete or
+    // Cognito delete leaves the user's account in an inconsistent state —
+    // page in addition to the existing email.
+    opsFailureAlarm.addAlarmAction(criticalAlarmAction);
 
     // -------------------------------------------------------------------
     // Lambda — Reading reminder cron (hourly)
@@ -458,6 +503,10 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       memorySize: 512,
       timeout: reminderTimeout,
       deadLetterQueue: reminderDlq,
+      logRetention: logs.RetentionDays.ONE_MONTH,
+      // WS6-029: this Lambda is multi-hop (DynamoDB read/write + SES send + SSM),
+      // so ACTIVE tracing lets an operator see where a slow/erroring run spent time.
+      tracing: lambda.Tracing.ACTIVE,
       environment: {
         BOOK_TABLE_NAME: this.appTable.tableName,
         SES_SENDER_EMAIL: reminderSenderEmail,
@@ -646,6 +695,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       timeout: cdk.Duration.minutes(1),
       environment: { BOOK_TABLE_NAME: this.appTable.tableName },
       deadLetterQueue: suppressionDlq,
+      logRetention: logs.RetentionDays.ONE_MONTH,
+      // WS6-029: SNS -> DynamoDB write hop; ACTIVE tracing surfaces DynamoDB latency.
+      tracing: lambda.Tracing.ACTIVE,
     });
     this.appTable.grantWriteData(suppressionFn);
     emailEventsTopic.addSubscription(new snsSubscriptions.LambdaSubscription(suppressionFn));
@@ -664,6 +716,103 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         "The SES suppression Lambda is erroring (likely DynamoDB write failures). After async retries are exhausted, failed bounce/complaint events land in ChapterFlowSuppressionDlq — inspect/replay them.",
     });
     suppressionErrorsAlarm.addAlarmAction(opsAlarmAction);
+
+    // -------------------------------------------------------------------
+    // CloudWatch dashboard — backend ops (WS6-033)
+    // -------------------------------------------------------------------
+    // Version-controlled, out-of-band view of this stack's health. The in-app
+    // admin Ops dashboard is served BY the frontend stack's server Lambda, so
+    // it disappears exactly when an incident takes that Lambda down; this
+    // dashboard reads straight from CloudWatch and survives that failure
+    // mode. One dashboard per stack — this one binds only metrics the
+    // backend stack can reference in-stack (constructs) or by name
+    // (ChapterFlow/Ops, same convention as the OpsFailure alarm above). The
+    // Cognito PreSignUp widget is added further down, inside the conditional
+    // block where preSignUpFn is actually created.
+    const backendOpsDashboard = new cloudwatch.Dashboard(this, "BackendOpsDashboard", {
+      dashboardName: `ChapterFlowBackendOps${suffix}`,
+      // Keep each widget's own 5-minute period (matching the alarms) instead
+      // of letting it drift with the dashboard's selected time range.
+      periodOverride: cloudwatch.PeriodOverride.INHERIT,
+    });
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Reading-reminder cron errors (sum)",
+        left: [reminderFn.metricErrors({ period: cdk.Duration.minutes(5), statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Reading-reminder cron duration vs 10-min budget (max, ms)",
+        left: [
+          reminderFn.metricDuration({ period: cdk.Duration.minutes(5), statistic: "Maximum" }),
+        ],
+        leftAnnotations: [
+          {
+            value: reminderTimeout.toMilliseconds() * 0.8,
+            label: "80% of budget",
+            color: cloudwatch.Color.ORANGE,
+          },
+        ],
+        width: 12,
+      }),
+    );
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Email suppression handler errors (sum)",
+        left: [suppressionFn.metricErrors({ period: cdk.Duration.minutes(5), statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "OpsFailure (ChapterFlow/Ops, dimensionless rollup — sum)",
+        left: [
+          new cloudwatch.Metric({
+            namespace: "ChapterFlow/Ops",
+            metricName: "OpsFailure",
+            statistic: "Sum",
+            period: cdk.Duration.minutes(5),
+          }),
+        ],
+        width: 12,
+      }),
+    );
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Reminder DLQ depth (messages visible, max)",
+        left: [
+          reminderDlq.metricApproximateNumberOfMessagesVisible({
+            period: cdk.Duration.minutes(5),
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Suppression DLQ depth (messages visible, max)",
+        left: [
+          suppressionDlq.metricApproximateNumberOfMessagesVisible({
+            period: cdk.Duration.minutes(5),
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+    );
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "App table throttled requests (sum)",
+        left: [buildThrottleMetric(this.appTable)],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Analytics table throttled requests (sum)",
+        left: [buildThrottleMetric(this.analyticsTable)],
+        width: 12,
+      }),
+    );
 
     // Expose the config-set name to the app runtime (read via getServerEnv → SSM).
     new ssm.StringParameter(this, "SesConfigurationSetParameter", {
@@ -709,6 +858,10 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         // A sign-in trigger runs inline on the auth path — keep it short so a
         // hung ListUsers/AdminLink can never wedge the user's sign-in.
         timeout: cdk.Duration.seconds(10),
+        logRetention: logs.RetentionDays.ONE_MONTH,
+        // WS6-029: inline on the auth path and calls Cognito (ListUsers/
+        // AdminLinkProviderForUser); ACTIVE tracing shows where a slow sign-in went.
+        tracing: lambda.Tracing.ACTIVE,
       });
 
       // Least privilege: ONLY the two calls the linker makes, scoped to THIS pool.
@@ -749,6 +902,21 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         }
       );
       preSignUpErrorsAlarm.addAlarmAction(opsAlarmAction);
+      // CRITICAL (WS6-034): this trigger fails closed and blocks the
+      // affected Apple sign-in — page in addition to the existing email.
+      preSignUpErrorsAlarm.addAlarmAction(criticalAlarmAction);
+
+      // preSignUpFn only exists in this conditional block (external pool id
+      // known at synth), so its dashboard widget is added here too.
+      backendOpsDashboard.addWidgets(
+        new cloudwatch.GraphWidget({
+          title: "Cognito PreSignUp (Sign-in-with-Apple linking) errors (sum)",
+          left: [
+            preSignUpFn.metricErrors({ period: cdk.Duration.minutes(5), statistic: "sum" }),
+          ],
+          width: 24,
+        }),
+      );
 
       // The pool is external, so surface the ARN operators must wire to it.
       new cdk.CfnOutput(this, "CognitoPreSignUpFunctionArn", {
@@ -777,6 +945,12 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
     new cdk.CfnOutput(this, "OpsAlertsTopicArn", {
       value: opsAlertsTopic.topicArn,
+    });
+    new cdk.CfnOutput(this, "OpsCriticalTopicArn", {
+      value: opsCriticalTopic.topicArn,
+    });
+    new cdk.CfnOutput(this, "BackendOpsDashboardName", {
+      value: backendOpsDashboard.dashboardName,
     });
   }
 }
