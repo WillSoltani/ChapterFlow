@@ -320,50 +320,61 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // SES access — transactional/notification emails are sent from an address
     // on the app's verified domain (e.g. info@chapterflow.ca via SES_SENDER_EMAIL).
     // Scope SendEmail to that domain's SES identity so the role can't send as an
-    // arbitrary identity. dev/staging without a verified domain have no identity
-    // to scope to, so they fall back to "*" — same conditional shape as the
-    // Cognito statement above.
-    const sesIdentityResources = props.domainName
-      ? [
-          `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${props.domainName}`,
-        ]
-      : ["*"];
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "SesSendAccess",
-        actions: ["ses:SendEmail", "sesv2:SendEmail"],
-        resources: sesIdentityResources,
-      }),
-    );
+    // arbitrary identity.
+    //
+    // WS6-003: all three envs share ONE AWS account and SES is account-global, so
+    // a "*" resource here would reach the PROD SES identities from a dev/staging
+    // role. We therefore add this statement ONLY when this env's verified domain is
+    // known at synth (prod always has it — bin/app.ts asserts it). A non-prod synth
+    // without a domain gets NO SES grant at all, so an email send there fails closed
+    // with AccessDenied in that env instead of gaining an account-wide send.
+    if (props.domainName) {
+      lambdaRole.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "SesSendAccess",
+          actions: ["ses:SendEmail", "sesv2:SendEmail"],
+          resources: [
+            `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${props.domainName}`,
+          ],
+        }),
+      );
+    }
 
     // Cognito admin access — the admin "erase user" tool resolves a user by
     // sub (ListUsers) and removes them from the pool (AdminDeleteUser) as part
     // of a GDPR-style complete erasure. AdminUserGlobalSignOut additionally
     // revokes a user's outstanding refresh tokens server-side on self-delete /
     // deactivate (step-up auth, #5 Tier 2) so a stolen refresh token dies
-    // immediately. Scoped to the configured pool when its id is known at synth,
-    // otherwise to all pools.
+    // immediately. Scoped to the configured pool.
+    //
+    // WS6-003: all three envs share ONE AWS account and Cognito is account-global,
+    // so a "*" resource here would grant AdminDeleteUser on the PROD user pool from
+    // a dev/staging role. We therefore add this statement ONLY when this env's pool
+    // id is known at synth (prod always has it — bin/app.ts asserts it). A non-prod
+    // synth without COGNITO_USER_POOL_ID gets NO Cognito grant at all, so the
+    // admin-erasure tool there fails closed with AccessDenied in that env instead of
+    // reaching the prod pool.
     //
     // DEPLOY ORDER (HIGH if mis-ordered): ship this IAM grant BEFORE the
     // app code that calls AdminUserGlobalSignOut, or the call fails AccessDenied,
     // is swallowed into an ops-failure, and the delete still returns success
     // (sessions look revoked but aren't).
     const cognitoUserPoolId = process.env.COGNITO_USER_POOL_ID;
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "CognitoAdminUserErasure",
-        actions: [
-          "cognito-idp:ListUsers",
-          "cognito-idp:AdminDeleteUser",
-          "cognito-idp:AdminUserGlobalSignOut",
-        ],
-        resources: cognitoUserPoolId
-          ? [
-              `arn:${cdk.Aws.PARTITION}:cognito-idp:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:userpool/${cognitoUserPoolId}`,
-            ]
-          : ["*"],
-      }),
-    );
+    if (cognitoUserPoolId) {
+      lambdaRole.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "CognitoAdminUserErasure",
+          actions: [
+            "cognito-idp:ListUsers",
+            "cognito-idp:AdminDeleteUser",
+            "cognito-idp:AdminUserGlobalSignOut",
+          ],
+          resources: [
+            `arn:${cdk.Aws.PARTITION}:cognito-idp:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:userpool/${cognitoUserPoolId}`,
+          ],
+        }),
+      );
+    }
 
     // SQS access — revalidation queue
     lambdaRole.addToPolicy(

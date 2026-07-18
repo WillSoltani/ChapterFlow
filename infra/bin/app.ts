@@ -9,8 +9,12 @@ import {
   assertAppleIapDeploymentConfig,
   shouldAssertAppleIapDeploymentConfig,
 } from "../lib/apple-iap-config";
+import { SensitiveWildcardGuard } from "../lib/iam-guards";
 
 const app = new cdk.App();
+// WS6-003: fail synth closed if any stack (this app, any env) grants a
+// sensitive account-global IAM action on Resource "*".
+cdk.Aspects.of(app).add(new SensitiveWildcardGuard());
 
 // dev | staging | prod — selected with `-c env=<env>` (or CHAPTERFLOW_ENV).
 // prod maps to the existing unsuffixed stacks/resources (zero-diff); dev and
