@@ -313,6 +313,19 @@ test("stage1: the spawn gate halts BEFORE the offending reservation (ceiling, st
   assert.throws(() => gate3.reserve("a"), /stage-1 cap HALT/);
 });
 
+test("stage1: the D-3 ceiling charges the unstamped pre-freeze legacy spend (Stage-0a recount baseline)", () => {
+  // 24 legacy sessions carry NO sessionKind — countTrueSessions excludes them
+  // (honesty rule), but the ceiling must still charge them: with baseline 24
+  // and ceiling 26, only 2 reservations fit.
+  const gate = new Stage1SpawnGate("/nonexistent-pipeline", { ceiling: 26, stageCap: 99, readEntries: () => [], legacyBaseline: 24 });
+  gate.reserve("a");
+  gate.reserve("b");
+  assert.throws(() => gate.reserve("c"), /campaign-ceiling HALT/);
+  // The stage cap is stage1-scoped and takes NO legacy baseline.
+  assert.equal(gate.snapshot().stage1TrueSessions, 2);
+  assert.equal(gate.snapshot().campaignTrueSessions, 26);
+});
+
 test("stage1: an at-ceiling invocation hard-halts BEFORE any spawn (authoring double never invoked; exit 3)", async () => {
   const rig = makeRig("stage1-budget", { withCalibrationDocs: false });
   try {

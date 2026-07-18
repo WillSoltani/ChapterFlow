@@ -330,7 +330,29 @@ export type Stage1GateOpts = {
   stageCap?: number;
   /** Ledger-read seam (tests inject a fixture). Default: the real WP-503 scan. */
   readEntries?: () => RunCallLedgerEntryV1[];
+  /** Pre-freeze LEGACY sessions with no `sessionKind` stamp — `countTrueSessions`
+   *  excludes them by the honesty rule, but the D-3 ceiling must still charge
+   *  them. Default: the Stage-0a recount artifact's `trueCodexSessions`
+   *  (docs/v25/implementation/V25_STAGE0A_SPEND_RECOUNT.json); a missing
+   *  artifact falls back to 0 with a visible warning, never silently. */
+  legacyBaseline?: number;
 };
+
+/** Read the committed Stage-0a recount's legacy (unstamped) session count. */
+export function readLegacyBaseline(pipelineDir: string, warn: (m: string) => void = (m) => process.stderr.write(`${m}\n`)): number {
+  const recountPath = resolve(pipelineDir, "..", "..", "..", "..", "docs", "v25", "implementation", "V25_STAGE0A_SPEND_RECOUNT.json");
+  try {
+    const recount = JSON.parse(readFileSync(recountPath, "utf8")) as { trueCodexSessions?: number };
+    if (typeof recount.trueCodexSessions === "number" && Number.isFinite(recount.trueCodexSessions) && recount.trueCodexSessions >= 0) {
+      return recount.trueCodexSessions;
+    }
+    warn(`[stage1] WARNING: ${recountPath} has no usable trueCodexSessions — legacy baseline 0 (ceiling optimistic by the unstamped pre-freeze spend).`);
+    return 0;
+  } catch {
+    warn(`[stage1] WARNING: Stage-0a recount artifact unreadable at ${recountPath} — legacy baseline 0 (ceiling optimistic by the unstamped pre-freeze spend).`);
+    return 0;
+  }
+}
 
 /**
  * The pre-spawn budget gate. `reserve()` runs before EVERY spawn and throws
@@ -345,10 +367,12 @@ export class Stage1SpawnGate {
   private reserved = 0;
   private startCampaign: number;
   private startStage1: number;
+  private readonly legacyBaseline: number;
   /** True once any reservation was refused — later steps consult it. */
   breached = false;
 
   constructor(private readonly pipelineDir: string, private readonly opts: Stage1GateOpts = {}) {
+    this.legacyBaseline = opts.legacyBaseline ?? readLegacyBaseline(pipelineDir);
     const entries = this.entries();
     this.startCampaign = countTrueSessions(entries);
     this.startStage1 = stage1TrueSessions(entries);
@@ -364,7 +388,11 @@ export class Stage1SpawnGate {
 
   snapshot(): Stage1BudgetSnapshot {
     const entries = this.entries();
-    const campaign = Math.max(countTrueSessions(entries), this.startCampaign + this.reserved);
+    // The D-3 ceiling charges the unstamped pre-freeze legacy spend too — the
+    // honesty rule keeps it OUT of countTrueSessions, so it rides as a fixed
+    // baseline here (Stage-0a recount; stage-cap accounting is stage1-only and
+    // needs no baseline).
+    const campaign = this.legacyBaseline + Math.max(countTrueSessions(entries), this.startCampaign + this.reserved);
     const stage1 = Math.max(stage1TrueSessions(entries), this.startStage1 + this.reserved);
     return {
       ceiling: this.ceiling,
