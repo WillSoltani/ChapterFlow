@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { useBookQuery } from "@/app/book/_lib/book-api-cache";
+import { useDashboardQuery } from "@/app/book/hooks/useDashboardQuery";
 import type { LibraryCatalogBook, LibraryBookEntry } from "@/app/book/_lib/library-data";
 import {
   buildEntries,
@@ -30,18 +30,12 @@ const EMPTY: DashboardResponse = {
   warnings: [],
 };
 
-const DASHBOARD_KEY = "/app/api/book/me/dashboard";
-
 /**
  * Hydrates the library list from the production `/api/book/me/dashboard`
  * aggregate (catalog + progress + bookStates + entitlement + saved + insight
- * points in one call). Mirrors `useLibraryCatalogData` but exposes the full set
- * the redesigned library UI needs.
- *
- * Reads through the shared book-api cache (WS3-022): the dashboard GET dedups
- * with the other dashboard consumers, re-mounts serve the cached aggregate
- * instantly, and focus/storage/book-storage revalidation is handled once by the
- * cache layer instead of per-hook listeners.
+ * points in one call). A thin selector over the canonical `useDashboardQuery`
+ * (WS3-025) — it does NOT fetch the dashboard itself, so the aggregate is shared
+ * (deduped + cached + revalidated once) with every other dashboard consumer.
  *
  * The dashboard route fails LOUD (503) when a CRITICAL read (catalog,
  * entitlement, progress, bookStates, chapterStates) fails (#2), so a thrown error
@@ -51,9 +45,7 @@ const DASHBOARD_KEY = "/app/api/book/me/dashboard";
  * non-blocking "couldn't load everything" banner.
  */
 export function useLibraryDashboard(enabled = true) {
-  const { data, error, loading, refetch } = useBookQuery<DashboardResponse>(
-    enabled ? DASHBOARD_KEY : null
-  );
+  const { data, error, loading, refetch } = useDashboardQuery(enabled);
 
   const payload: DashboardResponse = useMemo(() => {
     if (!data) return EMPTY;
@@ -62,7 +54,9 @@ export function useLibraryDashboard(enabled = true) {
       progress: data.progress ?? [],
       bookStates: data.bookStates ?? [],
       entitlement: data.entitlement ?? null,
-      saved: data.saved ?? [],
+      saved: (data.saved ?? []).filter(
+        (item): item is { bookId: string } => typeof item.bookId === "string",
+      ),
       insightPointsBalance: data.insightPointsBalance ?? 0,
       partial: data.partial === true,
       warnings: Array.isArray(data.warnings) ? data.warnings : [],
