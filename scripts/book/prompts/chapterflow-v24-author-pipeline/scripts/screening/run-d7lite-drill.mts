@@ -42,42 +42,40 @@
  * --execute-live (orchestrator-owned).
  */
 
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { PIPELINE_DIR } from "../../src/bakeoff/paths.js";
 import {
-  D7JudgeError,
   normalizeD7WorkerReturn,
   type D7WorkerDispatch,
-  type D7WorkerDispatchMetaV1,
 } from "../../src/bakeoff/d7Judge.js";
 import type { BlindLabel } from "../../src/bakeoff/types.js";
-import {
-  createD7CodexWorkerDispatch,
-  isValidUltraProbe,
-  assertUltraProbeAccepted,
-} from "../../src/bakeoff/d7WorkerDispatch.js";
-import { runUltraAcceptanceProbe, type UltraAcceptanceProbeV1 } from "../../src/exec/ultraSession.js";
+import { createD7CodexWorkerDispatch } from "../../src/bakeoff/d7WorkerDispatch.js";
 import { resolveD7RaterRoute } from "../../src/orchestrator/modelPolicy.js";
 import {
   PIPELINE_REL,
-  RUBRIC_AUDIT_BAR_D7,
-  RUBRIC_AUDIT_RUBRIC_VERSION,
-  RUBRIC_AUDIT_SCHEMA_BATCH,
   RUBRIC_CALIBRATION_REFERENCES,
-  RUBRIC_OWNER_RUN_ID,
   deriveRecordAggregates,
-  type RubricAuditBatchManifestV1,
 } from "../../src/bakeoff/migration/rubricAuditInstrument.js";
 import {
   ingestRaterRecord,
   renderRaterTaskDocument,
-  type D7IngestDispatchMetaV1,
 } from "../../src/bakeoff/migration/rubricAuditHarness.js";
 import { loadRecord } from "../../src/bakeoff/migration/rubricAuditReceipts.js";
-import { hashCanonical } from "../../src/contracts/contractUtil.js";
+import {
+  D7LITE_TOLERANCE,
+  calibrationOnlyManifest,
+  defaultProbeGate,
+  toIngestMeta,
+  type D7LiteProbeGateResult,
+} from "./d7liteCore.mjs";
+
+// The shared D7-lite core (extracted from this driver so the Stage-1 screening
+// driver reuses the exact same mechanics) — re-exported so this driver's public
+// surface (and its test imports) are unchanged by the refactor.
+export { D7LITE_TOLERANCE, calibrationOnlyManifest, type D7LiteProbeGateResult } from "./d7liteCore.mjs";
 
 // ── Registered drill constants ──────────────────────────────────────────────────
 
@@ -86,11 +84,6 @@ import { hashCanonical } from "../../src/contracts/contractUtil.js";
  *  probe without ever letting a retry loop exist (there is none — one session
  *  per unit, fail-closed). */
 export const D7LITE_SESSION_CAP = 5;
-
-/** The calibration comparison tolerance — the D7 instrument's OWN ±3.0
- *  (protocol §10.1-P3 uses "its own legacy tolerance"), reused from the
- *  ratified bar, never a second literal. */
-export const D7LITE_TOLERANCE = RUBRIC_AUDIT_BAR_D7.calibrationTolerance;
 
 export type D7LiteDrillBand = "mid-band-legacy" | "high-band-reference" | "drift";
 
@@ -141,90 +134,6 @@ export const D7LITE_DRILL_UNITS: readonly D7LiteDrillUnitSpec[] = [
 
 const REPO_ROOT = resolve(PIPELINE_DIR, "..", "..", "..", "..");
 const RUN_HASH_RE = /^[a-z0-9][a-z0-9-]*$/;
-
-// ── Calibration-only audit manifest (the hidden-calibration machinery, reused) ──
-
-/**
- * A calibration-ONLY batch manifest: the exact RubricAuditBatchManifestV1 shape
- * with an empty candidate-chapter list, so resolveAuditUnit takes its
- * CALIBRATION branch (owner-run-compat profile, sealed doc bytes verified
- * against the owner-audited sha at render AND ingest) — the same hidden-
- * calibration path every candidate batch uses, minus any candidate chapter.
- * buildRubricAuditBatch itself requires ≥1 candidate chapter (it builds
- * candidate audits); the drill audits ONLY sealed calibration units, so the
- * manifest is minted here from the SAME sealed-reference constants, with the
- * same canonical manifestSha256 stamp.
- */
-export function calibrationOnlyManifest(auditId: string, unit: string): RubricAuditBatchManifestV1 {
-  const ref = RUBRIC_CALIBRATION_REFERENCES.find((r) => r.unit === unit);
-  if (ref === undefined) {
-    throw new Error(`unknown calibration unit '${unit}' — must be one of the sealed owner-adjudicated references`);
-  }
-  const core: Omit<RubricAuditBatchManifestV1, "manifestSha256"> = {
-    schema: RUBRIC_AUDIT_SCHEMA_BATCH,
-    auditId,
-    purpose: "Stage-0b D7-lite calibration drill — single-rater primary session per sealed unit (protocol §10.1-P3)",
-    rubricVersion: RUBRIC_AUDIT_RUBRIC_VERSION,
-    bar: RUBRIC_AUDIT_BAR_D7,
-    calibration: {
-      unit: ref.unit,
-      docRelPath: ref.docRelPath,
-      docSha256: ref.docSha256,
-      ownerRunId: RUBRIC_OWNER_RUN_ID,
-      expectedChapterDiagnostic: ref.expectedChapterDiagnostic,
-    },
-    chapters: [],
-  };
-  return { ...core, manifestSha256: hashCanonical(core) };
-}
-
-// ── Probe gate (E-drill sidecar reuse; fail-closed) ─────────────────────────────
-
-export type D7LiteProbeGateResult =
-  | { ok: true; sidecarSha256: string; reused: boolean; sessionsSpent: 0 | 1 }
-  | { ok: false; detail: string; sessionsSpent: 0 | 1 };
-
-function readUltraProbeSidecar(probeDir: string): UltraAcceptanceProbeV1 | null {
-  try {
-    return JSON.parse(readFileSync(resolve(probeDir, "ultra-acceptance-probe.json"), "utf8")) as UltraAcceptanceProbeV1;
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Consult the campaign ultra-acceptance probe BEFORE the first rating spawn.
- * The E-drill's accepted sidecar (state/model-bakeoffs/_campaign/ultra-acceptance/)
- * is REUSED only when it is a VALID proof for THIS route (isValidUltraProbe:
- * schema/effort/model AND a recomputing self-hash — a hand-planted or
- * stale-model sidecar is treated as absent and re-probed, never trusted).
- * Otherwise ONE live probe runs (1 session against the cap). A missing/invalid/
- * accepted:false result fails the gate — no rating session ever spawns at an
- * unproven ultra token.
- */
-async function defaultProbeGate(probeDir: string, log: (m: string) => void): Promise<D7LiteProbeGateResult> {
-  let probe = readUltraProbeSidecar(probeDir);
-  let sessionsSpent: 0 | 1 = 0;
-  if (probe !== null && probe.accepted && isValidUltraProbe(probe)) {
-    log(`[d7lite]   ultra-acceptance: reusing valid accepted probe (${probe.probedAt}) at ${probeDir}`);
-  } else {
-    if (probe !== null && !isValidUltraProbe(probe)) {
-      log("[d7lite]   ultra-acceptance: existing sidecar is NOT a trustworthy proof for this route — treating it as absent and re-probing.");
-    }
-    log("[d7lite]   ultra-acceptance: running the probe once (installed CLI must accept model_reasoning_effort=ultra)…");
-    mkdirSync(probeDir, { recursive: true });
-    probe = await runUltraAcceptanceProbe({ route: resolveD7RaterRoute(), probeDir });
-    sessionsSpent = 1;
-    log(`[d7lite]   ultra-acceptance: accepted=${probe.accepted} — ${probe.detail.slice(0, 200)}`);
-  }
-  try {
-    assertUltraProbeAccepted(probe);
-  } catch (err) {
-    if (err instanceof D7JudgeError) return { ok: false, detail: err.message, sessionsSpent };
-    throw err;
-  }
-  return { ok: true, sidecarSha256: probe.sidecarSha256, reused: sessionsSpent === 0, sessionsSpent };
-}
 
 // ── Drill result types ──────────────────────────────────────────────────────────
 
@@ -293,16 +202,6 @@ export type D7LiteDrillDeps = {
 };
 
 // ── The drill ───────────────────────────────────────────────────────────────────
-
-function toIngestMeta(meta: D7WorkerDispatchMetaV1 | undefined): D7IngestDispatchMetaV1 | undefined {
-  if (meta === undefined) return undefined;
-  return {
-    model: meta.model,
-    effort: meta.effort,
-    ...(meta.sessionKind !== undefined ? { sessionKind: meta.sessionKind } : {}),
-    ...(meta.attemptIndex !== undefined && meta.attemptIndex !== null ? { attemptIndex: meta.attemptIndex } : {}),
-  };
-}
 
 export async function runD7LiteDrill(args: {
   runHash: string;
