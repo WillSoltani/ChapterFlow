@@ -1004,7 +1004,13 @@ function recordD7CallLedgerEntry(args: {
       latencyMs: null,
       outcome: args.outcome,
       sessionId: `${args.auditId}/${args.unit}/${args.role}`,
-      ...(meta?.sessionKind !== undefined ? { sessionKind: meta.sessionKind } : {}),
+      // When dispatchMeta is present the DISPATCH choke point already ledgered
+      // this session's live spend (its own entry, codex sessionId) — this
+      // ingest entry records the reading of the persisted reply bytes, so it
+      // is a "reingest" observation regardless of what the dispatch charged.
+      // Stamping "session" here double-charged the D-3 ceiling (AUD-08's
+      // dispatch/ingest double-entry, observed live 2026-07-18).
+      ...(meta?.sessionKind !== undefined ? { sessionKind: "reingest" as const } : {}),
       ...(meta?.attemptIndex !== undefined ? { attemptIndex: meta.attemptIndex } : {}),
     });
   } catch { /* telemetry must never brick the D7 audit ingest */ }

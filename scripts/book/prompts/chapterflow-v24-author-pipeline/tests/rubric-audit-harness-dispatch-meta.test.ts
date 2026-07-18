@@ -165,7 +165,7 @@ test("ingestRaterRecord + dispatchMeta: the on-disk ledger carries the REAL obse
   }
 });
 
-test("ingestRaterRecord + dispatchMeta: sessionKind/attemptIndex thread into the appendLedger call args (captured directly)", () => {
+test("ingestRaterRecord + dispatchMeta: ingest ledgers 'reingest' (the dispatch already charged the live session — AUD-08 double-entry guard)", () => {
   const repo = makeAuditRepo("dispatch-meta-capture");
   const ledger = capturingLedger();
   try {
@@ -180,7 +180,10 @@ test("ingestRaterRecord + dispatchMeta: sessionKind/attemptIndex thread into the
       appendLedger: ledger.append,
     }));
     assert.equal(ledger.calls.length, 1);
-    assert.equal(ledger.calls[0].sessionKind, "session");
+    // The dispatch choke point owns the live-spend entry; the ingest entry
+    // records reading the persisted reply — ALWAYS "reingest", so one real
+    // session is never charged twice against the D-3 ceiling.
+    assert.equal(ledger.calls[0].sessionKind, "reingest");
     assert.equal(ledger.calls[0].attemptIndex, 3);
     assert.equal(ledger.calls[0].model, "gpt-5.6-sol");
     assert.equal(ledger.calls[0].effort, "ultra");

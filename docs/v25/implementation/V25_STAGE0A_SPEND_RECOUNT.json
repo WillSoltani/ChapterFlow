@@ -15,6 +15,6 @@
     "stage0bUnledgered": 14,
     "stage0bUnledgeredDetail": "2 ultra probes + 12 E-audit rater/adjudicator sessions (run-stage0b-calibration.mts predates driver-side ledgering; the 3 D7-lite drill sessions ARE ledgered/stamped and are NOT in this baseline)"
   },
-  "note": "Gate baseline = trueCodexSessions (all spend invisible to countTrueSessions). Ledgered+stamped sessions add on top: 3 (D7-lite drill) at time of writing -> total 41/170. The Stage-1 driver ledgers its own sessions, so this baseline stays fixed.",
+  "note": "Gate baseline = trueCodexSessions (all spend invisible to countTrueSessions). Ledgered+stamped sessions add on top: 3 (D7-lite drill) at time of writing -> total 41/170. The Stage-1 driver ledgers its own sessions, so this baseline stays fixed. KNOWN CONSERVATIVE +3: the three 2026-07-18 D7-lite drill ingest entries were stamped session before the AUD-08 double-entry fix landed (evidence immutable; gate reads 44 where true spend is 41).",
   "updatedAt": "2026-07-18"
 }
