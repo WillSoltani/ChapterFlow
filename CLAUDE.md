@@ -10,6 +10,7 @@ This checkout (`~/ChapterFlow-books`) is the canonical worktree for all work.
 
 ## Where things live
 - `app/` — Next.js App Router. **API routes are double-nested**: `app/app/api/book/**` (not `app/api/`).
+- New authenticated app routes -> `app/app/api/**` (see `app/app/api/README.md`); the shallow `app/api/**` namespace is reserved for unauthenticated endpoints only (health, book-requests).
 - `components/` — route-level UIs for the MIGRATED routes (`library/`, `progress/`, `workspace/`, `landing/`, `sections/`, `ui/`, `website/`). Many `app/book/**/*Client.tsx` pages are still the live render path for their routes — always confirm a component is mounted (grep importers from a `page.tsx`/`layout.tsx`) before editing or deleting it.
 - `lib/` — shared app code.
 - `infra/` — AWS CDK (its own `package.json`).
