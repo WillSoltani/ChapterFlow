@@ -139,6 +139,16 @@ jobs:
           COGNITO_LOGOUT_REDIRECT_URI: ${{ secrets.COGNITO_LOGOUT_REDIRECT_URI }}
           AUTH_STATE_SECRET: ${{ secrets.AUTH_STATE_SECRET }}
           AUTH_COOKIE_DOMAIN: ${{ secrets.AUTH_COOKIE_DOMAIN }}
+          # Origin lock (WS6-002). The shared secret CloudFront injects as
+          # x-origin-verify and middleware/the image wrapper enforce; prod synth
+          # REQUIRES it (>=32 chars — bin/app.ts fails closed without it). For a
+          # first observe-only rollout set the environment variable
+          # CHAPTERFLOW_ORIGIN_VERIFY_MODE=log (Settings → Environments → <env>
+          # → Variables) — mismatches log `origin_verify_mismatch` but requests
+          # proceed; after confirming CloudFront traffic carries the header,
+          # delete the variable and re-deploy to enforce.
+          CHAPTERFLOW_ORIGIN_VERIFY_SECRET: ${{ secrets.CHAPTERFLOW_ORIGIN_VERIFY_SECRET }}
+          CHAPTERFLOW_ORIGIN_VERIFY_MODE: ${{ vars.CHAPTERFLOW_ORIGIN_VERIFY_MODE || '' }}
           # StoreKit / native mobile configuration (nonsecret, environment-bound)
           APPLE_IAP_BUNDLE_ID: ${{ vars.APPLE_IAP_BUNDLE_ID }}
           APPLE_IAP_APP_APPLE_ID: ${{ vars.APPLE_IAP_APP_APPLE_ID }}

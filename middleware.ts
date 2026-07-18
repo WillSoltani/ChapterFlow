@@ -4,8 +4,10 @@ import {
   isOrphanBookSlug,
   resolveCanonicalBookSlug,
 } from "@/lib/book-slug-aliases";
+import { evaluateOriginVerify } from "@/lib/origin-verify-core";
 
 let missingConfigWarned = false;
+let originVerifyWarned = false;
 
 // PROD-DUP: redirect a retired book slug to its canonical slug (308). This lives
 // in middleware rather than next.config redirects() on purpose: Next compiles
@@ -109,6 +111,36 @@ function resolveRequestOrigin(req: NextRequest): string {
 }
 
 export function middleware(req: NextRequest) {
+  // WS6-002 origin-verify gate — MUST be the first thing evaluated. The server
+  // Function URL is authType NONE (public); CloudFront injects a shared-secret
+  // x-origin-verify header (infra/lib/chapterflow-frontend-stack.ts). A request
+  // arriving without the matching header hit the raw Function URL directly,
+  // bypassing the CloudFront edge (and its WAF), so it must be rejected before it
+  // can reach a protected surface, a redirect, or NextResponse.next(). No-op when
+  // ORIGIN_VERIFY_SECRET is unset — byte-identical to prior behavior on envs that
+  // have not introduced the secret. Log mode warns once per instance then falls
+  // through (two-phase rollout observation window before enforce).
+  const originVerifySecret = process.env.ORIGIN_VERIFY_SECRET;
+  if (originVerifySecret) {
+    const verdict = evaluateOriginVerify(
+      originVerifySecret,
+      req.headers.get("x-origin-verify"),
+      process.env.ORIGIN_VERIFY_MODE,
+    );
+    if (verdict === "deny") {
+      return new NextResponse(JSON.stringify({ error: "forbidden" }), {
+        status: 403,
+        headers: { "content-type": "application/json" },
+      });
+    }
+    if (verdict === "warn" && !originVerifyWarned) {
+      originVerifyWarned = true;
+      console.warn(
+        "origin_verify_mismatch: x-origin-verify absent or wrong (log mode); request allowed to continue",
+      );
+    }
+  }
+
   const { pathname } = req.nextUrl;
 
   // API routes never get cookie-based auth middleware. Routes under /app/api
@@ -193,5 +225,17 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/app/:path*", "/book/:path*", "/dashboard/:path*"],
+  // WS6-002 widened the matcher from the three protected prefixes to a single
+  // negative-lookahead catch-all: the origin-verify check above must see EVERY
+  // path a direct Function-URL hit can request, and the old prefix list left
+  // most paths unmatched (never entering middleware at all). The exclusions are
+  // exactly the CloudFront non-server behaviors + Next statics, which are served
+  // from S3/the image origin and never reach this server Lambda. The auth logic
+  // is unchanged: previously-unmatched paths now enter middleware but fall
+  // straight through the existing prefix guards (the /app/api early-return and
+  // the `!protectedSurface` guard) to NextResponse.next() exactly as if they had
+  // never matched — the widening only adds the origin-verify gate to them.
+  matcher: [
+    "/((?!_next/static|_next/image|favicon\\.ico|icon\\.svg|robots\\.txt|sitemap\\.xml|fonts/|book-covers/|BUILD_ID).*)",
+  ],
 };

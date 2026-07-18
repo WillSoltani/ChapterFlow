@@ -482,19 +482,26 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
 
     this.appTable.grantReadWriteData(reminderFn);
-    // Scope SendEmail to the env's verified domain identity when known (prod);
-    // dev/staging without a verified domain fall back to "*" — same conditional
-    // shape as the frontend stack's SesSendAccess statement.
-    reminderFn.addToRolePolicy(
-      new iam.PolicyStatement({
-        actions: ["ses:SendEmail", "sesv2:SendEmail"],
-        resources: reminderSenderDomain
-          ? [
-              `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${reminderSenderDomain}`,
-            ]
-          : ["*"],
-      })
-    );
+    // Scope SendEmail to the env's verified domain identity.
+    //
+    // WS6-003: all three envs share ONE AWS account and SES is account-global, so a
+    // "*" resource here would let this dev/staging reminder role send as the PROD
+    // SES identities. We therefore add this statement ONLY when this env's verified
+    // domain is known at synth (prod always has it — bin/app.ts asserts it). A
+    // non-prod synth without a domain gets NO SES grant at all, so a reminder send
+    // there fails closed with AccessDenied in that env (commercial sends already
+    // stay disabled by the EMAIL_POSTAL_ADDRESS kill-switch) instead of gaining an
+    // account-wide send. Same contract as the frontend stack's SesSendAccess grant.
+    if (reminderSenderDomain) {
+      reminderFn.addToRolePolicy(
+        new iam.PolicyStatement({
+          actions: ["ses:SendEmail", "sesv2:SendEmail"],
+          resources: [
+            `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${reminderSenderDomain}`,
+          ],
+        })
+      );
+    }
     // Read the owner email config (EMAIL_*) from SSM at runtime.
     reminderFn.addToRolePolicy(
       new iam.PolicyStatement({
