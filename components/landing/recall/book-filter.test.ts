@@ -1,13 +1,10 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-// The pure helper lives next to its only consumer
-// (components/landing/recall/book-filter.ts), but `npm test` only globs app/ +
-// lib/, so the test lives here and imports that runtime-dependency-free module
-// (same pattern as lib/retention-loop-phase.test.ts).
-import {
-  filterBooks,
-  deriveCategories,
-} from "@/components/landing/recall/book-filter";
+// Colocated with its only consumer (WS3-007: `npm test` globs
+// app/ + lib/ + components/ + tests/, so the test no longer needs to live
+// under lib/ to run — moved out of lib/ to keep lib/ from importing upward
+// into components/; same pattern as components/sections/retention-loop-phase.test.ts).
+import { filterBooks, deriveCategories } from "./book-filter";
 
 const BOOKS = [
   { title: "Atomic Habits", author: "James Clear", category: "Productivity" },

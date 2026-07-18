@@ -15,13 +15,14 @@ import {
   withRecall,
   withRecallPct,
   playheadYOf,
-} from "@/components/sections/retention-loop-phase";
+} from "./retention-loop-phase";
 
 // The signature ScrollStory §01 pure scroll-progress→phase mapping AND the
-// load-bearing curve-geometry invariant. (Lives in components/, but the unit gate
-// only globs app/ + lib/, so the test lives here and imports the
-// runtime-dependency-free module that ScrollStory itself imports — so this test
-// guards exactly what ships, with no risk of a divergent in-component copy.)
+// load-bearing curve-geometry invariant. Colocated with its only consumer
+// (WS3-007: the unit gate now globs app/ + lib/ + components/ + tests/, so the
+// test no longer needs to live under lib/ to run — moved out of lib/ to keep
+// lib/ from importing upward into components/) — so this test guards exactly
+// what ships, with no risk of a divergent in-component copy.
 
 test("phaseForProgress maps each band to the right phase", () => {
   assert.equal(phaseForProgress(0), "summary");

@@ -14,7 +14,7 @@ import {
   STUB_ESTIMATED_MINUTES,
   type CatalogStubCandidate,
 } from "./library-catalog-stub";
-import catalogMetadata from "@/app/book/data/booksCatalog.metadata.json";
+import catalogMetadata from "./books-catalog.metadata.json";
 
 // --- isStubChapterCount (the load-bearing index-build signal) --------------
 
