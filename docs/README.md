@@ -15,6 +15,7 @@ Use the documents below based on the task you are doing.
 - [ChapterFlow architecture and content flow](BOOK_ACCELERATOR.md)
 - [ChapterFlow app admin guide](BOOKAPP_ADMIN_GUIDE.md)
 - [Two-axis completion (knowledge vs applied)](two-axis-completion.md)
+- [Insight Points system design spec](insight-points-system-spec.md) — implemented; shipped in the UI as Flow Points
 
 ## Operations docs
 - [Operations guide](OPERATIONS.md)
