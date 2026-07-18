@@ -9,135 +9,48 @@
 
 import { isV21RawPackage, normalizeV21Package } from "@/app/book/lib/v21-adapter";
 
-export type VariantFamily = "EMH" | "PBC";
-export type VariantKey =
-  | "easy"
-  | "medium"
-  | "hard"
-  | "precise"
-  | "balanced"
-  | "challenging";
+// ── BookPackage domain model (RESOLVED / tone-flattened stage) ──────────────
+//
+// The BookPackage type family is single-sourced in `lib/book-package-types.ts`
+// (see WS3-008). This module is the RESOLVED-stage surface: it re-exports the
+// tone-flattened definitions under their historical client names so every
+// existing `bookPackages` / `book-package-core` consumer keeps working
+// unchanged. The RAW (tone-keyed) stage lives in
+// `app/app/api/book/_lib/types.ts`. Do not redefine these here — edit the
+// canonical module. The `normalizeNstdVariant` transform below resolves each
+// tone-keyed field to a string (Raw → Resolved).
+import type {
+  VariantFamily,
+  VariantKey,
+  ToneObject,
+  ToneKey,
+  SummaryBlock as PackageSummaryBlock,
+  ResolvedVariantContent as PackageVariantContent,
+  ResolvedQuizQuestion as PackageQuizQuestion,
+  ResolvedQuiz as PackageQuiz,
+  ResolvedExample as PackageExample,
+  ResolvedImplementationPlan as PackageImplementationPlan,
+  ResolvedReviewCard as PackageReviewCard,
+  ResolvedChapter as PackageChapter,
+  ResolvedBook as PackageBook,
+  ResolvedBookPackage as BookPackage,
+} from "@/lib/book-package-types";
 
-export type PackageSummaryBlock =
-  | {
-      type: "paragraph";
-      text: string;
-    }
-  | {
-      type: "bullet";
-      text: string;
-      detail?: string;
-    };
-
-export type PackageVariantContent = {
-  chapterBreakdown?: string;
-  importantSummary?: string;
-  summaryBullets?: string[];
-  summaryBlocks?: PackageSummaryBlock[];
-  keyTakeaways?: string[];
-  takeaways?: string[];
-  practice?: string[];
-  oneMinuteRecap?: string[];
-  activationPrompt?: string;
-  selfCheckPrompt?: string;
-  selfCheckPrompts?: string[];
-  reflectionPrompts?: string[];
-  closingPrompt?: string;
-  predictionPrompt?: string;
-};
-
-export type PackageQuizQuestion = {
-  questionId: string;
-  prompt?: string;
-  stem?: string;
-  choices?: string[];
-  options?: string[];
-  correctIndex?: number;
-  correctAnswerIndex?: number;
-  explanation?: string | Record<string, string>;
-};
-
-export type PackageQuiz = {
-  chapterId?: string;
-  chapterNumber?: number;
-  chapterTitle?: string;
-  passingScorePercent: number;
-  questions: PackageQuizQuestion[];
-  retryQuestions?: PackageQuizQuestion[];
-};
-
-export type PackageExample = {
-  exampleId: string;
-  title: string;
-  scenario: string;
-  whatToDo: string[];
-  whyItMatters: string;
-  contexts?: string[];
-  reflectionPrompt?: string;
-};
-
-export type PackageImplementationPlan = {
-  coreSkill: string;
-  ifThenPlans: Array<{ context: string; plan: string }>;
-  twentyFourHourChallenge: string;
-  weeklyPractice: string;
-};
-
-export type PackageReviewCard = {
-  cardId: string;
-  front: string;
-  back: string;
-  difficulty: "easy" | "medium" | "hard";
-};
-
-export type PackageChapter = {
-  chapterId: string;
-  number: number;
-  title: string;
-  readingTimeMinutes: number;
-  contentVariants: Partial<Record<VariantKey, PackageVariantContent>>;
-  examples: PackageExample[];
-  quiz: PackageQuiz;
-  implementationPlan?: PackageImplementationPlan;
-  reviewCards?: PackageReviewCard[];
-  keyTakeawayCard?: string;
-};
-
-export type PackageBook = {
-  bookId: string;
-  title: string;
-  author: string;
-  categories: string[];
-  tags?: string[];
-  edition?:
-    | string
-    | {
-        name: string;
-        publishedYear?: number | null;
-        publisher?: string;
-        publishedDate?: string;
-        imprintFamily?: string[];
-        isbn10?: string;
-        isbn13?: string;
-        format?: string;
-        language?: string;
-        translator?: string;
-        translationYear?: number | null;
-        openLibraryEdition?: string;
-        sourceText?: string;
-        sourceProvenance?: string;
-      };
-  variantFamily: VariantFamily;
-  chapterRange?: string;
-};
-
-export type BookPackage = {
-  schemaVersion: string;
-  packageId: string;
-  createdAt: string;
-  contentOwner: string;
-  book: PackageBook;
-  chapters: PackageChapter[];
+export type {
+  VariantFamily,
+  VariantKey,
+  ToneObject,
+  ToneKey,
+  PackageSummaryBlock,
+  PackageVariantContent,
+  PackageQuizQuestion,
+  PackageQuiz,
+  PackageExample,
+  PackageImplementationPlan,
+  PackageReviewCard,
+  PackageChapter,
+  PackageBook,
+  BookPackage,
 };
 
 export type BookPackagePresentation = {
@@ -149,9 +62,8 @@ export type BookPackagePresentation = {
 };
 
 /* ── NSTD tone-aware JSON normalization ────────────────────────────── */
-
-export type ToneObject = { gentle?: string; direct?: string; competitive?: string };
-export type ToneKey = "gentle" | "direct" | "competitive";
+// `ToneObject` / `ToneKey` are single-sourced from `lib/book-package-types.ts`
+// and re-exported at the top of this module.
 
 function asRecord(value: unknown): Record<string, unknown> | null {
   return value && typeof value === "object" ? (value as Record<string, unknown>) : null;

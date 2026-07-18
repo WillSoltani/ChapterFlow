@@ -1,233 +1,57 @@
-export type VariantFamily = "EMH" | "PBC";
+// ── BookPackage domain model (RAW / tone-keyed stage) ───────────────────────
+//
+// The BookPackage type family is single-sourced in `lib/book-package-types.ts`
+// (see WS3-008). This module is the RAW-stage surface: it re-exports the raw
+// (tone-keyed) definitions under their historical server names so every existing
+// `./types` consumer keeps working unchanged. The tone-FLATTENED reader stage
+// lives in `app/book/data/book-package-core.ts`. Do not redefine these here — edit
+// the canonical module.
+import type {
+  VariantFamily,
+  VariantKey,
+  ToneKeyed,
+  OneMinuteRecapToneKeyed,
+  SummaryBlock as ChapterSummaryBlock,
+  RawVariantContent as ChapterVariantContent,
+  RawQuizQuestion as BookPackageQuizQuestion,
+  RawQuiz as BookPackageQuiz,
+  RawExample as BookPackageExample,
+  RawReviewCard as ReviewCard,
+  RawImplementationPlan as ImplementationPlan,
+  V21ReaderPattern,
+  V21ExperiencePlan,
+  V21ChapterExtras,
+  RawChapter as BookPackageChapter,
+  BookPackageEdition,
+  RawBook as BookPackageBook,
+  ConceptNode,
+  ConceptEdge,
+  ConceptGraph,
+  RawBookPackage as BookPackage,
+} from "@/lib/book-package-types";
 
-export type VariantKey = "easy" | "medium" | "hard" | "precise" | "balanced" | "challenging";
-
-export type ChapterSummaryBlock =
-  | {
-      type: "paragraph";
-      text: string;
-    }
-  | {
-      type: "bullet";
-      text: string;
-      detail?: string;
-    };
-
-/** Tone-keyed content: { gentle: string, direct: string, competitive: string } */
-export type ToneKeyed = {
-  gentle: string;
-  direct: string;
-  competitive: string;
-};
-
-export type OneMinuteRecapToneKeyed = ToneKeyed | {
-  retrieve: ToneKeyed;
-  connect: ToneKeyed;
-  preview: ToneKeyed;
-};
-
-export type ChapterVariantContent = {
-  importantSummary?: string;
-  summaryBullets?: string[];
-  summaryBlocks?: ChapterSummaryBlock[];
-  takeaways?: string[];
-  practice?: string[];
-  /** Modern format: tone-keyed chapter breakdown narrative */
-  chapterBreakdown?: ToneKeyed;
-  /** Modern format: tone-keyed takeaway objects */
-  keyTakeaways?: Array<{ point: ToneKeyed; moreDetails?: ToneKeyed }>;
-  /** Modern format: tone-keyed one-minute recap */
-  oneMinuteRecap?: OneMinuteRecapToneKeyed;
-  activationPrompt?: ToneKeyed;
-  selfCheckPrompt?: ToneKeyed;
-  selfCheckPrompts?: ToneKeyed[];
-  reflectionPrompts?: ToneKeyed[];
-  predictionPrompt?: ToneKeyed;
-};
-
-export type BookPackageQuizQuestion = {
-  questionId: string;
-  prompt?: string;
-  stem?: string;
-  choices?: string[];
-  options?: string[];
-  correctAnswerIndex?: number;
-  correctIndex?: number;
-  explanation?: string | ToneKeyed;
-  bloomsLevel?: string;
-  depthLevel?: string;
-};
-
-export type BookPackageQuiz = {
-  chapterId?: string;
-  chapterNumber?: number;
-  chapterTitle?: string;
-  title?: string;
-  passingScorePercent: number;
-  questions: BookPackageQuizQuestion[];
-  retryQuestions?: BookPackageQuizQuestion[];
-};
-
-export type BookPackageExample = {
-  exampleId?: string;
-  title?: string;
-  scenario: string | ToneKeyed;
-  whatToDo: string[] | ToneKeyed;
-  whyItMatters: string | ToneKeyed;
-  contexts?: string[];
-  category?: string;
-  format?: string;
-  endingType?: string;
-};
-
-/** Tone-keyed review card for spaced repetition */
-export type ReviewCard = {
-  cardId?: string;
-  front: ToneKeyed;
-  back: ToneKeyed;
-  difficulty?: "easy" | "medium" | "hard";
-};
-
-/** Tone-keyed implementation plan */
-export type ImplementationPlan = {
-  coreSkill?: ToneKeyed;
-  concreteAction?: ToneKeyed;
-  ifThenPlans?: Array<{
-    context: string;
-    plan: ToneKeyed;
-  }>;
-  ifThenPlan?: ToneKeyed;
-  twentyFourHourChallenge?: ToneKeyed;
-  weeklyPractice?: ToneKeyed;
-  friction?: ToneKeyed;
-  checkpoint?: ToneKeyed;
-};
-
-/**
- * v21-only chapter fields that have no v13/tone-keyed equivalent. The v21 → v13
- * adapter and validator carry these through unchanged so the reader can render
- * the hook banner, counterintuition, "try this now" directive, and memorable
- * lines. Absent for native v13 packages.
- */
-/** v21 behavior-change layer (Layer A). Sub-objects are surfaced only when
- *  complete (the adapter drops partial/empty shapes), so the reader contract is
- *  all-or-nothing per sub-object. Mirrors the client `V21ExperiencePlan`. */
-export type V21ReaderPattern = {
-  id: string;
-  label: string;
-  mapsToPlanIndex?: number;
-  mapsToExampleIndex?: number;
-};
-
-export type V21ExperiencePlan = {
-  failureRecovery?: {
-    normalizingLine: string;
-    cueQuestion: string;
-    options: string[];
-    repairLine: string;
-  };
-  transferPrompt?: {
-    prompt: string;
-    contexts: string[];
-  };
-  /** Optional "which pattern fits you?" personalization layer (RDRP*). */
-  behaviorLoop?: {
-    readerPatterns?: V21ReaderPattern[];
-  };
-};
-
-export type V21ChapterExtras = {
-  hook?: string;
-  counterintuition?: string;
-  tryThisNow?: string;
-  keyTakeaway?: string;
-  memorableLines?: Array<{ text: string; location?: string; why?: string }>;
-  experiencePlan?: V21ExperiencePlan;
-};
-
-export type BookPackageChapter = {
-  book?: {
-    bookId?: string;
-    title?: string;
-    author?: string;
-  };
-  chapterId: string;
-  number: number;
-  title: string;
-  readingTimeMinutes: number;
-  contentHash?: string;
-  contentVariants: Partial<Record<VariantKey, ChapterVariantContent>>;
-  examples: BookPackageExample[];
-  quiz: BookPackageQuiz;
-  implementationPlan?: ImplementationPlan;
-  reviewCards?: ReviewCard[];
-  keyTakeawayCard?: ToneKeyed;
-  v21Extras?: V21ChapterExtras;
-};
-
-export type BookPackageEdition = {
-  name: string;
-  publishedYear?: number | null;
-  publisher?: string;
-  publishedDate?: string;
-  imprintFamily?: string[];
-  isbn10?: string;
-  isbn13?: string;
-  format?: string;
-  language?: string;
-  translator?: string;
-  translationYear?: number | null;
-  openLibraryEdition?: string;
-  sourceText?: string;
-  sourceProvenance?: string;
-};
-
-export type BookPackageBook = {
-  bookId: string;
-  title: string;
-  author: string;
-  categories: string[];
-  tags?: string[];
-  cover?: {
-    emoji?: string;
-    color?: string;
-  };
-  edition?: string | BookPackageEdition;
-  variantFamily: VariantFamily;
-  chapterRange?: string;
-};
-
-// ── Concept Dependency Graph ──────────────────────────────────────────────────
-
-export type ConceptNode = {
-  id: string;
-  label: string;
-  introducedIn: string;
-  summary?: string;
-};
-
-export type ConceptEdge = {
-  from: string;
-  to: string;
-  type: "prerequisite";
-};
-
-export type ConceptGraph = {
-  concepts: ConceptNode[];
-  edges: ConceptEdge[];
-  chapterIntroduces: Record<string, string[]>;
-  chapterRequires: Record<string, string[]>;
-};
-
-export type BookPackage = {
-  schemaVersion: string;
-  packageId: string;
-  createdAt: string;
-  contentOwner: string;
-  licenseNotes?: string;
-  book: BookPackageBook;
-  chapters: BookPackageChapter[];
-  conceptGraph?: ConceptGraph;
+export type {
+  VariantFamily,
+  VariantKey,
+  ToneKeyed,
+  OneMinuteRecapToneKeyed,
+  ChapterSummaryBlock,
+  ChapterVariantContent,
+  BookPackageQuizQuestion,
+  BookPackageQuiz,
+  BookPackageExample,
+  ReviewCard,
+  ImplementationPlan,
+  V21ReaderPattern,
+  V21ExperiencePlan,
+  V21ChapterExtras,
+  BookPackageChapter,
+  BookPackageEdition,
+  BookPackageBook,
+  ConceptNode,
+  ConceptEdge,
+  ConceptGraph,
+  BookPackage,
 };
 
 export type ChapterSummaryPayload = {
