@@ -11,10 +11,11 @@
 
 /** Stable key identifying one (chapter, refetch) request the hook can satisfy. */
 export function buildChapterSeedKey(
+  bookId: string,
   chapterNumber: number,
   refetchKey: number,
 ): string {
-  return `${chapterNumber}:${refetchKey}`;
+  return `${bookId}:${chapterNumber}:${refetchKey}`;
 }
 
 export type ChapterContentFetchDecision =

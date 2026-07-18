@@ -175,7 +175,7 @@ export function useChapterContent(params: {
     // or an un-hydrated chapter falls through to the fetch below. Reads the seed
     // from a ref so seed identity never retriggers the effect (deps stay
     // chapter/refetch only).
-    const seedKey = buildChapterSeedKey(chapterNumber, refetchKey);
+    const seedKey = buildChapterSeedKey(bookId, chapterNumber, refetchKey);
     const seed =
       refetchKey === 0
         ? buildChapterSeed(initialChapterRef.current, chapterNumber, bookRef.current)
