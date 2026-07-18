@@ -2,21 +2,17 @@
 
 ## Repository overview
 
-The repo is a single Next.js application with two primary domains.
-
-### `Cloud Portfolio`
-A document workflow product for uploads, conversions, and PDF filling.
-
-### `ChapterFlow`
-A learning product for structured reading, quiz based review, reading analytics, badges, settings, profile, and subscription aware book access.
-
-The two domains live in the same deployment but are organized separately in the `app/` tree.
+The repo is a single Next.js application shipping one product: `ChapterFlow`, a
+learning product for structured reading, quiz based review, reading analytics,
+badges, settings, profile, and subscription aware book access. (An earlier
+`Cloud Portfolio` document-workflow domain was removed from HEAD; only
+ChapterFlow remains.)
 
 ## High level structure
 
 ```text
 app/
-  app/                     Cloud Portfolio routes and APIs
+  app/                     Authenticated app shell and API routes (app/app/api/**)
   book/                    ChapterFlow routes, UI, hooks, and client helpers
   auth/                    Shared auth routes
   _lib/                    Shared site and auth helpers
@@ -29,13 +25,8 @@ docs/                      Maintained documentation
 
 ### Site and shell
 - `app/` root pages and layouts provide the public site shell and shared auth entry points
-- `app/app/*` contains the Cloud Portfolio authenticated application
+- `app/app/*` hosts the authenticated app shell and the API routes (`app/app/api/**`)
 - `app/book/*` contains the ChapterFlow application
-
-### Cloud Portfolio frontend
-- Project workspace logic lives under `app/app/projects/[projectId]/`
-- PDF fill logic lives under `app/app/projects/[projectId]/fill/[fileId]/`
-- Large feature clients own page composition while smaller components and hooks stay close to the feature
 
 ### ChapterFlow frontend
 - Page clients live in feature folders such as `home`, `library`, `progress`, `profile`, `settings`, and `badges`
@@ -45,14 +36,6 @@ docs/                      Maintained documentation
 - Presentational components stay inside their feature folder unless reused across Book surfaces
 
 ## Backend structure
-
-### Cloud Portfolio backend
-Next.js route handlers under `app/app/api/*` coordinate:
-- Cognito authenticated access
-- project and file metadata in DynamoDB
-- presigned S3 upload and download flows
-- conversion job submission to Step Functions
-- filled PDF artifact persistence
 
 ### ChapterFlow backend
 Next.js route handlers under `app/app/api/book/*` provide:
@@ -69,15 +52,6 @@ Book specific server code is organized under `app/app/api/book/_lib` by concern:
 - `env.ts` for Book specific configuration resolution
 
 ## Data flow
-
-### Cloud Portfolio
-1. Client requests an upload intent
-2. File is uploaded directly to S3
-3. API records metadata in DynamoDB
-4. User requests conversion
-5. API validates the conversion through the shared capability matrix
-6. Step Functions invokes the worker
-7. Worker writes output artifacts and updates metadata
 
 ### ChapterFlow
 1. Client loads the published catalog from backend routes and local presentation metadata
@@ -101,11 +75,6 @@ This separation lets the UI stay lightweight while keeping authored content vers
 
 ## State management approach
 
-### Cloud Portfolio
-- Feature local hooks own network and derived view state
-- Shared capability rules live in `app/app/_lib/conversion-support.ts`
-- API routes remain authoritative for permissions and supported actions
-
 ### ChapterFlow
 - Server persisted state is fetched through Book APIs
 - Client hooks keep a local cache for responsiveness and offline tolerant behavior
@@ -120,14 +89,10 @@ This separation lets the UI stay lightweight while keeping authored content vers
 - Cognito for authentication
 - SSM for server configuration lookup
 
-### Cloud Portfolio infrastructure
-- Step Functions orchestrates conversion work
-- Lambda container worker performs conversion operations
-- CDK definitions live under `infra/`
-
 ### ChapterFlow infrastructure
 - Uses the shared table and buckets through Book specific namespaces and keys
 - Stripe integration is isolated to Book billing routes and entitlement records
+- CDK definitions live under `infra/`
 
 ## Safe extension points
 
@@ -150,4 +115,3 @@ This separation lets the UI stay lightweight while keeping authored content vers
 ## Current constraints
 - Book presentation metadata still has some local catalog and chapter adapter usage while the backend content pipeline matures
 - Some Book flows intentionally keep local caches to preserve responsiveness and cross surface UI updates
-- Cloud Portfolio and ChapterFlow share a repo and deployment, so changes to shared auth or storage helpers should be reviewed against both domains

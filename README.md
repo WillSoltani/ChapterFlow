@@ -1,10 +1,9 @@
 # ChapterFlow
 
-ChapterFlow is a standalone guided reading product built with Next.js, AWS services, and structured book package content. This repo is the SiliconX deployment copy and is intended to power:
+ChapterFlow is a standalone guided reading product built with Next.js, AWS services, and structured book package content. This is the ChapterFlow product repo and powers:
 
-- `https://siliconx.ca`
-- `https://chapterflow.siliconx.ca`
-- `https://auth.siliconx.ca`
+- `https://chapterflow.ca` (marketing)
+- `https://app.chapterflow.ca` (app)
 
 The app focuses on chapter based learning with summaries, examples, quizzes, notes, progress, saved reads, settings, profile analytics, and subscription aware access.
 
