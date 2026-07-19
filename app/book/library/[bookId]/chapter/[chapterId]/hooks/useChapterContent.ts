@@ -11,6 +11,7 @@ import {
 import { IS_DEV } from "@/app/book/_lib/client-env";
 import { shouldUseLocalFallback } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/fallbackPolicy";
 import {
+  buildChapterRouteKey,
   buildChapterSeedKey,
   decideChapterContentFetch,
   shouldRetainApiChapterAfterFailure,
@@ -39,6 +40,8 @@ type ChapterContentState = {
   /** HTTP status when the error was a BookClientError (e.g. 402, 403, 404). */
   status: number | null;
   source: "api" | "local" | null;
+  /** Route whose content produced `chapter`; never inferred from mutable props. */
+  loadedRouteKey: string | null;
 };
 
 /**
@@ -53,8 +56,9 @@ function buildChapterSeed(
   initial: ApiChapterResponse | null | undefined,
   expectedChapterNumber: number | undefined,
   book: BookMeta,
+  loadedRouteKey: string | null,
 ): ChapterContentState | null {
-  if (!initial || !expectedChapterNumber) return null;
+  if (!initial || !expectedChapterNumber || !loadedRouteKey) return null;
   if (initial.chapter?.number !== expectedChapterNumber) return null;
   const chapter = adaptApiChapterToBookChapter(initial.chapter, book);
   if (isReconstructedChapterEmpty(chapter)) return null;
@@ -66,6 +70,7 @@ function buildChapterSeed(
     error: null,
     status: null,
     source: "api",
+    loadedRouteKey,
   };
 }
 
@@ -111,6 +116,10 @@ export function useChapterContent(params: {
   initialChapter?: ApiChapterResponse | null;
 }): ChapterContentState {
   const { bookId, chapterNumber, enabled = true, refetchKey = 0, initialChapter } = params;
+  const requestedRouteKey =
+    chapterNumber && chapterNumber > 0
+      ? buildChapterRouteKey(bookId, chapterNumber)
+      : null;
 
   // Keep the latest book meta + fallback + server seed in refs so changing their
   // identity doesn't retrigger the fetch (only bookId/chapterNumber/enabled/
@@ -131,7 +140,12 @@ export function useChapterContent(params: {
   // the empty/loading shape when there is no usable seed.
   const [state, setState] = useState<ChapterContentState>(
     () =>
-      buildChapterSeed(initialChapter, chapterNumber, params.book) ?? {
+      buildChapterSeed(
+        initialChapter,
+        chapterNumber,
+        params.book,
+        requestedRouteKey,
+      ) ?? {
         chapter: undefined,
         progress: null,
         loading: enabled,
@@ -139,8 +153,13 @@ export function useChapterContent(params: {
         error: null,
         status: null,
         source: null,
+        loadedRouteKey: null,
       },
   );
+  const stateRef = useRef(state);
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
 
   // The (chapter, refetch) key the server seed has already satisfied, so the
   // fetch effect skips exactly one network call per hydrated chapter and still
@@ -164,9 +183,11 @@ export function useChapterContent(params: {
         error: null,
         status: null,
         source: local ? "local" : null,
+        loadedRouteKey: local ? requestedRouteKey : null,
       });
       return;
     }
+    const activeRouteKey = buildChapterRouteKey(bookId, chapterNumber);
 
     // WS3-024 — prefer the server-hydrated payload over a network fetch. On the
     // mount run this re-applies the seed already in state (useState lazy init)
@@ -179,10 +200,19 @@ export function useChapterContent(params: {
     const seedKey = buildChapterSeedKey(bookId, chapterNumber, refetchKey);
     const seed =
       refetchKey === 0
-        ? buildChapterSeed(initialChapterRef.current, chapterNumber, bookRef.current)
+        ? buildChapterSeed(
+            initialChapterRef.current,
+            chapterNumber,
+            bookRef.current,
+            activeRouteKey,
+          )
         : null;
     const decision = decideChapterContentFetch({
       hasUsableSeed: Boolean(seed),
+      hasMatchingSeedState:
+        Boolean(stateRef.current.chapter) &&
+        stateRef.current.source === "api" &&
+        stateRef.current.loadedRouteKey === activeRouteKey,
       refetchKey,
       seedKey,
       servedSeedKey: servedSeedKeyRef.current,
@@ -197,7 +227,20 @@ export function useChapterContent(params: {
     }
 
     let mounted = true;
-    setState((prev) => ({ ...prev, loading: true }));
+    setState((previous) =>
+      previous.loadedRouteKey === activeRouteKey
+        ? { ...previous, loading: true }
+        : {
+            chapter: undefined,
+            progress: null,
+            loading: true,
+            hydrated: false,
+            error: null,
+            status: null,
+            source: null,
+            loadedRouteKey: null,
+          },
+    );
 
     fetchBookJson<ApiChapterResponse>(
       `/app/api/book/books/${encodeURIComponent(bookId)}/chapters/${chapterNumber}`,
@@ -226,6 +269,7 @@ export function useChapterContent(params: {
             error: usableLocal ? null : new Error("Chapter content was empty."),
             status: null,
             source: usableLocal ? "local" : null,
+            loadedRouteKey: usableLocal ? activeRouteKey : null,
           });
           return;
         }
@@ -237,6 +281,7 @@ export function useChapterContent(params: {
           error: null,
           status: null,
           source: "api",
+          loadedRouteKey: activeRouteKey,
         });
       })
       .catch((err: unknown) => {
@@ -259,6 +304,8 @@ export function useChapterContent(params: {
             shouldRetainApiChapterAfterFailure({
               hasApiChapter:
                 Boolean(previous.chapter) && previous.source === "api",
+              loadedRouteKey: previous.loadedRouteKey,
+              requestedRouteKey: activeRouteKey,
               status,
             })
           ) {
@@ -278,6 +325,7 @@ export function useChapterContent(params: {
             error,
             status,
             source: local ? "local" : null,
+            loadedRouteKey: local ? activeRouteKey : null,
           };
         });
       });
@@ -285,7 +333,23 @@ export function useChapterContent(params: {
     return () => {
       mounted = false;
     };
-  }, [enabled, bookId, chapterNumber, refetchKey]);
+  }, [enabled, bookId, chapterNumber, refetchKey, requestedRouteKey]);
+
+  // Effects run after render. Mask a prior route's state synchronously during
+  // same-component navigation so old prose cannot flash under the new URL even
+  // before the new request starts (or if it later fails transiently).
+  if (state.chapter && state.loadedRouteKey !== requestedRouteKey) {
+    return {
+      chapter: undefined,
+      progress: null,
+      loading: Boolean(enabled && requestedRouteKey),
+      hydrated: false,
+      error: null,
+      status: null,
+      source: null,
+      loadedRouteKey: null,
+    };
+  }
 
   return state;
 }

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
+  buildChapterRouteKey,
   buildChapterSeedKey,
   classifyStartAccessFailure,
   decideChapterContentFetch,
@@ -63,6 +64,7 @@ test("serves the server seed instead of fetching when it is present (no client f
   // initial payload, so no network fetch fires.
   const decision = decideChapterContentFetch({
     hasUsableSeed: true,
+    hasMatchingSeedState: true,
     refetchKey: 0,
     seedKey: buildChapterSeedKey("book-a", 1, 0),
     servedSeedKey: null,
@@ -74,6 +76,7 @@ test("does not re-fetch after a seed for the same (chapter, refetch) was applied
   const seedKey = buildChapterSeedKey("book-a", 1, 0);
   const decision = decideChapterContentFetch({
     hasUsableSeed: true,
+    hasMatchingSeedState: true,
     refetchKey: 0,
     seedKey,
     servedSeedKey: seedKey, // already served (mount lazy-init or prior re-seed)
@@ -84,6 +87,7 @@ test("does not re-fetch after a seed for the same (chapter, refetch) was applied
 test("fetches when there is no usable seed (un-hydrated / not-started / locked chapter)", () => {
   const decision = decideChapterContentFetch({
     hasUsableSeed: false,
+    hasMatchingSeedState: false,
     refetchKey: 0,
     seedKey: buildChapterSeedKey("book-a", 4, 0),
     servedSeedKey: null,
@@ -94,6 +98,7 @@ test("fetches when there is no usable seed (un-hydrated / not-started / locked c
 test("a retry (refetchKey > 0) always fetches, even with a seed present", () => {
   const decision = decideChapterContentFetch({
     hasUsableSeed: true,
+    hasMatchingSeedState: true,
     refetchKey: 1,
     seedKey: buildChapterSeedKey("book-a", 1, 1),
     servedSeedKey: buildChapterSeedKey("book-a", 1, 0), // the mount seed, a different key
@@ -105,6 +110,7 @@ test("navigation to a different hydrated chapter serves that chapter's seed", ()
   // Same hook instance, chapterNumber advanced 1 -> 2 with a fresh matching seed.
   const decision = decideChapterContentFetch({
     hasUsableSeed: true,
+    hasMatchingSeedState: false,
     refetchKey: 0,
     seedKey: buildChapterSeedKey("book-a", 2, 0),
     servedSeedKey: buildChapterSeedKey("book-a", 1, 0), // seed already served for chapter 1
@@ -115,9 +121,22 @@ test("navigation to a different hydrated chapter serves that chapter's seed", ()
 test("navigation to the same chapter number in another book serves the new seed", () => {
   const decision = decideChapterContentFetch({
     hasUsableSeed: true,
+    hasMatchingSeedState: false,
     refetchKey: 0,
     seedKey: buildChapterSeedKey("book-b", 1, 0),
     servedSeedKey: buildChapterSeedKey("book-a", 1, 0),
+  });
+  assert.equal(decision, "serve-seed");
+});
+
+test("returning to a previously seeded route restores its seed when its state was replaced", () => {
+  const seedKey = buildChapterSeedKey("book-a", 1, 0);
+  const decision = decideChapterContentFetch({
+    hasUsableSeed: true,
+    hasMatchingSeedState: false,
+    refetchKey: 0,
+    seedKey,
+    servedSeedKey: seedKey,
   });
   assert.equal(decision, "serve-seed");
 });
@@ -232,20 +251,57 @@ test("classifies terminal and transient start failures without message matching"
 });
 
 test("an API seed survives only transient network and server failures", () => {
+  const routeKey = buildChapterRouteKey("book-a", 2);
   assert.equal(
-    shouldRetainApiChapterAfterFailure({ hasApiChapter: true, status: null }),
+    shouldRetainApiChapterAfterFailure({
+      hasApiChapter: true,
+      loadedRouteKey: routeKey,
+      requestedRouteKey: routeKey,
+      status: null,
+    }),
     true,
   );
   assert.equal(
-    shouldRetainApiChapterAfterFailure({ hasApiChapter: true, status: 503 }),
+    shouldRetainApiChapterAfterFailure({
+      hasApiChapter: true,
+      loadedRouteKey: routeKey,
+      requestedRouteKey: routeKey,
+      status: 503,
+    }),
     true,
   );
   for (const status of [401, 402, 403, 429]) {
     assert.equal(
-      shouldRetainApiChapterAfterFailure({ hasApiChapter: true, status }),
+      shouldRetainApiChapterAfterFailure({
+        hasApiChapter: true,
+        loadedRouteKey: routeKey,
+        requestedRouteKey: routeKey,
+        status,
+      }),
       false,
     );
   }
+});
+
+test("a transient failure cannot retain API prose from the previous route", () => {
+  assert.equal(
+    shouldRetainApiChapterAfterFailure({
+      hasApiChapter: true,
+      loadedRouteKey: buildChapterRouteKey("book-a", 1),
+      requestedRouteKey: buildChapterRouteKey("book-a", 2),
+      status: 503,
+    }),
+    false,
+  );
+  assert.equal(
+    shouldRetainApiChapterAfterFailure({
+      hasApiChapter: true,
+      loadedRouteKey: buildChapterRouteKey("book-a", 2),
+      requestedRouteKey: buildChapterRouteKey("book-b", 2),
+      status: null,
+    }),
+    false,
+  );
 });
 
 test("the client creates exactly one start request per mounted book", async () => {

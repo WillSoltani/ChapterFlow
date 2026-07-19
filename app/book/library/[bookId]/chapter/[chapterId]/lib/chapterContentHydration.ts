@@ -114,9 +114,23 @@ export function shouldRenderInitialReaderContent(params: {
 
 export function shouldRetainApiChapterAfterFailure(params: {
   hasApiChapter: boolean;
+  loadedRouteKey: string | null;
+  requestedRouteKey: string;
   status: number | null;
 }): boolean {
-  return params.hasApiChapter && (params.status === null || params.status >= 500);
+  return (
+    params.hasApiChapter &&
+    params.loadedRouteKey === params.requestedRouteKey &&
+    (params.status === null || params.status >= 500)
+  );
+}
+
+/** Identity of the route whose prose currently occupies hook state. */
+export function buildChapterRouteKey(
+  bookId: string,
+  chapterNumber: number,
+): string {
+  return `${bookId}:${chapterNumber}`;
 }
 
 /** Classify `/start` failures without trusting message text. */
@@ -182,11 +196,17 @@ export type ChapterContentFetchDecision =
  */
 export function decideChapterContentFetch(params: {
   hasUsableSeed: boolean;
+  hasMatchingSeedState: boolean;
   refetchKey: number;
   seedKey: string;
   servedSeedKey: string | null;
 }): ChapterContentFetchDecision {
-  if (params.servedSeedKey === params.seedKey) return "skip-served";
+  if (
+    params.hasMatchingSeedState &&
+    params.servedSeedKey === params.seedKey
+  ) {
+    return "skip-served";
+  }
   if (params.refetchKey === 0 && params.hasUsableSeed) return "serve-seed";
   return "fetch";
 }
