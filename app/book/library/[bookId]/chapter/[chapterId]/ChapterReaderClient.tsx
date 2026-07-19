@@ -49,17 +49,14 @@ import { Confetti } from "@/components/ui/Confetti";
 import { Dialog } from "@/components/ui/Dialog";
 import { ChapterSkeleton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterSkeleton";
 import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay";
-import { useChapterState, type ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import { useChapterContent } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterContent";
 import { useQuizSession } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useQuizSession";
 import { needsReconcile, reconcileProvisionalPass } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/quizReconcile";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
-import { usePhaseCompletion, getPhaseThresholds } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
-import { useBreakReminder } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useBreakReminder";
-import { useScrollResume } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useScrollResume";
+import { getPhaseThresholds } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
 import { useReaderSettings } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderSettings";
-import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
-import { useReadingSessionTracker } from "@/app/book/library/hooks/useReadingSessionTracker";
+import { useReaderProgress } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderProgress";
+import { useReaderPhaseFlow } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderPhaseFlow";
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
@@ -80,7 +77,6 @@ import { TRIAL_CTA_LABEL, UPGRADE_RETURN_PATH, MONTHLY_PRICE_WITH_CURRENCY, PRIC
 import {
   buildNextChapterRoute,
   buildReauthReturnTo,
-  computeProgressPercent,
   mapLearningStyleToDepth,
   modeToDepth,
 } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/reader-flow-core";
@@ -161,23 +157,11 @@ export function ChapterReaderClient({
   // the READ time tiers. Shown once (chapter 1 only), then never again.
   const [showLoopCoachmark, setShowLoopCoachmark] = useState(false);
 
-  // Phase transition interstitial state
-  const [interstitial, setInterstitial] = useState<{
-    from: ChapterTab;
-    to: ChapterTab;
-  } | null>(null);
-
   // Track scenario interactions for phase completion gating
   const [scenarioInteractions, setScenarioInteractions] = useState(0);
 
   // Content area ref for scroll tracking
   const contentRef = useRef<HTMLDivElement>(null);
-
-  // §7 funnel timing/reach signals (refs, not state — no re-render churn).
-  // Declared up here because the setActiveTab wrapper (below) reads them.
-  const readerOpenedAtRef = useRef<number | null>(null);
-  const firstActionFiredRef = useRef(false);
-  const commitmentReachedFiredRef = useRef(false);
 
   // First-visit short path: a reader who hasn't customized their learning profile
   // starts on Fast (simple depth → the shortest existing quiz, 5 questions). Any
@@ -332,12 +316,47 @@ export function ChapterReaderClient({
     ? (defaultToFastPath ? "simple" : "standard")
     : mapLearningStyleToDepth(onboarding.learningStyle);
 
+  const readerProgress = useReaderProgress({
+    bookId,
+    chapterId,
+    chapter,
+    chapters,
+    initialProgressFloor: attestedInitial?.progressFloor,
+    preferredReadingDepth,
+    preferredActiveTab,
+    preferredExampleFilter,
+    preferredFocusMode,
+    preferredFontScale,
+    onboardingHydrated,
+    effectiveOnboardingComplete,
+    bookAccessStatus,
+    hasAttestedSeed,
+    bookPrefs,
+    bookPrefsHydrated,
+    dailyGoalMinutes,
+    onToast: setToast,
+  });
   const {
-    hydrated,
-    getChapterState,
-    setLastReadChapter,
-    markChapterComplete,
-  } = useBookProgress(bookId, chapters, attestedInitial?.progressFloor);
+    bookProgress,
+    chapterProgress,
+    readingSession,
+    isLocked,
+    readerInteractionsReady,
+  } = readerProgress;
+  const { hydrated, markChapterComplete } = bookProgress;
+  const {
+    hydrated: chapterHydrated,
+    state,
+    setActiveTab: setActiveTabRaw,
+    setReadingDepth,
+    setExampleFilter,
+    setNotes,
+    appendNote,
+    toggleFocusMode,
+    markRecapSeen,
+    toggleBookmarkedTakeaway,
+    syncFailed,
+  } = chapterProgress;
 
   // First-chapter loop coachmark: show once on chapter 1 only, gated on a
   // localStorage seen-flag (client-only state — no prod write).
@@ -353,40 +372,6 @@ export function ChapterReaderClient({
       localStorage.setItem(READER_LOOP_COACHMARK_KEY, "1");
     } catch {}
   }, []);
-
-  const {
-    hydrated: chapterHydrated,
-    state,
-    setActiveTab: setActiveTabRaw,
-    setReadingDepth,
-    setExampleFilter,
-    setNotes,
-    appendNote,
-    toggleFocusMode,
-    markRecapSeen,
-    toggleBookmarkedTakeaway,
-    syncFailed,
-  } = useChapterState(
-    bookId,
-    chapterId,
-    baseChapter?.order,
-    preferredReadingDepth,
-    preferredActiveTab,
-    preferredExampleFilter,
-    preferredFocusMode,
-    preferredFontScale
-  );
-
-  const chapterState = chapter ? getChapterState(chapter.id) : "locked";
-  const isLocked = !hasAttestedSeed && chapterState === "locked";
-  const readerInteractionsReady =
-    onboardingHydrated &&
-    hydrated &&
-    chapterHydrated &&
-    bookPrefsHydrated &&
-    effectiveOnboardingComplete &&
-    bookAccessStatus === "ready" &&
-    !isLocked;
 
   const showQuiz = state.activeTab === "quiz";
   // RF-2 / D8: learning mode is the single lever that drives content depth.
@@ -439,19 +424,29 @@ export function ChapterReaderClient({
   // scope (0 examples) can't strand the gate (0 >= 0 passes).
   const totalScenarios = Math.min(filteredExamples.length, DEFAULT_VISIBLE_EXAMPLES);
 
-  // Phase completion tracking (scroll + time + gating)
-  // Must be called before setActiveTab callback which references it
-  const phaseCompletion = usePhaseCompletion({
+  const phaseFlow = useReaderPhaseFlow({
     bookId,
     chapterId,
-    activePhase: state.activeTab,
+    chapter,
+    chapters,
+    activeTab: state.activeTab,
+    setActiveTabRaw,
     learningMode,
     contentRef,
     scenarioInteractions,
     totalScenarios,
     enabled: readerInteractionsReady,
+    focusReady: chapterHydrated,
     quizPassed,
+    sessionMode,
   });
+  const {
+    phaseCompletion,
+    setActiveTab,
+    interstitial,
+    handleInterstitialComplete,
+    progressPercent,
+  } = phaseFlow;
 
   // §1.1 — Claim the loop-complete IP (deferred from quiz submit). Idempotent
   // server-side (grant key), so re-firing is safe. Defined here (above the
@@ -550,95 +545,6 @@ export function ChapterReaderClient({
     setJustPassedThisSession(false);
   }, [chapterId]);
 
-  // Wrapped setActiveTab that enforces gating and shows interstitial
-  const setActiveTab = useCallback(
-    (newTab: ChapterTab, options?: { skipInterstitial?: boolean }) => {
-      if (!readerInteractionsReady) return;
-      const phaseOrder: ChapterTab[] = ["summary", "examples", "quiz", "practice"];
-      const currentIndex = phaseOrder.indexOf(state.activeTab);
-      const newIndex = phaseOrder.indexOf(newTab);
-
-      if (newIndex > currentIndex) {
-        // time-to-first-action: the reader's FIRST forward navigation (a genuine
-        // user action). Fired here, not in an effect, so a hydration-driven tab
-        // restore (practical-first start tab, or a returning reader's persisted
-        // tab) never counts as an action and biases the metric toward ~0ms.
-        if (!firstActionFiredRef.current && readerOpenedAtRef.current !== null) {
-          firstActionFiredRef.current = true;
-          trackReaderFunnel("time_to_first_action", {
-            bookId,
-            chapterNumber: chapter?.order,
-            msToFirstAction: Date.now() - readerOpenedAtRef.current,
-          });
-        }
-        // Forward navigation: mark current phase completed first (this
-        // unlocks the next phase), then show the interstitial.
-        phaseCompletion.markPhaseCompleted(state.activeTab);
-        if (options?.skipInterstitial) {
-          setActiveTabRaw(newTab);
-          window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
-        } else {
-          setInterstitial({ from: state.activeTab, to: newTab });
-        }
-      } else {
-        // Backward navigation: allowed only if the target was already
-        // completed or all phases have been done once.
-        if (!phaseCompletion.isPhaseAccessible(newTab)) return;
-        setActiveTabRaw(newTab);
-        window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
-      }
-    },
-    [
-      state.activeTab,
-      setActiveTabRaw,
-      phaseCompletion,
-      bookId,
-      chapter,
-      readerInteractionsReady,
-    ]
-  );
-
-  // The Practice tab is no longer reachable through the stepper. If a user
-  // lands on it (persisted state, deep link), bounce them to the quiz so the
-  // unified completion flow can take over.
-  useEffect(() => {
-    if (state.activeTab === "practice") {
-      setActiveTabRaw("quiz");
-    }
-  }, [state.activeTab, setActiveTabRaw]);
-
-  // Prefetch the next chapter route when user reaches Practice
-  useEffect(() => {
-    if (state.activeTab !== "practice") return;
-    const list = chapters;
-    const idx = list.findIndex((c) => c.id === chapterId);
-    const next = idx >= 0 ? list[idx + 1] : undefined;
-    if (!next) return;
-    const nextRoute = `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(next.id)}`;
-    router.prefetch(nextRoute);
-    if (sessionMode) router.prefetch(`${nextRoute}?session=1`);
-  }, [state.activeTab, bookId, chapterId, chapters, router, sessionMode]);
-
-  // Focus the first heading after a phase change
-  useEffect(() => {
-    if (!chapterHydrated) return;
-    const heading = contentRef.current?.querySelector<HTMLElement>(
-      "[data-phase-heading], h2, h1"
-    );
-    if (heading) {
-      heading.setAttribute("tabindex", "-1");
-      heading.focus({ preventScroll: true });
-    }
-  }, [state.activeTab, chapterHydrated]);
-
-  const handleInterstitialComplete = useCallback(() => {
-    if (interstitial) {
-      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
-      setActiveTabRaw(interstitial.to);
-      setInterstitial(null);
-    }
-  }, [interstitial, setActiveTabRaw]);
-
   useKeyboardShortcut(
     "n",
     (event) => {
@@ -685,13 +591,6 @@ export function ChapterReaderClient({
   // Content-fetch failure no longer ejects to the library — when the fetch has
   // settled with no chapter we render an in-place error card (below) with a
   // retry, so the user keeps their place and gets an explanation.
-
-  useEffect(() => {
-    if (!chapter || !readerInteractionsReady) return;
-    if (getChapterState(chapter.id) !== "locked") {
-      setLastReadChapter(chapter.id);
-    }
-  }, [chapter, getChapterState, readerInteractionsReady, setLastReadChapter]);
 
   useEffect(() => {
     // NOTE: deliberately NOT gated on `chapter`. The /start access check only
@@ -847,52 +746,6 @@ export function ChapterReaderClient({
     };
   }, [bookId, chapterOrder, scenariosRefetchKey]);
 
-  const readingSession = useReadingSessionTracker({
-    bookId,
-    chapterId,
-    enabled: readerInteractionsReady && bookPrefs.privacy.saveReadingHistory,
-    dailyGoalMinutes,
-  });
-
-  // SET-6 — honor Settings → Reading → "Pick up where you left off" (default ON).
-  // Persists the window scroll offset for this chapter and restores it ONCE on
-  // entry. `ready` mirrors the gate under which the reader content (and its
-  // `contentRef` height) is actually mounted below the skeleton return, so the
-  // saved offset is reachable; the one-shot restore leaves the in-chapter
-  // tab/phase scroll-to-top resets untouched.
-  useScrollResume({
-    bookId,
-    chapterId,
-    enabled: bookPrefsHydrated && bookPrefs.reading.resumeWhereLeftOff,
-    ready: readerInteractionsReady && Boolean(chapter),
-  });
-
-  // Daily goal celebration — show toast once when goal is first reached
-  const dailyGoalCelebrated = useRef(false);
-  useEffect(() => {
-    if (readingSession.dailyGoalReached && !dailyGoalCelebrated.current) {
-      dailyGoalCelebrated.current = true;
-      const persona = bookPrefs.extended.motivationPersona || "coach";
-      const msg = getMotivationMessage(persona, "daily_goal", { goal: dailyGoalMinutes });
-      setToast(msg);
-    }
-  }, [readingSession.dailyGoalReached, dailyGoalMinutes, bookPrefs.extended.motivationPersona]);
-
-  // Break reminders (SET-4) — the settings toggle promises "a gentle reminder to
-  // rest your eyes during long reading sessions". This is the in-session consumer
-  // of `extended.breakReminders` / `breakReminderMinutes`. It fires once per
-  // interval of *engaged* reading (idle/backgrounded/mid-quiz time does not
-  // count), never on the quiz tab, via the same non-animated toast lane as the
-  // daily-goal nudge — so it inherently respects reduced motion (no animation).
-  useBreakReminder({
-    enabled:
-      bookPrefs.extended.breakReminders &&
-      readerInteractionsReady,
-    intervalMinutes: bookPrefs.extended.breakReminderMinutes,
-    paused: showQuiz,
-    onBreak: () => setToast("Time for a quick break — rest your eyes for a moment."),
-  });
-
   const [committedToChapter, setCommittedToChapter] = useState(false);
 
   // Hydrate the committed state from the server. Without this, `committedToChapter`
@@ -961,27 +814,6 @@ export function ChapterReaderClient({
     },
     [readerInteractionsReady, refreshCommitments],
   );
-
-  // §7 funnel timing/reach signals (refs declared up near contentRef). Analytics-
-  // only effects (no setState), so no churn. time_to_first_action is fired from the
-  // setActiveTab user-action path, not here, so a hydration-driven tab restore
-  // can't bias it.
-  useEffect(() => {
-    if (chapter && readerOpenedAtRef.current === null) {
-      readerOpenedAtRef.current = Date.now();
-    }
-  }, [chapter]);
-  // commitment_reached: the examples phase (where the commitment is surfaced) is shown.
-  useEffect(() => {
-    if (
-      state.activeTab === "examples" &&
-      chapter?.implementationPlan?.ifThenPlans?.length &&
-      !commitmentReachedFiredRef.current
-    ) {
-      commitmentReachedFiredRef.current = true;
-      trackReaderFunnel("commitment_reached", { bookId, chapterNumber: chapter.order });
-    }
-  }, [state.activeTab, chapter, bookId]);
 
   // ── Reader-pattern personalization (Phase 3, RDRP) ───────────────────────
   // Net-new + gated. PatternSelector only renders when the env flag is on AND a
@@ -1419,8 +1251,6 @@ export function ChapterReaderClient({
 
   const showSummary = state.activeTab === "summary";
   const showExamples = state.activeTab === "examples";
-  const progressPercent = computeProgressPercent(state.activeTab, phaseCompletion.completedPhases);
-
   return (
     <main
       className="relative min-h-screen overflow-x-hidden text-(--cr-text-primary)"
