@@ -26,19 +26,19 @@ interface ProBook {
   gradient?: string;
 }
 
-interface BookRowProps {
+interface WorkspaceBookRowProps {
   userBooks: UserBook[];
   recommendedProBooks: ProBook[];
   isNewUser?: boolean;
   isPro?: boolean;
 }
 
-export function BookRow({
+export function WorkspaceBookRow({
   userBooks,
   recommendedProBooks,
   isNewUser = false,
   isPro = false,
-}: BookRowProps) {
+}: WorkspaceBookRowProps) {
   const prefersReducedMotion = useReducedMotion();
 
   return (

@@ -8,7 +8,7 @@ import { AnimatedBackground } from "./AnimatedBackground";
 import { CompactHeader } from "./CompactHeader";
 import { HeroSessionCard } from "./HeroSessionCard";
 import { WeeklyMomentumStrip } from "./WeeklyMomentumStrip";
-import { BookRow } from "./BookRow";
+import { WorkspaceBookRow } from "./WorkspaceBookRow";
 import { RewardsCard } from "./RewardsCard";
 import { NextAchievementCard } from "./NextAchievementCard";
 import { DiscoveryRow } from "./DiscoveryRow";
@@ -961,7 +961,7 @@ function DashboardContent({
       <SectionWrapper
         {...(prefersReducedMotion ? {} : { variants: itemVariants })}
       >
-        <BookRow
+        <WorkspaceBookRow
           userBooks={data.userBooks}
           recommendedProBooks={data.recommendedProBooks}
           isNewUser={isNewUser}
