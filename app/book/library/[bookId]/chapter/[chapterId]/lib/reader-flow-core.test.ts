@@ -10,6 +10,31 @@ import {
   modeToDepth,
   requiredScenarioInteractions,
 } from "./reader-flow-core";
+import { getPhaseThresholds } from "../hooks/usePhaseCompletion";
+
+type ThresholdResolver = typeof getPhaseThresholds;
+
+function assertReadinessThresholds(resolve: ThresholdResolver) {
+  const expected = [
+    ["guided", "summary", { minScroll: 0.80, minTime: 20 }],
+    ["standard", "summary", { minScroll: 0.90, minTime: 30 }],
+    ["challenge", "summary", { minScroll: 0.90, minTime: 30 }],
+    ["guided", "examples", { minScroll: 0.80, minTime: 10 }],
+    ["standard", "examples", { minScroll: 0.90, minTime: 10 }],
+    ["challenge", "examples", { minScroll: 0.90, minTime: 10 }],
+    ["guided", "quiz", { minScroll: 0, minTime: 0 }],
+    ["standard", "quiz", { minScroll: 0, minTime: 0 }],
+    ["challenge", "quiz", { minScroll: 0, minTime: 0 }],
+  ] as const;
+
+  for (const [mode, phase, threshold] of expected) {
+    assert.deepEqual(
+      resolve(mode, phase),
+      threshold,
+      `${mode} ${phase} readiness threshold drifted`,
+    );
+  }
+}
 
 test("reader depth mappings preserve the fast/default and learning-mode contracts", () => {
   assert.equal(mapLearningStyleToDepth("concise"), "simple");
@@ -18,6 +43,21 @@ test("reader depth mappings preserve the fast/default and learning-mode contract
   assert.equal(modeToDepth("guided"), "simple");
   assert.equal(modeToDepth("standard"), "standard");
   assert.equal(modeToDepth("challenge"), "deeper");
+});
+
+test("phase readiness retains the literal mode-specific scroll and time thresholds", () => {
+  assertReadinessThresholds(getPhaseThresholds);
+
+  const regressedGuidedSummary: ThresholdResolver = (mode, phase) => {
+    const threshold = getPhaseThresholds(mode, phase);
+    return mode === "guided" && phase === "summary"
+      ? { ...threshold, minTime: 30 }
+      : threshold;
+  };
+  assert.throws(
+    () => assertReadinessThresholds(regressedGuidedSummary),
+    /guided summary readiness threshold drifted/,
+  );
 });
 
 test("chapter progress keeps the existing phase weights and halfway display", () => {
