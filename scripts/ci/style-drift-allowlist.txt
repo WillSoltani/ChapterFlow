@@ -9,7 +9,7 @@ d	app/app/api/book/_lib/achievement-repo.ts	3categories
 d	app/app/api/book/_lib/achievement-repo.ts	6categories
 d	app/app/api/book/_lib/achievement-repo.ts	8categories
 d	app/book/badges/lib/badge-utils.ts	9categories
-d	components/website/BrowseLibraryPage.tsx	4+books
+d	components/website/browse-library/BrowseLibraryResults.tsx	4+books
 d	docs/archive/CHAPTERFLOW-PRODUCTION-READINESS-2026-06-14.md	21categories
 d	docs/archive/CHAPTERFLOW-PRODUCTION-READINESS-2026-06-14.md	93+books
 d	docs/archive/CHAPTERFLOW-PRODUCTION-READINESS-2026-06-14.md	93+morebooks
@@ -171,12 +171,12 @@ e	components/sections/Navbar.tsx	text-[22px]	07c6d8d09355763d	1
 e	components/sections/Pricing.tsx	text-[44px]	7fda308e7ed3ffc0	1
 e	components/website/BookRequestSection.tsx	text-[22px]	acb0cd86cc30a300	1
 e	components/website/browse-library/BrowseLibrarySearchBar.tsx	text-[10px]	378d39c095329a7f	1
-e	components/website/BrowseLibraryPage.tsx	text-[10px]	5720fb4448b8fb1a	1
-e	components/website/BrowseLibraryPage.tsx	text-[10px]	a8b53d32e19cfe33	1
+e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	5720fb4448b8fb1a	1
+e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	a8b53d32e19cfe33	1
 e	components/website/browse-library/BrowseLibraryHero.tsx	text-[10px]	b4a2e11381339008	1
-e	components/website/BrowseLibraryPage.tsx	text-[10px]	d58128c0235464e0	1
-e	components/website/BrowseLibraryPage.tsx	text-[10px]	e3369e8fcf5638fa	1
-e	components/website/BrowseLibraryPage.tsx	text-[22px]	9ed5873648221014	1
+e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	d58128c0235464e0	1
+e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	e3369e8fcf5638fa	1
+e	components/website/browse-library/BrowseLibraryResults.tsx	text-[22px]	9ed5873648221014	1
 e	components/website/browse-library/BrowseLibraryHero.tsx	text-[28px]	66313429d7658164	1
 e	components/website/browse-library/BrowseLibraryHero.tsx	text-[42px]	66313429d7658164	1
 e	components/workspace/BookCardWorkspace.tsx	text-[10px]	30f534429d55d5b7	1
