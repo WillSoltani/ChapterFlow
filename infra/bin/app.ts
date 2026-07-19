@@ -114,6 +114,7 @@ if (!skipFrontend && openNextExists) {
     deploymentEnvironment: cfg.env,
     appTableName,
     contentBucketName,
+    ssmParameterPrefix: cfg.ssmPrefix,
     deployEnv: process.env,
   });
 

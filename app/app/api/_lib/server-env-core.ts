@@ -123,3 +123,50 @@ export function classifySsmCandidateError(
 
   return "record";
 }
+
+export type SsmParameterReadRequest = {
+  name: string;
+  withDecryption: true;
+};
+
+export type SsmParameterReader = (
+  request: SsmParameterReadRequest,
+) => Promise<string | undefined>;
+
+/**
+ * Resolve one config key from the ordered SSM candidate set without importing
+ * the AWS SDK. The production adapter lives in server-env.ts; this seam keeps
+ * the candidate walk and its fail-closed error behavior directly testable.
+ *
+ * Values are returned byte-for-byte, but blank/whitespace-only responses are
+ * treated as absent so malformed SecureStrings cannot become cached config.
+ * Any recorded prefix-scoped/IAM/KMS failure is thrown after the candidate
+ * walk. Expected ParameterNotFound and unscoped AccessDenied misses are skipped.
+ */
+export async function loadSsmParameterValue(
+  key: string,
+  prefix: string | undefined,
+  env: Record<string, string | undefined>,
+  read: SsmParameterReader,
+): Promise<string | undefined> {
+  const candidates = candidateParameterNames(key, prefix, env);
+  let lastError: unknown;
+
+  for (const candidate of candidates) {
+    try {
+      const value = await read({
+        name: candidate.name,
+        withDecryption: true,
+      });
+      if (value !== undefined && value.trim() !== "") return value;
+    } catch (error: unknown) {
+      if (classifySsmCandidateError(error, candidate.prefixScoped) === "skip") {
+        continue;
+      }
+      lastError = error;
+    }
+  }
+
+  if (lastError) throw lastError;
+  return undefined;
+}

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   candidateParameterNames,
   classifySsmCandidateError,
+  loadSsmParameterValue,
   type SsmCandidate,
 } from "./server-env-core";
 
@@ -152,4 +153,58 @@ test("non-regression: when only the UNSCOPED fallbacks are denied (prefixed name
     lastError = err;
   }
   assert.equal(lastError, undefined, "an honest absence must not record an error");
+});
+
+test("runtime SSM resolution requests decryption and returns the first nonblank value", async () => {
+  const requests: Array<{ name: string; withDecryption: true }> = [];
+  const value = await loadSsmParameterValue(
+    "AUTH_STATE_SECRET",
+    "/chapterflow/prod",
+    {},
+    async (request) => {
+      requests.push(request);
+      return request.name.endsWith("/AUTH_STATE_SECRET")
+        ? "synthetic-runtime-value"
+        : undefined;
+    },
+  );
+
+  assert.equal(value, "synthetic-runtime-value");
+  assert.deepEqual(requests, [
+    {
+      name: "/chapterflow/prod/AUTH_STATE_SECRET",
+      withDecryption: true,
+    },
+  ]);
+});
+
+test("missing and blank SSM values resolve as absent rather than becoming cached config", async () => {
+  for (const returned of [undefined, "", "   "] as const) {
+    const value = await loadSsmParameterValue(
+      "BOOK_STRIPE_SECRET_KEY",
+      "/chapterflow/prod",
+      {},
+      async () => returned,
+    );
+    assert.equal(value, undefined);
+  }
+});
+
+test("prefix-scoped access denial and KMS decryption failure reject fail closed", async () => {
+  for (const name of ["AccessDeniedException", "KMSInvalidStateException"] as const) {
+    await assert.rejects(
+      () =>
+        loadSsmParameterValue(
+          "ANTHROPIC_API_KEY",
+          "/chapterflow/prod",
+          {},
+          async () => {
+            throw Object.assign(new Error("nonsecret failure metadata"), { name });
+          },
+        ),
+      (error: unknown) =>
+        error instanceof Error &&
+        (error.name === name || error.message === "nonsecret failure metadata"),
+    );
+  }
 });

@@ -5,7 +5,16 @@ export type RuntimeEnvRequirementProjection = {
   presence: "all" | "one_of";
   allowedValues?: readonly string[];
   minimumLength?: number;
+  source?: "ssm_runtime";
 };
+
+export const FRONTEND_SSM_RUNTIME_SECRET_NAMES = [
+  "BOOK_STRIPE_SECRET_KEY",
+  "BOOK_STRIPE_WEBHOOK_SECRET",
+  "ANTHROPIC_API_KEY",
+  "ELEVENLABS_API_KEY",
+  "AUTH_STATE_SECRET",
+] as const;
 
 export type RuntimeEnvFailure = {
   requirementId: string;
@@ -42,12 +51,14 @@ export const FRONTEND_RUNTIME_ENV_REQUIREMENTS = [
     names: ["BOOK_STRIPE_SECRET_KEY"],
     applicability: "production",
     presence: "all",
+    source: "ssm_runtime",
   },
   {
     id: "stripe-webhook-secret",
     names: ["BOOK_STRIPE_WEBHOOK_SECRET"],
     applicability: "production",
     presence: "all",
+    source: "ssm_runtime",
   },
   {
     id: "stripe-monthly-price",
@@ -91,6 +102,7 @@ export const FRONTEND_RUNTIME_ENV_REQUIREMENTS = [
     applicability: "production",
     presence: "all",
     minimumLength: 32,
+    source: "ssm_runtime",
   },
   {
     id: "app-base-url",
@@ -103,6 +115,7 @@ export const FRONTEND_RUNTIME_ENV_REQUIREMENTS = [
     names: ["ANTHROPIC_API_KEY"],
     applicability: "production",
     presence: "all",
+    source: "ssm_runtime",
   },
   {
     id: "origin-verification-secret",
@@ -153,15 +166,10 @@ const SERVER_ENV_PASSTHROUGH = [
   "COGNITO_USER_POOL_ID",
   "COGNITO_REDIRECT_URI",
   "COGNITO_LOGOUT_REDIRECT_URI",
-  "AUTH_STATE_SECRET",
   "AUTH_COOKIE_DOMAIN",
-  "BOOK_STRIPE_SECRET_KEY",
-  "BOOK_STRIPE_WEBHOOK_SECRET",
   "BOOK_STRIPE_PRICE_ID",
   "BOOK_STRIPE_PRICE_ID_ANNUAL",
   "BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT",
-  "ANTHROPIC_API_KEY",
-  "ELEVENLABS_API_KEY",
   "IOS_APP_TEAM_ID",
   "IOS_APP_BUNDLE_ID",
   "APPLE_IAP_BUNDLE_ID",
@@ -239,6 +247,7 @@ export type FrontendRuntimeConfigInput = {
   deploymentEnvironment: "dev" | "staging" | "prod";
   appTableName: string;
   contentBucketName: string;
+  ssmParameterPrefix: string;
   deployEnv: Record<string, string | undefined>;
 };
 
@@ -283,7 +292,10 @@ export function buildFrontendRuntimeConfig(
     BOOK_TABLE_NAME: input.appTableName,
     BOOK_CONTENT_BUCKET: input.contentBucketName,
   };
-  const failures = validateFrontendRuntimeEnvironment(runtimeEnv);
+  const failures = validateFrontendDeploymentEnvironment(
+    runtimeEnv,
+    input.ssmParameterPrefix,
+  );
   if (failures.length > 0) {
     throw new Error(
       `Refusing to synth the ${input.deploymentEnvironment} ChapterFlowFrontend stack — ` +
@@ -300,4 +312,35 @@ export function buildFrontendRuntimeConfig(
         ? "log"
         : "enforce",
   };
+}
+
+function validateFrontendDeploymentEnvironment(
+  env: Record<string, string | undefined>,
+  ssmParameterPrefix: string,
+): RuntimeEnvFailure[] {
+  const isProduction = env.CHAPTERFLOW_ENV?.trim() === "prod";
+  const failures: RuntimeEnvFailure[] = [];
+
+  if (isProduction && !nonBlank(ssmParameterPrefix)) {
+    failures.push({
+      requirementId: "runtime-secret-prefix",
+      code: "missing",
+      names: ["SSM_PARAMETER_PREFIX"],
+    });
+  }
+
+  const deferred = new Set(
+    (FRONTEND_RUNTIME_ENV_REQUIREMENTS as readonly RuntimeEnvRequirementProjection[])
+      .filter(({ source }) => source === "ssm_runtime")
+      .flatMap(({ names }) => names),
+  );
+  const validationEnv = { ...env };
+  for (const name of deferred) {
+    // Synth validates that runtime resolution is bound to a scoped prefix. It
+    // must not read or require the secret value; boot validates the resolved
+    // value against this same manifest before traffic is accepted.
+    validationEnv[name] = "x".repeat(64);
+  }
+  failures.push(...validateFrontendRuntimeEnvironment(validationEnv));
+  return failures;
 }
