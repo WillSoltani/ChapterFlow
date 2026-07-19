@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { runAuthorizedChapterHydration } from "./initial-chapter-content-core";
+import {
+  isInitialReaderProgressEligible,
+  runAuthorizedChapterHydration,
+} from "./initial-chapter-content-core";
 
 test("a Free downgrade cannot hydrate progress for a book outside unlockedBookIds", async () => {
   let contentReads = 0;
@@ -50,4 +53,56 @@ test("a missing entitlement fails closed before content loading", async () => {
 
   assert.equal(result, null);
   assert.equal(contentReads, 0);
+});
+
+test("initial hydration requires an existing, unlocked, current-version progress pin", () => {
+  const current = {
+    pinnedBookVersion: 4,
+    contentPrefix: "book-content/books/book-a/v000004",
+    unlockedThroughChapterNumber: 3,
+  };
+
+  assert.equal(
+    isInitialReaderProgressEligible({
+      progress: null,
+      publishedVersion: 4,
+      chapterNumber: 2,
+    }),
+    false,
+    "an unstarted book has no progress attestation",
+  );
+  assert.equal(
+    isInitialReaderProgressEligible({
+      progress: current,
+      publishedVersion: 4,
+      chapterNumber: 4,
+    }),
+    false,
+    "a locked chapter must not be server rendered",
+  );
+  assert.equal(
+    isInitialReaderProgressEligible({
+      progress: current,
+      publishedVersion: 5,
+      chapterNumber: 2,
+    }),
+    false,
+    "version migration remains owned by the client/API path",
+  );
+  assert.equal(
+    isInitialReaderProgressEligible({
+      progress: { ...current, contentPrefix: "  " },
+      publishedVersion: 4,
+      chapterNumber: 2,
+    }),
+    false,
+  );
+  assert.equal(
+    isInitialReaderProgressEligible({
+      progress: current,
+      publishedVersion: 4,
+      chapterNumber: 2,
+    }),
+    true,
+  );
 });

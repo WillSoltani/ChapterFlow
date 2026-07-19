@@ -17,6 +17,14 @@ import {
 
 let warnedLocalBypass = false;
 
+export type DashboardAccessResult = {
+  onboarding: "confirmed_complete" | "unverified";
+};
+
+const UNVERIFIED_ACCESS = {
+  onboarding: "unverified",
+} as const satisfies DashboardAccessResult;
+
 /**
  * Best-effort recovery of the path the reader was actually trying to reach, so
  * the login redirect's returnTo lands them back there instead of the generic
@@ -103,7 +111,7 @@ async function reactivateDeactivatedAccount(
  */
 export async function requireDashboardAccess(options?: {
   allowUnonboarded?: boolean;
-}) {
+}): Promise<DashboardAccessResult> {
   if (
     process.env.NODE_ENV !== "production" &&
     (isDevAuthBypassEnabled() ||
@@ -117,7 +125,7 @@ export async function requireDashboardAccess(options?: {
         "dashboard_access_dev_bypass: allowing local access because DEV_AUTH_BYPASS is enabled or Cognito env vars are missing in dev."
       );
     }
-    return;
+    return UNVERIFIED_ACCESS;
   }
 
   let userId: string;
@@ -149,7 +157,7 @@ export async function requireDashboardAccess(options?: {
       // Reactivation already cleared the onboarding-deferred funnel below in the
       // legacy code path via an early `return`; keep that behavior so a returning
       // user lands straight on the page they requested.
-      return;
+      return UNVERIFIED_ACCESS;
     }
     if (status?.status === "deleted") {
       redirect("/auth/login?reason=deleted");
@@ -179,6 +187,7 @@ export async function requireDashboardAccess(options?: {
       if (!onboarding?.onboardingCompleted) {
         redirect("/book");
       }
+      return { onboarding: "confirmed_complete" };
     } catch (error: unknown) {
       // Re-throw the Next.js redirect (it's thrown, not returned).
       if (error && typeof error === "object" && "digest" in error) throw error;
@@ -186,6 +195,9 @@ export async function requireDashboardAccess(options?: {
       // out of the app over a transient backend error (mirrors the
       // account-status block above).
       console.error("onboarding_status_check_error", error);
+      return UNVERIFIED_ACCESS;
     }
   }
+
+  return UNVERIFIED_ACCESS;
 }

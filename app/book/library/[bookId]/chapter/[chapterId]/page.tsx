@@ -40,7 +40,7 @@ export default async function ChapterReaderPage({
 }: {
   params: Promise<{ bookId: string; chapterId: string }>;
 }) {
-  await requireDashboardAccess();
+  const access = await requireDashboardAccess();
   const { bookId, chapterId } = await params;
 
   // Load the published book detail AND server-hydrate the chapter's content in
@@ -49,9 +49,11 @@ export default async function ChapterReaderPage({
   // TTFB doesn't double (loading.tsx trap); the content read adds only its own
   // progress + chapter S3 reads. It fails closed to null (no hydration) for any
   // not-started / paywalled / locked / logged-out viewer, so gating is unchanged.
-  const [book, initialChapter] = await Promise.all([
+  const [book, initialSeed] = await Promise.all([
     loadBook(bookId),
-    loadInitialChapterContent(bookId, chapterId),
+    access.onboarding === "confirmed_complete"
+      ? loadInitialChapterContent(bookId, chapterId)
+      : Promise.resolve(null),
   ]);
 
   if (!book) {
@@ -71,7 +73,7 @@ export default async function ChapterReaderPage({
       chapterId={chapter.chapterId}
       chapterOrder={chapter.number}
       initialBook={book}
-      initialChapter={initialChapter ?? undefined}
+      initialChapter={initialSeed?.content}
     />
   );
 }

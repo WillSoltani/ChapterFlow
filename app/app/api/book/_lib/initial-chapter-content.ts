@@ -1,30 +1,38 @@
 import "server-only";
 
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireActiveBookUser } from "./account-guard";
 import { getBookContentBucket, getBookTableName } from "./env";
 import { BookApiError } from "./errors";
-import { getUserAccessibleChapter } from "./content-service";
 import { getPublishedLibraryBookDetail } from "./library-catalog";
-import { runAuthorizedChapterHydration } from "./initial-chapter-content-core";
-import { getUserEntitlement } from "./repo";
+import {
+  isInitialReaderProgressEligible,
+  runAuthorizedChapterHydration,
+} from "./initial-chapter-content-core";
+import { getUserEntitlement } from "./entitlement-repo";
+import { getUserProgress } from "./progress-repo";
+import { buildChapterKey } from "./keys";
+import { readJsonFromS3 } from "./storage";
+import type { ChapterSummaryPayload } from "./types";
 import { findLibraryChapterSummary } from "@/app/book/_lib/library-data";
-import type { ApiChapterResponse } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterFromApi";
+import type {
+  ApiChapterResponse,
+  InitialChapterReaderSeed,
+} from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterFromApi";
 
 /**
  * Server-hydrate the reader's ENTRY chapter content (WS3-024).
  *
  * The reader client normally fetches `GET /books/{bookId}/chapters/{n}` on mount
  * (useChapterContent). This loader lets the server page render real content into
- * the initial HTML by calling the SAME underlying loader that route uses
- * (`getUserAccessibleChapter`) directly — no HTTP hop.
+ * the initial HTML by applying the same read gates directly — no HTTP hop and
+ * no render-time mutation.
  *
  * GATING — this first requires the CURRENT entitlement to grant the book, then
- * runs the content route's READ authorization (`getUserAccessibleChapter`:
- * requires a started progress row, then enforces `chapterNumber <=
- * unlockedThroughChapterNumber`). It does NOT run
- * `ensureUserBookStarted` — the paywall/entitlement RESERVATION — because that
- * is a mutation with side effects (progress create, slot reservation, points,
- * device cookies) that must not fire from a page render. The client's
+ * strongly reads the existing progress row and reads chapter JSON directly from
+ * that row's pinned content prefix. It does NOT run the content service because
+ * that path may repoint a stale progress version. It also does not run the
+ * paywall/entitlement reservation or any progress-touch path: those mutations
+ * must not fire from a page render. The client's
  * `POST /me/books/{bookId}/start` still owns the paywall/blocked state machine
  * exactly as before.
  *
@@ -42,28 +50,40 @@ import type { ApiChapterResponse } from "@/app/book/library/[bookId]/chapter/[ch
 export async function loadInitialChapterContent(
   bookId: string,
   chapterParam: string,
-): Promise<ApiChapterResponse | null> {
+): Promise<InitialChapterReaderSeed | null> {
   try {
-    const user = await requireUser();
+    const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
-    const entitlement = await getUserEntitlement(tableName, user.sub);
+    const entitlement = await getUserEntitlement(tableName, user.sub, {
+      consistentRead: true,
+    });
 
     return await runAuthorizedChapterHydration({
       entitlement,
       bookId,
       load: async () => {
         const contentBucket = await getBookContentBucket();
-        const book = await getPublishedLibraryBookDetail({ tableName, contentBucket, bookId });
+        const [book, progress] = await Promise.all([
+          getPublishedLibraryBookDetail({ tableName, contentBucket, bookId }),
+          getUserProgress(tableName, user.sub, bookId, { consistentRead: true }),
+        ]);
         const chapter = findLibraryChapterSummary(book, chapterParam);
         if (!chapter) return null;
+        if (
+          !progress ||
+          !isInitialReaderProgressEligible({
+            progress,
+            publishedVersion: book.publishedVersion,
+            chapterNumber: chapter.number,
+          })
+        ) {
+          return null;
+        }
 
-        const { progress, chapter: payload } = await getUserAccessibleChapter({
-          tableName,
+        const payload = await readJsonFromS3<ChapterSummaryPayload>(
           contentBucket,
-          userId: user.sub,
-          bookId,
-          chapterNumber: chapter.number,
-        });
+          buildChapterKey(progress.contentPrefix, chapter.number),
+        );
 
         // Mirror the chapter route's response shape (books/[bookId]/chapters/[n])
         // WITHOUT a `mode` query, so the client adapter reconstructs an identical
@@ -98,13 +118,23 @@ export async function loadInitialChapterContent(
         } as unknown as ApiChapterResponse["chapter"];
 
         return {
-          chapter: responseChapter,
-          progress: {
-            currentChapterNumber: progress.currentChapterNumber,
-            unlockedThroughChapterNumber: progress.unlockedThroughChapterNumber,
-            completedChapters: progress.completedChapters,
+          schemaVersion: 1,
+          authorization: "active-entitled-started-unlocked",
+          route: {
+            bookId,
+            chapterId: chapter.chapterId,
+            chapterNumber: chapter.number,
           },
-        } satisfies ApiChapterResponse;
+          onboardingCompleted: true,
+          content: {
+            chapter: responseChapter,
+            progress: {
+              currentChapterNumber: progress.currentChapterNumber,
+              unlockedThroughChapterNumber: progress.unlockedThroughChapterNumber,
+              completedChapters: progress.completedChapters,
+            },
+          },
+        } satisfies InitialChapterReaderSeed;
       },
     });
   } catch (error) {

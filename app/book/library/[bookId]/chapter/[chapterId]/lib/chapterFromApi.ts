@@ -78,13 +78,27 @@ export type ApiChapter = {
   };
 };
 
+export type ApiChapterProgress = {
+  currentChapterNumber: number;
+  unlockedThroughChapterNumber: number;
+  completedChapters: number[];
+};
+
 export type ApiChapterResponse = {
   chapter: ApiChapter;
-  progress?: {
-    currentChapterNumber: number;
-    unlockedThroughChapterNumber: number;
-    completedChapters: number[];
+  progress?: ApiChapterProgress;
+};
+
+export interface InitialChapterReaderSeed {
+  schemaVersion: 1;
+  authorization: "active-entitled-started-unlocked";
+  route: {
+    bookId: string;
+    chapterId: string;
+    chapterNumber: number;
   };
+  onboardingCompleted: true;
+  content: ApiChapterResponse & { progress: ApiChapterProgress };
 };
 
 // v21 has a single canonical voice, so the server tone-keyed values are the same
