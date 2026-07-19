@@ -24,7 +24,7 @@ import { TopNav } from "@/app/book/home/components/TopNav";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
 import { Button } from "@/app/book/components/ui/Button";
 import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
-import { Toast } from "@/app/book/components/ui/Toast";
+import { Toast } from "@/components/ui/Toast";
 import { CATALOG_BOOK_COUNT, CATALOG_CATEGORY_COUNT } from "@/lib/catalog-stats";
 import {
   getBookProgressStorageKey,
@@ -1429,7 +1429,13 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
         ) : null}
       </InfoModal>
 
-      <Toast open={toast.open} message={toast.message} tone={toast.tone} />
+      <Toast
+        open={toast.open}
+        message={toast.message}
+        tone={toast.tone}
+        detail={toast.detail}
+        presentation={toast.presentation}
+      />
     </main>
   );
 }

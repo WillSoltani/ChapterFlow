@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import Link from "next/link";
 import { TriangleAlert } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
-import { Toast, type ToastTone } from "@/app/book/components/ui/Toast";
+import { Toast } from "@/components/ui/Toast";
+import { useToast } from "@/app/book/hooks/useToast";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useLibraryDashboard } from "@/app/book/hooks/useLibraryDashboard";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
@@ -41,22 +42,22 @@ export function SavedBooksClient() {
     [books, savedSet],
   );
 
-  const [toast, setToast] = useState<{ message: string; tone: ToastTone } | null>(null);
+  const { toast, showToast } = useToast(3000);
   const onToggleSave = useCallback(
     async (bookId: string, title: string) => {
       const result = await toggleSaved(bookId, { source: "saved-page" });
       if (result.error) {
-        setToast({ message: "Couldn't update Read Next. Please try again.", tone: "error" });
+        showToast("Couldn't update Read Next. Please try again.", "error");
         return;
       }
-      setToast({
-        message: result.saved
+      showToast(
+        result.saved
           ? `Saved “${title}” to Read Next`
           : `Removed “${title}” from Read Next`,
-        tone: "success",
-      });
+        "success",
+      );
     },
-    [toggleSaved],
+    [showToast, toggleSaved],
   );
 
   const libraryContext = useMemo<LibraryContextValue>(
@@ -180,10 +181,11 @@ export function SavedBooksClient() {
       </section>
 
       <Toast
-        open={Boolean(toast)}
-        message={toast?.message ?? ""}
-        tone={toast?.tone ?? "info"}
-        onClose={() => setToast(null)}
+        open={toast.open}
+        message={toast.message}
+        tone={toast.tone}
+        detail={toast.detail}
+        presentation={toast.presentation}
       />
     </main>
   );

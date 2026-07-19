@@ -33,7 +33,6 @@ import {
 } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { Button } from "@/app/book/components/ui/Button";
-import { Card } from "@/app/book/components/ui/Card";
 import { BookCover } from "@/components/ui/BookCover";
 import { cn } from "@/lib/utils";
 
@@ -240,7 +239,10 @@ export function SectionCard({
   ...props
 }: SectionCardProps) {
   return (
-    <Card className={cn("overflow-hidden p-0", className)} {...props}>
+    <div
+      className={cn("cf-panel rounded-3xl p-5", "overflow-hidden p-0", className)}
+      {...props}
+    >
       <div className="border-b border-(--cf-divider) bg-(--cf-surface-muted) px-5 py-4 sm:px-6">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-3">
@@ -269,7 +271,7 @@ export function SectionCard({
         </div>
       </div>
       <div className="px-5 py-5 sm:px-6 sm:py-6">{children}</div>
-    </Card>
+    </div>
   );
 }
 
