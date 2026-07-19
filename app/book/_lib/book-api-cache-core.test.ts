@@ -347,3 +347,86 @@ test("late old-generation rejections cannot clear or notify the current generati
   await runScenario(new Error("old request failed"));
   await runScenario(Object.assign(new Error("old session unauthorized"), { status: 401 }));
 });
+
+test("auth generation initialization is inert and an unchanged generation preserves the cache", async () => {
+  let calls = 0;
+  const cache = createBookCache({
+    ttlMs: 30_000,
+    defaultFetcher: () => Promise.resolve(`V${++calls}`),
+  });
+
+  assert.equal(cache.reconcileAuthGeneration("generation-a"), "initialized");
+  assert.equal(await cache.load(KEY), "V1");
+  assert.equal(cache.reconcileAuthGeneration("generation-a"), "unchanged");
+  assert.equal(await cache.load(KEY), "V1");
+  assert.equal(calls, 1, "same-session reconciliation must preserve TTL behavior");
+});
+
+test("an A to B auth-generation transition clears all private URLs exactly once", async () => {
+  const profile = "/app/api/book/me/profile";
+  const cache = createBookCache({
+    ttlMs: 30_000,
+    defaultFetcher: (key) => Promise.resolve(`${key}:A`),
+  });
+  cache.reconcileAuthGeneration("generation-a");
+  await cache.load(KEY);
+  await cache.load(profile);
+
+  const events: BookCacheEvent[] = [];
+  cache.subscribe(KEY, (event) => events.push(event));
+
+  assert.equal(cache.reconcileAuthGeneration("generation-b"), "changed");
+  assert.equal(cache.peek(KEY), undefined);
+  assert.equal(cache.peek(profile), undefined);
+  assert.deepEqual(events.map((event) => event.type), ["clear"]);
+  assert.equal(cache.reconcileAuthGeneration("generation-b"), "unchanged");
+  assert.deepEqual(events.map((event) => event.type), ["clear"]);
+});
+
+test("a late A success cannot repopulate the same raw URL after B arrives", async () => {
+  const aGate = deferred<string>();
+  let calls = 0;
+  const cache = createBookCache({
+    ttlMs: 30_000,
+    defaultFetcher: () => {
+      calls += 1;
+      return calls === 1 ? aGate.promise : Promise.resolve("dashboard-B");
+    },
+  });
+  cache.reconcileAuthGeneration("generation-a");
+  const requestA = cache.load(KEY);
+
+  cache.reconcileAuthGeneration("generation-b");
+  aGate.resolve("dashboard-A");
+  assert.equal(await requestA, "dashboard-A");
+  assert.equal(cache.peek(KEY), undefined);
+  assert.equal(await cache.load(KEY), "dashboard-B");
+  assert.deepEqual(cache.peek(KEY)?.value, "dashboard-B");
+});
+
+test("a late A rejection cannot clear or notify B after explicit generation reconciliation", async () => {
+  const aGate = deferred<string>();
+  const authFailure = Object.assign(new Error("old unauthorized"), { status: 401 });
+  let calls = 0;
+  const cache = createBookCache({
+    ttlMs: 30_000,
+    shouldClearOnError: (error) =>
+      typeof error === "object" && error !== null && "status" in error &&
+      (error as { status?: unknown }).status === 401,
+    defaultFetcher: () => {
+      calls += 1;
+      return calls === 1 ? aGate.promise : Promise.resolve("dashboard-B");
+    },
+  });
+  cache.reconcileAuthGeneration("generation-a");
+  const requestA = cache.load(KEY);
+  cache.reconcileAuthGeneration("generation-b");
+  await cache.load(KEY);
+  const events: BookCacheEvent[] = [];
+  cache.subscribe(KEY, (event) => events.push(event));
+
+  aGate.reject(authFailure);
+  await assert.rejects(() => requestA, authFailure);
+  assert.equal(cache.peek(KEY)?.value, "dashboard-B");
+  assert.deepEqual(events, []);
+});

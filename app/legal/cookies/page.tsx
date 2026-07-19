@@ -66,6 +66,11 @@ export default function CookiePolicyPage() {
                   <td className="py-2">30 days</td>
                 </tr>
                 <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
+                  <td className="py-2 pr-4 font-mono text-[13px]">cf_auth_generation</td>
+                  <td className="py-2 pr-4">Opaque random marker that prevents private browser-cache data from carrying across sign-ins. Client-readable, contains no account identifier, and is not used to authenticate you.</td>
+                  <td className="py-2">30 days</td>
+                </tr>
+                <tr style={{ borderBottom: "1px solid var(--border-subtle)" }}>
                   <td className="py-2 pr-4 font-mono text-[13px]">cf_device</td>
                   <td className="py-2 pr-4">Randomly generated device identifier for abuse prevention. An opaque random value that does not contain personal information.</td>
                   <td className="py-2">1 year</td>

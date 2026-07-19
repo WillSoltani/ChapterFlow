@@ -26,9 +26,17 @@ import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";
 import {
   beginBookCacheMountLoad,
   createBookCache,
+  type AuthGenerationTransition,
   type BookCacheEvent,
   type BookCacheListener,
 } from "@/app/book/_lib/book-api-cache-core";
+import {
+  AUTH_CACHE_GENERATION_CHANGED_EVENT,
+  AUTH_CACHE_GENERATION_COOKIE,
+  AUTH_CACHE_GENERATION_STORAGE_KEY,
+  normalizeAuthCacheGeneration,
+  readCookieValue,
+} from "@/lib/auth-cache-generation";
 
 /** Fresh window: within 30s a read is served from memory with no network call. */
 const CACHE_TTL_MS = 30_000;
@@ -36,7 +44,7 @@ const CACHE_TTL_MS = 30_000;
 const cache = createBookCache({
   ttlMs: CACHE_TTL_MS,
   now: () => Date.now(),
-  defaultFetcher: (key) => fetchBookJson(key),
+  defaultFetcher: (key) => fetchForObservedGeneration(key),
   // A 401/403 is an authentication boundary, not a transient data-plane
   // failure. Never retain one user's private payload after the session is gone.
   shouldClearOnError: (error) =>
@@ -44,6 +52,73 @@ const cache = createBookCache({
 });
 
 let listenersAttached = false;
+let authReloadPending = false;
+let authChangeNotificationPending = false;
+
+export class BookAuthGenerationChangedError extends Error {
+  constructor() {
+    super("The authenticated browser session changed while the request was in flight.");
+    this.name = "BookAuthGenerationChangedError";
+  }
+}
+
+function currentCookieGeneration(): string | null {
+  if (typeof document === "undefined") return null;
+  return normalizeAuthCacheGeneration(
+    readCookieValue(document.cookie, AUTH_CACHE_GENERATION_COOKIE),
+  );
+}
+
+function dispatchAuthGenerationChanged(): void {
+  if (typeof window === "undefined" || authChangeNotificationPending) return;
+  authChangeNotificationPending = true;
+  queueMicrotask(() => {
+    authChangeNotificationPending = false;
+    window.dispatchEvent(new Event(AUTH_CACHE_GENERATION_CHANGED_EVENT));
+  });
+}
+
+export function reconcileBookCacheAuthGeneration(): AuthGenerationTransition {
+  const transition = cache.reconcileAuthGeneration(currentCookieGeneration());
+  if (transition === "changed") {
+    authReloadPending = true;
+    dispatchAuthGenerationChanged();
+  }
+  return transition;
+}
+
+export function consumeBookCacheAuthReloadRequired(): boolean {
+  const pending = authReloadPending;
+  authReloadPending = false;
+  return pending;
+}
+
+export function announceBookCacheAuthGeneration(): void {
+  if (typeof window === "undefined") return;
+  const generation = currentCookieGeneration() ?? "signed-out";
+  try {
+    window.localStorage.setItem(AUTH_CACHE_GENERATION_STORAGE_KEY, generation);
+  } catch {
+    // Storage is only a wake-up signal; focus/pageshow and direct cache access
+    // still reconcile from the cookie when storage is unavailable.
+  }
+  dispatchAuthGenerationChanged();
+}
+
+async function fetchForObservedGeneration<T>(
+  key: string,
+  init?: RequestInit,
+): Promise<T> {
+  const before = currentCookieGeneration();
+  cache.reconcileAuthGeneration(before);
+  const value = await fetchBookJson<T>(key, init);
+  const after = currentCookieGeneration();
+  if (after !== before) {
+    reconcileBookCacheAuthGeneration();
+    throw new BookAuthGenerationChangedError();
+  }
+  return value;
+}
 
 /**
  * Attach the ONE set of global revalidation listeners the whole app shares. The
@@ -54,9 +129,20 @@ let listenersAttached = false;
 function ensureGlobalListeners(): void {
   if (listenersAttached || typeof window === "undefined") return;
   listenersAttached = true;
-  const onRevalidate = () => cache.revalidateSubscribed();
+  const onRevalidate = () => {
+    if (reconcileBookCacheAuthGeneration() !== "changed") {
+      cache.revalidateSubscribed();
+    }
+  };
+  const onStorage = (event: StorageEvent) => {
+    if (event.key === AUTH_CACHE_GENERATION_STORAGE_KEY) {
+      reconcileBookCacheAuthGeneration();
+      return;
+    }
+    onRevalidate();
+  };
   window.addEventListener("focus", onRevalidate);
-  window.addEventListener("storage", onRevalidate);
+  window.addEventListener("storage", onStorage);
   window.addEventListener(BOOK_STORAGE_EVENT, onRevalidate as EventListener);
 }
 
@@ -70,23 +156,27 @@ export function fetchBookJsonCached<T>(
   init?: RequestInit,
   opts?: { forceRevalidate?: boolean }
 ): Promise<T> {
-  const fetcher = init ? () => fetchBookJson<T>(key, init) : undefined;
+  reconcileBookCacheAuthGeneration();
+  const fetcher = init ? () => fetchForObservedGeneration<T>(key, init) : undefined;
   return cache.load(key, { force: opts?.forceRevalidate, fetcher }) as Promise<T>;
 }
 
 /** Subscribe `listener` to updates (revalidations + invalidations) for `key`. */
 export function subscribeBookCache(key: string, listener: BookCacheListener): () => void {
+  reconcileBookCacheAuthGeneration();
   ensureGlobalListeners();
   return cache.subscribe(key, listener);
 }
 
 /** Drop every cached key under `prefix` and notify its subscribers to refetch. */
 export function invalidateBookCache(prefix: string): void {
+  reconcileBookCacheAuthGeneration();
   cache.invalidate(prefix);
 }
 
 /** Synchronous cached read (fresh or stale), or undefined if nothing is cached. */
 export function peekBookCache<T>(key: string): T | undefined {
+  reconcileBookCacheAuthGeneration();
   return cache.peek(key)?.value as T | undefined;
 }
 
@@ -106,6 +196,7 @@ export interface BookQueryResult<T> {
 export function useBookQuery<T>(key: string | null): BookQueryResult<T> {
   const [state, setState] = useState<{ data: T | undefined; error: unknown; loading: boolean }>(
     () => {
+      reconcileBookCacheAuthGeneration();
       const peeked = key ? cache.peek(key) : undefined;
       return {
         data: peeked?.value as T | undefined,
@@ -121,6 +212,7 @@ export function useBookQuery<T>(key: string | null): BookQueryResult<T> {
       return;
     }
     ensureGlobalListeners();
+    reconcileBookCacheAuthGeneration();
 
     // Data is delivered from ONE place — the cache, via peek — so a background
     // revalidation triggered by any co-mounted consumer updates this hook too.
@@ -133,6 +225,7 @@ export function useBookQuery<T>(key: string | null): BookQueryResult<T> {
         setState((prev) => ({ ...prev, error: event.error, loading: false }));
         return;
       }
+      reconcileBookCacheAuthGeneration();
       const peeked = cache.peek(key);
       if (peeked !== undefined) {
         setState({ data: peeked.value as T, error: undefined, loading: false });
@@ -156,6 +249,7 @@ export function useBookQuery<T>(key: string | null): BookQueryResult<T> {
 
   const refetch = useCallback(() => {
     if (!key) return;
+    reconcileBookCacheAuthGeneration();
     setState((prev) => ({ ...prev, error: undefined }));
     void cache.load(key, { force: true }).catch(() => {});
   }, [key]);

@@ -55,6 +55,7 @@ export type BookCacheEvent =
   | { type: "clear" };
 
 export type BookCacheListener = (event: BookCacheEvent) => void;
+export type AuthGenerationTransition = "initialized" | "unchanged" | "changed";
 export type BookCacheRefreshEvent = Extract<
   BookCacheEvent,
   { type: "success" | "invalidate" }
@@ -80,6 +81,8 @@ export interface BookCache {
   invalidate(prefix: string): void;
   /** Drop all private entries and tell every live subscriber to clear local data. */
   clear(): void;
+  /** Reconcile the opaque browser auth epoch before any private-cache access. */
+  reconcileAuthGeneration(next: string | null): AuthGenerationTransition;
   /** Force a background revalidation of every key that has a live subscriber. */
   revalidateSubscribed(): void;
 }
@@ -121,6 +124,9 @@ export function createBookCache(options: BookCacheOptions): BookCache {
   const entries = new Map<string, CacheEntry>();
   const listeners = new Map<string, Set<BookCacheListener>>();
   let generation = 0;
+  const uninitializedAuthGeneration = Symbol("uninitialized-auth-generation");
+  let authGeneration: string | null | typeof uninitializedAuthGeneration =
+    uninitializedAuthGeneration;
 
   function ensureEntry(key: string): CacheEntry {
     let entry = entries.get(key);
@@ -142,6 +148,18 @@ export function createBookCache(options: BookCacheOptions): BookCache {
     generation += 1;
     entries.clear();
     for (const key of listeners.keys()) notify(key, { type: "clear" });
+  }
+
+  function reconcileAuthGeneration(next: string | null): AuthGenerationTransition {
+    if (authGeneration === uninitializedAuthGeneration) {
+      authGeneration = next;
+      return "initialized";
+    }
+    if (authGeneration === next) return "unchanged";
+
+    authGeneration = next;
+    clear();
+    return "changed";
   }
 
   function peek(key: string): BookCachePeek | undefined {
@@ -240,5 +258,13 @@ export function createBookCache(options: BookCacheOptions): BookCache {
     }
   }
 
-  return { peek, load, subscribe, invalidate, clear, revalidateSubscribed };
+  return {
+    peek,
+    load,
+    subscribe,
+    invalidate,
+    clear,
+    reconcileAuthGeneration,
+    revalidateSubscribed,
+  };
 }
