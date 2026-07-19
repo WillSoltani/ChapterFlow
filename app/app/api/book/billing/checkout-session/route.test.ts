@@ -1,6 +1,7 @@
-import { test, before } from "node:test";
+import { after, before, beforeEach, test } from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
+import { PRICING } from "@/lib/pricing";
 
 // WS4-015 (route-level contract): after a chargeback (charge.dispute.created),
 // the entitlement row is { plan:'FREE', proSource:null, disputeOpen:true }.
@@ -40,11 +41,17 @@ function makeSpy<TArgs extends unknown[], TResult>(
 
 const customersCreate = makeSpy(async () => ({ id: "cus_test" }));
 const customersDel = makeSpy(async () => {});
-const subscriptionsList = makeSpy(async () => ({ data: [] as unknown[] }));
-const sessionsCreate = makeSpy(async () => ({
-  url: "https://stripe.test/session",
-  id: "cs_test",
-}));
+let priorSubscriptions: Array<{ status: string }> = [];
+const subscriptionsList = makeSpy(async () => ({ data: priorSubscriptions }));
+const sessionsCreate = makeSpy(
+  async (options: Record<string, unknown>) => {
+    void options;
+    return {
+      url: "https://stripe.test/session",
+      id: "cs_test",
+    };
+  },
+);
 
 const stripeSpy = {
   customers: { create: customersCreate, del: customersDel },
@@ -110,6 +117,16 @@ before(async () => {
   ({ POST } = await import("./route"));
 });
 
+beforeEach(() => {
+  currentEntitlement = null;
+  priorSubscriptions = [];
+  resetStripeSpy();
+});
+
+after(() => {
+  Module._load = originalLoad;
+});
+
 const FAKE_JWT = "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxIn0.sig";
 
 function checkoutRequest(): Request {
@@ -133,8 +150,15 @@ function resetStripeSpy(): void {
   sessionsCreate.calls.length = 0;
 }
 
+async function assertCheckoutSuccess(res: Response): Promise<void> {
+  assert.equal(res.status, 200);
+  assert.deepEqual(await res.json(), {
+    checkoutUrl: "https://stripe.test/session",
+    sessionId: "cs_test",
+  });
+}
+
 test("WS4-015: a disputed entitlement is rejected with 409 billing_disputed before any Stripe call", async () => {
-  resetStripeSpy();
   currentEntitlement = {
     userId: "user-1",
     plan: "FREE",
@@ -156,7 +180,6 @@ test("WS4-015: a disputed entitlement is rejected with 409 billing_disputed befo
 });
 
 test("already_pro regression: an already-Pro (gift_code) entitlement stays blocked with 409 already_pro", async () => {
-  resetStripeSpy();
   currentEntitlement = {
     userId: "user-1",
     plan: "PRO",
@@ -178,16 +201,74 @@ test("already_pro regression: an already-Pro (gift_code) entitlement stays block
 });
 
 test("happy path: an ordinary (no entitlement row) user still reaches Stripe Checkout", async () => {
-  resetStripeSpy();
-  currentEntitlement = null;
-
   const res = await POST(checkoutRequest());
-  assert.equal(res.status, 200);
-  const body = (await res.json()) as { checkoutUrl?: string };
-  assert.equal(body.checkoutUrl, "https://stripe.test/session");
+  await assertCheckoutSuccess(res);
   assert.equal(
     sessionsCreate.calls.length,
     1,
     "checkout session must be created exactly once",
   );
 });
+
+function existingCustomerEntitlement(): Record<string, unknown> {
+  return {
+    userId: "user-1",
+    plan: "FREE",
+    freeBookSlots: 2,
+    unlockedBookIds: [],
+    stripeCustomerId: "cus_existing",
+  };
+}
+
+function createdSessionOptions(): {
+  customer?: string;
+  subscription_data?: { trial_period_days?: number };
+} {
+  assert.equal(sessionsCreate.calls.length, 1);
+  return sessionsCreate.calls[0]?.[0] ?? {};
+}
+
+test("existing customer with empty history receives the canonical trial", async () => {
+  currentEntitlement = existingCustomerEntitlement();
+
+  const res = await POST(checkoutRequest());
+  await assertCheckoutSuccess(res);
+  assert.equal(subscriptionsList.calls.length, 1);
+  assert.equal(customersCreate.calls.length, 0);
+  const options = createdSessionOptions();
+  assert.equal(options.customer, "cus_existing");
+  assert.equal(
+    options.subscription_data?.trial_period_days,
+    PRICING.trialDays,
+  );
+});
+
+for (const status of ["active", "trialing", "past_due"] as const) {
+  test(`existing customer with ${status} subscription is blocked before Checkout`, async () => {
+    currentEntitlement = existingCustomerEntitlement();
+    priorSubscriptions = [{ status }];
+
+    const res = await POST(checkoutRequest());
+    assert.equal(res.status, 409);
+    const body = (await res.json()) as { error?: { code?: string } };
+    assert.equal(body.error?.code, "subscription_already_active");
+    assert.equal(subscriptionsList.calls.length, 1);
+    assert.equal(customersCreate.calls.length, 0);
+    assert.equal(sessionsCreate.calls.length, 0);
+  });
+}
+
+for (const status of ["canceled", "incomplete_expired"] as const) {
+  test(`existing customer with prior ${status} subscription gets no repeat trial`, async () => {
+    currentEntitlement = existingCustomerEntitlement();
+    priorSubscriptions = [{ status }];
+
+    const res = await POST(checkoutRequest());
+    await assertCheckoutSuccess(res);
+    assert.equal(subscriptionsList.calls.length, 1);
+    assert.equal(customersCreate.calls.length, 0);
+    const options = createdSessionOptions();
+    assert.equal(options.customer, "cus_existing");
+    assert.equal("subscription_data" in options, false);
+  });
+}
