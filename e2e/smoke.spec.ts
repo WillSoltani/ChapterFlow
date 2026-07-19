@@ -189,10 +189,15 @@ test.describe("shared Recall public chrome", () => {
     await expect(close).toBeFocused();
     expect(await page.evaluate(() => document.body.style.overflow)).toBe("hidden");
 
+    // Auth status resolves asynchronously. Wait until the final menu action is
+    // present before asserting first↔last wraparound, otherwise the trap can
+    // correctly wrap to the last navigation link that existed at keydown time.
+    const menuAction = dialog.getByRole("link", {
+      name: /start free|dashboard/i,
+    });
+    await expect(menuAction).toBeVisible();
     await page.keyboard.press("Shift+Tab");
-    await expect(
-      dialog.getByRole("link", { name: /start free|dashboard/i }),
-    ).toBeFocused();
+    await expect(menuAction).toBeFocused();
     await page.keyboard.press("Tab");
     await expect(close).toBeFocused();
 
