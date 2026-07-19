@@ -19,63 +19,25 @@ import {
   type V21ExperiencePlan,
   type V21MemorableLine,
 } from "@/app/book/lib/v21-adapter";
-
-export type ReadingDepth = "simple" | "standard" | "deeper";
-export type ExampleScope = "work" | "school" | "personal";
-
-export type ChapterQuizQuestion = {
-  id: string;
-  prompt: string;
-  options: string[];
-  correctIndex: number;
-  explanation: string;
-};
-
-export type ChapterSummaryBlock =
-  | {
-      id: string;
-      type: "paragraph";
-      text: string;
-    }
-  | {
-      id: string;
-      type: "bullet";
-      text: string;
-      detail?: string;
-    };
-
-export type ScenarioDecisionOption = {
-  id: string;
-  text: string;
-  isRecommended: boolean;
-};
-
-export type ChapterExample = {
-  id: string;
-  title: string;
-  scope: ExampleScope;
-  scenario: string;
-  whatToDo: string;
-  whyItMatters: string;
-  /** Per-scenario decision options. If absent, auto-generated from content. */
-  decisionOptions?: ScenarioDecisionOption[];
-  /** Reflective prompt shown before revealing analysis. Falls back to generic if absent. */
-  reflectionPrompt?: string;
-};
-
-export type ImplementationPlanItem = {
-  coreSkill: string;
-  ifThenPlans: Array<{ context: string; plan: string }>;
-  twentyFourHourChallenge: string;
-  weeklyPractice: string;
-};
-
-export type ReviewCardItem = {
-  id: string;
-  front: string;
-  back: string;
-  difficulty: "easy" | "medium" | "hard";
-};
+import type {
+  ChapterExample,
+  ChapterQuizQuestion,
+  ChapterSummaryBlock,
+  ExampleScope,
+  ImplementationPlanItem,
+  ReadingDepth,
+  ReviewCardItem,
+} from "@/lib/reader-content-types";
+export type {
+  ChapterExample,
+  ChapterQuizQuestion,
+  ChapterSummaryBlock,
+  ExampleScope,
+  ImplementationPlanItem,
+  ReadingDepth,
+  ReviewCardItem,
+  ScenarioDecisionOption,
+} from "@/lib/reader-content-types";
 
 export type BookChapter = {
   bookId: string;

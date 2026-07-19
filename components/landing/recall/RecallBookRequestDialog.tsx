@@ -43,7 +43,7 @@ export function RecallBookRequestDialog({
         <div className="flex items-start justify-between gap-4">
           <div>
             <p
-              className="font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.3em]"
+              className="font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.3em]"
               style={{ color: "var(--cf-recall-ink-faint)" }}
             >
               Request a book
@@ -80,7 +80,7 @@ export function RecallBookRequestDialog({
         </p>
 
         <p
-          className="mt-2 font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.2em]"
+          className="mt-2 font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.2em]"
           style={{ color: "var(--cf-recall-ink-faint)" }}
         >
           No spam, no sharing.

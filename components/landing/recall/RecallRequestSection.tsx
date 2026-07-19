@@ -26,7 +26,7 @@ export function RecallRequestSection() {
         {/* ── Editorial header, centered, lots of air ── */}
         <header className="mx-auto max-w-[40rem] text-center">
           <p
-            className="cf-fade-up font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.34em]"
+            className="cf-fade-up font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.34em]"
             style={{ color: "var(--cf-recall-ink-faint)", animationDelay: "0ms" }}
           >
             Requests

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Search, User } from "lucide-react";
 import {
   DEMO_BOOK_TITLE,
@@ -25,22 +25,22 @@ export function AppWindowChrome() {
       <div className="flex items-center gap-1.5">
         <span
           className="w-3 h-3 rounded-full"
-          style={{ background: "#ef4444" }}
+          style={{ background: "var(--cf-window-control-close)" }}
         />
         <span
           className="w-3 h-3 rounded-full"
-          style={{ background: "#eab308" }}
+          style={{ background: "var(--cf-window-control-minimize)" }}
         />
         <span
           className="w-3 h-3 rounded-full"
-          style={{ background: "#22c55e" }}
+          style={{ background: "var(--cf-window-control-maximize)" }}
         />
       </div>
 
       {/* Center: brand + chapter title */}
       <div className="flex-1 flex items-center justify-center gap-2 min-w-0">
         <span
-          className="text-[12px] font-bold uppercase tracking-wider"
+          className="text-cf-label-sm font-bold uppercase tracking-wider"
           style={{
             color: "var(--cr-accent)",
             fontFamily: "var(--font-display)",
@@ -52,15 +52,15 @@ export function AppWindowChrome() {
         {/* No layoutId: V5 mounts two reader consoles (hero + signature) at once,
             and a shared layoutId across both collides (framer warp/warnings). The
             title doesn't transition position, so it needs no shared-layout id. */}
-        <motion.span
-          className="text-[12px] truncate"
+        <m.span
+          className="text-cf-label-sm truncate"
           style={{
             color: "var(--cr-text-secondary)",
             fontFamily: "var(--font-body)",
           }}
         >
           {DEMO_BOOK_TITLE} · Ch {DEMO_CHAPTER_NUMBER}
-        </motion.span>
+        </m.span>
       </div>
 
       {/* Right side icons (decorative — no behavior) */}

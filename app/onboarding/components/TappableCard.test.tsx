@@ -10,15 +10,24 @@ afterEach(cleanup);
 test("TappableCard supports pointer and keyboard selection", () => {
   let selections = 0;
   const view = render(
-    <TappableCard selected={false} onSelect={() => {
-      selections += 1;
-    }}>
+    <TappableCard
+      selected={false}
+      tabStop
+      positionInSet={1}
+      setSize={1}
+      onSelect={() => {
+        selections += 1;
+      }}
+    >
       Read more consistently
     </TappableCard>,
   );
   const card = view.getByRole("radio", { name: "Read more consistently" });
 
   assert.equal(card.getAttribute("aria-checked"), "false");
+  assert.equal(card.getAttribute("aria-posinset"), "1");
+  assert.equal(card.getAttribute("aria-setsize"), "1");
+  assert.equal(card.getAttribute("tabindex"), "0");
   fireEvent.click(card);
   fireEvent.keyDown(card, { key: "Enter" });
   fireEvent.keyDown(card, { key: " " });
@@ -28,9 +37,16 @@ test("TappableCard supports pointer and keyboard selection", () => {
 test("TappableCard removes disabled choices from the tab order", () => {
   let selections = 0;
   const view = render(
-    <TappableCard selected disabled onSelect={() => {
-      selections += 1;
-    }}>
+    <TappableCard
+      selected
+      disabled
+      tabStop
+      positionInSet={1}
+      setSize={1}
+      onSelect={() => {
+        selections += 1;
+      }}
+    >
       Disabled choice
     </TappableCard>,
   );

@@ -45,7 +45,7 @@ export function PatternSelector({
                 type="button"
                 aria-pressed={isSelected}
                 onClick={() => onSelect(p)}
-                className={`cf-pressable rounded-full border px-4 py-2 text-[14px] font-medium transition ${
+                className={`cf-pressable rounded-full border px-4 py-2 text-cf-body-sm font-medium transition ${
                   isSelected
                     ? "border-(--cr-accent)/50 bg-(--cr-accent)/10 text-(--cr-text-heading)"
                     : "border-(--cr-glass-border) bg-(--cr-bg-surface-3) text-(--cr-text-secondary) hover:border-(--cr-accent)/30"

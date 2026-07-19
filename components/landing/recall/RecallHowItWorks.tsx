@@ -90,7 +90,7 @@ export function RecallHowItWorks() {
         {/* ── Editorial header: one idea, lots of air ── */}
         <header className="mx-auto max-w-[44rem] text-center">
           <p
-            className="cf-fade-up font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.34em]"
+            className="cf-fade-up font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.34em]"
             style={{
               color: "var(--cf-recall-ink-faint)",
               animationDelay: "0ms",
@@ -177,7 +177,7 @@ export function RecallHowItWorks() {
               >
                 <div className="flex items-center gap-3">
                   <span
-                    className="font-(family-name:--font-mono) text-[12px] tracking-[0.18em]"
+                    className="font-(family-name:--font-mono) text-cf-label-sm tracking-[0.18em]"
                     style={{ color: "var(--cf-recall-accent)" }}
                   >
                     {String(i + 1).padStart(2, "0")}

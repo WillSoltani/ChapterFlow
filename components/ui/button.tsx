@@ -11,6 +11,7 @@ const buttonVariants = cva(
       variant: {
         default: "cf-btn-primary",
         destructive: "cf-btn-danger",
+        success: "cf-btn-success",
         outline: "cf-btn-secondary shadow-xs",
         secondary: "cf-btn-secondary",
         ghost: "cf-btn-ghost",

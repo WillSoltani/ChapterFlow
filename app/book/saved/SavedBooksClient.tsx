@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import Link from "next/link";
 import { TriangleAlert } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
-import { Toast, type ToastTone } from "@/app/book/components/ui/Toast";
+import { Toast } from "@/components/ui/Toast";
+import { useToast } from "@/app/book/hooks/useToast";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { useLibraryDashboard } from "@/app/book/hooks/useLibraryDashboard";
 import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
@@ -41,22 +42,22 @@ export function SavedBooksClient() {
     [books, savedSet],
   );
 
-  const [toast, setToast] = useState<{ message: string; tone: ToastTone } | null>(null);
+  const { toast, showToast } = useToast(3000);
   const onToggleSave = useCallback(
     async (bookId: string, title: string) => {
       const result = await toggleSaved(bookId, { source: "saved-page" });
       if (result.error) {
-        setToast({ message: "Couldn't update Read Next. Please try again.", tone: "error" });
+        showToast("Couldn't update Read Next. Please try again.", "error");
         return;
       }
-      setToast({
-        message: result.saved
+      showToast(
+        result.saved
           ? `Saved “${title}” to Read Next`
           : `Removed “${title}” from Read Next`,
-        tone: "success",
-      });
+        "success",
+      );
     },
-    [toggleSaved],
+    [showToast, toggleSaved],
   );
 
   const libraryContext = useMemo<LibraryContextValue>(
@@ -95,12 +96,12 @@ export function SavedBooksClient() {
             >
               Read Next
             </h1>
-            <p className="mt-1.5 text-[14px]" style={{ color: "var(--cf-text-3)" }}>
+            <p className="mt-1.5 text-cf-body-sm" style={{ color: "var(--cf-text-3)" }}>
               Books you intentionally saved for your next stretch of reading.
             </p>
           </div>
           {!loading && savedBooks.length > 0 && (
-            <p className="shrink-0 text-[13px]" style={{ color: "var(--cf-text-soft)" }}>
+            <p className="shrink-0 text-cf-label" style={{ color: "var(--cf-text-soft)" }}>
               {savedBooks.length} {savedBooks.length === 1 ? "book" : "books"} saved
             </p>
           )}
@@ -134,16 +135,16 @@ export function SavedBooksClient() {
               className="mx-auto h-8 w-8 text-(--cf-warning-text)"
               aria-hidden="true"
             />
-            <p className="mt-3 text-[16px] font-semibold" style={{ color: "var(--cf-text-1)" }}>
+            <p className="mt-3 text-cf-body-lg font-semibold" style={{ color: "var(--cf-text-1)" }}>
               We couldn’t load your saved books
             </p>
-            <p className="mt-2 text-[13px]" style={{ color: "var(--cf-text-3)" }}>
+            <p className="mt-2 text-cf-label" style={{ color: "var(--cf-text-3)" }}>
               Something went wrong loading this page. Please try again.
             </p>
             <button
               type="button"
               onClick={refetch}
-              className="mt-5 inline-block rounded-lg px-5 py-2.5 text-[13px] font-semibold transition-colors"
+              className="mt-5 inline-block rounded-lg px-5 py-2.5 text-cf-label font-semibold transition-colors"
               style={{ background: "var(--cf-accent)", color: "var(--cf-page-bg)" }}
             >
               Try again
@@ -154,15 +155,15 @@ export function SavedBooksClient() {
             className="mx-auto max-w-md rounded-2xl px-8 py-12 text-center"
             style={{ background: "var(--bg-glass)", border: "1px solid var(--border-subtle)" }}
           >
-            <p className="text-[16px] font-semibold" style={{ color: "var(--cf-text-1)" }}>
+            <p className="text-cf-body-lg font-semibold" style={{ color: "var(--cf-text-1)" }}>
               No saved books yet
             </p>
-            <p className="mt-2 text-[13px]" style={{ color: "var(--cf-text-3)" }}>
+            <p className="mt-2 text-cf-label" style={{ color: "var(--cf-text-3)" }}>
               Tap the bookmark on any book in the library to add it to your Read Next queue.
             </p>
             <Link
               href="/book/library"
-              className="mt-5 inline-block rounded-lg px-5 py-2.5 text-[13px] font-semibold transition-colors"
+              className="mt-5 inline-block rounded-lg px-5 py-2.5 text-cf-label font-semibold transition-colors"
               style={{ background: "var(--cf-accent)", color: "var(--cf-page-bg)" }}
             >
               Browse library
@@ -180,10 +181,11 @@ export function SavedBooksClient() {
       </section>
 
       <Toast
-        open={Boolean(toast)}
-        message={toast?.message ?? ""}
-        tone={toast?.tone ?? "info"}
-        onClose={() => setToast(null)}
+        open={toast.open}
+        message={toast.message}
+        tone={toast.tone}
+        detail={toast.detail}
+        presentation={toast.presentation}
       />
     </main>
   );

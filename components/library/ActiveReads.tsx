@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { BookCover } from "@/components/ui/BookCover";
-import { ProgressRing } from "./ProgressRing";
+import { LibraryProgressRing } from "./LibraryProgressRing";
 import {
   formatReadingTime,
   getProgressMicrocopy,
@@ -32,7 +32,7 @@ export function ActiveReads({ books }: ActiveReadsProps) {
   return (
     <section className="mt-12" style={{ maxWidth: 1080, margin: "48px auto 0" }}>
       <h2
-        className="font-(family-name:--font-display) text-[20px] font-bold"
+        className="font-(family-name:--font-display) text-xl font-bold"
         style={{ color: "var(--text-heading)" }}
       >
         Pick up where you left off
@@ -100,7 +100,7 @@ export function ActiveReads({ books }: ActiveReadsProps) {
                     className="absolute -bottom-2 -right-2 rounded-full"
                     style={{ background: "var(--bg-base)", padding: 2 }}
                   >
-                    <ProgressRing
+                    <LibraryProgressRing
                       percent={prog.percentComplete}
                       size={48}
                       strokeWidth={4}
@@ -114,26 +114,26 @@ export function ActiveReads({ books }: ActiveReadsProps) {
                 <div className="flex min-w-0 flex-1 flex-col justify-between">
                   <div>
                     <h3
-                      className="truncate text-[15px] font-semibold"
+                      className="truncate text-cf-body font-semibold"
                       style={{ color: "var(--text-heading)" }}
                     >
                       {book.title}
                     </h3>
-                    <p className="mt-0.5 truncate text-[13px]" style={{ color: "var(--text-secondary)" }}>
+                    <p className="mt-0.5 truncate text-cf-label" style={{ color: "var(--text-secondary)" }}>
                       {book.author}
                     </p>
-                    <p className="mt-1.5 text-[12px]" style={{ color: "var(--text-secondary)" }}>
+                    <p className="mt-1.5 text-cf-label-sm" style={{ color: "var(--text-secondary)" }}>
                       Chapter {prog.currentChapter} of {book.totalChapters} · ~
                       {formatReadingTime(timeLeft)} left
                     </p>
-                    <p className="text-[12px]" style={{ color: "var(--text-muted)" }}>
+                    <p className="text-cf-label-sm" style={{ color: "var(--text-muted)" }}>
                       ~{perChapter}m for next chapter
                     </p>
                   </div>
 
                   <div className="mt-2">
                     <p
-                      className="text-[12px]"
+                      className="text-cf-label-sm"
                       style={{
                         color:
                           prog.percentComplete >= 50
@@ -145,11 +145,11 @@ export function ActiveReads({ books }: ActiveReadsProps) {
                     </p>
 
                     <div className="mt-2 flex items-center justify-between">
-                      <span className="text-[11px]" style={{ color: "var(--text-tertiary)" }}>
+                      <span className="text-cf-caption" style={{ color: "var(--text-tertiary)" }}>
                         {lastReadText}
                       </span>
                       <span
-                        className="text-[13px] font-semibold transition-colors"
+                        className="text-cf-label font-semibold transition-colors"
                         style={{ color: "var(--accent-cyan)" }}
                       >
                         Resume

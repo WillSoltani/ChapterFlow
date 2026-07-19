@@ -3,7 +3,6 @@
 import { useState, type ReactNode } from "react";
 import { ArrowUpRight, ChevronDown, Lock, Sparkles, Trophy, Zap } from "lucide-react";
 import { Button } from "@/app/book/components/ui/Button";
-import { Card } from "@/app/book/components/ui/Card";
 import { Chip, ChipButton } from "@/app/book/components/ui/Chip";
 import { cn } from "@/lib/utils";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON, type BadgeFilter, type BadgeState } from "@/app/book/badges/lib/badge-ui-definitions";
@@ -118,7 +117,7 @@ export function FeaturedBadgeCard({
       </div>
       {/* Content area: grows to fill available space */}
       <div className="relative mt-4 flex flex-1 flex-col">
-        <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">{subtitle}</p>
+        <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-soft)">{subtitle}</p>
         <h3 className={cn("mt-2 text-xl font-semibold tracking-tight", isLocked ? "text-(--cf-text-2)" : "text-(--cf-text-1)")}>{badge.name}</h3>
         <p className="mt-2 line-clamp-2 text-sm leading-6 text-(--cf-text-2)">{badge.description}</p>
         {/* Spacer pushes progress bar to bottom */}
@@ -278,22 +277,27 @@ export function ProgressToNextBadgeCard({
 }) {
   if (!milestone) {
     return (
-      <Card>
-        <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Next milestone</p>
+      <div className={cn("cf-panel rounded-3xl p-5")}>
+        <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-soft)">Next milestone</p>
         <h3 className="mt-2 text-xl font-semibold tracking-tight text-(--cf-text-1)">Current visible track is complete</h3>
         <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">
           You have cleared the current visible badge queue. More milestones can appear as your reading profile expands.
         </p>
-      </Card>
+      </div>
     );
   }
 
   const Icon = BADGE_ICONS[milestone.badge.icon] ?? FALLBACK_BADGE_ICON;
   return (
-    <Card className="overflow-hidden border-(--cf-warning-border) bg-(--cf-warning-soft)">
+    <div
+      className={cn(
+        "cf-panel rounded-3xl p-5",
+        "overflow-hidden border-(--cf-warning-border) bg-(--cf-warning-soft)",
+      )}
+    >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-warning-text)">Next milestone</p>
+          <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-warning-text)">Next milestone</p>
           <h3 className="mt-2 text-2xl font-semibold tracking-tight text-(--cf-text-1)">{milestone.badge.name}</h3>
           <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">{milestone.badge.description}</p>
         </div>
@@ -331,7 +335,7 @@ export function ProgressToNextBadgeCard({
           </Button>
         </div>
       ) : null}
-    </Card>
+    </div>
   );
 }
 
@@ -412,11 +416,11 @@ export function BadgeDetailPanel({
 
       <div className="grid gap-3 md:grid-cols-2">
         <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-4">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">Why it matters</p>
+          <p className="text-cf-caption uppercase tracking-[0.2em] text-(--cf-text-soft)">Why it matters</p>
           <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">{badge.whyItMatters}</p>
         </div>
         <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-4">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">How it is earned</p>
+          <p className="text-cf-caption uppercase tracking-[0.2em] text-(--cf-text-soft)">How it is earned</p>
           <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">{badge.howToEarn}</p>
         </div>
       </div>
@@ -465,10 +469,10 @@ export function DashboardAchievementWidget({
   const RecentIcon = recentBadge ? (BADGE_ICONS[recentBadge.icon] ?? FALLBACK_BADGE_ICON) : FALLBACK_BADGE_ICON;
   const NextIcon = nextMilestone ? (BADGE_ICONS[nextMilestone.badge.icon] ?? FALLBACK_BADGE_ICON) : FALLBACK_BADGE_ICON;
   return (
-    <Card className="overflow-hidden">
+    <div className={cn("cf-panel rounded-3xl p-5", "overflow-hidden")}>
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Achievements</p>
+          <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-soft)">Achievements</p>
           <h2 className="mt-2 text-2xl font-semibold tracking-tight text-(--cf-text-1)">Quiet momentum, visible progress</h2>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-(--cf-text-2)">
             Badges stay subtle, but the next milestone is always visible so progress feels tangible.
@@ -533,6 +537,6 @@ export function DashboardAchievementWidget({
           View all achievements
         </Button>
       </div>
-    </Card>
+    </div>
   );
 }

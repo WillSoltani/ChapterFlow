@@ -3,7 +3,7 @@
 /**
  * DissolveWord — renders a single word as pixel-sampled "memory dust".
  *
- * The word sits assembled from thousands of points; a slow recurring gust sweeps
+ * The word sits assembled from thousands of points; one deliberate gust sweeps
  * across and lets a band of points blow away (drift + fade) before easing them
  * back home. The word literally embodies forgetting — used in the hero headline
  * on "forgetting". Pure canvas, theme-color aware (it samples the hidden sizer's
@@ -42,6 +42,9 @@ type DustPoint = {
 export function DissolveWord({ text }: DissolveWordProps) {
   const sizeRef = useRef<HTMLSpanElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // The memory-disintegration signature is an entrance, not ambience. Once the
+  // word has reassembled, later visibility/resize changes keep its final state.
+  const completedRef = useRef(false);
   // Honor BOTH the OS setting and the in-app html[data-motion="reduced"] toggle,
   // and react to a live toggle change (the effect re-runs when this flips).
   const reduce = usePrefersReducedMotion();
@@ -70,7 +73,7 @@ export function DissolveWord({ text }: DissolveWordProps) {
     // the dust cloud shrinks with a wrapped phone headline. Set in buildPoints().
     let fs = 48;
     let rgb: [number, number, number] = [236, 239, 246];
-    const t0 = performance.now();
+    let startedAt = 0;
 
     // Canvas needs CSS-color STRINGS (it has no concept of design tokens). The
     // visible dust color is sampled from the sizer's COMPUTED token color into
@@ -152,24 +155,45 @@ export function DissolveWord({ text }: DissolveWordProps) {
       return points.length > 0;
     }
 
-    function loop(now: number) {
-      raf = requestAnimationFrame(loop);
+    function drawRestingWord() {
       const ctx = canvasEl.getContext("2d");
       if (!ctx) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, Wc, Hc);
-      const el = (now - t0) / 1000;
-      const period = 7.2;
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = dust(0.95);
+      for (const point of points) {
+        point.rel = 0;
+        point.x = point.hx;
+        point.y = point.hy;
+        ctx.fillRect(point.hx, point.hy, 1.7, 1.7);
+      }
+    }
+
+    function finishEntrance() {
+      completedRef.current = true;
+      drawRestingWord();
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+    }
+
+    function loop(now: number) {
+      const ctx = canvasEl.getContext("2d");
+      if (!ctx) return;
+      if (startedAt === 0) startedAt = now;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, Wc, Hc);
+      const el = (now - startedAt) / 1000;
       const gustDur = 2.6;
+      const settleAt = 5.6;
       // Scale the gust magnitude with the rendered font size so the dust cloud
       // shrinks with a wrapped phone headline (and stops overlapping the adjacent
       // line) while keeping its desktop character at the large hero size.
       const gustScale = Math.min(1.25, Math.max(0.5, fs / 64));
       const band = 24 * gustScale;
-      const cyc = el % period;
       // The gust front sweeps left→right across the word over `gustDur` seconds.
       const front =
-        cyc < gustDur ? padX + (cyc / gustDur) * (W + 60) - 30 : -99999;
+        el < gustDur ? padX + (el / gustDur) * (W + 60) - 30 : -99999;
       // Batched additive ("lighter") passes: collect blown/returning points and
       // draw them in one composite-op switch per frame instead of toggling
       // globalCompositeOperation per point.
@@ -205,7 +229,7 @@ export function DissolveWord({ text }: DissolveWordProps) {
           lighterDraws.push([p.x, p.y, a * 0.85]);
           if (p.life >= p.max) p.rel = 2;
         } else {
-          // Easing back home (the word re-assembles, so it loops forever).
+          // Easing back home before the entrance settles permanently.
           p.x += (p.hx - p.x) * 0.11;
           p.y += (p.hy - p.y) * 0.11;
           const d = Math.hypot(p.hx - p.x, p.hy - p.y);
@@ -228,6 +252,11 @@ export function DissolveWord({ text }: DissolveWordProps) {
         }
       }
       ctx.globalCompositeOperation = "source-over";
+      if (el >= settleAt) {
+        finishEntrance();
+      } else {
+        raf = requestAnimationFrame(loop);
+      }
     }
 
     // Whether the canvas is built + active (points ready, sizer hidden). The
@@ -244,7 +273,8 @@ export function DissolveWord({ text }: DissolveWordProps) {
         !document.hidden &&
         !raf
       ) {
-        raf = requestAnimationFrame(loop);
+        if (completedRef.current) drawRestingWord();
+        else raf = requestAnimationFrame(loop);
       }
     }
 
@@ -281,7 +311,8 @@ export function DissolveWord({ text }: DissolveWordProps) {
         const vw = window.innerWidth || document.documentElement.clientWidth;
         onScreen =
           r.bottom > -120 && r.top < vh + 120 && r.right > -120 && r.left < vw + 120;
-        startLoop();
+        if (completedRef.current) drawRestingWord();
+        else startLoop();
       }
     }
 

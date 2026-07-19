@@ -6,10 +6,42 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   {
-    files: ["app/book/**/*.{ts,tsx}"],
+    files: [
+      "app/book/**/*.{ts,tsx}",
+      // WS3-001 preserves the existing hydration exemption for the same live
+      // book modules after promoting them below the route tree.
+      "hooks/book/**/*.{ts,tsx}",
+      "lib/client/book-api-cache.ts",
+      "components/book/BookSaveButton.tsx",
+      "components/brand/ChapterFlowMark.tsx",
+      "components/navigation/**/*.{ts,tsx}",
+      "components/reader/**/*.{ts,tsx}",
+      "components/review/ReviewSessionFSRS.tsx",
+      "components/ui/{ErrorBanner,SegmentedControl,Toast}.tsx",
+      "components/workspace/PartnerProgressCard.tsx",
+    ],
     rules: {
       // Book app uses client-side hydration patterns for localStorage-backed state.
       "react-hooks/set-state-in-effect": "off",
+    },
+  },
+  {
+    // WS3-001: shared components live below the route tree. Route modules may
+    // compose shared UI, but shared UI must never reach back into app/book.
+    files: ["components/**/*.{ts,tsx}"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: ["@/app/book", "@/app/book/*", "@/app/book/**"],
+              message:
+                "components/ must not import from the app/book route tree — promote shared UI, hooks, data, or contracts below the route tree (WS3-001).",
+            },
+          ],
+        },
+      ],
     },
   },
   {

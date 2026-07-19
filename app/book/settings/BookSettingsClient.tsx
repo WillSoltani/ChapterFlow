@@ -24,7 +24,7 @@ import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
 import type { BillingInterval } from "@/app/book/hooks/useBookEntitlements";
 import { MONTHLY_PRICE_WITH_CURRENCY } from "@/lib/pricing";
 import { useToast } from "@/app/book/hooks/useToast";
-import { Toast } from "@/app/book/components/ui/Toast";
+import { Toast } from "@/components/ui/Toast";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { fetchBookJson, redirectToReauth, isReauthResponse } from "@/app/book/_lib/book-api";
@@ -58,7 +58,6 @@ import { DangerZone } from "./components/DangerZone";
 import { ExportModal } from "./components/ExportModal";
 import { MicroCelebration } from "./components/MicroCelebration";
 import { RefreshPreferencesModal } from "./components/RefreshPreferencesModal";
-import { useSaveToast, SaveToast } from "./components/SaveToast";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { performLogout } from "@/lib/logout";
 import type { RefreshResult } from "./components/RefreshPreferencesModal";
@@ -155,6 +154,26 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   const { billingState, launchBillingAction, redeemLicenseKey } =
     useBookEntitlements(true);
   const { toast, showToast } = useToast();
+  const saveToastDebounceRef = useRef<number | null>(null);
+  const showSavedToast = useCallback(() => {
+    if (saveToastDebounceRef.current) {
+      window.clearTimeout(saveToastDebounceRef.current);
+    }
+    saveToastDebounceRef.current = window.setTimeout(() => {
+      showToast("Saved", "success", {
+        autoDismissMs: 1500,
+        presentation: "saved",
+      });
+    }, 400);
+  }, [showToast]);
+  useEffect(
+    () => () => {
+      if (saveToastDebounceRef.current) {
+        window.clearTimeout(saveToastDebounceRef.current);
+      }
+    },
+    [],
+  );
 
   // Identity + nav search for the shared TopNav. Settings has its own in-page
   // search (useSettingsSearch); the global search panel stays disabled here.
@@ -257,11 +276,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     });
     if (result.dyslexia) patchExt({ fontFamily: "opendyslexic" });
     showToast("Preferences updated!", "success");
-    triggerToast();
   }
-
-  // Auto-save toast
-  const { visible: saveToastVisible, triggerToast } = useSaveToast();
 
   // Persist onboarding-derived prefs to backend
   const lastOnboardingPrefsRef = useRef<string>("");
@@ -428,7 +443,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     triggerCelebration("profile-selected");
     announce(`Reading profile changed to ${DEPTH_DISPLAY[profile]}`);
     showToast("Profile applied", "success");
-    triggerToast();
+    showSavedToast();
   }
 
   // PREF-1: the Quiz Style control was removed from this screen (no quiz route
@@ -447,7 +462,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     if (persona === "rival") triggerCelebration("rival-selected");
     const labels = { coach: "Personal Coach", partner: "Accountability Partner", rival: "Rival" };
     announce(`Motivation style changed to ${labels[persona]}`);
-    triggerToast();
+    showSavedToast();
   }
 
   // --- Daily goal mapping ---
@@ -457,7 +472,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     setDailyGoalMinutes(preset);
     if (preset > prev) triggerCelebration("goal-increased");
     announce(`Daily reading goal changed to ${preset} minutes`);
-    triggerToast();
+    showSavedToast();
   }
 
   // --- Streak mode ---
@@ -475,7 +490,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     if (mode !== "off") triggerCelebration("streak-enabled");
     const labels = { off: "Off", standard: "Standard", flexible: "Flexible" };
     announce(`Streak mode changed to ${labels[mode]}`);
-    triggerToast();
+    showSavedToast();
   }
 
   // --- Dyslexia font sync ---
@@ -485,7 +500,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
       patchExt({ fontFamily: "opendyslexic" });
     }
     announce(`Dyslexia-friendly font ${enabled ? "enabled" : "disabled"}`);
-    triggerToast();
+    showSavedToast();
   }
 
   // --- Font family change (sync dyslexia toggle) ---
@@ -498,7 +513,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     }
     const labels = { serif: "Serif", "sans-serif": "Sans-Serif", opendyslexic: "OpenDyslexic" };
     announce(`Font family changed to ${labels[family]}`);
-    triggerToast();
+    showSavedToast();
   }
 
   // --- Section summaries ---
@@ -719,7 +734,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                 />
               </div>
               {ext.profileCustomized && (
-                <p className="mt-2 text-[11px] italic text-accent-amber/70">
+                <p className="mt-2 text-cf-caption italic text-accent-amber/70">
                   Your settings have been customized
                 </p>
               )}
@@ -747,7 +762,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
               />
             </SettingRow>
             {ext.fontFamily === "opendyslexic" && (
-              <p className="mx-3 -mt-1 mb-2 text-[11px] text-(--cf-text-soft)">
+              <p className="mx-3 -mt-1 mb-2 text-cf-caption text-(--cf-text-soft)">
                 Uses the open-source OpenDyslexic typeface, designed for readers with dyslexia.
               </p>
             )}
@@ -762,7 +777,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <SliderControl
                 value={hydrated ? preferences.reading.fontSize : 16}
-                onChange={(v) => { patchSection("reading", { fontSize: v }); announce(`Font size changed to ${v} pixels`); triggerToast(); }}
+                onChange={(v) => { patchSection("reading", { fontSize: v }); announce(`Font size changed to ${v} pixels`); showSavedToast(); }}
                 min={12}
                 max={24}
                 step={1}
@@ -788,7 +803,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                   { value: "relaxed", label: "Relaxed" },
                 ]}
                 value={hydrated ? ext.lineSpacing : "comfortable"}
-                onChange={(v: LineSpacing) => { patchExt({ lineSpacing: v }); announce(`Line spacing changed to ${v}`); triggerToast(); }}
+                onChange={(v: LineSpacing) => { patchExt({ lineSpacing: v }); announce(`Line spacing changed to ${v}`); showSavedToast(); }}
                 label="Line spacing"
                 reducedMotion={reducedMotion}
               />
@@ -810,7 +825,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                   { value: "wide", label: "Wide" },
                 ]}
                 value={hydrated ? ext.letterSpacing : "normal"}
-                onChange={(v: LetterSpacing) => { patchExt({ letterSpacing: v }); announce(`Letter spacing changed to ${v}`); triggerToast(); }}
+                onChange={(v: LetterSpacing) => { patchExt({ letterSpacing: v }); announce(`Letter spacing changed to ${v}`); showSavedToast(); }}
                 label="Letter spacing"
                 reducedMotion={reducedMotion}
               />
@@ -826,7 +841,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.reading.focusModeDefault : false}
-                onChange={(v) => { patchSection("reading", { focusModeDefault: v }); announce(`Focus mode ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("reading", { focusModeDefault: v }); announce(`Focus mode ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Focus mode"
               />
             </SettingRow>
@@ -841,7 +856,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.reading.showProgressBar : true}
-                onChange={(v) => { patchSection("reading", { showProgressBar: v }); announce(`Progress bar ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("reading", { showProgressBar: v }); announce(`Progress bar ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Progress bar"
               />
             </SettingRow>
@@ -856,7 +871,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.reading.resumeWhereLeftOff : true}
-                onChange={(v) => { patchSection("reading", { resumeWhereLeftOff: v }); announce(`Resume position ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("reading", { resumeWhereLeftOff: v }); announce(`Resume position ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Resume position"
               />
             </SettingRow>
@@ -871,7 +886,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.reading.showEstimatedReadingTime : true}
-                onChange={(v) => { patchSection("reading", { showEstimatedReadingTime: v }); announce(`Reading time estimates ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("reading", { showEstimatedReadingTime: v }); announce(`Reading time estimates ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Reading time estimates"
               />
             </SettingRow>
@@ -909,7 +924,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                         groupId="seg-tts-speed"
                         options={TTS_SPEED_OPTIONS.map((s) => ({ value: String(s), label: `${s}×` }))}
                         value={hydrated ? String(snapTtsSpeedToOption(ext.ttsSpeed)) : "1"}
-                        onChange={(v) => { patchExt({ ttsSpeed: Number(v) }); announce(`Playback speed changed to ${v}x`); triggerToast(); }}
+                        onChange={(v) => { patchExt({ ttsSpeed: Number(v) }); announce(`Playback speed changed to ${v}x`); showSavedToast(); }}
                         label="Text-to-speech playback speed"
                         reducedMotion={reducedMotion}
                       />
@@ -986,7 +1001,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <Stepper
                 value={hydrated ? preferences.goals.weeklyChapterGoal : 3}
-                onChange={(v) => { patchSection("goals", { weeklyChapterGoal: v }); announce(`Weekly chapter goal changed to ${v}`); triggerToast(); }}
+                onChange={(v) => { patchSection("goals", { weeklyChapterGoal: v }); announce(`Weekly chapter goal changed to ${v}`); showSavedToast(); }}
                 min={1}
                 max={10}
                 label="Weekly chapter goal"
@@ -1011,7 +1026,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                   { value: "all-at-once", label: "All at once" },
                 ]}
                 value={hydrated ? preferences.learning.questionPresentationStyle : "one-by-one"}
-                onChange={(v) => { patchSection("learning", { questionPresentationStyle: v }); announce(`Question flow changed to ${v}`); triggerToast(); }}
+                onChange={(v) => { patchSection("learning", { questionPresentationStyle: v }); announce(`Question flow changed to ${v}`); showSavedToast(); }}
                 label="Question flow"
                 reducedMotion={reducedMotion}
               />
@@ -1027,7 +1042,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.learning.shuffleQuestionOrder : false}
-                onChange={(v) => { patchSection("learning", { shuffleQuestionOrder: v }); announce(`Shuffle questions ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("learning", { shuffleQuestionOrder: v }); announce(`Shuffle questions ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Shuffle questions"
               />
             </SettingRow>
@@ -1042,7 +1057,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.learning.retryIncorrectOnly : true}
-                onChange={(v) => { patchSection("learning", { retryIncorrectOnly: v }); announce(`Retry incorrect only ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("learning", { retryIncorrectOnly: v }); announce(`Retry incorrect only ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Retry incorrect only"
               />
             </SettingRow>
@@ -1103,7 +1118,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                   >
                     <Stepper
                       value={ext.streakSkipDays}
-                      onChange={(v) => { patchExt({ streakSkipDays: v }); announce(`Skip days in a row changed to ${v}`); triggerToast(); }}
+                      onChange={(v) => { patchExt({ streakSkipDays: v }); announce(`Skip days in a row changed to ${v}`); showSavedToast(); }}
                       min={1}
                       max={3}
                       label="Skip days in a row"
@@ -1144,7 +1159,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: DUR.fast }}
-                    className="mx-3 mt-1 mb-2 text-[11px] italic text-(--cf-text-3)"
+                    className="mx-3 mt-1 mb-2 text-cf-caption italic text-(--cf-text-3)"
                   >
                     Enables leaderboard-style comparisons with other readers. You can switch
                     back anytime.
@@ -1168,7 +1183,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                 >
                   <SliderControl
                     value={ext.spacedRepetitionTarget}
-                    onChange={(v) => { patchExt({ spacedRepetitionTarget: v }); announce(`Retention target changed to ${v}%`); triggerToast(); }}
+                    onChange={(v) => { patchExt({ spacedRepetitionTarget: v }); announce(`Retention target changed to ${v}%`); showSavedToast(); }}
                     min={70}
                     max={95}
                     step={5}
@@ -1217,7 +1232,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                   { value: "system", label: "System" },
                 ]}
                 value={hydrated ? preferences.appearance.theme : "light"}
-                onChange={(v) => { patchSection("appearance", { theme: v }); announce(`Theme changed to ${v}`); triggerToast(); }}
+                onChange={(v) => { patchSection("appearance", { theme: v }); announce(`Theme changed to ${v}`); showSavedToast(); }}
                 label="Theme"
                 reducedMotion={reducedMotion}
               />
@@ -1237,7 +1252,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={ext.scheduledDarkMode}
-                onChange={(v) => { patchExt({ scheduledDarkMode: v }); announce(`Night mode schedule ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchExt({ scheduledDarkMode: v }); announce(`Night mode schedule ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 disabled={preferences.appearance.theme === "dark"}
                 label="Night mode schedule"
               />
@@ -1256,7 +1271,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     <span className="text-xs text-(--cf-text-3)">From</span>
                     <TimePicker
                       value={ext.darkModeFrom}
-                      onChange={(v) => { patchExt({ darkModeFrom: v }); announce(`Dark mode start time changed`); triggerToast(); }}
+                      onChange={(v) => { patchExt({ darkModeFrom: v }); announce(`Dark mode start time changed`); showSavedToast(); }}
                       label="Dark mode start time"
                     />
                   </div>
@@ -1264,7 +1279,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     <span className="text-xs text-(--cf-text-3)">To</span>
                     <TimePicker
                       value={ext.darkModeTo}
-                      onChange={(v) => { patchExt({ darkModeTo: v }); announce(`Dark mode end time changed`); triggerToast(); }}
+                      onChange={(v) => { patchExt({ darkModeTo: v }); announce(`Dark mode end time changed`); showSavedToast(); }}
                       label="Dark mode end time"
                     />
                   </div>
@@ -1282,7 +1297,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.appearance.reducedMotion : false}
-                onChange={(v) => { patchSection("appearance", { reducedMotion: v }); announce(`Reduced motion ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("appearance", { reducedMotion: v }); announce(`Reduced motion ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Reduced motion"
               />
             </SettingRow>
@@ -1310,7 +1325,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.accessibility.highContrastMode : false}
-                onChange={(v) => { patchSection("accessibility", { highContrastMode: v }); announce(`High contrast ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("accessibility", { highContrastMode: v }); announce(`High contrast ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="High contrast"
               />
             </SettingRow>
@@ -1331,7 +1346,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                   { value: "tritanopia", label: "Tritanopia" },
                 ]}
                 value={hydrated ? ext.colorBlindMode : "off"}
-                onChange={(v: ColorBlindMode) => { patchExt({ colorBlindMode: v }); announce(`Color vision adjustment changed to ${v === "off" ? "off" : v}`); triggerToast(); }}
+                onChange={(v: ColorBlindMode) => { patchExt({ colorBlindMode: v }); announce(`Color vision adjustment changed to ${v === "off" ? "off" : v}`); showSavedToast(); }}
                 label="Color vision adjustment"
               />
             </SettingRow>
@@ -1376,7 +1391,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.notifications.readingReminderEnabled : true}
-                onChange={(v) => { patchSection("notifications", { readingReminderEnabled: v }); persistReminderEmailOptIn(v); announce(`Reading reminders ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("notifications", { readingReminderEnabled: v }); persistReminderEmailOptIn(v); announce(`Reading reminders ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Reading reminders"
               />
             </SettingRow>
@@ -1397,7 +1412,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                   >
                     <TimePicker
                       value={hydrated ? onboarding.reminderTime || "20:00" : "20:00"}
-                      onChange={(v) => { setReminderTime(v); persistReminderSchedule(v); announce(`Reminder time changed to ${v}`); triggerToast(); }}
+                      onChange={(v) => { setReminderTime(v); persistReminderSchedule(v); announce(`Reminder time changed to ${v}`); showSavedToast(); }}
                       label="Reminder time"
                     />
                   </SettingRow>
@@ -1423,7 +1438,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                   >
                     <ToggleSwitch
                       checked={hydrated ? preferences.notifications.streakReminderEnabled : true}
-                      onChange={(v) => { patchSection("notifications", { streakReminderEnabled: v }); announce(`Streak alerts ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                      onChange={(v) => { patchSection("notifications", { streakReminderEnabled: v }); announce(`Streak alerts ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                       label="Streak alerts"
                     />
                   </SettingRow>
@@ -1440,7 +1455,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={ext.breakReminders}
-                onChange={(v) => { patchExt({ breakReminders: v }); announce(`Break reminders ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchExt({ breakReminders: v }); announce(`Break reminders ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Break reminders"
               />
             </SettingRow>
@@ -1466,7 +1481,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                         { value: "60", label: "60 min" },
                       ]}
                       value={String(ext.breakReminderMinutes)}
-                      onChange={(v) => { patchExt({ breakReminderMinutes: Number(v) }); announce(`Break reminder interval changed to ${v} minutes`); triggerToast(); }}
+                      onChange={(v) => { patchExt({ breakReminderMinutes: Number(v) }); announce(`Break reminder interval changed to ${v} minutes`); showSavedToast(); }}
                       label="Break reminder interval"
                       reducedMotion={reducedMotion}
                     />
@@ -1485,7 +1500,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.notifications.weeklyDigestEnabled : true}
-                onChange={(v) => { patchSection("notifications", { weeklyDigestEnabled: v }); announce(`Weekly summary email ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("notifications", { weeklyDigestEnabled: v }); announce(`Weekly summary email ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Weekly summary email"
               />
             </SettingRow>
@@ -1500,7 +1515,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.notifications.welcomeBackEnabled : true}
-                onChange={(v) => { patchSection("notifications", { welcomeBackEnabled: v }); announce(`Welcome-back emails ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("notifications", { welcomeBackEnabled: v }); announce(`Welcome-back emails ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Welcome-back emails"
               />
             </SettingRow>
@@ -1550,7 +1565,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.privacy.analyticsParticipation : false}
-                onChange={(v) => { patchSection("privacy", { analyticsParticipation: v }); announce(`Usage analytics ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("privacy", { analyticsParticipation: v }); announce(`Usage analytics ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Share usage analytics"
               />
             </SettingRow>
@@ -1564,7 +1579,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.privacy.saveReadingHistory : true}
-                onChange={(v) => { patchSection("privacy", { saveReadingHistory: v }); announce(`Save reading history ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("privacy", { saveReadingHistory: v }); announce(`Save reading history ${v ? "enabled" : "disabled"}`); showSavedToast(); }}
                 label="Save reading history"
               />
             </SettingRow>
@@ -1749,11 +1764,14 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
         currentColorBlind={ext.colorBlindMode}
       />
 
-      {/* Auto-save floating toast */}
-      <SaveToast visible={saveToastVisible} />
-
-      {/* Action toast */}
-      <Toast open={toast.open} message={toast.message} tone={toast.tone} />
+      {/* Saved and action feedback share the canonical toast view/controller. */}
+      <Toast
+        open={toast.open}
+        message={toast.message}
+        tone={toast.tone}
+        detail={toast.detail}
+        presentation={toast.presentation}
+      />
 
       {/* Micro Celebrations */}
       <MicroCelebration event={celebration} reducedMotion={reducedMotion} />

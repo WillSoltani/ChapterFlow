@@ -82,6 +82,10 @@ const chapterOrderOptions: {
 export default function StepPace({ onNext }: StepPaceProps) {
   const { dailyGoal, setDailyGoal, chapterOrder, setChapterOrder } =
     useOnboarding();
+  const hasDailyGoal = dailyGoalOptions.some(({ value }) => dailyGoal === value);
+  const hasChapterOrder = chapterOrderOptions.some(
+    ({ value }) => chapterOrder === value,
+  );
 
   return (
     <div
@@ -149,7 +153,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
           role="radiogroup"
           aria-label="Daily reading goal"
         >
-          {dailyGoalOptions.map(({ value, label, sublabel, badge, Icon }) => {
+          {dailyGoalOptions.map(({ value, label, sublabel, badge, Icon }, index) => {
             const isSelected = dailyGoal === value;
 
             return (
@@ -157,6 +161,9 @@ export default function StepPace({ onNext }: StepPaceProps) {
                 <TappableCard
                   selected={isSelected}
                   onSelect={() => setDailyGoal(value)}
+                  tabStop={isSelected || (!hasDailyGoal && index === 0)}
+                  positionInSet={index + 1}
+                  setSize={dailyGoalOptions.length}
                 >
                   <div
                     style={{
@@ -264,7 +271,7 @@ export default function StepPace({ onNext }: StepPaceProps) {
           role="radiogroup"
           aria-label="How should chapters open?"
         >
-          {chapterOrderOptions.map(({ value, label, description, Icon }) => {
+          {chapterOrderOptions.map(({ value, label, description, Icon }, index) => {
             const isSelected = chapterOrder === value;
 
             return (
@@ -272,6 +279,9 @@ export default function StepPace({ onNext }: StepPaceProps) {
                 <TappableCard
                   selected={isSelected}
                   onSelect={() => setChapterOrder(value)}
+                  tabStop={isSelected || (!hasChapterOrder && index === 0)}
+                  positionInSet={index + 1}
+                  setSize={chapterOrderOptions.length}
                 >
                   <div
                     style={{

@@ -15,18 +15,49 @@
  * validation MIRRORS the server (title ≥ 2 chars, same email regex) so the user
  * never round-trips for an obvious mistake; the server stays the source of truth.
  *
- * a11y: every field has a <label>, errors are wired via aria-describedby +
- * aria-invalid, the submit button is disabled while invalid/submitting, and the
- * success/error regions are announced. Honeypot fields (website/company) are
- * off-screen and the endpoint silently drops anything that fills them.
+ * a11y: every field has a <label>, required-field errors are revealed on blur or
+ * submit and wired via aria-describedby + aria-invalid, invalid submit focuses
+ * the first field, and one live region announces validation changes. Honeypot
+ * fields (website/company) are off-screen and silently dropped by the endpoint.
  */
 
-import { useId, useState, type FormEvent } from "react";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type FormEvent,
+  type RefObject,
+} from "react";
 import { Check, Loader2, AlertCircle, ArrowRight } from "lucide-react";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const TITLE_ERROR = "Please enter at least 2 characters for the book title.";
+const EMAIL_ERROR = "Please enter a valid email address.";
 
 type Status = "idle" | "submitting" | "success" | "error";
+type RequiredField = "title" | "email";
+type RequiredFieldErrors = Partial<Record<RequiredField, string>>;
+
+export function validateRecallBookRequest({
+  title,
+  email,
+}: {
+  title: string;
+  email: string;
+}): {
+  errors: RequiredFieldErrors;
+  firstInvalid: RequiredField | null;
+} {
+  const errors: RequiredFieldErrors = {};
+  if (title.trim().length < 2) errors.title = TITLE_ERROR;
+  if (!EMAIL_RE.test(email.trim())) errors.email = EMAIL_ERROR;
+
+  return {
+    errors,
+    firstInvalid: errors.title ? "title" : errors.email ? "email" : null,
+  };
+}
 
 type RecallBookRequestFormProps = {
   /** Pre-fill the title (e.g. the unmatched search term from the browser). */
@@ -52,22 +83,73 @@ export function RecallBookRequestForm({
 
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
-  const [touched, setTouched] = useState(false);
+  const [touched, setTouched] = useState<Record<RequiredField, boolean>>({
+    title: false,
+    email: false,
+  });
+  const [focusField, setFocusField] = useState<RequiredField | null>(null);
+  const [focusRequest, setFocusRequest] = useState(0);
+  const [validationAnnouncement, setValidationAnnouncement] = useState("");
+
+  const titleRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const submitFocusInProgressRef = useRef(false);
 
   const ids = useId();
   const id = (field: string) => `${ids}-${field}`;
 
-  const titleValid = title.trim().length >= 2;
-  const emailValid = EMAIL_RE.test(email.trim());
-  const canSubmit = titleValid && emailValid && status !== "submitting";
+  const validation = validateRecallBookRequest({ title, email });
+  const titleError = touched.title ? validation.errors.title : undefined;
+  const emailError = touched.email ? validation.errors.email : undefined;
+
+  // Focus only after React has committed aria-invalid/aria-describedby and the
+  // error text, so assistive technology receives the field and its explanation
+  // together instead of focusing the pre-validation DOM.
+  useEffect(() => {
+    if (!focusField) return;
+    const input = focusField === "title" ? titleRef : emailRef;
+    submitFocusInProgressRef.current = true;
+    try {
+      input.current?.focus();
+    } finally {
+      submitFocusInProgressRef.current = false;
+    }
+  }, [focusField, focusRequest]);
+
+  function handleRequiredBlur(field: RequiredField) {
+    setTouched((current) => ({ ...current, [field]: true }));
+    // Keyboard submit focuses the first invalid field from the effect above.
+    // Do not let that programmatic focus blur replace the submit summary; all
+    // ordinary pointer/keyboard blurs still announce their field error here.
+    if (!submitFocusInProgressRef.current) {
+      setValidationAnnouncement(validation.errors[field] ?? "");
+    }
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setTouched(true);
-    if (!titleValid || !emailValid) return;
+    setTouched({ title: true, email: true });
+    if (validation.firstInvalid) {
+      // A prior network error is no longer the active problem. Keep one alert
+      // authority at a time, then announce a concise validation summary while
+      // the focused field supplies the specific error via aria-describedby.
+      if (status === "error") setStatus("idle");
+      setErrorMsg("");
+      setValidationAnnouncement(
+        validation.errors.title && validation.errors.email
+          ? "Please correct the book title and email fields."
+          : "Please correct the highlighted required field.",
+      );
+      setFocusField(validation.firstInvalid);
+      // Increment even when the same field remains invalid so every submit
+      // attempt moves focus after the fresh validation render.
+      setFocusRequest((current) => current + 1);
+      return;
+    }
 
     setStatus("submitting");
     setErrorMsg("");
+    setValidationAnnouncement("");
     try {
       const res = await fetch("/api/book-requests", {
         method: "POST",
@@ -149,30 +231,43 @@ export function RecallBookRequestForm({
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
+      <p
+        id={id("validation-status")}
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        className="sr-only"
+      >
+        {validationAnnouncement}
+      </p>
       <Field
         id={id("title")}
+        inputRef={titleRef}
         label="Book title"
         required
         value={title}
         onChange={setTitle}
+        onBlur={() => handleRequiredBlur("title")}
         placeholder="e.g. The Beginning of Infinity"
         autoComplete="off"
-        invalid={touched && !titleValid}
+        invalid={Boolean(titleError)}
         errorId={id("title-err")}
-        errorText="Please enter the book title."
+        errorText={validation.errors.title}
       />
       <Field
         id={id("email")}
+        inputRef={emailRef}
         label="Your email"
         required
         type="email"
         value={email}
         onChange={setEmail}
+        onBlur={() => handleRequiredBlur("email")}
         placeholder="you@example.com"
         autoComplete="email"
-        invalid={touched && !emailValid}
+        invalid={Boolean(emailError)}
         errorId={id("email-err")}
-        errorText="Please enter a valid email address."
+        errorText={validation.errors.email}
       />
       {/* Reassure before the field that needs the email: scope + no spam, with
           the canonical privacy page linked. */}
@@ -274,7 +369,8 @@ export function RecallBookRequestForm({
 
       <button
         type="submit"
-        disabled={!canSubmit}
+        disabled={status === "submitting"}
+        aria-busy={status === "submitting"}
         className="rl-cta-accent mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,filter,opacity] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-55"
       >
         {status === "submitting" ? (
@@ -296,9 +392,11 @@ export function RecallBookRequestForm({
 /* ── A labelled text field (RECALL input chrome via .rl-input). ─────────────── */
 function Field({
   id,
+  inputRef,
   label,
   value,
   onChange,
+  onBlur,
   placeholder,
   type = "text",
   required = false,
@@ -309,9 +407,11 @@ function Field({
   errorText,
 }: {
   id: string;
+  inputRef?: RefObject<HTMLInputElement | null>;
   label: string;
   value: string;
   onChange: (value: string) => void;
+  onBlur?: () => void;
   placeholder?: string;
   type?: string;
   required?: boolean;
@@ -325,10 +425,12 @@ function Field({
     <div className="flex flex-col gap-2">
       <FieldLabel htmlFor={id} label={label} required={required} optional={optional} />
       <input
+        ref={inputRef}
         id={id}
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onBlur={onBlur}
         placeholder={placeholder}
         autoComplete={autoComplete}
         required={required}
@@ -341,10 +443,24 @@ function Field({
             : undefined
         }
       />
-      {invalid && errorId ? (
-        <p id={errorId} className="text-[0.8125rem]" style={{ color: "var(--cf-recall-ink-soft)" }}>
-          {errorText}
-        </p>
+      {errorId && errorText ? (
+        <div className="grid">
+          <span
+            aria-hidden
+            className="invisible col-start-1 row-start-1 text-[0.8125rem] leading-relaxed"
+          >
+            {errorText}
+          </span>
+          {invalid ? (
+            <p
+              id={errorId}
+              className="col-start-1 row-start-1 text-[0.8125rem] leading-relaxed"
+              style={{ color: "var(--cf-recall-ink-soft)" }}
+            >
+              {errorText}
+            </p>
+          ) : null}
+        </div>
       ) : null}
     </div>
   );

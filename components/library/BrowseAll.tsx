@@ -56,7 +56,7 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
-      className="cursor-pointer whitespace-nowrap rounded-full px-3.5 py-1.5 text-[12px] font-medium transition-all duration-200"
+      className="cursor-pointer whitespace-nowrap rounded-full px-3.5 py-1.5 text-cf-label-sm font-medium transition-all duration-200"
       style={
         active
           ? {
@@ -231,7 +231,7 @@ export function BrowseAll({
       >
         {trimmedQuery ? "Search results" : "Browse all"}
       </h2>
-      <p className="mt-0.5 text-[14px]" style={{ color: "var(--text-secondary)" }}>
+      <p className="mt-0.5 text-cf-body-sm" style={{ color: "var(--text-secondary)" }}>
         Find your next read · {books.length} books available
       </p>
 
@@ -241,7 +241,7 @@ export function BrowseAll({
           className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl px-4 py-3"
           style={{ background: "var(--bg-glass)", border: "1px solid var(--border-subtle)" }}
         >
-          <p className="text-[14px]" style={{ color: "var(--text-heading)" }}>
+          <p className="text-cf-body-sm" style={{ color: "var(--text-heading)" }}>
             {filtered.length} {filtered.length === 1 ? "result" : "results"} for{" "}
             <span className="font-semibold" style={{ color: "var(--accent-cyan)" }}>
               &ldquo;{trimmedQuery}&rdquo;
@@ -249,7 +249,7 @@ export function BrowseAll({
           </p>
           <Link
             href="/book/library"
-            className="rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors"
+            className="rounded-lg px-3 py-1.5 text-cf-label font-medium transition-colors"
             style={{ border: "1px solid var(--border-subtle)", color: "var(--text-secondary)" }}
           >
             Clear search
@@ -265,7 +265,7 @@ export function BrowseAll({
           border: "1px solid var(--border-subtle)",
         }}
       >
-        <p className="text-[14px] font-medium" style={{ color: "var(--text-heading)" }}>
+        <p className="text-cf-body-sm font-medium" style={{ color: "var(--text-heading)" }}>
           What are you in the mood for?
         </p>
         <div className="mt-2.5 flex flex-wrap gap-2">
@@ -282,7 +282,7 @@ export function BrowseAll({
                 setMoodFilter(moodFilter === opt.key ? null : opt.key);
                 setShowAll(false);
               }}
-              className="cursor-pointer rounded-full px-4 py-2 text-[13px] font-medium transition-all"
+              className="cursor-pointer rounded-full px-4 py-2 text-cf-label font-medium transition-all"
               style={
                 moodFilter === opt.key
                   ? {
@@ -360,7 +360,7 @@ export function BrowseAll({
           <button
             type="button"
             onClick={clearAll}
-            className="cursor-pointer whitespace-nowrap text-[12px] transition-colors"
+            className="cursor-pointer whitespace-nowrap text-cf-label-sm transition-colors"
             style={{ color: "var(--text-muted)" }}
           >
             Clear all
@@ -376,7 +376,7 @@ export function BrowseAll({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="text-[13px]"
+            className="text-cf-label"
             style={{ color: "var(--text-muted)" }}
           >
             Showing {displayed.length} of {filtered.length}{" "}
@@ -388,7 +388,7 @@ export function BrowseAll({
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value as SortOption)}
-            className="cursor-pointer appearance-none rounded-lg py-2 pr-8 pl-3.5 text-[13px] outline-none"
+            className="cursor-pointer appearance-none rounded-lg py-2 pr-8 pl-3.5 text-cf-label outline-none"
             style={{
               background: "var(--bg-raised)",
               border: "1px solid var(--border-subtle)",
@@ -418,16 +418,16 @@ export function BrowseAll({
       {/* Grid */}
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center py-16 text-center">
-          <p className="text-[16px] font-semibold" style={{ color: "var(--text-heading)" }}>
+          <p className="text-cf-body-lg font-semibold" style={{ color: "var(--text-heading)" }}>
             No books match these filters
           </p>
-          <p className="mt-1 text-[14px]" style={{ color: "var(--text-secondary)" }}>
+          <p className="mt-1 text-cf-body-sm" style={{ color: "var(--text-secondary)" }}>
             Try adjusting your selection.
           </p>
           <button
             type="button"
             onClick={clearAll}
-            className="mt-4 cursor-pointer rounded-lg px-5 py-2 text-[13px] font-medium"
+            className="mt-4 cursor-pointer rounded-lg px-5 py-2 text-cf-label font-medium"
             style={{
               background: "var(--bg-elevated)",
               border: "1px solid var(--border-subtle)",
@@ -462,7 +462,7 @@ export function BrowseAll({
               <button
                 type="button"
                 onClick={() => setShowAll(true)}
-                className="cursor-pointer rounded-xl px-6 py-3 text-[14px] font-semibold transition-colors"
+                className="cursor-pointer rounded-xl px-6 py-3 text-cf-body-sm font-semibold transition-colors"
                 style={{
                   background: "transparent",
                   border: "1px solid var(--accent-cyan)",

@@ -10,7 +10,7 @@ import {
   Trophy,
   X,
 } from "lucide-react";
-import type { ChapterQuizQuestion } from "@/app/book/data/bookChapters";
+import type { ChapterQuizQuestion } from "@/lib/reader-content-types";
 
 const OPTION_LABELS = ["A", "B", "C", "D"];
 
@@ -260,7 +260,7 @@ export function DesktopQuizPanel({
           />
         </div>
 
-        <p className="text-[15px] text-(--cr-text-secondary)">
+        <p className="text-cf-body text-(--cr-text-secondary)">
           {correctCount} of {questions.length} correct · {scorePercent}%
         </p>
 
@@ -278,7 +278,7 @@ export function DesktopQuizPanel({
             type="button"
             onClick={onContinue}
             className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90"
-            style={{ animation: "cr-pulse-glow 2s ease-in-out infinite" }}
+            style={{ animation: "cr-pulse-glow 1.2s ease-in-out 2" }}
           >
             <Trophy className="h-5 w-5" /> Continue to Practice{" "}
             <ArrowRight className="h-5 w-5" />
@@ -483,7 +483,7 @@ export function DesktopQuizPanel({
             type="button"
             onClick={() => setShowResults(true)}
             className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90"
-            style={{ animation: "cr-pulse-glow 2s ease-in-out infinite" }}
+            style={{ animation: "cr-pulse-glow 1.2s ease-in-out 2" }}
           >
             See Your Results <ArrowRight className="h-5 w-5" />
           </button>

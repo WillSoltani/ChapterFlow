@@ -101,7 +101,7 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
                           </p>
                           {isRecent && (
                             <span
-                              className="inline-flex items-center rounded-full px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white"
+                              className="inline-flex items-center rounded-full px-1.5 py-0.5 text-cf-caption font-bold uppercase tracking-wider text-white"
                               style={{ background: "var(--accent-emerald)" }}
                             >
                               NEW

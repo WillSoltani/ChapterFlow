@@ -109,18 +109,18 @@ export function CompletedShelf({ books }: CompletedShelfProps) {
                 </div>
 
                 <h3
-                  className="mt-2.5 truncate text-[14px] font-semibold"
+                  className="mt-2.5 truncate text-cf-body-sm font-semibold"
                   style={{ color: "var(--text-heading)" }}
                 >
                   {book.title}
                 </h3>
-                <p className="mt-0.5 text-[12px]" style={{ color: "var(--text-tertiary)" }}>
+                <p className="mt-0.5 text-cf-label-sm" style={{ color: "var(--text-tertiary)" }}>
                   Completed {completedDate}
                 </p>
                 {/* Only show IP when a real, non-zero figure exists — never "+0 IP". */}
                 {typeof prog.xpEarned === "number" && prog.xpEarned > 0 && (
                   <p
-                    className="mt-0.5 text-[12px] font-(family-name:--font-mono)"
+                    className="mt-0.5 text-cf-label-sm font-(family-name:--font-mono)"
                     style={{ color: "var(--accent-violet)" }}
                   >
                     +{prog.xpEarned} IP earned
@@ -135,7 +135,7 @@ export function CompletedShelf({ books }: CompletedShelfProps) {
       {/* Recommendations with "Because you loved [Book]" explanations */}
       {recommendations.length > 0 && (
         <div className="mt-8">
-          <p className="text-[14px] font-medium" style={{ color: "var(--text-heading)" }}>
+          <p className="text-cf-body-sm font-medium" style={{ color: "var(--text-heading)" }}>
             Based on what you&apos;ve read, you might love:
           </p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:gap-4">
@@ -169,16 +169,16 @@ export function CompletedShelf({ books }: CompletedShelfProps) {
                   />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[14px] font-semibold" style={{ color: "var(--text-heading)" }}>
+                  <p className="text-cf-body-sm font-semibold" style={{ color: "var(--text-heading)" }}>
                     {book.title}
                   </p>
-                  <p className="mt-0.5 text-[12px]" style={{ color: "var(--text-muted)" }}>
+                  <p className="mt-0.5 text-cf-label-sm" style={{ color: "var(--text-muted)" }}>
                     {book.author}
                   </p>
-                  <p className="mt-1 text-[12px] leading-snug" style={{ color: "var(--text-primary)", opacity: 0.7 }}>
+                  <p className="mt-1 text-cf-label-sm leading-snug" style={{ color: "var(--text-primary)", opacity: 0.7 }}>
                     {book.hook}
                   </p>
-                  <p className="mt-1 text-[11px] italic" style={{ color: "var(--cf-amber-text)" }}>
+                  <p className="mt-1 text-cf-caption italic" style={{ color: "var(--cf-amber-text)" }}>
                     Because you loved {because.title}
                   </p>
                 </div>

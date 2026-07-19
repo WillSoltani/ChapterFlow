@@ -263,7 +263,7 @@ export function AdminEventsClient() {
               type="button"
               onClick={handleSeed}
               disabled={savingId === "seed"}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-cf-label-sm font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) disabled:cursor-not-allowed disabled:opacity-60"
               title="Import starter events from content/events/events.json"
             >
               <Database className="h-3.5 w-3.5" />
@@ -272,7 +272,7 @@ export function AdminEventsClient() {
             <button
               type="button"
               onClick={openCreate}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-(--cf-accent-contrast) transition hover:brightness-110"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-cf-label font-semibold text-(--cf-accent-contrast) transition hover:brightness-110"
             >
               <Plus className="h-3.5 w-3.5" />
               New event
@@ -284,7 +284,7 @@ export function AdminEventsClient() {
       {error && <ErrorAlert error={error} onRetry={reload} />}
 
       {loading && events.length === 0 && (
-        <div className="cf-panel-muted rounded-2xl p-5 text-[13px] text-(--cf-text-2)">
+        <div className="cf-panel-muted rounded-2xl p-5 text-cf-label text-(--cf-text-2)">
           Loading events…
         </div>
       )}
@@ -533,7 +533,7 @@ export function AdminEventsClient() {
                 type="button"
                 onClick={handleSeed}
                 disabled={savingId === "seed"}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-60"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-cf-label font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-60"
               >
                 <Database className="h-3.5 w-3.5" />
                 {savingId === "seed" ? "Seeding..." : "Seed starter events"}

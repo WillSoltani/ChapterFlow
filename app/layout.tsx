@@ -32,6 +32,7 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   display: "swap",
+  preload: false,
 });
 
 // Literary serif reading voice (NS-1). Provides the --font-newsreader variable
@@ -44,6 +45,7 @@ const newsreader = Newsreader({
   variable: "--font-newsreader",
   display: "swap",
   style: ["normal", "italic"],
+  preload: false,
 });
 
 export const viewport: Viewport = {

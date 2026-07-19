@@ -22,7 +22,7 @@ import type {
   ChapterSummaryBlock,
   ImplementationPlanItem,
   ReadingDepth,
-} from "@/app/book/data/bookChapters";
+} from "@/lib/reader-content-types";
 
 export const DEMO_CHAPTER_ID = "demo-atomic-habits-ch1";
 export const DEMO_BOOK_ID = "atomic-habits";

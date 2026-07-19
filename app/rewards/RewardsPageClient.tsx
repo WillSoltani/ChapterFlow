@@ -24,13 +24,13 @@ function BalanceHeader({ summary }: { summary: InsightPointsPayload["summary"] }
         background: "linear-gradient(135deg, var(--cf-accent-soft), var(--cf-surface))",
       }}
     >
-      <p className="mb-1 text-[13px] font-medium uppercase tracking-widest text-(--cf-text-soft)">
+      <p className="mb-1 text-cf-label font-medium uppercase tracking-widest text-(--cf-text-soft)">
         Insight Points
       </p>
-      <p className="text-[48px] font-bold leading-none tracking-tight text-(--cf-text-1)">
+      <p className="text-5xl font-bold leading-none tracking-tight text-(--cf-text-1)">
         {summary.balance.toLocaleString()}
       </p>
-      <div className="mt-4 flex justify-center gap-6 text-[13px] text-(--cf-text-2)">
+      <div className="mt-4 flex justify-center gap-6 text-cf-label text-(--cf-text-2)">
         <span>
           <TrendingUp size={14} className="mr-1 inline opacity-60" />
           {summary.lifetimeEarned.toLocaleString()} earned
@@ -43,7 +43,7 @@ function BalanceHeader({ summary }: { summary: InsightPointsPayload["summary"] }
 
       {summary.nextReward && (
         <div className="mt-5">
-          <div className="mb-1.5 flex items-center justify-between text-[12px] text-(--cf-text-soft)">
+          <div className="mb-1.5 flex items-center justify-between text-cf-label-sm text-(--cf-text-soft)">
             <span>Next: {summary.nextReward.name}</span>
             <span>{summary.nextReward.progressPercent}%</span>
           </div>
@@ -60,7 +60,7 @@ function BalanceHeader({ summary }: { summary: InsightPointsPayload["summary"] }
               style={{ width: `${Math.min(summary.nextReward.progressPercent, 100)}%` }}
             />
           </div>
-          <p className="mt-1 text-[12px] text-(--cf-text-soft)">
+          <p className="mt-1 text-cf-label-sm text-(--cf-text-soft)">
             {summary.nextReward.pointsRemaining.toLocaleString()} IP to go
           </p>
         </div>
@@ -89,12 +89,12 @@ function RewardCard({
     >
       <div className="flex items-start justify-between gap-2">
         <div>
-          <h3 className="text-[15px] font-semibold text-(--cf-text-1)">{reward.name}</h3>
-          <p className="mt-0.5 text-[13px] text-(--cf-text-2)">{reward.description}</p>
+          <h3 className="text-cf-body font-semibold text-(--cf-text-1)">{reward.name}</h3>
+          <p className="mt-0.5 text-cf-label text-(--cf-text-2)">{reward.description}</p>
         </div>
         <span
           className={
-            "shrink-0 rounded-lg px-2.5 py-1 text-[12px] font-semibold " +
+            "shrink-0 rounded-lg px-2.5 py-1 text-cf-label-sm font-semibold " +
             (isAvailable
               ? "bg-(--cf-accent-soft) text-(--cf-accent)"
               : isClaimed
@@ -107,35 +107,35 @@ function RewardCard({
       </div>
 
       {reward.highlight && (
-        <p className="text-[12px] font-medium text-(--cf-accent)">{reward.highlight}</p>
+        <p className="text-cf-label-sm font-medium text-(--cf-accent)">{reward.highlight}</p>
       )}
 
       {isAvailable && (
         <button
           onClick={onRedeem}
           disabled={redeeming}
-          className="cf-btn cf-btn-primary mt-auto w-full rounded-xl text-[14px]"
+          className="cf-btn cf-btn-primary mt-auto w-full rounded-xl text-cf-body-sm"
         >
           {redeeming ? "Redeeming…" : "Redeem"}
         </button>
       )}
 
       {isClaimed && (
-        <div className="mt-auto flex items-center gap-2 text-[13px] text-(--cf-success-text)">
+        <div className="mt-auto flex items-center gap-2 text-cf-label text-(--cf-success-text)">
           <Check size={14} />
           Claimed {reward.claimedAt ? formatDate(reward.claimedAt) : ""}
         </div>
       )}
 
       {isLocked && (
-        <div className="mt-auto flex items-center gap-2 text-[13px] text-(--cf-text-soft)">
+        <div className="mt-auto flex items-center gap-2 text-cf-label text-(--cf-text-soft)">
           <Lock size={14} />
           {reward.pointsRemaining.toLocaleString()} more IP needed
         </div>
       )}
 
       {reward.status === "unavailable" && reward.unavailableReason && (
-        <p className="mt-auto text-[12px] text-(--cf-text-soft)">{reward.unavailableReason}</p>
+        <p className="mt-auto text-cf-label-sm text-(--cf-text-soft)">{reward.unavailableReason}</p>
       )}
     </div>
   );
@@ -156,22 +156,22 @@ function ReferralSection({ referral }: { referral: InsightPointsPayload["referra
     <div className="rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-5">
       <div className="mb-3 flex items-center gap-2">
         <Users size={16} className="text-(--cf-accent)" />
-        <h3 className="text-[15px] font-semibold text-(--cf-text-1)">
+        <h3 className="text-cf-body font-semibold text-(--cf-text-1)">
           Give a Friend a Free Week of Pro
         </h3>
       </div>
-      <p className="mb-4 text-[13px] text-(--cf-text-2)">
+      <p className="mb-4 text-cf-label text-(--cf-text-2)">
         Share your link to give a friend a free week of Pro access — you&apos;ll both be rewarded when they complete their first learning loop.
       </p>
 
       <div className="flex items-center gap-2">
-        <div className="min-w-0 flex-1 truncate rounded-lg border border-(--cf-border) bg-(--cf-page-bg) px-3 py-2 font-mono text-[13px] text-(--cf-text-2)">
+        <div className="min-w-0 flex-1 truncate rounded-lg border border-(--cf-border) bg-(--cf-page-bg) px-3 py-2 font-mono text-cf-label text-(--cf-text-2)">
           {fullUrl}
         </div>
         <button
           onClick={handleCopy}
           className={
-            "cf-pressable shrink-0 cursor-pointer rounded-lg border border-(--cf-border) px-3 py-2 text-[13px] font-medium transition-colors " +
+            "cf-pressable shrink-0 cursor-pointer rounded-lg border border-(--cf-border) px-3 py-2 text-cf-label font-medium transition-colors " +
             (copied
               ? "bg-(--cf-success-soft) text-(--cf-success-text)"
               : "bg-(--cf-surface) text-(--cf-text-1)")
@@ -182,17 +182,17 @@ function ReferralSection({ referral }: { referral: InsightPointsPayload["referra
         </button>
       </div>
 
-      <div className="mt-4 grid grid-cols-3 gap-3 text-center text-[12px]">
+      <div className="mt-4 grid grid-cols-3 gap-3 text-center text-cf-label-sm">
         <div>
-          <p className="text-[18px] font-bold text-(--cf-text-1)">{referral.pendingInvites}</p>
+          <p className="text-lg font-bold text-(--cf-text-1)">{referral.pendingInvites}</p>
           <p className="text-(--cf-text-soft)">Pending</p>
         </div>
         <div>
-          <p className="text-[18px] font-bold text-(--cf-text-1)">{referral.activatedInvites}</p>
+          <p className="text-lg font-bold text-(--cf-text-1)">{referral.activatedInvites}</p>
           <p className="text-(--cf-text-soft)">Activated</p>
         </div>
         <div>
-          <p className="text-[18px] font-bold text-(--cf-text-1)">{referral.proInvites}</p>
+          <p className="text-lg font-bold text-(--cf-text-1)">{referral.proInvites}</p>
           <p className="text-(--cf-text-soft)">Pro converts</p>
         </div>
       </div>
@@ -281,7 +281,7 @@ export function RewardsPageClient() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 className={
-                  "rounded-xl border p-3 text-center text-[14px] font-medium " +
+                  "rounded-xl border p-3 text-center text-cf-body-sm font-medium " +
                   (redeemMessage.tone === "error"
                     ? "border-(--cf-danger-border) bg-(--cf-danger-soft) text-(--cf-danger-text)"
                     : "border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)")
@@ -296,7 +296,7 @@ export function RewardsPageClient() {
         {/* Loaded but empty (no payload, no error) — never show a bare header.
             "Try again" re-fires the existing read-only GET; not a mutating control. */}
         {!loading && !payload && !error && (
-          <div className="rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-6 text-center text-[14px] text-(--cf-text-2)">
+          <div className="rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-6 text-center text-cf-body-sm text-(--cf-text-2)">
             Your rewards are taking a moment to load.{" "}
             <button
               onClick={() => void refresh()}
@@ -314,7 +314,7 @@ export function RewardsPageClient() {
 
             {/* Reward Catalog */}
             <section>
-              <h2 className="mb-4 text-[13px] font-semibold uppercase tracking-widest text-(--cf-text-soft)">
+              <h2 className="mb-4 text-cf-label font-semibold uppercase tracking-widest text-(--cf-text-soft)">
                 Reward Catalog
               </h2>
               <div className="grid gap-4 sm:grid-cols-2">
@@ -331,7 +331,7 @@ export function RewardsPageClient() {
 
             {/* Ways to Earn */}
             <section>
-              <h2 className="mb-4 text-[13px] font-semibold uppercase tracking-widest text-(--cf-text-soft)">
+              <h2 className="mb-4 text-cf-label font-semibold uppercase tracking-widest text-(--cf-text-soft)">
                 <Zap size={14} className="mr-1.5 inline" />
                 Ways to Earn
               </h2>
@@ -339,13 +339,13 @@ export function RewardsPageClient() {
                 {payload.waysToEarn.map((way) => (
                   <div key={way.label} className="flex items-start justify-between gap-4 px-4 py-3">
                     <div className="min-w-0">
-                      <p className="text-[14px] font-medium text-(--cf-text-1)">{way.label}</p>
-                      <p className="mt-0.5 text-[12px] text-(--cf-text-2)">{way.detail}</p>
+                      <p className="text-cf-body-sm font-medium text-(--cf-text-1)">{way.label}</p>
+                      <p className="mt-0.5 text-cf-label-sm text-(--cf-text-2)">{way.detail}</p>
                       {way.note && (
-                        <p className="mt-0.5 text-[11px] text-(--cf-text-soft)">{way.note}</p>
+                        <p className="mt-0.5 text-cf-caption text-(--cf-text-soft)">{way.note}</p>
                       )}
                     </div>
-                    <span className="shrink-0 text-[13px] font-semibold tabular-nums text-(--cf-accent)">
+                    <span className="shrink-0 text-cf-label font-semibold tabular-nums text-(--cf-accent)">
                       {way.displayValue}
                     </span>
                   </div>
@@ -359,22 +359,22 @@ export function RewardsPageClient() {
             {/* Recent Activity */}
             {payload.recentTransactions.length > 0 && (
               <section>
-                <h2 className="mb-4 text-[13px] font-semibold uppercase tracking-widest text-(--cf-text-soft)">
+                <h2 className="mb-4 text-cf-label font-semibold uppercase tracking-widest text-(--cf-text-soft)">
                   Recent Activity
                 </h2>
                 <div className="divide-y divide-(--cf-border) rounded-xl border border-(--cf-border) bg-(--cf-surface-muted)">
                   {payload.recentTransactions.map((tx) => (
                     <div key={tx.transactionId} className="flex items-center justify-between px-4 py-3">
                       <div>
-                        <p className="text-[14px] font-medium text-(--cf-text-1)">{tx.title}</p>
+                        <p className="text-cf-body-sm font-medium text-(--cf-text-1)">{tx.title}</p>
                         {tx.subtitle && (
-                          <p className="mt-0.5 text-[12px] text-(--cf-text-soft)">{tx.subtitle}</p>
+                          <p className="mt-0.5 text-cf-label-sm text-(--cf-text-soft)">{tx.subtitle}</p>
                         )}
                       </div>
                       <div className="shrink-0 text-right">
                         <p
                           className={
-                            "text-[14px] font-semibold " +
+                            "text-cf-body-sm font-semibold " +
                             (tx.direction === "earn"
                               ? "text-(--cf-success-text)"
                               : tx.direction === "spend"
@@ -385,7 +385,7 @@ export function RewardsPageClient() {
                           {tx.direction === "earn" ? "+" : tx.direction === "spend" ? "-" : ""}
                           {tx.amount}
                         </p>
-                        <p className="text-[11px] text-(--cf-text-soft)">{formatDate(tx.createdAt)}</p>
+                        <p className="text-cf-caption text-(--cf-text-soft)">{formatDate(tx.createdAt)}</p>
                       </div>
                     </div>
                   ))}

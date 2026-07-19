@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
-import { INSIGHT_POINTS_EARNING_RULES } from "@/app/book/_lib/flow-points-economy";
+import { INSIGHT_POINTS_EARNING_RULES } from "@/lib/flow-points-economy";
 
 interface RewardsCardProps {
   insightPoints: number;
@@ -137,7 +137,7 @@ export function RewardsCard({
       {/* Link to rewards page */}
       <Link
         href="/rewards"
-        className="mt-3 block text-[11px] transition-colors hover:text-(--cf-accent)"
+        className="mt-3 block text-cf-caption transition-colors hover:text-(--cf-accent)"
         style={{ color: "var(--cf-text-soft)" }}
       >
         View all rewards →

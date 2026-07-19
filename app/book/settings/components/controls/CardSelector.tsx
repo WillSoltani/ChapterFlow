@@ -6,9 +6,9 @@ import { cn } from "@/lib/utils";
 
 /** Personality gradient lookup by card label keyword */
 const PERSONALITY_GRADIENTS: Record<string, string> = {
-  "Quick Learner": "linear-gradient(90deg, var(--accent-cyan), #38BDF8)",
-  "Balanced Reader": "linear-gradient(90deg, var(--accent-emerald), #14B8A6)",
-  "Deep Diver": "linear-gradient(90deg, var(--accent-amber), #F97316)",
+  "Quick Learner": "linear-gradient(90deg, var(--accent-cyan), var(--cf-data-sky))",
+  "Balanced Reader": "linear-gradient(90deg, var(--accent-emerald), var(--cf-data-teal))",
+  "Deep Diver": "linear-gradient(90deg, var(--accent-amber), var(--cf-data-orange))",
 };
 
 type CardOption<T extends string> = {
@@ -103,7 +103,7 @@ export function CardSelector<T extends string>({
                 "absolute top-2 right-2 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider",
                 isSelected
                   ? "bg-(--cf-accent) text-(--cf-accent-contrast)"
-                  : "bg-(--cf-accent-soft) text-(--cf-accent) animate-pulse"
+                  : "bg-(--cf-accent-soft) text-(--cf-accent)"
               )}>
                 {isSelected ? "\u2713" : opt.badge}
               </span>

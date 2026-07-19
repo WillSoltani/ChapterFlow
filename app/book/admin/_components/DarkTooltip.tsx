@@ -9,7 +9,7 @@ type TooltipPayload = {
 export function DarkTooltip({ active, payload, label }: TooltipPayload) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="rounded-lg border border-(--cf-border) bg-(--cf-surface-strong) px-2.5 py-1.5 text-[11px] shadow-lg backdrop-blur-sm">
+    <div className="rounded-lg border border-(--cf-border) bg-(--cf-surface-strong) px-2.5 py-1.5 text-cf-caption shadow-lg backdrop-blur-sm">
       {label && <p className="text-(--cf-text-3)">{label}</p>}
       {payload.map((p, i) => (
         <p key={i} className="mt-0.5" style={{ color: p.color ?? "var(--cf-text-1)" }}>

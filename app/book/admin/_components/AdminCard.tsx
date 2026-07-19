@@ -29,7 +29,7 @@ export function AdminCard({
               </h2>
             )}
             {description && (
-              <p className="mt-0.5 text-[12px] text-(--cf-text-3)">{description}</p>
+              <p className="mt-0.5 text-cf-label-sm text-(--cf-text-3)">{description}</p>
             )}
           </div>
           {action && <div className="shrink-0">{action}</div>}
@@ -56,7 +56,7 @@ export function PageHeader({
           {title}
         </h1>
         {description && (
-          <p className="mt-1.5 text-[13px] text-(--cf-text-3) sm:text-sm">{description}</p>
+          <p className="mt-1.5 text-cf-label text-(--cf-text-3) sm:text-sm">{description}</p>
         )}
       </div>
       {action && <div className="w-full min-w-0 sm:w-auto sm:shrink-0">{action}</div>}

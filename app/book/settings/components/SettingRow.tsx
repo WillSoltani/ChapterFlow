@@ -44,7 +44,7 @@ export function Divider() {
 export function SubsectionLabel({ children }: { children: ReactNode }) {
   return (
     <div className="px-3 pb-1 pt-3">
-      <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--cf-text-soft)">
+      <p className="text-cf-caption font-bold uppercase tracking-[0.14em] text-(--cf-text-soft)">
         {children}
       </p>
     </div>

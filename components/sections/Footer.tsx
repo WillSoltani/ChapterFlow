@@ -1,154 +1,161 @@
+import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
-import { AUTH_LOGIN_BOOK_URL, CHAPTERFLOW_NAME } from "@/app/_lib/chapterflow-brand";
+import {
+  AUTH_LOGIN_BOOK_URL,
+  CHAPTERFLOW_NAME,
+} from "@/app/_lib/chapterflow-brand";
 import { CurrentYear } from "./CurrentYear";
 
-/**
- * The colophon — the back-cover of the manual.
- *
- * A dense, calm, mono colophon block on the same inverse anchor band the Final
- * CTA closes on (cf-anchor tokens), so the page signs off on one continuous
- * near-black field rather than a second surface. Hairline top rule, a "SPEC
- * v1.0" version stamp beside the wordmark, three index columns (manual / legal /
- * contact), the science-sources line repeated as a PERMANENT citation footer
- * (trust surfaced, never buried), and the CurrentYear copyright line. No glow, no
- * glass — depth from the single hairline and the mono datum rhythm. Static
- * markup, reduced-motion safe.
- */
-
-const MANUAL_LINKS = [
-  { label: "How it works", href: "/#retention-engine" },
-  { label: "Library", href: "/books" },
-  { label: "Pricing", href: "/#pricing" },
+const EXPLORE_LINKS = [
+  { label: "How it works", href: "/#how-it-works" },
+  { label: "Why it works", href: "/#why-it-works" },
+  { label: "Books", href: "/books" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Start free", href: AUTH_LOGIN_BOOK_URL },
-];
+] as const;
 
 const LEGAL_LINKS = [
+  { label: "Legal overview", href: "/legal" },
   { label: "Terms", href: "/legal/terms" },
   { label: "Privacy", href: "/legal/privacy" },
   { label: "Refunds", href: "/legal/refund" },
   { label: "Cookies", href: "/legal/cookies" },
   { label: "Copyright", href: "/legal/copyright" },
   { label: "Data rights", href: "/legal/data-rights" },
-];
+] as const;
 
-// The same references certified in §03 Evidence, repeated as a standing footer
-// citation so the cited authority is the last thing on the page — real
-// authors/venues only, never logos or fabricated proof.
-const SOURCES =
+const RESEARCH_FOUNDATIONS =
   "Ebbinghaus 1885 · Karpicke & Roediger, Science 2008 · Cepeda et al. 2006 · FSRS-5 spaced repetition";
 
-const linkClass =
-  "rounded text-(--cf-anchor-text-muted) transition-colors duration-200 hover:text-(--cf-anchor-text) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-anchor-accent)/60 focus-visible:ring-offset-2";
+const linkStyle = {
+  color: "var(--cf-recall-ink-soft)",
+  "--tw-ring-color": "var(--cf-recall-accent)",
+} as CSSProperties;
 
-function ColumnHeading({ children }: { children: React.ReactNode }) {
+const linkClass =
+  "inline-flex min-h-11 items-center rounded-lg py-2 text-cf-label font-medium underline-offset-4 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:min-h-0 sm:py-1";
+
+function FooterGroup({
+  label,
+  children,
+}: {
+  label: string;
+  children: ReactNode;
+}) {
   return (
-    <p className="cf-folio mb-3 text-(--cf-anchor-text-muted)">{children}</p>
+    <nav aria-label={label}>
+      <p
+        className="mb-2 font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.18em]"
+        style={{ color: "var(--cf-recall-ink-faint)" }}
+      >
+        {label}
+      </p>
+      {children}
+    </nav>
   );
 }
 
 export function Footer() {
   return (
     <footer
-      className="relative"
+      className="landing-dark rl-public-footer relative"
       style={{
-        background: "var(--cf-anchor-bg)",
-        borderTop: "1px solid var(--cf-anchor-border)",
+        background: "var(--cf-recall-bg)",
+        borderTop: "1px solid var(--cf-recall-frame)",
       }}
     >
-      <div className="mx-auto max-w-[1180px] px-5 py-14 md:px-8 md:py-16">
-        {/* masthead — wordmark + spec stamp */}
-        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-          <div className="max-w-sm">
-            <div className="flex items-baseline gap-3">
-              <span className="font-(family-name:--font-display) text-[17px] font-semibold text-(--cf-anchor-text)">
-                {CHAPTERFLOW_NAME}
-              </span>
-              <span className="cf-folio tabular-nums text-(--cf-anchor-accent)">
-                SPEC v1.0
-              </span>
-            </div>
-            <p className="mt-3 text-[13.5px] leading-[1.6] text-(--cf-anchor-text-muted)">
-              Guided reading specified as one instrument: read, prove, keep.
-              Built on the testing effect and an FSRS-5 spaced-repetition
-              schedule.
+      <div className="mx-auto max-w-[72rem] px-6 py-12 sm:px-10 sm:py-14 lg:px-16">
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1.25fr)_minmax(0,2fr)] md:gap-16">
+          <div className="max-w-md">
+            <Link
+              href="/"
+              className="inline-flex min-h-11 items-center rounded-lg font-(family-name:--font-display) text-[1.125rem] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+              style={{ ...linkStyle, color: "var(--cf-recall-ink)" }}
+            >
+              {CHAPTERFLOW_NAME}
+            </Link>
+            <p
+              className="mt-3 max-w-[40ch] text-cf-body-sm leading-relaxed"
+              style={{ color: "var(--cf-recall-ink-soft)" }}
+            >
+              Guided reading that makes what you read last. Read, recall, and let
+              spaced review bring the ideas back until they are yours.
             </p>
           </div>
 
-          {/* index columns */}
-          <div className="grid grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-3">
-            <nav aria-label="Manual">
-              <ColumnHeading>Manual</ColumnHeading>
-              <ul className="space-y-2.5">
-                {MANUAL_LINKS.map((link) => (
-                  <li key={link.label}>
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 sm:gap-x-12">
+            <FooterGroup label="Explore">
+              <ul>
+                {EXPLORE_LINKS.map((link) => (
+                  <li key={link.href}>
                     <Link
                       href={link.href}
-                      className={`block whitespace-nowrap text-[13.5px] ${linkClass}`}
+                      data-public-sticky-cta-suppress={
+                        link.href === AUTH_LOGIN_BOOK_URL ? true : undefined
+                      }
+                      className={linkClass}
+                      style={linkStyle}
                     >
                       {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </nav>
+            </FooterGroup>
 
-            <nav aria-label="Legal">
-              <ColumnHeading>Legal</ColumnHeading>
-              <ul className="space-y-2.5">
+            <FooterGroup label="Legal">
+              <ul>
                 {LEGAL_LINKS.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className={`block whitespace-nowrap text-[13.5px] ${linkClass}`}
-                    >
+                  <li key={link.href}>
+                    <Link href={link.href} className={linkClass} style={linkStyle}>
                       {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </nav>
+            </FooterGroup>
 
-            <nav aria-label="Contact">
-              <ColumnHeading>Contact</ColumnHeading>
-              <ul className="space-y-2.5">
+            <FooterGroup label="Support">
+              <ul>
                 <li>
-                  <Link
-                    href="/contact"
-                    className={`block whitespace-nowrap text-[13.5px] ${linkClass}`}
-                  >
-                    Get in touch
+                  <Link href="/contact" className={linkClass} style={linkStyle}>
+                    Contact and support
                   </Link>
                 </li>
               </ul>
-            </nav>
+            </FooterGroup>
           </div>
         </div>
 
-        {/* permanent citation footer — the cited record, repeated */}
         <div
-          className="mt-12 border-t pt-6"
-          style={{ borderColor: "var(--cf-anchor-border)" }}
+          className="mt-10 border-t pt-6"
+          style={{ borderColor: "var(--cf-recall-frame)" }}
         >
-          <p className="cf-folio mb-2 text-(--cf-anchor-text-muted)">
-            Sources, on the record
+          <p
+            className="font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.18em]"
+            style={{ color: "var(--cf-recall-ink-faint)" }}
+          >
+            Research foundations
           </p>
-          <p className="cf-folio normal-case text-(--cf-anchor-text-muted)">
-            <span aria-hidden className="text-(--cf-anchor-accent)">↳ </span>
-            {SOURCES}
+          <p
+            className="mt-2 max-w-4xl text-cf-label-sm leading-relaxed"
+            style={{ color: "var(--cf-recall-ink-soft)" }}
+          >
+            {RESEARCH_FOUNDATIONS}
           </p>
         </div>
 
-        {/* sign-off line */}
         <div
-          className="mt-6 flex flex-col gap-2 border-t pt-6 text-[12px] sm:flex-row sm:items-center sm:justify-between"
-          style={{ borderColor: "var(--cf-anchor-border)" }}
+          className="mt-6 flex flex-col gap-3 border-t pt-6 text-cf-label-sm sm:flex-row sm:items-center sm:justify-between"
+          style={{
+            borderColor: "var(--cf-recall-frame)",
+            color: "var(--cf-recall-ink-faint)",
+          }}
         >
-          <span className="cf-folio tabular-nums text-(--cf-anchor-text-muted)">
-            &copy; <CurrentYear /> {CHAPTERFLOW_NAME} · SPEC v1.0
+          <span>
+            &copy; <CurrentYear /> {CHAPTERFLOW_NAME}. All rights reserved.
           </span>
-          <span className="cf-folio text-(--cf-anchor-text-muted)">
-            Two free books · no card · cancel anytime
-          </span>
+          <span>Two free books · no card required · cancel anytime</span>
         </div>
       </div>
     </footer>
