@@ -5,6 +5,7 @@ import {
   resolveCanonicalBookSlug,
 } from "@/lib/book-slug-aliases";
 import { evaluateOriginVerify } from "@/lib/origin-verify-core";
+import { resolveMiddlewareOrigin } from "@/lib/middleware-origin-core";
 
 let missingConfigWarned = false;
 let originVerifyWarned = false;
@@ -42,72 +43,29 @@ function orphanSlugRedirect(req: NextRequest): NextResponse | null {
   return NextResponse.redirect(url, 308);
 }
 
-function firstForwardedValue(value: string | null): string | null {
-  if (!value) return null;
-  const first = value.split(",")[0]?.trim();
-  return first || null;
-}
-
-function normalizeOrigin(value: string): string {
-  return value.trim().replace(/\/+$/, "");
-}
-
-function isLoopbackHost(hostname: string): boolean {
-  const h = hostname.trim().toLowerCase();
-  return h === "localhost" || h === "127.0.0.1" || h === "::1";
-}
-
-function isLocalOrigin(value: string): boolean {
-  try {
-    const parsed = new URL(value);
-    return isLoopbackHost(parsed.hostname);
-  } catch {
-    return false;
-  }
-}
-
 function resolveRequestOrigin(req: NextRequest): string {
   // Prefer an explicitly-configured, trusted base URL over any request header.
   // `x-forwarded-host` is attacker-controllable on a directly-reachable origin
   // (no CloudFront custom-origin-header pin, or a Function URL with authType
   // NONE), so a deploy-provided value must always win over it — otherwise the
   // /auth/login redirect base can be poisoned to an attacker host (open
-  // redirect / credential phishing). Mirrors resolvePublicOrigin() in
-  // app/app/_lib/server-origin.ts: honour both APP_BASE_URL and
-  // CHAPTERFLOW_APP_BASE_URL (the latter is the variable the deploy pipeline
-  // injects into the server Lambda).
-  const configuredBaseUrl =
-    process.env.APP_BASE_URL?.trim() ||
-    process.env.CHAPTERFLOW_APP_BASE_URL?.trim();
-  if (configuredBaseUrl) {
-    const normalizedConfigured = normalizeOrigin(configuredBaseUrl);
-    const allowConfiguredInDev = process.env.ALLOW_APP_BASE_URL_IN_DEV === "1";
-    const isProd = process.env.NODE_ENV === "production";
-
-    if (isProd) {
-      if (!isLocalOrigin(normalizedConfigured)) return normalizedConfigured;
-      console.warn(
-        "Ignoring APP_BASE_URL loopback value in production:",
-        normalizedConfigured,
-      );
-    } else if (allowConfiguredInDev || isLocalOrigin(normalizedConfigured)) {
-      return normalizedConfigured;
-    }
-  }
-
-  const forwardedHost = firstForwardedValue(
-    req.headers.get("x-forwarded-host"),
+  // redirect / credential phishing). The pure resolver enforces the same
+  // canonical ChapterFlow host boundary as server-origin resolution while
+  // remaining safe to bundle in middleware's runtime.
+  return resolveMiddlewareOrigin(
+    {
+      forwardedHostHeader: req.headers.get("x-forwarded-host"),
+      hostHeader: req.headers.get("host"),
+      forwardedProtoHeader: req.headers.get("x-forwarded-proto"),
+      fallbackOrigin: req.nextUrl.origin,
+    },
+    {
+      appBaseUrl: process.env.APP_BASE_URL,
+      chapterFlowAppBaseUrl: process.env.CHAPTERFLOW_APP_BASE_URL,
+      allowAppBaseUrlInDev: process.env.ALLOW_APP_BASE_URL_IN_DEV,
+      nodeEnv: process.env.NODE_ENV,
+    },
   );
-  const host = forwardedHost || req.headers.get("host");
-  const proto =
-    firstForwardedValue(req.headers.get("x-forwarded-proto")) ||
-    (process.env.NODE_ENV === "production" ? "https" : "http");
-
-  if (host) {
-    return normalizeOrigin(`${proto}://${host}`);
-  }
-
-  return req.nextUrl.origin;
 }
 
 export function middleware(req: NextRequest) {
