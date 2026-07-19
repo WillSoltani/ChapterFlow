@@ -6,7 +6,6 @@ import { FREE_OFFER_LABEL } from "@/lib/pricing";
 export function RecallClose() {
   return (
     <section
-      data-public-sticky-cta-suppress
       aria-labelledby="recall-close-headline"
       className="relative w-full overflow-hidden px-6 py-32 sm:px-10 sm:py-40 lg:px-16 lg:py-48"
       style={{ background: "transparent" }}
@@ -46,6 +45,7 @@ export function RecallClose() {
           style={{ animationDelay: "110ms" }}
         >
           <a
+            data-public-sticky-cta-suppress
             href={AUTH_LOGIN_BOOK_URL}
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-9 py-4 text-[0.9375rem] font-semibold transition-[transform,filter,box-shadow] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{

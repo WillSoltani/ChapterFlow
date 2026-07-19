@@ -37,6 +37,7 @@ export function BrowseLibraryBottomCta() {
 
           <div className="mt-6">
             <Link
+              data-public-sticky-cta-suppress
               href={AUTH_LOGIN_BOOK_URL}
               onClick={() => track("cta_click", { source: "browse_library_bottom_cta" })}
               className="cta-shine inline-flex items-center rounded-full px-7 py-3.5 font-semibold text-cf-body transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"

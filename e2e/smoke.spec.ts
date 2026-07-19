@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Locator, type Page } from "@playwright/test";
 import {
   ORPHAN_BOOK_SLUGS,
   CANONICAL_BOOK_SLUGS,
@@ -20,6 +20,28 @@ async function expectNoErrorOverlay(page: Page): Promise<void> {
 async function expectNotBlank(page: Page): Promise<void> {
   const text = (await page.locator("body").innerText()).trim();
   expect(text.length).toBeGreaterThan(20);
+}
+
+async function expectMinimumTouchTarget(
+  target: Locator,
+  label: string,
+): Promise<void> {
+  await expect(target, `${label} should be visible`).toBeVisible();
+  const box = await target.boundingBox();
+  expect(box, `${label} should have a layout box`).toBeTruthy();
+  expect(box!.height, `${label} height`).toBeGreaterThanOrEqual(44);
+  expect(box!.width, `${label} width`).toBeGreaterThanOrEqual(44);
+}
+
+async function scrollToViewportCenter(target: Locator): Promise<void> {
+  await target.evaluate((element) => {
+    const root = document.documentElement;
+    const previousBehavior = root.style.scrollBehavior;
+    const top = window.scrollY + element.getBoundingClientRect().top;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, Math.max(0, top - window.innerHeight / 2));
+    root.style.scrollBehavior = previousBehavior;
+  });
 }
 
 async function expectReducedMotionFinalState(page: Page): Promise<void> {
@@ -322,7 +344,9 @@ test.describe("shared Recall public chrome", () => {
     });
   }
 
-  test("books persistent CTA yields to in-view page CTA zones", async ({ page }) => {
+  test("books persistent CTA yields only to an in-view equivalent CTA", async ({
+    page,
+  }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/books");
     const headerAction = page.locator("header.rl-nav").getByRole("link", {
@@ -337,13 +361,22 @@ test.describe("shared Recall public chrome", () => {
     });
     await expect(headerAction).toHaveCount(1);
 
-    const suppressionZone = page.locator("[data-public-sticky-cta-suppress]").first();
+    const requestHeading = page.getByRole("heading", {
+      name: /not finding what you are looking for/i,
+    });
+    await scrollToViewportCenter(requestHeading);
+    await expect(requestHeading).toBeInViewport();
+    await expect(headerAction).toHaveCount(1);
+
+    const suppressionZone = page.locator(
+      "main [data-public-sticky-cta-suppress]",
+    );
     await suppressionZone.scrollIntoViewIfNeeded();
     await expect(suppressionZone).toBeInViewport();
     await expect(headerAction).toHaveCount(0);
   });
 
-  test("home persistent CTA yields to pricing and closing signup zones", async ({
+  test("home persistent CTA yields only while replacement signup links are visible", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 390, height: 844 });
@@ -359,19 +392,30 @@ test.describe("shared Recall public chrome", () => {
     });
     await expect(headerAction).toHaveCount(1);
 
-    for (const zone of [
-      page.locator("#pricing[data-public-sticky-cta-suppress]"),
-      page.locator(
-        '[data-public-sticky-cta-suppress][aria-labelledby="recall-close-headline"]',
-      ),
-    ]) {
+    const pricingHeading = page.locator("#recall-pricing-headline");
+    await scrollToViewportCenter(pricingHeading);
+    await expect(pricingHeading).toBeInViewport();
+    await expect(headerAction).toHaveCount(1);
+
+    const pricingAction = page
+      .locator("#pricing [data-public-sticky-cta-suppress]")
+      .first();
+    const closingAction = page.locator(
+      '[aria-labelledby="recall-close-headline"] [data-public-sticky-cta-suppress]',
+    );
+
+    for (const zone of [pricingAction, closingAction]) {
       await zone.scrollIntoViewIfNeeded();
       await expect(zone).toBeInViewport();
       await expect(headerAction).toHaveCount(0);
+
+      await scrollToViewportCenter(pricingHeading);
+      await expect(zone).not.toBeInViewport();
+      await expect(headerAction).toHaveCount(1);
     }
   });
 
-  test("pricing and the shared footer suppress duplicate signup actions", async ({
+  test("pricing suppresses only visible signup links and returns through its FAQ", async ({
     page,
   }) => {
     await page.setViewportSize({ width: 390, height: 844 });
@@ -379,10 +423,27 @@ test.describe("shared Recall public chrome", () => {
     const headerAction = page.locator("header.rl-nav").getByRole("link", {
       name: /start free|dashboard/i,
     });
-    const pricing = page.locator("#pricing[data-public-sticky-cta-suppress]");
-    await pricing.scrollIntoViewIfNeeded();
-    await expect(pricing).toBeInViewport();
+    const pricingAction = page
+      .locator("#pricing [data-public-sticky-cta-suppress]")
+      .first();
+    const lastFaq = page.locator("#pricing button[aria-expanded]").last();
+
+    await scrollToViewportCenter(lastFaq);
+    await expect(lastFaq).toBeInViewport();
+    await expect(headerAction).toHaveCount(1);
+
+    await pricingAction.scrollIntoViewIfNeeded();
+    await expect(pricingAction).toBeInViewport();
     await expect(headerAction).toHaveCount(0);
+
+    await scrollToViewportCenter(lastFaq);
+    await expect(lastFaq).toBeInViewport();
+    for (const action of await page
+      .locator("#pricing [data-public-sticky-cta-suppress]")
+      .all()) {
+      await expect(action).not.toBeInViewport();
+    }
+    await expect(headerAction).toHaveCount(1);
 
     const footerAction = page.locator("footer [data-public-sticky-cta-suppress]");
     await footerAction.scrollIntoViewIfNeeded();
@@ -424,6 +485,18 @@ test.describe("shared Recall public chrome", () => {
         expect(box.width, `${path} primary action ${index} width`).toBeGreaterThanOrEqual(44);
       }
     }
+
+    await page.goto("/books");
+    await expectMinimumTouchTarget(
+      page.getByRole("link", { name: /^start reading/i }).first(),
+      "/books featured reading action",
+    );
+
+    await page.getByRole("textbox", { name: "Search books" }).fill("atomic");
+    await expectMinimumTouchTarget(
+      page.getByRole("button", { name: "Clear search" }),
+      "/books search clear action",
+    );
   });
 
   test("cookie inventory keeps labels and duration values visible on phones", async ({

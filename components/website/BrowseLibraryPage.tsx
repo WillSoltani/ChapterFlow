@@ -81,12 +81,12 @@ export function BrowseLibraryPage() {
           onSelectCategory={handleCategoryChange}
         />
 
-        <div data-public-sticky-cta-suppress className="pb-4" ref={requestSectionRef}>
+        <div className="pb-4" ref={requestSectionRef}>
           <BookRequestSection initialTitle={requestTitle} />
         </div>
       </section>
 
-      <div className="relative z-10 mt-10" data-public-sticky-cta-suppress>
+      <div className="relative z-10 mt-10">
         <BrowseLibraryBottomCta />
       </div>
     </div>

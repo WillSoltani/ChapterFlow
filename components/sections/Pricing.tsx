@@ -205,7 +205,7 @@ export function Pricing() {
     : formatAmount(perMonthAmount);
 
   return (
-    <section id="pricing" data-public-sticky-cta-suppress className="relative">
+    <section id="pricing" className="relative">
       <div className="mx-auto max-w-[1180px] px-5 pt-(--section-pad-sm) pb-(--section-pad-lg) md:px-8 md:pt-(--section-pad-md)">
         {/* Clear plan summary */}
         <SectionReveal>
@@ -299,6 +299,7 @@ export function Pricing() {
               accent={false}
               cta={
                 <Link
+                  data-public-sticky-cta-suppress
                   href={freeHref}
                   onClick={() => track("cta_click", { source: "pricing_free" })}
                   className="inline-flex w-full items-center justify-center rounded-xl border border-(--border-medium) px-5 py-3 text-cf-body font-semibold text-(--text-heading) transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
@@ -337,6 +338,7 @@ export function Pricing() {
                 // ONE accent: cyan = the work. The Pro CTA carries the SAME cyan as
                 // the hero/science CTAs — no gold/amber gradient, no glow halo.
                 <Link
+                  data-public-sticky-cta-suppress
                   href={proHref}
                   onClick={() =>
                     track("cta_click", {

@@ -142,7 +142,7 @@ export function BrowseLibrarySearchBar({
           type="button"
           onClick={() => onChange("")}
           aria-label="Clear search"
-          className="absolute right-4 top-6 z-[60] -translate-y-1/2 text-sm text-(--text-muted) transition-colors hover:text-(--text-heading)"
+          className="absolute right-0 top-6 z-[60] inline-flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-lg text-sm text-(--text-muted) transition-colors hover:text-(--text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
         >
           ✕
         </button>

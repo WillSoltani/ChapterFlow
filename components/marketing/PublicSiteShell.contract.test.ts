@@ -58,7 +58,9 @@ test("every route masthead or hero owns a post-hero CTA boundary", () => {
 });
 
 test("equivalent public CTA zones suppress the persistent header action", () => {
-  const catalog = source("components/website/BrowseLibraryPage.tsx");
+  const catalog = source(
+    "components/website/browse-library/BrowseLibraryBottomCta.tsx",
+  );
   const close = source("components/landing/recall/RecallClose.tsx");
   const homePricing = source("components/landing/recall/RecallPricing.tsx");
   const routePricing = source("components/sections/Pricing.tsx");

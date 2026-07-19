@@ -58,7 +58,6 @@ const PRO_FEATURES_SHORT = [
 export function RecallPricing() {
   return (
     <section
-      data-public-sticky-cta-suppress
       id="pricing"
       aria-labelledby="recall-pricing-headline"
       className="relative w-full overflow-hidden px-6 py-28 sm:px-10 sm:py-32 lg:px-16 lg:py-40"
@@ -195,6 +194,7 @@ function PricingPlans() {
             </ul>
 
             <a
+              data-public-sticky-cta-suppress
               href={AUTH_LOGIN_BOOK_URL}
               className="mt-9 inline-flex w-full items-center justify-center rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,background,border-color] duration-150 ease-out hover:brightness-110 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
               style={{
@@ -272,6 +272,7 @@ function PricingPlans() {
             </ul>
 
             <a
+              data-public-sticky-cta-suppress
               href={proUpgradeHref}
               className="mt-9 inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,filter] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
               style={{

@@ -55,7 +55,7 @@ function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: st
         <Link
           href={bookHref(book.id)}
           onClick={() => track("book_card_click", { source: "browse_library_featured", bookId: book.id })}
-          className="mt-3 text-cf-label font-semibold hover:underline underline-offset-4 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+          className="-mb-3 inline-flex min-h-11 w-fit items-center rounded text-cf-label font-semibold hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
           style={{ color: "var(--accent-cyan)" }}
         >
           Start reading →
