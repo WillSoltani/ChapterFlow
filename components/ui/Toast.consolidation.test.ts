@@ -70,7 +70,7 @@ test("all local toast state routes through the canonical view and controller", (
 
 test("Card consumers preserve the exact inlined base class contract", () => {
   const badgeCards = source("app/book/badges/components/BadgeSystemCards.tsx");
-  const profile = source("app/book/profile/components/ProfilePrimitives.tsx");
+  const profile = source("app/book/profile/components/SectionCard.tsx");
 
   assert.doesNotMatch(badgeCards, /components\/ui\/Card/);
   assert.doesNotMatch(profile, /components\/ui\/Card/);

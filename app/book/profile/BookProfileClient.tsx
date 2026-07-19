@@ -49,34 +49,32 @@ import {
   ProgressToNextBadgeCard,
 } from "@/app/book/badges/components/BadgeSystemCards";
 import { EditProfileModal } from "@/app/book/profile/components/EditProfileModal";
-import {
-  ActiveBookCard,
-  ActiveDaysRing,
-  CategoryMap,
-  CompletionByModeChart,
-  FadeIn,
-  HeatmapCalendar,
-  IdentityHeroBanner,
-  MomentumCard,
-  MomentumEmptyState,
-  NewBadgeDot,
-  NotePreviewCard,
-  PinnedTakeawayCard,
-  ProfileSkeleton,
-  ProStatusCard,
-  QuizBarChart,
-  SectionCard,
-  SectionNav,
-  Sparkline,
-  StaggeredBadgeGrid,
-  StaggeredBadgeItem,
-  StatCard,
-  StickyMiniHeader,
-  ThisWeekStrip,
-  TimelineRow,
-  UpgradeCard,
-  UpNextPreview,
-} from "@/app/book/profile/components/ProfilePrimitives";
+import { ActiveBookCard } from "@/app/book/profile/components/ActiveBookCard";
+import { ActiveDaysRing } from "@/app/book/profile/components/ActiveDaysRing";
+import { CategoryMap } from "@/app/book/profile/components/CategoryMap";
+import { CompletionByModeChart } from "@/app/book/profile/components/CompletionByModeChart";
+import { FadeIn } from "@/app/book/profile/components/FadeIn";
+import { HeatmapCalendar } from "@/app/book/profile/components/HeatmapCalendar";
+import { IdentityHeroBanner } from "@/app/book/profile/components/IdentityHeroBanner";
+import { MomentumCard } from "@/app/book/profile/components/MomentumCard";
+import { MomentumEmptyState } from "@/app/book/profile/components/MomentumEmptyState";
+import { NewBadgeDot } from "@/app/book/profile/components/NewBadgeDot";
+import { NotePreviewCard } from "@/app/book/profile/components/NotePreviewCard";
+import { PinnedTakeawayCard } from "@/app/book/profile/components/PinnedTakeawayCard";
+import { ProfileSkeleton } from "@/app/book/profile/components/ProfileSkeleton";
+import { ProStatusCard } from "@/app/book/profile/components/ProStatusCard";
+import { QuizBarChart } from "@/app/book/profile/components/QuizBarChart";
+import { SectionCard } from "@/app/book/profile/components/SectionCard";
+import { SectionNav } from "@/app/book/profile/components/SectionNav";
+import { Sparkline } from "@/app/book/profile/components/Sparkline";
+import { StaggeredBadgeGrid } from "@/app/book/profile/components/StaggeredBadgeGrid";
+import { StaggeredBadgeItem } from "@/app/book/profile/components/StaggeredBadgeItem";
+import { StatCard } from "@/app/book/profile/components/StatCard";
+import { StickyMiniHeader } from "@/app/book/profile/components/StickyMiniHeader";
+import { ThisWeekStrip } from "@/app/book/profile/components/ThisWeekStrip";
+import { TimelineRow } from "@/app/book/profile/components/TimelineRow";
+import { UpgradeCard } from "@/app/book/profile/components/UpgradeCard";
+import { UpNextPreview } from "@/app/book/profile/components/UpNextPreview";
 
 // ─── Types ───
 
