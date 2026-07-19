@@ -50,8 +50,9 @@ export async function POST(req: Request) {
     const user = await requireActiveBookUser();
 
     let action = "purchase_shield";
+    const hasExplicitBody = req.body !== null;
     const bodyText = await req.text();
-    if (bodyText.length > 0) {
+    if (hasExplicitBody) {
       let bodyRaw: unknown;
       try {
         bodyRaw = JSON.parse(bodyText) as unknown;

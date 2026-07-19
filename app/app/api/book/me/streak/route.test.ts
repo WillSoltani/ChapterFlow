@@ -124,6 +124,10 @@ test("missing body keeps the documented purchase_shield default", async () => {
   assert.deepEqual(purchaseStreakShield.calls, [["book-table-test", "user-1"]]);
 });
 
+test("explicit empty body returns invalid_json without purchasing", async () => {
+  await assertValidationError("", "invalid_json");
+});
+
 test("explicit purchase_shield action purchases exactly once", async () => {
   const response = await POST(
     streakRequest(JSON.stringify({ action: "purchase_shield" })),
