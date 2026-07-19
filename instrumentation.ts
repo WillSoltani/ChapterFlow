@@ -18,8 +18,8 @@
 // from a plain `tsx --test` run (see tests/instrumentation.test.ts) without
 // needing to fake `server-only`.
 import {
-  REQUIRED_SERVER_ENV,
-  validateRequiredServerEnv,
+  RUNTIME_ENV_REQUIREMENTS,
+  validateRuntimeEnvironment,
 } from "@/app/app/api/_lib/boot-env-core";
 
 export async function register(): Promise<void> {
@@ -54,18 +54,23 @@ export async function register(): Promise<void> {
   if (process.env.NODE_ENV !== "production") return;
   if (process.env.NEXT_PHASE === "phase-production-build") return;
 
-  const { missing } = validateRequiredServerEnv(process.env);
-  if (missing.length > 0) {
+  const { failures } = validateRuntimeEnvironment(process.env);
+  if (failures.length > 0) {
+    const summary = failures
+      .map(
+        ({ requirementId, code, names }) =>
+          `${requirementId}:${code}:${names.join("|")}`,
+      )
+      .join(", ");
     throw new Error(
-      `WS3-012 boot validation failed — missing required server env var(s): ${missing.join(", ")}. ` +
-        "See app/app/api/_lib/boot-env-core.ts (REQUIRED_SERVER_ENV) for what each " +
-        "one gates and why it is fail-fast rather than a lazy per-request throw.",
+      `WS3-012 boot validation failed — runtime environment contract violation(s): ${summary}. ` +
+        "See app/app/api/_lib/boot-env-core.ts (RUNTIME_ENV_REQUIREMENTS).",
     );
   }
 
   // Observable success signal so a boot that validated cleanly shows up in
   // logs, not just the absence of the error above.
   console.log(
-    `boot_env_validated: ${REQUIRED_SERVER_ENV.length} required server env var(s) present`,
+    `boot_env_validated: ${RUNTIME_ENV_REQUIREMENTS.length} runtime requirement(s) evaluated`,
   );
 }

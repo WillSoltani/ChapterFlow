@@ -81,6 +81,10 @@ jobs:
 
       - name: Build OpenNext (includes Next.js build)
         run: npx open-next build
+        env:
+          # NEXT_PUBLIC_* values are compiled into the browser bundle. They
+          # belong at build time and are never injected into the server Lambda.
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
 
       # Raw Cognito subject IDs exist only in this process environment. The
       # helper validates canonical UUIDs and writes one-way SHA-256 values to
@@ -132,6 +136,7 @@ jobs:
           CHAPTERFLOW_DOMAIN_NAME: ${{ secrets.CHAPTERFLOW_DOMAIN_NAME }}
           # Cognito
           COGNITO_DOMAIN: ${{ secrets.COGNITO_DOMAIN }}
+          COGNITO_CUSTOM_DOMAIN: ${{ secrets.COGNITO_CUSTOM_DOMAIN }}
           COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID }}
           COGNITO_REGION: ${{ secrets.COGNITO_REGION }}
           COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}
@@ -164,7 +169,6 @@ jobs:
           BOOK_STRIPE_PRICE_ID: ${{ secrets.BOOK_STRIPE_PRICE_ID }}
           BOOK_STRIPE_PRICE_ID_ANNUAL: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL }}
           BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT }}
-          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
           # AI providers
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}

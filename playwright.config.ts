@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import { buildSyntheticRuntimeEnvironment } from "./app/app/api/_lib/boot-env-core";
 
 // Smoke E2E config. Drives the real app in a browser to catch "page loads but
 // is broken" regressions that unit tests miss.
@@ -33,13 +34,9 @@ const BASE_URL = process.env.E2E_BASE_URL ?? "http://127.0.0.1:3000";
 // `.next-chapterflow` dir. DEV_AUTH_BYPASS is intentionally NOT set — under
 // NODE_ENV=production it is a no-op anyway.
 export const PROD_E2E_ENV: Readonly<Record<string, string>> = {
+  ...buildSyntheticRuntimeEnvironment("prod"),
   NEXT_DIST_DIR: ".next-prod-e2e",
   NEXT_TELEMETRY_DISABLED: "1",
-  BOOK_TABLE_NAME: "e2e-table",
-  BOOK_CONTENT_BUCKET: "e2e-content-bucket",
-  COGNITO_REGION: "us-east-1",
-  COGNITO_USER_POOL_ID: "e2e-user-pool",
-  COGNITO_CLIENT_ID: "e2e-client-id",
 };
 const PROD_ENV = Object.entries(PROD_E2E_ENV)
   .map(([name, value]) => `${name}=${value}`)

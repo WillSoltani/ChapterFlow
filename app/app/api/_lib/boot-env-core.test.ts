@@ -1,70 +1,159 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { REQUIRED_SERVER_ENV, validateRequiredServerEnv } from "./boot-env-core";
+import {
+  RUNTIME_ENV_REQUIREMENTS,
+  buildSyntheticRuntimeEnvironment,
+  validateRuntimeEnvironment,
+} from "./boot-env-core";
 
-const ALL_PRESENT: Record<string, string> = Object.fromEntries(
-  REQUIRED_SERVER_ENV.map(({ name }) => [name, `test-value-${name}`]),
-);
+const PRODUCTION_ENV = buildSyntheticRuntimeEnvironment("prod");
 
-test("REQUIRED_SERVER_ENV is a non-empty, name-deduplicated list", () => {
-  assert.ok(REQUIRED_SERVER_ENV.length > 0);
-  const names = REQUIRED_SERVER_ENV.map((v) => v.name);
-  assert.deepEqual(new Set(names).size, names.length, "no duplicate names");
-  for (const { name, reason } of REQUIRED_SERVER_ENV) {
-    assert.ok(name.trim().length > 0, "name must be non-empty");
-    assert.ok(reason.trim().length > 0, `reason for ${name} must be non-empty`);
+test("runtime manifest has unique ids and valid structured requirements", () => {
+  assert.ok(RUNTIME_ENV_REQUIREMENTS.length > 0);
+  assert.equal(
+    new Set(RUNTIME_ENV_REQUIREMENTS.map(({ id }) => id)).size,
+    RUNTIME_ENV_REQUIREMENTS.length,
+  );
+  for (const requirement of RUNTIME_ENV_REQUIREMENTS) {
+    assert.ok(requirement.id.trim());
+    assert.ok(requirement.reason.trim());
+    assert.ok(requirement.names.length > 0);
+    assert.equal(new Set(requirement.names).size, requirement.names.length);
+    assert.ok(requirement.syntheticValue.trim());
   }
 });
 
-test("all required vars present -> no missing", () => {
-  const { missing } = validateRequiredServerEnv(ALL_PRESENT);
-  assert.deepEqual(missing, []);
-});
+test("always-on requirements apply to dev and staging runtimes", () => {
+  for (const deploymentEnvironment of ["dev", "staging"] as const) {
+    assert.deepEqual(
+      validateRuntimeEnvironment(
+        buildSyntheticRuntimeEnvironment(deploymentEnvironment),
+      ).failures,
+      [],
+    );
+  }
 
-test("all required vars absent -> every name reported missing", () => {
-  const { missing } = validateRequiredServerEnv({});
+  const failures = validateRuntimeEnvironment({ CHAPTERFLOW_ENV: "dev" }).failures;
   assert.deepEqual(
-    new Set(missing),
-    new Set(REQUIRED_SERVER_ENV.map((v) => v.name)),
+    failures.map(({ requirementId }) => requirementId).sort(),
+    ["book-content-bucket", "book-table"],
   );
 });
 
-test("mixed present/missing -> only the actually-missing names are reported", () => {
-  const partial: Record<string, string> = { ...ALL_PRESENT };
-  const [first, second] = REQUIRED_SERVER_ENV;
-  delete partial[first.name];
-  delete partial[second.name];
-
-  const { missing } = validateRequiredServerEnv(partial);
-  assert.deepEqual(new Set(missing), new Set([first.name, second.name]));
+test("derived production environment satisfies every runtime requirement", () => {
+  assert.deepEqual(validateRuntimeEnvironment(PRODUCTION_ENV).failures, []);
 });
 
-test("an empty-string or whitespace-only value counts as missing", () => {
-  const [first, second] = REQUIRED_SERVER_ENV;
-  const withBlankValues: Record<string, string> = {
-    ...ALL_PRESENT,
-    [first.name]: "",
-    [second.name]: "   ",
+test("missing and blank production values fail by stable nonsecret metadata", () => {
+  const env = { ...PRODUCTION_ENV };
+  delete env.BOOK_STRIPE_SECRET_KEY;
+  env.COGNITO_CLIENT_ID = "   ";
+
+  assert.deepEqual(validateRuntimeEnvironment(env).failures, [
+    {
+      requirementId: "stripe-secret-key",
+      code: "missing",
+      names: ["BOOK_STRIPE_SECRET_KEY"],
+    },
+    {
+      requirementId: "cognito-client",
+      code: "missing",
+      names: ["COGNITO_CLIENT_ID"],
+    },
+  ]);
+});
+
+test("either standard or custom Cognito domain satisfies the one-of requirement", () => {
+  const standard = { ...PRODUCTION_ENV };
+  assert.ok(standard.COGNITO_DOMAIN);
+  assert.deepEqual(validateRuntimeEnvironment(standard).failures, []);
+
+  const custom: Record<string, string> = {
+    ...standard,
+    COGNITO_CUSTOM_DOMAIN: "auth.example.test",
   };
+  delete custom.COGNITO_DOMAIN;
+  assert.deepEqual(validateRuntimeEnvironment(custom).failures, []);
 
-  const { missing } = validateRequiredServerEnv(withBlankValues);
-  assert.deepEqual(new Set(missing), new Set([first.name, second.name]));
+  delete custom.COGNITO_CUSTOM_DOMAIN;
+  assert.deepEqual(
+    validateRuntimeEnvironment(custom).failures.find(
+      ({ requirementId }) => requirementId === "cognito-domain",
+    ),
+    {
+      requirementId: "cognito-domain",
+      code: "missing",
+      names: ["COGNITO_DOMAIN", "COGNITO_CUSTOM_DOMAIN"],
+    },
+  );
 });
 
-test("unrelated env vars are ignored and never reported missing", () => {
-  const { missing } = validateRequiredServerEnv({
-    ...ALL_PRESENT,
-    SOME_UNRELATED_VAR: undefined,
-    ANOTHER_UNRELATED_VAR: "",
-  });
-  assert.deepEqual(missing, []);
+test("allowed deployment environments fail closed on an unknown value", () => {
+  const failures = validateRuntimeEnvironment({
+    ...buildSyntheticRuntimeEnvironment("dev"),
+    CHAPTERFLOW_ENV: "production",
+  }).failures;
+  assert.deepEqual(failures, [
+    {
+      requirementId: "deployment-environment",
+      code: "invalid_value",
+      names: ["CHAPTERFLOW_ENV"],
+    },
+  ]);
 });
 
-test("validateRequiredServerEnv reads real process.env-shaped input (undefined values allowed)", () => {
-  const envLike: Record<string, string | undefined> = {
-    ...ALL_PRESENT,
-    PATH: undefined,
-  };
-  const { missing } = validateRequiredServerEnv(envLike);
-  assert.deepEqual(missing, []);
+test("short production secrets fail without exposing values or observed lengths", () => {
+  const authMarker = "auth-marker";
+  const originMarker = "origin-marker";
+  const failures = validateRuntimeEnvironment({
+    ...PRODUCTION_ENV,
+    AUTH_STATE_SECRET: authMarker,
+    ORIGIN_VERIFY_SECRET: originMarker,
+  }).failures;
+
+  assert.deepEqual(failures, [
+    {
+      requirementId: "auth-state-secret",
+      code: "too_short",
+      names: ["AUTH_STATE_SECRET"],
+    },
+    {
+      requirementId: "origin-verification-secret",
+      code: "too_short",
+      names: ["ORIGIN_VERIFY_SECRET"],
+    },
+  ]);
+  const serialized = JSON.stringify(failures);
+  assert.doesNotMatch(serialized, new RegExp(`${authMarker}|${originMarker}`));
+  assert.doesNotMatch(serialized, /observed|actual|length/i);
+});
+
+test("build-only and documented optional settings are outside the boot contract", () => {
+  const names = new Set<string>(
+    RUNTIME_ENV_REQUIREMENTS.flatMap(({ names }) => names),
+  );
+  for (const optionalName of [
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+    "BOOK_STRIPE_PRICE_ID_ANNUAL",
+    "BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT",
+    "COGNITO_LOGOUT_REDIRECT_URI",
+    "AUTH_COOKIE_DOMAIN",
+    "ELEVENLABS_API_KEY",
+    "APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED",
+    "APPLE_IAP_TESTFLIGHT_QA_USER_HASHES",
+    "BOOK_INGEST_BUCKET",
+  ]) {
+    assert.equal(names.has(optionalName), false, optionalName);
+  }
+  assert.deepEqual(validateRuntimeEnvironment(PRODUCTION_ENV).failures, []);
+});
+
+test("derived production placeholders use valid callback, app, and App Store URLs", () => {
+  for (const name of [
+    "COGNITO_REDIRECT_URI",
+    "CHAPTERFLOW_APP_BASE_URL",
+    "IOS_APP_STORE_URL",
+  ]) {
+    assert.doesNotThrow(() => new URL(PRODUCTION_ENV[name]), name);
+  }
 });

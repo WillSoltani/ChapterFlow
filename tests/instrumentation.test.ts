@@ -1,7 +1,11 @@
 import { test, before, after, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import { register } from "@/instrumentation";
-import { REQUIRED_SERVER_ENV } from "@/app/app/api/_lib/boot-env-core";
+import {
+  RUNTIME_ENV_REQUIREMENTS,
+  buildSyntheticRuntimeEnvironment,
+  validateRuntimeEnvironment,
+} from "@/app/app/api/_lib/boot-env-core";
 import { PROD_E2E_ENV } from "@/playwright.config";
 
 // register() (root instrumentation.ts, WS3-012) must be a complete no-op
@@ -15,7 +19,7 @@ const TRACKED_KEYS = [
   "NEXT_RUNTIME",
   "NODE_ENV",
   "NEXT_PHASE",
-  ...REQUIRED_SERVER_ENV.map((v) => v.name),
+  ...new Set(RUNTIME_ENV_REQUIREMENTS.flatMap(({ names }) => names)),
 ];
 const originalValues = new Map<string, string | undefined>();
 
@@ -51,7 +55,11 @@ function clearAllTrackedKeys() {
 }
 
 function setAllRequiredVars() {
-  for (const { name } of REQUIRED_SERVER_ENV) setEnv(name, `test-value-${name}`);
+  for (const [name, value] of Object.entries(
+    buildSyntheticRuntimeEnvironment("prod"),
+  )) {
+    setEnv(name, value);
+  }
 }
 
 beforeEach(() => {
@@ -84,7 +92,7 @@ test("a real production runtime boot with a required var missing throws, listing
   setEnv("NODE_ENV", "production");
   // NEXT_PHASE intentionally left unset — this is "phase-production-server".
   setAllRequiredVars();
-  const missingName = REQUIRED_SERVER_ENV[0].name;
+  const missingName = "BOOK_TABLE_NAME";
   setEnv(missingName, undefined);
 
   await assert.rejects(
@@ -103,10 +111,5 @@ test("a real production runtime boot with every required var present resolves cl
 });
 
 test("the production E2E server supplies every required boot variable", () => {
-  for (const { name } of REQUIRED_SERVER_ENV) {
-    assert.ok(
-      PROD_E2E_ENV[name]?.trim(),
-      `playwright prod server must provide a non-empty ${name}`,
-    );
-  }
+  assert.deepEqual(validateRuntimeEnvironment(PROD_E2E_ENV).failures, []);
 });
