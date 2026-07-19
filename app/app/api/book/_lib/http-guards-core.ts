@@ -11,13 +11,44 @@ import { BookApiError } from "./errors";
 
 export const UNSAFE_METHODS = new Set(["POST", "PATCH", "PUT", "DELETE"]);
 
+const CSRF_OBSERVE_ONLY_VALUES = new Set(["0", "false", "off", "no"]);
+
+export type CsrfEnforcementInput = {
+  nodeEnvironment: string | undefined;
+  deploymentEnvironment: string | undefined;
+  enforcementFlag: string | undefined;
+};
+
 /**
- * Enforcement flag. Default ON. Set env `CSRF_ORIGIN_ENFORCE=0`
- * (or "false"/"off"/"no") to run in OBSERVE-ONLY mode (log, don't block).
+ * Pure production-safe decision for the CSRF origin guard.
+ *
+ * Deployed Lambdas use `NODE_ENV=production` in every environment, while
+ * `CHAPTERFLOW_ENV` carries the canonical `dev | staging | prod` identity.
+ * Explicit dev/staging deployments may therefore opt into observation; every
+ * other explicit deployment identity fails closed. When that identity is
+ * absent (local/legacy runtime), NODE_ENV=production is the safe fallback.
  */
+export function shouldEnforceCsrfOrigin(params: CsrfEnforcementInput): boolean {
+  const deploymentEnvironment = params.deploymentEnvironment?.trim().toLowerCase();
+  const explicitlyNonProduction =
+    deploymentEnvironment === "dev" || deploymentEnvironment === "staging";
+  const productionRuntime = deploymentEnvironment
+    ? !explicitlyNonProduction
+    : params.nodeEnvironment?.trim().toLowerCase() === "production";
+
+  if (productionRuntime) return true;
+
+  const raw = params.enforcementFlag?.trim().toLowerCase();
+  return !raw || !CSRF_OBSERVE_ONLY_VALUES.has(raw);
+}
+
+/** Runtime adapter retained for callers that need the current process config. */
 export function isCsrfEnforcementOn(): boolean {
-  const raw = process.env.CSRF_ORIGIN_ENFORCE?.trim().toLowerCase();
-  return !(raw === "0" || raw === "false" || raw === "off" || raw === "no");
+  return shouldEnforceCsrfOrigin({
+    nodeEnvironment: process.env.NODE_ENV,
+    deploymentEnvironment: process.env.CHAPTERFLOW_ENV,
+    enforcementFlag: process.env.CSRF_ORIGIN_ENFORCE,
+  });
 }
 
 /** Lowercased scheme+host(+port) of a URL/origin string, or null if unparseable. */
