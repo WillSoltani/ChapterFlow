@@ -214,7 +214,7 @@ export function ReadingActivity({
                   {/* Hover tooltip */}
                   {slot.minutes > 0 && (
                     <span
-                      className="pointer-events-none absolute -top-5 z-10 rounded px-1 py-0.5 text-[9px] tabular-nums opacity-0 transition-opacity group-hover:opacity-100"
+                      className="pointer-events-none absolute -top-5 z-10 rounded px-1 py-0.5 text-cf-caption tabular-nums opacity-0 transition-opacity group-hover:opacity-100"
                       style={{
                         background: "var(--cf-overlay)",
                         color: "var(--text-heading)",
@@ -259,7 +259,7 @@ export function ReadingActivity({
               <div key={slot.hour} className="flex-1 text-center" style={{ minWidth: 0 }}>
                 {slot.hour % 3 === 0 ? (
                   <span
-                    className="text-[9px] tabular-nums"
+                    className="text-cf-caption tabular-nums"
                     style={{
                       color: slot.hour === currentHour
                         ? "var(--accent-cyan)"
@@ -298,7 +298,7 @@ export function ReadingActivity({
                 {["", "Mon", "", "Wed", "", "Fri", ""].map((label, i) => (
                   <span
                     key={i}
-                    className="flex h-4 w-6 items-center justify-end pr-1 text-[9px] leading-none"
+                    className="flex h-4 w-6 items-center justify-end pr-1 text-cf-caption leading-none"
                     style={{ color: "var(--text-muted)" }}
                   >
                     {label}
@@ -344,7 +344,7 @@ export function ReadingActivity({
                 : "Hover a day to inspect activity details."}
             </p>
             {/* Color scale legend */}
-            <div className="flex shrink-0 items-center gap-1 text-[9px]" style={{ color: "var(--text-muted)" }}>
+            <div className="flex shrink-0 items-center gap-1 text-cf-caption" style={{ color: "var(--text-muted)" }}>
               <span>Less</span>
               {HEATMAP_COLORS.map((color, i) => (
                 <span

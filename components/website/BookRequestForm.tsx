@@ -112,11 +112,11 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           placeholder="Enter book title..."
           aria-invalid={!!errors.title && !!touched.title}
           aria-describedby={errors.title && touched.title ? "book-request-title-error" : undefined}
-          className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
+          className={`w-full h-12 rounded-lg px-4 text-cf-body-sm placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(!!errors.title && !!touched.title)}
         />
         {errors.title && touched.title && (
-          <p id="book-request-title-error" role="alert" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
+          <p id="book-request-title-error" role="alert" className="text-cf-caption mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.title}
           </p>
         )}
@@ -133,7 +133,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           value={authorName}
           onChange={(e) => setAuthorName(e.target.value)}
           placeholder="Author name (optional)"
-          className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
+          className={`w-full h-12 rounded-lg px-4 text-cf-body-sm placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(false)}
         />
       </div>
@@ -155,11 +155,11 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           placeholder="Your email (so we can reach you)"
           aria-invalid={!!errors.email && !!touched.email}
           aria-describedby={errors.email && touched.email ? "book-request-email-error" : undefined}
-          className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
+          className={`w-full h-12 rounded-lg px-4 text-cf-body-sm placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(!!errors.email && !!touched.email)}
         />
         {errors.email && touched.email && (
-          <p id="book-request-email-error" role="alert" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
+          <p id="book-request-email-error" role="alert" className="text-cf-caption mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.email}
           </p>
         )}
@@ -169,7 +169,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
       <motion.button
         type="submit"
         disabled={!isFormValid || formState === "submitting"}
-        className="w-full h-12 rounded-lg text-[15px] font-semibold cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+        className="w-full h-12 rounded-lg text-cf-body font-semibold cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
         style={{
           background: "var(--accent-cyan)",
           color: "var(--primary-foreground)",
@@ -227,7 +227,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
       {/* Error state — shown only when the submission actually failed */}
       {formState === "error" && (
         <p
-          className="text-[12px] text-center mt-1"
+          className="text-cf-label-sm text-center mt-1"
           style={{ color: "var(--accent-rose)" }}
           role="alert"
         >
@@ -237,7 +237,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
 
       {/* Honest microcopy — a statement of intent, not a fabricated metric */}
       <p
-        className="text-[12px] text-center mt-2"
+        className="text-cf-label-sm text-center mt-2"
         style={{ color: "var(--text-muted)" }}
       >
         We read every request and build the most-asked-for titles first.

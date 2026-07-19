@@ -160,7 +160,7 @@ export function RecallLibraryBrowser({ open, onClose }: RecallLibraryBrowserProp
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p
-                  className="font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.3em]"
+                  className="font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.3em]"
                   style={{ color: "var(--cf-recall-ink-faint)" }}
                 >
                   The library

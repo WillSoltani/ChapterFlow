@@ -137,7 +137,7 @@ export function RewardsCard({
       {/* Link to rewards page */}
       <Link
         href="/rewards"
-        className="mt-3 block text-[11px] transition-colors hover:text-(--cf-accent)"
+        className="mt-3 block text-cf-caption transition-colors hover:text-(--cf-accent)"
         style={{ color: "var(--cf-text-soft)" }}
       >
         View all rewards →

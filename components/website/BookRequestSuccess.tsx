@@ -42,7 +42,7 @@ export function BookRequestSuccess({ title, author, email }: BookRequestSuccessP
 
       {/* Heading */}
       <p
-        className="text-[18px] font-semibold mt-4"
+        className="text-lg font-semibold mt-4"
         style={{
           color: "var(--accent-cyan)",
           fontFamily: "var(--font-display)",
@@ -53,7 +53,7 @@ export function BookRequestSuccess({ title, author, email }: BookRequestSuccessP
 
       {/* Confirmation message — honest: we log it and email only if we build it */}
       <p
-        className="text-[14px] mt-2 max-w-[340px]"
+        className="text-cf-body-sm mt-2 max-w-[340px]"
         style={{ color: "var(--text-secondary)" }}
       >
         We have logged &lsquo;{title}&rsquo;{author ? ` by ${author}` : ""}. If we
@@ -63,7 +63,7 @@ export function BookRequestSuccess({ title, author, email }: BookRequestSuccessP
       {/* CTA — start reading what's already available (matches the site's primary CTA) */}
       <Link
         href="/auth/login?returnTo=%2Fbook"
-        className="cta-shine inline-flex items-center gap-1 mt-5 px-6 py-2.5 rounded-full text-[14px] font-semibold transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+        className="cta-shine inline-flex items-center gap-1 mt-5 px-6 py-2.5 rounded-full text-cf-body-sm font-semibold transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
         style={{
           backgroundColor: "var(--accent-cyan)",
           color: "var(--primary-foreground)",
@@ -76,7 +76,7 @@ export function BookRequestSuccess({ title, author, email }: BookRequestSuccessP
       {/* Secondary — browse what's available now */}
       <Link
         href="/books"
-        className="mt-3 text-[12px] hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 rounded"
+        className="mt-3 text-cf-label-sm hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 rounded"
         style={{ color: "var(--text-muted)" }}
       >
         Browse the books we already have &rarr;

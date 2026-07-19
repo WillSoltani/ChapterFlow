@@ -32,10 +32,10 @@ function LibraryStateMessage({ title, body }: { title: string; body: string }) {
         className="mx-auto max-w-md rounded-2xl px-8 py-12 text-center"
         style={{ background: "var(--bg-glass)", border: "1px solid var(--border-subtle)" }}
       >
-        <p className="text-[16px] font-semibold" style={{ color: "var(--text-heading)" }}>
+        <p className="text-cf-body-lg font-semibold" style={{ color: "var(--text-heading)" }}>
           {title}
         </p>
-        <p className="mt-2 text-[13px]" style={{ color: "var(--text-secondary)" }}>
+        <p className="mt-2 text-cf-label" style={{ color: "var(--text-secondary)" }}>
           {body}
         </p>
       </div>
@@ -297,10 +297,10 @@ export function LibraryPage() {
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-[15px] font-semibold" style={{ color: "var(--text-heading)" }}>
+                      <p className="text-cf-body font-semibold" style={{ color: "var(--text-heading)" }}>
                         You&apos;ve explored your free books — unlock the full library with Pro
                       </p>
-                      <p className="mt-1 text-[13px]" style={{ color: "var(--text-secondary)" }}>
+                      <p className="mt-1 text-cf-label" style={{ color: "var(--text-secondary)" }}>
                         Your reading progress is saved — upgrade to continue your journey.
                       </p>
                       <div className="mt-3 flex items-center gap-3">
@@ -321,7 +321,7 @@ export function LibraryPage() {
                         ))}
                         <a
                           href="/pricing"
-                          className="ml-2 rounded-lg px-4 py-2 text-[13px] font-semibold text-black transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                          className="ml-2 rounded-lg px-4 py-2 text-cf-label font-semibold text-black transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                           style={{ background: "var(--cf-upgrade-accent)" }}
                         >
                           Upgrade to Pro →

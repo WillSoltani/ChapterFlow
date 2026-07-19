@@ -131,17 +131,17 @@ function TierRow({
           >
             {price}
           </span>
-          <span className="text-[14px] text-(--text-muted)">{unit}</span>
+          <span className="text-cf-body-sm text-(--text-muted)">{unit}</span>
         </div>
 
         {subline && (
-          <p className="mt-1.5 text-[13px]" style={{ color: "var(--accent-cyan)" }}>
+          <p className="mt-1.5 text-cf-label" style={{ color: "var(--accent-cyan)" }}>
             {subline}
           </p>
         )}
 
         <p
-          className="mt-3 max-w-[28ch] text-[14px] leading-[1.6] text-(--text-secondary)"
+          className="mt-3 max-w-[28ch] text-cf-body-sm leading-[1.6] text-(--text-secondary)"
           style={{ fontFamily: "var(--font-body)" }}
         >
           {blurb}
@@ -156,7 +156,7 @@ function TierRow({
         {features.map((f) => (
           <li
             key={f.label}
-            className="flex items-center gap-2.5 text-[14px]"
+            className="flex items-center gap-2.5 text-cf-body-sm"
             style={{
               fontFamily: "var(--font-body)",
               color: f.granted ? "var(--text-secondary)" : "var(--text-muted)",
@@ -234,7 +234,7 @@ export function Pricing() {
               Two tiers. One method. No lock-in.
             </h2>
             <p
-              className="mt-4 max-w-xl text-[16px] leading-[1.6] text-(--text-secondary)"
+              className="mt-4 max-w-xl text-cf-body-lg leading-[1.6] text-(--text-secondary)"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Read {FREE_OFFER_LABEL} with no card. Start a {PRICING.trialDays}-day
@@ -308,7 +308,7 @@ export function Pricing() {
                 <Link
                   href={freeHref}
                   onClick={() => track("cta_click", { source: "pricing_free" })}
-                  className="inline-flex w-full items-center justify-center rounded-xl border border-(--border-medium) px-5 py-3 text-[15px] font-semibold text-(--text-heading) transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
+                  className="inline-flex w-full items-center justify-center rounded-xl border border-(--border-medium) px-5 py-3 text-cf-body font-semibold text-(--text-heading) transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   Get {FREE_OFFER_LABEL}
@@ -351,7 +351,7 @@ export function Pricing() {
                       source: isPro ? "pricing_manage" : "pricing_pro",
                     })
                   }
-                  className="inline-flex w-full items-center justify-center rounded-xl bg-(--accent-cyan) px-5 py-3 text-[15px] font-semibold text-(--primary-foreground) transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-(--accent-cyan) px-5 py-3 text-cf-body font-semibold text-(--primary-foreground) transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {proCtaLabel}
@@ -362,7 +362,7 @@ export function Pricing() {
                 // hide them for Pro users (the CTA is "Manage subscription").
                 !isPro ? (
                   <p
-                    className="max-w-[34ch] text-[12px] leading-[1.6] text-(--text-muted)"
+                    className="max-w-[34ch] text-cf-label-sm leading-[1.6] text-(--text-muted)"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     {PRICING.trialDays}-day free trial, then{" "}
@@ -404,7 +404,7 @@ export function Pricing() {
                       className="flex w-full items-center justify-between gap-4 py-4 text-left rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                     >
                       <span
-                        className="text-[15px] font-medium text-(--text-heading)"
+                        className="text-cf-body font-medium text-(--text-heading)"
                         style={{ fontFamily: "var(--font-display)" }}
                       >
                         {faq.question}
@@ -432,7 +432,7 @@ export function Pricing() {
                           className="overflow-hidden"
                         >
                           <p
-                            className="max-w-[60ch] pb-4 text-[14px] leading-[1.6] text-(--text-secondary)"
+                            className="max-w-[60ch] pb-4 text-cf-body-sm leading-[1.6] text-(--text-secondary)"
                             style={{ fontFamily: "var(--font-body)" }}
                           >
                             {faq.answer}

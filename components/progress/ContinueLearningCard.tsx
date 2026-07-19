@@ -223,7 +223,7 @@ export function ContinueLearningCard({
                   ) : (
                     <div className="flex h-full w-full items-center justify-center">
                       <span
-                        className="text-[7px] font-medium leading-tight"
+                        className="text-cf-caption font-medium leading-tight"
                         style={{ color: "var(--text-heading)" }}
                       >
                         {book.title.split(" ").slice(0, 2).join(" ")}

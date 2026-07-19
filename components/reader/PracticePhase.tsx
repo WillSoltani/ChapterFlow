@@ -110,12 +110,12 @@ export function PracticePhase({
       {/* Celebratory section header */}
       <div className="text-center mb-2">
         <p
-          className="text-[18px] font-semibold text-(--cr-accent)"
+          className="text-lg font-semibold text-(--cr-accent)"
           style={{ fontFamily: "var(--font-display)" }}
         >
           {"\u2728"} You&rsquo;ve earned this. Lock it in.
         </p>
-        <p className="text-[14px] mt-1 text-(--cr-text-disabled)">
+        <p className="text-cf-body-sm mt-1 text-(--cr-text-disabled)">
           One final step {"\u2014"} cement what you learned.
         </p>
       </div>
@@ -174,11 +174,11 @@ export function PracticePhase({
             <p className="text-xs font-bold uppercase tracking-[0.1em] text-(--cr-accent)">
               Commit to your steps
             </p>
-            <span className="text-[12px] text-(--cr-text-disabled)">
+            <span className="text-cf-label-sm text-(--cr-text-disabled)">
               {checkedSteps.length} of {planSteps.length} saved
             </span>
           </div>
-          <p className="mb-3 text-[12px] text-(--cr-text-disabled)">
+          <p className="mb-3 text-cf-label-sm text-(--cr-text-disabled)">
             Bookmark a step to save it to your notes.
           </p>
           <ul className="space-y-2.5">
@@ -198,7 +198,7 @@ export function PracticePhase({
                       <Bookmark className="mt-0.5 h-4 w-4 shrink-0 text-(--cr-text-disabled) group-hover:text-(--cr-accent)" />
                     )}
                     <span
-                      className={`text-[14px] leading-relaxed transition-colors ${
+                      className={`text-cf-body-sm leading-relaxed transition-colors ${
                         saved ? "text-(--cr-text-primary)" : "text-(--cr-text-secondary)"
                       }`}
                     >
@@ -253,7 +253,7 @@ export function PracticePhase({
         <button
           type="button"
           onClick={onContinueToNextChapter}
-          className="cf-pressable w-full md:w-auto px-8 py-4 rounded-full font-semibold text-[16px] bg-(--cr-accent) text-(--cr-text-inverse) transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)] focus-visible:ring-offset-2 inline-flex items-center justify-center gap-2"
+          className="cf-pressable w-full md:w-auto px-8 py-4 rounded-full font-semibold text-cf-body-lg bg-(--cr-accent) text-(--cr-text-inverse) transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)] focus-visible:ring-offset-2 inline-flex items-center justify-center gap-2"
           style={{
             boxShadow:
               "0 0 24px color-mix(in srgb, var(--cr-accent) 35%, transparent)",

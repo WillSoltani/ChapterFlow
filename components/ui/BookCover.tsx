@@ -98,7 +98,7 @@ export function BookCover({
       style={{ background: coverGradient, borderRadius }}
       aria-hidden="true"
     >
-      <span className="line-clamp-3 hyphens-auto break-words text-[12px] font-semibold leading-tight text-white">
+      <span className="line-clamp-3 hyphens-auto break-words text-cf-label-sm font-semibold leading-tight text-white">
         {title}
       </span>
     </span>

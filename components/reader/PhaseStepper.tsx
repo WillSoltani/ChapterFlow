@@ -171,7 +171,7 @@ export function PhaseStepper({
                 {/* Label */}
                 <span
                   className={[
-                    "text-[11px] font-semibold transition-colors duration-200",
+                    "text-cf-caption font-semibold transition-colors duration-200",
                     state === "completed"
                       ? "text-(--cr-accent)"
                       : state === "current"

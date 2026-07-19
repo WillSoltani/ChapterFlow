@@ -756,7 +756,7 @@ function CommitmentFollowUpSection() {
     <section className="cf-panel rounded-3xl border border-(--cf-warning-border) bg-(--cf-surface) p-5 sm:p-6">
       <div className="mb-3 flex items-center gap-2">
         <Clock className="h-4 w-4 text-(--cf-warning-text)" />
-        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-(--cf-warning-text)">
+        <p className="text-cf-caption font-semibold uppercase tracking-[0.2em] text-(--cf-warning-text)">
           Time to Check In
         </p>
       </div>

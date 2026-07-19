@@ -218,7 +218,7 @@ export function DesktopReaderShell({
       style={{
         background: "var(--cr-bg-root)",
         borderColor: "var(--cr-glass-border)",
-        boxShadow: "0 24px 64px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.3)",
+        boxShadow: "var(--cf-anchor-shadow)",
       }}
     >
       {/* Phone-style chrome on small screens; desktop browser chrome from md up. */}

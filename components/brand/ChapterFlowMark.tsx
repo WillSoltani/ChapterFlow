@@ -53,7 +53,7 @@ export function ChapterFlowMark({ compact = false }: ChapterFlowMarkProps) {
         <p
           className={[
             "font-medium text-(--cf-text-3)",
-            compact ? "text-[10px] tracking-[0.08em]" : "text-[11px] tracking-[0.1em]",
+            compact ? "text-[10px] tracking-[0.08em]" : "text-cf-caption tracking-[0.1em]",
           ].join(" ")}
         >
           Guided reading
@@ -61,7 +61,7 @@ export function ChapterFlowMark({ compact = false }: ChapterFlowMarkProps) {
         <p
           className={[
             "font-semibold tracking-[-0.03em] text-(--cf-text-1)",
-            compact ? "text-[15px]" : "text-[1.15rem]",
+            compact ? "text-cf-body" : "text-[1.15rem]",
           ].join(" ")}
         >
           {CHAPTERFLOW_NAME}

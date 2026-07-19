@@ -524,7 +524,7 @@ function CaptionPlate({
       {author ? (
         <p
           aria-hidden="true"
-          className="mt-1.5 font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.22em]"
+          className="mt-1.5 font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.22em]"
           style={{ color: "var(--cf-recall-ink-faint)" }}
         >
           {author}

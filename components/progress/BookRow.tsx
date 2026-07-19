@@ -60,7 +60,7 @@ export function ActiveBookRow({ book }: ActiveBookRowProps) {
           height: 56,
           background: book.coverUrl
             ? undefined
-            : "linear-gradient(135deg, rgba(56,189,248,0.2), rgba(167,139,250,0.2))",
+            : "linear-gradient(135deg, color-mix(in srgb, var(--cf-data-sky) 20%, transparent), color-mix(in srgb, var(--cf-data-violet) 20%, transparent))",
         }}
       >
         {book.coverUrl ? (
@@ -75,7 +75,7 @@ export function ActiveBookRow({ book }: ActiveBookRowProps) {
         ) : (
           <div className="flex h-full w-full items-center justify-center p-1">
             <span
-              className="text-[7px] font-medium leading-tight text-center"
+              className="text-cf-caption font-medium leading-tight text-center"
               style={{ color: "var(--text-heading)" }}
             >
               {book.title.split(" ").slice(0, 3).join(" ")}
@@ -163,12 +163,12 @@ export function CompletedBookRow({ book }: CompletedBookRowProps) {
           width: 40,
           height: 56,
           background:
-            "linear-gradient(135deg, rgba(52,211,153,0.2), rgba(167,139,250,0.2))",
+            "linear-gradient(135deg, color-mix(in srgb, var(--cf-data-emerald) 20%, transparent), color-mix(in srgb, var(--cf-data-violet) 20%, transparent))",
         }}
       >
         <div className="flex h-full w-full items-center justify-center p-1">
           <span
-            className="text-[7px] font-medium leading-tight text-center"
+            className="text-cf-caption font-medium leading-tight text-center"
             style={{ color: "var(--text-heading)" }}
           >
             {book.title.split(" ").slice(0, 3).join(" ")}
@@ -203,7 +203,7 @@ export function CompletedBookRow({ book }: CompletedBookRowProps) {
           <span
             className="rounded-md px-2 py-0.5 text-xs font-medium tabular-nums"
             style={{
-              background: "rgba(52,211,153,0.1)",
+              background: "color-mix(in srgb, var(--cf-data-emerald) 10%, transparent)",
               color: "var(--cf-success-text)",
             }}
           >

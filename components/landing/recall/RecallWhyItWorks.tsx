@@ -58,7 +58,7 @@ export function RecallWhyItWorks() {
         {/* ── LEFT: the editorial header, lots of air ── */}
         <header className="max-w-[26rem]">
           <p
-            className="cf-fade-up font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.34em]"
+            className="cf-fade-up font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.34em]"
             style={{
               color: "var(--cf-recall-ink-faint)",
               animationDelay: "0ms",
@@ -124,13 +124,13 @@ export function RecallWhyItWorks() {
                     }}
                   >
                     <span
-                      className="font-(family-name:--font-mono) text-[12px] leading-snug tracking-[0.04em] group-hover:underline"
+                      className="font-(family-name:--font-mono) text-cf-label-sm leading-snug tracking-[0.04em] group-hover:underline"
                       style={{ color: "var(--cf-recall-ink-soft)" }}
                     >
                       {r.source}
                     </span>
                     <span
-                      className="mt-1.5 inline-flex items-center gap-1 font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.2em] group-hover:underline"
+                      className="mt-1.5 inline-flex items-center gap-1 font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.2em] group-hover:underline"
                       style={{ color: "var(--cf-recall-accent)" }}
                     >
                       {r.year}
@@ -140,13 +140,13 @@ export function RecallWhyItWorks() {
                 ) : (
                   <>
                     <p
-                      className="font-(family-name:--font-mono) text-[12px] leading-snug tracking-[0.04em]"
+                      className="font-(family-name:--font-mono) text-cf-label-sm leading-snug tracking-[0.04em]"
                       style={{ color: "var(--cf-recall-ink-soft)" }}
                     >
                       {r.source}
                     </p>
                     <p
-                      className="mt-1.5 font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.2em]"
+                      className="mt-1.5 font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.2em]"
                       style={{ color: "var(--cf-recall-accent)" }}
                     >
                       {r.year}

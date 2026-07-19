@@ -261,13 +261,13 @@ export function TopNav({
                   </svg>
                   <div className="flex flex-col">
                     <span
-                      className="text-[9px] font-semibold uppercase tracking-[0.12em]"
+                      className="text-cf-caption font-semibold uppercase tracking-[0.12em]"
                       style={{ color: "var(--text-muted)" }}
                     >
                       Guided reading
                     </span>
                     <span
-                      className="font-(family-name:--font-display) text-[15px] font-semibold"
+                      className="font-(family-name:--font-display) text-cf-body font-semibold"
                       style={{ color: "var(--text-heading)" }}
                     >
                       ChapterFlow

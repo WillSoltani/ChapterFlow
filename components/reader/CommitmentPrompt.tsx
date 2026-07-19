@@ -127,7 +127,7 @@ export function CommitmentPrompt({
                     : "border-(--cr-glass-border) bg-(--cr-bg-surface-3) hover:border-(--cr-accent)/30"
                 }`}
               >
-                <p className={`text-[14px] leading-relaxed ${
+                <p className={`text-cf-body-sm leading-relaxed ${
                   isSelected ? "text-(--cr-text-heading)" : "text-(--cr-text-secondary)"
                 }`}>
                   {plan.plan}
@@ -140,7 +140,7 @@ export function CommitmentPrompt({
 
       {effectiveSelectedPlan && (
         <div className="mt-4 flex items-center gap-3">
-          <div className="flex items-center gap-1.5 text-[12px] text-(--cr-text-disabled)">
+          <div className="flex items-center gap-1.5 text-cf-label-sm text-(--cr-text-disabled)">
             <Clock className="h-3.5 w-3.5" />
             <span>Check in after</span>
           </div>

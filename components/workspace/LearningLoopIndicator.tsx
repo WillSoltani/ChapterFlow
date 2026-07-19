@@ -62,7 +62,7 @@ export function LearningLoopIndicator({
               </div>
               {/* Label */}
               <span
-                className="text-[11px] tracking-wide"
+                className="text-cf-caption tracking-wide"
                 style={{
                   color:
                     state === "current"

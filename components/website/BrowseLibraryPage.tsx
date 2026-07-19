@@ -268,7 +268,7 @@ function SearchBar({
             setTimeout(() => setFocused(false), 200);
           }}
           placeholder="Search by title, author, or topic..."
-          className="flex-1 bg-transparent outline-none text-[14px] placeholder:text-(--text-muted)"
+          className="flex-1 bg-transparent outline-none text-cf-body-sm placeholder:text-(--text-muted)"
           style={{ color: "var(--text-heading)", fontFamily: "var(--font-body)" }}
           aria-label="Search books"
         />
@@ -290,7 +290,7 @@ function SearchBar({
           style={{
             background: "var(--bg-elevated)",
             border: "1px solid var(--border-subtle)",
-            boxShadow: "0 16px 48px rgba(0,0,0,0.5)",
+            boxShadow: "0 16px 48px color-mix(in srgb, var(--cf-palette-black) 50%, transparent)",
           }}
         >
           {results.length > 0 ? (
@@ -311,10 +311,10 @@ function SearchBar({
                   />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[14px] font-medium truncate" style={{ color: "var(--text-heading)" }}>
+                  <p className="text-cf-body-sm font-medium truncate" style={{ color: "var(--text-heading)" }}>
                     {book.title}
                   </p>
-                  <p className="text-[12px]" style={{ color: "var(--text-muted)" }}>
+                  <p className="text-cf-label-sm" style={{ color: "var(--text-muted)" }}>
                     {book.author}
                   </p>
                 </div>
@@ -328,14 +328,14 @@ function SearchBar({
             ))
           ) : (
             <div className="px-4 py-5 text-center">
-              <p className="text-[14px]" style={{ color: "var(--text-muted)" }}>
+              <p className="text-cf-body-sm" style={{ color: "var(--text-muted)" }}>
                 No books found for &ldquo;{query}&rdquo;
               </p>
               <button
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => onRequestBook(query)}
-                className="inline-flex items-center justify-center min-h-[44px] px-2 text-[12px] mt-1 font-medium hover:underline underline-offset-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
+                className="inline-flex items-center justify-center min-h-[44px] px-2 text-cf-label-sm mt-1 font-medium hover:underline underline-offset-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
                 style={{ color: "var(--accent-cyan)" }}
               >
                 Request &ldquo;{query}&rdquo; &rarr;
@@ -373,24 +373,24 @@ function FeaturedBookSpotlight({ book, reason }: { book: LibraryBook; reason: st
           {reason}
         </span>
         <h3
-          className="text-[18px] md:text-[20px] font-bold mt-2 leading-snug"
+          className="text-lg md:text-xl font-bold mt-2 leading-snug"
           style={{ color: "var(--text-heading)", fontFamily: "var(--font-display)" }}
         >
           {book.title}
         </h3>
-        <p className="text-[14px] mt-0.5" style={{ color: "var(--text-secondary)" }}>
+        <p className="text-cf-body-sm mt-0.5" style={{ color: "var(--text-secondary)" }}>
           {book.author}
         </p>
-        <p className="text-[13px] mt-2 leading-relaxed hidden md:block" style={{ color: "var(--text-muted)" }}>
+        <p className="text-cf-label mt-2 leading-relaxed hidden md:block" style={{ color: "var(--text-muted)" }}>
           {book.description}
         </p>
-        <p className="text-[12px] mt-2" style={{ color: "var(--text-muted)" }}>
+        <p className="text-cf-label-sm mt-2" style={{ color: "var(--text-muted)" }}>
           {book.chapters} chapters · ~{avgMinPerChapter(book)}m each
         </p>
         <Link
           href={bookHref(book.id)}
           onClick={() => track("book_card_click", { source: "browse_library_featured", bookId: book.id })}
-          className="mt-3 text-[13px] font-semibold hover:underline underline-offset-4 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+          className="mt-3 text-cf-label font-semibold hover:underline underline-offset-4 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
           style={{ color: "var(--accent-cyan)" }}
         >
           Start reading →
@@ -422,13 +422,13 @@ function LibraryHero({
             <div>
               <SectionLabel>THE LIBRARY</SectionLabel>
               <h1
-                className="mt-3 text-[28px] md:text-[36px] lg:text-[42px] font-bold leading-[1.1] tracking-tight"
+                className="mt-3 text-[28px] md:text-4xl lg:text-[42px] font-bold leading-[1.1] tracking-tight"
                 style={{ color: "var(--text-heading)", fontFamily: "var(--font-display)" }}
               >
                 Handpicked books, structured for retention.
               </h1>
               <p
-                className="mt-3 text-[15px] md:text-[16px] leading-[1.7] max-w-[520px]"
+                className="mt-3 text-cf-body md:text-cf-body-lg leading-[1.7] max-w-[520px]"
                 style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
               >
                 {CATALOG_BOOK_COUNT_DISPLAY} non-fiction titles across psychology, productivity, leadership, and more.
@@ -524,13 +524,13 @@ function FilterBar({
       >
         <div className="max-w-7xl mx-auto px-4 flex items-center gap-4">
           {/* Category pills */}
-          <div className="flex-1 overflow-x-auto hide-scrollbar">
+          <div className="flex-1 overflow-x-auto scrollbar-hide">
             <div className="flex gap-2" role="tablist" aria-label="Filter by category">
               <button
                 role="tab"
                 aria-selected={activeCategory === "All"}
                 onClick={() => onCategoryChange("All")}
-                className="shrink-0 rounded-full px-4 py-2 text-[13px] font-medium transition-all duration-200"
+                className="shrink-0 rounded-full px-4 py-2 text-cf-label font-medium transition-all duration-200"
                 style={
                   activeCategory === "All"
                     ? { background: "var(--accent-cyan)", color: "var(--primary-foreground)", fontWeight: 600 }
@@ -545,7 +545,7 @@ function FilterBar({
                   role="tab"
                   aria-selected={activeCategory === cat.name}
                   onClick={() => onCategoryChange(cat.name)}
-                  className="shrink-0 rounded-full px-4 py-2 text-[13px] font-medium transition-all duration-200 whitespace-nowrap"
+                  className="shrink-0 rounded-full px-4 py-2 text-cf-label font-medium transition-all duration-200 whitespace-nowrap"
                   style={
                     activeCategory === cat.name
                       ? { background: "var(--accent-cyan)", color: "var(--primary-foreground)", fontWeight: 600 }
@@ -559,7 +559,7 @@ function FilterBar({
           </div>
 
           {/* Result count */}
-          <span className="hidden md:block text-[12px] shrink-0" style={{ color: "var(--text-muted)" }}>
+          <span className="hidden md:block text-cf-label-sm shrink-0" style={{ color: "var(--text-muted)" }}>
             Showing {resultCount} of {totalCount}
           </span>
 
@@ -573,7 +573,7 @@ function FilterBar({
                 if (e.key === "Escape") setSortOpen(false);
                 if (e.key === "ArrowDown") { e.preventDefault(); setSortOpen(true); }
               }}
-              className="flex items-center gap-1.5 text-[13px] px-3 py-2 rounded-lg transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
+              className="flex items-center gap-1.5 text-cf-label px-3 py-2 rounded-lg transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
               style={{ color: "var(--text-secondary)" }}
             >
               <span className="hidden sm:inline">Sort:</span>{" "}
@@ -588,7 +588,7 @@ function FilterBar({
                 style={{
                   background: "var(--bg-elevated)",
                   border: "1px solid var(--border-subtle)",
-                  boxShadow: "0 12px 40px rgba(0,0,0,0.5)",
+                  boxShadow: "0 12px 40px color-mix(in srgb, var(--cf-palette-black) 50%, transparent)",
                 }}
               >
                 {SORT_OPTIONS.map((opt) => (
@@ -601,7 +601,7 @@ function FilterBar({
                       if (e.key === "Escape") { setSortOpen(false); }
                       if (e.key === "Enter" || e.key === " ") { onSortChange(opt.value); setSortOpen(false); }
                     }}
-                    className="block w-full text-left px-4 py-2.5 text-[13px] transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
+                    className="block w-full text-left px-4 py-2.5 text-cf-label transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
                     style={{
                       color: sortBy === opt.value ? "var(--accent-cyan)" : "var(--text-secondary)",
                       fontWeight: sortBy === opt.value ? 600 : 400,
@@ -656,19 +656,19 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
 
         {/* Hover overlay */}
         <div className="absolute inset-x-0 bottom-0 h-[50%] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-end p-3 pointer-events-none"
-          style={{ background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)" }}
+          style={{ background: "linear-gradient(to top, color-mix(in srgb, var(--cf-palette-black) 88%, transparent) 0%, color-mix(in srgb, var(--cf-palette-black) 40%, transparent) 60%, transparent 100%)" }}
         >
-          <p className="text-[12px] text-white/80 line-clamp-2 leading-relaxed">
+          <p className="text-cf-label-sm text-white/80 line-clamp-2 leading-relaxed">
             {book.description}
           </p>
           <div className="flex items-center gap-2 mt-1.5">
             <span
               className="text-[10px] px-2 py-0.5 rounded-full"
-              style={{ background: "rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.7)" }}
+              style={{ background: "color-mix(in srgb, var(--cf-palette-white) 12%, transparent)", color: "color-mix(in srgb, var(--cf-palette-white) 70%, transparent)" }}
             >
               {DIFFICULTY_LABEL[book.difficulty]}
             </span>
-            <span className="text-[11px] font-medium ml-auto" style={{ color: "var(--accent-cyan)" }}>
+            <span className="text-cf-caption font-medium ml-auto" style={{ color: "var(--accent-cyan)" }}>
               Start reading →
             </span>
           </div>
@@ -678,16 +678,16 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
       {/* Info */}
       <div className="mt-2.5">
         <h4
-          className="text-[14px] font-semibold line-clamp-2 leading-snug"
+          className="text-cf-body-sm font-semibold line-clamp-2 leading-snug"
           style={{ color: "var(--text-heading)", fontFamily: "var(--font-display)" }}
         >
           {book.title}
         </h4>
-        <p className="text-[12px] mt-0.5" style={{ color: "var(--text-secondary)" }}>
+        <p className="text-cf-label-sm mt-0.5" style={{ color: "var(--text-secondary)" }}>
           {book.author}
         </p>
         <p
-          className="sm:hidden text-[11px] mt-1.5 leading-relaxed line-clamp-2"
+          className="sm:hidden text-cf-caption mt-1.5 leading-relaxed line-clamp-2"
           style={{ color: "var(--text-muted)", fontFamily: "var(--font-body)" }}
         >
           {book.description}
@@ -706,7 +706,7 @@ function BookCard({ book, showCategoryTag = false }: { book: LibraryBook; showCa
             {book.category}
           </span>
         )}
-        <p className="text-[11px] mt-1" style={{ color: "var(--text-muted)" }}>
+        <p className="text-cf-caption mt-1" style={{ color: "var(--text-muted)" }}>
           {book.chapters} ch · ~{avgMinPerChapter(book)}m
         </p>
       </div>
@@ -770,7 +770,7 @@ function BookRow({
       {/* Row header */}
       <div className="flex justify-between items-center mb-4 px-4 max-w-7xl mx-auto">
         <h3
-          className="text-[18px] font-semibold"
+          className="text-lg font-semibold"
           style={{ color: "var(--text-heading)", fontFamily: "var(--font-display)" }}
         >
           {icon && <span className="mr-1.5">{icon}</span>}
@@ -779,7 +779,7 @@ function BookRow({
         {onSeeAll && seeAllLabel && (
           <button
             onClick={onSeeAll}
-            className="text-[13px] font-medium hover:underline underline-offset-4 transition-colors"
+            className="text-cf-label font-medium hover:underline underline-offset-4 transition-colors"
             style={{ color: "var(--accent-cyan)" }}
           >
             {seeAllLabel}
@@ -816,7 +816,7 @@ function BookRow({
 
         <div
           ref={scrollRef}
-          className="flex gap-5 overflow-x-auto hide-scrollbar px-4"
+          className="flex gap-5 overflow-x-auto scrollbar-hide px-4"
           style={{ scrollSnapType: "x mandatory", scrollPaddingLeft: 16 }}
         >
           {/* Left padding for max-w alignment */}
@@ -978,18 +978,18 @@ function ZeroResults({
       >
         <SearchIcon />
       </div>
-      <h3 className="text-[20px] font-bold" style={{ color: "var(--text-heading)", fontFamily: "var(--font-display)" }}>
+      <h3 className="text-xl font-bold" style={{ color: "var(--text-heading)", fontFamily: "var(--font-display)" }}>
         No books found
       </h3>
       {query.trim() && (
-        <p className="text-[14px] mt-2" style={{ color: "var(--text-secondary)" }}>
+        <p className="text-cf-body-sm mt-2" style={{ color: "var(--text-secondary)" }}>
           Nothing matched &ldquo;{query}&rdquo;. Try a different search or browse by category.
         </p>
       )}
       <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
         <button
           onClick={onClear}
-          className="inline-flex items-center justify-center min-h-[44px] text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+          className="inline-flex items-center justify-center min-h-[44px] text-cf-label font-semibold px-5 py-2.5 rounded-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
           style={{ background: "var(--bg-raised)", border: "1px solid var(--border-medium)", color: "var(--text-heading)" }}
         >
           Clear search
@@ -997,7 +997,7 @@ function ZeroResults({
         {query.trim() && (
           <button
             onClick={() => onRequestBook(query)}
-            className="inline-flex items-center justify-center min-h-[44px] text-[13px] font-semibold px-5 py-2.5 rounded-lg transition-transform duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+            className="inline-flex items-center justify-center min-h-[44px] text-cf-label font-semibold px-5 py-2.5 rounded-lg transition-transform duration-200 hover:scale-[1.02] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
             style={{ background: "var(--accent-cyan)", color: "var(--primary-foreground)" }}
           >
             Request &ldquo;{query.trim()}&rdquo;
@@ -1026,14 +1026,14 @@ function BottomCTA() {
           <SectionLabel>START WITH ONE CHAPTER</SectionLabel>
 
           <h2
-            className="mt-3 text-[24px] md:text-[30px] font-bold leading-[1.15]"
+            className="mt-3 text-2xl md:text-3xl font-bold leading-[1.15]"
             style={{ color: "var(--text-heading)", fontFamily: "var(--font-display)" }}
           >
             Every book follows the same proven loop.
           </h2>
 
           <p
-            className="mt-3 text-[15px] leading-[1.7] max-w-md mx-auto"
+            className="mt-3 text-cf-body leading-[1.7] max-w-md mx-auto"
             style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
           >
             Read the summary. See it applied in real life. Prove you understood it.
@@ -1044,14 +1044,14 @@ function BottomCTA() {
             <Link
               href={AUTH_LOGIN_BOOK_URL}
               onClick={() => track("cta_click", { source: "browse_library_bottom_cta" })}
-              className="cta-shine inline-flex items-center rounded-full px-7 py-3.5 font-semibold text-[15px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+              className="cta-shine inline-flex items-center rounded-full px-7 py-3.5 font-semibold text-cf-body transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
               style={{ backgroundColor: "var(--accent-cyan)", color: "var(--primary-foreground)" }}
             >
               Open my first book →
             </Link>
           </div>
 
-          <p className="mt-3 text-[12px]" style={{ color: "var(--text-muted)" }}>
+          <p className="mt-3 text-cf-label-sm" style={{ color: "var(--text-muted)" }}>
             No credit card · {FREE_OFFER_LABEL} · Cancel anytime
           </p>
         </div>
@@ -1166,7 +1166,7 @@ export function BrowseLibraryPage() {
         aria-hidden
         style={{
           background: [
-            "radial-gradient(ellipse 60vw 50vw at 30% 0%, rgba(34, 211, 238, 0.04), transparent)",
+            "radial-gradient(ellipse 60vw 50vw at 30% 0%, color-mix(in srgb, var(--accent-cyan) 4%, transparent), transparent)",
             "var(--bg-base)",
           ].join(", "),
         }}

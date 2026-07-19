@@ -169,11 +169,11 @@ export function TokenExpiryGuard() {
           {/* Only the static headline is the announced live region — the
               per-second countdown below is aria-hidden so it doesn't
               re-announce the whole alert every tick. */}
-          <p className="text-[13px] font-medium text-(--cf-text-1)" role="alert">
+          <p className="text-cf-label font-medium text-(--cf-text-1)" role="alert">
             {expired ? "Your session has expired." : "Your session is about to expire."}
           </p>
           {!expired && (
-            <p className="text-[12px] text-(--cf-text-3)" aria-hidden="true">
+            <p className="text-cf-label-sm text-(--cf-text-3)" aria-hidden="true">
               Signing you out in{" "}
               <span className="font-mono tabular-nums text-(--cf-text-2)">
                 {formatCountdown(secondsLeft)}
@@ -184,7 +184,7 @@ export function TokenExpiryGuard() {
 
         <a
           href={getLoginUrl()}
-          className="inline-flex min-h-11 shrink-0 items-center rounded-lg bg-(--cf-accent) px-3 text-[12px] font-semibold text-(--cf-accent-contrast)"
+          className="inline-flex min-h-11 shrink-0 items-center rounded-lg bg-(--cf-accent) px-3 text-cf-label-sm font-semibold text-(--cf-accent-contrast)"
         >
           Sign in again
         </a>

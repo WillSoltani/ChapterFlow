@@ -88,11 +88,11 @@ export function Toast({
             }}
           >
             <div className="px-5 py-4">
-              <p className="text-[15px] font-semibold" style={{ color: "var(--text-heading)" }}>
+              <p className="text-cf-body font-semibold" style={{ color: "var(--text-heading)" }}>
                 {message}
               </p>
               {detail ? (
-                <p className="mt-1 text-[13px]" style={{ color: "var(--accent-amber)" }}>
+                <p className="mt-1 text-cf-label" style={{ color: "var(--accent-amber)" }}>
                   {detail}
                 </p>
               ) : null}

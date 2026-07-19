@@ -64,7 +64,7 @@ export function CuratedSection({
           {/* "See all" ghost button — Autonomy (SDT) */}
           <button
             type="button"
-            className="cursor-pointer rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors"
+            className="cursor-pointer rounded-lg px-3 py-1.5 text-cf-label font-medium transition-colors"
             style={{
               color: "var(--accent-cyan)",
               border: "1px solid var(--accent-cyan)",
@@ -77,10 +77,10 @@ export function CuratedSection({
             Show all
           </button>
         </div>
-        <p className="mt-1 text-[14px]" style={{ color: "var(--text-secondary)" }}>
+        <p className="mt-1 text-cf-body-sm" style={{ color: "var(--text-secondary)" }}>
           {narrativeSubtitle}
         </p>
-        <p className="mt-1 text-[12px]" style={{ color: "var(--text-tertiary)" }}>
+        <p className="mt-1 text-cf-label-sm" style={{ color: "var(--text-tertiary)" }}>
           {books.length} books · Avg. ~{formatReadingTime(avgTime)} · Mostly {mostCommon}
         </p>
       </motion.div>

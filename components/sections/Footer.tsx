@@ -140,7 +140,7 @@ export function Footer() {
 
         {/* sign-off line */}
         <div
-          className="mt-6 flex flex-col gap-2 border-t pt-6 text-[12px] sm:flex-row sm:items-center sm:justify-between"
+          className="mt-6 flex flex-col gap-2 border-t pt-6 text-cf-label-sm sm:flex-row sm:items-center sm:justify-between"
           style={{ borderColor: "var(--cf-anchor-border)" }}
         >
           <span className="cf-folio tabular-nums text-(--cf-anchor-text-muted)">

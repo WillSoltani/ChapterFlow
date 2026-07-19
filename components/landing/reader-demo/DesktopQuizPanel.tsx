@@ -260,7 +260,7 @@ export function DesktopQuizPanel({
           />
         </div>
 
-        <p className="text-[15px] text-(--cr-text-secondary)">
+        <p className="text-cf-body text-(--cr-text-secondary)">
           {correctCount} of {questions.length} correct · {scorePercent}%
         </p>
 

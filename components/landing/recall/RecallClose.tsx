@@ -116,13 +116,13 @@ export function RecallClose() {
           {/* wordmark + one-line descriptor */}
           <div className="flex flex-col gap-2">
             <span
-              className="font-(family-name:--font-display) text-[16px] font-semibold"
+              className="font-(family-name:--font-display) text-cf-body-lg font-semibold"
               style={{ color: "var(--cf-recall-ink)" }}
             >
               {CHAPTERFLOW_NAME}
             </span>
             <span
-              className="text-[13px] leading-relaxed"
+              className="text-cf-label leading-relaxed"
               style={{ color: "var(--cf-recall-ink-faint)" }}
             >
               Guided reading that makes the books you love finally stick.
@@ -136,7 +136,7 @@ export function RecallClose() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="rounded text-[13px] font-medium underline-offset-4 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                    className="rounded text-cf-label font-medium underline-offset-4 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                     style={{
                       color: "var(--cf-recall-ink-soft)",
                       // @ts-expect-error -- CSS custom property for the focus ring color
@@ -156,7 +156,7 @@ export function RecallClose() {
         <div className="mx-auto flex max-w-[72rem] flex-wrap items-center justify-between gap-x-6 gap-y-4 pb-10">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             <p
-              className="text-[12px]"
+              className="text-cf-label-sm"
               style={{ color: "var(--cf-recall-ink-faint)" }}
             >
               © {year} {CHAPTERFLOW_NAME}. All rights reserved.
@@ -167,7 +167,7 @@ export function RecallClose() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="rounded text-[12px] font-medium underline-offset-4 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                      className="rounded text-cf-label-sm font-medium underline-offset-4 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                       style={{
                         color: "var(--cf-recall-ink-soft)",
                         // @ts-expect-error -- CSS custom property for the focus ring color
@@ -183,7 +183,7 @@ export function RecallClose() {
           </div>
           {/* the Proudly Canadian flag badge: a small SVG flag (token-filled) */}
           <span
-            className="cf-recall-canadian inline-flex items-center gap-2 text-[12px]"
+            className="cf-recall-canadian inline-flex items-center gap-2 text-cf-label-sm"
             style={{ color: "var(--cf-recall-ink-soft)" }}
           >
             <svg width="26" height="14" viewBox="0 0 48 24" aria-hidden="true">

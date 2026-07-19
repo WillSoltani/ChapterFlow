@@ -226,7 +226,7 @@ export function Navbar() {
           {/* ── Logo + spec stamp ───────────────── */}
           <Link href="/" className="flex items-center gap-2.5">
             <LogoIcon />
-            <span className="font-(family-name:--font-display) text-[18px] font-semibold text-(--text-heading)">
+            <span className="font-(family-name:--font-display) text-lg font-semibold text-(--text-heading)">
               ChapterFlow
             </span>
             {/* mono spec stamp — part of the instrument-header system */}
@@ -288,14 +288,14 @@ export function Navbar() {
                     track("cta_click", { source: "navbar_desktop_signout" });
                     performLogout();
                   }}
-                  className="font-(family-name:--font-body) text-[14px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+                  className="font-(family-name:--font-body) text-cf-body-sm font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
                 >
                   Sign out
                 </button>
                 <Link
                   href="/dashboard"
                   onClick={() => track("cta_click", { source: "navbar_desktop_dashboard" })}
-                  className="rounded-full bg-(--accent-cyan) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[var(--shadow-glow-cyan)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+                  className="rounded-full bg-(--accent-cyan) px-5 py-2 font-(family-name:--font-body) text-cf-label font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[var(--shadow-glow-cyan)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
                 >
                   {displayName}&rsquo;s Dashboard
                 </Link>
@@ -305,14 +305,14 @@ export function Navbar() {
                 <a
                   href={AUTH_URL}
                   onClick={() => track("cta_click", { source: "navbar_desktop_signin" })}
-                  className="font-(family-name:--font-body) text-[14px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 rounded"
+                  className="font-(family-name:--font-body) text-cf-body-sm font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 rounded"
                 >
                   Sign in
                 </a>
                 <a
                   href={AUTH_URL}
                   onClick={() => track("cta_click", { source: "navbar_desktop_primary" })}
-                  className="rounded-full bg-(--accent-cyan) px-5 py-2 font-(family-name:--font-body) text-[13px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[var(--shadow-glow-cyan)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+                  className="rounded-full bg-(--accent-cyan) px-5 py-2 font-(family-name:--font-body) text-cf-label font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 hover:shadow-[var(--shadow-glow-cyan)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
                 >
                   Start reading free &rarr;
                 </a>
@@ -425,7 +425,7 @@ export function Navbar() {
                       closeMobile();
                       performLogout();
                     }}
-                    className="font-(family-name:--font-body) text-[16px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+                    className="font-(family-name:--font-body) text-cf-body-lg font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
                   >
                     Sign out
                   </button>
@@ -435,7 +435,7 @@ export function Navbar() {
                       track("cta_click", { source: "navbar_mobile_dashboard" });
                       closeMobile();
                     }}
-                    className="rounded-full bg-(--accent-cyan) px-7 py-3 font-(family-name:--font-body) text-[15px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+                    className="rounded-full bg-(--accent-cyan) px-7 py-3 font-(family-name:--font-body) text-cf-body font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
                   >
                     {displayName}&rsquo;s Dashboard
                   </Link>
@@ -444,7 +444,7 @@ export function Navbar() {
                 <>
                   <a
                     href={AUTH_URL}
-                    className="font-(family-name:--font-body) text-[16px] font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 rounded"
+                    className="font-(family-name:--font-body) text-cf-body-lg font-medium text-(--text-secondary) transition-colors duration-200 hover:text-(--text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 rounded"
                     onClick={() => {
                       track("cta_click", { source: "navbar_mobile_signin" });
                       closeMobile();
@@ -454,7 +454,7 @@ export function Navbar() {
                   </a>
                   <a
                     href={AUTH_URL}
-                    className="rounded-full bg-(--accent-cyan) px-7 py-3 font-(family-name:--font-body) text-[15px] font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+                    className="rounded-full bg-(--accent-cyan) px-7 py-3 font-(family-name:--font-body) text-cf-body font-semibold text-primary-foreground transition-all duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
                     onClick={() => {
                       track("cta_click", { source: "navbar_mobile_primary" });
                       closeMobile();

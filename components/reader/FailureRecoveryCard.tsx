@@ -25,7 +25,7 @@ export function FailureRecoveryCard({ failureRecovery }: FailureRecoveryCardProp
       aria-labelledby={labelId}
       className="cr-failure-recovery rounded-2xl border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-5 py-4"
     >
-      <h3 id={labelId} className="text-[11px] font-bold uppercase tracking-[0.16em] text-(--cr-accent)">
+      <h3 id={labelId} className="text-cf-caption font-bold uppercase tracking-[0.16em] text-(--cr-accent)">
         If you slip
       </h3>
       <p className="mt-2 text-base leading-relaxed text-(--cr-text-primary)">{normalizingLine}</p>

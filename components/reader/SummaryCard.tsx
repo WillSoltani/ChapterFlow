@@ -106,7 +106,7 @@ export function SummaryCard({
   }, []);
 
   const eyebrow =
-    "text-[11px] font-medium uppercase tracking-[0.18em] text-(--cr-text-secondary) mb-3";
+    "text-cf-caption font-medium uppercase tracking-[0.18em] text-(--cr-text-secondary) mb-3";
 
   return (
     <div className="cr-reading-content space-y-10">
@@ -151,7 +151,7 @@ export function SummaryCard({
           <p className={eyebrow}>
             Key Takeaways
             {bookmarkedTakeaways.size > 0 && (
-              <span className="ml-2 text-[11px] font-normal normal-case tracking-normal text-(--cr-text-disabled)">
+              <span className="ml-2 text-cf-caption font-normal normal-case tracking-normal text-(--cr-text-disabled)">
                 · {bookmarkedTakeaways.size} saved
               </span>
             )}

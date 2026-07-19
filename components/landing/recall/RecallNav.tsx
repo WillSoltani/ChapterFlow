@@ -96,7 +96,7 @@ export function RecallNav() {
         </a>
         <a
           href={AUTH_LOGIN_BOOK_URL}
-          className="hidden rounded-full px-5 py-2 text-[13px] font-semibold transition-[filter,transform] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:inline-block"
+          className="hidden rounded-full px-5 py-2 text-cf-label font-semibold transition-[filter,transform] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:inline-block"
           style={{
             background: "var(--cf-recall-accent)",
             color: "var(--cf-recall-bg)",

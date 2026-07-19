@@ -98,12 +98,12 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
           <svg width="120" height="60" viewBox="0 0 120 60">
             <polygon
               points="10,50 25,42 40,45 55,30 70,35 85,20 100,15 115,10 115,60 10,60"
-              fill="rgba(167,139,250,0.15)"
+              fill="color-mix(in srgb, var(--cf-data-violet) 15%, transparent)"
               stroke="none"
             />
             <polyline
               fill="none"
-              stroke="#A78BFA"
+              stroke="var(--cf-data-violet)"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -117,12 +117,12 @@ export function ProInsightsPreview({ isPro }: ProInsightsPreviewProps) {
           <svg width="80" height="80" viewBox="0 0 80 80">
             <polygon
               fill="none"
-              stroke="rgba(52,211,153,0.3)"
+              stroke="color-mix(in srgb, var(--cf-data-emerald) 30%, transparent)"
               strokeWidth="1"
               points="40,5 70,25 60,60 20,60 10,25"
             />
             <polygon
-              fill="rgba(52,211,153,0.2)"
+              fill="color-mix(in srgb, var(--cf-data-emerald) 20%, transparent)"
               stroke="var(--cf-success-text)"
               strokeWidth="1.5"
               points="40,18 58,30 52,50 28,50 22,30"

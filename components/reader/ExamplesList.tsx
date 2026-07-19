@@ -199,14 +199,14 @@ function ScenarioCard({
             {hasReflectionPrompt ? (
               <p
                 className={[
-                  "text-[14px] text-(--cr-text-secondary) leading-[1.6] mb-4",
+                  "text-cf-body-sm text-(--cr-text-secondary) leading-[1.6] mb-4",
                   fontScaleClass,
                 ].join(" ")}
               >
                 {example.reflectionPrompt}
               </p>
             ) : (
-              <p className="text-[14px] text-(--cr-text-secondary) leading-[1.6] mb-4">
+              <p className="text-cf-body-sm text-(--cr-text-secondary) leading-[1.6] mb-4">
                 Decide in your head what you would do here. No need to type, just settle on an answer before continuing.
               </p>
             )}
@@ -215,7 +215,7 @@ function ScenarioCard({
               <button
                 type="button"
                 onClick={handleReveal}
-                className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-(--cr-accent) px-4 py-2 text-[13px] font-semibold text-(--cr-text-inverse) transition hover:opacity-90"
+                className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-(--cr-accent) px-4 py-2 text-cf-label font-semibold text-(--cr-text-inverse) transition hover:opacity-90"
               >
                 Reveal the analysis
               </button>
@@ -389,7 +389,7 @@ export function ExamplesList({
           {/* IP reward indicator — kept but visually quieter. The transactional
            * yellow pill read as gamification chrome ahead of content. Now it
            * reads as a small inline note that this action awards points. */}
-          <span className="ml-0.5 text-[11px] font-medium text-(--cr-text-secondary)">
+          <span className="ml-0.5 text-cf-caption font-medium text-(--cr-text-secondary)">
             +{SCENARIO_REWARD} IP
           </span>
         </button>
@@ -399,7 +399,7 @@ export function ExamplesList({
         <button
           type="button"
           onClick={onRetryFetch}
-          className="mb-3 w-full text-left rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-2 text-[12px] text-(--cr-text-secondary) hover:bg-(--cr-bg-surface-3) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
+          className="mb-3 w-full text-left rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) px-4 py-2 text-cf-label-sm text-(--cr-text-secondary) hover:bg-(--cr-bg-surface-3) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
         >
           Couldn&rsquo;t load community scenarios. Tap to retry.
         </button>
@@ -427,7 +427,7 @@ export function ExamplesList({
                 onFilterChange(option.id);
               }}
               className={[
-                "rounded-full border px-3 py-1.5 text-[13px] font-medium transition",
+                "rounded-full border px-3 py-1.5 text-cf-label font-medium transition",
                 active
                   ? "border-(--cr-accent) bg-(--cr-accent) text-(--cr-text-inverse)"
                   : "border-(--cr-glass-border) bg-(--cr-glass-nav) text-(--cr-text-secondary) hover:border-(--cr-accent)/40",
@@ -443,7 +443,7 @@ export function ExamplesList({
         })}
         {examples.length > 0 && (
           <span
-            className="ml-auto text-[12px] tabular-nums text-(--cr-text-disabled)"
+            className="ml-auto text-cf-label-sm tabular-nums text-(--cr-text-disabled)"
             aria-live="polite"
           >
             {visibleNumber} of {examples.length}
@@ -467,7 +467,7 @@ export function ExamplesList({
                   <p className="text-sm font-medium text-(--cr-text-heading)">{submission.title}</p>
                   <span
                     className={[
-                      "rounded-full border px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em]",
+                      "rounded-full border px-2 py-0.5 text-cf-caption font-semibold uppercase tracking-[0.08em]",
                       statusTone[submission.status],
                     ].join(" ")}
                   >
@@ -493,8 +493,8 @@ export function ExamplesList({
         {examples.length === 0 ? (
           <>
             <div className="text-center py-12 text-(--cr-text-disabled)">
-              <p className="text-[15px]">No {filter} examples in this chapter.</p>
-              <p className="text-[13px] mt-2">
+              <p className="text-cf-body">No {filter} examples in this chapter.</p>
+              <p className="text-cf-label mt-2">
                 Try a different filter, or submit your own scenario below.
               </p>
             </div>
@@ -615,7 +615,7 @@ function AddScenarioModal({
         onClick={onClose}
         aria-hidden="true"
       />
-      <div className="relative z-10 w-full max-w-xl overflow-y-auto rounded-2xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) p-6 shadow-[0_8px_32px_rgba(0,0,0,0.4)] sm:max-h-[90vh]">
+      <div className="relative z-10 w-full max-w-xl overflow-y-auto rounded-2xl border border-(--cr-glass-border) bg-(--cr-bg-surface-2) p-6 shadow-[0_8px_32px_color-mix(in srgb, var(--cf-palette-black) 40%, transparent)] sm:max-h-[90vh]">
         <div className="mb-5 flex items-start justify-between gap-3">
           <div>
             <div className="flex items-center gap-2">
