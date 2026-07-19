@@ -22,11 +22,10 @@ import {
 } from "@/lib/pricing";
 
 /**
- * §05 Pricing — the TERMS SHEET.
+ * Public pricing and plan comparison.
  *
  * Not a centered SaaS pricing block: a left-aligned spec sheet matching the
- * Ledger / CatalogIndex / Science panels. A §05 SectionLabel + mono running-head,
- * the two tiers as hairline-ruled spec rows on a flat --cf-surface panel (no
+ * The two tiers use hairline-ruled rows on a flat --cf-surface panel (no
  * floating glassy scale cards, no glow halos), prices in mono tabular datum style,
  * benefit/exclusion chips inline. ONE accent — cyan — for the work; the Pro CTA is
  * the same cyan as the hero/science CTAs (no gold/amber gradient, no second hue).
@@ -75,12 +74,11 @@ const faqs = [
   },
 ];
 
-/* ---- a tier as a spec row -------------------------------------------------- */
+/* ---- a plan row ------------------------------------------------------------ */
 
 type TierFeature = { label: string; granted: boolean };
 
 function TierRow({
-  call,
   name,
   price,
   unit,
@@ -91,7 +89,6 @@ function TierRow({
   cta,
   terms,
 }: {
-  call: string;
   name: string;
   price: string;
   unit: string;
@@ -107,22 +104,14 @@ function TierRow({
       className="grid grid-cols-1 gap-6 px-6 py-8 md:grid-cols-[minmax(0,18rem)_1fr] md:gap-10 md:px-9 md:py-9"
       style={{ background: "var(--cf-surface)" }}
     >
-      {/* LEFT — call number, name, price datum */}
+      {/* Plan name and price */}
       <div className="flex flex-col">
-        <div className="flex items-center gap-2">
-          <span
-            className="cf-folio tabular-nums"
-            style={{ color: accent ? "var(--accent-cyan)" : "var(--cf-axis-tint)" }}
-          >
-            {call}
-          </span>
-          <span
-            className="cf-folio"
-            style={{ color: accent ? "var(--accent-cyan)" : "var(--text-tertiary)" }}
-          >
-            {name}
-          </span>
-        </div>
+        <span
+          className="font-(family-name:--font-display) text-cf-label font-semibold uppercase tracking-[0.12em]"
+          style={{ color: accent ? "var(--accent-cyan)" : "var(--text-tertiary)" }}
+        >
+          {name}
+        </span>
 
         <div className="mt-4 flex items-baseline gap-1.5">
           <span
@@ -151,7 +140,7 @@ function TierRow({
         {terms && <div className="mt-3">{terms}</div>}
       </div>
 
-      {/* RIGHT — the spec list */}
+      {/* Included features */}
       <ul className="grid grid-cols-1 gap-x-8 gap-y-3 self-center sm:grid-cols-2">
         {features.map((f) => (
           <li
@@ -218,10 +207,10 @@ export function Pricing() {
   return (
     <section id="pricing" className="relative">
       <div className="mx-auto max-w-[1180px] px-5 pt-(--section-pad-sm) pb-(--section-pad-lg) md:px-8 md:pt-(--section-pad-md)">
-        {/* ---- Section head — left-aligned, folio system ---- */}
+        {/* Clear plan summary */}
         <SectionReveal>
           <div className="max-w-2xl">
-            <SectionLabel>§05 · PRICING</SectionLabel>
+            <SectionLabel>Plans</SectionLabel>
             <h2
               className="mt-4 font-bold leading-[1.05] text-balance"
               style={{
@@ -244,26 +233,26 @@ export function Pricing() {
           </div>
         </SectionReveal>
 
-        {/* ---- The terms-sheet panel ---- */}
+        {/* Plan comparison */}
         <SectionReveal delay={0.08}>
           <div
             className="relative mt-12 overflow-hidden rounded-2xl border"
             style={{ borderColor: "var(--border-subtle)", background: "var(--cf-surface)" }}
           >
-            {/* running head — billing cadence toggle as a mono datum control */}
+            {/* Billing cadence */}
             <div
               className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-4 md:px-9"
               style={{ borderBottom: "1px solid var(--border-subtle)" }}
             >
               <span className="cf-folio" style={{ color: "var(--cf-axis-tint)" }}>
-                Terms sheet · effective on signup
+                Choose your billing cadence
               </span>
 
               <div className="flex items-center gap-3">
                 <button
                   type="button"
                   onClick={() => setIsAnnual(false)}
-                  className="cf-folio min-h-9 px-1 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                  className="cf-folio min-h-11 px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                   style={{ color: isAnnual ? "var(--text-muted)" : "var(--text-heading)" }}
                 >
                   MONTHLY
@@ -273,18 +262,23 @@ export function Pricing() {
                   role="switch"
                   aria-checked={isAnnual}
                   aria-label="Toggle annual pricing"
-                  className="relative h-5 w-10 rounded-full transition-colors cursor-pointer border border-transparent forced-colors:border-[ButtonText] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
-                  style={{ background: isAnnual ? "var(--accent-cyan)" : "var(--bg-elevated)" }}
+                  className="relative flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full border border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                 >
                   <span
-                    className="absolute top-0.5 h-4 w-4 rounded-full bg-(--cf-toggle-knob) shadow transition-transform border border-transparent forced-colors:border-[ButtonText] forced-colors:bg-[Highlight]"
-                    style={{ transform: isAnnual ? "translateX(22px)" : "translateX(2px)" }}
-                  />
+                    aria-hidden="true"
+                    className="relative block h-5 w-10 rounded-full border border-transparent transition-colors forced-colors:border-[ButtonText]"
+                    style={{ background: isAnnual ? "var(--accent-cyan)" : "var(--bg-elevated)" }}
+                  >
+                    <span
+                      className="absolute top-0.5 h-4 w-4 rounded-full border border-transparent bg-(--cf-toggle-knob) shadow transition-transform forced-colors:border-[ButtonText] forced-colors:bg-[Highlight]"
+                      style={{ transform: isAnnual ? "translateX(22px)" : "translateX(2px)" }}
+                    />
+                  </span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setIsAnnual(true)}
-                  className="cf-folio flex items-center gap-1.5 min-h-9 px-1 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                  className="cf-folio flex min-h-11 items-center gap-1.5 px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                   style={{ color: isAnnual ? "var(--text-heading)" : "var(--text-muted)" }}
                 >
                   ANNUAL
@@ -297,8 +291,7 @@ export function Pricing() {
 
             {/* FREE row */}
             <TierRow
-              call="CF-FREE"
-              name="FREE"
+              name="Free"
               price="$0"
               unit="forever"
               blurb="Try ChapterFlow with two complete books — no card, no expiry."
@@ -321,8 +314,7 @@ export function Pricing() {
 
             {/* PRO row */}
             <TierRow
-              call="CF-PRO"
-              name="PRO"
+              name="Pro"
               price={proPrice}
               unit={`${PRICING.currency} / ${isAnnual ? "year" : "month"}`}
               subline={
@@ -385,11 +377,11 @@ export function Pricing() {
           </div>
         </SectionReveal>
 
-        {/* ---- FAQ — mono spec footnotes (disclosure rows) ---- */}
+        {/* Plan questions */}
         <SectionReveal delay={0.16}>
           <div className="mt-12">
             <p className="cf-folio" style={{ color: "var(--cf-axis-tint)" }}>
-              Footnotes
+              Questions about plans
             </p>
             <div className="mt-3 border-t border-(--border-subtle)">
               {faqs.map((faq, index) => {

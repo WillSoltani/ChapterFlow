@@ -1,7 +1,5 @@
 "use client";
 
-import { Footer } from "@/components/sections/Footer";
-import { Navbar } from "@/components/sections/Navbar";
 import { BookRequestSection } from "@/components/website/BookRequestSection";
 import { BrowseLibraryBottomCta } from "./browse-library/BrowseLibraryBottomCta";
 import { BrowseLibraryFilterBar } from "./browse-library/BrowseLibraryFilterBar";
@@ -29,7 +27,7 @@ export function BrowseLibraryPage() {
   } = useBrowseLibraryState();
 
   return (
-    <div className="min-h-screen" style={{ background: "var(--bg-base)", color: "var(--text-primary)" }}>
+    <div className="relative min-h-screen" style={{ color: "var(--text-primary)" }}>
       {/* Noise overlay */}
       <div className="noise-overlay pointer-events-none fixed inset-0 z-0" aria-hidden />
 
@@ -45,40 +43,52 @@ export function BrowseLibraryPage() {
         }}
       />
 
-      <Navbar />
-
       <BrowseLibraryHero
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         onRequestBook={handleRequestBook}
       />
-
-      <BrowseLibraryFilterBar
-        categories={categories}
-        activeCategory={activeCategory}
-        onCategoryChange={handleCategoryChange}
-        sortBy={sortBy}
-        onSortChange={handleSortChange}
-        resultCount={filteredBooks.length}
-        totalCount={ALL_BOOKS.length}
+      <div
+        data-public-hero-end
+        aria-hidden="true"
+        className="pointer-events-none h-px w-full"
       />
 
-      {/* Browse area */}
-      <BrowseLibraryResults
-        books={filteredBooks}
-        activeCategory={activeCategory}
-        query={debouncedQuery}
-        isAllView={isAllView}
-        onClear={handleClearSearch}
-        onRequestBook={handleRequestBook}
-        onSelectCategory={handleCategoryChange}
-      />
+      {/* A calm paper shelf keeps the varied cover art dominant while sharing
+          the Recall shell's type, periwinkle accent, rules, and focus language. */}
+      <section
+        aria-label="Browse the ChapterFlow catalog"
+        className="cf-paper-folio relative z-10 mx-auto w-[calc(100%-1rem)] max-w-[90rem] rounded-[2rem] py-2 sm:w-[calc(100%-2rem)] sm:py-4"
+      >
+        <BrowseLibraryFilterBar
+          categories={categories}
+          activeCategory={activeCategory}
+          onCategoryChange={handleCategoryChange}
+          sortBy={sortBy}
+          onSortChange={handleSortChange}
+          resultCount={filteredBooks.length}
+          totalCount={ALL_BOOKS.length}
+        />
 
-      <div className="-mb-10" ref={requestSectionRef}>
-        <BookRequestSection initialTitle={requestTitle} />
+        {/* Browse area */}
+        <BrowseLibraryResults
+          books={filteredBooks}
+          activeCategory={activeCategory}
+          query={debouncedQuery}
+          isAllView={isAllView}
+          onClear={handleClearSearch}
+          onRequestBook={handleRequestBook}
+          onSelectCategory={handleCategoryChange}
+        />
+
+        <div data-public-sticky-cta-suppress className="pb-4" ref={requestSectionRef}>
+          <BookRequestSection initialTitle={requestTitle} />
+        </div>
+      </section>
+
+      <div className="relative z-10 mt-10" data-public-sticky-cta-suppress>
+        <BrowseLibraryBottomCta />
       </div>
-      <BrowseLibraryBottomCta />
-      <Footer />
     </div>
   );
 }
