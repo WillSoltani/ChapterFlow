@@ -13,6 +13,7 @@ import { shouldUseLocalFallback } from "@/app/book/library/[bookId]/chapter/[cha
 import {
   buildChapterSeedKey,
   decideChapterContentFetch,
+  shouldRetainApiChapterAfterFailure,
 } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterContentHydration";
 
 export type ChapterContentProgress = {
@@ -249,14 +250,35 @@ export function useChapterContent(params: {
         // 402/403 = blocked, 404 = not-found, 5xx/network = "Try again"). This is
         // what stops a real content outage from being silently masked. (#1)
         const local = shouldUseLocalFallback(IS_DEV, status) ? fallbackRef.current?.() : undefined;
-        setState({
-          chapter: local,
-          progress: null,
-          loading: false,
-          hydrated: true,
-          error,
-          status,
-          source: local ? "local" : null,
+        setState((previous) => {
+          // A route-bound server seed is already authorization-attested content.
+          // A later retry that loses connectivity or receives a 5xx must not
+          // blank that prose. Definitive 4xx responses still fall through and
+          // remove it so reauth/paywall/lock handling owns the screen.
+          if (
+            shouldRetainApiChapterAfterFailure({
+              hasApiChapter:
+                Boolean(previous.chapter) && previous.source === "api",
+              status,
+            })
+          ) {
+            return {
+              ...previous,
+              loading: false,
+              hydrated: true,
+              error,
+              status,
+            };
+          }
+          return {
+            chapter: local,
+            progress: null,
+            loading: false,
+            hydrated: true,
+            error,
+            status,
+            source: local ? "local" : null,
+          };
         });
       });
 

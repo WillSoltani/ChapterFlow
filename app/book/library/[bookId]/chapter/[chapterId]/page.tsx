@@ -73,7 +73,7 @@ export default async function ChapterReaderPage({
       chapterId={chapter.chapterId}
       chapterOrder={chapter.number}
       initialBook={book}
-      initialChapter={initialSeed?.content}
+      initialSeed={initialSeed ?? undefined}
     />
   );
 }

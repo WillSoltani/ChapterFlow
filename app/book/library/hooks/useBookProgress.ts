@@ -40,9 +40,9 @@ function clearBookReaderStorage(bookId: string): void {
 }
 
 type ChapterState = "completed" | "current" | "locked";
-type ProgressChapter = { id: string };
+export type ProgressChapter = { id: string };
 
-type PersistedBookProgress = {
+export type PersistedBookProgress = {
   currentChapterId: string;
   completedChapterIds: string[];
   unlockedChapterIds: string[];
@@ -50,6 +50,12 @@ type PersistedBookProgress = {
   chapterCompletedAt: Record<string, string>;
   lastReadChapterId: string;
   lastOpenedAt: string;
+};
+
+export type BookProgressFloor = {
+  currentChapterId: string;
+  completedChapterIds: string[];
+  unlockedChapterIds: string[];
 };
 
 function uniqueIds(values: string[]): string[] {
@@ -67,6 +73,69 @@ function initialProgress(chapters: ProgressChapter[]): PersistedBookProgress {
     chapterCompletedAt: {},
     lastReadChapterId: firstChapterId,
     lastOpenedAt: new Date(0).toISOString(),
+  };
+}
+
+/**
+ * Union an authorization-attested server snapshot into local progress. The
+ * local mirror may add newer completion, but it can never move the reader below
+ * the server's current/unlocked/completed floor.
+ */
+export function applyBookProgressFloor(
+  progress: PersistedBookProgress,
+  floor: BookProgressFloor | null | undefined,
+  chapters: ProgressChapter[],
+): PersistedBookProgress {
+  if (!floor) return progress;
+  const chapterIds = new Set(chapters.map((chapter) => chapter.id));
+  const completedChapterIds = uniqueIds([
+    ...progress.completedChapterIds,
+    ...floor.completedChapterIds.filter((id) => chapterIds.has(id)),
+  ]);
+  const unlockedChapterIds = uniqueIds([
+    ...progress.unlockedChapterIds,
+    ...floor.unlockedChapterIds.filter((id) => chapterIds.has(id)),
+    ...completedChapterIds,
+  ]);
+
+  const localIndex = chapters.findIndex(
+    (chapter) => chapter.id === progress.currentChapterId,
+  );
+  const floorIndex = chapters.findIndex(
+    (chapter) => chapter.id === floor.currentChapterId,
+  );
+  let currentChapterId =
+    floorIndex > localIndex ? floor.currentChapterId : progress.currentChapterId;
+  const completedSet = new Set(completedChapterIds);
+  const unlockedSet = new Set(unlockedChapterIds);
+  if (
+    !chapterIds.has(currentChapterId) ||
+    completedSet.has(currentChapterId) ||
+    !unlockedSet.has(currentChapterId)
+  ) {
+    currentChapterId =
+      chapters
+        .slice(Math.max(0, floorIndex))
+        .find(
+          (chapter) =>
+            unlockedSet.has(chapter.id) && !completedSet.has(chapter.id),
+        )?.id ?? floor.currentChapterId;
+  }
+
+  const localLastReadIndex = chapters.findIndex(
+    (chapter) => chapter.id === progress.lastReadChapterId,
+  );
+  const lastReadChapterId =
+    floorIndex > localLastReadIndex
+      ? floor.currentChapterId
+      : progress.lastReadChapterId;
+
+  return {
+    ...progress,
+    currentChapterId,
+    completedChapterIds,
+    unlockedChapterIds: uniqueIds([...unlockedChapterIds, currentChapterId]),
+    lastReadChapterId,
   };
 }
 
@@ -193,12 +262,17 @@ function parseStored(
 
 export function useBookProgress<TChapter extends ProgressChapter>(
   bookId: string,
-  chapters: TChapter[]
+  chapters: TChapter[],
+  initialProgressFloor?: BookProgressFloor | null,
 ) {
   const storageKey = getBookProgressStorageKey(bookId);
   const [hydrated, setHydrated] = useState(false);
   const [progress, setProgress] = useState<PersistedBookProgress>(() =>
-    initialProgress(chapters)
+    applyBookProgressFloor(
+      initialProgress(chapters),
+      initialProgressFloor,
+      chapters,
+    )
   );
   const [serverReady, setServerReady] = useState(false);
   // Two-axis completion (feedback #4): the application axis is SERVER-ONLY and
@@ -211,9 +285,15 @@ export function useBookProgress<TChapter extends ProgressChapter>(
 
   useEffect(() => {
     const parsed = parseStored(window.localStorage.getItem(storageKey), chapters);
-    setProgress(parsed ?? initialProgress(chapters));
+    setProgress(
+      applyBookProgressFloor(
+        parsed ?? initialProgress(chapters),
+        initialProgressFloor,
+        chapters,
+      ),
+    );
     setHydrated(true);
-  }, [chapters, storageKey]);
+  }, [chapters, initialProgressFloor, storageKey]);
 
   useEffect(() => {
     let mounted = true;
