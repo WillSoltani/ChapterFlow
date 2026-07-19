@@ -13,8 +13,6 @@ import {
 } from "@/app/book/data/bookChapters";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
-import { createReviewItem, createFlashcardReviewItem } from "@/app/book/_lib/spaced-repetition";
-import { getMotivationMessage } from "@/app/book/_lib/motivation-messages";
 import { useCommitments } from "@/app/book/hooks/useCommitments";
 import { deriveChapterApplicationState } from "@/app/app/api/book/_lib/commitment-application-core";
 import type { ChapterApplicationState } from "@/app/app/api/book/_lib/types";
@@ -50,13 +48,11 @@ import { Dialog } from "@/components/ui/Dialog";
 import { ChapterSkeleton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterSkeleton";
 import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay";
 import { useChapterContent } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterContent";
-import { useQuizSession } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useQuizSession";
-import { needsReconcile, reconcileProvisionalPass } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/quizReconcile";
-import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import { getPhaseThresholds } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
 import { useReaderSettings } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderSettings";
 import { useReaderProgress } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderProgress";
 import { useReaderPhaseFlow } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderPhaseFlow";
+import { useChapterQuiz } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterQuiz";
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
@@ -140,12 +136,6 @@ export function ChapterReaderClient({
   const [sessionMode, setSessionMode] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
-  // RF-3: gate the page-level celebration confetti on a *fresh* in-session pass,
-  // not the durable `quiz.session.result.passed`. The durable value reloads `true`
-  // when a reader revisits an already-passed chapter, which would re-fire the burst
-  // for no new accomplishment (a false→true edge on load). This flag is set only by
-  // a fresh pass in `handleSubmitQuiz` and re-armed on chapter navigation.
-  const [justPassedThisSession, setJustPassedThisSession] = useState(false);
   // Quiz success modal removed: chapter completion now happens after Practice phase
   const [approvedUserExamples, setApprovedUserExamples] = useState<ChapterExample[]>([]);
   const [userSubmissions, setUserSubmissions] = useState<UserScenarioSubmission[]>([]);
@@ -384,30 +374,29 @@ export function ChapterReaderClient({
   const activeDepth: ReadingDepth = defaultToFastPath
     ? "simple"
     : modeToDepth(learningMode);
-  const quiz = useQuizSession({
+  const chapterQuiz = useChapterQuiz({
     bookId,
+    chapterId,
+    chapter,
     chapterNumber: chapter?.order ?? baseChapter?.order ?? 1,
-    difficulty: activeDepth,
+    activeDepth,
     contentTone,
-    enabled:
-      Boolean(chapter) &&
-      readerInteractionsReady &&
-      showQuiz,
-    localQuiz: chapter
-      ? {
-          chapterId: chapter.id,
-          questions: chapter.quizByDepth[activeDepth] ?? chapter.quiz,
-          passingScorePercent: chapter.quizPassingScorePercent,
-        }
-      : undefined,
+    enabled: Boolean(chapter) && readerInteractionsReady,
+    showQuiz,
     retryIncorrectOnly: bookPrefs.learning.retryIncorrectOnly,
+    motivationPersona: bookPrefs.extended.motivationPersona,
+    bookTitle: entry?.title ?? "",
+    onToast: setToast,
   });
-
-  // Single source of truth for "the quiz has been passed": the live quiz
-  // session. The legacy `state.quizResult` path was never written in the live
-  // flow (setQuizResult is unused and the PATCH route stores it as null), so it
-  // was always false; the previously persisted state never reflected reality.
-  const quizPassed = quiz.session?.result?.passed === true;
+  const {
+    quiz,
+    quizPassed,
+    justPassedThisSession,
+    submitQuiz,
+    retryQuiz,
+    claimLoopCompleteIP,
+    completionScore: quizCompletionScore,
+  } = chapterQuiz;
 
   // Examples shown for the active scope filter. The reader collapses to the first
   // one (DEFAULT_VISIBLE_EXAMPLES) by default and discloses the rest behind
@@ -447,103 +436,6 @@ export function ChapterReaderClient({
     handleInterstitialComplete,
     progressPercent,
   } = phaseFlow;
-
-  // §1.1 — Claim the loop-complete IP (deferred from quiz submit). Idempotent
-  // server-side (grant key), so re-firing is safe. Defined here (above the
-  // render guards) so it is a hook-order-stable reference for both the
-  // "Continue to Practice" handler and the RF-4 reconcile effect below. The
-  // null-order guard is purely defensive — both callers run only after a real
-  // session exists (chapter resolved) — so a future caller can't POST `.../
-  // undefined/unlock`.
-  const claimLoopCompleteIP = useCallback(() => {
-    if (!readerInteractionsReady) return Promise.resolve();
-    const order = chapter?.order;
-    if (order == null) return Promise.resolve();
-    return fetchBookJson(
-      `/app/api/book/me/chapters/${encodeURIComponent(bookId)}/${order}/unlock`,
-      { method: "POST" }
-    );
-  }, [bookId, chapter?.order, readerInteractionsReady]);
-
-  // ── RF-4 (D5 celebrate-then-reconcile): reconcile an offline quiz pass ──────
-  // A pass graded while `/submit` was unreachable is shown optimistically
-  // (chapter complete + next unlocked + celebration) but never reached the
-  // server — no Insight Points / streak / tier / achievements, no entitlement
-  // advance. While the reader stays open, re-submit the provisional pass when
-  // connectivity returns (the server records it, advancing entitlement +
-  // awarding the loop pipeline that drives the modal's IP breakdown), then claim
-  // the deferred loop-complete IP, then confirm to the reader so it never reads
-  // as lost. Scope: in-session only — the `provisional` flag is in-memory, so a
-  // tab closed/reloaded before reconnecting is reconciled by an app-level
-  // pending-pass reconciler (follow-up), not here. See lib/quizReconcile.ts.
-  const reconcileInFlightRef = useRef(false);
-  const reconcileKeyRef = useRef<string | null>(null);
-  useEffect(() => {
-    if (!readerInteractionsReady) return;
-    if (!needsReconcile(quiz.session)) return;
-    const attemptKey = `${chapterId}:${quiz.session?.attemptNumber}`;
-    let active = true;
-
-    const run = async () => {
-      if (reconcileInFlightRef.current) return;
-      reconcileInFlightRef.current = true;
-      try {
-        const outcome = await reconcileProvisionalPass({
-          isOnline: () => typeof navigator === "undefined" || navigator.onLine,
-          submit: quiz.submit,
-          claimLoopCompleteIP,
-        });
-        if (outcome === "confirmed") {
-          // submit() already emits on a pipeline-bearing success; emit again so
-          // the navbar balance also refreshes on the rare path where the first
-          // submit reached the server and only its RESPONSE was lost (the
-          // resubmit then returns no pipeline, so it wouldn't emit). Harmless
-          // double-emit otherwise — the listener just refetches.
-          emitBookStorageChanged("insight-points");
-          if (active) {
-            setToast("Back online — your results synced and your points were awarded.");
-          }
-        }
-      } finally {
-        reconcileInFlightRef.current = false;
-      }
-    };
-
-    // One eager attempt per provisional attempt (covers a transient failure that
-    // happened while already online). After that only a genuine reconnect
-    // retries, so a server that keeps rejecting can't spin a retry loop.
-    if (reconcileKeyRef.current !== attemptKey) {
-      reconcileKeyRef.current = attemptKey;
-      void run();
-    }
-    const onOnline = () => {
-      reconcileKeyRef.current = attemptKey;
-      void run();
-    };
-    window.addEventListener("online", onOnline);
-    return () => {
-      active = false;
-      window.removeEventListener("online", onOnline);
-    };
-  }, [
-    quiz.session,
-    quiz.submit,
-    chapterId,
-    claimLoopCompleteIP,
-    readerInteractionsReady,
-  ]);
-
-  // RF-3: re-arm the fresh-pass confetti gate when the reader moves between
-  // chapters. The reader is reused across chapter→chapter navigation (the route
-  // element carries no `key`, so React keeps the instance and only swaps the
-  // `chapterId` prop). Without this reset the flag would stay `true` from the
-  // previous chapter and the next chapter's pass — `setJustPassedThisSession(true)`
-  // on already-true state — would produce no false→true edge, swallowing its
-  // legitimate celebration. On a full remount (returning from the library) it is
-  // already false, so this is harmless there.
-  useEffect(() => {
-    setJustPassedThisSession(false);
-  }, [chapterId]);
 
   useKeyboardShortcut(
     "n",
@@ -1117,66 +1009,12 @@ export function ChapterReaderClient({
 
   const handleSubmitQuiz = async () => {
     if (!readerInteractionsReady) return;
-    try {
-      const submitResult = await quiz.submit();
-      const nextSession = submitResult?.session ?? null;
-      const persona = bookPrefs.extended.motivationPersona || "coach";
-      if (nextSession?.result?.passed) {
-        // RF-3: record a *fresh* in-session pass so the page-level confetti fires
-        // now (and only now), never when a revisit reloads a durable passed result.
-        // Set on ANY fresh pass, including a provisional/offline one: RF-4's
-        // celebrate-then-reconcile intentionally celebrates the optimistic pass.
-        setJustPassedThisSession(true);
-        // Mark the phase done; the celebration is the single ChapterCompleteModal
-        // surface, opened when the user taps "Continue to Practice" on the
-        // ResultsScreen. No separate celebration overlay or achievement toasts.
-        phaseCompletion.markPhaseCompleted("quiz");
-      } else {
-        setToast(getMotivationMessage(persona, "quiz_fail", { score: nextSession?.result?.scorePercent }));
-      }
-
-      // Enroll into spaced-repetition review queue (non-fatal if localStorage is full)
-      try {
-        if (nextSession?.questions) {
-          for (const q of nextSession.questions) {
-            if (q.isCorrect === false && q.correctChoiceId) {
-              createReviewItem({
-                chapterId,
-                bookId,
-                bookTitle: entry?.title ?? "",
-                chapterTitle: chapter?.title ?? "",
-                questionId: q.questionId,
-                questionText: q.prompt,
-                choices: q.choices,
-                correctChoiceId: q.correctChoiceId,
-                explanation: q.explanation ?? "",
-              });
-            }
-          }
-        }
-
-        // Enroll chapter review cards (flashcards) on quiz pass
-        if (nextSession?.result?.passed && chapter?.reviewCards) {
-          for (const card of chapter.reviewCards) {
-            createFlashcardReviewItem({
-              chapterId,
-              bookId,
-              bookTitle: entry?.title ?? "",
-              chapterTitle: chapter?.title ?? "",
-              cardId: card.id,
-              front: card.front,
-              back: card.back,
-              difficulty: card.difficulty,
-            });
-          }
-        }
-      } catch (enrollError) {
-        console.warn("Failed to enroll items into spaced-repetition review:", enrollError);
-      }
-    } catch (error: unknown) {
-      const message =
-        error instanceof Error ? error.message : "Unable to submit quiz right now.";
-      setToast(message);
+    const outcome = await submitQuiz();
+    if (outcome.kind === "passed") {
+      // Mark the phase done; the celebration is the single ChapterCompleteModal
+      // surface, opened when the user taps "Continue to Practice" on the
+      // ResultsScreen. No separate celebration overlay or achievement toasts.
+      phaseCompletion.markPhaseCompleted("quiz");
     }
   };
 
@@ -1186,8 +1024,7 @@ export function ChapterReaderClient({
     if (!readerInteractionsReady) return;
     phaseCompletion.markPhaseCompleted("quiz");
     phaseCompletion.markPhaseCompleted("practice");
-    const score = quiz.session?.result?.scorePercent ?? 0;
-    markChapterComplete(chapter.id, score);
+    markChapterComplete(chapter.id, quizCompletionScore);
     setShowCompleteModal(true);
 
     // §1.1 — Fire-and-forget; idempotent server-side so retries are safe. When
@@ -1218,7 +1055,7 @@ export function ChapterReaderClient({
 
   const handleRetryQuiz = () => {
     if (!readerInteractionsReady) return;
-    void quiz.retry();
+    void retryQuiz();
   };
 
   const handleSubmitScenario = async (draft: ScenarioSubmissionDraft) => {
