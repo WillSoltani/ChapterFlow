@@ -54,8 +54,12 @@ Default env is **`dev`**: a bare `cdk deploy` / `cdk synth` never touches prod.
 2. **Environment-scoped secrets** (per environment): `AWS_DEPLOY_ROLE_ARN`,
    `AWS_ACCOUNT_ID`, `CHAPTERFLOW_DOMAIN_NAME` (omit for dev/staging to serve on
    the CloudFront domain), `CHAPTERFLOW_APP_BASE_URL`, `CHAPTERFLOW_OPS_ALERT_EMAIL`,
-   the `COGNITO_*`, `AUTH_*`, `BOOK_STRIPE_*`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`,
-   `ANTHROPIC_API_KEY`, `ELEVENLABS_API_KEY`. prod uses today's live values.
+   the `COGNITO_*`, `AUTH_COOKIE_DOMAIN`, the `BOOK_STRIPE_PRICE_ID*` values,
+   and `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`. The runtime-only secrets
+   `AUTH_STATE_SECRET`, `BOOK_STRIPE_SECRET_KEY`, `BOOK_STRIPE_WEBHOOK_SECRET`,
+   `ANTHROPIC_API_KEY`, and `ELEVENLABS_API_KEY` are SecureStrings under
+   `/chapterflow/<env>/`, not GitHub-to-Lambda environment values. prod uses
+   today's live values.
 3. **OIDC role** (`AWS_DEPLOY_ROLE_ARN`): configure the role ARN in every GitHub
    Environment that can deploy. A single shared role is valid because all three
    environments use one account, but its GitHub OIDC trust must use

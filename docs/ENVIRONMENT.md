@@ -20,20 +20,23 @@ resolves each key in this order:
 1. **`process.env[KEY]`** — set directly on the Lambda. Two sub-channels:
    - **CDK auto-injects** the data-plane names + app mode (always present, no
      secret needed) — see §3.A.
-   - **The deploy workflow injects secrets** it forwards from GitHub
+   - **The deploy workflow injects selected configuration** from GitHub
      environment secrets into `infra/bin/app.ts` → the frontend stack's
-     `serverEnv` → the Lambda — see §3.B. **This list is the source of truth**
-     for "secrets the app gets": [`infra/bin/app.ts`](../infra/bin/app.ts) lines
-     81–141.
+     `serverEnv` → the Lambda — see §3.B. The five runtime secret-class names
+     in §3.D are explicitly filtered from this path.
 2. **SSM Parameter Store**, tried as `${SSM_PARAMETER_PREFIX}/<KEY>` (e.g.
    `/chapterflow/prod/VAPID_PRIVATE_KEY`) first, then bare-name fallbacks
    (denied by IAM scope, harmlessly skipped). The Lambda role is scoped to
-   `${ssmPrefix}/*` only ([frontend stack](../infra/lib/chapterflow-frontend-stack.ts)).
+   `${ssmPrefix}/*` only ([frontend stack](../infra/lib/chapterflow-frontend-stack.ts))
+   and requests SecureString decryption. Production boot resolves and validates
+   its required SSM secrets before accepting traffic; optional ElevenLabs
+   configuration remains lazy.
 
 **Consequence that bites:** anything **not** injected as Lambda env in §3.A/§3.B
 *only* works if it exists as an SSM parameter under `/chapterflow/<env>/`. That
-is the case for **`VAPID_*`, `SES_SENDER_EMAIL`**, and the optional tuning vars
-(§3.D). A handful of vars are read via **raw `process.env` with no SSM
+is the case for the five runtime secret-class names, **`VAPID_*`,
+`SES_SENDER_EMAIL`**, and the optional tuning vars (§3.D). A handful of vars are
+read via **raw `process.env` with no SSM
 fallback** (`ADMIN_EMAILS`, `ADMIN_SUBS`, `APP_BASE_URL`, the `NEXT_PUBLIC_*`
 build-time vars) — those only take effect if they are literally on the Lambda
 env (or inlined at build), so since the pipeline doesn't inject them they are
@@ -76,11 +79,14 @@ You never set these; the frontend stack derives them from the backend stack.
 | `NODE_ENV` | R | auto | `production` in deployed envs. Gates dev bypass + base-URL fallbacks. |
 | `CACHE_BUCKET_NAME`, `CACHE_BUCKET_KEY_PREFIX`, `CACHE_DYNAMO_TABLE`, `REVALIDATION_QUEUE_URL`, `REVALIDATION_QUEUE_REGION` | R | auto | OpenNext ISR/revalidation internals (not app config). |
 
-### B. Secrets injected by the deploy workflow (`serverEnv` in `app.ts`)
+### B. Configuration injected by the deploy workflow (`serverEnv` in `app.ts`)
 
 Set each as a **per-environment GitHub secret**. The frontend deploy job
 (`_deploy-app.yml`) passes them on the `cdk deploy` step; `app.ts` forwards only
 the ones that are present.
+
+The five runtime secrets listed first in §3.D are intentionally excluded even
+if a caller supplies them.
 
 | Variable | Req | Source | Purpose |
 |---|---|---|---|
@@ -92,16 +98,11 @@ the ones that are present.
 | `COGNITO_REGION` | R | secret | Region for the Cognito issuer/JWKS. |
 | `COGNITO_REDIRECT_URI` | R | secret | OAuth callback URL (`…/auth/callback`). Must be allow-listed in Cognito. |
 | `COGNITO_LOGOUT_REDIRECT_URI` | R | secret | Post-logout redirect. Must be allow-listed in Cognito. |
-| `AUTH_STATE_SECRET` | R | secret | HKDF key for AES-256-GCM OAuth-state encryption. **Must be ≥ 32 chars** or login state crypto throws. |
 | `AUTH_COOKIE_DOMAIN` | R | secret | Cookie `Domain` for the session cookies (e.g. `.chapterflow.ca`). The cookie helper also honors the alias `CHAPTERFLOW_COOKIE_DOMAIN`, but that alias is **not** injected by the workflow — it would have to come from SSM (§3.D), so prefer `AUTH_COOKIE_DOMAIN`. |
-| `BOOK_STRIPE_SECRET_KEY` | R (billing) | secret | Stripe API key. Without it, billing routes are inert. |
-| `BOOK_STRIPE_WEBHOOK_SECRET` | R (billing) | secret | Verifies the unauthenticated `billing/webhook` signature — the only writer of Stripe-sourced entitlements. |
 | `BOOK_STRIPE_PRICE_ID` | R (billing) | secret | Monthly Pro price id used by checkout. |
 | `BOOK_STRIPE_PRICE_ID_ANNUAL` | O | secret | Annual price id (if offered). |
 | `BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT` | O | secret | Annual-upfront price id (if offered). |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | O | secret | Client publishable key. **Caveat:** as a `NEXT_PUBLIC_*` var it is inlined at **build**; it is currently passed on the `cdk deploy` step (after `open-next build`), so confirm it is present during the build if you rely on client-side inlining. |
-| `ANTHROPIC_API_KEY` | R (AI) | secret | Powers all three Claude features — "Ask the Book", reflection feedback, and community-scenario validation. **All degrade gracefully when unset:** Ask/feedback return `503 ai_unavailable`; scenario submissions skip validation and land in the human moderation queue (`queue_for_review`) rather than being auto-approved. See §6 for the model/tuning knobs. |
-| `ELEVENLABS_API_KEY` | O | secret | Chapter audio / TTS narration. Audio routes 4xx without it. |
 | `APPLE_ISSUER_ID` | R (SIWA) | secret | Apple Developer **Team ID** — the `iss` of the Apple client-secret JWT. Shared by B3 (Apple IAP) and B8 (revoke-on-delete). |
 | `APPLE_BUNDLE_ID` | R (SIWA) | secret | Services ID / bundle id used as the Apple OAuth **client** (`sub`/`client_id`). |
 | `APPLE_KEY_ID` | R (SIWA) | secret | Key id of the `.p8` private key (JWT header `kid`). |
@@ -126,6 +127,11 @@ These are consumed by the app via `getServerEnv` but are **not** in
 
 | Variable | Req | Source | Purpose |
 |---|---|---|---|
+| `AUTH_STATE_SECRET` | R | ssm (SecureString) | HKDF key for AES-256-GCM OAuth-state encryption. Production boot fails closed unless it resolves and is at least 32 characters. |
+| `BOOK_STRIPE_SECRET_KEY` | R (billing) | ssm (SecureString) | Stripe API key. Production boot and billing readiness fail closed when it is absent or unreadable. |
+| `BOOK_STRIPE_WEBHOOK_SECRET` | R (billing) | ssm (SecureString) | Authenticates Stripe webhooks. Production boot and billing readiness fail closed when it is absent or unreadable. |
+| `ANTHROPIC_API_KEY` | R (prod AI) | ssm (SecureString) | Powers the three Claude paths. It is part of the existing production boot manifest; denied or undecryptable reads stop boot. |
+| `ELEVENLABS_API_KEY` | O | ssm (SecureString) | Chapter audio / TTS narration. It remains lazy and optional; audio routes fail locally when it is absent. |
 | `VAPID_PUBLIC_KEY` | R (web push) | ssm | Web-push public VAPID key. Push routes throw "VAPID keys not configured" without it. |
 | `VAPID_PRIVATE_KEY` | R (web push) | ssm (SecureString) | Web-push private VAPID key. |
 | `APNS_KEY_ID` | R (iOS push) | ssm | Apple Push (APNs) token-auth `.p8` **Key ID** (10 chars) → provider-JWT `kid`. |
@@ -144,6 +150,22 @@ These are consumed by the app via `getServerEnv` but are **not** in
 | `BOOK_AI_ASK_MODEL` | O | ssm | Claude model for "Ask the Book". Default `claude-haiku-4-5`. |
 | `BOOK_AI_TIMEOUT_MS` | O | ssm | Anthropic client request timeout in ms (default `30000`). |
 | `BOOK_AI_MAX_RETRIES` | O | ssm | Anthropic client retry count on 429/5xx/connection errors (default `2`; `0` disables). Does **not** resume a stream that drops mid-response. |
+
+#### Runtime secret migration and rollback
+
+1. Before deploying this runtime boundary, provision all five names as
+   `SecureString` parameters under `/chapterflow/<env>/`. Keep the existing
+   GitHub environment secrets during the rollback window even though the new
+   workflow no longer exports them to CDK.
+2. Validate parameter names, types, prefix, key metadata, and IAM policy only;
+   never print or request secret values as evidence.
+3. Deploy to non-prod, confirm the five key names are absent from the server
+   Lambda environment, then exercise boot plus OAuth, billing, AI, and audio
+   resolution. Also prove a missing/denied required parameter fails boot closed.
+4. Promote through the normal prod approval gate only after non-prod passes.
+   If validation fails, re-run the previous known-good commit while retaining
+   both the SSM parameters and legacy GitHub secrets. Do not delete either copy
+   until the stability/rollback window is complete.
 
 ### E. Local / build-time only — raw `process.env`, no SSM fallback
 

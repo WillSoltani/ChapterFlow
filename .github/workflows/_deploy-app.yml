@@ -162,7 +162,6 @@ jobs:
           COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}
           COGNITO_REDIRECT_URI: ${{ secrets.COGNITO_REDIRECT_URI }}
           COGNITO_LOGOUT_REDIRECT_URI: ${{ secrets.COGNITO_LOGOUT_REDIRECT_URI }}
-          AUTH_STATE_SECRET: ${{ secrets.AUTH_STATE_SECRET }}
           AUTH_COOKIE_DOMAIN: ${{ secrets.AUTH_COOKIE_DOMAIN }}
           # Origin lock (WS6-002). The shared secret CloudFront injects as
           # x-origin-verify and middleware/the image wrapper enforce; prod synth
@@ -184,14 +183,9 @@ jobs:
           # APPLE_IAP_TESTFLIGHT_QA_USER_HASHES is inherited from GITHUB_ENV
           # after the one-way derivation step; raw subjects never cross CDK.
           # Stripe
-          BOOK_STRIPE_SECRET_KEY: ${{ secrets.BOOK_STRIPE_SECRET_KEY }}
-          BOOK_STRIPE_WEBHOOK_SECRET: ${{ secrets.BOOK_STRIPE_WEBHOOK_SECRET }}
           BOOK_STRIPE_PRICE_ID: ${{ secrets.BOOK_STRIPE_PRICE_ID }}
           BOOK_STRIPE_PRICE_ID_ANNUAL: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL }}
           BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT }}
-          # AI providers
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           # Same-origin / CSRF guard (#6/#293). Defaults to "1" (ENFORCE) when the
           # variable is unset. Set the environment variable CSRF_ORIGIN_ENFORCE=0
           # (Settings → Environments → <env> → Variables, or `gh variable set

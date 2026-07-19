@@ -113,3 +113,17 @@ test("server role grants only prefix-scoped GetParameter plus SSM-bound KMS decr
   );
   assert.match(JSON.stringify(kms.Condition), /parameter.*chapterflow.*dev/);
 });
+
+test("frontend deploy does not export runtime SSM secrets into the CDK process", () => {
+  const workflow = fs.readFileSync(
+    path.resolve(__dirname, "../../.github/workflows/_deploy-app.yml"),
+    "utf8",
+  );
+  for (const name of FRONTEND_SSM_RUNTIME_SECRET_NAMES) {
+    assert.doesNotMatch(
+      workflow,
+      new RegExp(`${name}: \\$\\{\\{ secrets\\.${name} \\}\\}`),
+      name,
+    );
+  }
+});
