@@ -136,10 +136,10 @@ export function filterAndSortBooks(
 }
 
 export function getBookBadge(book: LibraryBook): { label: string; color: string } | null {
-  if (book.isFree) return { label: "Free", color: "var(--accent-emerald)" };
+  if (book.isFree) return { label: "Free", color: "var(--accent-cyan)" };
   if (book.isNew) return { label: "New", color: "var(--accent-cyan)" };
-  if (book.popular) return { label: "Staff Pick", color: "var(--accent-amber)" };
-  if (book.staffPick) return { label: "Staff Pick", color: "var(--accent-amber)" };
+  if (book.popular) return { label: "Staff Pick", color: "var(--accent-cyan)" };
+  if (book.staffPick) return { label: "Staff Pick", color: "var(--accent-cyan)" };
   return null;
 }
 

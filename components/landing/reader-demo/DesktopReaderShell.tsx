@@ -103,6 +103,11 @@ export function DesktopReaderShell({
   // loop run once, then it rests — no perpetual motion they can't halt.
   const advancesRef = useRef(0);
   const [loopComplete, setLoopComplete] = useState(false);
+  // Keyboard focus is a transient pause, not a permanent interaction. While a
+  // visitor is reading or operating anything in the demo, keep the keyed phase
+  // subtree mounted so its focused control cannot disappear. Once focus leaves
+  // the demo, autoplay may resume with a fresh dwell period.
+  const [isFocusWithin, setIsFocusWithin] = useState(false);
 
   const stopAutoAdvance = useCallback(() => {
     if (advanceRef.current) {
@@ -125,6 +130,7 @@ export function DesktopReaderShell({
     if (!autoPlay || isControlled) return;
     if (prefersReducedMotion) return;
     if (!isInView) return;
+    if (isFocusWithin) return;
     if (hasInteracted.current) return;
     if (loopComplete) return; // one full loop done — rest (WCAG 2.2.2)
     const dwell = PHASE_DURATIONS_MS[activeTab];
@@ -144,6 +150,7 @@ export function DesktopReaderShell({
     stopAutoAdvance,
     prefersReducedMotion,
     isInView,
+    isFocusWithin,
     autoPlay,
     isControlled,
     loopComplete,
@@ -214,6 +221,20 @@ export function DesktopReaderShell({
   return (
     <div
       ref={rootRef}
+      onFocusCapture={() => {
+        stopAutoAdvance();
+        setIsFocusWithin(true);
+      }}
+      onBlurCapture={(event) => {
+        const nextTarget = event.relatedTarget;
+        if (
+          nextTarget instanceof Node &&
+          event.currentTarget.contains(nextTarget)
+        ) {
+          return;
+        }
+        setIsFocusWithin(false);
+      }}
       className="overflow-hidden rounded-[1.75rem] border md:rounded-2xl"
       style={{
         background: "var(--cr-bg-root)",

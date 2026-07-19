@@ -21,7 +21,6 @@ export function BrowseLibraryFilterBar({
   resultCount: number;
   totalCount: number;
 }) {
-  const [sortOpen, setSortOpen] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -35,21 +34,6 @@ export function BrowseLibraryFilterBar({
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
-
-  // Close sort dropdown on outside click or Escape
-  useEffect(() => {
-    if (!sortOpen) return;
-    const close = (e: MouseEvent | KeyboardEvent) => {
-      if (e instanceof KeyboardEvent && e.key !== "Escape") return;
-      setSortOpen(false);
-    };
-    document.addEventListener("click", close);
-    document.addEventListener("keydown", close);
-    return () => {
-      document.removeEventListener("click", close);
-      document.removeEventListener("keydown", close);
-    };
-  }, [sortOpen]);
 
   return (
     <>
@@ -72,7 +56,7 @@ export function BrowseLibraryFilterBar({
                 role="tab"
                 aria-selected={activeCategory === "All"}
                 onClick={() => onCategoryChange("All")}
-                className="shrink-0 rounded-full px-4 py-2 text-cf-label font-medium transition-all duration-200"
+                className="min-h-[44px] shrink-0 rounded-full px-4 py-2 text-cf-label font-medium transition-all duration-200"
                 style={
                   activeCategory === "All"
                     ? { background: "var(--accent-cyan)", color: "var(--primary-foreground)", fontWeight: 600 }
@@ -87,7 +71,7 @@ export function BrowseLibraryFilterBar({
                   role="tab"
                   aria-selected={activeCategory === cat.name}
                   onClick={() => onCategoryChange(cat.name)}
-                  className="shrink-0 rounded-full px-4 py-2 text-cf-label font-medium transition-all duration-200 whitespace-nowrap"
+                  className="min-h-[44px] shrink-0 rounded-full px-4 py-2 text-cf-label font-medium transition-all duration-200 whitespace-nowrap"
                   style={
                     activeCategory === cat.name
                       ? { background: "var(--accent-cyan)", color: "var(--primary-foreground)", fontWeight: 600 }
@@ -105,55 +89,34 @@ export function BrowseLibraryFilterBar({
             Showing {resultCount} of {totalCount}
           </span>
 
-          {/* Sort dropdown */}
-          <div className="relative shrink-0">
-            <button
-              onClick={(e) => { e.stopPropagation(); setSortOpen((p) => !p); }}
-              aria-haspopup="listbox"
-              aria-expanded={sortOpen}
-              onKeyDown={(e) => {
-                if (e.key === "Escape") setSortOpen(false);
-                if (e.key === "ArrowDown") { e.preventDefault(); setSortOpen(true); }
-              }}
-              className="flex items-center gap-1.5 text-cf-label px-3 py-2 rounded-lg transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
-              style={{ color: "var(--text-secondary)" }}
-            >
-              <span className="hidden sm:inline">Sort:</span>{" "}
-              {SORT_OPTIONS.find((o) => o.value === sortBy)?.label}
-              <ChevronDown />
-            </button>
-
-            {sortOpen && (
-              <div
-                role="listbox"
-                className="absolute right-0 top-full mt-1 w-44 rounded-xl overflow-hidden z-50"
-                style={{
-                  background: "var(--bg-elevated)",
-                  border: "1px solid var(--border-subtle)",
-                  boxShadow: "0 12px 40px color-mix(in srgb, var(--cf-palette-black) 50%, transparent)",
-                }}
+          {/* Native sorting control retains platform arrow-key, Escape, and
+              focus-return behavior while sharing the Recall visual language. */}
+          <div className="flex min-h-[44px] shrink-0 items-center gap-1.5">
+            <span aria-hidden="true" className="hidden text-cf-label sm:inline" style={{ color: "var(--text-secondary)" }}>
+              Sort:
+            </span>
+            <div className="relative">
+              <select
+                aria-label="Sort books"
+                value={sortBy}
+                onChange={(event) => onSortChange(event.target.value as SortOption)}
+                className="min-h-[44px] cursor-pointer appearance-none rounded-lg bg-transparent py-2 pl-2 pr-8 text-cf-label transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
+                style={{ color: "var(--text-secondary)" }}
               >
-                {SORT_OPTIONS.map((opt) => (
-                  <button
-                    key={opt.value}
-                    role="option"
-                    aria-selected={sortBy === opt.value}
-                    onClick={() => { onSortChange(opt.value); setSortOpen(false); }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Escape") { setSortOpen(false); }
-                      if (e.key === "Enter" || e.key === " ") { onSortChange(opt.value); setSortOpen(false); }
-                    }}
-                    className="block w-full text-left px-4 py-2.5 text-cf-label transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
-                    style={{
-                      color: sortBy === opt.value ? "var(--accent-cyan)" : "var(--text-secondary)",
-                      fontWeight: sortBy === opt.value ? 600 : 400,
-                    }}
-                  >
-                    {opt.label}
-                  </button>
+                {SORT_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
                 ))}
-              </div>
-            )}
+              </select>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                <ChevronDown />
+              </span>
+            </div>
           </div>
         </div>
       </div>

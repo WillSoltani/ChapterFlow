@@ -60,4 +60,9 @@ test("both materials use solid, visible Recall focus treatment", () => {
     rule(".cf-public-site .cf-paper-folio :focus-visible"),
     /outline-color:\s*var\(--cf-recall-accent-ink\)/,
   );
+  const filterFocus = rule(".rl-filter-chip:focus-visible");
+  assert.match(filterFocus, /outline:\s*2px solid var\(--cf-recall-accent\)/);
+  assert.match(filterFocus, /outline-offset:\s*2px/);
+  assert.doesNotMatch(filterFocus, /accent-line/);
+  assert.doesNotMatch(filterFocus, /outline:\s*none/);
 });

@@ -36,7 +36,81 @@ async function settle(page: Page): Promise<void> {
   });
   const reader = page.locator(".recall-reader-demo");
   if ((await reader.count()) > 0) await expect(reader).toBeVisible();
-  await page.waitForTimeout(400);
+
+  // Full-page screenshots do not naturally intersect below-the-fold native
+  // lazy images. Walk the document at viewport-sized intervals so the browser
+  // requests the real covers under production loading semantics, then wait for
+  // every requested image to settle before returning to the canonical top view.
+  const imageState = await page.evaluate(async () => {
+    const pauseForPaint = () =>
+      new Promise<void>((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
+      );
+    const renderedLazyImages = Array.from(document.images).filter(
+      (image) => image.loading === "lazy" && image.getClientRects().length > 0,
+    );
+
+    for (const image of renderedLazyImages) {
+      image.scrollIntoView({ block: "center", inline: "nearest" });
+      await pauseForPaint();
+    }
+
+    await Promise.all(
+      renderedLazyImages.map(
+        (image) =>
+          new Promise<void>((resolve) => {
+            if (image.complete) {
+              resolve();
+              return;
+            }
+            let timeout = 0;
+            const done = () => {
+              window.clearTimeout(timeout);
+              resolve();
+            };
+            timeout = window.setTimeout(done, 4000);
+            image.addEventListener("load", done, { once: true });
+            image.addEventListener("error", done, { once: true });
+          }),
+      ),
+    );
+
+    const renderedImages = Array.from(document.images).filter(
+      (image) => image.getClientRects().length > 0,
+    );
+    await Promise.all(
+      renderedImages
+        .filter((image) => image.complete && image.naturalWidth > 0)
+        .map((image) =>
+          Promise.race([
+            image.decode().catch(() => undefined),
+            new Promise<void>((resolve) => window.setTimeout(resolve, 2000)),
+          ]),
+        ),
+    );
+
+    for (const element of document.querySelectorAll<HTMLElement>("*")) {
+      if (element.scrollLeft !== 0) element.scrollLeft = 0;
+    }
+    window.scrollTo(0, 0);
+    await pauseForPaint();
+
+    const renderedImagesAfterSettle = Array.from(document.images).filter(
+      (image) => image.getClientRects().length > 0,
+    );
+
+    return {
+      pending: renderedImagesAfterSettle
+        .filter((image) => !image.complete)
+        .map((image) => image.currentSrc || image.src || "unknown image"),
+      broken: renderedImagesAfterSettle
+        .filter((image) => image.complete && image.naturalWidth === 0)
+        .map((image) => image.currentSrc || image.src || "unknown image"),
+    };
+  });
+  expect(imageState.pending, "all rendered images must settle before capture").toEqual([]);
+  expect(imageState.broken, "all rendered images must decode before capture").toEqual([]);
+  await page.waitForTimeout(150);
 }
 
 test.describe("@visual Recall public system", () => {
@@ -67,7 +141,11 @@ test.describe("@visual Recall public system", () => {
           {
             fullPage: true,
             animations: "disabled",
-            maxDiffPixelRatio: 0.01,
+            // A 1% full-page allowance let an entire coverflow regress to blank
+            // rectangles because it occupied a localized part of a tall page.
+            // Keep enough antialiasing tolerance for cross-run stability while
+            // making meaningful component-sized drift fail closed.
+            maxDiffPixelRatio: 0.002,
           },
         );
       });

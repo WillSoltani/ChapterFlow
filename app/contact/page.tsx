@@ -14,6 +14,11 @@ export default function ContactPage() {
     <PublicSiteShell>
       <main id="main" tabIndex={-1} className="focus:outline-none">
         <PublicMasthead eyebrow="Support" title="Contact & Support" compact />
+        <div
+          data-public-hero-end
+          aria-hidden="true"
+          className="pointer-events-none h-px w-full"
+        />
 
         <section
           aria-label="Support options"

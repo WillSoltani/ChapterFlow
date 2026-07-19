@@ -34,7 +34,7 @@ const subtleRingStyle = {
 } as CSSProperties;
 
 const navLinkClass =
-  "inline-flex min-h-11 items-center rounded-lg px-2 text-[0.875rem] font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
+  "inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-[0.875rem] font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
 
 const menuLinkClass =
   "inline-flex min-h-11 w-full items-center justify-between rounded-xl px-4 py-2 text-[1.125rem] font-semibold transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2";
@@ -100,42 +100,60 @@ export function RecallNav() {
   const [mobileMenuPath, setMobileMenuPath] = useState<string | null>(null);
   const [showPersistentCta, setShowPersistentCta] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const brandLinkRef = useRef<HTMLAnchorElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const dialogTitleId = useId();
   const authResolved = !loading;
   const isLoggedIn = loggedIn === true;
   const mobileOpen = mobileMenuPath === pathname;
+  const mobileOpenRef = useRef(mobileOpen);
 
   const closeMobile = useCallback(() => setMobileMenuPath(null), []);
 
   useEffect(() => {
+    mobileOpenRef.current = mobileOpen;
+  }, [mobileOpen]);
+
+  useEffect(() => {
     const media = window.matchMedia(PUBLIC_NAV_DESKTOP_QUERY);
+    let focusFrame = 0;
     const closeAtDesktop = (event: MediaQueryListEvent | MediaQueryList) => {
-      if (event.matches) setMobileMenuPath(null);
+      if (!event.matches) return;
+      setMobileMenuPath(null);
+      if (mobileOpenRef.current) {
+        focusFrame = window.requestAnimationFrame(() => brandLinkRef.current?.focus());
+      }
     };
 
     closeAtDesktop(media);
     media.addEventListener("change", closeAtDesktop);
-    return () => media.removeEventListener("change", closeAtDesktop);
+    return () => {
+      window.cancelAnimationFrame(focusFrame);
+      media.removeEventListener("change", closeAtDesktop);
+    };
   }, []);
 
   useEffect(() => {
     const sentinel = document.querySelector<HTMLElement>("[data-public-hero-end]");
-    if (!sentinel) {
-      const frame = window.requestAnimationFrame(() => setShowPersistentCta(true));
-      return () => window.cancelAnimationFrame(frame);
-    }
+    const suppressionZones = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-public-sticky-cta-suppress]"),
+    );
 
     let frame = 0;
     const update = () => {
       window.cancelAnimationFrame(frame);
       frame = window.requestAnimationFrame(() => {
         const headerBottom = headerRef.current?.getBoundingClientRect().bottom ?? 0;
+        const suppressionVisible = suppressionZones.some((zone) => {
+          const bounds = zone.getBoundingClientRect();
+          return bounds.bottom > headerBottom && bounds.top < window.innerHeight;
+        });
         setShowPersistentCta(
           shouldShowPersistentCta({
-            hasSentinel: true,
-            sentinelTop: sentinel.getBoundingClientRect().top,
+            hasSentinel: sentinel != null,
+            sentinelTop: sentinel?.getBoundingClientRect().top ?? null,
             headerBottom,
+            suppressionVisible,
           }),
         );
       });
@@ -153,7 +171,8 @@ export function RecallNav() {
         threshold: 0,
         rootMargin: `-${headerBottom}px 0px 0px 0px`,
       });
-      observer.observe(sentinel);
+      if (sentinel) observer.observe(sentinel);
+      suppressionZones.forEach((zone) => observer?.observe(zone));
     } else {
       window.addEventListener("scroll", update, { passive: true });
     }
@@ -190,6 +209,7 @@ export function RecallNav() {
       <div className="rl-nav-scrim" aria-hidden="true" />
       <header ref={headerRef} className="rl-nav">
         <Link
+          ref={brandLinkRef}
           href="/"
           className="rl-nav-brand min-h-11 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
           aria-label="ChapterFlow home"
@@ -225,7 +245,15 @@ export function RecallNav() {
                   ...subtleRingStyle,
                 }}
               >
-                {link.label}
+                <span>{link.label}</span>
+                {current ? (
+                  <span
+                    data-public-current-marker
+                    aria-hidden="true"
+                    className="h-1.5 w-1.5 rounded-full"
+                    style={{ background: "var(--cf-recall-accent)" }}
+                  />
+                ) : null}
               </Link>
             );
           })}

@@ -73,3 +73,28 @@ test("candidate fallback order keeps local AVIF/WebP first and remote last", () 
   assert.equal(deduped.at(1), existingLocal);
   assert.equal(deduped.filter((candidate) => candidate === existingLocal).length, 1);
 });
+
+test("catalog titles without committed rasters render their fallback immediately", () => {
+  for (const bookId of [
+    "behave",
+    "decisive",
+    "multipliers",
+    "the-first-90-days",
+    "the-now-habit",
+  ]) {
+    assert.deepEqual(
+      getBookCoverSourceCandidates(bookId, `/book-covers/${bookId}.webp`),
+      [],
+    );
+  }
+
+  const html = renderToStaticMarkup(
+    createElement(BookCover, {
+      bookId: "behave",
+      title: "Behave",
+      icon: "📘",
+    }),
+  );
+  assert.doesNotMatch(html, /<img\b/);
+  assert.match(html, /Behave/);
+});

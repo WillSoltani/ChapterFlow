@@ -40,15 +40,29 @@ test("every owner route uses the shell and owns one focusable main landmark", ()
   }
 });
 
-test("home and catalog place a CTA sentinel immediately after their hero", () => {
+test("every route masthead or hero owns a post-hero CTA boundary", () => {
   const home = source("app/page.tsx");
   const catalog = source("components/website/BrowseLibraryPage.tsx");
+  const pricing = source("app/pricing/page.tsx");
+  const contact = source("app/contact/page.tsx");
+  const legal = source("app/legal/layout.tsx");
 
   assert.match(home, /<RecallHeroSplit\s*\/>\s*<div[^>]*data-public-hero-end/);
   assert.match(catalog, /<BrowseLibraryHero[\s\S]*?\/>\s*<div[^>]*data-public-hero-end/);
+  for (const route of [pricing, contact, legal]) {
+    assert.match(route, /<PublicMasthead[\s\S]*?\/>\s*<div[^>]*data-public-hero-end/);
+  }
   assert.match(home, /import \{ RecallClose \}/);
   assert.match(home, /<RecallClose\s*\/>/);
   assert.doesNotMatch(home, /function RecallFinalCta/);
+});
+
+test("catalog CTA zones explicitly suppress the persistent header action", () => {
+  const catalog = source("components/website/BrowseLibraryPage.tsx");
+  const nav = source("components/landing/recall/RecallNav.tsx");
+
+  assert.match(catalog, /data-public-sticky-cta-suppress/);
+  assert.match(nav, /\[data-public-sticky-cta-suppress\]/);
 });
 
 test("pricing preserves a client island without internal spec-sheet jargon", () => {
@@ -93,4 +107,13 @@ test("the legal hub links every existing policy and support", () => {
   assert.match(legalHub, /<Link\s+href=\{policy\.href\}/);
   assert.match(legalHub, /mailto:/);
   assert.equal((legalHub.match(/<main\b/g) ?? []).length, 0);
+});
+
+test("cookie inventories stack on phones and retain a fixed desktop table", () => {
+  const cookies = source("app/legal/cookies/page.tsx");
+
+  assert.match(cookies, /<dl[^>]*className="[^"]*sm:hidden[^"]*"/);
+  assert.match(cookies, /<table[^>]*className="[^"]*table-fixed[^"]*sm:table[^"]*"/);
+  assert.match(cookies, />\s*Duration\s*</);
+  assert.doesNotMatch(cookies, /overflow-x-auto/);
 });

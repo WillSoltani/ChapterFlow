@@ -344,6 +344,7 @@ function CinematicPlate({
   const hoverRef = useRef(false);
   const idleRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const baseRef = useRef<number | null>(null);
+  const progressRef = useRef(0);
   const tRef = useRef(0.08);
   // The single playhead-geometry writer, published by the effect so the
   // pointer-scrub handler (defined in the component body) reuses the EXACT same
@@ -443,20 +444,23 @@ function CinematicPlate({
       // While hovering, the pointer owns the playhead. Keep the finite entrance
       // clock paused until interaction ends; pointermove writes the live value.
       if (hoverRef.current) {
+        baseRef.current = null;
         raf = requestAnimationFrame(tick);
         return;
       }
       if (baseRef.current == null) {
-        baseRef.current = now;
+        baseRef.current = now - progressRef.current * dur;
       }
       const frac = Math.min(1, (now - baseRef.current) / dur);
-      const v = 0.08 + frac * span;
+      progressRef.current = frac;
+      const v = 0.08 + ease(frac) * span;
       tRef.current = v;
-      draw(0.08 + ease(frac) * span);
+      draw(v);
       if (frac < 1) {
         raf = requestAnimationFrame(tick);
       } else {
         raf = 0;
+        progressRef.current = 1;
         tRef.current = T_MAX;
         draw(T_MAX);
       }
@@ -480,6 +484,7 @@ function CinematicPlate({
         cancelAnimationFrame(raf);
         raf = 0;
       }
+      baseRef.current = null;
     };
 
     let io: IntersectionObserver | null = null;
@@ -531,7 +536,14 @@ function CinematicPlate({
       0,
       Math.min(T_MAX, Math.pow(Math.max(0, u) * Math.sqrt(T_MAX), 2)),
     );
+    const pointerProgress = Math.max(0, Math.min(1, (tt - 0.08) / (T_MAX - 0.08)));
+    const inverseSweepEase = (value: number) =>
+      value < 0.5
+        ? Math.sqrt(value / 2)
+        : 1 - Math.sqrt((1 - value) / 2);
     hoverRef.current = true;
+    progressRef.current = inverseSweepEase(pointerProgress);
+    baseRef.current = null;
     tRef.current = tt;
     // draw immediately for snappy scrubbing — reuse the single playhead writer
     drawRef.current(tt);

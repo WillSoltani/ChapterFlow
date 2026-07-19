@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import type { LibraryBook } from "./browse-library-core";
 import { ChevronLeft, ChevronRight } from "./BrowseLibraryIcons";
 import { BrowseLibraryBookCard } from "./BrowseLibraryBookCard";
@@ -21,6 +22,7 @@ export function BrowseLibraryShelfRow({
   showCategoryTag?: boolean;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const reducedMotion = usePrefersReducedMotion();
   const [canLeft, setCanLeft] = useState(false);
   const [canRight, setCanRight] = useState(false);
 
@@ -47,7 +49,10 @@ export function BrowseLibraryShelfRow({
     const el = scrollRef.current;
     if (!el) return;
     const amount = el.clientWidth * 0.7;
-    el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
+    el.scrollBy({
+      left: dir === "left" ? -amount : amount,
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
   };
 
   if (books.length === 0) return null;

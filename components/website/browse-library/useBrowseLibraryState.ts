@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { track } from "@/lib/analytics";
 import {
   ALL_BOOKS,
@@ -10,6 +11,7 @@ import {
 } from "./browse-library-core";
 
 export function useBrowseLibraryState() {
+  const reducedMotion = usePrefersReducedMotion();
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
@@ -26,15 +28,12 @@ export function useBrowseLibraryState() {
     setRequestTitle(title.trim());
     track("book_request_prefill", { source: "browse_zero_results", title: title.trim() });
     requestAnimationFrame(() => {
-      const reduce =
-        typeof window !== "undefined" &&
-        window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
       requestSectionRef.current?.scrollIntoView({
-        behavior: reduce ? "auto" : "smooth",
+        behavior: reducedMotion ? "auto" : "smooth",
         block: "start",
       });
     });
-  }, []);
+  }, [reducedMotion]);
 
   // Seed the search from a ?q= URL param (deep links from JSON-LD / the
   // WebSite SearchAction, e.g. /books?q=Deep%20Work). Client-only read, guarded

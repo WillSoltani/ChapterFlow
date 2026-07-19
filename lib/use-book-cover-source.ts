@@ -12,6 +12,18 @@ function externalImageLoader({ src }: { src: string }): string {
   return src;
 }
 
+// These catalog entries intentionally have no git-tracked raster. Skipping the
+// otherwise-useful extension fallback chain prevents several known 404 requests
+// (and a blank cover box while they resolve) before the authored title fallback
+// appears. Keep this list narrow and remove an id when its AVIF/WebP pair lands.
+const FALLBACK_ONLY_BOOK_COVERS = new Set([
+  "behave",
+  "decisive",
+  "multipliers",
+  "the-first-90-days",
+  "the-now-habit",
+]);
+
 /**
  * Keep local cover rasters on Next's default optimizer while preserving the
  * existing passthrough behavior for remote S3 fallbacks. Omitting both props
@@ -26,6 +38,7 @@ export function getBookCoverImageProps(src?: string) {
 
 /** Ordered local candidates followed by the optional remote fallback once. */
 export function getBookCoverSourceCandidates(bookId: string, coverImage?: string): string[] {
+  if (FALLBACK_ONLY_BOOK_COVERS.has(bookId)) return [];
   const local = getBookCoverCandidates(bookId);
   return coverImage && !local.includes(coverImage) ? [...local, coverImage] : local;
 }

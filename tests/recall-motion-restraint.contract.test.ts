@@ -67,6 +67,11 @@ test("the hero playhead sweeps once, settles, and still supports pointer scrub",
   assert.match(hero, /draw\(T_MAX\)/);
   assert.match(hero, /onPointerMove=\{onMove\}/);
   assert.match(hero, /onPointerLeave=\{onLeave\}/);
+  assert.match(hero, /const progressRef = useRef\(0\)/);
+  assert.match(hero, /baseRef\.current = now - progressRef\.current \* dur/);
+  assert.match(hero, /if \(hoverRef\.current\) \{\s*baseRef\.current = null/);
+  assert.match(hero, /const stop = \(\) => \{[\s\S]*?baseRef\.current = null/);
+  assert.match(hero, /progressRef\.current = inverseSweepEase\(pointerProgress\)/);
 });
 
 test("the disintegration signature completes once and leaves readable final text", () => {

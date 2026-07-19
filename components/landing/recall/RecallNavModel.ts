@@ -42,11 +42,14 @@ export function shouldShowPersistentCta({
   hasSentinel,
   sentinelTop,
   headerBottom,
+  suppressionVisible,
 }: {
   hasSentinel: boolean;
   sentinelTop: number | null;
   headerBottom: number;
+  suppressionVisible: boolean;
 }): boolean {
+  if (suppressionVisible) return false;
   if (!hasSentinel) return true;
   return sentinelTop != null && sentinelTop <= headerBottom;
 }

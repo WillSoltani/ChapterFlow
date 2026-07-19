@@ -45,24 +45,59 @@ test("route current-state matching is exact and descendant aware", () => {
 
 test("the persistent CTA appears only after the hero boundary, or immediately without one", () => {
   assert.equal(
-    shouldShowPersistentCta({ hasSentinel: false, sentinelTop: null, headerBottom: 88 }),
+    shouldShowPersistentCta({
+      hasSentinel: false,
+      sentinelTop: null,
+      headerBottom: 88,
+      suppressionVisible: false,
+    }),
     true,
   );
   assert.equal(
-    shouldShowPersistentCta({ hasSentinel: true, sentinelTop: 640, headerBottom: 88 }),
+    shouldShowPersistentCta({
+      hasSentinel: true,
+      sentinelTop: 640,
+      headerBottom: 88,
+      suppressionVisible: false,
+    }),
     false,
   );
   assert.equal(
-    shouldShowPersistentCta({ hasSentinel: true, sentinelTop: 89, headerBottom: 88 }),
+    shouldShowPersistentCta({
+      hasSentinel: true,
+      sentinelTop: 89,
+      headerBottom: 88,
+      suppressionVisible: false,
+    }),
     false,
   );
   assert.equal(
-    shouldShowPersistentCta({ hasSentinel: true, sentinelTop: 88, headerBottom: 88 }),
+    shouldShowPersistentCta({
+      hasSentinel: true,
+      sentinelTop: 88,
+      headerBottom: 88,
+      suppressionVisible: false,
+    }),
     true,
   );
   assert.equal(
-    shouldShowPersistentCta({ hasSentinel: true, sentinelTop: -1, headerBottom: 88 }),
+    shouldShowPersistentCta({
+      hasSentinel: true,
+      sentinelTop: -1,
+      headerBottom: 88,
+      suppressionVisible: false,
+    }),
     true,
+  );
+  assert.equal(
+    shouldShowPersistentCta({
+      hasSentinel: true,
+      sentinelTop: -1,
+      headerBottom: 88,
+      suppressionVisible: true,
+    }),
+    false,
+    "an in-view page CTA must suppress the persistent header CTA",
   );
 });
 

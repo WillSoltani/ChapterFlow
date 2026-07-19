@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
   filterAndSortBooks,
+  getBookBadge,
   sortBooks,
   type LibraryBook,
 } from "./browse-library-core";
@@ -37,4 +38,15 @@ test("filtering and sorting never mutate their input", () => {
   sortBooks(books, "shortest");
   filterAndSortBooks(books, { category: "Focus", query: "", sort: "popular" });
   assert.deepEqual(books.map((book) => book.id), before);
+});
+
+test("public catalog badges share the single Recall accent", () => {
+  for (const book of [
+    { ...books[0], isFree: true },
+    { ...books[0], isNew: true },
+    { ...books[0], popular: true },
+    { ...books[0], staffPick: true },
+  ]) {
+    assert.equal(getBookBadge(book)?.color, "var(--accent-cyan)");
+  }
 });

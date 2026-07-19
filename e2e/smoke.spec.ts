@@ -170,6 +170,24 @@ test.describe("shared Recall public chrome", () => {
     });
   }
 
+  for (const [path, label] of [
+    ["/books", "Books"],
+    ["/pricing", "Pricing"],
+    ["/contact", "Support"],
+  ] as const) {
+    test(`${path} desktop navigation has a non-color current-route marker`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.goto(path);
+      const current = page
+        .locator("header.rl-nav nav[aria-label='Primary']")
+        .getByRole("link", { name: label });
+      await expect(current).toHaveAttribute("aria-current", "page");
+      await expect(current.locator("[data-public-current-marker]")).toBeVisible();
+    });
+  }
+
   test("mobile menu traps focus, restores it, and unlocks after navigation", async ({
     page,
   }) => {
@@ -257,6 +275,7 @@ test.describe("shared Recall public chrome", () => {
     await expect(
       page.locator("header.rl-nav nav[aria-label='Primary']"),
     ).toBeVisible();
+    await expect(page.getByRole("link", { name: "ChapterFlow home" })).toBeFocused();
     expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
   });
 
@@ -283,6 +302,60 @@ test.describe("shared Recall public chrome", () => {
 
     await page.evaluate(() => window.scrollTo(0, 0));
     await expect(headerAction).toHaveCount(0);
+  });
+
+  for (const path of ["/contact", "/legal/privacy"] as const) {
+    test(`${path} defers the persistent CTA until after its masthead`, async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto(path);
+      const headerAction = page.locator("header.rl-nav").getByRole("link", {
+        name: /start free|dashboard/i,
+      });
+      await expect(headerAction).toHaveCount(0);
+
+      await page.evaluate(() => {
+        const sentinel = document.querySelector<HTMLElement>("[data-public-hero-end]");
+        if (!sentinel) throw new Error("missing public masthead boundary");
+        window.scrollTo(0, sentinel.offsetTop + 120);
+      });
+      await expect(headerAction).toHaveCount(1);
+    });
+  }
+
+  test("books persistent CTA yields to in-view page CTA zones", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/books");
+    const headerAction = page.locator("header.rl-nav").getByRole("link", {
+      name: /start free|dashboard/i,
+    });
+    await expect(headerAction).toHaveCount(0);
+
+    await page.evaluate(() => {
+      const sentinel = document.querySelector<HTMLElement>("[data-public-hero-end]");
+      if (!sentinel) throw new Error("missing public hero boundary");
+      window.scrollTo(0, sentinel.offsetTop + 120);
+    });
+    await expect(headerAction).toHaveCount(1);
+
+    const suppressionZone = page.locator("[data-public-sticky-cta-suppress]").first();
+    await suppressionZone.scrollIntoViewIfNeeded();
+    await expect(suppressionZone).toBeInViewport();
+    await expect(headerAction).toHaveCount(0);
+  });
+
+  test("cookie inventory keeps labels and duration values visible on phones", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/legal/cookies");
+    const essential = page.locator('dl[aria-label="Essential cookies"]');
+    await expect(essential).toBeVisible();
+    await expect(essential.locator("div").first()).toContainText("Duration");
+    await expect(essential.locator("div").first()).toContainText("1 hour");
+    await expect(page.locator('table[aria-label="Essential cookies"]')).toBeHidden();
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1),
+    ).toBe(true);
   });
 
   test("OS reduced motion renders the meaningful final state", async ({ page }) => {

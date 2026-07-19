@@ -14,7 +14,13 @@ function collectSourceFiles(relativeDirectory: string): string[] {
       return entry.isDirectory() ? collectSourceFiles(relativePath) : [relativePath];
     })
     .filter((relativePath) => /\.(?:css|ts|tsx)$/.test(relativePath))
-    .filter((relativePath) => !relativePath.includes(".test."));
+    .filter((relativePath) => !relativePath.includes(".test."))
+    // The style-drift self-test briefly creates untracked __drift_* fixtures in
+    // components/ while the Node test runner is executing this contract in
+    // parallel. They are scanner inputs, not application sources, and may be
+    // deleted between readdir and readFile; exclude that explicit fixture
+    // namespace so the inventory remains deterministic.
+    .filter((relativePath) => !path.basename(relativePath).startsWith("__drift_"));
 }
 
 test("non-global sources have exactly one stateful continuous declaration", () => {
@@ -32,6 +38,32 @@ test("non-global sources have exactly one stateful continuous declaration", () =
   assert.deepEqual(declarations, [
     "components/website/BookRequestForm.tsx:repeat: Infinity",
   ]);
+});
+
+test("the documented inventory covers every compiled Tailwind continuous loop", () => {
+  const inventory = source("docs/RECALL_MOTION_INVENTORY.md");
+  const tailwindContinuous = /\banimate-(?:pulse|spin|bounce)\b/g;
+  const consumers = new Set(
+    ["app", "components"]
+      .flatMap(collectSourceFiles)
+      .flatMap((relativePath) =>
+        [...source(relativePath).matchAll(tailwindContinuous)].map(
+          (match) => `\`${relativePath}\` — \`${match[0]}\``,
+        ),
+      ),
+  );
+
+  assert.ok(consumers.size > 0, "expected compiled Tailwind loop consumers");
+  for (const consumer of consumers) {
+    assert.ok(inventory.includes(consumer), `motion inventory missing ${consumer}`);
+  }
+  for (const requiredLiteral of [
+    "`.animate-shimmer`",
+    "`.bd-dot-pulse`",
+    "`components/website/BookRequestForm.tsx`",
+  ]) {
+    assert.ok(inventory.includes(requiredLiteral), `motion inventory missing ${requiredLiteral}`);
+  }
 });
 
 test("the one continuous Framer loop is reduced-motion-safe submitting feedback", () => {
@@ -80,6 +112,9 @@ test("remaining state pulses have an equivalent non-motion cue", () => {
   const chapterSteps = source("app/book/library/[bookId]/components/StepIndicators.tsx");
   assert.match(chapterSteps, /isCurrent[\s\S]*bd-dot-pulse/);
   assert.match(chapterSteps, /\? `\$\{label\}: in progress`/);
+  assert.match(chapterSteps, /role="list"[\s\S]*aria-label="Chapter learning steps"/);
+  assert.match(chapterSteps, /aria-current=\{isCurrent \? "step" : undefined\}/);
+  assert.match(chapterSteps, /data-current-marker/);
 
   const tour = source(
     "app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay.tsx",

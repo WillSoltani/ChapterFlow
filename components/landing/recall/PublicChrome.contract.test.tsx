@@ -25,6 +25,7 @@ test("RecallNav owns the shared skip link and accessible fullscreen mobile dialo
   assert.match(nav, /data-public-hero-end/);
   assert.match(nav, /PUBLIC_NAV_DESKTOP_QUERY/);
   assert.match(nav, /aria-current=\{current \? "page" : undefined\}/);
+  assert.match(nav, /data-public-current-marker/);
   assert.doesNotMatch(nav, /accent-cyan|SPEC v1\.0|§\d/);
 });
 

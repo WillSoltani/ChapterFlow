@@ -3425,10 +3425,13 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
   border-color: var(--cf-recall-accent-line);
 }
 .rl-filter-chip:focus-visible {
-  outline: none;
-  box-shadow:
-    0 0 0 2px var(--cf-recall-bg),
-    0 0 0 4px var(--cf-recall-accent-line);
+  outline: 2px solid var(--cf-recall-accent);
+  outline-offset: 2px;
+}
+@media (forced-colors: active) {
+  .rl-filter-chip:focus-visible {
+    outline-color: Highlight;
+  }
 }
 .rl-filter-chip-active {
   color: var(--cf-recall-ink);

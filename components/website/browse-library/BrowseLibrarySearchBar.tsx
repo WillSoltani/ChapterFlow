@@ -22,7 +22,7 @@ export function BrowseLibrarySearchBar({
   books: LibraryBook[];
   onRequestBook: (title: string) => void;
 }) {
-  const [focused, setFocused] = useState(false);
+  const [focusedWithin, setFocusedWithin] = useState(false);
 
   const results = useMemo(() => {
     if (query.length < 2) return [];
@@ -37,15 +37,27 @@ export function BrowseLibrarySearchBar({
       .slice(0, 5);
   }, [query, books]);
 
-  const showDropdown = focused && query.length >= 2;
+  const showDropdown = focusedWithin && query.length >= 2;
 
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onFocusCapture={() => setFocusedWithin(true)}
+      onBlurCapture={(event) => {
+        const nextTarget = event.relatedTarget as Node | null;
+        if (nextTarget && event.currentTarget.contains(nextTarget)) return;
+
+        if (query.length >= 2) {
+          track("library_search", { query, resultCount: results.length });
+        }
+        setFocusedWithin(false);
+      }}
+    >
       <div
         className="flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-200"
         style={{
           background: "var(--bg-glass)",
-          border: `1px solid ${focused ? "color-mix(in srgb, var(--accent-cyan) 30%, transparent)" : "var(--border-subtle)"}`,
+          border: `1px solid ${focusedWithin ? "color-mix(in srgb, var(--accent-cyan) 30%, transparent)" : "var(--border-subtle)"}`,
         }}
       >
         <SearchIcon />
@@ -53,30 +65,19 @@ export function BrowseLibrarySearchBar({
           type="text"
           value={query}
           onChange={(e) => onChange(e.target.value)}
-          onFocus={() => setFocused(true)}
-          onBlur={() => {
-            if (query.length >= 2) track("library_search", { query, resultCount: results.length });
-            setTimeout(() => setFocused(false), 200);
-          }}
           placeholder="Search by title, author, or topic..."
-          className="flex-1 bg-transparent outline-none text-cf-body-sm placeholder:text-(--text-muted)"
+          className="flex-1 bg-transparent pr-8 outline-none text-cf-body-sm placeholder:text-(--text-muted)"
           style={{ color: "var(--text-heading)", fontFamily: "var(--font-body)" }}
           aria-label="Search books"
+          aria-controls={showDropdown ? "browse-library-search-suggestions" : undefined}
         />
-        {query && (
-          <button
-            type="button"
-            onClick={() => onChange("")}
-            aria-label="Clear search"
-            className="text-(--text-muted) hover:text-(--text-heading) transition-colors text-sm"
-          >
-            ✕
-          </button>
-        )}
       </div>
 
       {showDropdown && (
         <div
+          id="browse-library-search-suggestions"
+          role="group"
+          aria-label="Search suggestions"
           className="absolute top-full left-0 right-0 mt-2 rounded-xl overflow-hidden z-50"
           style={{
             background: "var(--bg-elevated)",
@@ -134,6 +135,17 @@ export function BrowseLibrarySearchBar({
             </div>
           )}
         </div>
+      )}
+
+      {query && (
+        <button
+          type="button"
+          onClick={() => onChange("")}
+          aria-label="Clear search"
+          className="absolute right-4 top-6 z-[60] -translate-y-1/2 text-sm text-(--text-muted) transition-colors hover:text-(--text-heading)"
+        >
+          ✕
+        </button>
       )}
     </div>
   );
