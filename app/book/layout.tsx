@@ -6,7 +6,7 @@ import {
 } from "@/app/_lib/chapterflow-brand";
 import { BookProviders } from "./providers";
 import { TokenExpiryGuard } from "@/components/auth/TokenExpiryGuard";
-import { MotionProvider } from "@/components/MotionProvider";
+import { MotionFeatureProvider } from "@/components/MotionFeatureProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -30,13 +30,13 @@ export default function BookLayout({
   children: React.ReactNode;
 }) {
   return (
-    <MotionProvider featureMode="compatible">
+    <MotionFeatureProvider>
       <BookProviders>
         {children}
         <TokenExpiryGuard />
         {/* Color-blind simulation SVG filters moved to the root layout
             (app/layout.tsx) so every route gets them, not just /book. */}
       </BookProviders>
-    </MotionProvider>
+    </MotionFeatureProvider>
   );
 }

@@ -7,6 +7,7 @@ import {
   CHAPTERFLOW_TAGLINE,
   getChapterFlowSiteUrl,
 } from "@/app/_lib/chapterflow-brand";
+import { MotionProvider } from "@/components/MotionProvider";
 import { AuthCacheBoundary } from "@/components/auth/AuthCacheBoundary";
 import { buildDocumentThemeBootstrapScript } from "@/app/_lib/document-theme";
 
@@ -112,7 +113,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen w-full overflow-x-hidden antialiased font-(--font-body)">
         <AuthCacheBoundary />
-        {children}
+        <MotionProvider>{children}</MotionProvider>
         {/* Color-blind support no longer uses an SVG feColorMatrix filter on
             <html>. That global url() filter forced a full-page raster on every
             paint (heavy GPU/jank) and was a color *simulation* that compounded

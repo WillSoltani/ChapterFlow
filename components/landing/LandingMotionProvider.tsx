@@ -1,8 +1,8 @@
 "use client";
 
-import { MotionProvider } from "@/components/MotionProvider";
+import { MotionFeatureProvider } from "@/components/MotionFeatureProvider";
 
 /** Landing-only Framer feature boundary with the shared reduced-motion policy. */
 export function LandingMotionProvider({ children }: { children: React.ReactNode }) {
-  return <MotionProvider featureMode="strict">{children}</MotionProvider>;
+  return <MotionFeatureProvider strict>{children}</MotionFeatureProvider>;
 }

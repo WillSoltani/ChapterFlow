@@ -1,12 +1,7 @@
 "use client";
 
-import { LazyMotion, MotionConfig } from "framer-motion";
+import { MotionConfig } from "framer-motion";
 import { useEffect, useState } from "react";
-
-type MotionFeatureMode = "strict" | "compatible";
-
-const loadMotionFeatures = () =>
-  import("framer-motion").then(({ domAnimation }) => domAnimation);
 
 /**
  * Wraps the app in framer's MotionConfig.
@@ -18,13 +13,7 @@ const loadMotionFeatures = () =>
  * attribute into MotionConfig: when the in-app toggle is on we force "always",
  * otherwise we stay on "user" (still honoring the OS setting).
  */
-export function MotionProvider({
-  children,
-  featureMode,
-}: {
-  children: React.ReactNode;
-  featureMode: MotionFeatureMode;
-}) {
+export function MotionProvider({ children }: { children: React.ReactNode }) {
   const [reducedMotion, setReducedMotion] = useState<"user" | "always">("user");
 
   useEffect(() => {
@@ -47,15 +36,5 @@ export function MotionProvider({
     };
   }, []);
 
-  return (
-    <MotionConfig reducedMotion={reducedMotion}>
-      {featureMode === "strict" ? (
-        <LazyMotion features={loadMotionFeatures} strict>
-          {children}
-        </LazyMotion>
-      ) : (
-        <LazyMotion features={loadMotionFeatures}>{children}</LazyMotion>
-      )}
-    </MotionConfig>
-  );
+  return <MotionConfig reducedMotion={reducedMotion}>{children}</MotionConfig>;
 }
