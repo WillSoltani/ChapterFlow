@@ -9,7 +9,7 @@
     "sourceRevisionPhase": "uncommitted_backend",
     "generatedAt": "2026-07-15T03:48:02-03:00",
     "generatorVersion": "chapterflow-native-contract-generator-v1",
-    "generatorTreeDigest": "ee224c55b83f68645b69b2e1481efe4737b38103aa2beede51029cd55869f886",
+    "generatorTreeDigest": "da7d01ba08af1fbc3cab200a094da0f3511fb105e62610d1eef3f6fce984e007",
     "committedInputTree": null,
     "syntheticDataOnly": true,
     "deployedRevision": null,
@@ -2688,6 +2688,16 @@
             "sourceSha256": "ddddf2b5fbb416b8d24dd6c1de4215e08534878318b83f1cb8e7b10bde9ec33a"
           },
           {
+            "path": "app/app/api/book/_lib/quiz-submit-service.ts",
+            "role": "response_builder",
+            "sourceSha256": "108ee4109a0e4f3d0c37a03b6c5b03808b2b3f2c468a8815118173ecf89d3c75"
+          },
+          {
+            "path": "app/app/api/book/_lib/quiz-submit-core.ts",
+            "role": "response_builder",
+            "sourceSha256": "1f005ae340cf85e318d7c63b56d367e8a0b9a655f0fb6c4c62ba481a0acee247"
+          },
+          {
             "path": "app/app/api/book/_lib/quiz-session.ts",
             "role": "response_builder",
             "sourceSha256": "e16cc8f3ba010af9a750c67ca3034ab6623b5852852eda11e67db1d804d313ed"
@@ -5097,9 +5107,9 @@
             "sourceSha256": "956bd46a56b79edd446c66f4914bc11d061e1203b963a6ad4ff7f76738a26cf9"
           },
           {
-            "path": "app/app/api/book/_lib/flow-points-repo.ts",
+            "path": "app/app/api/book/_lib/gift-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "308c8a967a3857add81121c00734fb11169f2d1677c4c61ecc51f3c044671ae3"
+            "sourceSha256": "485871acd58a14aedf100e7993bf5ec24aa26e838c10458cc2e71e1da0087900"
           }
         ],
         "serializerProof": {
@@ -13591,6 +13601,11 @@
             "sourceSha256": "491991c0739ad31958be985230f9fb18a511bb42db9363e4c4c6f50106633e38"
           },
           {
+            "path": "app/app/api/book/_lib/export-repo.ts",
+            "role": "response_builder",
+            "sourceSha256": "7b475737d960b7df8270300adbf35e036254dda752f34d6a1b9832f244801cd4"
+          },
+          {
             "path": "app/app/api/book/_lib/entitlement-repo.ts",
             "role": "response_builder",
             "sourceSha256": "ad13e763a9aee22b900963b88eaed9f5a385ac2bc6023acf02dd3bd7b9ecbb6f"
@@ -14045,6 +14060,11 @@
             "path": "app/app/api/book/_lib/account-guard.ts",
             "role": "auth",
             "sourceSha256": "ddddf2b5fbb416b8d24dd6c1de4215e08534878318b83f1cb8e7b10bde9ec33a"
+          },
+          {
+            "path": "app/app/api/book/_lib/gift-repo.ts",
+            "role": "response_builder",
+            "sourceSha256": "485871acd58a14aedf100e7993bf5ec24aa26e838c10458cc2e71e1da0087900"
           },
           {
             "path": "app/app/api/book/_lib/user-profile-repo.ts",

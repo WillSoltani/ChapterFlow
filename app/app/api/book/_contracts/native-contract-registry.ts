@@ -1111,6 +1111,8 @@ nativeContractOperationDefinitions.push(
     }),
     responseHeaders: [{ name: "Cache-Control", value: "private, no-store" }],
     responseSources: [
+      { path: "app/app/api/book/_lib/quiz-submit-service.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/quiz-submit-core.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/quiz-session.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/types.ts", role: "schema" },
       { path: "lib/book-package-types.ts", role: "schema" },
@@ -1514,7 +1516,7 @@ nativeContractOperationDefinitions.push(
     }),
     responseSources: [
       { path: "app/app/api/book/_lib/pro-grant-guard-core.ts", role: "request_validator" },
-      { path: "app/app/api/book/_lib/flow-points-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/gift-repo.ts", role: "response_builder" },
     ],
     authority: {
       classification: "entitlement",
@@ -2807,6 +2809,7 @@ nativeContractOperationDefinitions.push(
     ],
     responseSources: [
       { path: "app/app/api/book/_lib/export-manifest-core.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/export-repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/entitlement-repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/user-profile-repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/user-settings-repo.ts", role: "response_builder" },
@@ -2874,6 +2877,7 @@ nativeContractOperationDefinitions.push(
       senderName: "Synthetic Reader",
     }),
     responseSources: [
+      { path: "app/app/api/book/_lib/gift-repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/user-profile-repo.ts", role: "response_builder" },
     ],
     authority: { classification: "server_decision", pointers: ["/status"] },

@@ -258,10 +258,15 @@ const focusedRepositoryProvenance = {
   "entitlements.get": ["app/app/api/book/_lib/entitlement-repo.ts"],
   "export.get": [
     "app/app/api/book/_lib/entitlement-repo.ts",
+    "app/app/api/book/_lib/export-repo.ts",
     "app/app/api/book/_lib/user-profile-repo.ts",
     "app/app/api/book/_lib/user-settings-repo.ts",
   ],
-  "gift-preview.get": ["app/app/api/book/_lib/user-profile-repo.ts"],
+  "gift-claim.post": ["app/app/api/book/_lib/gift-repo.ts"],
+  "gift-preview.get": [
+    "app/app/api/book/_lib/gift-repo.ts",
+    "app/app/api/book/_lib/user-profile-repo.ts",
+  ],
   "onboarding-progress.get": ["app/app/api/book/_lib/user-settings-repo.ts"],
   "badges.get": ["app/app/api/book/_lib/book-metrics-repo.ts"],
   "scenarios.get": [
@@ -290,6 +295,26 @@ const canonicalBookPackageOperations = [
   "quiz-submit.post",
 ] as const;
 
+const focusedMovedResponseBuilderProvenance = {
+  "quiz-submit.post": [
+    "app/app/api/book/_lib/quiz-session.ts",
+    "app/app/api/book/_lib/quiz-submit-core.ts",
+    "app/app/api/book/_lib/quiz-submit-service.ts",
+  ],
+  "gift-claim.post": ["app/app/api/book/_lib/gift-repo.ts"],
+  "gift-preview.get": [
+    "app/app/api/book/_lib/gift-repo.ts",
+    "app/app/api/book/_lib/user-profile-repo.ts",
+  ],
+  "export.get": [
+    "app/app/api/book/_lib/entitlement-repo.ts",
+    "app/app/api/book/_lib/export-manifest-core.ts",
+    "app/app/api/book/_lib/export-repo.ts",
+    "app/app/api/book/_lib/user-profile-repo.ts",
+    "app/app/api/book/_lib/user-settings-repo.ts",
+  ],
+} as const satisfies Record<string, readonly string[]>;
+
 function assertFocusedNativeContractProvenance(
   definitions: NativeContractOperationDefinition[]
 ): void {
@@ -313,6 +338,28 @@ function assertFocusedNativeContractProvenance(
     ) {
       throw new Error(
         `${operationId} repository provenance mismatch: expected ${expectedSorted.join(", ")}; got ${actualPaths.join(", ")}`
+      );
+    }
+  }
+
+  for (const [operationId, expectedPaths] of Object.entries(
+    focusedMovedResponseBuilderProvenance,
+  )) {
+    const operation = definitions.find((candidate) => candidate.id === operationId);
+    const evidence = operation?.backend ?? operation?.blocker?.backendCandidate;
+    if (!evidence) throw new Error(`${operationId} is missing backend provenance`);
+
+    const actualPaths = evidence.sourceFiles
+      .filter((source) => source.role === "response_builder")
+      .map((source) => source.path)
+      .sort();
+    const expectedSorted = [...expectedPaths].sort();
+    if (
+      actualPaths.length !== expectedSorted.length ||
+      actualPaths.some((path, index) => path !== expectedSorted[index])
+    ) {
+      throw new Error(
+        `${operationId} moved response-builder provenance mismatch: expected ${expectedSorted.join(", ")}; got ${actualPaths.join(", ")}`,
       );
     }
   }
@@ -348,7 +395,7 @@ test("focused native operations use exact repositories and canonical BookPackage
   );
 });
 
-test("focused provenance canary rejects missing, extra, shim, and canonical-schema drift", () => {
+test("focused provenance canary rejects missing, extra, moved, shim, and canonical-schema drift", () => {
   const missing = structuredClone(nativeContractOperationDefinitions);
   const readingSession = missing.find((operation) => operation.id === "reading-session.post");
   assert.ok(readingSession?.backend);
@@ -370,6 +417,17 @@ test("focused provenance canary rejects missing, extra, shim, and canonical-sche
   assert.throws(
     () => assertFocusedNativeContractProvenance(extra),
     /saved\.get repository provenance mismatch/
+  );
+
+  const moved = structuredClone(nativeContractOperationDefinitions);
+  const quizSubmit = moved.find((operation) => operation.id === "quiz-submit.post");
+  assert.ok(quizSubmit?.backend);
+  quizSubmit.backend.sourceFiles = quizSubmit.backend.sourceFiles.filter(
+    (source) => source.path !== "app/app/api/book/_lib/quiz-submit-service.ts"
+  );
+  assert.throws(
+    () => assertFocusedNativeContractProvenance(moved),
+    /quiz-submit\.post moved response-builder provenance mismatch/
   );
 
   const shim = structuredClone(nativeContractOperationDefinitions);
