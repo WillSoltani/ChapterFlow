@@ -38,6 +38,12 @@ export const PROD_E2E_ENV: Readonly<Record<string, string>> = {
   NEXT_DIST_DIR: ".next-prod-e2e",
   NEXT_TELEMETRY_DISABLED: "1",
 };
+export const PROD_E2E_HEADERS: Readonly<Record<string, string>> = {
+  // Production traffic reaches the public Function URL through CloudFront,
+  // which injects this header. The direct local/CI harness must emulate that
+  // edge hop now that the runtime manifest correctly requires enforcement.
+  "x-origin-verify": PROD_E2E_ENV.ORIGIN_VERIFY_SECRET,
+};
 const PROD_ENV = Object.entries(PROD_E2E_ENV)
   .map(([name, value]) => `${name}=${value}`)
   .join(" ");
@@ -65,6 +71,7 @@ export default defineConfig({
     baseURL: BASE_URL,
     headless: true,
     trace: "on-first-retry",
+    extraHTTPHeaders: IS_PROD ? PROD_E2E_HEADERS : undefined,
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {

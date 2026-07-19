@@ -6,7 +6,7 @@ import {
   buildSyntheticRuntimeEnvironment,
   validateRuntimeEnvironment,
 } from "@/app/app/api/_lib/boot-env-core";
-import { PROD_E2E_ENV } from "@/playwright.config";
+import { PROD_E2E_ENV, PROD_E2E_HEADERS } from "@/playwright.config";
 
 // register() (root instrumentation.ts, WS3-012) must be a complete no-op
 // everywhere except a genuine production runtime boot — see the guard
@@ -112,4 +112,12 @@ test("a real production runtime boot with every required var present resolves cl
 
 test("the production E2E server supplies every required boot variable", () => {
   assert.deepEqual(validateRuntimeEnvironment(PROD_E2E_ENV).failures, []);
+});
+
+test("the production E2E client emulates CloudFront origin verification", () => {
+  assert.ok(PROD_E2E_ENV.ORIGIN_VERIFY_SECRET);
+  assert.equal(
+    PROD_E2E_HEADERS["x-origin-verify"],
+    PROD_E2E_ENV.ORIGIN_VERIFY_SECRET,
+  );
 });
