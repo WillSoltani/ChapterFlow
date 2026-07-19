@@ -1015,6 +1015,9 @@ html.transitioning *::after {
   --tw-ring-offset-color: transparent;
   background: var(--cf-paper-field);
   color: var(--text-primary);
+  border: 1px solid var(--cf-paper-rule);
+  box-shadow: var(--shadow-elevated);
+  isolation: isolate;
 }
 
 .cf-paper-sheet {

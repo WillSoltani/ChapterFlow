@@ -88,3 +88,21 @@ test("removed dead motion blocks cannot drift back into the global stylesheet", 
     assert.doesNotMatch(css, new RegExp(`@keyframes\\s+${name}\\b`));
   }
 });
+
+test("OS and in-app reduced-motion kill lists stay semantically identical", () => {
+  const os = css.match(
+    /@media \(prefers-reduced-motion: reduce\) \{\s*:where\(([\s\S]*?)\) \{\s*animation: none !important;/,
+  );
+  const inApp = css.match(
+    /html\[data-motion="reduced"\] :where\(([\s\S]*?)\) \{\s*animation: none !important;/,
+  );
+  assert.ok(os, "missing consolidated OS reduced-motion kill list");
+  assert.ok(inApp, "missing consolidated in-app reduced-motion kill list");
+  const normalize = (selectors: string) =>
+    selectors
+      .split(",")
+      .map((selector) => selector.trim())
+      .filter(Boolean)
+      .sort();
+  assert.deepEqual(normalize(os[1]), normalize(inApp[1]));
+});
