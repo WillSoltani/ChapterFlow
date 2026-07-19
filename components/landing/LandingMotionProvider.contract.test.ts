@@ -144,6 +144,11 @@ test("the complete landing import graph is strict-LazyMotion compatible", () => 
       relativePath,
     );
     assert.doesNotMatch(contents, /<\/?motion\./, relativePath);
+    assert.doesNotMatch(
+      contents,
+      /<m\.[A-Za-z][^>]*\b(?:layout(?:Id|Scroll|Root)?|drag(?:[A-Z]\w*)?)\b(?=\s|=|\/>)/,
+      `${relativePath} requires domMax inside the domAnimation landing boundary`,
+    );
   }
 });
 

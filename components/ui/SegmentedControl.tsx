@@ -21,7 +21,6 @@ type SegmentedControlProps<T extends string> = {
 };
 
 export function SegmentedControl<T extends string>({
-  groupId,
   options,
   value,
   onChange,
@@ -57,9 +56,10 @@ export function SegmentedControl<T extends string>({
                   <div className="absolute inset-0 rounded-md bg-(--cf-surface-strong) shadow-(--cf-shadow-sm) border border-transparent forced-colors:border-[Highlight]" />
                 ) : (
                   <m.div
-                    layoutId={groupId}
                     className="absolute inset-0 rounded-md bg-(--cf-surface-strong) shadow-(--cf-shadow-sm) border border-transparent forced-colors:border-[Highlight]"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.16, ease: "easeOut" }}
                   />
                 ))}
               <span className="relative z-10">{opt.label}</span>
