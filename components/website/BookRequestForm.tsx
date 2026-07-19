@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { motion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
 interface BookRequestFormProps {
   initialTitle?: string;
@@ -18,6 +19,7 @@ function isValidEmail(email: string): boolean {
 }
 
 export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFormProps) {
+  const reducedMotion = usePrefersReducedMotion();
   const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
   // Seed the title once from the parent prop via a lazy initializer (avoids a
   // setState-in-effect). The component is keyed by initialTitle upstream
@@ -190,12 +192,17 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
         {formState === "submitting" ? (
           <>
             <motion.svg
+              aria-hidden="true"
               width="16"
               height="16"
               viewBox="0 0 16 16"
               fill="none"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              animate={reducedMotion ? undefined : { rotate: 360 }}
+              transition={
+                reducedMotion
+                  ? { duration: 0 }
+                  : { duration: 1, repeat: Infinity, ease: "linear" }
+              }
             >
               <circle
                 cx="8"

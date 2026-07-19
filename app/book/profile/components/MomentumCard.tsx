@@ -73,21 +73,16 @@ export function MomentumCard({
         </motion.div>
         <p className="mt-1 text-right text-xs text-(--cf-text-soft)">{Math.round(progress)}% complete</p>
 
-        {/* B3: Pulsing glow CTA */}
+        {/* B3: Primary continuation action */}
         <Button
           variant="primary"
           size="lg"
           fullWidth
           onClick={onContinue}
-          className="mt-4 cf-cta-pulse"
+          className="mt-4"
         >
           Continue Reading &rarr;
         </Button>
-        <style>{`
-          @keyframes cf-cta-glow { 0%,100% { box-shadow: 0 0 16px color-mix(in srgb, var(--cf-data-blue) 20%, transparent); } 50% { box-shadow: 0 0 28px color-mix(in srgb, var(--cf-data-blue) 40%, transparent); } }
-          .cf-cta-pulse { animation: cf-cta-glow 3s ease-in-out infinite; }
-          @media (prefers-reduced-motion: reduce) { .cf-cta-pulse { animation: none; } }
-        `}</style>
       </div>
     </div>
   );

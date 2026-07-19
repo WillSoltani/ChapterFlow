@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { DUR } from "@/lib/motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { BookOpen, Brain, RotateCcw, Check } from "lucide-react";
 import type { DailyQuest } from "./progressTypes";
 
@@ -29,11 +30,9 @@ function getQuestAccent(questId: string): {
 }
 
 export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
-  const prefersReduced = useReducedMotion();
+  const prefersReduced = usePrefersReducedMotion();
   const allComplete = quests.every((q) => q.completed);
   const completedCount = quests.filter((q) => q.completed).length;
-  const allPartiallyStarted =
-    quests.length > 0 && quests.every((q) => q.current > 0 && !q.completed);
 
   return (
     <motion.section
@@ -61,25 +60,15 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
         >
           Today&apos;s Quests
         </h2>
-        <motion.span
+        <span
           className="rounded-lg px-2 py-0.5 text-xs font-medium"
           style={{
             background: "color-mix(in srgb, var(--accent-violet) 15%, transparent)",
             color: "var(--accent-violet)",
           }}
-          animate={
-            allPartiallyStarted && !prefersReduced
-              ? { opacity: [1, 0.7, 1] }
-              : undefined
-          }
-          transition={
-            allPartiallyStarted
-              ? { repeat: Infinity, duration: 2, ease: "easeInOut" }
-              : undefined
-          }
         >
           {"\u{1F3AF}"} {completedCount}/{quests.length} done
-        </motion.span>
+        </span>
       </div>
 
       {/* All complete banner */}

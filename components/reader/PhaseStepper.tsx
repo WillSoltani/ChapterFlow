@@ -157,7 +157,7 @@ export function PhaseStepper({
                         ? "cursor-default"
                         : "",
                   ].join(" ")}
-                  style={state === "current" && !reduced ? { animation: "cr-stepper-pulse 2s ease-in-out infinite" } : undefined}
+                  style={state === "current" && !reduced ? { animation: "cr-stepper-pulse 1.2s ease-in-out 2" } : undefined}
                 >
                   {state === "completed" ? (
                     <Check className="h-4 w-4" strokeWidth={2.5} />

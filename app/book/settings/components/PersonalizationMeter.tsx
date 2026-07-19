@@ -39,7 +39,7 @@ export function PersonalizationMeter({
       </button>
 
       <div className="flex items-center gap-2">
-        <span className={cn("text-sm", !reducedMotion && "animate-pulse")}>&#10024;</span>
+        <span className="text-sm">&#10024;</span>
         <span className="text-sm font-semibold text-(--cf-text-1)">
           {isComplete
             ? "Fully personalized!"
@@ -60,10 +60,6 @@ export function PersonalizationMeter({
               : "bg-gradient-to-r from-[var(--accent-emerald)] to-[var(--accent-cyan)]"
           )}
         >
-          {/* Shimmer overlay on the filled bar */}
-          {!reducedMotion && !isComplete && (
-            <span className="absolute inset-0 -translate-x-full animate-[shimmer_3s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          )}
           {/* Glow at the tip */}
           <span
             className="absolute right-0 top-0 h-full w-4 rounded-full"

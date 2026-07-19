@@ -57,38 +57,16 @@ export function IdentityHeroBanner({
       <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_left] from-accent-cyan/22 via-accent-cyan/10 to-transparent" />
       <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-(--cf-surface-muted) blur-3xl" />
 
-      {/* A2: Avatar ring CSS — Pro gets rotating conic-gradient, Free gets cyan ring */}
-      <style>{`
-        @property --ring-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-        @keyframes cf-ring-spin { to { --ring-angle: 360deg; } }
-        .cf-avatar-ring {
-          background: conic-gradient(from var(--ring-angle), var(--accent-amber), var(--accent-violet), var(--accent-cyan), var(--accent-amber));
-          animation: cf-ring-spin 20s linear infinite;
-        }
-        @keyframes cf-pro-shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
-        }
-        .cf-pro-badge-shimmer {
-          background: linear-gradient(90deg, var(--cf-profile-flame-base) 0%, var(--cf-profile-flame-light) 40%, var(--cf-profile-flame-pale) 50%, var(--cf-profile-flame-light) 60%, var(--cf-profile-flame-base) 100%);
-          background-size: 200% 100%;
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: cf-pro-shimmer 3s linear infinite;
-        }
-        @media (prefers-reduced-motion: reduce) {
-          .cf-avatar-ring { animation: none; background: conic-gradient(from 0deg, var(--accent-amber), var(--accent-violet), var(--accent-cyan), var(--accent-amber)); }
-          .cf-pro-badge-shimmer { animation: none; }
-        }
-      `}</style>
-
       <div className="relative flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
-          {/* Avatar with A2 tier ring — rotating conic-gradient */}
+          {/* Avatar with A2 tier ring — static conic-gradient */}
           <div className="relative shrink-0">
             <div
-              className="cf-avatar-ring flex items-center justify-center overflow-hidden rounded-full p-[3px] shadow-[0_16px_38px_rgba(2,6,23,0.18)]"
+              className="flex items-center justify-center overflow-hidden rounded-full p-[3px] shadow-[0_16px_38px_rgba(2,6,23,0.18)]"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, var(--accent-amber), var(--accent-violet), var(--accent-cyan), var(--accent-amber))",
+              }}
             >
               <div className="flex h-[76px] w-[76px] items-center justify-center overflow-hidden rounded-full bg-(--cf-surface-muted) sm:h-[96px] sm:w-[96px]">
                 {avatar ? (
@@ -107,7 +85,7 @@ export function IdentityHeroBanner({
                 "inline-flex rounded-full px-3 py-1 text-cf-caption font-medium uppercase tracking-[0.22em]",
                 isPro ? "border border-accent-amber/30 bg-accent-amber/10" : "border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)"
               )}>
-                {isPro ? <span className="cf-pro-badge-shimmer">PRO</span> : "FREE"}
+                {isPro ? <span className="text-accent-amber">PRO</span> : "FREE"}
               </span>
               <IdentityTooltip currentLabel={identityLabel} booksCompleted={booksCompleted} />
             </div>

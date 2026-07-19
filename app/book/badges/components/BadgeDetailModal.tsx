@@ -89,8 +89,8 @@ export function BadgeDetailModal({
 function SecretModalContent() {
   return (
     <div className="flex flex-col items-center py-8 text-center">
-      <div className="secret-badge-icon flex h-24 w-24 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted)">
-        <span className="badge-shimmer text-4xl text-(--cf-text-soft)">?</span>
+      <div className="flex h-24 w-24 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted)">
+        <span className="text-4xl text-(--cf-text-soft)">?</span>
       </div>
       <TierPillDisplay tier="secret" earned={false} className="mt-4" />
       <h3 className="mt-4 text-xl font-semibold text-(--cf-text-1)">Hidden Achievement</h3>

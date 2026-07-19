@@ -9,21 +9,7 @@
 .orb {
   position: absolute;
   border-radius: 50%;
-  /*
-   * No `will-change: transform` here: promoting all three large orbs to their
-   * own compositor layers for the entire dashboard session is more costly than
-   * the gentle 50-60s drift warrants. The browser can promote on demand.
-   */
   filter: blur(48px);
-}
-
-/*
- * Toggled from the .tsx via `document.visibilitychange`: when the tab is
- * hidden there is nothing to see, so pause the drift to stop continuous
- * background compositing/repaint work.
- */
-.paused .orb {
-  animation-play-state: paused;
 }
 
 .violet {
@@ -31,7 +17,6 @@
   left: -100px;
   width: 600px;
   height: 600px;
-  animation: drift-violet 50s linear infinite;
 }
 
 .violet[data-theme="light"] {
@@ -56,7 +41,6 @@
   right: -80px;
   width: 520px;
   height: 520px;
-  animation: drift-cyan 60s linear infinite;
 }
 
 .cyan[data-theme="light"] {
@@ -80,7 +64,6 @@
   left: 20%;
   width: 440px;
   height: 440px;
-  animation: drift-emerald 55s linear infinite;
 }
 
 .emerald[data-theme="light"] {
@@ -97,64 +80,4 @@
     rgba(16, 185, 129, 0.07) 0%,
     rgba(16, 185, 129, 0) 65%
   );
-}
-
-@keyframes drift-violet {
-  0% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(40px, -35px);
-  }
-  50% {
-    transform: translate(-30px, 25px);
-  }
-  75% {
-    transform: translate(20px, -15px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes drift-cyan {
-  0% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(-35px, 30px);
-  }
-  50% {
-    transform: translate(30px, -25px);
-  }
-  75% {
-    transform: translate(-20px, 35px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes drift-emerald {
-  0% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(30px, -30px);
-  }
-  50% {
-    transform: translate(-25px, 20px);
-  }
-  75% {
-    transform: translate(20px, -25px);
-  }
-  100% {
-    transform: translate(0, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .orb {
-    animation: none;
-  }
 }

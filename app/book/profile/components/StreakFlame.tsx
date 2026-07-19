@@ -4,10 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { cn } from "@/lib/utils";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
 const MILESTONE_STREAKS = new Set([7, 14, 21, 30, 50, 100, 200, 365]);
 
 export function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boolean; size?: number; streakDays?: number }) {
+  const reducedMotion = usePrefersReducedMotion();
   const celebratedRef = useRef(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const [particles] = useState(() => {
@@ -26,13 +28,17 @@ export function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boo
   const isMilestone = MILESTONE_STREAKS.has(streakDays);
 
   useEffect(() => {
+    if (reducedMotion) {
+      setShowCelebration(false);
+      return;
+    }
     if (isMilestone && active && !celebratedRef.current) {
       celebratedRef.current = true;
       setShowCelebration(true);
       const timer = setTimeout(() => setShowCelebration(false), 1200);
       return () => clearTimeout(timer);
     }
-  }, [isMilestone, active]);
+  }, [isMilestone, active, reducedMotion]);
 
   return (
     <span className="relative inline-flex shrink-0">
@@ -97,7 +103,7 @@ export function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boo
           75% { transform: translateY(-0.5px) scaleY(1.02); filter: brightness(1.05); }
         }
         .cf-flame-flicker {
-          animation: cf-flame-flicker 2.5s ease-in-out infinite;
+          animation: cf-flame-flicker 1.2s ease-in-out 2;
         }
         @media (prefers-reduced-motion: reduce) {
           .cf-flame-flicker { animation: none; }

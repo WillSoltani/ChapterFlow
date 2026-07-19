@@ -44,7 +44,7 @@ export function LearningLoopSteps({ completedSteps }: { completedSteps: boolean[
           0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-cyan) 40%, transparent); }
           50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent-cyan) 0%, transparent); }
         }
-        .cf-step-pulse { animation: cf-step-pulse 2s ease-in-out infinite; }
+        .cf-step-pulse { animation: cf-step-pulse 1.2s ease-in-out 2; }
         @media (prefers-reduced-motion: reduce) { .cf-step-pulse { animation: none; } }
       `}</style>
     </div>

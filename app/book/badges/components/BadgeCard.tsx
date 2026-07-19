@@ -6,7 +6,7 @@ import { Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { BadgeWithProgress } from "../lib/badge-types";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
-import { TIER_BORDER_COLORS, TIER_GLOW_STYLES, TIER_PILL_STYLES, getProgressText } from "../lib/badge-utils";
+import { TIER_BORDER_COLORS, TIER_GLOW_STYLES, getProgressText } from "../lib/badge-utils";
 
 type BadgeCardProps = {
   badge: BadgeWithProgress;
@@ -107,7 +107,7 @@ function EarnedBadgeCard({
     >
       <div className="flex items-start justify-between gap-2">
         <Icon
-          className={cn("h-12 w-12 shrink-0", !reduced && "badge-icon-pulse")}
+          className="h-12 w-12 shrink-0"
           style={{ color: "var(--accent-amber)" }}
           aria-hidden
         />
@@ -230,8 +230,8 @@ function SecretBadgeCard({ index, onClick }: { index: number; onClick: () => voi
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick(); } }}
     >
       <div className="flex items-start justify-between gap-2">
-        <div className="secret-badge-icon relative flex h-12 w-12 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted)">
-          <span className="badge-shimmer text-xl text-(--cf-text-soft)">?</span>
+        <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted)">
+          <span className="text-xl text-(--cf-text-soft)">?</span>
         </div>
       </div>
 

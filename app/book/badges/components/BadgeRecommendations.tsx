@@ -93,7 +93,7 @@ export function BadgeRecommendations({
                 ...(badge.target - badge.current <= 1 && badge.current > 0
                   ? {
                       boxShadow: "0 0 20px color-mix(in srgb, var(--accent-amber) 10%, transparent)",
-                      animation: "badge-almost-pulse 2s ease-in-out infinite",
+                      animation: "badge-almost-pulse 1.5s ease-in-out 2",
                     }
                   : {}),
               }}

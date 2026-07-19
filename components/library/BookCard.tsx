@@ -82,7 +82,7 @@ export function BookCard({ book, index = 0, layout = "grid", showProLock = false
           {badge && BADGE_CONFIG[badge] && (
             <span
               className={`absolute right-2 top-2 z-10 rounded-full px-2 py-0.5 text-[10px] font-semibold text-white ${
-                BADGE_CONFIG[badge].glow ? "badge-glow" : ""
+                BADGE_CONFIG[badge].glow ? "ring-1 ring-inset ring-white/20" : ""
               }`}
               style={{
                 background: BADGE_CONFIG[badge].color,

@@ -38,7 +38,6 @@ export function ChapterCard({
   onClick,
   onLockedClick,
   onMouseEnter,
-  isCurrent = false,
 }: ChapterCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const [shaking, setShaking] = useState(false);
@@ -176,7 +175,6 @@ export function ChapterCard({
         isInProgress
           ? [
               "bg-(--cf-surface-muted) p-5 cursor-pointer overflow-hidden",
-              isCurrent ? "bd-chapter-shimmer" : "",
             ].join(" ")
           : [
               "cf-panel border border-(--cf-border) p-4 cursor-pointer",
@@ -207,7 +205,7 @@ export function ChapterCard({
               {!prefersReducedMotion && (
                 <div
                   className="absolute inset-0 rounded-full"
-                  style={{ border: "2px solid var(--accent-cyan)", opacity: 0.3, animation: "bd-pulse-ring 2.5s ease-out infinite" }}
+                  style={{ border: "2px solid var(--accent-cyan)", opacity: 0.3, animation: "bd-pulse-ring 1.2s ease-out 2" }}
                 />
               )}
             </div>

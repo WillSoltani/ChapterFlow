@@ -278,7 +278,7 @@ export function DesktopQuizPanel({
             type="button"
             onClick={onContinue}
             className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90"
-            style={{ animation: "cr-pulse-glow 2s ease-in-out infinite" }}
+            style={{ animation: "cr-pulse-glow 1.2s ease-in-out 2" }}
           >
             <Trophy className="h-5 w-5" /> Continue to Practice{" "}
             <ArrowRight className="h-5 w-5" />
@@ -483,7 +483,7 @@ export function DesktopQuizPanel({
             type="button"
             onClick={() => setShowResults(true)}
             className="flex items-center gap-2 rounded-2xl bg-(--cr-accent) px-6 py-3 text-base font-bold text-(--cr-text-inverse) transition hover:opacity-90"
-            style={{ animation: "cr-pulse-glow 2s ease-in-out infinite" }}
+            style={{ animation: "cr-pulse-glow 1.2s ease-in-out 2" }}
           >
             See Your Results <ArrowRight className="h-5 w-5" />
           </button>

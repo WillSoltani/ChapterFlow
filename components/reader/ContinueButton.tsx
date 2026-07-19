@@ -47,7 +47,7 @@ export function ContinueButton({
         ].join(" ")}
         style={
           ready
-            ? { animation: "cr-pulse-glow 2s ease-in-out infinite" }
+            ? { animation: "cr-pulse-glow 1.2s ease-in-out 2" }
             : undefined
         }
       >

@@ -103,7 +103,7 @@ export function CardSelector<T extends string>({
                 "absolute top-2 right-2 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider",
                 isSelected
                   ? "bg-(--cf-accent) text-(--cf-accent-contrast)"
-                  : "bg-(--cf-accent-soft) text-(--cf-accent) animate-pulse"
+                  : "bg-(--cf-accent-soft) text-(--cf-accent)"
               )}>
                 {isSelected ? "\u2713" : opt.badge}
               </span>
