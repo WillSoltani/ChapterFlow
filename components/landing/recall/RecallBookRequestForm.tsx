@@ -93,6 +93,7 @@ export function RecallBookRequestForm({
 
   const titleRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
+  const submitFocusInProgressRef = useRef(false);
 
   const ids = useId();
   const id = (field: string) => `${ids}-${field}`;
@@ -107,12 +108,22 @@ export function RecallBookRequestForm({
   useEffect(() => {
     if (!focusField) return;
     const input = focusField === "title" ? titleRef : emailRef;
-    input.current?.focus();
+    submitFocusInProgressRef.current = true;
+    try {
+      input.current?.focus();
+    } finally {
+      submitFocusInProgressRef.current = false;
+    }
   }, [focusField, focusRequest]);
 
   function handleRequiredBlur(field: RequiredField) {
     setTouched((current) => ({ ...current, [field]: true }));
-    setValidationAnnouncement(validation.errors[field] ?? "");
+    // Keyboard submit focuses the first invalid field from the effect above.
+    // Do not let that programmatic focus blur replace the submit summary; all
+    // ordinary pointer/keyboard blurs still announce their field error here.
+    if (!submitFocusInProgressRef.current) {
+      setValidationAnnouncement(validation.errors[field] ?? "");
+    }
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -241,7 +252,7 @@ export function RecallBookRequestForm({
         autoComplete="off"
         invalid={Boolean(titleError)}
         errorId={id("title-err")}
-        errorText={titleError}
+        errorText={validation.errors.title}
       />
       <Field
         id={id("email")}
@@ -256,7 +267,7 @@ export function RecallBookRequestForm({
         autoComplete="email"
         invalid={Boolean(emailError)}
         errorId={id("email-err")}
-        errorText={emailError}
+        errorText={validation.errors.email}
       />
       {/* Reassure before the field that needs the email: scope + no spam, with
           the canonical privacy page linked. */}
@@ -432,10 +443,24 @@ function Field({
             : undefined
         }
       />
-      {invalid && errorId ? (
-        <p id={errorId} className="text-[0.8125rem]" style={{ color: "var(--cf-recall-ink-soft)" }}>
-          {errorText}
-        </p>
+      {errorId && errorText ? (
+        <div className="grid">
+          <span
+            aria-hidden
+            className="invisible col-start-1 row-start-1 text-[0.8125rem] leading-relaxed"
+          >
+            {errorText}
+          </span>
+          {invalid ? (
+            <p
+              id={errorId}
+              className="col-start-1 row-start-1 text-[0.8125rem] leading-relaxed"
+              style={{ color: "var(--cf-recall-ink-soft)" }}
+            >
+              {errorText}
+            </p>
+          ) : null}
+        </div>
       ) : null}
     </div>
   );

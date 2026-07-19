@@ -52,6 +52,19 @@ test("the resting form keeps submit reachable and preserves privacy plus honeypo
   assert.match(html, /id="[^"]+-company"/);
 });
 
+test("invalid required values reserve hidden error copies before blur", () => {
+  const html = renderToStaticMarkup(createElement(RecallBookRequestForm));
+  const reservedErrors =
+    html.match(
+      /<span aria-hidden="true" class="invisible[^"]*">Please enter[^<]+<\/span>/g,
+    ) ?? [];
+
+  assert.equal(reservedErrors.length, 2);
+  assert.match(reservedErrors[0], /book title/);
+  assert.match(reservedErrors[1], /valid email address/);
+  assert.doesNotMatch(html, /<p id="[^"]+-(?:title|email)-err"/);
+});
+
 test("blur and invalid-submit contracts reveal errors before focusing the first field", () => {
   const form = source("components/landing/recall/RecallBookRequestForm.tsx");
 
@@ -62,6 +75,15 @@ test("blur and invalid-submit contracts reveal errors before focusing the first 
   assert.match(form, /setFocusRequest\(\(current\) => current \+ 1\)/);
   assert.match(form, /focusField === "title" \? titleRef : emailRef/);
   assert.match(form, /input\.current\?\.focus\(\)/);
+  assert.match(form, /const submitFocusInProgressRef = useRef\(false\)/);
+  assert.match(
+    form,
+    /submitFocusInProgressRef\.current = true;[\s\S]*input\.current\?\.focus\(\);[\s\S]*submitFocusInProgressRef\.current = false;/,
+  );
+  assert.match(
+    form,
+    /if \(!submitFocusInProgressRef\.current\) \{[\s\S]*setValidationAnnouncement/,
+  );
   assert.match(form, /disabled=\{status === "submitting"\}/);
 });
 
