@@ -57,11 +57,27 @@ test("every route masthead or hero owns a post-hero CTA boundary", () => {
   assert.doesNotMatch(home, /function RecallFinalCta/);
 });
 
-test("catalog CTA zones explicitly suppress the persistent header action", () => {
+test("equivalent public CTA zones suppress the persistent header action", () => {
   const catalog = source("components/website/BrowseLibraryPage.tsx");
+  const close = source("components/landing/recall/RecallClose.tsx");
+  const homePricing = source("components/landing/recall/RecallPricing.tsx");
+  const routePricing = source("components/sections/Pricing.tsx");
+  const footer = source("components/sections/Footer.tsx");
   const nav = source("components/landing/recall/RecallNav.tsx");
 
-  assert.match(catalog, /data-public-sticky-cta-suppress/);
+  for (const [label, content] of [
+    ["catalog", catalog],
+    ["home close", close],
+    ["home pricing", homePricing],
+    ["pricing route", routePricing],
+    ["shared footer", footer],
+  ] as const) {
+    assert.match(
+      content,
+      /data-public-sticky-cta-suppress/,
+      `${label} must yield the persistent action while its own CTA is visible`,
+    );
+  }
   assert.match(nav, /\[data-public-sticky-cta-suppress\]/);
 });
 

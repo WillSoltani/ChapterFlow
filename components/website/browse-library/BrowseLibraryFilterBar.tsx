@@ -51,10 +51,10 @@ export function BrowseLibraryFilterBar({
         <div className="max-w-7xl mx-auto px-4 flex items-center gap-4">
           {/* Category pills */}
           <div className="flex-1 overflow-x-auto scrollbar-hide">
-            <div className="flex gap-2" role="tablist" aria-label="Filter by category">
+            <div className="flex gap-2" role="group" aria-label="Filter by category">
               <button
-                role="tab"
-                aria-selected={activeCategory === "All"}
+                type="button"
+                aria-pressed={activeCategory === "All"}
                 onClick={() => onCategoryChange("All")}
                 className="min-h-[44px] shrink-0 rounded-full px-4 py-2 text-cf-label font-medium transition-all duration-200"
                 style={
@@ -68,8 +68,8 @@ export function BrowseLibraryFilterBar({
               {categories.map((cat) => (
                 <button
                   key={cat.name}
-                  role="tab"
-                  aria-selected={activeCategory === cat.name}
+                  type="button"
+                  aria-pressed={activeCategory === cat.name}
                   onClick={() => onCategoryChange(cat.name)}
                   className="min-h-[44px] shrink-0 rounded-full px-4 py-2 text-cf-label font-medium transition-all duration-200 whitespace-nowrap"
                   style={

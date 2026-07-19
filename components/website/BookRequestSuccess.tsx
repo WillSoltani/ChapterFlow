@@ -73,7 +73,7 @@ export function BookRequestSuccess({ title, author, email }: BookRequestSuccessP
       {/* CTA — start reading what's already available (matches the site's primary CTA) */}
       <Link
         href="/auth/login?returnTo=%2Fbook"
-        className="cta-shine inline-flex items-center gap-1 mt-5 px-6 py-2.5 rounded-full text-cf-body-sm font-semibold transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+        className="cta-shine mt-5 inline-flex min-h-11 items-center gap-1 rounded-full px-6 py-2.5 text-cf-body-sm font-semibold transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
         style={{
           backgroundColor: "var(--accent-cyan)",
           color: "var(--primary-foreground)",

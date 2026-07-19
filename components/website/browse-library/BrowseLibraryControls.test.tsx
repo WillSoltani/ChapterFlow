@@ -3,7 +3,7 @@ import "../../../tests/_lib/dom";
 import assert from "node:assert/strict";
 import { after, afterEach, test } from "node:test";
 import { useState } from "react";
-import { act, cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, waitFor, within } from "@testing-library/react";
 import { BrowseLibraryFilterBar } from "./BrowseLibraryFilterBar";
 import { BrowseLibrarySearchBar } from "./BrowseLibrarySearchBar";
 import type { LibraryBook, SortOption } from "./browse-library-core";
@@ -101,13 +101,14 @@ test("search suggestions stay open when Tab focus moves into a result link", asy
   await waitFor(() => assert.equal(view.queryByRole("group", { name: "Search suggestions" }), null));
 });
 
-test("category and native sort controls expose 44px targets and native selection", () => {
+test("category buttons expose pressed state and native sort retains selection", () => {
+  let selectedCategory = "All";
   let selectedSort: SortOption = "popular";
   const view = render(
     <BrowseLibraryFilterBar
       categories={[{ name: "Focus", count: 1 }]}
       activeCategory="All"
-      onCategoryChange={() => {}}
+      onCategoryChange={(category) => { selectedCategory = category; }}
       sortBy={selectedSort}
       onSortChange={(sort) => { selectedSort = sort; }}
       resultCount={1}
@@ -115,9 +116,17 @@ test("category and native sort controls expose 44px targets and native selection
     />,
   );
 
-  for (const category of view.getAllByRole("tab")) {
+  const categoryGroup = view.getByRole("group", { name: "Filter by category" });
+  const categoryButtons = within(categoryGroup).getAllByRole("button");
+  assert.equal(view.queryByRole("tablist"), null);
+  assert.equal(view.queryByRole("tab"), null);
+  assert.equal(categoryButtons[0]?.getAttribute("aria-pressed"), "true");
+  assert.equal(categoryButtons[1]?.getAttribute("aria-pressed"), "false");
+  for (const category of categoryButtons) {
     assert.match(category.className, /min-h-\[44px\]/);
   }
+  fireEvent.click(categoryButtons[1]!);
+  assert.equal(selectedCategory, "Focus");
 
   const sort = view.getByRole("combobox", { name: "Sort books" });
   assert.equal(sort.tagName, "SELECT");

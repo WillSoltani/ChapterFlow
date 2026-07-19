@@ -98,3 +98,10 @@ test("catalog titles without committed rasters render their fallback immediately
   assert.doesNotMatch(html, /<img\b/);
   assert.match(html, /Behave/);
 });
+
+test("fallback-only catalog titles still preserve an authored remote cover", () => {
+  const remote = "https://chapterflow-covers.s3.amazonaws.com/behave.webp";
+
+  assert.deepEqual(getBookCoverSourceCandidates("behave", remote), [remote]);
+  assert.equal(getBookCoverImageProps(remote).unoptimized, true);
+});

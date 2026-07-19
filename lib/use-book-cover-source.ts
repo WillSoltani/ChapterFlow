@@ -38,7 +38,9 @@ export function getBookCoverImageProps(src?: string) {
 
 /** Ordered local candidates followed by the optional remote fallback once. */
 export function getBookCoverSourceCandidates(bookId: string, coverImage?: string): string[] {
-  if (FALLBACK_ONLY_BOOK_COVERS.has(bookId)) return [];
+  if (FALLBACK_ONLY_BOOK_COVERS.has(bookId)) {
+    return coverImage && isExternalSrc(coverImage) ? [coverImage] : [];
+  }
   const local = getBookCoverCandidates(bookId);
   return coverImage && !local.includes(coverImage) ? [...local, coverImage] : local;
 }

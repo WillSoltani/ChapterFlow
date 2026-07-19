@@ -88,7 +88,14 @@ export function Footer() {
               <ul>
                 {EXPLORE_LINKS.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className={linkClass} style={linkStyle}>
+                    <Link
+                      href={link.href}
+                      data-public-sticky-cta-suppress={
+                        link.href === AUTH_LOGIN_BOOK_URL ? true : undefined
+                      }
+                      className={linkClass}
+                      style={linkStyle}
+                    >
                       {link.label}
                     </Link>
                   </li>

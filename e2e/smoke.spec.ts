@@ -343,6 +343,89 @@ test.describe("shared Recall public chrome", () => {
     await expect(headerAction).toHaveCount(0);
   });
 
+  test("home persistent CTA yields to pricing and closing signup zones", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    const headerAction = page.locator("header.rl-nav").getByRole("link", {
+      name: /start free|dashboard/i,
+    });
+
+    await page.evaluate(() => {
+      const sentinel = document.querySelector<HTMLElement>("[data-public-hero-end]");
+      if (!sentinel) throw new Error("missing public hero boundary");
+      window.scrollTo(0, sentinel.offsetTop + 120);
+    });
+    await expect(headerAction).toHaveCount(1);
+
+    for (const zone of [
+      page.locator("#pricing[data-public-sticky-cta-suppress]"),
+      page.locator(
+        '[data-public-sticky-cta-suppress][aria-labelledby="recall-close-headline"]',
+      ),
+    ]) {
+      await zone.scrollIntoViewIfNeeded();
+      await expect(zone).toBeInViewport();
+      await expect(headerAction).toHaveCount(0);
+    }
+  });
+
+  test("pricing and the shared footer suppress duplicate signup actions", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/pricing");
+    const headerAction = page.locator("header.rl-nav").getByRole("link", {
+      name: /start free|dashboard/i,
+    });
+    const pricing = page.locator("#pricing[data-public-sticky-cta-suppress]");
+    await pricing.scrollIntoViewIfNeeded();
+    await expect(pricing).toBeInViewport();
+    await expect(headerAction).toHaveCount(0);
+
+    const footerAction = page.locator("footer [data-public-sticky-cta-suppress]");
+    await footerAction.scrollIntoViewIfNeeded();
+    await expect(footerAction).toBeInViewport();
+    await expect(headerAction).toHaveCount(0);
+  });
+
+  test("primary public actions retain 44px mobile touch targets", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    for (const path of [
+      "/",
+      "/pricing",
+      "/books",
+      "/contact",
+      "/legal",
+      "/legal/privacy",
+      "/legal/cookies",
+    ] as const) {
+      await page.goto(path);
+      const actions = page.locator(
+        'main a[href^="/auth/login"], main button[type="submit"], footer a[href^="/auth/login"]',
+      );
+      const boxes = await actions.evaluateAll((elements) =>
+        elements.flatMap((element) => {
+          const rect = element.getBoundingClientRect();
+          const style = window.getComputedStyle(element);
+          return rect.width > 0 &&
+            rect.height > 0 &&
+            style.display !== "none" &&
+            style.visibility !== "hidden"
+            ? [{ width: rect.width, height: rect.height }]
+            : [];
+        }),
+      );
+      expect(boxes.length, `${path} should expose at least one primary action`).toBeGreaterThan(0);
+
+      for (const [index, box] of boxes.entries()) {
+        expect(box.height, `${path} primary action ${index} height`).toBeGreaterThanOrEqual(44);
+        expect(box.width, `${path} primary action ${index} width`).toBeGreaterThanOrEqual(44);
+      }
+    }
+  });
+
   test("cookie inventory keeps labels and duration values visible on phones", async ({
     page,
   }) => {

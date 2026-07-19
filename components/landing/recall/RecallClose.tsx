@@ -6,6 +6,7 @@ import { FREE_OFFER_LABEL } from "@/lib/pricing";
 export function RecallClose() {
   return (
     <section
+      data-public-sticky-cta-suppress
       aria-labelledby="recall-close-headline"
       className="relative w-full overflow-hidden px-6 py-32 sm:px-10 sm:py-40 lg:px-16 lg:py-48"
       style={{ background: "transparent" }}

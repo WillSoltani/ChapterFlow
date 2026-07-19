@@ -58,6 +58,7 @@ const PRO_FEATURES_SHORT = [
 export function RecallPricing() {
   return (
     <section
+      data-public-sticky-cta-suppress
       id="pricing"
       aria-labelledby="recall-pricing-headline"
       className="relative w-full overflow-hidden px-6 py-28 sm:px-10 sm:py-32 lg:px-16 lg:py-40"
