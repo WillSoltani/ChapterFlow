@@ -82,9 +82,9 @@ You never set these; the frontend stack derives them from the backend stack.
 
 ### B. Configuration injected by the deploy workflow (`serverEnv` in `app.ts`)
 
-Set each as a **per-environment GitHub secret**. The frontend deploy job
-(`_deploy-app.yml`) passes them on the `cdk deploy` step; `app.ts` forwards only
-the ones that are present.
+Set each through the per-environment GitHub channel named in the Source column.
+The frontend deploy job (`_deploy-app.yml`) passes them on the `cdk deploy`
+step; `app.ts` forwards only the ones that are present.
 
 The five runtime secrets listed first in §3.D are intentionally excluded even
 if a caller supplies them.
@@ -108,6 +108,7 @@ if a caller supplies them.
 | `APPLE_BUNDLE_ID` | R (SIWA) | secret | Services ID / bundle id used as the Apple OAuth **client** (`sub`/`client_id`). |
 | `APPLE_KEY_ID` | R (SIWA) | secret | Key id of the `.p8` private key (JWT header `kid`). |
 | `APPLE_PRIVATE_KEY` | R (SIWA) | secret | PKCS#8 PEM of the `.p8` AuthKey. Literal `\n` is tolerated. Used to sign the revoke client-secret JWT. **When any `APPLE_*` is unset, delete silently skips the Apple revoke (`apple_revoke_skip reason=not_configured`).** See [ios/APPLE-AUTH.md](./ios/APPLE-AUTH.md). |
+| `CSRF_ORIGIN_ENFORCE` | O | var | Injected into the server Lambda through `serverEnv`; unset defaults to `1` (enforcing). Dev/staging may temporarily set `0`/`false`/`off`/`no` for observe-only validation, which logs `csrf_origin_observe_only` and lets the request proceed. **Production always enforces and ignores every off spelling; there is no production break-glass bypass.** The Stripe webhook and one-click unsubscribe route remain exempt regardless of the flag. |
 
 ### C. Infra / CI secrets — used at deploy time only (not app runtime)
 
@@ -176,7 +177,6 @@ These are consumed by the app via `getServerEnv` but are **not** in
 | `DEV_AUTH_BYPASS` | local | local | `=1` (non-prod only) short-circuits all auth with a synthetic user. Set by `npm run dev`. |
 | `APP_BASE_URL` | O (recommended) | local | Explicit override for the origin used by `getServerOrigin()` (share cards, OAuth return-to, `app/_lib/site-url.ts`, `app/auth/_lib/return-to.ts`). **Read via raw `process.env` — not in `serverEnv`, no SSM fallback — so the current pipeline cannot inject it into a deployed Lambda** (same trap as `ADMIN_EMAILS`). When unset, the origin is **derived from the request `x-forwarded-host`** (correct behind CloudFront); `resolvePublicOrigin()` only throws `Unable to resolve public origin. Set APP_BASE_URL for production.` in a context with no host header. Loopback values are ignored in prod. Distinct from `CHAPTERFLOW_APP_BASE_URL` (the book-API helper, which **is** injected and hard-required in prod). To pin it in prod, add it to `serverEnv` in `infra/bin/app.ts`. |
 | `ALLOW_APP_BASE_URL_IN_DEV` | local | local | `=1` lets a non-prod build honor a loopback `APP_BASE_URL`. |
-| `CSRF_ORIGIN_ENFORCE` | O | local | Same-origin / CSRF guard on cookie-authed unsafe-method routes (`requireSameOrigin` in `app/app/api/book/_lib/http.ts`, auto-wired into `withBookApiErrors`). **Defaults ON** — unset enforces, so prod is protected with no injection needed. Set to `0`/`false`/`off`/`no` for **observe-only** mode (logs `csrf_origin_observe_only` with the offending origin + path, but lets the request through) — use as a brief confirmation window after first deploy to verify no legitimate host/alias trips a `403 forbidden_origin`, then unset to re-enforce. **Read via raw `process.env`, so to flip a deployed Lambda to observe-only it must be added to `serverEnv` in `infra/bin/app.ts`** (same injection caveat as `APP_BASE_URL`); the Stripe webhook and the one-click unsubscribe route are exempt regardless of the flag. |
 | `NEXT_PUBLIC_ANALYTICS_ID` | O | local/build | Enables the lightweight client analytics shim (`lib/analytics.ts`); the shim no-ops when unset. |
 | `NEXT_DIST_DIR` | local | local | Build output dir (`.next-chapterflow` in dev). |
 | `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_CHAPTERFLOW_SITE_URL`, `NEXT_PUBLIC_CHAPTERFLOW_APP_URL`, `NEXT_PUBLIC_CHAPTERFLOW_AUTH_URL` | O | local/build | Public origins inlined at **build** time. In standalone single-host mode they collapse to one origin; set them at build if you need client-side absolute URLs. |

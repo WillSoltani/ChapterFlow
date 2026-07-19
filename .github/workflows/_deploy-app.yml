@@ -188,12 +188,12 @@ jobs:
           BOOK_STRIPE_PRICE_ID_ANNUAL: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL }}
           BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT }}
           # Same-origin / CSRF guard (#6/#293). Defaults to "1" (ENFORCE) when the
-          # variable is unset. Set the environment variable CSRF_ORIGIN_ENFORCE=0
+          # variable is unset. Dev/staging may set CSRF_ORIGIN_ENFORCE=0
           # (Settings → Environments → <env> → Variables, or `gh variable set
-          # CSRF_ORIGIN_ENFORCE --env <env> --body 0`) to bring a deploy up in
-          # OBSERVE-ONLY mode — rejections log `csrf_origin_rejected`/
-          # `csrf_origin_observe_only` but requests proceed. After confirming no
-          # legitimate host trips a 403, delete the variable and re-deploy to enforce.
+          # CSRF_ORIGIN_ENFORCE --env <env> --body 0`) for an OBSERVE-ONLY
+          # validation window, then delete the variable and re-deploy to enforce.
+          # Production always enforces and ignores every off spelling; there is no
+          # production break-glass bypass.
           CSRF_ORIGIN_ENFORCE: ${{ vars.CSRF_ORIGIN_ENFORCE || '1' }}
 
       - name: Resolve CloudFront distribution
