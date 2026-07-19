@@ -895,6 +895,7 @@ nativeContractOperationDefinitions.push(
     responseSources: [
       { path: "app/app/api/book/_lib/content-service.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/types.ts", role: "schema" },
+      { path: "lib/book-package-types.ts", role: "schema" },
     ],
     authority: {
       classification: "server_decision",
@@ -1006,6 +1007,7 @@ nativeContractOperationDefinitions.push(
     }),
     responseSources: [
       { path: "app/app/api/book/_lib/types.ts", role: "schema" },
+      { path: "lib/book-package-types.ts", role: "schema" },
       { path: "app/app/api/book/_lib/storage.ts", role: "response_builder" },
     ],
   }),
@@ -1111,6 +1113,7 @@ nativeContractOperationDefinitions.push(
     responseSources: [
       { path: "app/app/api/book/_lib/quiz-session.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/types.ts", role: "schema" },
+      { path: "lib/book-package-types.ts", role: "schema" },
     ],
     authority: {
       classification: "server_decision",
@@ -1182,7 +1185,9 @@ nativeContractOperationDefinitions.push(
       trackedMinutesToday: 1,
     }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/book-metrics-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/progress-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-settings-repo.ts", role: "response_builder" },
     ],
     authority: {
       classification: "server_decision",
@@ -1238,7 +1243,6 @@ nativeContractOperationDefinitions.push(
       pointsAwarded: 0,
     }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/flow-points-repo.ts", role: "response_builder" },
     ],
     authority: {
@@ -1329,7 +1333,7 @@ nativeContractOperationDefinitions.push(
       savedBookIds: ["book-synthetic"],
     }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/saved-books-repo.ts", role: "response_builder" },
     ],
     authority: {
       classification: "private_data",
@@ -1353,7 +1357,7 @@ nativeContractOperationDefinitions.push(
     idempotencyNotes: "No idempotency identity is sent.",
     responseBody: json({ ok: true, shareId: "share-synthetic" }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/book-metrics-repo.ts", role: "response_builder" },
     ],
     authority: { classification: "server_decision", pointers: ["/ok"] },
   }),
@@ -1633,7 +1637,8 @@ nativeContractOperationDefinitions.push(
     responseBody: json({ success: true }),
     responseSources: [
       { path: "app/app/api/book/_lib/starter-prescription.ts", role: "response_builder" },
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-settings-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-profile-repo.ts", role: "response_builder" },
     ],
     authority: { classification: "server_decision", pointers: ["/success"] },
   }),
@@ -1660,7 +1665,7 @@ nativeContractOperationDefinitions.push(
     idempotencyNotes: "Repeated partial progress PATCH converges on the same draft fields.",
     responseBody: json({ success: true }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-settings-repo.ts", role: "response_builder" },
     ],
     authority: { classification: "server_decision", pointers: ["/success"] },
   }),
@@ -1845,7 +1850,8 @@ nativeContractOperationDefinitions.push(
     responseSources: [
       { path: "app/app/api/book/_lib/scenario-prefilter.ts", role: "request_validator" },
       { path: "app/app/api/book/_lib/ai-service.ts", role: "request_validator" },
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/scenario-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/book-metrics-repo.ts", role: "response_builder" },
     ],
     authority: {
       classification: "server_decision",
@@ -1923,7 +1929,7 @@ nativeContractOperationDefinitions.push(
       created: true,
     }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/commitment-repo.ts", role: "response_builder" },
     ],
     authority: {
       classification: "server_decision",
@@ -2154,7 +2160,8 @@ nativeContractOperationDefinitions.push(
     }),
     responseSources: [
       { path: "app/app/api/book/_lib/progress-write-core.ts", role: "response_builder" },
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/progress-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/book-state-repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/types.ts", role: "schema" },
     ],
     authority: {
@@ -2258,7 +2265,7 @@ nativeContractOperationDefinitions.push(
       updatedAt: "2026-01-01T00:00:00.000Z",
     }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-settings-repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/http-guards-core.ts", role: "request_validator" },
     ],
     authority: { classification: "private_data", pointers: ["/settings"] },
@@ -2349,7 +2356,8 @@ nativeContractOperationDefinitions.push(
     responseBody: json({ success: true, redirectTo: "/auth/logout" }),
     responseSources: [
       { path: "app/app/api/book/_lib/account-status-transition.ts", role: "response_builder" },
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/entitlement-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/account-repo.ts", role: "response_builder" },
     ],
     authority: { classification: "server_decision", pointers: ["/success"] },
   }),
@@ -2493,7 +2501,8 @@ nativeContractOperationDefinitions.push(
     }),
     responseSources: [
       { path: "app/app/api/book/_lib/identity.ts", role: "response_builder" },
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-profile-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-settings-repo.ts", role: "response_builder" },
     ],
     authority: { classification: "identity", pointers: ["/identity/sub"] },
   }),
@@ -2521,7 +2530,8 @@ nativeContractOperationDefinitions.push(
       books: [],
     }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/entitlement-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/progress-repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/book-completion-core.ts", role: "response_builder" },
     ],
     authority: { classification: "private_data", pointers: ["/books"] },
@@ -2613,7 +2623,7 @@ nativeContractOperationDefinitions.push(
     idempotencyNotes: "Safe authenticated read.",
     responseBody: json({ saved: [], savedBookIds: [] }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/saved-books-repo.ts", role: "response_builder" },
     ],
     authority: {
       classification: "private_data",
@@ -2637,7 +2647,7 @@ nativeContractOperationDefinitions.push(
     idempotencyNotes: "Safe authenticated read.",
     responseBody: json({ settings: null, updatedAt: null }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-settings-repo.ts", role: "response_builder" },
     ],
     authority: { classification: "private_data", pointers: ["/settings"] },
   }),
@@ -2729,7 +2739,7 @@ nativeContractOperationDefinitions.push(
       },
     }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/entitlement-repo.ts", role: "response_builder" },
       { path: "lib/pricing.ts", role: "schema" },
     ],
     authority: {
@@ -2797,7 +2807,9 @@ nativeContractOperationDefinitions.push(
     ],
     responseSources: [
       { path: "app/app/api/book/_lib/export-manifest-core.ts", role: "response_builder" },
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/entitlement-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-profile-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-settings-repo.ts", role: "response_builder" },
     ],
   }),
   matched({
@@ -2862,7 +2874,7 @@ nativeContractOperationDefinitions.push(
       senderName: "Synthetic Reader",
     }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-profile-repo.ts", role: "response_builder" },
     ],
     authority: { classification: "server_decision", pointers: ["/status"] },
   }),
@@ -2961,7 +2973,7 @@ nativeContractOperationDefinitions.push(
       preferences: null,
     }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-settings-repo.ts", role: "response_builder" },
     ],
     authority: {
       classification: "private_data",
@@ -3110,7 +3122,7 @@ nativeContractOperationDefinitions.push(
     idempotencyNotes: "Safe authenticated read.",
     responseBody: json({ awards: [] }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/book-metrics-repo.ts", role: "response_builder" },
     ],
     authority: { classification: "private_data", pointers: ["/awards"] },
   }),
@@ -3159,7 +3171,8 @@ nativeContractOperationDefinitions.push(
       weeklyRemaining: 3,
     }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/scenario-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/book-metrics-repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/ai-service.ts", role: "response_builder" },
     ],
   }),
@@ -3225,7 +3238,8 @@ nativeContractOperationDefinitions.push(
         path: "app/app/api/book/_lib/content-service.ts",
         role: "response_builder",
       },
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/progress-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/book-state-repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/progress-write-core.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/types.ts", role: "schema" },
     ],
@@ -3283,7 +3297,7 @@ nativeContractOperationDefinitions.push(
     idempotencyNotes: "Safe authenticated read.",
     responseBody: json({ commitments: [] }),
     responseSources: [
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/commitment-repo.ts", role: "response_builder" },
     ],
     authority: { classification: "private_data", pointers: ["/commitments"] },
   }),
@@ -3346,7 +3360,13 @@ nativeContractOperationDefinitions.push(
         path: "app/app/api/book/me/dashboard/dashboard-partial.ts",
         role: "response_builder",
       },
-      { path: "app/app/api/book/_lib/repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/entitlement-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-profile-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/user-settings-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/book-state-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/progress-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/book-metrics-repo.ts", role: "response_builder" },
+      { path: "app/app/api/book/_lib/saved-books-repo.ts", role: "response_builder" },
       { path: "app/app/api/book/_lib/library-catalog.ts", role: "response_builder" },
     ],
     authority: {

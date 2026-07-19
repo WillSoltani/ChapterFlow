@@ -17,7 +17,11 @@ import {
 } from "./native-contract-generator-core";
 import { parseIosSourceInventoryManifest } from "./native-contract-inventory-relations";
 import { nativeContractOperationDefinitions } from "./native-contract-registry";
-import { assertNativeContractBundle, type NativeContractBundle } from "./native-contract-types";
+import {
+  assertNativeContractBundle,
+  type NativeContractBundle,
+  type NativeContractOperationDefinition,
+} from "./native-contract-types";
 
 const repoRoot = process.cwd();
 const bundlePath = "contracts/native-ios/v1/contract-bundle.json";
@@ -212,6 +216,185 @@ user-journey.get:getuserjourney
 function buildBundle(): NativeContractBundle {
   return buildNativeContractBundle(repoRoot, nativeContractOperationDefinitions);
 }
+
+const focusedRepositoryProvenance = {
+  "reading-session.post": [
+    "app/app/api/book/_lib/book-metrics-repo.ts",
+    "app/app/api/book/_lib/progress-repo.ts",
+    "app/app/api/book/_lib/user-settings-repo.ts",
+  ],
+  "reflection.post": ["app/app/api/book/_lib/flow-points-repo.ts"],
+  "saved-toggle.post": ["app/app/api/book/_lib/saved-books-repo.ts"],
+  "share-event.post": ["app/app/api/book/_lib/book-metrics-repo.ts"],
+  "onboarding-complete.post": [
+    "app/app/api/book/_lib/user-profile-repo.ts",
+    "app/app/api/book/_lib/user-settings-repo.ts",
+  ],
+  "onboarding-progress.post": ["app/app/api/book/_lib/user-settings-repo.ts"],
+  "scenario.post": [
+    "app/app/api/book/_lib/book-metrics-repo.ts",
+    "app/app/api/book/_lib/scenario-repo.ts",
+  ],
+  "commitment.post": ["app/app/api/book/_lib/commitment-repo.ts"],
+  "book-state.patch": [
+    "app/app/api/book/_lib/book-state-repo.ts",
+    "app/app/api/book/_lib/progress-repo.ts",
+  ],
+  "settings.patch": ["app/app/api/book/_lib/user-settings-repo.ts"],
+  "account-deactivate.post": [
+    "app/app/api/book/_lib/account-repo.ts",
+    "app/app/api/book/_lib/entitlement-repo.ts",
+  ],
+  "own-profile.get": [
+    "app/app/api/book/_lib/user-profile-repo.ts",
+    "app/app/api/book/_lib/user-settings-repo.ts",
+  ],
+  "progress.get": [
+    "app/app/api/book/_lib/entitlement-repo.ts",
+    "app/app/api/book/_lib/progress-repo.ts",
+  ],
+  "saved.get": ["app/app/api/book/_lib/saved-books-repo.ts"],
+  "settings.get": ["app/app/api/book/_lib/user-settings-repo.ts"],
+  "entitlements.get": ["app/app/api/book/_lib/entitlement-repo.ts"],
+  "export.get": [
+    "app/app/api/book/_lib/entitlement-repo.ts",
+    "app/app/api/book/_lib/user-profile-repo.ts",
+    "app/app/api/book/_lib/user-settings-repo.ts",
+  ],
+  "gift-preview.get": ["app/app/api/book/_lib/user-profile-repo.ts"],
+  "onboarding-progress.get": ["app/app/api/book/_lib/user-settings-repo.ts"],
+  "badges.get": ["app/app/api/book/_lib/book-metrics-repo.ts"],
+  "scenarios.get": [
+    "app/app/api/book/_lib/book-metrics-repo.ts",
+    "app/app/api/book/_lib/scenario-repo.ts",
+  ],
+  "book-state.get": [
+    "app/app/api/book/_lib/book-state-repo.ts",
+    "app/app/api/book/_lib/progress-repo.ts",
+  ],
+  "commitments.get": ["app/app/api/book/_lib/commitment-repo.ts"],
+  "dashboard.get": [
+    "app/app/api/book/_lib/book-metrics-repo.ts",
+    "app/app/api/book/_lib/book-state-repo.ts",
+    "app/app/api/book/_lib/entitlement-repo.ts",
+    "app/app/api/book/_lib/progress-repo.ts",
+    "app/app/api/book/_lib/saved-books-repo.ts",
+    "app/app/api/book/_lib/user-profile-repo.ts",
+    "app/app/api/book/_lib/user-settings-repo.ts",
+  ],
+} as const satisfies Record<string, readonly string[]>;
+
+const canonicalBookPackageOperations = [
+  "chapter.get",
+  "concept-graph.get",
+  "quiz-submit.post",
+] as const;
+
+function assertFocusedNativeContractProvenance(
+  definitions: NativeContractOperationDefinition[]
+): void {
+  for (const [operationId, expectedPaths] of Object.entries(focusedRepositoryProvenance)) {
+    const operation = definitions.find((candidate) => candidate.id === operationId);
+    const evidence = operation?.backend ?? operation?.blocker?.backendCandidate;
+    if (!evidence) throw new Error(`${operationId} is missing backend provenance`);
+
+    const actualPaths = evidence.sourceFiles
+      .filter(
+        (source) =>
+          source.role === "response_builder" &&
+          (source.path.endsWith("-repo.ts") || source.path.endsWith("/_lib/repo.ts"))
+      )
+      .map((source) => source.path)
+      .sort();
+    const expectedSorted = [...expectedPaths].sort();
+    if (
+      actualPaths.length !== expectedSorted.length ||
+      actualPaths.some((path, index) => path !== expectedSorted[index])
+    ) {
+      throw new Error(
+        `${operationId} repository provenance mismatch: expected ${expectedSorted.join(", ")}; got ${actualPaths.join(", ")}`
+      );
+    }
+  }
+
+  const shimFences = definitions.flatMap((operation) => {
+    const evidence = operation.backend ?? operation.blocker?.backendCandidate;
+    return evidence?.sourceFiles.some(
+      (source) =>
+        source.path === "app/app/api/book/_lib/repo.ts" && source.role === "response_builder"
+    )
+      ? [operation.id]
+      : [];
+  });
+  if (shimFences.length > 0) {
+    throw new Error(`export-only repo.ts response-builder fences remain: ${shimFences.join(", ")}`);
+  }
+
+  for (const operationId of canonicalBookPackageOperations) {
+    const operation = definitions.find((candidate) => candidate.id === operationId);
+    const evidence = operation?.backend ?? operation?.blocker?.backendCandidate;
+    const hasCanonicalSchema = evidence?.sourceFiles.some(
+      (source) => source.path === "lib/book-package-types.ts" && source.role === "schema"
+    );
+    if (!hasCanonicalSchema) {
+      throw new Error(`${operationId} is missing canonical BookPackage schema evidence`);
+    }
+  }
+}
+
+test("focused native operations use exact repositories and canonical BookPackage evidence", () => {
+  assert.doesNotThrow(() =>
+    assertFocusedNativeContractProvenance(nativeContractOperationDefinitions)
+  );
+});
+
+test("focused provenance canary rejects missing, extra, shim, and canonical-schema drift", () => {
+  const missing = structuredClone(nativeContractOperationDefinitions);
+  const readingSession = missing.find((operation) => operation.id === "reading-session.post");
+  assert.ok(readingSession?.backend);
+  readingSession.backend.sourceFiles = readingSession.backend.sourceFiles.filter(
+    (source) => source.path !== "app/app/api/book/_lib/progress-repo.ts"
+  );
+  assert.throws(
+    () => assertFocusedNativeContractProvenance(missing),
+    /reading-session\.post repository provenance mismatch/
+  );
+
+  const extra = structuredClone(nativeContractOperationDefinitions);
+  const saved = extra.find((operation) => operation.id === "saved.get");
+  assert.ok(saved?.backend);
+  saved.backend.sourceFiles.push({
+    path: "app/app/api/book/_lib/progress-repo.ts",
+    role: "response_builder",
+  });
+  assert.throws(
+    () => assertFocusedNativeContractProvenance(extra),
+    /saved\.get repository provenance mismatch/
+  );
+
+  const shim = structuredClone(nativeContractOperationDefinitions);
+  const reflection = shim.find((operation) => operation.id === "reflection.post");
+  assert.ok(reflection?.backend);
+  reflection.backend.sourceFiles.push({
+    path: "app/app/api/book/_lib/repo.ts",
+    role: "response_builder",
+  });
+  assert.throws(
+    () => assertFocusedNativeContractProvenance(shim),
+    /reflection\.post repository provenance mismatch|export-only repo\.ts/
+  );
+
+  const schema = structuredClone(nativeContractOperationDefinitions);
+  const chapter = schema.find((operation) => operation.id === "chapter.get");
+  assert.ok(chapter?.backend);
+  chapter.backend.sourceFiles = chapter.backend.sourceFiles.filter(
+    (source) => source.path !== "lib/book-package-types.ts"
+  );
+  assert.throws(
+    () => assertFocusedNativeContractProvenance(schema),
+    /chapter\.get is missing canonical BookPackage schema evidence/
+  );
+});
 
 test("native inventory equals the verified 83-operation / 92-producer iOS source inventory", () => {
   const bundle = buildBundle();
