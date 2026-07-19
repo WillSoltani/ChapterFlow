@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   motion,
@@ -12,21 +12,18 @@ import {
   type PanInfo,
 } from "framer-motion";
 import { X, Heart, Clock, Check, ArrowRight } from "lucide-react";
-import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
 import type { OnboardingBook } from "@/app/onboarding/data/books";
 import { getBookCoverPath } from "@/app/onboarding/data/books";
-import { generateSwipeDeck, getTopPicks } from "@/app/onboarding/data/recommendations";
+import { useStarterShelfSelection } from "@/app/onboarding/hooks/useStarterShelfSelection";
+import { MAX_STARTER_SHELF_PICKS } from "@/app/onboarding/hooks/starter-shelf-selection-core";
 import { DUR, EASE } from "@/lib/motion";
 import { PRICING } from "@/lib/pricing";
 import { Button } from "@/components/ui/button";
 import { MicroCelebration } from "@/app/book/settings/components/MicroCelebration";
-import type { CelebrationEvent } from "@/app/book/settings/types/settings";
 
 interface StepStarterShelfProps {
   onNext: () => void;
 }
-
-const MAX_PICKS = 3;
 
 // Token-based difficulty tint (works in both themes). Returns a style object —
 // the old `bg-[var(--accent-cyan)]/10` form is invalid Tailwind v4 and the
@@ -127,7 +124,7 @@ function BookCoverImage({
 interface SwipeCardProps {
   book: OnboardingBook;
   onSwipe: (dir: "left" | "right") => void;
-  onButtonSwipe: React.MutableRefObject<((dir: "left" | "right") => void) | null>;
+  buttonSwipeRef: React.MutableRefObject<((dir: "left" | "right") => void) | null>;
 }
 
 /* framer can't interpolate `var()` or `color-mix()` — it needs concrete colors.
@@ -152,7 +149,7 @@ function resolveAccent(token: string, alphaPct: number): string {
   return resolved || "transparent";
 }
 
-function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
+function SwipeCard({ book, onSwipe, buttonSwipeRef }: SwipeCardProps) {
   const reducedMotion = useReducedMotion();
   const controls = useAnimation();
   const x = useMotionValue(0);
@@ -227,7 +224,8 @@ function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
   );
 
   // Register button trigger — set synchronously every render so it's always current
-  onButtonSwipe.current = doSwipe;
+  // eslint-disable-next-line react-hooks/refs -- buttons must share this render's busy-guarded swipe callback
+  buttonSwipeRef.current = doSwipe;
 
   const handleDragEnd = useCallback(
     async (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
@@ -535,125 +533,24 @@ function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () 
 
 export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
   const router = useRouter();
-  const { motivation, interests, setStarterShelf } = useOnboarding();
-  const reducedMotion = useReducedMotion();
-
-  const deck = useMemo(
-    () => generateSwipeDeck(interests, motivation),
-    [interests, motivation]
-  );
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedBooks, setSelectedBooks] = useState<OnboardingBook[]>([]);
-  // Books the user explicitly swiped left on. We never re-offer these when
-  // auto-filling the remaining shelf slots — re-suggesting a just-rejected book
-  // reads as ignoring the user's choice. getTopPicks falls back to the next
-  // ranked books once these (and the selected ones) are excluded.
-  const [rejectedIds, setRejectedIds] = useState<string[]>([]);
-  const [isComplete, setIsComplete] = useState(false);
-  // The gold MicroCelebration (batch 10) fired on each book "like" — the missing
-  // reward beat that gives the first swipe a payoff in the brand's celebration
-  // language. likeCount keys the toast so consecutive likes re-fire it; the
-  // component no-ops under reduced motion.
-  const [celebEvent, setCelebEvent] = useState<CelebrationEvent | null>(null);
-  const [likeCount, setLikeCount] = useState(0);
-
-  // Ref for the button-triggered swipe — set synchronously by SwipeCard each render
-  const buttonSwipeRef = useRef<((dir: "left" | "right") => void) | null>(null);
-
-  const frontBook = currentIndex < deck.length ? deck[currentIndex] : null;
-
-  const handleSwipe = useCallback(
-    (dir: "left" | "right") => {
-      if (!frontBook) return;
-
-      if (dir === "right") {
-        // Reward beat on the "like". On the 3rd pick the shelf transitions to
-        // ShelfComplete (its own celebration), so this naturally fires on the
-        // first two likes — exactly where the first swipe needed a payoff.
-        setCelebEvent("profile-selected");
-        setLikeCount((c) => c + 1);
-
-        const newSelected = [...selectedBooks, frontBook];
-        setSelectedBooks(newSelected);
-
-        if (newSelected.length >= MAX_PICKS) {
-          setIsComplete(true);
-          setStarterShelf(newSelected);
-          return;
-        }
-      } else {
-        // Remember left-swiped books so auto-fill never re-offers them.
-        setRejectedIds((prev) =>
-          prev.includes(frontBook.id) ? prev : [...prev, frontBook.id],
-        );
-      }
-      setCurrentIndex((prev) => prev + 1);
-    },
-    [frontBook, selectedBooks, setStarterShelf]
-  );
-
-  const handleComplete = useCallback(() => {
-    onNext();
-  }, [onNext]);
-
-  // Keyboard support
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isComplete || !frontBook) return;
-      // Don't hijack arrow keys from text controls or modified shortcuts so the
-      // global listener can never trap keyboard or screen-reader users editing
-      // an input/textarea/contenteditable on this step.
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
-      const active = document.activeElement;
-      if (
-        active instanceof HTMLElement &&
-        (active.tagName === "INPUT" ||
-          active.tagName === "TEXTAREA" ||
-          active.isContentEditable)
-      ) {
-        return;
-      }
-      if (e.key === "ArrowRight") {
-        e.preventDefault();
-        buttonSwipeRef.current?.("right");
-      } else if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        buttonSwipeRef.current?.("left");
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isComplete, frontBook]);
-
-  const backBooks = deck.slice(currentIndex + 1, currentIndex + 3);
-  const selectedCount = selectedBooks.length;
-  const deckEmpty = !frontBook && selectedCount < MAX_PICKS;
-
-  // Deck ran out before MAX_PICKS (e.g. the user swiped left on everything).
-  // Round out the shelf with the top remaining recommendations so the promise
-  // "we'll fill your remaining slots" is actually kept — and the step never
-  // dead-ends on an empty card with no way forward.
-  const fillerPicks = useMemo(
-    () =>
-      deckEmpty
-        ? getTopPicks(
-            interests,
-            motivation,
-            // Exclude both already-selected AND explicitly-rejected books so we
-            // never round out the shelf with something the user just swiped away.
-            [...selectedBooks.map((b) => b.id), ...rejectedIds],
-            MAX_PICKS - selectedCount,
-          )
-        : [],
-    [deckEmpty, interests, motivation, selectedBooks, rejectedIds, selectedCount],
-  );
-
-  const handleContinueWithPicks = useCallback(() => {
-    const finalShelf = [...selectedBooks, ...fillerPicks].slice(0, MAX_PICKS);
-    setStarterShelf(finalShelf);
-    onNext();
-  }, [selectedBooks, fillerPicks, setStarterShelf, onNext]);
+  const {
+    backBooks,
+    buttonSwipeRef,
+    celebEvent,
+    currentIndex,
+    deck,
+    deckEmpty,
+    fillerPicks,
+    frontBook,
+    handleComplete,
+    handleContinueWithPicks,
+    handleSwipe,
+    isComplete,
+    likeCount,
+    reducedMotion,
+    selectedBooks,
+    selectedCount,
+  } = useStarterShelfSelection({ onNext });
 
   if (isComplete) {
     return <ShelfComplete books={selectedBooks} onDone={handleComplete} />;
@@ -703,7 +600,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
           color:
             selectedCount === 0
               ? "var(--cf-text-soft)"
-              : selectedCount >= MAX_PICKS
+              : selectedCount >= MAX_STARTER_SHELF_PICKS
                 ? "var(--accent-cyan)"
                 : "var(--accent-cyan)",
           textAlign: "center",
@@ -711,12 +608,12 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
           transition: "color 200ms ease",
         }}
       >
-        {selectedCount} of {MAX_PICKS} selected
+        {selectedCount} of {MAX_STARTER_SHELF_PICKS} selected
       </p>
 
       {/* Indicator dots */}
       <div className="flex items-center justify-center gap-3" style={{ marginBottom: 24 }}>
-        {Array.from({ length: MAX_PICKS }, (_, i) => {
+        {Array.from({ length: MAX_STARTER_SHELF_PICKS }, (_, i) => {
           const filled = i < selectedCount;
           return (
             <motion.div
@@ -791,13 +688,13 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
               <SwipeCard
                 book={frontBook}
                 onSwipe={handleSwipe}
-                onButtonSwipe={buttonSwipeRef}
+                buttonSwipeRef={buttonSwipeRef}
               />
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Empty state — deck exhausted before MAX_PICKS. We round out the
+        {/* Empty state — deck exhausted before MAX_STARTER_SHELF_PICKS. We round out the
             shelf with top picks (shown below) so the user is never stranded. */}
         {deckEmpty && (
           <div
@@ -897,7 +794,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
 
       {/* Selected books thumbnails */}
       <div className="flex items-center justify-center gap-3" style={{ marginTop: 24 }}>
-        {Array.from({ length: MAX_PICKS }, (_, i) => {
+        {Array.from({ length: MAX_STARTER_SHELF_PICKS }, (_, i) => {
           const book = selectedBooks[i];
           return (
             <div key={i} style={{ width: 48, height: 68 }}>
