@@ -1,24 +1,22 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
 import { BookOpen } from "lucide-react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ChartSkeleton, TableSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { RangeSelector } from "@/app/book/admin/_components/RangeSelector";
-import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
+
+const ScenarioUsageChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/ContentCharts").then(
+      (module) => module.ScenarioUsageChart,
+    ),
+  { ssr: false },
+);
 
 type BookStat = {
   bookId: string;
@@ -188,30 +186,11 @@ export function ContentClient() {
             <ChartSkeleton />
           ) : (
             <div className="h-56">
-              <ResponsiveContainer>
-                <BarChart data={scenarioCombined} margin={{ top: 10, right: 10, bottom: 0, left: -10 }}>
-                  <CartesianGrid stroke="var(--cf-border)" vertical={false} />
-                  <XAxis
-                    dataKey="date"
-                    tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
-                    tickFormatter={fmtDate}
-                  />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={32} />
-                  <Tooltip content={<DarkTooltip />} />
-                  <Legend wrapperStyle={{ fontSize: 11, color: "var(--cf-text-3)" }} />
-                  <Bar dataKey="submitted" name="Submitted" fill="var(--cf-text-soft)" isAnimationActive={false} radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="approved" name="Approved" fill="var(--cf-success-text)" isAnimationActive={false} radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+              <ScenarioUsageChart data={scenarioCombined} />
             </div>
           )}
         </AdminCard>
       </div>
     </div>
   );
-}
-
-function fmtDate(d: string): string {
-  const date = new Date(d);
-  return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }

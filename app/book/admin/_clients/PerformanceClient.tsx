@@ -1,16 +1,8 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Zap } from "lucide-react";
-import {
-  CartesianGrid,
-  Line,
-  LineChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
@@ -18,7 +10,14 @@ import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ChartSkeleton, KPITileSkeleton, TableSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { RangeSelector } from "@/app/book/admin/_components/RangeSelector";
-import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
+
+const PageLoadChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/PerformanceCharts").then(
+      (module) => module.PageLoadChart,
+    ),
+  { ssr: false },
+);
 
 type Stat = { p50: number; p95: number; p99: number; count: number };
 
@@ -101,37 +100,7 @@ export function PerformanceClient() {
             />
           ) : (
             <div className="h-64">
-              <ResponsiveContainer>
-                <LineChart data={data?.trend ?? []} margin={{ top: 10, right: 10, bottom: 0, left: 0 }}>
-                  <CartesianGrid stroke="var(--cf-border)" vertical={false} />
-                  <XAxis
-                    dataKey="date"
-                    tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
-                    tickFormatter={fmtDate}
-                  />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={48} allowDecimals={false} />
-                  <Tooltip content={<DarkTooltip />} />
-                  <Line
-                    type="monotone"
-                    dataKey="p50"
-                    name="p50"
-                    stroke="var(--cf-accent)"
-                    strokeWidth={1.75}
-                    isAnimationActive={false}
-                    dot={false}
-                  />
-                  <Line
-                    type="monotone"
-                    dataKey="p95"
-                    name="p95"
-                    stroke="var(--cf-warning-text, var(--cf-accent))"
-                    strokeWidth={1.5}
-                    strokeDasharray="3 3"
-                    isAnimationActive={false}
-                    dot={false}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+              <PageLoadChart data={data?.trend ?? []} />
             </div>
           )}
         </AdminCard>
@@ -187,9 +156,4 @@ export function PerformanceClient() {
       </div>
     </div>
   );
-}
-
-function fmtDate(d: string): string {
-  const date = new Date(d);
-  return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }

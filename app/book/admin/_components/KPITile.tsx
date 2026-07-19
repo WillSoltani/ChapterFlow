@@ -1,7 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { ArrowDownRight, ArrowUpRight, Minus } from "lucide-react";
-import { ResponsiveContainer, AreaChart, Area, Tooltip } from "recharts";
+
+const KPISparklineChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/KPISparklineChart").then(
+      (module) => module.KPISparklineChart,
+    ),
+  { ssr: false },
+);
 
 export type Spark = { date: string; value: number }[];
 
@@ -54,37 +62,7 @@ export function KPITile({
       {hint && <p className="mt-0.5 text-cf-caption text-(--cf-text-3)">{hint}</p>}
       {spark && spark.length > 1 && (
         <div className="-mx-1 mt-3 h-10">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={spark} margin={{ top: 2, right: 2, bottom: 0, left: 2 }}>
-              <defs>
-                <linearGradient id={`spark-${label.replace(/\s+/g, "")}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="var(--cf-accent)" stopOpacity={0.35} />
-                  <stop offset="100%" stopColor="var(--cf-accent)" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <Tooltip
-                cursor={false}
-                contentStyle={{
-                  background: "var(--cf-surface-strong)",
-                  border: "1px solid var(--cf-border)",
-                  borderRadius: 8,
-                  fontSize: 11,
-                  padding: "4px 8px",
-                }}
-                labelStyle={{ color: "var(--cf-text-3)" }}
-                itemStyle={{ color: "var(--cf-text-1)" }}
-                formatter={((v: number) => [formatValue(v, format, currency), label]) as never}
-              />
-              <Area
-                type="monotone"
-                dataKey="value"
-                stroke="var(--cf-accent)"
-                strokeWidth={1.5}
-                fill={`url(#spark-${label.replace(/\s+/g, "")})`}
-                isAnimationActive={false}
-              />
-            </AreaChart>
-          </ResponsiveContainer>
+          <KPISparklineChart label={label} spark={spark} format={format} currency={currency} />
         </div>
       )}
     </div>

@@ -1,23 +1,22 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Repeat } from "lucide-react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ChartSkeleton, KPITileSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
-import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
+
+const StreakDistributionChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/RetentionCharts").then(
+      (module) => module.StreakDistributionChart,
+    ),
+  { ssr: false },
+);
 
 type Cohort = { cohort: string; size: number; weeks: number[] };
 
@@ -120,15 +119,7 @@ export function RetentionClient() {
             <ChartSkeleton />
           ) : (
             <div className="h-56">
-              <ResponsiveContainer>
-                <BarChart data={data?.streakBuckets ?? []} margin={{ top: 10, right: 10, bottom: 0, left: -10 }}>
-                  <CartesianGrid stroke="var(--cf-border)" vertical={false} />
-                  <XAxis dataKey="bucket" tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={32} />
-                  <Tooltip content={<DarkTooltip />} />
-                  <Bar dataKey="count" fill="var(--cf-accent)" radius={[4, 4, 0, 0]} isAnimationActive={false} />
-                </BarChart>
-              </ResponsiveContainer>
+              <StreakDistributionChart data={data?.streakBuckets ?? []} />
             </div>
           )}
         </AdminCard>

@@ -1,27 +1,30 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { AlertTriangle, CreditCard, Globe, type LucideIcon } from "lucide-react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { KPITileSkeleton, TableSkeleton } from "@/app/book/admin/_components/Skeleton";
-import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
+
+const RevenueByCountryChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/BillingCharts").then(
+      (module) => module.RevenueByCountryChart,
+    ),
+  { ssr: false },
+);
+
+const CardBrandMixChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/BillingCharts").then(
+      (module) => module.CardBrandMixChart,
+    ),
+  { ssr: false },
+);
 
 type CountryRow = { country: string; mrrCents: number; mrr: number };
 
@@ -59,14 +62,6 @@ type BillingResponse = {
   recentDisputes: BillingEventRow[];
   coverage: { country: number; cardBrand: number };
   warnings?: string[];
-};
-
-const BRAND_COLORS: Record<string, string> = {
-  visa: "var(--cf-accent)",
-  mastercard: "var(--cf-warning-text)",
-  amex: "var(--cf-success-text)",
-  discover: "var(--cf-danger-text)",
-  unknown: "var(--cf-text-soft)",
 };
 
 export function BillingClient() {
@@ -143,28 +138,7 @@ export function BillingClient() {
             />
           ) : (
             <div className="h-56">
-              <ResponsiveContainer>
-                <BarChart
-                  data={data?.revenueByCountry ?? []}
-                  layout="vertical"
-                  margin={{ top: 10, right: 10, bottom: 0, left: 60 }}
-                >
-                  <CartesianGrid stroke="var(--cf-border)" horizontal={false} />
-                  <XAxis
-                    type="number"
-                    tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
-                    tickFormatter={(v) => `$${v}`}
-                  />
-                  <YAxis
-                    dataKey="country"
-                    type="category"
-                    tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
-                    width={80}
-                  />
-                  <Tooltip content={<DarkTooltip />} />
-                  <Bar dataKey="mrr" fill="var(--cf-accent)" radius={[0, 4, 4, 0]} isAnimationActive={false} />
-                </BarChart>
-              </ResponsiveContainer>
+              <RevenueByCountryChart data={data?.revenueByCountry ?? []} />
             </div>
           )}
         </AdminCard>
@@ -179,31 +153,7 @@ export function BillingClient() {
             />
           ) : (
             <div className="h-48">
-              <ResponsiveContainer>
-                <PieChart>
-                  <Pie
-                    data={data?.cardBrandMix ?? []}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={36}
-                    outerRadius={72}
-                    paddingAngle={2}
-                    dataKey="count"
-                    nameKey="brand"
-                    isAnimationActive={false}
-                  >
-                    {(data?.cardBrandMix ?? []).map((entry) => (
-                      <Cell
-                        key={entry.brand}
-                        fill={BRAND_COLORS[entry.brand] ?? "var(--cf-text-soft)"}
-                        stroke="var(--cf-surface)"
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip content={<DarkTooltip />} />
-                  <Legend wrapperStyle={{ fontSize: 11, color: "var(--cf-text-3)" }} iconSize={8} />
-                </PieChart>
-              </ResponsiveContainer>
+              <CardBrandMixChart data={data?.cardBrandMix ?? []} />
             </div>
           )}
         </AdminCard>
