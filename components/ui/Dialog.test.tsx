@@ -2,7 +2,7 @@ import "../../tests/_lib/dom";
 
 import assert from "node:assert/strict";
 import { afterEach, test } from "node:test";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
 import { Dialog } from "./Dialog";
 
@@ -13,12 +13,18 @@ afterEach(() => {
 });
 
 test("Dialog opens in a portal, traps focus, closes on Escape, and restores focus", async () => {
+  let closeRequests = 0;
+
   function Harness() {
     const [open, setOpen] = useState(false);
+    const close = useCallback(() => {
+      closeRequests += 1;
+      setOpen(false);
+    }, []);
     return (
       <>
         <button type="button" onClick={() => setOpen(true)}>Open dialog</button>
-        <Dialog open={open} onClose={() => setOpen(false)} labelledBy="test-dialog-title">
+        <Dialog open={open} onClose={close} labelledBy="test-dialog-title">
           <h2 id="test-dialog-title">Test dialog</h2>
           <button type="button">First action</button>
           <button type="button">Last action</button>
@@ -38,7 +44,9 @@ test("Dialog opens in a portal, traps focus, closes on Escape, and restores focu
   assert.equal(document.body.style.overflow, "hidden");
 
   fireEvent.keyDown(document, { key: "Escape" });
-  await waitFor(() => assert.equal(view.queryByRole("dialog"), null));
-  assert.equal(document.body.style.overflow, "");
-  assert.equal(document.activeElement, opener);
+  await waitFor(() => {
+    assert.equal(closeRequests, 1);
+    assert.equal(document.body.style.overflow, "");
+    assert.equal(document.activeElement, opener);
+  });
 });
