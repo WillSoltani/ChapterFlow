@@ -10,6 +10,7 @@ const source = (relativePath: string) =>
 const css = source("app/globals.css");
 const hero = source("components/landing/recall/RecallHeroSplit.tsx");
 const dissolve = source("components/landing/recall/DissolveWord.tsx");
+const readerShowcase = source("components/landing/recall/RecallReaderShowcase.tsx");
 
 function selectorForOffset(stylesheet: string, offset: number): string {
   const before = stylesheet.slice(0, offset);
@@ -73,6 +74,19 @@ test("the disintegration signature completes once and leaves readable final text
   assert.doesNotMatch(dissolve, /loops forever/i);
   assert.match(dissolve, /completedRef/);
   assert.match(dissolve, /cancelAnimationFrame/);
+});
+
+test("the reader showcase cannot stay hidden under either reduced-motion signal", () => {
+  assert.match(readerShowcase, /initial=\{reduced \? false :/);
+  assert.match(readerShowcase, /whileInView=\{reduced \? undefined :/);
+  assert.match(
+    css,
+    /@media \(prefers-reduced-motion: reduce\) \{[\s\S]*?\.recall-reader-demo \{[\s\S]*?opacity:\s*1 !important;[\s\S]*?transform:\s*translateZ\(0\) !important;/,
+  );
+  assert.match(
+    css,
+    /html\[data-motion="reduced"\] \.recall-reader-demo \{[\s\S]*?opacity:\s*1 !important;[\s\S]*?transform:\s*translateZ\(0\) !important;/,
+  );
 });
 
 test("removed dead motion blocks cannot drift back into the global stylesheet", () => {

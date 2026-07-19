@@ -1031,7 +1031,7 @@ html.transitioning *::after {
   outline-offset: 2px;
 }
 
-.cf-paper-folio :focus-visible {
+.cf-public-site .cf-paper-folio :focus-visible {
   outline-color: var(--cf-recall-accent-ink);
 }
 
@@ -1051,7 +1051,7 @@ html.transitioning *::after {
 /* The global :focus-visible recipe (outline: 2px solid var(--accent-cyan)) is
    UNLAYERED, so it beats Tailwind's layered focus-visible:outline-none and always
    paints — and .landing-dark redefines --accent-cyan, making every keyboard-focus
-   indicator CYAN against this single-periwinkle brand (the CTAs' Tailwind ring
+   indicator against this single-periwinkle brand (the CTAs' Tailwind ring
    box-shadow is itself overridden by their inline glow shadow, so the outline is
    often the only indicator). Repoint the focus outline to the recall accent so all
    focus rings on this surface are on-brand. The .cf-focus variant (used by the
@@ -1329,8 +1329,13 @@ html[data-contrast="high"] .landing-dark {
 }
 @media (prefers-reduced-motion: reduce) {
   .recall-reader-demo {
-    transform: translateZ(0);
+    opacity: 1 !important;
+    transform: translateZ(0) !important;
   }
+}
+html[data-motion="reduced"] .recall-reader-demo {
+  opacity: 1 !important;
+  transform: translateZ(0) !important;
 }
 
 /* ── Hero chart entrance motion (RECALL) ────────────────────────────────────

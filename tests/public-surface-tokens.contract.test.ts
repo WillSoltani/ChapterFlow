@@ -56,6 +56,8 @@ test("dark and paper accent/text pairs meet their WCAG contrast roles", () => {
 
 test("both materials use solid, visible Recall focus treatment", () => {
   assert.match(rule(".cf-public-site :focus-visible"), /outline:\s*2px solid var\(--cf-recall-accent\)/);
-  assert.match(rule(".cf-paper-folio :focus-visible"), /outline-color:\s*var\(--cf-recall-accent-ink\)/);
+  assert.match(
+    rule(".cf-public-site .cf-paper-folio :focus-visible"),
+    /outline-color:\s*var\(--cf-recall-accent-ink\)/,
+  );
 });
-

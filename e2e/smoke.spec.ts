@@ -22,6 +22,34 @@ async function expectNotBlank(page: Page): Promise<void> {
   expect(text.length).toBeGreaterThan(20);
 }
 
+async function expectReducedMotionFinalState(page: Page): Promise<void> {
+  await expect(page.getByRole("heading", { name: /stop forgetting/i })).toBeVisible();
+  await expect(page.locator(".rl-plate-wrap")).toHaveCSS("transform", "none");
+  await expect(page.locator(".rl-plate-scan")).toBeHidden();
+  await expect(page.locator(".recall-reader-demo")).toBeVisible();
+  await expect(page.locator(".recall-reader-demo")).toHaveCSS("opacity", "1");
+
+  const library = page.locator("#library");
+  await library.scrollIntoViewIfNeeded();
+  await expect(library.locator(".rl-lib-stage")).toHaveCSS("position", "static");
+  await expect(
+    library.getByRole("heading", { name: /books, all real/i }),
+  ).toBeVisible();
+
+  const continuousAnimations = await page.evaluate(() =>
+    document
+      .getAnimations()
+      .filter((animation) => animation.effect?.getTiming().iterations === Infinity)
+      .map((animation) => {
+        const target = (animation.effect as KeyframeEffect | null)?.target;
+        return target instanceof Element
+          ? target.tagName.toLowerCase() + "." + Array.from(target.classList).join(".")
+          : "unknown-target";
+      }),
+  );
+  expect(continuousAnimations).toEqual([]);
+}
+
 // Public marketing / funnel pages — server-rendered, no auth or DB needed.
 test.describe("public funnel", () => {
   test("landing page renders", async ({ page }) => {
@@ -110,6 +138,169 @@ test.describe("landing redesign", () => {
     await expect(
       section.getByRole("heading", { name: /books, all real/i }),
     ).toBeVisible();
+  });
+});
+
+const PUBLIC_RECALL_ROUTES = [
+  "/",
+  "/pricing",
+  "/books",
+  "/contact",
+  "/legal",
+  "/legal/privacy",
+  "/legal/cookies",
+] as const;
+
+test.describe("shared Recall public chrome", () => {
+  for (const path of PUBLIC_RECALL_ROUTES) {
+    test(`${path} has one shared shell and no mobile overflow`, async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      const res = await page.goto(path);
+      expect(res?.status()).toBeLessThan(400);
+      await expectNoErrorOverlay(page);
+      await expect(page.locator("header.rl-nav")).toHaveCount(1);
+      await expect(page.locator("main#main")).toHaveCount(1);
+      await expect(page.locator("footer.rl-public-footer")).toHaveCount(1);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= window.innerWidth + 1,
+        ),
+        `${path} must not overflow horizontally at 390px`,
+      ).toBe(true);
+    });
+  }
+
+  test("mobile menu traps focus, restores it, and unlocks after navigation", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/pricing");
+
+    const trigger = page.getByRole("button", { name: "Open navigation menu" });
+    const triggerBox = await trigger.boundingBox();
+    expect(triggerBox?.width).toBeGreaterThanOrEqual(44);
+    expect(triggerBox?.height).toBeGreaterThanOrEqual(44);
+
+    await trigger.focus();
+    await page.keyboard.press("Enter");
+    const dialog = page.getByRole("dialog", { name: "Navigation" });
+    const close = page.getByRole("button", { name: "Close navigation menu" });
+    await expect(dialog).toBeVisible();
+    await expect(close).toBeFocused();
+    expect(await page.evaluate(() => document.body.style.overflow)).toBe("hidden");
+
+    await page.keyboard.press("Shift+Tab");
+    await expect(
+      dialog.getByRole("link", { name: /start free|dashboard/i }),
+    ).toBeFocused();
+    await page.keyboard.press("Tab");
+    await expect(close).toBeFocused();
+
+    await page.keyboard.press("Escape");
+    await expect(dialog).toHaveCount(0);
+    await expect(trigger).toBeFocused();
+    expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
+
+    await page.keyboard.press("Space");
+    await page
+      .getByRole("dialog", { name: "Navigation" })
+      .getByRole("link", { name: "Books" })
+      .click();
+    await expect(page).toHaveURL(/\/books$/);
+    await expect(page.getByRole("dialog", { name: "Navigation" })).toHaveCount(0);
+    expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
+  });
+
+  test("skip link is first and moves keyboard focus to main", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/contact");
+    await page.keyboard.press("Tab");
+    await expect(
+      page.getByRole("link", { name: "Skip to main content" }),
+    ).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(page.locator("main#main")).toBeFocused();
+  });
+
+  test("paper folio keyboard focus uses the contrast-safe Recall ink", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/legal/privacy");
+    const policyLink = page.getByRole("link", { name: "Cookie Policy" });
+    await policyLink.focus();
+    await expect(policyLink).toHaveCSS("outline-color", "rgb(82, 101, 194)");
+    await expect(policyLink).toHaveCSS("outline-width", "2px");
+  });
+
+  test("1024px breakpoint closes the mobile dialog without an orphan lock", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1023, height: 900 });
+    await page.goto("/pricing");
+    const trigger = page.getByRole("button", { name: "Open navigation menu" });
+    await expect(trigger).toBeVisible();
+    await expect(
+      page.locator("header.rl-nav nav[aria-label='Primary']"),
+    ).toBeHidden();
+    await trigger.click();
+    await expect(page.getByRole("dialog", { name: "Navigation" })).toBeVisible();
+
+    await page.setViewportSize({ width: 1024, height: 900 });
+    await expect(page.getByRole("dialog", { name: "Navigation" })).toHaveCount(0);
+    await expect(trigger).toBeHidden();
+    await expect(
+      page.locator("header.rl-nav nav[aria-label='Primary']"),
+    ).toBeVisible();
+    expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
+  });
+
+  test("home persistent CTA appears only after the hero boundary", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    const headerAction = page.locator("header.rl-nav").getByRole("link", {
+      name: /start free|dashboard/i,
+    });
+    const heroAction = page
+      .getByRole("link", { name: "Start reading free" })
+      .first();
+    await expect(heroAction).toBeVisible();
+    const heroActionBox = await heroAction.boundingBox();
+    expect(heroActionBox?.height).toBeGreaterThanOrEqual(44);
+    await expect(headerAction).toHaveCount(0);
+
+    await page.evaluate(() => {
+      const sentinel = document.querySelector<HTMLElement>("[data-public-hero-end]");
+      if (!sentinel) throw new Error("missing public hero boundary");
+      window.scrollTo(0, sentinel.offsetTop + 120);
+    });
+    await expect(headerAction).toHaveCount(1);
+
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect(headerAction).toHaveCount(0);
+  });
+
+  test("OS reduced motion renders the meaningful final state", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    await expectReducedMotionFinalState(page);
+  });
+
+  test("in-app reduced motion matches the OS final state", async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "book-accelerator:preferences:v2",
+        JSON.stringify({
+          appearance: { theme: "dark", reducedMotion: true },
+        }),
+      );
+    });
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    await expect(page.locator("html")).toHaveAttribute("data-motion", "reduced");
+    await expectReducedMotionFinalState(page);
   });
 });
 
