@@ -1130,6 +1130,18 @@ html[data-contrast="high"] .landing-dark {
   }
 }
 
+/* Printing and static capture do not drive IntersectionObserver/scroll. Force
+   every JS-armed reveal into its final painted state without changing the live
+   scroll entrance or the visible-by-default server/no-JS markup. */
+@media print {
+  .cf-reveal,
+  .cf-reveal-group .cf-reveal-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 /* ── Reusable hover micro-interactions ──────────────────────────────────────
    transform/opacity-only lifts for citation rows / pricing cards / step cards.
    Gated on (hover: hover) so touch devices don't get a stuck hover; muted under
