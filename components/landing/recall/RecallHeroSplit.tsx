@@ -16,12 +16,12 @@
  *   • time axis carries TICK MARKS + day labels (no vertical gridlines)
  *   • the four REAL FSRS review events (days 0·1·4·12) plot as data-point markers
  *   • the band BETWEEN the two lines is shaded — that gap is the whole product
- *   • a live PLAYHEAD sweeps the timeline on a loop (hover to scrub it), with a
+ *   • a PLAYHEAD sweeps the timeline once (hover to scrub it), with a
  *     DAY chip, a dot riding each line, and live % readouts
  *
  * Materiality: the plate carries a top-left specular sheen, an edge vignette, a
- * whisper of film grain, an animated HUD ("FIG.01 · RETENTION" + a blinking
- * "FSRS-5 live" dot), corner ticks, a one-time scan sweep, and a reflection. The
+ * whisper of film grain, a static HUD ("FIG.01 · RETENTION" + "FSRS-5 model"),
+ * corner ticks, a one-time scan sweep, and a reflection. The
  * whole hero responds to the pointer with a subtle 3D tilt + parallax (driven by
  * --rl-px/--rl-py CSS vars set on a ref).
  *
@@ -72,7 +72,7 @@ export function RecallHeroSplit() {
   const headRef = useRef<HTMLDivElement>(null);
   const showcaseRef = useRef<HTMLDivElement>(null);
 
-  // Mouse parallax + 3D tilt: a pointermove on the section sets --rl-px / --rl-py
+  // Mouse parallax + 3D tilt: pointer movement within the hero sets --rl-px / --rl-py
   // (normalized -0.5..0.5) on the head + showcase wrappers; CSS turns those into
   // a small translate on the head and a translate + rotateX/rotateY on the plate.
   // Reduced motion no-ops entirely (vars stay 0 → the static, untilted state).
@@ -106,52 +106,31 @@ export function RecallHeroSplit() {
       set(headRef.current);
       set(showcaseRef.current);
     };
+    const section = sectionRef.current;
+    if (!section) return;
     const onMove = (e: PointerEvent) => {
-      px2 = e.clientX / window.innerWidth - 0.5;
-      py2 = e.clientY / window.innerHeight - 0.5;
+      const rect = section.getBoundingClientRect();
+      px2 = Math.max(-0.5, Math.min(0.5, (e.clientX - rect.left) / rect.width - 0.5));
+      py2 = Math.max(-0.5, Math.min(0.5, (e.clientY - rect.top) / rect.height - 0.5));
       if (!raf) raf = requestAnimationFrame(apply);
     };
-
-    // Only listen while the hero is on-screen — once it scrolls away the parallax
-    // recompute is pure waste (and keeps a global pointermove handler alive for
-    // the whole page). An IntersectionObserver attaches/detaches the listener.
-    let attached = false;
-    const attach = () => {
-      if (attached) return;
-      attached = true;
-      window.addEventListener("pointermove", onMove, { passive: true });
-    };
-    const detach = () => {
-      if (!attached) return;
-      attached = false;
-      window.removeEventListener("pointermove", onMove);
+    const reset = () => {
+      px2 = 0;
+      py2 = 0;
+      apply();
       if (raf) {
         cancelAnimationFrame(raf);
         raf = 0;
       }
     };
 
-    const section = sectionRef.current;
-    let io: IntersectionObserver | null = null;
-    if (section && typeof IntersectionObserver !== "undefined") {
-      io = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) attach();
-            else detach();
-          }
-        },
-        { threshold: 0 },
-      );
-      io.observe(section);
-    } else {
-      // No IO (very old engines / SSR safety net): fall back to always-on.
-      attach();
-    }
+    section.addEventListener("pointermove", onMove, { passive: true });
+    section.addEventListener("pointerleave", reset, { passive: true });
 
     return () => {
-      io?.disconnect();
-      detach();
+      section.removeEventListener("pointermove", onMove);
+      section.removeEventListener("pointerleave", reset);
+      reset();
     };
   }, [reduced]);
 
@@ -289,12 +268,12 @@ export function RecallHeroSplit() {
           <div className="rl-plate">
             <CinematicPlate G={G} reduced={reduced} />
 
-            {/* HUD: figure tag (left) + blinking "FSRS-5 live" dot (right) */}
+            {/* HUD: figure tag (left) + static model label (right) */}
             <div className="rl-plate-hud font-(family-name:--font-mono)" aria-hidden>
               <span>FIG.01 · RETENTION</span>
               <span className="rl-plate-hud-live">
                 <i />
-                FSRS&#8209;5 live
+                FSRS&#8209;5 model
               </span>
             </div>
 
@@ -341,7 +320,8 @@ export function RecallHeroSplit() {
    The playhead auto-sweeps the timeline on a loop and can be scrubbed by hovering
    the SVG; it imperatively moves a vertical guide, a DAY chip, a dot riding each
    line, and the live % readouts (refs + setAttribute, so no per-frame React
-   render). Reduced motion pins it to the day-T_MAX endpoint, statically. */
+   render). The authored entrance sweeps once and settles at the day-T_MAX
+   endpoint; reduced motion renders that final state immediately. */
 function CinematicPlate({
   G,
   reduced,
@@ -455,28 +435,31 @@ function CinematicPlate({
     }
 
     let raf = 0;
-    const dur = 6200; // ms for one left→right sweep
-    const hold = 1000; // ms paused at the right edge before looping
+    const dur = 4200; // one restrained left→right entrance sweep
     const span = T_MAX - 0.08;
     const ease = (x: number) =>
       x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
     const tick = (now: number) => {
-      raf = requestAnimationFrame(tick);
-      // while hovering, the pointer owns the playhead; pause the auto-sweep and
-      // forget the timeline base so it resumes from the current spot on release
+      // While hovering, the pointer owns the playhead. Keep the finite entrance
+      // clock paused until interaction ends; pointermove writes the live value.
       if (hoverRef.current) {
-        baseRef.current = null;
+        raf = requestAnimationFrame(tick);
         return;
       }
       if (baseRef.current == null) {
-        const fr = Math.min(1, Math.max(0, (tRef.current - 0.08) / span));
-        baseRef.current = now - fr * dur;
+        baseRef.current = now;
       }
-      const e = (now - baseRef.current) % (dur + hold);
-      const frac = e < dur ? ease(e / dur) : 1;
+      const frac = Math.min(1, (now - baseRef.current) / dur);
       const v = 0.08 + frac * span;
       tRef.current = v;
-      draw(v);
+      draw(0.08 + ease(frac) * span);
+      if (frac < 1) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        raf = 0;
+        tRef.current = T_MAX;
+        draw(T_MAX);
+      }
     };
 
     // The auto-sweep only needs to run while the plate is on-screen AND the tab is
@@ -489,8 +472,7 @@ function CinematicPlate({
     const start = () => {
       if (running()) return;
       if (!onScreen || document.hidden) return;
-      // resume from the current spot, not a stale wall-clock base
-      baseRef.current = null;
+      if (tRef.current >= T_MAX) return;
       raf = requestAnimationFrame(tick);
     };
     const stop = () => {
@@ -691,6 +673,18 @@ function CinematicPlate({
         style={{ animationDelay: "140ms" }}
       />
 
+      {/* A brief light packet crosses the retained curve twice, then disappears. */}
+      <path
+        className="cf-curve-shimmer"
+        pathLength={1}
+        d={G.lockedD}
+        fill="none"
+        stroke="var(--cf-recall-line-core)"
+        strokeWidth={3.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
       {/* ── the lit retained line — drawn on (the STAR) ── */}
       <path
         className="cf-curve-line"
@@ -729,7 +723,7 @@ function CinematicPlate({
       {/* ── glowing endpoint of the lit line ── */}
       <g className="cf-curve-head">
         <circle cx={G.endX} cy={G.endY} r={34} fill="url(#plate-halo)" />
-        {/* continuously breathing pulse ring — draws the eye to "89% kept" */}
+        {/* two-cycle entrance pulse; the solid endpoint remains after it settles */}
         <circle
           className="cf-curve-pulse"
           cx={G.endX}
@@ -743,7 +737,7 @@ function CinematicPlate({
         <circle cx={G.endX} cy={G.endY} r={4} fill="var(--cf-recall-line-core)" />
       </g>
 
-      {/* ── live playhead scrubber — auto-sweeps the timeline (hover to scrub) ── */}
+      {/* ── playhead scrubber — one entrance sweep, then pointer-scrubbable ── */}
       <g className="cf-curve-readout">
         {/* vertical guide spanning the plot */}
         <line
