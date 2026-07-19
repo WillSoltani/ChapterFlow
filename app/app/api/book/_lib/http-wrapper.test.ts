@@ -109,6 +109,29 @@ test("withBookApiErrors auto-rejects a cross-site mutation with 403 forbidden_or
   assert.equal(json.error?.code, "forbidden_origin");
 });
 
+test("a whitespace-only Sec-Fetch-Site cannot skip the Origin fallback and fail open", async () => {
+  const req = new Request("https://app.chapterflow.ca/app/api/book/me/settings", {
+    method: "POST",
+    headers: {
+      "sec-fetch-site": "\u00a0",
+      origin: "https://evil.example",
+      cookie: `id_token=${FAKE_JWT}`,
+    },
+  });
+  assert.equal(req.headers.get("sec-fetch-site"), "\u00a0");
+
+  let bodyRan = false;
+  const res = await withBookApiErrors(req, async () => {
+    bodyRan = true;
+    const { bookOk } = await import("./http");
+    return bookOk({ ok: true });
+  });
+  assert.equal(res.status, 403);
+  assert.equal(bodyRan, false);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "forbidden_origin");
+});
+
 test("opts.skipOriginCheck lets a cross-site request through (webhook/unsubscribe opt-out)", async () => {
   let bodyRan = false;
   const res = await withBookApiErrors(

@@ -105,8 +105,9 @@ function isSameSiteOrigin(a: string, b: string): boolean {
  *     it and do NOT compare Origin against a single pinned canonical origin (doing
  *     so 403'd every mutation from users served on a non-canonical host).
  *   - `Sec-Fetch-Site: cross-site | same-site` → REJECT.
- *   - Any other nonblank `Sec-Fetch-Site` value → REJECT. Unknown browser-set
- *     values must not fall through with no canonical app origin and fail open.
+ *   - Any other present `Sec-Fetch-Site` value, including one that trims blank,
+ *     → REJECT. Unknown browser-set values must not fall through with no
+ *     canonical app origin and fail open.
  *   - No Sec-Fetch-Site (archaic / non-browser clients): fall back to `Origin` —
  *     allow when it equals the app origin OR is a first-party sibling host (same
  *     scheme + registrable domain); reject a cross-site Origin; and STRICT-DEFAULT
@@ -123,7 +124,12 @@ export function evaluateSameOrigin(params: {
   const method = params.method.toUpperCase();
   if (!UNSAFE_METHODS.has(method)) return { rejected: false };
 
-  const secFetchSite = params.secFetchSite?.trim().toLowerCase() || null;
+  const rawSecFetchSite = params.secFetchSite;
+  const secFetchSite = rawSecFetchSite?.trim().toLowerCase() || null;
+
+  if (rawSecFetchSite !== null && !secFetchSite) {
+    return { rejected: true, reason: "unsupported blank sec-fetch-site" };
+  }
 
   if (secFetchSite === "same-origin" || secFetchSite === "none") {
     return { rejected: false };

@@ -64,6 +64,19 @@ test("unknown Sec-Fetch-Site values fail closed instead of bypassing the Origin 
   });
 });
 
+test("a present Sec-Fetch-Site value that trims blank also fails closed", () => {
+  const d = evaluateSameOrigin({
+    method: "POST",
+    secFetchSite: "\u00a0",
+    originHeader: "https://evil.example",
+    appOrigin: null,
+  });
+  assert.deepEqual(d, {
+    rejected: true,
+    reason: "unsupported blank sec-fetch-site",
+  });
+});
+
 test("same-origin request (matching Origin) is allowed", () => {
   const d = evaluateSameOrigin({
     method: "POST",
