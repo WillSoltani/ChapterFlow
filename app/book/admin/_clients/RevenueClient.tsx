@@ -243,9 +243,9 @@ export function RevenueClient() {
             />
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[640px] text-[12px]">
+              <table className="w-full min-w-[640px] text-cf-label-sm">
                 <thead>
-                  <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                  <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                     <th className="py-2 pr-3">Email / User</th>
                     <th className="py-2 pr-3">Status</th>
                     <th className="py-2 pr-3">Source</th>
@@ -262,7 +262,7 @@ export function RevenueClient() {
                     >
                       <td className="py-2 pr-3 text-(--cf-text-1)" title={u.userId}>
                         {u.email ?? (
-                          <span className="font-mono text-[11px] text-(--cf-text-3)">
+                          <span className="font-mono text-cf-caption text-(--cf-text-3)">
                             {u.userId.slice(0, 12)}…
                           </span>
                         )}

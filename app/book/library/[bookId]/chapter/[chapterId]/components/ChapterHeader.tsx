@@ -194,7 +194,7 @@ export function ChapterHeader({
   const ipPill = ipBalance != null && (
     <Link
       href="/rewards"
-      className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[12px] font-semibold tabular-nums transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
+      className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-cf-label-sm font-semibold tabular-nums transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
       style={{
         background: "color-mix(in srgb, var(--cr-accent) 10%, transparent)",
         color: "var(--cr-accent)",
@@ -285,7 +285,7 @@ export function ChapterHeader({
             {chapterLabel}
           </h2>
           <span
-            className="hidden sm:inline text-[11px] tabular-nums text-(--cr-text-disabled)"
+            className="hidden sm:inline text-cf-caption tabular-nums text-(--cr-text-disabled)"
           >
             {chapterOrder} / {totalChapters}
           </span>
@@ -411,11 +411,11 @@ function TitleBlock({
   const modeLabel = MODE_LABELS[learningMode]?.label ?? "Standard";
   return (
     <div className="pt-6 pb-2 sm:pt-8">
-      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-(--cr-accent)">
+      <p className="text-cf-caption font-bold uppercase tracking-[0.16em] text-(--cr-accent)">
         {bookTitle} &middot; {author}
       </p>
       <h1
-        className="mt-2 text-[28px] sm:text-[36px] font-bold tracking-tight text-(--cr-text-heading) leading-[1.15] font-(family-name:--font-display)"
+        className="mt-2 text-[28px] sm:text-4xl font-bold tracking-tight text-(--cr-text-heading) leading-[1.15] font-(family-name:--font-display)"
       >
         {chapterLabel}: {chapterTitle}
       </h1>
@@ -423,7 +423,7 @@ function TitleBlock({
        * the nav row above already shows "Chapter 2 / 8", so the second copy
        * was redundant. Mode label only renders in non-standard modes since
        * Standard is the default and saying so adds no information. */}
-      <p className="mt-2 text-[11px] text-(--cr-text-disabled) flex flex-wrap items-center gap-x-2 gap-y-1">
+      <p className="mt-2 text-cf-caption text-(--cr-text-disabled) flex flex-wrap items-center gap-x-2 gap-y-1">
         {showEstimatedReadingTime && <span>{minutes} min read</span>}
         {showEstimatedReadingTime && learningMode !== "standard" && (
           <span aria-hidden="true">&middot;</span>

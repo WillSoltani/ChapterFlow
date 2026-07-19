@@ -145,9 +145,9 @@ export function PerformanceClient() {
             <EmptyState icon={Zap} title="No route data" compact />
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[520px] text-[12px]">
+              <table className="w-full min-w-[520px] text-cf-label-sm">
                 <thead>
-                  <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                  <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                     <th className="py-2 pr-3">Route</th>
                     <th className="py-2 pr-3 text-right">Samples</th>
                     <th className="py-2 pr-3 text-right">p50</th>
@@ -162,7 +162,7 @@ export function PerformanceClient() {
                         key={r.path}
                         className="border-b border-(--cf-border)/50 transition hover:bg-(--cf-surface-muted)/40"
                       >
-                        <td className="py-2 pr-3 font-mono text-[11px] text-(--cf-text-1)">{r.path}</td>
+                        <td className="py-2 pr-3 font-mono text-cf-caption text-(--cf-text-1)">{r.path}</td>
                         <td className="py-2 pr-3 text-right tabular-nums text-(--cf-text-3)">{r.samples}</td>
                         <td className="py-2 pr-3 text-right tabular-nums text-(--cf-text-2)">{r.p50}ms</td>
                         <td

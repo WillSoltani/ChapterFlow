@@ -41,7 +41,7 @@ export default function AccountDeletedPage() {
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">
           Your account was deleted
         </h1>
-        <p className="mx-auto mb-6 max-w-sm text-[14px] leading-relaxed text-(--cf-text-3)">
+        <p className="mx-auto mb-6 max-w-sm text-cf-body-sm leading-relaxed text-(--cf-text-3)">
           This ChapterFlow account has been closed, so it can no longer access
           your library or reading progress. You&apos;ve been signed out on this
           device.
@@ -54,19 +54,19 @@ export default function AccountDeletedPage() {
               route fall back to its registered COGNITO_LOGOUT_REDIRECT_URI. */}
           <Link
             href="/auth/logout"
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[14px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-cf-body-sm font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
           >
             Sign out completely
           </Link>
           <Link
             href="/signup"
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-(--cf-border-strong) px-4 text-[14px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-muted)"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-(--cf-border-strong) px-4 text-cf-body-sm font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-muted)"
           >
             Create a new account
           </Link>
         </div>
 
-        <p className="mt-6 text-[13px] text-(--cf-text-3)">
+        <p className="mt-6 text-cf-label text-(--cf-text-3)">
           Think this was a mistake?{" "}
           <a
             href={`mailto:${SUPPORT_EMAIL}`}

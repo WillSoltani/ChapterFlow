@@ -848,7 +848,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                   {/* B4: "Also in progress" / up-next preview */}
                   {activeBooks.length > 1 ? (
                     <div className="space-y-3">
-                      <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Also in progress</p>
+                      <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-soft)">Also in progress</p>
                       <div className="grid gap-4 lg:grid-cols-2">
                         {activeBooks.filter((s) => s.book.id !== currentSnapshot.book.id).slice(0, 2).map((snapshot) => {
                           const progress = parseStoredBookProgress(
@@ -997,7 +997,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
               eyebrow="Activity"
               title="Monthly summary"
               icon={<Calendar className="h-5 w-5" />}
-              right={<span className="cf-pill px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Last 30 days</span>}
+              right={<span className="cf-pill px-3 py-1 text-cf-caption uppercase tracking-[0.18em] text-(--cf-text-3)">Last 30 days</span>}
             >
               <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
                 {/* Left: Stats + D3 ring + D2 sparkline + heatmap */}
@@ -1022,7 +1022,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
                   {/* D1: Heatmap with today indicator */}
                   <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-4">
-                    <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Reading activity</p>
+                    <p className="mb-3 text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-soft)">Reading activity</p>
                     <HeatmapCalendar cells={analytics?.heatmapCells ?? []} />
                     {/* E1: This Week strip */}
                     {statsSummary.currentStreak > 0 || monthlySummary.activeDays > 0 ? (
@@ -1045,7 +1045,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                         <div key={group.dateKey}>
                           <div className="mb-2 flex items-center gap-3">
                             <div className="h-px flex-1 bg-(--cf-border)" />
-                            <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-(--cf-text-soft)">{group.label}</span>
+                            <span className="text-cf-caption font-medium uppercase tracking-[0.18em] text-(--cf-text-soft)">{group.label}</span>
                             <div className="h-px flex-1 bg-(--cf-border)" />
                           </div>
                           <div className="space-y-2">
@@ -1227,7 +1227,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
                   {/* G2: Recent takeaways as quote cards */}
                   <div className="space-y-3">
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Top recent insights</p>
+                    <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-soft)">Top recent insights</p>
                     {localInsights.notes.slice(0, 3).map((note) => (
                       <PinnedTakeawayCard key={`${note.id}:pinned`} text={firstLine(note.body)} source={note.title} />
                     ))}
@@ -1323,7 +1323,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                               Finished &bull; {new Date(snapshot.lastActivityAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
                             </p>
                           </div>
-                          <span className="cf-pill cf-pill-success px-3 py-1 text-[11px] uppercase tracking-[0.18em]">Completed</span>
+                          <span className="cf-pill cf-pill-success px-3 py-1 text-cf-caption uppercase tracking-[0.18em]">Completed</span>
                         </div>
                       ))
                     ) : (

@@ -28,13 +28,13 @@ export function KPITile({
   return (
     <div className="cf-panel rounded-2xl p-4">
       <div className="flex items-start justify-between gap-2">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-(--cf-text-soft)">
+        <p className="text-cf-caption font-semibold uppercase tracking-[0.1em] text-(--cf-text-soft)">
           {label}
         </p>
         {deltaInfo && (
           <span
             className={[
-              "inline-flex items-center gap-0.5 rounded-md px-1.5 py-0.5 text-[11px] font-medium",
+              "inline-flex items-center gap-0.5 rounded-md px-1.5 py-0.5 text-cf-caption font-medium",
               deltaInfo.tone === "up"
                 ? "bg-(--cf-success-soft) text-(--cf-success-text)"
                 : deltaInfo.tone === "down"
@@ -51,7 +51,7 @@ export function KPITile({
       <p className="mt-2 text-2xl font-semibold tabular-nums tracking-tight text-(--cf-text-1)">
         {display}
       </p>
-      {hint && <p className="mt-0.5 text-[11px] text-(--cf-text-3)">{hint}</p>}
+      {hint && <p className="mt-0.5 text-cf-caption text-(--cf-text-3)">{hint}</p>}
       {spark && spark.length > 1 && (
         <div className="-mx-1 mt-3 h-10">
           <ResponsiveContainer width="100%" height="100%">

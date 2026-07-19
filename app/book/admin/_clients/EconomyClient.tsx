@@ -94,7 +94,7 @@ export function EconomyClient() {
             <div
               key={`w-${i}`}
               role="status"
-              className="flex items-start gap-2 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)"
+              className="flex items-start gap-2 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-cf-label text-(--cf-text-2)"
             >
               <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-text-soft)" />
               <span>{w}</span>
@@ -110,7 +110,7 @@ export function EconomyClient() {
               key={i}
               role="alert"
               className={[
-                "flex items-start gap-2 rounded-xl border p-3 text-[13px]",
+                "flex items-start gap-2 rounded-xl border p-3 text-cf-label",
                 a.severity === "alert"
                   ? "border-(--cf-danger-border) bg-(--cf-danger-soft) text-(--cf-danger-text)"
                   : "border-(--cf-warning-border) bg-(--cf-warning-soft) text-(--cf-warning-text)",

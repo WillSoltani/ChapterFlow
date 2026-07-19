@@ -54,7 +54,7 @@ export function FunnelsClient() {
       {data?.warnings?.length ? (
         <div
           role="status"
-          className="mb-4 flex items-start gap-2 rounded-xl border border-(--cf-warning-border) bg-(--cf-warning-soft) p-3 text-[13px] text-(--cf-warning-text)"
+          className="mb-4 flex items-start gap-2 rounded-xl border border-(--cf-warning-border) bg-(--cf-warning-soft) p-3 text-cf-label text-(--cf-warning-text)"
         >
           <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
           <p className="min-w-0 flex-1 leading-relaxed">{data.warnings.join(" · ")}</p>
@@ -91,7 +91,7 @@ export function FunnelsClient() {
                   : null;
               return (
                 <div key={s.key}>
-                  <div className="mb-1 flex flex-col gap-0.5 text-[12px] sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
+                  <div className="mb-1 flex flex-col gap-0.5 text-cf-label-sm sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
                     <span className="min-w-0 font-medium text-(--cf-text-2)">
                       {i + 1}. {s.label}
                     </span>
@@ -118,7 +118,7 @@ export function FunnelsClient() {
         )}
       </AdminCard>
 
-      <p className="mt-4 text-[11px] text-(--cf-text-soft)">
+      <p className="mt-4 text-cf-caption text-(--cf-text-soft)">
         Note: the &ldquo;(est.)&rdquo; steps (first commitment, the behavior-loop tail &mdash;
         returned / reported it helped / applied &mdash; and first AI feedback) are estimated from a
         sample of the 100 most recent users due to event-log scan cost. The tail steps count unique

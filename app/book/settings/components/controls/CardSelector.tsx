@@ -6,9 +6,9 @@ import { cn } from "@/lib/utils";
 
 /** Personality gradient lookup by card label keyword */
 const PERSONALITY_GRADIENTS: Record<string, string> = {
-  "Quick Learner": "linear-gradient(90deg, var(--accent-cyan), #38BDF8)",
-  "Balanced Reader": "linear-gradient(90deg, var(--accent-emerald), #14B8A6)",
-  "Deep Diver": "linear-gradient(90deg, var(--accent-amber), #F97316)",
+  "Quick Learner": "linear-gradient(90deg, var(--accent-cyan), var(--cf-data-sky))",
+  "Balanced Reader": "linear-gradient(90deg, var(--accent-emerald), var(--cf-data-teal))",
+  "Deep Diver": "linear-gradient(90deg, var(--accent-amber), var(--cf-data-orange))",
 };
 
 type CardOption<T extends string> = {

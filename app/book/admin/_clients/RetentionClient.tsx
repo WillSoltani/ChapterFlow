@@ -63,7 +63,7 @@ export function RetentionClient() {
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
       {data?.warnings?.length ? (
-        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)">
+        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-cf-label text-(--cf-text-2)">
           {data.warnings.join(" · ")}
         </div>
       ) : null}
@@ -141,7 +141,7 @@ function CohortHeatmap({ cohorts }: { cohorts: Cohort[] }) {
   const weeksToShow = cohorts[0]?.weeks.length ?? 0;
   return (
     <div className="overflow-x-auto">
-      <table className="text-[11px]">
+      <table className="text-cf-caption">
         <thead>
           <tr className="text-(--cf-text-soft)">
             <th className="px-2 py-1 text-left">Cohort</th>
@@ -200,7 +200,7 @@ function FreqRow({
   const pct = total > 0 ? (value / total) * 100 : 0;
   return (
     <div>
-      <div className="mb-1 flex items-center justify-between text-[12px]">
+      <div className="mb-1 flex items-center justify-between text-cf-label-sm">
         <span className="font-medium text-(--cf-text-2)">{label}</span>
         <span className="tabular-nums text-(--cf-text-3)">
           {value.toLocaleString()} <span className="text-(--cf-text-soft)">({pct.toFixed(0)}%)</span>

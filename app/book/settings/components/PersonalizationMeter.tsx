@@ -69,8 +69,8 @@ export function PersonalizationMeter({
             className="absolute right-0 top-0 h-full w-4 rounded-full"
             style={{
               background: isComplete
-                ? "radial-gradient(circle at right, rgba(16,185,129,0.5), transparent)"
-                : "radial-gradient(circle at right, rgba(34,211,238,0.5), transparent)",
+                ? "radial-gradient(circle at right, color-mix(in srgb, var(--accent-emerald) 50%, transparent), transparent)"
+                : "radial-gradient(circle at right, color-mix(in srgb, var(--accent-cyan) 50%, transparent), transparent)",
             }}
           />
         </motion.div>
@@ -95,7 +95,7 @@ export function PersonalizationMeter({
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mt-1 text-[11px] text-(--cf-text-soft)"
+            className="mt-1 text-cf-caption text-(--cf-text-soft)"
           >
             Halfway there!
           </motion.p>

@@ -71,7 +71,7 @@ export function DevicesClient() {
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
       {data?.warnings?.length ? (
-        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)">
+        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-cf-label text-(--cf-text-2)">
           {data.warnings.join(" · ")}
         </div>
       ) : null}
@@ -122,7 +122,7 @@ export function DevicesClient() {
               </ResponsiveContainer>
             </div>
           )}
-          <ul className="mt-2 space-y-1 text-[12px]">
+          <ul className="mt-2 space-y-1 text-cf-label-sm">
             {deviceData.map((d) => (
               <li key={d.key} className="flex items-center justify-between">
                 <span className="flex items-center gap-2 text-(--cf-text-2)">

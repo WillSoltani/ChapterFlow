@@ -16,7 +16,7 @@ type ProgressRingProps = {
  * components/ui/ProgressRing so it inherits progressbar ARIA and
  * reduced-motion handling (OS media query + in-app toggle) instead of the
  * previous aria-hidden, off-token, always-animating reimplementation.
- * Defaults to the amber accent token (was the hardcoded #f59e0b).
+ * Defaults to the amber accent token.
  * New code should import @/components/ui/ProgressRing directly.
  */
 export function ProgressRing({

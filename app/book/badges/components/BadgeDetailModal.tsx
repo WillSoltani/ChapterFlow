@@ -235,7 +235,7 @@ function LockedModalContent({
         <DetailRow label="Criteria" value={badge.criteria.description} />
 
         <div>
-          <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">Progress</p>
+          <p className="text-cf-caption uppercase tracking-[0.2em] text-(--cf-text-soft)">Progress</p>
           <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-(--cf-surface-strong)">
             <div
               className="h-full rounded-full transition-[width] duration-500"
@@ -279,7 +279,7 @@ function LockedModalContent({
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">{label}</p>
+      <p className="text-cf-caption uppercase tracking-[0.2em] text-(--cf-text-soft)">{label}</p>
       <p className="mt-1 text-sm text-(--cf-text-2)">{value}</p>
     </div>
   );
@@ -300,8 +300,8 @@ function TierPillDisplay({ tier, earned, className }: { tier: string; earned: bo
         earned
           ? {
               background: gradient,
-              color: tier === "platinum" || tier === "silver" ? "#1a1a2e" : tier === "unique" || tier === "secret" ? "#ffffff" : "#1a0f00",
-              textShadow: tier === "platinum" ? "0 1px 0 rgba(255,255,255,0.4)" : "none",
+              color: tier === "platinum" || tier === "silver" ? "var(--cf-badge-text-cool)" : tier === "unique" || tier === "secret" ? "var(--cf-palette-white)" : "var(--cf-badge-text-warm)",
+              textShadow: tier === "platinum" ? "0 1px 0 color-mix(in srgb, var(--cf-palette-white) 40%, transparent)" : "none",
             }
           : { background: "var(--cf-surface-strong)", color: "var(--cf-text-soft)" }
       }

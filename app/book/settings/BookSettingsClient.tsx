@@ -734,7 +734,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                 />
               </div>
               {ext.profileCustomized && (
-                <p className="mt-2 text-[11px] italic text-accent-amber/70">
+                <p className="mt-2 text-cf-caption italic text-accent-amber/70">
                   Your settings have been customized
                 </p>
               )}
@@ -762,7 +762,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
               />
             </SettingRow>
             {ext.fontFamily === "opendyslexic" && (
-              <p className="mx-3 -mt-1 mb-2 text-[11px] text-(--cf-text-soft)">
+              <p className="mx-3 -mt-1 mb-2 text-cf-caption text-(--cf-text-soft)">
                 Uses the open-source OpenDyslexic typeface, designed for readers with dyslexia.
               </p>
             )}
@@ -1159,7 +1159,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: DUR.fast }}
-                    className="mx-3 mt-1 mb-2 text-[11px] italic text-(--cf-text-3)"
+                    className="mx-3 mt-1 mb-2 text-cf-caption italic text-(--cf-text-3)"
                   >
                     Enables leaderboard-style comparisons with other readers. You can switch
                     back anytime.

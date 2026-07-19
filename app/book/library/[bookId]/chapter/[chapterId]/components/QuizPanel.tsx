@@ -530,7 +530,7 @@ function ResultsScreen({
       </div>
 
       {/* 3. Score text */}
-      <p className="text-[15px] text-(--cr-text-secondary)">
+      <p className="text-cf-body text-(--cr-text-secondary)">
         {result.correctAnswers} of {result.totalQuestions} correct &middot; {result.scorePercent}%
       </p>
 
@@ -908,7 +908,7 @@ export function QuizPanel({
             WebkitBackdropFilter: "blur(8px)",
           }}
         >
-          <span className="text-[13px] font-semibold whitespace-nowrap text-(--cr-text-heading)">
+          <span className="text-cf-label font-semibold whitespace-nowrap text-(--cr-text-heading)">
             Question {safeCurrentIndex + 1} of {displayQuestions.length}
           </span>
           <div className="flex-1 h-0.5 rounded-full overflow-hidden bg-(--cr-glass-border)">

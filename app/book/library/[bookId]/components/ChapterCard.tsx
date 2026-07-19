@@ -101,8 +101,8 @@ export function ChapterCard({
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <span className={`shrink-0 text-[11px] font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
-                <span className={`line-clamp-2 text-[15px] sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
+                <span className={`shrink-0 text-cf-caption font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
+                <span className={`line-clamp-2 text-cf-body sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
               </div>
               <StepIndicators stepsCompleted={0} lockedDots />
             </div>
@@ -138,8 +138,8 @@ export function ChapterCard({
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <span className={`shrink-0 text-[11px] font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
-                <span className={`line-clamp-2 text-[15px] sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
+                <span className={`shrink-0 text-cf-caption font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
+                <span className={`line-clamp-2 text-cf-body sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
               </div>
               <StepIndicators stepsCompleted={0} lockedDots />
               <span className="mt-1 block text-xs font-medium" style={{ color: "var(--accent-emerald)" }}>
@@ -223,8 +223,8 @@ export function ChapterCard({
           {/* Content */}
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
-              <span className={`shrink-0 text-[11px] font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
-              <span className={`line-clamp-2 text-[15px] sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
+              <span className={`shrink-0 text-cf-caption font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
+              <span className={`line-clamp-2 text-cf-body sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
             </div>
             <div className="mt-2 flex items-center gap-2">
               <StepIndicators
@@ -249,7 +249,7 @@ export function ChapterCard({
           {appBadge && (
             <span
               aria-hidden="true"
-              className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-0.5 text-[11px] font-medium"
+              className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-0.5 text-cf-caption font-medium"
               style={
                 appBadge.tone === "applied"
                   ? {

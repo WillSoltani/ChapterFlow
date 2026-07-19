@@ -60,7 +60,7 @@ export function ModerationClient() {
         action={
           <Link
             href="/book/admin/scenarios"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-1.5 text-[12px] font-semibold text-(--cf-accent) transition hover:brightness-110"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-1.5 text-cf-label-sm font-semibold text-(--cf-accent) transition hover:brightness-110"
           >
             Open queue
             <ExternalLink className="h-3 w-3" />
@@ -111,19 +111,19 @@ export function ModerationClient() {
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-[13px] font-medium text-(--cf-text-1)">{s.title}</p>
-                    <p className="mt-0.5 text-[11px] text-(--cf-text-3)">
+                    <p className="truncate text-cf-label font-medium text-(--cf-text-1)">{s.title}</p>
+                    <p className="mt-0.5 text-cf-caption text-(--cf-text-3)">
                       {s.userEmail ?? "(no email)"} · {s.scope} · book {s.bookId.slice(0, 12)}… · ch{s.chapterNumber}
                     </p>
                     {s.aiReason && (
-                      <p className="mt-1.5 rounded-md bg-(--cf-surface-strong) px-2 py-1 text-[11px] text-(--cf-text-2)">
+                      <p className="mt-1.5 rounded-md bg-(--cf-surface-strong) px-2 py-1 text-cf-caption text-(--cf-text-2)">
                         <span className="font-semibold text-(--cf-accent)">AI:</span> {s.aiReason}
                       </p>
                     )}
                   </div>
                   <Link
                     href="/book/admin/scenarios"
-                    className="shrink-0 rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-[11px] font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong) hover:text-(--cf-text-1)"
+                    className="shrink-0 rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-cf-caption font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-strong) hover:text-(--cf-text-1)"
                   >
                     Review →
                   </Link>
@@ -133,7 +133,7 @@ export function ModerationClient() {
             {(data?.pendingScenarioCount ?? 0) > (data?.pendingScenariosPreview.length ?? 0) && (
               <Link
                 href="/book/admin/scenarios"
-                className="block pt-2 text-center text-[11px] text-(--cf-accent) hover:underline"
+                className="block pt-2 text-center text-cf-caption text-(--cf-accent) hover:underline"
               >
                 <FileCheck2 className="mr-1 inline h-3 w-3" />
                 + {(data?.pendingScenarioCount ?? 0) - (data?.pendingScenariosPreview.length ?? 0)} more in queue

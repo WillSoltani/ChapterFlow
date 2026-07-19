@@ -77,7 +77,7 @@ export function OverviewClient() {
             type="button"
             onClick={reload}
             disabled={loading}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-cf-label-sm font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) disabled:cursor-not-allowed disabled:opacity-60"
           >
             <RefreshCw className={`h-3.5 w-3.5 transition ${loading ? "animate-spin" : ""}`} />
             Refresh
@@ -210,7 +210,7 @@ function Bar({
   const pct = total > 0 ? (value / total) * 100 : 0;
   return (
     <div>
-      <div className="mb-1 flex items-center justify-between text-[12px]">
+      <div className="mb-1 flex items-center justify-between text-cf-label-sm">
         <span className="font-medium text-(--cf-text-2)">{label}</span>
         <span className="tabular-nums text-(--cf-text-3)">
           {value.toLocaleString()}{" "}
@@ -230,8 +230,8 @@ function Bar({
 function FunnelStep({ label, value }: { label: string; value: number }) {
   return (
     <div className="cf-panel-muted flex items-center justify-between rounded-lg px-3 py-2.5">
-      <span className="text-[13px] text-(--cf-text-2)">{label}</span>
-      <span className="tabular-nums text-[15px] font-semibold text-(--cf-text-1)">
+      <span className="text-cf-label text-(--cf-text-2)">{label}</span>
+      <span className="tabular-nums text-cf-body font-semibold text-(--cf-text-1)">
         {value.toLocaleString()}
       </span>
     </div>

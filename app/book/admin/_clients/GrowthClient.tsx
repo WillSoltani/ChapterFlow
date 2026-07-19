@@ -110,7 +110,7 @@ export function GrowthClient() {
                 const pct = (d.count / max) * 100;
                 return (
                   <li key={d.domain}>
-                    <div className="flex items-center justify-between text-[12px]">
+                    <div className="flex items-center justify-between text-cf-label-sm">
                       <span className="font-mono text-(--cf-text-2)">{d.domain}</span>
                       <span className="tabular-nums text-(--cf-text-3)">{d.count}</span>
                     </div>
@@ -125,7 +125,7 @@ export function GrowthClient() {
               })}
             </ul>
           ) : (
-            <p className="text-[12px] text-(--cf-text-soft)">No signups in range.</p>
+            <p className="text-cf-label-sm text-(--cf-text-soft)">No signups in range.</p>
           )}
         </AdminCard>
 
@@ -187,7 +187,7 @@ function FunnelView({ funnel }: { funnel?: GrowthResponse["funnel"] }) {
             : "";
         return (
           <div key={s.label}>
-            <div className="mb-1 flex items-center justify-between gap-x-3 text-[12px]">
+            <div className="mb-1 flex items-center justify-between gap-x-3 text-cf-label-sm">
               <span className="min-w-0 font-medium text-(--cf-text-2)">{s.label}</span>
               <span className="shrink-0 whitespace-nowrap text-right tabular-nums text-(--cf-text-3)">
                 {s.value.toLocaleString()}

@@ -1609,7 +1609,7 @@ export function ChapterReaderClient({
             <Lightbulb className="mt-0.5 h-4 w-4 flex-shrink-0 text-(--cr-accent)" />
             <div className="flex-1">
               <p className="text-sm font-semibold text-(--cr-text-heading)">How this chapter works</p>
-              <p className="mt-0.5 text-[13px] text-(--cr-text-secondary)">
+              <p className="mt-0.5 text-cf-label text-(--cr-text-secondary)">
                 Read the <strong>Summary</strong>, see it in <strong>Examples</strong>, then prove it stuck in the{" "}
                 <strong>Quiz</strong> to unlock the next chapter. Pick Guided, Standard, or Challenge in Reading settings to set how much detail you get.
               </p>
@@ -1635,7 +1635,7 @@ export function ChapterReaderClient({
           const pct = Math.round(t.minScroll * 100);
           if (!seconds && !pct) return null;
           return (
-            <p className="mt-4 text-[12px] text-(--cr-text-secondary)">
+            <p className="mt-4 text-cf-label-sm text-(--cr-text-secondary)">
               Take a moment with this section — Continue unlocks once you&apos;ve read it.
               {state.activeTab === "examples" && learningMode === "challenge" && " Be sure to react to every scenario, too."}
             </p>
@@ -1646,7 +1646,7 @@ export function ChapterReaderClient({
          *  provisional banner styling. Reading is never blocked; this only
          *  tells the reader the content may be a stale cached copy. */}
         {servingOfflineCopy && (
-          <p className="mt-4 flex items-center gap-1.5 text-[12px] text-(--cr-text-disabled)">
+          <p className="mt-4 flex items-center gap-1.5 text-cf-label-sm text-(--cr-text-disabled)">
             <CloudOff className="h-3.5 w-3.5" />
             Showing an offline copy — reconnect for the latest.
           </p>
@@ -1827,7 +1827,7 @@ export function ChapterReaderClient({
             />
             {quiz.session?.provisional && (
               <p
-                className="text-[12px] mt-2 flex items-center gap-1.5 text-(--cr-text-disabled)"
+                className="text-cf-label-sm mt-2 flex items-center gap-1.5 text-(--cr-text-disabled)"
                 role="status"
               >
                 <span>{"\u23F3"}</span>
@@ -1952,10 +1952,10 @@ export function ChapterReaderClient({
           ariaLabel="Keyboard shortcuts"
         >
           <div className="p-6">
-            <h3 className="text-[16px] font-semibold mb-4 text-(--cr-text-heading)">
+            <h3 className="text-cf-body-lg font-semibold mb-4 text-(--cr-text-heading)">
               Keyboard Shortcuts
             </h3>
-            <div className="space-y-3 text-[13px] text-(--cr-text-secondary)">
+            <div className="space-y-3 text-cf-label text-(--cr-text-secondary)">
               {(
                 [
                   ["1 \u2013 4", "Select quiz answer"],
@@ -1969,7 +1969,7 @@ export function ChapterReaderClient({
                 <div key={key} className="flex items-center justify-between">
                   <span>{desc}</span>
                   <kbd
-                    className="px-2 py-0.5 rounded text-[12px] font-mono bg-(--cr-bg-surface-3) border border-(--cr-glass-border) text-(--cr-text-heading)"
+                    className="px-2 py-0.5 rounded text-cf-label-sm font-mono bg-(--cr-bg-surface-3) border border-(--cr-glass-border) text-(--cr-text-heading)"
                   >
                     {key}
                   </kbd>
@@ -1979,7 +1979,7 @@ export function ChapterReaderClient({
             <button
               type="button"
               onClick={() => setShowShortcuts(false)}
-              className="mt-5 w-full py-2 rounded-full text-[13px] bg-(--cr-bg-surface-3) text-(--cr-text-secondary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
+              className="mt-5 w-full py-2 rounded-full text-cf-label bg-(--cr-bg-surface-3) text-(--cr-text-secondary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)]"
             >
               Close
             </button>

@@ -90,7 +90,7 @@ export function ContentClient() {
         title="Books"
         description="Sorted by activity in range"
         action={
-          <div className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) p-0.5 text-[11px] shadow-(--cf-input-inset-shadow)">
+          <div className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) p-0.5 text-cf-caption shadow-(--cf-input-inset-shadow)">
             {(
               [
                 ["readingMinutes", "Reading"],
@@ -127,9 +127,9 @@ export function ContentClient() {
           />
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[640px] text-[12px]">
+            <table className="w-full min-w-[640px] text-cf-label-sm">
               <thead>
-                <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                   <th className="py-2 pr-3">Book</th>
                   <th className="py-2 pr-3">Categories</th>
                   <th className="py-2 pr-3 text-right">Reading</th>
@@ -146,7 +146,7 @@ export function ContentClient() {
                   >
                     <td className="py-2 pr-3 text-(--cf-text-1)">
                       <p className="font-medium">{b.title}</p>
-                      <p className="text-[11px] text-(--cf-text-3)">{b.author}</p>
+                      <p className="text-cf-caption text-(--cf-text-3)">{b.author}</p>
                     </td>
                     <td className="py-2 pr-3 text-(--cf-text-3)">
                       {b.categories.slice(0, 2).join(", ") || "—"}
@@ -160,7 +160,7 @@ export function ContentClient() {
                     <td className="py-2 pr-3 text-right">
                       <span
                         className={[
-                          "rounded-md px-1.5 py-0.5 text-[11px] font-medium",
+                          "rounded-md px-1.5 py-0.5 text-cf-caption font-medium",
                           b.passRatePercent >= 70
                             ? "bg-(--cf-success-soft) text-(--cf-success-text)"
                             : b.passRatePercent >= 40

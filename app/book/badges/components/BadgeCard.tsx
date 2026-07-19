@@ -18,12 +18,12 @@ type BadgeCardProps = {
 // TierPillDisplay imports this so the two pill renderers can never drift apart.
 // (Lives here rather than badge-utils.ts to stay within this change's scope.)
 export const METALLIC_GRADIENTS: Record<string, string> = {
-  bronze: "linear-gradient(135deg, #CD7F32, #E8A862)",
-  silver: "linear-gradient(135deg, #C0C0C0, #E8E8E8)",
-  gold: "linear-gradient(135deg, #FFD700, #FFF0A0)",
-  platinum: "linear-gradient(135deg, #E5E4E2, #FFFFFF)",
-  unique: "linear-gradient(135deg, #8B5CF6, #EC4899)",
-  secret: "linear-gradient(135deg, #8B5CF6, #EC4899)",
+  bronze: "linear-gradient(135deg, var(--cf-badge-bronze), var(--cf-badge-bronze-highlight))",
+  silver: "linear-gradient(135deg, var(--cf-badge-silver), var(--cf-badge-silver-highlight))",
+  gold: "linear-gradient(135deg, var(--cf-badge-gold), var(--cf-badge-gold-highlight))",
+  platinum: "linear-gradient(135deg, var(--cf-badge-platinum), var(--cf-palette-white))",
+  unique: "linear-gradient(135deg, var(--cf-badge-unique), var(--cf-badge-unique-highlight))",
+  secret: "linear-gradient(135deg, var(--cf-badge-unique), var(--cf-badge-unique-highlight))",
 };
 
 function TierPill({ tier, earned }: { tier: string; earned: boolean }) {
@@ -40,8 +40,8 @@ function TierPill({ tier, earned }: { tier: string; earned: boolean }) {
         earned
           ? {
               background: gradient,
-              color: tier === "platinum" || tier === "silver" ? "#1a1a2e" : tier === "unique" || tier === "secret" ? "#ffffff" : "#1a0f00",
-              textShadow: tier === "platinum" ? "0 1px 0 rgba(255,255,255,0.4)" : "none",
+              color: tier === "platinum" || tier === "silver" ? "var(--cf-badge-text-cool)" : tier === "unique" || tier === "secret" ? "var(--cf-palette-white)" : "var(--cf-badge-text-warm)",
+              textShadow: tier === "platinum" ? "0 1px 0 color-mix(in srgb, var(--cf-palette-white) 40%, transparent)" : "none",
             }
           : { background: "var(--cf-surface-strong)", color: "var(--cf-text-soft)" }
       }

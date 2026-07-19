@@ -16,7 +16,7 @@ export function ChapterBackgroundOrbs() {
       <div
         className="absolute -bottom-[150px] -right-[200px] h-[500px] w-[500px] rounded-full opacity-[0.10]"
         style={{
-          background: "radial-gradient(circle, #2A1A4E 0%, transparent 70%)",
+          background: "radial-gradient(circle, var(--cf-reader-orb-violet) 0%, transparent 70%)",
           animation: "cr-float-alt 25s ease-in-out infinite alternate",
         }}
       />

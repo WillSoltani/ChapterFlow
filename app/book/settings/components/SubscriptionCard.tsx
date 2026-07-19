@@ -141,7 +141,7 @@ export function SubscriptionCard({
               : "Monthly billing"}
         </p>
         {cancelAtPeriodEnd && (
-          <p className="mt-1 text-xs text-(--cf-warning-text, #b45309)">
+          <p className="mt-1 text-xs text-(--cf-warning-text)">
             Your Pro access will end on the date above and won&apos;t auto-renew.
           </p>
         )}

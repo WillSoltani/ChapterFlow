@@ -96,7 +96,7 @@ export function BillingClient() {
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
       {data?.warnings?.length ? (
-        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)">
+        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-cf-label text-(--cf-text-2)">
           {data.warnings.join(" · ")}
         </div>
       ) : null}
@@ -225,9 +225,9 @@ export function BillingClient() {
             />
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[640px] text-[12px]">
+              <table className="w-full min-w-[640px] text-cf-label-sm">
                 <thead>
-                  <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                  <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                     <th className="py-2 pr-3">User</th>
                     <th className="py-2 pr-3 text-right">Amount</th>
                     <th className="py-2 pr-3">Currency</th>
@@ -239,7 +239,7 @@ export function BillingClient() {
                 <tbody>
                   {data?.topPayingUsers.map((u) => (
                     <tr key={u.userId} className="border-b border-(--cf-border)/50">
-                      <td className="py-2 pr-3 font-mono text-[11px] text-(--cf-text-2)" title={u.userId}>
+                      <td className="py-2 pr-3 font-mono text-cf-caption text-(--cf-text-2)" title={u.userId}>
                         {u.userId.slice(0, 14)}…
                       </td>
                       <td className="py-2 pr-3 text-right tabular-nums text-(--cf-text-1)">
@@ -281,7 +281,7 @@ export function BillingClient() {
         />
       </div>
 
-      <p className="mt-4 text-[11px] text-(--cf-text-soft)">
+      <p className="mt-4 text-cf-caption text-(--cf-text-soft)">
         Real MRR = sum of actual Stripe subscription amounts for active
         stripe-source PROs. License and flow_points PROs are excluded
         (they&apos;re free). Coverage grows over time as Stripe webhooks
@@ -314,9 +314,9 @@ function BillingEventsCard({
         <EmptyState icon={icon} title={emptyTitle} description={emptyDescription} compact />
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[520px] text-[12px]">
+          <table className="w-full min-w-[520px] text-cf-label-sm">
             <thead>
-              <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+              <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                 <th className="py-2 pr-3">User</th>
                 <th className="py-2 pr-3 text-right">Amount</th>
                 <th className="py-2 pr-3">Reason</th>
@@ -326,7 +326,7 @@ function BillingEventsCard({
             <tbody>
               {rows?.map((r) => (
                 <tr key={`${r.createdAt}-${r.userId ?? "?"}`} className="border-b border-(--cf-border)/50">
-                  <td className="py-2 pr-3 font-mono text-[11px] text-(--cf-text-2)" title={r.userId ?? undefined}>
+                  <td className="py-2 pr-3 font-mono text-cf-caption text-(--cf-text-2)" title={r.userId ?? undefined}>
                     {r.userId ? `${r.userId.slice(0, 14)}…` : "—"}
                   </td>
                   <td className="py-2 pr-3 text-right tabular-nums text-(--cf-text-1)">

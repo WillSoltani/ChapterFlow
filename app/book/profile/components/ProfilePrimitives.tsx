@@ -119,7 +119,7 @@ function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boolean; s
   const celebratedRef = useRef(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const [particles] = useState(() => {
-    const colors = ["#f59e0b", "#fb923c", "#fbbf24", "#fde68a"];
+    const colors = ["var(--cf-profile-flame-base)", "var(--cf-profile-flame-mid)", "var(--cf-profile-flame-light)", "var(--cf-profile-flame-pale)"];
     return Array.from({ length: 7 }).map((_, i) => {
       const angle = (i / 7) * 360 + Math.random() * 30;
       const dist = 30 + Math.random() * 25;
@@ -147,7 +147,7 @@ function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boolean; s
       {/* Ambient glow wrapper */}
       <span
         className={cn("inline-flex shrink-0", active && "cf-flame-flicker")}
-        style={active ? { filter: "drop-shadow(0 0 12px var(--accent-amber)) drop-shadow(0 0 24px rgba(245,158,11,0.15))" } : undefined}
+        style={active ? { filter: "drop-shadow(0 0 12px var(--accent-amber)) drop-shadow(0 0 24px color-mix(in srgb, var(--accent-amber) 15%, transparent))" } : undefined}
       >
         <svg
           width={size}
@@ -164,13 +164,13 @@ function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boolean; s
           />
           <path
             d="M14 27C11.79 27 10 24.88 10 22.1C10 19.32 14 14 14 14C14 14 18 19.32 18 22.1C18 24.88 16.21 27 14 27Z"
-            fill={active ? "#fde68a" : "var(--cf-text-soft)"}
+            fill={active ? "var(--cf-profile-flame-pale)" : "var(--cf-text-soft)"}
             opacity={active ? 0.9 : 0.3}
           />
           <defs>
             <linearGradient id="flameGradV2" x1="14" y1="1" x2="14" y2="27" gradientUnits="userSpaceOnUse">
               <stop stopColor="var(--accent-amber)" />
-              <stop offset="1" stopColor="#d97706" />
+              <stop offset="1" stopColor="var(--cf-profile-flame-dark)" />
             </linearGradient>
           </defs>
         </svg>
@@ -253,7 +253,7 @@ export function SectionCard({
             ) : null}
             <div>
               {eyebrow ? (
-                <p className="text-[11px] uppercase tracking-[0.26em] text-(--cf-text-3)">
+                <p className="text-cf-caption uppercase tracking-[0.26em] text-(--cf-text-3)">
                   {eyebrow}
                 </p>
               ) : null}
@@ -323,7 +323,7 @@ export function StatCard({
         </span>
         {trend ? <span className="text-xs text-(--cf-text-3)">{trend}</span> : null}
       </div>
-      <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">{label}</p>
+      <p className="mt-4 text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-3)">{label}</p>
       <p className={cn("mt-2 text-3xl font-semibold tracking-tight", valueColorClass || "text-(--cf-text-1)")}>
         {shouldAnimate && numericValue != null ? (
           <AnimatedNumber value={numericValue} formatFn={formatFn} />
@@ -365,7 +365,7 @@ function IdentityTooltip({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="inline-flex items-center gap-1.5 rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-(--cf-text-2) transition hover:bg-(--cf-surface)"
+        className="inline-flex items-center gap-1.5 rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1 text-cf-caption font-medium uppercase tracking-[0.22em] text-(--cf-text-2) transition hover:bg-(--cf-surface)"
         aria-expanded={open}
       >
         <Sparkles className="h-3 w-3" />
@@ -394,7 +394,7 @@ function IdentityTooltip({
               return (
                 <div key={level.label} className="flex items-center gap-2 text-xs">
                   <span className={cn(
-                    "inline-flex h-4 w-4 items-center justify-center rounded-full text-[8px]",
+                    "inline-flex h-4 w-4 items-center justify-center rounded-full text-cf-caption",
                     isActive ? "bg-(--cf-accent) text-(--cf-accent-contrast)" : isPast ? "bg-(--cf-success-soft) text-(--cf-success-text)" : "border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)"
                   )}>
                     {isPast ? <Check className="h-2.5 w-2.5" /> : isActive ? "→" : ""}
@@ -480,7 +480,7 @@ export function IdentityHeroBanner({
           100% { background-position: 200% center; }
         }
         .cf-pro-badge-shimmer {
-          background: linear-gradient(90deg, #F59E0B 0%, #FBBF24 40%, #FDE68A 50%, #FBBF24 60%, #F59E0B 100%);
+          background: linear-gradient(90deg, var(--cf-profile-flame-base) 0%, var(--cf-profile-flame-light) 40%, var(--cf-profile-flame-pale) 50%, var(--cf-profile-flame-light) 60%, var(--cf-profile-flame-base) 100%);
           background-size: 200% 100%;
           -webkit-background-clip: text;
           background-clip: text;
@@ -514,7 +514,7 @@ export function IdentityHeroBanner({
             {/* Plan badge + identity label (A3) */}
             <div className="flex flex-wrap items-center gap-2">
               <span className={cn(
-                "inline-flex rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em]",
+                "inline-flex rounded-full px-3 py-1 text-cf-caption font-medium uppercase tracking-[0.22em]",
                 isPro ? "border border-accent-amber/30 bg-accent-amber/10" : "border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2)"
               )}>
                 {isPro ? <span className="cf-pro-badge-shimmer">PRO</span> : "FREE"}
@@ -547,17 +547,17 @@ export function IdentityHeroBanner({
             {/* Hero stat row */}
             <div className="mt-5 flex flex-wrap gap-6">
               <div>
-                <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">Books completed</p>
+                <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-3)">Books completed</p>
                 <p className="mt-1 text-2xl font-bold text-(--cf-text-1)">{booksCompleted}</p>
               </div>
               <div>
-                <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">Current streak</p>
+                <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-3)">Current streak</p>
                 <p className="mt-1 text-2xl font-bold" style={{ color: hasStreak ? "var(--accent-amber)" : "var(--cf-text-1)" }}>
                   {streakDays} <span className="text-base font-medium text-(--cf-text-3)">{streakDays === 1 ? "day" : "days"}</span>
                 </p>
               </div>
               <div>
-                <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">Total reading</p>
+                <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-3)">Total reading</p>
                 <p className="mt-1 text-2xl font-bold text-(--cf-text-1)">{totalHours}</p>
               </div>
             </div>
@@ -700,8 +700,8 @@ function LearningLoopSteps({ completedSteps }: { completedSteps: boolean[] }) {
       })}
       <style>{`
         @keyframes cf-step-pulse {
-          0%, 100% { box-shadow: 0 0 0 0 rgba(34,211,238,0.4); }
-          50% { box-shadow: 0 0 0 6px rgba(34,211,238,0); }
+          0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-cyan) 40%, transparent); }
+          50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent-cyan) 0%, transparent); }
         }
         .cf-step-pulse { animation: cf-step-pulse 2s ease-in-out infinite; }
         @media (prefers-reduced-motion: reduce) { .cf-step-pulse { animation: none; } }
@@ -748,8 +748,8 @@ export function MomentumCard({
       <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-(--cf-accent)/8 blur-3xl" />
       <div className="relative">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="inline-flex rounded-full border border-(--cf-accent-border) bg-(--cf-surface) px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-(--cf-info-text)">Currently reading</span>
-          <span className="cf-pill px-3 py-1 text-[11px] uppercase tracking-[0.22em]">{mode}</span>
+          <span className="inline-flex rounded-full border border-(--cf-accent-border) bg-(--cf-surface) px-3 py-1 text-cf-caption uppercase tracking-[0.22em] text-(--cf-info-text)">Currently reading</span>
+          <span className="cf-pill px-3 py-1 text-cf-caption uppercase tracking-[0.22em]">{mode}</span>
         </div>
         <h3 className="mt-4 text-2xl font-bold tracking-tight text-(--cf-text-1) sm:text-3xl">{title}</h3>
         <p className="mt-2 text-sm text-(--cf-text-2)">{chapterLabel}</p>
@@ -794,7 +794,7 @@ export function MomentumCard({
           Continue Reading &rarr;
         </Button>
         <style>{`
-          @keyframes cf-cta-glow { 0%,100% { box-shadow: 0 0 16px rgba(59,130,246,0.2); } 50% { box-shadow: 0 0 28px rgba(59,130,246,0.4); } }
+          @keyframes cf-cta-glow { 0%,100% { box-shadow: 0 0 16px color-mix(in srgb, var(--cf-data-blue) 20%, transparent); } 50% { box-shadow: 0 0 28px color-mix(in srgb, var(--cf-data-blue) 40%, transparent); } }
           .cf-cta-pulse { animation: cf-cta-glow 3s ease-in-out infinite; }
           @media (prefers-reduced-motion: reduce) { .cf-cta-pulse { animation: none; } }
         `}</style>
@@ -1028,7 +1028,7 @@ export function HeatmapCalendar({ cells }: { cells: HeatmapCell[] }) {
                       <span className="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-(--cf-text-1)" />
                     ) : null}
                     {tooltip?.key === cell.key ? (
-                      <span className="pointer-events-none absolute -top-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md border border-(--cf-border) bg-(--cf-surface-strong) px-2 py-1 text-[11px] text-(--cf-text-2) shadow-shadow-elevated">
+                      <span className="pointer-events-none absolute -top-8 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-md border border-(--cf-border) bg-(--cf-surface-strong) px-2 py-1 text-cf-caption text-(--cf-text-2) shadow-shadow-elevated">
                         {tooltip.text}
                         <span className="absolute -bottom-1 left-1/2 h-2 w-2 -translate-x-1/2 rotate-45 border-b border-r border-(--cf-border) bg-(--cf-surface-strong)" />
                       </span>
@@ -1041,14 +1041,14 @@ export function HeatmapCalendar({ cells }: { cells: HeatmapCell[] }) {
         </div>
       </div>
       <div className="mt-3 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-[11px] text-(--cf-text-3)">
+        <div className="flex items-center gap-2 text-cf-caption text-(--cf-text-3)">
           <span>Less</span>
           {HEATMAP_COLORS.map((color, i) => (
             <div key={i} className={cn("h-3.5 w-3.5 rounded-[3px] border border-(--cf-border)", color)} />
           ))}
           <span>More</span>
         </div>
-        <span className="text-[11px] text-(--cf-text-3)">● = today</span>
+        <span className="text-cf-caption text-(--cf-text-3)">● = today</span>
       </div>
     </div>
   );
@@ -1082,8 +1082,8 @@ export function Sparkline({ data }: { data: number[] }) {
     <svg ref={svgRef} width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="w-full max-w-[200px]" aria-label="Daily reading sparkline">
       <defs>
         <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgba(59,130,246,0.15)" />
-          <stop offset="100%" stopColor="rgba(59,130,246,0)" />
+          <stop offset="0%" stopColor="color-mix(in srgb, var(--cf-data-blue) 15%, transparent)" />
+          <stop offset="100%" stopColor="color-mix(in srgb, var(--cf-data-blue) 0%, transparent)" />
         </linearGradient>
       </defs>
       <motion.path
@@ -1167,7 +1167,7 @@ export function UpgradeCard({
       <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_right] from-accent-amber/8 via-transparent to-transparent" />
       <div className="relative">
         <div className="flex items-center gap-2">
-          <span className="cf-pill px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em]">FREE PLAN</span>
+          <span className="cf-pill px-3 py-1 text-cf-caption font-medium uppercase tracking-[0.22em]">FREE PLAN</span>
           <span className="text-sm text-(--cf-text-3)">{booksUsed} of {booksTotal} books used</span>
         </div>
         <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-(--cf-border)">
@@ -1212,7 +1212,7 @@ export function ProStatusCard({
       <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_right] from-accent-amber/8 via-transparent to-transparent" />
       <div className="relative">
         <div className="flex items-center gap-2">
-          <span className="inline-flex rounded-full border border-accent-amber/30 bg-accent-amber/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-accent-amber">PRO</span>
+          <span className="inline-flex rounded-full border border-accent-amber/30 bg-accent-amber/10 px-3 py-1 text-cf-caption font-medium uppercase tracking-[0.22em] text-accent-amber">PRO</span>
           <span className="text-xs text-(--cf-text-soft)">{proSinceLabel}</span>
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
@@ -1356,7 +1356,7 @@ export function QuizBarChart({
       </div>
 
       {/* Stat row */}
-      <div className="mt-4 flex items-center gap-2 text-[13px] text-(--cf-text-3)">
+      <div className="mt-4 flex items-center gap-2 text-cf-label text-(--cf-text-3)">
         <span>Average: <span className="font-semibold text-(--cf-text-1)">{avg}%</span></span>
         <span className="text-(--cf-text-soft)">·</span>
         <span>Best: <span className="font-semibold text-(--cf-text-1)">{best}%</span></span>
@@ -1378,7 +1378,7 @@ export function QuizBarChart({
 
 export function ProBadge() {
   return (
-    <span className="ml-1 inline-flex rounded px-1 py-px text-[9px] font-semibold uppercase leading-none tracking-wide text-accent-amber/60 bg-accent-amber/[0.08]">
+    <span className="ml-1 inline-flex rounded px-1 py-px text-cf-caption font-semibold uppercase leading-none tracking-wide text-accent-amber/60 bg-accent-amber/[0.08]">
       PRO
     </span>
   );
@@ -1438,7 +1438,7 @@ export function ThisWeekStrip({ cells }: { cells: HeatmapCell[] }) {
 
   return (
     <div className="border-t border-(--cf-divider) pt-3">
-      <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">This week</p>
+      <p className="mb-2 text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-3)">This week</p>
       <div className="flex items-center justify-between gap-1">
         {weekCells.map((cell, i) => {
           const isToday = i === todayDow;
@@ -1486,7 +1486,7 @@ export function CategoryMap({
   return (
     <div>
       <div className="flex items-center justify-between">
-        <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-3)">
+        <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-3)">
           Categories explored
         </p>
         <span className="text-xs text-(--cf-text-3)">
@@ -1499,13 +1499,13 @@ export function CategoryMap({
             key={cat.name}
             type="button"
             onClick={() => onCategoryClick?.(cat.name)}
-            className="cf-chip cf-chip-active px-2.5 py-1 text-[11px] transition hover:bg-accent-cyan/15"
+            className="cf-chip cf-chip-active px-2.5 py-1 text-cf-caption transition hover:bg-accent-cyan/15"
           >
             {cat.name} · {cat.chapters}
           </button>
         ))}
         {remaining > 0 ? (
-          <span className="px-2 py-1 text-[11px] text-(--cf-text-3)">
+          <span className="px-2 py-1 text-cf-caption text-(--cf-text-3)">
             +{remaining} more to discover
           </span>
         ) : null}

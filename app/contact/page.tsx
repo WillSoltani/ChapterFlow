@@ -19,7 +19,7 @@ export default function ContactPage() {
         <div className="max-w-3xl mx-auto px-6 py-4">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[14px] font-medium transition-colors hover:text-(--text-heading)"
+            className="inline-flex items-center gap-2 text-cf-body-sm font-medium transition-colors hover:text-(--text-heading)"
             style={{ color: "var(--text-secondary)" }}
           >
             <ArrowLeft size={16} />
@@ -35,19 +35,19 @@ export default function ContactPage() {
         >
           Contact &amp; Support
         </h1>
-        <p className="text-[15px] leading-[1.75] mb-8" style={{ color: "var(--text-secondary)" }}>
+        <p className="text-cf-body leading-[1.75] mb-8" style={{ color: "var(--text-secondary)" }}>
           The fastest way to reach us is by email. Write to{" "}
           <a href={`mailto:${SUPPORT_EMAIL}`} className="underline" style={{ color: "var(--accent-cyan)" }}>{SUPPORT_EMAIL}</a>{" "}
           and we&apos;ll get back to you as soon as we can.
         </p>
 
-        <div className="space-y-5 text-[15px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
+        <div className="space-y-5 text-cf-body leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
           <div>
-            <h2 className="text-[16px] font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Help &amp; account support</h2>
+            <h2 className="text-cf-body-lg font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Help &amp; account support</h2>
             <p>Trouble with the app, your account, reading progress, or a feature? Email us and include your account email and a short description of what happened.</p>
           </div>
           <div>
-            <h2 className="text-[16px] font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Billing &amp; cancellation</h2>
+            <h2 className="text-cf-body-lg font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Billing &amp; cancellation</h2>
             <p>You can manage or cancel your subscription anytime in{" "}
               <Link href="/book/settings" className="underline" style={{ color: "var(--accent-cyan)" }}>Settings</Link>.
               For billing questions, see our{" "}
@@ -55,20 +55,20 @@ export default function ContactPage() {
               or email us.</p>
           </div>
           <div>
-            <h2 className="text-[16px] font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Privacy &amp; your data</h2>
+            <h2 className="text-cf-body-lg font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Privacy &amp; your data</h2>
             <p>To access, export, correct, or delete your data, see your{" "}
               <Link href="/legal/data-rights" className="underline" style={{ color: "var(--accent-cyan)" }}>Data Rights</Link>{" "}
               and our{" "}
               <Link href="/legal/privacy" className="underline" style={{ color: "var(--accent-cyan)" }}>Privacy Policy</Link>.</p>
           </div>
           <div>
-            <h2 className="text-[16px] font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Copyright &amp; legal notices</h2>
+            <h2 className="text-cf-body-lg font-semibold mb-1" style={{ color: "var(--text-heading)" }}>Copyright &amp; legal notices</h2>
             <p>Intellectual-property and takedown notices are handled per our{" "}
               <Link href="/legal/copyright" className="underline" style={{ color: "var(--accent-cyan)" }}>Copyright &amp; Takedown Policy</Link>.</p>
           </div>
         </div>
 
-        <p className="mt-10 text-[13px]" style={{ color: "var(--text-muted)" }}>
+        <p className="mt-10 text-cf-label" style={{ color: "var(--text-muted)" }}>
           ChapterFlow is operated by {LEGAL_ENTITY_NAME}, {LEGAL_ENTITY_LOCATION}.
         </p>
       </main>
