@@ -52,6 +52,29 @@ jobs:
       - name: Unit tests
         run: npm run test
 
+      - name: Critical unit code coverage
+        run: |
+          set -o pipefail
+          npm run test:coverage 2>&1 | tee coverage-text.txt
+          test -s coverage/lcov.info
+          test -s coverage/coverage-summary.json
+          test -s coverage/coverage-final.json
+          test -s coverage/inventory.json
+
+      - name: Upload unit code-coverage evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: unit-code-coverage
+          path: |
+            coverage/lcov.info
+            coverage/coverage-summary.json
+            coverage/coverage-final.json
+            coverage/inventory.json
+            coverage-text.txt
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Build app
         run: npm run build
 
@@ -311,12 +334,12 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
           exit 0
 
-      - name: Cover coverage (advisory)
+      - name: Book-cover asset coverage (advisory)
         run: |
           set +e
           npx tsx scripts/ci/check-cover-coverage.ts --warn-only 2>&1 | tee cover.log
           {
-            echo "## Cover coverage (advisory)"
+            echo "## Book-cover asset coverage (advisory)"
             echo ""
             echo '```'
             cat cover.log

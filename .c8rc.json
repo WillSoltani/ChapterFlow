@@ -1,0 +1,35 @@
+{
+  "all": true,
+  "extension": [
+    ".ts",
+    ".tsx",
+    ".mts",
+    ".cts"
+  ],
+  "include": [
+    "lib/**/*.{ts,tsx,mts,cts}",
+    "app/app/api/book/_lib/**/*.{ts,tsx,mts,cts}"
+  ],
+  "exclude": [
+    "**/*.test.{ts,tsx,mts,cts}",
+    "**/*.spec.{ts,tsx,mts,cts}",
+    "**/*.itest.{ts,tsx,mts,cts}",
+    "**/*-test-fixtures.{ts,tsx,mts,cts}",
+    "**/*.d.ts",
+    "**/*.d.mts",
+    "**/*.d.cts"
+  ],
+  "exclude-after-remap": true,
+  "reporter": [
+    "text",
+    "lcov",
+    "json",
+    "json-summary"
+  ],
+  "reports-dir": "coverage",
+  "check-coverage": true,
+  "lines": 40.5,
+  "branches": 82.8,
+  "functions": 68.2,
+  "statements": 40.5
+}
