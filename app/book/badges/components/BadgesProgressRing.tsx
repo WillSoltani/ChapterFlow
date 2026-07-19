@@ -2,7 +2,7 @@
 
 import { ProgressRing as SharedProgressRing } from "@/components/ui/ProgressRing";
 
-type ProgressRingProps = {
+type BadgesProgressRingProps = {
   size?: number;
   strokeWidth?: number;
   progress: number;
@@ -19,14 +19,14 @@ type ProgressRingProps = {
  * Defaults to the amber accent token.
  * New code should import @/components/ui/ProgressRing directly.
  */
-export function ProgressRing({
+export function BadgesProgressRing({
   size = 36,
   strokeWidth = 3,
   progress,
   trackColor = "var(--cf-ring-track)",
   fillColor = "var(--accent-amber)",
   className,
-}: ProgressRingProps) {
+}: BadgesProgressRingProps) {
   return (
     <SharedProgressRing
       percent={progress}

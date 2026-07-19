@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { BookCover } from "@/components/ui/BookCover";
-import { ProgressRing } from "./ProgressRing";
+import { LibraryProgressRing } from "./LibraryProgressRing";
 import { BookSaveButton } from "@/components/book/BookSaveButton";
 import { useLibraryContext } from "./LibraryContext";
 import {
@@ -113,7 +113,7 @@ export function HeroRecommendation({
               className="absolute -bottom-3 -right-3 rounded-full"
               style={{ background: "var(--bg-base)", padding: 3 }}
             >
-              <ProgressRing
+              <LibraryProgressRing
                 percent={prog.percentComplete}
                 size={80}
                 strokeWidth={6}

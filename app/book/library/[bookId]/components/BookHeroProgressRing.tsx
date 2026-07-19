@@ -2,7 +2,7 @@
 
 import { ProgressRing as SharedProgressRing } from "@/components/ui/ProgressRing";
 
-type ProgressRingProps = {
+type BookHeroProgressRingProps = {
   percent: number;
   size?: number;
   strokeWidth?: number;
@@ -16,12 +16,12 @@ type ProgressRingProps = {
  * Reduced-motion (OS + in-app toggle) and progressbar ARIA come from the
  * shared primitive. New code should import @/components/ui/ProgressRing.
  */
-export function ProgressRing({
+export function BookHeroProgressRing({
   percent,
   size = 56,
   strokeWidth = 4,
   className = "",
-}: ProgressRingProps) {
+}: BookHeroProgressRingProps) {
   return (
     <SharedProgressRing
       percent={percent}

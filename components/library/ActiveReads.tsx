@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { BookCover } from "@/components/ui/BookCover";
-import { ProgressRing } from "./ProgressRing";
+import { LibraryProgressRing } from "./LibraryProgressRing";
 import {
   formatReadingTime,
   getProgressMicrocopy,
@@ -100,7 +100,7 @@ export function ActiveReads({ books }: ActiveReadsProps) {
                     className="absolute -bottom-2 -right-2 rounded-full"
                     style={{ background: "var(--bg-base)", padding: 2 }}
                   >
-                    <ProgressRing
+                    <LibraryProgressRing
                       percent={prog.percentComplete}
                       size={48}
                       strokeWidth={4}

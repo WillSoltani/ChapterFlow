@@ -1,7 +1,7 @@
 import { ProgressRing as SharedProgressRing } from "@/components/ui/ProgressRing";
 import { getProgressColor } from "./libraryData";
 
-interface ProgressRingProps {
+interface LibraryProgressRingProps {
   /** 0–100 */
   percent: number;
   /** Diameter in px */
@@ -18,11 +18,9 @@ interface ProgressRingProps {
 /**
  * Library reading-progress ring. Thin wrapper over the shared
  * components/ui/ProgressRing that injects the dynamic per-percent color
- * (getProgressColor) and the gold completion treatment. Kept in place so
- * existing `./ProgressRing` imports keep working; new code should import the
- * shared primitive from @/components/ui/ProgressRing directly.
+ * (getProgressColor) and the gold completion treatment.
  */
-export function ProgressRing(props: ProgressRingProps) {
+export function LibraryProgressRing(props: LibraryProgressRingProps) {
   const isComplete = props.percent >= 100;
   return (
     <SharedProgressRing
