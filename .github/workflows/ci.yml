@@ -359,7 +359,7 @@ jobs:
   # the baseline — i.e. on NEW errors. It does not force a big-bang cleanup; as
   # debt is paid down, ratchet the baseline LOWER (it must never go up).
   #
-  # Baseline captured 2026-06-14 (`npx eslint . --format json`): 46 errors.
+  # Baseline recaptured 2026-07-19 (`npx eslint . --format json`): 8 errors.
   lint-ratchet:
     name: Lint Ratchet (no new errors)
     runs-on: ubuntu-latest
@@ -367,7 +367,7 @@ jobs:
     env:
       # Committed baseline: the current ESLint error count. Lower this (never
       # raise it) as errors are fixed. New errors above this number block CI.
-      ESLINT_ERROR_BASELINE: "46"
+      ESLINT_ERROR_BASELINE: "8"
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -380,6 +380,11 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --include=optional
+
+      # Explicit source globs bypass the app-only global ignores while keeping
+      # generated infra output and the offline scripts/book pipeline excluded.
+      - name: Infra and CI-source ESLint
+        run: npm run lint:infra-ci
 
       - name: ESLint ratchet
         run: |

@@ -21,6 +21,7 @@
     "scan:secrets": "bash scripts/ci/scan-secrets-and-artifacts.sh --all && bash scripts/ci/scan-secrets-and-artifacts.sh --selftest",
     "scan:style": "node scripts/ci/scan-style-drift.mjs --selftest && node scripts/ci/scan-style-drift.mjs --all",
     "lint": "eslint .",
+    "lint:infra-ci": "eslint --no-ignore --quiet \"infra/bin/**/*.ts\" \"infra/lib/**/*.ts\" \"infra/lambda/**/*.ts\" \"scripts/ci/**/*.{ts,mts,cts,js,mjs,cjs}\"",
     "typecheck": "tsc --noEmit",
     "pipeline:typecheck": "npm run typecheck --workspace @chapterflow/v21-authored",
     "pipeline:test": "npm run test --workspace @chapterflow/v21-authored",
