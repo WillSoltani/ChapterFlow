@@ -1,21 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { BookLock, CheckCircle2, CloudOff, FileQuestion, Lightbulb, X } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import {
-  getChapterById,
-  type ChapterExample,
   type ReadingDepth,
 } from "@/app/book/data/bookChapters";
-import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
-import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
-import { useCommitments } from "@/app/book/hooks/useCommitments";
-import { deriveChapterApplicationState } from "@/app/app/api/book/_lib/commitment-application-core";
-import type { ChapterApplicationState } from "@/app/app/api/book/_lib/types";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ChapterHeader } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterHeader";
 import { AutoCollapsingHookBanner } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/HookBanner";
@@ -29,8 +22,6 @@ import { ContinueButton } from "@/app/book/library/[bookId]/chapter/[chapterId]/
 import {
   ExamplesList,
   DEFAULT_VISIBLE_EXAMPLES,
-  type ScenarioSubmissionDraft,
-  type UserScenarioSubmission,
 } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList";
 import { trackReaderFunnel } from "@/app/book/_lib/reader-analytics";
 import { NotesDrawer } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/NotesDrawer";
@@ -41,34 +32,22 @@ import { AskBookDrawer } from "@/app/book/components/AskBookDrawer";
 import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
 import { CommitmentPrompt } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/CommitmentPrompt";
 import { PatternSelector } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PatternSelector";
-import type { V21ReaderPattern } from "@/app/book/lib/v21-adapter";
 import { ChapterCompleteModal } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal";
 import { Confetti } from "@/components/ui/Confetti";
 import { Dialog } from "@/components/ui/Dialog";
 import { ChapterSkeleton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterSkeleton";
 import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay";
-import { useChapterContent } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterContent";
 import { getPhaseThresholds } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
 import { useReaderSettings } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderSettings";
 import { useReaderProgress } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderProgress";
 import { useReaderPhaseFlow } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderPhaseFlow";
 import { useChapterQuiz } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterQuiz";
+import { useReaderAccess } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderAccess";
+import { useReaderExamples } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderExamples";
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
-import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 import type { LibraryBookDetail } from "@/app/book/_lib/library-data";
-import {
-  adaptApiChapterToBookChapter,
-  isReconstructedChapterEmpty,
-  type InitialChapterReaderSeed,
-} from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterFromApi";
-import {
-  classifyStartAccessFailure,
-  getOrCreateBookStartRequest,
-  isInitialReaderSeedForRoute,
-  mapInitialReaderProgressToManifest,
-  shouldRenderInitialReaderContent,
-} from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterContentHydration";
+import type { InitialChapterReaderSeed } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterFromApi";
 import { TRIAL_CTA_LABEL, UPGRADE_RETURN_PATH, MONTHLY_PRICE_WITH_CURRENCY, PRICING } from "@/lib/pricing";
 import {
   buildNextChapterRoute,
@@ -76,8 +55,6 @@ import {
   mapLearningStyleToDepth,
   modeToDepth,
 } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/reader-flow-core";
-
-const SCENARIO_SUBMISSION_POINTS = INSIGHT_POINTS_AMOUNTS.scenarioApproved;
 
 /** Dismiss-once flag for the first-chapter Summary/Examples/Quiz loop coachmark. */
 const READER_LOOP_COACHMARK_KEY = "cf-reader-loop-coachmark-seen:v1";
@@ -112,7 +89,6 @@ export function ChapterReaderClient({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const prefersReducedMotion = useReducedMotion();
-  const { identity: viewerIdentity } = useBookViewer();
   const readerSettings = useReaderSettings();
   const {
     bookPrefs,
@@ -131,24 +107,43 @@ export function ChapterReaderClient({
     settingsOpen,
     setSettingsOpen,
   } = readerSettings;
+  const readerAccess = useReaderAccess({
+    bookId,
+    chapterId,
+    chapterOrder,
+    initialBook,
+    initialSeed,
+    contentTone,
+    onboarding,
+    onboardingHydrated,
+  });
+  const {
+    entry,
+    chapters,
+    chapterNumber,
+    baseChapter,
+    chapter,
+    contentHydrated,
+    contentStatus,
+    servingOfflineCopy,
+    initialProgressFloor,
+    hasAttestedSeed,
+    effectiveOnboardingComplete,
+    bookAccessStatus,
+    bookAccessMessage,
+    paywallHit,
+    initialReaderReady,
+    retryContent,
+  } = readerAccess;
   const [notesOpen, setNotesOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [sessionMode, setSessionMode] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
   // Quiz success modal removed: chapter completion now happens after Practice phase
-  const [approvedUserExamples, setApprovedUserExamples] = useState<ChapterExample[]>([]);
-  const [userSubmissions, setUserSubmissions] = useState<UserScenarioSubmission[]>([]);
-  const [scenariosFetchFailed, setScenariosFetchFailed] = useState(false);
-  const [scenariosRefetchKey, setScenariosRefetchKey] = useState(0);
-  const [contentRefetchKey, setContentRefetchKey] = useState(0);
-  const [engagementPoints, setEngagementPoints] = useState(0);
   // First-real-chapter coachmark explaining the Summary/Examples/Quiz loop +
   // the READ time tiers. Shown once (chapter 1 only), then never again.
   const [showLoopCoachmark, setShowLoopCoachmark] = useState(false);
-
-  // Track scenario interactions for phase completion gating
-  const [scenarioInteractions, setScenarioInteractions] = useState(0);
 
   // Content area ref for scroll tracking
   const contentRef = useRef<HTMLDivElement>(null);
@@ -175,133 +170,6 @@ export function ChapterReaderClient({
     router.replace(pathname);
   };
 
-  // Title/author for headers/share — sourced from the published manifest.
-  const entry = useMemo(
-    () => ({ title: initialBook?.title ?? bookId, author: initialBook?.author ?? "" }),
-    [initialBook, bookId],
-  );
-  // Chapter list (id/order/title) for navigation + progress — from the manifest.
-  const chapters = useMemo(
-    () =>
-      (initialBook?.chapters ?? []).map((c) => ({
-        id: c.chapterId,
-        order: c.number,
-        title: c.title,
-      })),
-    [initialBook],
-  );
-  // Translate the string chapterId (route param) → integer chapterNumber for
-  // the content/quiz/state APIs, using the manifest.
-  const chapterNumber = useMemo(
-    () => initialBook?.chapters.find((c) => c.chapterId === chapterId)?.number,
-    [initialBook, chapterId],
-  );
-  const bookMeta = useMemo(
-    () => ({
-      bookId,
-      title: initialBook?.title,
-      author: initialBook?.author,
-      categories: initialBook?.categories,
-      tags: initialBook?.tags,
-    }),
-    [bookId, initialBook],
-  );
-  const attestedInitial = useMemo(() => {
-    if (
-      !initialSeed ||
-      !chapterNumber ||
-      (chapterOrder !== undefined && chapterOrder !== chapterNumber) ||
-      !isInitialReaderSeedForRoute(initialSeed, {
-        bookId,
-        chapterId,
-        chapterNumber,
-      })
-    ) {
-      return null;
-    }
-    const progressFloor = mapInitialReaderProgressToManifest(
-      initialSeed.content.progress,
-      (initialBook?.chapters ?? []).map((item) => ({
-        id: item.chapterId,
-        number: item.number,
-      })),
-      { bookId, chapterId, chapterNumber },
-    );
-    if (!progressFloor) return null;
-
-    // Validate the exact reconstruction the production Summary renders. A seed
-    // whose variants collapse to blank prose is never treated as attested
-    // content, even if its route/progress envelope is otherwise well formed.
-    const reconstructed = adaptApiChapterToBookChapter(
-      initialSeed.content.chapter,
-      bookMeta,
-    );
-    if (isReconstructedChapterEmpty(reconstructed)) return null;
-    return { seed: initialSeed, progressFloor };
-  }, [
-    bookId,
-    bookMeta,
-    chapterId,
-    chapterNumber,
-    chapterOrder,
-    initialBook,
-    initialSeed,
-  ]);
-  const hasAttestedSeed = attestedInitial !== null;
-  const effectiveOnboardingComplete =
-    hasAttestedSeed || onboarding.setupComplete;
-  const [bookAccessStatus, setBookAccessStatus] = useState<
-    "loading" | "ready" | "blocked"
-  >(() => (hasAttestedSeed ? "ready" : "loading"));
-  const [bookAccessMessage, setBookAccessMessage] = useState<string | null>(null);
-  const [paywallHit, setPaywallHit] = useState(false);
-  const startRequestRef = useRef<{
-    bookId: string;
-    request: Promise<unknown>;
-  } | null>(null);
-  const localFallback = useCallback(
-    () => getChapterById(bookId, chapterId, contentTone),
-    [bookId, chapterId, contentTone],
-  );
-  // Production content path: fetch from the API, adapt to the BookChapter UI
-  // shape, fall back to the local package on any error (offline/dev/gated).
-  const {
-    chapter: baseChapter,
-    hydrated: contentHydrated,
-    source: contentSource,
-    error: contentError,
-    status: contentStatus,
-  } = useChapterContent({
-    bookId,
-    chapterNumber,
-    book: bookMeta,
-    localFallback,
-    refetchKey: contentRefetchKey,
-    // Server-hydrated entry chapter: the hook seeds from this and skips its
-    // initial network fetch when it matches `chapterNumber` (WS3-024).
-    initialChapter: attestedInitial?.seed.content,
-  });
-  // We're serving a cached/offline copy: the live fetch failed for a CONNECTIVITY
-  // reason (network error → no HTTP status) and we fell back to the local
-  // package. Surfaced as a non-blocking notice so the reader knows the content
-  // may be stale (does NOT block reading). An access/gating error carries an HTTP
-  // status (401/402/403/404) — that is NOT "offline", so we don't tell an online
-  // user to "reconnect"; those paths are handled by the access guards above.
-  const servingOfflineCopy =
-    contentSource === "local" && contentError !== null && contentStatus === null;
-  // Force the chapter's id to the manifest/route chapterId. The content payload
-  // can carry a different internal chapterId (e.g. "ch02-identity-driven-change")
-  // than the manifest ("atomic-habits-ch02"); progress/unlock state is keyed by
-  // the manifest id, so the reader must use it for getChapterState/navigation.
-  const chapter = useMemo(
-    () => (baseChapter ? { ...baseChapter, id: chapterId } : undefined),
-    [baseChapter, chapterId],
-  );
-  const initialReaderReady = shouldRenderInitialReaderContent({
-    hasAttestedSeed,
-    contentHydrated,
-    hasChapter: Boolean(chapter),
-  });
   const preferredReadingDepth: ReadingDepth = baseChapter?.isStrictV12
     ? (defaultToFastPath ? "simple" : "standard")
     : mapLearningStyleToDepth(onboarding.learningStyle);
@@ -311,7 +179,7 @@ export function ChapterReaderClient({
     chapterId,
     chapter,
     chapters,
-    initialProgressFloor: attestedInitial?.progressFloor,
+    initialProgressFloor,
     preferredReadingDepth,
     preferredActiveTab,
     preferredExampleFilter,
@@ -398,16 +266,39 @@ export function ChapterReaderClient({
     completionScore: quizCompletionScore,
   } = chapterQuiz;
 
-  // Examples shown for the active scope filter. The reader collapses to the first
-  // one (DEFAULT_VISIBLE_EXAMPLES) by default and discloses the rest behind
-  // "Show more"; computed once here so the phase gate and the rendered list agree.
-  const filteredExamples = useMemo(
-    () =>
-      [...(chapter?.examplesDetailed ?? []), ...approvedUserExamples].filter(
-        (example) => state.exampleFilter === "all" || example.scope === state.exampleFilter,
-      ),
-    [chapter, approvedUserExamples, state.exampleFilter],
-  );
+  const readerExamples = useReaderExamples({
+    bookId,
+    chapterOrder,
+    chapterNumber,
+    chapter,
+    enabled: readerInteractionsReady,
+    exampleFilter: state.exampleFilter,
+    setExampleFilter,
+    onToast: setToast,
+  });
+  const {
+    viewerIdentity,
+    filteredExamples,
+    userSubmissions,
+    engagementPoints,
+    scenariosFetchFailed,
+    retryScenarios,
+    scenarioInteractions,
+    recordScenarioInteraction,
+    handleSubmitScenario,
+    commitmentsLoading,
+    committedToChapter,
+    activeChapterCommitment,
+    chapterApplicationState,
+    commitmentAvailable,
+    handleCommitment,
+    patternSelectorEnabled,
+    readerPatterns,
+    selectedPatternId,
+    pinnedExampleId,
+    planFromPattern,
+    handlePatternPick,
+  } = readerExamples;
   // Challenge-mode examples gate targets only the DEFAULT-VISIBLE count, so
   // expanding "Show more" is never required to advance, and a filtered-empty
   // scope (0 examples) can't strand the gate (0 >= 0 passes).
@@ -476,118 +367,6 @@ export function ChapterReaderClient({
   );
 
   useEffect(() => {
-    if (!onboardingHydrated || hasAttestedSeed) return;
-    if (!onboarding.setupComplete) router.replace("/book");
-  }, [hasAttestedSeed, onboarding.setupComplete, onboardingHydrated, router]);
-
-  // Content-fetch failure no longer ejects to the library — when the fetch has
-  // settled with no chapter we render an in-place error card (below) with a
-  // retry, so the user keeps their place and gets an explanation.
-
-  useEffect(() => {
-    // NOTE: deliberately NOT gated on `chapter`. The /start access check only
-    // needs bookId, and access status must resolve to ready/blocked even when
-    // the chapter content fetch failed — otherwise the in-place content-error
-    // card (which requires bookAccessStatus === "ready") is unreachable and the
-    // reader spins on the skeleton forever.
-    if (!entry || !onboardingHydrated || !effectiveOnboardingComplete) return;
-    let cancelled = false;
-    const startRequest = getOrCreateBookStartRequest({
-      current: startRequestRef.current,
-      bookId,
-      create: () =>
-        fetchBookJson(
-          `/app/api/book/me/books/${encodeURIComponent(bookId)}/start`,
-          { method: "POST" },
-        ),
-    });
-    startRequestRef.current = startRequest.entry;
-    if (startRequest.created) {
-      if (!hasAttestedSeed) setBookAccessStatus("loading");
-      setBookAccessMessage(null);
-      setPaywallHit(false);
-    }
-    startRequest.entry.request
-      .then(() => {
-        if (cancelled) return;
-        setBookAccessStatus("ready");
-      })
-      .catch((err) => {
-        if (cancelled) return;
-        const failure = classifyStartAccessFailure({
-          status: err instanceof BookClientError ? err.status : null,
-          code: err instanceof BookClientError ? err.code : undefined,
-        });
-        if (failure !== "transient") setBookAccessStatus("blocked");
-        if (failure === "account_deleted") {
-          setBookAccessMessage("This account has been deleted and is no longer accessible.");
-          window.location.assign("/auth/login?reason=deleted");
-          return;
-        }
-        if (failure === "reauth") {
-          setBookAccessMessage("Your session has expired. Sign in again to continue.");
-          const returnTo = `${window.location.pathname}${window.location.search}`;
-          window.location.assign(
-            `/auth/login?returnTo=${encodeURIComponent(returnTo)}`,
-          );
-          return;
-        }
-        if (failure === "paywall") {
-          setBookAccessMessage(
-            "You\u2019ve reached your free book limit. Upgrade to Pro to unlock unlimited books."
-          );
-          setPaywallHit(true);
-          return;
-        }
-        if (failure === "email_verification") {
-          setBookAccessMessage("Please verify your email address to continue.");
-          return;
-        }
-        if (failure === "review") {
-          setBookAccessMessage(
-            "Your access is under review. Please contact support if this persists."
-          );
-          return;
-        }
-        if (failure === "blocked") {
-          setBookAccessMessage(
-            "Your access to this book could not be confirmed. Please head back and try again."
-          );
-          return;
-        }
-        // Deliberate FAIL-OPEN (availability-first): a non-paywall /start error
-        // (500 / timeout / offline) resolves to "ready" so a transient backend
-        // hiccup doesn't lock a legitimate reader out mid-session. Accepted
-        // posture per owner decision D5 (docs/audit-fixes/02-DECISIONS.md →
-        // AUTH-4) — intentionally NOT a hold-until-verified gate. The clean 402 /
-        // email-verification / review branches above still block correctly.
-        //
-        // The leak is bounded and grants NO server-recorded benefit:
-        //   - Gated SERVER content stays enforced: GET .../chapters/[n] re-runs
-        //     ensureUserBookStarted() and 402s a paywalled-out user, so "ready"
-        //     can only fall back to LOCAL bundle prose/examples
-        //     (useChapterContent.ts), never to server-gated content.
-        //   - Completion / IP / streak / unlock all flow through endpoints that
-        //     independently re-check entitlement (quiz /submit, chapter /state,
-        //     /unlock -> ensureUserBookStarted -> 402), so nothing is recorded
-        //     for a book the user isn't entitled to. A bundled quiz grades
-        //     locally only (provisional, never auto-synced).
-        // So a transient outage can at most re-show already-bundled reading
-        // material; it cannot unlock, grade, or pay out anything server-side.
-        setBookAccessStatus("ready");
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [
-    bookId,
-    effectiveOnboardingComplete,
-    entry,
-    hasAttestedSeed,
-    onboardingHydrated,
-  ]);
-
-  useEffect(() => {
     if (!toast) return;
     // Content-aware dismiss: short confirmations clear quickly, but longer
     // decision-relevant messages (quiz-fail coaching + score, submit errors)
@@ -603,152 +382,6 @@ export function ChapterReaderClient({
       setSessionMode(true);
     }
   }, [searchParams]);
-
-  // WS3-024 — de-waterfall the scenarios request. Key it off the server-resolved
-  // chapter number (`chapterOrder`, available at mount from the manifest) rather
-  // than the fetched `chapter` object, so it starts on mount concurrently with
-  // the content fetch instead of waiting for content to resolve first. Same URL,
-  // same response handling, same refetch behavior. `chapterOrder === chapter.order`
-  // (both are the manifest number), so the request target is unchanged.
-  useEffect(() => {
-    if (!chapterOrder) return;
-    let mounted = true;
-    fetchBookJson<{
-      approvedScenarios: ChapterExample[];
-      mySubmissions: UserScenarioSubmission[];
-      points: number;
-    }>(
-      `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${chapterOrder}/scenarios`
-    )
-      .then((payload) => {
-        if (!mounted) return;
-        setApprovedUserExamples(payload.approvedScenarios ?? []);
-        setUserSubmissions(payload.mySubmissions ?? []);
-        setEngagementPoints(Number.isFinite(payload.points) ? payload.points : 0);
-        setScenariosFetchFailed(false);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setApprovedUserExamples([]);
-        setUserSubmissions([]);
-        setScenariosFetchFailed(true);
-      });
-    return () => {
-      mounted = false;
-    };
-  }, [bookId, chapterOrder, scenariosRefetchKey]);
-
-  const [committedToChapter, setCommittedToChapter] = useState(false);
-
-  // Hydrate the committed state from the server. Without this, `committedToChapter`
-  // resets to false on every mount/navigation, so a commitment made in a prior
-  // session (or before a mid-chapter reload) would not be reflected and the prompt
-  // would invite the user to re-commit (→ a 409 on submit). Keyed on chapter.order
-  // so navigating between chapters re-resolves the flag from server truth.
-  const commitmentsEnabled =
-    readerInteractionsReady && Boolean(chapterNumber) && Boolean(viewerIdentity?.sub);
-  const {
-    commitments,
-    activeCommitments,
-    loading: commitmentsLoading,
-    refresh: refreshCommitments,
-  } = useCommitments(commitmentsEnabled);
-  // The active commitment for THIS chapter (if any), so the elevated prompt's
-  // "Committed" view can show the real follow-up window, not the local default.
-  const activeChapterCommitment = chapter
-    ? activeCommitments.find(
-        (c) => c.bookId === bookId && c.chapterNumber === chapter.order && c.status === "active",
-      )
-    : undefined;
-  // Two-axis completion (feedback #4): the current chapter's DERIVED application
-  // state, read from the FULL live commitment list so it is correct under either
-  // ordering — commit-in-modal (today) or commit-before-quiz (Phase 2). Drives the
-  // celebration's "Learned / Applied" framing only; it gates nothing and awards no
-  // IP. `applied` essentially never shows at first-pass modal time (follow-through
-  // happens days later) — it surfaces on re-entry and in the library.
-  const chapterApplicationState: ChapterApplicationState = chapter
-    ? deriveChapterApplicationState(commitments, bookId, chapter.order)
-    : "none";
-  // Whether the modal's CommitmentPrompt (rendered in children) will actually show —
-  // it's gated on the chapter having if-then plans. Drives whether the celebration's
-  // "none" invitation appears (don't say "commit below" when nothing is below).
-  const commitmentAvailable = Boolean(
-    chapter?.implementationPlan?.ifThenPlans?.length,
-  );
-  useEffect(() => {
-    if (!chapter) return;
-    const hasActive = activeCommitments.some(
-      (c) => c.bookId === bookId && c.chapterNumber === chapter.order && c.status === "active",
-    );
-    setCommittedToChapter(hasActive);
-  }, [bookId, chapter, activeCommitments]);
-
-  const handleCommitment = useCallback(
-    async (params: { bookId: string; chapterNumber: number; ifThenPlan: string; followUpDays: 3 | 7 }) => {
-      if (!readerInteractionsReady) return;
-      try {
-        await fetchBookJson("/app/api/book/me/commitments", {
-          method: "POST",
-          body: JSON.stringify(params),
-        });
-        setCommittedToChapter(true);
-        // Re-pull server truth so the hydration effect (and any other reader of
-        // activeCommitments) reflects the new commitment, not just local state.
-        void refreshCommitments();
-      } catch (err) {
-        if (err instanceof BookClientError && err.status === 409) {
-          setCommittedToChapter(true);
-          void refreshCommitments();
-          return;
-        }
-        throw err;
-      }
-    },
-    [readerInteractionsReady, refreshCommitments],
-  );
-
-  // ── Reader-pattern personalization (Phase 3, RDRP) ───────────────────────
-  // Net-new + gated. PatternSelector only renders when the env flag is on AND a
-  // chapter actually carries readerPatterns (none do yet → dark by default).
-  const patternSelectorEnabled =
-    process.env.NEXT_PUBLIC_BOOK_ENABLE_PATTERN_SELECTOR === "1" ||
-    process.env.NEXT_PUBLIC_BOOK_ENABLE_PATTERN_SELECTOR === "true";
-  const readerPatterns = chapter?.experiencePlan?.behaviorLoop?.readerPatterns ?? [];
-  const [selectedPatternId, setSelectedPatternId] = useState<string | null>(null);
-  const [pinnedExampleId, setPinnedExampleId] = useState<string | null>(null);
-  const [planFromPattern, setPlanFromPattern] = useState<string | null>(null);
-
-  const handlePatternPick = useCallback(
-    (pattern: V21ReaderPattern) => {
-      if (!readerInteractionsReady) return;
-      setSelectedPatternId(pattern.id);
-      // Route the recommended example. mapsToExampleIndex is 0-based into the
-      // UNFILTERED authored examples (chapter.examplesDetailed), so resolve there;
-      // out-of-range / missing → no pin (the default first example shows).
-      const authored = chapter?.examplesDetailed ?? [];
-      const exIdx = pattern.mapsToExampleIndex;
-      if (exIdx !== undefined && exIdx >= 0 && exIdx < authored.length) {
-        setPinnedExampleId(authored[exIdx].id);
-        // Never let the active scope filter hide the routed example.
-        if (state.exampleFilter !== "all") setExampleFilter("all");
-      } else {
-        if (exIdx !== undefined) console.warn(`[PatternSelector] mapsToExampleIndex ${exIdx} out of range; showing the default example`);
-        setPinnedExampleId(null);
-      }
-      // Pre-select the matching commitment plan (0-based into ifThenPlans);
-      // out-of-range / missing → no pre-fill (all plans remain selectable).
-      const plans = chapter?.implementationPlan?.ifThenPlans ?? [];
-      const planIdx = pattern.mapsToPlanIndex;
-      if (planIdx !== undefined && planIdx >= 0 && planIdx < plans.length) {
-        setPlanFromPattern(plans[planIdx].plan);
-      } else {
-        if (planIdx !== undefined) console.warn(`[PatternSelector] mapsToPlanIndex ${planIdx} out of range; leaving plans unselected`);
-        setPlanFromPattern(null);
-      }
-      trackReaderFunnel("pattern_picked", { bookId, chapterNumber: chapter?.order, patternId: pattern.id });
-    },
-    [chapter, state.exampleFilter, setExampleFilter, bookId, readerInteractionsReady],
-  );
 
   // The content fetch has settled but there is genuinely no chapter to show
   // (e.g. the API failed and there's no local fallback). Render an in-place
@@ -824,7 +457,7 @@ export function ChapterReaderClient({
               {showRetry && (
                 <button
                   type="button"
-                  onClick={() => setContentRefetchKey((k) => k + 1)}
+                  onClick={retryContent}
                   className="inline-flex min-h-11 items-center rounded-xl bg-(--cr-accent) px-5 py-2.5 text-sm font-semibold text-(--cr-text-inverse) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cr-bg-root) focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
                 >
                   Try again
@@ -1056,34 +689,6 @@ export function ChapterReaderClient({
   const handleRetryQuiz = () => {
     if (!readerInteractionsReady) return;
     void retryQuiz();
-  };
-
-  const handleSubmitScenario = async (draft: ScenarioSubmissionDraft) => {
-    if (!readerInteractionsReady) {
-      throw new Error("Reader state is still loading.");
-    }
-    const payload = await fetchBookJson<{
-      submission: UserScenarioSubmission;
-      points: number;
-    }>(
-      `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${chapter.order}/scenarios`,
-      {
-        method: "POST",
-        body: JSON.stringify(draft),
-      }
-    );
-    setUserSubmissions((prev) => [payload.submission, ...prev]);
-
-    if (payload.submission.status === "rejected") {
-      throw new Error(payload.submission.reviewNotes ?? "Did not meet quality criteria.");
-    }
-
-    if (payload.submission.status === "approved") {
-      setEngagementPoints((prev) => Math.max(prev, payload.points));
-      setToast(`Scenario approved! +${SCENARIO_SUBMISSION_POINTS} Insight Points earned.`);
-    } else {
-      setToast(`Scenario submitted for review. Approved submissions earn +${SCENARIO_SUBMISSION_POINTS} Insight Points.`);
-    }
   };
 
   const showSummary = state.activeTab === "summary";
@@ -1387,7 +992,7 @@ export function ChapterReaderClient({
                 onSubmitScenario={handleSubmitScenario}
                 fontScaleClass={textScaleClass}
                 readingDepth={activeDepth}
-                onScenarioInteraction={() => setScenarioInteractions((prev) => prev + 1)}
+                onScenarioInteraction={recordScenarioInteraction}
                 onExpand={(revealedCount) =>
                   trackReaderFunnel("example_expanded", {
                     bookId,
@@ -1401,7 +1006,7 @@ export function ChapterReaderClient({
                 chapterNumber={chapter.order}
                 chapterTitle={chapter.title}
                 fetchFailed={scenariosFetchFailed}
-                onRetryFetch={() => setScenariosRefetchKey((k) => k + 1)}
+                onRetryFetch={retryScenarios}
               />
 
               {/* Commitment elevated into the default path: the chapter's central,
