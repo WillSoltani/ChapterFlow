@@ -31,7 +31,7 @@
     "verify": "npm run typecheck && npm run test && npm run scan:style && npm run build",
     "verify:live": "tsx scripts/book/verify-live-sync.ts",
     "register:api": "tsx scripts/book/register-api-books.ts",
-    "test": "FILES=$(find app lib components tests \\( -name '*.test.ts' -o -name '*.test.tsx' \\) -not -path '*/node_modules/*' 2>/dev/null); COUNT=$(echo \"$FILES\" | grep -c .); if [ \"$COUNT\" -lt 162 ]; then echo \"test discovery found only $COUNT test files, below the known floor of 162 — glob regression (WS7-011)\" >&2; exit 1; fi; tsx --test $FILES",
+    "test": "FILES=$(find app lib components tests \\( -name '*.test.ts' -o -name '*.test.tsx' \\) -not -path '*/node_modules/*' 2>/dev/null); COUNT=$(echo \"$FILES\" | grep -c .); if [ \"$COUNT\" -lt 163 ]; then echo \"test discovery found only $COUNT test files, below the known floor of 163 — glob regression (WS7-011)\" >&2; exit 1; fi; tsx --test $FILES",
     "test:coverage:critical": "FILES=$(find lib app/app/api/book/_lib \\( -name '*.test.ts' -o -name '*.test.tsx' \\) -not -path '*/node_modules/*' 2>/dev/null); COUNT=$(echo \"$FILES\" | grep -c .); if [ \"$COUNT\" -lt 103 ]; then echo \"critical coverage discovery found only $COUNT test files, below the known floor of 103\" >&2; exit 1; fi; tsx --test $FILES",
     "test:coverage": "c8 npm run test:coverage:critical && npm run coverage:inventory",
     "coverage:inventory": "node scripts/ci/verify-code-coverage.mjs",
