@@ -86,6 +86,12 @@ body {
   /* JetBrains Mono is the mono face actually loaded in app/layout.tsx
      (--font-geist-mono was never defined → --font-mono resolved to nothing). */
   --font-mono: var(--font-jetbrains);
+  --text-cf-caption: .6875rem;
+  --text-cf-label-sm: .75rem;
+  --text-cf-label: .8125rem;
+  --text-cf-body-sm: .875rem;
+  --text-cf-body: .9375rem;
+  --text-cf-body-lg: 1rem;
   /* shadcn chart/sidebar color aliases removed: zero consumers repo-wide
      (no var() refs, no minted bg-sidebar/text-chart-N utilities). */
   --color-ring: var(--ring);
@@ -208,6 +214,46 @@ body {
   --accent-violet-dim: #5B21B6;
   --accent-rose: #F43F5E;
   --accent-rose-dim: #9F1239;
+
+  /* ── Immutable semantic color bases ── */
+  --cf-palette-black: #000;
+  --cf-palette-white: #fff;
+  --cf-palette-pink: #EC4899;
+  --cf-data-sky: #38BDF8;
+  --cf-data-blue: #3B82F6;
+  --cf-data-emerald: #34D399;
+  --cf-data-violet: #A78BFA;
+  --cf-data-teal: #14B8A6;
+  --cf-data-orange: #F97316;
+  --cf-profile-flame-base: #F59E0B;
+  --cf-profile-flame-mid: #FB923C;
+  --cf-profile-flame-light: #FBBF24;
+  --cf-profile-flame-pale: #FDE68A;
+  --cf-profile-flame-dark: #D97706;
+  --cf-badge-bronze: #CD7F32;
+  --cf-badge-bronze-highlight: #E8A862;
+  --cf-badge-silver: #C0C0C0;
+  --cf-badge-silver-highlight: #E8E8E8;
+  --cf-badge-gold: #FFD700;
+  --cf-badge-gold-highlight: #FFF0A0;
+  --cf-badge-platinum: #E5E4E2;
+  --cf-badge-unique: var(--accent-violet);
+  --cf-badge-unique-highlight: var(--cf-palette-pink);
+  --cf-badge-text-warm: #1A0F00;
+  --cf-badge-text-cool: #1A1A2E;
+  --cf-reader-orb-violet: #2A1A4E;
+  --cf-book-orb-indigo: #818CF8;
+  --cf-book-orb-danger: #DC2626;
+  --cf-brand-google-blue: #4285F4;
+  --cf-brand-google-green: #34A853;
+  --cf-brand-google-yellow: #FBBC05;
+  --cf-brand-google-red: #EA4335;
+  --cf-window-control-close: #EF4444;
+  --cf-window-control-minimize: #EAB308;
+  --cf-window-control-maximize: #22C55E;
+  --cf-cover-fallback-start: #155E75;
+  --cf-cover-fallback-end: #082F49;
+
   --accent-cyan-dim: var(--accent-cyan-muted);
   --accent-amber-dim: var(--accent-amber-muted);
   --accent-emerald-dim: var(--accent-emerald-muted);
