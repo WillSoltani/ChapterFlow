@@ -140,8 +140,9 @@ export type SsmParameterReader = (
  *
  * Values are returned byte-for-byte, but blank/whitespace-only responses are
  * treated as absent so malformed SecureStrings cannot become cached config.
- * Any recorded prefix-scoped/IAM/KMS failure is thrown after the candidate
- * walk. Expected ParameterNotFound and unscoped AccessDenied misses are skipped.
+ * Any non-skippable prefix-scoped/IAM/KMS failure is thrown immediately so it
+ * cannot fall through to a bare name in another environment. Expected
+ * ParameterNotFound and unscoped AccessDenied misses are skipped.
  */
 export async function loadSsmParameterValue(
   key: string,
@@ -150,7 +151,6 @@ export async function loadSsmParameterValue(
   read: SsmParameterReader,
 ): Promise<string | undefined> {
   const candidates = candidateParameterNames(key, prefix, env);
-  let lastError: unknown;
 
   for (const candidate of candidates) {
     try {
@@ -163,10 +163,9 @@ export async function loadSsmParameterValue(
       if (classifySsmCandidateError(error, candidate.prefixScoped) === "skip") {
         continue;
       }
-      lastError = error;
+      throw error;
     }
   }
 
-  if (lastError) throw lastError;
   return undefined;
 }

@@ -51,6 +51,19 @@ test("same-site Sec-Fetch-Site (sibling subdomain) is rejected", () => {
   assert.equal(d.rejected, true);
 });
 
+test("unknown Sec-Fetch-Site values fail closed instead of bypassing the Origin check", () => {
+  const d = evaluateSameOrigin({
+    method: "POST",
+    secFetchSite: "future-value",
+    originHeader: "https://evil.example",
+    appOrigin: null,
+  });
+  assert.deepEqual(d, {
+    rejected: true,
+    reason: "unsupported sec-fetch-site=future-value",
+  });
+});
+
 test("same-origin request (matching Origin) is allowed", () => {
   const d = evaluateSameOrigin({
     method: "POST",

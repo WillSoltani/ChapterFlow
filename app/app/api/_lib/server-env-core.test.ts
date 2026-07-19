@@ -208,3 +208,27 @@ test("prefix-scoped access denial and KMS decryption failure reject fail closed"
     );
   }
 });
+
+test("a prefix-scoped failure cannot fall through to an unscoped secret value", async () => {
+  const requests: string[] = [];
+  const scopedError = Object.assign(new Error("prefixed parameter denied"), {
+    name: "AccessDeniedException",
+  });
+
+  await assert.rejects(
+    () =>
+      loadSsmParameterValue(
+        "AUTH_STATE_SECRET",
+        "/chapterflow/prod",
+        {},
+        async ({ name }) => {
+          requests.push(name);
+          if (name.startsWith("/chapterflow/prod/")) throw scopedError;
+          return "wrong-environment-secret";
+        },
+      ),
+    (error: unknown) => error === scopedError,
+  );
+
+  assert.deepEqual(requests, ["/chapterflow/prod/AUTH_STATE_SECRET"]);
+});
