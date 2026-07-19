@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import type { BookChapter, ReadingDepth } from "@/app/book/data/bookChapters";
@@ -16,9 +17,19 @@ import { ContinueButton } from "./ContinueButton";
 import { ExamplesList } from "./ExamplesList";
 import { MemorableLines } from "./MemorableLines";
 import { PatternSelector } from "./PatternSelector";
-import { QuizPanel } from "./QuizPanel";
 import { SummaryCard } from "./SummaryCard";
 import { TryThisNow } from "./TryThisNow";
+
+const LazyQuizPanel = dynamic(
+  () => import("./QuizPanel").then((module) => module.QuizPanel),
+  {
+    loading: () => (
+      <p className="py-8 text-center text-cf-label text-(--cr-text-secondary)" role="status">
+        Loading quiz…
+      </p>
+    ),
+  },
+);
 
 type Props = {
   bookId: string;
@@ -234,7 +245,7 @@ export function ReaderPhaseContent({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: DUR.fast, ease: EASE.standard }}
         >
-          <QuizPanel
+          <LazyQuizPanel
             session={quiz.session}
             answers={quiz.answers}
             explanationOpen={quiz.explanationOpen}

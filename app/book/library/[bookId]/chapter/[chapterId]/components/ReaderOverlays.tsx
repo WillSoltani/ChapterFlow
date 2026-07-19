@@ -1,21 +1,62 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { CheckCircle2, CloudOff, X } from "lucide-react";
 import type { BookChapter, ReadingDepth } from "@/app/book/data/bookChapters";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 import { Dialog } from "@/components/ui/Dialog";
-import { Confetti } from "@/components/ui/Confetti";
 import type { useChapterQuiz } from "../hooks/useChapterQuiz";
 import type { useReaderAccess } from "../hooks/useReaderAccess";
 import type { useReaderExamples } from "../hooks/useReaderExamples";
 import type { useReaderPhaseFlow } from "../hooks/useReaderPhaseFlow";
 import type { useReaderProgress } from "../hooks/useReaderProgress";
-import { AskBookDrawer } from "@/app/book/components/AskBookDrawer";
-import { ChapterCompleteModal } from "./ChapterCompleteModal";
-import { NotesDrawer } from "./NotesDrawer";
 import { PhaseInterstitial } from "./PhaseInterstitial";
-import { PracticePhase } from "./PracticePhase";
 import { SessionModeOverlay } from "./SessionModeOverlay";
+
+const LazyChapterCompleteModal = dynamic(
+  () => import("./ChapterCompleteModal").then((module) => module.ChapterCompleteModal),
+  {
+    loading: () => (
+      <span className="sr-only" role="status">
+        Loading chapter completion…
+      </span>
+    ),
+  },
+);
+const LazyConfetti = dynamic(
+  () => import("@/components/ui/Confetti").then((module) => module.Confetti),
+  { loading: () => null },
+);
+const LazyAskBookDrawer = dynamic(
+  () => import("@/app/book/components/AskBookDrawer").then((module) => module.AskBookDrawer),
+  {
+    loading: () => (
+      <span className="sr-only" role="status">
+        Loading Ask Raymond…
+      </span>
+    ),
+  },
+);
+const LazyNotesDrawer = dynamic(
+  () => import("./NotesDrawer").then((module) => module.NotesDrawer),
+  {
+    loading: () => (
+      <span className="sr-only" role="status">
+        Loading chapter notes…
+      </span>
+    ),
+  },
+);
+const LazyPracticePhase = dynamic(
+  () => import("./PracticePhase").then((module) => module.PracticePhase),
+  {
+    loading: () => (
+      <span className="sr-only" role="status">
+        Loading practice plan…
+      </span>
+    ),
+  },
+);
 
 type ChapterLink = { id: string; order: number; title: string };
 
@@ -69,7 +110,7 @@ export function ReaderOverlays({
   examples,
 }: Props) {
   const { entry } = access;
-  const { chapterProgress } = progress;
+  const { chapterProgress, readerInteractionsReady } = progress;
   const { state, setNotes, appendNote, syncFailed } = chapterProgress;
   const { interstitial, handleInterstitialComplete } = phaseFlow;
   const { quiz, justPassedThisSession } = chapterQuiz;
@@ -86,50 +127,54 @@ export function ReaderOverlays({
 
   return (
     <>
-      <NotesDrawer
-        open={notesOpen}
-        onClose={() => onNotesOpenChange(false)}
-        notes={state.notes}
-        onNotesChange={setNotes}
-        onAddNote={() => {
-          appendNote(
-            `\u2022 ${new Date().toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })} \u2014 `,
-          );
-        }}
-        onExport={() => {
-          if (!state.notes.trim()) {
-            onToastChange("No notes to export.");
-            return;
-          }
-          const content = `# Notes: ${chapter.title}\n\n${state.notes}`;
-          const blob = new Blob([content], { type: "text/markdown" });
-          const url = URL.createObjectURL(blob);
-          const anchor = document.createElement("a");
-          anchor.href = url;
-          anchor.download = `notes-${chapterId}.md`;
-          anchor.click();
-          URL.revokeObjectURL(url);
-          onToastChange("Notes exported.");
-        }}
-        onPinTakeaway={() => {
-          appendNote(`Pinned takeaway: ${activeTakeaways[0] ?? ""}`);
-          onToastChange("Takeaway pinned.");
-        }}
-      />
+      {notesOpen && (
+        <LazyNotesDrawer
+          open={notesOpen}
+          onClose={() => onNotesOpenChange(false)}
+          notes={state.notes}
+          onNotesChange={setNotes}
+          onAddNote={() => {
+            appendNote(
+              `\u2022 ${new Date().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })} \u2014 `,
+            );
+          }}
+          onExport={() => {
+            if (!state.notes.trim()) {
+              onToastChange("No notes to export.");
+              return;
+            }
+            const content = `# Notes: ${chapter.title}\n\n${state.notes}`;
+            const blob = new Blob([content], { type: "text/markdown" });
+            const url = URL.createObjectURL(blob);
+            const anchor = document.createElement("a");
+            anchor.href = url;
+            anchor.download = `notes-${chapterId}.md`;
+            anchor.click();
+            URL.revokeObjectURL(url);
+            onToastChange("Notes exported.");
+          }}
+          onPinTakeaway={() => {
+            appendNote(`Pinned takeaway: ${activeTakeaways[0] ?? ""}`);
+            onToastChange("Takeaway pinned.");
+          }}
+        />
+      )}
 
       {sessionMode && <SessionModeOverlay onDone={onSessionTourDone} />}
 
-      <Confetti
-        trigger={justPassedThisSession}
-        origin="center"
-        colors={["--cr-accent", "--cr-success", "--cr-warning"]}
-      />
+      {justPassedThisSession && (
+        <LazyConfetti
+          trigger={justPassedThisSession}
+          origin="center"
+          colors={["--cr-accent", "--cr-success", "--cr-warning"]}
+        />
+      )}
 
       {showCompleteModal && (
-        <ChapterCompleteModal
+        <LazyChapterCompleteModal
           open={showCompleteModal}
           onClose={() => onCompleteOpenChange(false)}
           chapterTitle={chapter.title}
@@ -167,7 +212,7 @@ export function ReaderOverlays({
             });
           }}
         >
-          <PracticePhase
+          <LazyPracticePhase
             keyTakeawayCard={chapter.keyTakeawayCard}
             implementationPlan={chapter.implementationPlan}
             reviewCards={chapter.reviewCards}
@@ -193,7 +238,7 @@ export function ReaderOverlays({
             transferPrompt={chapter.experiencePlan?.transferPrompt}
             hideContinueCta
           />
-        </ChapterCompleteModal>
+        </LazyChapterCompleteModal>
       )}
 
       {showShortcuts && (
@@ -273,7 +318,13 @@ export function ReaderOverlays({
           Focus mode enabled
         </div>
       )}
-      <AskBookDrawer bookId={bookId} bookTitle={entry.title ?? bookId} chapterNumber={chapter.order} />
+      {readerInteractionsReady && (
+        <LazyAskBookDrawer
+          bookId={bookId}
+          bookTitle={entry.title ?? bookId}
+          chapterNumber={chapter.order}
+        />
+      )}
     </>
   );
 }

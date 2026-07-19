@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode, RefObject } from "react";
+import dynamic from "next/dynamic";
 import { CloudOff, Lightbulb, X } from "lucide-react";
 import type { BookChapter, ReadingDepth } from "@/app/book/data/bookChapters";
 import type { LibraryBookDetail } from "@/app/book/_lib/library-data";
@@ -10,11 +11,21 @@ import type { useReaderPhaseFlow } from "../hooks/useReaderPhaseFlow";
 import type { useReaderProgress } from "../hooks/useReaderProgress";
 import type { useReaderSettings } from "../hooks/useReaderSettings";
 import { getPhaseThresholds } from "../hooks/usePhaseCompletion";
-import { AudioPlayer } from "./AudioPlayer";
 import { AutoCollapsingHookBanner } from "./HookBanner";
 import { ChapterBackgroundOrbs } from "./ChapterBackgroundOrbs";
 import { ChapterHeader } from "./ChapterHeader";
 import { PhaseStepper } from "./PhaseStepper";
+
+const LazyAudioPlayer = dynamic(
+  () => import("./AudioPlayer").then((module) => module.AudioPlayer),
+  {
+    loading: () => (
+      <span className="sr-only" role="status">
+        Loading audio controls…
+      </span>
+    ),
+  },
+);
 
 type Props = {
   bookId: string;
@@ -86,27 +97,33 @@ export function ReaderChrome({
       </div>
       {!state.focusMode && <ChapterBackgroundOrbs />}
 
-      <div
-        className={[
-          "pointer-events-none fixed left-4 right-4 z-50 md:left-auto md:right-6",
-          "bottom-[calc(env(safe-area-inset-bottom)+4.5rem)] md:bottom-[calc(env(safe-area-inset-bottom)+5rem)]",
-          state.focusMode ? "hidden" : "",
-        ].join(" ")}
-      >
-        <div className="pointer-events-auto md:ml-auto">
-          <AudioPlayer
-            bookId={bookId}
-            chapterNumber={chapter.order}
-            chapterTitle={`Chapter ${chapter.order}: ${chapter.title}`}
-            tone={contentTone}
-            variant={
-              activeDepth === "simple" ? "easy" : activeDepth === "deeper" ? "hard" : "medium"
-            }
-            initialSpeed={bookPrefs.extended.ttsSpeed}
-            onSpeedChange={(speed) => patchBookPrefs("extended", { ttsSpeed: speed })}
-          />
+      {readerInteractionsReady && (
+        <div
+          className={[
+            "pointer-events-none fixed left-4 right-4 z-50 md:left-auto md:right-6",
+            "bottom-[calc(env(safe-area-inset-bottom)+4.5rem)] md:bottom-[calc(env(safe-area-inset-bottom)+5rem)]",
+            state.focusMode ? "hidden" : "",
+          ].join(" ")}
+        >
+          <div className="pointer-events-auto md:ml-auto">
+            <LazyAudioPlayer
+              bookId={bookId}
+              chapterNumber={chapter.order}
+              chapterTitle={`Chapter ${chapter.order}: ${chapter.title}`}
+              tone={contentTone}
+              variant={
+                activeDepth === "simple"
+                  ? "easy"
+                  : activeDepth === "deeper"
+                    ? "hard"
+                    : "medium"
+              }
+              initialSpeed={bookPrefs.extended.ttsSpeed}
+              onSpeedChange={(speed) => patchBookPrefs("extended", { ttsSpeed: speed })}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       <section className="w-full px-5 pb-12 pt-3 sm:px-8 sm:pt-3 md:pb-16">
         <ChapterHeader
