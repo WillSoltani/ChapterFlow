@@ -44,6 +44,8 @@ type ChapterHeaderProps = {
   onChangeReadingDepth?: (value: ReadingDepth) => void;
   showDepthSelector?: boolean;
   onOpenShortcuts?: () => void;
+  settingsOpen: boolean;
+  onSettingsOpenChange: (open: boolean) => void;
   fontSize: number;
   onChangeFontSize: (px: number) => void;
   lineSpacing: LineSpacingPref;
@@ -80,6 +82,8 @@ export function ChapterHeader({
   onChangeReadingDepth,
   showDepthSelector = false,
   onOpenShortcuts,
+  settingsOpen,
+  onSettingsOpenChange,
   fontSize,
   onChangeFontSize,
   lineSpacing,
@@ -106,7 +110,6 @@ export function ChapterHeader({
   const reduced = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
   const [readProgress, setReadProgress] = useState(0);
-  const [settingsOpen, setSettingsOpen] = useState(false);
   const settingsAnchorRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
 
@@ -297,7 +300,7 @@ export function ChapterHeader({
           <div ref={settingsAnchorRef} className="relative">
             <button
               type="button"
-              onClick={() => setSettingsOpen((v) => !v)}
+              onClick={() => onSettingsOpenChange(!settingsOpen)}
               className="min-h-11 min-w-11 inline-flex items-center justify-center gap-1.5 rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-3) hover:text-(--cr-text-primary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_50%,transparent)]"
               aria-expanded={settingsOpen}
               aria-haspopup="dialog"
@@ -308,7 +311,7 @@ export function ChapterHeader({
             </button>
             <ReaderSettingsMenu
               open={settingsOpen}
-              onClose={() => setSettingsOpen(false)}
+              onClose={() => onSettingsOpenChange(false)}
               learningMode={learningMode}
               onChangeLearningMode={(m) => {
                 onChangeLearningMode?.(m);

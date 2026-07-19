@@ -12,14 +12,9 @@ import {
   type ReadingDepth,
 } from "@/app/book/data/bookChapters";
 import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
-import {
-  chapterStartModeToInitialTab,
-} from "@/app/book/_lib/onboarding-personalization";
 import { INSIGHT_POINTS_AMOUNTS } from "@/app/book/_lib/flow-points-economy";
 import { createReviewItem, createFlashcardReviewItem } from "@/app/book/_lib/spaced-repetition";
 import { getMotivationMessage } from "@/app/book/_lib/motivation-messages";
-import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
-import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
 import { useCommitments } from "@/app/book/hooks/useCommitments";
 import { deriveChapterApplicationState } from "@/app/app/api/book/_lib/commitment-application-core";
 import type { ChapterApplicationState } from "@/app/app/api/book/_lib/types";
@@ -54,7 +49,7 @@ import { Confetti } from "@/components/ui/Confetti";
 import { Dialog } from "@/components/ui/Dialog";
 import { ChapterSkeleton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterSkeleton";
 import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SessionModeOverlay";
-import { useChapterState, type ChapterTab, type FontScale } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
+import { useChapterState, type ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import { useChapterContent } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterContent";
 import { useQuizSession } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useQuizSession";
 import { needsReconcile, reconcileProvisionalPass } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/quizReconcile";
@@ -62,6 +57,7 @@ import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import { usePhaseCompletion, getPhaseThresholds } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
 import { useBreakReminder } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useBreakReminder";
 import { useScrollResume } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useScrollResume";
+import { useReaderSettings } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useReaderSettings";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
 import { useReadingSessionTracker } from "@/app/book/library/hooks/useReadingSessionTracker";
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
@@ -81,52 +77,24 @@ import {
   shouldRenderInitialReaderContent,
 } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterContentHydration";
 import { TRIAL_CTA_LABEL, UPGRADE_RETURN_PATH, MONTHLY_PRICE_WITH_CURRENCY, PRICING } from "@/lib/pricing";
+import {
+  buildNextChapterRoute,
+  buildReauthReturnTo,
+  computeProgressPercent,
+  mapLearningStyleToDepth,
+  modeToDepth,
+} from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/reader-flow-core";
 
 const SCENARIO_SUBMISSION_POINTS = INSIGHT_POINTS_AMOUNTS.scenarioApproved;
 
 /** Dismiss-once flag for the first-chapter Summary/Examples/Quiz loop coachmark. */
 const READER_LOOP_COACHMARK_KEY = "cf-reader-loop-coachmark-seen:v1";
 
-function mapLearningStyleToDepth(value: string): ReadingDepth {
-  if (value === "concise") return "simple";
-  if (value === "deep") return "deeper";
-  return "standard";
-}
-
-/** Map learning mode to the content depth variant */
-function modeToDepth(mode: LearningMode): ReadingDepth {
-  if (mode === "guided") return "simple";
-  if (mode === "challenge") return "deeper";
-  return "standard";
-}
-
 function formatNoteWithTakeaways(takeaways: string[]): string {
   return [
     `Takeaways (${new Date().toLocaleDateString()}):`,
     ...takeaways.map((takeaway) => `- ${takeaway}`),
   ].join("\n");
-}
-
-/** Compute overall chapter progress percentage based on current phase */
-function computeProgressPercent(
-  activeTab: ChapterTab,
-  completedPhases: Set<ChapterTab>
-): number {
-  const phaseWeights: Record<ChapterTab, number> = {
-    summary: 33,
-    examples: 66,
-    quiz: 100,
-    practice: 100,
-  };
-  // If the current tab's phase is also completed, use its full weight
-  if (completedPhases.has(activeTab)) return phaseWeights[activeTab];
-  // Otherwise show partial progress within the current phase
-  const phaseOrder: ChapterTab[] = ["summary", "examples", "quiz", "practice"];
-  const currentIndex = phaseOrder.indexOf(activeTab);
-  const prevWeight = currentIndex > 0 ? phaseWeights[phaseOrder[currentIndex - 1]] : 0;
-  const currentWeight = phaseWeights[activeTab];
-  // Show halfway through the current phase
-  return prevWeight + Math.round((currentWeight - prevWeight) * 0.5);
 }
 
 export function ChapterReaderClient({
@@ -153,6 +121,24 @@ export function ChapterReaderClient({
   const searchParams = useSearchParams();
   const prefersReducedMotion = useReducedMotion();
   const { identity: viewerIdentity } = useBookViewer();
+  const readerSettings = useReaderSettings();
+  const {
+    bookPrefs,
+    patchBookPrefs,
+    bookPrefsHydrated,
+    onboarding,
+    onboardingHydrated,
+    learningMode,
+    contentTone,
+    defaultToFastPath,
+    preferredActiveTab,
+    preferredExampleFilter,
+    preferredFocusMode,
+    preferredFontScale,
+    dailyGoalMinutes,
+    settingsOpen,
+    setSettingsOpen,
+  } = readerSettings;
   const [notesOpen, setNotesOpen] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [sessionMode, setSessionMode] = useState(false);
@@ -193,10 +179,6 @@ export function ChapterReaderClient({
   const firstActionFiredRef = useRef(false);
   const commitmentReachedFiredRef = useRef(false);
 
-  // Resolve learning mode and content tone from unified settings
-  const { state: bookPrefs, patchSection: patchBookPrefs, hydrated: bookPrefsHydrated } = useBookPreferences();
-  const learningMode = bookPrefs.extended.learningMode;
-  const contentTone = bookPrefs.extended.contentTone;
   // First-visit short path: a reader who hasn't customized their learning profile
   // starts on Fast (simple depth → the shortest existing quiz, 5 questions). Any
   // saved preference is respected (profileCustomized flips this off). Gated on
@@ -208,8 +190,6 @@ export function ChapterReaderClient({
   // reconcile to their mode's depth once profileCustomized resolves true.
   // Per the owner decision, this lightens the DEFAULT path only — it does NOT change
   // the server-resolved pass threshold or any global setting.
-  const defaultToFastPath = bookPrefsHydrated && !bookPrefs.extended.profileCustomized;
-
   const pauseSessionMode = () => {
     setSessionMode(false);
     router.replace(pathname);
@@ -220,12 +200,6 @@ export function ChapterReaderClient({
     setActiveTab("summary");
     router.replace(pathname);
   };
-
-  const { state: onboarding, hydrated: onboardingHydrated } = useOnboardingState();
-  const preferredActiveTab: ChapterTab = bookPrefs.reading.defaultChapterTab || chapterStartModeToInitialTab(onboarding.chapterStartMode);
-  const preferredExampleFilter = onboarding.preferredExampleContext;
-  const preferredFocusMode = bookPrefs.reading.focusModeDefault;
-  const preferredFontScale: FontScale = bookPrefs.reading.fontSize <= 14 ? "sm" : bookPrefs.reading.fontSize >= 18 ? "lg" : "md";
 
   // Title/author for headers/share — sourced from the published manifest.
   const entry = useMemo(
@@ -360,7 +334,6 @@ export function ChapterReaderClient({
 
   const {
     hydrated,
-    currentChapter,
     getChapterState,
     setLastReadChapter,
     markChapterComplete,
@@ -874,7 +847,6 @@ export function ChapterReaderClient({
     };
   }, [bookId, chapterOrder, scenariosRefetchKey]);
 
-  const dailyGoalMinutes = bookPrefs.extended.dailyGoalPreset || 10;
   const readingSession = useReadingSessionTracker({
     bookId,
     chapterId,
@@ -1085,7 +1057,7 @@ export function ChapterReaderClient({
     const isBlocked = contentStatus === 402 || contentStatus === 403;
     const isNotFound = contentStatus === 404;
     const search = searchParams.toString();
-    const reauthReturnTo = encodeURIComponent(`${pathname}${search ? `?${search}` : ""}`);
+    const reauthReturnTo = encodeURIComponent(buildReauthReturnTo(pathname, search));
     const CardIcon = isAuthExpired
       ? BookLock
       : isBlocked
@@ -1401,8 +1373,7 @@ export function ChapterReaderClient({
         chapterNumber: chapter.order,
         nextChapterNumber: nextChapter.order,
       });
-      const nextRoute = `/book/library/${encodeURIComponent(bookId)}/chapter/${encodeURIComponent(nextChapter.id)}`;
-      router.push(sessionMode ? `${nextRoute}?session=1` : nextRoute);
+      router.push(buildNextChapterRoute(bookId, nextChapter.id, sessionMode));
       return;
     }
     router.push(`/book/library/${encodeURIComponent(bookId)}`);
@@ -1559,6 +1530,8 @@ export function ChapterReaderClient({
           // Learning Mode switch above is the single depth lever.
           showDepthSelector={false}
           onOpenShortcuts={() => setShowShortcuts(true)}
+          settingsOpen={settingsOpen}
+          onSettingsOpenChange={setSettingsOpen}
           fontSize={bookPrefs.reading.fontSize}
           onChangeFontSize={(px) => patchBookPrefs("reading", { fontSize: px })}
           lineSpacing={bookPrefs.extended.lineSpacing}
