@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { mustServerEnv } from "@/app/app/api/_lib/server-env";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
+import { rotateAuthCacheGeneration } from "../_lib/auth-cache-generation";
 import { sanitizeReturnTo } from "../_lib/return-to";
 
 export async function GET(req: NextRequest) {
@@ -29,5 +30,6 @@ export async function GET(req: NextRequest) {
   res.cookies.set("access_token", "", { ...cookieBase, maxAge: 0 });
   res.cookies.set("refresh_token", "", { ...cookieBase, maxAge: 0 });
   res.cookies.set("auth_expires_at", "", { ...cookieBase, httpOnly: false, maxAge: 0 });
+  rotateAuthCacheGeneration(res);
   return res;
 }

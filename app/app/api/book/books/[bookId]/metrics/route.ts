@@ -4,10 +4,8 @@ import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
-import { bookMetricsPk, dailyMetricsSk } from "@/app/app/api/book/_lib/keys";
 import { getCatalogBook, getUserProgress } from "@/app/app/api/book/_lib/repo";
-import { QueryCommand } from "@aws-sdk/lib-dynamodb";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
+import { queryDailyReaderMetricsRange } from "@/app/app/api/book/_lib/book-metrics-repo";
 
 export const runtime = "nodejs";
 
@@ -45,25 +43,14 @@ export async function GET(
       .toISOString()
       .slice(0, 10);
 
-    const res = await ddbDoc.send(
-      new QueryCommand({
-        TableName: tableName,
-        KeyConditionExpression:
-          "PK = :pk AND SK BETWEEN :start AND :end",
-        ExpressionAttributeValues: {
-          ":pk": bookMetricsPk(bookId),
-          ":start": dailyMetricsSk(weekAgo),
-          ":end": dailyMetricsSk(today),
-        },
-      })
-    );
+    const items = await queryDailyReaderMetricsRange(tableName, bookId, weekAgo, today);
 
     let readersToday = 0;
     let readersWeek = 0;
     let loopsToday = 0;
     let loopsWeek = 0;
 
-    for (const item of res.Items ?? []) {
+    for (const item of items) {
       const readers = typeof item.uniqueReaders === "number" ? item.uniqueReaders : 0;
       const loops = typeof item.loopCompletions === "number" ? item.loopCompletions : 0;
       readersWeek += readers;

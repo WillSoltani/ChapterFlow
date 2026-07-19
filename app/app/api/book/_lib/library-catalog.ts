@@ -14,6 +14,7 @@ import { getPublishedBookManifest } from "./content-service";
 import { BookApiError } from "./errors";
 import {
   buildLibraryCatalogIndexMap,
+  resolveListChapterCount,
   shouldDegradeLibraryCatalogIndex,
   type LibraryCatalogIndex,
   type LibraryCatalogIndexBook,
@@ -85,7 +86,7 @@ function buildLibraryCatalogBook(params: {
     categories: catalog.categories,
     difficulty: safeDifficulty(extra?.difficulty, catalog.variantFamily),
     estimatedMinutes: Math.max(1, Math.round(resolvedEstimatedMinutes)),
-    chapterCount: Math.max(1, Math.round(resolvedChapterCount || 1)),
+    chapterCount: resolveListChapterCount(extra?.chapterCount, chapterCount),
     pages:
       typeof extra?.pages === "number" && Number.isFinite(extra.pages) && extra.pages > 0
         ? Math.round(extra.pages)

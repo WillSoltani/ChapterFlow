@@ -1,7 +1,5 @@
-"use client";
-
 import type { ButtonHTMLAttributes, HTMLAttributes } from "react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 
 type ChipTone = "neutral" | "sky" | "emerald" | "amber" | "rose";
 

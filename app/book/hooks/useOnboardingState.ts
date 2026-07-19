@@ -8,6 +8,9 @@ import {
   isPreferredExampleContext,
 } from "@/app/book/_lib/onboarding-personalization";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
+import { fetchBookJsonCached } from "@/app/book/_lib/book-api-cache";
+
+const ONBOARDING_PROGRESS_KEY = "/app/api/book/me/onboarding/progress";
 
 export type LearningStyle = "concise" | "balanced" | "deep";
 export type QuizIntensity = "easy" | "standard" | "challenging";
@@ -278,9 +281,11 @@ export function useOnboardingState() {
       return;
     }
     let cancelled = false;
-    fetch("/app/api/book/me/onboarding/progress")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data: { onboardingCompleted?: boolean } | null) => {
+    // Cached GET (WS3-023) — dedups with any co-mounted onboarding-status check.
+    // A non-OK response throws and is swallowed, matching the prior raw-fetch
+    // behavior of treating it as "not confirmed complete".
+    fetchBookJsonCached<{ onboardingCompleted?: boolean }>(ONBOARDING_PROGRESS_KEY)
+      .then((data) => {
         if (cancelled) return;
         if (data?.onboardingCompleted) {
           setState((prev) => ({

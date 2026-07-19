@@ -227,10 +227,11 @@ jobs:
   # Playwright specs. This catches prod-build-only crashes / hydration drift the
   # dev job hides, and asserts the REAL middleware auth bounce (unauthenticated
   # protected route -> /auth/login), which is invisible under dev auth-bypass.
-  # COGNITO_* placeholders make middleware run its real auth check; still NO
-  # BOOK_TABLE_NAME, so this stays data-plane-free (the bounce happens before any
-  # DB read). A DynamoDB-backed page smoke would need a disposable test backend
-  # and is a follow-up.
+  # Test-only placeholders satisfy the production boot contract and make
+  # middleware run its real auth check. The suite stays data-plane-free because
+  # every protected request stops at the unauthenticated redirect before a DB
+  # read. A DynamoDB-backed page smoke would need a disposable test backend and
+  # is a follow-up.
   e2e-prod:
     name: E2E Smoke (prod build)
     runs-on: ubuntu-latest

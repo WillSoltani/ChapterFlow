@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { ChevronDown, Zap } from "lucide-react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import type { BadgeCategoryGroup, BadgeWithProgress } from "../lib/badge-types";
 import { BadgeCard } from "./BadgeCard";
 

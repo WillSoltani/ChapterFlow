@@ -4,9 +4,14 @@
 // two surfaces never disagree on a reader's tier. There is intentionally no
 // numeric "Level N" exposed to users — tiers are named, not numbered.
 
-import type { ReaderLevel } from "@/components/progress/progressTypes";
-
-export type { ReaderLevel };
+// Canonical definition (WS3-007): lib/ is the base layer, so the type lives
+// here and components/progress/progressTypes re-exports it — never the
+// reverse. Named tiers, deliberately not numeric "Level N" values.
+export type ReaderLevel =
+  | "Curious Reader"
+  | "Active Learner"
+  | "Knowledge Builder"
+  | "Thought Leader";
 
 /** Named tier for a reader, derived from their total completed chapters. */
 export function deriveReaderLevel(totalChapters: number): ReaderLevel {

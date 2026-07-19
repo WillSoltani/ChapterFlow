@@ -1,11 +1,13 @@
 import "server-only";
 
-import { ScanCommand } from "@aws-sdk/lib-dynamodb";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
-import { lastNDays } from "@/app/app/api/book/_lib/admin-metrics";
+import {
+  lastNDays,
+  scanBookUserNotificationsPage,
+  scanBookUserSettingsPage,
+} from "@/app/app/api/book/_lib/admin-metrics";
 import {
   aggregateNotificationMetrics,
   windowCutoff,
@@ -45,17 +47,7 @@ export async function GET(req: Request) {
 
     try {
       do {
-        const res = await ddbDoc.send(
-          new ScanCommand({
-            TableName: tableName,
-            FilterExpression: "entity = :e AND createdAt >= :cut",
-            ExpressionAttributeValues: { ":e": "BOOK_USER_NOTIFICATION", ":cut": cutoff },
-            ProjectionExpression: "#t, channel, readAt, createdAt",
-            ExpressionAttributeNames: { "#t": "type" },
-            ExclusiveStartKey: lastKey,
-            Limit: 1000,
-          }),
-        );
+        const res = await scanBookUserNotificationsPage(tableName, cutoff, lastKey);
         for (const item of res.Items ?? []) {
           rows.push(item as NotificationMetricRow);
           scanned += 1;
@@ -94,16 +86,7 @@ export async function GET(req: Request) {
     let settingsLastKey: Record<string, unknown> | undefined;
     try {
       do {
-        const res = await ddbDoc.send(
-          new ScanCommand({
-            TableName: tableName,
-            FilterExpression: "entity = :e",
-            ExpressionAttributeValues: { ":e": "BOOK_USER_SETTINGS" },
-            ProjectionExpression: "settings",
-            ExclusiveStartKey: settingsLastKey,
-            Limit: 1000,
-          }),
-        );
+        const res = await scanBookUserSettingsPage(tableName, settingsLastKey);
         for (const item of res.Items ?? []) {
           totalSettings += 1;
           const settings = item.settings as Record<string, unknown> | undefined;

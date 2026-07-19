@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 
 type ToggleSwitchProps = {
   checked: boolean;

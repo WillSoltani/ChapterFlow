@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJsonCached, invalidateBookCache } from "@/app/book/_lib/book-api-cache";
 import {
   getBookProgressStorageKey,
   getChapterReaderStorageKey,
@@ -20,7 +21,8 @@ import {
 import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
 import { mergeBadgeProgressStats } from "@/app/book/_lib/badge-stats";
 import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
-import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";
+
+const BADGES_KEY = "/app/api/book/me/badges";
 
 type PlanState = "FREE" | "PRO";
 
@@ -439,23 +441,12 @@ export function useBadgeSystem({
   plan = "FREE",
 }: UseBadgeSystemArgs): UseBadgeSystemResult {
   const { analytics, hydrated, error, refetch } = useBookAnalytics(selectedBookIds, dailyGoalMinutes);
-  const [revision, setRevision] = useState(0);
   const [earnedHistory, setEarnedHistory] = useState<Record<string, string>>({});
 
-  useEffect(() => {
-    function onStorageChange() {
-      setRevision((value) => value + 1);
-    }
-
-    window.addEventListener(BOOK_STORAGE_EVENT, onStorageChange as EventListener);
-    window.addEventListener("storage", onStorageChange);
-    window.addEventListener("focus", onStorageChange);
-    return () => {
-      window.removeEventListener(BOOK_STORAGE_EVENT, onStorageChange as EventListener);
-      window.removeEventListener("storage", onStorageChange);
-      window.removeEventListener("focus", onStorageChange);
-    };
-  }, []);
+  // No hand-rolled focus/storage listener here: `badgeStats` is derived from
+  // `analytics`, which the shared cache revalidates on focus/storage/book-storage
+  // (via useBookAnalytics -> useDashboardQuery), so a refresh recomputes badges
+  // automatically. See WS3-022/WS3-023.
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -471,7 +462,7 @@ export function useBadgeSystem({
 
     setEarnedHistory(localFallback);
 
-    fetchBookJson<{ awards: Array<{ badgeId: string; earnedAt: string }> }>("/app/api/book/me/badges")
+    fetchBookJsonCached<{ awards: Array<{ badgeId: string; earnedAt: string }> }>(BADGES_KEY)
       .then((payload) => {
         if (!mounted) return;
         const next = Object.fromEntries(
@@ -492,7 +483,6 @@ export function useBadgeSystem({
 
   const badgeStats = useMemo(() => {
     if (!hydrated || !analytics) return null;
-    void revision;
     // Merge server-truth stats (device-independent, from /me/dashboard) with the
     // localStorage-derived stats, taking the more-progressed value per field.
     // This keeps badges device-independent without regressing users whose
@@ -502,7 +492,7 @@ export function useBadgeSystem({
     return analytics.badgeStats
       ? mergeBadgeProgressStats(analytics.badgeStats, local)
       : local;
-  }, [analytics, dailyGoalMinutes, hydrated, plan, revision, selectedBookIds]);
+  }, [analytics, dailyGoalMinutes, hydrated, plan, selectedBookIds]);
 
   const badges = useMemo(() => {
     if (!badgeStats) return [] as BadgeState[];
@@ -526,8 +516,8 @@ export function useBadgeSystem({
     });
     setEarnedHistory(next);
     window.localStorage.setItem(BADGE_EARNED_KEY, JSON.stringify(next));
-    newEntries.forEach((badge, index) => {
-      fetchBookJson("/app/api/book/me/badges", {
+    newEntries.forEach((badge) => {
+      fetchBookJson(BADGES_KEY, {
         method: "PUT",
         body: JSON.stringify({
           badgeId: badge.id,
@@ -536,6 +526,9 @@ export function useBadgeSystem({
         }),
       }).catch(() => {});
     });
+    // New awards were written — drop the cached /me/badges read so a later mount
+    // reflects them.
+    invalidateBookCache(BADGES_KEY);
   }, [badges, earnedHistory]);
 
   const visibleBadges = useMemo(() => badges.filter((badge) => badge.isVisible), [badges]);

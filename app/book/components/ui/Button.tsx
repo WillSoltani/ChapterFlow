@@ -1,7 +1,5 @@
-"use client";
-
 import type { ButtonHTMLAttributes } from "react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "success";
 type ButtonSize = "sm" | "md" | "lg";

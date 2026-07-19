@@ -8,7 +8,7 @@
  * in-product rating store, so this file is the source of truth for the stars
  * shown on recommendation/discovery cards.
  *
- * Keyed by the catalog `bookId` (see app/book/data/booksCatalog.metadata.json).
+ * Keyed by the catalog `bookId` (see lib/books-catalog.metadata.json).
  * A book with no entry simply renders without stars (no fake zeros).
  */
 export type BookRating = {

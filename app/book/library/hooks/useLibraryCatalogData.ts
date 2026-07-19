@@ -1,14 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { useMemo } from "react";
+import { useDashboardQuery } from "@/app/book/hooks/useDashboardQuery";
 import {
   buildLibraryCategoryOptions,
   buildLibraryDifficultyOptions,
   type LibraryBookEntry,
   type LibraryCatalogBook,
 } from "@/app/book/_lib/library-data";
-import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
 
 type DashboardCatalogPayload = {
@@ -90,71 +89,32 @@ export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry
 }
 
 export function useLibraryCatalogData(enabled = true) {
-  const [hydrated, setHydrated] = useState(false);
-  const [loading, setLoading] = useState(enabled);
-  const [error, setError] = useState<string | null>(null);
-  const [entries, setEntries] = useState<LibraryBookEntry[]>([]);
-  const [revision, setRevision] = useState(0);
+  // Selector over the canonical dashboard query (WS3-025) — no direct fetch, so
+  // this shares the deduped/cached aggregate with every other consumer.
+  const { data, error, loading } = useDashboardQuery(enabled);
 
-  useEffect(() => {
-    if (!enabled) return;
-
-    function handleRefresh() {
-      setRevision((value) => value + 1);
-    }
-
-    window.addEventListener(BOOK_STORAGE_EVENT, handleRefresh as EventListener);
-    window.addEventListener("storage", handleRefresh);
-    window.addEventListener("focus", handleRefresh);
-    return () => {
-      window.removeEventListener(BOOK_STORAGE_EVENT, handleRefresh as EventListener);
-      window.removeEventListener("storage", handleRefresh);
-      window.removeEventListener("focus", handleRefresh);
-    };
-  }, [enabled]);
-
-  useEffect(() => {
-    if (!enabled) {
-      setEntries([]);
-      setHydrated(true);
-      setLoading(false);
-      return;
-    }
-
-    let mounted = true;
-    setLoading(true);
-
-    fetchBookJson<DashboardCatalogPayload>("/app/api/book/me/dashboard")
-      .then((payload) => {
-        if (!mounted) return;
-        setEntries(buildEntries(payload));
-        setError(null);
-      })
-      .catch((fetchError: unknown) => {
-        if (!mounted) return;
-        const message =
-          fetchError instanceof Error ? fetchError.message : "Unable to load your library.";
-        setEntries([]);
-        setError(message);
-      })
-      .finally(() => {
-        if (!mounted) return;
-        setHydrated(true);
-        setLoading(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, [enabled, revision]);
+  const entries: LibraryBookEntry[] = useMemo(() => {
+    if (!data) return [];
+    return buildEntries({
+      catalog: data.catalog ?? [],
+      progress: data.progress ?? [],
+      bookStates: data.bookStates ?? [],
+    });
+  }, [data]);
 
   const categoryOptions = useMemo(() => buildLibraryCategoryOptions(entries), [entries]);
   const difficultyOptions = useMemo(() => buildLibraryDifficultyOptions(entries), [entries]);
 
+  const errorMessage = error
+    ? error instanceof Error
+      ? error.message
+      : "Unable to load your library."
+    : null;
+
   return {
-    hydrated,
+    hydrated: !loading,
     loading,
-    error,
+    error: errorMessage,
     entries,
     categoryOptions,
     difficultyOptions,

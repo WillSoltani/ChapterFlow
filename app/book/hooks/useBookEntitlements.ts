@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { fetchBookJson, handleReauthRequired } from "@/app/book/_lib/book-api";
+import type { ProSource } from "@/lib/entitlement-types";
 
 export type BillingInterval = "monthly" | "annual" | "annual_upfront";
 
@@ -17,7 +18,9 @@ export type EntitlementsResponse = {
   entitlement: {
     plan: "FREE" | "PRO";
     proStatus: "inactive" | "active" | "past_due" | "canceled";
-    proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code";
+    // Derived from the server source of truth so it cannot drift — includes
+    // "admin", which the route forwards for admin-granted PRO users (WS3-014).
+    proSource?: ProSource;
     freeBookSlots: number;
     unlockedBookIds: string[];
     unlockedBooksCount: number;

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import type { BadgeWithProgress } from "../lib/badge-types";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
 import { TIER_BORDER_COLORS } from "../lib/badge-utils";

@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { BookApiError } from "./errors";
 import {
   buildLibraryCatalogIndexMap,
+  resolveListChapterCount,
   shouldDegradeLibraryCatalogIndex,
 } from "./library-catalog-index-core";
 
@@ -67,4 +68,29 @@ test("shouldDegradeLibraryCatalogIndex degrades on a transient/non-BookApiError 
   // than 500 the whole library.
   assert.equal(shouldDegradeLibraryCatalogIndex(new Error("ECONNRESET")), true);
   assert.equal(shouldDegradeLibraryCatalogIndex({ name: "TimeoutError" }), true);
+});
+
+// --- resolveListChapterCount (documents the DI-4 symptom and its fix) ------
+//
+// buildLibraryCatalogBook in library-catalog.ts (the LIST endpoint) calls
+// this to resolve a book's card chapterCount. Extracted and exported (WS3-005)
+// so the real function is tested directly instead of hand-reproduced in a
+// test, since library-catalog.ts itself is `server-only` and unexported.
+
+test("list path renders the TRUE count when the presentation index has the book", () => {
+  // After PAR-1, every published book has an index entry, so extra.chapterCount
+  // is populated and the list shows the real number — DI-4's structural fix.
+  assert.equal(resolveListChapterCount(12, undefined), 12);
+  assert.equal(resolveListChapterCount(11, undefined), 11);
+});
+
+test("list path collapses to 1 ONLY when the index lacks the book (the DI-4 symptom)", () => {
+  assert.equal(resolveListChapterCount(undefined, undefined), 1);
+  assert.equal(resolveListChapterCount(0, undefined), 1);
+});
+
+test("detail path stays correct because it passes the manifest chapter count", () => {
+  // buildLibraryCatalogBook's caller overwrites this with the real manifest
+  // chapterCount afterward, but the raw resolution must still be sane.
+  assert.equal(resolveListChapterCount(undefined, 11), 11);
 });

@@ -7,7 +7,7 @@ import {
   formatRatingsCount,
   getBookRating,
 } from "./bookRatings";
-import catalogMetadata from "./booksCatalog.metadata.json";
+import catalogMetadata from "@/lib/books-catalog.metadata.json";
 
 // The numbers in bookRatings.ts are a curated Goodreads snapshot, not in-app
 // reader ratings. The attribution helper is the single chokepoint that keeps

@@ -98,6 +98,28 @@ export function difficultyRank(value: BookDifficulty): number {
   return 3;
 }
 
+/**
+ * Resolve a route chapter param against a published book's manifest chapters:
+ * match by `chapterId`/`id` first, then fall back to a numeric chapter number
+ * (for numeric URLs / legacy bookmarks). Shared by the reader page (to build the
+ * chapter object it renders) and the server chapter-content hydration loader, so
+ * the two ALWAYS resolve to the same chapter. Returns null when nothing matches.
+ */
+export function findLibraryChapterSummary(
+  book: Pick<LibraryBookDetail, "chapters">,
+  chapterParam: string,
+): LibraryChapterSummary | null {
+  const byId = book.chapters.find(
+    (item) => item.chapterId === chapterParam || item.id === chapterParam,
+  );
+  if (byId) return byId;
+  const chapterNumber = Number(chapterParam);
+  if (!Number.isNaN(chapterNumber)) {
+    return book.chapters.find((item) => item.number === chapterNumber) ?? null;
+  }
+  return null;
+}
+
 export function buildLibraryCategoryOptions(
   entries: Array<Pick<LibraryCatalogBook, "category">>
 ): LibraryCategoryFilter[] {

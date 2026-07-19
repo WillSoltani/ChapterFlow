@@ -23,9 +23,13 @@ test("raw TestFlight subjects stop before CDK and Lambda configuration", () => {
     true,
   );
 
+  const appSource = readWorkspaceFile("infra/bin/app.ts");
+  assert.equal(appSource.includes(RAW_INPUT_NAME), false, "infra/bin/app.ts");
+  assert.match(appSource, /buildFrontendRuntimeConfig/);
+
   for (const path of [
-    "infra/bin/app.ts",
     "infra/lib/apple-iap-config.ts",
+    "infra/lib/frontend-runtime-config.ts",
   ]) {
     const source = readWorkspaceFile(path);
     assert.equal(source.includes(RAW_INPUT_NAME), false, path);

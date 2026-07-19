@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 
 /** Personality gradient lookup by card label keyword */
 const PERSONALITY_GRADIENTS: Record<string, string> = {

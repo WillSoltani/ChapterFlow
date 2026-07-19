@@ -1,5 +1,3 @@
-"use client";
-
 import { ProgressRing as SharedProgressRing } from "@/components/ui/ProgressRing";
 import { getProgressColor } from "./libraryData";
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { Search, X } from "lucide-react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 
 type SettingsSearchProps = {
   query: string;

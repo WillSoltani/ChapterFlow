@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { Lock } from "lucide-react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import type { BadgeWithProgress } from "../lib/badge-types";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
 import { TIER_BORDER_COLORS, TIER_GLOW_STYLES, TIER_PILL_STYLES, getProgressText } from "../lib/badge-utils";

@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 import { createHash, randomUUID } from "node:crypto";
+import {
+  persistBookRequestRecord,
+  reserveBookRequestRateLimitSlot,
+  type BookRequestRecord,
+} from "./_lib/book-request-repo";
 
 /**
  * Public book-request intake endpoint.
@@ -28,18 +33,6 @@ export const dynamic = "force-dynamic";
 
 const MAX = { title: 200, author: 160, email: 254, note: 1000 } as const;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-interface BookRequestRecord {
-  requestId: string;
-  title: string;
-  author?: string;
-  email: string;
-  note?: string;
-  createdAt: string;
-  source: string;
-  userAgent?: string;
-  ip?: string;
-}
 
 function cleanString(value: unknown, max: number): string {
   // Collapse embedded newlines/tabs to spaces so values stay single-line when
@@ -164,25 +157,13 @@ async function reserveSlot(
   const windowStart =
     Math.floor(Date.now() / 1000 / RATE_WINDOW_SECONDS) * RATE_WINDOW_SECONDS;
   try {
-    const { ddbDoc } = await import("@/app/app/api/_lib/aws");
-    const { UpdateCommand } = await import("@aws-sdk/lib-dynamodb");
-    await ddbDoc.send(
-      new UpdateCommand({
-        TableName: tableName,
-        Key: { PK: `REQLIMIT#${scope}#${key}`, SK: `WINDOW#${windowStart}` },
-        UpdateExpression:
-          "SET #count = if_not_exists(#count, :zero) + :one, entity = :entity, updatedAt = :now, #ttl = :ttl",
-        ConditionExpression: "attribute_not_exists(#count) OR #count < :max",
-        ExpressionAttributeNames: { "#count": "count", "#ttl": "ttl" },
-        ExpressionAttributeValues: {
-          ":zero": 0,
-          ":one": 1,
-          ":max": max,
-          ":entity": "BOOK_REQUEST_RATELIMIT",
-          ":now": new Date().toISOString(),
-          ":ttl": windowStart + RATE_WINDOW_SECONDS * 2,
-        },
-      }),
+    await reserveBookRequestRateLimitSlot(
+      tableName,
+      scope,
+      key,
+      max,
+      windowStart,
+      RATE_WINDOW_SECONDS,
     );
     return true;
   } catch (err) {
@@ -379,19 +360,7 @@ async function persist(record: BookRequestRecord): Promise<void> {
   const tableName = process.env.BOOK_TABLE_NAME;
 
   if (tableName) {
-    const { ddbDoc } = await import("@/app/app/api/_lib/aws");
-    const { PutCommand } = await import("@aws-sdk/lib-dynamodb");
-    await ddbDoc.send(
-      new PutCommand({
-        TableName: tableName,
-        Item: {
-          PK: `BOOKREQUEST#${record.requestId}`,
-          SK: `REQUEST#${record.createdAt}`,
-          entity: "BOOK_REQUEST",
-          ...record,
-        },
-      }),
-    );
+    await persistBookRequestRecord(tableName, record);
     return;
   }
 

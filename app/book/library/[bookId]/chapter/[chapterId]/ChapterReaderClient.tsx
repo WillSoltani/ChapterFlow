@@ -68,6 +68,18 @@ import type { LearningMode, ContentTone } from "@/app/book/settings/types/settin
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
 import type { LibraryBookDetail } from "@/app/book/_lib/library-data";
+import {
+  adaptApiChapterToBookChapter,
+  isReconstructedChapterEmpty,
+  type InitialChapterReaderSeed,
+} from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterFromApi";
+import {
+  classifyStartAccessFailure,
+  getOrCreateBookStartRequest,
+  isInitialReaderSeedForRoute,
+  mapInitialReaderProgressToManifest,
+  shouldRenderInitialReaderContent,
+} from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterContentHydration";
 import { TRIAL_CTA_LABEL, UPGRADE_RETURN_PATH, MONTHLY_PRICE_WITH_CURRENCY, PRICING } from "@/lib/pricing";
 
 const SCENARIO_SUBMISSION_POINTS = INSIGHT_POINTS_AMOUNTS.scenarioApproved;
@@ -120,11 +132,21 @@ function computeProgressPercent(
 export function ChapterReaderClient({
   bookId,
   chapterId,
+  chapterOrder,
   initialBook,
+  initialSeed,
 }: {
   bookId: string;
   chapterId: string;
+  /**
+   * Server-resolved chapter number (from the manifest, page.tsx). Available at
+   * mount independent of the content fetch, so effects that only need the number
+   * (scenarios) key off this instead of the fetched `chapter` object (WS3-024).
+   */
+  chapterOrder?: number;
   initialBook?: LibraryBookDetail;
+  /** Route-bound authorization attestation for immediate server rendering. */
+  initialSeed?: InitialChapterReaderSeed;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -149,11 +171,6 @@ export function ChapterReaderClient({
   const [scenariosRefetchKey, setScenariosRefetchKey] = useState(0);
   const [contentRefetchKey, setContentRefetchKey] = useState(0);
   const [engagementPoints, setEngagementPoints] = useState(0);
-  const [bookAccessStatus, setBookAccessStatus] = useState<"loading" | "ready" | "blocked">(
-    "loading"
-  );
-  const [bookAccessMessage, setBookAccessMessage] = useState<string | null>(null);
-  const [paywallHit, setPaywallHit] = useState(false);
   // First-real-chapter coachmark explaining the Summary/Examples/Quiz loop +
   // the READ time tiers. Shown once (chapter 1 only), then never again.
   const [showLoopCoachmark, setShowLoopCoachmark] = useState(false);
@@ -241,6 +258,59 @@ export function ChapterReaderClient({
     }),
     [bookId, initialBook],
   );
+  const attestedInitial = useMemo(() => {
+    if (
+      !initialSeed ||
+      !chapterNumber ||
+      (chapterOrder !== undefined && chapterOrder !== chapterNumber) ||
+      !isInitialReaderSeedForRoute(initialSeed, {
+        bookId,
+        chapterId,
+        chapterNumber,
+      })
+    ) {
+      return null;
+    }
+    const progressFloor = mapInitialReaderProgressToManifest(
+      initialSeed.content.progress,
+      (initialBook?.chapters ?? []).map((item) => ({
+        id: item.chapterId,
+        number: item.number,
+      })),
+      { bookId, chapterId, chapterNumber },
+    );
+    if (!progressFloor) return null;
+
+    // Validate the exact reconstruction the production Summary renders. A seed
+    // whose variants collapse to blank prose is never treated as attested
+    // content, even if its route/progress envelope is otherwise well formed.
+    const reconstructed = adaptApiChapterToBookChapter(
+      initialSeed.content.chapter,
+      bookMeta,
+    );
+    if (isReconstructedChapterEmpty(reconstructed)) return null;
+    return { seed: initialSeed, progressFloor };
+  }, [
+    bookId,
+    bookMeta,
+    chapterId,
+    chapterNumber,
+    chapterOrder,
+    initialBook,
+    initialSeed,
+  ]);
+  const hasAttestedSeed = attestedInitial !== null;
+  const effectiveOnboardingComplete =
+    hasAttestedSeed || onboarding.setupComplete;
+  const [bookAccessStatus, setBookAccessStatus] = useState<
+    "loading" | "ready" | "blocked"
+  >(() => (hasAttestedSeed ? "ready" : "loading"));
+  const [bookAccessMessage, setBookAccessMessage] = useState<string | null>(null);
+  const [paywallHit, setPaywallHit] = useState(false);
+  const startRequestRef = useRef<{
+    bookId: string;
+    request: Promise<unknown>;
+  } | null>(null);
   const localFallback = useCallback(
     () => getChapterById(bookId, chapterId, contentTone),
     [bookId, chapterId, contentTone],
@@ -259,6 +329,9 @@ export function ChapterReaderClient({
     book: bookMeta,
     localFallback,
     refetchKey: contentRefetchKey,
+    // Server-hydrated entry chapter: the hook seeds from this and skips its
+    // initial network fetch when it matches `chapterNumber` (WS3-024).
+    initialChapter: attestedInitial?.seed.content,
   });
   // We're serving a cached/offline copy: the live fetch failed for a CONNECTIVITY
   // reason (network error → no HTTP status) and we fell back to the local
@@ -276,6 +349,11 @@ export function ChapterReaderClient({
     () => (baseChapter ? { ...baseChapter, id: chapterId } : undefined),
     [baseChapter, chapterId],
   );
+  const initialReaderReady = shouldRenderInitialReaderContent({
+    hasAttestedSeed,
+    contentHydrated,
+    hasChapter: Boolean(chapter),
+  });
   const preferredReadingDepth: ReadingDepth = baseChapter?.isStrictV12
     ? (defaultToFastPath ? "simple" : "standard")
     : mapLearningStyleToDepth(onboarding.learningStyle);
@@ -286,7 +364,7 @@ export function ChapterReaderClient({
     getChapterState,
     setLastReadChapter,
     markChapterComplete,
-  } = useBookProgress(bookId, chapters);
+  } = useBookProgress(bookId, chapters, attestedInitial?.progressFloor);
 
   // First-chapter loop coachmark: show once on chapter 1 only, gated on a
   // localStorage seen-flag (client-only state — no prod write).
@@ -327,7 +405,15 @@ export function ChapterReaderClient({
   );
 
   const chapterState = chapter ? getChapterState(chapter.id) : "locked";
-  const isLocked = chapterState === "locked";
+  const isLocked = !hasAttestedSeed && chapterState === "locked";
+  const readerInteractionsReady =
+    onboardingHydrated &&
+    hydrated &&
+    chapterHydrated &&
+    bookPrefsHydrated &&
+    effectiveOnboardingComplete &&
+    bookAccessStatus === "ready" &&
+    !isLocked;
 
   const showQuiz = state.activeTab === "quiz";
   // RF-2 / D8: learning mode is the single lever that drives content depth.
@@ -347,12 +433,7 @@ export function ChapterReaderClient({
     contentTone,
     enabled:
       Boolean(chapter) &&
-      onboardingHydrated &&
-      hydrated &&
-      chapterHydrated &&
-      onboarding.setupComplete &&
-      bookAccessStatus === "ready" &&
-      !isLocked &&
+      readerInteractionsReady &&
       showQuiz,
     localQuiz: chapter
       ? {
@@ -395,12 +476,7 @@ export function ChapterReaderClient({
     contentRef,
     scenarioInteractions,
     totalScenarios,
-    enabled:
-      onboardingHydrated &&
-      hydrated &&
-      chapterHydrated &&
-      onboarding.setupComplete &&
-      bookAccessStatus === "ready",
+    enabled: readerInteractionsReady,
     quizPassed,
   });
 
@@ -412,13 +488,14 @@ export function ChapterReaderClient({
   // session exists (chapter resolved) — so a future caller can't POST `.../
   // undefined/unlock`.
   const claimLoopCompleteIP = useCallback(() => {
+    if (!readerInteractionsReady) return Promise.resolve();
     const order = chapter?.order;
     if (order == null) return Promise.resolve();
     return fetchBookJson(
       `/app/api/book/me/chapters/${encodeURIComponent(bookId)}/${order}/unlock`,
       { method: "POST" }
     );
-  }, [bookId, chapter?.order]);
+  }, [bookId, chapter?.order, readerInteractionsReady]);
 
   // ── RF-4 (D5 celebrate-then-reconcile): reconcile an offline quiz pass ──────
   // A pass graded while `/submit` was unreachable is shown optimistically
@@ -434,6 +511,7 @@ export function ChapterReaderClient({
   const reconcileInFlightRef = useRef(false);
   const reconcileKeyRef = useRef<string | null>(null);
   useEffect(() => {
+    if (!readerInteractionsReady) return;
     if (!needsReconcile(quiz.session)) return;
     const attemptKey = `${chapterId}:${quiz.session?.attemptNumber}`;
     let active = true;
@@ -479,7 +557,13 @@ export function ChapterReaderClient({
       active = false;
       window.removeEventListener("online", onOnline);
     };
-  }, [quiz.session, quiz.submit, chapterId, claimLoopCompleteIP]);
+  }, [
+    quiz.session,
+    quiz.submit,
+    chapterId,
+    claimLoopCompleteIP,
+    readerInteractionsReady,
+  ]);
 
   // RF-3: re-arm the fresh-pass confetti gate when the reader moves between
   // chapters. The reader is reused across chapter→chapter navigation (the route
@@ -496,6 +580,7 @@ export function ChapterReaderClient({
   // Wrapped setActiveTab that enforces gating and shows interstitial
   const setActiveTab = useCallback(
     (newTab: ChapterTab, options?: { skipInterstitial?: boolean }) => {
+      if (!readerInteractionsReady) return;
       const phaseOrder: ChapterTab[] = ["summary", "examples", "quiz", "practice"];
       const currentIndex = phaseOrder.indexOf(state.activeTab);
       const newIndex = phaseOrder.indexOf(newTab);
@@ -530,7 +615,14 @@ export function ChapterReaderClient({
         window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
       }
     },
-    [state.activeTab, setActiveTabRaw, phaseCompletion, bookId, chapter]
+    [
+      state.activeTab,
+      setActiveTabRaw,
+      phaseCompletion,
+      bookId,
+      chapter,
+      readerInteractionsReady,
+    ]
   );
 
   // The Practice tab is no longer reachable through the stepper. If a user
@@ -577,6 +669,7 @@ export function ChapterReaderClient({
   useKeyboardShortcut(
     "n",
     (event) => {
+      if (!readerInteractionsReady) return;
       event.preventDefault();
       setNotesOpen(true);
     },
@@ -586,6 +679,7 @@ export function ChapterReaderClient({
   useKeyboardShortcut(
     "f",
     (event) => {
+      if (!readerInteractionsReady) return;
       event.preventDefault();
       toggleFocusMode();
     },
@@ -611,20 +705,20 @@ export function ChapterReaderClient({
   );
 
   useEffect(() => {
-    if (!onboardingHydrated) return;
+    if (!onboardingHydrated || hasAttestedSeed) return;
     if (!onboarding.setupComplete) router.replace("/book");
-  }, [onboarding.setupComplete, onboardingHydrated, router]);
+  }, [hasAttestedSeed, onboarding.setupComplete, onboardingHydrated, router]);
 
   // Content-fetch failure no longer ejects to the library — when the fetch has
   // settled with no chapter we render an in-place error card (below) with a
   // retry, so the user keeps their place and gets an explanation.
 
   useEffect(() => {
-    if (!chapter || !hydrated) return;
+    if (!chapter || !readerInteractionsReady) return;
     if (getChapterState(chapter.id) !== "locked") {
       setLastReadChapter(chapter.id);
     }
-  }, [chapter, hydrated, getChapterState, setLastReadChapter]);
+  }, [chapter, getChapterState, readerInteractionsReady, setLastReadChapter]);
 
   useEffect(() => {
     // NOTE: deliberately NOT gated on `chapter`. The /start access check only
@@ -632,40 +726,68 @@ export function ChapterReaderClient({
     // the chapter content fetch failed — otherwise the in-place content-error
     // card (which requires bookAccessStatus === "ready") is unreachable and the
     // reader spins on the skeleton forever.
-    if (!entry || !onboardingHydrated || !onboarding.setupComplete) return;
+    if (!entry || !onboardingHydrated || !effectiveOnboardingComplete) return;
     let cancelled = false;
-    setBookAccessStatus("loading");
-    setBookAccessMessage(null);
-    fetchBookJson(`/app/api/book/me/books/${encodeURIComponent(bookId)}/start`, {
-      method: "POST",
-    })
+    const startRequest = getOrCreateBookStartRequest({
+      current: startRequestRef.current,
+      bookId,
+      create: () =>
+        fetchBookJson(
+          `/app/api/book/me/books/${encodeURIComponent(bookId)}/start`,
+          { method: "POST" },
+        ),
+    });
+    startRequestRef.current = startRequest.entry;
+    if (startRequest.created) {
+      if (!hasAttestedSeed) setBookAccessStatus("loading");
+      setBookAccessMessage(null);
+      setPaywallHit(false);
+    }
+    startRequest.entry.request
       .then(() => {
         if (cancelled) return;
         setBookAccessStatus("ready");
       })
       .catch((err) => {
         if (cancelled) return;
-        if (
-          err instanceof BookClientError &&
-          (err.status === 402 || err.code === "paywall_book_limit")
-        ) {
-          setBookAccessStatus("blocked");
+        const failure = classifyStartAccessFailure({
+          status: err instanceof BookClientError ? err.status : null,
+          code: err instanceof BookClientError ? err.code : undefined,
+        });
+        if (failure !== "transient") setBookAccessStatus("blocked");
+        if (failure === "account_deleted") {
+          setBookAccessMessage("This account has been deleted and is no longer accessible.");
+          window.location.assign("/auth/login?reason=deleted");
+          return;
+        }
+        if (failure === "reauth") {
+          setBookAccessMessage("Your session has expired. Sign in again to continue.");
+          const returnTo = `${window.location.pathname}${window.location.search}`;
+          window.location.assign(
+            `/auth/login?returnTo=${encodeURIComponent(returnTo)}`,
+          );
+          return;
+        }
+        if (failure === "paywall") {
           setBookAccessMessage(
             "You\u2019ve reached your free book limit. Upgrade to Pro to unlock unlimited books."
           );
           setPaywallHit(true);
           return;
         }
-        if (
-          err instanceof BookClientError &&
-          (err.code === "email_verification_required" ||
-            err.code === "free_access_review_required")
-        ) {
-          setBookAccessStatus("blocked");
+        if (failure === "email_verification") {
+          setBookAccessMessage("Please verify your email address to continue.");
+          return;
+        }
+        if (failure === "review") {
           setBookAccessMessage(
-            err.code === "email_verification_required"
-              ? "Please verify your email address to continue."
-              : "Your access is under review. Please contact support if this persists."
+            "Your access is under review. Please contact support if this persists."
+          );
+          return;
+        }
+        if (failure === "blocked") {
+          setBookAccessMessage(
+            "Your access to this book could not be confirmed. Please head back and try again."
           );
           return;
         }
@@ -693,7 +815,13 @@ export function ChapterReaderClient({
     return () => {
       cancelled = true;
     };
-  }, [bookId, entry, onboarding.setupComplete, onboardingHydrated]);
+  }, [
+    bookId,
+    effectiveOnboardingComplete,
+    entry,
+    hasAttestedSeed,
+    onboardingHydrated,
+  ]);
 
   useEffect(() => {
     if (!toast) return;
@@ -712,15 +840,21 @@ export function ChapterReaderClient({
     }
   }, [searchParams]);
 
+  // WS3-024 — de-waterfall the scenarios request. Key it off the server-resolved
+  // chapter number (`chapterOrder`, available at mount from the manifest) rather
+  // than the fetched `chapter` object, so it starts on mount concurrently with
+  // the content fetch instead of waiting for content to resolve first. Same URL,
+  // same response handling, same refetch behavior. `chapterOrder === chapter.order`
+  // (both are the manifest number), so the request target is unchanged.
   useEffect(() => {
-    if (!chapter) return;
+    if (!chapterOrder) return;
     let mounted = true;
     fetchBookJson<{
       approvedScenarios: ChapterExample[];
       mySubmissions: UserScenarioSubmission[];
       points: number;
     }>(
-      `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${chapter.order}/scenarios`
+      `/app/api/book/me/books/${encodeURIComponent(bookId)}/chapters/${chapterOrder}/scenarios`
     )
       .then((payload) => {
         if (!mounted) return;
@@ -738,20 +872,13 @@ export function ChapterReaderClient({
     return () => {
       mounted = false;
     };
-  }, [bookId, chapter, scenariosRefetchKey]);
+  }, [bookId, chapterOrder, scenariosRefetchKey]);
 
   const dailyGoalMinutes = bookPrefs.extended.dailyGoalPreset || 10;
   const readingSession = useReadingSessionTracker({
     bookId,
     chapterId,
-    enabled:
-      onboardingHydrated &&
-      hydrated &&
-      chapterHydrated &&
-      onboarding.setupComplete &&
-      bookAccessStatus === "ready" &&
-      !isLocked &&
-      bookPrefs.privacy.saveReadingHistory,
+    enabled: readerInteractionsReady && bookPrefs.privacy.saveReadingHistory,
     dailyGoalMinutes,
   });
 
@@ -765,14 +892,7 @@ export function ChapterReaderClient({
     bookId,
     chapterId,
     enabled: bookPrefsHydrated && bookPrefs.reading.resumeWhereLeftOff,
-    ready:
-      onboardingHydrated &&
-      hydrated &&
-      chapterHydrated &&
-      onboarding.setupComplete &&
-      bookAccessStatus === "ready" &&
-      !isLocked &&
-      Boolean(chapter),
+    ready: readerInteractionsReady && Boolean(chapter),
   });
 
   // Daily goal celebration — show toast once when goal is first reached
@@ -795,12 +915,7 @@ export function ChapterReaderClient({
   useBreakReminder({
     enabled:
       bookPrefs.extended.breakReminders &&
-      onboardingHydrated &&
-      hydrated &&
-      chapterHydrated &&
-      onboarding.setupComplete &&
-      bookAccessStatus === "ready" &&
-      !isLocked,
+      readerInteractionsReady,
     intervalMinutes: bookPrefs.extended.breakReminderMinutes,
     paused: showQuiz,
     onBreak: () => setToast("Time for a quick break — rest your eyes for a moment."),
@@ -813,7 +928,8 @@ export function ChapterReaderClient({
   // session (or before a mid-chapter reload) would not be reflected and the prompt
   // would invite the user to re-commit (→ a 409 on submit). Keyed on chapter.order
   // so navigating between chapters re-resolves the flag from server truth.
-  const commitmentsEnabled = Boolean(chapterNumber) && Boolean(viewerIdentity?.sub);
+  const commitmentsEnabled =
+    readerInteractionsReady && Boolean(chapterNumber) && Boolean(viewerIdentity?.sub);
   const {
     commitments,
     activeCommitments,
@@ -852,6 +968,7 @@ export function ChapterReaderClient({
 
   const handleCommitment = useCallback(
     async (params: { bookId: string; chapterNumber: number; ifThenPlan: string; followUpDays: 3 | 7 }) => {
+      if (!readerInteractionsReady) return;
       try {
         await fetchBookJson("/app/api/book/me/commitments", {
           method: "POST",
@@ -870,7 +987,7 @@ export function ChapterReaderClient({
         throw err;
       }
     },
-    [refreshCommitments],
+    [readerInteractionsReady, refreshCommitments],
   );
 
   // §7 funnel timing/reach signals (refs declared up near contentRef). Analytics-
@@ -907,6 +1024,7 @@ export function ChapterReaderClient({
 
   const handlePatternPick = useCallback(
     (pattern: V21ReaderPattern) => {
+      if (!readerInteractionsReady) return;
       setSelectedPatternId(pattern.id);
       // Route the recommended example. mapsToExampleIndex is 0-based into the
       // UNFILTERED authored examples (chapter.examplesDetailed), so resolve there;
@@ -933,7 +1051,7 @@ export function ChapterReaderClient({
       }
       trackReaderFunnel("pattern_picked", { bookId, chapterNumber: chapter?.order, patternId: pattern.id });
     },
-    [chapter, state.exampleFilter, setExampleFilter, bookId],
+    [chapter, state.exampleFilter, setExampleFilter, bookId, readerInteractionsReady],
   );
 
   // The content fetch has settled but there is genuinely no chapter to show
@@ -943,7 +1061,7 @@ export function ChapterReaderClient({
   // on `!chapter` and would otherwise spin forever.
   if (
     onboardingHydrated &&
-    onboarding.setupComplete &&
+    effectiveOnboardingComplete &&
     bookAccessStatus === "ready" &&
     contentHydrated &&
     !chapter
@@ -1115,14 +1233,28 @@ export function ChapterReaderClient({
   }
 
   if (
-    !entry ||
-    !chapter ||
-    !onboardingHydrated ||
-    !hydrated ||
-    !chapterHydrated ||
-    !onboarding.setupComplete ||
-    bookAccessStatus === "loading"
+    !initialReaderReady &&
+    (
+      !entry ||
+      !chapter ||
+      !onboardingHydrated ||
+      !hydrated ||
+      !chapterHydrated ||
+      !effectiveOnboardingComplete ||
+      bookAccessStatus === "loading"
+    )
   ) {
+    return (
+      <main className="relative min-h-screen overflow-x-hidden">
+        <ChapterBackgroundOrbs />
+        <ChapterSkeleton />
+      </main>
+    );
+  }
+
+  // `initialReaderReady` semantically implies a reconstructed chapter, but the
+  // boolean helper cannot communicate that narrowing to TypeScript.
+  if (!chapter) {
     return (
       <main className="relative min-h-screen overflow-x-hidden">
         <ChapterBackgroundOrbs />
@@ -1180,6 +1312,7 @@ export function ChapterReaderClient({
   const textScaleClass = "";
 
   const handleSubmitQuiz = async () => {
+    if (!readerInteractionsReady) return;
     try {
       const submitResult = await quiz.submit();
       const nextSession = submitResult?.session ?? null;
@@ -1246,6 +1379,7 @@ export function ChapterReaderClient({
   // After quiz pass, we no longer push the user into a separate Practice
   // phase — the practice content is shown inside ChapterCompleteModal.
   const handleContinueToPractice = () => {
+    if (!readerInteractionsReady) return;
     phaseCompletion.markPhaseCompleted("quiz");
     phaseCompletion.markPhaseCompleted("practice");
     const score = quiz.session?.result?.scorePercent ?? 0;
@@ -1280,10 +1414,14 @@ export function ChapterReaderClient({
   };
 
   const handleRetryQuiz = () => {
+    if (!readerInteractionsReady) return;
     void quiz.retry();
   };
 
   const handleSubmitScenario = async (draft: ScenarioSubmissionDraft) => {
+    if (!readerInteractionsReady) {
+      throw new Error("Reader state is still loading.");
+    }
     const payload = await fetchBookJson<{
       submission: UserScenarioSubmission;
       points: number;
@@ -1313,7 +1451,11 @@ export function ChapterReaderClient({
   const progressPercent = computeProgressPercent(state.activeTab, phaseCompletion.completedPhases);
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden text-(--cr-text-primary)">
+    <main
+      className="relative min-h-screen overflow-x-hidden text-(--cr-text-primary)"
+      inert={readerInteractionsReady ? undefined : true}
+      aria-busy={!readerInteractionsReady}
+    >
       <div role="status" aria-live="polite" className="sr-only">
         {state.activeTab === "summary" && "Now reading: Summary"}
         {state.activeTab === "examples" && "Now reading: Examples"}

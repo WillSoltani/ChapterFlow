@@ -3,6 +3,7 @@ import { mustServerEnv } from "@/app/app/api/_lib/server-env";
 import { resolvePublicOrigin } from "@/app/app/_lib/server-origin";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
+import { rotateAuthCacheGeneration } from "../_lib/auth-cache-generation";
 import { sanitizeReturnTo } from "../_lib/return-to";
 import { encryptState } from "../_lib/state-crypto";
 
@@ -66,6 +67,7 @@ export async function GET(req: NextRequest) {
       // session (soft-delete is a DynamoDB status, not a Cognito disable).
       res.cookies.set("refresh_token", "", { ...cookieBase, maxAge: 0 });
       res.cookies.set("auth_expires_at", "", { ...cookieBase, httpOnly: false, maxAge: 0 });
+      rotateAuthCacheGeneration(res);
       return res;
     }
 

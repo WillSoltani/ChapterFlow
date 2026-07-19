@@ -4,6 +4,7 @@ import { timingSafeStrEqual } from "../_lib/timing-safe-equal";
 import { resolvePublicOrigin } from "@/app/app/_lib/server-origin";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
+import { rotateAuthCacheGeneration } from "../_lib/auth-cache-generation";
 import { sanitizeReturnTo } from "../_lib/return-to";
 import { decryptState } from "../_lib/state-crypto";
 import { applyDeviceIdCookie, getOrCreateDeviceId } from "@/app/app/api/book/_lib/abuse";
@@ -202,6 +203,7 @@ export async function GET(req: NextRequest) {
       httpOnly: false, // Must be readable by client JS
       maxAge: REFRESH_TOKEN_MAX_AGE,
     });
+    rotateAuthCacheGeneration(res);
 
     // Clear ephemeral OAuth cookies (single-use; cleared on every exit path).
     clearTransientOAuthCookies(res);

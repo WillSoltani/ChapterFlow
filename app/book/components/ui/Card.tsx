@@ -1,7 +1,5 @@
-"use client";
-
 import type { HTMLAttributes, ReactNode } from "react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 
 type CardVariant = "default" | "accent" | "interactive" | "danger";
 

@@ -9,9 +9,8 @@ import {
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { QueryCommand } from "@aws-sdk/lib-dynamodb";
-import { bookUserPk } from "@/app/app/api/book/_lib/keys";
+import { queryChapterStatesForNotebook } from "@/app/app/api/book/_lib/book-state-repo";
+import { queryCommitmentItemsForNotebook } from "@/app/app/api/book/_lib/commitment-repo";
 import { buildChapterStateNotebookEntries } from "@/app/app/api/book/_lib/notebook-entries";
 import {
   buildHighlightNotebookEntries,
@@ -51,7 +50,6 @@ export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
-    const pk = bookUserPk(user.sub);
 
     const url = new URL(req.url);
     const bookIdFilter = url.searchParams.get("bookId");
@@ -59,20 +57,11 @@ export async function GET(req: Request) {
     const searchFilter = url.searchParams.get("search")?.toLowerCase();
 
     // Query chapter states for notes + bookmarks
-    const chapterStatesResult = await ddbDoc.send(
-      new QueryCommand({
-        TableName: tableName,
-        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-        ExpressionAttributeValues: {
-          ":pk": pk,
-          ":prefix": "CHAPTERSTATE#",
-        },
-      }),
-    );
+    const chapterStatesItems = await queryChapterStatesForNotebook(tableName, user.sub);
 
     const entries: NotebookEntry[] = [];
 
-    for (const item of chapterStatesResult.Items ?? []) {
+    for (const item of chapterStatesItems) {
       const state = item.state as Record<string, unknown> | undefined;
       if (!state) continue;
 
@@ -100,18 +89,9 @@ export async function GET(req: Request) {
     }
 
     // Query commitments for follow-through reflections
-    const commitmentsResult = await ddbDoc.send(
-      new QueryCommand({
-        TableName: tableName,
-        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-        ExpressionAttributeValues: {
-          ":pk": pk,
-          ":prefix": "COMMITMENT#",
-        },
-      }),
-    );
+    const commitmentItems = await queryCommitmentItemsForNotebook(tableName, user.sub);
 
-    for (const item of commitmentsResult.Items ?? []) {
+    for (const item of commitmentItems) {
       const reflection = item.followThroughReflection as string | null;
       if (!reflection) continue;
 

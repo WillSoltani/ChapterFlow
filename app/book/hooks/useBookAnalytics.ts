@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import { getBookErrorMessage } from "@/app/book/_lib/error-messages";
+import { useDashboardQuery, type DashboardQueryPayload } from "@/app/book/hooks/useDashboardQuery";
 import type { LibraryCatalogBook } from "@/app/book/_lib/library-data";
 import type { StoredReaderStateSnapshot } from "@/app/book/_lib/reader-storage";
 import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
@@ -18,70 +19,16 @@ import {
 } from "@/app/book/_lib/badge-stats";
 import type { BadgeProgressStats } from "@/app/book/badges/lib/badge-ui-definitions";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
-import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";
 import {
   toDayKey,
 } from "@/app/book/library/hooks/readingActivityStorage";
 
 const DEFAULT_LAST_ACTIVITY = new Date(0).toISOString();
 
-type DashboardPayload = {
-  catalog?: LibraryCatalogBook[];
-  progress: Array<{
-    bookId: string;
-    currentChapterNumber: number;
-    unlockedThroughChapterNumber: number;
-    completedChapters: number[];
-    bestScoreByChapter: Record<string, number>;
-    lastOpenedAt?: string;
-    lastActiveAt?: string;
-  }>;
-  bookStates: Array<{
-    bookId: string;
-    currentChapterId: string;
-    completedChapterIds: string[];
-    unlockedChapterIds: string[];
-    chapterScores: Record<string, number>;
-    chapterCompletedAt: Record<string, string>;
-    lastReadChapterId: string;
-    lastOpenedAt: string;
-    updatedAt: string;
-  }>;
-  chapterStates: Array<{
-    bookId: string;
-    chapterNumber: number;
-    chapterId?: string;
-    state: Record<string, unknown>;
-  }>;
-  readingDays: Array<{
-    dayKey: string;
-    totalActiveMs: number;
-  }>;
-  badgeAwards: Array<{
-    badgeId: string;
-    earnedAt?: string;
-    tier?: string;
-  }>;
-  saved?: Array<{ bookId?: string }>;
-  entitlement?: {
-    plan?: string;
-  } | null;
-  insightPointsBalance?: number;
-  settings?: {
-    onboarding?: {
-      starterShelf?: string[];
-      dailyGoal?: number;
-      onboardingCompleted?: boolean;
-      interests?: string[];
-      motivation?: string;
-    };
-    dailyGoal?: number;
-  } | null;
-  /** Set by the server (#2) when some OPTIONAL dashboard data couldn't be loaded;
-   *  the critical data is still authoritative, so the page renders with a banner. */
-  partial?: boolean;
-  warnings?: string[];
-};
+// The aggregate is fetched once by the canonical useDashboardQuery (WS3-025);
+// this hook only parses the shared payload. The local alias keeps the internal
+// references below reading against the single canonical shape.
+type DashboardPayload = DashboardQueryPayload;
 
 type CompletionActivity = {
   bookId: string;
@@ -431,41 +378,43 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
   // tells the user not everything loaded. `warnings` names the missing sources.
   const [partial, setPartial] = useState(false);
   const [warnings, setWarnings] = useState<string[]>([]);
-  const [revision, setRevision] = useState(0);
+
+  // Consume the canonical dashboard query (WS3-025). This hook no longer fetches
+  // the aggregate; the shared query owns fetching, caching, and focus/storage
+  // revalidation, and this hook derives the analytics view-model from its payload.
+  const {
+    data: dashboardPayload,
+    error: dashboardError,
+    refetch: refetchDashboard,
+  } = useDashboardQuery();
 
   const refetch = useCallback(() => {
     setError(null);
-    setRevision((value) => value + 1);
-  }, []);
+    refetchDashboard();
+  }, [refetchDashboard]);
 
-  const seedKey = useMemo(
-    () => `${selectedBookIds.join("|")}::${dailyGoalMinutes}`,
-    [dailyGoalMinutes, selectedBookIds]
-  );
+  // A dashboard READ failure (incl. a 503 #2: a CRITICAL read failed) is retryable
+  // and must NEVER downgrade the plan to FREE: keep any last-good analytics, clear
+  // the (success-with-gaps only) partial banner, and surface the error. The
+  // canonical query keeps `dashboardPayload` at its last-good value on a failed
+  // background revalidation, so the parse effect below is not re-run and analytics
+  // is preserved.
+  useEffect(() => {
+    if (!dashboardError) return;
+    console.error("Dashboard API failed:", dashboardError);
+    setPartial(false);
+    setWarnings([]);
+    setError(getBookErrorMessage(dashboardError));
+    setHydrated(true);
+  }, [dashboardError]);
 
   useEffect(() => {
-    function onStorageChange() {
-      setRevision((value) => value + 1);
-    }
-
-    window.addEventListener(BOOK_STORAGE_EVENT, onStorageChange as EventListener);
-    window.addEventListener("storage", onStorageChange);
-    window.addEventListener("focus", onStorageChange);
-    return () => {
-      window.removeEventListener(BOOK_STORAGE_EVENT, onStorageChange as EventListener);
-      window.removeEventListener("storage", onStorageChange);
-      window.removeEventListener("focus", onStorageChange);
-    };
-  }, []);
-
-  useEffect(() => {
+    if (!dashboardPayload) return;
     let mounted = true;
+    const payload = dashboardPayload;
 
     const load = async () => {
       try {
-        const payload = await fetchBookJson<DashboardPayload>("/app/api/book/me/dashboard");
-        if (!mounted) return;
-
         // Surface the server's partial-load flag (#2). Critical data is present
         // (the route 503s otherwise), so we render normally + a non-blocking
         // banner naming the optional sources that failed.
@@ -844,22 +793,11 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
         setHydrated(true);
       } catch (err) {
         if (!mounted) return;
-        // Surface the failure instead of silently showing all-zero local
-        // analytics. On the initial load `analytics` is still null, so the
-        // dashboard renders the error/retry state. On a background refetch
-        // (focus/storage events) we keep the last-good analytics so a transient
-        // blip doesn't wipe a working dashboard — the error is held but the
-        // page keeps rendering real data.
-        //
-        // A 503 `dashboard_unavailable` (#2: a CRITICAL read failed) lands here
-        // too — it is a retryable error, NEVER a reason to fall back to a FREE
-        // plan. We never synthesize an entitlement on failure: `analytics` stays
-        // null (initial) or last-good (refetch), so the plan is never downgraded
-        // to FREE by an outage. The partial banner is for the success-with-gaps
-        // case only, so clear it on a hard error.
-        console.error("Dashboard API failed:", err);
-        setPartial(false);
-        setWarnings([]);
+        // Parsing the already-fetched aggregate should not normally throw; if it
+        // does, surface it rather than showing all-zero analytics. Dashboard READ
+        // failures are handled by the dashboardError effect above and never
+        // downgrade the plan to FREE.
+        console.error("Dashboard parse failed:", err);
         setError(getBookErrorMessage(err));
         setHydrated(true);
       }
@@ -870,7 +808,7 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
     return () => {
       mounted = false;
     };
-  }, [seedKey, dailyGoalMinutes, revision]);
+  }, [dashboardPayload, dailyGoalMinutes]);
 
   return {
     hydrated,

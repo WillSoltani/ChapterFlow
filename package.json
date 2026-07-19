@@ -30,7 +30,7 @@
     "verify": "npm run typecheck && npm run test && npm run scan:style && npm run build",
     "verify:live": "tsx scripts/book/verify-live-sync.ts",
     "register:api": "tsx scripts/book/register-api-books.ts",
-    "test": "FILES=$(find app lib components tests \\( -name '*.test.ts' -o -name '*.test.tsx' \\) -not -path '*/node_modules/*' 2>/dev/null); COUNT=$(echo \"$FILES\" | grep -c .); if [ \"$COUNT\" -lt 137 ]; then echo \"test discovery found only $COUNT test files, below the known floor of 137 — glob regression (WS7-011)\" >&2; exit 1; fi; tsx --test $FILES",
+    "test": "FILES=$(find app lib components tests \\( -name '*.test.ts' -o -name '*.test.tsx' \\) -not -path '*/node_modules/*' 2>/dev/null); COUNT=$(echo \"$FILES\" | grep -c .); if [ \"$COUNT\" -lt 157 ]; then echo \"test discovery found only $COUNT test files, below the known floor of 157 — glob regression (WS7-011)\" >&2; exit 1; fi; tsx --test $FILES",
     "test:integration": "FILES=$(find app lib tests -name '*.itest.ts' -not -path '*/node_modules/*'); if [ -z \"$FILES\" ]; then echo 'no integration test files found' >&2; exit 1; fi; tsx --test $FILES",
     "test:e2e": "playwright test",
     "test:visual": "RUN_VISUAL=1 playwright test",

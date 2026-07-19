@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import { buildSyntheticRuntimeEnvironment } from "./app/app/api/_lib/boot-env-core";
 
 // Smoke E2E config. Drives the real app in a browser to catch "page loads but
 // is broken" regressions that unit tests miss.
@@ -25,18 +26,27 @@ const IS_PROD = E2E_MODE === "prod";
 const RUN_VISUAL = process.env.RUN_VISUAL === "1";
 const BASE_URL = process.env.E2E_BASE_URL ?? "http://127.0.0.1:3000";
 
-// Production smoke build: a real `next build` + `next start`, with the COGNITO
-// vars set so middleware.ts runs its real auth check (it skips auth in
-// non-production when those are absent — but NODE_ENV is "production" under
-// `next start` regardless, so the bounce fires). NEXT_DIST_DIR keeps the prod
-// build out of the dev `.next-chapterflow` dir. DEV_AUTH_BYPASS is intentionally
-// NOT set — under NODE_ENV=production it is a no-op anyway.
-const PROD_ENV = [
-  "NEXT_DIST_DIR=.next-prod-e2e",
-  "NEXT_TELEMETRY_DISABLED=1",
-  "COGNITO_REGION=us-east-1",
-  "COGNITO_USER_POOL_ID=e2e-user-pool",
-].join(" ");
+// Production smoke build: a real `next build` + `next start`. Test-only,
+// non-secret placeholders satisfy the same boot contract as a deployed server
+// while middleware.ts still runs its real unauthenticated redirect path. The
+// @prod suite never follows that redirect into Cognito or reaches the data
+// plane. NEXT_DIST_DIR keeps the prod build out of the dev
+// `.next-chapterflow` dir. DEV_AUTH_BYPASS is intentionally NOT set — under
+// NODE_ENV=production it is a no-op anyway.
+export const PROD_E2E_ENV: Readonly<Record<string, string>> = {
+  ...buildSyntheticRuntimeEnvironment("prod"),
+  NEXT_DIST_DIR: ".next-prod-e2e",
+  NEXT_TELEMETRY_DISABLED: "1",
+};
+export const PROD_E2E_HEADERS: Readonly<Record<string, string>> = {
+  // Production traffic reaches the public Function URL through CloudFront,
+  // which injects this header. The direct local/CI harness must emulate that
+  // edge hop now that the runtime manifest correctly requires enforcement.
+  "x-origin-verify": PROD_E2E_ENV.ORIGIN_VERIFY_SECRET,
+};
+const PROD_ENV = Object.entries(PROD_E2E_ENV)
+  .map(([name, value]) => `${name}=${value}`)
+  .join(" ");
 const PROD_COMMAND =
   `${PROD_ENV} next build && ` +
   `${PROD_ENV} next start --hostname 127.0.0.1 --port 3000`;
@@ -61,6 +71,7 @@ export default defineConfig({
     baseURL: BASE_URL,
     headless: true,
     trace: "on-first-retry",
+    extraHTTPHeaders: IS_PROD ? PROD_E2E_HEADERS : undefined,
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {

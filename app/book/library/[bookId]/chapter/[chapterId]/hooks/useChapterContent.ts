@@ -10,6 +10,12 @@ import {
 } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterFromApi";
 import { IS_DEV } from "@/app/book/_lib/client-env";
 import { shouldUseLocalFallback } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/fallbackPolicy";
+import {
+  buildChapterRouteKey,
+  buildChapterSeedKey,
+  decideChapterContentFetch,
+  shouldRetainApiChapterAfterFailure,
+} from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterContentHydration";
 
 export type ChapterContentProgress = {
   currentChapterNumber: number;
@@ -34,7 +40,39 @@ type ChapterContentState = {
   /** HTTP status when the error was a BookClientError (e.g. 402, 403, 404). */
   status: number | null;
   source: "api" | "local" | null;
+  /** Route whose content produced `chapter`; never inferred from mutable props. */
+  loadedRouteKey: string | null;
 };
+
+/**
+ * Turn a server-hydrated chapter payload (WS3-024) into ready-to-use hook state,
+ * but ONLY when it matches the currently-requested chapter and reconstructs to
+ * non-empty content. Returns null when there is no usable seed (absent, a
+ * different chapter, or an empty/blank-prose reconstruction) so the caller falls
+ * through to a normal network fetch. Mirrors the success branch of the fetch
+ * effect below so a hydrated chapter is byte-identical to a fetched one.
+ */
+function buildChapterSeed(
+  initial: ApiChapterResponse | null | undefined,
+  expectedChapterNumber: number | undefined,
+  book: BookMeta,
+  loadedRouteKey: string | null,
+): ChapterContentState | null {
+  if (!initial || !expectedChapterNumber || !loadedRouteKey) return null;
+  if (initial.chapter?.number !== expectedChapterNumber) return null;
+  const chapter = adaptApiChapterToBookChapter(initial.chapter, book);
+  if (isReconstructedChapterEmpty(chapter)) return null;
+  return {
+    chapter,
+    progress: initial.progress ?? null,
+    loading: false,
+    hydrated: true,
+    error: null,
+    status: null,
+    source: "api",
+    loadedRouteKey,
+  };
+}
 
 /**
  * Fetches a chapter's content from the production API
@@ -68,28 +106,68 @@ export function useChapterContent(params: {
   localFallback?: () => BookChapter | undefined;
   /** Bump to force a refetch (e.g. a "Try again" button after a failure). */
   refetchKey?: number;
+  /**
+   * Server-hydrated chapter payload for the ENTRY chapter (WS3-024). When it
+   * matches `chapterNumber` and reconstructs to non-empty content, the hook
+   * seeds from it and skips the initial network fetch. The fetch path is kept
+   * intact for refetchKey/retry flows and for navigation to un-hydrated
+   * chapters.
+   */
+  initialChapter?: ApiChapterResponse | null;
 }): ChapterContentState {
-  const { bookId, chapterNumber, enabled = true, refetchKey = 0 } = params;
+  const { bookId, chapterNumber, enabled = true, refetchKey = 0, initialChapter } = params;
+  const requestedRouteKey =
+    chapterNumber && chapterNumber > 0
+      ? buildChapterRouteKey(bookId, chapterNumber)
+      : null;
 
-  // Keep the latest book meta + fallback in refs so changing their identity
-  // doesn't retrigger the fetch (only bookId/chapterNumber/enabled do). Refs
-  // are updated in an effect (not during render) per react-hooks rules.
+  // Keep the latest book meta + fallback + server seed in refs so changing their
+  // identity doesn't retrigger the fetch (only bookId/chapterNumber/enabled/
+  // refetchKey do). Refs are updated in an effect (not during render) per
+  // react-hooks rules.
   const bookRef = useRef(params.book);
   const fallbackRef = useRef(params.localFallback);
+  const initialChapterRef = useRef(initialChapter);
   useEffect(() => {
     bookRef.current = params.book;
     fallbackRef.current = params.localFallback;
+    initialChapterRef.current = initialChapter;
   });
 
-  const [state, setState] = useState<ChapterContentState>({
-    chapter: undefined,
-    progress: null,
-    loading: enabled,
-    hydrated: false,
-    error: null,
-    status: null,
-    source: null,
-  });
+  // Seed initial state from the server-hydrated payload via a lazy initializer
+  // (runs once, on the server render AND the client mount), so the entry chapter
+  // paints real content with NO loading flash and no client fetch. Falls back to
+  // the empty/loading shape when there is no usable seed.
+  const [state, setState] = useState<ChapterContentState>(
+    () =>
+      buildChapterSeed(
+        initialChapter,
+        chapterNumber,
+        params.book,
+        requestedRouteKey,
+      ) ?? {
+        chapter: undefined,
+        progress: null,
+        loading: enabled,
+        hydrated: false,
+        error: null,
+        status: null,
+        source: null,
+        loadedRouteKey: null,
+      },
+  );
+  const stateRef = useRef(state);
+  useEffect(() => {
+    stateRef.current = state;
+  }, [state]);
+
+  // The (chapter, refetch) key the server seed has already satisfied, so the
+  // fetch effect skips exactly one network call per hydrated chapter and still
+  // fetches on any refetchKey bump or navigation to an un-hydrated chapter. It
+  // starts null (never reads a ref during render); the mount seed is re-applied
+  // and recorded on the effect's first run — a redundant same-content setState,
+  // never a skeleton flash.
+  const servedSeedKeyRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (!enabled || !chapterNumber || chapterNumber < 1) {
@@ -105,12 +183,64 @@ export function useChapterContent(params: {
         error: null,
         status: null,
         source: local ? "local" : null,
+        loadedRouteKey: local ? requestedRouteKey : null,
       });
+      return;
+    }
+    const activeRouteKey = buildChapterRouteKey(bookId, chapterNumber);
+
+    // WS3-024 — prefer the server-hydrated payload over a network fetch. On the
+    // mount run this re-applies the seed already in state (useState lazy init)
+    // and records its key ("serve-seed", a redundant same-content setState — no
+    // fetch, no flash); a later idempotent re-run is a no-op ("skip-served").
+    // Navigation to another hydrated chapter re-seeds; a retry (refetchKey > 0)
+    // or an un-hydrated chapter falls through to the fetch below. Reads the seed
+    // from a ref so seed identity never retriggers the effect (deps stay
+    // chapter/refetch only).
+    const seedKey = buildChapterSeedKey(bookId, chapterNumber, refetchKey);
+    const seed =
+      refetchKey === 0
+        ? buildChapterSeed(
+            initialChapterRef.current,
+            chapterNumber,
+            bookRef.current,
+            activeRouteKey,
+          )
+        : null;
+    const decision = decideChapterContentFetch({
+      hasUsableSeed: Boolean(seed),
+      hasMatchingSeedState:
+        Boolean(stateRef.current.chapter) &&
+        stateRef.current.source === "api" &&
+        stateRef.current.loadedRouteKey === activeRouteKey,
+      refetchKey,
+      seedKey,
+      servedSeedKey: servedSeedKeyRef.current,
+    });
+    if (decision === "skip-served") {
+      return;
+    }
+    if (decision === "serve-seed" && seed) {
+      servedSeedKeyRef.current = seedKey;
+      setState(seed);
       return;
     }
 
     let mounted = true;
-    setState((prev) => ({ ...prev, loading: true }));
+    setState((previous) =>
+      previous.loadedRouteKey === activeRouteKey
+        ? { ...previous, loading: true }
+        : {
+            chapter: undefined,
+            progress: null,
+            loading: true,
+            hydrated: false,
+            error: null,
+            status: null,
+            source: null,
+            loadedRouteKey: null,
+          },
+    );
 
     fetchBookJson<ApiChapterResponse>(
       `/app/api/book/books/${encodeURIComponent(bookId)}/chapters/${chapterNumber}`,
@@ -139,6 +269,7 @@ export function useChapterContent(params: {
             error: usableLocal ? null : new Error("Chapter content was empty."),
             status: null,
             source: usableLocal ? "local" : null,
+            loadedRouteKey: usableLocal ? activeRouteKey : null,
           });
           return;
         }
@@ -150,6 +281,7 @@ export function useChapterContent(params: {
           error: null,
           status: null,
           source: "api",
+          loadedRouteKey: activeRouteKey,
         });
       })
       .catch((err: unknown) => {
@@ -163,21 +295,61 @@ export function useChapterContent(params: {
         // 402/403 = blocked, 404 = not-found, 5xx/network = "Try again"). This is
         // what stops a real content outage from being silently masked. (#1)
         const local = shouldUseLocalFallback(IS_DEV, status) ? fallbackRef.current?.() : undefined;
-        setState({
-          chapter: local,
-          progress: null,
-          loading: false,
-          hydrated: true,
-          error,
-          status,
-          source: local ? "local" : null,
+        setState((previous) => {
+          // A route-bound server seed is already authorization-attested content.
+          // A later retry that loses connectivity or receives a 5xx must not
+          // blank that prose. Definitive 4xx responses still fall through and
+          // remove it so reauth/paywall/lock handling owns the screen.
+          if (
+            shouldRetainApiChapterAfterFailure({
+              hasApiChapter:
+                Boolean(previous.chapter) && previous.source === "api",
+              loadedRouteKey: previous.loadedRouteKey,
+              requestedRouteKey: activeRouteKey,
+              status,
+            })
+          ) {
+            return {
+              ...previous,
+              loading: false,
+              hydrated: true,
+              error,
+              status,
+            };
+          }
+          return {
+            chapter: local,
+            progress: null,
+            loading: false,
+            hydrated: true,
+            error,
+            status,
+            source: local ? "local" : null,
+            loadedRouteKey: local ? activeRouteKey : null,
+          };
         });
       });
 
     return () => {
       mounted = false;
     };
-  }, [enabled, bookId, chapterNumber, refetchKey]);
+  }, [enabled, bookId, chapterNumber, refetchKey, requestedRouteKey]);
+
+  // Effects run after render. Mask a prior route's state synchronously during
+  // same-component navigation so old prose cannot flash under the new URL even
+  // before the new request starts (or if it later fails transiently).
+  if (state.chapter && state.loadedRouteKey !== requestedRouteKey) {
+    return {
+      chapter: undefined,
+      progress: null,
+      loading: Boolean(enabled && requestedRouteKey),
+      hydrated: false,
+      error: null,
+      status: null,
+      source: null,
+      loadedRouteKey: null,
+    };
+  }
 
   return state;
 }

@@ -1,11 +1,12 @@
 import "server-only";
 
-import { ScanCommand } from "@aws-sdk/lib-dynamodb";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookAnalyticsTableName, getBookTableName } from "@/app/app/api/book/_lib/env";
-import { ADMIN_SCAN_MAX_ITEMS } from "@/app/app/api/book/_lib/admin-metrics";
+import {
+  ADMIN_SCAN_MAX_ITEMS,
+  scanBookUserProfilesPage,
+} from "@/app/app/api/book/_lib/admin-metrics";
 
 export const runtime = "nodejs";
 
@@ -34,16 +35,7 @@ export async function GET(req: Request) {
     let totalProfiles = 0;
     try {
       do {
-        const res = await ddbDoc.send(
-          new ScanCommand({
-            TableName: tableName,
-            FilterExpression: "entity = :e",
-            ExpressionAttributeValues: { ":e": "BOOK_USER_PROFILE" },
-            ProjectionExpression: "profile",
-            ExclusiveStartKey: lastKey,
-            Limit: 1000,
-          }),
-        );
+        const res = await scanBookUserProfilesPage(tableName, lastKey);
         for (const item of res.Items ?? []) {
           totalProfiles += 1;
           const profile = item.profile as Record<string, unknown> | undefined;

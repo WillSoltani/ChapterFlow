@@ -4,7 +4,7 @@ import { type ReactNode, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { ChevronDown } from "lucide-react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import { DUR, EASE } from "@/lib/motion";
 
 type SettingsSectionProps = {

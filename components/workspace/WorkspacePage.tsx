@@ -16,8 +16,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { PartnerProgressCard } from "@/app/book/home/components/PartnerProgressCard";
 import { fetchBookJson, BookClientError } from "@/app/book/_lib/book-api";
+import { invalidateBookCache } from "@/app/book/_lib/book-api-cache";
 import type { BookUserCommitmentItem, CommitmentOutcome } from "@/app/app/api/book/_lib/types";
 import { useBookAnalytics, type AnalyticsState } from "@/app/book/hooks/useBookAnalytics";
+import { DASHBOARD_KEY } from "@/app/book/hooks/useDashboardQuery";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { BOOKS_CATALOG, getBookMetadata } from "@/app/book/data/booksCatalog";
 import { getBookRating } from "@/app/book/data/bookRatings";
@@ -1049,11 +1051,13 @@ export function WorkspacePage() {
     if (!billing) return;
     if (billing === "success") {
       sessionStorage.setItem("cf:billing-upgraded", "1");
+      invalidateBookCache(DASHBOARD_KEY);
+      refetch();
     }
     const url = new URL(window.location.href);
     url.searchParams.delete("billing");
     router.replace(url.pathname + url.search);
-  }, [searchParams, router]);
+  }, [searchParams, router, refetch]);
 
   return (
     <div

@@ -5,6 +5,10 @@ import { getAccountStatus } from "@/app/app/api/book/_lib/repo";
 import { BOOK_DEVICE_COOKIE } from "@/app/app/api/book/_lib/abuse";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
+import {
+  preserveOrCreateAuthCacheGeneration,
+  rotateAuthCacheGeneration,
+} from "../_lib/auth-cache-generation";
 
 export const runtime = "nodejs";
 
@@ -207,6 +211,7 @@ export async function POST(req: NextRequest) {
         res.cookies.set("id_token", "", { ...cookieBase, maxAge: 0 });
         res.cookies.set("access_token", "", { ...cookieBase, maxAge: 0 });
         res.cookies.set("auth_expires_at", "", { ...cookieBase, httpOnly: false, maxAge: 0 });
+        rotateAuthCacheGeneration(res);
         return res;
       }
     } catch {
@@ -234,6 +239,7 @@ export async function POST(req: NextRequest) {
     httpOnly: false,
     maxAge: REFRESH_TOKEN_MAX_AGE,
   });
+  preserveOrCreateAuthCacheGeneration(req, res);
 
   return res;
 }

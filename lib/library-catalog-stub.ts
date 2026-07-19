@@ -90,6 +90,12 @@ export function assertNoStubCatalogEntries(entries: readonly CatalogStubCandidat
 // template and can never drift. The fallback itself is intentionally KEPT — an
 // empty synopsis would be worse than the canned line; the real fix is authoring
 // per-book synopses (content/prod-data work owned by 7A / the prod re-seed).
+//
+// The sibling list-path chapter-count floor (this module's isStubChapterCount
+// guards the invariant it protects) is `resolveListChapterCount` in
+// library-catalog-index-core.ts — exported from there (not inlined in the
+// server-only library-catalog.ts) specifically so library-catalog-stub.test.ts
+// can import and exercise the real function instead of reproducing it (WS3-005).
 // ---------------------------------------------------------------------------
 
 /** Minutes the list endpoint floors a presentation-index-less book to. */

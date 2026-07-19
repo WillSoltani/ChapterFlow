@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { useReviewQueue } from "@/app/book/hooks/useReviewQueue";
 import { getBookById } from "@/app/book/data/booksCatalog";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import type { FSRSRating } from "@/app/app/api/book/_lib/types";
 
 type Props = {
