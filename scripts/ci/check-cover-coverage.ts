@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 /**
- * Cover-coverage smoke check.
+ * Book-cover asset coverage smoke check (not source-code coverage).
  *
  * Every book in the published library catalog (BOOK_PACKAGES, surfaced via
  * getBookPackagePresentation().coverImage) references a cover raster under
@@ -54,7 +54,7 @@ function main() {
 
   const total = BOOK_PACKAGES.length;
   console.log(
-    `Cover coverage: ${withCover}/${total} catalog books have a cover on disk` +
+    `Book-cover asset coverage: ${withCover}/${total} catalog books have a cover on disk` +
       (noCoverRef > 0 ? ` (${noCoverRef} reference no cover)` : "")
   );
 
