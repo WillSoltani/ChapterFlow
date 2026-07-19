@@ -23,7 +23,10 @@ import * as logs from "aws-cdk-lib/aws-logs";
 import * as wafv2 from "aws-cdk-lib/aws-wafv2";
 import { type EnvName } from "./env-config";
 import { buildWebAclRules } from "./waf-rules";
-import { FRONTEND_SSM_RUNTIME_SECRET_NAMES } from "./frontend-runtime-config";
+import {
+  FRONTEND_SSM_RUNTIME_SECRET_NAMES,
+  resolveFrontendHostedZoneId,
+} from "./frontend-runtime-config";
 
 // ---------------------------------------------------------------------------
 // WS6-033: DynamoDB metrics by table NAME (this stack only has
@@ -95,6 +98,8 @@ export interface ChapterFlowFrontendStackProps extends cdk.StackProps {
   readonly ingestBucketName: string;
   readonly contentBucketName: string;
   readonly ssmPrefix: string;
+  /** Explicit environment-bound Route53 zone id for domain deployments. */
+  readonly hostedZoneId?: string;
   /** Optional non-secret OpenNext artifact fixture used by synth tests. */
   readonly openNextDir?: string;
   /**
@@ -832,12 +837,21 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
 
     let certificate: acm.ICertificate | undefined;
     let hostedZone: route53.IHostedZone | undefined;
+    const hostedZoneId = resolveFrontendHostedZoneId(
+      domainName,
+      props.hostedZoneId,
+    );
 
     // Only create certificate and DNS records if we have a domain
-    if (domainName) {
-      hostedZone = route53.HostedZone.fromLookup(this, "HostedZone", {
-        domainName,
-      });
+    if (domainName && hostedZoneId) {
+      hostedZone = route53.HostedZone.fromHostedZoneAttributes(
+        this,
+        "HostedZone",
+        {
+          hostedZoneId,
+          zoneName: domainName,
+        },
+      );
 
       certificate = new acm.Certificate(this, "Certificate", {
         domainName: `app.${domainName}`,

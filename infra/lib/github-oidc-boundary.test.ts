@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import fs from "node:fs";
 import path from "node:path";
+import { buildIamArtifacts } from "./iam-config-generator";
 
 const REPOSITORY = "WillSoltani/ChapterFlow";
 const EXPECTED_SUBJECTS = [
@@ -18,10 +19,13 @@ type TrustStatement = {
 };
 
 function readTrustStatement(): TrustStatement {
-  const trustPath = path.resolve(__dirname, "../../trust.json");
-  const trust = JSON.parse(fs.readFileSync(trustPath, "utf8")) as {
-    Statement?: TrustStatement[];
-  };
+  const trust = buildIamArtifacts({
+    accountId: "123456789012",
+    environment: "dev",
+    region: "us-east-1",
+    repository: REPOSITORY,
+    bootstrapQualifier: "hnb659fds",
+  }).trustPolicy as { Statement?: TrustStatement[] };
   assert.equal(trust.Statement?.length, 1);
   return trust.Statement[0];
 }
@@ -35,7 +39,7 @@ function subjectIsTrusted(statement: TrustStatement, subject: string): boolean {
   return allowed.includes(subject);
 }
 
-test("tracked GitHub OIDC trust admits only the three real Environment subjects", () => {
+test("generated GitHub OIDC trust admits only the three real Environment subjects", () => {
   const statement = readTrustStatement();
   assert.equal(statement.Effect, "Allow");
   assert.equal(statement.Action, "sts:AssumeRoleWithWebIdentity");

@@ -56,6 +56,7 @@ locally you still need the data vars + AWS credentials (§4).
 | **O** | Optional (has a safe default or only enables an extra feature) |
 | **auto** | CDK injects automatically; you do not set it |
 | **secret** | Supply as a GitHub **environment** secret (per env) |
+| **var** | Supply as a non-secret GitHub **environment** variable (per env) |
 | **ssm** | Supply as an SSM param `/chapterflow/<env>/<KEY>` (not injected by the workflow) |
 | **local** | Only consulted in local/dev or at build time; not wired into deployed Lambdas |
 
@@ -113,8 +114,9 @@ if a caller supplies them.
 | Variable | Req | Source | Purpose |
 |---|---|---|---|
 | `AWS_DEPLOY_ROLE_ARN` | R | secret | OIDC role the workflows assume. Set it in every deployable GitHub Environment; one shared role may be reused only with the finite `dev`/`staging`/`prod` environment-subject trust documented in [CI_CD.md](./CI_CD.md). |
-| `AWS_ACCOUNT_ID` | R | secret | `CDK_DEFAULT_ACCOUNT` for synth. |
+| `AWS_ACCOUNT_ID` | R | secret (CI carrier) | Low-sensitivity account identifier passed as `CDK_DEFAULT_ACCOUNT` for synth. The current workflows read the GitHub environment-secret channel for compatibility; it is not an authentication secret. |
 | `CHAPTERFLOW_DOMAIN_NAME` | O (R for prod custom domain) | secret | Apex/custom domain → ACM cert + Route53. **Must be a per-env secret** — a repo-level value would let dev/staging overwrite prod DNS (env-config has a hard guard that throws if a non-prod env resolves to the prod apex). |
+| `CHAPTERFLOW_HOSTED_ZONE_ID` | O (R with custom domain) | var | Exact Route53 hosted-zone id paired with `CHAPTERFLOW_DOMAIN_NAME`. The stack uses this explicit environment-bound value instead of an account-bound `cdk.context.json` lookup cache and fails closed when only one half is set. |
 | `CHAPTERFLOW_OPS_ALERT_EMAIL` | R (ops) | secret | Email subscribed to the `ChapterFlowOpsAlerts` SNS topic (backend: table-throttle + `OpsFailure`; frontend: server-fn errors/throttles/duration, ISR DLQ, CloudFront 5xx, `StripeWebhookFailure` — see [OPERATIONS.md §4](./OPERATIONS.md)). **Confirm the SNS subscription after first deploy or alerts never fire.** |
 | `WEB_ALLOWED_ORIGINS` | O | secret | Allowed origins consumed by the backend stack. |
 | `AWS_REGION` / `AWS_DEFAULT_REGION` | O | auto/runtime | Region, defaults to `us-east-1`. |

@@ -51,7 +51,10 @@ Default env is **`dev`**: a bare `cdk deploy` / `cdk synth` never touches prod.
 1. **GitHub Environments** (repo Settings → Environments): create `dev`,
    `staging`, `prod`. On `prod`, add yourself as a **required reviewer** (this is
    the manual-approval gate) and optionally restrict deployments to `main`/tags.
-2. **Environment-scoped secrets** (per environment): `AWS_DEPLOY_ROLE_ARN`,
+   For each environment with `CHAPTERFLOW_DOMAIN_NAME`, set the non-secret
+   environment variable `CHAPTERFLOW_HOSTED_ZONE_ID` to the matching Route53
+   zone id. The frontend fails closed unless domain and zone id are paired.
+2. **Environment-scoped deploy values** (per environment): `AWS_DEPLOY_ROLE_ARN`,
    `AWS_ACCOUNT_ID`, `CHAPTERFLOW_DOMAIN_NAME` (omit for dev/staging to serve on
    the CloudFront domain), `CHAPTERFLOW_APP_BASE_URL`, `CHAPTERFLOW_OPS_ALERT_EMAIL`,
    the `COGNITO_*`, `AUTH_COOKIE_DOMAIN`, the `BOOK_STRIPE_PRICE_ID*` values,
@@ -59,7 +62,9 @@ Default env is **`dev`**: a bare `cdk deploy` / `cdk synth` never touches prod.
    `AUTH_STATE_SECRET`, `BOOK_STRIPE_SECRET_KEY`, `BOOK_STRIPE_WEBHOOK_SECRET`,
    `ANTHROPIC_API_KEY`, and `ELEVENLABS_API_KEY` are SecureStrings under
    `/chapterflow/<env>/`, not GitHub-to-Lambda environment values. prod uses
-   today's live values.
+   today's live values. The current workflows read `AWS_ACCOUNT_ID` from the
+   GitHub environment-secret channel for compatibility, but the account id is
+   an identifier, not an authentication secret.
 3. **OIDC role** (`AWS_DEPLOY_ROLE_ARN`): configure the role ARN in every GitHub
    Environment that can deploy. A single shared role is valid because all three
    environments use one account, but its GitHub OIDC trust must use
@@ -67,12 +72,30 @@ Default env is **`dev`**: a bare `cdk deploy` / `cdk synth` never touches prod.
    `repo:WillSoltani/ChapterFlow:environment:dev`,
    `repo:WillSoltani/ChapterFlow:environment:staging`, and
    `repo:WillSoltani/ChapterFlow:environment:prod`. Do not use a repo-wide
-   wildcard. [`trust.json`](../trust.json) is the tracked policy shape; updating
-   the live role and proving positive/negative assumptions are owner-run gates.
+   wildcard. Generate valid account/environment-bound trust and permission JSON
+   from `CDK_DEFAULT_ACCOUNT` using the
+   [IAM artifact contract](../infra/iam/README.md); generated files are ignored.
+   Updating the live role and proving positive/negative assumptions are
+   owner-run gates.
 4. **Bootstrap** is already done for the account. A brand-new env's **backend
    must deploy before its app** (the app reads bucket names the backend
    publishes to SSM): dispatch with `deploy_infra=true, seed=true` once, then
    normal app deploys.
+
+AWS account ids and Route53 hosted-zone ids are low-sensitivity portability
+configuration, not authentication secrets. Keep them environment-scoped to
+avoid cross-environment deployment drift; never substitute an invalid JSON
+placeholder for either value.
+
+For the hosted-zone context migration, the owner obtains the already-known
+zone id through the normal AWS console/administrative process and sets
+`CHAPTERFLOW_HOSTED_ZONE_ID` beside `CHAPTERFLOW_DOMAIN_NAME`. First synth and
+deploy the frontend in a safe non-production environment, confirm its ACM/DNS
+records, then promote the same pairing to production. This repository no
+longer consumes or tracks `infra/cdk.context.json`, so an owner rolling back to
+an older commit must regenerate that older commit's lookup context with
+authorized AWS credentials before its synth/deploy. Live lookup, deployment,
+DNS verification, and rollback remain owner-run actions.
 
 ## 5) Health gate & rollback
 

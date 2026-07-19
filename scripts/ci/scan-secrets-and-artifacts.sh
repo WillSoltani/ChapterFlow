@@ -71,7 +71,7 @@ run_selftest() {
     "sk-ant-..." \
     "pk_live_FAKEpublishablekeyexample" \
     "AKIA-not-a-key" \
-    "928413605677" \
+    "123456789012" \
     "process.env.BOOK_STRIPE_SECRET_KEY" ; do
     if printf '%s' "$neg" | grep -qE "$SECRET_RE"; then
       red "selftest: FALSE POSITIVE on: $neg"; fails=$((fails + 1))

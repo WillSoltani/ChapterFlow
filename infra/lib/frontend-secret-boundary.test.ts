@@ -31,7 +31,10 @@ after(() => {
   fs.rmSync(openNextFixture, { recursive: true, force: true });
 });
 
-function synthFrontendTemplate(): Record<string, unknown> {
+function synthFrontendTemplate(options: {
+  domainName?: string;
+  hostedZoneId?: string;
+} = {}): Record<string, unknown> {
   const app = new cdk.App();
   const stack = new ChapterFlowFrontendStack(app, "ChapterFlowFrontend-dev", {
     env: { account: "123456789012", region: "us-east-1" },
@@ -43,6 +46,8 @@ function synthFrontendTemplate(): Record<string, unknown> {
     contentBucketName: "chapterflow-content-dev",
     ssmPrefix: "/chapterflow/dev",
     openNextDir: openNextFixture,
+    domainName: options.domainName,
+    hostedZoneId: options.hostedZoneId,
     serverEnv: Object.fromEntries([
       ...FRONTEND_SSM_RUNTIME_SECRET_NAMES.map((name) => [
         name,
@@ -126,4 +131,33 @@ test("frontend deploy does not export runtime SSM secrets into the CDK process",
       name,
     );
   }
+});
+
+test("custom domains fail closed without an explicit hosted-zone id", () => {
+  assert.throws(
+    () => synthFrontendTemplate({ domainName: "example.test" }),
+    /CHAPTERFLOW_HOSTED_ZONE_ID/,
+  );
+  assert.throws(
+    () =>
+      synthFrontendTemplate({
+        domainName: "example.test",
+        hostedZoneId: "not-a-zone-id",
+      }),
+    /CHAPTERFLOW_HOSTED_ZONE_ID has an invalid format/,
+  );
+});
+
+test("explicit hosted-zone binding synthesizes deterministic Route53 records without lookup context", () => {
+  const hostedZoneId = "Z0123456789SYNTHETIC";
+  const template = synthFrontendTemplate({
+    domainName: "example.test",
+    hostedZoneId,
+  });
+  const records = resourcesOfType(template, "AWS::Route53::RecordSet");
+  assert.equal(records.length, 6);
+  assert.equal(
+    records.every(({ HostedZoneId }) => HostedZoneId === hostedZoneId),
+    true,
+  );
 });

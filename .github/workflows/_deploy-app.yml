@@ -154,6 +154,7 @@ jobs:
           # App + domain
           CHAPTERFLOW_APP_BASE_URL: ${{ secrets.CHAPTERFLOW_APP_BASE_URL }}
           CHAPTERFLOW_DOMAIN_NAME: ${{ secrets.CHAPTERFLOW_DOMAIN_NAME }}
+          CHAPTERFLOW_HOSTED_ZONE_ID: ${{ vars.CHAPTERFLOW_HOSTED_ZONE_ID }}
           # Cognito
           COGNITO_DOMAIN: ${{ secrets.COGNITO_DOMAIN }}
           COGNITO_CUSTOM_DOMAIN: ${{ secrets.COGNITO_CUSTOM_DOMAIN }}

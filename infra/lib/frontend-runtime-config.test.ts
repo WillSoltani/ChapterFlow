@@ -11,6 +11,7 @@ import {
   FRONTEND_RUNTIME_ENV_REQUIREMENTS,
   buildFrontendRuntimeConfig,
   projectFrontendServerEnv,
+  resolveFrontendHostedZoneId,
   validateFrontendRuntimeEnvironment,
 } from "./frontend-runtime-config";
 
@@ -34,6 +35,26 @@ function productionDeployFixture(): Record<string, string> {
 }
 
 const PROD_SSM_PREFIX = "/chapterflow/prod";
+
+test("hosted-zone config validates before frontend stack construction", () => {
+  assert.equal(resolveFrontendHostedZoneId(undefined, undefined), undefined);
+  assert.equal(
+    resolveFrontendHostedZoneId("example.test", " Z12345SYNTHETIC "),
+    "Z12345SYNTHETIC",
+  );
+  assert.throws(
+    () => resolveFrontendHostedZoneId("example.test", undefined),
+    /must be configured together/,
+  );
+  assert.throws(
+    () => resolveFrontendHostedZoneId(undefined, "Z12345SYNTHETIC"),
+    /must be configured together/,
+  );
+  assert.throws(
+    () => resolveFrontendHostedZoneId("example.test", "not-a-zone"),
+    /invalid format/,
+  );
+});
 
 test("infra runtime requirement projection exactly matches the app authority", () => {
   assert.deepEqual(FRONTEND_RUNTIME_ENV_REQUIREMENTS, appProjection());

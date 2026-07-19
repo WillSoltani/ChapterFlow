@@ -185,6 +185,25 @@ function nonBlank(value: string | undefined): value is string {
   return value !== undefined && value.trim() !== "";
 }
 
+export function resolveFrontendHostedZoneId(
+  domainName: string | undefined,
+  rawHostedZoneId: string | undefined,
+): string | undefined {
+  const hasDomainName = nonBlank(domainName);
+  const hostedZoneId = rawHostedZoneId?.trim();
+
+  if (hasDomainName !== nonBlank(hostedZoneId)) {
+    throw new Error(
+      "CHAPTERFLOW_DOMAIN_NAME and CHAPTERFLOW_HOSTED_ZONE_ID must be configured together",
+    );
+  }
+  if (hostedZoneId && !/^Z[A-Z0-9]{5,31}$/.test(hostedZoneId)) {
+    throw new Error("CHAPTERFLOW_HOSTED_ZONE_ID has an invalid format");
+  }
+
+  return hostedZoneId || undefined;
+}
+
 export function validateFrontendRuntimeEnvironment(
   env: Record<string, string | undefined>,
 ): RuntimeEnvFailure[] {

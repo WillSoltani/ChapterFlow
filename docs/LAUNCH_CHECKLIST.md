@@ -32,8 +32,12 @@ Items marked **⚠ launch-blocking** silently fail (no error) if skipped.
       gate) and optionally restrict deployments to `main`/tags.
 - [ ] Create the **OIDC deploy role** and store its ARN as the `AWS_DEPLOY_ROLE_ARN`
       env secret: trusts `token.actions.githubusercontent.com` (aud
-      `sts.amazonaws.com`), `sub` scoped to `repo:WillSoltani/ChapterFlow:*`,
-      with CDK-deploy permissions. Store `AWS_ACCOUNT_ID` too.
+      `sts.amazonaws.com`), with `sub` equal to the finite `dev`, `staging`, and
+      `prod` GitHub Environment subjects. Generate the account/environment-bound
+      JSON via [infra/iam/README.md](../infra/iam/README.md), then owner-review
+      and apply it. Store `AWS_ACCOUNT_ID` too; it is a low-sensitivity
+      identifier that the current workflows read from the environment-secret
+      channel for compatibility, not an authentication secret.
 
 ## 2) Per-environment secrets
 
@@ -52,12 +56,16 @@ values). Full purpose table: [ENVIRONMENT.md §3.B/§3.C](./ENVIRONMENT.md).
 - [ ] `CHAPTERFLOW_DOMAIN_NAME` — set **per-env** for a custom domain; **omit for
       dev/staging** to serve on the CloudFront domain. Never set repo-wide (DNS
       hijack guard will throw).
+- [ ] `CHAPTERFLOW_HOSTED_ZONE_ID` — non-secret **environment variable** paired
+      with every `CHAPTERFLOW_DOMAIN_NAME`; the frontend fails closed if only
+      one is set.
 - [ ] `CHAPTERFLOW_OPS_ALERT_EMAIL` — see §6.
 
 **Auth (Cognito)**
 - [ ] `COGNITO_DOMAIN`, `COGNITO_CLIENT_ID`, `COGNITO_USER_POOL_ID`,
       `COGNITO_REGION`, `COGNITO_REDIRECT_URI`, `COGNITO_LOGOUT_REDIRECT_URI`
-- [ ] `AUTH_STATE_SECRET` — **≥ 32 chars** (login state crypto throws otherwise).
+- [ ] `AUTH_STATE_SECRET` — provision as an SSM SecureString under
+      `/chapterflow/<env>/`; **≥ 32 chars** (production boot fails otherwise).
 - [ ] `AUTH_COOKIE_DOMAIN` — e.g. `.chapterflow.ca`.
 
 **Billing (Stripe)**
