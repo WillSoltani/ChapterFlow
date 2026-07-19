@@ -111,7 +111,7 @@ the ones that are present.
 
 | Variable | Req | Source | Purpose |
 |---|---|---|---|
-| `AWS_DEPLOY_ROLE_ARN` | R | secret | OIDC role the workflows assume. |
+| `AWS_DEPLOY_ROLE_ARN` | R | secret | OIDC role the workflows assume. Set it in every deployable GitHub Environment; one shared role may be reused only with the finite `dev`/`staging`/`prod` environment-subject trust documented in [CI_CD.md](./CI_CD.md). |
 | `AWS_ACCOUNT_ID` | R | secret | `CDK_DEFAULT_ACCOUNT` for synth. |
 | `CHAPTERFLOW_DOMAIN_NAME` | O (R for prod custom domain) | secret | Apex/custom domain → ACM cert + Route53. **Must be a per-env secret** — a repo-level value would let dev/staging overwrite prod DNS (env-config has a hard guard that throws if a non-prod env resolves to the prod apex). |
 | `CHAPTERFLOW_OPS_ALERT_EMAIL` | R (ops) | secret | Email subscribed to the `ChapterFlowOpsAlerts` SNS topic (backend: table-throttle + `OpsFailure`; frontend: server-fn errors/throttles/duration, ISR DLQ, CloudFront 5xx, `StripeWebhookFailure` — see [OPERATIONS.md §4](./OPERATIONS.md)). **Confirm the SNS subscription after first deploy or alerts never fire.** |

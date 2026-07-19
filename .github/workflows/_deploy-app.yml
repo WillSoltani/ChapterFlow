@@ -27,8 +27,28 @@ env:
   AWS_REGION: us-east-1
 
 jobs:
+  # workflow_call inputs are strings, so reject anything outside the three
+  # configured GitHub Environments before a deployment job can bind an
+  # environment, receive its secrets, or request an OIDC token.
+  validate-environment:
+    name: Validate deployment environment
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    env:
+      DEPLOY_ENVIRONMENT: ${{ inputs.environment }}
+    steps:
+      - name: Require a configured environment
+        run: |
+          set -euo pipefail
+          case "$DEPLOY_ENVIRONMENT" in
+            dev|staging|prod) ;;
+            *) echo "::error::invalid environment '$DEPLOY_ENVIRONMENT'"; exit 1 ;;
+          esac
+
   deploy-app:
     name: Frontend stack (${{ inputs.environment }})
+    needs: validate-environment
     runs-on: ubuntu-latest
     timeout-minutes: 40
     environment: ${{ inputs.environment }}

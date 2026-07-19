@@ -56,10 +56,15 @@ Default env is **`dev`**: a bare `cdk deploy` / `cdk synth` never touches prod.
    the CloudFront domain), `CHAPTERFLOW_APP_BASE_URL`, `CHAPTERFLOW_OPS_ALERT_EMAIL`,
    the `COGNITO_*`, `AUTH_*`, `BOOK_STRIPE_*`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`,
    `ANTHROPIC_API_KEY`, `ELEVENLABS_API_KEY`. prod uses today's live values.
-3. **OIDC role** (`AWS_DEPLOY_ROLE_ARN`): an IAM role trusting GitHub OIDC
-   (`token.actions.githubusercontent.com`, aud `sts.amazonaws.com`) scoped to
-   `repo:WillSoltani/ChapterFlow:*`, with CDK-deploy permissions. One role per
-   account is fine since all envs share the account.
+3. **OIDC role** (`AWS_DEPLOY_ROLE_ARN`): configure the role ARN in every GitHub
+   Environment that can deploy. A single shared role is valid because all three
+   environments use one account, but its GitHub OIDC trust must use
+   `StringEquals` for aud `sts.amazonaws.com` and the explicit subject list
+   `repo:WillSoltani/ChapterFlow:environment:dev`,
+   `repo:WillSoltani/ChapterFlow:environment:staging`, and
+   `repo:WillSoltani/ChapterFlow:environment:prod`. Do not use a repo-wide
+   wildcard. [`trust.json`](../trust.json) is the tracked policy shape; updating
+   the live role and proving positive/negative assumptions are owner-run gates.
 4. **Bootstrap** is already done for the account. A brand-new env's **backend
    must deploy before its app** (the app reads bucket names the backend
    publishes to SSM): dispatch with `deploy_infra=true, seed=true` once, then
