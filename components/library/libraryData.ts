@@ -4,7 +4,7 @@ import { getBookCoverPath } from "@/lib/book-covers";
 import type {
   LibraryCatalogBook,
   LibraryBookEntry,
-} from "@/app/book/_lib/library-data";
+} from "@/lib/library-data";
 
 export type Category =
   | "Psychology"

@@ -19,7 +19,7 @@ import {
   BOOKS_CATALOG,
   getBookSynopsis,
   getBookChapterCount,
-} from "@/app/book/data/booksCatalog";
+} from "@/lib/books-catalog";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
 import { FREE_OFFER_LABEL } from "@/lib/pricing";

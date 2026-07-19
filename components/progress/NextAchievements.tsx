@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { X } from "lucide-react";
-import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "@/app/book/badges/lib/badge-ui-definitions";
+import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "@/lib/badges/badge-ui-definitions";
 import type { Milestone } from "./progressTypes";
 
 interface NextAchievementsProps {

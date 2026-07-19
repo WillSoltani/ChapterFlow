@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { ProBadge } from "./ProBadge";
 import { BookCover } from "@/components/ui/BookCover";
-import { formatAttributedRatingsCount } from "@/app/book/data/bookRatings";
+import { formatAttributedRatingsCount } from "@/lib/book-ratings";
 import { Star } from "lucide-react";
 
 interface UserBookData {

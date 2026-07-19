@@ -1,0 +1,124 @@
+"use client";
+
+// Canonical shared library-catalog selector hook (WS3-001).
+
+import { useMemo } from "react";
+import { useDashboardQuery } from "@/hooks/book/useDashboardQuery";
+import {
+  buildLibraryCategoryOptions,
+  buildLibraryDifficultyOptions,
+  type LibraryBookEntry,
+  type LibraryCatalogBook,
+} from "@/lib/library-data";
+import { canonicalizeCategory } from "@/lib/category-taxonomy";
+
+type DashboardCatalogPayload = {
+  catalog: LibraryCatalogBook[];
+  progress: Array<{
+    bookId: string;
+    currentChapterNumber: number;
+    unlockedThroughChapterNumber: number;
+    completedChapters: number[];
+    bestScoreByChapter: Record<string, number>;
+    lastOpenedAt?: string;
+    lastActiveAt?: string;
+  }>;
+  bookStates: Array<{
+    bookId: string;
+    currentChapterId: string;
+    completedChapterIds: string[];
+    unlockedChapterIds: string[];
+    chapterScores: Record<string, number>;
+    chapterCompletedAt: Record<string, string>;
+    lastReadChapterId: string;
+    lastOpenedAt: string;
+    updatedAt: string;
+  }>;
+};
+
+const EPOCH_ISO = new Date(0).toISOString();
+
+export type { DashboardCatalogPayload };
+
+export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry[] {
+  const progressByBook = new Map(payload.progress.map((item) => [item.bookId, item]));
+  const stateByBook = new Map(payload.bookStates.map((item) => [item.bookId, item]));
+
+  return payload.catalog.map((book) => {
+    const progress = progressByBook.get(book.id);
+    const state = stateByBook.get(book.id);
+    const chaptersCompleted = Math.max(
+      state?.completedChapterIds.length ?? 0,
+      progress?.completedChapters.length ?? 0
+    );
+    const chaptersTotal = Math.max(1, book.chapterCount);
+    const progressPercent = Math.min(
+      100,
+      Math.round((chaptersCompleted / chaptersTotal) * 100)
+    );
+    const status =
+      chaptersCompleted >= chaptersTotal
+        ? "completed"
+        : chaptersCompleted > 0 || Boolean(state || progress)
+          ? "in_progress"
+          : "not_started";
+
+    const lastActivityAt =
+      (state?.lastOpenedAt && state.lastOpenedAt !== EPOCH_ISO ? state.lastOpenedAt : null) ||
+      (state?.updatedAt && state.updatedAt !== EPOCH_ISO ? state.updatedAt : null) ||
+      progress?.lastActiveAt ||
+      progress?.lastOpenedAt ||
+      EPOCH_ISO;
+
+    return {
+      ...book,
+      // Canonicalize the runtime catalog's category at this entry-construction
+      // boundary so the options (buildLibraryCategoryOptions), the filter match
+      // (useLibraryFilters: entry.category === filters.category) and the per-card
+      // tag of THIS library-data surface stay internally consistent. (This
+      // surface currently has no live consumer — the shipped in-app library uses
+      // the closed-enum components/library path — so the edit is drift-proofing,
+      // not load-bearing; kept for the named LM-4 builder.) See lib/category-taxonomy.ts.
+      category: canonicalizeCategory(book.category),
+      status,
+      progressPercent,
+      chaptersTotal,
+      chaptersCompleted,
+      isNew: status === "not_started",
+      lastActivityAt,
+    };
+  });
+}
+
+export function useLibraryCatalogData(enabled = true) {
+  // Selector over the canonical dashboard query (WS3-025) — no direct fetch, so
+  // this shares the deduped/cached aggregate with every other consumer.
+  const { data, error, loading } = useDashboardQuery(enabled);
+
+  const entries: LibraryBookEntry[] = useMemo(() => {
+    if (!data) return [];
+    return buildEntries({
+      catalog: data.catalog ?? [],
+      progress: data.progress ?? [],
+      bookStates: data.bookStates ?? [],
+    });
+  }, [data]);
+
+  const categoryOptions = useMemo(() => buildLibraryCategoryOptions(entries), [entries]);
+  const difficultyOptions = useMemo(() => buildLibraryDifficultyOptions(entries), [entries]);
+
+  const errorMessage = error
+    ? error instanceof Error
+      ? error.message
+      : "Unable to load your library."
+    : null;
+
+  return {
+    hydrated: !loading,
+    loading,
+    error: errorMessage,
+    entries,
+    categoryOptions,
+    difficultyOptions,
+  };
+}

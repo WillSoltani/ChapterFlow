@@ -6,7 +6,7 @@ import {
   announceBookCacheAuthGeneration,
   consumeBookCacheAuthReloadRequired,
   reconcileBookCacheAuthGeneration,
-} from "@/app/book/_lib/book-api-cache";
+} from "@/lib/client/book-api-cache";
 import {
   AUTH_CACHE_GENERATION_CHANGED_EVENT,
   AUTH_CACHE_GENERATION_STORAGE_KEY,

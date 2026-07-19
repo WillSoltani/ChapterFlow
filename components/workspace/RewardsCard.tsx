@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
-import { INSIGHT_POINTS_EARNING_RULES } from "@/app/book/_lib/flow-points-economy";
+import { INSIGHT_POINTS_EARNING_RULES } from "@/lib/flow-points-economy";
 
 interface RewardsCardProps {
   insightPoints: number;

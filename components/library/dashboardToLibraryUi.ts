@@ -7,7 +7,8 @@
 import type {
   LibraryCatalogBook,
   LibraryBookEntry,
-} from "@/app/book/_lib/library-data";
+} from "@/lib/library-data";
+import type { DashboardEntitlement } from "@/lib/dashboard-contracts";
 import {
   buildLibraryBookFromCatalog,
   type LibraryBook,
@@ -15,12 +16,7 @@ import {
   type WeeklyChallenge,
 } from "./libraryData";
 
-/** The subset of the dashboard `entitlement` object the library UI reads. */
-export type DashboardEntitlement = {
-  plan: "FREE" | "PRO";
-  freeBookSlots: number;
-  unlockedBookIds: string[];
-} | null;
+export type { DashboardEntitlement } from "@/lib/dashboard-contracts";
 
 export function toLibraryBooks(
   catalog: LibraryCatalogBook[],

@@ -9,7 +9,7 @@ import {
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { LearningLoopIndicator } from "./LearningLoopIndicator";
-import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
+import { BOOKS_CATALOG } from "@/lib/books-catalog";
 import { getBookCoverPath } from "@/lib/book-covers";
 
 type LoopStep = "summary" | "scenarios" | "quiz" | "unlock";

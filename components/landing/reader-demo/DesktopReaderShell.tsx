@@ -8,14 +8,13 @@ import {
   useInView,
 } from "framer-motion";
 
-import { PhaseStepper } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PhaseStepper";
-import { SummaryCard } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SummaryCard";
-import { ExamplesList } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList";
-import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
-import { ContinueButton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ContinueButton";
-import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
-import type { ExampleFilter } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
-import type { ReadingDepth } from "@/app/book/data/bookChapters";
+import { PhaseStepper } from "@/components/reader/PhaseStepper";
+import { SummaryCard } from "@/components/reader/SummaryCard";
+import { ExamplesList } from "@/components/reader/ExamplesList";
+import { PracticePhase } from "@/components/reader/PracticePhase";
+import { ContinueButton } from "@/components/reader/ContinueButton";
+import type { ChapterTab, ExampleFilter } from "@/lib/reader-state-types";
+import type { ReadingDepth } from "@/lib/reader-content-types";
 
 import { AppWindowChrome } from "./AppWindowChrome";
 import { MobileAppChrome } from "./MobileAppChrome";

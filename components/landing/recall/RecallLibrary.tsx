@@ -34,7 +34,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { LayoutGrid } from "lucide-react";
-import { getBookById } from "@/app/book/data/booksCatalog";
+import { getBookById } from "@/lib/books-catalog";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";

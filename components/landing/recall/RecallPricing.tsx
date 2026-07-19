@@ -21,7 +21,7 @@
 import { useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
-import { SegmentedControl } from "@/app/book/settings/components/controls/SegmentedControl";
+import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import {
   PRICING,

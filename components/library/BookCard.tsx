@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { ChevronDown } from "lucide-react";
 import { BookCover } from "@/components/ui/BookCover";
-import { BookSaveButton } from "@/app/book/components/BookSaveButton";
+import { BookSaveButton } from "@/components/book/BookSaveButton";
 import { useLibraryContext, computeProLocked } from "./LibraryContext";
 import { formatReadingTime, type LibraryBook } from "./libraryData";
 

@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { BookCover } from "@/components/ui/BookCover";
 import { ProgressRing } from "./ProgressRing";
-import { BookSaveButton } from "@/app/book/components/BookSaveButton";
+import { BookSaveButton } from "@/components/book/BookSaveButton";
 import { useLibraryContext } from "./LibraryContext";
 import {
   formatReadingTime,

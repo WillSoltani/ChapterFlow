@@ -10,7 +10,7 @@ import {
   Trophy,
   X,
 } from "lucide-react";
-import type { ChapterQuizQuestion } from "@/app/book/data/bookChapters";
+import type { ChapterQuizQuestion } from "@/lib/reader-content-types";
 
 const OPTION_LABELS = ["A", "B", "C", "D"];
 

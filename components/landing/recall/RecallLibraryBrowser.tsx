@@ -23,7 +23,7 @@ import { Dialog } from "@/components/ui/Dialog";
 import {
   BOOKS_CATALOG_METADATA,
   type BookCatalogMetadata,
-} from "@/app/book/data/booksCatalog";
+} from "@/lib/books-catalog";
 import { useBookCoverSource } from "@/lib/use-book-cover-source";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
 import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";

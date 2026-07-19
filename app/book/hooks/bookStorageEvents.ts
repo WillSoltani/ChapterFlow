@@ -1,10 +1,2 @@
-export const BOOK_STORAGE_EVENT = "book-accelerator:storage-changed";
-
-export function emitBookStorageChanged(scope: string) {
-  if (typeof window === "undefined") return;
-  window.dispatchEvent(
-    new CustomEvent(BOOK_STORAGE_EVENT, {
-      detail: { scope, at: Date.now() },
-    })
-  );
-}
+// Compatibility shim (WS3-001): storage events now live below the route tree.
+export * from "@/lib/client/book-storage-events";
