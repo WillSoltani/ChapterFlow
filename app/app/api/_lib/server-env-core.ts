@@ -83,7 +83,7 @@ function errorFields(error: unknown): string[] {
   );
 }
 
-export type SsmErrorDisposition = "skip" | "record";
+export type SsmErrorDisposition = "skip" | "throw";
 
 /**
  * Decide how a failed `GetParameter` call on a single candidate should be
@@ -91,21 +91,20 @@ export type SsmErrorDisposition = "skip" | "record";
  *
  *   - `"skip"`  → this candidate is unusable but it's an *expected* miss, so move
  *                 on to the next candidate WITHOUT recording an error.
- *   - `"record"`→ this is a real failure; record it as `lastError` so it can
- *                 propagate (loud-fail under a prefix) or be flagged transient.
+ *   - `"throw"` → this is a real failure that must propagate immediately.
  *
  * Rules:
  *   - `ParameterNotFound` on ANY candidate → `"skip"` (the name just doesn't exist).
  *   - `AccessDenied` (incl. KMS `AccessDeniedException`) on an UNSCOPED bare-name
  *     fallback → `"skip"`: the Lambda role is intentionally scoped to this env's
  *     SSM prefix, so being denied the unscoped names is expected.
- *   - `AccessDenied` on a PREFIX-SCOPED candidate → `"record"`: that name is the
+ *   - `AccessDenied` on a PREFIX-SCOPED candidate → `"throw"`: that name is the
  *     one the role is supposed to be able to read. A denial there means an IAM
  *     mis-scope (prefix typo, region/account mismatch, KMS-decrypt denial) — a
  *     real misconfiguration that must surface, NOT be silently cached as a
  *     permanent "missing" value (which would leave SSM-only config — VAPID_*,
  *     SES_SENDER_EMAIL — absent for the whole process lifetime).
- *   - anything else → `"record"`.
+ *   - anything else → `"throw"`.
  */
 export function classifySsmCandidateError(
   error: unknown,
@@ -117,11 +116,11 @@ export function classifySsmCandidateError(
   const isAccessDenied = fields.some((f) => f.includes("AccessDenied"));
   if (isAccessDenied) {
     // Expected only on the unscoped fallbacks; on the in-scope prefixed name it
-    // is a real misconfiguration that must be recorded (and propagated).
-    return prefixScoped ? "record" : "skip";
+    // is a real misconfiguration that must propagate immediately.
+    return prefixScoped ? "throw" : "skip";
   }
 
-  return "record";
+  return "throw";
 }
 
 export type SsmParameterReadRequest = {
