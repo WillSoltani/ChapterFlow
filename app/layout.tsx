@@ -7,7 +7,6 @@ import {
   CHAPTERFLOW_TAGLINE,
   getChapterFlowSiteUrl,
 } from "@/app/_lib/chapterflow-brand";
-import { MotionProvider } from "@/components/MotionProvider";
 import { AuthCacheBoundary } from "@/components/auth/AuthCacheBoundary";
 import { buildDocumentThemeBootstrapScript } from "@/app/_lib/document-theme";
 
@@ -32,6 +31,7 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   display: "swap",
+  preload: false,
 });
 
 // Literary serif reading voice (NS-1). Provides the --font-newsreader variable
@@ -44,6 +44,7 @@ const newsreader = Newsreader({
   variable: "--font-newsreader",
   display: "swap",
   style: ["normal", "italic"],
+  preload: false,
 });
 
 export const viewport: Viewport = {
@@ -111,7 +112,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen w-full overflow-x-hidden antialiased font-(--font-body)">
         <AuthCacheBoundary />
-        <MotionProvider>{children}</MotionProvider>
+        {children}
         {/* Color-blind support no longer uses an SVG feColorMatrix filter on
             <html>. That global url() filter forced a full-page raster on every
             paint (heavy GPU/jank) and was a color *simulation* that compounded

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { Bookmark, BookmarkPlus } from "lucide-react";
 import type { ChapterSummaryBlock } from "@/lib/reader-content-types";
@@ -218,7 +218,7 @@ export function SummaryCard({
                           {open ? "Show less" : "Show more"}
                         </button>
 
-                        <motion.div
+                        <m.div
                           initial={false}
                           animate={{
                             height: open ? "auto" : 0,
@@ -230,7 +230,7 @@ export function SummaryCard({
                           <p className={`mt-3 text-(--cr-text-secondary) ${fontScaleClass}`}>
                             {block.detail}
                           </p>
-                        </motion.div>
+                        </m.div>
                       </>
                     )}
                   </div>

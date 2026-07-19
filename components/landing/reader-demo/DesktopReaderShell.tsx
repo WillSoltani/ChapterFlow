@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  motion,
+  m,
   AnimatePresence,
   useReducedMotion,
   useInView,
@@ -258,7 +258,7 @@ export function DesktopReaderShell({
         onClick={isControlled ? undefined : markInteracted}
       >
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={`${activeTab}-${readingDepth}`}
             initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -346,7 +346,7 @@ export function DesktopReaderShell({
                 chapterId={DEMO_CHAPTER_ID}
               />
             )}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
     </div>

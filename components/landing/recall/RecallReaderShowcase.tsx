@@ -20,7 +20,7 @@
  * and the first client render agree). This avoids the hydration mismatch a
  * motion.div ↔ plain div swap would cause.
  */
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import type { ReactNode } from "react";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
@@ -28,7 +28,7 @@ export function RecallReaderShowcase({ children }: { children: ReactNode }) {
   const reduced = usePrefersReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       className="recall-reader-demo"
       initial={{ opacity: 0, y: 36, scale: 0.965 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -36,6 +36,6 @@ export function RecallReaderShowcase({ children }: { children: ReactNode }) {
       transition={reduced ? { duration: 0 } : { duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

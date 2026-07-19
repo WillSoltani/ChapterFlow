@@ -17,6 +17,7 @@ import { RecallFaq } from "@/components/landing/recall/RecallFaq";
 import { recallFaqJsonLd } from "@/components/landing/recall/recall-faq-data";
 import { RecallPricing } from "@/components/landing/recall/RecallPricing";
 import { RecallClose } from "@/components/landing/recall/RecallClose";
+import { LandingMotionProvider } from "@/components/landing/LandingMotionProvider";
 
 export const metadata: Metadata = {
   title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
@@ -82,7 +83,8 @@ export default function Home() {
   ];
 
   return (
-    <div className="landing-dark relative min-h-screen">
+    <LandingMotionProvider>
+      <div className="landing-dark relative min-h-screen">
       <script
         type="application/ld+json"
         // Escape `<` so a literal "</script>" inside any JSON-LD string (e.g. a
@@ -148,6 +150,7 @@ export default function Home() {
       <RecallReveal className="relative z-10">
         <RecallClose />
       </RecallReveal>
-    </div>
+      </div>
+    </LandingMotionProvider>
   );
 }

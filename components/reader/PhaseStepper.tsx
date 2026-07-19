@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { Check, FileText, HelpCircle, Lightbulb, Lock } from "lucide-react";
 import type { ComponentType } from "react";
@@ -201,7 +201,7 @@ export function PhaseStepper({
                           "repeating-linear-gradient(to right, var(--cr-text-secondary) 0 4px, transparent 4px 8px)",
                       }}
                     />
-                    <motion.div
+                    <m.div
                       className="absolute inset-y-0 left-0 rounded-full"
                       initial={{ scaleX: 0 }}
                       animate={{

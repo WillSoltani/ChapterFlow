@@ -17,7 +17,7 @@
  * Token-only color, pointer-events-none, aria-hidden. The sections above render
  * transparent so these blooms read through the whole page.
  */
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
 export function RecallAmbient() {
@@ -44,7 +44,7 @@ export function RecallAmbient() {
       <div className="rl-ambient-spot" />
 
       {/* upper-right bloom — seats the hero in light */}
-      <motion.div
+      <m.div
         className="absolute -right-[10%] -top-[15%] h-[70vh] w-[70vh] rounded-full"
         style={{
           background:
@@ -53,7 +53,7 @@ export function RecallAmbient() {
         }}
       />
       {/* lower-left bloom — keeps the mid/lower page from going dead-flat */}
-      <motion.div
+      <m.div
         className="absolute -bottom-[20%] -left-[12%] h-[60vh] w-[60vh] rounded-full"
         style={{
           background:

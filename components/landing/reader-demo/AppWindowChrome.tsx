@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Search, User } from "lucide-react";
 import {
   DEMO_BOOK_TITLE,
@@ -52,7 +52,7 @@ export function AppWindowChrome() {
         {/* No layoutId: V5 mounts two reader consoles (hero + signature) at once,
             and a shared layoutId across both collides (framer warp/warnings). The
             title doesn't transition position, so it needs no shared-layout id. */}
-        <motion.span
+        <m.span
           className="text-cf-label-sm truncate"
           style={{
             color: "var(--cr-text-secondary)",
@@ -60,7 +60,7 @@ export function AppWindowChrome() {
           }}
         >
           {DEMO_BOOK_TITLE} · Ch {DEMO_CHAPTER_NUMBER}
-        </motion.span>
+        </m.span>
       </div>
 
       {/* Right side icons (decorative — no behavior) */}
