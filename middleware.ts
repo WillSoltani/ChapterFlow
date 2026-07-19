@@ -43,7 +43,7 @@ function orphanSlugRedirect(req: NextRequest): NextResponse | null {
   return NextResponse.redirect(url, 308);
 }
 
-function resolveRequestOrigin(req: NextRequest): string {
+function resolveRequestOrigin(req: NextRequest): string | null {
   // Prefer an explicitly-configured, trusted base URL over any request header.
   // `x-forwarded-host` is attacker-controllable on a directly-reachable origin
   // (no CloudFront custom-origin-header pin, or a Function URL with authType
@@ -158,6 +158,15 @@ export function middleware(req: NextRequest) {
 
   if (!token || isExpired) {
     const publicOrigin = resolveRequestOrigin(req);
+    if (!publicOrigin) {
+      return new NextResponse(
+        JSON.stringify({ error: "invalid_request_origin" }),
+        {
+          status: 400,
+          headers: { "content-type": "application/json" },
+        },
+      );
+    }
     const loginUrl = new URL("/auth/login", publicOrigin);
     // Emit a RELATIVE returnTo (path + query only). sanitizeReturnTo accepts
     // same-origin relative paths unconditionally (isSafeInternalPath), so the

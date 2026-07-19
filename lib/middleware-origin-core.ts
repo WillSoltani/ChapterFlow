@@ -99,13 +99,14 @@ function requestDerivedOrigin(
  * Resolve the authority used by middleware redirects without trusting raw
  * request headers. An explicit deploy-provided base keeps precedence. When no
  * configured base is usable, production accepts only the canonical HTTPS
- * ChapterFlow hosts; malformed or attacker-controlled authorities fall back to
- * the framework-computed `nextUrl.origin`.
+ * ChapterFlow hosts. The framework fallback is validated through that same
+ * boundary because OpenNext can derive `nextUrl.origin` from forwarded request
+ * headers. If every candidate is untrusted, the caller must fail closed.
  */
 export function resolveMiddlewareOrigin(
   request: MiddlewareOriginRequest,
   env: MiddlewareOriginEnv,
-): string {
+): string | null {
   const isProduction = env.nodeEnv === "production";
   const configuredBaseUrl =
     env.appBaseUrl?.trim() || env.chapterFlowAppBaseUrl?.trim();
@@ -133,5 +134,11 @@ export function resolveMiddlewareOrigin(
     if (resolvedRequestOrigin) return resolvedRequestOrigin;
   }
 
-  return request.fallbackOrigin.replace(/\/+$/, "");
+  const parsedFallback = parseHttpOrigin(request.fallbackOrigin);
+  if (!parsedFallback) return null;
+  return requestDerivedOrigin(
+    parsedFallback.host,
+    parsedFallback.protocol.slice(0, -1),
+    isProduction,
+  );
 }

@@ -36,14 +36,17 @@ function withMiddlewareEnv(
   }
 }
 
-function protectedRequest(headers: Record<string, string>): NextRequest {
+function protectedRequest(
+  headers: Record<string, string>,
+  origin = "https://framework-origin.internal",
+): NextRequest {
   return new NextRequest(
-    "https://framework-origin.internal/book/library?chapter=2",
+    `${origin}/book/library?chapter=2`,
     { headers },
   );
 }
 
-test("GAP-01: attacker forwarded host never becomes the login redirect authority", () => {
+test("GAP-01: attacker request and fallback authorities fail closed", () => {
   withMiddlewareEnv(
     {
       NODE_ENV: "production",
@@ -53,16 +56,46 @@ test("GAP-01: attacker forwarded host never becomes the login redirect authority
     },
     () => {
       const response = middleware(
-        protectedRequest({
-          host: "app.chapterflow.ca",
-          "x-forwarded-host": "evil.example, app.chapterflow.ca",
-          "x-forwarded-proto": "https",
-        }),
+        protectedRequest(
+          {
+            host: "evil.example",
+            "x-forwarded-host": "evil.example",
+            "x-forwarded-proto": "https",
+          },
+          "https://evil.example",
+        ),
+      );
+
+      assert.equal(response.status, 400);
+      assert.equal(response.headers.has("location"), false);
+      assert.equal(response.headers.get("content-type"), "application/json");
+    },
+  );
+});
+
+test("GAP-01: rejected forwarded host can use a canonical framework fallback", () => {
+  withMiddlewareEnv(
+    {
+      NODE_ENV: "production",
+      DEV_AUTH_BYPASS: "0",
+      COGNITO_REGION: "us-east-1",
+      COGNITO_USER_POOL_ID: "pool-test",
+    },
+    () => {
+      const response = middleware(
+        protectedRequest(
+          {
+            host: "app.chapterflow.ca",
+            "x-forwarded-host": "evil.example, app.chapterflow.ca",
+            "x-forwarded-proto": "https",
+          },
+          "https://app.chapterflow.ca",
+        ),
       );
 
       assert.equal(response.status, 307);
       const location = new URL(response.headers.get("location") ?? "");
-      assert.equal(location.origin, "https://framework-origin.internal");
+      assert.equal(location.origin, "https://app.chapterflow.ca");
       assert.equal(location.pathname, "/auth/login");
       assert.equal(
         location.searchParams.get("returnTo"),

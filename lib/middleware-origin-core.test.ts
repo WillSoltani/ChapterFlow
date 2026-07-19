@@ -5,7 +5,7 @@ import {
   type MiddlewareOriginEnv,
 } from "./middleware-origin-core";
 
-const FRAMEWORK_ORIGIN = "https://framework-origin.internal";
+const TRUSTED_FRAMEWORK_ORIGIN = "https://chapterflow.ca";
 
 function env(
   overrides: Partial<MiddlewareOriginEnv> = {},
@@ -19,10 +19,10 @@ function env(
 function resolve(
   request: Partial<Parameters<typeof resolveMiddlewareOrigin>[0]> = {},
   environment: Partial<MiddlewareOriginEnv> = {},
-): string {
+): string | null {
   return resolveMiddlewareOrigin(
     {
-      fallbackOrigin: FRAMEWORK_ORIGIN,
+      fallbackOrigin: TRUSTED_FRAMEWORK_ORIGIN,
       ...request,
     },
     env(environment),
@@ -61,7 +61,7 @@ test("invalid or production-loopback configured bases are ignored safely", () =>
     "https://user@app.chapterflow.ca",
     "http://localhost:3000",
   ]) {
-    assert.equal(resolve({}, { appBaseUrl }), FRAMEWORK_ORIGIN);
+    assert.equal(resolve({}, { appBaseUrl }), TRUSTED_FRAMEWORK_ORIGIN);
   }
 });
 
@@ -74,8 +74,19 @@ test("production attacker forwarded or Host authorities fall back to the framewo
     { forwardedHostHeader: "app.chapterflow.ca/path" },
     { forwardedHostHeader: "app.chapterflow.ca?evil" },
   ]) {
-    assert.equal(resolve(request), FRAMEWORK_ORIGIN);
+    assert.equal(resolve(request), TRUSTED_FRAMEWORK_ORIGIN);
   }
+});
+
+test("production rejects attacker-controlled request and fallback authorities", () => {
+  assert.equal(
+    resolve({
+      forwardedHostHeader: "evil.example",
+      hostHeader: "evil.example",
+      fallbackOrigin: "https://evil.example",
+    }),
+    null,
+  );
 });
 
 test("the first forwarded host value controls the decision", () => {
@@ -84,7 +95,7 @@ test("the first forwarded host value controls the decision", () => {
       forwardedHostHeader: "evil.example, app.chapterflow.ca",
       hostHeader: "app.chapterflow.ca",
     }),
-    FRAMEWORK_ORIGIN,
+    TRUSTED_FRAMEWORK_ORIGIN,
   );
   assert.equal(
     resolve({
@@ -119,7 +130,7 @@ test("canonical default ports normalize and non-default or invalid ports fail cl
     "app.chapterflow.ca:99999",
     "app.chapterflow.ca:not-a-port",
   ]) {
-    assert.equal(resolve({ forwardedHostHeader }), FRAMEWORK_ORIGIN);
+    assert.equal(resolve({ forwardedHostHeader }), TRUSTED_FRAMEWORK_ORIGIN);
   }
 });
 
@@ -141,7 +152,7 @@ test("protocol parsing accepts HTTPS/defaults and rejects downgrade or non-HTTP 
         forwardedHostHeader: "app.chapterflow.ca",
         forwardedProtoHeader,
       }),
-      FRAMEWORK_ORIGIN,
+      TRUSTED_FRAMEWORK_ORIGIN,
     );
   }
 });

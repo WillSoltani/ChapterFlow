@@ -37,13 +37,13 @@ type DeploymentPolicy = {
 
 export type IamArtifacts = {
   trustPolicy: TrustPolicy;
-  deploymentPolicy: DeploymentPolicy;
+  additivePolicy: DeploymentPolicy;
 };
 
 export type RenderedIamArtifacts = IamArtifacts & {
   trustJson: string;
-  deploymentPolicyJson: string;
-  deploymentPolicyFile: string;
+  additivePolicyJson: string;
+  additivePolicyFile: string;
 };
 
 const ENVIRONMENTS = ["dev", "staging", "prod"] as const;
@@ -111,7 +111,7 @@ export function buildIamArtifacts(config: IamArtifactConfig): IamArtifacts {
         },
       ],
     },
-    deploymentPolicy: {
+    additivePolicy: {
       Version: "2012-10-17",
       Statement: [
         {
@@ -165,7 +165,8 @@ export function renderIamArtifacts(
   return {
     ...artifacts,
     trustJson: renderJson(artifacts.trustPolicy),
-    deploymentPolicyJson: renderJson(artifacts.deploymentPolicy),
-    deploymentPolicyFile: `github-actions-${config.environment}-policy.json`,
+    additivePolicyJson: renderJson(artifacts.additivePolicy),
+    additivePolicyFile:
+      `github-actions-${config.environment}-additive-policy.json`,
   };
 }

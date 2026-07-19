@@ -283,7 +283,8 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     // The former `ChapterFlowAppRuntimeRole` (assumed by tasks.apprunner.amazonaws.com)
     // had no consumer and stood as broad unused privilege — removed. Its CI
     // counterparts (apprunner:* + iam:PassRole) were dropped from
-    // generated github-actions-<env>-policy.json; see infra/iam/README.md.
+    // generated github-actions-<env>-additive-policy.json; see
+    // infra/iam/README.md.
 
     const parameterNames = [
       `${this.ssmPrefix}/BOOK_TABLE_NAME`,

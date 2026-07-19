@@ -9,7 +9,7 @@ import {
 const SYNTHETIC_ACCOUNT = "123456789012";
 const REPOSITORY = "WillSoltani/ChapterFlow";
 
-test("generator emits parseable, directly applicable IAM JSON from validated config", () => {
+test("generator emits parseable trust and additive-policy JSON from validated config", () => {
   const config = parseIamArtifactConfig({
     CDK_DEFAULT_ACCOUNT: SYNTHETIC_ACCOUNT,
     CHAPTERFLOW_ENV: "dev",
@@ -19,11 +19,17 @@ test("generator emits parseable, directly applicable IAM JSON from validated con
   const rendered = renderIamArtifacts(config);
 
   assert.deepEqual(JSON.parse(rendered.trustJson), rendered.trustPolicy);
-  assert.deepEqual(JSON.parse(rendered.deploymentPolicyJson), rendered.deploymentPolicy);
-  assert.equal(rendered.deploymentPolicyFile, "github-actions-dev-policy.json");
+  assert.deepEqual(
+    JSON.parse(rendered.additivePolicyJson),
+    rendered.additivePolicy,
+  );
+  assert.equal(
+    rendered.additivePolicyFile,
+    "github-actions-dev-additive-policy.json",
+  );
   assert.doesNotMatch(rendered.trustJson, /placeholder|CDK_DEFAULT_ACCOUNT/);
   assert.doesNotMatch(
-    rendered.deploymentPolicyJson,
+    rendered.additivePolicyJson,
     /placeholder|CDK_DEFAULT_ACCOUNT/,
   );
 });
@@ -52,7 +58,7 @@ test("trust and permission ARNs derive from the account while subjects stay exac
     ],
   );
   assert.equal(
-    JSON.stringify(artifacts.deploymentPolicy).includes(SYNTHETIC_ACCOUNT),
+    JSON.stringify(artifacts.additivePolicy).includes(SYNTHETIC_ACCOUNT),
     true,
   );
 });
@@ -72,7 +78,7 @@ test("environment-specific policy names only the matching seed table", () => {
       repository: REPOSITORY,
       bootstrapQualifier: "hnb659fds",
     });
-    const seed = artifacts.deploymentPolicy.Statement.find(
+    const seed = artifacts.additivePolicy.Statement.find(
       ({ Sid }) => Sid === "DynamoDBSeedAndPublish",
     );
     assert.deepEqual(seed?.Resource, [

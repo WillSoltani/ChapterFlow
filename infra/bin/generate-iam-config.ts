@@ -33,10 +33,10 @@ export function main(
     rendered.trustJson,
   );
   writeValidatedJson(
-    path.join(outputDirectory, rendered.deploymentPolicyFile),
-    rendered.deploymentPolicyJson,
+    path.join(outputDirectory, rendered.additivePolicyFile),
+    rendered.additivePolicyJson,
   );
-  console.log("Generated and validated two IAM JSON artifacts.");
+  console.log("Generated and validated IAM trust and additive-policy JSON.");
 }
 
 if (require.main === module) {
