@@ -2,6 +2,7 @@ import { test, before, after, beforeEach } from "node:test";
 import assert from "node:assert/strict";
 import { register } from "@/instrumentation";
 import { REQUIRED_SERVER_ENV } from "@/app/app/api/_lib/boot-env-core";
+import { PROD_E2E_ENV } from "@/playwright.config";
 
 // register() (root instrumentation.ts, WS3-012) must be a complete no-op
 // everywhere except a genuine production runtime boot — see the guard
@@ -99,4 +100,13 @@ test("a real production runtime boot with every required var present resolves cl
   setAllRequiredVars();
 
   await assert.doesNotReject(() => register());
+});
+
+test("the production E2E server supplies every required boot variable", () => {
+  for (const { name } of REQUIRED_SERVER_ENV) {
+    assert.ok(
+      PROD_E2E_ENV[name]?.trim(),
+      `playwright prod server must provide a non-empty ${name}`,
+    );
+  }
 });
