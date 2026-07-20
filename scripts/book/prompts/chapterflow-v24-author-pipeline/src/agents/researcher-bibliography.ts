@@ -15,7 +15,7 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
+import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
@@ -62,46 +62,14 @@ export type BibliographyInput = {
 const REGISTER_VALUES = new Set(["warm", "analytical", "plainspoken", "literary", "clinical"]);
 const CONFIDENCE_VALUES = new Set(["high", "medium", "low"]);
 
-/** Run bibliography research with retry. Up to 3 attempts; if all attempts fail
- *  validation, the last error propagates. */
-export async function runResearcherBibliography(input: BibliographyInput): Promise<BibliographyResult> {
+export async function runResearcherBibliography(
+  input: BibliographyInput,
+  execution?: ModelCallerExecution,
+): Promise<BibliographyResult> {
   const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "researcher-bibliography.system.md"), "utf8");
   const userPrompt = buildUserPrompt(input);
-
-  let attempt = 0;
-  let lastErr: Error | null = null;
-  while (attempt < 3) {
-    attempt += 1;
-    try {
-      const retryUser =
-        attempt === 1
-          ? userPrompt
-          : [
-              userPrompt,
-              "",
-              "# Your previous draft was rejected.",
-              "Reasons:",
-              lastErr ? lastErr.message.replace(/^bibliography invalid:\s*/, "- ").replace(/;\s*/g, "\n- ") : "",
-              "",
-              "Rewrite the BibliographyResult JSON, addressing every reason. Take more care on chapter list accuracy; if you're not sure of the chapter count, set confidence to low and explain.",
-            ].join("\n");
-      const result = await callClaude<BibliographyResult>({
-        tier: "researcher",
-        stage: "researcher-bibliography",
-        bookId: input.bookIdHint,
-        system: systemPrompt,
-        user: retryUser,
-        maxTokens: 8000,
-        temperature: 0.3, // low temperature for factual recall
-        jsonMode: true,
-        timeoutMs: 360_000,
-      });
-      return validateBibliography(result.content, input);
-    } catch (err) {
-      lastErr = err as Error;
-    }
-  }
-  throw lastErr ?? new Error("bibliography researcher failed after retries");
+  const output = await runJsonModelTask<BibliographyResult>(execution, "researcher-bibliography", systemPrompt, userPrompt);
+  return validateBibliography(output, input);
 }
 
 function buildUserPrompt(input: BibliographyInput): string {

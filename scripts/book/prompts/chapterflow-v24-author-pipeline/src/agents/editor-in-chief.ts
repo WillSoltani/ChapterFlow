@@ -9,9 +9,12 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
+import {
+  renderUntrustedSourceBlock,
+  runJsonModelTask,
+  type ModelCallerExecution,
+} from "../app/modelTaskRunner.js";
 import { getAuthorVoiceProfile } from "../critics/shared.js";
-import { renderUntrustedSourceBlock } from "../providers/types.js";
 import { BookBrief } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -29,7 +32,10 @@ export type EditorInChiefInput = {
   additionalGuidance?: string;
 };
 
-export async function runEditorInChief(input: EditorInChiefInput): Promise<BookBrief> {
+export async function runEditorInChief(
+  input: EditorInChiefInput,
+  execution?: ModelCallerExecution,
+): Promise<BookBrief> {
   const systemPrompt = readFileSync(
     resolve(PROMPTS_DIR, "editor-in-chief.system.md"),
     "utf8",
@@ -37,19 +43,8 @@ export async function runEditorInChief(input: EditorInChiefInput): Promise<BookB
 
   const userPrompt = buildUserPrompt(input);
 
-  const result = await callClaude<BookBrief>({
-    tier: "writer",
-    stage: "editor-in-chief",
-    bookId: input.bookId,
-    system: systemPrompt,
-    user: userPrompt,
-    maxTokens: 4096,
-    temperature: 0.6, // editorial judgment; not wildly creative
-    jsonMode: true,
-    timeoutMs: 240_000,
-  });
-
-  const brief = validateBrief(result.content, input);
+  const output = await runJsonModelTask<BookBrief>(execution, "editor-in-chief", systemPrompt, userPrompt);
+  const brief = validateBrief(output, input);
   return applyAuthorVoiceProfile(brief, input.bookId);
 }
 

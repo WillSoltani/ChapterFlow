@@ -11,8 +11,11 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
-import { renderUntrustedSourceBlock } from "../providers/types.js";
+import {
+  renderUntrustedSourceBlock,
+  runJsonModelTask,
+  type ModelCallerExecution,
+} from "../app/modelTaskRunner.js";
 import { BookBrief, ChapterDesignDoc, ExampleSpec, SourceAnchorForPrompt } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -38,56 +41,17 @@ export type ExampleInput = {
   sourceAnchors?: SourceAnchorForPrompt[];
 };
 
-const MAX_EXAMPLE_RETRIES = 1;
-
-export async function runWriterExample(input: ExampleInput): Promise<ExampleOutput> {
+export async function runWriterExample(
+  input: ExampleInput,
+  execution?: ModelCallerExecution,
+): Promise<ExampleOutput> {
   const systemPrompt = readFileSync(
     resolve(PROMPTS_DIR, "writer-example.system.md"),
     "utf8",
   );
-  const baseUserPrompt = buildUserPrompt(input);
-
-  let userPrompt = baseUserPrompt;
-  let lastError: Error | null = null;
-
-  for (let attempt = 0; attempt <= MAX_EXAMPLE_RETRIES; attempt += 1) {
-    const result = await callClaude<ExampleOutput>({
-      tier: "writer",
-      stage: "writer-example",
-      bookId: input.brief.bookId,
-      chapterId: input.plan.chapterId,
-      system: systemPrompt,
-      user: userPrompt,
-      maxTokens: 1800,
-      temperature: 0.8,
-      jsonMode: true,
-      timeoutMs: 180_000,
-    });
-
-    try {
-      return validateExample(result.content, input);
-    } catch (err) {
-      lastError = err instanceof Error ? err : new Error(String(err));
-      if (attempt === MAX_EXAMPLE_RETRIES) break;
-      // Re-prompt with structural guidance. Avoid repeating forbidden phrases
-      // by name — naming them increases the model's likelihood of echoing them
-      // (negative-prompting failure mode).
-      const reasons = lastError.message
-        .replace(/^example invalid:\s*/, "- ")
-        .replace(/;\s*/g, "\n- ");
-      userPrompt = [
-        baseUserPrompt,
-        "",
-        "# Your previous draft was rejected by the validator.",
-        "Reasons:",
-        reasons,
-        "",
-        "Rewrite the ExampleOutput from scratch. Open with the named protagonist in a specific scene; let the scene carry the lesson. Use a different protagonist name from any reused or banned name listed above.",
-      ].join("\n");
-    }
-  }
-
-  throw lastError ?? new Error("example: writer exhausted retries with no result");
+  const userPrompt = buildUserPrompt(input);
+  const output = await runJsonModelTask<ExampleOutput>(execution, "writer-example", systemPrompt, userPrompt);
+  return validateExample(output, input);
 }
 
 function buildUserPrompt(input: ExampleInput): string {

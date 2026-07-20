@@ -14,8 +14,11 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
-import { renderUntrustedSourceBlock } from "../providers/types.js";
+import {
+  renderUntrustedSourceBlock,
+  runJsonModelTask,
+  type ModelCallerExecution,
+} from "../app/modelTaskRunner.js";
 import { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -32,27 +35,18 @@ export type PlannerInput = {
   sourceAnchors?: SourceAnchorForPrompt[];
 };
 
-export async function runCurriculumPlanner(input: PlannerInput): Promise<ChapterDesignDoc> {
+export async function runCurriculumPlanner(
+  input: PlannerInput,
+  execution?: ModelCallerExecution,
+): Promise<ChapterDesignDoc> {
   const systemPrompt = readFileSync(
     resolve(PROMPTS_DIR, "curriculum-planner.system.md"),
     "utf8",
   );
 
   const userPrompt = buildUserPrompt(input);
-  const result = await callClaude<ChapterDesignDoc>({
-    tier: "writer",
-    stage: "curriculum-planner",
-    bookId: input.brief.bookId,
-    chapterId: input.chapterId,
-    system: systemPrompt,
-    user: userPrompt,
-    maxTokens: 3000,
-    temperature: 0.6,
-    jsonMode: true,
-    timeoutMs: 240_000,
-  });
-
-  return validateDoc(result.content, input);
+  const output = await runJsonModelTask<ChapterDesignDoc>(execution, "curriculum-planner", systemPrompt, userPrompt);
+  return validateDoc(output, input);
 }
 
 function buildUserPrompt(input: PlannerInput): string {

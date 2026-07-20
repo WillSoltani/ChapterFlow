@@ -33,13 +33,17 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, statSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { BibliographyResult, flattenChapters, runResearcherBibliography } from "./agents/researcher-bibliography.js";
 import {
-  ChapterResearchInput,
-  ChapterResearchResult,
+  type BibliographyInput,
+  type BibliographyResult,
+  flattenChapters,
+} from "./agents/researcher-bibliography.js";
+import {
+  type ChapterResearchInput,
+  type ChapterResearchResult,
   renderChapterSidecar,
-  runResearcherChapter,
 } from "./agents/researcher-chapter.js";
+import { MODEL_CALLER_PROFILES, MODEL_TASK_RUNNER_REQUIRED } from "./app/modelTaskRunner.js";
 import {
   SourceCoherenceFinding,
   SourceCoherenceReport,
@@ -98,7 +102,7 @@ export type ResearchBookOptions = {
   runsRoot?: string;
   /** Test/tooling hook: override the state root. Defaults to pipeline state/. */
   stateRoot?: string;
-  /** Test/tooling hook: hermetic provider injection. Production uses the real providers. */
+  /** Explicit application wiring. Tests supply deterministic fakes. */
   deps?: Partial<ResearcherDeps>;
   /** Test/tooling hook: deterministic clocks for manifest/lease tests. */
   clock?: () => Date;
@@ -113,7 +117,7 @@ export type ResearchBookOptions = {
 };
 
 export type ResearcherDeps = {
-  runBibliography: typeof runResearcherBibliography;
+  runBibliography: (input: BibliographyInput) => Promise<BibliographyResult>;
   runChapter: (input: ChapterResearchInput) => Promise<ChapterResearchResult>;
 };
 
@@ -145,9 +149,12 @@ export async function researchBook(
 
   log(`=== researchBook: "${title}" by ${author} ===`);
 
+  if (!options.deps?.runBibliography || !options.deps.runChapter) {
+    throw new Error(MODEL_TASK_RUNNER_REQUIRED);
+  }
   const deps: ResearcherDeps = {
-    runBibliography: options.deps?.runBibliography ?? runResearcherBibliography,
-    runChapter: options.deps?.runChapter ?? runResearcherChapter,
+    runBibliography: options.deps.runBibliography,
+    runChapter: options.deps.runChapter,
   };
   const runsRoot = options.runsRoot ?? CHAPTERFLOW_RUNS;
   const stateRoot = options.stateRoot ?? STATE;
@@ -490,8 +497,8 @@ function buildCompatibilityFingerprint(options: ResearchBookOptions): ResearchCo
       chapter: readFileSync(resolve(PROMPTS_DIR, "researcher-chapter.system.md"), "utf8"),
     }),
     configHash: options.compatibility?.configHash ?? hashJson({ version: RESEARCH_RUN_CONFIG_VERSION }),
-    provider: options.compatibility?.provider ?? process.env.CHAPTERFLOW_PROVIDER ?? "anthropic-cli",
-    model: options.compatibility?.model ?? process.env.CHAPTERFLOW_RESEARCHER_MODEL ?? "provider-default",
+    provider: "model-gateway-v1",
+    model: `${MODEL_CALLER_PROFILES["researcher-bibliography"]}+${MODEL_CALLER_PROFILES["researcher-chapter"]}`,
   };
 }
 

@@ -9,8 +9,11 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
-import { renderUntrustedSourceBlock } from "../providers/types.js";
+import {
+  renderUntrustedSourceBlock,
+  runJsonModelTask,
+  type ModelCallerExecution,
+} from "../app/modelTaskRunner.js";
 import { BookBrief, ChapterDesignDoc, PriorChapterShapes, SourceAnchorForPrompt } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -37,61 +40,17 @@ export type BreakdownInput = {
   sourceAnchors?: SourceAnchorForPrompt[];
 };
 
-const MAX_BREAKDOWN_RETRIES = 2;
-
-export async function runWriterBreakdown(input: BreakdownInput): Promise<BreakdownOutput> {
+export async function runWriterBreakdown(
+  input: BreakdownInput,
+  execution?: ModelCallerExecution,
+): Promise<BreakdownOutput> {
   const systemPrompt = readFileSync(
     resolve(PROMPTS_DIR, "writer-breakdown.system.md"),
     "utf8",
   );
-  const baseUserPrompt = buildUserPrompt(input);
-
-  let userPrompt = baseUserPrompt;
-  let lastError: Error | null = null;
-
-  for (let attempt = 0; attempt <= MAX_BREAKDOWN_RETRIES; attempt += 1) {
-    const result = await callClaude<BreakdownOutput>({
-      tier: "writer",
-      stage: "writer-breakdown",
-      bookId: input.brief.bookId,
-      chapterId: input.plan.chapterId,
-      system: systemPrompt,
-      user: userPrompt,
-      maxTokens: 5000,
-      temperature: 0.7,
-      jsonMode: true,
-      // 600s ceiling. The fullRead tier is 2500–3500 chars and the model can
-      // occasionally take 4–6 minutes on harder chapters; the prior 300s ceiling
-      // killed Ch22 in HWF on a single slow generation and forced 3 retries.
-      // 600s gives enough headroom that retries are about content quality
-      // (voice-pass loop) rather than wallclock.
-      timeoutMs: 600_000,
-    });
-
-    try {
-      return validateBreakdown(result.content, input);
-    } catch (err) {
-      lastError = err instanceof Error ? err : new Error(String(err));
-      if (attempt === MAX_BREAKDOWN_RETRIES) break;
-      // Re-prompt the writer with structural guidance, NOT by repeating the
-      // forbidden phrases (which would make the model more likely to output
-      // them via negative-prompting / reverse-priming).
-      const reasons = lastError.message
-        .replace(/^breakdown invalid:\s*/, "- ")
-        .replace(/;\s*/g, "\n- ");
-      userPrompt = [
-        baseUserPrompt,
-        "",
-        "# Your previous draft was rejected by the validator.",
-        "Reasons:",
-        reasons,
-        "",
-        "Rewrite all three tiers from scratch. Address the reader directly: open each tier with a scene, a question, a specific person, or a concrete image. Speak to the reader, not about the source artifact. The reader has never heard of the source you read; they only see your prose.",
-      ].join("\n");
-    }
-  }
-
-  throw lastError ?? new Error("breakdown: writer exhausted retries with no result");
+  const userPrompt = buildUserPrompt(input);
+  const output = await runJsonModelTask<BreakdownOutput>(execution, "writer-breakdown", systemPrompt, userPrompt);
+  return validateBreakdown(output, input);
 }
 
 function buildUserPrompt(input: BreakdownInput): string {

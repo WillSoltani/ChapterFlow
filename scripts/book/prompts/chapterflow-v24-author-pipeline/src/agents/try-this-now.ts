@@ -12,7 +12,7 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
+import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
 import { BookBrief, ChapterDesignDoc } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -27,24 +27,15 @@ export type TryThisNowInput = {
   plan: ChapterDesignDoc;
 };
 
-export async function runTryThisNow(input: TryThisNowInput): Promise<TryThisNowOutput> {
+export async function runTryThisNow(
+  input: TryThisNowInput,
+  execution?: ModelCallerExecution,
+): Promise<TryThisNowOutput> {
   const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "try-this-now.system.md"), "utf8");
   const userPrompt = `# Book brief\n\`\`\`json\n${JSON.stringify({ voiceCharter: input.brief.voiceCharter, voiceSpecimens: (input.brief.voiceSpecimens ?? []).slice(0, 3) }, null, 2)}\n\`\`\`\n\n# Chapter design doc\n\`\`\`json\n${JSON.stringify({ title: input.plan.title, coreMove: input.plan.coreMove }, null, 2)}\n\`\`\`\n\nWrite the TryThisNowOutput JSON now.`;
 
-  const result = await callClaude<TryThisNowOutput>({
-    tier: "critic",
-    stage: "try-this-now",
-    bookId: input.brief.bookId,
-    chapterId: input.plan.chapterId,
-    system: systemPrompt,
-    user: userPrompt,
-    maxTokens: 400,
-    temperature: 0.7,
-    jsonMode: true,
-    timeoutMs: 60_000,
-  });
-
-  return validate(result.content);
+  const output = await runJsonModelTask<TryThisNowOutput>(execution, "try-this-now", systemPrompt, userPrompt);
+  return validate(output);
 }
 
 const FORBIDDEN_OPENERS = [

@@ -13,7 +13,7 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
+import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
 import { BookBrief, ChapterDesignDoc } from "../types.js";
 import { BreakdownOutput } from "./writer-breakdown.js";
 
@@ -29,7 +29,10 @@ export type VoicePassInput = {
   priorFindings?: string[];
 };
 
-export async function runVoicePass(input: VoicePassInput): Promise<BreakdownOutput> {
+export async function runVoicePass(
+  input: VoicePassInput,
+  execution?: ModelCallerExecution,
+): Promise<BreakdownOutput> {
   const systemPrompt = readFileSync(
     resolve(PROMPTS_DIR, "voice-pass.system.md"),
     "utf8",
@@ -63,22 +66,8 @@ export async function runVoicePass(input: VoicePassInput): Promise<BreakdownOutp
   }
   parts.push(`Rewrite the three tiers toward the voice specimens. Return the VoicePassOutput JSON now.`);
 
-  const result = await callClaude<BreakdownOutput>({
-    tier: "writer",
-    stage: "voice-pass",
-    bookId: input.brief.bookId,
-    chapterId: input.plan.chapterId,
-    system: systemPrompt,
-    user: parts.join("\n"),
-    maxTokens: 6000,
-    temperature: 0.6,
-    jsonMode: true,
-    // 600s ceiling: voice-pass rewrites all three breakdown tiers
-    // (~5000 chars total), same wall-clock risk profile as writer-breakdown.
-    timeoutMs: 600_000,
-  });
-
-  return validate(result.content, input.draft);
+  const output = await runJsonModelTask<BreakdownOutput>(execution, "voice-pass", systemPrompt, parts.join("\n"));
+  return validate(output, input.draft);
 }
 
 function validate(out: BreakdownOutput, draft: BreakdownOutput): BreakdownOutput {

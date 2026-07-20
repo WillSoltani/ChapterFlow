@@ -9,8 +9,11 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
-import { renderUntrustedSourceBlock } from "../providers/types.js";
+import {
+  renderUntrustedSourceBlock,
+  runJsonModelTask,
+  type ModelCallerExecution,
+} from "../app/modelTaskRunner.js";
 import { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../types.js";
 import { BreakdownOutput } from "./writer-breakdown.js";
 import { sanitizeUserPromptForWriter } from "../lib/brief-sanitizer.js";
@@ -36,9 +39,10 @@ export type CardsInput = {
   sourceAnchors?: SourceAnchorForPrompt[];
 };
 
-const MAX_CARDS_RETRIES = 2;
-
-export async function runWriterCards(input: CardsInput): Promise<CardsOutput> {
+export async function runWriterCards(
+  input: CardsInput,
+  execution?: ModelCallerExecution,
+): Promise<CardsOutput> {
   const systemPrompt = readFileSync(
     resolve(PROMPTS_DIR, "writer-cards.system.md"),
     "utf8",
@@ -47,43 +51,9 @@ export async function runWriterCards(input: CardsInput): Promise<CardsOutput> {
   // structural-only (no named prohibitions), the brief is sanitized upstream,
   // and we additionally drop any line in the rendered user prompt that
   // contains a meta-tell (could leak from the plan or breakdown).
-  const baseUserPrompt = sanitizeUserPromptForWriter(buildUserPrompt(input));
-
-  let userPrompt = baseUserPrompt;
-  let lastError: Error | null = null;
-  for (let attempt = 0; attempt <= MAX_CARDS_RETRIES; attempt += 1) {
-    try {
-      const result = await callClaude<CardsOutput>({
-        tier: "writer",
-        stage: "writer-cards",
-        bookId: input.brief.bookId,
-        chapterId: input.plan.chapterId,
-        system: systemPrompt,
-        user: userPrompt,
-        maxTokens: 6000,
-        temperature: 0.65,
-        jsonMode: true,
-        timeoutMs: 240_000,
-      });
-      return validateCards(result.content, input);
-    } catch (err) {
-      lastError = err instanceof Error ? err : new Error(String(err));
-      if (attempt === MAX_CARDS_RETRIES) break;
-      const reasons = lastError.message
-        .replace(/^cards invalid:\s*/, "- ")
-        .replace(/;\s*/g, "\n- ");
-      userPrompt = [
-        baseUserPrompt,
-        "",
-        "# Your previous draft was rejected by the validator.",
-        "Reasons:",
-        reasons,
-        "",
-        "Rewrite ALL cards from scratch. Fronts must address the reader directly in a scene; backs must teach a move the reader performs. Never use the words 'the chapter', 'the book', 'the author', or any reference to written material.",
-      ].join("\n");
-    }
-  }
-  throw lastError ?? new Error("cards: writer exhausted retries with no result");
+  const userPrompt = sanitizeUserPromptForWriter(buildUserPrompt(input));
+  const output = await runJsonModelTask<CardsOutput>(execution, "writer-cards", systemPrompt, userPrompt);
+  return validateCards(output, input);
 }
 
 function buildUserPrompt(input: CardsInput): string {

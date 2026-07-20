@@ -11,7 +11,7 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
+import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
@@ -41,8 +41,8 @@ function loadConfig(): CategoriesConfig {
   return JSON.parse(readFileSync(CONFIG_PATH, "utf8"));
 }
 
-function cachePath(bookId: string): string {
-  return resolve(STATE_BOOKS_DIR, `${bookId}.categories.json`);
+function cachePath(bookId: string, stateBooksDir = STATE_BOOKS_DIR): string {
+  return resolve(stateBooksDir, `${bookId}.categories.json`);
 }
 
 /**
@@ -84,10 +84,12 @@ function normalizeTags(raw: string[]): string[] {
 
 export async function runCategorizer(
   input: CategorizerInput,
-  options: { useCache?: boolean } = {},
+  options: { useCache?: boolean; stateBooksDir?: string } = {},
+  execution?: ModelCallerExecution,
 ): Promise<CategorizerOutput> {
   const useCache = options.useCache !== false;
-  const cache = cachePath(input.bookId);
+  const stateBooksDir = options.stateBooksDir ?? STATE_BOOKS_DIR;
+  const cache = cachePath(input.bookId, stateBooksDir);
   if (useCache && existsSync(cache)) {
     return JSON.parse(readFileSync(cache, "utf8")) as CategorizerOutput;
   }
@@ -107,19 +109,7 @@ export async function runCategorizer(
     `Pick 2–4 categories from the canonical list and 4–8 tags. Return strict JSON.`,
   ].join("\n");
 
-  const result = await callClaude<CategorizerOutput>({
-    tier: "critic",
-    stage: "categorizer",
-    bookId: input.bookId,
-    system: systemPrompt,
-    user: userPrompt,
-    maxTokens: 600,
-    temperature: 0.3,
-    jsonMode: true,
-    timeoutMs: 60_000,
-  });
-
-  const out = result.content;
+  const out = await runJsonModelTask<CategorizerOutput>(execution, "categorizer", systemPrompt, userPrompt);
   const categories = normalizeCategories(Array.isArray(out.categories) ? out.categories : [], config);
   const tags = normalizeTags(Array.isArray(out.tags) ? out.tags : []);
 
@@ -135,7 +125,7 @@ export async function runCategorizer(
 
   const final: CategorizerOutput = { categories, tags };
 
-  mkdirSync(STATE_BOOKS_DIR, { recursive: true });
+  mkdirSync(stateBooksDir, { recursive: true });
   writeFileSync(cache, JSON.stringify(final, null, 2), "utf8");
 
   return final;

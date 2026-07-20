@@ -18,7 +18,7 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
+import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
 import { BibliographyResult } from "./researcher-bibliography.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -68,45 +68,14 @@ const META_VERBS: RegExp[] = [
   /\b(clear|kahneman|taleb|housel|tetlock|cialdini|greene|machiavelli|duhigg|eyal|covey|ries|brown|kolb|gladwell|fogg)\s+(argues|says|opens|notes|introduces|explains|writes|claims|points out|observes)\b/i,
 ];
 
-export async function runResearcherChapter(input: ChapterResearchInput): Promise<ChapterResearchResult> {
+export async function runResearcherChapter(
+  input: ChapterResearchInput,
+  execution?: ModelCallerExecution,
+): Promise<ChapterResearchResult> {
   const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "researcher-chapter.system.md"), "utf8");
   const userPrompt = buildUserPrompt(input);
-
-  let attempt = 0;
-  let lastErr: Error | null = null;
-  while (attempt < 3) {
-    attempt += 1;
-    try {
-      const retryUser =
-        attempt === 1
-          ? userPrompt
-          : [
-              userPrompt,
-              "",
-              "# Your previous draft was rejected.",
-              "Reasons:",
-              lastErr ? lastErr.message.replace(/^chapter research invalid:\s*/, "- ").replace(/;\s*/g, "\n- ") : "",
-              "",
-              `Rewrite the ChapterResearchResult JSON for chapter ${input.chapter.number} "${input.chapter.title}". Address every reason. Be specific and paraphrase only. No "this chapter says…" or "the author argues…" anywhere.`,
-            ].join("\n");
-      const result = await callClaude<ChapterResearchResult>({
-        tier: "researcher",
-        stage: "researcher-chapter",
-        bookId: input.bibliography.bookId,
-        chapterId: `${input.bibliography.bookId}-ch${String(input.chapter.number).padStart(2, "0")}`,
-        system: systemPrompt,
-        user: retryUser,
-        maxTokens: 4000,
-        temperature: 0.5,
-        jsonMode: true,
-        timeoutMs: 240_000,
-      });
-      return validateChapterResearch(result.content, input);
-    } catch (err) {
-      lastErr = err as Error;
-    }
-  }
-  throw lastErr ?? new Error(`chapter ${input.chapter.number} researcher failed after retries`);
+  const output = await runJsonModelTask<ChapterResearchResult>(execution, "researcher-chapter", systemPrompt, userPrompt);
+  return validateChapterResearch(output, input);
 }
 
 function buildUserPrompt(input: ChapterResearchInput): string {

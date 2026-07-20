@@ -10,7 +10,7 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
+import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
@@ -26,23 +26,14 @@ export type MemorableLinesOutput = {
   memorableLines: MemorableLine[];
 };
 
-export async function runMemorableLines(chapter: any): Promise<MemorableLinesOutput> {
+export async function runMemorableLines(
+  chapter: any,
+  execution?: ModelCallerExecution,
+): Promise<MemorableLinesOutput> {
   const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "memorable-lines.system.md"), "utf8");
 
-  const result = await callClaude<MemorableLinesOutput>({
-    tier: "critic",
-    stage: "memorable-lines",
-    bookId: chapter?.bookId,
-    chapterId: chapter?.chapterId,
-    system: systemPrompt,
-    user: `# Chapter\n\n\`\`\`json\n${JSON.stringify(chapter, null, 2)}\n\`\`\`\n\nPick the three most memorable lines. Return the JSON now.`,
-    maxTokens: 1500,
-    temperature: 0.4,
-    jsonMode: true,
-    timeoutMs: 90_000,
-  });
-
-  const out = result.content;
+  const userPrompt = `# Chapter\n\n\`\`\`json\n${JSON.stringify(chapter, null, 2)}\n\`\`\`\n\nPick the three most memorable lines. Return the JSON now.`;
+  const out = await runJsonModelTask<MemorableLinesOutput>(execution, "memorable-lines", systemPrompt, userPrompt);
   if (!Array.isArray(out.memorableLines)) {
     throw new Error("memorable-lines: missing memorableLines array");
   }
