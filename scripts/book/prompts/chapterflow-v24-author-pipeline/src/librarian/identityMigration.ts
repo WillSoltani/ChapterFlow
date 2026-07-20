@@ -25,7 +25,12 @@ import { basename, dirname, relative, resolve } from "path";
 import { fileURLToPath } from "url";
 import { randomBytes } from "crypto";
 
+import { createBookWriteLock } from "../books/bookLease.js";
+import { assertV4LibrarianWriterPreflight } from "../books/legacyLibrarianStateAdapter.js";
+import type { BookWriteLock } from "../books/leaseTypes.js";
+import type { Result } from "../contracts/v4Core.js";
 import { chapterFileName, chapterIdFromFileName, isSiblingFile, normSlug } from "../lib/chapterPaths.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -60,6 +65,11 @@ export type IdentityMigrationOptions = {
   /** Throw at a controllable point so the interrupted-migration test can prove
    *  the plan evidence survives and no chapter file is left torn. */
   faultInjection?: Partial<{ beforeFirstRename: boolean; afterFirstRename: boolean; beforeIndex: boolean }>;
+};
+
+export type IdentityMigrationV4Options = IdentityMigrationOptions & {
+  writeLock?: BookWriteLock;
+  legacyWriterEnabled?: boolean;
 };
 
 type Paths = { stateDir: string; chaptersDir: string; indexesDir: string; migrationsDir: string };
@@ -240,7 +250,7 @@ export function applyChapterIdentityMigration(plan: IdentityMigrationPlan, opts:
 
   // 1. Evidence first — the plan is durable before any state mutation.
   const planPath = resolve(paths.migrationsDir, `${plan.bookId}-${stamp}.plan.json`);
-  writeFileSync(planPath, JSON.stringify({ schemaVersion: "chapter-identity-migration-plan-v1", createdAt: new Date(nowMs(opts)).toISOString(), plan }, null, 2), "utf8");
+  writeFileAtomic(planPath, JSON.stringify({ schemaVersion: "chapter-identity-migration-plan-v1", createdAt: new Date(nowMs(opts)).toISOString(), plan }, null, 2), "utf8");
 
   const applied: IdentityMigrationStep[] = [];
   let first = true;
@@ -307,10 +317,46 @@ export function applyChapterIdentityMigration(plan: IdentityMigrationPlan, opts:
 
   // 3. Final report.
   const reportPath = resolve(paths.migrationsDir, `${plan.bookId}-${stamp}.report.json`);
-  writeFileSync(
+  writeFileAtomic(
     reportPath,
     JSON.stringify({ schemaVersion: "chapter-identity-migration-report-v1", appliedAt: new Date(nowMs(opts)).toISOString(), bookId: plan.bookId, applied, indexUpdated }, null, 2),
     "utf8",
   );
   return { bookId: plan.bookId, planPath: relReport(planPath), reportPath: relReport(reportPath), applied, indexUpdated };
+}
+
+/** V4 authority route. Replans under one short same-book lock; replay becomes a no-op. */
+export async function applyChapterIdentityMigrationV4(
+  plan: IdentityMigrationPlan,
+  opts: IdentityMigrationV4Options = {},
+): Promise<IdentityMigrationResult> {
+  assertV4LibrarianWriterPreflight(opts.legacyWriterEnabled);
+  if (!plan.ok) {
+    throw new Error(`refusing to apply an ambiguous migration for "${plan.bookId}"`);
+  }
+  const stateDir = resolve(opts.stateDir ?? DEFAULT_STATE_DIR);
+  const writeLock = opts.writeLock ?? createBookWriteLock({ booksRoot: stateDir, timeoutMs: 1_000, pollMs: 1 });
+  const locked = await writeLock.run<IdentityMigrationResult>(plan.bookId, async (): Promise<Result<IdentityMigrationResult>> => {
+    try {
+      const current = planChapterIdentityMigration(plan.bookId, { ...opts, stateDir });
+      if (!current.ok) {
+        return { ok: false, error: { code: "LIBRARIAN_MIGRATION_AMBIGUOUS", message: current.ambiguities.join("; ") } } as const;
+      }
+      if (current.changeCount === 0) {
+        return {
+          ok: true,
+          value: { bookId: plan.bookId, planPath: "", reportPath: "", applied: [], indexUpdated: false },
+        };
+      }
+      const expected = JSON.stringify(plan.steps);
+      if (JSON.stringify(current.steps) !== expected) {
+        return { ok: false, error: { code: "LIBRARIAN_MIGRATION_STALE", message: "identity migration plan changed before lock acquisition" } } as const;
+      }
+      return { ok: true, value: applyChapterIdentityMigration(current, { ...opts, stateDir }) } as const;
+    } catch (cause) {
+      return { ok: false, error: { code: "LIBRARIAN_MIGRATION_IO", message: (cause as Error).message } } as const;
+    }
+  });
+  if (!locked.ok) throw new Error(`${locked.error.code}: ${locked.error.message}`);
+  return locked.value;
 }

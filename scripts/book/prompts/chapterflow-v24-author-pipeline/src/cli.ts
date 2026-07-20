@@ -894,7 +894,7 @@ async function runMigrateChapterIdentity(args: string[], flags: Record<string, s
     console.error("Usage: migrate-chapter-identity <bookId> [--apply] [--json]");
     return 2;
   }
-  const { planChapterIdentityMigration, applyChapterIdentityMigration } = await import("./librarian/identityMigration.js");
+  const { planChapterIdentityMigration, applyChapterIdentityMigrationV4 } = await import("./librarian/identityMigration.js");
   const mopts = process.env.CHAPTERFLOW_STATE_DIR ? { stateDir: resolve(process.env.CHAPTERFLOW_STATE_DIR) } : {};
   const plan = planChapterIdentityMigration(bookId, mopts);
   const apply = flags["apply"] === true;
@@ -931,7 +931,7 @@ async function runMigrateChapterIdentity(args: string[], flags: Record<string, s
     return 0;
   }
 
-  const result = applyChapterIdentityMigration(plan, mopts);
+  const result = await applyChapterIdentityMigrationV4(plan, mopts);
   if (json) console.log(JSON.stringify({ plan, result }, null, 2));
   else {
     console.log(`migrate-chapter-identity — ${plan.bookId}: applied ${result.applied.length} change(s), index ${result.indexUpdated ? "updated" : "unchanged"}.`);
@@ -1995,9 +1995,13 @@ async function runAuthoringGuardrails(args: string[], flags: Record<string, stri
   const bookId = resolved.ok === false ? input : resolved.bookId;
   if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
   const chapters = typeof flags["chapters"] === "string" ? parseInt(flags["chapters"], 10) : undefined;
-  const { writeAuthoringGuardrails } = await import("./librarian/authoringGuardrails.js");
+  const { writeAuthoringGuardrailsV4 } = await import("./librarian/authoringGuardrails.js");
   try {
-    const path = writeAuthoringGuardrails(bookId, { chapters: Number.isInteger(chapters) ? chapters : undefined });
+    const stateDir = process.env.CHAPTERFLOW_STATE_DIR ? resolve(process.env.CHAPTERFLOW_STATE_DIR) : undefined;
+    const path = await writeAuthoringGuardrailsV4(bookId, {
+      chapters: Number.isInteger(chapters) ? chapters : undefined,
+      stateDir,
+    });
     console.log(`authoring-guardrails: wrote ${path}`);
     console.log("Paste this into every chapter authoring prompt before writing.");
     return 0;

@@ -32,6 +32,10 @@ import {
   loadNamePolicy,
   type NamePolicyV1,
 } from "./namePolicy.js";
+import { createBookWriteLock } from "../books/bookLease.js";
+import { assertV4LibrarianWriterPreflight } from "../books/legacyLibrarianStateAdapter.js";
+import type { BookWriteLock } from "../books/leaseTypes.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -149,6 +153,11 @@ export type LibraryStateOptions = {
     beforeRename: boolean;
     afterRename: boolean;
   }>;
+};
+
+export type LibraryStateV4Options = LibraryStateOptions & {
+  writeLock?: BookWriteLock;
+  legacyWriterEnabled?: boolean;
 };
 
 export type LibraryStateDriftReport = {
@@ -684,6 +693,51 @@ export async function saveLibraryState(state: LibraryState, opts: LibraryStateOp
   } finally {
     lease.release();
   }
+}
+
+/** V4 authority route: optimistic revision check under one short lock, then one replacement. */
+export async function saveLibraryStateV4(
+  state: LibraryState,
+  opts: LibraryStateV4Options = {},
+): Promise<LibraryState> {
+  assertV4LibrarianWriterPreflight(opts.legacyWriterEnabled);
+  const paths = pathsFor(opts);
+  mkdirSync(paths.stateDir, { recursive: true });
+  const writeLock = opts.writeLock ?? createBookWriteLock({ booksRoot: paths.stateDir, timeoutMs: 1_000, pollMs: 1 });
+  const locked = await writeLock.run("library-state", async () => {
+    try {
+      const before = existsSync(paths.ledgerPath) ? loadLibraryState(opts) : emptyState(opts);
+      if (state.revision !== before.revision) {
+        return {
+          ok: false,
+          error: {
+            code: "LIBRARIAN_STATE_STALE",
+            message: `library state revision ${state.revision} does not match stored revision ${before.revision}`,
+          },
+        } as const;
+      }
+      const normalized = normalizeState(state, opts);
+      normalized.revision = before.revision + 1;
+      normalized.lastUpdatedAt = iso(nowMs(opts));
+      writeFileAtomic(paths.ledgerPath, JSON.stringify(normalized, null, 2), "utf8");
+      Object.assign(state, normalized);
+      return { ok: true, value: state } as const;
+    } catch (cause) {
+      return { ok: false, error: { code: "LIBRARIAN_STATE_IO", message: (cause as Error).message } } as const;
+    }
+  });
+  if (!locked.ok) throw new Error(`${locked.error.code}: ${locked.error.message}`);
+  return locked.value;
+}
+
+export async function withLibraryStateV4(
+  mutate: (state: LibraryState) => LibraryState | void | Promise<LibraryState | void>,
+  opts: LibraryStateV4Options = {},
+): Promise<LibraryState> {
+  assertV4LibrarianWriterPreflight(opts.legacyWriterEnabled);
+  const before = existsSync(pathsFor(opts).ledgerPath) ? loadLibraryState(opts) : emptyState(opts);
+  const after = ((await mutate(before)) ?? before) as LibraryState;
+  return saveLibraryStateV4(after, opts);
 }
 
 export async function withLibraryState(
