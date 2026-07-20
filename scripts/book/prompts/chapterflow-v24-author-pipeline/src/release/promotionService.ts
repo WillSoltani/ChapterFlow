@@ -1,0 +1,485 @@
+import { candidateManifestDigest } from "../books/candidateDigest.js";
+import type { CandidateEntry, CandidateSnapshot } from "../books/candidateTypes.js";
+import type { CurrentBookPointer } from "../books/currentPointer.js";
+import type { CandidateIdentity, PortError, Result } from "../contracts/v4Core.js";
+import type { QcRoundResult } from "../qc/qcTypes.js";
+import type { CanonicalReviewResult } from "../review/reviewTypes.js";
+import type {
+  PromotionRequest,
+  PromotionResult,
+  PromotionService,
+  PromotionServiceOptions,
+} from "./promotionTypes.js";
+
+type ValidPromotionRequest = Readonly<{
+  bookId: string;
+  candidate: CandidateIdentity;
+  reviewId: string;
+  qcRoundId: string;
+  expectedBookRevision: number;
+  promotedAt: string;
+}>;
+
+const DIGEST_PATTERN = /^[a-f0-9]{64}$/;
+const ARTIFACT_KINDS = new Set(["CHAPTER", "PROVENANCE", "SIDECAR"]);
+const MEDIA_TYPES = new Set(["text/plain", "text/markdown", "application/json"]);
+
+function failed<T>(code: string, message: string, retryable = false): Result<T> {
+  return { ok: false, error: { code, message, retryable } };
+}
+
+function errorMessage(value: unknown, fallback: string): string {
+  return value instanceof Error && value.message.length > 0 ? value.message : fallback;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function exactKeys(value: Record<string, unknown>, expected: readonly string[]): boolean {
+  const actual = Object.keys(value).sort();
+  const wanted = [...expected].sort();
+  return actual.length === wanted.length && actual.every((key, index) => key === wanted[index]);
+}
+
+function isSafeOpaqueId(value: unknown): value is string {
+  return typeof value === "string" &&
+    value.length > 0 &&
+    value !== "." &&
+    value !== ".." &&
+    !value.includes("/") &&
+    !value.includes("\\") &&
+    !value.includes("\0") &&
+    ![...value].some((character) => {
+      const code = character.charCodeAt(0);
+      return code < 0x20 || code === 0x7f;
+    });
+}
+
+function canonicalUtcMilliseconds(value: unknown): number | null {
+  if (typeof value !== "string") return null;
+  const milliseconds = Date.parse(value);
+  return Number.isFinite(milliseconds) && new Date(milliseconds).toISOString() === value
+    ? milliseconds
+    : null;
+}
+
+function validateRequest(request: PromotionRequest, clock: () => string): Result<ValidPromotionRequest> {
+  if (!isRecord(request)) return failed("PROMOTION_INVALID", "promotion request must be an object");
+  if (!isSafeOpaqueId(request.bookId)) {
+    return failed("PROMOTION_INVALID", "bookId must be one safe opaque path segment");
+  }
+  if (!isRecord(request.candidate) || !exactKeys(request.candidate, ["candidateId", "manifestDigest"])) {
+    return failed("PROMOTION_INVALID", "candidate identity must contain only candidateId and manifestDigest");
+  }
+  if (!isSafeOpaqueId(request.candidate.candidateId) || !DIGEST_PATTERN.test(String(request.candidate.manifestDigest))) {
+    return failed("PROMOTION_INVALID", "candidate identity is invalid");
+  }
+  if (!isSafeOpaqueId(request.reviewId) || !isSafeOpaqueId(request.qcRoundId)) {
+    return failed("PROMOTION_INVALID", "reviewId and qcRoundId must be safe opaque path segments");
+  }
+  if (!Number.isSafeInteger(request.expectedBookRevision) || request.expectedBookRevision < 0) {
+    return failed("PROMOTION_INVALID", "expectedBookRevision must be a non-negative safe integer");
+  }
+  const promotedAtMilliseconds = canonicalUtcMilliseconds(request.promotedAt);
+  if (promotedAtMilliseconds === null) {
+    return failed("PROMOTION_INVALID", "promotedAt must be canonical UTC ISO time");
+  }
+
+  let clockValue: string;
+  try {
+    clockValue = clock();
+  } catch (cause) {
+    return failed("PROMOTION_CLOCK_INVALID", `promotion clock failed: ${errorMessage(cause, "unknown clock error")}`);
+  }
+  const clockMilliseconds = canonicalUtcMilliseconds(clockValue);
+  if (clockMilliseconds === null) {
+    return failed("PROMOTION_CLOCK_INVALID", "promotion clock must return canonical UTC ISO time");
+  }
+  return {
+    ok: true,
+    value: {
+      bookId: request.bookId,
+      candidate: {
+        candidateId: request.candidate.candidateId,
+        manifestDigest: request.candidate.manifestDigest,
+      },
+      reviewId: request.reviewId,
+      qcRoundId: request.qcRoundId,
+      expectedBookRevision: request.expectedBookRevision,
+      promotedAt: request.promotedAt,
+    },
+  };
+}
+
+function validLogicalPath(value: unknown): value is string {
+  if (typeof value !== "string" || value.length === 0 || value.startsWith("/") || value.endsWith("/")) return false;
+  const parts = value.split("/");
+  return parts.every((part) => isSafeOpaqueId(part));
+}
+
+function validEntry(value: unknown): value is CandidateEntry {
+  if (!isRecord(value) || !exactKeys(value, ["byteLength", "kind", "logicalPath", "mediaType"])) return false;
+  return typeof value.kind === "string" && ARTIFACT_KINDS.has(value.kind) &&
+    typeof value.mediaType === "string" && MEDIA_TYPES.has(value.mediaType) &&
+    validLogicalPath(value.logicalPath) &&
+    Number.isSafeInteger(value.byteLength) && (value.byteLength as number) >= 0;
+}
+
+function verifySnapshot(
+  value: unknown,
+  request: ValidPromotionRequest,
+  expectedRevision?: number,
+): Result<CandidateSnapshot> {
+  if (!isRecord(value) || !isRecord(value.manifest) || !Array.isArray(value.files)) {
+    return failed("CANDIDATE_MISMATCH", "candidate snapshot is incomplete or malformed");
+  }
+  const manifest = value.manifest;
+  const expectedManifestKeys = manifest.parentCandidateId === undefined
+    ? ["bookId", "candidateId", "createdAt", "createdByRunId", "entries", "manifestDigest", "schemaVersion"]
+    : ["bookId", "candidateId", "createdAt", "createdByRunId", "entries", "manifestDigest", "parentCandidateId", "schemaVersion"];
+  if (
+    !exactKeys(manifest, expectedManifestKeys) ||
+    manifest.schemaVersion !== "1" ||
+    manifest.bookId !== request.bookId ||
+    manifest.candidateId !== request.candidate.candidateId ||
+    manifest.manifestDigest !== request.candidate.manifestDigest ||
+    !DIGEST_PATTERN.test(String(manifest.manifestDigest)) ||
+    typeof manifest.createdByRunId !== "string" ||
+    manifest.createdByRunId.length === 0 ||
+    canonicalUtcMilliseconds(manifest.createdAt) === null ||
+    (manifest.parentCandidateId !== undefined && !isSafeOpaqueId(manifest.parentCandidateId)) ||
+    !Array.isArray(manifest.entries) ||
+    !manifest.entries.every(validEntry) ||
+    manifest.entries.length !== value.files.length
+  ) {
+    return failed("CANDIDATE_MISMATCH", "candidate manifest does not match requested complete identity");
+  }
+  if (expectedRevision !== undefined && value.currentRevision !== expectedRevision) {
+    return failed("CANDIDATE_MISMATCH", "CURRENT candidate revision does not match committed revision");
+  }
+  if (expectedRevision === undefined && value.currentRevision !== undefined) {
+    return failed("CANDIDATE_MISMATCH", "candidate selector unexpectedly returned a current revision");
+  }
+
+  const entries = manifest.entries as CandidateEntry[];
+  const seen = new Set<string>();
+  const files: Array<CandidateEntry & { bytes: Uint8Array }> = [];
+  for (let index = 0; index < entries.length; index += 1) {
+    const entry = entries[index];
+    const file = value.files[index];
+    if (
+      seen.has(entry.logicalPath) ||
+      !isRecord(file) ||
+      !exactKeys(file, ["byteLength", "bytes", "kind", "logicalPath", "mediaType"]) ||
+      file.kind !== entry.kind ||
+      file.logicalPath !== entry.logicalPath ||
+      file.mediaType !== entry.mediaType ||
+      file.byteLength !== entry.byteLength ||
+      !(file.bytes instanceof Uint8Array) ||
+      file.bytes.byteLength !== entry.byteLength
+    ) {
+      return failed("CANDIDATE_MISMATCH", "candidate files do not exactly match ordered manifest inventory");
+    }
+    seen.add(entry.logicalPath);
+    files.push({ ...entry, bytes: Buffer.from(file.bytes) });
+  }
+
+  const candidateManifest = {
+    schemaVersion: "1" as const,
+    bookId: request.bookId,
+    candidateId: request.candidate.candidateId,
+    ...(manifest.parentCandidateId === undefined ? {} : { parentCandidateId: manifest.parentCandidateId as string }),
+    createdByRunId: manifest.createdByRunId as string,
+    entries: entries.map((entry) => ({ ...entry })),
+    manifestDigest: request.candidate.manifestDigest,
+    createdAt: manifest.createdAt as string,
+  };
+  let recomputed: string;
+  try {
+    const { manifestDigest: _stored, ...metadata } = candidateManifest;
+    recomputed = candidateManifestDigest(metadata, files);
+  } catch (cause) {
+    return failed("CANDIDATE_MISMATCH", `candidate checksum cannot be recomputed: ${errorMessage(cause, "invalid candidate")}`);
+  }
+  if (recomputed !== request.candidate.manifestDigest) {
+    return failed("CANDIDATE_MISMATCH", "candidate checksum differs from requested manifestDigest");
+  }
+  return {
+    ok: true,
+    value: {
+      manifest: candidateManifest,
+      files,
+      ...(expectedRevision === undefined ? {} : { currentRevision: expectedRevision }),
+    },
+  };
+}
+
+function validateReview(value: unknown, request: ValidPromotionRequest): Result<CanonicalReviewResult> {
+  if (!isRecord(value) || !exactKeys(value, ["candidate", "completedAt", "issues", "outcome", "reviewId", "schemaVersion"])) {
+    return failed("REVIEW_MISMATCH", "canonical review record is malformed or is only a screening result");
+  }
+  if (
+    value.schemaVersion !== "1" ||
+    value.reviewId !== request.reviewId ||
+    !isRecord(value.candidate) ||
+    !exactKeys(value.candidate, ["candidateId", "manifestDigest"]) ||
+    value.candidate.candidateId !== request.candidate.candidateId ||
+    value.candidate.manifestDigest !== request.candidate.manifestDigest ||
+    !Array.isArray(value.issues) ||
+    !value.issues.every(validReviewIssue)
+  ) {
+    return failed("REVIEW_MISMATCH", "canonical review does not match requested candidate/checksum");
+  }
+  const completedAt = canonicalUtcMilliseconds(value.completedAt);
+  if (completedAt === null) {
+    return failed("REVIEW_MISMATCH", "canonical review completion time is invalid for promotion");
+  }
+  if (value.outcome !== "PASS") {
+    if (value.outcome === "FAIL" || value.outcome === "ERROR") {
+      return failed("REVIEW_NOT_PROMOTABLE", `canonical review outcome is ${value.outcome}`);
+    }
+    return failed("REVIEW_MISMATCH", "canonical review outcome is invalid");
+  }
+  if (value.issues.some((issue) => (issue as Record<string, unknown>).severity === "BLOCKER")) {
+    return failed("REVIEW_NOT_PROMOTABLE", "canonical PASS review contains a blocker");
+  }
+  return { ok: true, value: value as unknown as CanonicalReviewResult };
+}
+
+function validReviewIssue(value: unknown): boolean {
+  if (!isRecord(value)) return false;
+  const expected = value.location === undefined
+    ? ["code", "message", "severity"]
+    : ["code", "location", "message", "severity"];
+  return exactKeys(value, expected) &&
+    typeof value.code === "string" && value.code.length > 0 &&
+    (value.severity === "INFO" || value.severity === "WARN" || value.severity === "BLOCKER") &&
+    typeof value.message === "string" && value.message.length > 0 &&
+    (value.location === undefined || (typeof value.location === "string" && value.location.length > 0));
+}
+
+function validQcIssue(value: unknown): boolean {
+  if (!isRecord(value)) return false;
+  const expected = value.location === undefined
+    ? ["code", "message", "severity"]
+    : ["code", "location", "message", "severity"];
+  return exactKeys(value, expected) &&
+    typeof value.code === "string" && value.code.length > 0 &&
+    (value.severity === "WARN" || value.severity === "BLOCKER") &&
+    typeof value.message === "string" && value.message.length > 0 &&
+    (value.location === undefined || (typeof value.location === "string" && value.location.length > 0));
+}
+
+function validateQc(
+  value: unknown,
+  request: ValidPromotionRequest,
+  review: CanonicalReviewResult,
+): Result<QcRoundResult> {
+  if (!isRecord(value) || !exactKeys(value, ["candidate", "completedAt", "issues", "outcome", "reviewId", "roundId", "schemaVersion"])) {
+    return failed("QC_MISMATCH", "QC round record is malformed");
+  }
+  if (
+    value.schemaVersion !== "1" ||
+    value.roundId !== request.qcRoundId ||
+    value.reviewId !== request.reviewId ||
+    !isRecord(value.candidate) ||
+    !exactKeys(value.candidate, ["candidateId", "manifestDigest"]) ||
+    value.candidate.candidateId !== request.candidate.candidateId ||
+    value.candidate.manifestDigest !== request.candidate.manifestDigest ||
+    !Array.isArray(value.issues) ||
+    !value.issues.every(validQcIssue)
+  ) {
+    return failed("QC_MISMATCH", "QC round does not match requested candidate/checksum/review");
+  }
+  const reviewCompletedAt = canonicalUtcMilliseconds(review.completedAt);
+  const completedAt = canonicalUtcMilliseconds(value.completedAt);
+  if (
+    reviewCompletedAt === null ||
+    completedAt === null ||
+    completedAt <= reviewCompletedAt
+  ) {
+    return failed("QC_STALE", "QC round must complete after canonical review");
+  }
+  if (value.outcome !== "PASS") {
+    if (value.outcome === "FAIL" || value.outcome === "ERROR") {
+      return failed("QC_NOT_PROMOTABLE", `QC round outcome is ${value.outcome}`);
+    }
+    return failed("QC_MISMATCH", "QC round outcome is invalid");
+  }
+  if (value.issues.some((issue) => (issue as Record<string, unknown>).severity === "BLOCKER")) {
+    return failed("QC_NOT_PROMOTABLE", "QC PASS round contains a blocker");
+  }
+  return { ok: true, value: value as unknown as QcRoundResult };
+}
+
+function validCurrentPointer(value: unknown, bookId: string): value is CurrentBookPointer {
+  return isRecord(value) &&
+    exactKeys(value, ["bookId", "candidateId", "manifestDigest", "revision", "schemaVersion", "updatedAt"]) &&
+    value.schemaVersion === "1" &&
+    value.bookId === bookId &&
+    isSafeOpaqueId(value.candidateId) &&
+    typeof value.manifestDigest === "string" && DIGEST_PATTERN.test(value.manifestDigest) &&
+    Number.isSafeInteger(value.revision) && (value.revision as number) >= 1 &&
+    canonicalUtcMilliseconds(value.updatedAt) !== null;
+}
+
+function mapReadFailure<T>(domain: "candidate" | "review" | "QC", error: PortError): Result<T> {
+  if (domain === "candidate" && (error.code === "CANDIDATE_NOT_FOUND" || error.code === "CANDIDATE_MISMATCH")) {
+    return failed(error.code, error.message, error.retryable);
+  }
+  if (domain === "review" && error.code === "REVIEW_NOT_FOUND") {
+    return failed("REVIEW_NOT_FOUND", error.message, error.retryable);
+  }
+  if (domain === "QC" && error.code === "QC_ROUND_NOT_FOUND") {
+    return failed("QC_ROUND_NOT_FOUND", error.message, error.retryable);
+  }
+  return failed(`${domain.toUpperCase()}_UNAVAILABLE`, error.message, error.retryable);
+}
+
+class AtomicPromotionService implements PromotionService {
+  readonly #options: PromotionServiceOptions;
+  readonly #clock: () => string;
+
+  constructor(options: PromotionServiceOptions) {
+    this.#options = options;
+    this.#clock = options.clock;
+  }
+
+  promote(request: PromotionRequest): Promise<Result<PromotionResult>> {
+    const valid = validateRequest(request, this.#clock);
+    return valid.ok ? this.#promote(valid.value) : Promise.resolve(valid);
+  }
+
+  async #promote(request: ValidPromotionRequest): Promise<Result<PromotionResult>> {
+    let opened: Awaited<ReturnType<PromotionServiceOptions["candidateStore"]["open"]>>;
+    try {
+      opened = await this.#options.candidateStore.open({
+        bookId: request.bookId,
+        selector: { kind: "CANDIDATE", candidateId: request.candidate.candidateId },
+      });
+    } catch (cause) {
+      return failed("CANDIDATE_UNAVAILABLE", `candidate read threw: ${errorMessage(cause, "unknown candidate error")}`);
+    }
+    if (!opened.ok) return mapReadFailure("candidate", opened.error);
+    const candidate = verifySnapshot(opened.value, request);
+    if (!candidate.ok) return candidate;
+
+    let reviewRead: Awaited<ReturnType<PromotionServiceOptions["reviewService"]["get"]>>;
+    try {
+      reviewRead = await this.#options.reviewService.get(request.bookId, request.reviewId);
+    } catch (cause) {
+      return failed("REVIEW_UNAVAILABLE", `canonical review read threw: ${errorMessage(cause, "unknown review error")}`);
+    }
+    if (!reviewRead.ok) return mapReadFailure("review", reviewRead.error);
+    const review = validateReview(reviewRead.value, request);
+    if (!review.ok) return review;
+
+    let qcRead: Awaited<ReturnType<PromotionServiceOptions["qcService"]["getRound"]>>;
+    try {
+      qcRead = await this.#options.qcService.getRound(request.bookId, request.qcRoundId);
+    } catch (cause) {
+      return failed("QC_UNAVAILABLE", `QC round read threw: ${errorMessage(cause, "unknown QC error")}`);
+    }
+    if (!qcRead.ok) return mapReadFailure("QC", qcRead.error);
+    const qc = validateQc(qcRead.value, request, review.value);
+    if (!qc.ok) return qc;
+
+    let currentRead: Awaited<ReturnType<PromotionServiceOptions["currentPointerStore"]["read"]>>;
+    try {
+      currentRead = await this.#options.currentPointerStore.read(request.bookId);
+    } catch (cause) {
+      return failed("REVISION_UNAVAILABLE", `current revision read threw: ${errorMessage(cause, "unknown pointer error")}`);
+    }
+    if (!currentRead.ok) return failed("REVISION_UNAVAILABLE", currentRead.error.message, currentRead.error.retryable);
+    if (currentRead.value !== null && !validCurrentPointer(currentRead.value, request.bookId)) {
+      return failed("REVISION_UNAVAILABLE", "current pointer record is malformed");
+    }
+    const currentRevision = currentRead.value?.revision ?? 0;
+    if (currentRevision !== request.expectedBookRevision) {
+      return failed(
+        "REVISION_CONFLICT",
+        `current pointer revision ${currentRevision} does not match expected ${request.expectedBookRevision}`,
+        true,
+      );
+    }
+    const previousCandidateId = currentRead.value?.candidateId;
+    const next: CurrentBookPointer = {
+      schemaVersion: "1",
+      bookId: request.bookId,
+      candidateId: request.candidate.candidateId,
+      manifestDigest: request.candidate.manifestDigest,
+      revision: request.expectedBookRevision + 1,
+      updatedAt: request.promotedAt,
+    };
+
+    let committed: Awaited<ReturnType<PromotionServiceOptions["currentPointerStore"]["compareAndSet"]>>;
+    try {
+      committed = await this.#options.currentPointerStore.compareAndSet({
+        bookId: request.bookId,
+        expectedRevision: request.expectedBookRevision,
+        next,
+      });
+    } catch (cause) {
+      return failed(
+        "RECONCILIATION_REQUIRED",
+        `current pointer commit acknowledgement is uncertain: ${errorMessage(cause, "unknown commit error")}`,
+      );
+    }
+    if (!committed.ok) {
+      return committed.error.code === "REVISION_CONFLICT"
+        ? failed("REVISION_CONFLICT", committed.error.message, true)
+        : failed("RECONCILIATION_REQUIRED", `current pointer commit outcome is uncertain: ${committed.error.message}`);
+    }
+    if (
+      committed.value.schemaVersion !== next.schemaVersion ||
+      committed.value.bookId !== next.bookId ||
+      committed.value.candidateId !== next.candidateId ||
+      committed.value.manifestDigest !== next.manifestDigest ||
+      committed.value.revision !== next.revision ||
+      committed.value.updatedAt !== next.updatedAt
+    ) {
+      return failed("RECONCILIATION_REQUIRED", "current pointer commit returned unexpected identity");
+    }
+
+    let readback: Awaited<ReturnType<PromotionServiceOptions["contentReader"]["open"]>>;
+    try {
+      readback = await this.#options.contentReader.open({ bookId: request.bookId, selector: { kind: "CURRENT" } });
+    } catch (cause) {
+      return failed(
+        "RECONCILIATION_REQUIRED",
+        `post-commit CURRENT readback threw: ${errorMessage(cause, "unknown readback error")}`,
+      );
+    }
+    if (!readback.ok) {
+      return failed("RECONCILIATION_REQUIRED", `post-commit CURRENT readback failed: ${readback.error.message}`);
+    }
+    const verified = verifySnapshot(readback.value, request, next.revision);
+    if (!verified.ok) {
+      return failed("RECONCILIATION_REQUIRED", `post-commit CURRENT readback mismatch: ${verified.error.message}`);
+    }
+
+    return {
+      ok: true,
+      value: {
+        bookId: request.bookId,
+        candidate: { ...request.candidate },
+        ...(previousCandidateId === undefined ? {} : { previousCandidateId }),
+        bookRevision: next.revision,
+        readback: "VERIFIED",
+        promotedAt: request.promotedAt,
+      },
+    };
+  }
+}
+
+export function createPromotionService(options: PromotionServiceOptions): PromotionService {
+  return new AtomicPromotionService(options);
+}
+
+export type {
+  PromotionRequest,
+  PromotionResult,
+  PromotionService,
+  PromotionServiceOptions,
+} from "./promotionTypes.js";
