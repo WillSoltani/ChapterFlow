@@ -1,4 +1,4 @@
-import { lstat, readFile, readdir } from "node:fs/promises";
+import { readdir } from "node:fs/promises";
 import { relative, resolve, sep } from "node:path";
 
 import type { Result } from "../contracts/v4Core.js";
@@ -12,7 +12,16 @@ import {
   type CandidateSelector,
   type CandidateSnapshot,
 } from "./candidateTypes.js";
-import { candidatePaths, contentPath, requireBooksRoot, requireLogicalPath, requirePathId } from "./bookPaths.js";
+import {
+  assertDirectoryWithinBooksRoot,
+  BookPathBoundaryError,
+  candidatePaths,
+  contentPath,
+  readRegularFileWithinBooksRoot,
+  requireBooksRoot,
+  requireLogicalPath,
+  requirePathId,
+} from "./bookPaths.js";
 import type { CurrentPointerStore } from "./currentPointer.js";
 
 export interface BookContentReaderSeams {
@@ -148,12 +157,13 @@ interface TreeInventory {
   readonly directories: readonly string[];
 }
 
-async function inventoryTree(root: string): Promise<Result<TreeInventory>> {
+async function inventoryTree(booksRoot: string, root: string): Promise<Result<TreeInventory>> {
   const files: string[] = [];
   const directories: string[] = [];
   const visit = async (directory: string): Promise<Result<null>> => {
     let children;
     try {
+      await assertDirectoryWithinBooksRoot(booksRoot, directory);
       children = await readdir(directory, { withFileTypes: true });
     } catch (cause) {
       return failed("CANDIDATE_MISMATCH", `candidate content inventory unreadable: ${(cause as Error).message}`);
@@ -193,13 +203,17 @@ function expectedDirectories(paths: readonly string[]): string[] {
   return [...directories].sort(byteCompare);
 }
 
-async function requireCandidateLayout(candidateRoot: string): Promise<Result<null>> {
+async function requireCandidateLayout(booksRoot: string, candidateRoot: string): Promise<Result<null>> {
   let children;
   try {
+    await assertDirectoryWithinBooksRoot(booksRoot, candidateRoot);
     children = await readdir(candidateRoot, { withFileTypes: true });
   } catch (cause) {
     if ((cause as NodeJS.ErrnoException).code === "ENOENT") {
       return failed("CANDIDATE_NOT_FOUND", `candidate not found: ${candidateRoot}`);
+    }
+    if (cause instanceof BookPathBoundaryError) {
+      return failed("CANDIDATE_MISMATCH", cause.message);
     }
     return failed("CANDIDATE_IO", `candidate directory read failed: ${(cause as Error).message}`);
   }
@@ -227,54 +241,57 @@ class PureBookContentReader implements BookContentReader {
   }
 
   async open(input: Readonly<{ bookId: string; selector: CandidateSelector }>): Promise<Result<CandidateSnapshot>> {
+    let bookId: string;
     try {
-      requirePathId(input.bookId, "bookId");
+      bookId = requirePathId(input.bookId, "bookId");
     } catch (cause) {
       return failed("INVALID_BOOK_ID", (cause as Error).message);
     }
+    let selector: CandidateSelector;
+    if (input.selector?.kind === "CURRENT") {
+      selector = { kind: "CURRENT" };
+    } else if (input.selector?.kind === "CANDIDATE" && typeof input.selector.candidateId === "string") {
+      try {
+        selector = { kind: "CANDIDATE", candidateId: requirePathId(input.selector.candidateId, "candidateId") };
+      } catch (cause) {
+        return failed("INVALID_SELECTOR", (cause as Error).message);
+      }
+    } else {
+      return failed("INVALID_SELECTOR", "candidate selector must be CANDIDATE or CURRENT");
+    }
+
     let candidateId: string;
     let expectedDigest: string | undefined;
     let currentRevision: number | undefined;
-    if (input.selector?.kind === "CURRENT") {
-      const current = await this.#currentPointerStore.read(input.bookId);
+    if (selector.kind === "CURRENT") {
+      const current = await this.#currentPointerStore.read(bookId);
       if (!current.ok) return current;
-      if (!current.value) return failed("CURRENT_NOT_SET", `current pointer is not set for ${input.bookId}`);
+      if (!current.value) return failed("CURRENT_NOT_SET", `current pointer is not set for ${bookId}`);
       candidateId = current.value.candidateId;
       expectedDigest = current.value.manifestDigest;
       currentRevision = current.value.revision;
       this.#seams.point?.("reader.after-pointer");
-    } else if (input.selector?.kind === "CANDIDATE" && typeof input.selector.candidateId === "string") {
-      candidateId = input.selector.candidateId;
     } else {
-      return failed("INVALID_SELECTOR", "candidate selector must be CANDIDATE or CURRENT");
-    }
-    try {
-      requirePathId(candidateId, "candidateId");
-    } catch (cause) {
-      return failed("INVALID_SELECTOR", (cause as Error).message);
+      candidateId = selector.candidateId;
     }
 
-    const paths = candidatePaths(this.#booksRoot, input.bookId, candidateId);
-    const layout = await requireCandidateLayout(paths.candidateRoot);
+    const paths = candidatePaths(this.#booksRoot, bookId, candidateId);
+    const layout = await requireCandidateLayout(this.#booksRoot, paths.candidateRoot);
     if (!layout.ok) return layout;
 
     let manifestJson: unknown;
     try {
-      const manifestStat = await lstat(paths.manifest);
-      const contentStat = await lstat(paths.contentRoot);
-      if (!manifestStat.isFile() || manifestStat.isSymbolicLink() || !contentStat.isDirectory() || contentStat.isSymbolicLink()) {
-        return failed("CANDIDATE_MISMATCH", "candidate manifest/content types are invalid");
-      }
-      manifestJson = JSON.parse(await readFile(paths.manifest, "utf8"));
+      await assertDirectoryWithinBooksRoot(this.#booksRoot, paths.contentRoot);
+      manifestJson = JSON.parse((await readRegularFileWithinBooksRoot(this.#booksRoot, paths.manifest)).toString("utf8"));
     } catch (cause) {
       return failed("CANDIDATE_MISMATCH", `candidate manifest is unreadable or corrupt: ${(cause as Error).message}`);
     }
-    const manifestResult = parseManifest(manifestJson, input.bookId, candidateId);
+    const manifestResult = parseManifest(manifestJson, bookId, candidateId);
     if (!manifestResult.ok) return manifestResult;
     const manifest = manifestResult.value;
     this.#seams.point?.("reader.after-manifest");
 
-    const inventory = await inventoryTree(paths.contentRoot);
+    const inventory = await inventoryTree(this.#booksRoot, paths.contentRoot);
     if (!inventory.ok) return inventory;
     const declaredPaths = manifest.entries.map((entry) => entry.logicalPath);
     const sortedDeclaredPaths = [...declaredPaths].sort(byteCompare);
@@ -289,11 +306,7 @@ class PureBookContentReader implements BookContentReader {
     for (const entry of manifest.entries) {
       try {
         const path = contentPath(paths.contentRoot, entry.logicalPath);
-        const stat = await lstat(path);
-        if (!stat.isFile() || stat.isSymbolicLink()) {
-          return failed("CANDIDATE_MISMATCH", `declared candidate entry is not a regular file: ${entry.logicalPath}`);
-        }
-        const bytes = await readFile(path);
+        const bytes = await readRegularFileWithinBooksRoot(this.#booksRoot, path);
         if (bytes.byteLength !== entry.byteLength) {
           return failed("CANDIDATE_MISMATCH", `candidate byteLength differs at ${entry.logicalPath}`);
         }

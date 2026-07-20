@@ -1,8 +1,12 @@
-import { readFile } from "node:fs/promises";
-
 import type { BookId, CandidateId, ManifestDigest, PortError, Result, UtcIso } from "../contracts/v4Core.js";
 import { replaceFileAtomic, type AtomicBookFileSeams } from "./atomicBookFiles.js";
-import { bookPaths, requireBooksRoot, requirePathId } from "./bookPaths.js";
+import {
+  BookPathBoundaryError,
+  bookPaths,
+  readRegularFileWithinBooksRoot,
+  requireBooksRoot,
+  requirePathId,
+} from "./bookPaths.js";
 import type { BookWriteLock } from "./leaseTypes.js";
 
 export interface CurrentBookPointer {
@@ -79,12 +83,19 @@ function parsePointer(value: unknown, expectedBookId: string): Result<CurrentBoo
   };
 }
 
-async function readPointer(path: string, bookId: string): Promise<Result<CurrentBookPointer | null>> {
+async function readPointer(
+  booksRoot: string,
+  path: string,
+  bookId: string,
+): Promise<Result<CurrentBookPointer | null>> {
   let bytes: string;
   try {
-    bytes = await readFile(path, "utf8");
+    bytes = (await readRegularFileWithinBooksRoot(booksRoot, path)).toString("utf8");
   } catch (cause) {
     if ((cause as NodeJS.ErrnoException).code === "ENOENT") return { ok: true, value: null };
+    if (cause instanceof BookPathBoundaryError) {
+      return failed("POINTER_CORRUPT", cause.message);
+    }
     return failed("POINTER_READ_FAILED", `current pointer read failed: ${(cause as Error).message}`);
   }
   try {
@@ -112,7 +123,7 @@ class FileCurrentPointerStore implements CurrentPointerStore {
     } catch (cause) {
       return failed("INVALID_BOOK_ID", (cause as Error).message);
     }
-    return readPointer(path, bookId);
+    return readPointer(this.#booksRoot, path, bookId);
   }
 
   async compareAndSet(input: Readonly<{
@@ -139,7 +150,7 @@ class FileCurrentPointerStore implements CurrentPointerStore {
     }
 
     return this.#writeLock.run(bookId, async () => {
-      const current = await readPointer(pointerPath, bookId);
+      const current = await readPointer(this.#booksRoot, pointerPath, bookId);
       if (!current.ok) return current;
       const actualRevision = current.value?.revision ?? 0;
       if (actualRevision !== expectedRevision) {

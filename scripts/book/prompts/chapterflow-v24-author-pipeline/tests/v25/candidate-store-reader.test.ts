@@ -5,6 +5,8 @@ import {
   mkdirSync,
   readFileSync,
   readdirSync,
+  symlinkSync,
+  utimesSync,
   writeFileSync,
 } from "node:fs";
 import { dirname, join, relative, sep } from "node:path";
@@ -13,9 +15,18 @@ import type { PlannedArtifact } from "../../src/contracts/v4Core.js";
 import { createBookWriteLock } from "../../src/books/bookLease.js";
 import { createBookContentReader } from "../../src/books/bookContentReader.js";
 import { candidateManifestDigest } from "../../src/books/candidateDigest.js";
-import { createCandidateStore, type CandidateInputFile, type CandidateStoreSeams } from "../../src/books/candidateStore.js";
+import {
+  createCandidateStore,
+  type CandidateInputFile,
+  type CandidateSelector,
+  type CandidateStoreSeams,
+} from "../../src/books/candidateStore.js";
 import { candidatePaths } from "../../src/books/bookPaths.js";
-import { createCurrentPointerStore } from "../../src/books/currentPointer.js";
+import {
+  createCurrentPointerStore,
+  type CurrentBookPointer,
+  type CurrentPointerStore,
+} from "../../src/books/currentPointer.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
 const INVENTORY = [
@@ -51,6 +62,12 @@ function stageInput(bookId: string, candidateId: string, files = fixtureFiles())
   } as const;
 }
 
+function deferred(): { readonly promise: Promise<void>; readonly resolve: () => void } {
+  let resolve!: () => void;
+  const promise = new Promise<void>((done) => { resolve = done; });
+  return { promise, resolve };
+}
+
 type SnapshotEntry = {
   readonly type: "directory" | "file" | "symlink" | "other";
   readonly mode: number;
@@ -78,6 +95,45 @@ function snapshotTree(root: string): Record<string, SnapshotEntry> {
   };
   visit(root);
   return result;
+}
+
+function collectTreePaths(root: string): string[] {
+  const paths: string[] = [];
+  const visit = (path: string): void => {
+    paths.push(path);
+    if (lstatSync(path).isDirectory()) {
+      for (const name of readdirSync(path).sort((left, right) => Buffer.compare(Buffer.from(left), Buffer.from(right)))) {
+        visit(join(path, name));
+      }
+    }
+  };
+  visit(root);
+  return paths;
+}
+
+function treeBytes(root: string, paths: readonly string[]): Record<string, string> {
+  return Object.fromEntries(paths
+    .filter((path) => lstatSync(path).isFile())
+    .map((path) => [relative(root, path).split(sep).join("/"), readFileSync(path).toString("base64")]));
+}
+
+function ageTree(paths: readonly string[]): void {
+  for (const path of [...paths].reverse()) {
+    const stat = lstatSync(path);
+    utimesSync(path, new Date("2000-01-01T00:00:00.000Z"), stat.mtime);
+  }
+}
+
+function boundaryMetadata(root: string, paths: readonly string[]): Record<string, Record<string, string>> {
+  return Object.fromEntries(paths.map((path) => {
+    const stat = lstatSync(path, { bigint: true });
+    return [relative(root, path).split(sep).join("/") || ".", {
+      atimeNs: stat.atimeNs.toString(),
+      mtimeNs: stat.mtimeNs.toString(),
+      mode: stat.mode.toString(),
+      size: stat.size.toString(),
+    }];
+  }));
 }
 
 requiredTest("complete candidate stages and reopens with stable ordered bytes and checksum", async ({ roots }) => {
@@ -207,6 +263,90 @@ requiredTest("immutable candidate rejects overwrite, inventory drift, and byte d
   assert.equal(driftOpen.ok, false);
   if (!driftOpen.ok) assert.equal(driftOpen.error.code, "CANDIDATE_MISMATCH");
   assert.deepEqual(snapshotTree(candidatePaths(roots.booksRoot, bookId, "byte-drift").candidateRoot), beforeOpen);
+});
+
+requiredTest("CURRENT reader snapshots caller identity before deferred pointer read", async ({ roots }) => {
+  const { candidateStore } = setup(roots.booksRoot);
+  const bookA = "reader-alias-a";
+  const bookB = "reader-alias-b";
+  const candidateId = "shared-candidate";
+  const stagedA = await candidateStore.stage(stageInput(bookA, candidateId, fixtureFiles(" A")));
+  const stagedB = await candidateStore.stage(stageInput(bookB, candidateId, fixtureFiles(" B")));
+  assert.ok(stagedA.ok && stagedB.ok);
+  const current: CurrentBookPointer = {
+    schemaVersion: "1",
+    bookId: bookA,
+    candidateId,
+    manifestDigest: stagedA.value.manifestDigest,
+    revision: 7,
+    updatedAt: "2026-07-20T12:00:07.000Z",
+  };
+
+  const runMutation = async (mutatedBookId: string): Promise<void> => {
+    const pointerReadEntered = deferred();
+    const releasePointerRead = deferred();
+    const observedBookIds: string[] = [];
+    const deferredPointerStore: CurrentPointerStore = {
+      read: async (bookId) => {
+        observedBookIds.push(bookId);
+        pointerReadEntered.resolve();
+        await releasePointerRead.promise;
+        return { ok: true, value: current };
+      },
+      compareAndSet: async () => ({
+        ok: false,
+        error: { code: "TEST_ONLY", message: "not used" },
+      }),
+    };
+    const reader = createBookContentReader({ booksRoot: roots.booksRoot, currentPointerStore: deferredPointerStore });
+    const request: { bookId: string; selector: CandidateSelector } = {
+      bookId: bookA,
+      selector: { kind: "CURRENT" },
+    };
+    const pending = reader.open(request);
+    await pointerReadEntered.promise;
+    request.bookId = mutatedBookId;
+    request.selector = { kind: "CANDIDATE", candidateId: "../escape" };
+    releasePointerRead.resolve();
+    const [settled] = await Promise.allSettled([pending]);
+    assert.equal(settled.status, "fulfilled", "reader must return typed Result after caller mutation");
+    if (settled.status !== "fulfilled") throw new Error("reader rejected after caller mutation");
+    assert.deepEqual(observedBookIds, [bookA]);
+    assert.ok(settled.value.ok);
+    assert.equal(settled.value.value.manifest.bookId, bookA);
+    assert.equal(settled.value.value.currentRevision, 7);
+    assert.deepEqual(Buffer.from(settled.value.value.files[0].bytes), Buffer.from(fixtureFiles(" A")[0].bytes));
+  };
+
+  await runMutation(bookB);
+  await runMutation("../unsafe-book");
+});
+
+requiredTest("candidate reader rejects root symlink without outside read or mutation", async ({ roots }) => {
+  const bookId = "candidate-symlink-book";
+  const candidateId = "linked-candidate";
+  const outsideBooksRoot = join(roots.tempRoot, "outside-books");
+  mkdirSync(outsideBooksRoot);
+  const outsideStore = setup(outsideBooksRoot).candidateStore;
+  const outsideStage = await outsideStore.stage(stageInput(bookId, candidateId));
+  assert.ok(outsideStage.ok);
+  const outsideCandidate = candidatePaths(outsideBooksRoot, bookId, candidateId).candidateRoot;
+  const outsidePaths = collectTreePaths(outsideCandidate);
+  const bytesBefore = treeBytes(outsideCandidate, outsidePaths);
+  ageTree(outsidePaths);
+  const metadataBefore = boundaryMetadata(outsideCandidate, outsidePaths);
+
+  const linkedCandidate = candidatePaths(roots.booksRoot, bookId, candidateId).candidateRoot;
+  mkdirSync(dirname(linkedCandidate), { recursive: true });
+  symlinkSync(outsideCandidate, linkedCandidate, "dir");
+  const result = await setup(roots.booksRoot).reader.open({
+    bookId,
+    selector: { kind: "CANDIDATE", candidateId },
+  });
+  assert.equal(result.ok, false);
+  if (!result.ok) assert.equal(result.error.code, "CANDIDATE_MISMATCH");
+  assert.deepEqual(boundaryMetadata(outsideCandidate, outsidePaths), metadataBefore);
+  assert.deepEqual(treeBytes(outsideCandidate, outsidePaths), bytesBefore);
 });
 
 requiredTest("pure CURRENT read preserves path byte mode mtime inventory and never falls back", async ({ roots }) => {

@@ -1,10 +1,10 @@
 import { randomBytes } from "node:crypto";
 import { hostname as osHostname } from "node:os";
 import { readFileSync, unlinkSync } from "node:fs";
-import { mkdir, readFile, rename, rm, unlink, writeFile } from "node:fs/promises";
+import { readFile, rename, rm, unlink, writeFile } from "node:fs/promises";
 
 import type { PortError, Result } from "../contracts/v4Core.js";
-import { bookPaths, requireBooksRoot } from "./bookPaths.js";
+import { bookPaths, ensureDirectoryWithinBooksRoot, requireBooksRoot } from "./bookPaths.js";
 import type { BookLockError, BookWriteLock, BookWriteLockOptions, BookWriteLockSeams } from "./leaseTypes.js";
 
 interface LockRecord {
@@ -126,7 +126,7 @@ class FileBookWriteLock implements BookWriteLock {
     let acquired = false;
 
     try {
-      await mkdir(bookPaths(this.#booksRoot, bookId).locksRoot, { recursive: true });
+      await ensureDirectoryWithinBooksRoot(this.#booksRoot, bookPaths(this.#booksRoot, bookId).locksRoot);
       while (!acquired) {
         try {
           await writeFile(path, `${JSON.stringify(record)}\n`, { flag: "wx", mode: 0o600 });

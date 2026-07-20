@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname } from "node:path";
+import { mkdirSync, readFileSync, statSync, symlinkSync, utimesSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 
 import type { Result } from "../../src/contracts/v4Core.js";
 import { createBookWriteLock } from "../../src/books/bookLease.js";
@@ -33,6 +33,16 @@ function deferred(): { readonly promise: Promise<void>; readonly resolve: () => 
   let resolve!: () => void;
   const promise = new Promise<void>((done) => { resolve = done; });
   return { promise, resolve };
+}
+
+function fileMetadata(path: string): Record<string, string> {
+  const stat = statSync(path, { bigint: true });
+  return {
+    atimeNs: stat.atimeNs.toString(),
+    mtimeNs: stat.mtimeNs.toString(),
+    mode: stat.mode.toString(),
+    size: stat.size.toString(),
+  };
 }
 
 requiredTest("bounded book lock serializes contenders and busy loser performs no operation write", async ({ roots }) => {
@@ -264,6 +274,27 @@ requiredTest("missing and corrupt pointers block except first expected revision 
   assert.equal(corruptCas.ok, false);
   if (!corruptCas.ok) assert.equal(corruptCas.error.code, "POINTER_CORRUPT");
   assert.deepEqual(readFileSync(corruptPath), corruptBytes);
+});
+
+requiredTest("pointer read rejects symlink without outside read or mutation", async ({ roots }) => {
+  const lock = createBookWriteLock({ booksRoot: roots.booksRoot, timeoutMs: 500, pollMs: 1 });
+  const store = createCurrentPointerStore({ booksRoot: roots.booksRoot, writeLock: lock });
+  const bookId = "pointer-symlink-book";
+  const outsidePath = join(roots.tempRoot, "outside-current.json");
+  const outsideBytes = `${JSON.stringify(pointer(bookId, "outside-candidate", 1, "a"), null, 2)}\n`;
+  writeFileSync(outsidePath, outsideBytes);
+  const originalMtime = statSync(outsidePath).mtime;
+  utimesSync(outsidePath, new Date("2000-01-01T00:00:00.000Z"), originalMtime);
+  const before = fileMetadata(outsidePath);
+
+  const pointerPath = bookPaths(roots.booksRoot, bookId).currentPointer;
+  mkdirSync(dirname(pointerPath), { recursive: true });
+  symlinkSync(outsidePath, pointerPath);
+  const result = await store.read(bookId);
+  assert.equal(result.ok, false);
+  if (!result.ok) assert.equal(result.error.code, "POINTER_CORRUPT");
+  assert.deepEqual(fileMetadata(outsidePath), before);
+  assert.equal(readFileSync(outsidePath, "utf8"), outsideBytes);
 });
 
 finishV25Tests().catch((error: unknown) => {

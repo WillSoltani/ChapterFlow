@@ -16,7 +16,15 @@ import {
   type CandidateSnapshot,
   type CandidateStore,
 } from "./candidateTypes.js";
-import { bookPaths, candidatePaths, contentPath, requireBooksRoot, requireLogicalPath, requirePathId } from "./bookPaths.js";
+import {
+  bookPaths,
+  candidatePaths,
+  contentPath,
+  ensureDirectoryWithinBooksRoot,
+  requireBooksRoot,
+  requireLogicalPath,
+  requirePathId,
+} from "./bookPaths.js";
 import type { CurrentPointerStore } from "./currentPointer.js";
 import type { BookWriteLock } from "./leaseTypes.js";
 
@@ -222,7 +230,10 @@ class FileCandidateStore implements CandidateStore {
 
     let stagedPath: string;
     try {
-      await mkdir(bookPaths(this.#booksRoot, prepared.bookId).candidatesRoot, { recursive: true });
+      await ensureDirectoryWithinBooksRoot(
+        this.#booksRoot,
+        bookPaths(this.#booksRoot, prepared.bookId).candidatesRoot,
+      );
       const suffix = this.#seams.tempSuffix?.() ?? randomBytes(8).toString("hex");
       stagedPath = await mkdtemp(join(bookPaths(this.#booksRoot, prepared.bookId).candidatesRoot, `.${prepared.candidateId}.tmp-${suffix}-`));
       const stagedContent = join(stagedPath, "content");
