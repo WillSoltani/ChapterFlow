@@ -1,7 +1,7 @@
 import { randomBytes } from "node:crypto";
 import { hostname as osHostname } from "node:os";
-import { readFileSync, unlinkSync } from "node:fs";
-import { readFile, rename, rm, unlink, writeFile } from "node:fs/promises";
+import { mkdirSync, readFileSync, rmdirSync, unlinkSync } from "node:fs";
+import { mkdir, readFile, rmdir, unlink, writeFile } from "node:fs/promises";
 
 import type { PortError, Result } from "../contracts/v4Core.js";
 import { bookPaths, ensureDirectoryWithinBooksRoot, requireBooksRoot } from "./bookPaths.js";
@@ -15,19 +15,39 @@ interface LockRecord {
   readonly acquiredAt: string;
 }
 
-const heldLocks = new Map<string, string>();
+type LockState =
+  | { readonly kind: "MISSING" }
+  | { readonly kind: "INVALID" }
+  | { readonly kind: "HELD"; readonly record: LockRecord };
+
+const heldLocks = new Map<string, LockRecord>();
 let exitHookInstalled = false;
+
+function claimPath(lockPath: string): string {
+  return `${lockPath}.claim`;
+}
 
 function installExitHook(): void {
   if (exitHookInstalled) return;
   exitHookInstalled = true;
   process.once("exit", () => {
-    for (const [path, owner] of heldLocks) {
+    for (const [path, record] of heldLocks) {
+      let claimed = false;
       try {
-        const parsed = JSON.parse(readFileSync(path, "utf8")) as Partial<LockRecord>;
-        if (parsed.owner === owner) unlinkSync(path);
+        mkdirSync(claimPath(path), { mode: 0o700 });
+        claimed = true;
+        const parsed = parseLockRecord(readFileSync(path, "utf8"));
+        if (parsed && sameRecord(parsed, record)) unlinkSync(path);
       } catch {
         // Exit cleanup is best-effort. Dead same-host owners are reclaimable.
+      } finally {
+        if (claimed) {
+          try {
+            rmdirSync(claimPath(path));
+          } catch {
+            // A stranded claim fails closed instead of risking concurrent mutation.
+          }
+        }
       }
     }
   });
@@ -65,13 +85,22 @@ function parseLockRecord(bytes: string): LockRecord | null {
   }
 }
 
-async function readRecord(path: string): Promise<LockRecord | null> {
+async function readRecord(path: string): Promise<LockState> {
   try {
-    return parseLockRecord(await readFile(path, "utf8"));
+    const record = parseLockRecord(await readFile(path, "utf8"));
+    return record ? { kind: "HELD", record } : { kind: "INVALID" };
   } catch (cause) {
-    if ((cause as NodeJS.ErrnoException).code === "ENOENT") return null;
+    if ((cause as NodeJS.ErrnoException).code === "ENOENT") return { kind: "MISSING" };
     throw cause;
   }
+}
+
+function sameRecord(left: LockRecord, right: LockRecord): boolean {
+  return left.schemaVersion === right.schemaVersion
+    && left.pid === right.pid
+    && left.host === right.host
+    && left.owner === right.owner
+    && left.acquiredAt === right.acquiredAt;
 }
 
 function isExisting(cause: unknown): boolean {
@@ -80,6 +109,58 @@ function isExisting(cause: unknown): boolean {
 
 function isMissing(cause: unknown): boolean {
   return (cause as NodeJS.ErrnoException).code === "ENOENT";
+}
+
+async function tryClaim(path: string): Promise<boolean> {
+  try {
+    await mkdir(claimPath(path), { mode: 0o700 });
+    return true;
+  } catch (cause) {
+    // Never steal an existing claim: compare-then-remove would recreate the
+    // stale-observation race this directory serializes.
+    if (isExisting(cause)) return false;
+    throw cause;
+  }
+}
+
+async function tryCreateRecord(path: string, record: LockRecord): Promise<boolean> {
+  try {
+    await writeFile(path, `${JSON.stringify(record)}\n`, { flag: "wx", mode: 0o600 });
+    return true;
+  } catch (cause) {
+    if (isExisting(cause)) return false;
+    throw cause;
+  }
+}
+
+async function tryAcquireUnderClaim(
+  path: string,
+  record: LockRecord,
+  processAlive: (pid: number) => boolean,
+): Promise<boolean> {
+  const observed = await readRecord(path);
+  if (observed.kind === "MISSING") return tryCreateRecord(path, record);
+  if (
+    observed.kind !== "HELD"
+    || observed.record.host !== record.host
+    || processAlive(observed.record.pid)
+  ) return false;
+
+  const confirmed = await readRecord(path);
+  if (
+    confirmed.kind !== "HELD"
+    || !sameRecord(confirmed.record, observed.record)
+    || confirmed.record.host !== record.host
+    || processAlive(confirmed.record.pid)
+  ) return false;
+
+  try {
+    await unlink(path);
+  } catch (cause) {
+    if (isMissing(cause)) return false;
+    throw cause;
+  }
+  return tryCreateRecord(path, record);
 }
 
 class FileBookWriteLock implements BookWriteLock {
@@ -128,36 +209,30 @@ class FileBookWriteLock implements BookWriteLock {
     try {
       await ensureDirectoryWithinBooksRoot(this.#booksRoot, bookPaths(this.#booksRoot, bookId).locksRoot);
       while (!acquired) {
+        let claimed = false;
+        let claimReleaseFailure: unknown;
         try {
-          await writeFile(path, `${JSON.stringify(record)}\n`, { flag: "wx", mode: 0o600 });
-          acquired = true;
-          break;
+          claimed = await tryClaim(path);
+          if (claimed) acquired = await tryAcquireUnderClaim(path, record, processAlive);
         } catch (cause) {
-          if (!isExisting(cause)) return error("LOCK_IO", `book lock create failed: ${(cause as Error).message}`);
-        }
-
-        let held: LockRecord | null;
-        try {
-          held = await readRecord(path);
-        } catch (cause) {
-          return error("LOCK_IO", `book lock read failed: ${(cause as Error).message}`);
-        }
-        if (held && held.host === host && !processAlive(held.pid)) {
-          const aside = `${path}.stale-${owner}`;
-          try {
-            await rename(path, aside);
-            const moved = await readRecord(aside);
-            if (moved?.owner !== held.owner) {
-              await rename(aside, path).catch(() => undefined);
-            } else {
-              await rm(aside, { force: true });
+          return error("LOCK_IO", `book lock claim failed: ${(cause as Error).message}`);
+        } finally {
+          if (claimed) {
+            try {
+              await rmdir(claimPath(path));
+            } catch (cause) {
+              claimReleaseFailure = cause;
             }
-            continue;
-          } catch (cause) {
-            if (isMissing(cause) || isExisting(cause)) continue;
-            return error("LOCK_IO", `stale book lock reclaim failed: ${(cause as Error).message}`);
           }
         }
+        if (claimReleaseFailure !== undefined) {
+          if (acquired) {
+            heldLocks.set(path, record);
+            installExitHook();
+          }
+          return error("LOCK_IO", `book lock claim release failed: ${(claimReleaseFailure as Error).message}`);
+        }
+        if (acquired) break;
 
         const remaining = deadline - nowMs();
         if (remaining <= 0) {
@@ -169,7 +244,7 @@ class FileBookWriteLock implements BookWriteLock {
       return error("LOCK_IO", `book lock acquisition failed: ${(cause as Error).message}`);
     }
 
-    heldLocks.set(path, owner);
+    heldLocks.set(path, record);
     installExitHook();
     try {
       this.#seams.point?.("lock.acquired");
@@ -178,10 +253,33 @@ class FileBookWriteLock implements BookWriteLock {
       try {
         this.#seams.point?.("lock.before-release");
       } finally {
-        try {
-          if ((await readRecord(path))?.owner === owner) await unlink(path);
-        } catch {
-          // A failed token-checked release leaves recoverable lock evidence.
+        const releaseDeadline = nowMs() + this.#timeoutMs;
+        while (true) {
+          let claimed = false;
+          try {
+            claimed = await tryClaim(path);
+            if (claimed) {
+              const held = await readRecord(path);
+              if (held.kind === "HELD" && sameRecord(held.record, record)) await unlink(path);
+              break;
+            }
+          } catch (cause) {
+            if (!isMissing(cause)) {
+              // Failed token-checked release leaves recoverable lock evidence.
+            }
+            break;
+          } finally {
+            if (claimed) {
+              try {
+                await rmdir(claimPath(path));
+              } catch {
+                // A stranded claim fails closed instead of risking concurrent mutation.
+              }
+            }
+          }
+          const remaining = releaseDeadline - nowMs();
+          if (remaining <= 0) break;
+          await sleep(Math.min(this.#pollMs, remaining));
         }
         heldLocks.delete(path);
         this.#seams.point?.("lock.released");
