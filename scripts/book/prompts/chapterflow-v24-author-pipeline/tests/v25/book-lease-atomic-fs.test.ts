@@ -66,6 +66,103 @@ async function waitForFile(path: string, childDone: ReturnType<typeof waitForChi
   throw new Error(`timed out waiting for child marker: ${path}`);
 }
 
+type CrashPoint = "claim.before-create" | "claim.before-reclaim" | "claim.before-release" | "lock.acquired";
+
+function writeClaimCrashHelper(path: string): void {
+  writeFileSync(path, `
+import { writeFileSync } from "node:fs";
+
+async function main(): Promise<void> {
+  const [moduleUrl, booksRoot, bookId, crashPoint, readyPath] = process.argv.slice(2);
+  const { createBookWriteLock } = await import(moduleUrl);
+  let armed = true;
+  const lock = createBookWriteLock({
+    booksRoot,
+    timeoutMs: 3_000,
+    pollMs: 1,
+    seams: {
+      point: (name: string) => {
+        if (!armed || name !== crashPoint) return;
+        armed = false;
+        writeFileSync(readyPath, name + "\\n");
+        Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0);
+      },
+    },
+  });
+  const result = await lock.run(bookId, async () => ({ ok: true, value: "child" }));
+  if (!result.ok) throw new Error(result.error.code + ": " + result.error.message);
+  throw new Error("child completed without reaching crash point " + crashPoint);
+}
+
+main().catch((error: unknown) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+`);
+}
+
+async function killAtClaimPoint(input: {
+  readonly helper: string;
+  readonly booksRoot: string;
+  readonly bookId: string;
+  readonly crashPoint: CrashPoint;
+  readonly ready: string;
+}): Promise<void> {
+  const moduleUrl = pathToFileURL(resolve("src/books/bookLease.ts")).href;
+  const child = spawn(
+    process.execPath,
+    [...process.execArgv, input.helper, moduleUrl, input.booksRoot, input.bookId, input.crashPoint, input.ready],
+    { cwd: resolve("."), env: process.env, stdio: ["ignore", "pipe", "pipe"] },
+  );
+  const childDone = waitForChild(child);
+  try {
+    await waitForFile(input.ready, childDone);
+  } catch (cause) {
+    if (child.exitCode === null && child.signalCode === null) child.kill("SIGKILL");
+    await childDone;
+    throw cause;
+  }
+  assert.equal(child.kill("SIGKILL"), true);
+  const killed = await childDone;
+  assert.equal(killed.code, null, killed.stderr || killed.stdout);
+  assert.equal(killed.signal, "SIGKILL", killed.stderr || killed.stdout);
+}
+
+async function assertThreeSerializedContenders(booksRoot: string, bookId: string): Promise<void> {
+  const lockPath = bookPaths(booksRoot, bookId).writeLock;
+  let active = 0;
+  let maxActive = 0;
+  const contenderResults = await Promise.all(Array.from({ length: 3 }, (_, index) => {
+    const contender = createBookWriteLock({ booksRoot, timeoutMs: 3_000, pollMs: 1 });
+    return contender.run(bookId, async () => {
+      active += 1;
+      maxActive = Math.max(maxActive, active);
+      try {
+        const successorBytes = readFileSync(lockPath);
+        const successorInode = statSync(lockPath, { bigint: true }).ino;
+        for (let sample = 0; sample < 10; sample++) {
+          await new Promise((done) => setTimeout(done, 3));
+          assert.deepEqual(
+            readFileSync(lockPath),
+            successorBytes,
+            "current successor lock must never move or be overwritten",
+          );
+          assert.equal(statSync(lockPath, { bigint: true }).ino, successorInode);
+        }
+        return pass(`contender-${index}`);
+      } finally {
+        active -= 1;
+      }
+    });
+  }));
+
+  assert.equal(maxActive, 1);
+  assert.equal(contenderResults.every((result) => result.ok), true, JSON.stringify(contenderResults));
+  assert.equal(existsSync(lockPath), false);
+  assert.equal(existsSync(`${lockPath}.claim`), false);
+  assert.deepEqual(readdirSync(bookPaths(booksRoot, bookId).locksRoot), []);
+}
+
 function fileMetadata(path: string): Record<string, string> {
   const stat = statSync(path, { bigint: true });
   return {
@@ -211,6 +308,58 @@ main().catch((error: unknown) => {
   assert.equal(existsSync(lockPath), false);
   assert.equal(existsSync(`${lockPath}.claim`), false);
   assert.deepEqual(readdirSync(bookPaths(roots.booksRoot, bookId).locksRoot), []);
+});
+
+requiredTest("interrupted create claim generation recovers before three serialized contenders", async ({ roots }) => {
+  const bookId = "claim-create-crash-book";
+  const helper = join(roots.tempRoot, "crash-create-claim.ts");
+  const ready = join(roots.tempRoot, "create-claim-ready");
+  const lockPath = bookPaths(roots.booksRoot, bookId).writeLock;
+  mkdirSync(`${lockPath}.claim`, { recursive: true }); // legacy empty marker becomes non-locking container
+  writeClaimCrashHelper(helper);
+  await killAtClaimPoint({ helper, booksRoot: roots.booksRoot, bookId, crashPoint: "claim.before-create", ready });
+
+  assert.equal(existsSync(lockPath), false);
+  assert.equal(existsSync(`${lockPath}.claim`), true);
+  await assertThreeSerializedContenders(roots.booksRoot, bookId);
+});
+
+requiredTest("interrupted reclaim claim generation recovers before three serialized contenders", async ({ roots }) => {
+  const bookId = "claim-reclaim-crash-book";
+  const helper = join(roots.tempRoot, "crash-reclaim-claim.ts");
+  writeClaimCrashHelper(helper);
+  await killAtClaimPoint({
+    helper,
+    booksRoot: roots.booksRoot,
+    bookId,
+    crashPoint: "lock.acquired",
+    ready: join(roots.tempRoot, "dead-main-owner-ready"),
+  });
+  await killAtClaimPoint({
+    helper,
+    booksRoot: roots.booksRoot,
+    bookId,
+    crashPoint: "claim.before-reclaim",
+    ready: join(roots.tempRoot, "reclaim-claim-ready"),
+  });
+
+  const lockPath = bookPaths(roots.booksRoot, bookId).writeLock;
+  assert.equal(existsSync(lockPath), true);
+  assert.equal(existsSync(`${lockPath}.claim`), true);
+  await assertThreeSerializedContenders(roots.booksRoot, bookId);
+});
+
+requiredTest("interrupted release claim generation recovers before three serialized contenders", async ({ roots }) => {
+  const bookId = "claim-release-crash-book";
+  const helper = join(roots.tempRoot, "crash-release-claim.ts");
+  const ready = join(roots.tempRoot, "release-claim-ready");
+  writeClaimCrashHelper(helper);
+  await killAtClaimPoint({ helper, booksRoot: roots.booksRoot, bookId, crashPoint: "claim.before-release", ready });
+
+  const lockPath = bookPaths(roots.booksRoot, bookId).writeLock;
+  assert.equal(existsSync(lockPath), true);
+  assert.equal(existsSync(`${lockPath}.claim`), true);
+  await assertThreeSerializedContenders(roots.booksRoot, bookId);
 });
 
 requiredTest("same-revision pointer CAS has one winner and one zero-mutation conflict", async ({ roots }) => {

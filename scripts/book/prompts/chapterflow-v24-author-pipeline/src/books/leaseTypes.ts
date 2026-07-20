@@ -17,7 +17,14 @@ export interface BookWriteLockSeams {
   readonly pid?: () => number;
   readonly ownerToken?: () => string;
   readonly processAlive?: (pid: number) => boolean;
-  readonly point?: (name: "lock.acquired" | "lock.before-release" | "lock.released") => void;
+  readonly point?: (name:
+    | "claim.before-create"
+    | "claim.before-reclaim"
+    | "claim.before-release"
+    | "lock.acquired"
+    | "lock.before-release"
+    | "lock.released"
+  ) => void;
 }
 
 export interface BookWriteLockOptions {
