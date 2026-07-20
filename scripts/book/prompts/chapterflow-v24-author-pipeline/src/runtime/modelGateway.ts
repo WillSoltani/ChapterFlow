@@ -6,9 +6,11 @@ import { modelError, type ModelErrorCode } from "./modelErrors.js";
 import type { ModelTask } from "./modelRequest.js";
 import type { ModelResult } from "./modelResult.js";
 import type { ProcessOutcome, ProcessResult, ProcessSpec, ProcessSupervisor } from "./processTypes.js";
+import type { PromptRequest } from "./promptRequest.js";
 import { renderPrompt } from "./promptRenderer.js";
 
 const SAFE_ID = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
+const INVALID_ATTEMPT_ID = "invalid-attempt";
 const ATTEMPT_TAILS = new Map<string, Promise<void>>();
 
 export interface ModelGateway {
@@ -29,6 +31,14 @@ type PreparedTask = {
   readonly command: string;
   readonly args: readonly string[];
 };
+
+interface ModelTaskSnapshot extends ModelTask {
+  readonly renderedPrompt: Uint8Array;
+}
+
+type ModelTaskSnapshotResult =
+  | { readonly ok: true; readonly value: ModelTaskSnapshot }
+  | { readonly ok: false; readonly attemptId: string; readonly message: string };
 
 function result(attemptId: string, outcome: ModelResult["outcome"], code?: ModelErrorCode, message?: string): ModelResult {
   return {
@@ -57,6 +67,72 @@ function validateTaskShape(task: ModelTask): string | null {
   if (typeof task.workDir !== "string" || task.workDir.length === 0 || task.workDir.includes("\0")) return "workDir is invalid";
   if (!(task.signal instanceof AbortSignal)) return "signal must be AbortSignal";
   return null;
+}
+
+function snapshotTask(task: ModelTask): ModelTaskSnapshotResult {
+  let attemptIdForResult = INVALID_ATTEMPT_ID;
+  try {
+    if (task === null || typeof task !== "object" || Array.isArray(task)) {
+      return { ok: false, attemptId: attemptIdForResult, message: "model task must be an object" };
+    }
+    const source = task as unknown as Record<string, unknown>;
+    const attemptId = source.attemptId;
+    if (validId(attemptId)) attemptIdForResult = attemptId;
+    const shallow: ModelTask = {
+      bookId: source.bookId as string,
+      runId: source.runId as string,
+      attemptId: attemptId as string,
+      stageId: source.stageId as string,
+      operationId: source.operationId as string,
+      profileId: source.profileId as string,
+      workDir: source.workDir as string,
+      prompt: source.prompt as PromptRequest,
+      signal: source.signal as AbortSignal,
+    };
+    const shapeError = validateTaskShape(shallow);
+    if (shapeError !== null) return { ok: false, attemptId: attemptIdForResult, message: shapeError };
+
+    const promptSource = shallow.prompt;
+    if (promptSource === null || typeof promptSource !== "object" || Array.isArray(promptSource)) {
+      return { ok: false, attemptId: attemptIdForResult, message: "prompt request rejected" };
+    }
+    const templateId = (promptSource as unknown as Record<string, unknown>).templateId;
+    const sourceInputs = (promptSource as unknown as Record<string, unknown>).inputs;
+    if (typeof templateId !== "string" || !Array.isArray(sourceInputs)) {
+      return { ok: false, attemptId: attemptIdForResult, message: "prompt request rejected" };
+    }
+    const inputs: Array<PromptRequest["inputs"][number]> = [];
+    for (const sourceInput of sourceInputs) {
+      if (sourceInput === null || typeof sourceInput !== "object" || Array.isArray(sourceInput)) {
+        return { ok: false, attemptId: attemptIdForResult, message: "prompt request rejected" };
+      }
+      const input = sourceInput as Record<string, unknown>;
+      if (typeof input.name !== "string" || typeof input.mediaType !== "string" || !(input.bytes instanceof Uint8Array)) {
+        return { ok: false, attemptId: attemptIdForResult, message: "prompt request rejected" };
+      }
+      inputs.push(Object.freeze({
+        name: input.name,
+        mediaType: input.mediaType as PromptRequest["inputs"][number]["mediaType"],
+        bytes: new Uint8Array(input.bytes),
+      }));
+    }
+    const prompt = Object.freeze({
+      templateId,
+      inputs: Object.freeze(inputs),
+    });
+    const rendered = renderPrompt(prompt);
+    if (!rendered.ok) return { ok: false, attemptId: attemptIdForResult, message: "prompt request rejected" };
+    return {
+      ok: true,
+      value: Object.freeze({
+        ...shallow,
+        prompt,
+        renderedPrompt: new Uint8Array(rendered.value),
+      }),
+    };
+  } catch {
+    return { ok: false, attemptId: attemptIdForResult, message: "model task could not be snapshotted" };
+  }
 }
 
 function canonicalUtc(value: string): boolean {
@@ -89,14 +165,12 @@ async function serializeAttempt<T>(key: string, operation: () => Promise<T>): Pr
 }
 
 function prepareTask(
-  task: ModelTask,
+  task: ModelTaskSnapshot,
   executionPolicy: ExecutionPolicy,
   route: ModelProcessRoute,
 ): Result<PreparedTask> {
   const policy = executionPolicy.resolve(task.profileId, task.workDir);
   if (!policy.ok) return { ok: false, error: modelError("MODEL_PROFILE_INVALID", "execution profile or work directory rejected") };
-  const prompt = renderPrompt(task.prompt);
-  if (!prompt.ok) return { ok: false, error: modelError("MODEL_TASK_INVALID", "prompt request rejected") };
   try {
     const process = route.build(policy.value.profile);
     if (
@@ -108,7 +182,10 @@ function prepareTask(
     ) {
       return { ok: false, error: modelError("MODEL_PROFILE_INVALID", "fixed process route is invalid") };
     }
-    return { ok: true, value: { policy: policy.value, prompt: prompt.value, command: process.command, args: process.args } };
+    return {
+      ok: true,
+      value: { policy: policy.value, prompt: task.renderedPrompt, command: process.command, args: process.args },
+    };
   } catch {
     return { ok: false, error: modelError("MODEL_PROFILE_INVALID", "fixed process route could not resolve") };
   }
@@ -156,9 +233,7 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
   const route = dependencies.route ?? createCodexRoute();
   const now = dependencies.now ?? (() => new Date().toISOString());
 
-  const executeOnce = async (task: ModelTask): Promise<ModelResult> => {
-    const shapeError = validateTaskShape(task);
-    if (shapeError !== null) return result(task?.attemptId ?? "invalid-attempt", "FAILED", "MODEL_TASK_INVALID", shapeError);
+  const executeOnce = async (task: ModelTaskSnapshot): Promise<ModelResult> => {
     if (task.signal.aborted) return result(task.attemptId, "CANCELLED", "MODEL_TASK_INVALID", "task cancelled before admission");
 
     const prepared = prepareTask(task, dependencies.executionPolicy, route);
@@ -288,8 +363,20 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
 
   return {
     execute(task: ModelTask): Promise<ModelResult> {
-      const key = `${task?.bookId ?? "invalid"}\0${task?.runId ?? "invalid"}\0${task?.attemptId ?? "invalid"}`;
-      return serializeAttempt(key, () => executeOnce(task));
+      const snapshot = snapshotTask(task);
+      if (!snapshot.ok) {
+        return Promise.resolve(result(snapshot.attemptId, "FAILED", "MODEL_TASK_INVALID", snapshot.message));
+      }
+      if (snapshot.value.signal.aborted) {
+        return Promise.resolve(result(
+          snapshot.value.attemptId,
+          "CANCELLED",
+          "MODEL_TASK_INVALID",
+          "task cancelled before admission",
+        ));
+      }
+      const key = `${snapshot.value.bookId}\0${snapshot.value.runId}\0${snapshot.value.attemptId}`;
+      return serializeAttempt(key, () => executeOnce(snapshot.value));
     },
   };
 }

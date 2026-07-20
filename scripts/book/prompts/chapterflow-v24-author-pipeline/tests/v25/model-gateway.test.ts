@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 import type { BookId, Result, RunId, UtcIso } from "../../src/contracts/v4Core.js";
@@ -256,6 +256,44 @@ requiredTest("invalid profile workdir and pre-admission cancellation start no pr
   assertNoLiveInvocation();
 });
 
+requiredTest("huge secret-marked invalid attempt id returns fixed bounded sentinel without state access", async ({ roots }) => {
+  const run = definition("invalid-id-book", "invalid-id-run");
+  const inner = new FileRunStore(roots.stateRoot);
+  expectOk(await inner.createRun(run));
+  const observed = counts();
+  const supervisor = new FakeSupervisor(observed, () => processResult());
+  const gateway = createModelGateway({
+    runStore: tracedStore(inner, observed),
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    route: route(observed),
+    now: clock(),
+  });
+  const secretMarker = "INVALID_ATTEMPT_SECRET_MARKER_429d";
+  const invalidAttemptId = `${secretMarker}${"x".repeat(81_920 - secretMarker.length)}`;
+  assert.equal(Buffer.byteLength(invalidAttemptId), 81_920);
+
+  const result = await gateway.execute({
+    ...task(run, "valid-before-replacement", attemptDirectory(roots, "attempt-invalid-id")),
+    attemptId: invalidAttemptId,
+  });
+
+  assert.equal(result.attemptId, "invalid-attempt");
+  assert.equal(result.outcome, "FAILED");
+  assert.equal(result.error?.code, "MODEL_TASK_INVALID");
+  const serialized = JSON.stringify(result);
+  assert.equal(serialized.includes(secretMarker), false);
+  assert.ok(Buffer.byteLength(serialized) < 512);
+  assert.deepEqual({
+    read: observed.read,
+    admit: observed.admit,
+    process: observed.process,
+    terminal: observed.terminal,
+    route: observed.route,
+  }, { read: 0, admit: 0, process: 0, terminal: 0, route: 0 });
+  assertNoLiveInvocation();
+});
+
 requiredTest("exhausted cancelled corrupt and duplicate runs start zero process", async ({ roots }) => {
   const inner = new FileRunStore(roots.stateRoot);
   const observed = counts();
@@ -329,6 +367,104 @@ requiredTest("concurrent duplicate attempt serializes to one admission and one p
   const snapshot = expectOk(await inner.readRun(run.bookId, run.runId, "2026-01-01T00:01:00.000Z"));
   assert.equal(snapshot.attempts.length, 1);
   assert.equal(snapshot.attempts[0]?.status, "SUCCEEDED");
+  assertNoLiveInvocation();
+});
+
+requiredTest("call-time task snapshot defeats deferred-read mutation and preserves one original attempt", async ({ roots }) => {
+  const run = definition("snapshot-book", "snapshot-run");
+  const inner = new FileRunStore(roots.stateRoot);
+  expectOk(await inner.createRun(run));
+  const observed = counts();
+  const traced = tracedStore(inner, observed);
+  let announceRead = (): void => {};
+  let releaseRead = (): void => {};
+  const readEntered = new Promise<void>((done) => { announceRead = done; });
+  const readGate = new Promise<void>((done) => { releaseRead = done; });
+  let blockFirstRead = true;
+  const blockingStore: RunStore = {
+    createRun: (value) => traced.createRun(value),
+    async readRun(bookId, runId, observedAt) {
+      if (blockFirstRead) {
+        blockFirstRead = false;
+        announceRead();
+        await readGate;
+      }
+      return traced.readRun(bookId, runId, observedAt);
+    },
+    admitAttempt: (value) => traced.admitAttempt(value),
+    finishAttempt: (value) => traced.finishAttempt(value),
+    requestCancel: (value) => traced.requestCancel(value),
+    finishRun: (value) => traced.finishRun(value),
+  };
+  const supervisor = new FakeSupervisor(observed, () => processResult());
+  const gateway = createModelGateway({
+    runStore: blockingStore,
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    route: route(observed),
+    now: clock(),
+  });
+  const workDir = attemptDirectory(roots, "attempt-snapshot-original");
+  const first = task(run, "attempt-snapshot-original", workDir, "ORIGINAL_PROMPT_BYTES_17ac");
+  const second: ModelTask = {
+    ...first,
+    prompt: {
+      templateId: first.prompt.templateId,
+      inputs: first.prompt.inputs.map((entry) => ({
+        name: entry.name,
+        mediaType: entry.mediaType,
+        bytes: new Uint8Array(entry.bytes),
+      })),
+    },
+  };
+  assert.notEqual(first, second);
+
+  const firstPending = gateway.execute(first);
+  await readEntered;
+  const secondPending = gateway.execute(second);
+  const mutableFirst = first as unknown as {
+    bookId: string;
+    runId: string;
+    attemptId: string;
+    stageId: string;
+    operationId: string;
+    profileId: string;
+    workDir: string;
+    prompt: {
+      templateId: string;
+      inputs: Array<{ name: string; mediaType: string; bytes: Uint8Array }>;
+    };
+  };
+  mutableFirst.bookId = "mutated-book";
+  mutableFirst.runId = "mutated-run";
+  mutableFirst.attemptId = "attempt-mutated";
+  mutableFirst.stageId = "mutated-stage";
+  mutableFirst.operationId = "operation-mutated";
+  mutableFirst.profileId = "caller-mutated-profile";
+  mutableFirst.workDir = roots.tempRoot;
+  mutableFirst.prompt.templateId = "caller-mutated-template";
+  const mutableInput = mutableFirst.prompt.inputs[0];
+  assert.ok(mutableInput);
+  mutableInput.name = "mutated-input";
+  mutableInput.mediaType = "application/json";
+  mutableInput.bytes.fill(0x6d);
+  releaseRead();
+
+  const results = await Promise.all([firstPending, secondPending]);
+  assert.deepEqual(results.map((entry) => entry.attemptId), ["attempt-snapshot-original", "attempt-snapshot-original"]);
+  assert.equal(results.filter((entry) => entry.outcome === "SUCCEEDED").length, 1);
+  assert.equal(results.filter((entry) => entry.outcome === "UNKNOWN").length, 1);
+  assert.deepEqual({ admit: observed.admit, process: observed.process, terminal: observed.terminal }, {
+    admit: 1,
+    process: 1,
+    terminal: 1,
+  });
+  assert.equal(supervisor.specs.length, 1);
+  assert.equal(supervisor.specs[0]?.cwd, realpathSync(workDir));
+  assert.equal(new TextDecoder().decode(supervisor.specs[0]?.stdin).includes("ORIGINAL_PROMPT_BYTES_17ac"), true);
+  const snapshot = expectOk(await inner.readRun(run.bookId, run.runId, "2026-01-01T00:01:00.000Z"));
+  assert.deepEqual(snapshot.attempts.map((attempt) => attempt.admission.attemptId), ["attempt-snapshot-original"]);
+  assert.equal(existsSync(join(roots.stateRoot, "books", "mutated-book")), false);
   assertNoLiveInvocation();
 });
 
