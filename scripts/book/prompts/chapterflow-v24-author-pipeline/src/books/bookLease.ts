@@ -266,16 +266,37 @@ async function pruneDeadClaims(
   }
 }
 
-async function unlinkExactClaim(path: string, expected: ClaimRecord, missingAllowed: boolean): Promise<void> {
-  const state = await readClaimEntry(path, claimEntryName(expected));
-  if (state.kind === "MISSING" && missingAllowed) return;
-  if (state.kind !== "HELD" || !sameClaimRecord(state.record, expected)) {
-    throw new Error(`book claim generation changed before release: ${expected.generation}`);
-  }
+async function retryDelay(pollMs: number, sleep: (milliseconds: number) => Promise<void>): Promise<void> {
   try {
-    await unlink(path);
-  } catch (cause) {
-    if (!isMissing(cause) || !missingAllowed) throw cause;
+    await sleep(pollMs);
+  } catch {
+    await new Promise<void>((resolve) => setTimeout(resolve, pollMs));
+  }
+}
+
+async function releaseClaimEntryCompletely(
+  path: string,
+  expected: ClaimRecord,
+  pollMs: number,
+  sleep: (milliseconds: number) => Promise<void>,
+): Promise<void> {
+  while (true) {
+    const state = await readClaimEntry(path, claimEntryName(expected));
+    if (state.kind === "MISSING") return;
+    if (state.kind === "INVALID") {
+      await retryDelay(pollMs, sleep);
+      continue;
+    }
+    if (!sameClaimRecord(state.record, expected)) {
+      throw new Error(`book claim generation changed before release: ${expected.generation}`);
+    }
+    try {
+      await unlink(path);
+      return;
+    } catch (cause) {
+      if (isMissing(cause)) return;
+      await retryDelay(pollMs, sleep);
+    }
   }
 }
 
@@ -324,7 +345,7 @@ async function acquireClaim(
     if (maxTicket >= Number.MAX_SAFE_INTEGER) throw new Error("book claim ticket space exhausted");
     ticket = { ...choosing, phase: "TICKET", ticket: maxTicket + 1 };
     ticketPath = await createClaimEntry(root, ticket);
-    await unlinkExactClaim(choosingPath, choosing, false);
+    await releaseClaimEntryCompletely(choosingPath, choosing, pollMs, sleep);
     choosingPath = null;
 
     while (true) {
@@ -343,14 +364,18 @@ async function acquireClaim(
       await sleep(Math.min(pollMs, remaining));
     }
   } finally {
-    if (choosingPath) await unlinkExactClaim(choosingPath, choosing, true);
-    if (!acquired && ticketPath && ticket) await unlinkExactClaim(ticketPath, ticket, true);
+    if (choosingPath) await releaseClaimEntryCompletely(choosingPath, choosing, pollMs, sleep);
+    if (!acquired && ticketPath && ticket) await releaseClaimEntryCompletely(ticketPath, ticket, pollMs, sleep);
     if (!acquired) await cleanupClaimRoot(root);
   }
 }
 
-async function releaseClaim(lease: ClaimLease): Promise<void> {
-  await unlinkExactClaim(lease.path, lease.record, false);
+async function releaseClaim(
+  lease: ClaimLease,
+  pollMs: number,
+  sleep: (milliseconds: number) => Promise<void>,
+): Promise<void> {
+  await releaseClaimEntryCompletely(lease.path, lease.record, pollMs, sleep);
   await cleanupClaimRoot(lease.root);
 }
 
@@ -397,6 +422,36 @@ async function tryAcquireUnderClaim(
     throw cause;
   }
   return tryCreateRecord(path, record);
+}
+
+async function releaseMainRecordCompletely(
+  path: string,
+  expected: LockRecord,
+  pollMs: number,
+  sleep: (milliseconds: number) => Promise<void>,
+): Promise<void> {
+  while (true) {
+    let state: LockState;
+    try {
+      state = await readRecord(path);
+    } catch {
+      await retryDelay(pollMs, sleep);
+      continue;
+    }
+    if (state.kind === "MISSING") return;
+    if (state.kind === "HELD" && !sameRecord(state.record, expected)) return;
+    if (state.kind === "INVALID") {
+      await retryDelay(pollMs, sleep);
+      continue;
+    }
+    try {
+      await unlink(path);
+      return;
+    } catch (cause) {
+      if (isMissing(cause)) return;
+      await retryDelay(pollMs, sleep);
+    }
+  }
 }
 
 class FileBookWriteLock implements BookWriteLock {
@@ -451,20 +506,27 @@ class FileBookWriteLock implements BookWriteLock {
         let attemptFailure: unknown;
         let releaseFailure: unknown;
         try {
+          this.#seams.point?.("claim.acquired");
           acquired = await tryAcquireUnderClaim(path, record, processAlive, this.#seams.point);
         } catch (cause) {
           attemptFailure = cause;
         } finally {
           try {
-            await releaseClaim(lease);
+            this.#seams.point?.("claim.before-generation-release");
           } catch (cause) {
             releaseFailure = cause;
+          }
+          try {
+            await releaseClaim(lease, this.#pollMs, sleep);
+          } catch (cause) {
+            releaseFailure ??= cause;
           }
         }
         if (attemptFailure !== undefined) {
           return error("LOCK_IO", `book lock claim failed: ${(attemptFailure as Error).message}`);
         }
         if (releaseFailure !== undefined) {
+          if (acquired) await releaseMainRecordCompletely(path, record, this.#pollMs, sleep);
           return error("LOCK_IO", `book lock claim release failed: ${(releaseFailure as Error).message}`);
         }
         if (acquired) break;
@@ -489,15 +551,24 @@ class FileBookWriteLock implements BookWriteLock {
           const lease = await acquireClaim(path, record, releaseDeadline, nowMs, this.#pollMs, sleep, processAlive);
           if (lease) {
             try {
+              this.#seams.point?.("claim.acquired");
               this.#seams.point?.("claim.before-release");
-              const held = await readRecord(path);
-              if (held.kind === "HELD" && sameRecord(held.record, record)) await unlink(path);
+              this.#seams.point?.("lock.before-exact-release");
+              await releaseMainRecordCompletely(path, record, this.#pollMs, sleep);
             } finally {
-              await releaseClaim(lease);
+              try {
+                this.#seams.point?.("claim.before-generation-release");
+              } finally {
+                await releaseClaim(lease, this.#pollMs, sleep);
+              }
             }
+          } else {
+            this.#seams.point?.("lock.before-exact-release");
+            await releaseMainRecordCompletely(path, record, this.#pollMs, sleep);
           }
-        } catch {
-          // Failed exact-owner release leaves recoverable main and claim generations.
+        } catch (cause) {
+          await releaseMainRecordCompletely(path, record, this.#pollMs, sleep);
+          throw cause;
         }
         this.#seams.point?.("lock.released");
       }
