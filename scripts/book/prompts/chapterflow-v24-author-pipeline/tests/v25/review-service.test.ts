@@ -143,6 +143,47 @@ requiredTest("partial candidate and invalid evaluator output never become canoni
   assert.equal(calls, 1);
 });
 
+requiredTest("malformed evaluator failures store fixed ERROR records that round-trip", async (context) => {
+  const bookId = "review-malformed-failure-book";
+  const { reader, snapshot } = await setupCandidate(context, bookId, "candidate-a");
+  const malformedFailures: readonly unknown[] = [
+    { ok: false, error: { code: "BROKEN", message: { nested: true } } },
+    { ok: false, error: { message: "missing error code" } },
+  ];
+  let calls = 0;
+  const evaluator: CanonicalReviewEvaluator = {
+    async evaluate() {
+      const result = malformedFailures[calls];
+      calls += 1;
+      return result as never;
+    },
+  };
+  const review = createReviewServiceFactory({
+    booksRoot: context.roots.booksRoot,
+    contentReader: reader,
+    now: () => context.clock.now(),
+  }).create(evaluator);
+
+  for (let index = 0; index < malformedFailures.length; index += 1) {
+    const reviewId = `malformed-failure-${index + 1}`;
+    const result = await review.reviewCanonical({
+      reviewId,
+      candidate: snapshot,
+      taskContext: taskContext(context, bookId),
+    });
+    assert.equal(result.ok, true, reviewId);
+    assert.ok(result.ok);
+    assert.equal(result.value.outcome, "ERROR", reviewId);
+    assert.deepEqual(result.value.issues, [{
+      code: "REVIEW_EVALUATOR_INVALID",
+      severity: "BLOCKER",
+      message: "canonical evaluator returned an invalid result",
+    }], reviewId);
+    assert.deepEqual(await review.get(bookId, reviewId), result, reviewId);
+  }
+  assert.equal(calls, malformedFailures.length);
+});
+
 requiredTest("canonical review ID replay is idempotent and conflicting identity preserves original", async (context) => {
   const bookId = "review-replay-book";
   const first = await setupCandidate(context, bookId, "candidate-a", " A");

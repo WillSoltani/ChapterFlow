@@ -187,7 +187,8 @@ requiredTest("exact replay heals torn round ledger while malformed and conflicti
 
   const conflictingEvent = JSON.parse(healedLedger.toString("utf8")) as { round: { outcome: string } };
   conflictingEvent.round.outcome = "FAIL";
-  writeFileSync(ledgerPath, `${JSON.stringify(conflictingEvent)}\n`, "utf8");
+  const conflictingLedger = Buffer.from(`${JSON.stringify(conflictingEvent)}\n`, "utf8");
+  writeFileSync(ledgerPath, conflictingLedger);
   const conflicting = await rig.qc.runFresh({
     roundId: pass.roundId,
     candidate: rig.snapshot,
@@ -197,6 +198,28 @@ requiredTest("exact replay heals torn round ledger while malformed and conflicti
   assert.equal(conflicting.ok, false);
   if (!conflicting.ok) assert.equal(conflicting.error.code, "QC_ROUND_ID_CONFLICT");
   assert.deepEqual(readFileSync(roundPath), roundBytes);
+  assert.deepEqual(readFileSync(ledgerPath), conflictingLedger);
+
+  const equivalentEvent = JSON.parse(healedLedger.toString("utf8")) as { revision: number; round: { outcome: string } };
+  const duplicateOrders = [
+    { name: "equivalent then conflicting", events: [equivalentEvent, conflictingEvent] },
+    { name: "conflicting then equivalent", events: [conflictingEvent, equivalentEvent] },
+  ] as const;
+  for (const duplicate of duplicateOrders) {
+    const events = duplicate.events.map((event, index) => ({ ...event, revision: index + 1 }));
+    const duplicateLedger = Buffer.from(`${events.map((event) => JSON.stringify(event)).join("\n")}\n`, "utf8");
+    writeFileSync(ledgerPath, duplicateLedger);
+    const rejectedDuplicate = await rig.qc.runFresh({
+      roundId: pass.roundId,
+      candidate: rig.snapshot,
+      canonicalReview: rig.canonical,
+      evaluation: pass,
+    });
+    assert.equal(rejectedDuplicate.ok, false, duplicate.name);
+    if (!rejectedDuplicate.ok) assert.equal(rejectedDuplicate.error.code, "QC_ROUND_ID_CONFLICT", duplicate.name);
+    assert.deepEqual(readFileSync(roundPath), roundBytes, duplicate.name);
+    assert.deepEqual(readFileSync(ledgerPath), duplicateLedger, duplicate.name);
+  }
 
   writeFileSync(ledgerPath, healedLedger);
   assert.equal((await rig.qc.readStatus(bookId)).ok, true);

@@ -106,6 +106,10 @@ function sameIdentity(left: CandidateIdentity, right: CandidateIdentity): boolea
   return left.candidateId === right.candidateId && left.manifestDigest === right.manifestDigest;
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
 function exactKeys(value: Record<string, unknown>, expected: readonly string[]): boolean {
   const actual = Object.keys(value).sort();
   const wanted = [...expected].sort();
@@ -113,7 +117,7 @@ function exactKeys(value: Record<string, unknown>, expected: readonly string[]):
 }
 
 function validIssue(value: unknown): value is ReviewIssue {
-  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  if (!isRecord(value)) return false;
   const issue = value as Partial<ReviewIssue> & Record<string, unknown>;
   const expected = issue.location === undefined
     ? ["code", "message", "severity"]
@@ -126,7 +130,7 @@ function validIssue(value: unknown): value is ReviewIssue {
 }
 
 function normalizeEvaluation(value: unknown): CanonicalReviewEvaluation | null {
-  if (!value || typeof value !== "object" || Array.isArray(value)) return null;
+  if (!isRecord(value)) return null;
   const evaluation = value as Partial<CanonicalReviewEvaluation> & Record<string, unknown>;
   if (!exactKeys(evaluation, ["issues", "outcome"])) return null;
   if (
@@ -147,6 +151,38 @@ function normalizeEvaluation(value: unknown): CanonicalReviewEvaluation | null {
       ...(issue.location === undefined ? {} : { location: issue.location }),
     })),
   };
+}
+
+function normalizeEvaluatorSuccess(value: unknown): CanonicalReviewEvaluation | null {
+  if (!isRecord(value) || !exactKeys(value, ["ok", "value"]) || value.ok !== true) return null;
+  return normalizeEvaluation(value.value);
+}
+
+function normalizeEvaluatorFailure(value: unknown): string | null {
+  if (!isRecord(value) || !exactKeys(value, ["error", "ok"]) || value.ok !== false || !isRecord(value.error)) {
+    return null;
+  }
+  const error = value.error;
+  const expected = error.retryable === undefined
+    ? ["code", "message"]
+    : ["code", "message", "retryable"];
+  if (
+    !exactKeys(error, expected) ||
+    typeof error.code !== "string" ||
+    error.code.length === 0 ||
+    typeof error.message !== "string" ||
+    error.message.length === 0 ||
+    (error.retryable !== undefined && typeof error.retryable !== "boolean")
+  ) {
+    return null;
+  }
+  return error.message;
+}
+
+function thrownMessage(value: unknown, fallback: string): string {
+  return isRecord(value) && typeof value.message === "string" && value.message.length > 0
+    ? value.message
+    : fallback;
 }
 
 function evaluatorError(code: string, message: string): CanonicalReviewEvaluation {
@@ -229,17 +265,21 @@ class CanonicalReviewService implements ReviewService {
 
     let evaluation: CanonicalReviewEvaluation;
     try {
-      const evaluated = await this.#evaluator.evaluate({ candidate: reopened.value, taskContext: input.taskContext });
-      if (!evaluated.ok) {
-        evaluation = evaluatorError("REVIEW_EVALUATOR_ERROR", evaluated.error.message || "canonical evaluator failed");
+      const evaluated: unknown = await this.#evaluator.evaluate({ candidate: reopened.value, taskContext: input.taskContext });
+      const success = normalizeEvaluatorSuccess(evaluated);
+      if (success) {
+        evaluation = success;
       } else {
-        evaluation = normalizeEvaluation(evaluated.value) ?? evaluatorError(
-          "REVIEW_EVALUATOR_INVALID",
-          "canonical evaluator returned an invalid result",
-        );
+        const failureMessage = normalizeEvaluatorFailure(evaluated);
+        evaluation = failureMessage === null
+          ? evaluatorError(
+              "REVIEW_EVALUATOR_INVALID",
+              "canonical evaluator returned an invalid result",
+            )
+          : evaluatorError("REVIEW_EVALUATOR_ERROR", failureMessage);
       }
     } catch (cause) {
-      evaluation = evaluatorError("REVIEW_EVALUATOR_EXCEPTION", (cause as Error).message || "canonical evaluator threw");
+      evaluation = evaluatorError("REVIEW_EVALUATOR_EXCEPTION", thrownMessage(cause, "canonical evaluator threw"));
     }
 
     const completedAt = this.#now();

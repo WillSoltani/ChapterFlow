@@ -397,11 +397,13 @@ class FileQcStore implements QcStore {
       events = ledger.value;
     }
 
-    const existingEvent = events.find((event): event is QcLedgerRoundEvent => event.kind === "ROUND" && event.round.roundId === round.roundId);
-    if (existingEvent) {
-      if (!equivalentRound(existingEvent.round, round)) {
-        return failed("QC_ROUND_ID_CONFLICT", `QC ledger already binds conflicting round ID: ${round.roundId}`);
-      }
+    const existingEvents = events.filter(
+      (event): event is QcLedgerRoundEvent => event.kind === "ROUND" && event.round.roundId === round.roundId,
+    );
+    if (existingEvents.some((event) => !equivalentRound(event.round, round))) {
+      return failed("QC_ROUND_ID_CONFLICT", `QC ledger already binds conflicting round ID: ${round.roundId}`);
+    }
+    if (existingEvents.length > 0) {
       if (stored.ok) return stored;
     }
 
@@ -421,7 +423,7 @@ class FileQcStore implements QcStore {
       }
     }
     if (!stored.ok) return stored;
-    if (existingEvent) return stored;
+    if (existingEvents.length > 0) return stored;
 
     const event: QcLedgerRoundEvent = {
       schemaVersion: "1",
