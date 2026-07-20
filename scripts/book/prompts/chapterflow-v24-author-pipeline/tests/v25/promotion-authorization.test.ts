@@ -207,6 +207,51 @@ requiredTest("invalid requests aliases and malformed ports fail closed before un
   );
   assert.deepEqual(overflow.calls, { candidate: 0, review: 0, qc: 0, pointerRead: 0, cas: 0, readback: 0 });
 
+  const dynamicDigest = ports(candidate);
+  let digestReads = 0;
+  const accessorCandidate = { candidateId: dynamicDigest.request.candidate.candidateId } as Record<string, unknown>;
+  Object.defineProperty(accessorCandidate, "manifestDigest", {
+    enumerable: true,
+    get: () => {
+      digestReads += 1;
+      return digestReads === 1 ? dynamicDigest.request.candidate.manifestDigest : { unsafe: true };
+    },
+  });
+  assertErrorCode(
+    await dynamicDigest.service.promote({ ...dynamicDigest.request, candidate: accessorCandidate } as unknown as PromotionRequest),
+    "PROMOTION_INVALID",
+  );
+  assert.equal(digestReads, 1);
+  assert.deepEqual(dynamicDigest.calls, { candidate: 0, review: 0, qc: 0, pointerRead: 0, cas: 0, readback: 0 });
+
+  const dynamicRevision = ports(candidate);
+  let revisionReads = 0;
+  const accessorRequest = { ...dynamicRevision.request } as unknown as Record<string, unknown>;
+  Object.defineProperty(accessorRequest, "expectedBookRevision", {
+    enumerable: true,
+    get: () => {
+      revisionReads += 1;
+      return revisionReads === 1 ? 0 : Number.MAX_SAFE_INTEGER;
+    },
+  });
+  assertErrorCode(await dynamicRevision.service.promote(accessorRequest as unknown as PromotionRequest), "PROMOTION_INVALID");
+  assert.equal(revisionReads, 1);
+  assert.deepEqual(dynamicRevision.calls, { candidate: 0, review: 0, qc: 0, pointerRead: 0, cas: 0, readback: 0 });
+
+  const throwingRequest = ports(candidate);
+  let throwingReads = 0;
+  const throwing = { ...throwingRequest.request } as unknown as Record<string, unknown>;
+  Object.defineProperty(throwing, "reviewId", {
+    enumerable: true,
+    get: () => {
+      throwingReads += 1;
+      throw new Error("request accessor fault");
+    },
+  });
+  assertErrorCode(await throwingRequest.service.promote(throwing as unknown as PromotionRequest), "PROMOTION_INVALID");
+  assert.equal(throwingReads, 1);
+  assert.deepEqual(throwingRequest.calls, { candidate: 0, review: 0, qc: 0, pointerRead: 0, cas: 0, readback: 0 });
+
   const fixture = ports(candidate);
   const mutable = fixture.request as unknown as {
     bookId: string;
@@ -289,9 +334,55 @@ requiredTest("missing or checksum-drifted candidate blocks before authority and 
 });
 
 async function assertMalformedPortBoundaries(candidate: CandidateSnapshot): Promise<void> {
-  const malformedValues: Array<[string, unknown]> = [
-    ["null envelope", null],
-    ["malformed PortError", { ok: false, error: { code: 7, message: { unsafe: true } } }],
+  const malformedValues: Array<[string, () => { readonly value: unknown; readonly verify?: () => void }]> = [
+    ["null envelope", () => ({ value: null })],
+    ["malformed PortError", () => ({ value: { ok: false, error: { code: 7, message: { unsafe: true } } } })],
+    ["type-flipping PortError accessors", () => {
+      const reads = { code: 0, message: 0, retryable: 0 };
+      const error = {} as Record<string, unknown>;
+      Object.defineProperties(error, {
+        code: {
+          enumerable: true,
+          get: () => {
+            reads.code += 1;
+            return reads.code === 1 ? "ACCESSOR_ERROR" : { unsafe: true };
+          },
+        },
+        message: {
+          enumerable: true,
+          get: () => {
+            reads.message += 1;
+            return reads.message === 1 ? "accessor message" : { unsafe: true };
+          },
+        },
+        retryable: {
+          enumerable: true,
+          get: () => {
+            reads.retryable += 1;
+            return reads.retryable === 1 ? false : "unsafe";
+          },
+        },
+      });
+      return {
+        value: { ok: false, error },
+        verify: () => assert.deepEqual(reads, { code: 1, message: 1, retryable: 1 }),
+      };
+    }],
+    ["throwing PortError accessor", () => {
+      let reads = 0;
+      const error = { message: "unused" } as Record<string, unknown>;
+      Object.defineProperty(error, "code", {
+        enumerable: true,
+        get: () => {
+          reads += 1;
+          throw new Error("PortError accessor fault");
+        },
+      });
+      return {
+        value: { ok: false, error },
+        verify: () => assert.equal(reads, 1),
+      };
+    }],
   ];
   const boundaries: Array<{
     readonly key: keyof PortOverrides;
@@ -338,8 +429,9 @@ async function assertMalformedPortBoundaries(candidate: CandidateSnapshot): Prom
   ];
 
   for (const boundary of boundaries) {
-    for (const [shape, malformed] of malformedValues) {
-      const fixture = ports(candidate, { [boundary.key]: malformed });
+    for (const [shape, createMalformed] of malformedValues) {
+      const malformed = createMalformed();
+      const fixture = ports(candidate, { [boundary.key]: malformed.value });
       const result = await fixture.service.promote(fixture.request);
       assert.equal(result.ok, false, `${boundary.key} ${shape}`);
       if (!result.ok) {
@@ -349,6 +441,7 @@ async function assertMalformedPortBoundaries(candidate: CandidateSnapshot): Prom
         assert.equal(typeof result.error.message, "string");
       }
       assert.deepEqual(fixture.calls, boundary.expectedCalls, `${boundary.key} ${shape}`);
+      malformed.verify?.();
     }
   }
 }

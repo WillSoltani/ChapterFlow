@@ -51,23 +51,40 @@ function exactKeys(value: Record<string, unknown>, expected: readonly string[]):
 function guardedPortError(value: unknown): PortError | null {
   try {
     if (!isRecord(value)) return null;
-    const expected = value.retryable === undefined
-      ? ["code", "message"]
-      : ["code", "message", "retryable"];
+    const keys = Object.keys(value).sort();
+    const hasRetryable = keys.length === 3 &&
+      keys[0] === "code" && keys[1] === "message" && keys[2] === "retryable";
+    const hasRequiredOnly = keys.length === 2 && keys[0] === "code" && keys[1] === "message";
+    if (!hasRequiredOnly && !hasRetryable) return null;
+    const codeDescriptor = Object.getOwnPropertyDescriptor(value, "code");
+    const messageDescriptor = Object.getOwnPropertyDescriptor(value, "message");
+    const retryableDescriptor = Object.getOwnPropertyDescriptor(value, "retryable");
+    let code: unknown;
+    let message: unknown;
+    let retryable: unknown;
+    let accessorFailed = false;
+    try { code = value.code; } catch { accessorFailed = true; }
+    try { message = value.message; } catch { accessorFailed = true; }
+    try { retryable = value.retryable; } catch { accessorFailed = true; }
     if (
-      !exactKeys(value, expected) ||
-      typeof value.code !== "string" ||
-      value.code.length === 0 ||
-      typeof value.message !== "string" ||
-      value.message.length === 0 ||
-      (value.retryable !== undefined && typeof value.retryable !== "boolean")
+      accessorFailed ||
+      codeDescriptor === undefined || !Object.prototype.hasOwnProperty.call(codeDescriptor, "value") ||
+      messageDescriptor === undefined || !Object.prototype.hasOwnProperty.call(messageDescriptor, "value") ||
+      (hasRetryable && (
+        retryableDescriptor === undefined || !Object.prototype.hasOwnProperty.call(retryableDescriptor, "value")
+      )) ||
+      typeof code !== "string" ||
+      code.length === 0 ||
+      typeof message !== "string" ||
+      message.length === 0 ||
+      (hasRetryable && typeof retryable !== "boolean")
     ) {
       return null;
     }
     return {
-      code: value.code,
-      message: value.message,
-      ...(value.retryable === undefined ? {} : { retryable: value.retryable }),
+      code,
+      message,
+      ...(hasRetryable ? { retryable: retryable as boolean } : {}),
     };
   } catch {
     return null;
@@ -77,11 +94,28 @@ function guardedPortError(value: unknown): PortError | null {
 function guardedResult<T>(value: unknown): Result<T> | null {
   try {
     if (!isRecord(value)) return null;
-    if (value.ok === true && exactKeys(value, ["ok", "value"])) {
-      return { ok: true, value: value.value as T };
+    const keys = Object.keys(value).sort();
+    const okDescriptor = Object.getOwnPropertyDescriptor(value, "ok");
+    const ok = value.ok;
+    if (
+      ok === true &&
+      keys.length === 2 && keys[0] === "ok" && keys[1] === "value" &&
+      okDescriptor !== undefined && Object.prototype.hasOwnProperty.call(okDescriptor, "value")
+    ) {
+      const valueDescriptor = Object.getOwnPropertyDescriptor(value, "value");
+      const resultValue = value.value;
+      if (valueDescriptor === undefined || !Object.prototype.hasOwnProperty.call(valueDescriptor, "value")) return null;
+      return { ok: true, value: resultValue as T };
     }
-    if (value.ok === false && exactKeys(value, ["error", "ok"])) {
-      const error = guardedPortError(value.error);
+    if (
+      ok === false &&
+      keys.length === 2 && keys[0] === "error" && keys[1] === "ok" &&
+      okDescriptor !== undefined && Object.prototype.hasOwnProperty.call(okDescriptor, "value")
+    ) {
+      const errorDescriptor = Object.getOwnPropertyDescriptor(value, "error");
+      const errorValue = value.error;
+      if (errorDescriptor === undefined || !Object.prototype.hasOwnProperty.call(errorDescriptor, "value")) return null;
+      const error = guardedPortError(errorValue);
       return error ? { ok: false, error } : null;
     }
     return null;
@@ -112,33 +146,97 @@ function canonicalUtcMilliseconds(value: unknown): number | null {
     : null;
 }
 
+type FieldSnapshot = Readonly<{ value: unknown; ownDataProperty: boolean }>;
+
+function snapshotField(record: Record<string, unknown>, key: string): FieldSnapshot {
+  const descriptor = Object.getOwnPropertyDescriptor(record, key);
+  const value = record[key];
+  return {
+    value,
+    ownDataProperty: descriptor !== undefined && Object.prototype.hasOwnProperty.call(descriptor, "value"),
+  };
+}
+
 function validateRequest(request: PromotionRequest, clock: () => string): Result<ValidPromotionRequest> {
   if (!isRecord(request)) return failed("PROMOTION_INVALID", "promotion request must be an object");
-  if (!isSafeOpaqueId(request.bookId)) {
+
+  let bookIdField: FieldSnapshot;
+  let candidateField: FieldSnapshot;
+  let reviewIdField: FieldSnapshot;
+  let qcRoundIdField: FieldSnapshot;
+  let expectedRevisionField: FieldSnapshot;
+  let promotedAtField: FieldSnapshot;
+  try {
+    bookIdField = snapshotField(request, "bookId");
+    candidateField = snapshotField(request, "candidate");
+    reviewIdField = snapshotField(request, "reviewId");
+    qcRoundIdField = snapshotField(request, "qcRoundId");
+    expectedRevisionField = snapshotField(request, "expectedBookRevision");
+    promotedAtField = snapshotField(request, "promotedAt");
+  } catch {
+    return failed("PROMOTION_INVALID", "promotion request field access failed");
+  }
+  const outerFields = [
+    bookIdField,
+    candidateField,
+    reviewIdField,
+    qcRoundIdField,
+    expectedRevisionField,
+    promotedAtField,
+  ];
+  if (!outerFields.every((field) => field.ownDataProperty)) {
+    return failed("PROMOTION_INVALID", "promotion request fields must be own data properties");
+  }
+
+  const bookId = bookIdField.value;
+  const candidateValue = candidateField.value;
+  const reviewId = reviewIdField.value;
+  const qcRoundId = qcRoundIdField.value;
+  const expectedBookRevision = expectedRevisionField.value;
+  const promotedAt = promotedAtField.value;
+  if (!isRecord(candidateValue)) {
+    return failed("PROMOTION_INVALID", "candidate identity must be an object");
+  }
+  let candidateIdField: FieldSnapshot;
+  let manifestDigestField: FieldSnapshot;
+  try {
+    candidateIdField = snapshotField(candidateValue, "candidateId");
+    manifestDigestField = snapshotField(candidateValue, "manifestDigest");
+  } catch {
+    return failed("PROMOTION_INVALID", "candidate identity field access failed");
+  }
+  if (!candidateIdField.ownDataProperty || !manifestDigestField.ownDataProperty) {
+    return failed("PROMOTION_INVALID", "candidate identity fields must be own data properties");
+  }
+  const candidateId = candidateIdField.value;
+  const manifestDigest = manifestDigestField.value;
+
+  if (!isSafeOpaqueId(bookId)) {
     return failed("PROMOTION_INVALID", "bookId must be one safe opaque path segment");
   }
-  if (!isRecord(request.candidate) || !exactKeys(request.candidate, ["candidateId", "manifestDigest"])) {
+  if (!exactKeys(candidateValue, ["candidateId", "manifestDigest"])) {
     return failed("PROMOTION_INVALID", "candidate identity must contain only candidateId and manifestDigest");
   }
   if (
-    !isSafeOpaqueId(request.candidate.candidateId) ||
-    typeof request.candidate.manifestDigest !== "string" ||
-    !DIGEST_PATTERN.test(request.candidate.manifestDigest)
+    !isSafeOpaqueId(candidateId) ||
+    typeof manifestDigest !== "string" ||
+    !DIGEST_PATTERN.test(manifestDigest)
   ) {
     return failed("PROMOTION_INVALID", "candidate identity is invalid");
   }
-  if (!isSafeOpaqueId(request.reviewId) || !isSafeOpaqueId(request.qcRoundId)) {
+  if (!isSafeOpaqueId(reviewId) || !isSafeOpaqueId(qcRoundId)) {
     return failed("PROMOTION_INVALID", "reviewId and qcRoundId must be safe opaque path segments");
   }
   if (
-    !Number.isSafeInteger(request.expectedBookRevision) ||
-    request.expectedBookRevision < 0 ||
-    !Number.isSafeInteger(request.expectedBookRevision + 1)
+    typeof expectedBookRevision !== "number" ||
+    !Number.isSafeInteger(expectedBookRevision) ||
+    expectedBookRevision < 0 ||
+    !Number.isSafeInteger(expectedBookRevision + 1)
   ) {
     return failed("PROMOTION_INVALID", "expectedBookRevision and next revision must be non-negative safe integers");
   }
-  const promotedAtMilliseconds = canonicalUtcMilliseconds(request.promotedAt);
-  if (promotedAtMilliseconds === null) {
+  const promotedAtMilliseconds = canonicalUtcMilliseconds(promotedAt);
+  if (typeof promotedAt !== "string" || promotedAtMilliseconds === null) {
     return failed("PROMOTION_INVALID", "promotedAt must be canonical UTC ISO time");
   }
 
@@ -152,19 +250,18 @@ function validateRequest(request: PromotionRequest, clock: () => string): Result
   if (clockMilliseconds === null) {
     return failed("PROMOTION_CLOCK_INVALID", "promotion clock must return canonical UTC ISO time");
   }
+  const candidate = Object.freeze({ candidateId, manifestDigest });
+  const snapshot: ValidPromotionRequest = Object.freeze({
+    bookId,
+    candidate,
+    reviewId,
+    qcRoundId,
+    expectedBookRevision,
+    promotedAt,
+  });
   return {
     ok: true,
-    value: {
-      bookId: request.bookId,
-      candidate: {
-        candidateId: request.candidate.candidateId,
-        manifestDigest: request.candidate.manifestDigest,
-      },
-      reviewId: request.reviewId,
-      qcRoundId: request.qcRoundId,
-      expectedBookRevision: request.expectedBookRevision,
-      promotedAt: request.promotedAt,
-    },
+    value: snapshot,
   };
 }
 
