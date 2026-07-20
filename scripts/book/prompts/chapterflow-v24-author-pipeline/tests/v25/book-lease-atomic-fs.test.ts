@@ -138,6 +138,55 @@ requiredTest("same-revision pointer CAS has one winner and one zero-mutation con
   assert.deepEqual(readFileSync(pointerPath), beforeConflict);
 });
 
+requiredTest("pointer CAS snapshots validated next before waiting for lock", async ({ roots }) => {
+  const bookId = "cas-alias-book";
+  const holderEntered = deferred();
+  const releaseHolder = deferred();
+  const waiterSleeping = deferred();
+  const allowWaiterRetry = deferred();
+  const holderLock = createBookWriteLock({ booksRoot: roots.booksRoot, timeoutMs: 1_000, pollMs: 1 });
+  const waiterLock = createBookWriteLock({
+    booksRoot: roots.booksRoot,
+    timeoutMs: 1_000,
+    pollMs: 1,
+    seams: {
+      sleep: async () => {
+        waiterSleeping.resolve();
+        await allowWaiterRetry.promise;
+      },
+    },
+  });
+  const store = createCurrentPointerStore({ booksRoot: roots.booksRoot, writeLock: waiterLock });
+  const holder = holderLock.run(bookId, async () => {
+    holderEntered.resolve();
+    await releaseHolder.promise;
+    return pass("holder");
+  });
+  await holderEntered.promise;
+
+  const next = pointer(bookId, "candidate-snapshot", 1, "a");
+  const expectedSnapshot = { ...next };
+  const cas = store.compareAndSet({ bookId, expectedRevision: 0, next });
+  await waiterSleeping.promise;
+  const mutableNext = next as unknown as Record<string, string | number>;
+  mutableNext.bookId = "mutated-book";
+  mutableNext.candidateId = "../escape";
+  mutableNext.manifestDigest = "z".repeat(64);
+  mutableNext.revision = 99;
+  mutableNext.updatedAt = "not-a-time";
+
+  releaseHolder.resolve();
+  await holder;
+  allowWaiterRetry.resolve();
+  const result = await cas;
+  assert.deepEqual(result, { ok: true, value: expectedSnapshot });
+  assert.deepEqual(await store.read(bookId), { ok: true, value: expectedSnapshot });
+  assert.deepEqual(
+    JSON.parse(readFileSync(bookPaths(roots.booksRoot, bookId).currentPointer, "utf8")),
+    expectedSnapshot,
+  );
+});
+
 requiredTest("pointer replace faults expose complete old or complete new record", async ({ roots }) => {
   const lock = createBookWriteLock({ booksRoot: roots.booksRoot, timeoutMs: 500, pollMs: 1 });
   const bookId = "pointer-crash-book";

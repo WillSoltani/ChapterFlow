@@ -66,7 +66,17 @@ function parsePointer(value: unknown, expectedBookId: string): Result<CurrentBoo
   } catch (cause) {
     return failed("POINTER_CORRUPT", (cause as Error).message);
   }
-  return { ok: true, value: record as unknown as CurrentBookPointer };
+  return {
+    ok: true,
+    value: {
+      schemaVersion: "1",
+      bookId: expectedBookId,
+      candidateId: record.candidateId,
+      manifestDigest: record.manifestDigest,
+      revision: record.revision as number,
+      updatedAt: record.updatedAt,
+    },
+  };
 }
 
 async function readPointer(path: string, bookId: string): Promise<Result<CurrentBookPointer | null>> {
@@ -110,36 +120,39 @@ class FileCurrentPointerStore implements CurrentPointerStore {
     expectedRevision: number;
     next: CurrentBookPointer;
   }>): Promise<Result<CurrentBookPointer>> {
+    const bookId = input.bookId;
+    const expectedRevision = input.expectedRevision;
     let pointerPath: string;
     try {
-      pointerPath = bookPaths(this.#booksRoot, input.bookId).currentPointer;
+      pointerPath = bookPaths(this.#booksRoot, bookId).currentPointer;
     } catch (cause) {
       return failed("INVALID_BOOK_ID", (cause as Error).message);
     }
-    if (!Number.isSafeInteger(input.expectedRevision) || input.expectedRevision < 0) {
+    if (!Number.isSafeInteger(expectedRevision) || expectedRevision < 0) {
       return failed("INVALID_POINTER", "expectedRevision must be a non-negative safe integer");
     }
-    const next = parsePointer(input.next, input.bookId);
+    const next = parsePointer(input.next, bookId);
     if (!next.ok) return failed("INVALID_POINTER", next.error.message);
-    if (next.value.revision !== input.expectedRevision + 1) {
+    const nextPointer = next.value;
+    if (nextPointer.revision !== expectedRevision + 1) {
       return failed("INVALID_POINTER", "next revision must equal expectedRevision + 1");
     }
 
-    return this.#writeLock.run(input.bookId, async () => {
-      const current = await readPointer(pointerPath, input.bookId);
+    return this.#writeLock.run(bookId, async () => {
+      const current = await readPointer(pointerPath, bookId);
       if (!current.ok) return current;
       const actualRevision = current.value?.revision ?? 0;
-      if (actualRevision !== input.expectedRevision) {
+      if (actualRevision !== expectedRevision) {
         return failed(
           "REVISION_CONFLICT",
-          `current pointer revision ${actualRevision} does not match expected ${input.expectedRevision}`,
+          `current pointer revision ${actualRevision} does not match expected ${expectedRevision}`,
           true,
         );
       }
       try {
-        const encoded = Buffer.from(`${JSON.stringify(next.value, null, 2)}\n`, "utf8");
+        const encoded = Buffer.from(`${JSON.stringify(nextPointer, null, 2)}\n`, "utf8");
         await replaceFileAtomic(pointerPath, encoded, this.#atomicSeams);
-        return { ok: true, value: next.value };
+        return { ok: true, value: nextPointer };
       } catch (cause) {
         return failed("POINTER_WRITE_FAILED", `current pointer atomic replace failed: ${(cause as Error).message}`);
       }
