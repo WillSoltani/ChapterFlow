@@ -1,8 +1,7 @@
 /**
  * Model bake-off — conductor behaviors over injected stages: shared research
- * reuse, no-canonical-mutation-before-selection, blind-map persistence,
- * model-unavailable fail-closed, resume, QC-only-after-selection, PUBLISH
- * boundaries, losing-candidate retention, and JSON+MD reports.
+ * reuse, immutable V4 candidates, blind-map persistence, model-unavailable
+ * fail-closed, resume, screening-only authority, and JSON+MD reports.
  */
 
 import assert from "node:assert/strict";
@@ -10,24 +9,28 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { dirname, join } from "node:path";
 
 import { test } from "./harness.js";
+import { createBookContentReader } from "../src/books/bookContentReader.js";
+import { createBookWriteLock } from "../src/books/bookLease.js";
+import { createCandidateStore } from "../src/books/candidateStore.js";
+import { createCurrentPointerStore } from "../src/books/currentPointer.js";
 import { chapterContentHash } from "../src/critics/qcAttestation.js";
 import { bakeoffRoots } from "../src/bakeoff/paths.js";
 import { slotChapterAbsPath } from "../src/bakeoff/candidates.js";
 import { combinedContentHash } from "../src/bakeoff/review.js";
 import { runBakeoff, type BakeoffStages, type RunBakeoffOptions } from "../src/bakeoff/runBakeoff.js";
+import { createReviewServiceFactory } from "../src/review/reviewService.js";
+import { LegacyBakeoffStateAdapter } from "../src/release/legacyBakeoffStateAdapter.js";
 import type {
   BakeoffManifestV1,
   CandidateReviewV1,
   CandidateStateV1,
   CandidateValidationV1,
-  PromotionRecordV1,
   SharedInputsFreezeV1,
 } from "../src/bakeoff/types.js";
 import { fixtureChapter, tmpRoot, fakeBakeoffDeps } from "./model-bakeoff-helpers.js";
 
 const MODELS = ["gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"];
 const CONFIDENT_DRAFT = "---\ntitle: The Focus Ledger\nauthor: Ada Writer\n---\n# The Focus Ledger\n\n" + "Attention is a budget you spend on purpose. ".repeat(20);
-const PROVISIONAL_DRAFT = "# The Focus Ledger\n\n" + "Attention is a budget you spend on purpose. ".repeat(20);
 const BOOK_ID = "the-focus-ledger";
 
 type World = ReturnType<typeof makeWorld>;
@@ -37,9 +40,8 @@ function makeWorld(draftBody = CONFIDENT_DRAFT, compositesBySlot: Record<string,
   const draftPath = join(dir, "draft.md");
   writeFileSync(draftPath, draftBody);
   const stateRoot = join(dir, "state");
-  const canonical = join(dir, "canonical-chapters");
   const bundle = fakeBakeoffDeps();
-  const calls = { generate: [] as string[], validate: [] as string[], review: [] as string[], promote: [] as string[] };
+  const calls = { generate: [] as string[], validate: [] as string[], review: [] as string[] };
 
   const freeze: SharedInputsFreezeV1 = {
     schemaVersion: "model-bakeoff-shared-inputs-v1",
@@ -84,14 +86,15 @@ function makeWorld(draftBody = CONFIDENT_DRAFT, compositesBySlot: Record<string,
         bookGatePassed: true, rubricVerdict: "pass", readerBudgetBlockers: 0, shipGateBlockers: 0,
       } as CandidateValidationV1;
     }) as BakeoffStages["validate"],
-    review: (async (_bookId, label, chapters, _deps, roots) => {
+  };
+  const reviewStage = async (_bookId: string, label: CandidateReviewV1["label"], chapters: readonly ReturnType<typeof fixtureChapter>[], roots: ReturnType<typeof bakeoffRoots>) => {
       calls.review.push(label);
       const slot = (chapters[0].title.match(/w\d/) ?? ["w1"])[0];
       const composite = compositesBySlot[slot] ?? 70;
       const review: CandidateReviewV1 = {
         schemaVersion: "model-bakeoff-candidate-review-v1",
         label: label as CandidateReviewV1["label"],
-        contentSha256: combinedContentHash(chapters),
+        contentSha256: combinedContentHash([...chapters]),
         chapterReviews: [{ chapterNumber: 1, composite, ship: true, keysClean: true, valid: true, pass: true, reviewerSessionId: "r" }],
         bookReads: [],
         bookComposite: composite,
@@ -107,28 +110,27 @@ function makeWorld(draftBody = CONFIDENT_DRAFT, compositesBySlot: Record<string,
       mkdirSync(dirname(p), { recursive: true });
       writeFileSync(p, JSON.stringify(review, null, 2));
       return review;
-    }) as BakeoffStages["review"],
-    promote: ((args) => {
-      calls.promote.push(args.winner.model);
-      mkdirSync(canonical, { recursive: true });
-      writeFileSync(join(canonical, `${args.bookId}-ch01.v21-native.chapter.json`), "PROMOTED");
-      const rec: PromotionRecordV1 = {
-        schemaVersion: "model-bakeoff-promotion-v1",
-        promotedAt: "t",
-        winnerModel: args.winner.model,
-        winnerEffort: args.winner.effort,
-        runId: args.manifest.runId,
-        chapterFiles: [],
-        byteIdentityVerified: true,
-        sharedInputsSha256: "shared-hash",
-        taskCardTemplateSha256: {},
-        candidateChapterHashes: args.candidateChapterHashes,
-        authorSessionIds: {},
-      };
-      return rec;
-    }) as BakeoffStages["promote"],
   };
 
+  const roots = bakeoffRoots(BOOK_ID, "bo-test", stateRoot);
+  mkdirSync(roots.v4BooksRoot, { recursive: true });
+  const writeLock = createBookWriteLock({ booksRoot: roots.v4BooksRoot, timeoutMs: 1_000, pollMs: 1 });
+  const pointerStore = createCurrentPointerStore({ booksRoot: roots.v4BooksRoot, writeLock });
+  const candidateStore = createCandidateStore({ booksRoot: roots.v4BooksRoot, writeLock, currentPointerStore: pointerStore });
+  const reader = createBookContentReader({ booksRoot: roots.v4BooksRoot, currentPointerStore: pointerStore });
+  const reviewService = createReviewServiceFactory({ booksRoot: roots.v4BooksRoot, contentReader: reader }).create({
+    async evaluate() { return { ok: false, error: { code: "SCREENING_ONLY", message: "canonical review forbidden" } }; },
+  });
+  const v4 = new LegacyBakeoffStateAdapter({
+    roots,
+    candidateStore,
+    contentReader: reader,
+    reviewService,
+    selectionReviewer: {
+      root: roots.reviewsDir,
+      review: ({ bookId, label, chapters }) => reviewStage(bookId, label, chapters as ReturnType<typeof fixtureChapter>[], roots),
+    },
+  });
   const opts = (over?: Partial<RunBakeoffOptions>): RunBakeoffOptions => ({
     draftPath,
     runId: "bo-test",
@@ -137,11 +139,11 @@ function makeWorld(draftBody = CONFIDENT_DRAFT, compositesBySlot: Record<string,
     deps: bundle.deps,
     stateRoot,
     stages,
+    v4,
     ...over,
   });
 
-  const roots = bakeoffRoots(BOOK_ID, "bo-test", stateRoot);
-  return { dir, draftPath, stateRoot, canonical, bundle, calls, stages, opts, roots, freeze };
+  return { dir, draftPath, stateRoot, bundle, calls, stages, opts, roots, freeze };
 }
 
 function manifestOf(w: World): BakeoffManifestV1 {
@@ -150,10 +152,10 @@ function manifestOf(w: World): BakeoffManifestV1 {
 
 // ── happy path: 3, 5, 7, 17, 18/19 (delegation), 20, 22, 23 ───────────────────
 
-test("conductor happy path (PUBLISH=false): shared research reused, blinded selection, promotion before QC, delegation with --no-publish, reports written, losers retained", async () => {
+test("conductor happy path stays SCREENING_ONLY with immutable V4 candidates and reports", async () => {
   const w = makeWorld();
   const outcome = await runBakeoff(w.opts());
-  assert.equal(outcome.status, "ready");
+  assert.equal(outcome.status, "complete");
   assert.equal(outcome.winner, "gpt-5.6-sol", "slot w1 (highest blinded composite) wins");
 
   // 3. shared research reused: expectedChapterNumbers → [1] means NO research spawn.
@@ -167,38 +169,25 @@ test("conductor happy path (PUBLISH=false): shared research reused, blinded sele
   assert.deepEqual(Object.keys(manifest.blindMap).sort(), ["A", "B", "C"]);
   assert.deepEqual(Object.values(manifest.blindMap).sort(), [...MODELS].sort());
 
-  // 5. no canonical mutation before selection: promote ran exactly once, and the
-  // bake-off itself never invoked any QC/publish/registry verb.
-  assert.deepEqual(w.calls.promote, ["gpt-5.6-sol"]);
+  // Selection has no canonical crossing and invokes no QC/publish verb.
   const forbiddenVerbs = ["publish", "publish-final", "publish-after-qc", "register-web", "promote-book", "qc-auto", "qc-attest", "qc-open-round", "qc-diagnose", "qc-orchestrate"];
   for (const v of w.bundle.verbs) {
     assert.ok(!forbiddenVerbs.includes(v[0]), `bake-off must never run '${v[0]}' itself — the existing conductor owns it`);
   }
-  // The full deterministic preflight re-ran on canonical bytes after promotion.
-  assert.ok(w.bundle.verbs.some((v) => v[0] === "qc-converge"), "qc-converge re-ran post-promotion");
-
-  // 17-19. formal QC starts ONLY after selection+promotion, delegated verbatim to
-  // book-autopilot --author (which owns qc-diagnose + fresh-round governance).
-  assert.equal(w.bundle.delegations.length, 1);
-  const d = w.bundle.delegations[0];
-  assert.equal(d.args[0], "book-autopilot");
-  assert.ok(d.args.includes(BOOK_ID) && d.args.includes("--author"));
-  // 20. PUBLISH=false → --no-publish rides the delegation.
-  assert.ok(d.args.includes("--no-publish"));
-  // The winner is pinned as the (repair) author for the formal QC lifecycle.
-  assert.equal(d.env.CHAPTERFLOW_AUTHOR_MODEL, "gpt-5.6-sol");
-  assert.equal(d.env.CHAPTERFLOW_AUTHOR_EFFORT, "xhigh");
+  assert.equal(w.bundle.delegations.length, 0);
 
   // 22. losing candidates retained (durable candidates/ tree + slot originals).
   for (const slot of ["w2", "w3"]) {
     assert.ok(existsSync(slotChapterAbsPath(w.roots, slot, BOOK_ID, 1)), `${slot} chapters retained`);
   }
-  assert.ok(readdirSync(w.roots.candidatesDir).length >= 3, "durable candidates/ per model retained");
+  assert.ok(readdirSync(join(w.roots.v4BooksRoot, BOOK_ID, "candidates")).length >= 3, "immutable V4 candidates retained");
 
   // 23. JSON + MD reports.
   assert.ok(existsSync(w.roots.reportJsonPath) && existsSync(w.roots.reportMdPath));
   const report = JSON.parse(readFileSync(w.roots.reportJsonPath, "utf8"));
   assert.equal(report.selection.winner, "gpt-5.6-sol");
+  assert.equal(report.selection.authority, "SCREENING_ONLY");
+  assert.equal(report.promotion, null);
   assert.deepEqual(Object.values(report.blindMapping).sort(), [...MODELS].sort());
   const md = readFileSync(w.roots.reportMdPath, "utf8");
   assert.ok(md.includes("Blind mapping") && md.includes("gpt-5.6-sol") && md.includes("Why the winner won"));
@@ -206,23 +195,10 @@ test("conductor happy path (PUBLISH=false): shared research reused, blinded sele
 
 // ── 21. PUBLISH=true authorizes ONLY the existing verified publisher ───────────
 
-test("PUBLISH=true with confident identity delegates WITHOUT --no-publish and never runs git/publish itself", async () => {
+test("publish request is rejected because bakeoff has screening authority only", async () => {
   const w = makeWorld();
-  const outcome = await runBakeoff(w.opts({ publish: true }));
-  assert.equal(outcome.status, "published");
-  const d = w.bundle.delegations[0];
-  assert.ok(!d.args.includes("--no-publish"), "verified publish path authorized through the existing conductor");
-  for (const v of w.bundle.verbs) {
-    assert.ok(!/^(publish|publish-final|publish-after-qc|register-web|promote-book|git)$/.test(v[0]));
-  }
-});
-
-test("PUBLISH=true with PROVISIONAL identity withholds publication and asks exactly one concise question", async () => {
-  const w = makeWorld(PROVISIONAL_DRAFT);
-  const outcome = await runBakeoff(w.opts({ publish: true }));
-  assert.equal(outcome.status, "ready", "publication withheld");
-  assert.ok(outcome.publicationQuestion && /is the book/i.test(outcome.publicationQuestion), "one concise identity question");
-  assert.ok(w.bundle.delegations[0].args.includes("--no-publish"), "delegation stays no-publish");
+  await assert.rejects(runBakeoff(w.opts({ publish: true })), /SCREENING_ONLY/);
+  assert.equal(w.bundle.delegations.length, 0);
 });
 
 // ── 14. model-unavailable fail-closed ─────────────────────────────────────────
@@ -264,14 +240,14 @@ test("a rerun with the same run id reuses verified completed candidates and cont
   // Second run, same run id: sol is NOT regenerated; the rest completes.
   w.calls.generate.length = 0;
   const outcome = await runBakeoff(w.opts({ maxParallel: 1 }));
-  assert.equal(outcome.status, "ready");
+  assert.equal(outcome.status, "complete");
   assert.ok(!w.calls.generate.includes("gpt-5.6-sol"), "verified completed candidate reused, not regenerated");
   assert.deepEqual(w.calls.generate, ["gpt-5.6-terra", "gpt-5.6-luna"]);
 
   // …and --force regenerates everything under a fresh consent.
   w.calls.generate.length = 0;
   const forced = await runBakeoff(w.opts({ force: true }));
-  assert.equal(forced.status, "ready");
+  assert.equal(forced.status, "complete");
   assert.equal(w.calls.generate.length, 3, "--force regenerates all candidates");
 });
 
@@ -301,7 +277,7 @@ test("a candidate with deterministic hard failures is skipped by the blinded rev
     })) as BakeoffStages["validate"],
   };
   const outcome = await runBakeoff(w.opts({ stages }));
-  assert.equal(outcome.status, "ready");
+  assert.equal(outcome.status, "complete");
   assert.equal(outcome.winner, "gpt-5.6-terra", "the next-best ELIGIBLE candidate wins");
   assert.equal(w.calls.review.length, 2, "the disqualified candidate got no review spend");
 });
@@ -318,11 +294,10 @@ test("--chapters subset runs COMPARE-ONLY: winner + report land, but promotion/Q
   const outcome = await runBakeoff(w.opts({ stages, deps, chapters: [1] }));
   assert.equal(outcome.status, "compared");
   assert.equal(outcome.winner, "gpt-5.6-sol");
-  assert.equal(w.calls.promote.length, 0, "a partial book is never promoted");
   assert.equal(w.bundle.delegations.length, 0, "no formal QC / publish delegation");
   assert.ok(existsSync(w.roots.reportJsonPath), "comparison report written");
   const report = JSON.parse(readFileSync(w.roots.reportJsonPath, "utf8"));
-  assert.ok(/compare-only/.test(report.qcOutcome), "report records the compare-only outcome");
+  assert.ok(/SCREENING_ONLY chapter-subset/.test(report.qcOutcome), "report records screening-only subset outcome");
   // A different subset under the same run id is refused (frozen set wins).
   await assert.rejects(runBakeoff(w.opts({ stages, deps, chapters: [1, 2] })), /froze chapters/);
 });
@@ -341,7 +316,6 @@ test("no eligible candidate → halt with a full report; nothing promoted, nothi
   const outcome = await runBakeoff(w.opts({ stages }));
   assert.equal(outcome.status, "halt");
   assert.ok(/no eligible candidate/.test(outcome.reason ?? ""));
-  assert.equal(w.calls.promote.length, 0, "no promotion");
   assert.equal(w.bundle.delegations.length, 0, "no formal QC, no publish");
   assert.ok(existsSync(w.roots.reportJsonPath), "the comparison report still lands (evidence)");
 });

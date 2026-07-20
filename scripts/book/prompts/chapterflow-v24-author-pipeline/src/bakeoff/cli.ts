@@ -3,12 +3,20 @@
  * runBakeoff(); all behavior lives in the conductor so tests drive it directly.
  */
 
-import { existsSync, readFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync } from "fs";
 import { resolve } from "path";
 
+import { createBookContentReader } from "../books/bookContentReader.js";
+import { createBookWriteLock } from "../books/bookLease.js";
+import { createCandidateStore } from "../books/candidateStore.js";
+import { createCurrentPointerStore } from "../books/currentPointer.js";
+import { normSlug } from "../lib/chapterPaths.js";
+import { createReviewServiceFactory } from "../review/reviewService.js";
+import { LegacyBakeoffStateAdapter } from "../release/legacyBakeoffStateAdapter.js";
 import type { ReasoningEffort } from "./types.js";
 import { bakeoffRoots, sha256File } from "./paths.js";
 import { resolveBookIdForDraft } from "./intake.js";
+import { reviewCandidate } from "./review.js";
 import {
   DEFAULT_BAKEOFF_EFFORT,
   DEFAULT_BAKEOFF_MODELS,
@@ -35,6 +43,31 @@ function effortFlag(flags: Record<string, string | boolean>, name: string, fallb
   return v as ReasoningEffort;
 }
 
+function composeV4Bakeoff(bookId: string, runId: string): LegacyBakeoffStateAdapter {
+  const roots = bakeoffRoots(bookId, runId);
+  mkdirSync(roots.v4BooksRoot, { recursive: true });
+  const writeLock = createBookWriteLock({ booksRoot: roots.v4BooksRoot, timeoutMs: 1_000, pollMs: 5 });
+  const currentPointerStore = createCurrentPointerStore({ booksRoot: roots.v4BooksRoot, writeLock });
+  const candidateStore = createCandidateStore({ booksRoot: roots.v4BooksRoot, writeLock, currentPointerStore });
+  const contentReader = createBookContentReader({ booksRoot: roots.v4BooksRoot, currentPointerStore });
+  const reviewService = createReviewServiceFactory({ booksRoot: roots.v4BooksRoot, contentReader }).create({
+    async evaluate() {
+      return { ok: false, error: { code: "SCREENING_ONLY", message: "bakeoff cannot run canonical review" } };
+    },
+  });
+  return new LegacyBakeoffStateAdapter({
+    roots,
+    candidateStore,
+    contentReader,
+    reviewService,
+    selectionReviewer: {
+      root: roots.reviewsDir,
+      review: ({ bookId: candidateBookId, label, chapters, deps, options }) =>
+        reviewCandidate(candidateBookId, label, [...chapters], deps, roots, options),
+    },
+  });
+}
+
 export async function runModelBakeoffCli(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const json = flags["json"] === true;
   const draft = typeof flags["draft"] === "string" ? flags["draft"] : "";
@@ -56,6 +89,10 @@ export async function runModelBakeoffCli(args: string[], flags: Record<string, s
   const judgeEffort = effortFlag(flags, "judge-effort", DEFAULT_JUDGE_EFFORT);
   if (!effort || !judgeEffort) {
     console.error(`model-bakeoff: --effort/--judge-effort must be one of ${[...EFFORTS].join("|")}`);
+    return 2;
+  }
+  if (flags["publish"] === true) {
+    console.error("model-bakeoff: --publish is unavailable; bakeoff selection authority is SCREENING_ONLY.");
     return 2;
   }
   const models = typeof flags["models"] === "string"
@@ -92,8 +129,10 @@ export async function runModelBakeoffCli(args: string[], flags: Record<string, s
     return 0;
   }
 
-  // Candidate safety default: publish ONLY on explicit --publish.
-  const publish = flags["publish"] === true && !("no-publish" in flags);
+  const resolvedBookId = normSlug(bookIdOpt ?? resolveBookIdForDraft(draft, overrides));
+  const resolvedRunId = typeof flags["run-id"] === "string"
+    ? flags["run-id"]
+    : `bo-${sha256File(resolve(draft)).slice(0, 10)}`;
 
   const outcome = await runBakeoff({
     draftPath: draft,
@@ -106,10 +145,11 @@ export async function runModelBakeoffCli(args: string[], flags: Record<string, s
     maxParallel: typeof flags["max-parallel"] === "string" ? parseInt(flags["max-parallel"], 10) || undefined : undefined,
     chapterParallel: typeof flags["chapter-parallel"] === "string" ? parseInt(flags["chapter-parallel"], 10) || undefined : undefined,
     chapters,
-    publish,
+    publish: false,
     plan: flags["plan"] === true,
     force: flags["force"] === true,
     overrides,
+    v4: composeV4Bakeoff(resolvedBookId, resolvedRunId),
   });
 
   if (json) {

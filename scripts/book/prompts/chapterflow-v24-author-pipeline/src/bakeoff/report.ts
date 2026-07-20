@@ -54,6 +54,7 @@ export function buildReportJson(inputs: ReportInputs): Record<string, unknown> {
       publishRequested: m.publish,
       codexVersion: inputs.codexVersion,
       retryBudget: m.freeze?.retryBudget ?? null,
+      authority: "SCREENING_ONLY",
     },
     sharedInputs: m.freeze
       ? {
@@ -75,7 +76,7 @@ export function buildReportJson(inputs: ReportInputs): Record<string, unknown> {
       review: c.review,
     })),
     selection: inputs.selection,
-    promotion: m.promotion ?? null,
+    promotion: null,
     qcOutcome: inputs.qcOutcome,
     publishOutcome: inputs.publishOutcome,
     evidencePaths: {
@@ -83,6 +84,7 @@ export function buildReportJson(inputs: ReportInputs): Record<string, unknown> {
       manifest: pipelineRel(inputs.roots.manifestPath),
       sharedInputs: pipelineRel(inputs.roots.sharedInputsDir),
       candidates: pipelineRel(inputs.roots.candidatesDir),
+      v4CandidateStore: pipelineRel(inputs.roots.v4BooksRoot),
       reviews: pipelineRel(inputs.roots.reviewsDir),
       reportJson: pipelineRel(inputs.roots.reportJsonPath),
       reportMd: pipelineRel(inputs.roots.reportMdPath),
@@ -112,7 +114,8 @@ export function buildReportMd(inputs: ReportInputs): string {
   lines.push(`- **Judge (fixed)**: \`${m.judge.model}\` @ ${m.judge.effort}`);
   lines.push(`- **Codex version**: ${inputs.codexVersion ?? "unknown"}`);
   lines.push(`- **Shared-input identity**: \`${m.freeze?.combinedSha256?.slice(0, 16) ?? "—"}\` over ${m.freeze?.files.length ?? 0} frozen files, ${m.freeze?.chapterNumbers.length ?? 0} chapters`);
-  lines.push(`- **Winner**: ${winner ? `**\`${winner}\`**` : "**none (no eligible candidate)**"}${sel?.runnerUp ? ` — runner-up \`${sel.runnerUp}\`` : ""}${sel?.decidedByTieBreak ? " *(quality effectively tied; decided on retries/latency)*" : ""}`);
+  lines.push(`- **Screening winner**: ${winner ? `**\`${winner}\`**` : "**none (no eligible candidate)**"}${sel?.runnerUp ? ` — runner-up \`${sel.runnerUp}\`` : ""}${sel?.decidedByTieBreak ? " *(quality effectively tied; decided on retries/latency)*" : ""}`);
+  lines.push("- **Authority**: `SCREENING_ONLY` — cannot authorize canonical review, QC, promotion, package writes, or publication");
   lines.push(`- **Formal QC**: ${inputs.qcOutcome ?? "not started"}`);
   lines.push(`- **Publication**: ${inputs.publishOutcome ?? (m.publish ? "requested" : "not requested (PUBLISH=false)")}`);
   lines.push("");
@@ -153,7 +156,7 @@ export function buildReportMd(inputs: ReportInputs): string {
     lines.push("");
   }
 
-  lines.push("## Per-chapter tendencies (analysis only — the promoted book is single-model)");
+  lines.push("## Per-chapter tendencies (analysis only)");
   lines.push("");
   if (sel && sel.perChapterWinners.length > 0) {
     const models = m.candidates.map((c) => c.model);
@@ -176,16 +179,6 @@ export function buildReportMd(inputs: ReportInputs): string {
   lines.push("- Blinded reads are stochastic instruments (the pipeline's own acceptance machinery treats ±3.7 composite as noise). Chapter-level differences smaller than that band are not meaningful.");
   lines.push(`- **Recommendation**: before changing ChapterFlow's permanent default author model${winner ? ` to \`${winner}\`` : ""}, run at least 2–3 more bake-offs on different books/genres and compare formal QC repair burden, not just first-pass scores. The permanent default (\`CHAPTERFLOW_AUTHOR_MODEL\`, currently gpt-5.5) was intentionally NOT changed by this run.`);
   lines.push("");
-
-  if (m.promotion) {
-    lines.push("## Canonical promotion proof");
-    lines.push("");
-    lines.push(`- Promoted \`${m.promotion.winnerModel}\` @ ${m.promotion.winnerEffort} (run \`${m.promotion.runId}\`) at ${m.promotion.promotedAt}`);
-    lines.push(`- Byte-identity verified: ${m.promotion.byteIdentityVerified ? "YES (every promoted file read back byte-equal to the selected candidate)" : "NO"}`);
-    lines.push(`- Shared-inputs hash: \`${m.promotion.sharedInputsSha256.slice(0, 16)}\``);
-    for (const f of m.promotion.chapterFiles) lines.push(`  - \`${f.relPath}\` — \`${f.sha256.slice(0, 16)}\``);
-    lines.push("");
-  }
 
   lines.push("## Retained evidence");
   lines.push("");

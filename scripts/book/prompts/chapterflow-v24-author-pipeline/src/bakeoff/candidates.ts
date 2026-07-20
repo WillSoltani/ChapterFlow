@@ -44,7 +44,7 @@ import type {
   CandidateStateV1,
   CandidateValidationV1,
 } from "./types.js";
-import { candidateDir, pipelineRel, slotChaptersDir, slotDir, type BakeoffRoots } from "./paths.js";
+import { pipelineRel, slotChaptersDir, slotDir, type BakeoffRoots } from "./paths.js";
 
 // ── Slot-local chapter IO ─────────────────────────────────────────────────────
 
@@ -369,6 +369,8 @@ export async function generateCandidate(
 
 export type ValidateCandidateInputs = {
   chapterNumbers: number[];
+  /** Immutable V4 snapshot content. Runtime callers must supply this. */
+  chapters?: readonly ChapterV21[];
   readPacket: (bookId: string, n: number) => SourcePacketV1 | null;
   readBrief: (bookId: string, n: number) => { lengthBudget?: { renderedChars: number; tolerance: number } } | null;
 };
@@ -388,7 +390,7 @@ export async function validateCandidate(
   roots: BakeoffRoots,
   inputs: ValidateCandidateInputs,
 ): Promise<CandidateValidationV1> {
-  const chapters = loadSlotChapters(roots, spec.slot);
+  const chapters = inputs.chapters ? [...inputs.chapters] : loadSlotChapters(roots, spec.slot);
   const have = new Set(chapters.map((c) => c.number));
   const hardFailures: string[] = [];
   const advisories: string[] = [];
@@ -480,26 +482,4 @@ export async function validateCandidate(
     readerBudgetBlockers,
     shipGateBlockers,
   };
-}
-
-/** Copy a completed slot's chapters into the durable candidates/<slug>/chapters
- *  tree (losing candidates are evaluation evidence — never deleted). */
-export function persistCandidateChapters(roots: BakeoffRoots, spec: CandidateSpec, bookId: string, chapterNumbers: number[]): Array<{ relPath: string; sha256: string | null }> {
-  const outDir = resolve(candidateDir(roots, spec.slug), "chapters");
-  mkdirSync(outDir, { recursive: true });
-  const out: Array<{ relPath: string; sha256: string | null }> = [];
-  for (const n of chapterNumbers) {
-    const src = slotChapterAbsPath(roots, spec.slot, bookId, n);
-    if (!existsSync(src)) {
-      out.push({ relPath: pipelineRel(src), sha256: null });
-      continue;
-    }
-    const bytes = readFileSync(src, "utf8");
-    const dst = resolve(outDir, chapterFileName(authorChapterId(bookId, n)));
-    writeFileAtomic(dst, bytes);
-    let hash: string | null = null;
-    try { hash = chapterContentHash(JSON.parse(bytes) as ChapterV21); } catch { hash = null; }
-    out.push({ relPath: pipelineRel(dst), sha256: hash });
-  }
-  return out;
 }

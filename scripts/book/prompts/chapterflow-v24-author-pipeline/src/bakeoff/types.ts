@@ -5,13 +5,12 @@
  * frozen set of shared inputs (draft, research, source-v2, packets, design,
  * briefs), validates every candidate with the existing deterministic gates,
  * compares candidates through the existing BLINDED review machinery under
- * opaque labels, selects ONE global winner, and only then promotes the winner
- * into canonical state for the normal formal QC + publish lifecycle.
+ * opaque labels, and records one screening-only winner. Promotion, canonical
+ * review, QC, and publication are separate authorities.
  *
  * Everything here is a THIN orchestration layer: content validity is owned by
- * the existing critics/gates, reviews by src/review/*, formal QC + publish by
- * the existing book-autopilot / publish-final path. This module only decides
- * WHAT runs WHERE, and keeps candidates isolated until selection.
+ * existing critics/gates and screening services. This module only decides what
+ * runs where and keeps candidates isolated through selection.
  */
 
 export const BAKEOFF_MANIFEST_SCHEMA = "model-bakeoff-manifest-v1" as const;
@@ -28,8 +27,6 @@ export const BAKEOFF_PHASES = [
   "validate",
   "review",
   "select",
-  "promote",
-  "qc",
   "report",
 ] as const;
 export type BakeoffPhase = (typeof BAKEOFF_PHASES)[number];
@@ -219,6 +216,7 @@ export type CandidateScorecardV1 = {
 
 export type SelectionV1 = {
   schemaVersion: "model-bakeoff-selection-v1";
+  authority: "SCREENING_ONLY";
   selectedAt: string;
   winner: string | null;
   runnerUp: string | null;

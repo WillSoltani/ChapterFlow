@@ -15,23 +15,16 @@
  *   validate   — existing deterministic batteries per candidate (no QC rounds)
  *   review     — blinded, fixed-judge comparison under opaque labels
  *   select     — pure quality-first hierarchy (cost only inside the tie band)
- *   promote    — winner → canonical state (byte-verified) + provenance sidecar,
- *                then the full deterministic preflight re-runs (qc-converge)
- *   qc         — delegated VERBATIM to `book-autopilot <id> --author`, which
- *                owns formal QC rounds, the qc-diagnose repair governance, and
- *                the verified publish path; PUBLISH=false keeps --no-publish
  *   report     — permanent JSON + Markdown comparison report
  *
- * Candidate work NEVER touches canonical chapters/packages/registries/git; the
- * only canonical writes are promotion (above) and whatever the existing
- * autopilot/publish path does after it.
+ * This route is screening-only. It never promotes, opens QC, publishes, changes
+ * current.json, or writes a production package.
  */
 
 import { BASELINE_MODEL } from "../orchestrator/modelPolicy.js";
 import { execFileSync } from "child_process";
 import { existsSync, mkdirSync, readFileSync } from "fs";
 import { resolve } from "path";
-import { spawn as spawnChild } from "child_process";
 
 import {
   acquireBookLock,
@@ -57,17 +50,11 @@ import { BAKEOFF_MANIFEST_SCHEMA } from "./types.js";
 import { PIPELINE_DIR, bakeoffRoots, candidateDir, modelSlug, pipelineRel, sha256File, type BakeoffRoots } from "./paths.js";
 import { intakeDraft, resolveBookIdForDraft, type ExtractorDeps, type IntakeOverrides } from "./intake.js";
 import { freezeSharedInputs, verifySharedInputs } from "./freeze.js";
-import {
-  defaultValidateInputs,
-  generateCandidate,
-  loadSlotChapters,
-  persistCandidateChapters,
-  validateCandidate,
-} from "./candidates.js";
-import { assignBlindLabels, combinedContentHash, forbiddenReviewTokens, reviewCandidate, BAKEOFF_NOISE_BAND } from "./review.js";
+import { defaultValidateInputs, generateCandidate, validateCandidate } from "./candidates.js";
+import { assignBlindLabels, combinedContentHash, forbiddenReviewTokens, BAKEOFF_NOISE_BAND } from "./review.js";
 import { selectWinner, type SelectionInputs } from "./selection.js";
-import { promoteWinner } from "./promotion.js";
 import { writeReports, type ReportInputs } from "./report.js";
+import type { LegacyBakeoffStateAdapter } from "../release/legacyBakeoffStateAdapter.js";
 
 export const DEFAULT_BAKEOFF_MODELS = ["gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna"];
 export const DEFAULT_BAKEOFF_EFFORT: ReasoningEffort = "xhigh";
@@ -77,6 +64,7 @@ const RESEARCH_TIMEOUT_MS = 45 * 60 * 1000;
 const PREFLIGHT_TIMEOUT_MS = 5 * 60 * 1000;
 const SOURCE_REPAIR_MAX_PASSES = 3;
 
+/** Legacy test seam only. Screening conductor never invokes delegation. */
 export type DelegateVerb = (args: string[], env: Record<string, string>, onLine: (line: string) => void) => Promise<VerbResult>;
 
 export type BakeoffDeps = AutopilotDeps & {
@@ -84,8 +72,7 @@ export type BakeoffDeps = AutopilotDeps & {
   rng: () => number;
   /** `codex --version` (recorded in the report); null when unavailable. */
   codexVersion: () => string | null;
-  /** Long-running CLI delegation with live line streaming (book-autopilot). */
-  delegate: DelegateVerb;
+  readonly delegate?: DelegateVerb;
 };
 
 function defaultCodexVersion(): string | null {
@@ -96,38 +83,12 @@ function defaultCodexVersion(): string | null {
   }
 }
 
-function defaultDelegate(): DelegateVerb {
-  return (args, env, onLine) =>
-    new Promise((resolvePromise, rejectPromise) => {
-      const child = spawnChild("npx", ["tsx", "src/cli.ts", ...args], {
-        cwd: PIPELINE_DIR,
-        env: { ...process.env, ...env },
-        stdio: ["ignore", "pipe", "pipe"],
-      });
-      let stdout = "";
-      let stderr = "";
-      let buf = "";
-      child.stdout.on("data", (d) => {
-        const s = d.toString();
-        stdout += s;
-        buf += s;
-        const lines = buf.split("\n");
-        buf = lines.pop() ?? "";
-        for (const line of lines) if (line.trim()) onLine(line);
-      });
-      child.stderr.on("data", (d) => (stderr += d.toString()));
-      child.on("error", rejectPromise);
-      child.on("close", (code) => resolvePromise({ code: code ?? -1, stdout, stderr }));
-    });
-}
-
 export function resolveBakeoffDeps(d?: Partial<BakeoffDeps>): BakeoffDeps {
   const base = resolveDeps(d);
   return {
     ...base,
     rng: d?.rng ?? Math.random,
     codexVersion: d?.codexVersion ?? defaultCodexVersion,
-    delegate: d?.delegate ?? defaultDelegate(),
   };
 }
 
@@ -140,8 +101,6 @@ export type BakeoffStages = {
   verifyInputs: typeof verifySharedInputs;
   generate: typeof generateCandidate;
   validate: typeof validateCandidate;
-  review: typeof reviewCandidate;
-  promote: typeof promoteWinner;
 };
 
 function resolveStages(over?: Partial<BakeoffStages>): BakeoffStages {
@@ -150,8 +109,6 @@ function resolveStages(over?: Partial<BakeoffStages>): BakeoffStages {
     verifyInputs: over?.verifyInputs ?? verifySharedInputs,
     generate: over?.generate ?? generateCandidate,
     validate: over?.validate ?? validateCandidate,
-    review: over?.review ?? reviewCandidate,
-    promote: over?.promote ?? promoteWinner,
   };
 }
 
@@ -183,6 +140,8 @@ export type RunBakeoffOptions = {
   stateRoot?: string;
   /** Stage implementations override (tests). */
   stages?: Partial<BakeoffStages>;
+  /** Required V4 compatibility edge, composed below this disposable run root. */
+  v4: LegacyBakeoffStateAdapter;
 };
 
 export type BakeoffOutcome = {
@@ -255,6 +214,9 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
   const effort = opts.effort ?? DEFAULT_BAKEOFF_EFFORT;
   const judge = { model: opts.judgeModel ?? DEFAULT_JUDGE_MODEL, effort: opts.judgeEffort ?? DEFAULT_JUDGE_EFFORT };
   const overrides = opts.overrides ?? {};
+  if (opts.publish === true) {
+    throw new Error("model-bakeoff is SCREENING_ONLY; promotion, QC, and publication are unavailable");
+  }
 
   // Identity + run root. Default run id is DERIVED FROM THE DRAFT HASH so a
   // re-paste of the same task resumes the same run without remembering ids.
@@ -274,7 +236,7 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
       candidates: models.map((model, i) => ({ model, slug: modelSlug(model), slot: `w${i + 1}`, effort })),
       judge,
       maxParallel: Math.max(1, opts.maxParallel ?? 3),
-      publish: opts.publish === true,
+      publish: false,
       blindMap: {},
       completedPhases: [],
     };
@@ -285,14 +247,13 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
     if (opts.models?.length && JSON.stringify([...models].sort()) !== JSON.stringify([...recorded].sort())) {
       throw new Error(`run ${runId} already compares [${recorded.join(", ")}] — pass a new --run-id to compare a different model set`);
     }
-    manifest.publish = opts.publish === true;
+    manifest.publish = false;
   }
   // --force re-opens everything downstream of the frozen shared inputs: the
   // candidates regenerate, and every derived decision (validation, blinded
-  // reviews, selection, promotion, QC, report) recomputes from the fresh bytes.
+  // reviews, selection, report) recomputes from the fresh bytes.
   // Intake/research/freeze stay — the comparison inputs are still the run's
-  // identity. Canonical safety is unchanged: a re-promotion of different bytes
-  // over an existing canonical book still fails closed in promoteWinner.
+  // identity. Existing immutable V4 candidate IDs accept only identical bytes.
   if (opts.force) {
     manifest.completedPhases = manifest.completedPhases.filter((p) => ["intake", "research", "freeze", "preflight"].includes(p));
     manifest.selection = undefined;
@@ -307,16 +268,16 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
       `  draft: ${opts.draftPath} (sha256 ${draftSha.slice(0, 16)})`,
       `  candidates: ${specs.map((s) => `${s.model} @ ${s.effort} → work/${s.slot}`).join("; ")}`,
       `  judge (fixed): ${judge.model} @ ${judge.effort}`,
-      `  publish: ${manifest.publish ? "true (verified publish path after formal QC)" : "false (halt at ready-to-publish)"}`,
+      `  authority: SCREENING_ONLY (no promotion/QC/publish/current/package write)`,
       `  run root: ${pipelineRel(roots.runRoot)}`,
-      `  phases: intake → research → freeze → preflight → candidates → validate → review → select → promote → qc → report`,
+      `  phases: intake → research → freeze → preflight → candidates → validate → review → select → report`,
       `  completed so far: ${manifest.completedPhases.join(", ") || "(none)"}`,
     ];
     for (const l of planLines) log(l);
     return { status: "plan", bookId, runId, winner: manifest.selection?.winner ?? null };
   }
 
-  const lockFactory = opts.acquireLock ?? ((id: string) => acquireBookLock(resolve(PIPELINE_DIR, "state", "autopilot-locks"), id));
+  const lockFactory = opts.acquireLock ?? ((id: string) => acquireBookLock(resolve(roots.runRoot, "locks"), id));
   const lock = lockFactory(bookId);
   if (!lock.ok) {
     return { status: "halt", bookId, runId, winner: null, reason: `another run holds the ${bookId} lock (${lock.heldBy ?? "unknown owner"}) — remove state/autopilot-locks/${bookId}.lock only if you are sure it is stale.` };
@@ -446,8 +407,17 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
     // ── Phase: validate (existing deterministic batteries; no QC rounds) ─────
     if (!phaseDone(manifest, "validate")) {
       for (const spec of specs) {
-        persistCandidateChapters(roots, spec, bookId, freeze.chapterNumbers);
-        const inputs = { ...defaultValidateInputs(), chapterNumbers: freeze.chapterNumbers };
+        const staged = await opts.v4.stageCandidate({
+          bookId,
+          runId,
+          spec,
+          chapterNumbers: freeze.chapterNumbers,
+          createdAt: new Date().toISOString(),
+        });
+        if (!staged.ok) return halt(`candidate ${spec.model} V4 staging failed: [${staged.error.code}] ${staged.error.message}`);
+        const chapters = opts.v4.candidateChapters(staged.value);
+        if (!chapters.ok) return halt(`candidate ${spec.model} V4 reopen failed: [${chapters.error.code}] ${chapters.error.message}`);
+        const inputs = { ...defaultValidateInputs(), chapterNumbers: freeze.chapterNumbers, chapters: chapters.value };
         const validation = await stages.validate(bookId, spec, roots, inputs);
         writeFileAtomic(validationPath(roots, spec.slug), JSON.stringify(validation, null, 2) + "\n");
         log(`[bakeoff] validate ${spec.model}: ${validation.hardFailures.length === 0 ? "clean" : `${validation.hardFailures.length} hard failure(s)`} (book-gate ${validation.bookGatePassed ? "PASS" : "FAIL"}, rubric ${validation.rubricVerdict})`);
@@ -475,22 +445,37 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
           log(`[bakeoff] review: skipping ${spec.model} (label ${label}) — ineligible before review (${generation?.status !== "complete" ? "incomplete book" : "deterministic hard failures"})`);
           continue;
         }
-        const chapters = loadSlotChapters(roots, spec.slot);
+        const opened = await opts.v4.openCandidate(bookId, spec);
+        if (!opened.ok) return halt(`candidate ${spec.model} V4 reopen before review failed: [${opened.error.code}] ${opened.error.message}`);
+        const chapters = opts.v4.candidateChapters(opened.value);
+        if (!chapters.ok) return halt(`candidate ${spec.model} V4 chapter read before review failed: [${chapters.error.code}] ${chapters.error.message}`);
+        const screening = await opts.v4.screening(bookId, spec, label);
+        if (!screening.ok || screening.value.outcome !== "SHORTLIST") {
+          const detail = screening.ok ? screening.value.outcome : `[${screening.error.code}] ${screening.error.message}`;
+          return halt(`candidate ${label} screening authorization failed: ${detail}`);
+        }
         const prior = readJsonIf<CandidateReviewV1>(reviewPath(roots, label));
-        if (!opts.force && prior && prior.contentSha256 === combinedContentHash(chapters)) {
+        if (!opts.force && prior && prior.contentSha256 === combinedContentHash([...chapters.value])) {
           log(`[bakeoff] review: label ${label} already reviewed at these bytes — reusing (resume)`);
           continue;
         }
-        log(`[bakeoff] review: label ${label} — ${chapters.length} blinded chapter reads + 2 whole-book reads (judge ${judge.model} @ ${judge.effort})`);
+        log(`[bakeoff] review: label ${label} — ${chapters.value.length} blinded chapter reads + 2 whole-book reads (judge ${judge.model} @ ${judge.effort})`);
         if (!heartbeat()) return halt("lost the run lock during review");
-        await stages.review(bookId, label as "A", chapters, deps, roots, {
-          runId,
-          judge,
-          forbidden,
-          heartbeat,
-          log,
-          chapterParallel: Math.max(1, opts.chapterParallel ?? 2),
+        const reviewed = await opts.v4.reviewForSelection({
+          bookId,
+          spec,
+          label,
+          deps,
+          options: {
+            runId,
+            judge,
+            forbidden,
+            heartbeat,
+            log,
+            chapterParallel: Math.max(1, opts.chapterParallel ?? 2),
+          },
         });
+        if (!reviewed.ok) return halt(`candidate ${label} screening review failed: [${reviewed.error.code}] ${reviewed.error.message}`);
       }
       markDone(roots, manifest, "review");
     }
@@ -513,109 +498,27 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
     const selection = manifest.selection!;
     if (!selection.winner) {
       finishReport(roots, manifest, selectionInputs, "not started (no eligible winner)", "not published", deps);
-      return halt("no eligible candidate — nothing was promoted or published. See the report for per-candidate disqualifications.");
+      return halt("no eligible candidate — screening ended. See report for per-candidate disqualifications.");
     }
-    const winnerSpec = specs.find((s) => s.model === selection.winner)!;
-
-    // ── Compare-only exit (chapter subset): selection + report, no promotion ──
-    if (compareOnly) {
-      log(`[bakeoff] compare-only: the frozen chapter set (${freeze.chapterNumbers.join(", ")}) is a subset of the book's ${fullIndexCount}-chapter index — a partial book is never promoted, QC'd, or published. Winner: ${selection.winner}.`);
-      const { jsonPath, mdPath } = finishReport(
-        roots, manifest, selectionInputs,
-        "not run (compare-only chapter-subset run)",
-        "not applicable (compare-only chapter-subset run)",
-        deps,
-      );
-      markDone(roots, manifest, "report");
-      return { status: "compared", bookId, runId, winner: selection.winner, reportJsonPath: jsonPath, reportMdPath: mdPath };
-    }
-
-    // ── Phase: promote (the ONLY canonical crossing) ─────────────────────────
-    if (!phaseDone(manifest, "promote")) {
-      const winnerState = readJsonIf<CandidateStateV1>(generationPath(roots, winnerSpec.slug));
-      if (!winnerState) return halt("winner generation record missing — cannot promote");
-      const candidateChapterHashes: Record<string, Record<string, string | null>> = {};
-      for (const spec of specs) {
-        const st = readJsonIf<CandidateStateV1>(generationPath(roots, spec.slug));
-        candidateChapterHashes[spec.model] = Object.fromEntries(
-          (st?.chapters ?? []).map((c) => [`ch${String(c.chapterNumber).padStart(2, "0")}`, c.contentSha256]),
-        );
-      }
-      manifest.promotion = stages.promote({
-        bookId,
-        manifest,
-        winner: winnerSpec,
-        winnerState,
-        roots,
-        candidateChapterHashes,
-        log,
-      });
-      writeManifest(roots, manifest);
-      // The complete deterministic preflight, re-run on the CANONICAL bytes.
-      const converge = await deps.runVerb(["qc-converge", bookId]);
-      if (converge.code !== 0) {
-        return halt(`post-promotion deterministic preflight (qc-converge) is not clean:\n${(converge.stdout || converge.stderr).slice(0, 1800)}`);
-      }
-      log(`[bakeoff] promote: qc-converge clean on canonical bytes`);
-      markDone(roots, manifest, "promote");
-    }
-
-    // ── Publication identity gate (one concise question, never a guess) ──────
-    let publishAuthorized = manifest.publish;
-    let publicationQuestion: string | undefined;
-    if (manifest.publish && !intake.identityConfident) {
-      publishAuthorized = false;
-      publicationQuestion =
-        `Publication identity is unconfirmed: is the book "${intake.title ?? "(unknown title)"}" by ` +
-        `${intake.author ?? "(unknown author)"} (bookId ${bookId})? Re-run with --title/--author (or confirm and re-run with --publish) to publish.`;
-      log(`[bakeoff] publish gate: ${publicationQuestion}`);
-    }
-
-    // ── Phase: qc (delegated to the existing conductor + verified publisher) ──
-    if (!phaseDone(manifest, "qc")) {
-      // Release OUR lock — book-autopilot takes its own on the same book.
-      lock.release();
-      log(`[bakeoff] formal QC: delegating to book-autopilot ${bookId} --author${publishAuthorized ? "" : " --no-publish"} (winner ${winnerSpec.model} pinned as the repair author; reviewers stay independent)`);
-      const args = ["book-autopilot", bookId, "--author", ...(publishAuthorized ? [] : ["--no-publish"])];
-      const env = {
-        CHAPTERFLOW_AUTHOR_MODEL: winnerSpec.model,
-        CHAPTERFLOW_AUTHOR_EFFORT: winnerSpec.effort,
-      };
-      const r = await deps.delegate(args, env, (line) => log(line));
-      const tail = (r.stdout || r.stderr).trim().split("\n").slice(-12).join("\n");
-      manifest.qc = {
-        startedAt: new Date().toISOString(),
-        outcome: r.code === 0 ? (publishAuthorized ? "published-or-ready (autopilot exit 0)" : "ready (autopilot exit 0, publish withheld)") : `halt (autopilot exit ${r.code})`,
-        publishAuthorized,
-        detail: tail,
-      };
-      writeManifest(roots, manifest);
-      if (r.code !== 0) {
-        finishReport(roots, manifest, selectionInputs, manifest.qc.outcome, "not published (QC did not converge)", deps);
-        return halt(`formal QC did not converge honestly — the bake-off artifacts are preserved. Autopilot tail:\n${tail}`);
-      }
-      markDone(roots, manifest, "qc");
-    }
-
-    // ── Phase: report ─────────────────────────────────────────────────────────
-    const publishOutcome = manifest.qc?.publishAuthorized
-      ? "published via the existing verified publish path (see autopilot output)"
-      : publicationQuestion
-        ? "withheld: publication identity unconfirmed"
-        : manifest.publish
-          ? "withheld"
-          : "not requested (PUBLISH=false) — book is verified ready-to-publish";
-    const { jsonPath, mdPath } = finishReport(roots, manifest, selectionInputs, manifest.qc?.outcome ?? "unknown", publishOutcome, deps);
+    const scope = compareOnly ? "chapter-subset" : "complete-book";
+    log(`[bakeoff] screening complete (${scope}); winner ${selection.winner}. No promotion, QC, publication, current-pointer, or package write is authorized.`);
+    const { jsonPath, mdPath } = finishReport(
+      roots,
+      manifest,
+      selectionInputs,
+      `not run (SCREENING_ONLY ${scope} bakeoff)`,
+      "not applicable (SCREENING_ONLY)",
+      deps,
+    );
     markDone(roots, manifest, "report");
 
     return {
-      status: manifest.qc?.publishAuthorized ? "published" : "ready",
+      status: compareOnly ? "compared" : "complete",
       bookId,
       runId,
       winner: selection.winner,
       reportJsonPath: jsonPath,
       reportMdPath: mdPath,
-      publicationQuestion,
     };
   } finally {
     lock.release();

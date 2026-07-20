@@ -10,15 +10,14 @@
  *                                     the ONLY candidate token an author prompt sees)
  *     work/<slot>/provenance/       — slot-local author provenance (never canonical)
  *     work/<slot>/lead-overrides/   — slot-local F-1 sidecars (never shared)
- *     candidates/<modelSlug>/       — durable per-model results (chapters copy,
- *                                     generation record, validation record)
+ *     candidates/<modelSlug>/       — generation + validation metadata
+ *     v4-books/<bookId>/candidates/ — immutable CandidateStore content
  *     reviews/<label>/              — blinded review docs + persisted reviews
  *     selection/selection.json      — the global decision
  *     report.json / report.md       — the permanent comparison report
  *
- * The canonical trees (state/chapters, state/provenance, book-packages, the web
- * registries) are NEVER touched by anything in this module; promotion.ts is the
- * single, explicit crossing point.
+ * Canonical trees, current pointer, book packages, and web registries are never
+ * touched by this screening-only route.
  */
 
 import { createHash } from "crypto";
@@ -47,6 +46,7 @@ export type BakeoffRoots = {
   sharedInputsDir: string;
   workDir: string;
   candidatesDir: string;
+  v4BooksRoot: string;
   reviewsDir: string;
   selectionDir: string;
   reportJsonPath: string;
@@ -61,6 +61,7 @@ export function bakeoffRoots(bookId: string, runId: string, stateRoot?: string):
     sharedInputsDir: resolve(runRoot, "shared-inputs"),
     workDir: resolve(runRoot, "work"),
     candidatesDir: resolve(runRoot, "candidates"),
+    v4BooksRoot: resolve(runRoot, "v4-books"),
     reviewsDir: resolve(runRoot, "reviews"),
     selectionDir: resolve(runRoot, "selection"),
     reportJsonPath: resolve(runRoot, "report.json"),

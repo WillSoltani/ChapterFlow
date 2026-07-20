@@ -1,6 +1,7 @@
 /**
  * Model bake-off — candidate isolation, generation telemetry, resume
- * verification, and atomic byte-verified promotion.
+ * verification. V4 candidate migration and screening authority are covered by
+ * v25/v4-bakeoff-state-migration.test.ts.
  */
 
 import assert from "node:assert/strict";
@@ -16,10 +17,8 @@ import {
   generateCandidate,
   loadSlotChapters,
   slotChapterAbsPath,
-  persistCandidateChapters,
 } from "../src/bakeoff/candidates.js";
-import { promoteWinner, PromotionError } from "../src/bakeoff/promotion.js";
-import type { BakeoffManifestV1, CandidateSpec, CandidateStateV1 } from "../src/bakeoff/types.js";
+import type { CandidateSpec, CandidateStateV1 } from "../src/bakeoff/types.js";
 import { fixtureChapter, fixturePacket, tmpRoot, fakeAutopilotDeps, writerSpawn } from "./model-bakeoff-helpers.js";
 import type { SpawnCodexAgentOptions } from "../src/orchestrator/codexAgent.js";
 
@@ -136,137 +135,4 @@ test("chapterReusable verifies recorded content hash against on-disk bytes befor
   const abs = slotChapterAbsPath(roots, "w1", bookId, 1);
   writeFileSync(abs, JSON.stringify(fixtureChapter(bookId, 1, "tampered"), null, 2));
   assert.equal(chapterReusable(roots, SOL, bookId, state.chapters[0]), false, "drifted bytes are never blindly reused");
-});
-
-// ── 15 + 16. atomic promotion with byte-identity verification ─────────────────
-
-function promotionWorld() {
-  const bookId = "zz-bakeoff-promote";
-  const dir = tmpRoot("cf-bakeoff-promote-");
-  const roots = bakeoffRoots(bookId, "r1", join(dir, "state"));
-  const canonical = join(dir, "canonical-chapters");
-  const chapters = [1, 2].map((n) => fixtureChapter(bookId, n, "w1"));
-  const records = chapters.map((ch, i) => {
-    const abs = slotChapterAbsPath(roots, "w1", bookId, i + 1);
-    mkdirSync(join(roots.workDir, "w1", "chapters"), { recursive: true });
-    writeFileSync(abs, JSON.stringify(ch, null, 2));
-    return {
-      chapterNumber: i + 1,
-      ok: true,
-      firstAttemptPass: true,
-      attempts: [{ attempt: 1, sessionId: `auto-bakeoff-w1-author-ch0${i + 1}#1`, ok: true, durationMs: 5, failure: "" }],
-      totalDurationMs: 5,
-      contentSha256: chapterContentHash(ch),
-    };
-  });
-  const winnerState: CandidateStateV1 = {
-    schemaVersion: "model-bakeoff-candidate-v1",
-    spec: { model: "gpt-5.6-sol", slug: "gpt-5-6-sol", slot: "w1", effort: "xhigh" },
-    status: "complete",
-    chapters: records,
-    totalDurationMs: 10,
-    totalRetries: 0,
-    firstAttemptPasses: 2,
-  };
-  const manifest = {
-    schemaVersion: "model-bakeoff-manifest-v1",
-    runId: "r1",
-    bookId,
-    createdAt: "t",
-    updatedAt: "t",
-    candidates: [winnerState.spec],
-    judge: { model: "gpt-5.5", effort: "high" },
-    maxParallel: 3,
-    publish: false,
-    blindMap: { A: "gpt-5.6-sol" },
-    completedPhases: [],
-    freeze: {
-      schemaVersion: "model-bakeoff-shared-inputs-v1",
-      frozenAt: "t",
-      files: [],
-      combinedSha256: "shared-hash",
-      taskCardTemplateSha256: { ch01: "tpl" },
-      retryBudget: { gateRetries: 1, leadDegradeRetries: 1 },
-      chapterNumbers: [1, 2],
-    },
-  } as unknown as BakeoffManifestV1;
-  return { bookId, dir, roots, canonical, winnerState, manifest };
-}
-
-test("promotion copies the winner byte-identically into canonical state, stamps provenance, writes the sidecar — and is idempotent", () => {
-  const w = promotionWorld();
-  const stamps: Array<{ chapterId: string; sessionId: string }> = [];
-  const sidecar = join(w.dir, "sidecar.json");
-  const record = promoteWinner({
-    bookId: w.bookId,
-    manifest: w.manifest,
-    winner: w.winnerState.spec,
-    winnerState: w.winnerState,
-    roots: w.roots,
-    candidateChapterHashes: { "gpt-5.6-sol": { ch01: "h1", ch02: "h2" } },
-    log: () => {},
-    chaptersDir: w.canonical,
-    sidecarPath: sidecar,
-    stampProvenance: (chapterId, sessionId) => stamps.push({ chapterId, sessionId }),
-  });
-  assert.equal(record.byteIdentityVerified, true);
-  assert.equal(record.winnerModel, "gpt-5.6-sol");
-  assert.equal(record.sharedInputsSha256, "shared-hash");
-  for (const n of [1, 2]) {
-    const dst = join(w.canonical, `${w.bookId}-ch0${n}.v21-native.chapter.json`);
-    const src = slotChapterAbsPath(w.roots, "w1", w.bookId, n);
-    assert.equal(readFileSync(dst, "utf8"), readFileSync(src, "utf8"), `ch${n} byte-identical`);
-  }
-  assert.equal(stamps.length, 2, "author provenance stamped from the winner's real sessions");
-  assert.ok(stamps[0].sessionId.includes("bakeoff-w1-"));
-  assert.ok(existsSync(sidecar), "durable bake-off sidecar written");
-  // Idempotent re-promotion of identical bytes.
-  const again = promoteWinner({
-    bookId: w.bookId, manifest: w.manifest, winner: w.winnerState.spec, winnerState: w.winnerState,
-    roots: w.roots, candidateChapterHashes: {}, log: () => {}, chaptersDir: w.canonical, sidecarPath: sidecar,
-    stampProvenance: () => {},
-  });
-  assert.equal(again.byteIdentityVerified, true);
-});
-
-test("promotion fails closed on canonical collision and on candidate byte drift", () => {
-  const w = promotionWorld();
-  // Canonical already holds DIFFERENT bytes → refuse, never overwrite.
-  mkdirSync(w.canonical, { recursive: true });
-  writeFileSync(join(w.canonical, `${w.bookId}-ch01.v21-native.chapter.json`), JSON.stringify(fixtureChapter(w.bookId, 1, "someone-else"), null, 2));
-  assert.throws(
-    () => promoteWinner({
-      bookId: w.bookId, manifest: w.manifest, winner: w.winnerState.spec, winnerState: w.winnerState,
-      roots: w.roots, candidateChapterHashes: {}, log: () => {}, chaptersDir: w.canonical,
-      sidecarPath: join(w.dir, "s.json"), stampProvenance: () => {},
-    }),
-    (err: Error) => err instanceof PromotionError && /never overwrite/.test(err.message),
-  );
-
-  // Candidate bytes drifted vs the verified generation record → refuse.
-  const w2 = promotionWorld();
-  writeFileSync(slotChapterAbsPath(w2.roots, "w1", w2.bookId, 1), JSON.stringify(fixtureChapter(w2.bookId, 1, "drifted"), null, 2));
-  assert.throws(
-    () => promoteWinner({
-      bookId: w2.bookId, manifest: w2.manifest, winner: w2.winnerState.spec, winnerState: w2.winnerState,
-      roots: w2.roots, candidateChapterHashes: {}, log: () => {}, chaptersDir: join(w2.dir, "c2"),
-      sidecarPath: join(w2.dir, "s.json"), stampProvenance: () => {},
-    }),
-    (err: Error) => err instanceof PromotionError && /drifted/.test(err.message),
-  );
-});
-
-// ── 22 (unit). losing candidates persist as durable evidence ─────────────────
-
-test("persistCandidateChapters copies a candidate's chapters into the durable candidates/<slug>/ tree", async () => {
-  const bookId = "zz-bakeoff-keep";
-  const roots = bakeoffRoots(bookId, "r1", tmpRoot("cf-bakeoff-keep-"));
-  const spawn = writerSpawn([], () => JSON.stringify(fixtureChapter(bookId, 1, "w2"), null, 2), (relPath) => resolve(PIPELINE_DIR, relPath));
-  const deps = fakeAutopilotDeps({ spawn: spawn as unknown as AutopilotDeps["spawn"] }) as AutopilotDeps;
-  await generateCandidate(bookId, TERRA, deps, roots, genOpts(bookId, [1]) as never, () => {});
-  const copied = persistCandidateChapters(roots, TERRA, bookId, [1]);
-  assert.equal(copied.length, 1);
-  assert.ok(copied[0].sha256, "content hash recorded");
-  assert.ok(existsSync(join(roots.candidatesDir, "gpt-5-6-terra", "chapters", `${bookId}-ch01.v21-native.chapter.json`)));
-  assert.equal(loadSlotChapters(roots, "w2").length, 1, "slot originals remain");
 });

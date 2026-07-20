@@ -192,6 +192,7 @@ export function selectWinner(inputs: SelectionInputs, band = BAKEOFF_NOISE_BAND)
 
   return {
     schemaVersion: "model-bakeoff-selection-v1",
+    authority: "SCREENING_ONLY",
     selectedAt: new Date().toISOString(),
     winner: winner?.model ?? null,
     runnerUp,
