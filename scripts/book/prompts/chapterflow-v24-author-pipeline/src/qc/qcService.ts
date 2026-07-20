@@ -307,9 +307,10 @@ class FreshQcService implements QcService {
 
     const existing = await this.#store.getRound(bookId, input.roundId);
     if (existing.ok) {
-      return evaluationMatchesRound(evaluation, existing.value)
-        ? existing
-        : failed("QC_ROUND_ID_CONFLICT", `QC round ID already has conflicting identity: ${input.roundId}`);
+      if (!evaluationMatchesRound(evaluation, existing.value)) {
+        return failed("QC_ROUND_ID_CONFLICT", `QC round ID already has conflicting identity: ${input.roundId}`);
+      }
+      return this.#writeLock.run(bookId, () => this.#store.commitRound(bookId, existing.value));
     }
     if (existing.error.code !== "QC_ROUND_NOT_FOUND") return existing;
 

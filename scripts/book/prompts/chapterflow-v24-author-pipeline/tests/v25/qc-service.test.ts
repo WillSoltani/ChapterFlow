@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { appendFileSync, existsSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 import { createBookContentReader } from "../../src/books/bookContentReader.js";
@@ -134,6 +134,72 @@ requiredTest("fresh QC exact join creates one idempotent PASS round", async (con
   assert.equal(rejected.ok, false);
   if (!rejected.ok) assert.equal(rejected.error.code, "QC_ROUND_ID_CONFLICT");
   assert.deepEqual(readFileSync(ledgerPath), beforeReplay);
+});
+
+requiredTest("exact replay heals torn round ledger while malformed and conflicting ledgers fail", async (context) => {
+  const bookId = "qc-torn-round-book";
+  const rig = await setup(context, bookId);
+  const pass = evaluation(rig, "round-torn", "PASS");
+  const created = await rig.qc.runFresh({
+    roundId: pass.roundId,
+    candidate: rig.snapshot,
+    canonicalReview: rig.canonical,
+    evaluation: pass,
+  });
+  assert.equal(created.ok, true);
+  const qcRoot = join(context.roots.booksRoot, bookId, "qc");
+  const roundPath = join(qcRoot, `${pass.roundId}.json`);
+  const ledgerPath = join(qcRoot, "ledger.jsonl");
+  const roundBytes = readFileSync(roundPath);
+
+  unlinkSync(ledgerPath);
+  const pureMissing = await rig.qc.readStatus(bookId);
+  assert.equal(pureMissing.ok, false);
+  if (!pureMissing.ok) assert.equal(pureMissing.error.code, "QC_LEDGER_MISSING");
+  assert.equal(existsSync(ledgerPath), false, "pure status read must not heal torn persistence");
+
+  const healed = await rig.qc.runFresh({
+    roundId: pass.roundId,
+    candidate: rig.snapshot,
+    canonicalReview: rig.canonical,
+    evaluation: pass,
+  });
+  assert.deepEqual(healed, created);
+  assert.deepEqual(readFileSync(roundPath), roundBytes, "healing must not replace equivalent round bytes");
+  assert.equal(existsSync(ledgerPath), true);
+  const healedLedger = readFileSync(ledgerPath);
+  const status = await rig.qc.readStatus(bookId);
+  assert.equal(status.ok, true);
+  assert.ok(status.ok);
+  assert.equal(status.value.ledgerRevision, 1);
+  assert.deepEqual(status.value.issues, []);
+
+  appendFileSync(ledgerPath, "{malformed-replay-ledger\n", "utf8");
+  const malformed = await rig.qc.runFresh({
+    roundId: pass.roundId,
+    candidate: rig.snapshot,
+    canonicalReview: rig.canonical,
+    evaluation: pass,
+  });
+  assert.equal(malformed.ok, false);
+  if (!malformed.ok) assert.equal(malformed.error.code, "QC_LEDGER_MALFORMED");
+  assert.deepEqual(readFileSync(roundPath), roundBytes);
+
+  const conflictingEvent = JSON.parse(healedLedger.toString("utf8")) as { round: { outcome: string } };
+  conflictingEvent.round.outcome = "FAIL";
+  writeFileSync(ledgerPath, `${JSON.stringify(conflictingEvent)}\n`, "utf8");
+  const conflicting = await rig.qc.runFresh({
+    roundId: pass.roundId,
+    candidate: rig.snapshot,
+    canonicalReview: rig.canonical,
+    evaluation: pass,
+  });
+  assert.equal(conflicting.ok, false);
+  if (!conflicting.ok) assert.equal(conflicting.error.code, "QC_ROUND_ID_CONFLICT");
+  assert.deepEqual(readFileSync(roundPath), roundBytes);
+
+  writeFileSync(ledgerPath, healedLedger);
+  assert.equal((await rig.qc.readStatus(bookId)).ok, true);
 });
 
 requiredTest("QC identity mismatch writes zero bytes", async (context) => {
