@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { dirname, join } from "node:path";
 
 import { createBookContentReader } from "../../src/books/bookContentReader.js";
+import type { BookContentReader } from "../../src/books/candidateTypes.js";
 import { createBookWriteLock } from "../../src/books/bookLease.js";
 import { createCandidateStore } from "../../src/books/candidateStore.js";
 import {
@@ -85,9 +86,16 @@ function world(context: TestContext, bookId: string, runId = "bakeoff-r1") {
     writeLock,
     currentPointerStore: pointerStore,
   });
-  const contentReader = createBookContentReader({ booksRoot: roots.v4BooksRoot, currentPointerStore: pointerStore });
+  const rawContentReader = createBookContentReader({ booksRoot: roots.v4BooksRoot, currentPointerStore: pointerStore });
+  let contentOpenAttempts = 0;
+  const contentReader: BookContentReader = {
+    open: async (input) => {
+      contentOpenAttempts += 1;
+      return rawContentReader.open(input);
+    },
+  };
   let canonicalEvaluatorCalls = 0;
-  const reviewService: ReviewService = createReviewServiceFactory({
+  const rawReviewService = createReviewServiceFactory({
     booksRoot: roots.v4BooksRoot,
     contentReader,
     now: () => context.clock.now(),
@@ -97,6 +105,15 @@ function world(context: TestContext, bookId: string, runId = "bakeoff-r1") {
       return { ok: true, value: { outcome: "PASS", issues: [] } };
     },
   });
+  let screeningAttempts = 0;
+  const reviewService: ReviewService = {
+    screen: async (candidate) => {
+      screeningAttempts += 1;
+      return rawReviewService.screen(candidate);
+    },
+    reviewCanonical: (input) => rawReviewService.reviewCanonical(input),
+    get: (id, reviewId) => rawReviewService.get(id, reviewId),
+  };
   let selectionReviewerCalls = 0;
   const adapter = new LegacyBakeoffStateAdapter({
     roots,
@@ -124,6 +141,8 @@ function world(context: TestContext, bookId: string, runId = "bakeoff-r1") {
     pointerWrites: () => pointerWriteAttempts,
     evaluatorCalls: () => canonicalEvaluatorCalls,
     reviewerCalls: () => selectionReviewerCalls,
+    openAttempts: () => contentOpenAttempts,
+    screenAttempts: () => screeningAttempts,
   };
 }
 
@@ -175,18 +194,22 @@ requiredTest("complete two-candidate bakeoff stages immutable V4 candidates and 
       persist(state);
       return state;
     }) as BakeoffStages["generate"],
-    validate: (async (_id, spec) => ({
-      schemaVersion: "model-bakeoff-candidate-validation-v1",
-      model: spec.model,
-      validatedAt: "2026-07-20T12:00:00.000Z",
-      complete: true,
-      hardFailures: [],
-      advisories: [],
-      bookGatePassed: true,
-      rubricVerdict: "pass",
-      readerBudgetBlockers: 0,
-      shipGateBlockers: 0,
-    })) as BakeoffStages["validate"],
+    validate: (async (_id, spec, _roots, inputs) => {
+      assert.equal(inputs.chapters.length, 1, "validation requires immutable chapters reopened through BookContentReader");
+      assert.match(inputs.chapters[0].title, new RegExp(spec.slot), "validation receives candidate snapshot, not mutable slot fallback");
+      return {
+        schemaVersion: "model-bakeoff-candidate-validation-v1",
+        model: spec.model,
+        validatedAt: "2026-07-20T12:00:00.000Z",
+        complete: true,
+        hardFailures: [],
+        advisories: [],
+        bookGatePassed: true,
+        rubricVerdict: "pass",
+        readerBudgetBlockers: 0,
+        shipGateBlockers: 0,
+      };
+    }) as BakeoffStages["validate"],
   };
   const outcome = await runBakeoff({
     draftPath,
@@ -221,6 +244,48 @@ requiredTest("complete two-candidate bakeoff stages immutable V4 candidates and 
   assert.equal(bundle.verbs.some((verb) => /^(qc-|publish|promote|register)/.test(verb[0] ?? "")), false);
   assert.equal(existsSync(join(w.roots.v4BooksRoot, bookId, "current.json")), false);
   assert.equal(existsSync(join(w.roots.v4BooksRoot, bookId, "reviews")), false);
+
+  const opensBeforeResume = w.openAttempts();
+  const screensBeforeResume = w.screenAttempts();
+  const reviewsBeforeResume = w.reviewerCalls();
+  const resumed = await runBakeoff({
+    draftPath,
+    bookId,
+    runId,
+    models: SPECS.map((spec) => spec.model),
+    deps: bundle.deps,
+    stateRoot: context.roots.bakeoffRoot,
+    stages,
+    v4: w.adapter,
+  });
+  assert.equal(resumed.status, "complete");
+  assert.equal(w.openAttempts() - opensBeforeResume, SPECS.length * 3, "completed resume reopens each immutable candidate through conductor, adapter, and ReviewService");
+  assert.equal(w.screenAttempts() - screensBeforeResume, SPECS.length, "completed resume screens each review used by selection");
+  assert.equal(w.reviewerCalls(), reviewsBeforeResume, "authorized completed reviews are reused without rerunning judge");
+
+  const manifest = JSON.parse(readFileSync(w.roots.manifestPath, "utf8"));
+  const targetLabel = Object.entries(manifest.blindMap).find(([, model]) => model === SPECS[0].model)?.[0] as BlindLabel;
+  const swappedLabel = Object.keys(manifest.blindMap).find((label) => label !== targetLabel) as BlindLabel;
+  const persistedPath = join(w.roots.reviewsDir, targetLabel, "review.json");
+  const persisted = JSON.parse(readFileSync(persistedPath, "utf8")) as CandidateReviewV1;
+  writeFileSync(persistedPath, `${JSON.stringify({ ...persisted, label: swappedLabel }, null, 2)}\n`);
+  const opensBeforeSwap = w.openAttempts();
+  const screensBeforeSwap = w.screenAttempts();
+  const swapped = await runBakeoff({
+    draftPath,
+    bookId,
+    runId,
+    models: SPECS.map((spec) => spec.model),
+    deps: bundle.deps,
+    stateRoot: context.roots.bakeoffRoot,
+    stages,
+    v4: w.adapter,
+  });
+  assert.equal(swapped.status, "halt");
+  assert.match(swapped.reason ?? "", /completed review failed resume authorization/);
+  assert.equal(w.openAttempts() - opensBeforeSwap, 3, "swapped-label resume still reopens exact candidate through conductor, adapter, and ReviewService");
+  assert.equal(w.screenAttempts() - screensBeforeSwap, 1, "swapped-label review is rejected only after fresh screening");
+  assert.equal(w.reviewerCalls(), reviewsBeforeResume, "swapped completed review is rejected, never reused or regenerated");
 });
 
 requiredTest("missing or extra candidate inventory blocks before screening reviewer", async (context) => {

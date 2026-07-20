@@ -417,7 +417,7 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
         if (!staged.ok) return halt(`candidate ${spec.model} V4 staging failed: [${staged.error.code}] ${staged.error.message}`);
         const chapters = opts.v4.candidateChapters(staged.value);
         if (!chapters.ok) return halt(`candidate ${spec.model} V4 reopen failed: [${chapters.error.code}] ${chapters.error.message}`);
-        const inputs = { ...defaultValidateInputs(), chapterNumbers: freeze.chapterNumbers, chapters: chapters.value };
+        const inputs = { ...defaultValidateInputs(chapters.value), chapterNumbers: freeze.chapterNumbers };
         const validation = await stages.validate(bookId, spec, roots, inputs);
         writeFileAtomic(validationPath(roots, spec.slug), JSON.stringify(validation, null, 2) + "\n");
         log(`[bakeoff] validate ${spec.model}: ${validation.hardFailures.length === 0 ? "clean" : `${validation.hardFailures.length} hard failure(s)`} (book-gate ${validation.bookGatePassed ? "PASS" : "FAIL"}, rubric ${validation.rubricVerdict})`);
@@ -435,48 +435,66 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
       if (!found) throw new Error(`no blind label for ${model}`);
       return found[0];
     };
-    if (!phaseDone(manifest, "review")) {
-      const forbidden = forbiddenReviewTokens(specs);
-      for (const spec of specs) {
-        const label = labelOf(spec.model) as "A";
-        const generation = readJsonIf<CandidateStateV1>(generationPath(roots, spec.slug));
-        const validation = readJsonIf<CandidateValidationV1>(validationPath(roots, spec.slug));
-        if (generation?.status !== "complete" || !validation || validation.hardFailures.length > 0) {
-          log(`[bakeoff] review: skipping ${spec.model} (label ${label}) — ineligible before review (${generation?.status !== "complete" ? "incomplete book" : "deterministic hard failures"})`);
-          continue;
-        }
-        const opened = await opts.v4.openCandidate(bookId, spec);
-        if (!opened.ok) return halt(`candidate ${spec.model} V4 reopen before review failed: [${opened.error.code}] ${opened.error.message}`);
-        const chapters = opts.v4.candidateChapters(opened.value);
-        if (!chapters.ok) return halt(`candidate ${spec.model} V4 chapter read before review failed: [${chapters.error.code}] ${chapters.error.message}`);
-        const screening = await opts.v4.screening(bookId, spec, label);
-        if (!screening.ok || screening.value.outcome !== "SHORTLIST") {
-          const detail = screening.ok ? screening.value.outcome : `[${screening.error.code}] ${screening.error.message}`;
-          return halt(`candidate ${label} screening authorization failed: ${detail}`);
-        }
-        const prior = readJsonIf<CandidateReviewV1>(reviewPath(roots, label));
-        if (!opts.force && prior && prior.contentSha256 === combinedContentHash([...chapters.value])) {
-          log(`[bakeoff] review: label ${label} already reviewed at these bytes — reusing (resume)`);
-          continue;
-        }
-        log(`[bakeoff] review: label ${label} — ${chapters.value.length} blinded chapter reads + 2 whole-book reads (judge ${judge.model} @ ${judge.effort})`);
-        if (!heartbeat()) return halt("lost the run lock during review");
-        const reviewed = await opts.v4.reviewForSelection({
-          bookId,
-          spec,
-          label,
-          deps,
-          options: {
-            runId,
-            judge,
-            forbidden,
-            heartbeat,
-            log,
-            chapterParallel: Math.max(1, opts.chapterParallel ?? 2),
-          },
-        });
-        if (!reviewed.ok) return halt(`candidate ${label} screening review failed: [${reviewed.error.code}] ${reviewed.error.message}`);
+    const reviewWasComplete = phaseDone(manifest, "review");
+    const forbidden = forbiddenReviewTokens(specs);
+    const authorizedReviews = new Map<string, CandidateReviewV1 | null>();
+    for (const spec of specs) {
+      const label = labelOf(spec.model) as "A";
+      const generation = readJsonIf<CandidateStateV1>(generationPath(roots, spec.slug));
+      const validation = readJsonIf<CandidateValidationV1>(validationPath(roots, spec.slug));
+      if (generation?.status !== "complete" || !validation || validation.hardFailures.length > 0) {
+        log(`[bakeoff] review: skipping ${spec.model} (label ${label}) — ineligible before review (${generation?.status !== "complete" ? "incomplete book" : "deterministic hard failures"})`);
+        authorizedReviews.set(spec.model, null);
+        continue;
       }
+      const opened = await opts.v4.openCandidate(bookId, spec);
+      if (!opened.ok) return halt(`candidate ${spec.model} V4 reopen before review failed: [${opened.error.code}] ${opened.error.message}`);
+      const chapters = opts.v4.candidateChapters(opened.value);
+      if (!chapters.ok) return halt(`candidate ${spec.model} V4 chapter read before review failed: [${chapters.error.code}] ${chapters.error.message}`);
+      const screening = await opts.v4.screening(bookId, spec, label);
+      if (!screening.ok || screening.value.outcome !== "SHORTLIST") {
+        const detail = screening.ok ? screening.value.outcome : `[${screening.error.code}] ${screening.error.message}`;
+        return halt(`candidate ${label} screening authorization failed: ${detail}`);
+      }
+      const expectedContentSha256 = combinedContentHash([...chapters.value]);
+      const prior = readJsonIf<CandidateReviewV1>(reviewPath(roots, label));
+      const priorMatches = prior?.label === label && prior.contentSha256 === expectedContentSha256;
+      if (reviewWasComplete) {
+        if (!priorMatches) {
+          return halt(`candidate ${label} completed review failed resume authorization: persisted label and content hash must match current blind label and immutable candidate`);
+        }
+        authorizedReviews.set(spec.model, prior);
+        log(`[bakeoff] review: label ${label} completed review reauthorized at immutable bytes (resume)`);
+        continue;
+      }
+      if (!opts.force && priorMatches) {
+        authorizedReviews.set(spec.model, prior);
+        log(`[bakeoff] review: label ${label} already reviewed at these bytes — reusing (resume)`);
+        continue;
+      }
+      log(`[bakeoff] review: label ${label} — ${chapters.value.length} blinded chapter reads + 2 whole-book reads (judge ${judge.model} @ ${judge.effort})`);
+      if (!heartbeat()) return halt("lost the run lock during review");
+      const reviewed = await opts.v4.reviewForSelection({
+        bookId,
+        spec,
+        label,
+        deps,
+        options: {
+          runId,
+          judge,
+          forbidden,
+          heartbeat,
+          log,
+          chapterParallel: Math.max(1, opts.chapterParallel ?? 2),
+        },
+      });
+      if (!reviewed.ok) return halt(`candidate ${label} screening review failed: [${reviewed.error.code}] ${reviewed.error.message}`);
+      if (reviewed.value.label !== label || reviewed.value.contentSha256 !== expectedContentSha256) {
+        return halt(`candidate ${label} screening review returned mismatched blind label or immutable content hash`);
+      }
+      authorizedReviews.set(spec.model, reviewed.value);
+    }
+    if (!reviewWasComplete) {
       markDone(roots, manifest, "review");
     }
 
@@ -486,7 +504,7 @@ export async function runBakeoff(opts: RunBakeoffOptions): Promise<BakeoffOutcom
       label: labelOf(spec.model),
       generation: readJsonIf<CandidateStateV1>(generationPath(roots, spec.slug)),
       validation: readJsonIf<CandidateValidationV1>(validationPath(roots, spec.slug)),
-      review: readJsonIf<CandidateReviewV1>(reviewPath(roots, labelOf(spec.model))),
+      review: authorizedReviews.get(spec.model) ?? null,
     }));
     if (!phaseDone(manifest, "select")) {
       manifest.selection = selectWinner(selectionInputs, BAKEOFF_NOISE_BAND);

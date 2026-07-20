@@ -369,16 +369,17 @@ export async function generateCandidate(
 
 export type ValidateCandidateInputs = {
   chapterNumbers: number[];
-  /** Immutable V4 snapshot content. Runtime callers must supply this. */
-  chapters?: readonly ChapterV21[];
+  /** Immutable V4 snapshot content reopened through BookContentReader. */
+  chapters: readonly ChapterV21[];
   readPacket: (bookId: string, n: number) => SourcePacketV1 | null;
   readBrief: (bookId: string, n: number) => { lengthBudget?: { renderedChars: number; tolerance: number } } | null;
 };
 
-export function defaultValidateInputs(): ValidateCandidateInputs {
+export function defaultValidateInputs(chapters: readonly ChapterV21[]): ValidateCandidateInputs {
   const io = resolveAuthorIo();
   return {
     chapterNumbers: [],
+    chapters,
     readPacket: io.readPacket,
     readBrief: (bookId, n) => io.readBrief(bookId, n),
   };
@@ -390,7 +391,7 @@ export async function validateCandidate(
   roots: BakeoffRoots,
   inputs: ValidateCandidateInputs,
 ): Promise<CandidateValidationV1> {
-  const chapters = inputs.chapters ? [...inputs.chapters] : loadSlotChapters(roots, spec.slot);
+  const chapters = [...inputs.chapters];
   const have = new Set(chapters.map((c) => c.number));
   const hardFailures: string[] = [];
   const advisories: string[] = [];
