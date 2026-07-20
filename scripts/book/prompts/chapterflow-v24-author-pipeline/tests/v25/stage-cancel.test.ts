@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 import type { Result } from "../../src/contracts/v4Core.js";
@@ -153,6 +153,37 @@ requiredTest("settled required-stage failure persists reason and cannot resume",
     admittedAt: "2026-01-01T00:00:00.060Z",
     staleAt: "2026-01-01T00:00:00.090Z",
   }), "TERMINAL");
+});
+
+requiredTest("cancelled terminal cannot precede cancellation request", async ({ roots }) => {
+  const run = definition("cancel-time-book", "cancel-time-run");
+  const store = new FileRunStore(roots.stateRoot);
+  expectOk(await store.createRun(run));
+  expectOk(await store.requestCancel({
+    bookId: run.bookId,
+    runId: run.runId,
+    reason: "later cancellation request",
+    requestedAt: "2026-01-01T00:00:00.100Z",
+  }));
+  const runFile = join(roots.stateRoot, "books", run.bookId, "runs", run.runId, "run.json");
+  const cancelRequestedBytes = readFileSync(runFile, "utf8");
+  expectCode(await store.finishRun({
+    bookId: run.bookId,
+    runId: run.runId,
+    status: "CANCELLED",
+    finishedAt: "2026-01-01T00:00:00.050Z",
+  }), "INVALID_INPUT");
+  assert.equal(readFileSync(runFile, "utf8"), cancelRequestedBytes);
+
+  const corrupt = JSON.parse(cancelRequestedBytes) as Record<string, unknown>;
+  corrupt.status = "CANCELLED";
+  corrupt.terminal = { status: "CANCELLED", finishedAt: "2026-01-01T00:00:00.050Z" };
+  writeFileSync(runFile, `${JSON.stringify(corrupt)}\n`);
+  expectCode(await new FileRunStore(roots.stateRoot).readRun(
+    run.bookId,
+    run.runId,
+    "2026-01-01T00:00:00.110Z",
+  ), "STATE_CORRUPT");
 });
 
 finishV25Tests().catch((error: unknown) => {

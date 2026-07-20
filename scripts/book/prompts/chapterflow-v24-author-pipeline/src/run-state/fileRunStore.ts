@@ -4,9 +4,11 @@ import {
   readFileSync,
   readdirSync,
   rmSync,
-  rmdirSync,
   statSync,
+  writeFileSync,
 } from "node:fs";
+import { randomUUID } from "node:crypto";
+import { hostname } from "node:os";
 import { isAbsolute, join, resolve } from "node:path";
 
 import type { BookId, Result, RunId, UtcIso } from "../contracts/v4Core.js";
@@ -39,9 +41,20 @@ import type {
 } from "./runTypes.js";
 
 const OUTCOMES: readonly AttemptOutcome[] = ["SUCCEEDED", "FAILED", "TIMED_OUT", "CANCELLED", "UNKNOWN", "ABANDONED"];
-const LOCK_STALE_MS = 1_000;
-const LOCK_WAIT_MS = 3_000;
+const LOCK_WAIT_MS = 5_000;
+const LOCK_INITIALIZATION_GRACE_MS = 30_000;
+const LOCK_OWNER_FILE = "owner.json";
+const LOCK_REAPER_DIR = ".reap";
+const LOCAL_HOSTNAME = hostname();
 const LOCAL_TAILS = new Map<string, Promise<void>>();
+
+interface LockOwnerV1 {
+  readonly schemaVersion: "1";
+  readonly token: string;
+  readonly pid: number;
+  readonly hostname: string;
+  readonly createdAt: string;
+}
 
 export interface RunStatePaths {
   readonly runDir: string;
@@ -88,6 +101,91 @@ async function withLocalQueue<T>(key: string, task: () => Promise<T> | T): Promi
   }
 }
 
+function lockOwnerPath(paths: RunStatePaths): string {
+  return join(paths.lockDir, LOCK_OWNER_FILE);
+}
+
+function readLockOwner(paths: RunStatePaths): LockOwnerV1 | null {
+  let value: unknown;
+  try {
+    value = JSON.parse(readFileSync(lockOwnerPath(paths), "utf8")) as unknown;
+  } catch {
+    return null;
+  }
+  if (value === null || typeof value !== "object" || Array.isArray(value)) return null;
+  const owner = value as Record<string, unknown>;
+  if (
+    owner.schemaVersion !== "1"
+    || typeof owner.token !== "string"
+    || owner.token.length === 0
+    || !Number.isSafeInteger(owner.pid)
+    || (owner.pid as number) <= 0
+    || typeof owner.hostname !== "string"
+    || owner.hostname.length === 0
+    || typeof owner.createdAt !== "string"
+  ) return null;
+  return {
+    schemaVersion: "1",
+    token: owner.token,
+    pid: owner.pid as number,
+    hostname: owner.hostname,
+    createdAt: owner.createdAt,
+  };
+}
+
+function ownerIsAlive(owner: LockOwnerV1): boolean {
+  // Local-file lock only. Never reap a lock written by another host.
+  if (owner.hostname !== LOCAL_HOSTNAME) return true;
+  try {
+    process.kill(owner.pid, 0);
+    return true;
+  } catch (error) {
+    return (error as NodeJS.ErrnoException).code !== "ESRCH";
+  }
+}
+
+function tryRecoverAbandonedLock(paths: RunStatePaths): boolean {
+  const observedOwner = readLockOwner(paths);
+  let observedAge: number;
+  try {
+    observedAge = Date.now() - statSync(paths.lockDir).mtimeMs;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return true;
+    throw error;
+  }
+  if (observedOwner !== null && ownerIsAlive(observedOwner)) return false;
+  if (observedOwner === null && observedAge < LOCK_INITIALIZATION_GRACE_MS) return false;
+
+  // One reaper wins inside still-existing lock. Other contenders must loop;
+  // they cannot remove a replacement lock after winner completes recovery.
+  try {
+    mkdirSync(join(paths.lockDir, LOCK_REAPER_DIR));
+  } catch (error) {
+    const code = (error as NodeJS.ErrnoException).code;
+    if (code === "EEXIST" || code === "ENOENT") return false;
+    throw error;
+  }
+
+  const currentOwner = readLockOwner(paths);
+  const mayRecover = observedOwner === null
+    ? currentOwner === null
+    : currentOwner?.token === observedOwner.token && !ownerIsAlive(currentOwner);
+  if (!mayRecover) {
+    try { rmSync(join(paths.lockDir, LOCK_REAPER_DIR), { recursive: true, force: true }); } catch { /* fail closed on next loop */ }
+    return false;
+  }
+  rmSync(paths.lockDir, { recursive: true, force: true });
+  return true;
+}
+
+function releaseFileLock(paths: RunStatePaths, token: string): void {
+  const owner = readLockOwner(paths);
+  if (owner?.token !== token) {
+    throw new RunStateFault("STATE_CORRUPT", `run writer lock ownership changed before release: ${paths.runDir}`);
+  }
+  rmSync(paths.lockDir, { recursive: true, force: true });
+}
+
 async function acquireFileLock(paths: RunStatePaths, createRunDir: boolean): Promise<() => void> {
   if (!existsSync(paths.runDir)) {
     if (!createRunDir) throw new RunStateFault("NOT_FOUND", `run does not exist: ${paths.runDir}`);
@@ -95,26 +193,32 @@ async function acquireFileLock(paths: RunStatePaths, createRunDir: boolean): Pro
   }
   const startedAt = Date.now();
   while (true) {
+    const token = randomUUID();
     try {
       mkdirSync(paths.lockDir);
+      const owner: LockOwnerV1 = {
+        schemaVersion: "1",
+        token,
+        pid: process.pid,
+        hostname: LOCAL_HOSTNAME,
+        createdAt: new Date().toISOString(),
+      };
+      try {
+        writeFileSync(lockOwnerPath(paths), `${canonicalJson(owner)}\n`, { encoding: "utf8", flag: "wx" });
+      } catch (error) {
+        rmSync(paths.lockDir, { recursive: true, force: true });
+        throw error;
+      }
       let released = false;
       return () => {
         if (released) return;
         released = true;
-        rmdirSync(paths.lockDir);
+        releaseFileLock(paths, token);
       };
     } catch (error) {
       const code = (error as NodeJS.ErrnoException).code;
       if (code !== "EEXIST") throw error;
-      try {
-        if (Date.now() - statSync(paths.lockDir).mtimeMs >= LOCK_STALE_MS) {
-          rmSync(paths.lockDir, { recursive: true, force: true });
-          continue;
-        }
-      } catch (statError) {
-        if ((statError as NodeJS.ErrnoException).code !== "ENOENT") throw statError;
-        continue;
-      }
+      if (tryRecoverAbandonedLock(paths)) continue;
       if (Date.now() - startedAt >= LOCK_WAIT_MS) {
         throw new RunStateFault("LOCK_TIMEOUT", `timed out waiting for run writer lock: ${paths.runDir}`, true);
       }
@@ -159,7 +263,7 @@ function readRequiredFile(path: string, where: string): string {
 }
 
 function readAttemptJournal(path: string): { readonly raw: string; readonly events: readonly AttemptEventV1[] } {
-  if (!existsSync(path)) return { raw: "", events: [] };
+  if (!existsSync(path)) throw new RunStateFault("STATE_CORRUPT", `attempt journal is missing: ${path}`);
   let raw: string;
   try {
     raw = readFileSync(path, "utf8");
@@ -247,6 +351,7 @@ export class FileRunStore implements RunStore {
         const unexpected = readdirSync(paths.runDir).filter((entry) => entry !== ".writer.lock");
         if (unexpected.length > 0) throw new RunStateFault("STATE_CORRUPT", `run directory lacks run.json but contains: ${unexpected.sort().join(", ")}`);
         const record: PersistedRunV1 = { schemaVersion: "1", definition, status: "RUNNING" };
+        writeFileAtomic(paths.attemptsFile, "");
         writeCanonicalJson(paths.runFile, record);
         return projectRun(record, [], definition.createdAt);
       });
@@ -404,6 +509,13 @@ export class FileRunStore implements RunStore {
         }
         if (input.status === "CANCELLED" && state.record.status !== "CANCEL_REQUESTED") {
           throw new RunStateFault("CONFLICT", "run must have a durable cancellation request before CANCELLED");
+        }
+        if (
+          input.status === "CANCELLED"
+          && state.record.cancellation !== undefined
+          && Date.parse(finishedAt) < Date.parse(state.record.cancellation.requestedAt)
+        ) {
+          throw new RunStateFault("INVALID_INPUT", "cancelled run finish precedes cancellation request");
         }
         if (input.status === "COMPLETED" && state.record.status !== "RUNNING") {
           throw new RunStateFault("CANCELLED", "cancel-requested run cannot complete");

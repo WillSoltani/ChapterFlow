@@ -275,6 +275,11 @@ export function normalizePersistedRun(value: unknown, expectedBookId: string, ex
   if (status === "CANCELLED" || status === "FAILED" || status === "COMPLETED") {
     if (terminal === undefined || terminal.status !== status) fail(code, "terminal run lifecycle data is incomplete");
     if (status === "CANCELLED" && cancellation === undefined) fail(code, "cancelled run lacks cancellation request");
+    if (
+      status === "CANCELLED"
+      && cancellation !== undefined
+      && Date.parse(terminal.finishedAt) < Date.parse(cancellation.requestedAt)
+    ) fail(code, "cancelled run terminal time precedes cancellation request");
     if (status === "FAILED" && terminal.reason === undefined) fail(code, "failed run lacks terminal reason");
     if (status === "COMPLETED" && cancellation !== undefined) fail(code, "completed run contains cancellation data");
   }
