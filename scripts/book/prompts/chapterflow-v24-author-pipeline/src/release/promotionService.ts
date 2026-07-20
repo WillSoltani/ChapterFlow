@@ -29,7 +29,13 @@ function failed<T>(code: string, message: string, retryable = false): Result<T> 
 }
 
 function errorMessage(value: unknown, fallback: string): string {
-  return value instanceof Error && value.message.length > 0 ? value.message : fallback;
+  try {
+    return value instanceof Error && typeof value.message === "string" && value.message.length > 0
+      ? value.message
+      : fallback;
+  } catch {
+    return fallback;
+  }
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -40,6 +46,48 @@ function exactKeys(value: Record<string, unknown>, expected: readonly string[]):
   const actual = Object.keys(value).sort();
   const wanted = [...expected].sort();
   return actual.length === wanted.length && actual.every((key, index) => key === wanted[index]);
+}
+
+function guardedPortError(value: unknown): PortError | null {
+  try {
+    if (!isRecord(value)) return null;
+    const expected = value.retryable === undefined
+      ? ["code", "message"]
+      : ["code", "message", "retryable"];
+    if (
+      !exactKeys(value, expected) ||
+      typeof value.code !== "string" ||
+      value.code.length === 0 ||
+      typeof value.message !== "string" ||
+      value.message.length === 0 ||
+      (value.retryable !== undefined && typeof value.retryable !== "boolean")
+    ) {
+      return null;
+    }
+    return {
+      code: value.code,
+      message: value.message,
+      ...(value.retryable === undefined ? {} : { retryable: value.retryable }),
+    };
+  } catch {
+    return null;
+  }
+}
+
+function guardedResult<T>(value: unknown): Result<T> | null {
+  try {
+    if (!isRecord(value)) return null;
+    if (value.ok === true && exactKeys(value, ["ok", "value"])) {
+      return { ok: true, value: value.value as T };
+    }
+    if (value.ok === false && exactKeys(value, ["error", "ok"])) {
+      const error = guardedPortError(value.error);
+      return error ? { ok: false, error } : null;
+    }
+    return null;
+  } catch {
+    return null;
+  }
 }
 
 function isSafeOpaqueId(value: unknown): value is string {
@@ -72,14 +120,22 @@ function validateRequest(request: PromotionRequest, clock: () => string): Result
   if (!isRecord(request.candidate) || !exactKeys(request.candidate, ["candidateId", "manifestDigest"])) {
     return failed("PROMOTION_INVALID", "candidate identity must contain only candidateId and manifestDigest");
   }
-  if (!isSafeOpaqueId(request.candidate.candidateId) || !DIGEST_PATTERN.test(String(request.candidate.manifestDigest))) {
+  if (
+    !isSafeOpaqueId(request.candidate.candidateId) ||
+    typeof request.candidate.manifestDigest !== "string" ||
+    !DIGEST_PATTERN.test(request.candidate.manifestDigest)
+  ) {
     return failed("PROMOTION_INVALID", "candidate identity is invalid");
   }
   if (!isSafeOpaqueId(request.reviewId) || !isSafeOpaqueId(request.qcRoundId)) {
     return failed("PROMOTION_INVALID", "reviewId and qcRoundId must be safe opaque path segments");
   }
-  if (!Number.isSafeInteger(request.expectedBookRevision) || request.expectedBookRevision < 0) {
-    return failed("PROMOTION_INVALID", "expectedBookRevision must be a non-negative safe integer");
+  if (
+    !Number.isSafeInteger(request.expectedBookRevision) ||
+    request.expectedBookRevision < 0 ||
+    !Number.isSafeInteger(request.expectedBookRevision + 1)
+  ) {
+    return failed("PROMOTION_INVALID", "expectedBookRevision and next revision must be non-negative safe integers");
   }
   const promotedAtMilliseconds = canonicalUtcMilliseconds(request.promotedAt);
   if (promotedAtMilliseconds === null) {
@@ -124,6 +180,20 @@ function validEntry(value: unknown): value is CandidateEntry {
     typeof value.mediaType === "string" && MEDIA_TYPES.has(value.mediaType) &&
     validLogicalPath(value.logicalPath) &&
     Number.isSafeInteger(value.byteLength) && (value.byteLength as number) >= 0;
+}
+
+function validSnapshotContainer(value: unknown, requireCurrentRevision: boolean): value is CandidateSnapshot {
+  try {
+    if (!isRecord(value) || !isRecord(value.manifest) || !Array.isArray(value.files)) return false;
+    if (requireCurrentRevision) {
+      return exactKeys(value, ["currentRevision", "files", "manifest"]) &&
+        Number.isSafeInteger(value.currentRevision) &&
+        (value.currentRevision as number) >= 1;
+    }
+    return exactKeys(value, ["files", "manifest"]);
+  } catch {
+    return false;
+  }
 }
 
 function verifySnapshot(
@@ -216,24 +286,36 @@ function verifySnapshot(
 }
 
 function validateReview(value: unknown, request: ValidPromotionRequest): Result<CanonicalReviewResult> {
+  if (
+    isRecord(value) &&
+    exactKeys(value, ["candidate", "issues", "outcome"]) &&
+    (value.outcome === "SHORTLIST" || value.outcome === "REJECT" || value.outcome === "ERROR")
+  ) {
+    return failed("REVIEW_MISMATCH", "screening result cannot authorize promotion");
+  }
   if (!isRecord(value) || !exactKeys(value, ["candidate", "completedAt", "issues", "outcome", "reviewId", "schemaVersion"])) {
-    return failed("REVIEW_MISMATCH", "canonical review record is malformed or is only a screening result");
+    return failed("REVIEW_UNAVAILABLE", "review service returned an invalid canonical review");
   }
   if (
     value.schemaVersion !== "1" ||
-    value.reviewId !== request.reviewId ||
+    typeof value.reviewId !== "string" ||
     !isRecord(value.candidate) ||
     !exactKeys(value.candidate, ["candidateId", "manifestDigest"]) ||
-    value.candidate.candidateId !== request.candidate.candidateId ||
-    value.candidate.manifestDigest !== request.candidate.manifestDigest ||
+    typeof value.candidate.candidateId !== "string" ||
+    typeof value.candidate.manifestDigest !== "string" ||
     !Array.isArray(value.issues) ||
-    !value.issues.every(validReviewIssue)
+    !value.issues.every(validReviewIssue) ||
+    canonicalUtcMilliseconds(value.completedAt) === null ||
+    (value.outcome !== "PASS" && value.outcome !== "FAIL" && value.outcome !== "ERROR")
+  ) {
+    return failed("REVIEW_UNAVAILABLE", "review service returned an invalid canonical review");
+  }
+  if (
+    value.reviewId !== request.reviewId ||
+    value.candidate.candidateId !== request.candidate.candidateId ||
+    value.candidate.manifestDigest !== request.candidate.manifestDigest
   ) {
     return failed("REVIEW_MISMATCH", "canonical review does not match requested candidate/checksum");
-  }
-  const completedAt = canonicalUtcMilliseconds(value.completedAt);
-  if (completedAt === null) {
-    return failed("REVIEW_MISMATCH", "canonical review completion time is invalid for promotion");
   }
   if (value.outcome !== "PASS") {
     if (value.outcome === "FAIL" || value.outcome === "ERROR") {
@@ -277,18 +359,28 @@ function validateQc(
   review: CanonicalReviewResult,
 ): Result<QcRoundResult> {
   if (!isRecord(value) || !exactKeys(value, ["candidate", "completedAt", "issues", "outcome", "reviewId", "roundId", "schemaVersion"])) {
-    return failed("QC_MISMATCH", "QC round record is malformed");
+    return failed("QC_UNAVAILABLE", "QC service returned an invalid round");
   }
   if (
     value.schemaVersion !== "1" ||
-    value.roundId !== request.qcRoundId ||
-    value.reviewId !== request.reviewId ||
+    typeof value.roundId !== "string" ||
+    typeof value.reviewId !== "string" ||
     !isRecord(value.candidate) ||
     !exactKeys(value.candidate, ["candidateId", "manifestDigest"]) ||
-    value.candidate.candidateId !== request.candidate.candidateId ||
-    value.candidate.manifestDigest !== request.candidate.manifestDigest ||
+    typeof value.candidate.candidateId !== "string" ||
+    typeof value.candidate.manifestDigest !== "string" ||
     !Array.isArray(value.issues) ||
-    !value.issues.every(validQcIssue)
+    !value.issues.every(validQcIssue) ||
+    canonicalUtcMilliseconds(value.completedAt) === null ||
+    (value.outcome !== "PASS" && value.outcome !== "FAIL" && value.outcome !== "ERROR")
+  ) {
+    return failed("QC_UNAVAILABLE", "QC service returned an invalid round");
+  }
+  if (
+    value.roundId !== request.qcRoundId ||
+    value.reviewId !== request.reviewId ||
+    value.candidate.candidateId !== request.candidate.candidateId ||
+    value.candidate.manifestDigest !== request.candidate.manifestDigest
   ) {
     return failed("QC_MISMATCH", "QC round does not match requested candidate/checksum/review");
   }
@@ -347,52 +439,95 @@ class AtomicPromotionService implements PromotionService {
   }
 
   promote(request: PromotionRequest): Promise<Result<PromotionResult>> {
-    const valid = validateRequest(request, this.#clock);
+    let valid: Result<ValidPromotionRequest>;
+    try {
+      valid = validateRequest(request, this.#clock);
+    } catch {
+      valid = failed("PROMOTION_INVALID", "promotion request is malformed");
+    }
     return valid.ok ? this.#promote(valid.value) : Promise.resolve(valid);
   }
 
   async #promote(request: ValidPromotionRequest): Promise<Result<PromotionResult>> {
-    let opened: Awaited<ReturnType<PromotionServiceOptions["candidateStore"]["open"]>>;
+    let openedRaw: unknown;
     try {
-      opened = await this.#options.candidateStore.open({
+      openedRaw = await this.#options.candidateStore.open({
         bookId: request.bookId,
         selector: { kind: "CANDIDATE", candidateId: request.candidate.candidateId },
       });
     } catch (cause) {
       return failed("CANDIDATE_UNAVAILABLE", `candidate read threw: ${errorMessage(cause, "unknown candidate error")}`);
     }
+    const opened = guardedResult<CandidateSnapshot>(openedRaw);
+    if (!opened) return failed("CANDIDATE_UNAVAILABLE", "candidate store returned an invalid Result");
     if (!opened.ok) return mapReadFailure("candidate", opened.error);
-    const candidate = verifySnapshot(opened.value, request);
+    if (!validSnapshotContainer(opened.value, false)) {
+      return failed("CANDIDATE_UNAVAILABLE", "candidate store returned an invalid candidate snapshot");
+    }
+    let candidate: Result<CandidateSnapshot>;
+    try {
+      candidate = verifySnapshot(opened.value, request);
+    } catch {
+      return failed("CANDIDATE_UNAVAILABLE", "candidate store returned an invalid candidate snapshot");
+    }
     if (!candidate.ok) return candidate;
 
-    let reviewRead: Awaited<ReturnType<PromotionServiceOptions["reviewService"]["get"]>>;
+    let reviewReadRaw: unknown;
     try {
-      reviewRead = await this.#options.reviewService.get(request.bookId, request.reviewId);
+      reviewReadRaw = await this.#options.reviewService.get(request.bookId, request.reviewId);
     } catch (cause) {
       return failed("REVIEW_UNAVAILABLE", `canonical review read threw: ${errorMessage(cause, "unknown review error")}`);
     }
+    const reviewRead = guardedResult<CanonicalReviewResult>(reviewReadRaw);
+    if (!reviewRead) return failed("REVIEW_UNAVAILABLE", "review service returned an invalid Result");
     if (!reviewRead.ok) return mapReadFailure("review", reviewRead.error);
-    const review = validateReview(reviewRead.value, request);
+    if (!isRecord(reviewRead.value)) {
+      return failed("REVIEW_UNAVAILABLE", "review service returned an invalid canonical review");
+    }
+    let review: Result<CanonicalReviewResult>;
+    try {
+      review = validateReview(reviewRead.value, request);
+    } catch {
+      return failed("REVIEW_UNAVAILABLE", "review service returned an invalid canonical review");
+    }
     if (!review.ok) return review;
 
-    let qcRead: Awaited<ReturnType<PromotionServiceOptions["qcService"]["getRound"]>>;
+    let qcReadRaw: unknown;
     try {
-      qcRead = await this.#options.qcService.getRound(request.bookId, request.qcRoundId);
+      qcReadRaw = await this.#options.qcService.getRound(request.bookId, request.qcRoundId);
     } catch (cause) {
       return failed("QC_UNAVAILABLE", `QC round read threw: ${errorMessage(cause, "unknown QC error")}`);
     }
+    const qcRead = guardedResult<QcRoundResult>(qcReadRaw);
+    if (!qcRead) return failed("QC_UNAVAILABLE", "QC service returned an invalid Result");
     if (!qcRead.ok) return mapReadFailure("QC", qcRead.error);
-    const qc = validateQc(qcRead.value, request, review.value);
+    if (!isRecord(qcRead.value)) {
+      return failed("QC_UNAVAILABLE", "QC service returned an invalid round");
+    }
+    let qc: Result<QcRoundResult>;
+    try {
+      qc = validateQc(qcRead.value, request, review.value);
+    } catch {
+      return failed("QC_UNAVAILABLE", "QC service returned an invalid round");
+    }
     if (!qc.ok) return qc;
 
-    let currentRead: Awaited<ReturnType<PromotionServiceOptions["currentPointerStore"]["read"]>>;
+    let currentReadRaw: unknown;
     try {
-      currentRead = await this.#options.currentPointerStore.read(request.bookId);
+      currentReadRaw = await this.#options.currentPointerStore.read(request.bookId);
     } catch (cause) {
       return failed("REVISION_UNAVAILABLE", `current revision read threw: ${errorMessage(cause, "unknown pointer error")}`);
     }
+    const currentRead = guardedResult<CurrentBookPointer | null>(currentReadRaw);
+    if (!currentRead) return failed("REVISION_UNAVAILABLE", "current pointer store returned an invalid Result");
     if (!currentRead.ok) return failed("REVISION_UNAVAILABLE", currentRead.error.message, currentRead.error.retryable);
-    if (currentRead.value !== null && !validCurrentPointer(currentRead.value, request.bookId)) {
+    let currentValid: boolean;
+    try {
+      currentValid = currentRead.value === null || validCurrentPointer(currentRead.value, request.bookId);
+    } catch {
+      currentValid = false;
+    }
+    if (!currentValid) {
       return failed("REVISION_UNAVAILABLE", "current pointer record is malformed");
     }
     const currentRevision = currentRead.value?.revision ?? 0;
@@ -413,9 +548,9 @@ class AtomicPromotionService implements PromotionService {
       updatedAt: request.promotedAt,
     };
 
-    let committed: Awaited<ReturnType<PromotionServiceOptions["currentPointerStore"]["compareAndSet"]>>;
+    let committedRaw: unknown;
     try {
-      committed = await this.#options.currentPointerStore.compareAndSet({
+      committedRaw = await this.#options.currentPointerStore.compareAndSet({
         bookId: request.bookId,
         expectedRevision: request.expectedBookRevision,
         next,
@@ -426,35 +561,56 @@ class AtomicPromotionService implements PromotionService {
         `current pointer commit acknowledgement is uncertain: ${errorMessage(cause, "unknown commit error")}`,
       );
     }
+    const committed = guardedResult<CurrentBookPointer>(committedRaw);
+    if (!committed) {
+      return failed("RECONCILIATION_REQUIRED", "current pointer commit returned an invalid Result");
+    }
     if (!committed.ok) {
       return committed.error.code === "REVISION_CONFLICT"
         ? failed("REVISION_CONFLICT", committed.error.message, true)
         : failed("RECONCILIATION_REQUIRED", `current pointer commit outcome is uncertain: ${committed.error.message}`);
     }
-    if (
-      committed.value.schemaVersion !== next.schemaVersion ||
-      committed.value.bookId !== next.bookId ||
-      committed.value.candidateId !== next.candidateId ||
-      committed.value.manifestDigest !== next.manifestDigest ||
-      committed.value.revision !== next.revision ||
-      committed.value.updatedAt !== next.updatedAt
-    ) {
+    let committedMatches = false;
+    try {
+      committedMatches = validCurrentPointer(committed.value, request.bookId) &&
+        committed.value.schemaVersion === next.schemaVersion &&
+        committed.value.bookId === next.bookId &&
+        committed.value.candidateId === next.candidateId &&
+        committed.value.manifestDigest === next.manifestDigest &&
+        committed.value.revision === next.revision &&
+        committed.value.updatedAt === next.updatedAt;
+    } catch {
+      committedMatches = false;
+    }
+    if (!committedMatches) {
       return failed("RECONCILIATION_REQUIRED", "current pointer commit returned unexpected identity");
     }
 
-    let readback: Awaited<ReturnType<PromotionServiceOptions["contentReader"]["open"]>>;
+    let readbackRaw: unknown;
     try {
-      readback = await this.#options.contentReader.open({ bookId: request.bookId, selector: { kind: "CURRENT" } });
+      readbackRaw = await this.#options.contentReader.open({ bookId: request.bookId, selector: { kind: "CURRENT" } });
     } catch (cause) {
       return failed(
         "RECONCILIATION_REQUIRED",
         `post-commit CURRENT readback threw: ${errorMessage(cause, "unknown readback error")}`,
       );
     }
+    const readback = guardedResult<CandidateSnapshot>(readbackRaw);
+    if (!readback) {
+      return failed("RECONCILIATION_REQUIRED", "post-commit CURRENT readback returned an invalid Result");
+    }
     if (!readback.ok) {
       return failed("RECONCILIATION_REQUIRED", `post-commit CURRENT readback failed: ${readback.error.message}`);
     }
-    const verified = verifySnapshot(readback.value, request, next.revision);
+    if (!validSnapshotContainer(readback.value, true)) {
+      return failed("RECONCILIATION_REQUIRED", "post-commit CURRENT readback returned an invalid snapshot");
+    }
+    let verified: Result<CandidateSnapshot>;
+    try {
+      verified = verifySnapshot(readback.value, request, next.revision);
+    } catch {
+      return failed("RECONCILIATION_REQUIRED", "post-commit CURRENT readback returned an invalid snapshot");
+    }
     if (!verified.ok) {
       return failed("RECONCILIATION_REQUIRED", `post-commit CURRENT readback mismatch: ${verified.error.message}`);
     }
