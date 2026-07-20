@@ -97,9 +97,14 @@ export function snapshotRoots(descriptors: readonly RootDescriptor[]): GuardSnap
 }
 
 export function guardedRootDescriptors(): readonly RootDescriptor[] {
-  return guardedProductionRoots()
+  const existing = guardedProductionRoots()
     .filter((root) => root.diffable)
     .map(({ name, path }) => ({ name, path }));
+  return [
+    ...existing,
+    { name: "pipeline-chapterflow", path: resolve(PIPELINE_ROOT, ".chapterflow") },
+    { name: "pipeline-book-packages", path: resolve(PIPELINE_ROOT, "book-packages") },
+  ];
 }
 
 export function snapshotGuardedProductionRoots(): GuardSnapshot {

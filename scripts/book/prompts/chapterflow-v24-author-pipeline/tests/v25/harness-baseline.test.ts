@@ -307,7 +307,22 @@ requiredTest("baseline preserves failure status and reports tools checks and gua
   assert.match(report.toolVersions.node, /^v20\./);
   assert.equal(report.toolVersions.typescript, "5.9.3");
   assert.equal(report.toolVersions.tsx, "4.22.4");
-  assert.ok(report.guardedRoots.length >= 4);
+  assert.deepEqual(byteSorted(report.guardedRoots.map((root) => root.name)), byteSorted([
+    "pipeline-attempts",
+    "pipeline-book-packages",
+    "pipeline-chapterflow",
+    "pipeline-logs",
+    "pipeline-state",
+    "repo-root-state (forbidden shadow)",
+  ]));
+  assert.equal(
+    report.guardedRoots.find((root) => root.name === "pipeline-chapterflow")?.path,
+    resolve(PIPELINE_ROOT, ".chapterflow"),
+  );
+  assert.equal(
+    report.guardedRoots.find((root) => root.name === "pipeline-book-packages")?.path,
+    resolve(PIPELINE_ROOT, "book-packages"),
+  );
   assert.ok(report.guardedRoots.every((root) => root.entryCount >= 1));
   console.log(`V25 BASELINE ${JSON.stringify(report)}`);
 });
