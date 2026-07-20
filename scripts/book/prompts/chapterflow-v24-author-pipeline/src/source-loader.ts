@@ -29,6 +29,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // silently returned "no usable source".
 const CHAPTERFLOW_RUNS = resolve(__dirname, "../.chapterflow/runs");
 
+export type SourceLoaderRoots = Readonly<{ runsRoot?: string }>;
+
+function sourceRunsRoot(roots: SourceLoaderRoots): string {
+  return resolve(roots.runsRoot ?? CHAPTERFLOW_RUNS);
+}
+
 export type SourceRejectedLine = {
   lineNumber: number;
   reason: string;
@@ -87,9 +93,9 @@ export function stripMetaReferences(text: string): string | null {
 // (the rework/zz- burial bug class), and both raw and normSlug bookId dir
 // spellings are tolerated.
 
-export function loadChapterSource(bookId: string, chapterNumber: number): string | null {
+export function loadChapterSource(bookId: string, chapterNumber: number, roots: SourceLoaderRoots = {}): string | null {
   const sidecar = findRunArtifact(
-    CHAPTERFLOW_RUNS,
+    sourceRunsRoot(roots),
     bookId,
     `sidecars/source/ch${String(chapterNumber).padStart(2, "0")}.source.txt`,
   );
@@ -97,14 +103,14 @@ export function loadChapterSource(bookId: string, chapterNumber: number): string
   return stripMetaReferences(readFileSync(sidecar, "utf8"));
 }
 
-export function loadBookSource(bookId: string): string | null {
-  const bookSourceMd = findRunArtifact(CHAPTERFLOW_RUNS, bookId, "source-freeze/book-source.md");
+export function loadBookSource(bookId: string, roots: SourceLoaderRoots = {}): string | null {
+  const bookSourceMd = findRunArtifact(sourceRunsRoot(roots), bookId, "source-freeze/book-source.md");
   if (!bookSourceMd) return null;
   return stripMetaReferences(readFileSync(bookSourceMd, "utf8"));
 }
 
-export function loadTableOfContents(bookId: string): string | null {
-  const tocJson = findRunArtifact(CHAPTERFLOW_RUNS, bookId, "source-freeze/toc.json");
+export function loadTableOfContents(bookId: string, roots: SourceLoaderRoots = {}): string | null {
+  const tocJson = findRunArtifact(sourceRunsRoot(roots), bookId, "source-freeze/toc.json");
   return tocJson ? readFileSync(tocJson, "utf8") : null;
 }
 
@@ -120,7 +126,7 @@ export type SourceBundle = {
   available: boolean;
 };
 
-export function loadSourceBundle(bookId: string, chapterNumber?: number): SourceBundle {
+export function loadSourceBundle(bookId: string, chapterNumber?: number, roots: SourceLoaderRoots = {}): SourceBundle {
   let chapterSource: string | null = null;
   let rawChapterSource: string | null = null;
   let bookSource: string | null = null;
@@ -128,7 +134,7 @@ export function loadSourceBundle(bookId: string, chapterNumber?: number): Source
   const rejectedFields: SourceRejectedLine[] = [];
   if (chapterNumber !== undefined) {
     const sidecar = findRunArtifact(
-      CHAPTERFLOW_RUNS,
+      sourceRunsRoot(roots),
       bookId,
       `sidecars/source/ch${String(chapterNumber).padStart(2, "0")}.source.txt`,
     );
@@ -139,14 +145,14 @@ export function loadSourceBundle(bookId: string, chapterNumber?: number): Source
       rejectedFields.push(...normalized.rejectedFields.map((field) => ({ ...field, reason: `chapterSource: ${field.reason}` })));
     }
   }
-  const bookSourceMd = findRunArtifact(CHAPTERFLOW_RUNS, bookId, "source-freeze/book-source.md");
+  const bookSourceMd = findRunArtifact(sourceRunsRoot(roots), bookId, "source-freeze/book-source.md");
   if (bookSourceMd) {
     rawBookSource = readFileSync(bookSourceMd, "utf8");
     const normalized = normalizeSourceText(rawBookSource);
     bookSource = normalized.normalized;
     rejectedFields.push(...normalized.rejectedFields.map((field) => ({ ...field, reason: `bookSource: ${field.reason}` })));
   }
-  const toc = loadTableOfContents(bookId);
+  const toc = loadTableOfContents(bookId, roots);
   return {
     bookId,
     chapter: chapterNumber ?? null,
@@ -157,5 +163,37 @@ export function loadSourceBundle(bookId: string, chapterNumber?: number): Source
     toc,
     rejectedFields,
     available: !!(chapterSource || bookSource || toc),
+  };
+}
+
+export type SourceBundleBytes = Readonly<{
+  chapterSource?: Uint8Array;
+  bookSource?: Uint8Array;
+  toc?: Uint8Array;
+}>;
+
+/** Pure candidate projection. Supplied bytes are sole authority; no discovery or writes. */
+export function sourceBundleFromBytes(bookId: string, chapterNumber: number | undefined, input: SourceBundleBytes): SourceBundle {
+  const decode = (bytes: Uint8Array | undefined): string | null => bytes === undefined ? null : Buffer.from(bytes).toString("utf8");
+  const rawChapterSource = decode(input.chapterSource);
+  const rawBookSource = decode(input.bookSource);
+  const chapter = rawChapterSource === null ? null : normalizeSourceText(rawChapterSource);
+  const book = rawBookSource === null ? null : normalizeSourceText(rawBookSource);
+  const rejectedFields: SourceRejectedLine[] = [];
+  if (chapter) rejectedFields.push(...chapter.rejectedFields.map((field) => ({ ...field, reason: `chapterSource: ${field.reason}` })));
+  if (book) rejectedFields.push(...book.rejectedFields.map((field) => ({ ...field, reason: `bookSource: ${field.reason}` })));
+  const chapterSource = chapter?.normalized ?? null;
+  const bookSource = book?.normalized ?? null;
+  const toc = decode(input.toc);
+  return {
+    bookId,
+    chapter: chapterNumber ?? null,
+    chapterSource,
+    rawChapterSource,
+    bookSource,
+    rawBookSource,
+    toc,
+    rejectedFields,
+    available: Boolean(chapterSource || bookSource || toc),
   };
 }

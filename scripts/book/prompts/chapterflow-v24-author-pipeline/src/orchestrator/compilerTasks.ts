@@ -1,5 +1,29 @@
 import { REQUIRED_QUIZ_FACT_FLOOR } from "../compiler/sourcePacketFacts.js";
 
+import type { PromptRequest } from "../runtime/promptRequest.js";
+
+export const COMPILER_SOURCE_REPAIR_PROFILE_ID = "compiler.source-repair.v1" as const;
+
 export function sourcePrewriteRepairPrompt(bookId: string, sourceGateReport: string, attempt: number, maxAttempts: number): string {
   return `ROLE\nYou are a SOURCE PACKET REPAIR subagent for ChapterFlow bookId ${bookId}.\n\nWHY THIS EXISTS\nThe v23 compiler cannot generate section artifacts until source-v2 sidecars are authoring-ready. Thin source creates invented details, which later becomes expensive QC repair. Repair the research/source artifacts now.\n\nSCOPE — edit only research/source artifacts:\n- .chapterflow/runs/${bookId}/**/sidecars/source/ch*.source.json\n- .chapterflow/source-verify-${bookId}.md or source-verify records only if your sidecar edits change verification coverage\n- state/indexes/${bookId}.json only if the TOC/index is genuinely malformed\n\nDO NOT\n- Do not write or edit state/chapters/*.chapter.json.\n- Do not edit section artifacts, QC artifacts, schemas, gates, prompts, or pipeline code.\n- Do not invent details to satisfy a gate. Remove/soften unsupported claims instead.\n\nSOURCE GATE REPORT (attempt ${attempt}/${maxAttempts})\n${sourceGateReport}\n\nQUIZ FACT FLOOR\nThe v23 blueprint always builds a fixed ${REQUIRED_QUIZ_FACT_FLOOR}-question quiz, so every chapter's sidecar must yield at least ${REQUIRED_QUIZ_FACT_FLOOR} usable testableFacts (an entry with a blank claim does not count). If a chapter is reported below that floor, the fix is to extract more real testable facts from the source material — never fabricate a fact to hit the count. If the source genuinely does not support ${REQUIRED_QUIZ_FACT_FLOOR} distinct facts for a chapter, say so explicitly in your summary instead of inventing one.\n\nREPAIR STRATEGY\n1. For every reported chapter and namedExamples[i], open the exact chNN.source.json sidecar.\n2. If the item is a concrete real-world case, keep realWorld:true and give it 2-4 verified hardSpecifics: dates, named institutions, precise mechanisms, counts, or source-local roles visible in the source notes.\n3. If the item is a broad entity/concept rather than a case, set realWorld:false only when it is explicitly being used as a conceptual device, or replace it with a concrete verified named case.\n4. Make hardSpecifics visible in summary/paraphraseNotes so downstream QC packs can see them.\n5. Preserve stable ids unless an id is malformed.\n6. If a chapter is below the quiz fact floor, extract additional genuinely testable facts (claim + becauseMechanism + commonError + errorIsWhy) from the source material for that chapter; do not duplicate or lightly reword an existing fact to pad the count.\n\nVALIDATION\nRun all of these before reporting done:\n  npx tsx src/cli.ts source-v2-gate ${bookId} --prewrite\n  npx tsx src/cli.ts source-v2-gate ${bookId}\n  npx tsx src/cli.ts source-verify-check ${bookId}\n\nReturn a concise list of files edited and the final validation result.`;
+}
+
+/** Typed migration seam only. Model-route package owns execution cutover. */
+export function sourcePrewriteRepairPromptRequest(
+  bookId: string,
+  sourceGateReport: string,
+  attempt: number,
+  maxAttempts: number,
+): Readonly<{ profileId: typeof COMPILER_SOURCE_REPAIR_PROFILE_ID; prompt: PromptRequest }> {
+  return {
+    profileId: COMPILER_SOURCE_REPAIR_PROFILE_ID,
+    prompt: {
+      templateId: "compiler.source-prewrite-repair.v1",
+      inputs: [{
+        name: "task",
+        mediaType: "text/plain",
+        bytes: Buffer.from(sourcePrewriteRepairPrompt(bookId, sourceGateReport, attempt, maxAttempts), "utf8"),
+      }],
+    },
+  };
 }
