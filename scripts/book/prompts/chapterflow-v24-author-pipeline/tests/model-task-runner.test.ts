@@ -69,6 +69,38 @@ test("pre-scheduling cancellation calls gateway zero times", async () => {
   assert.equal(gatewayCalls, 0);
 });
 
+test("pre-aborted JSON caller invokes runner gateway and spawn zero times", async () => {
+  const counts = { runner: 0, gateway: 0, spawn: 0 };
+  const controller = new AbortController();
+  controller.abort();
+  const gateway: ModelGateway = {
+    async execute(task) {
+      counts.gateway++;
+      counts.spawn++;
+      return { attemptId: task.attemptId, outcome: "SUCCEEDED", output: {} };
+    },
+  };
+  const runner = createModelTaskRunner(gateway);
+  await assert.rejects(
+    runJsonModelTask(
+      {
+        runner: {
+          async run(runRequest) {
+            counts.runner++;
+            return runner.run(runRequest);
+          },
+        },
+        context: request(controller.signal).context,
+      },
+      "categorizer",
+      "system",
+      "user",
+    ),
+    /MODEL_RUN_CANCELLED:model task cancelled before scheduling/,
+  );
+  assert.deepEqual(counts, { runner: 0, gateway: 0, spawn: 0 });
+});
+
 test("caller profile table is complete and gateway errors retain outcome code and message", async () => {
   assert.deepEqual(Object.keys(MODEL_CALLER_PROFILES).sort(), [
     "categorizer", "curriculum-planner", "editor-in-chief", "line-editor",

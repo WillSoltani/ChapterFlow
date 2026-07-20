@@ -102,6 +102,9 @@ export async function runJsonModelTask<T>(
   userPrompt: string,
 ): Promise<T> {
   const supplied = requireModelCallerExecution(execution);
+  if (supplied.context.signal.aborted) {
+    throw new Error("MODEL_RUN_CANCELLED:model task cancelled before scheduling");
+  }
   const result = await supplied.runner.run({
     profileId: MODEL_CALLER_PROFILES[taskId],
     prompt: jsonPromptRequest(systemPrompt, userPrompt),
