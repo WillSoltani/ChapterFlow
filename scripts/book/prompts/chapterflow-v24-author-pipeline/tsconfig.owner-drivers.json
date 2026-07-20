@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "files": [
+    "state/migration-experiments/_owner-inputs/b1-ratify-corpus.mts",
+    "state/migration-experiments/_owner-inputs/build-layer-n-v2-corpus.mts",
+    "state/migration-experiments/_owner-inputs/call-envelope-calculator.mts",
+    "state/migration-experiments/_owner-inputs/confirmatory-dry-run-driver.mts",
+    "state/migration-experiments/_owner-inputs/dry-run-driver.mts",
+    "state/migration-experiments/_owner-inputs/gen-sol-divergence-md.mts",
+    "state/migration-experiments/_owner-inputs/gen-sol-divergence-packet.mts",
+    "state/migration-experiments/_owner-inputs/layer-o-qualification-runner.mts",
+    "state/migration-experiments/_owner-inputs/layer-o-v2-runner.mts",
+    "state/migration-experiments/_owner-inputs/live-conductor-driver.mts",
+    "state/migration-experiments/_owner-inputs/live-native-review-driver.mts",
+    "state/migration-experiments/_owner-inputs/owner-policy-evaluator.mts",
+    "state/migration-experiments/_owner-inputs/rescore-judge1-validation.mts",
+    "state/migration-experiments/_owner-inputs/seal-driver.mts",
+    "state/migration-experiments/_owner-inputs/seal-layer-n-v2-driver.mts",
+    "state/migration-experiments/_owner-inputs/stage-q-v3-runner.mts"
+  ],
+  "include": []
+}
