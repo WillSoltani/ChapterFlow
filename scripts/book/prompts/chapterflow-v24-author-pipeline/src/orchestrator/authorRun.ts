@@ -89,6 +89,11 @@ import { recordChapterDiversity } from "../telemetry/diversityLedger.js";
 import { hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { BASELINE_MODEL } from "./modelPolicy.js";
+import type {
+  LegacyAuthorShadowProjectionPlan,
+  LegacyAuthorShadowProjectionReport,
+  LegacyAuthorStateAdapter,
+} from "../contracts/legacyAuthorStateAdapter.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -182,17 +187,17 @@ export type AuthorIo = {
 
 /** Disk implementations of the F-1 sidecar, exported so the repair lane
  *  (authorRepair) resolves the same EFFECTIVE brief its contract re-check needs. */
-export function readLeadOverrideFromDisk(bookId: string, chapterNumber: number): LeadThreadOverrideV1 | null {
+export function readLeadOverrideFromDisk(bookId: string, chapterNumber: number, stateRoot?: string): LeadThreadOverrideV1 | null {
   try {
-    const p = leadOverridePath(normSlug(bookId), chapterNumber);
+    const p = leadOverridePath(normSlug(bookId), chapterNumber, stateRoot ? { stateRoot } : {});
     if (!existsSync(p)) return null;
     const rec = readJsonFile<LeadThreadOverrideV1>(p);
     return rec?.schemaVersion === "lead-thread-override-v1" ? rec : null;
   } catch { return null; }
 }
 
-export function writeLeadOverrideToDisk(bookId: string, chapterNumber: number, override: LeadThreadOverrideV1): void {
-  const p = leadOverridePath(normSlug(bookId), chapterNumber);
+export function writeLeadOverrideToDisk(bookId: string, chapterNumber: number, override: LeadThreadOverrideV1, stateRoot?: string): void {
+  const p = leadOverridePath(normSlug(bookId), chapterNumber, stateRoot ? { stateRoot } : {});
   mkdirSync(dirname(p), { recursive: true });
   writeFileSync(p, JSON.stringify(override, null, 2) + "\n");
 }
@@ -1562,6 +1567,21 @@ export type AuthorWriteOptions = {
    * baseline writer; an explicitly resolved ACTIVE forward runtime injects the
    * chapter writer returned by createForwardAuthorChapterWriter. */
   writeOneChapter?: AuthorWriteOneInvoker;
+  /** Temporary V4 shadow. Legacy writer always completes first and remains the
+   * returned authority; shadow failures/mismatches are report-only. */
+  legacyStateShadow?: {
+    adapter: LegacyAuthorStateAdapter;
+    planFor: (input: Readonly<{
+      bookId: string;
+      chapterNumber: number;
+      legacyResult: AuthorWriteOneResult;
+    }>) => LegacyAuthorShadowProjectionPlan | null;
+    report?: (input: Readonly<{
+      bookId: string;
+      chapterNumber: number;
+      report: LegacyAuthorShadowProjectionReport;
+    }>) => void;
+  };
 };
 
 export type AuthorWriteOneInvoker = (
@@ -1654,6 +1674,24 @@ export async function doAuthorWrite(
   await mapPool(missing, opts.maxParallel, async (n) => {
     heartbeat(); // keep the run lock fresh across a long write phase
     const r = await writeOneChapter(bookId, n, deps, { io: opts.io });
+    // Temporary migration shadow: the established legacy operation above is
+    // complete before any V4 port runs. No shadow exception/result can replace
+    // `r`, suppress its failure, or turn it into success.
+    if (opts.legacyStateShadow) {
+      try {
+        const plan = opts.legacyStateShadow.planFor({ bookId, chapterNumber: n, legacyResult: r });
+        if (plan) {
+          const report = await opts.legacyStateShadow.adapter.projectLegacyAuthorOperation(plan);
+          opts.legacyStateShadow.report?.({ bookId, chapterNumber: n, report });
+          if (!report.ok) {
+            const failed = report.steps.filter((step) => !step.ok).map((step) => `${step.name}:${step.code ?? "FAILED"}`);
+            deps.log(`[autopilot] author ch${String(n).padStart(2, "0")}: V4 shadow mismatch/block (${failed.join(", ") || "semantic mismatch"}); legacy result remains authoritative`);
+          }
+        }
+      } catch (error) {
+        deps.log(`[autopilot] author ch${String(n).padStart(2, "0")}: V4 shadow exception (${(error as Error).message}); legacy result remains authoritative`);
+      }
+    }
     if (!r.ok) failures.push(r.reason);
   });
   if (failures.length > 0) {

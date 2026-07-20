@@ -1,8 +1,13 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
-import { dirname, isAbsolute, relative, resolve, sep } from "path";
+import { dirname, isAbsolute, join, relative, resolve, sep } from "path";
 
+import { createBookContentReader } from "../books/bookContentReader.js";
+import { createBookWriteLock } from "../books/bookLease.js";
+import { createCandidateStore } from "../books/candidateStore.js";
 import type { BookContentReader, CandidateInputFile, CandidateManifest, CandidateStore } from "../books/candidateTypes.js";
+import { createCurrentPointerStore } from "../books/currentPointer.js";
 import type { PlannedArtifact, PortError, Result } from "./v4Core.js";
+import { FileRunStore } from "../run-state/fileRunStore.js";
 import type { RunStore } from "../run-state/runStore.js";
 import type {
   AttemptAdmission,
@@ -11,6 +16,7 @@ import type {
   RunDefinition,
   RunSnapshot,
 } from "../run-state/runTypes.js";
+import { FileStageCoordinator } from "../run-state/stageCoordinator.js";
 import type { ResumePlan, StageCheckpoint, StageCoordinator } from "../run-state/stageTypes.js";
 
 export const LEGACY_AUTHOR_STATE_CATEGORIES = [
@@ -45,14 +51,12 @@ export const LEGACY_AUTHOR_STATE_CATEGORY_MAP: Readonly<Record<LegacyAuthorState
 };
 
 export type LegacyAdapterBlockerCode =
-  | "INVALID_ROOT"
   | "INVALID_PATH"
   | "UNSUPPORTED_CATEGORY"
   | "MISSING_RECORD"
   | "CORRUPT_RECORD"
   | "IO_ERROR"
-  | "INCOMPLETE_CANDIDATE"
-  | "PORT_BLOCKED";
+  | "INCOMPLETE_CANDIDATE";
 
 export interface LegacyAdapterBlocker extends PortError {
   readonly code: LegacyAdapterBlockerCode;
@@ -83,10 +87,54 @@ export interface LegacyComparison<TLegacy, TShadow> {
 export interface LegacyAuthorStateAdapterOptions {
   readonly legacyRoot: string;
   readonly shadowRoot: string;
-  readonly runStore: RunStore;
-  readonly stageCoordinator: StageCoordinator;
-  readonly candidateStore: CandidateStore;
-  readonly contentReader: BookContentReader;
+  /** Required opt-in: this adapter is forbidden for ambient/canonical roots. */
+  readonly disposable: true;
+}
+
+export interface LegacyAuthorShadowProjectionPlan {
+  readonly definition: RunDefinition;
+  readonly observedAt: string;
+  readonly attempt?: Readonly<{
+    admission: AttemptAdmission;
+    terminal?: Readonly<{
+      outcome: AttemptOutcome;
+      finishedAt: string;
+      detail?: string;
+    }>;
+  }>;
+  readonly cancel?: Readonly<{ reason: string; requestedAt: string }>;
+  readonly checkpoint?: StageCheckpoint;
+  readonly candidate?: Readonly<{
+    bookId: string;
+    candidateId: string;
+    parentCandidateId?: string;
+    createdByRunId: string;
+    expectedInventory: readonly PlannedArtifact[];
+    files: readonly CandidateInputFile[];
+    createdAt: string;
+  }>;
+  /** Caller-owned semantic projection. Adapter never invents a legacy mapping. */
+  readonly compare?: Readonly<{
+    legacy: unknown;
+    shadow: (report: LegacyAuthorShadowProjectionReport) => unknown;
+  }>;
+}
+
+export interface LegacyAuthorShadowStep {
+  readonly name: string;
+  readonly ok: boolean;
+  readonly code?: string;
+  readonly message?: string;
+}
+
+export interface LegacyAuthorShadowProjectionReport {
+  readonly authority: "LEGACY";
+  readonly ok: boolean;
+  readonly steps: readonly LegacyAuthorShadowStep[];
+  readonly run?: RunSnapshot;
+  readonly candidate?: CandidateManifest;
+  readonly matches?: boolean;
+  readonly mismatch?: Readonly<{ legacy: unknown; shadow: unknown }>;
 }
 
 function blocked<T>(code: LegacyAdapterBlockerCode, message: string, category?: LegacyAuthorStateCategory): Result<T, LegacyAdapterBlocker> {
@@ -139,13 +187,19 @@ export class LegacyAuthorStateAdapter {
   readonly #contentReader: BookContentReader;
 
   constructor(options: LegacyAuthorStateAdapterOptions) {
+    if (options.disposable !== true) throw new TypeError("legacy author-state adapter requires disposable: true");
     this.legacyRoot = requireExplicitRoot(options.legacyRoot, "legacyRoot");
     this.shadowRoot = requireExplicitRoot(options.shadowRoot, "shadowRoot");
     if (this.legacyRoot === this.shadowRoot) throw new TypeError("legacyRoot and shadowRoot must be distinct");
-    this.#runStore = options.runStore;
-    this.#stageCoordinator = options.stageCoordinator;
-    this.#candidateStore = options.candidateStore;
-    this.#contentReader = options.contentReader;
+    const runStateRoot = join(this.shadowRoot, "run-state");
+    const booksRoot = join(this.shadowRoot, "books");
+    mkdirSync(booksRoot, { recursive: true });
+    this.#runStore = new FileRunStore(runStateRoot);
+    this.#stageCoordinator = new FileStageCoordinator(runStateRoot);
+    const writeLock = createBookWriteLock({ booksRoot, timeoutMs: 1_000, pollMs: 1 });
+    const currentPointerStore = createCurrentPointerStore({ booksRoot, writeLock });
+    this.#candidateStore = createCandidateStore({ booksRoot, writeLock, currentPointerStore });
+    this.#contentReader = createBookContentReader({ booksRoot, currentPointerStore });
   }
 
   /** Pure read: never creates, repairs, quarantines, touches, or rewrites. */
@@ -256,6 +310,105 @@ export class LegacyAuthorStateAdapter {
       return blocked("INCOMPLETE_CANDIDATE", "candidate files do not exactly match complete expected inventory");
     }
     return this.#candidateStore.stage(input);
+  }
+
+  /**
+   * Project one already-completed legacy author operation. Every shadow error is
+   * data in the report; none throws back into or replaces the legacy result.
+   */
+  async projectLegacyAuthorOperation(plan: LegacyAuthorShadowProjectionPlan): Promise<LegacyAuthorShadowProjectionReport> {
+    const steps: LegacyAuthorShadowStep[] = [];
+    let run: RunSnapshot | undefined;
+    let candidate: CandidateManifest | undefined;
+    const record = <T>(name: string, result: Result<T>): T | undefined => {
+      if (result.ok) {
+        steps.push({ name, ok: true });
+        return result.value;
+      }
+      steps.push({ name, ok: false, code: result.error.code, message: result.error.message });
+      return undefined;
+    };
+    const safe = async <T>(name: string, operation: () => Promise<Result<T>>): Promise<T | undefined> => {
+      try {
+        return record(name, await operation());
+      } catch (error) {
+        steps.push({ name, ok: false, code: "SHADOW_EXCEPTION", message: (error as Error).message });
+        return undefined;
+      }
+    };
+
+    const created = await safe("run.create", () => this.createShadowRun(plan.definition));
+    if (created) run = created;
+    await safe("stage.resume.before", () => this.planShadowResume(plan.definition));
+
+    if (plan.cancel) {
+      await safe("run.cancel", () => this.requestShadowCancel({
+        bookId: plan.definition.bookId,
+        runId: plan.definition.runId,
+        reason: plan.cancel!.reason,
+        requestedAt: plan.cancel!.requestedAt,
+      }));
+      await safe("stage.resume.cancelled", () => this.planShadowResume(plan.definition));
+    } else if (plan.attempt) {
+      await safe("attempt.admit", () => this.startShadowAttempt(plan.attempt!.admission));
+      const observed = await safe("run.observe", () => this.readShadowRun(
+        plan.definition.bookId,
+        plan.definition.runId,
+        plan.observedAt,
+      ));
+      if (observed) run = observed;
+      if (plan.attempt.terminal) {
+        const terminal = plan.attempt.terminal;
+        await safe("attempt.finish", () => this.finishShadowAttempt({
+          bookId: plan.definition.bookId,
+          runId: plan.definition.runId,
+          attemptId: plan.attempt!.admission.attemptId,
+          outcome: terminal.outcome,
+          finishedAt: terminal.finishedAt,
+          ...(terminal.detail === undefined ? {} : { detail: terminal.detail }),
+        }));
+      }
+    }
+
+    if (plan.checkpoint) await safe("stage.checkpoint", () => this.checkpointShadowStage(plan.checkpoint!));
+    if (plan.candidate) {
+      const staged = await safe("candidate.stage", () => this.stageCompleteCandidate(plan.candidate!));
+      if (staged) candidate = staged;
+    }
+    const finalRun = await safe("run.read.final", () => this.readShadowRun(
+      plan.definition.bookId,
+      plan.definition.runId,
+      plan.observedAt,
+    ));
+    if (finalRun) run = finalRun;
+
+    let matches: boolean | undefined;
+    let mismatch: Readonly<{ legacy: unknown; shadow: unknown }> | undefined;
+    if (plan.compare) {
+      try {
+        const partial: LegacyAuthorShadowProjectionReport = {
+          authority: "LEGACY",
+          ok: steps.every((step) => step.ok),
+          steps,
+          ...(run ? { run } : {}),
+          ...(candidate ? { candidate } : {}),
+        };
+        const shadow = plan.compare.shadow(partial);
+        matches = JSON.stringify(plan.compare.legacy) === JSON.stringify(shadow);
+        if (!matches) mismatch = { legacy: plan.compare.legacy, shadow };
+      } catch (error) {
+        steps.push({ name: "compare", ok: false, code: "SHADOW_EXCEPTION", message: (error as Error).message });
+      }
+    }
+    return {
+      authority: "LEGACY",
+      ok: steps.every((step) => step.ok) && matches !== false,
+      steps,
+      ...(run ? { run } : {}),
+      ...(candidate ? { candidate } : {}),
+      ...(matches === undefined ? {} : { matches }),
+      ...(mismatch ? { mismatch } : {}),
+    };
   }
 
   /** Pure authority-separated read through BookContentReader. */
