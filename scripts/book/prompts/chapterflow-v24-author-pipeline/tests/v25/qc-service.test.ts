@@ -323,6 +323,69 @@ requiredTest("FAIL diagnosis is exact while PASS ERROR missing and stale rounds 
   if (!stale.ok) assert.equal(stale.error.code, "QC_DIAGNOSIS_STALE");
 });
 
+requiredTest("diagnosis authority checks every same-round ledger event independent of order", async (context) => {
+  const scenarios = [
+    { name: "single exact FAIL", events: ["EXACT"], allowed: true },
+    { name: "all-equivalent duplicates", events: ["EXACT", "EXACT"], allowed: true },
+    { name: "equivalent then conflicting", events: ["EXACT", "CONFLICT"], allowed: false },
+    { name: "conflicting then equivalent", events: ["CONFLICT", "EXACT"], allowed: false },
+  ] as const;
+  for (let index = 0; index < scenarios.length; index += 1) {
+    const scenario = scenarios[index];
+    const bookId = `qc-diagnosis-authority-${index + 1}`;
+    const rig = await setup(context, bookId);
+    const issues: QcIssue[] = [
+      { code: "QC_DIRTY", severity: "BLOCKER", message: "chapter requires repair" },
+    ];
+    const fail = evaluation(rig, "round-diagnosis-authority", "FAIL", issues);
+    const stored = await rig.qc.runFresh({
+      roundId: fail.roundId,
+      candidate: rig.snapshot,
+      canonicalReview: rig.canonical,
+      evaluation: fail,
+    });
+    assert.equal(stored.ok, true, scenario.name);
+
+    const qcRoot = join(context.roots.booksRoot, bookId, "qc");
+    const ledgerPath = join(qcRoot, "ledger.jsonl");
+    const roundPath = join(qcRoot, `${fail.roundId}.json`);
+    type MutableRoundEvent = {
+      schemaVersion: "1";
+      kind: "ROUND";
+      revision: number;
+      round: { outcome: "PASS" | "FAIL" | "ERROR" };
+    };
+    const exactEvent = JSON.parse(readFileSync(ledgerPath, "utf8")) as MutableRoundEvent;
+    const conflictingEvent = JSON.parse(readFileSync(ledgerPath, "utf8")) as MutableRoundEvent;
+    conflictingEvent.round.outcome = "ERROR";
+    const events = scenario.events.map((kind, eventIndex) => ({
+      ...(kind === "EXACT" ? exactEvent : conflictingEvent),
+      revision: eventIndex + 1,
+    }));
+    const ledgerBytes = Buffer.from(`${events.map((event) => JSON.stringify(event)).join("\n")}\n`, "utf8");
+    writeFileSync(ledgerPath, ledgerBytes);
+
+    const roundBytes = readFileSync(roundPath);
+    const qcNames = readdirSync(qcRoot).sort();
+    const idsBefore = context.ids.report();
+    const diagnosis = await rig.qc.diagnose(bookId, fail.roundId);
+    if (scenario.allowed) {
+      assert.equal(diagnosis.ok, true, scenario.name);
+      assert.ok(diagnosis.ok);
+      assert.equal(diagnosis.value.roundId, fail.roundId, scenario.name);
+      assert.deepEqual(diagnosis.value.candidate, fail.candidate, scenario.name);
+      assert.deepEqual(diagnosis.value.issues, issues, scenario.name);
+    } else {
+      assert.equal(diagnosis.ok, false, scenario.name);
+      if (!diagnosis.ok) assert.equal(diagnosis.error.code, "QC_DIAGNOSIS_STALE", scenario.name);
+      assert.deepEqual(readFileSync(ledgerPath), ledgerBytes, scenario.name);
+      assert.deepEqual(readFileSync(roundPath), roundBytes, scenario.name);
+      assert.deepEqual(readdirSync(qcRoot).sort(), qcNames, scenario.name);
+      assert.deepEqual(context.ids.report(), idsBefore, scenario.name);
+    }
+  }
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;

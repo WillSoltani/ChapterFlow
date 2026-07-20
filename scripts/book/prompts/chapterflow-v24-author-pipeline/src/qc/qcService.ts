@@ -340,10 +340,10 @@ class FreshQcService implements QcService {
     }
     const ledger = await this.#store.readLedger(bookId);
     if (!ledger.ok) return ledger;
-    const ledgerRound = ledger.value.find(
+    const ledgerRounds = ledger.value.filter(
       (event): event is QcLedgerRoundEvent => event.kind === "ROUND" && event.round.roundId === roundId,
     );
-    if (!ledgerRound || !equivalentRound(ledgerRound.round, round.value)) {
+    if (ledgerRounds.length === 0 || ledgerRounds.some((event) => !equivalentRound(event.round, round.value))) {
       return failed("QC_DIAGNOSIS_STALE", "stored FAIL round does not match current ledger identity");
     }
     const reopened = await this.#contentReader.open({
