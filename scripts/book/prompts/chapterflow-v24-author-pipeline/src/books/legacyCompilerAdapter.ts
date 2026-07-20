@@ -1,4 +1,4 @@
-import { isAbsolute, resolve } from "node:path";
+import { isAbsolute, relative, resolve } from "node:path";
 
 import type { CompilerStoreRoots } from "../artifacts/artifactStore.js";
 import type { SourcePacketV1 } from "../artifacts/artifactTypes.js";
@@ -37,6 +37,7 @@ export type CompilerCompatibilityContext = Readonly<{
   runId: string;
   selector: CandidateSelector;
   pipelineRoot: string;
+  disposableRoot: string;
   legacyRoots: CompilerStoreRoots;
   shadowRoots: CompilerStoreRoots;
   profile: ExecutionProfile;
@@ -88,6 +89,11 @@ function normalized(value: unknown): string {
   return JSON.stringify(canonical(value));
 }
 
+function within(base: string, target: string): boolean {
+  const rel = relative(resolve(base), resolve(target));
+  return rel === "" || (!rel.startsWith("..") && !isAbsolute(rel));
+}
+
 function snapshotFingerprint(snapshot: CandidateSnapshot): string {
   return normalized({
     identity: {
@@ -113,12 +119,14 @@ function assertContext(context: CompilerCompatibilityContext): void {
     if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(value)) throw new Error(`${name} is invalid`);
   }
   if (!isAbsolute(context.pipelineRoot)) throw new Error("pipelineRoot must be absolute");
+  if (!isAbsolute(context.disposableRoot)) throw new Error("disposableRoot must be absolute");
   const legacyRoot = context.legacyRoots.stateRoot;
   const shadowRoot = context.shadowRoots.stateRoot;
   if (!legacyRoot || !shadowRoot || !isAbsolute(legacyRoot) || !isAbsolute(shadowRoot)) {
     throw new Error("legacy and shadow state roots must be explicit absolute paths");
   }
-  if (resolve(legacyRoot) === resolve(shadowRoot)) throw new Error("shadow root must differ from legacy root");
+  if (!within(context.disposableRoot, shadowRoot)) throw new Error("shadow root must be within disposableRoot");
+  if (within(legacyRoot, shadowRoot) || within(shadowRoot, legacyRoot)) throw new Error("shadow root must be distinct from legacy root");
   if (context.profile.id !== COMPILER_SHADOW_PROFILE.id || normalized(context.profile) !== normalized(COMPILER_SHADOW_PROFILE)) {
     throw new Error(`compiler shadow profile must be ${COMPILER_SHADOW_PROFILE.id}`);
   }
@@ -133,20 +141,6 @@ export function compilerShadowPrompt(inputs: PromptRequest["inputs"]): PromptReq
       mediaType: input.mediaType,
       bytes: Buffer.from(input.bytes),
     })),
-  };
-}
-
-export function prepareCompilerShadowRequest(inputs: PromptRequest["inputs"]): Readonly<{
-  profile: ExecutionProfile;
-  prompt: PromptRequest;
-  modelInvocationCount: 0;
-  processInvocationCount: 0;
-}> {
-  return {
-    profile: COMPILER_SHADOW_PROFILE,
-    prompt: compilerShadowPrompt(inputs),
-    modelInvocationCount: 0,
-    processInvocationCount: 0,
   };
 }
 
