@@ -127,6 +127,9 @@ function assertContext(context: CompilerCompatibilityContext): void {
   }
   if (!within(context.disposableRoot, shadowRoot)) throw new Error("shadow root must be within disposableRoot");
   if (within(legacyRoot, shadowRoot) || within(shadowRoot, legacyRoot)) throw new Error("shadow root must be distinct from legacy root");
+  if (within(context.pipelineRoot, shadowRoot) || within(shadowRoot, context.pipelineRoot)) {
+    throw new Error("shadow root must be distinct from pipelineRoot");
+  }
   if (context.profile.id !== COMPILER_SHADOW_PROFILE.id || normalized(context.profile) !== normalized(COMPILER_SHADOW_PROFILE)) {
     throw new Error(`compiler shadow profile must be ${COMPILER_SHADOW_PROFILE.id}`);
   }

@@ -79,7 +79,7 @@ function setup(roots: { base: string; stateRoot: string; tempRoot: string }, opt
       bookId: "compiler-book",
       runId: "run-1",
       selector: { kind: "CANDIDATE", candidateId: "candidate-1" },
-      pipelineRoot: roots.base,
+      pipelineRoot: resolve(roots.base, "production-pipeline"),
       disposableRoot: roots.tempRoot,
       legacyRoots: { stateRoot: roots.stateRoot },
       shadowRoots: { stateRoot: roots.tempRoot },
@@ -162,7 +162,7 @@ requiredTest("shadow root outside explicit disposable base is rejected", ({ root
       bookId: "compiler-book",
       runId: "run-1",
       selector: { kind: "CANDIDATE", candidateId: "candidate-1" },
-      pipelineRoot: roots.base,
+      pipelineRoot: resolve(roots.base, "production-pipeline"),
       disposableRoot: roots.tempRoot,
       legacyRoots: { stateRoot: roots.stateRoot },
       shadowRoots: { stateRoot: resolve(roots.stateRoot, "other-authority") },
@@ -174,6 +174,27 @@ requiredTest("shadow root outside explicit disposable base is rejected", ({ root
       stage: async () => ({ ok: false, error: { code: "UNUSED", message: "unused" } }),
     },
   }), /within disposableRoot/);
+});
+
+requiredTest("shadow root overlapping production pipeline is rejected despite disposable label", ({ roots }) => {
+  const productionPipeline = resolve(roots.base, "production-pipeline");
+  assert.throws(() => new LegacyCompilerAdapter({
+    context: {
+      bookId: "compiler-book",
+      runId: "run-1",
+      selector: { kind: "CANDIDATE", candidateId: "candidate-1" },
+      pipelineRoot: productionPipeline,
+      disposableRoot: productionPipeline,
+      legacyRoots: { stateRoot: roots.stateRoot },
+      shadowRoots: { stateRoot: resolve(productionPipeline, "shadow") },
+      profile: COMPILER_SHADOW_PROFILE,
+    },
+    contentReader: { open: async () => ({ ok: true, value: snapshot() }) },
+    candidateStore: {
+      open: async () => ({ ok: true, value: snapshot() }),
+      stage: async () => ({ ok: false, error: { code: "UNUSED", message: "unused" } }),
+    },
+  }), /distinct from pipelineRoot/);
 });
 
 finishV25Tests().catch((error: unknown) => {

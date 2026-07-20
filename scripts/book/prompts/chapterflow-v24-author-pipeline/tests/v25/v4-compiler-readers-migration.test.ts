@@ -105,7 +105,7 @@ function adapter(roots: { base: string; stateRoot: string; tempRoot: string }, r
       bookId: "compiler-book",
       runId: "run-1",
       selector: { kind: "CANDIDATE", candidateId: "candidate-1" },
-      pipelineRoot: roots.base,
+      pipelineRoot: join(roots.base, "production-pipeline"),
       disposableRoot: roots.tempRoot,
       legacyRoots: { stateRoot: roots.stateRoot },
       shadowRoots: { stateRoot: roots.tempRoot },
