@@ -270,6 +270,15 @@ function loadScoresFile(path: string): any {
   return JSON.parse(readFileSync(resolve(path), "utf8"));
 }
 
+function loadStoredAttestation(bookId: string, chapterNumber: number): QcAttestation | null {
+  try {
+    const bytes = readFileSync(attestationPath(bookId, chapterNumber));
+    return loadAttestation(bookId, chapterNumber, bytes);
+  } catch {
+    return null;
+  }
+}
+
 function verdictForGate(gate: PublishableVerdict["gate"]): QcVerdict {
   if (gate === "GREEN") return "PUBLISHABLE";
   if (gate === "YELLOW") return "REVISE";
@@ -381,7 +390,7 @@ export function validateAndWriteBarAttestations(
     if (qcVerdict !== "PUBLISHABLE" && findingsFor(verdict, reviewerNotes).length === 0) {
       errors.push(`ch${ch.number}: ${qcVerdict} requires notes or cited hits`);
     }
-    const existing = loadAttestation(bookId, ch.number);
+    const existing = loadStoredAttestation(bookId, ch.number);
     if (
       existing &&
       existing.verdict !== "PUBLISHABLE" &&
@@ -416,7 +425,7 @@ export function validateAndWriteBarAttestations(
       notes: item.reviewerNotes,
       verdict: item.verdict,
     });
-    const existing = loadAttestation(bookId, item.chapter.number);
+    const existing = loadStoredAttestation(bookId, item.chapter.number);
     const { history: _prevHistory, ...existingSansHistory } = existing ?? {};
     const att: QcAttestation = {
       schemaVersion: "qc-attest-v1",

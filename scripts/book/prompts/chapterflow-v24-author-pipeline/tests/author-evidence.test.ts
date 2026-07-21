@@ -27,7 +27,7 @@ import { join, resolve } from "node:path";
 import { test } from "./harness.js";
 import { makeChapter, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
 import { CANONICAL_STATE, REPO_ROOT } from "../src/lib/chapterPaths.js";
-import { openQcRound, QC_ROUNDS_DIR } from "../src/qc/qcRound.js";
+import { loadQcRound, openQcRound, QC_ROUNDS_DIR } from "../src/qc/qcRound.js";
 import {
   checkManualKeyJudge,
   keyDerivationPath,
@@ -37,8 +37,9 @@ import {
   QC_PACKS_DIR,
 } from "../src/qc/manualKeyJudge.js";
 import { checkSweep, loadSweepHistory, loadSweepRecord } from "../src/qc/sweep.js";
-import { attestationPath, checkQcAttestation } from "../src/critics/qcAttestation.js";
-import { QC_ORCHESTRATOR_DIR } from "../src/qc/orchestrator/artifacts.js";
+import { attestationPath, checkQcAttestation, loadAttestation } from "../src/critics/qcAttestation.js";
+import { checkBarConfirmArtifactsForPublishable, QC_ORCHESTRATOR_DIR } from "../src/qc/orchestrator/artifacts.js";
+import { loadAuthorProvenance } from "../src/qc/sessionProvenance.js";
 import {
   buildKeyJudgeDoc,
   renderBlindedChapterDoc,
@@ -560,7 +561,21 @@ test("doAuthorReview E2E: acceptance produces keyA/keyB + sweep + attestation re
     await withNoApiEnv(() => {
       for (const ch of onDisk) {
         const key = checkManualKeyJudge(ch, true);
-        const att = checkQcAttestation(ch, true);
+        const parsedAttestation = loadAttestation(BOOK, ch.number, readFileSync(attestationPath(BOOK, ch.number)));
+        assert.ok(parsedAttestation, `attestation bytes must parse for ch${ch.number}`);
+        const authorProvenance = loadAuthorProvenance(ch.chapterId);
+        const qcRound = parsedAttestation.roundId ? loadQcRound(BOOK, parsedAttestation.roundId) : null;
+        const legacyRoundPresent = !!(
+          parsedAttestation.roundRole &&
+          qcRound?.roles?.[parsedAttestation.roundRole]
+        );
+        const artifactFindings = checkBarConfirmArtifactsForPublishable(ch, parsedAttestation, true);
+        const att = checkQcAttestation(ch, true, {
+          attestation: parsedAttestation,
+          authorSessionId: authorProvenance?.authorSessionId,
+          legacyRoundPresent,
+          artifactFindings,
+        });
         console.log(`  [proof] ch0${ch.number}: checkManualKeyJudge=${JSON.stringify(key)} checkQcAttestation=${JSON.stringify(att)}`);
         assert.deepEqual(key, [], `checkManualKeyJudge must PASS for ch${ch.number}`);
         assert.deepEqual(att, [], `checkQcAttestation must PASS for ch${ch.number}`);

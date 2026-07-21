@@ -91,10 +91,17 @@ test("bar-pack plus bar-attest batch writes fresh publishable attestations", () 
     assert.equal(result.wrote, 2);
     assert.equal(result.results.every((r) => r.verdict === "PUBLISHABLE"), true);
 
-    const att = loadAttestation(BOOK, 1);
+    const att = loadAttestation(BOOK, 1, readFileSync(attestationPath(BOOK, 1)));
     assert.equal(att?.verdict, "PUBLISHABLE");
     assert.equal(att?.roundId, ROUND);
     assert.equal(att?.roundRole, "bar");
+
+    const repeated = validateAndWriteBarAttestations(BOOK, ROUND, tokens.bar, "codex-qc:bar-review-test", scores);
+    assert.deepEqual(repeated.errors, []);
+    assert.equal(repeated.wrote, 2);
+    const rewritten = loadAttestation(BOOK, 1, readFileSync(attestationPath(BOOK, 1)));
+    assert.equal(rewritten?.history?.length, 1, "stored attestation is re-read before history append");
+    assert.equal(rewritten?.history?.[0]?.verdict, "PUBLISHABLE");
   } finally {
     cleanup();
   }
@@ -143,8 +150,18 @@ test("bar-attest batch records REVISE when computed bar is yellow", () => {
     });
     const result = validateAndWriteBarAttestations(BOOK, ROUND, tokens.bar, "codex-qc:bar-review-test", scores);
     assert.deepEqual(result.errors, []);
-    assert.equal(loadAttestation(BOOK, 1)?.verdict, "REVISE");
-    assert.equal(loadAttestation(BOOK, 2)?.verdict, "PUBLISHABLE");
+    assert.equal(loadAttestation(BOOK, 1, readFileSync(attestationPath(BOOK, 1)))?.verdict, "REVISE");
+    assert.equal(loadAttestation(BOOK, 2, readFileSync(attestationPath(BOOK, 2)))?.verdict, "PUBLISHABLE");
+
+    const unchangedFlip = validateAndWriteBarAttestations(
+      BOOK,
+      ROUND,
+      tokens.bar,
+      "codex-qc:bar-review-test",
+      writeFilledScores(),
+    );
+    assert.equal(unchangedFlip.wrote, 0);
+    assert.match(unchangedFlip.errors.join("\n"), /unchanged REVISE attestation cannot be batch-flipped to PUBLISHABLE/);
   } finally {
     cleanup();
   }
