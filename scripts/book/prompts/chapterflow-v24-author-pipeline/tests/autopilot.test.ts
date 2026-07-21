@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, existsSync, chmodSync, rmSync, statSync, utimesSync } from "node:fs";
 import { tmpdir, hostname } from "node:os";
-import { join, dirname } from "node:path";
+import { join, dirname, resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
@@ -28,9 +28,15 @@ import {
   WRITER_SELF_VERIFY,
   buildSourcePrewriteRepairTask,
   readyPublishCommand,
+  createSuccessorQcOperation,
+  fenceCandidateToCanonicalChapters,
   type AutopilotDeps,
   type BrokerResult,
 } from "../src/orchestrator/autopilot.js";
+import type { CandidateInputFile, CandidateSnapshot } from "../src/books/candidateTypes.js";
+import type { Result } from "../src/contracts/v4Core.js";
+import type { QcService } from "../src/qc/qcTypes.js";
+import type { CanonicalReviewResult } from "../src/review/reviewTypes.js";
 import { spawnCodexAgent } from "../src/orchestrator/codexAgent.js";
 import { STRICT_ENV_VAR_NAMES } from "../src/lib/strictEnv.js";
 import type { BookStatus, ChapterStatus } from "../src/lifecycle/bookStatus.js";
@@ -1589,6 +1595,182 @@ test("v24 handleReady wiring: the AUTHOR arch READY command is publish-final; co
   assert.equal(readyPublishCommand("zz", undefined, "legacy"), 'npx tsx src/cli.ts publish "zz"', "no round id → the plain publish verb (unchanged)");
   // the author command must NOT commit sandbox-nested paths (it names no round / no publish-after-qc).
   assert.ok(!readyPublishCommand("execution", "r1", "author").includes("publish-after-qc"), "author must not route through publish-after-qc (the sandbox-nested-commit source)");
+});
+
+test("successor QC fence rejects canonical filename or byte drift before reviewer/QC work", async () => {
+  const bytes = Buffer.from('{"chapter":1}\n');
+  const candidate: CandidateSnapshot = {
+    manifest: {
+      schemaVersion: "1", bookId: "canary", candidateId: "candidate-2", parentCandidateId: "candidate-1",
+      createdByRunId: "run-2", entries: [{ kind: "CHAPTER", logicalPath: "chapters/canary-ch01.v21-native.chapter.json", mediaType: "application/json", byteLength: bytes.length }],
+      manifestDigest: "digest-2", createdAt: "2026-07-21T00:00:00.000Z",
+    },
+    files: [{ kind: "CHAPTER", logicalPath: "chapters/canary-ch01.v21-native.chapter.json", mediaType: "application/json", byteLength: bytes.length, bytes }],
+  };
+  const different: CandidateInputFile[] = [{ kind: "CHAPTER", logicalPath: "chapters/canary-ch01.v21-native.chapter.json", mediaType: "application/json", bytes: Buffer.from('{"chapter":2}\n') }];
+  assert.equal(fenceCandidateToCanonicalChapters(candidate, "canary", () => different).ok, false);
+  let qcCalls = 0;
+  const qcService = { runFresh: async () => { qcCalls++; throw new Error("must not run"); } } as unknown as QcService;
+  const review: CanonicalReviewResult = { schemaVersion: "1", reviewId: "review-2", candidate: { candidateId: "candidate-2", manifestDigest: "digest-2" }, outcome: "PASS", issues: [], completedAt: "2026-07-21T00:00:01.000Z" };
+  const operation = createSuccessorQcOperation({ qcService, deps: resolveDeps(), maxParallel: 1, readCanonical: () => different });
+  const result = await operation.run({ bookId: "canary", roundId: "round-2", candidate, canonicalReview: review });
+  assert.equal(result.ok, false);
+  assert.equal(qcCalls, 0);
+});
+
+test("author content-repair canary rechecks predecessor immediately before author review", async () => {
+  const status = makeStatus({
+    writtenChapters: 2,
+    expectedChapters: 2,
+    gatedChapters: 2,
+    qcdChapters: 0,
+    bookGatePass: true,
+    deterministicClean: true,
+    chapters: [chap(1), chap(2)],
+  });
+  const calls = { preflight: 0, run: 0 };
+  const { deps, spawns } = happyDeps([status], { authorAccepted: () => false });
+  const outcome = await runAutopilot({
+    bookId: "zz",
+    architecture: "author",
+    deps,
+    contentRepairCanary: {
+      failedRoundId: "round-failed",
+      resumePending: false,
+      preflight() {
+        calls.preflight++;
+        return { ok: false, error: { code: "REPAIR_QC_CANDIDATE_DRIFT", message: "predecessor changed" } };
+      },
+      async run() {
+        calls.run++;
+        throw new Error("must not run");
+      },
+    },
+  });
+  assert.equal(outcome.status, "halt");
+  if (outcome.status === "halt") {
+    assert.equal(outcome.category, "infra");
+    assert.match(outcome.reason, /predecessor drift/);
+  }
+  assert.deepEqual(calls, { preflight: 1, run: 0 });
+  assert.equal(spawns.length, 0);
+});
+
+test("staged successor without history resumes canary hook without author work or synthetic delta", async () => {
+  const status = makeStatus({
+    writtenChapters: 2,
+    expectedChapters: 2,
+    gatedChapters: 2,
+    qcdChapters: 0,
+    bookGatePass: true,
+    deterministicClean: true,
+    chapters: [chap(1), chap(2)],
+  });
+  const calls = { preflight: 0, run: 0 };
+  const candidate: CandidateSnapshot = {
+    manifest: {
+      schemaVersion: "1", bookId: "zz", candidateId: "successor-round-failed", parentCandidateId: "candidate-0",
+      createdByRunId: "content-repair-round-failed", entries: [], manifestDigest: "successor-digest", createdAt: "2026-07-21T00:00:00.000Z",
+    },
+    files: [],
+  };
+  const { deps, spawns } = happyDeps([status, { ...status, qcdChapters: 2 }], {
+    authorAccepted: () => false,
+    chapterHashes: () => { throw new Error("resume must not manufacture author content delta"); },
+  });
+  const outcome = await runAutopilot({
+    bookId: "zz",
+    architecture: "author",
+    deps,
+    contentRepairCanary: {
+      failedRoundId: "round-failed",
+      resumePending: true,
+      preflight() {
+        calls.preflight++;
+        return { ok: true, value: true };
+      },
+      async run() {
+        calls.run++;
+        return {
+          ok: true,
+          value: {
+            status: "PASS",
+            ordinal: 1,
+            predecessor: candidate,
+            successor: candidate,
+            review: {
+              schemaVersion: "1", reviewId: "review-round-failed", candidate: { candidateId: candidate.manifest.candidateId, manifestDigest: candidate.manifest.manifestDigest },
+              outcome: "PASS", issues: [], completedAt: "2026-07-21T00:00:01.000Z",
+            },
+            qc: {
+              schemaVersion: "1", roundId: "fresh-round-failed", candidate: { candidateId: candidate.manifest.candidateId, manifestDigest: candidate.manifest.manifestDigest },
+              reviewId: "review-round-failed", outcome: "PASS", issues: [], completedAt: "2026-07-21T00:00:02.000Z",
+            },
+          },
+        };
+      },
+    },
+  });
+  assert.equal(outcome.status, "ready");
+  assert.deepEqual(calls, { preflight: 1, run: 1 });
+  assert.equal(spawns.length, 0);
+});
+
+test("successor QC operation projects completed dry-run reviewer evidence and calls runFresh once", async () => {
+  const bytes = Buffer.from('{"chapter":1}\n');
+  const logicalPath = "chapters/canary-ch01.v21-native.chapter.json";
+  const candidate: CandidateSnapshot = {
+    manifest: {
+      schemaVersion: "1", bookId: "canary", candidateId: "candidate-2", parentCandidateId: "candidate-1",
+      createdByRunId: "run-2", entries: [{ kind: "CHAPTER", logicalPath, mediaType: "application/json", byteLength: bytes.length }],
+      manifestDigest: "digest-2", createdAt: "2026-07-21T00:00:00.000Z",
+    },
+    files: [{ kind: "CHAPTER", logicalPath, mediaType: "application/json", byteLength: bytes.length, bytes }],
+  };
+  const canonical: CandidateInputFile[] = [{ kind: "CHAPTER", logicalPath, mediaType: "application/json", bytes }];
+  const review: CanonicalReviewResult = { schemaVersion: "1", reviewId: "review-2", candidate: { candidateId: "candidate-2", manifestDigest: "digest-2" }, outcome: "PASS", issues: [], completedAt: "2026-07-21T00:00:01.000Z" };
+  const calls = { qc: 0, create: 0, finalize: 0 };
+  const finalized = {
+    ok: true, allPublishable: true, repairRequired: false, incomplete: false,
+    evidenceMatrixPath: "", repairBriefPath: "", repairPromptPath: "", attestationsWritten: 0,
+    chapters: [{ chapterNumber: 1, chapterId: "canary-ch01", finalVerdict: "PUBLISHABLE", reason: "ok" }], errors: [],
+  };
+  const deps = resolveDeps({
+    runVerb: async (args) => {
+      if (args.includes("--create")) { calls.create++; return { code: 0, stdout: "round: r20260721000000-abcdef", stderr: "" }; }
+      if (args.includes("qc-submit")) return { code: 0, stdout: "", stderr: "" };
+      if (args.includes("--finalize")) {
+        calls.finalize++;
+        assert.ok(args.includes("--dry-run"));
+        return { code: 0, stdout: JSON.stringify(finalized), stderr: "" };
+      }
+      return { code: 0, stdout: "", stderr: "" };
+    },
+    listTaskCards: (_bookId, _roundId, subdir) => subdir ? [] : ["sweep.md"],
+    submissionPresent: () => true,
+    readReviewPacket: () => "qc-submit --role sweep --token token-1 --file result.json",
+    readTask: () => "review",
+    reviewerSkeleton: () => null,
+    reviewerWorkspace: () => ({ cwd: tmpdir(), inputs: [], cleanup: () => undefined }),
+    writeTempSubmission: () => resolve(tmpdir(), "canary-submission.json"),
+    spawn: (async (o: { sessionId: string }) => ({ ok: true, exitCode: 0, finalMessage: "{}", stdout: "{}", stderr: "", durationMs: 1, sessionId: o.sessionId })) as unknown as AutopilotDeps["spawn"],
+    chapterHashes: () => ({ "1": "stable" }),
+    mkSessionId: (label) => label,
+    logSession: () => undefined,
+    logBroker: () => undefined,
+    log: () => undefined,
+  });
+  const qcService = {
+    async runFresh(input: Parameters<QcService["runFresh"]>[0]) {
+      calls.qc++;
+      assert.equal(input.evaluation.outcome, "PASS");
+      return { ok: true as const, value: { schemaVersion: "1" as const, roundId: input.roundId, candidate: review.candidate, reviewId: review.reviewId, outcome: "PASS" as const, issues: [], completedAt: "2026-07-21T00:00:02.000Z" } };
+    },
+  } as unknown as QcService;
+  const operation = createSuccessorQcOperation({ qcService, deps, maxParallel: 1, readCanonical: () => canonical });
+  const result = await operation.run({ bookId: "canary", roundId: "round-2", candidate, canonicalReview: review });
+  assert.equal(result.ok && result.value.outcome, "PASS");
+  assert.deepEqual(calls, { qc: 1, create: 1, finalize: 1 });
 });
 
 test("autopilot fixtures restore production telemetry bytes and mtimes", () => {

@@ -131,6 +131,29 @@ test("book-autopilot keeps conductor ownership and existing author route", () =>
   assert.match(body, /authorWriteOneChapter: forwardControl\.writeOneChapter/);
   assert.match(body, /forwardAutopilotControl: forwardControl/);
   assert.doesNotMatch(body, /V25 command route requires compiler architecture/);
+  assert.match(body, /--content-repair-canary requires explicit --author --no-publish/);
+  assert.match(body, /--content-repair-canary requires --failed-round-id/);
+  assert.ok(body.indexOf("fenceCandidateToCanonicalChapters") < body.indexOf("const outcome = await runAutopilot"));
+  assert.match(body, /contentRepairCanary \? \{ contentRepairCanary \} : \{\}/);
+  assert.equal((body.match(/runContentRepairWorkflow\(/g) ?? []).length, 1);
+  const canary = body.slice(body.indexOf('if ("content-repair-canary" in flags)'), body.indexOf("let resolvedApp"));
+  assert.match(canary, /const runId = `content-repair-\$\{failedRoundId\}`/);
+  assert.match(canary, /const successorCandidateId = `successor-\$\{failedRoundId\}`/);
+  assert.match(canary, /const reviewId = `review-\$\{failedRoundId\}`/);
+  assert.match(canary, /const freshRoundId = `fresh-\$\{failedRoundId\}`/);
+  assert.match(canary, /const createdAt = failedRound\.value\.completedAt/);
+  assert.ok(canary.indexOf("candidateStore.open") < canary.indexOf("fenceCandidateToCanonicalChapters"));
+  assert.match(canary, /resumePending/);
+  assert.match(canary, /preflight: \(\) => autopilot\.fenceCandidateToCanonicalChapters\(canaryFenceCandidate, bookId\)/);
+  assert.doesNotMatch(canary, /nextRunId\(|new Date\(\)\.toISOString/);
+  const digestAt = canary.indexOf("successorManifestDigest = candidateManifestDigest");
+  const createAt = canary.indexOf("runStore.createRun");
+  const workflowAt = canary.indexOf("const workflow = await runContentRepairWorkflow");
+  assert.ok(digestAt > 0 && digestAt < createAt);
+  assert.ok(createAt < workflowAt);
+  assert.ok(workflowAt < canary.indexOf("reviewService.get"));
+  assert.ok(canary.indexOf("reviewService.get") < canary.indexOf("runStore.finishRun"));
+  assert.match(canary, /diagnoses: v25\.value\.qcStore/);
 });
 
 const candidate: CandidateSnapshot = {

@@ -46,6 +46,11 @@ import { unresolvedMajors, formatMajorStatus, type MajorFindingSnapshot } from "
 import { pruneBookStatePlan, applyPruneBookState } from "../qc/pruneBookState.js";
 import { carryableChapter, ledgerStatus } from "../qc/orchestrator/index.js";
 import { driveQcRoundCore, type ReviewerWave, type ReviewerWaveResult } from "../qc/auto/driver.js";
+import type { QcDriveResult } from "../qc/auto/driver.js";
+import type { CandidateInputFile, CandidateSnapshot } from "../books/candidateTypes.js";
+import type { QcService } from "../qc/qcTypes.js";
+import type { SuccessorQcOperation, ContentRepairResult } from "../app/contentRepairWorkflow.js";
+import type { Result } from "../contracts/v4Core.js";
 import {
   reviewPacketPath,
   buildSweepSkeleton,
@@ -258,8 +263,22 @@ export type AutopilotOptions = {
    * book-autopilot. ACTIVE changes QC/ready semantics as well as the writer;
    * callers must not infer ACTIVE from the presence of a callback alone. */
   forwardAutopilotControl?: ForwardAutopilotControlV1;
+  /** Explicit disposable author-canary only. Called after a real repair edit and
+   * before the legacy loop opens another publishability round. */
+  contentRepairCanary?: ContentRepairCanaryBinding;
   deps?: Partial<AutopilotDeps>;
 };
+
+export interface ContentRepairCanaryBinding {
+  readonly failedRoundId: string;
+  readonly resumePending: boolean;
+  preflight(): Result<true>;
+  run(input: Readonly<{
+    bookId: string;
+    maxParallel: number;
+    deps: AutopilotDeps;
+  }>): Promise<Result<ContentRepairResult>>;
+}
 
 /** Map CLI flags → the conductor architecture. Shared by book-autopilot (cli.ts) and
  *  book-run (liveRun.ts) so the two entrypoints can never drift: --legacy (or the long
@@ -1145,6 +1164,7 @@ async function runAutopilotCore(opts: AutopilotOptions, deps: AutopilotDeps, led
     // flag for deps.sweepConfirmed at the decidePhase CALL SITE below (compiler/legacy call sites
     // untouched). It flips true ONLY after the book acceptance (at valid-reader quorum) has passed.
     let authorBookAccepted = false;
+    let contentRepairResumePending = opts.contentRepairCanary?.resumePending === true;
     // WS6 carry telemetry: record the durable-acceptance carry decision ONCE per run, at the
     // first author-arch iteration — a HIT means the book entered ALREADY durably-accepted (a
     // whole re-review/acceptance cycle avoided), a MISS means it did not and this run runs the
@@ -1337,8 +1357,37 @@ async function runAutopilotCore(opts: AutopilotOptions, deps: AutopilotDeps, led
           // two-reader book acceptance, INSTEAD of doQcWithRepair. Same outcome shapes:
           // an AutopilotOutcome halts; null = phase complete → re-loop (the acceptance
           // flag below is what lets decidePhase reach "ready").
-          const result = await doAuthorReview(bookId, deps, { maxParallel, heartbeat, io: opts.authorIo });
-          if (result) return result;
+          if (opts.contentRepairCanary) {
+            const preflight = opts.contentRepairCanary.preflight();
+            if (!preflight.ok) {
+              return mkHalt(bookId, "qc", "infra", `content-repair canary predecessor drift: ${preflight.error.code}: ${preflight.error.message}`);
+            }
+          }
+          let contentChanged = false;
+          if (!contentRepairResumePending) {
+            const beforeReviewHashes = opts.contentRepairCanary ? deps.chapterHashes(bookId) : undefined;
+            const result = await doAuthorReview(bookId, deps, { maxParallel, heartbeat, io: opts.authorIo });
+            if (result) return result;
+            if (opts.contentRepairCanary && beforeReviewHashes) {
+              const afterReviewHashes = deps.chapterHashes(bookId);
+              contentChanged = Object.keys(afterReviewHashes).some((key) => beforeReviewHashes[key] !== afterReviewHashes[key])
+                || Object.keys(beforeReviewHashes).some((key) => !(key in afterReviewHashes));
+            }
+          }
+          if (opts.contentRepairCanary && (contentChanged || contentRepairResumePending)) {
+            const repaired = await opts.contentRepairCanary.run({ bookId, maxParallel, deps });
+            if (!repaired.ok) {
+              return mkHalt(bookId, "qc", "infra", `content-repair canary blocked: ${repaired.error.code}: ${repaired.error.message}`);
+            }
+            if (repaired.value.qc.outcome === "ERROR") {
+              return mkHalt(bookId, "qc", "infra", `content-repair canary fresh QC errored on ${repaired.value.qc.roundId}`);
+            }
+            if (repaired.value.qc.outcome === "FAIL") {
+              return mkHalt(bookId, "qc", "content", `content-repair canary fresh QC failed on ${repaired.value.qc.roundId}; diagnose before another repair loop`);
+            }
+            contentRepairResumePending = false;
+            deps.log(`[autopilot] content-repair canary PASS on fresh successor round ${repaired.value.qc.roundId}`);
+          }
           authorBookAccepted = true; // two independent book readers accepted — the author arch's confirming function
           continue;
         }
@@ -2606,7 +2655,116 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
   return null;
 }
 
-type QcRoundResult = { roundId: string | null; verdict: "PASS" | "REVISE" | "INCOMPLETE" | "INTEGRITY" | "ERROR"; note: string };
+type AutopilotQcRoundResult = {
+  roundId: string | null;
+  verdict: "PASS" | "REVISE" | "INCOMPLETE" | "INTEGRITY" | "ERROR";
+  note: string;
+  driver?: QcDriveResult;
+};
+
+type DriveQcRoundOptions = {
+  incremental: boolean;
+  tiebreak: boolean;
+  forceFreshSweep?: boolean;
+  dryRunFinalization?: boolean;
+  candidateFence?: () => Result<true>;
+};
+
+function sameBytes(left: Uint8Array, right: Uint8Array): boolean {
+  return left.byteLength === right.byteLength && left.every((byte, index) => byte === right[index]);
+}
+
+/** Exact author-canary source: complete canonical chapter filename/byte set. */
+export function readCanonicalChapterFiles(bookId: string): CandidateInputFile[] {
+  const pattern = new RegExp(`^${bookId}-ch\\d+\\.v21-native\\.chapter\\.json$`);
+  return readdirSync(STATE_CHAPTERS)
+    .filter((name) => pattern.test(name))
+    .sort()
+    .map((name) => ({
+      kind: "CHAPTER" as const,
+      logicalPath: `chapters/${name}`,
+      mediaType: "application/json" as const,
+      bytes: readFileSync(resolve(STATE_CHAPTERS, name)),
+    }));
+}
+
+/** Fail closed unless reviewer-visible canonical files equal candidate CHAPTER files. */
+export function fenceCandidateToCanonicalChapters(
+  candidate: CandidateSnapshot,
+  bookId: string,
+  readCanonical: (bookId: string) => readonly CandidateInputFile[] = readCanonicalChapterFiles,
+): Result<true> {
+  const candidateFiles = candidate.files.filter((file) => file.kind === "CHAPTER").sort((a, b) => a.logicalPath.localeCompare(b.logicalPath));
+  const canonicalFiles = [...readCanonical(bookId)].sort((a, b) => a.logicalPath.localeCompare(b.logicalPath));
+  if (candidateFiles.length === 0 || candidateFiles.length !== canonicalFiles.length) {
+    return { ok: false, error: { code: "REPAIR_QC_CANDIDATE_DRIFT", message: "candidate and canonical CHAPTER file counts differ" } };
+  }
+  for (let index = 0; index < candidateFiles.length; index++) {
+    const candidateFile = candidateFiles[index]!;
+    const canonicalFile = canonicalFiles[index]!;
+    if (candidateFile.logicalPath !== canonicalFile.logicalPath || !sameBytes(candidateFile.bytes, canonicalFile.bytes)) {
+      return { ok: false, error: { code: "REPAIR_QC_CANDIDATE_DRIFT", message: `candidate and canonical CHAPTER bytes differ: ${candidateFile.logicalPath}` } };
+    }
+  }
+  return { ok: true, value: true };
+}
+
+/** Production successor-QC operation. Reviewer evidence is projected from one
+ * dry-run legacy finalization; canonical review PASS alone never supplies QC. */
+export function createSuccessorQcOperation(options: Readonly<{
+  qcService: QcService;
+  deps: AutopilotDeps;
+  maxParallel: number;
+  readCanonical?: (bookId: string) => readonly CandidateInputFile[];
+}>): SuccessorQcOperation {
+  return {
+    async run({ bookId, roundId, candidate, canonicalReview }) {
+      const candidateIdentity = {
+        candidateId: candidate.manifest.candidateId,
+        manifestDigest: candidate.manifest.manifestDigest,
+      };
+      if (canonicalReview.outcome !== "PASS"
+        || canonicalReview.candidate.candidateId !== candidateIdentity.candidateId
+        || canonicalReview.candidate.manifestDigest !== candidateIdentity.manifestDigest) {
+        return { ok: false, error: { code: "REPAIR_QC_REVIEW_INVALID", message: "canonical review does not authorize successor" } };
+      }
+      const fence = () => fenceCandidateToCanonicalChapters(candidate, bookId, options.readCanonical);
+      const before = fence();
+      if (!before.ok) return before;
+      const evidence = await driveQcRound(bookId, options.maxParallel, options.deps, {
+        incremental: false,
+        tiebreak: true,
+        dryRunFinalization: true,
+        candidateFence: fence,
+      });
+      if (!evidence.driver || (evidence.verdict !== "PASS" && evidence.verdict !== "REVISE")) {
+        return { ok: false, error: { code: "REPAIR_QC_EVIDENCE_UNAVAILABLE", message: evidence.note || evidence.verdict } };
+      }
+      const finalized = evidence.driver.finalized;
+      const chapterCount = candidate.files.filter((file) => file.kind === "CHAPTER").length;
+      if (!finalized || finalized.chapters.length !== chapterCount) {
+        return { ok: false, error: { code: "REPAIR_QC_EVIDENCE_UNAVAILABLE", message: "reviewer finalization does not cover complete successor CHAPTER set" } };
+      }
+      const finalFence = fence();
+      if (!finalFence.ok) return finalFence;
+      const outcome = evidence.verdict === "PASS" ? "PASS" as const : "FAIL" as const;
+      const issues = finalized.chapters
+        .filter((chapter) => chapter.finalVerdict !== "PUBLISHABLE")
+        .map((chapter) => ({
+          code: `QC_CHAPTER_${chapter.chapterNumber}_${chapter.finalVerdict}`,
+          severity: "BLOCKER" as const,
+          message: chapter.reason || chapter.finalVerdict,
+          location: chapter.chapterId,
+        }));
+      return options.qcService.runFresh({
+        roundId,
+        candidate,
+        canonicalReview,
+        evaluation: { roundId, candidate: candidateIdentity, reviewId: canonicalReview.reviewId, outcome, issues },
+      });
+    },
+  };
+}
 
 /** Drive ONE headless QC round via the SHARED qc round-driver (same sequence qc-auto
  *  runs), injecting runVerb (CLI subprocess) step adapters so the strict-env
@@ -2614,7 +2772,9 @@ type QcRoundResult = { roundId: string | null; verdict: "PASS" | "REVISE" | "INC
  *  a fenced codex reviewer spawner. Maps the driver's structured outcome → QcRoundResult.
  *  `incremental` (repair rounds) re-reviews only changed chapters; `tiebreak` gathers
  *  extra bar reads for borderline chapters. */
-async function driveQcRound(bookId: string, maxParallel: number, deps: AutopilotDeps, opts: { incremental: boolean; tiebreak: boolean; forceFreshSweep?: boolean }): Promise<QcRoundResult> {
+async function driveQcRound(bookId: string, maxParallel: number, deps: AutopilotDeps, opts: DriveQcRoundOptions): Promise<AutopilotQcRoundResult> {
+  const initialFence = opts.candidateFence?.();
+  if (initialFence && !initialFence.ok) return { roundId: null, verdict: "INTEGRITY", note: initialFence.error.message };
   // Open the round + write first-wave task cards (also runs the deterministic preflight).
   const createArgs = ["qc-orchestrate", bookId, "--create"];
   if (opts.incremental) createArgs.push("--incremental");
@@ -2635,6 +2795,8 @@ async function driveQcRound(bookId: string, maxParallel: number, deps: Autopilot
   // makes it prevention). Any chapter change across the wave voids the round.
   const spawnFenced = async (cards: string[], _wave: ReviewerWave): Promise<ReviewerWaveResult> => {
     if (!cards.length) return {};
+    const candidateBefore = opts.candidateFence?.();
+    if (candidateBefore && !candidateBefore.ok) return { integrityViolation: candidateBefore.error.message };
     // Token preflight: the broker records each reviewer via `qc-submit --token <t>`,
     // parsing per-role tokens from REVIEW-PACKET.md. If a card's role has no token there,
     // the reviewer can't be recorded — fail FAST as infra (don't spend codex sessions on a
@@ -2645,6 +2807,8 @@ async function driveQcRound(bookId: string, maxParallel: number, deps: Autopilot
     const before = deps.chapterHashes(bookId);
     await spawnReviewers(bookId, roundId, cards, maxParallel, deps);
     const after = deps.chapterHashes(bookId);
+    const candidateAfter = opts.candidateFence?.();
+    if (candidateAfter && !candidateAfter.ok) return { integrityViolation: candidateAfter.error.message };
     const changed = Object.keys(before).filter((k) => after[k] !== before[k]);
     const appeared = Object.keys(after).filter((k) => !(k in before));
     if (changed.length || appeared.length) {
@@ -2668,17 +2832,22 @@ async function driveQcRound(bookId: string, maxParallel: number, deps: Autopilot
     // → the book can never satisfy promote's fresh-PUBLISHABLE-attestation gate → no convergence.
     // The conductor runs finalize in-process with no session id, so give it a DISTINCT finalizer id
     // (≠ every author/reviewer id by construction) so author≠reviewer still holds AND the write lands.
-    finalize: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--finalize", "--round", roundId], { CHAPTERFLOW_SESSION_ID: deps.mkSessionId("finalize") }); return parseFinalizeResult(r.stdout, r.code); },
+    finalize: async () => {
+      const args = ["qc-orchestrate", bookId, "--finalize", "--round", roundId];
+      if (opts.dryRunFinalization) args.push("--dry-run");
+      const r = await deps.runVerb(args, { CHAPTERFLOW_SESSION_ID: deps.mkSessionId("finalize") });
+      return parseFinalizeResult(r.stdout, r.code);
+    },
     ledgerOpenCount: () => ledgerStatus(bookId, roundId).summary.open ?? 0,
     recordMetrics: () => { /* autopilot run-telemetry deferred to the eval layer; qc-auto records metrics */ },
-    verifyFullBook: async () => (await deps.runVerb(["qc-status", bookId])).code === 0,
+    verifyFullBook: opts.dryRunFinalization ? undefined : async () => (await deps.runVerb(["qc-status", bookId])).code === 0,
     log: deps.log,
   }, { isSubset: false, narrowRetryOnIncomplete: true });
 
   switch (result.outcome) {
     case "PASS":
     case "PASS_SUBSET":
-      return { roundId, verdict: "PASS", note: "" };
+      return { roundId, verdict: "PASS", note: "", driver: result };
     case "INTEGRITY":
       return { roundId, verdict: "INTEGRITY", note: result.reason ?? "a reviewer mutated chapter content" };
     case "QC_STATUS_FAIL":
@@ -2688,7 +2857,7 @@ async function driveQcRound(bookId: string, maxParallel: number, deps: Autopilot
     case "INFRA":
       return { roundId, verdict: "ERROR", note: result.reason ?? "infra error during the QC round" };
     case "REPAIR":
-      return { roundId, verdict: "REVISE", note: "" };
+      return { roundId, verdict: "REVISE", note: "", driver: result };
   }
   return { roundId, verdict: "INCOMPLETE", note: `unrecognized driver outcome: ${result.outcome}` };
 }

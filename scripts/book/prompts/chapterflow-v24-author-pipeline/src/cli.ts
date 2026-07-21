@@ -120,9 +120,11 @@ const DEFAULT_REPORTS_DIR = resolve(__dirname, "../reports");
 type CliV25Composition = Readonly<{
   app: import("./app/createChapterFlowApp.js").ChapterFlowApp;
   candidate: import("./books/candidateTypes.js").CandidateSnapshot;
+  candidateStore: import("./books/candidateTypes.js").CandidateStore;
   contentReader: import("./books/candidateTypes.js").BookContentReader;
   reviewService: import("./review/reviewTypes.js").ReviewService;
   qcService: import("./qc/qcTypes.js").QcService;
+  qcStore: import("./qc/qcStore.js").QcStore;
   writeLock: import("./books/leaseTypes.js").BookWriteLock;
   runStore: import("./run-state/runStore.js").RunStore;
   runner: import("./app/modelTaskRunner.js").ModelTaskRunner;
@@ -189,8 +191,12 @@ async function createCliV25Composition(
   const { createReviewServiceFactory } = await import("./review/reviewService.js");
   const reviewService = createReviewServiceFactory({ booksRoot, contentReader, now: clock.now })
     .create(new ModelGatewayReviewEvaluator(runner));
-  const { createQcService } = await import("./qc/qcService.js");
+  const [{ createQcService }, { createQcStore }] = await Promise.all([
+    import("./qc/qcService.js"),
+    import("./qc/qcStore.js"),
+  ]);
   const qcService = createQcService({ booksRoot, contentReader, reviewService, writeLock, now: clock.now });
+  const qcStore = createQcStore({ booksRoot });
   const { createPromotionService } = await import("./release/promotionService.js");
   const promotionService = createPromotionService({ candidateStore, contentReader, reviewService, qcService, currentPointerStore, clock: clock.now });
   const ids: import("./app/pipeline.js").ChapterFlowIdFactory = {
@@ -206,7 +212,7 @@ async function createCliV25Composition(
     runStore, stageCoordinator, modelGateway, candidateStore, contentReader, reviewService, qcService,
     promotionService, clock, ids, pipelineRoot: REPO_ROOT, modelTaskRunner: runner,
   });
-  return { ok: true, value: { app, candidate: candidate.value, contentReader, reviewService, qcService, writeLock, runStore, runner, ids, sourceGitSha } };
+  return { ok: true, value: { app, candidate: candidate.value, candidateStore, contentReader, reviewService, qcService, qcStore, writeLock, runStore, runner, ids, sourceGitSha } };
 }
 
 async function reviewCliV25Candidate(
@@ -4437,6 +4443,183 @@ async function runBookAutopilot(
   const architecture = forwardControl.runtime.mode === "FORWARD_ACTIVE" && !explicitLegacy
     ? "author"
     : requestedArchitecture;
+  let contentRepairCanary: import("./orchestrator/autopilot.js").ContentRepairCanaryBinding | undefined;
+  if ("content-repair-canary" in flags) {
+    if (flags["content-repair-canary"] !== true) {
+      console.error("--content-repair-canary does not accept a value");
+      return 2;
+    }
+    if (flags["author"] !== true || !("no-publish" in flags) || architecture !== "author") {
+      console.error("--content-repair-canary requires explicit --author --no-publish");
+      return 2;
+    }
+    const failedRoundId = flags["failed-round-id"];
+    if (typeof failedRoundId !== "string" || failedRoundId.length === 0) {
+      console.error("--content-repair-canary requires --failed-round-id");
+      return 2;
+    }
+    const diagnosisId = flags["diagnosis-id"];
+    if (diagnosisId !== undefined && (typeof diagnosisId !== "string" || diagnosisId.length === 0)) {
+      console.error("--diagnosis-id must be a non-empty string when supplied");
+      return 2;
+    }
+    const v25 = await createCliV25Composition(bookId, flags);
+    if (!v25.ok) {
+      console.error(v25.error);
+      return 2;
+    }
+    const autopilot = await import("./orchestrator/autopilot.js");
+    const failedRound = await v25.value.qcService.getRound(bookId, failedRoundId);
+    const predecessorIdentity = {
+      candidateId: v25.value.candidate.manifest.candidateId,
+      manifestDigest: v25.value.candidate.manifest.manifestDigest,
+    };
+    if (!failedRound.ok
+      || failedRound.value.outcome !== "FAIL"
+      || failedRound.value.candidate.candidateId !== predecessorIdentity.candidateId
+      || failedRound.value.candidate.manifestDigest !== predecessorIdentity.manifestDigest) {
+      console.error("REPAIR_FAILED_QC_STALE:failed round does not bind selected predecessor candidate");
+      return 2;
+    }
+    const runId = `content-repair-${failedRoundId}`;
+    const repairId = `repair-${failedRoundId}`;
+    const successorCandidateId = `successor-${failedRoundId}`;
+    const reviewId = `review-${failedRoundId}`;
+    const freshRoundId = `fresh-${failedRoundId}`;
+    const attemptId = `attempt-${failedRoundId}`;
+    if ([runId, repairId, successorCandidateId, reviewId, freshRoundId, attemptId]
+      .some((id) => id.length > 128 || !/^[A-Za-z0-9._-]+$/.test(id))) {
+      console.error("REPAIR_ID_INVALID:failed round ID cannot form bounded deterministic repair IDs");
+      return 2;
+    }
+    const createdAt = failedRound.value.completedAt;
+    const existingSuccessor = await v25.value.candidateStore.open({
+      bookId,
+      selector: { kind: "CANDIDATE", candidateId: successorCandidateId },
+    });
+    let resumePending = false;
+    let canaryFenceCandidate = v25.value.candidate;
+    if (existingSuccessor.ok) {
+      const manifest = existingSuccessor.value.manifest;
+      if (manifest.bookId !== bookId
+        || manifest.candidateId !== successorCandidateId
+        || manifest.parentCandidateId !== predecessorIdentity.candidateId
+        || manifest.createdByRunId !== runId
+        || manifest.createdAt !== createdAt) {
+        console.error("REPAIR_SUCCESSOR_CONFLICT:staged successor metadata does not match deterministic repair transition");
+        return 2;
+      }
+      resumePending = true;
+      canaryFenceCandidate = existingSuccessor.value;
+    } else if (existingSuccessor.error.code !== "CANDIDATE_NOT_FOUND") {
+      console.error(`${existingSuccessor.error.code}:${existingSuccessor.error.message}`);
+      return 2;
+    }
+    const candidateFence = autopilot.fenceCandidateToCanonicalChapters(canaryFenceCandidate, bookId);
+    if (!candidateFence.ok) {
+      console.error(`${candidateFence.error.code}:${candidateFence.error.message}`);
+      return 2;
+    }
+    const [{ CandidateRepairService }, { FileRepairHistoryStore }, { runContentRepairWorkflow }, { candidateManifestDigest }] = await Promise.all([
+      import("./qc/repairCoordinator.js"),
+      import("./qc/repairHistoryStore.js"),
+      import("./app/contentRepairWorkflow.js"),
+      import("./books/candidateDigest.js"),
+    ]);
+    const history = new FileRepairHistoryStore({ booksRoot: resolve(String(flags["v25-root"]), "books"), writeLock: v25.value.writeLock });
+    const repairs = new CandidateRepairService({
+      candidates: v25.value.candidateStore,
+      history,
+      qc: v25.value.qcService,
+      diagnoses: v25.value.qcStore,
+    });
+    contentRepairCanary = {
+      failedRoundId,
+      resumePending,
+      preflight: () => autopilot.fenceCandidateToCanonicalChapters(canaryFenceCandidate, bookId),
+      async run({ deps, maxParallel }) {
+        const files = autopilot.readCanonicalChapterFiles(bookId);
+        if (files.length === 0) {
+          return { ok: false, error: { code: "REPAIR_OUTPUT_INVALID", message: "canonical successor has no CHAPTER files" } };
+        }
+        const expectedInventory = files.map(({ bytes: _bytes, ...file }) => file);
+        const successorMetadata = {
+          schemaVersion: "1" as const,
+          bookId,
+          candidateId: successorCandidateId,
+          parentCandidateId: predecessorIdentity.candidateId,
+          createdByRunId: runId,
+          entries: files.map((file) => ({
+            kind: file.kind,
+            logicalPath: file.logicalPath,
+            mediaType: file.mediaType,
+            byteLength: file.bytes.byteLength,
+          })),
+          createdAt,
+        };
+        let successorManifestDigest: string;
+        try {
+          successorManifestDigest = candidateManifestDigest(successorMetadata, files);
+        } catch (error) {
+          return { ok: false, error: { code: "REPAIR_OUTPUT_INVALID", message: (error as Error).message } };
+        }
+        const run = await v25.value.runStore.createRun({
+          schemaVersion: "1",
+          bookId,
+          runId,
+          commandId: "content-repair-canary",
+          sourceGitSha: v25.value.sourceGitSha,
+          requiredStages: ["content-repair-canary"],
+          requiredInventory: expectedInventory,
+          inputCandidate: { candidateId: successorCandidateId, manifestDigest: successorManifestDigest },
+          attemptLimits: { run: 1, byStage: { "content-repair-canary": 1 } },
+          createdAt,
+        });
+        if (!run.ok) return { ok: false, error: run.error };
+        const workflow = await runContentRepairWorkflow({
+          bookId,
+          failedCandidate: predecessorIdentity,
+          failedRoundId,
+          ...(typeof diagnosisId === "string" ? { diagnosisId } : {}),
+          repairId,
+          successorCandidateId,
+          reviewId,
+          freshRoundId,
+          expectedInventory,
+          files,
+          createdAt,
+          taskContext: {
+            bookId,
+            runId,
+            attemptId,
+            stageId: "content-repair-canary",
+            operationId: repairId,
+            workDir: REPO_ROOT,
+            signal: new AbortController().signal,
+          },
+        }, {
+          candidates: v25.value.candidateStore,
+          repairs,
+          reviews: v25.value.reviewService,
+          history,
+          successorQc: autopilot.createSuccessorQcOperation({ qcService: v25.value.qcService, deps, maxParallel }),
+        });
+        const storedReview = await v25.value.reviewService.get(bookId, reviewId);
+        if (storedReview.ok) {
+          const finished = await v25.value.runStore.finishRun({
+            bookId,
+            runId,
+            status: "COMPLETED",
+            finishedAt: storedReview.value.completedAt,
+          });
+          if (!finished.ok) return { ok: false, error: finished.error };
+        } else if (storedReview.error.code !== "REVIEW_NOT_FOUND") {
+          return { ok: false, error: storedReview.error };
+        }
+        return workflow;
+      },
+    };
+  }
   let resolvedApp = app;
   let compiler: import("./orchestrator/compilerRun.js").CompilerPortBinding | undefined;
   let compilerSuccessor: { candidateId: string; manifestDigest: string } | undefined;
@@ -4516,6 +4699,7 @@ async function runBookAutopilot(
     ...(architecture === "author" ? {
       authorWriteOneChapter: forwardControl.writeOneChapter,
       forwardAutopilotControl: forwardControl,
+      ...(contentRepairCanary ? { contentRepairCanary } : {}),
     } : {}),
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
