@@ -25,9 +25,124 @@
  * it is exhaustively unit-testable without a real book, round, or codex.
  */
 
+import type { CandidateSnapshot } from "../../books/candidateTypes.js";
+import type { BookWriteLock } from "../../books/leaseTypes.js";
+import type { CandidateIdentity, Result } from "../../contracts/v4Core.js";
+import type { CanonicalReviewResult } from "../../review/reviewTypes.js";
+import { checkQcWriterCutover, type QcWriterCohortState } from "../legacyQcStateAdapter.js";
 import type { FinalizeQcRoundResult } from "../orchestrator/finalize.js";
+import type { QcEvaluation, QcIssue, QcRoundResult, QcService } from "../qcTypes.js";
 
 type MaybePromise<T> = T | Promise<T>;
+
+interface V4FreshQcDriveSteps {
+  readonly qcService: QcService;
+  readonly writeLock: BookWriteLock;
+  readonly cohort: QcWriterCohortState;
+  readonly roundId: string;
+  readonly candidate: CandidateSnapshot;
+  readonly canonicalReview: CanonicalReviewResult;
+  readonly finalization: Readonly<{
+    bookId: string;
+    roundId: string;
+    candidate: CandidateIdentity;
+    reviewId: string;
+    publishable: boolean;
+  }>;
+  readonly evaluateCompletedChecks: () => MaybePromise<Readonly<{
+    deterministic: Readonly<{ outcome: "PASS" | "FAIL" | "ERROR"; issues: readonly QcIssue[] }>;
+    model: Readonly<{ outcome: "PASS" | "FAIL" | "ERROR"; issues: readonly QcIssue[] }>;
+  }>>;
+  readonly commitFinalization: (projection: V4FreshQcDriveSteps["finalization"]) => MaybePromise<Result<null>>;
+  readonly verifyFullBook: (round: QcRoundResult) => MaybePromise<boolean>;
+}
+
+type V4FreshQcOutcome = "PASS" | "FAIL" | "ERROR" | "BLOCKED" | "FINALIZATION_ERROR" | "QC_STATUS_FAIL";
+
+function sameCandidateIdentity(left: CandidateIdentity, right: CandidateIdentity): boolean {
+  return left.candidateId === right.candidateId && left.manifestDigest === right.manifestDigest;
+}
+
+/**
+ * V4 composition seam. Production CLI/autopilot binding is intentionally downstream.
+ * Completed checks are evaluated once, mapped to one exact QcEvaluation, and submitted
+ * once. Finalization and full-book verification run only after stored fresh QC PASS.
+ */
+export async function driveV4FreshQc(steps: V4FreshQcDriveSteps): Promise<Readonly<{ outcome: V4FreshQcOutcome; reason?: string }>> {
+  const route = checkQcWriterCutover(steps.cohort);
+  if (!route.ok) return { outcome: "BLOCKED", reason: route.error.code };
+  if (route.value !== "V4") return { outcome: "BLOCKED", reason: "QC_V4_WRITER_NOT_ACTIVE" };
+
+  const candidate: CandidateIdentity = {
+    candidateId: steps.candidate.manifest.candidateId,
+    manifestDigest: steps.candidate.manifest.manifestDigest,
+  };
+  const projectionFresh = steps.finalization.bookId === steps.candidate.manifest.bookId
+    && steps.finalization.roundId === steps.roundId
+    && sameCandidateIdentity(steps.finalization.candidate, candidate)
+    && steps.finalization.reviewId === steps.canonicalReview.reviewId
+    && sameCandidateIdentity(steps.canonicalReview.candidate, candidate);
+  if (!projectionFresh) {
+    return { outcome: "BLOCKED", reason: "QC_FRESHNESS_MISMATCH" };
+  }
+
+  let checks: readonly Readonly<{ outcome: "PASS" | "FAIL" | "ERROR"; issues: readonly QcIssue[] }>[];
+  try {
+    const completed = await steps.evaluateCompletedChecks();
+    checks = [completed.deterministic, completed.model];
+  } catch {
+    checks = [{
+      outcome: "ERROR",
+      issues: [{ code: "QC_EVALUATOR_EXCEPTION", severity: "BLOCKER", message: "QC evaluator threw" }],
+    }];
+  }
+
+  const evaluation: QcEvaluation = {
+    roundId: steps.roundId,
+    candidate,
+    reviewId: steps.canonicalReview.reviewId,
+    outcome: checks.some((check) => check.outcome === "ERROR")
+      ? "ERROR"
+      : checks.some((check) => check.outcome === "FAIL") ? "FAIL" : "PASS",
+    issues: checks.flatMap((check) => check.issues.map((issue) => ({ ...issue }))),
+  };
+  const fresh = await steps.qcService.runFresh({
+    roundId: steps.roundId,
+    candidate: steps.candidate,
+    canonicalReview: steps.canonicalReview,
+    evaluation,
+  });
+  if (!fresh.ok) {
+    return { outcome: "BLOCKED", reason: fresh.error.code };
+  }
+  if (fresh.value.outcome === "ERROR" || fresh.value.outcome === "FAIL") {
+    return { outcome: fresh.value.outcome };
+  }
+  if (!steps.finalization.publishable) {
+    return { outcome: "BLOCKED", reason: "QC_FINALIZATION_NOT_PUBLISHABLE" };
+  }
+
+  try {
+    const committed = await steps.writeLock.run(
+      steps.finalization.bookId,
+      async () => steps.commitFinalization(steps.finalization),
+    );
+    if (!committed.ok) return { outcome: "FINALIZATION_ERROR", reason: committed.error.code };
+  } catch {
+    return { outcome: "FINALIZATION_ERROR", reason: "QC_FINALIZATION_THROW" };
+  }
+
+  let verified = false;
+  try {
+    verified = await steps.verifyFullBook(fresh.value);
+  } catch {
+    verified = false;
+  }
+  if (!verified) {
+    return { outcome: "QC_STATUS_FAIL", reason: "QC_FULL_BOOK_VERIFICATION_FAILED" };
+  }
+  return { outcome: "PASS" };
+}
 
 export type ReviewerWave = "first" | "dynamic" | "retry";
 

@@ -864,5 +864,8 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
 }
 
 export function finalizeQcRound(bookId: string, roundId: string, options: { chapters?: number[]; attest?: boolean; dryRun?: boolean } = {}): FinalizeQcRoundResult {
+  // Dry-run is a pure projection. Avoid transaction-lock creation/removal and
+  // parent-directory metadata changes while answering it.
+  if (options.dryRun) return finalizeQcRoundUnlocked(bookId, roundId, options);
   return withQcTransaction(bookId, roundId, "finalize", () => finalizeQcRoundUnlocked(bookId, roundId, options));
 }

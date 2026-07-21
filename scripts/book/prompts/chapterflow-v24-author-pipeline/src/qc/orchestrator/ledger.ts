@@ -201,24 +201,18 @@ export function readLedgerEvents(bookId: string, roundId: string): LedgerEvent[]
 }
 
 /**
- * effectiveLedger for the UNATTENDED conductor path. A malformed/torn repair-ledger line makes the
- * strict effectiveLedger throw LedgerIntegrityError, which is uncaught across finalize/collect/publish
- * and HALTs the run with manual-only recovery (quarantineMalformedLedger --confirm) the conductor never
- * runs — the W2 wedge. Here a corrupt ledger AUTO-quarantines (raw lines preserved in a sibling
- * .quarantine file, never lost) and the VALID events are returned, so the run self-heals. The
- * supervised audit/CLI keeps the strict {@link effectiveLedger} so corruption is surfaced as a blocker,
- * not silently healed.
+ * Compatibility name for callers that used the old auto-repairing projection.
+ * Projection is now pure: malformed input remains byte-preserved and throws the
+ * same explicit LedgerIntegrityError as effectiveLedger. Only the named,
+ * confirmed quarantineMalformedLedger mutation may rewrite malformed state.
  */
 export function effectiveLedgerResilient(bookId: string, roundId: string, onQuarantine?: (msg: string) => void): EffectiveLedgerFinding[] {
   try {
     return effectiveLedger(bookId, roundId);
   } catch (err) {
     if (!(err instanceof LedgerIntegrityError)) throw err;
-    const repaired = quarantineMalformedLedger(bookId, roundId, { confirm: true });
-    onQuarantine?.(repaired.ok
-      ? `auto-quarantined ${repaired.issues.length} malformed repair-ledger line(s) for ${bookId}/${roundId} → ${repaired.quarantinePath} (preserved ${repaired.eventsPreserved} valid event(s))`
-      : `repair-ledger for ${bookId}/${roundId} is malformed and could not be auto-quarantined: ${repaired.error}`);
-    return repaired.ok ? effectiveLedger(bookId, roundId) : [];
+    onQuarantine?.(`repair-ledger for ${bookId}/${roundId} is malformed; run named ledger repair with explicit confirmation`);
+    throw err;
   }
 }
 
