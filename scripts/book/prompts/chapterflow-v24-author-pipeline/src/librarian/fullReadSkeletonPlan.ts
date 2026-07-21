@@ -97,18 +97,14 @@ export function writeFullReadSkeletonPlan(plan: FullReadSkeletonPlan): string {
   return p;
 }
 
-export function loadFullReadSkeletonPlan(bookId: string): FullReadSkeletonPlan | null;
-export function loadFullReadSkeletonPlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<FullReadSkeletonPlan>;
-export function loadFullReadSkeletonPlan(bookId: string, reader?: BookContentReader, candidateId?: string): FullReadSkeletonPlan | null | Promise<FullReadSkeletonPlan> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+export async function loadFullReadSkeletonPlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<FullReadSkeletonPlan> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
     if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
     const logicalPath = `state/fullread-skeleton-plans/${bookId}.fullread-skeleton-plan.json`;
     const file = opened.value.files.find((entry) => entry.logicalPath === logicalPath);
     if (!file) throw new Error(`CANDIDATE_ENTRY_MISSING: ${logicalPath}`);
     try { return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as FullReadSkeletonPlan; }
     catch (cause) { throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(cause as Error).message}`); }
-  });
 }
 
 export function formatFullReadSkeletonPlan(plan: FullReadSkeletonPlan): string {

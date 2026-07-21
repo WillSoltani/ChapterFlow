@@ -6,6 +6,8 @@
  */
 
 import assert from "node:assert/strict";
+import { readFileSync, readdirSync } from "node:fs";
+import { resolve } from "node:path";
 
 import {
   auditBook,
@@ -15,8 +17,26 @@ import {
   tryThisNowVerb,
 } from "../src/critics/catalogAudit.js";
 import { loadNameBank } from "../src/librarian/namePlan.js";
+import type { BookContentReader } from "../src/books/candidateTypes.js";
 import { test } from "./harness.js";
-import { makeChapter, plantSyntheticChapterCorpus, runCli } from "./helpers.js";
+import { makeChapter, plantSyntheticChapterCorpus, runCli, STATE_CHAPTERS } from "./helpers.js";
+
+const NAME_CANDIDATE = "catalog-name-candidate";
+function nameCandidateReader(bookId: string): BookContentReader {
+  return { async open() {
+    const files = readdirSync(STATE_CHAPTERS).filter((name) => name.endsWith(".chapter.json")).map((name) => {
+      const bytes = Buffer.from(readFileSync(resolve(STATE_CHAPTERS, name)));
+      return { kind: "CHAPTER" as const, logicalPath: `state/chapters/${name}`, mediaType: "application/json" as const, byteLength: bytes.length, bytes };
+    });
+    for (let chapter = 1; chapter <= 3; chapter++) {
+      const bytes = Buffer.from("{}");
+      files.push({ kind: "CHAPTER", logicalPath: `sidecars/ch${String(chapter).padStart(2, "0")}.json`, mediaType: "application/json", byteLength: bytes.length, bytes });
+    }
+    const ledger = Buffer.from('{"version":"2.0.0","lastUpdatedAt":"1970-01-01T00:00:00.000Z","revision":0,"policy":{"namePolicyVersion":"name-policy-v1","namePolicyId":"catalog-cooldown-v1"},"books":{},"globalNameUsage":{},"globalPhraseUsage":{},"globalAnswerPositionCounts":[0,0,0]}');
+    files.push({ kind: "CHAPTER", logicalPath: "state/library-state.json", mediaType: "application/json", byteLength: ledger.length, bytes: ledger });
+    return { ok: true, value: { manifest: { schemaVersion: "1", bookId, candidateId: NAME_CANDIDATE, createdByRunId: "test", entries: [], manifestDigest: "0".repeat(64), createdAt: new Date(0).toISOString() }, files } };
+  } };
+}
 
 test("hook classification distinguishes the shapes the palette will deal", () => {
   assert.equal(classifyHook("Why does the calendar lie to you?"), "question");
@@ -93,12 +113,13 @@ test("cli: catalog-audit runs on the real corpus and reports the known fingerpri
   }
 });
 
-test("name-plan: names are unique within a book and report catalog overlap diagnostics", () => {
+test("name-plan: names are unique within a book and report catalog overlap diagnostics", async () => {
   // The shared policy excludes current-book planned names and recent ledgered
   // cooldown names. The raw chapter scan remains an audit diagnostic, not the
   // accounting source of truth.
   const { planNames, bankNamesUsedByOtherBooks } = require("../src/librarian/namePlan.js") as typeof import("../src/librarian/namePlan.js");
-  const plan = planNames("zz-fixture-fresh-names", 1, 3);
+  const bookId = "zz-fixture-fresh-names";
+  const plan = await planNames(bookId, 1, 3, 7, {}, nameCandidateReader(bookId), NAME_CANDIDATE);
   const dealt = Object.values(plan.allocation).flat();
 
   // WITHIN-book uniqueness: no protagonist name is dealt to two chapters.
@@ -118,7 +139,7 @@ test("name-plan: names are unique within a book and report catalog overlap diagn
     distinctBankNames: 140,
   });
   try {
-    const taken = bankNamesUsedByOtherBooks("zz-fixture-fresh-names");
+    const taken = await bankNamesUsedByOtherBooks(bookId, nameCandidateReader(bookId), NAME_CANDIDATE);
     assert.ok(taken.size > 100, `cross-book scan should still see the catalog (got ${taken.size})`);
   } finally {
     corpus.cleanup();

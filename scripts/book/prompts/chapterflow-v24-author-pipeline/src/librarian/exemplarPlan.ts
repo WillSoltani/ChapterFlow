@@ -189,11 +189,14 @@ function sortChapterNumbers(a: string, b: string): number {
   return Number(a) - Number(b);
 }
 
-export function planExemplars(bookId: string, from: number, to: number): ExemplarPlan;
-export function planExemplars(bookId: string, from: number, to: number, reader: BookContentReader, candidateId: string): Promise<ExemplarPlan>;
-export function planExemplars(bookId: string, from: number, to: number, reader?: BookContentReader, candidateId?: string): ExemplarPlan | Promise<ExemplarPlan> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+export async function planExemplars(
+  bookId: string,
+  from: number,
+  to: number,
+  reader: BookContentReader,
+  candidateId: string,
+): Promise<ExemplarPlan> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
   if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
   if (to < from) throw new Error(`to (${to}) < from (${from})`);
   if (from < 1) throw new Error(`from (${from}) must be >= 1`);
@@ -325,7 +328,6 @@ export function planExemplars(bookId: string, from: number, to: number, reader?:
       chaptersWithoutSidecar,
     },
   };
-  });
 }
 
 export function writeExemplarPlan(plan: ExemplarPlan): string {

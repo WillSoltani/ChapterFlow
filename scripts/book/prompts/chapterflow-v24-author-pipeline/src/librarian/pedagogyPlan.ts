@@ -329,11 +329,15 @@ function assertTacticFamilyInvariants(plan: PedagogyPlan): void {
   }
 }
 
-export function planPedagogy(bookId: string, from: number, to: number, opts?: PlanPedagogyOpts): PedagogyPlan;
-export function planPedagogy(bookId: string, from: number, to: number, opts: PlanPedagogyOpts, reader: BookContentReader, candidateId: string): Promise<PedagogyPlan>;
-export function planPedagogy(bookId: string, from: number, to: number, opts: PlanPedagogyOpts = {}, reader?: BookContentReader, candidateId?: string): PedagogyPlan | Promise<PedagogyPlan> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+export async function planPedagogy(
+  bookId: string,
+  from: number,
+  to: number,
+  opts: PlanPedagogyOpts,
+  reader: BookContentReader,
+  candidateId: string,
+): Promise<PedagogyPlan> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
   if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
   const snapshot = opened.value;
   if (to < from) throw new Error(`to (${to}) < from (${from})`);
@@ -391,7 +395,6 @@ export function planPedagogy(bookId: string, from: number, to: number, opts: Pla
   assertTacticFamilyInvariants(plan);
   if (to - from + 1 >= MIN_SATURATION_CHECK_CHAPTERS) assertHookSaturation(plan, palettes);
   return plan;
-  });
 }
 
 export function writePedagogyPlan(plan: PedagogyPlan): string {

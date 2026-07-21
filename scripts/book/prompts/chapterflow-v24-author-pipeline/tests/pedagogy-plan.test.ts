@@ -4,15 +4,30 @@
  */
 
 import assert from "node:assert/strict";
-import { readdirSync, rmSync } from "fs";
+import { readFileSync, readdirSync, rmSync } from "fs";
 import { resolve } from "path";
 
 import { classifyHook, type HookShape } from "../src/critics/catalogAudit.js";
 import { loadPedagogyPalettes, planPedagogy } from "../src/librarian/pedagogyPlan.js";
+import type { BookContentReader } from "../src/books/candidateTypes.js";
 import { test } from "./harness.js";
-import { makeChapter, PIPELINE_DIR, runCli, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
+import { makeChapter, runCli, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
 
 const BOOK = "zz-fixture-pedagogy";
+const CANDIDATE = "pedagogy-plan-candidate";
+
+function candidateReader(bookId: string): BookContentReader {
+  return { async open() {
+    const files = readdirSync(STATE_CHAPTERS)
+      .filter((name) => name.toLowerCase().startsWith(`${bookId.toLowerCase()}-ch`))
+      .map((name) => ({ kind: "CHAPTER" as const, logicalPath: `state/chapters/${name}`, mediaType: "application/json" as const, byteLength: 0, bytes: Buffer.from(readFileSync(resolve(STATE_CHAPTERS, name))) }));
+    return { ok: true, value: { manifest: { schemaVersion: "1", bookId, candidateId: CANDIDATE, createdByRunId: "test", entries: [], manifestDigest: "0".repeat(64), createdAt: new Date(0).toISOString() }, files } };
+  } };
+}
+
+function planFor(bookId: string, from: number, to: number, opts: { forceFresh?: boolean } = {}) {
+  return planPedagogy(bookId, from, to, opts, candidateReader(bookId), CANDIDATE);
+}
 
 const VALID_HOOK_CLASSES = new Set<HookShape>([
   "question",
@@ -111,9 +126,9 @@ test("pedagogy palettes load with unique ids, substantial definitions, and valid
   }
 });
 
-test("pedagogy planning is byte-deterministic and scatters dominant hook shapes across books", () => {
-  const a1 = JSON.stringify(planPedagogy("zz-fixture-ped-alpha", 1, 5, { forceFresh: true }));
-  const a2 = JSON.stringify(planPedagogy("zz-fixture-ped-alpha", 1, 5, { forceFresh: true }));
+test("pedagogy planning is byte-deterministic and scatters dominant hook shapes across books", async () => {
+  const a1 = JSON.stringify(await planFor("zz-fixture-ped-alpha", 1, 5, { forceFresh: true }));
+  const a2 = JSON.stringify(await planFor("zz-fixture-ped-alpha", 1, 5, { forceFresh: true }));
   assert.equal(a1, a2, "re-plan must be byte-identical");
 
   const bookIds = [
@@ -123,12 +138,12 @@ test("pedagogy planning is byte-deterministic and scatters dominant hook shapes 
     "zz-fixture-ped-delta",
     "zz-fixture-ped-epsilon",
   ];
-  const dominants = new Set(bookIds.map((bookId) => planPedagogy(bookId, 1, 5, { forceFresh: true }).bookMix.dominantHookShape));
+  const dominants = new Set((await Promise.all(bookIds.map((bookId) => planFor(bookId, 1, 5, { forceFresh: true })))).map((plan) => plan.bookMix.dominantHookShape));
   assert.ok(dominants.size >= 3, `expected at least 3 distinct dominant hooks, got ${Array.from(dominants).join(", ")}`);
 });
 
-test("no two consecutive chapters get the same hook shape in a 20-chapter plan", () => {
-  const plan = planPedagogy(BOOK, 1, 20, { forceFresh: true });
+test("no two consecutive chapters get the same hook shape in a 20-chapter plan", async () => {
+  const plan = await planFor(BOOK, 1, 20, { forceFresh: true });
   for (let chapterNumber = 1; chapterNumber < 20; chapterNumber++) {
     assert.notEqual(
       plan.allocation[chapterNumber].hookShape,
@@ -138,8 +153,8 @@ test("no two consecutive chapters get the same hook shape in a 20-chapter plan",
   }
 });
 
-test("tactic families do not repeat within a 12-chapter window and cap at 2 in 34 chapters", () => {
-  const plan = planPedagogy(BOOK, 1, 34, { forceFresh: true });
+test("tactic families do not repeat within a 12-chapter window and cap at 2 in 34 chapters", async () => {
+  const plan = await planFor(BOOK, 1, 34, { forceFresh: true });
   const counts = new Map<string, number>();
   for (let chapterNumber = 1; chapterNumber <= 34; chapterNumber++) {
     const family = plan.allocation[chapterNumber].tacticFamily;
@@ -156,15 +171,15 @@ test("tactic families do not repeat within a 12-chapter window and cap at 2 in 3
   assert.deepEqual(over, [], `families over cap: ${over.map(([family, count]) => `${family}:${count}`).join(", ")}`);
 });
 
-test("authored chapters are carried unless forceFresh is set, with case-tolerant file detection", () => {
+test("authored chapters are carried unless forceFresh is set, with case-tolerant file detection", async () => {
   try {
     const ch2 = makeChapter("Zz-Fixture-Pedagogy", 2);
     writeFixtureBook(STATE_CHAPTERS, [ch2]);
 
-    const carried = planPedagogy(BOOK, 1, 3);
+    const carried = await planFor(BOOK, 1, 3);
     assert.deepEqual(carried.carriedChapters, [2]);
 
-    const fresh = planPedagogy(BOOK, 1, 3, { forceFresh: true });
+    const fresh = await planFor(BOOK, 1, 3, { forceFresh: true });
     assert.deepEqual(fresh.carriedChapters, []);
   } finally {
     for (const file of readdirSync(STATE_CHAPTERS)) {
@@ -173,7 +188,7 @@ test("authored chapters are carried unless forceFresh is set, with case-tolerant
   }
 });
 
-test("ten fresh books stay below 50% dominant hook audit-class share", () => {
+test("ten fresh books stay below 50% dominant hook audit-class share", async () => {
   const palettes = loadPedagogyPalettes();
   const auditClassById = new Map<string, HookShape>();
   for (const entry of palettes.hookShapes) auditClassById.set(entry.id, entry.auditClass);
@@ -197,7 +212,7 @@ test("ten fresh books stay below 50% dominant hook audit-class share", () => {
     "zz-fixture-ped-catalog-10",
   ];
   for (const bookId of bookIds) {
-    const plan = planPedagogy(bookId, 1, 20, { forceFresh: true });
+    const plan = await planFor(bookId, 1, 20, { forceFresh: true });
     for (const allocation of Object.values(plan.allocation)) {
       const auditClass = auditClassById.get(allocation.hookShape);
       assert.ok(auditClass, `${allocation.hookShape} must exist in palette`);
@@ -209,16 +224,8 @@ test("ten fresh books stay below 50% dominant hook audit-class share", () => {
   assert.ok(dominantShare < 0.5, `dominant hook class share ${(dominantShare * 100).toFixed(1)}% from ${JSON.stringify(counts)}`);
 });
 
-test("pedagogy-plan CLI writes the plan and prints allocations", () => {
-  const planPath = resolve(PIPELINE_DIR, "state", "pedagogy-plans", `${BOOK}.pedagogy-plan.json`);
-  try {
-    const { status, out } = runCli(["pedagogy-plan", BOOK, "--from", "1", "--to", "3"]);
-    assert.equal(status, 0, out.slice(-400));
-    assert.match(out, /Pedagogy plan/);
-    assert.match(out, /ch01:/);
-    assert.match(out, /Hook definitions:/);
-    assert.match(out, /Tactic family definitions:/);
-  } finally {
-    rmSync(planPath, { force: true });
-  }
+test("pedagogy-plan CLI blocks without explicit candidate selector", () => {
+  const { status, out } = runCli(["pedagogy-plan", BOOK, "--from", "1", "--to", "3"]);
+  assert.equal(status, 2, out.slice(-400));
+  assert.match(out, /V25_CANDIDATE_READER_REQUIRED/);
 });

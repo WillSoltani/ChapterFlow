@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { chapterContentHash } from "../src/critics/qcAttestation.js";
@@ -18,6 +18,7 @@ import {
 } from "../src/librarian/libraryState.js";
 import { buildAuthoringGuardrails, formatGuardrails } from "../src/librarian/authoringGuardrails.js";
 import { loadNameBank, planNames } from "../src/librarian/namePlan.js";
+import type { BookContentReader } from "../src/books/candidateTypes.js";
 import { test } from "./harness.js";
 import { makeChapter, TMP_DIR } from "./helpers.js";
 
@@ -90,14 +91,32 @@ function contributionAnswerSum(state: LibraryState): [number, number, number] {
   return out;
 }
 
-function quietWarn<T>(fn: () => T): T {
+async function quietWarn<T>(fn: () => Promise<T>): Promise<T> {
   const oldWarn = console.warn;
   console.warn = () => {};
   try {
-    return fn();
+    return await fn();
   } finally {
     console.warn = oldWarn;
   }
+}
+
+const LIBRARIAN_CANDIDATE = "library-state-candidate";
+function librarianReader(bookId: string, stateDir: string): BookContentReader {
+  return { async open() {
+    const files = [] as Array<{ kind: "SIDECAR"; logicalPath: string; mediaType: "application/json"; byteLength: number; bytes: Buffer }>;
+    const add = (logicalPath: string, path: string, fallback?: string) => {
+      if (!existsSync(path) && fallback === undefined) return;
+      const bytes = existsSync(path) ? Buffer.from(readFileSync(path)) : Buffer.from(fallback!);
+      files.push({ kind: "SIDECAR", logicalPath, mediaType: "application/json", byteLength: bytes.length, bytes });
+    };
+    add("state/library-state.json", resolve(stateDir, "library-state.json"), '{"version":"2.0.0","lastUpdatedAt":"1970-01-01T00:00:00.000Z","revision":0,"policy":{"namePolicyVersion":"name-policy-v1","namePolicyId":"catalog-cooldown-v1"},"books":{},"globalNameUsage":{},"globalPhraseUsage":{},"globalAnswerPositionCounts":[0,0,0]}');
+    add(`state/name-plans/${bookId}.name-plan.json`, resolve(stateDir, "name-plans", `${bookId}.name-plan.json`));
+    for (const name of readdirSync(resolve(stateDir, "chapters"))) add(`state/chapters/${name}`, resolve(stateDir, "chapters", name));
+    const sidecar = Buffer.from("{}");
+    files.push({ kind: "SIDECAR", logicalPath: "sidecars/ch01.json", mediaType: "application/json", byteLength: sidecar.length, bytes: sidecar });
+    return { ok: true, value: { manifest: { schemaVersion: "1", bookId, candidateId: LIBRARIAN_CANDIDATE, createdByRunId: "test", entries: [], manifestDigest: "0".repeat(64), createdAt: new Date(0).toISOString() }, files } };
+  } };
 }
 
 test("live library leases cannot be stolen after the stale timeout", async () => {
@@ -239,7 +258,7 @@ test("planner and guardrails use the same catalog cooldown name policy", async (
   const priorBook = "zz-library-policy-prior";
   const opts: LibraryStateOptions = { stateDir, bookPackagesDir, now: () => 0, lock: { heartbeatMs: 0 } };
 
-  const candidate = quietWarn(() => planNames(newBook, 1, 1, 7, { stateDir, forceFresh: true })).allocation[1][0];
+  const candidate = (await quietWarn(() => planNames(newBook, 1, 1, 7, { stateDir, forceFresh: true }, librarianReader(newBook, stateDir), LIBRARIAN_CANDIDATE))).allocation[1][0];
   assert.ok(candidate, "fixture needs at least one dealable name");
 
   writeNamePlan(stateDir, priorBook, { 1: [candidate] });
@@ -248,11 +267,11 @@ test("planner and guardrails use the same catalog cooldown name policy", async (
   ingestChapter(state, priorBook, "Prior Fixture", "Test Author", prior, opts);
   await saveLibraryState(state, opts);
 
-  const planned = quietWarn(() => planNames(newBook, 1, 1, loadNameBank().length, { stateDir, forceFresh: true }));
+  const planned = await quietWarn(() => planNames(newBook, 1, 1, loadNameBank().length, { stateDir, forceFresh: true }, librarianReader(newBook, stateDir), LIBRARIAN_CANDIDATE));
   assert.ok(!planned.allocation[1].includes(candidate), `${candidate} must be blocked by the shared cooldown policy`);
   assert.equal(planned.diagnostics.policyExcluded, 1);
 
-  const guardrails = quietWarn(() => buildAuthoringGuardrails(newBook, { chapters: 1, stateDir }));
+  const guardrails = await quietWarn(() => buildAuthoringGuardrails(newBook, { chapters: 1, stateDir, reader: librarianReader(newBook, stateDir), candidateId: LIBRARIAN_CANDIDATE }));
   assert.equal(guardrails.namePolicy.policyId, planned.namePolicy.policyId);
   assert.ok(!guardrails.allocation[1].includes(candidate), "guardrails must use the same planner policy");
   assert.match(formatGuardrails(guardrails), new RegExp(planned.namePolicy.policyId));

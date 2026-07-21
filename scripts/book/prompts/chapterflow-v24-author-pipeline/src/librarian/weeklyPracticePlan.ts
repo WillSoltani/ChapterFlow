@@ -99,18 +99,14 @@ export function writeWeeklyPracticePlan(plan: WeeklyPracticePlan): string {
   return p;
 }
 
-export function loadWeeklyPracticePlan(bookId: string): WeeklyPracticePlan | null;
-export function loadWeeklyPracticePlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<WeeklyPracticePlan>;
-export function loadWeeklyPracticePlan(bookId: string, reader?: BookContentReader, candidateId?: string): WeeklyPracticePlan | null | Promise<WeeklyPracticePlan> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+export async function loadWeeklyPracticePlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<WeeklyPracticePlan> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
     if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
     const logicalPath = `state/weekly-practice-plans/${bookId}.weekly-practice-plan.json`;
     const file = opened.value.files.find((entry) => entry.logicalPath === logicalPath);
     if (!file) throw new Error(`CANDIDATE_ENTRY_MISSING: ${logicalPath}`);
     try { return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as WeeklyPracticePlan; }
     catch (cause) { throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(cause as Error).message}`); }
-  });
 }
 
 export function formatWeeklyPracticePlan(plan: WeeklyPracticePlan): string {

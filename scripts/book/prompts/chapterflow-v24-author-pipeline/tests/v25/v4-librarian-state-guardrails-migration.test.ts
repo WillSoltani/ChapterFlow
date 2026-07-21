@@ -15,11 +15,24 @@ import {
   planChapterIdentityMigration,
 } from "../../src/librarian/identityMigration.js";
 import { writeAuthoringGuardrailsV4 } from "../../src/librarian/authoringGuardrails.js";
+import type { BookContentReader } from "../../src/books/candidateTypes.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
 function writeJson(path: string, value: unknown): void {
   mkdirSync(resolve(path, ".."), { recursive: true });
   writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+const GUARDRAIL_CANDIDATE = "guardrail-candidate";
+function guardrailReader(bookId: string): BookContentReader {
+  return { async open() {
+    const ledger = Buffer.from('{"version":"2.0.0","lastUpdatedAt":"1970-01-01T00:00:00.000Z","revision":0,"policy":{"namePolicyVersion":"name-policy-v1","namePolicyId":"catalog-cooldown-v1"},"books":{},"globalNameUsage":{},"globalPhraseUsage":{},"globalAnswerPositionCounts":[0,0,0]}');
+    const sidecar = Buffer.from("{}");
+    return { ok: true, value: { manifest: { schemaVersion: "1", bookId, candidateId: GUARDRAIL_CANDIDATE, createdByRunId: "test", entries: [], manifestDigest: "0".repeat(64), createdAt: new Date(0).toISOString() }, files: [
+      { kind: "SIDECAR", logicalPath: "state/library-state.json", mediaType: "application/json", byteLength: ledger.length, bytes: ledger },
+      { kind: "SIDECAR", logicalPath: "sidecars/ch01.json", mediaType: "application/json", byteLength: sidecar.length, bytes: sidecar },
+    ] } };
+  } };
 }
 
 requiredTest("adapter normalizes matching legacy state in disposable roots", async ({ roots }) => {
@@ -113,13 +126,13 @@ requiredTest("mixed-writer preflight blocks both V4 routes before any byte mutat
 
   const guardrailRoot = resolve(roots.stateRoot, "blocked-guardrail");
   await assert.rejects(
-    writeAuthoringGuardrailsV4("blocked-book", { stateDir: guardrailRoot, chapters: 1, legacyWriterEnabled: true }),
+    writeAuthoringGuardrailsV4("blocked-book", { stateDir: guardrailRoot, chapters: 1, legacyWriterEnabled: true, reader: guardrailReader("blocked-book"), candidateId: GUARDRAIL_CANDIDATE }),
     /legacy same-book writer is enabled/,
   );
   assert.equal(existsSync(guardrailRoot), false);
 
   const enabledRoot = resolve(roots.stateRoot, "enabled-guardrail");
-  const guardrailPath = await writeAuthoringGuardrailsV4("enabled-book", { stateDir: enabledRoot, chapters: 1 });
+  const guardrailPath = await writeAuthoringGuardrailsV4("enabled-book", { stateDir: enabledRoot, chapters: 1, reader: guardrailReader("enabled-book"), candidateId: GUARDRAIL_CANDIDATE });
   assert.equal(guardrailPath, resolve(enabledRoot, "guardrails", "enabled-book.guardrails.md"));
   assert.match(readFileSync(guardrailPath, "utf8"), /^# Authoring guardrails — enabled-book/);
 });

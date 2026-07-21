@@ -136,6 +136,47 @@ type CliV25Composition = Readonly<{
   sourceGitSha: string;
 }>;
 
+type CliCandidateReaderProjection = Readonly<{
+  candidate: import("./books/candidateTypes.js").CandidateSnapshot;
+  candidateStore: import("./books/candidateTypes.js").CandidateStore;
+  contentReader: import("./books/candidateTypes.js").BookContentReader;
+  currentPointerStore: import("./books/currentPointer.js").CurrentPointerStore;
+  writeLock: import("./books/leaseTypes.js").BookWriteLock;
+}>;
+
+async function createCliCandidateReaderProjection(
+  bookId: string,
+  flags: Record<string, string | boolean>,
+): Promise<{ ok: true; value: CliCandidateReaderProjection } | { ok: false; error: string }> {
+  const v25Root = flags["v25-root"];
+  const candidateId = flags["candidate-id"];
+  const manifestDigest = flags["manifest-digest"];
+  if (
+    typeof v25Root !== "string" || !isAbsolute(v25Root) ||
+    typeof candidateId !== "string" || candidateId.length === 0 ||
+    typeof manifestDigest !== "string" || manifestDigest.length === 0
+  ) {
+    return { ok: false, error: "V25_CANDIDATE_READER_REQUIRED: --v25-root, --candidate-id, and --manifest-digest are required" };
+  }
+  const booksRoot = resolve(v25Root, "books");
+  const [{ createBookWriteLock }, { createCurrentPointerStore }, { createCandidateStore }, { createBookContentReader }] = await Promise.all([
+    import("./books/bookLease.js"),
+    import("./books/currentPointer.js"),
+    import("./books/candidateStore.js"),
+    import("./books/bookContentReader.js"),
+  ]);
+  const writeLock = createBookWriteLock({ booksRoot });
+  const currentPointerStore = createCurrentPointerStore({ booksRoot, writeLock });
+  const candidateStore = createCandidateStore({ booksRoot, writeLock, currentPointerStore });
+  const contentReader = createBookContentReader({ booksRoot, currentPointerStore });
+  const candidate = await contentReader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
+  if (!candidate.ok) return { ok: false, error: `${candidate.error.code}:${candidate.error.message}` };
+  if (candidate.value.manifest.manifestDigest !== manifestDigest) {
+    return { ok: false, error: "V25_CANDIDATE_MISMATCH:selected candidate manifest digest differs" };
+  }
+  return { ok: true, value: { candidate: candidate.value, candidateStore, contentReader, currentPointerStore, writeLock } };
+}
+
 async function createCliV25Composition(
   bookId: string,
   flags: Record<string, string | boolean>,
@@ -156,23 +197,11 @@ async function createCliV25Composition(
 
   mkdirSync(v25Root, { recursive: true });
   mkdirSync(attemptRoot, { recursive: true });
+  const projection = await createCliCandidateReaderProjection(bookId, flags);
+  if (!projection.ok) return projection;
+  const { candidate, candidateStore, contentReader, currentPointerStore, writeLock } = projection.value;
   const booksRoot = resolve(v25Root, "books");
   const runRoot = resolve(v25Root, "run-state");
-  const [{ createBookWriteLock }, { createCurrentPointerStore }, { createCandidateStore }, { createBookContentReader }] = await Promise.all([
-    import("./books/bookLease.js"),
-    import("./books/currentPointer.js"),
-    import("./books/candidateStore.js"),
-    import("./books/bookContentReader.js"),
-  ]);
-  const writeLock = createBookWriteLock({ booksRoot });
-  const currentPointerStore = createCurrentPointerStore({ booksRoot, writeLock });
-  const candidateStore = createCandidateStore({ booksRoot, writeLock, currentPointerStore });
-  const contentReader = createBookContentReader({ booksRoot, currentPointerStore });
-  const candidate = await contentReader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
-  if (!candidate.ok) return { ok: false, error: `${candidate.error.code}:${candidate.error.message}` };
-  if (candidate.value.manifest.manifestDigest !== manifestDigest) {
-    return { ok: false, error: "V25_CANDIDATE_MISMATCH:selected candidate manifest digest differs" };
-  }
 
   const [{ createFileRunStore, createFileStageCoordinator }, { createProcessSupervisor }, { createExecutionPolicy }, { createModelGateway }] = await Promise.all([
     import("./run-state/index.js"),
@@ -216,7 +245,7 @@ async function createCliV25Composition(
     runStore, stageCoordinator, modelGateway, candidateStore, contentReader, reviewService, qcService,
     promotionService, clock, ids, pipelineRoot: REPO_ROOT, modelTaskRunner: runner,
   });
-  return { ok: true, value: { app, candidate: candidate.value, candidateStore, contentReader, reviewService, qcService, qcStore, writeLock, runStore, runner, ids, sourceGitSha } };
+  return { ok: true, value: { app, candidate, candidateStore, contentReader, reviewService, qcService, qcStore, writeLock, runStore, runner, ids, sourceGitSha } };
 }
 
 async function reviewCliV25Candidate(
@@ -2201,6 +2230,11 @@ async function runAuthoringGuardrails(args: string[], flags: Record<string, stri
   const resolved = resolveBookIdentifier(input);
   const bookId = resolved.ok === false ? input : resolved.bookId;
   if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) {
+    console.error(binding.error);
+    return 2;
+  }
   const chapters = typeof flags["chapters"] === "string" ? parseInt(flags["chapters"], 10) : undefined;
   const { writeAuthoringGuardrailsV4 } = await import("./librarian/authoringGuardrails.js");
   try {
@@ -2208,6 +2242,8 @@ async function runAuthoringGuardrails(args: string[], flags: Record<string, stri
     const path = await writeAuthoringGuardrailsV4(bookId, {
       chapters: Number.isInteger(chapters) ? chapters : undefined,
       stateDir,
+      reader: binding.value.contentReader,
+      candidateId: binding.value.candidate.manifest.candidateId,
     });
     console.log(`authoring-guardrails: wrote ${path}`);
     console.log("Paste this into every chapter authoring prompt before writing.");
@@ -2232,7 +2268,7 @@ async function runAuthoringGuardrails(args: string[], flags: Record<string, stri
  *  report Codex uses to converge in-session. Exit 1 on any finding so a write
  *  loop (`author-check && gate-chapter`) iterates to clean. SHADOW: these are
  *  advisory and do NOT affect the ship gate's blocker count yet. */
-async function runAuthorCheck(args: string[]): Promise<number> {
+async function runAuthorCheck(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const chapterFile = args[0];
   if (!chapterFile) {
     console.error("Usage: author-check <path/to/chapter.json>");
@@ -2256,7 +2292,17 @@ async function runAuthorCheck(args: string[]): Promise<number> {
   // normSlug via parseChapterId so capital-cased chapterIds (e.g. Unreasonable-Hospitality-Ch01)
   // resolve to the canonical bookId the answer-key plan is filed under.
   const bookId = parseChapterId(chapter.chapterId)?.bookId ?? chapter.chapterId.replace(/-ch\d+$/i, "");
-  const balance = checkChapterAnswerBalance(chapter, loadAnswerKeyPlan(bookId));
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) {
+    console.error(binding.error);
+    return 2;
+  }
+  const answerKeyPlan = await loadAnswerKeyPlan(
+    bookId,
+    binding.value.contentReader,
+    binding.value.candidate.manifest.candidateId,
+  );
+  const balance = checkChapterAnswerBalance(chapter, answerKeyPlan);
   for (const f of balance) console.log(`  [${f.checkId}] ${f.message}`);
   return findings.length === 0 ? 0 : 1;
 }
@@ -2909,6 +2955,13 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     console.error("Usage: fanout <bookId> [--from N --to M] [--all] [--write-dir <path>]");
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) {
+    console.error(binding.error);
+    return 2;
+  }
+  const candidateReader = binding.value.contentReader;
+  const candidateId = binding.value.candidate.manifest.candidateId;
   const { planNames, writeNamePlan } = await import("./librarian/namePlan.js");
   const { planShapes, writeShapePlan, loadSceneShapes } = await import("./librarian/shapePlan.js");
   const { planOpeners, formatOpenerPlanForChapter } = await import("./librarian/openerPlan.js");
@@ -2984,10 +3037,10 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   // on. Deriving whole-book gives chapter N its disjoint slice regardless of the range.
   // The `--all` redo stays range-scoped (a TARGETED refresh of the offender only).
   const plan = includeAll
-    ? planNames(bookId, from, to, 7, { forceFresh: true })
-    : planNames(bookId, fullFrom, fullTo, 7, { forceFresh: false });
+    ? await planNames(bookId, from, to, 7, { forceFresh: true }, candidateReader, candidateId)
+    : await planNames(bookId, fullFrom, fullTo, 7, { forceFresh: false }, candidateReader, candidateId);
   writeNamePlan(plan);
-  const shapePlan = planShapes(bookId, from, to, 6, { forceFresh: includeAll });
+  const shapePlan = await planShapes(bookId, from, to, 6, { forceFresh: includeAll }, candidateReader, candidateId);
   writeShapePlan(shapePlan);
   // Per-example scenario-opener archetypes (the missing twin of shapePlan/venuePlan): deals a
   // distinct opening CONSTRUCTION per slot so scenarios are born varied instead of defaulting
@@ -2999,7 +3052,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const stakesPlan = planStakes(bookId, from, to, 3);
   writeStakesPlan(stakesPlan);
   const shapeDefs = new Map(loadSceneShapes().map((s) => [s.id, s.definition]));
-  const pedagogyPlan = planPedagogy(bookId, from, to, { forceFresh: includeAll });
+  const pedagogyPlan = await planPedagogy(bookId, from, to, { forceFresh: includeAll }, candidateReader, candidateId);
   writePedagogyPlan(pedagogyPlan);
   const pedagogyPalettes = loadPedagogyPalettes();
   const hookDefs = new Map(pedagogyPalettes.hookShapes.map((s) => [s.id, s.definition]));
@@ -3015,7 +3068,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   // block). Always derive ownership over every chapter (fullFrom..fullTo, computed
   // above) so the card a writer sees and the gate that judges it read one identical,
   // complete plan.
-  const exemplarPlan = planExemplars(bookId, fullFrom, fullTo);
+  const exemplarPlan = await planExemplars(bookId, fullFrom, fullTo, candidateReader, candidateId);
   writeExemplarPlan(exemplarPlan);
   const venuePlan = planVenues(bookId, fullFrom, fullTo);
   writeVenuePlan(venuePlan);
@@ -3417,8 +3470,10 @@ async function runShapePlan(args: string[], flags: Record<string, string | boole
     console.error("Usage: shape-plan <bookId> --from N --to M");
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
   const { planShapes, writeShapePlan, formatShapePlan } = await import("./librarian/shapePlan.js");
-  const plan = planShapes(bookId, from, to);
+  const plan = await planShapes(bookId, from, to, 6, {}, binding.value.contentReader, binding.value.candidate.manifest.candidateId);
   const path = writeShapePlan(plan);
   console.log(formatShapePlan(plan));
   console.log(`\nWritten: ${path}`);
@@ -3438,8 +3493,10 @@ async function runPedagogyPlan(args: string[], flags: Record<string, string | bo
     console.error("Usage: pedagogy-plan <bookId> --from N --to M");
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
   const { planPedagogy, writePedagogyPlan, formatPedagogyPlan } = await import("./librarian/pedagogyPlan.js");
-  const plan = planPedagogy(bookId, from, to);
+  const plan = await planPedagogy(bookId, from, to, {}, binding.value.contentReader, binding.value.candidate.manifest.candidateId);
   const path = writePedagogyPlan(plan);
   console.log(formatPedagogyPlan(plan));
   console.log(`\nWritten: ${path}`);
@@ -3459,9 +3516,13 @@ async function runExemplarPlan(args: string[], flags: Record<string, string | bo
     console.error("Usage: exemplar-plan <bookId> [--from N --to M]");
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
   const { planExemplars, writeExemplarPlan, formatExemplarPlan } = await import("./librarian/exemplarPlan.js");
-  const { expectedSourceChapters } = await import("./qc/sourceV2Gate.js");
-  const nums = expectedSourceChapters(bookId);
+  const nums = binding.value.candidate.files
+    .map((file) => file.logicalPath.match(/^sidecars\/ch(\d+)\.json$/)?.[1])
+    .filter((value): value is string => value !== undefined)
+    .map(Number);
   let from: number;
   let to: number;
   if (nums.length > 0) {
@@ -3477,7 +3538,7 @@ async function runExemplarPlan(args: string[], flags: Record<string, string | bo
       return 2;
     }
   }
-  const plan = planExemplars(bookId, from, to);
+  const plan = await planExemplars(bookId, from, to, binding.value.contentReader, binding.value.candidate.manifest.candidateId);
   const path = writeExemplarPlan(plan);
   console.log(formatExemplarPlan(plan));
   console.log(`\nWritten: ${path}`);
@@ -3515,9 +3576,11 @@ async function runAnswerKeyPlan(args: string[], flags: Record<string, string | b
     console.error("Usage: answer-key-plan <bookId> --from N --to M [--questions Q]");
     return 2;
   }
-  const questions = typeof flags["questions"] === "string" ? parseInt(flags["questions"] as string, 10) : undefined;
-  const { planAnswerKeys, writeAnswerKeyPlan } = await import("./librarian/answerKeyPlan.js");
-  const plan = planAnswerKeys(bookId, from, to, questions);
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
+  const { DEFAULT_POSITIONS, DEFAULT_QUESTIONS, planAnswerKeys, writeAnswerKeyPlan } = await import("./librarian/answerKeyPlan.js");
+  const questions = typeof flags["questions"] === "string" ? parseInt(flags["questions"] as string, 10) : DEFAULT_QUESTIONS;
+  const plan = planAnswerKeys(bookId, from, to, questions, DEFAULT_POSITIONS);
   const path = writeAnswerKeyPlan(plan);
   for (let n = from; n <= to; n++) console.log(`  ch${String(n).padStart(2, "0")}: [${(plan.allocation[n] ?? []).join(",")}]`);
   console.log(`\naggregate counts=[${plan.aggregate.counts.join(",")}] maxFraction=${plan.aggregate.maxFraction.toFixed(3)} (ceiling ${0.4})`);
@@ -3536,6 +3599,8 @@ async function runRhetoricPlan(args: string[], flags: Record<string, string | bo
     console.error("Usage: rhetoric-plan <bookId> --from N --to M");
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
   const { planRhetoric, writeRhetoricPlan, formatRhetoricPlan } = await import("./librarian/rhetoricPlan.js");
   const plan = planRhetoric(bookId, from, to);
   const path = writeRhetoricPlan(plan);
@@ -3562,11 +3627,21 @@ async function runNamePlan(args: string[], flags: Record<string, string | boolea
     console.error(`--per-chapter must be a positive integer (got "${String(flags["per-chapter"])}")`);
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
   const { planNames, writeNamePlan, formatNamePlan } = await import("./librarian/namePlan.js");
   // --force-fresh: deal fresh catalog-exclusive names even for authored
   // chapters — the refresh path uses this to build old→new RENAME maps
   // (carried allocations only echo the on-disk names, collisions included).
-  const plan = planNames(bookId, from, to, perChapter, { forceFresh: flags["force-fresh"] === true });
+  const plan = await planNames(
+    bookId,
+    from,
+    to,
+    perChapter,
+    { forceFresh: flags["force-fresh"] === true },
+    binding.value.contentReader,
+    binding.value.candidate.manifest.candidateId,
+  );
   const path = writeNamePlan(plan);
   console.log(formatNamePlan(plan));
   console.log("");
@@ -6630,7 +6705,7 @@ async function runExistingCommand(context: ParsedCommandContext): Promise<number
     case "batch":
       return runBatch(args, flags);
     case "author-check":
-      return runAuthorCheck(args);
+      return runAuthorCheck(args, flags);
     case "calibration-scan":
       return runCalibrationScan(args, flags);
     case "fix-chapter-ids":

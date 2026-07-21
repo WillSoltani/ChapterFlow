@@ -115,11 +115,11 @@ requiredTest("candidate narrative inputs preserve independent legacy calculation
 });
 
 requiredTest("all narrative routes block absent reader or entries and preserve filesystem", async ({ roots }) => {
-  assert.throws(() => loadCallbackPlan(BOOK), /CANDIDATE_READER_REQUIRED/);
-  assert.throws(() => planExemplars(BOOK, 1, 1), /CANDIDATE_READER_REQUIRED/);
-  assert.throws(() => planNames(BOOK, 1, 1), /CANDIDATE_READER_REQUIRED/);
-  assert.throws(() => planPedagogy(BOOK, 1, 1), /CANDIDATE_READER_REQUIRED/);
-  assert.throws(() => planShapes(BOOK, 1, 1), /CANDIDATE_READER_REQUIRED/);
+  assert.equal(loadCallbackPlan.length, 3);
+  assert.equal(planExemplars.length, 5);
+  assert.equal(planNames.length, 7);
+  assert.equal(planPedagogy.length, 6);
+  assert.equal(planShapes.length, 7);
   const subject = setup(roots);
   await stage(subject.store, "missing-sidecar", fixtureFiles().filter((file) => file.logicalPath !== "sidecars/ch01.json"));
   const before = tree(roots.base);

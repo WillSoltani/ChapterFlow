@@ -139,18 +139,14 @@ export function writeRhetoricPlan(plan: RhetoricPlan): string {
   return p;
 }
 
-export function loadRhetoricPlan(bookId: string): RhetoricPlan | null;
-export function loadRhetoricPlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<RhetoricPlan>;
-export function loadRhetoricPlan(bookId: string, reader?: BookContentReader, candidateId?: string): RhetoricPlan | null | Promise<RhetoricPlan> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+export async function loadRhetoricPlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<RhetoricPlan> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
     if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
     const logicalPath = `state/rhetoric-plans/${bookId}.rhetoric-plan.json`;
     const file = opened.value.files.find((entry) => entry.logicalPath === logicalPath);
     if (!file) throw new Error(`CANDIDATE_ENTRY_MISSING: ${logicalPath}`);
     try { return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as RhetoricPlan; }
     catch (cause) { throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(cause as Error).message}`); }
-  });
 }
 
 export function formatRhetoricPlan(plan: RhetoricPlan): string {

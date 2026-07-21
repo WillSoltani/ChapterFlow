@@ -16,6 +16,12 @@ import assert from "node:assert/strict";
 
 import { test } from "./harness.js";
 import { planPedagogy, loadPedagogyPalettes } from "../src/librarian/pedagogyPlan.js";
+import type { BookContentReader } from "../src/books/candidateTypes.js";
+
+const CANDIDATE = "pedagogy-saturation-candidate";
+const reader: BookContentReader = { async open({ bookId }) {
+  return { ok: true, value: { manifest: { schemaVersion: "1", bookId, candidateId: CANDIDATE, createdByRunId: "test", entries: [], manifestDigest: "0".repeat(64), createdAt: new Date(0).toISOString() }, files: [] } };
+} };
 
 const palettes = loadPedagogyPalettes();
 const PRONE = new Set(palettes.hookShapes.filter((h) => h.sceneSkeletonProne).map((h) => h.id));
@@ -27,8 +33,12 @@ const BOOK_IDS = [
 ];
 const SIZES = [7, 9, 12, 13, 21, 31, 32];
 
-function hookCounts(bookId: string, n: number): Map<string, number> {
-  const plan = planPedagogy(bookId, 1, n);
+async function planFor(bookId: string, from: number, to: number) {
+  return planPedagogy(bookId, from, to, {}, reader, CANDIDATE);
+}
+
+async function hookCounts(bookId: string, n: number): Promise<Map<string, number>> {
+  const plan = await planFor(bookId, 1, n);
   const counts = new Map<string, number>();
   for (let c = 1; c <= n; c++) {
     const h = plan.allocation[c].hookShape;
@@ -43,10 +53,10 @@ test("config tags >= 2 scene-skeleton-prone hook shapes (the template seeders)",
   assert.ok(PRONE.size <= palettes.hookShapes.length - 1, "at least one non-prone shape must exist to be the dominant");
 });
 
-test("the dominant hook shape is NEVER scene-skeleton-prone, across many bookIds and sizes", () => {
+test("the dominant hook shape is NEVER scene-skeleton-prone, across many bookIds and sizes", async () => {
   for (const id of BOOK_IDS) {
     for (const n of SIZES) {
-      const plan = planPedagogy(id, 1, n);
+      const plan = await planFor(id, 1, n);
       assert.ok(
         !PRONE.has(plan.bookMix.dominantHookShape),
         `${id} N=${n}: dominant "${plan.bookMix.dominantHookShape}" is scene-skeleton-prone — it must be demoted out of the 50% slot`,
@@ -55,10 +65,10 @@ test("the dominant hook shape is NEVER scene-skeleton-prone, across many bookIds
   }
 });
 
-test("no scene-prone shape exceeds 40% and no shape exceeds 60% of any book (deal-time cap holds)", () => {
+test("no scene-prone shape exceeds 40% and no shape exceeds 60% of any book (deal-time cap holds)", async () => {
   for (const id of BOOK_IDS) {
     for (const n of SIZES) {
-      for (const [h, cnt] of hookCounts(id, n)) {
+      for (const [h, cnt] of await hookCounts(id, n)) {
         const share = cnt / n;
         assert.ok(share <= 0.6 + 1e-9, `${id} N=${n}: "${h}" at ${share.toFixed(3)} exceeds the 0.60 cap`);
         if (PRONE.has(h)) {
@@ -69,23 +79,23 @@ test("no scene-prone shape exceeds 40% and no shape exceeds 60% of any book (dea
   }
 });
 
-test("partial / single-chapter re-deals do NOT throw (saturation is a whole-book property) yet still demote the dominant", () => {
+test("partial / single-chapter re-deals do NOT throw (saturation is a whole-book property) yet still demote the dominant", async () => {
   // The operator re-deals single chapters (fanout --from N --to N --all, the repair path)
   // and previews partial ranges (pedagogy-plan --from N --to M); a 1-3 chapter slice is
   // trivially 100%/67% of one shape and must NOT trip the whole-book saturation cap — but
   // the scene-prone demotion still has to apply to whatever chapter is re-dealt.
   for (const id of ["daring-greatly", "eat-that-frog", "outliers", "the-gifts-of-imperfection"]) {
     for (const [from, to] of [[1, 1], [5, 5], [1, 2], [1, 3], [2, 4]] as const) {
-      assert.doesNotThrow(() => planPedagogy(id, from, to), `${id} ch${from}-${to} must not throw on a partial re-deal`);
-      const plan = planPedagogy(id, from, to);
+      await assert.doesNotReject(planFor(id, from, to), `${id} ch${from}-${to} must not throw on a partial re-deal`);
+      const plan = await planFor(id, from, to);
       assert.ok(!PRONE.has(plan.bookMix.dominantHookShape), `${id} ch${from}-${to}: dominant "${plan.bookMix.dominantHookShape}" must not be scene-prone`);
     }
   }
 });
 
-test("eat-that-frog specifically: object-in-motion is no longer the 50% dominant (the exact failure)", () => {
-  const plan = planPedagogy("eat-that-frog", 1, 21);
+test("eat-that-frog specifically: object-in-motion is no longer the 50% dominant (the exact failure)", async () => {
+  const plan = await planFor("eat-that-frog", 1, 21);
   assert.notEqual(plan.bookMix.dominantHookShape, "object-in-motion");
-  const om = (hookCounts("eat-that-frog", 21).get("object-in-motion") ?? 0) / 21;
+  const om = ((await hookCounts("eat-that-frog", 21)).get("object-in-motion") ?? 0) / 21;
   assert.ok(om <= 0.4 + 1e-9, `object-in-motion at ${om.toFixed(3)} must be a <=40% secondary, not the 50% dominant`);
 });

@@ -145,18 +145,14 @@ export function writeCallbackPlan(plan: CallbackPlan): string {
   return p;
 }
 
-export function loadCallbackPlan(bookId: string): CallbackPlan | null;
-export function loadCallbackPlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<CallbackPlan>;
-export function loadCallbackPlan(bookId: string, reader?: BookContentReader, candidateId?: string): CallbackPlan | null | Promise<CallbackPlan> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+export async function loadCallbackPlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<CallbackPlan> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
     if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
     const logicalPath = `state/callback-plans/${bookId}.callback-plan.json`;
     const file = opened.value.files.find((entry) => entry.logicalPath === logicalPath);
     if (!file) throw new Error(`CANDIDATE_ENTRY_MISSING: ${logicalPath}`);
     try { return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as CallbackPlan; }
     catch (cause) { throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(cause as Error).message}`); }
-  });
 }
 
 export function formatCallbackPlan(plan: CallbackPlan): string {

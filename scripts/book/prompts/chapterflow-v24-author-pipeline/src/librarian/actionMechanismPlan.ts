@@ -109,18 +109,14 @@ export function writeActionMechanismPlan(plan: ActionMechanismPlan): string {
   return p;
 }
 
-export function loadActionMechanismPlan(bookId: string): ActionMechanismPlan | null;
-export function loadActionMechanismPlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<ActionMechanismPlan>;
-export function loadActionMechanismPlan(bookId: string, reader?: BookContentReader, candidateId?: string): ActionMechanismPlan | null | Promise<ActionMechanismPlan> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+export async function loadActionMechanismPlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<ActionMechanismPlan> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
     if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
     const logicalPath = `state/action-mechanism-plans/${bookId}.action-mechanism-plan.json`;
     const file = opened.value.files.find((entry) => entry.logicalPath === logicalPath);
     if (!file) throw new Error(`CANDIDATE_ENTRY_MISSING: ${logicalPath}`);
     try { return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as ActionMechanismPlan; }
     catch (cause) { throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(cause as Error).message}`); }
-  });
 }
 
 export function formatActionMechanismPlan(plan: ActionMechanismPlan): string {

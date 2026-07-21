@@ -155,18 +155,14 @@ export function writeAnswerKeyPlan(plan: AnswerKeyPlan): string {
   return p;
 }
 
-export function loadAnswerKeyPlan(bookId: string): AnswerKeyPlan | null;
-export function loadAnswerKeyPlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<AnswerKeyPlan>;
-export function loadAnswerKeyPlan(bookId: string, reader?: BookContentReader, candidateId?: string): AnswerKeyPlan | null | Promise<AnswerKeyPlan> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+export async function loadAnswerKeyPlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<AnswerKeyPlan> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
     if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
     const logicalPath = `state/answer-key-plans/${bookId}.answer-key-plan.json`;
     const file = opened.value.files.find((entry) => entry.logicalPath === logicalPath);
     if (!file) throw new Error(`CANDIDATE_ENTRY_MISSING: ${logicalPath}`);
     try { return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as AnswerKeyPlan; }
     catch (cause) { throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(cause as Error).message}`); }
-  });
 }
 
 export type AnswerBalanceFinding = {

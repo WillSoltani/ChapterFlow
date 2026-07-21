@@ -167,26 +167,22 @@ function usedNamesByChapterFromCandidate(bookId: string, snapshot: CandidateSnap
   return out;
 }
 
-export function usedNamesByChapter(bookId: string): Record<number, string[]>;
-export function usedNamesByChapter(bookId: string, reader: BookContentReader, candidateId: string): Promise<Record<number, string[]>>;
-export function usedNamesByChapter(bookId: string, reader?: BookContentReader, candidateId?: string): Record<number, string[]> | Promise<Record<number, string[]>> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
-    if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
-    return usedNamesByChapterFromCandidate(bookId, opened.value);
-  });
+export async function usedNamesByChapter(
+  bookId: string,
+  reader: BookContentReader,
+  candidateId: string,
+): Promise<Record<number, string[]>> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
+  if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+  return usedNamesByChapterFromCandidate(bookId, opened.value);
 }
 
 /** Flattened audit union of usedNamesByChapter. Not a policy/accounting source. */
-export function usedNamesInBook(bookId: string): Set<string>;
-export function usedNamesInBook(bookId: string, reader: BookContentReader, candidateId: string): Promise<Set<string>>;
-export function usedNamesInBook(bookId: string, reader?: BookContentReader, candidateId?: string): Set<string> | Promise<Set<string>> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
+export async function usedNamesInBook(bookId: string, reader: BookContentReader, candidateId: string): Promise<Set<string>> {
   const used = new Set<string>();
-  return usedNamesByChapter(bookId, reader, candidateId).then((byChapter) => {
-    for (const names of Object.values(byChapter)) for (const n of names) used.add(n);
-    return used;
-  });
+  const byChapter = await usedNamesByChapter(bookId, reader, candidateId);
+  for (const names of Object.values(byChapter)) for (const n of names) used.add(n);
+  return used;
 }
 
 /** Bank names already used by any OTHER book in state/chapters — INFORMATIONAL
@@ -213,14 +209,14 @@ function bankNamesUsedByOtherBooksFromCandidate(bookId: string, snapshot: Candid
   return used;
 }
 
-export function bankNamesUsedByOtherBooks(bookId: string): Set<string>;
-export function bankNamesUsedByOtherBooks(bookId: string, reader: BookContentReader, candidateId: string): Promise<Set<string>>;
-export function bankNamesUsedByOtherBooks(bookId: string, reader?: BookContentReader, candidateId?: string): Set<string> | Promise<Set<string>> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
-    if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
-    return bankNamesUsedByOtherBooksFromCandidate(bookId, opened.value);
-  });
+export async function bankNamesUsedByOtherBooks(
+  bookId: string,
+  reader: BookContentReader,
+  candidateId: string,
+): Promise<Set<string>> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
+  if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+  return bankNamesUsedByOtherBooksFromCandidate(bookId, opened.value);
 }
 
 function plannedNamesByChapter(bookId: string, snapshot: CandidateSnapshot): Record<number, string[]> {
@@ -293,14 +289,7 @@ function sourceFigureBankNames(bookId: string, fromChapter: number, toChapter: n
   return excluded;
 }
 
-export function planNames(
-  rawBookId: string,
-  fromChapter: number,
-  toChapter: number,
-  perChapter?: number,
-  opts?: { lookback?: number; forceFresh?: boolean; stateDir?: string; namePlansDir?: string; namePolicy?: NamePolicyV1 },
-): NamePlan;
-export function planNames(
+export async function planNames(
   rawBookId: string,
   fromChapter: number,
   toChapter: number,
@@ -317,18 +306,8 @@ export function planNames(
   },
   reader: BookContentReader,
   candidateId: string,
-): Promise<NamePlan>;
-export function planNames(
-  rawBookId: string,
-  fromChapter: number,
-  toChapter: number,
-  perChapter = 7,
-  opts: { lookback?: number; forceFresh?: boolean; stateDir?: string; namePlansDir?: string; namePolicy?: NamePolicyV1 } = {},
-  reader?: BookContentReader,
-  candidateId?: string,
-): NamePlan | Promise<NamePlan> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId: normSlug(rawBookId), selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+): Promise<NamePlan> {
+  const opened = await reader.open({ bookId: normSlug(rawBookId), selector: { kind: "CANDIDATE", candidateId } });
   if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
   const snapshot = opened.value;
   if (toChapter < fromChapter) throw new Error(`toChapter (${toChapter}) < fromChapter (${fromChapter})`);
@@ -431,7 +410,6 @@ export function planNames(
       policyExcluded: [...policyForbidden].filter((n) => bankSet.has(n)).length,
     },
   };
-  });
 }
 
 /** Persist the plan so each STEP-2 agent (and re-runs) read one canonical file. */

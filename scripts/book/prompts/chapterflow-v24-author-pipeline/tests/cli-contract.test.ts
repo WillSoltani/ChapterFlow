@@ -15,6 +15,10 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test, skip } from "./harness.js";
+import { createBookWriteLock } from "../src/books/bookLease.js";
+import { createCandidateStore } from "../src/books/candidateStore.js";
+import { createCurrentPointerStore } from "../src/books/currentPointer.js";
+import { createTestRoots } from "./testRoots.js";
 import {
   cleanTmp,
   goldChapterFiles,
@@ -32,6 +36,56 @@ import {
 
 const gold = goldChapterFiles().find((g) => g.files.length > 0);
 const CLI_BOOK = "zz-gold-daring-greatly";
+
+test("reader-only plan command requires explicit candidate selector", () => {
+  const result = runCli(["shape-plan", "zz-cli-candidate", "--from", "1", "--to", "1"]);
+  assert.equal(result.status, 2, result.out);
+  assert.match(result.out, /V25_CANDIDATE_READER_REQUIRED/);
+});
+
+test("fanout and guardrail commands block without candidate selector", () => {
+  for (const args of [["fanout", "zz-cli-candidate"], ["authoring-guardrails", "zz-cli-candidate", "--chapters", "1"]]) {
+    const result = runCli(args);
+    assert.equal(result.status, 2, `${args[0]}: ${result.out}`);
+    assert.match(result.out, /V25_CANDIDATE_READER_REQUIRED/, args[0]);
+  }
+});
+
+test("reader-only plan command opens candidate without model attempt or source flags", async () => {
+  const roots = createTestRoots("cli-reader-only");
+  const bookId = "zz-cli-candidate";
+  const candidateId = "candidate-1";
+  const planPath = resolve(PIPELINE_DIR, "state", "shape-plans", `${bookId}.shape-plan.json`);
+  try {
+    const writeLock = createBookWriteLock({ booksRoot: roots.booksRoot });
+    const currentPointerStore = createCurrentPointerStore({ booksRoot: roots.booksRoot, writeLock });
+    const store = createCandidateStore({ booksRoot: roots.booksRoot, writeLock, currentPointerStore });
+    const bytes = Buffer.from("{}");
+    const file = { kind: "SIDECAR" as const, logicalPath: "sidecars/ch01.json", mediaType: "application/json" as const, bytes };
+    const staged = await store.stage({
+      bookId,
+      candidateId,
+      createdByRunId: "cli-test",
+      expectedInventory: [{ kind: file.kind, logicalPath: file.logicalPath, mediaType: file.mediaType }],
+      files: [file],
+      createdAt: "2026-07-20T12:00:00.000Z",
+    });
+    assert.equal(staged.ok, true, staged.ok ? "" : staged.error.message);
+    if (!staged.ok) return;
+    const result = runCli([
+      "shape-plan", bookId, "--from", "1", "--to", "1",
+      "--v25-root", roots.base,
+      "--candidate-id", candidateId,
+      "--manifest-digest", staged.value.manifestDigest,
+    ]);
+    assert.equal(result.status, 0, result.out);
+    assert.match(result.out, /ch01:/);
+    assert.doesNotMatch(result.out, /V25_COMPOSITION_REQUIRED/);
+  } finally {
+    rmSync(planPath, { force: true });
+    roots.dispose();
+  }
+});
 
 if (!gold) {
   skip("cli: gate-chapter exits 0 on a gold chapter", "no gold corpus on this machine");

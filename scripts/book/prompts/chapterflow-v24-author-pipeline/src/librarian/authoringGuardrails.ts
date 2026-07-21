@@ -15,17 +15,17 @@
  * it into every authoring sub-prompt. Same prevention pattern as the voice bible.
  */
 
-import { mkdirSync, readFileSync, readdirSync, existsSync } from "fs";
+import { mkdirSync, existsSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { createBookWriteLock } from "../books/bookLease.js";
+import type { BookContentReader, CandidateSnapshot } from "../books/candidateTypes.js";
 import { assertV4LibrarianWriterPreflight } from "../books/legacyLibrarianStateAdapter.js";
 import type { BookWriteLock } from "../books/leaseTypes.js";
 import { HOUSE_TICS } from "../critics/catalogAudit.js";
 import { findCrossBookTells, runCrossBookSignatureAudit } from "../critics/crossBookSignatureAudit.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
-import { loadBrief } from "../lib/voiceBible.js";
 import { planNames } from "./namePlan.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -35,6 +35,8 @@ const STATE_DIR = resolve(PIPELINE_DIR, "state");
 const BOOK_PACKAGES_DIR = resolve(REPO_ROOT, "book-packages");
 
 export type AuthoringGuardrailsOptions = {
+  reader: BookContentReader;
+  candidateId: string;
   chapters?: number;
   stateDir?: string;
   namePlansDir?: string;
@@ -49,21 +51,36 @@ export function guardrailsPath(bookId: string, stateDir = STATE_DIR): string {
   return resolve(stateDir, "guardrails", `${bookId}.guardrails.md`);
 }
 
-/** Best-effort chapter count: the index, else chapters already on disk. */
-function chapterCount(bookId: string, stateDir = STATE_DIR): number {
-  const indexPath = resolve(stateDir, "indexes", `${bookId}.json`);
-  if (existsSync(indexPath)) {
+/** Best-effort candidate chapter count: candidate index, else candidate chapters. */
+function chapterCount(bookId: string, snapshot: CandidateSnapshot): number {
+  const indexPath = `state/indexes/${bookId}.json`;
+  const index = snapshot.files.find((file) => file.logicalPath === indexPath);
+  if (index) {
     try {
-      const idx = JSON.parse(readFileSync(indexPath, "utf8"));
-      if (Array.isArray(idx) && idx.length) return idx.length;
-    } catch { /* fall through */ }
+      const parsed = JSON.parse(Buffer.from(index.bytes).toString("utf8"));
+      if (Array.isArray(parsed) && parsed.length) return parsed.length;
+    } catch (cause) {
+      throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${indexPath}: ${(cause as Error).message}`);
+    }
   }
-  try {
-    const written = readdirSync(resolve(stateDir, "chapters"))
-      .filter((f) => new RegExp(`^${bookId}-ch\\d+\\.v21-native\\.chapter\\.json$`, "i").test(f));
-    if (written.length) return written.length;
-  } catch { /* none */ }
+  const chapterPattern = new RegExp(`^state/chapters/${bookId}-ch\\d+\\.v21-native\\.chapter\\.json$`, "i");
+  const written = snapshot.files.filter((file) => chapterPattern.test(file.logicalPath));
+  if (written.length) return written.length;
   return 0;
+}
+
+function candidateBrief(bookId: string, snapshot: CandidateSnapshot): { forbiddenMoves?: string[] } | null {
+  for (const name of [`${bookId}.brief.json`, `${bookId}.manual-brief.json`]) {
+    const logicalPath = `state/briefs/${name}`;
+    const file = snapshot.files.find((entry) => entry.logicalPath === logicalPath);
+    if (!file) continue;
+    try {
+      return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as { forbiddenMoves?: string[] };
+    } catch (cause) {
+      throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(cause as Error).message}`);
+    }
+  }
+  return null;
 }
 
 /** The signature phrases already recurring across SHIPPED books — the catalog
@@ -90,14 +107,24 @@ export type AuthoringGuardrails = {
   bannedPhrases: { houseTics: string[]; forbiddenMoves: string[]; connectives: string[]; catalogTells: string[] };
 };
 
-export function buildAuthoringGuardrails(bookId: string, opts: AuthoringGuardrailsOptions = {}): AuthoringGuardrails {
+export async function buildAuthoringGuardrails(bookId: string, opts: AuthoringGuardrailsOptions): Promise<AuthoringGuardrails> {
   const stateDir = resolve(opts.stateDir ?? STATE_DIR);
-  const count = opts.chapters ?? chapterCount(bookId, stateDir);
+  const opened = await opts.reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId: opts.candidateId } });
+  if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+  const count = opts.chapters ?? chapterCount(bookId, opened.value);
   if (count < 1) throw new Error(`Cannot build guardrails for ${bookId}: no chapter index or chapters on disk. Pass --chapters <N>.`);
   // forceFresh so the sheet proposes a clean reserved pool (unique within this
   // book), not an echo of names already on disk.
-  const plan = planNames(bookId, 1, count, 7, { forceFresh: true, stateDir: opts.stateDir, namePlansDir: opts.namePlansDir });
-  const brief = loadBrief(bookId) as { forbiddenMoves?: string[] } | null;
+  const plan = await planNames(
+    bookId,
+    1,
+    count,
+    7,
+    { forceFresh: true, stateDir: opts.stateDir, namePlansDir: opts.namePlansDir },
+    opts.reader,
+    opts.candidateId,
+  );
+  const brief = candidateBrief(bookId, opened.value);
   return {
     bookId,
     chapters: count,
@@ -148,19 +175,19 @@ function writeBuiltAuthoringGuardrails(g: AuthoringGuardrails, opts: AuthoringGu
   return path;
 }
 
-export function writeAuthoringGuardrails(bookId: string, opts: AuthoringGuardrailsOptions = {}): string {
-  const g = buildAuthoringGuardrails(bookId, opts);
+export async function writeAuthoringGuardrails(bookId: string, opts: AuthoringGuardrailsOptions): Promise<string> {
+  const g = await buildAuthoringGuardrails(bookId, opts);
   return writeBuiltAuthoringGuardrails(g, opts);
 }
 
 /** V4 authority route. Build stays outside lock; only one atomic replacement runs inside it. */
 export async function writeAuthoringGuardrailsV4(
   bookId: string,
-  opts: AuthoringGuardrailsV4Options = {},
+  opts: AuthoringGuardrailsV4Options,
 ): Promise<string> {
   assertV4LibrarianWriterPreflight(opts.legacyWriterEnabled);
   const stateDir = resolve(opts.stateDir ?? STATE_DIR);
-  const built = buildAuthoringGuardrails(bookId, { ...opts, stateDir });
+  const built = await buildAuthoringGuardrails(bookId, { ...opts, stateDir });
   mkdirSync(stateDir, { recursive: true });
   const writeLock = opts.writeLock ?? createBookWriteLock({ booksRoot: stateDir, timeoutMs: 1_000, pollMs: 1 });
   const locked = await writeLock.run(bookId, async () => {

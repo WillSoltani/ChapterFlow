@@ -87,11 +87,16 @@ export type PlanShapesOpts = {
   forceFresh?: boolean;
 };
 
-export function planShapes(bookId: string, from: number, to: number, perChapter?: number, opts?: PlanShapesOpts): ShapePlan;
-export function planShapes(bookId: string, from: number, to: number, perChapter: number, opts: PlanShapesOpts, reader: BookContentReader, candidateId: string): Promise<ShapePlan>;
-export function planShapes(bookId: string, from: number, to: number, perChapter = 6, opts: PlanShapesOpts = {}, reader?: BookContentReader, candidateId?: string): ShapePlan | Promise<ShapePlan> {
-  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
-  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+export async function planShapes(
+  bookId: string,
+  from: number,
+  to: number,
+  perChapter: number,
+  opts: PlanShapesOpts,
+  reader: BookContentReader,
+  candidateId: string,
+): Promise<ShapePlan> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
   if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
   const snapshot = opened.value;
   const shapes = loadSceneShapes();
@@ -141,7 +146,6 @@ export function planShapes(bookId: string, from: number, to: number, perChapter 
     allocation,
     carriedChapters: carried,
   };
-  });
 }
 
 export function writeShapePlan(plan: ShapePlan): string {

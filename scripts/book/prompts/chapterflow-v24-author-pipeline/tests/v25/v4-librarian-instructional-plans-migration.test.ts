@@ -110,7 +110,7 @@ requiredTest("missing corrupt and digest reader failures block without fallback"
   await stage(subject.store, "digest-tamper", fixtureFiles());
   writeFileSync(join(candidatePaths(roots.booksRoot, BOOK, "digest-tamper").contentRoot, PATHS.action), JSON.stringify({ altered: true }));
   await assert.rejects(loadActionMechanismPlan(BOOK, subject.reader, "digest-tamper"), /CANDIDATE_MISMATCH/);
-  assert.throws(() => loadActionMechanismPlan(BOOK), /CANDIDATE_READER_REQUIRED/);
+  assert.equal(loadActionMechanismPlan.length, 3, "loader exposes only explicit book/reader/candidate signature");
 });
 
 requiredTest("independent instructional fixture stays semantically equal and read-only", async ({ roots }) => {

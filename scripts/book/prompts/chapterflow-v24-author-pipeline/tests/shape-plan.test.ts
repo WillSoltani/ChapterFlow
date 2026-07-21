@@ -6,14 +6,27 @@
  */
 
 import assert from "node:assert/strict";
-import { readdirSync, rmSync } from "fs";
+import { readFileSync, readdirSync, rmSync } from "fs";
 import { resolve } from "path";
 
 import { loadSceneShapes, planShapes } from "../src/librarian/shapePlan.js";
+import type { BookContentReader } from "../src/books/candidateTypes.js";
 import { test } from "./harness.js";
-import { makeChapter, PIPELINE_DIR, runCli, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
+import { makeChapter, runCli, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
 
 const BOOK = "zz-fixture-shapes";
+const CANDIDATE = "shape-plan-candidate";
+
+function candidateReader(bookId: string): BookContentReader {
+  return {
+    async open() {
+      const files = readdirSync(STATE_CHAPTERS)
+        .filter((name) => name.toLowerCase().startsWith(`${bookId.toLowerCase()}-ch`))
+        .map((name) => ({ kind: "CHAPTER" as const, logicalPath: `state/chapters/${name}`, mediaType: "application/json" as const, byteLength: 0, bytes: Buffer.from(readFileSync(resolve(STATE_CHAPTERS, name))) }));
+      return { ok: true, value: { manifest: { schemaVersion: "1", bookId, candidateId: CANDIDATE, createdByRunId: "test", entries: [], manifestDigest: "0".repeat(64), createdAt: new Date(0).toISOString() }, files } };
+    },
+  };
+}
 
 test("palette loads with ≥16 distinct, defined shapes", () => {
   const shapes = loadSceneShapes();
@@ -22,15 +35,15 @@ test("palette loads with ≥16 distinct, defined shapes", () => {
   for (const s of shapes) assert.ok(s.definition.length > 40, `${s.id} needs a paste-able definition`);
 });
 
-test("within a chapter: all 6 slots get DISTINCT shapes", () => {
-  const plan = planShapes(BOOK, 1, 20);
+test("within a chapter: all 6 slots get DISTINCT shapes", async () => {
+  const plan = await planShapes(BOOK, 1, 20, 6, {}, candidateReader(BOOK), CANDIDATE);
   for (const [n, ids] of Object.entries(plan.allocation)) {
     assert.equal(new Set(ids).size, ids.length, `ch${n} has duplicate shapes: ${ids.join(", ")}`);
   }
 });
 
-test("consecutive chapters share ZERO shapes and never repeat a slot", () => {
-  const plan = planShapes(BOOK, 1, 20);
+test("consecutive chapters share ZERO shapes and never repeat a slot", async () => {
+  const plan = await planShapes(BOOK, 1, 20, 6, {}, candidateReader(BOOK), CANDIDATE);
   for (let n = 1; n < 20; n++) {
     const a = plan.allocation[n];
     const b = plan.allocation[n + 1];
@@ -42,20 +55,20 @@ test("consecutive chapters share ZERO shapes and never repeat a slot", () => {
   }
 });
 
-test("deterministic per book, different across books", () => {
-  const a1 = planShapes("zz-book-alpha", 1, 5);
-  const a2 = planShapes("zz-book-alpha", 1, 5);
+test("deterministic per book, different across books", async () => {
+  const a1 = await planShapes("zz-book-alpha", 1, 5, 6, {}, candidateReader("zz-book-alpha"), CANDIDATE);
+  const a2 = await planShapes("zz-book-alpha", 1, 5, 6, {}, candidateReader("zz-book-alpha"), CANDIDATE);
   assert.deepEqual(a1.allocation, a2.allocation, "re-plan must be reproducible");
-  const b = planShapes("zz-book-beta", 1, 5);
+  const b = await planShapes("zz-book-beta", 1, 5, 6, {}, candidateReader("zz-book-beta"), CANDIDATE);
   assert.notDeepEqual(a1.allocation[1], b.allocation[1], "different books should get different casts of shapes");
 });
 
-test("idempotent re-plan: an authored chapter carries its REAL on-disk formats", () => {
+test("idempotent re-plan: an authored chapter carries its REAL on-disk formats", async () => {
   try {
     const ch2 = makeChapter(BOOK, 2);
     ch2.examples.forEach((e, i) => { e.planSpec.format = i % 2 === 0 ? "postmortem" : "text_thread"; });
     writeFixtureBook(STATE_CHAPTERS, [ch2]);
-    const plan = planShapes(BOOK, 1, 3);
+    const plan = await planShapes(BOOK, 1, 3, 6, {}, candidateReader(BOOK), CANDIDATE);
     assert.deepEqual(plan.carriedChapters, [2]);
     assert.deepEqual(
       plan.allocation[2],
@@ -70,14 +83,8 @@ test("idempotent re-plan: an authored chapter carries its REAL on-disk formats",
   }
 });
 
-test("shape-plan CLI writes the plan and prints the allocation", () => {
-  const planPath = resolve(PIPELINE_DIR, "state", "shape-plans", `${BOOK}.shape-plan.json`);
-  try {
-    const { status, out } = runCli(["shape-plan", BOOK, "--from", "1", "--to", "3"]);
-    assert.equal(status, 0, out.slice(-400));
-    assert.match(out, /ch01:/);
-    assert.match(out, /Definitions:/);
-  } finally {
-    rmSync(planPath, { force: true });
-  }
+test("shape-plan CLI blocks without explicit candidate selector", () => {
+  const { status, out } = runCli(["shape-plan", BOOK, "--from", "1", "--to", "3"]);
+  assert.equal(status, 2, out.slice(-400));
+  assert.match(out, /V25_CANDIDATE_READER_REQUIRED/);
 });
