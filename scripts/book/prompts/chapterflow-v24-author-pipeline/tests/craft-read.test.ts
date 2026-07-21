@@ -19,6 +19,7 @@ import { dirname, resolve } from "path";
 import { test } from "./harness.js";
 import { PIPELINE_DIR, STATE_CHAPTERS, makeGateCleanChapter, makeSourceV2SidecarFixture, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
 import { attestationPath, chapterContentHash } from "../src/critics/qcAttestation.js";
+import { parseBookPatternAuditReport, runBookPatternAudit } from "../src/critics/bookPatternAudit.js";
 import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../src/critics/semantic/publishableBar.js";
 import { computeCraftVerdict, CRAFT_AXIS_WEIGHTS, type CraftAxisId, type CraftAxisScore } from "../src/critics/semantic/craftBar.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
@@ -170,12 +171,18 @@ function writeClonedSourceSidecar(): void {
 function writeRoundRecord(chapters: ChapterV21[]): void {
   const path = roundRecordPath(BOOK, ROUND);
   mkdirSync(dirname(path), { recursive: true });
+  const patternAudit = parseBookPatternAuditReport(runBookPatternAudit({
+    bookId: BOOK,
+    chapters,
+    stateDir: resolve(PIPELINE_DIR, "state"),
+  }), { bookId: BOOK, chapterCount: chapters.length });
   writeFileSync(path, JSON.stringify({
     schemaVersion: "qc-orchestrator-round-v1", bookId: BOOK, roundId: ROUND, createdAt: "2026-06-12T00:00:00.000Z",
     chapters: chapters.map((ch) => ch.number), qcRoundFile: qcRoundPath(BOOK, ROUND),
     preflight: { sourceV2Gate: { passed: true, findings: 0 }, bookGate: { passed: true, findings: 0 }, keyPack: { paths: [] }, sweepPack: {}, barPack: { errors: [] } },
     taskCards: [],
     chapterContentHashes: Object.fromEntries(chapters.map((ch) => [String(ch.number), chapterContentHash(ch)])),
+    patternAudit,
   }, null, 2) + "\n", "utf8");
 }
 
