@@ -1,12 +1,13 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 
 import { createBookContentReader } from "../../src/books/bookContentReader.js";
 import { createBookWriteLock } from "../../src/books/bookLease.js";
 import { createCandidateStore, type CandidateStore } from "../../src/books/candidateStore.js";
 import { createCurrentPointerStore, type CurrentPointerStore } from "../../src/books/currentPointer.js";
 import type { CandidateIdentity, Result } from "../../src/contracts/v4Core.js";
+import { chapterContentHash } from "../../src/critics/qcAttestation.js";
 import { buildExpectedProductionManifestForPackage } from "../../src/productionManifest.js";
 import { createQcService } from "../../src/qc/qcService.js";
 import type { QcService } from "../../src/qc/qcTypes.js";
@@ -25,7 +26,7 @@ import { createReviewServiceFactory } from "../../src/review/reviewService.js";
 import type { ReviewService } from "../../src/review/reviewTypes.js";
 import { buildLegacyReaderPackage } from "../../src/promoteBook.js";
 import type { ChapterV21 } from "../../src/types.js";
-import { runCli } from "../helpers.js";
+import { runCli, writeResearchRunManifestFixture } from "../helpers.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
@@ -224,6 +225,11 @@ function assertError(result: Result<unknown>, code: string): void {
   if (!result.ok) assert.equal(result.error.code, code);
 }
 
+function writeJson(path: string, value: unknown): void {
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
 requiredTest("pure package and manifest parity survives real canonical adapter release", async (context) => {
   const bookId = "package-parity-book";
   const stores = storage(context);
@@ -240,17 +246,61 @@ requiredTest("pure package and manifest parity survives real canonical adapter r
   assert.ok(assembled.ok);
   assert.deepEqual(assembled.value.package, expectedPackage);
 
+  const stateRoot = join(context.roots.tempRoot, "legacy-manifest-state");
+  const runsRoot = join(context.roots.tempRoot, "legacy-manifest-runs");
+  const runDir = join(runsRoot, bookId, "run-package-parity");
+  writeJson(join(stateRoot, "indexes", `${bookId}.json`), [{
+    chapterId: chapter.chapterId,
+    chapterNumber: chapter.number,
+    chapterTitle: chapter.title,
+  }]);
+  writeJson(join(stateRoot, "chapters", `${chapter.chapterId}.v21-native.chapter.json`), chapter);
+  writeJson(join(stateRoot, "qc", `${bookId}-ch01.qc.json`), {
+    schemaVersion: "qc-attest-v1",
+    bookId,
+    chapterNumber: chapter.number,
+    chapterId: chapter.chapterId,
+    verdict: "PUBLISHABLE",
+    contentHash: chapterContentHash(chapter),
+    hashVersion: "v2",
+    reviewer: "codex-qc:canonical-manifest-parity",
+    reviewedAt: REVIEW_AT,
+    roundId: "round-package-parity",
+    roundRole: "confirm",
+  });
+  writeResearchRunManifestFixture({
+    runDir,
+    bookId,
+    chapters: [{ number: chapter.number, title: chapter.title }],
+  });
+  writeJson(join(runDir, "sidecars", "source", "ch01.source.json"), {
+    schemaVersion: "source-v1",
+    bookId,
+    chapterId: chapter.chapterId,
+    chapterNumber: chapter.number,
+    summary: "Disposable legacy source formatter input for successful manifest parity.",
+  });
+
   const manifestInput = {
     pkg: expectedPackage,
-    stateRoot: join(context.roots.tempRoot, "state"),
-    runsRoot: join(context.roots.tempRoot, "runs"),
+    stateRoot,
+    runsRoot,
     env: { ...process.env, CHAPTERFLOW_NO_API_CODEX_QC: "0", CHAPTERFLOW_ALLOW_MODEL_GEN: "0" },
     now: new Date(PROMOTED_AT),
   };
-  assert.deepEqual(
-    buildCanonicalPackageManifest({ package: expectedPackage, ...manifestInput }),
-    buildExpectedProductionManifestForPackage(manifestInput),
-  );
+  const legacyManifest = buildExpectedProductionManifestForPackage(manifestInput);
+  assert.equal(legacyManifest.ok, true, legacyManifest.ok ? "" : legacyManifest.findings.map((finding) => finding.message).join("\n"));
+  const canonicalManifest = buildCanonicalPackageManifest({
+    package: assembled.value.package,
+    stateRoot,
+    runsRoot,
+    env: manifestInput.env,
+    now: manifestInput.now,
+  });
+  assert.equal(canonicalManifest.ok, true, canonicalManifest.ok ? "" : canonicalManifest.findings.map((finding) => finding.message).join("\n"));
+  if (!legacyManifest.ok || !canonicalManifest.ok) throw new Error("manifest parity requires two successful formatter results");
+  const normalize = (manifest: typeof legacyManifest.manifest) => JSON.parse(JSON.stringify(manifest));
+  assert.deepEqual(normalize(canonicalManifest.manifest), normalize(legacyManifest.manifest));
 
   const input = request(bookId, staged.identity);
   const release = await releaseAdapter(input, stores, context.roots.tempRoot);

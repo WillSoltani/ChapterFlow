@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
-import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
 import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, runCli, writeFixtureBook } from "./helpers.js";
-import { promoteBook } from "../src/promoteBook.js";
+import { productionManifestSidecarPath, promoteBook } from "../src/promoteBook.js";
 import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
 import { attestationPath, chapterContentHash, writeAttestation } from "../src/critics/qcAttestation.js";
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
@@ -14,6 +14,29 @@ import { isAdvisoryMajor } from "../src/critics/majorPolicy.js";
 import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const BOOK = "zz-fixture-no-api-promote";
+
+function productionPackagePath(): string {
+  return resolve(PIPELINE_DIR, "book-packages", `${BOOK}.v21.json`);
+}
+
+function promotionTransactionNames(): string[] {
+  const dir = resolve(PIPELINE_DIR, "state", "books", "_transactions");
+  try {
+    return readdirSync(dir).filter((name) => name.startsWith(`${BOOK}.`)).sort();
+  } catch {
+    return [];
+  }
+}
+
+function assertLegacyAuthorityBlocked(report: any): void {
+  const qcIds = (report.qcAttestation?.findings ?? []).map((finding: any) => finding.checkId);
+  const bookIds = (report.bookGate?.findings ?? []).map((finding: any) => finding.catalogId ?? finding.checkId);
+  assert.ok(qcIds.includes("QC0.missing_attestation"), `missing candidate-bound QC blocker: ${qcIds.join(", ")}`);
+  assert.ok(bookIds.includes("BOOK_PATTERN_AUDIT_UNBOUND"), `missing candidate-bound pattern-audit blocker: ${bookIds.join(", ")}`);
+  assert.equal(existsSync(productionPackagePath()), false, "blocked ambient state must not write a package");
+  assert.equal(existsSync(productionManifestSidecarPath(BOOK)), false, "blocked ambient state must not write a manifest sidecar");
+  assert.deepEqual(promotionTransactionNames(), [], "blocked ambient state must not create promotion transactions");
+}
 
 function cleanup(): void {
   for (const f of readdirSync(STATE_CHAPTERS)) {
@@ -31,6 +54,10 @@ function cleanup(): void {
   rmSync(orchestratorRoundDir(BOOK, "r-no-api-artifacts"), { recursive: true, force: true });
   rmSync(waiverPath(BOOK), { force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), { force: true });
+  rmSync(productionPackagePath(), { force: true });
+  rmSync(productionManifestSidecarPath(BOOK), { force: true });
+  const transactions = resolve(PIPELINE_DIR, "state", "books", "_transactions");
+  for (const name of promotionTransactionNames()) rmSync(resolve(transactions, name), { recursive: true, force: true });
   const blocked = resolve(PIPELINE_DIR, "state", "books", "_blocked");
   try {
     for (const f of readdirSync(blocked)) {
@@ -50,21 +77,13 @@ function writeFixtureBookWithIndex(chapters: ReturnType<typeof makeChapter>[]): 
   );
 }
 
-test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS, round-backed attestations, and major dispositions", () => {
+test("no-api promote rejects ambient legacy attestations before deep release gates", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-  // Majors are advisory by default; this test exercises the FULL blocking stack, so opt in to
-  // deterministic-major enforcement (the production-policy path) alongside the no-api mode.
-  const prevEnforce = process.env.CHAPTERFLOW_ENFORCE_MAJORS;
   const oldWarn = console.warn;
   try {
     console.warn = () => {};
     cleanup();
-    const chapters = [1, 2, 3].map((n) => {
-      const ch = makeChapter(BOOK, n);
-      ch.examples[0].scenario =
-        `At the kitchen table, a synthetic team repeats the same venue in chapter ${n}. This intentionally creates a current book-gate major for disposition testing.`;
-      return ch;
-    });
+    const chapters = [1, 2, 3].map((n) => makeChapter(BOOK, n));
     writeFixtureBookWithIndex(chapters);
     for (const ch of chapters) {
       recordAuthorProvenance(ch.chapterId, `author-session-${ch.number}`);
@@ -82,30 +101,20 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
       });
     }
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
-    process.env.CHAPTERFLOW_ENFORCE_MAJORS = "1";
     const result = promoteBook({
       bookId: BOOK,
       title: "Fixture",
       author: "Nobody",
       chapters: chapters.map((ch) => ({ chapterId: ch.chapterId, chapterNumber: ch.number, chapterTitle: ch.title })) as any,
     });
-    assert.equal(result.promoted, false);
-    assert.ok(result.noApiBlockerCount > 0, `expected no-api blockers, got ${result.noApiBlockerCount}`);
+    assert.equal(result.promoted, false, "ambient legacy attestations cannot authorize release");
+    assert.match(result.reason, /QC0\.missing_attestation/);
     const report = JSON.parse(readFileSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), "utf8"));
-    const noApiIds = (report.noApiCodexQc.findings ?? []).map((f: any) => f.checkId);
-    const sourceIntegrityIds = (report.sourceIntegrity?.findings ?? []).map((f: any) => f.checkId);
-    const qcIds = (report.qcAttestation.findings ?? []).map((f: any) => f.checkId);
-    assert.ok(sourceIntegrityIds.some((id: string) => id.startsWith("SV2.")), `source-v2 blocker missing: ${sourceIntegrityIds.join(", ")}`);
-    assert.ok(noApiIds.includes("QC2.manual_keyjudge_missing"), `manual keyjudge blocker missing: ${noApiIds.join(", ")}`);
-    assert.ok(noApiIds.includes("QC3.sweep_missing"), `sweep blocker missing: ${noApiIds.join(", ")}`);
-    assert.ok((report.majorPolicy?.totalBlockers ?? 0) > 0, "unresolved majors must be production-blocking in the explicit major policy");
-    assert.ok(qcIds.includes("QC0.no_api_round_missing"), `round-backed attestation blocker missing: ${qcIds.join(", ")}`);
+    assertLegacyAuthorityBlocked(report);
   } finally {
     console.warn = oldWarn;
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
-    if (prevEnforce === undefined) delete process.env.CHAPTERFLOW_ENFORCE_MAJORS;
-    else process.env.CHAPTERFLOW_ENFORCE_MAJORS = prevEnforce;
     cleanup();
   }
 });
@@ -198,7 +207,7 @@ test("major dispositions read legacy closed statuses but CLI rejects writing leg
   }
 });
 
-test("no-api promote requires fresh bar and confirm artifacts for a PUBLISHABLE attestation", () => {
+test("no-api promote rejects ambient round-backed PUBLISHABLE state without release mutations", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   const oldWarn = console.warn;
   try {
@@ -229,10 +238,10 @@ test("no-api promote requires fresh bar and confirm artifacts for a PUBLISHABLE 
       author: "Nobody",
       chapters: [{ chapterId: chapter.chapterId, chapterNumber: chapter.number, chapterTitle: chapter.title }] as any,
     });
-    assert.equal(result.promoted, false);
+    assert.equal(result.promoted, false, "ambient round and PUBLISHABLE attestation cannot authorize release");
+    assert.match(result.reason, /QC0\.missing_attestation/);
     const report = JSON.parse(readFileSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), "utf8"));
-    const qcIds = (report.qcAttestation.findings ?? []).map((f: any) => f.checkId);
-    assert.ok(qcIds.includes("QC0.bar_read_missing"), `bar artifact blocker missing: ${qcIds.join(", ")}`);
+    assertLegacyAuthorityBlocked(report);
   } finally {
     console.warn = oldWarn;
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
