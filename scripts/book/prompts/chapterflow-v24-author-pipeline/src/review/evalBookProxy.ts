@@ -616,10 +616,12 @@ export async function runEvalBookProxy(
   }
 
   const books: BookVerdict[] = [];
+  let candidateLoadFailed = false;
   for (const id of bookIds) {
     const selected = dependencies.candidates[id];
     if (!selected) {
       log(`[eval-book] ${id}: explicit candidate selection missing`);
+      candidateLoadFailed = true;
       books.push({ id, medianComposite: null, factors: null, gate: null, gateVotes: "0P/0F", churn: "?", validCount: 0, readerCount: 0, chapters: [], readers: [] });
       continue;
     }
@@ -635,6 +637,7 @@ export async function runEvalBookProxy(
       if (pkg.book?.bookId !== id || !Array.isArray(pkg.chapters) || pkg.chapters.length === 0) throw new Error("selected package has no matching chapters");
     } catch (cause) {
       log(`[eval-book] ${id}: ${(cause as Error).message}`);
+      candidateLoadFailed = true;
       books.push({ id, medianComposite: null, factors: null, gate: null, gateVotes: "0P/0F", churn: "?", validCount: 0, readerCount: 0, chapters: [], readers: [] });
       continue;
     }
@@ -696,5 +699,5 @@ export async function runEvalBookProxy(
     };
     console.log(JSON.stringify(payload, null, 1));
   }
-  return 0;
+  return candidateLoadFailed ? 1 : 0;
 }

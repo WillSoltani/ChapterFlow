@@ -299,7 +299,7 @@ requiredTest("all reader routes preserve bytes modes mtimes and entries with liv
     candidates: {},
     evaluate: async (): Promise<string> => { blockedEvaluatorCalls++; throw new Error("forbidden evaluator executed"); },
   };
-  assert.equal(await runEvalBookProxy([BOOK], { readers: "1" }, blockedDependencies), 0);
+  assert.equal(await runEvalBookProxy([BOOK], { readers: "1" }, blockedDependencies), 1);
   assert.equal(await runEvalReaderProxy([BOOK], { chapters: "1" }, {
     ...blockedDependencies,
     persist: () => { blockedPersistCalls++; throw new Error("forbidden persistence executed"); },
