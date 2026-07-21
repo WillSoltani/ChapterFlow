@@ -18,7 +18,7 @@ import { fileURLToPath } from "url";
 import { runShipGate } from "../critics/finalGate.js";
 import { runBookGate } from "../critics/bookGate.js";
 import { evaluateDeterministic } from "../qc/orchestrator/deterministicGate.js";
-import { isAttestationFresh, loadAttestation, type QcVerdict } from "../critics/qcAttestation.js";
+import { attestationPath, isAttestationFresh, loadAttestation, type QcAttestation, type QcVerdict } from "../critics/qcAttestation.js";
 import { auditBook } from "../critics/catalogAudit.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { computeNextTask } from "../next-task.js";
@@ -80,6 +80,14 @@ function safeNextTaskKind(bookId: string): string {
     return computeNextTask(bookId).kind;
   } catch {
     return "research-bibliography";
+  }
+}
+
+function readAttestation(bookId: string, chapterNumber: number): QcAttestation | null {
+  try {
+    return loadAttestation(bookId, chapterNumber, readFileSync(attestationPath(bookId, chapterNumber)));
+  } catch {
+    return null;
   }
 }
 
@@ -145,7 +153,7 @@ export function computeBookStatus(bookId: string): BookStatus {
     let shipGatePass = false, shipBlockers = 1;
     try { const gate = quiet(() => runShipGate(ch)); shipGatePass = gate.blockers.length === 0; shipBlockers = gate.blockers.length; }
     catch { /* leave BLOCKED — a crash means the chapter needs repair, not a halt */ }
-    const att = loadAttestation(bookId, ch.number);
+    const att = readAttestation(bookId, ch.number);
     const fresh = att ? isAttestationFresh(att, ch) : false;
     return {
       number: ch.number,

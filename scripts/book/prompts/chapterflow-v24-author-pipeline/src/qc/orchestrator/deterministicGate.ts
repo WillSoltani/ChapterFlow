@@ -30,6 +30,7 @@
 
 import { checkAuthoringContract } from "../../critics/authoringContract.js";
 import { runBookGate, type BookGateReport } from "../../critics/bookGate.js";
+import type { BookPatternAuditReport } from "../../critics/bookPatternAudit.js";
 import { runShipGate, type GateReport } from "../../critics/finalGate.js";
 import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
 import { runIntraBookChecks } from "../../critics/intraBook.js";
@@ -107,9 +108,10 @@ export function evaluateDeterministic(
   bookId: string,
   chapters: ChapterV21[],
   allChapters: ChapterV21[],
+  patternAudit?: BookPatternAuditReport,
 ): DeterministicReport {
   // Book-level checks computed ONCE (exemplar ownership + cross-chapter patterns).
-  const bookGate = runBookGate(bookId, allChapters);
+  const bookGate = runBookGate(bookId, allChapters, { patternAudit });
   const bookGateStatus: DetStatus = bookGate.passed ? "PASS" : "FAIL";
   const planFindingsAll = checkPlanEnforcement(bookId, allChapters);
 

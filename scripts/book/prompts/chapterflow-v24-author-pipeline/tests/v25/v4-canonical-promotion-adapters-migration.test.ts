@@ -1,18 +1,18 @@
 import assert from "node:assert/strict";
-import { cpSync, existsSync, mkdirSync, readFileSync, symlinkSync, writeFileSync } from "node:fs";
-import { dirname, join, relative } from "node:path";
-import { pathToFileURL } from "node:url";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
 import { createBookContentReader } from "../../src/books/bookContentReader.js";
 import { createBookWriteLock } from "../../src/books/bookLease.js";
 import { createCandidateStore, type CandidateStore } from "../../src/books/candidateStore.js";
 import { createCurrentPointerStore, type CurrentPointerStore } from "../../src/books/currentPointer.js";
 import type { CandidateIdentity, Result } from "../../src/contracts/v4Core.js";
-import { chapterContentHash } from "../../src/critics/qcAttestation.js";
+import { buildExpectedProductionManifestForPackage } from "../../src/productionManifest.js";
 import { createQcService } from "../../src/qc/qcService.js";
 import type { QcService } from "../../src/qc/qcTypes.js";
 import {
   assembleCanonicalPackage,
+  buildCanonicalPackageManifest,
   CanonicalPackageAdapter,
   type CanonicalReleaseRequest,
 } from "../../src/release/canonicalPackageAdapter.js";
@@ -23,14 +23,10 @@ import {
 import { createPromotionService } from "../../src/release/promotionService.js";
 import { createReviewServiceFactory } from "../../src/review/reviewService.js";
 import type { ReviewService } from "../../src/review/reviewTypes.js";
-import type { BookPackageV21, ChapterV21 } from "../../src/types.js";
+import { buildLegacyReaderPackage } from "../../src/promoteBook.js";
+import type { ChapterV21 } from "../../src/types.js";
+import { runCli } from "../helpers.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
-import {
-  makeGateCleanChapter,
-  makeSourceV2SidecarFixture,
-  PIPELINE_DIR,
-  writeResearchRunManifestFixture,
-} from "../helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
 const CREATED_AT = "2026-07-20T12:00:00.000Z";
@@ -71,6 +67,28 @@ function metadata(bookId: string) {
     contentOwner: "chapterflow",
     categories: ["Self-Help"],
     tags: ["fixture"],
+  };
+}
+
+function patternAudit(bookId: string) {
+  return {
+    bookId,
+    chapterCount: 1,
+    passed: true,
+    findings: [],
+    stats: {
+      repeatedQuizExplanationGroups: 0,
+      repeatedSurfaceFrameGroups: 0,
+      repeatedExampleFrameGroups: 0,
+      repeatedConcreteAnchors: 0,
+      templatedBreakdownShellGroups: 0,
+      shortParagraphDuplicateGroups: 0,
+      literalSubstringGroups: 0,
+      quizPositionTemplateDuplicates: 0,
+      missingPlanChapters: [],
+      missingBrief: false,
+      sourceAlignmentWarnings: 0,
+    },
   };
 }
 
@@ -201,250 +219,87 @@ async function releaseAdapter(
   return { canonicalRelease, pointer, authority, packageWrites: () => packageWrites };
 }
 
-function writeJson(path: string, value: unknown): void {
-  mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`);
-}
-
 function assertError(result: Result<unknown>, code: string): void {
   assert.equal(result.ok, false);
   if (!result.ok) assert.equal(result.error.code, code);
 }
 
-async function actualLegacyPromotion(context: TestContext, bookId: string) {
-  const cloneRoot = join(context.roots.tempRoot, "legacy-pipeline");
-  const excluded = new Set([".chapterflow", "book-packages", "node_modules", "state", "tests"]);
-  cpSync(PIPELINE_DIR, cloneRoot, {
-    recursive: true,
-    filter(source) {
-      const rel = relative(PIPELINE_DIR, source);
-      return rel === "" || !excluded.has(rel.split(/[\\/]/)[0]);
-    },
-  });
-  const dependencyDir = [
-    join(PIPELINE_DIR, "node_modules"),
-    join(PIPELINE_DIR, "..", "..", "..", "..", "node_modules"),
-  ].find(existsSync);
-  assert.ok(dependencyDir, "named gate requires installed pipeline or repository dependencies");
-  symlinkSync(dependencyDir, join(cloneRoot, "node_modules"), "dir");
-
-  const chapter = makeGateCleanChapter(bookId, 1);
-  const sixthQuestion = chapter.quiz.questions[5];
-  sixthQuestion.prompt = sixthQuestion.prompt.replace(/\bbook\b/gi, "record");
-  sixthQuestion.choices = sixthQuestion.choices.map((choice) => choice.replace(/\bbook\b/gi, "record"));
-  sixthQuestion.explanation = sixthQuestion.explanation.replace(/\bbook\b/gi, "record");
-  const factAnchor = "ch01.fact.1";
-  const exampleAnchors = [
-    "ch01.ex.northstar-lab",
-    "ch01.ex.harbor-clinic",
-    "ch01.ex.atlas-foods",
-    "ch01.ex.shah-onboarding",
-    "ch01.ex.cedar-invoice",
-    "ch01.ex.riverton-library",
-  ];
-  const scenarios = [
-    "On Monday morning at Northstar Lab's intake desk, Rina sees that the support ticket count no longer matches the May 2026 source note. She pauses the queue, checks the 37 to 12 audit record, and fixes the entry before another team uses it.",
-    "At Harbor Clinic before Friday discharge, Quin finds 18 forms missing from the signed consent packet. He compares the consent list with the source note and keeps the discharge review from moving on a guessed count.",
-    "During Atlas Foods' June 2026 launch review at the warehouse dock, Bria is the operations manager reviewing a cold-chain sensor note that conflicts with the release label. The team delays the shipment by 9 days, traces the failed device, and repairs the batch record before product leaves.",
-    "In Shah's onboarding room at 9:00 a.m., Soren is the training lead reading two handoff sheets that name different owners. She checks the source note, names one owner, and keeps the new hire from following a private version.",
-    "At the Cedar invoice pilot before quarterly close, Ivo catches 6 duplicate invoices in the source packet. He restores the vendor context and assigns the follow-up before the summary is approved.",
-    "Inside Riverton Library's Tuesday archive queue, Yara finds requests split across 5 inboxes. The group chooses the source queue, links the evidence, and blocks the scattered histories from becoming policy.",
-  ];
-  chapter.counterintuition = "Unit5 restraint works because the original custody record has not gone stale.";
-  chapter.breakdown.fastRead =
-    "Northstar Lab saw ticket reopenings fall from 37 to 12 after a May 2026 intake checkpoint. The lesson is simple: pause early, compare the record, and name one owner. Harbor Clinic found 18 missing consent forms before Friday discharge because Quin checked the packet. Atlas Foods delayed the June launch by 9 days when Bria found the bad cold-chain sensor. A small check keeps the wrong value from spreading.";
-  chapter.breakdown.deepRead += " Early verification keeps the rhythm problem small enough for one owner to repair.";
-  chapter.breakdown.fullRead += " A visible owner turns scattered sonata signals into one decision trail.";
-  chapter.memorableLines = [
-    { text: "Northstar Lab saw ticket reopenings fall from 37 to 12 after a May 2026 intake checkpoint.", location: "fastRead", why: "It names the source-backed checkpoint." },
-    { text: "Early verification keeps the rhythm problem small enough for one owner to repair.", location: "deepRead", why: "It explains why early repair is cheaper." },
-    { text: "A visible owner turns scattered sonata signals into one decision trail.", location: "fullRead", why: "It ties ownership to evidence." },
-  ];
-  const effectiveAnchors: Record<string, string[]> = {
-    hook: [factAnchor],
-    counterintuition: [factAnchor],
-    "breakdown.fastRead": [factAnchor],
-    "breakdown.deepRead": [factAnchor],
-    "breakdown.fullRead": [factAnchor],
-    keyTakeaway: [factAnchor],
-    tryThisNow: [factAnchor],
-    "implementationPlan.title": [factAnchor],
-    "implementationPlan.coreSkill": [factAnchor],
-    "implementationPlan.twentyFourHourChallenge": [factAnchor],
-    "implementationPlan.weeklyPractice": [factAnchor],
-  };
-  chapter.examples.forEach((example, index) => {
-    example.sourceAnchorIds = [exampleAnchors[index]];
-    example.scenario = scenarios[index];
-    (example as ChapterV21["examples"][number] & { planSpec?: Record<string, unknown> }).planSpec = {
-      ...((example as ChapterV21["examples"][number] & { planSpec?: Record<string, unknown> }).planSpec ?? {}),
-      venue: `Fixture venue ${index + 1}`,
-      exemplar: "",
-    };
-    effectiveAnchors[`examples[${index}]`] = [exampleAnchors[index]];
-  });
-  chapter.quiz.questions.forEach((_, index) => { effectiveAnchors[`quiz.questions[${index}]`] = [factAnchor]; });
-  chapter.reviewCards.forEach((card, index) => {
-    card.sourceAnchorIds = [factAnchor];
-    effectiveAnchors[`reviewCards[${index}]`] = [factAnchor];
-  });
-  chapter.implementationPlan.ifThenPlans.forEach((plan, index) => {
-    plan.sourceAnchorIds = [factAnchor];
-    effectiveAnchors[`implementationPlan.ifThenPlans[${index}]`] = [factAnchor];
-  });
-  chapter.memorableLines?.forEach((line, index) => {
-    line.sourceAnchorIds = [factAnchor];
-    effectiveAnchors[`memorableLines[${index}]`] = [factAnchor];
-  });
-  chapter.authoring = {
-    schemaVersion: "chapter-authoring-v1",
-    sourceAnchors: {
-      schemaVersion: "chapter-source-anchor-map-v1",
-      sourceHash: "sha256:v4-real-legacy-parity",
-      observedAnchorIds: [factAnchor, ...exampleAnchors],
-      effectiveAnchors,
-    },
-  };
-  writeJson(join(cloneRoot, "state", "indexes", `${bookId}.json`), [{
-    chapterId: chapter.chapterId,
-    chapterNumber: chapter.number,
-    chapterTitle: chapter.title,
-  }]);
-  writeJson(join(cloneRoot, "state", "chapters", `${chapter.chapterId}.v21-native.chapter.json`), chapter);
-  writeJson(join(cloneRoot, "state", "briefs", `${bookId}.manual-brief.json`), {
-    schemaVersion: "manual-book-brief-v1",
-    bookId,
-    title: `Title ${bookId}`,
-    author: "Test Author",
-  });
-  writeJson(join(cloneRoot, "state", "plans", `${chapter.chapterId}.manual-plan.json`), {
-    schemaVersion: "manual-chapter-plan-v1",
-    bookId,
-    chapterId: chapter.chapterId,
-    chapterNumber: 1,
-    title: chapter.title,
-    coreMove: "Use the fixture signal.",
-  });
-  const runDir = join(cloneRoot, ".chapterflow", "runs", bookId, "run-a");
-  writeResearchRunManifestFixture({ runDir, bookId, chapters: [{ number: 1, title: chapter.title }] });
-  const sidecar = makeSourceV2SidecarFixture({ chapterNumber: 1, chapterTitle: chapter.title });
-  sidecar.namedExamples.push(
-    {
-      id: exampleAnchors[3], label: "Shah onboarding owner", summary: "Mira Shah named one owner before onboarding handoff.",
-      teachesWhat: "One owner keeps records coherent.", hardSpecifics: ["Mira Shah", "one owner", "onboarding"], realWorld: false,
-    },
-    {
-      id: exampleAnchors[4], label: "Cedar invoice pilot", summary: "Cedar caught 6 duplicate invoices before close.",
-      teachesWhat: "Early checks preserve vendor context.", hardSpecifics: ["Cedar", "6 invoices", "quarterly close"], realWorld: false,
-    },
-    {
-      id: exampleAnchors[5], label: "Riverton archive queue", summary: "Riverton moved requests from 5 inboxes into one queue.",
-      teachesWhat: "One queue preserves the audit path.", hardSpecifics: ["Riverton", "5 inboxes", "Tuesday queue"], realWorld: false,
-    },
-  );
-  writeJson(join(runDir, "sidecars", "source", "ch01.source.json"), sidecar);
-  writeJson(join(cloneRoot, "state", "qc", `${bookId}-ch01.qc.json`), {
-    schemaVersion: "qc-attest-v1",
-    bookId,
-    chapterNumber: 1,
-    chapterId: chapter.chapterId,
-    verdict: "PUBLISHABLE",
-    contentHash: chapterContentHash(chapter),
-    hashVersion: "v2",
-    reviewer: "codex-qc:v4-real-legacy-parity",
-    reviewedAt: QC_AT,
-    roundId: "qc-legacy",
-    roundRole: "attest",
-  });
-
-  const prior = {
-    noApi: process.env.CHAPTERFLOW_NO_API_CODEX_QC,
-    source: process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY,
-    key: process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE,
-    majors: process.env.CHAPTERFLOW_ENFORCE_MAJORS,
-  };
-  process.env.CHAPTERFLOW_NO_API_CODEX_QC = "0";
-  process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY = "0";
-  process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE = "0";
-  process.env.CHAPTERFLOW_ENFORCE_MAJORS = "0";
-  try {
-    // Legacy promote is synchronous and offline: model judge runs out-of-band and
-    // this route only reads its records. NO_API=0 reproduces legacy gate mode;
-    // sanitized provider credentials plus ALLOW_MODEL_GEN=0 forbid live fallback.
-    assert.equal(process.env.CHAPTERFLOW_ALLOW_MODEL_GEN, "0");
-    for (const key of [
-      "OPENAI_API_KEY", "CODEX_API_KEY", "AZURE_OPENAI_API_KEY", "ANTHROPIC_API_KEY",
-    ]) assert.equal(process.env[key], undefined, `${key} must stay sanitized`);
-    const gateModule = await import(pathToFileURL(join(cloneRoot, "src", "critics", "finalGate.ts")).href) as typeof import("../../src/critics/finalGate.js");
-    const shipGate = gateModule.runShipGate(chapter);
-    assert.deepEqual(shipGate.blockers, [], JSON.stringify(shipGate.blockers, null, 2));
-    const promoteModule = await import(pathToFileURL(join(cloneRoot, "src", "promoteBook.ts")).href) as typeof import("../../src/promoteBook.js");
-    const result = promoteModule.promoteBook({
-      bookId,
-      title: `Title ${bookId}`,
-      author: "Test Author",
-      chapters: [{ chapterId: chapter.chapterId, chapterNumber: 1, chapterTitle: chapter.title }],
-      categories: ["Self-Help"],
-      tags: ["fixture"],
-    }, { now: () => new Date(PROMOTED_AT), transactionId: "legacy-parity" });
-    assert.equal(result.promoted, true, result.reason);
-    assert.ok(result.packagePath);
-    const bookPackage = JSON.parse(readFileSync(result.packagePath, "utf8")) as BookPackageV21;
-    const sidecarPath = join(cloneRoot, "state", "books", `${bookId}.production-manifest.json`);
-    const sidecar = JSON.parse(readFileSync(sidecarPath, "utf8")) as {
-      manifest: { schemaVersion: string; metadata: { createdAt: string; generator: string; runId: string } };
-    };
-    return { cloneRoot, chapter, packagePath: result.packagePath, bookPackage, manifest: sidecar.manifest };
-  } finally {
-    const restore = (name: string, value: string | undefined): void => {
-      if (value === undefined) delete process.env[name];
-      else process.env[name] = value;
-    };
-    restore("CHAPTERFLOW_NO_API_CODEX_QC", prior.noApi);
-    restore("CHAPTERFLOW_REQUIRE_SOURCE_VERIFY", prior.source);
-    restore("CHAPTERFLOW_REQUIRE_KEYJUDGE", prior.key);
-    restore("CHAPTERFLOW_ENFORCE_MAJORS", prior.majors);
-  }
-}
-
-requiredTest("actual disposable legacy promotion and V4 candidate package plus manifest match", async (context) => {
+requiredTest("pure package and manifest parity survives real canonical adapter release", async (context) => {
   const bookId = "package-parity-book";
-  const legacy = await actualLegacyPromotion(context, bookId);
   const stores = storage(context);
-  const staged = await stage(stores.candidates, bookId, "candidate-1", legacy.chapter);
+  const chapter = fixtureChapter(bookId, 1, "package-parity");
+  const staged = await stage(stores.candidates, bookId, "candidate-1", chapter);
+  const packageMetadata = metadata(bookId);
+  const expectedPackage = buildLegacyReaderPackage({ bookId, ...packageMetadata, chapters: [chapter] });
   const assembled = await assembleCanonicalPackage({
     bookId,
     candidate: staged.identity,
-    metadata: {
-      title: legacy.bookPackage.book.title,
-      author: legacy.bookPackage.book.author,
-      packageId: legacy.bookPackage.packageId,
-      createdAt: legacy.bookPackage.createdAt,
-      contentOwner: legacy.bookPackage.contentOwner,
-      categories: legacy.bookPackage.book.categories,
-      tags: legacy.bookPackage.book.tags,
-    },
+    metadata: packageMetadata,
     contentReader: stores.reader,
   });
   assert.ok(assembled.ok);
-  assert.deepEqual(assembled.value.package, legacy.bookPackage);
+  assert.deepEqual(assembled.value.package, expectedPackage);
 
-  const productionModule = await import(pathToFileURL(join(legacy.cloneRoot, "src", "productionManifest.ts")).href) as typeof import("../../src/productionManifest.js");
-  const v4Manifest = productionModule.buildExpectedProductionManifestForPackage({
-    pkg: assembled.value.package,
-    stateRoot: join(legacy.cloneRoot, "state"),
-    runsRoot: join(legacy.cloneRoot, ".chapterflow", "runs"),
-    createdAt: legacy.manifest.metadata.createdAt,
-    generator: legacy.manifest.metadata.generator,
-    runId: legacy.manifest.metadata.runId,
-    packagePath: legacy.packagePath,
-    manifestVersion: legacy.manifest.schemaVersion.endsWith("v2") ? "v2" : "v1",
+  const manifestInput = {
+    pkg: expectedPackage,
+    stateRoot: join(context.roots.tempRoot, "state"),
+    runsRoot: join(context.roots.tempRoot, "runs"),
     env: { ...process.env, CHAPTERFLOW_NO_API_CODEX_QC: "0", CHAPTERFLOW_ALLOW_MODEL_GEN: "0" },
     now: new Date(PROMOTED_AT),
+  };
+  assert.deepEqual(
+    buildCanonicalPackageManifest({ package: expectedPackage, ...manifestInput }),
+    buildExpectedProductionManifestForPackage(manifestInput),
+  );
+
+  const input = request(bookId, staged.identity);
+  const release = await releaseAdapter(input, stores, context.roots.tempRoot);
+  const released = await release.canonicalRelease.release(input);
+  assert.ok(released.ok);
+  assert.equal(released.value.bookRevision, 1);
+  assert.equal(released.value.readback, "VERIFIED");
+  assert.deepEqual(released.value.package, expectedPackage);
+  assert.deepEqual(JSON.parse(readFileSync(join(context.roots.tempRoot, `${bookId}.package.json`), "utf8")), expectedPackage);
+  const current = await stores.pointer.read(bookId);
+  assert.ok(current.ok && current.value);
+  assert.equal(current.value.candidateId, staged.identity.candidateId);
+});
+
+requiredTest("candidate-only CLI release does not require ambient canonical chapter index", async (context) => {
+  const bookId = "candidate-only-cli-release";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "candidate-only");
+  const files = [
+    { kind: "CHAPTER" as const, logicalPath: "chapters/ch01.json", mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify(chapter)}\n`) },
+    { kind: "SIDECAR" as const, logicalPath: "critics/book-pattern-audit.json", mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify(patternAudit(bookId))}\n`) },
+  ];
+  const staged = await stores.candidates.stage({
+    bookId,
+    candidateId: "candidate-1",
+    createdByRunId: "candidate-only-cli",
+    expectedInventory: files.map(({ bytes: _bytes, ...file }) => file),
+    files,
+    createdAt: CREATED_AT,
   });
-  assert.equal(v4Manifest.ok, true, v4Manifest.ok ? "" : v4Manifest.findings.map((finding) => finding.message).join("; "));
-  assert.ok(v4Manifest.ok);
-  assert.deepEqual(v4Manifest.manifest, legacy.manifest);
+  assert.ok(staged.ok);
+  const result = runCli([
+    "promote-book", bookId,
+    "--title", "Candidate only",
+    "--author", "Fixture",
+    "--categories", "Self-Help",
+    "--tags", "fixture",
+    "--v25-root", context.roots.base,
+    "--attempt-root", context.roots.attemptsRoot,
+    "--candidate-id", "candidate-1",
+    "--manifest-digest", staged.value.manifestDigest,
+    "--source-git-sha", "candidate-only-sha",
+    "--review-id", "missing-review",
+    "--qc-round-id", "missing-qc",
+    "--expected-book-revision", "0",
+  ]);
+  assert.equal(result.status, 1, result.out);
+  assert.match(result.out, /REVIEW_NOT_FOUND/);
+  assert.doesNotMatch(result.out, /chapter index|state\/indexes|ENOENT/i);
 });
 
 function sharedLegacyAuthority(initialActiveUses: number, remainEnabledAfterBegin = false) {
