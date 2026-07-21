@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdir } from "node:fs/promises";
 import { isAbsolute, relative, resolve } from "node:path";
 
-import { sourcePacketPath, writeJsonFile } from "../artifacts/artifactStore.js";
+import { bookDesignPath, sourcePacketPath, writeJsonFile } from "../artifacts/artifactStore.js";
 import { SECTION_KINDS, type ChapterBlueprintV1, type SectionKind, type SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import type { CandidateInputFile, CandidateSnapshot, CandidateStore, BookContentReader } from "../books/candidateTypes.js";
 import { COMPILER_SHADOW_PROFILE, LegacyCompilerAdapter } from "../books/legacyCompilerAdapter.js";
@@ -167,6 +167,7 @@ export class CompilerApplicationPort {
     const design = deriveBookDesign(request.bookId, { packets, chapters: chapters.length });
     for (const stateRoot of [legacyRoot, shadowRoot]) {
       writeJsonFile(resolve(stateRoot, "indexes", `${request.bookId}.json`), chapters);
+      writeJsonFile(bookDesignPath(request.bookId, { stateRoot }), design);
       for (const packet of packets) writeJsonFile(sourcePacketPath(request.bookId, packet.chapterNumber, { stateRoot }), packet);
     }
 
