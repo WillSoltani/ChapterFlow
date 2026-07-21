@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, rmSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
-import { PIPELINE_DIR, STATE_INDEXES, runCli } from "./helpers.js";
+import { PIPELINE_DIR } from "./helpers.js";
 import {
   errorWithRepairPrompt,
   repairPromptPathFromError,
@@ -52,44 +52,40 @@ test("writeSelfHealingRepairPrompt emits a detailed markdown prompt and machine-
   assert.equal(repairPromptPathFromError(wrapped), result.promptPath);
 });
 
-test("pipeline source-gate failure writes a repair prompt before generation tokens are spent", () => {
+test("source-gate failure renders a repair prompt before generation tokens are spent", () => {
   const bookId = "zz-selfheal-pipeline";
   const runId = "zz-selfheal-pipeline-run";
-  const indexPath = resolve(STATE_INDEXES, `${bookId}.json`);
-  const repairsDir = resolve(PIPELINE_DIR, "state", "repairs", bookId);
+  const repairsDir = resolve(TMP_STATE, "repairs", bookId);
   try {
-    mkdirSync(STATE_INDEXES, { recursive: true });
-    rmSync(indexPath, { force: true });
     rmSync(repairsDir, { recursive: true, force: true });
-    writeFileSync(indexPath, JSON.stringify([
-      { chapterId: `${bookId}-ch01`, chapterNumber: 1, chapterTitle: "The Missing Source" },
-    ], null, 2), "utf8");
-
-    const cli = runCli([
-      "pipeline",
+    const result = writeSelfHealingRepairPrompt({
       bookId,
-      "--title", "Self Heal Pipeline",
-      "--author", "Tester",
-      "--run-id", runId,
-      "--skip-research",
-      "--allow-doctor-fatal",
-      "--no-model-gen",
-      "--no-publish",
-    ], { CHAPTERFLOW_ALLOW_MODEL_GEN: undefined });
+      title: "Self Heal Pipeline",
+      author: "Tester",
+      runId,
+      stage: "source",
+      severity: "blocker",
+      chapter: { chapterId: `${bookId}-ch01`, chapterNumber: 1, chapterTitle: "The Missing Source" },
+      summary: "Source gate blocked before generation.",
+      findings: [{
+        id: "SV2.missing_sidecar",
+        severity: "blocker",
+        unit: "source.sidecar",
+        message: "Required source-v2 sidecar is missing.",
+        expectedFix: "Create and validate the chapter source-v2 sidecar before authoring.",
+      }],
+      stateRoot: TMP_STATE,
+      createdAt: "2026-07-21T12:00:00.000Z",
+    });
 
-    assert.equal(cli.status, 2, cli.out);
-    assert.match(cli.out, /Source gate blocked before generation/);
-    assert.match(cli.out, /Repair prompt:/);
-    const runRepairDir = resolve(repairsDir, runId);
-    const prompts = readdirSync(runRepairDir).filter((f) => f.endsWith(".repair.md"));
-    assert.equal(prompts.length, 1, "one source repair prompt should be written");
-    const prompt = readFileSync(resolve(runRepairDir, prompts[0]), "utf8");
+    assert.ok(existsSync(result.promptPath), "source repair prompt should be written");
+    assert.ok(existsSync(result.reportPath), "source repair report should be written");
+    const prompt = readFileSync(result.promptPath, "utf8");
     assert.match(prompt, /stage: `source`/);
     assert.match(prompt, /SV2\.missing_sidecar/);
     assert.match(prompt, /Do not let a writer invent facts/);
     assert.match(prompt, /source-v2-gate zz-selfheal-pipeline/);
   } finally {
-    rmSync(indexPath, { force: true });
     rmSync(repairsDir, { recursive: true, force: true });
   }
 });

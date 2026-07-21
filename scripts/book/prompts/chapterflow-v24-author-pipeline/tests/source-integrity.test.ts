@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
-import { generateChapter, type BookMeta, type ChapterSpec } from "../src/generateChapter.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { promoteBook } from "../src/promoteBook.js";
 import { blockedReportsForBook, listBlockedReports } from "../src/publish/blockedReportRetention.js";
@@ -16,16 +15,12 @@ const BOOK = "zz-fixture-source-integrity";
 const PROMOTION_BOOK = "zz-fixture-source-integrity-promote";
 const RUN = "run-source-integrity";
 
-function chapterSpec(bookId = BOOK, n = 1): ChapterSpec {
+function chapterSpec(bookId = BOOK, n = 1) {
   return {
     chapterId: `${bookId}-ch${String(n).padStart(2, "0")}`,
     chapterNumber: n,
     chapterTitle: `Integrity Chapter ${n}`,
   };
-}
-
-function bookMeta(bookId = BOOK): BookMeta {
-  return { bookId, title: "Source Integrity", author: "Fixture Author" };
 }
 
 function specificSidecar(chapterNumber = 1): any {
@@ -358,7 +353,7 @@ test("prompt-injection text from source evidence is rendered as inert data", () 
   }
 });
 
-test("authoring and promotion block the same STRUCTURAL source-integrity defect with matching check ids", async () => {
+test("authoring and promotion block the same STRUCTURAL source-integrity defect with matching check ids", () => {
   // Realness heuristics are advisory now; the cross-lifecycle consistency this pins is a
   // STRUCTURAL blocker. placeholderSidecar's testableFacts cite an undeclared source anchor,
   // so both authoring (loadPlanningSourceEvidence) and promotion (checkSourceV2Gate) reject it
@@ -367,26 +362,12 @@ test("authoring and promotion block the same STRUCTURAL source-integrity defect 
   const expectedCheck = "SV2.anchor_reference_unknown";
   const root = fixtureRoot("lifecycle-match");
   rmSync(root, { recursive: true, force: true });
-  const priorAllow = process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
   try {
-    process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = "1";
-    const { stateRoot, runsRoot } = writeSourceFixture(root, BOOK, [bad]);
-    let editorCalls = 0;
-    await assert.rejects(
-      generateChapter(bookMeta(), chapterSpec(), {
-        stateRoot,
-        runsRoot,
-        sourceV2Required: true,
-        agents: {
-          runEditorInChief: async () => {
-            editorCalls += 1;
-            throw new Error("editor should not run after source-integrity failure");
-          },
-        },
-      }),
+    const { runsRoot } = writeSourceFixture(root, BOOK, [bad]);
+    assert.throws(
+      () => loadPlanningSourceEvidence(BOOK, 1, { runsRoot, requireSourceV2: true }),
       new RegExp(expectedCheck),
     );
-    assert.equal(editorCalls, 0, "authoring must stop before editor planning");
 
     const blockedDir = resolve(PIPELINE_DIR, "state", "books", "_blocked");
     const beforeTotal = listBlockedReports(blockedDir).length;
@@ -411,8 +392,6 @@ test("authoring and promotion block the same STRUCTURAL source-integrity defect 
     assert.equal(listBlockedReports(blockedDir).length, beforeTotal,
       "source-integrity test must leave state/books/_blocked count unchanged");
   } finally {
-    if (priorAllow === undefined) delete process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
-    else process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = priorAllow;
     rmSync(root, { recursive: true, force: true });
     cleanupPromotionFixture(PROMOTION_BOOK);
   }

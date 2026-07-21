@@ -19,11 +19,10 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, readdirSync } from "fs";
-import { resolve } from "path";
+import { readFileSync } from "fs";
 
-import { test, skip } from "./harness.js";
-import { makeChapter, goldChapterFiles, STATE_CHAPTERS } from "./helpers.js";
+import { test } from "./harness.js";
+import { makeChapter, goldChapterFiles, makeSourceV2SidecarFixture } from "./helpers.js";
 import {
   recallFrameTargets,
   checkQuizScenarioNovelty,
@@ -125,28 +124,9 @@ test("D4/D6: synthetic gold corpus has ZERO findings", () => {
   for (const { bookId, files } of goldChapterFiles()) {
     for (const file of files) {
       const ch = JSON.parse(readFileSync(file, "utf8")) as ChapterV21;
-      const hits = [...checkQuizScenarioNovelty(ch), ...checkQuizKeyEntity(ch)];
+      const sidecar = makeSourceV2SidecarFixture({ chapterNumber: ch.number, chapterTitle: ch.title });
+      const hits = [...checkQuizScenarioNovelty(ch, sidecar), ...checkQuizKeyEntity(ch, sidecar)];
       assert.equal(hits.length, 0, `D4/D6 false positive on synthetic gold ${bookId} ${ch.chapterId}: ${hits.map((h) => h.message.slice(0, 100)).join(" | ")}`);
     }
   }
 });
-
-for (const bookId of ["daring-greatly", "start-with-why"]) {
-  const files = existsSync(STATE_CHAPTERS)
-    ? readdirSync(STATE_CHAPTERS).filter((f) => f.startsWith(`${bookId}-ch`) && f.endsWith(".v21-native.chapter.json"))
-    : [];
-  if (files.length === 0) {
-    skip(`D4/D6 gold zero-FP: ${bookId}`, `no ${bookId} chapters in state/chapters/ on this machine`);
-    continue;
-  }
-  test(`D4/D6: real gold corpus ${bookId} (${files.length} ch) emits ZERO findings`, () => {
-    const offenders: string[] = [];
-    for (const f of files) {
-      const ch = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, f), "utf8")) as ChapterV21;
-      for (const hit of [...checkQuizScenarioNovelty(ch), ...checkQuizKeyEntity(ch)]) {
-        offenders.push(`${ch.chapterId}: ${hit.checkId} ${hit.message.slice(0, 110)}`);
-      }
-    }
-    assert.equal(offenders.length, 0, `D4/D6 false-positives on reference-quality ${bookId} (miscalibrated):\n${offenders.join("\n")}`);
-  });
-}

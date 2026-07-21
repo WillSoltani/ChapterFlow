@@ -137,9 +137,9 @@ test("cli: gate-chapter loads siblings from disk and blocks on AS7 card reuse en
 });
 
 if (!gold) {
-  skip("cli: book-gate exits 0 on a synthetic gold book", "synthetic gold corpus did not generate files");
+  skip("cli: book-gate fails closed when synthetic gold is unbound", "synthetic gold corpus did not generate files");
 } else {
-  test("cli: book-gate exits 0 on a synthetic gold book with temp manual artifacts", () => {
+  test("cli: book-gate fails closed when synthetic gold lacks explicit candidate-bound pattern audit", () => {
     const freshGold = goldChapterFiles().find((g) => g.bookId === CLI_BOOK);
     assert.ok(freshGold, "synthetic CLI gold corpus should regenerate after tmp cleanup");
     const stateBrief = resolve(PIPELINE_DIR, "state", "briefs", `${CLI_BOOK}.manual-brief.json`);
@@ -169,7 +169,9 @@ if (!gold) {
       }, null, 2) + "\n", "utf8");
 
       const { status, out } = runCli(["book-gate", CLI_BOOK]);
-      assert.equal(status, 0, `book-gate should pass the synthetic gold corpus; output tail:\n${out.slice(-1500)}`);
+      assert.equal(status, 1, `unbound book-gate should block; output tail:\n${out.slice(-1500)}`);
+      assert.match(out, /Book gate: BLOCK/, "unbound book-gate must not report PASS");
+      assert.match(out, /Pattern audit: BLOCK/, "missing candidate-bound pattern audit must fail closed");
     } finally {
       rmSync(stateChapter, { force: true });
       rmSync(stateIndex, { force: true });
