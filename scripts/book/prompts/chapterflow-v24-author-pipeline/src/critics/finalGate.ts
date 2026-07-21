@@ -10,12 +10,9 @@
  * catalog must have a corresponding check here.
  */
 
-import { readFileSync } from "fs";
-import { resolve } from "path";
-
 import { ChapterV21, CriticFinding, ExampleV21 } from "../types.js";
-import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
-import { chapterBriefPath } from "../artifacts/artifactStore.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
+import { parseChapterId } from "../lib/chapterPaths.js";
 import type { SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
 import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNoMetaReference } from "./register.js";
 import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkCastSize, checkExampleQuizNameConsistency, checkNameCommonality, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
@@ -45,7 +42,7 @@ import {
   checkChapterJammedNouns,
 } from "./antiSalting.js";
 import { checkBreakdownCrossTierVerbatim, checkCrossTierContentOverlap } from "./intraBookFieldSimilarity.js";
-import { checkExampleSourceGrounding, checkChapterProvenance, loadChapterSidecar } from "./sourceGrounding.js";
+import { checkExampleSourceGrounding, checkChapterProvenance } from "./sourceGrounding.js";
 import { checkTestimonialEvidence, checkQuizKeyTestimonial } from "./evidenceIntegrity.js";
 import { checkSceneConcreteness } from "./sceneConcreteness.js";
 import { checkExampleCraft } from "./exampleCraft.js";
@@ -85,6 +82,7 @@ import {
   checkReaderPatternLabelHygiene,
 } from "./experiencePlan.js";
 import { RuntimeSchemaFinding, validateChapterV21 } from "../runtimeSchemas.js";
+import { openCriticCandidateEntries } from "./schema.js";
 
 export type GateSeverity = "blocker" | "major" | "minor";
 
@@ -118,12 +116,12 @@ export type GateReport = {
 // (the two lists used to drift independently). Keep this and the bank reconciled.
 export const C7_BANNED_NAMES = ["Priya","Omar","Maya","Marcus","Elena","Lena","Victor","Theo","Jonah","Mateo","Tessa","Owen","Mira","Malik","Nadia","Felix","Caleb","Talia","Elise","Naomi"];
 
-function allocatedNamesForChapter(chapter: ChapterV21): Set<string> {
+function allocatedNamesForChapter(chapter: ChapterV21, namePlan?: unknown): Set<string> {
   const parsed = parseChapterId(chapter.chapterId);
   if (!parsed) return new Set();
   try {
-    const raw = readFileSync(resolve(CANONICAL_STATE, "name-plans", `${parsed.bookId}.name-plan.json`), "utf8");
-    const plan = JSON.parse(raw) as { allocation?: Record<string, string[]>; diagnostics?: { alreadyAuthored?: number[] } };
+    const plan = namePlan as { allocation?: Record<string, string[]>; diagnostics?: { alreadyAuthored?: number[] } };
+    if (!plan || typeof plan !== "object") return new Set();
     // ECHO-LOOPHOLE GUARD (2026-06-11 review): a re-planned ALREADY-AUTHORED
     // chapter carries its on-disk names verbatim, so honoring its allocation
     // would whitelist any banned-pool name the chapter used illegitimately —
@@ -688,12 +686,11 @@ function checkTierLengthFloors(chapter: ChapterV21): CriticFinding[] {
  *  every fail-closed fallback below. Docs-contract source-scans this name. */
 export const A16_EXAMPLES_DEFAULT_FLOOR = 6;
 
-export function dealtExampleFloor(chapter: ChapterV21, stateRoot?: string): number {
+export function dealtExampleFloor(chapter: ChapterV21, chapterBrief?: unknown): number {
   try {
     const parsed = parseChapterId(chapter.chapterId ?? "");
     if (!parsed) return A16_EXAMPLES_DEFAULT_FLOOR;
-    const raw = readFileSync(chapterBriefPath(parsed.bookId, parsed.num, stateRoot ? { stateRoot } : {}), "utf8");
-    const brief = JSON.parse(raw) as { rotationSchemaVersion?: unknown; exampleCount?: unknown };
+    const brief = chapterBrief as { rotationSchemaVersion?: unknown; exampleCount?: unknown };
     const count = brief?.exampleCount;
     if (typeof brief?.rotationSchemaVersion === "string" && brief.rotationSchemaVersion.length > 0 &&
         typeof count === "number" && Number.isInteger(count) && count >= 4 && count <= 6) {
@@ -703,7 +700,7 @@ export function dealtExampleFloor(chapter: ChapterV21, stateRoot?: string): numb
   return A16_EXAMPLES_DEFAULT_FLOOR;
 }
 
-function checkSupportCountFloors(chapter: ChapterV21, explicitExampleFloor?: number): CriticFinding[] {
+function checkSupportCountFloors(chapter: ChapterV21, explicitExampleFloor?: number, chapterBrief?: unknown): CriticFinding[] {
   const findings: CriticFinding[] = [];
   const quizCount = chapter.quiz?.questions?.length ?? 0;
   const cardCount = chapter.reviewCards?.length ?? 0;
@@ -725,7 +722,7 @@ function checkSupportCountFloors(chapter: ChapterV21, explicitExampleFloor?: num
       `${cardCount}/4`,
     ));
   }
-  const exampleFloor = explicitExampleFloor ?? dealtExampleFloor(chapter);
+  const exampleFloor = explicitExampleFloor ?? dealtExampleFloor(chapter, chapterBrief);
   if (exampleCount < exampleFloor) {
     findings.push(finding(
       "A16.examples_count_floor" as any,
@@ -789,8 +786,12 @@ export type ShipGateOptions = {
   isolationMode?: "normal" | "experiment";
   /** Explicit empty array disables canonical name-plan licensing. */
   allocatedNames?: readonly string[];
+  /** Frozen candidate name-plan sidecar. */
+  namePlan?: unknown;
   /** Frozen dealt floor from the experiment-local chapter brief. */
   exampleFloor?: number;
+  /** Frozen candidate chapter brief sidecar. */
+  chapterBrief?: unknown;
   /** Frozen source inputs used by every source-bound critic. */
   sourceSidecar?: unknown;
   sourceUsePlan?: SourceUsePlanV1 | null;
@@ -811,7 +812,7 @@ export function runShipGate(chapter: ChapterV21, options: ShipGateOptions = {}):
   const findings: GateFinding[] = [];
   const allocatedNames = options.allocatedNames !== undefined
     ? new Set(options.allocatedNames)
-    : allocatedNamesForChapter(chapter);
+    : allocatedNamesForChapter(chapter, options.namePlan);
 
   const push = (catalogId: string, unit: string, message: string, evidence?: string) => {
     const severity = SEVERITY_FROM_CATALOG[catalogId];
@@ -959,7 +960,7 @@ export function runShipGate(chapter: ChapterV21, options: ShipGateOptions = {}):
   // missing quiz questions, review cards, or examples. 48 Laws shipped with
   // 46/48 chapters at 3 quiz questions instead of 9 because the writer's
   // retry-loop check fires upstream of any ship-gate verification.
-  for (const f of checkSupportCountFloors(chapter, options.exampleFloor)) {
+  for (const f of checkSupportCountFloors(chapter, options.exampleFloor, options.chapterBrief)) {
     push(f.checkId as string, `support_counts`, f.message, f.evidence);
   }
   // E7 — plain language (simple vocabulary + short sentences) across EVERY
@@ -1011,9 +1012,7 @@ export function runShipGate(chapter: ChapterV21, options: ShipGateOptions = {}):
     // discusses the examples and would launder a stamped location ("Princeton")
     // into the exemption. A genuinely central concept/entity ("Golden Circle")
     // lives in the core teaching and is correctly spared.
-    const sc: any = options.sourceSidecar !== undefined
-      ? options.sourceSidecar
-      : loadChapterSidecar(chapter.chapterId) ?? {};
+    const sc: any = options.sourceSidecar ?? {};
     const coreTeachingText = [
       chapter.keyTakeaway,
       chapter.counterintuition ?? "",
@@ -1382,6 +1381,31 @@ export function runShipGate(chapter: ChapterV21, options: ShipGateOptions = {}):
       minorsCount: minors.length,
     },
   };
+}
+
+export async function runShipGateFromCandidate(
+  reader: BookContentReader,
+  input: Readonly<{
+    bookId: string;
+    candidateId: string;
+    manifestDigest: string;
+    chapterLogicalPath: string;
+    namePlanLogicalPath: string;
+    chapterBriefLogicalPath: string;
+    sourceSidecarLogicalPath: string;
+    sourceUsePlanLogicalPath: string;
+  }>,
+): Promise<GateReport> {
+  const opened = await openCriticCandidateEntries(reader, {
+    ...input,
+    logicalPaths: [input.chapterLogicalPath, input.namePlanLogicalPath, input.chapterBriefLogicalPath, input.sourceSidecarLogicalPath, input.sourceUsePlanLogicalPath],
+  });
+  return runShipGate(opened.values[0] as ChapterV21, {
+    namePlan: opened.values[1],
+    chapterBrief: opened.values[2],
+    sourceSidecar: opened.values[3],
+    sourceUsePlan: opened.values[4] as SourceUsePlanV1,
+  });
 }
 
 /** Register-level checks that apply to every text-bearing field. */

@@ -19,22 +19,18 @@
  * Measurement instrument only — never touches autopilot/conductor code.
  */
 
-import { existsSync, mkdirSync, readFileSync } from "fs";
 import { createHash } from "crypto";
-import { dirname, resolve } from "path";
 
 import type { BookPackageV21, ChapterV21 } from "../types.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
 import { REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
-import { REPO_ROOT, FORBIDDEN_STATE } from "../lib/chapterPaths.js";
-import { writeFileAtomic, ensureTrailingNewline } from "../lib/atomicWrite.js";
-import { spawnCodexAgent, codexAvailable } from "../orchestrator/codexAgent.js";
+import { ensureTrailingNewline } from "../lib/atomicWrite.js";
 import { REVIEW_WEIGHTS, DocIntegrityError } from "./readerReview.js";
 import { renderChapterReaderDoc, renderChapterReaderDocPhase1 } from "./renderReaderDoc.js";
-import { buildReviewerWorkspace } from "./reviewerWorkspace.js";
+import { openCriticCandidateEntries } from "../critics/schema.js";
 
 export { DocIntegrityError } from "./readerReview.js";
 
-const OUTER_CHECKOUT_ROOT = resolve(FORBIDDEN_STATE, "..");
 const READER_CONCURRENCY = 4;
 
 // ── Seeded sampling (score.py parity) ─────────────────────────────────────────
@@ -597,23 +593,15 @@ async function mapWithConcurrency<T, R>(items: T[], limit: number, fn: (item: T,
   return results;
 }
 
-function loadBookPackage(bookId: string): { pkg: BookPackageV21; path: string } | { error: string } {
-  const candidates = [
-    resolve(REPO_ROOT, "book-packages", `${bookId}.v21.json`),
-    resolve(OUTER_CHECKOUT_ROOT, "book-packages", `${bookId}.v21.json`),
-  ];
-  const path = candidates.find((p) => existsSync(p));
-  if (!path) return { error: `package not found: tried ${candidates.join(" , ")}` };
-  try {
-    const pkg = JSON.parse(readFileSync(path, "utf8")) as BookPackageV21;
-    if (!Array.isArray(pkg.chapters) || pkg.chapters.length === 0) return { error: `package has no chapters: ${path}` };
-    return { pkg, path };
-  } catch (err) {
-    return { error: `package unreadable (${path}): ${(err as Error).message}` };
-  }
-}
-
-export async function runEvalBookProxy(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+export async function runEvalBookProxy(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  dependencies?: Readonly<{
+    contentReader: BookContentReader;
+    candidates: Readonly<Record<string, Readonly<{ candidateId: string; manifestDigest: string; packageLogicalPath: string }>>>;
+    evaluate: (input: Readonly<{ bookId: string; readerNumber: number; attempt: number; task: string; docText: string }>) => Promise<string>;
+  }>,
+): Promise<number> {
   const bookIds = args.filter((a) => !a.startsWith("--"));
   if (bookIds.length === 0) {
     console.error("Usage: eval-book-proxy <bookId> [<bookId2> ...] [--readers 3] [--json]");
@@ -622,31 +610,40 @@ export async function runEvalBookProxy(args: string[], flags: Record<string, str
   const readerCount = typeof flags["readers"] === "string" ? Math.max(1, parseInt(flags["readers"], 10) || 3) : 3;
   const asJson = flags["json"] === true;
   const log = (line: string) => (asJson ? console.error(line) : console.log(line));
-  if (!codexAvailable()) {
-    console.error("codex CLI not available — eval-book-proxy needs live readers");
+  if (!dependencies) {
+    console.error("eval-book-proxy: explicit candidate reader and evaluator are required");
     return 1;
   }
 
   const books: BookVerdict[] = [];
   for (const id of bookIds) {
-    const loaded = loadBookPackage(id);
-    if ("error" in loaded) {
-      log(`[eval-book] ${id}: ${loaded.error}`);
+    const selected = dependencies.candidates[id];
+    if (!selected) {
+      log(`[eval-book] ${id}: explicit candidate selection missing`);
       books.push({ id, medianComposite: null, factors: null, gate: null, gateVotes: "0P/0F", churn: "?", validCount: 0, readerCount: 0, chapters: [], readers: [] });
       continue;
     }
-    const sampled = selectSeededChapters(id, loaded.pkg.chapters, 4);
+    let pkg: BookPackageV21;
+    try {
+      const opened = await openCriticCandidateEntries(dependencies.contentReader, {
+        bookId: id,
+        candidateId: selected.candidateId,
+        manifestDigest: selected.manifestDigest,
+        logicalPaths: [selected.packageLogicalPath],
+      });
+      pkg = opened.values[0] as BookPackageV21;
+      if (pkg.book?.bookId !== id || !Array.isArray(pkg.chapters) || pkg.chapters.length === 0) throw new Error("selected package has no matching chapters");
+    } catch (cause) {
+      log(`[eval-book] ${id}: ${(cause as Error).message}`);
+      books.push({ id, medianComposite: null, factors: null, gate: null, gateVotes: "0P/0F", churn: "?", validCount: 0, readerCount: 0, chapters: [], readers: [] });
+      continue;
+    }
+    const sampled = selectSeededChapters(id, pkg.chapters, 4);
     // IMP-08: the eval proxy runs the SAME phase-1 instrument as acceptance
     // (key-free doc, workspace-isolated readers) so its scores stay comparable.
     const docText = renderBookSampleDocPhase1(sampled);
     assertBookSamplePhase1Integrity(docText, sampled);
     const docFileName = "book-sample.txt";
-    const docRelPath = `scratch/eval-proxy/${id}/book-sample.phase1.txt`;
-    const docAbs = resolve(REPO_ROOT, docRelPath);
-    mkdirSync(dirname(docAbs), { recursive: true });
-    // Q1: reader-facing doc always ends with a newline (the renderer already
-    // appends it; ensureTrailingNewline keeps this forensic write robust).
-    writeFileAtomic(docAbs, ensureTrailingNewline(docText));
     log(`[eval-book] ${id}: sampled ch ${sampled.map((c) => c.number).join(", ")} → ${docText.length} chars; spawning ${readerCount} readers`);
 
     const task = buildBookReviewTaskPhase1(docFileName);
@@ -655,29 +652,12 @@ export async function runEvalBookProxy(args: string[], flags: Record<string, str
       READER_CONCURRENCY,
       async (readerNo) => {
         for (let attempt = 1; attempt <= 2; attempt++) {
-          const sessionId = `eval-book-${id}-r${readerNo}-${Date.now()}`;
+          const sessionId = `eval-book-${id}-r${readerNo}-attempt${attempt}`;
           log(`[eval-book] ${id} r${readerNo}: attempt ${attempt} (session ${sessionId})`);
-          const ws = buildReviewerWorkspace({
-            role: "acceptance-reader",
-            artifacts: [{ kind: "phase1-doc", relPath: docFileName, content: ensureTrailingNewline(docText) }],
-          });
-          let r;
-          try {
-            r = await spawnCodexAgent({
-              task,
-              role: "eval-book",
-              sessionId,
-              cwd: ws.dir,
-              sandbox: "read-only",
-              skipGitRepoCheck: true,
-              reasoningEffort: "high",
-            });
-          } finally {
-            ws.cleanup();
-          }
-          const parsed = parseBookReview(r.finalMessage) ?? parseBookReview(r.stdout);
+          const response = await dependencies.evaluate({ bookId: id, readerNumber: readerNo, attempt, task, docText: ensureTrailingNewline(docText) });
+          const parsed = parseBookReview(response);
           if (!parsed) {
-            log(`[eval-book] ${id} r${readerNo}: attempt ${attempt} unparseable (exit ${r.exitCode})`);
+            log(`[eval-book] ${id} r${readerNo}: attempt ${attempt} unparseable`);
             continue;
           }
           const adjudicated = adjudicateBookReview(parsed, docText, sampled, sessionId);

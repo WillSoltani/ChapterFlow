@@ -48,8 +48,8 @@
  */
 
 import type { ChapterV21 } from "../types.js";
-import { loadBookChapters } from "../qc/manualKeyJudge.js";
-import { readJsonFile, rubricMetricsPath, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
+import type { CompilerStoreRoots } from "../artifacts/artifactStore.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import { breakdownProse, chapterProse, readerVisibleText } from "./chapterText.js";
 import {
@@ -62,6 +62,7 @@ import {
 } from "./rubricMetrics.js";
 import { loadRubricThresholds, type MetricBand, type RubricThresholds } from "./rubricThresholds.js";
 import { cardQualityChapter, type CardQualityChapterResult } from "./cardQualityGates.js";
+import { openCriticCandidateEntries } from "../critics/schema.js";
 
 export const RUBRIC_METRICS_SCHEMA_VERSION = "rubric-metrics-v1" as const;
 
@@ -285,8 +286,7 @@ function roundResult(r: MetricResult): MetricResult {
 }
 
 export type ComputeRubricOptions = {
-  /** Supply chapters directly (tests / already-loaded callers). Defaults to
-   *  loadBookChapters(bookId), which reads the canonical state/chapters dir. */
+  /** Supply chapters directly from an explicit candidate snapshot. */
   chapters?: ChapterV21[];
   /** Override thresholds (tests). Defaults to config/rubric-thresholds.json. */
   thresholds?: RubricThresholds;
@@ -297,13 +297,8 @@ export function computeBookRubricMetrics(bookId: string, opts: ComputeRubricOpti
   const normalized = normSlug(bookId);
   const thresholds = opts.thresholds ?? loadRubricThresholds();
   const findings: string[] = [];
-  let chapters: ChapterV21[];
-  try {
-    chapters = opts.chapters ?? loadBookChapters(normalized);
-  } catch (err) {
-    chapters = [];
-    findings.push((err as Error).message);
-  }
+  const chapters = opts.chapters ?? [];
+  if (opts.chapters === undefined) findings.push(`explicit candidate chapters required for ${normalized}`);
   if (chapters.length === 0 && findings.length === 0) findings.push(`no assembled chapters found for ${normalized}`);
 
   const perChapter = chapters
@@ -330,12 +325,35 @@ export function computeBookRubricMetrics(bookId: string, opts: ComputeRubricOpti
   };
 }
 
+export async function computeBookRubricMetricsFromCandidate(
+  reader: BookContentReader,
+  input: Readonly<{
+    bookId: string;
+    candidateId: string;
+    manifestDigest: string;
+    chapterLogicalPaths: readonly string[];
+    thresholds?: RubricThresholds;
+  }>,
+): Promise<BookRubricMetricsReport> {
+  const opened = await openCriticCandidateEntries(reader, {
+    ...input,
+    logicalPaths: input.chapterLogicalPaths,
+  });
+  return computeBookRubricMetrics(input.bookId, {
+    chapters: opened.values as ChapterV21[],
+    ...(input.thresholds ? { thresholds: input.thresholds } : {}),
+  });
+}
+
 /** Read a previously-written book rubric-metrics artifact, or null if absent/torn.
  *  Used by risk scoring to route `fail` chapters to qc-shadow visibility. */
-export function loadBookRubricMetricsArtifact(bookId: string, roots: CompilerStoreRoots = {}): BookRubricMetricsReport | null {
+export function loadBookRubricMetricsArtifact(bookId: string, roots: CompilerStoreRoots = {}, bytes?: Uint8Array): BookRubricMetricsReport | null {
+  void roots;
+  if (!bytes) return null;
   try {
-    const report = readJsonFile<BookRubricMetricsReport>(rubricMetricsPath(bookId, roots));
+    const report = JSON.parse(Buffer.from(bytes).toString("utf8")) as BookRubricMetricsReport;
     if (report?.schemaVersion !== RUBRIC_METRICS_SCHEMA_VERSION || !Array.isArray(report.chapters)) return null;
+    if (report.bookId !== normSlug(bookId)) return null;
     return report;
   } catch {
     return null;

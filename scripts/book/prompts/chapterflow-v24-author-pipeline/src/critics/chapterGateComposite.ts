@@ -22,13 +22,14 @@
  *      conductor's candidate validation.
  */
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
-import { dirname, resolve } from "path";
+import { resolve } from "path";
 
 import type { ChapterV21 } from "../types.js";
-import { CANONICAL_STATE, checkChapterIdentity } from "../lib/chapterPaths.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
+import { checkChapterIdentity } from "../lib/chapterPaths.js";
 import { runShipGate, formatGateReport, type ShipGateOptions } from "./finalGate.js";
-import { loadSiblingChapters, runIntraBookChecks } from "./intraBook.js";
+import { runIntraBookChecks } from "./intraBook.js";
+import { openCriticCandidateEntries } from "./schema.js";
 
 export type ChapterGateCompositeResult = {
   /** 0 = PASS, 1 = BLOCK (or ship-gate crash on malformed chapter), 3 = circuit breaker. */
@@ -47,6 +48,9 @@ export type ChapterGateCompositeOptions = {
   /** Persist circuit-breaker history here instead of canonical
    * state/gate-attempts.json. */
   gateAttemptStatePath?: string;
+  /** Frozen sibling chapters from same explicit candidate snapshot. */
+  siblings?: ChapterV21[];
+  siblingWarning?: string;
   /** Frozen source sidecar supplied by an isolated caller.  When present the
    * authoring-contract advisory never searches ambient .chapterflow runs. */
   sourceSidecar?: unknown;
@@ -54,6 +58,9 @@ export type ChapterGateCompositeOptions = {
    * forward experiment.  Isolated callers disable this advisory; their
    * separately ledgered quiz lane remains authoritative. */
   disableCanonicalKeyJudgeAdvisory?: boolean;
+  keyJudgeFindings?: Array<{ checkId: string; severity: string; message: string }>;
+  gateAttemptState?: Record<string, GateAttemptEntry>;
+  persistGateAttemptState?: (state: Record<string, GateAttemptEntry>) => void;
   shipGate?: ShipGateOptions;
 };
 
@@ -69,6 +76,14 @@ export async function runChapterGateComposite(
   attemptKey: string,
   options: ChapterGateCompositeOptions = {},
 ): Promise<ChapterGateCompositeResult> {
+  if (options.gateAttemptState === undefined || options.persistGateAttemptState === undefined) {
+    return {
+      exitCode: 1,
+      crashed: false,
+      combinedBlockers: 1,
+      report: "GATE_ATTEMPT_STATE_UNBOUND: explicit gateAttemptState and persistGateAttemptState are required; path/default fallback is forbidden.",
+    };
+  }
   const lines: string[] = [];
 
   // ── 1. Chapter-only ship gate (crash-guarded) ─────────────────────────────
@@ -88,7 +103,7 @@ export async function runChapterGateComposite(
   lines.push(formatGateReport(report));
 
   // ── 2. Intra-book quiz similarity (AS5/AS6 early detection) ───────────────
-  const siblingLoad = loadSiblingChapters(chapter, siblingContextPath);
+  const siblingLoad = { siblings: options.siblings ?? [], warning: options.siblingWarning };
   if (siblingLoad.warning) lines.push(`  WARN: ${siblingLoad.warning}`);
   const intraFindings = runIntraBookChecks(chapter, siblingLoad.siblings);
   let extraBlockers = 0;
@@ -117,10 +132,7 @@ export async function runChapterGateComposite(
   // ── 4a. Authoring-contract findings (advisory/shadow) ────────────────────
   try {
     const { checkAuthoringContract } = await import("./authoringContract.js");
-    const { loadChapterSidecar } = await import("./sourceGrounding.js");
-    const sidecar = Object.prototype.hasOwnProperty.call(options, "sourceSidecar")
-      ? options.sourceSidecar
-      : loadChapterSidecar(chapter.chapterId);
+    const sidecar = options.sourceSidecar;
     const acFindings = checkAuthoringContract(chapter, { sidecar, filePath: resolve(siblingContextPath) });
     if (acFindings.length > 0) {
       lines.push("");
@@ -134,8 +146,7 @@ export async function runChapterGateComposite(
   // ── 4b. Quiz answer-key judge (advisory — blocks at promote) ─────────────
   if (!options.disableCanonicalKeyJudgeAdvisory) {
     try {
-      const { checkKeyJudge } = await import("./quizKeyGate.js");
-      const kjFindings = checkKeyJudge(chapter, false);
+      const kjFindings = options.keyJudgeFindings ?? [];
       if (kjFindings.length > 0) {
         lines.push("");
         lines.push("Quiz answer-key judge findings (advisory — blocks at promote):");
@@ -165,7 +176,17 @@ export async function runChapterGateComposite(
     blockers: [...report.blockers, ...intraBlockerSig],
     passed: report.blockers.length === 0 && extraBlockers === 0,
   };
-  const attempts = recordGateAttempt(attemptKey, combinedReport, options.gateAttemptStatePath);
+  let attempts;
+  try {
+    attempts = recordGateAttempt(attemptKey, combinedReport, options.gateAttemptState, options.persistGateAttemptState);
+  } catch (cause) {
+    return {
+      exitCode: 1,
+      crashed: false,
+      combinedBlockers: Math.max(1, combinedBlockers),
+      report: `${lines.join("\n")}\nGATE_ATTEMPT_STATE_PERSIST_FAILED: ${(cause as Error).message}`,
+    };
+  }
   let breakerTripped = false;
   if (attempts.sameBlockerStreak >= 3) {
     breakerTripped = true;
@@ -200,6 +221,40 @@ export async function runChapterGateComposite(
   };
 }
 
+export async function runChapterGateCompositeFromCandidate(
+  reader: BookContentReader,
+  input: Readonly<{
+    bookId: string;
+    candidateId: string;
+    manifestDigest: string;
+    chapterLogicalPath: string;
+    siblingLogicalPaths: readonly string[];
+    sourceSidecarLogicalPath: string;
+    siblingContextPath: string;
+    attemptKey: string;
+    gateAttemptState: Record<string, GateAttemptEntry>;
+    persistGateAttemptState: (state: Record<string, GateAttemptEntry>) => void;
+  }>,
+): Promise<ChapterGateCompositeResult> {
+  const opened = await openCriticCandidateEntries(reader, {
+    ...input,
+    logicalPaths: [input.chapterLogicalPath, ...input.siblingLogicalPaths, input.sourceSidecarLogicalPath],
+  });
+  const siblingEnd = 1 + input.siblingLogicalPaths.length;
+  return runChapterGateComposite(
+    opened.values[0] as ChapterV21,
+    input.siblingContextPath,
+    input.attemptKey,
+    {
+      siblings: opened.values.slice(1, siblingEnd) as ChapterV21[],
+      sourceSidecar: opened.values[siblingEnd],
+      gateAttemptState: input.gateAttemptState,
+      persistGateAttemptState: input.persistGateAttemptState,
+      disableCanonicalKeyJudgeAdvisory: true,
+    },
+  );
+}
+
 /** Persists gate-attempt history per chapter key to track stuck-blocker
  *  patterns (May 2026 Covey incident). Moved verbatim from cli.ts so the CLI
  *  verb and the conductor's candidate validation share ONE history. */
@@ -215,15 +270,10 @@ type GateAttemptEntry = {
 export function recordGateAttempt(
   chapterFile: string,
   report: { blockers: Array<{ catalogId: string }>; passed: boolean },
-  stateFile = resolve(CANONICAL_STATE, "gate-attempts.json"),
+  suppliedState: Record<string, GateAttemptEntry> = {},
+  persist?: (state: Record<string, GateAttemptEntry>) => void,
 ): { total: number; sameBlockerStreak: number; lastSignature: string; distinctSigStreak: number; nonPassTotal: number; recentSigs: string[] } {
-  const STATE_FILE = resolve(stateFile);
-  let state: Record<string, GateAttemptEntry> = {};
-  try {
-    if (existsSync(STATE_FILE)) state = JSON.parse(readFileSync(STATE_FILE, "utf8"));
-  } catch {
-    state = {};
-  }
+  const state = { ...suppliedState };
   const sig = report.passed
     ? "PASS"
     : [...new Set(report.blockers.map((b) => b.catalogId))].sort().join(",");
@@ -235,11 +285,6 @@ export function recordGateAttempt(
   const nonPassTotal = isPass ? 0 : prev.nonPassTotal + 1;
   const recentSigs = isPass ? [] : [...(prev.recentSigs ?? []), sig].slice(-4);
   state[chapterFile] = { total: prev.total + 1, lastSignature: sig, sameBlockerStreak, distinctSigStreak, nonPassTotal, recentSigs };
-  try {
-    mkdirSync(dirname(STATE_FILE), { recursive: true });
-    writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), "utf8");
-  } catch {
-    // Non-fatal — tracking is informational.
-  }
+  persist?.(state);
   return { total: state[chapterFile].total, sameBlockerStreak, lastSignature: sig, distinctSigStreak, nonPassTotal, recentSigs };
 }

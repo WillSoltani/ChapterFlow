@@ -5,7 +5,46 @@
  */
 
 import { Chapter, CriticFinding, Quiz, QuizQuestion } from "../types.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
 import { finding } from "./shared.js";
+
+/** Open one explicit immutable candidate and parse only caller-named JSON entries. */
+export async function openCriticCandidateEntries(
+  reader: BookContentReader,
+  input: Readonly<{
+    bookId: string;
+    candidateId: string;
+    manifestDigest: string;
+    logicalPaths: readonly string[];
+  }>,
+) {
+  const opened = await reader.open({
+    bookId: input.bookId,
+    selector: { kind: "CANDIDATE", candidateId: input.candidateId },
+  });
+  if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+  const manifest = opened.value.manifest;
+  if (
+    manifest.bookId !== input.bookId ||
+    manifest.candidateId !== input.candidateId ||
+    manifest.manifestDigest !== input.manifestDigest ||
+    opened.value.currentRevision !== undefined
+  ) {
+    throw new Error("CANDIDATE_MISMATCH: explicit candidate identity or manifest digest differs");
+  }
+  const values = input.logicalPaths.map((logicalPath) => {
+    const matches = opened.value.files.filter((file) => file.logicalPath === logicalPath);
+    if (matches.length !== 1) {
+      throw new Error(`CANDIDATE_ENTRY_MISSING: expected one ${logicalPath}, found ${matches.length}`);
+    }
+    try {
+      return JSON.parse(Buffer.from(matches[0].bytes).toString("utf8")) as unknown;
+    } catch (cause) {
+      throw new Error(`CANDIDATE_ENTRY_INVALID: ${logicalPath}: ${(cause as Error).message}`);
+    }
+  });
+  return { snapshot: opened.value, values };
+}
 
 const CANONICAL_BLOOMS = new Set([
   "remember", "understand", "apply", "analyze", "evaluate", "create",

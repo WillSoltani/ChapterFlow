@@ -15,26 +15,17 @@
  * "read-only" with skipGitRepoCheck (they only read the rendered doc).
  */
 
-import { existsSync, readFileSync } from "fs";
 import { createHash } from "crypto";
-import { resolve } from "path";
 
 import type { BookPackageV21, ChapterV21 } from "../types.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
 import type { ChapterReviewV1 } from "../artifacts/artifactTypes.js";
 import { CHAPTER_REVIEW_SCHEMA_VERSION, REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
-import { REPO_ROOT, FORBIDDEN_STATE } from "../lib/chapterPaths.js";
-import { ensureTrailingNewline, writeFileAtomic } from "../lib/atomicWrite.js";
-import { spawnCodexAgent, codexAvailable } from "../orchestrator/codexAgent.js";
+import { ensureTrailingNewline } from "../lib/atomicWrite.js";
 import { renderChapterReaderDocPhase1 } from "./renderReaderDoc.js";
-import { adjudicateReview, assertPhase1KeyIsolated, AUTHOR_CHAPTER_BAR, buildReaderReviewTask, parseReaderReview, writeChapterReview } from "./readerReview.js";
-import { buildReviewerWorkspace } from "./reviewerWorkspace.js";
-
-/** The outer checkout root (the repo this pipeline package is nested inside).
- *  Derived from chapterPaths' exported outer-shadow constant: FORBIDDEN_STATE
- *  is `<outer-root>/state`, so its parent IS the outer root. Fallback source
- *  for book-packages/ when the pipeline-local copy is missing. */
-const OUTER_CHECKOUT_ROOT = resolve(FORBIDDEN_STATE, "..");
+import { adjudicateReview, assertPhase1KeyIsolated, AUTHOR_CHAPTER_BAR, buildReaderReviewTask, parseReaderReview } from "./readerReview.js";
+import { openCriticCandidateEntries } from "../critics/schema.js";
 
 const READER_CONCURRENCY = 4;
 
@@ -51,23 +42,6 @@ async function mapWithConcurrency<T, R>(items: T[], limit: number, fn: (item: T,
   });
   await Promise.all(workers);
   return results;
-}
-
-/** Resolve + parse a book's production package, or null with a reason. */
-function loadBookPackage(bookId: string): { pkg: BookPackageV21; path: string } | { error: string } {
-  const candidates = [
-    resolve(REPO_ROOT, "book-packages", `${bookId}.v21.json`),
-    resolve(OUTER_CHECKOUT_ROOT, "book-packages", `${bookId}.v21.json`),
-  ];
-  const path = candidates.find((p) => existsSync(p));
-  if (!path) return { error: `package not found: tried ${candidates.join(" , ")}` };
-  try {
-    const pkg = JSON.parse(readFileSync(path, "utf8")) as BookPackageV21;
-    if (!Array.isArray(pkg.chapters) || pkg.chapters.length === 0) return { error: `package has no chapters: ${path}` };
-    return { pkg, path };
-  } catch (err) {
-    return { error: `package unreadable (${path}): ${(err as Error).message}` };
-  }
 }
 
 /** Deterministic sample: sort chapters by md5(bookId + ':' + chapter.number)
@@ -139,6 +113,7 @@ async function reviewOneChapter(
   docRelPath: string,
   bar: number,
   log: (line: string) => void,
+  evaluate: (input: Readonly<{ bookId: string; chapterNumber: number; attempt: number; task: string; docText: string }>) => Promise<string>,
 ): Promise<ChapterReviewV1> {
   void docRelPath; // forensic-copy path; the reader reads its workspace copy
   const nn = String(chapter.number).padStart(2, "0");
@@ -146,30 +121,13 @@ async function reviewOneChapter(
   const task = buildReaderReviewTask(docFileName, bar);
   let lastSessionId = "";
   for (let attempt = 1; attempt <= 2; attempt++) {
-    const sessionId = `eval-proxy-${bookId}-ch${nn}-${Date.now()}`;
+    const sessionId = `eval-proxy-${bookId}-ch${nn}-attempt${attempt}`;
     lastSessionId = sessionId;
     log(`[eval-proxy] ${bookId} ch${nn}: reader attempt ${attempt} (session ${sessionId})`);
-    const ws = buildReviewerWorkspace({
-      role: "direct-reader",
-      artifacts: [{ kind: "phase1-doc", relPath: docFileName, content: docText }],
-    });
-    let r;
-    try {
-      r = await spawnCodexAgent({
-        task,
-        role: "eval-reader",
-        sessionId,
-        cwd: ws.dir,
-        sandbox: "read-only",
-        skipGitRepoCheck: true,
-        reasoningEffort: "high",
-      });
-    } finally {
-      ws.cleanup();
-    }
-    const parsed = parseReaderReview(r.finalMessage) ?? parseReaderReview(r.stdout);
+    const response = await evaluate({ bookId, chapterNumber: chapter.number, attempt, task, docText });
+    const parsed = parseReaderReview(response);
     if (!parsed) {
-      log(`[eval-proxy] ${bookId} ch${nn}: attempt ${attempt} unparseable (exit ${r.exitCode})`);
+      log(`[eval-proxy] ${bookId} ch${nn}: attempt ${attempt} unparseable`);
       continue;
     }
     const review = adjudicateReview(parsed, docText, chapter, { bar, reviewerSessionId: sessionId });
@@ -180,7 +138,16 @@ async function reviewOneChapter(
   return invalidStubReview(chapter, lastSessionId, "reader output could not be parsed after retry");
 }
 
-export async function runEvalReaderProxy(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+export async function runEvalReaderProxy(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  dependencies?: Readonly<{
+    contentReader: BookContentReader;
+    candidates: Readonly<Record<string, Readonly<{ candidateId: string; manifestDigest: string; packageLogicalPath: string }>>>;
+    evaluate: (input: Readonly<{ bookId: string; chapterNumber: number; attempt: number; task: string; docText: string }>) => Promise<string>;
+    persist?: (bookId: string, review: ChapterReviewV1) => void;
+  }>,
+): Promise<number> {
   const bookIds = args.filter(Boolean);
   if (bookIds.length === 0) {
     console.error("Usage: eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 80] [--json]");
@@ -200,8 +167,8 @@ export async function runEvalReaderProxy(args: string[], flags: Record<string, s
   // With --json, stdout must stay clean for the final JSON payload.
   const log = (line: string): void => { if (asJson) console.error(line); else console.log(line); };
 
-  if (!codexAvailable()) {
-    console.error("eval-reader-proxy: codex binary not found. Install codex or set CHAPTERFLOW_CODEX_BIN.");
+  if (!dependencies) {
+    console.error("eval-reader-proxy: explicit candidate reader and evaluator are required");
     return 2;
   }
 
@@ -210,14 +177,29 @@ export async function runEvalReaderProxy(args: string[], flags: Record<string, s
   let anyInvalid = false;
 
   for (const bookId of bookIds) {
-    const loaded = loadBookPackage(bookId);
-    if ("error" in loaded) {
-      console.error(`eval-reader-proxy: ${bookId}: ${loaded.error}`);
+    const selected = dependencies.candidates[bookId];
+    if (!selected) {
+      console.error(`eval-reader-proxy: ${bookId}: explicit candidate selection missing`);
       anyLoadError = true;
       continue;
     }
-    const sampled = sampleChapters(bookId, loaded.pkg.chapters, chaptersN);
-    log(`[eval-proxy] ${bookId}: ${loaded.pkg.chapters.length} chapters in package (${loaded.path}); sampling ${sampled.length}: ${sampled.map((c) => c.number).join(", ")}`);
+    let pkg: BookPackageV21;
+    try {
+      const opened = await openCriticCandidateEntries(dependencies.contentReader, {
+        bookId,
+        candidateId: selected.candidateId,
+        manifestDigest: selected.manifestDigest,
+        logicalPaths: [selected.packageLogicalPath],
+      });
+      pkg = opened.values[0] as BookPackageV21;
+      if (pkg.book?.bookId !== bookId || !Array.isArray(pkg.chapters) || pkg.chapters.length === 0) throw new Error("selected package has no matching chapters");
+    } catch (cause) {
+      console.error(`eval-reader-proxy: ${bookId}: ${(cause as Error).message}`);
+      anyLoadError = true;
+      continue;
+    }
+    const sampled = sampleChapters(bookId, pkg.chapters, chaptersN);
+    log(`[eval-proxy] ${bookId}: ${pkg.chapters.length} chapters in selected candidate; sampling ${sampled.length}: ${sampled.map((c) => c.number).join(", ")}`);
 
     // IMP-08: render the PHASE-1 (key-free) doc, certify key isolation, and
     // keep a forensic copy under scratch; readers score a workspace copy.
@@ -226,17 +208,16 @@ export async function runEvalReaderProxy(args: string[], flags: Record<string, s
       const docRelPath = `scratch/eval-proxy/${bookId}/ch${nn}.phase1.txt`;
       const docText = ensureTrailingNewline(renderChapterReaderDocPhase1(chapter));
       assertPhase1KeyIsolated(docText, chapter);
-      writeFileAtomic(resolve(REPO_ROOT, docRelPath), docText);
       return { chapter, docText, docRelPath };
     });
 
     const reviews = await mapWithConcurrency(jobs, READER_CONCURRENCY, (job) =>
-      reviewOneChapter(bookId, job.chapter, job.docText, job.docRelPath, bar, log),
+      reviewOneChapter(bookId, job.chapter, job.docText, job.docRelPath, bar, log, dependencies.evaluate),
     );
 
     const rows: string[] = [];
     for (const review of reviews) {
-      writeChapterReview(bookId, review);
+      dependencies.persist?.(bookId, review);
       if (!review.valid) anyInvalid = true;
       rows.push(
         `  ch${String(review.chapterNumber).padStart(2, "0")}  composite=${review.composite.toFixed(1).padStart(5)}  ship=${review.ship84 ? "yes" : "no "}  keys=${review.keyCheck.matches}/${review.keyCheck.of}  valid=${review.valid ? "yes" : "NO"}  pass=${review.pass ? "PASS" : "fail"}`,

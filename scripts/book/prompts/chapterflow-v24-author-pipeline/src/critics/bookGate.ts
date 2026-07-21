@@ -10,6 +10,7 @@
  */
 
 import { ChapterV21 } from "../types.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
 import { extractNamesFromText } from "../librarian/libraryState.js";
 import { BookPatternAuditReport, runBookPatternAudit } from "./bookPatternAudit.js";
 import {
@@ -35,6 +36,7 @@ import {
   checkBookVenueStamping,
 } from "./bookRepetition.js";
 import { RuntimeSchemaFinding, validateBookGateInput } from "../runtimeSchemas.js";
+import { openCriticCandidateEntries } from "./schema.js";
 
 export type BookGateFinding = {
   catalogId: string;            // F1, F3, etc. (from FAILURE-MODES.md)
@@ -104,6 +106,8 @@ export type BookGateOptions = {
   requirePlanArtifacts?: boolean;
   /** Defaults to true, matching production source-alignment diagnostics. */
   checkSourceAlignment?: boolean;
+  /** Frozen candidate-bound pattern audit; avoids ambient plan/source discovery. */
+  patternAudit?: BookPatternAuditReport;
 };
 
 /**
@@ -426,13 +430,13 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
   // Per-chapter C8 catches templates inside one chapter. This catches the
   // Codex-session failure mode: hooks, counters, tryThisNow fields, quiz
   // explanations, and example shells repeated across many chapters.
-  const patternAudit = runBookPatternAudit({
-    bookId,
-    chapters,
-    stateDir: options.stateDir,
-    requirePlanArtifacts: options.requirePlanArtifacts,
-    checkSourceAlignment: options.checkSourceAlignment,
-  });
+  const patternAudit = options.patternAudit ?? runBookPatternAudit({
+      bookId,
+      chapters,
+      stateDir: options.stateDir,
+      requirePlanArtifacts: options.requirePlanArtifacts,
+      checkSourceAlignment: options.checkSourceAlignment,
+    });
   for (const f of patternAudit.findings) {
     findings.push({
       catalogId: f.code,
@@ -687,6 +691,25 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
       patternAudit,
     },
   };
+}
+
+export async function runBookGateFromCandidate(
+  reader: BookContentReader,
+  input: Readonly<{
+    bookId: string;
+    candidateId: string;
+    manifestDigest: string;
+    chapterLogicalPaths: readonly string[];
+    patternAuditLogicalPath: string;
+  }>,
+): Promise<BookGateReport> {
+  const opened = await openCriticCandidateEntries(reader, {
+    ...input,
+    logicalPaths: [...input.chapterLogicalPaths, input.patternAuditLogicalPath],
+  });
+  return runBookGate(input.bookId, opened.values.slice(0, -1) as ChapterV21[], {
+    patternAudit: opened.values[opened.values.length - 1] as BookPatternAuditReport,
+  });
 }
 
 /**
