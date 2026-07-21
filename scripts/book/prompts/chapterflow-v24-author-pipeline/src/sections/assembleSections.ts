@@ -1,7 +1,13 @@
 import { mkdirSync } from "fs";
 import { resolve } from "path";
 
-import { assembleChapterV21OrThrow, type AssembleInput } from "../assembler.js";
+import {
+  assembleChapterV21OrThrow,
+  authorV4SelectionError,
+  readAuthorV4SelectedJson,
+  type AssembleInput,
+  type AuthorV4ContentSelection,
+} from "../assembler.js";
 import { selectMemorableLinesDeterministic } from "../optimizers/memorableLines.js";
 import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
 import { checkSectionGate, type SectionFinding } from "./sectionGate.js";
@@ -18,8 +24,27 @@ import {
 } from "../artifacts/artifactStore.js";
 import type { ActionPackV1, ChapterBlueprintV1, ExamplePackV1, LearningPackV1, SourcePacketV1, SummaryPackV1 } from "../artifacts/artifactTypes.js";
 import type { PlanningSourceEvidence } from "../source/sourceEvidence.js";
+import type { CandidateInputFile } from "../books/candidateTypes.js";
+import type { SectionKind, SectionPackV1 } from "../artifacts/artifactTypes.js";
 
-export type AssembleSectionsResult = { bookId: string; written: string[]; findings: string[] };
+export type AssembleSectionsResult = { bookId: string; written: string[]; findings: string[]; candidateFiles?: readonly CandidateInputFile[] };
+
+export interface AuthorV4SectionChapterPaths {
+  readonly chapterNumber: number;
+  readonly blueprint: string;
+  readonly sourcePacket: string;
+  readonly sourceSidecar: string;
+  readonly summary: string;
+  readonly examples: string;
+  readonly learning: string;
+  readonly action: string;
+  readonly output: string;
+}
+
+export interface AuthorV4SectionAssembly {
+  readonly content: AuthorV4ContentSelection;
+  readonly chapters: readonly AuthorV4SectionChapterPaths[];
+}
 
 function sourceEvidenceFromPacket(packet: SourcePacketV1): PlanningSourceEvidence {
   return {
@@ -42,8 +67,97 @@ function sourceEvidenceFromPacket(packet: SourcePacketV1): PlanningSourceEvidenc
   } as PlanningSourceEvidence;
 }
 
-export function assembleSections(bookId: string, roots: CompilerStoreRoots = {}): AssembleSectionsResult {
+export function assembleSections(bookId: string, roots: CompilerStoreRoots = {}, selected?: AuthorV4SectionAssembly): AssembleSectionsResult {
   const normalized = normSlug(bookId);
+  if (selected) {
+    const invalid = authorV4SelectionError(selected.content);
+    if (invalid || selected.content.bookId !== normalized) {
+      return { bookId: normalized, written: [], findings: [`V4 selector blocked: ${invalid ?? "bookId mismatch"}`], candidateFiles: [] };
+    }
+    const parsed: Array<{
+      paths: AuthorV4SectionChapterPaths;
+      blueprint: ChapterBlueprintV1;
+      packet: SourcePacketV1;
+      sidecar: unknown;
+      packs: Record<SectionKind, SectionPackV1>;
+    }> = [];
+    const findings: string[] = [];
+    for (const paths of selected.chapters) {
+      try {
+        const blueprint = readAuthorV4SelectedJson<ChapterBlueprintV1>(selected.content, paths.blueprint);
+        const packet = readAuthorV4SelectedJson<SourcePacketV1>(selected.content, paths.sourcePacket);
+        const sidecar = readAuthorV4SelectedJson<unknown>(selected.content, paths.sourceSidecar);
+        parsed.push({
+          paths,
+          blueprint,
+          packet,
+          sidecar,
+          packs: {
+            "summary-pack": readAuthorV4SelectedJson<SummaryPackV1>(selected.content, paths.summary),
+            "example-pack": readAuthorV4SelectedJson<ExamplePackV1>(selected.content, paths.examples),
+            "learning-pack": readAuthorV4SelectedJson<LearningPackV1>(selected.content, paths.learning),
+            "action-pack": readAuthorV4SelectedJson<ActionPackV1>(selected.content, paths.action),
+          },
+        });
+      } catch (error) {
+        findings.push(`ch${String(paths.chapterNumber).padStart(2, "0")}: ${(error as Error).message}`);
+      }
+    }
+    if (findings.length > 0 || parsed.length !== selected.chapters.length) {
+      return { bookId: normalized, written: [], findings, candidateFiles: [] };
+    }
+    // Preserve legacy standalone assembly parity: same whole-book gate and
+    // same SEC91 exception, but every input byte comes from selected snapshot.
+    const gate = checkSectionGate(normalized, {}, {
+      selectedChapters: parsed.map((chapter) => ({
+        chapterNumber: chapter.paths.chapterNumber,
+        blueprint: chapter.blueprint,
+        sourcePacket: chapter.packet,
+        sourceSidecar: chapter.sidecar,
+        packs: chapter.packs,
+      })),
+    });
+    const blockers = gate.findings.filter((finding) => finding.severity === "blocker" && finding.checkId !== "SEC91.sidecar_unavailable");
+    if (blockers.length > 0) {
+      return {
+        bookId: normalized,
+        written: [],
+        findings: blockers.map((finding) => `ch${String(finding.chapterNumber ?? 0).padStart(2, "0")}: section-gate blocked assembly: [${finding.checkId}] ${finding.message}`),
+        candidateFiles: [],
+      };
+    }
+    const candidateFiles: CandidateInputFile[] = [];
+    for (const chapter of parsed) {
+      const summary = chapter.packs["summary-pack"] as SummaryPackV1;
+      const examples = chapter.packs["example-pack"] as ExamplePackV1;
+      const learning = chapter.packs["learning-pack"] as LearningPackV1;
+      const action = chapter.packs["action-pack"] as ActionPackV1;
+      const assembleInput: AssembleInput = {
+        plan: chapter.blueprint.plan,
+        breakdown: summary.breakdown,
+        examples: examples.examples,
+        quiz: learning.quiz,
+        cards: learning.cards,
+        implementationPlan: action.implementationPlan,
+        keyTakeaway: summary.keyTakeaway,
+        keyTakeawaySourceAnchorIds: summary.keyTakeawaySourceAnchorIds,
+        hook: summary.hook,
+        tryThisNow: action.tryThisNow || summary.tryThisNow,
+        tryThisNowSourceAnchorIds: action.tryThisNowSourceAnchorIds || summary.tryThisNowSourceAnchorIds,
+        sourceEvidence: sourceEvidenceFromPacket(chapter.packet),
+      };
+      const assembled = assembleChapterV21OrThrow(assembleInput);
+      const deterministicLines = selectMemorableLinesDeterministic(assembled);
+      assembled.memorableLines = deterministicLines.length >= 3 ? deterministicLines : assembled.memorableLines;
+      candidateFiles.push({
+        kind: "CHAPTER",
+        mediaType: "application/json",
+        logicalPath: chapter.paths.output,
+        bytes: new TextEncoder().encode(JSON.stringify(assembled, null, 2) + "\n"),
+      });
+    }
+    return { bookId: normalized, written: [], findings: [], candidateFiles };
+  }
   const findings: string[] = [];
   const written: string[] = [];
   const resolved = resolveExpectedSourceChapters(normalized, { stateRoot: roots.stateRoot });

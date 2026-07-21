@@ -1048,8 +1048,8 @@ function loadPacketSidecar(packet: SourcePacketV1): any | null {
   }
 }
 
-function sourcePasteFindings(pack: SectionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
-  const sidecar = loadPacketSidecar(packet);
+function sourcePasteFindings(pack: SectionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1, selectedSidecar?: unknown): SectionFinding[] {
+  const sidecar = selectedSidecar === undefined ? loadPacketSidecar(packet) : selectedSidecar;
   if (!sidecar) {
     const p = packet.sourceSidecarPath;
     const pathDesc = typeof p === "string" && p ? p : "(not set)";
@@ -2391,7 +2391,7 @@ export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, p
   return findings;
 }
 
-export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
+export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1, selectedSidecar?: unknown): SectionFinding[] {
   const findings = (() => {
     switch (pack.artifactType) {
       case "summary-pack": return validateSummaryPack(pack, bp, packet);
@@ -2404,7 +2404,7 @@ export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1,
   const readerFields = collectSoftBannedTextFields(pack, bp.chapterNumber, true);
   return [
     ...findings,
-    ...sourcePasteFindings(pack, bp, packet),
+    ...sourcePasteFindings(pack, bp, packet, selectedSidecar),
     ...hardBannedPhraseFindings(pack, bp),
     ...readerPunctuationFindings(readerFields),
     ...readerSentenceSeamFindings(readerFields),
@@ -2417,11 +2417,24 @@ export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1,
 export type SectionGateOptions = {
   chapters?: number[];
   sections?: SectionKind[];
+  /** Complete immutable input already opened through BookContentReader. */
+  selectedChapters?: readonly Readonly<{
+    chapterNumber: number;
+    blueprint: ChapterBlueprintV1;
+    sourcePacket: SourcePacketV1;
+    sourceSidecar: unknown;
+    packs: Readonly<Record<SectionKind, SectionPackV1>>;
+  }>[];
 };
 
 export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {}, options: SectionGateOptions = {}): SectionGateReport {
   const normalized = normSlug(bookId);
-  const resolved = resolveExpectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
+  const selectedByChapter = options.selectedChapters
+    ? new Map(options.selectedChapters.map((chapter) => [chapter.chapterNumber, chapter]))
+    : null;
+  const resolved = selectedByChapter
+    ? { ok: selectedByChapter.size > 0, chapters: [...selectedByChapter.keys()].sort((a, b) => a - b), findings: [] }
+    : resolveExpectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
   const expected = resolved.chapters;
   const requested = options.chapters?.length ? options.chapters : expected;
   const expectedSet = new Set(expected);
@@ -2456,6 +2469,26 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
   const summaryTierFields: CrossFieldOccurrence[] = [];
   const summaryHookFirstWords: SummaryHookFirstWordOccurrence[] = [];
   const softBannedFields: SoftBannedTextOccurrence[] = [];
+  const readBlueprint = (chapterNumber: number): ChapterBlueprintV1 => {
+    const selected = selectedByChapter?.get(chapterNumber);
+    return selected ? selected.blueprint : readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots));
+  };
+  const readPacket = (chapterNumber: number): SourcePacketV1 => {
+    const selected = selectedByChapter?.get(chapterNumber);
+    return selected ? selected.sourcePacket : readJsonFile<SourcePacketV1>(sourcePacketPath(normalized, chapterNumber, roots));
+  };
+  const hasPack = (chapterNumber: number, kind: SectionKind): boolean => {
+    if (selectedByChapter) return selectedByChapter.get(chapterNumber)?.packs[kind] !== undefined;
+    return existsSync(sectionPath(normalized, chapterNumber, kind, roots));
+  };
+  const readPack = (chapterNumber: number, kind: SectionKind): SectionPackV1 => {
+    const selected = selectedByChapter?.get(chapterNumber);
+    if (selected) return selected.packs[kind];
+    return readJsonFile<SectionPackV1>(sectionPath(normalized, chapterNumber, kind, roots));
+  };
+  const packPath = (chapterNumber: number, kind: SectionKind): string => selectedByChapter
+    ? `candidate://chapter/${chapterNumber}/${kind}`
+    : sectionPath(normalized, chapterNumber, kind, roots);
   for (const chapterNumber of invalidChapters) {
     findings.push({ checkId: "SEC0.invalid_chapter", severity: "blocker", chapterNumber, message: `chapter ${chapterNumber} is not in the canonical source/index set for ${normalized}` });
   }
@@ -2469,8 +2502,8 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
     let bp: ChapterBlueprintV1;
     let packet: SourcePacketV1;
     try {
-      bp = readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots));
-      packet = readJsonFile<SourcePacketV1>(sourcePacketPath(normalized, chapterNumber, roots));
+      bp = readBlueprint(chapterNumber);
+      packet = readPacket(chapterNumber);
     } catch (err) {
       findings.push({ checkId: "SEC0.prereq", severity: "blocker", chapterNumber, message: `missing blueprint/source packet: ${(err as Error).message}` });
       continue;
@@ -2480,21 +2513,20 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
     // still contains leaks. No example pack yet → empty cast → no findings.
     let usedCast = new Set<string>();
     try {
-      const exPath = sectionPath(normalized, chapterNumber, "example-pack", roots);
-      if (existsSync(exPath)) {
-        const exPack = readJsonFile<SectionPackV1>(exPath);
+      if (hasPack(chapterNumber, "example-pack")) {
+        const exPack = readPack(chapterNumber, "example-pack");
         if (exPack.artifactType === "example-pack") usedCast = usedExampleCast(bp, exPack);
       }
     } catch { /* unreadable example pack → its own gate run reports it */ }
     for (const kind of validSections) {
-      const p = sectionPath(normalized, chapterNumber, kind, roots);
-      if (!existsSync(p)) {
+      const p = packPath(chapterNumber, kind);
+      if (!hasPack(chapterNumber, kind)) {
         findings.push({ checkId: "SEC0.missing", severity: "blocker", chapterNumber, section: kind, path: p, message: `missing ${kind} artifact` });
         continue;
       }
       try {
-        const pack = readJsonFile<SectionPackV1>(p);
-        findings.push(...validateSectionPack(pack, bp, packet));
+        const pack = readPack(chapterNumber, kind);
+        findings.push(...validateSectionPack(pack, bp, packet, selectedByChapter?.get(chapterNumber)?.sourceSidecar));
         findings.push(...castContainmentFindings(pack, usedCast, bp.chapterNumber));
         softBannedFields.push(...collectSoftBannedTextFields(pack, bp.chapterNumber, true));
         if (kind === "example-pack" && pack.artifactType === "example-pack") {
@@ -2542,12 +2574,11 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
     const requestedSet = new Set(chapters);
     for (const chapterNumber of expected) {
       if (requestedSet.has(chapterNumber)) continue;
-      const p = sectionPath(normalized, chapterNumber, "example-pack", roots);
-      if (!existsSync(p)) continue;
+      if (!hasPack(chapterNumber, "example-pack")) continue;
       try {
-        const pack = readJsonFile<SectionPackV1>(p);
+        const pack = readPack(chapterNumber, "example-pack");
         if (pack.artifactType === "example-pack") {
-          const bp = readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots));
+          const bp = readBlueprint(chapterNumber);
           exampleShells.push(...collectExampleShells(pack, bp, false));
           exampleContainers.push(...collectExampleActionContainers(pack, bp, false));
           exampleShortcutDefaultFrames.push(...collectExampleShortcutDefaultFrames(pack, bp, false));
@@ -2571,13 +2602,12 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
     for (const chapterNumber of expected) {
       if (requestedSet.has(chapterNumber)) continue;
       for (const kind of validSections) {
-        const p = sectionPath(normalized, chapterNumber, kind, roots);
-        if (!existsSync(p)) continue;
+        if (!hasPack(chapterNumber, kind)) continue;
         try {
-          const pack = readJsonFile<SectionPackV1>(p);
+          const pack = readPack(chapterNumber, kind);
           softBannedFields.push(...collectSoftBannedTextFields(pack, chapterNumber, false));
           if (kind === "action-pack" && pack.artifactType === "action-pack") {
-            const bp = readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots));
+            const bp = readBlueprint(chapterNumber);
             actionPendingTemplateUnits.push(...collectActionPendingTemplateUnits(pack, bp, false));
             actionClassifyLeverUnits.push(...collectActionClassifyLeverPracticeUnits(pack, bp, false));
             actionSocialPressurePauseUnits.push(...collectActionSocialPressurePausePlans(pack, bp, false));

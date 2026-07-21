@@ -57,6 +57,8 @@ import { mkdirSync, existsSync, readdirSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { createHash } from "crypto";
+import { observeAuthorV4Shadow, type AuthorV4ShadowBinding } from "./chapterTransaction.js";
+import type { AuthorRepairShadowOutcome } from "./authorRepair.js";
 
 import { CANONICAL_STATE, CHAPTERS_DIR, chapterFileName } from "../lib/chapterPaths.js";
 import type { AutopilotDeps, AutopilotOutcome } from "./autopilot.js";
@@ -151,7 +153,7 @@ import {
   regenConsumedFor,
   repairConsumedFor,
 } from "./authorRegenLedger.js";
-import { classifyRepairEligibility, doRepairOneChapter, RepairRestoreError, reviewRepairEnabled } from "./authorRepair.js";
+import { classifyRepairEligibility, doRepairOneChapter, RepairRestoreError, reviewRepairEnabled, type RepairScope } from "./authorRepair.js";
 import { resolveBeatShippedBar, type BeatShippedResult } from "./shippedControl.js";
 // F-04 (Prompt 4): the bounded content-device repair lane. TYPE-ONLY import — the
 // runtime `doContentDeviceRepair` is loaded lazily inside resolveAuthorReviewIo's
@@ -1670,6 +1672,13 @@ export type AuthorReviewOptions = {
   bar?: number;
   heartbeat?: () => boolean;
   io?: Partial<AuthorReviewIo>;
+  v4Shadow?: AuthorV4ShadowBinding<AutopilotOutcome | null>;
+  v4ShadowForRepair?: (input: Readonly<{
+    bookId: string;
+    chapterNumber: number;
+    scopes: RepairScope[];
+    complaints: string[];
+  }>) => AuthorV4ShadowBinding<AuthorRepairShadowOutcome> | undefined;
 };
 
 /** Public entry: run the review phase, converting any DocIntegrityError (Q2 doc
@@ -1681,25 +1690,27 @@ export async function doAuthorReview(
   deps: AutopilotDeps,
   opts: AuthorReviewOptions,
 ): Promise<AutopilotOutcome | null> {
+  let legacy: AutopilotOutcome | null;
   try {
-    return await doAuthorReviewInner(bookId, deps, opts);
+    legacy = await doAuthorReviewInner(bookId, deps, opts);
   } catch (err) {
-    if (err instanceof DocIntegrityError) return halt(bookId, "infra", `author review: ${err.message}`);
+    if (err instanceof DocIntegrityError) legacy = halt(bookId, "infra", `author review: ${err.message}`);
     // A required AUTO control-read that cannot be produced is a fail-closed infra
     // halt — never a silent drop of the beat-shipped protection.
-    if (err instanceof ControlReadError) return halt(bookId, "infra", `author acceptance beat-shipped control read: ${err.message}`);
+    else if (err instanceof ControlReadError) legacy = halt(bookId, "infra", `author acceptance beat-shipped control read: ${err.message}`);
     // Multi-read config: a set-but-invalid noise band halts, never a silent
     // fallback (BREAK-1 lesson).
-    if (err instanceof AcceptanceConfigError) return halt(bookId, "infra", `author acceptance multi-read config: ${err.message}`);
+    else if (err instanceof AcceptanceConfigError) legacy = halt(bookId, "infra", `author acceptance multi-read config: ${err.message}`);
     // F6: a rejected repair whose byte restore ALSO failed — disk diverges from
     // the persisted review pointers; halt infra before any further routing.
-    if (err instanceof RepairRestoreError) return halt(bookId, "infra", `author review repair lane: ${err.message}`);
+    else if (err instanceof RepairRestoreError) legacy = halt(bookId, "infra", `author review repair lane: ${err.message}`);
     // A regen cap that cannot be honored honestly (unreadable ledger, or a
     // chapter whose design lineage is uncomputable) is an infra halt — never a
     // fail-open cap and never a faked content cap-exhaustion (#8).
-    if (err instanceof RegenLedgerError) return halt(bookId, "infra", `author review regen ledger: ${err.message}`);
-    throw err;
+    else if (err instanceof RegenLedgerError) legacy = halt(bookId, "infra", `author review regen ledger: ${err.message}`);
+    else throw err;
   }
+  return observeAuthorV4Shadow(legacy, opts.v4Shadow, deps.log);
 }
 
 async function doAuthorReviewInner(
@@ -1911,7 +1922,18 @@ async function doAuthorReviewInner(
         if (cls.eligible && repairCapFree) {
           deps.log(`[autopilot] author review ch${nn}: repair lane ENGAGED (${cls.reason}) — one surgical repair before any regen`);
           io.recordRepairConsumed(bookId, chapter.number);
-          const rep = await doRepairOneChapter(bookId, chapter.number, deps, { io, scopes: cls.scopes, complaints });
+          let v4RepairShadow: AuthorV4ShadowBinding<AuthorRepairShadowOutcome> | undefined;
+          try {
+            v4RepairShadow = opts.v4ShadowForRepair?.({ bookId, chapterNumber: chapter.number, scopes: cls.scopes, complaints });
+          } catch (error) {
+            try { deps.log(`[autopilot] V4 repair shadow binding exception (${(error as Error).message}); legacy repair continues`); } catch { /* shadow diagnostics never escape */ }
+          }
+          const rep = await doRepairOneChapter(bookId, chapter.number, deps, {
+            io,
+            scopes: cls.scopes,
+            complaints,
+            v4Shadow: v4RepairShadow,
+          });
           if (rep.ok) {
             const repaired = io.loadChapters(bookId).find((c) => c.number === chapter.number);
             if (repaired) {

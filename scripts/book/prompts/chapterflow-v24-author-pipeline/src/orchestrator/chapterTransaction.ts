@@ -46,6 +46,10 @@ import type { AttemptIdentityV1, AttemptKindV1, CandidateOutcomeV1, CommitManife
 import { runChapterGateComposite, type ChapterGateCompositeOptions } from "../critics/chapterGateComposite.js";
 import type { RubricThresholds } from "../metrics/rubricThresholds.js";
 import { recordAttemptMint, recordAttemptState, recordAttemptObject, recordAttemptFinal, resolveEvidenceRoot } from "../evidence/attemptRecorder.js";
+import type { CandidateInputFile, CandidateSelector, CandidateSnapshot } from "../books/candidateTypes.js";
+import type { PlannedArtifact } from "../contracts/v4Core.js";
+import type { LegacyAuthorStateAdapter, LegacyAuthorShadowStep } from "../contracts/legacyAuthorStateAdapter.js";
+import type { RunDefinition } from "../run-state/runTypes.js";
 
 /** Attempt evidence root — pipeline-local, gitignored, EXCLUDED from chapter
  *  enumeration by construction (nothing under state/). */
@@ -54,6 +58,261 @@ export const ATTEMPTS_ROOT = resolve(REPO_ROOT, ".attempts");
 /** Candidate byte ceiling. Real ChapterV21 files run ~40–90 KB; 2 MB flags a
  *  runaway/duplicated output as `truncated_output`-class garbage, not content. */
 export const CANDIDATE_MAX_BYTES = 2 * 1024 * 1024;
+
+export type AuthorV4OperationKind =
+  | "ORCHESTRATE"
+  | "REVIEW"
+  | "REPAIR"
+  | "POLISH"
+  | "GENERATE"
+  | "SECTION_VALIDATE"
+  | "ASSEMBLE";
+
+/** App-owned identity and ports for one disposable legacy-first shadow step. */
+export interface AuthorV4ShadowContext {
+  readonly adapter: LegacyAuthorStateAdapter;
+  readonly definition: RunDefinition;
+  readonly bookId: string;
+  readonly runId: string;
+  readonly stageId: string;
+  readonly attemptId: string;
+  readonly operationId: string;
+  readonly operationKind: AuthorV4OperationKind;
+  readonly candidateId: string;
+  readonly selector: CandidateSelector;
+  readonly admittedAt: string;
+  readonly staleAt: string;
+  readonly completedAt: string;
+  readonly observedAt: string;
+  readonly expectedInventory: readonly PlannedArtifact[];
+  readonly parentCandidateId?: string;
+}
+
+export interface AuthorV4ShadowBinding<TLegacy> {
+  readonly context: AuthorV4ShadowContext;
+  readonly files: (legacy: TLegacy) => readonly CandidateInputFile[];
+  readonly normalizeLegacy: (legacy: TLegacy) => unknown;
+  readonly normalizeCandidate: (candidate: CandidateSnapshot) => unknown;
+  readonly report?: (report: AuthorV4ShadowReport) => void;
+}
+
+export interface AuthorV4ShadowReport {
+  readonly authority: "LEGACY";
+  readonly operationId: string;
+  readonly operationKind: AuthorV4OperationKind;
+  readonly ok: boolean;
+  readonly reused: boolean;
+  readonly steps: readonly LegacyAuthorShadowStep[];
+  readonly candidate?: CandidateSnapshot;
+  readonly mismatch?: Readonly<{
+    operationId: string;
+    operationKind: AuthorV4OperationKind;
+    fields: readonly string[];
+    legacy: unknown;
+    shadow: unknown;
+  }>;
+}
+
+function sameJson(left: unknown, right: unknown): boolean {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function mismatchFields(left: unknown, right: unknown): string[] {
+  if (left && right && typeof left === "object" && typeof right === "object" && !Array.isArray(left) && !Array.isArray(right)) {
+    const l = left as Record<string, unknown>;
+    const r = right as Record<string, unknown>;
+    return [...new Set([...Object.keys(l), ...Object.keys(r)])].filter((key) => !sameJson(l[key], r[key])).sort();
+  }
+  return ["$"];
+}
+
+function invalidShadowContext(context: AuthorV4ShadowContext): string | null {
+  if (context.definition.bookId !== context.bookId || context.definition.runId !== context.runId) {
+    return "definition identity does not match explicit book/run context";
+  }
+  if (!context.definition.requiredStages.includes(context.stageId)) return "stageId is not declared by run definition";
+  if (!sameJson(context.definition.requiredInventory, context.expectedInventory)) return "inventory differs from frozen run definition";
+  if (context.selector.kind !== "CANDIDATE" || context.selector.candidateId !== context.candidateId) {
+    return "shadow selector must explicitly name candidateId; CURRENT/ambient fallback is forbidden";
+  }
+  // Operation kind is an explicit app field. Opaque operationId is never parsed.
+  if (context.operationKind === "REPAIR" && (!context.parentCandidateId || context.parentCandidateId === context.candidateId)) {
+    return "repair shadow must target a successor candidate with an immutable predecessor";
+  }
+  if (context.operationKind !== "REPAIR" && context.parentCandidateId) {
+    return "parentCandidateId is reserved for explicit REPAIR operations";
+  }
+  return null;
+}
+
+/** Project completed legacy result into disposable V4 state. Never executes model/process work. */
+export async function projectAuthorV4Shadow<TLegacy>(
+  legacy: TLegacy,
+  binding: AuthorV4ShadowBinding<TLegacy>,
+): Promise<AuthorV4ShadowReport> {
+  const { context } = binding;
+  const steps: LegacyAuthorShadowStep[] = [];
+  const base = { authority: "LEGACY" as const, operationId: context.operationId, operationKind: context.operationKind };
+  const fail = (name: string, code: string, message: string): AuthorV4ShadowReport => ({
+    ...base,
+    ok: false,
+    reused: false,
+    steps: [...steps, { name, ok: false, code, message }],
+  });
+  const invalid = invalidShadowContext(context);
+  if (invalid) return fail("context.validate", "INVALID_CONTEXT", invalid);
+  steps.push({ name: "context.validate", ok: true });
+
+  const created = await context.adapter.createShadowRun(context.definition);
+  if (!created.ok) return fail("run.create", created.error.code, created.error.message);
+  steps.push({ name: "run.create", ok: true });
+  const resume = await context.adapter.planShadowResume(context.definition);
+  if (!resume.ok) return fail("stage.resume", resume.error.code, resume.error.message);
+  steps.push({ name: "stage.resume", ok: true });
+  if (resume.value.cancelled) return fail("stage.resume", "CANCELLED", "shadow run is durably cancelled");
+
+  const observed = await context.adapter.readShadowRun(context.bookId, context.runId, context.observedAt);
+  if (!observed.ok) return fail("run.observe", observed.error.code, observed.error.message);
+  steps.push({ name: "run.observe", ok: true });
+  const prior = observed.value.attempts.find((attempt) => attempt.admission.attemptId === context.attemptId);
+
+  if (resume.value.completedStages.includes(context.stageId)) {
+    const opened = await context.adapter.openShadowCandidate({ bookId: context.bookId, selector: context.selector });
+    if (!opened.ok) return fail("candidate.open", opened.error.code, opened.error.message);
+    steps.push({ name: "stage.reuse", ok: true }, { name: "candidate.open", ok: true });
+    const legacyProjection = binding.normalizeLegacy(legacy);
+    const shadowProjection = binding.normalizeCandidate(opened.value);
+    const mismatch = sameJson(legacyProjection, shadowProjection) ? undefined : {
+      operationId: context.operationId,
+      operationKind: context.operationKind,
+      fields: mismatchFields(legacyProjection, shadowProjection),
+      legacy: legacyProjection,
+      shadow: shadowProjection,
+    };
+    return { ...base, ok: !mismatch, reused: true, steps, candidate: opened.value, ...(mismatch ? { mismatch } : {}) };
+  }
+  if (!resume.value.pendingStages.includes(context.stageId)) {
+    return fail("stage.resume", "STAGE_NOT_PENDING", `stage ${context.stageId} is not pending`);
+  }
+  if (prior) return fail("attempt.reuse", "ATTEMPT_CONSUMED", `attempt ${context.attemptId} is already ${prior.status}; no automatic replay`);
+
+  const admitted = await context.adapter.startShadowAttempt({
+    bookId: context.bookId,
+    runId: context.runId,
+    attemptId: context.attemptId,
+    stageId: context.stageId,
+    operationId: context.operationId,
+    admittedAt: context.admittedAt,
+    staleAt: context.staleAt,
+  });
+  if (!admitted.ok) return fail("attempt.admit", admitted.error.code, admitted.error.message);
+  if (admitted.value.status !== "ACTIVE") return fail("attempt.admit", "ATTEMPT_CONSUMED", `attempt is ${admitted.value.status}; no automatic replay`);
+  steps.push({ name: "attempt.admit", ok: true });
+
+  const cancellationBoundary = async (name: string): Promise<AuthorV4ShadowReport | null> => {
+    const next = await context.adapter.planShadowResume(context.definition);
+    if (!next.ok) return fail(name, next.error.code, next.error.message);
+    steps.push({ name, ok: true });
+    if (!next.value.cancelled) return null;
+    await context.adapter.finishShadowAttempt({
+      bookId: context.bookId,
+      runId: context.runId,
+      attemptId: context.attemptId,
+      outcome: "CANCELLED",
+      finishedAt: context.completedAt,
+      detail: `cancel observed at ${name}`,
+    });
+    return fail(name, "CANCELLED", "shadow run was cancelled before later boundary");
+  };
+
+  const beforePrepare = await cancellationBoundary("cancel.before-prepare");
+  if (beforePrepare) return beforePrepare;
+  let files: readonly CandidateInputFile[];
+  try {
+    files = binding.files(legacy);
+  } catch (error) {
+    await context.adapter.finishShadowAttempt({ bookId: context.bookId, runId: context.runId, attemptId: context.attemptId, outcome: "FAILED", finishedAt: context.completedAt, detail: (error as Error).message });
+    return fail("candidate.prepare", "CANDIDATE_PREPARE_FAILED", (error as Error).message);
+  }
+  const beforeStage = await cancellationBoundary("cancel.before-stage");
+  if (beforeStage) return beforeStage;
+  const staged = await context.adapter.stageCompleteCandidate({
+    bookId: context.bookId,
+    candidateId: context.candidateId,
+    ...(context.parentCandidateId ? { parentCandidateId: context.parentCandidateId } : {}),
+    createdByRunId: context.runId,
+    expectedInventory: context.expectedInventory,
+    files,
+    createdAt: context.completedAt,
+  });
+  if (!staged.ok) {
+    await context.adapter.finishShadowAttempt({ bookId: context.bookId, runId: context.runId, attemptId: context.attemptId, outcome: "FAILED", finishedAt: context.completedAt, detail: staged.error.message });
+    return fail("candidate.stage", staged.error.code, staged.error.message);
+  }
+  steps.push({ name: "candidate.stage", ok: true });
+  const beforeOpen = await cancellationBoundary("cancel.before-open");
+  if (beforeOpen) return beforeOpen;
+  const opened = await context.adapter.openShadowCandidate({ bookId: context.bookId, selector: context.selector });
+  if (!opened.ok) {
+    await context.adapter.finishShadowAttempt({ bookId: context.bookId, runId: context.runId, attemptId: context.attemptId, outcome: "FAILED", finishedAt: context.completedAt, detail: opened.error.message });
+    return fail("candidate.open", opened.error.code, opened.error.message);
+  }
+  steps.push({ name: "candidate.open", ok: true });
+  const beforeFinish = await cancellationBoundary("cancel.before-finish");
+  if (beforeFinish) return beforeFinish;
+  const finished = await context.adapter.finishShadowAttempt({ bookId: context.bookId, runId: context.runId, attemptId: context.attemptId, outcome: "SUCCEEDED", finishedAt: context.completedAt });
+  if (!finished.ok) return fail("attempt.finish", finished.error.code, finished.error.message);
+  steps.push({ name: "attempt.finish", ok: true });
+  const checkpointed = await context.adapter.checkpointShadowStage({
+    schemaVersion: "1",
+    bookId: context.bookId,
+    runId: context.runId,
+    stageId: context.stageId,
+    status: "COMPLETED",
+    attemptIds: [context.attemptId],
+    candidate: { candidateId: staged.value.candidateId, manifestDigest: staged.value.manifestDigest },
+    completedAt: context.completedAt,
+  });
+  if (!checkpointed.ok) return fail("stage.checkpoint", checkpointed.error.code, checkpointed.error.message);
+  steps.push({ name: "stage.checkpoint", ok: true });
+
+  const legacyProjection = binding.normalizeLegacy(legacy);
+  const shadowProjection = binding.normalizeCandidate(opened.value);
+  const mismatch = sameJson(legacyProjection, shadowProjection) ? undefined : {
+    operationId: context.operationId,
+    operationKind: context.operationKind,
+    fields: mismatchFields(legacyProjection, shadowProjection),
+    legacy: legacyProjection,
+    shadow: shadowProjection,
+  };
+  return { ...base, ok: !mismatch, reused: false, steps, candidate: opened.value, ...(mismatch ? { mismatch } : {}) };
+}
+
+/** Containment wrapper. Binding/report failures never alter established legacy result. */
+export function observeAuthorV4Shadow<TLegacy>(
+  legacy: TLegacy,
+  binding: AuthorV4ShadowBinding<TLegacy> | undefined,
+  log: (message: string) => void,
+): TLegacy {
+  if (!binding) return legacy;
+  const safeLog = (message: string): void => { try { log(message); } catch { /* shadow diagnostics never escape */ } };
+  void projectAuthorV4Shadow(legacy, binding).then((report) => {
+    try {
+      binding.report?.(report);
+      if (!report.ok) {
+        const detail = report.mismatch
+          ? `${report.mismatch.operationKind}:${report.mismatch.operationId} fields=${report.mismatch.fields.join(",")}`
+          : report.steps.filter((step) => !step.ok).map((step) => `${step.name}:${step.code ?? "FAILED"}`).join(",");
+        safeLog(`V4 shadow mismatch/block (${detail}); legacy result remains authoritative`);
+      }
+    } catch (error) {
+      safeLog(`V4 shadow report exception (${(error as Error).message}); legacy result remains authoritative`);
+    }
+  }, (error: unknown) => {
+    safeLog(`V4 shadow exception (${(error as Error).message}); legacy result remains authoritative`);
+  }).catch(() => {});
+  return legacy;
+}
 
 /** The minimal canonical-IO seam the transaction needs (structurally a subset
  *  of AuthorIo, so callers pass their existing io object straight through). */

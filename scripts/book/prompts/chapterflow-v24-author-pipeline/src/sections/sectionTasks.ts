@@ -14,6 +14,7 @@ import {
   type CompilerStoreRoots,
 } from "../artifacts/artifactStore.js";
 import { SECTION_KINDS, type ChapterBlueprintV1, type SectionKind, type SourcePacketV1 } from "../artifacts/artifactTypes.js";
+import { readAuthorV4SelectedText, type AuthorV4ContentSelection } from "../assembler.js";
 
 export type SectionTask = {
   bookId: string;
@@ -331,6 +332,7 @@ export function missingSectionTasks(bookId: string, roots: CompilerStoreRoots = 
   return sectionTasks(bookId, roots).filter((t) => !t.exists || !existsSync(t.taskPath));
 }
 
-export function readSectionTask(task: SectionTask): string {
+export function readSectionTask(task: SectionTask, selected?: Readonly<{ content: AuthorV4ContentSelection; logicalPath: string }>): string {
+  if (selected) return readAuthorV4SelectedText(selected.content, selected.logicalPath);
   return readFileSync(task.taskPath, "utf8");
 }

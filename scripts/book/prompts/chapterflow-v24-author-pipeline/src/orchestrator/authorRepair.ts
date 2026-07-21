@@ -52,6 +52,7 @@ import {
   mintChapterAttempt,
   unexpectedAttemptWrites,
 } from "./chapterTransaction.js";
+import { observeAuthorV4Shadow, type AuthorV4ShadowBinding } from "./chapterTransaction.js";
 
 /** Kill switch (plan R7): default ON; set CHAPTERFLOW_REVIEW_REPAIR=0 to disable. */
 export function reviewRepairEnabled(): boolean {
@@ -335,10 +336,15 @@ export type RepairResult = {
   restoreFailed?: boolean;
 };
 
+export type AuthorRepairShadowOutcome = Readonly<{
+  result: RepairResult;
+  changedChapterBytes: string | null;
+}>;
+
 /** Run one surgical repair end-to-end. On ANY failure the ORIGINAL bytes are
  *  restored (the persisted review's contentHash must keep matching the disk)
  *  and the caller falls through to regen. No retries. */
-export async function doRepairOneChapter(
+async function doRepairOneChapterLegacy(
   bookId: string,
   chapterNumber: number,
   deps: AutopilotDeps,
@@ -594,4 +600,28 @@ export async function doRepairOneChapter(
     recordAttemptObject(chAttempt.evidenceRoot, chAttempt.identity.attemptId, "diversity-features", JSON.stringify(divRec) + "\n");
   }
   return { ok: true, sessionId };
+}
+
+export async function doRepairOneChapter(
+  bookId: string,
+  chapterNumber: number,
+  deps: AutopilotDeps,
+  opts: {
+    io: AuthorIo;
+    scopes: RepairScope[];
+    complaints: string[];
+    v4Shadow?: AuthorV4ShadowBinding<AuthorRepairShadowOutcome>;
+  },
+): Promise<RepairResult> {
+  const result = await doRepairOneChapterLegacy(bookId, chapterNumber, deps, opts);
+  if (opts.v4Shadow) {
+    let changedChapterBytes: string | null = null;
+    try {
+      changedChapterBytes = result.ok ? opts.io.readChapterFile(bookId, chapterNumber) : null;
+    } catch (error) {
+      try { deps.log(`V4 repair shadow capture exception (${(error as Error).message}); legacy repair result remains authoritative`); } catch { /* shadow diagnostics never escape */ }
+    }
+    observeAuthorV4Shadow({ result, changedChapterBytes }, opts.v4Shadow, deps.log);
+  }
+  return result;
 }
