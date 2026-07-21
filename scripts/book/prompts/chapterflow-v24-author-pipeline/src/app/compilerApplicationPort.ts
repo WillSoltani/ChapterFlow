@@ -10,7 +10,8 @@ import { deriveBookDesign } from "../compiler/bookDesign.js";
 import { compileSourcePacketFromSidecar } from "../compiler/sourcePacket.js";
 import type { ChapterSpec } from "../generateChapter.js";
 import { chapterFileName } from "../lib/chapterPaths.js";
-import { buildSectionTaskMarkdown } from "../sections/sectionTasks.js";
+import type { BookScars } from "../lib/bookScars.js";
+import { buildSectionTaskMarkdown, type SectionTaskRenderContext } from "../sections/sectionTasks.js";
 import { assembleSections, type AuthorV4SectionChapterPaths } from "../sections/assembleSections.js";
 import type { SourceSidecarV2 } from "../source/sidecarSchema.js";
 import type { ChapterFlowClock, ChapterFlowIdFactory } from "./pipeline.js";
@@ -24,16 +25,24 @@ interface CompilerSourceMapping {
   readonly sourceLogicalPaths: readonly string[];
 }
 
-interface CompilerApplicationRequest {
+export interface CompilerApplicationRequest {
   readonly bookId: string;
   readonly candidateId: string;
   readonly manifestDigest: string;
   readonly attemptRoot: string;
   readonly indexLogicalPath: string;
+  readonly sectionTaskContextLogicalPath: string;
   readonly sources: readonly CompilerSourceMapping[];
   readonly profileId: typeof COMPILER_SECTION_PROFILE_ID;
   readonly signal: AbortSignal;
 }
+
+type CompilerSectionTaskContextFile = Readonly<{
+  schemaVersion: "compiler-section-task-context-v1";
+  bookId: string;
+  voiceCard: string | null;
+  bookScars: BookScars | null;
+}>;
 
 interface CompilerApplicationResult {
   readonly candidateId: string;
@@ -67,6 +76,58 @@ function selectedFile(snapshot: CandidateSnapshot, logicalPath: string): Candida
 
 function jsonBytes(value: unknown): Uint8Array {
   return new TextEncoder().encode(`${JSON.stringify(value, null, 2)}\n`);
+}
+
+function exactKeys(value: Record<string, unknown>, expected: readonly string[]): boolean {
+  return Object.keys(value).sort().join("\u0000") === [...expected].sort().join("\u0000");
+}
+
+function nonemptyStrings(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((item) => typeof item === "string" && item.trim().length > 0);
+}
+
+function sectionTaskContext(snapshot: CandidateSnapshot, logicalPath: string, bookId: string): SectionTaskRenderContext {
+  const file = selectedFile(snapshot, logicalPath);
+  if (file.mediaType !== "application/json") {
+    throw new Error("COMPILER_INPUT_INVALID:section-task context must use application/json");
+  }
+  let raw: unknown;
+  try {
+    raw = JSON.parse(Buffer.from(file.bytes).toString("utf8"));
+  } catch {
+    throw new Error("COMPILER_INPUT_INVALID:section-task context is malformed JSON");
+  }
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
+    throw new Error("COMPILER_INPUT_INVALID:section-task context must be an object");
+  }
+  const value = raw as Record<string, unknown>;
+  if (!exactKeys(value, ["schemaVersion", "bookId", "voiceCard", "bookScars"]) || value.schemaVersion !== "compiler-section-task-context-v1" || value.bookId !== bookId) {
+    throw new Error("COMPILER_INPUT_INVALID:section-task context schema or bookId mismatch");
+  }
+  if (value.voiceCard !== null && (typeof value.voiceCard !== "string" || value.voiceCard.trim().length === 0)) {
+    throw new Error("COMPILER_INPUT_INVALID:section-task voiceCard must be null or nonempty text");
+  }
+  let bookScars: BookScars | null = null;
+  if (value.bookScars !== null) {
+    if (typeof value.bookScars !== "object" || Array.isArray(value.bookScars)) {
+      throw new Error("COMPILER_INPUT_INVALID:section-task bookScars must be null or an object");
+    }
+    const scars = value.bookScars as Record<string, unknown>;
+    if (!exactKeys(scars, ["bookId", "phrases", "frames", "notes"]) || scars.bookId !== bookId || !nonemptyStrings(scars.phrases) || !nonemptyStrings(scars.frames) || !nonemptyStrings(scars.notes)) {
+      throw new Error("COMPILER_INPUT_INVALID:section-task bookScars are invalid or book-mismatched");
+    }
+    if (scars.phrases.length === 0 && scars.frames.length === 0 && scars.notes.length === 0) {
+      throw new Error("COMPILER_INPUT_INVALID:section-task bookScars must contain guidance");
+    }
+    bookScars = Object.freeze({
+      bookId,
+      phrases: Object.freeze([...scars.phrases]) as unknown as string[],
+      frames: Object.freeze([...scars.frames]) as unknown as string[],
+      notes: Object.freeze([...scars.notes]) as unknown as string[],
+    });
+  }
+  const parsed = value as unknown as CompilerSectionTaskContextFile;
+  return Object.freeze({ voiceCard: parsed.voiceCard, bookScars });
 }
 
 function sidecarHash(snapshot: CandidateSnapshot, mapping: CompilerSourceMapping): string {
@@ -108,6 +169,8 @@ export class CompilerApplicationPort {
     if (snapshot.manifest.manifestDigest !== request.manifestDigest) {
       throw new Error("COMPILER_SELECTOR_BLOCKED:selected candidate manifest digest mismatch");
     }
+
+    const renderContext = sectionTaskContext(snapshot, request.sectionTaskContextLogicalPath, request.bookId);
 
     const indexFile = selectedFile(snapshot, request.indexLogicalPath);
     let chapters: ChapterSpec[];
@@ -192,7 +255,7 @@ export class CompilerApplicationPort {
       );
       const sectionPaths = {} as Record<SectionKind, string>;
       for (const kind of SECTION_KINDS) {
-        const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: artifacts.blueprint, sourcePacket: packet, outputPath: compilerPath(chapter.chapterNumber, `${kind}.json`) });
+        const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: artifacts.blueprint, sourcePacket: packet, outputPath: compilerPath(chapter.chapterNumber, `${kind}.json`), context: renderContext });
         const result = await this.#dependencies.runner.run({
           profileId: COMPILER_SECTION_PROFILE_ID,
           context: {

@@ -27,10 +27,19 @@ test("actual CLI loads malformed config only for declared MODEL or WRITE routes"
     const result = cli([...args, "--config-dir", configDir]);
     assert.doesNotMatch(`${result.stdout}${result.stderr}`, /Config schema validation failed/);
   }
-  for (const args of [["ping"], ["migrate-state"]]) {
+  for (const args of [["migrate-state"]]) {
     const result = cli([...args, "--config-dir", configDir]);
     assert.equal(result.status, 2);
     assert.match(`${result.stdout}${result.stderr}`, /Config schema validation failed/);
+  }
+});
+
+test("legacy CLI commands stop before config or execution", () => {
+  for (const command of ["ping", "pipeline", "flow", "generate-book", "research", "generate"]) {
+    const result = cli([command, "--config-dir", "/definitely/missing"]);
+    assert.equal(result.status, 2);
+    assert.match(`${result.stdout}${result.stderr}`, new RegExp(`LEGACY_ROUTE_DISABLED:V4_APPLICATION_ROUTE_REQUIRED:cli\\.${command}`));
+    assert.doesNotMatch(`${result.stdout}${result.stderr}`, /Config schema validation failed/);
   }
 });
 
@@ -123,6 +132,9 @@ test("canonical review reruns keep stable candidate-bound round identity", () =>
 test("book-autopilot keeps conductor ownership and existing author route", () => {
   const body = cliSource.slice(cliSource.indexOf("async function runBookAutopilot"), cliSource.indexOf("async function runCompileSourcePackets"));
   assert.match(body, /new Proxy\(compilerPort/);
+  assert.match(body, /const sectionTaskContextLogicalPath = flags\["section-task-context-path"\]/);
+  assert.match(body, /typeof sectionTaskContextLogicalPath !== "string"/);
+  assert.match(body, /sectionTaskContextLogicalPath,/);
   assert.equal((body.match(/compilerPort\.run\(request\)/g) ?? []).length, 1);
   assert.doesNotMatch(body, /compiler\.port\.run\(/);
   assert.ok(body.indexOf("const outcome = await runAutopilot") < body.indexOf("return runQcAuto"));

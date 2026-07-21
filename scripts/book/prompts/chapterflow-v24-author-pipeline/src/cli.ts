@@ -74,6 +74,10 @@ const MODEL_COMMANDS = new Set<string>([
   "batch", "eval-reader-proxy", "eval-book-proxy",
 ]);
 
+const LEGACY_DISABLED_COMMANDS = new Set<string>([
+  "ping", "pipeline", "flow", "generate-book", "research", "generate",
+]);
+
 const commandRegistry = new CommandRegistry();
 const runRegisteredCommand: CommandSpec["run"] = async (context) => {
   const parsed = parseArgs([...context.argv]);
@@ -4628,6 +4632,7 @@ async function runBookAutopilot(
     const manifestDigest = flags["manifest-digest"];
     const attemptRoot = flags["attempt-root"];
     const indexLogicalPath = flags["index-path"];
+    const sectionTaskContextLogicalPath = flags["section-task-context-path"];
     const sourceMap = flags["source-map"];
     if (
       typeof candidateId !== "string" ||
@@ -4635,9 +4640,10 @@ async function runBookAutopilot(
       typeof attemptRoot !== "string" ||
       !isAbsolute(attemptRoot) ||
       typeof indexLogicalPath !== "string" ||
+      typeof sectionTaskContextLogicalPath !== "string" ||
       typeof sourceMap !== "string"
     ) {
-      console.error("compiler requires --candidate-id, --manifest-digest, absolute --attempt-root, --index-path, and JSON --source-map");
+      console.error("compiler requires --candidate-id, --manifest-digest, absolute --attempt-root, --index-path, --section-task-context-path, and JSON --source-map");
       return 2;
     }
     let sources: Parameters<NonNullable<NonNullable<typeof app>["compiler"]>["run"]>[0]["sources"];
@@ -4679,6 +4685,7 @@ async function runBookAutopilot(
         manifestDigest,
         attemptRoot,
         indexLogicalPath,
+        sectionTaskContextLogicalPath,
         sources,
         profileId: "pipeline-read-json-v1",
         signal: new AbortController().signal,
@@ -6656,9 +6663,13 @@ async function runExistingCommand(context: ParsedCommandContext): Promise<number
 
 async function main() {
   const { cmd, args, flags } = parseArgs(process.argv.slice(2));
+  const id = normalizeCommandId(cmd);
+  if (LEGACY_DISABLED_COMMANDS.has(id)) {
+    console.error(`LEGACY_ROUTE_DISABLED:V4_APPLICATION_ROUTE_REQUIRED:cli.${id}`);
+    return 2;
+  }
   const tripwire = canonicalWorkspaceTripwire(flags);
   if (tripwire !== 0) return tripwire;
-  const id = normalizeCommandId(cmd);
   const spec = commandRegistry.resolve(id);
   if (!spec) {
     console.error(`Unknown command: ${id}`);

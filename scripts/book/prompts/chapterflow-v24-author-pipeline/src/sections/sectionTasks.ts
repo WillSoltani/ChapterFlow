@@ -1,20 +1,9 @@
-import { existsSync, readFileSync } from "fs";
-
-import { expectedSourceChapters } from "../qc/sourceV2Gate.js";
-import { normSlug } from "../lib/chapterPaths.js";
-import { voiceCard, voiceRegisterLine } from "../lib/voiceCard.js";
-import { loadBookScars } from "../lib/bookScars.js";
-import {
-  blueprintPath,
-  readJsonFile,
-  sectionPath,
-  sectionTaskPath,
-  writeTextFile,
-  sourcePacketPath,
-  type CompilerStoreRoots,
-} from "../artifacts/artifactStore.js";
-import { SECTION_KINDS, type ChapterBlueprintV1, type SectionKind, type SourcePacketV1 } from "../artifacts/artifactTypes.js";
-import { readAuthorV4SelectedText, type AuthorV4ContentSelection } from "../assembler.js";
+import { voiceRegisterLine } from "../lib/voiceCard.js";
+import type { BookScars } from "../lib/bookScars.js";
+import type { CompilerStoreRoots } from "../artifacts/artifactStore.js";
+import type { ChapterBlueprintV1, SectionKind, SourcePacketV1 } from "../artifacts/artifactTypes.js";
+import type { AuthorV4ContentSelection } from "../assembler.js";
+import { legacyRouteDisabled } from "../runtime/legacyRouteInventory.js";
 
 export type SectionTask = {
   bookId: string;
@@ -209,8 +198,7 @@ function sectionContract(kind: SectionKind): string {
 /** The book-scars block, or "" when the book has no scar file (most books). Rendered
  *  between TASK and the VOICE CARD, so a writer sees ONLY its own book's over-used
  *  material — never another book's. Enforcement stays in the gates; this is guidance. */
-function bookScarsSection(bookId: string): string {
-  const scars = loadBookScars(bookId);
+function bookScarsSection(scars: BookScars | null): string {
   if (!scars) return "";
   const lines: string[] = [
     "\n\nKNOWN OVER-USED MATERIAL FOR THIS BOOK — each item may appear in at most one teaching unit book-wide; paraphrase the mechanism everywhere else.",
@@ -269,8 +257,13 @@ function actionReservedVariety(rv: ChapterBlueprintV1["reservedVariety"]): Omit<
   return rest;
 }
 
-export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKind; blueprint: ChapterBlueprintV1; sourcePacket: SourcePacketV1; outputPath: string }): string {
-  const { bookId, kind, blueprint, sourcePacket, outputPath } = args;
+export type SectionTaskRenderContext = Readonly<{
+  voiceCard: string | null;
+  bookScars: BookScars | null;
+}>;
+
+export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKind; blueprint: ChapterBlueprintV1; sourcePacket: SourcePacketV1; outputPath: string; context: SectionTaskRenderContext }): string {
+  const { bookId, kind, blueprint, sourcePacket, outputPath, context } = args;
   // Each writer consumes only its own section's slots plus a little shared chapter
   // context; the per-slot dealt fields (sceneFrame, promptShape, correctIndex,
   // requiredFactIds, action.practiceForm, …) all live inside these section slices.
@@ -294,45 +287,21 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
   // packet.coreMoveFactId) from the writer-facing copy — the blueprint already encodes which fact
   // is dealt where — so the ranking never leaks into the writer prompt or spends its tokens.
   const writerPacket = { ...sourcePacket, coreMoveFactId: undefined, facts: sourcePacket.facts.map(({ teachingPriority: _tp, ...f }) => f) };
-  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(bookId)}${voiceCardSection(kind, voiceCard(bookId))}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nAfter writing ${outputPath}, run:\n\n  npx tsx src/cli.ts validate-sections ${bookId} --chapters ${blueprint.chapterNumber} --section ${kind}\n\nStop only when validation passes for this section or the validator gives a precise blocker you cannot resolve without more source.\n`;
+  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nAfter writing ${outputPath}, run:\n\n  npx tsx src/cli.ts validate-sections ${bookId} --chapters ${blueprint.chapterNumber} --section ${kind}\n\nStop only when validation passes for this section or the validator gives a precise blocker you cannot resolve without more source.\n`;
 }
 
-export function dealSectionTasks(bookId: string, roots: CompilerStoreRoots = {}): SectionTask[] {
-  const normalized = normSlug(bookId);
-  const tasks: SectionTask[] = [];
-  for (const chapterNumber of expectedSourceChapters(normalized, { stateRoot: roots.stateRoot })) {
-    const blueprint = readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots));
-    const sourcePacket = readJsonFile<SourcePacketV1>(sourcePacketPath(normalized, chapterNumber, roots));
-    for (const kind of SECTION_KINDS) {
-      const outputPath = sectionPath(normalized, chapterNumber, kind, roots);
-      const taskPath = sectionTaskPath(normalized, chapterNumber, kind, roots);
-      writeTextFile(taskPath, buildSectionTaskMarkdown({ bookId: normalized, kind, blueprint, sourcePacket, outputPath }));
-      tasks.push({ bookId: normalized, chapterNumber, chapterId: blueprint.chapterId, kind, taskPath, outputPath, exists: existsSync(outputPath) });
-    }
-  }
-  return tasks;
+export function dealSectionTasks(_bookId: string, _roots: CompilerStoreRoots = {}): SectionTask[] {
+  throw legacyRouteDisabled("sectionTasks.dealSectionTasks");
 }
 
-export function sectionTasks(bookId: string, roots: CompilerStoreRoots = {}): SectionTask[] {
-  const normalized = normSlug(bookId);
-  const tasks: SectionTask[] = [];
-  for (const chapterNumber of expectedSourceChapters(normalized, { stateRoot: roots.stateRoot })) {
-    let chapterId = `${normalized}-ch${String(chapterNumber).padStart(2, "0")}`;
-    try { chapterId = readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots)).chapterId; } catch { /* keep derived */ }
-    for (const kind of SECTION_KINDS) {
-      const taskPath = sectionTaskPath(normalized, chapterNumber, kind, roots);
-      const outputPath = sectionPath(normalized, chapterNumber, kind, roots);
-      tasks.push({ bookId: normalized, chapterNumber, chapterId, kind, taskPath, outputPath, exists: existsSync(outputPath) });
-    }
-  }
-  return tasks;
+export function sectionTasks(_bookId: string, _roots: CompilerStoreRoots = {}): SectionTask[] {
+  throw legacyRouteDisabled("sectionTasks.sectionTasks");
 }
 
-export function missingSectionTasks(bookId: string, roots: CompilerStoreRoots = {}): SectionTask[] {
-  return sectionTasks(bookId, roots).filter((t) => !t.exists || !existsSync(t.taskPath));
+export function missingSectionTasks(_bookId: string, _roots: CompilerStoreRoots = {}): SectionTask[] {
+  throw legacyRouteDisabled("sectionTasks.missingSectionTasks");
 }
 
-export function readSectionTask(task: SectionTask, selected?: Readonly<{ content: AuthorV4ContentSelection; logicalPath: string }>): string {
-  if (selected) return readAuthorV4SelectedText(selected.content, selected.logicalPath);
-  return readFileSync(task.taskPath, "utf8");
+export function readSectionTask(_task: SectionTask, _selected?: Readonly<{ content: AuthorV4ContentSelection; logicalPath: string }>): string {
+  throw legacyRouteDisabled("sectionTasks.readSectionTask");
 }

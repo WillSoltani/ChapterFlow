@@ -24,6 +24,7 @@ import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
 import { loadBookScars, validateBookScars } from "../src/lib/bookScars.js";
+import { voiceCard } from "../src/lib/voiceCard.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
 import { compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { SECTION_KINDS, type ChapterBlueprintV1, type SectionKind, type SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
@@ -62,7 +63,7 @@ function minimalBlueprint(bookId: string): ChapterBlueprintV1 {
 const PACKET = { schemaVersion: "source-packet-v1", facts: [] } as unknown as SourcePacketV1;
 
 function renderTask(bookId: string, kind: SectionKind): string {
-  return buildSectionTaskMarkdown({ bookId, kind, blueprint: minimalBlueprint(bookId), sourcePacket: PACKET, outputPath: `/tmp/${kind}.json` });
+  return buildSectionTaskMarkdown({ bookId, kind, blueprint: minimalBlueprint(bookId), sourcePacket: PACKET, outputPath: `/tmp/${kind}.json`, context: { voiceCard: voiceCard(bookId), bookScars: loadBookScars(bookId) } });
 }
 
 // ---------- realistic fixture (mirrors tests/compiler-pipeline.test.ts) ----------
@@ -127,7 +128,7 @@ test("a book with no scar file gets no scars block and no other book's scars", (
 
 test("universal invariants are present for all four kinds", () => {
   const bp = realisticFixture();
-  const render = (kind: SectionKind) => buildSectionTaskMarkdown({ bookId: "money-book", kind, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json` });
+  const render = (kind: SectionKind) => buildSectionTaskMarkdown({ bookId: "money-book", kind, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } });
   for (const kind of SECTION_KINDS) {
     const md = render(kind);
     assert.match(md, /UNIVERSAL —/, `${kind}: universalCore header present`);
@@ -168,7 +169,7 @@ test("class-B gate-restatement prose was deleted (only design-around rules survi
 test("every rendered task is <= 60% of its pinned pre-refactor length", () => {
   const bp = realisticFixture();
   for (const kind of SECTION_KINDS) {
-    const md = buildSectionTaskMarkdown({ bookId: "money-book", kind, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json` });
+    const md = buildSectionTaskMarkdown({ bookId: "money-book", kind, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } });
     const pre = PRE_REFACTOR_CHARS[kind];
     const ratio = md.length / pre;
     assert.ok(md.length <= 0.6 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 60%`);

@@ -222,6 +222,7 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
     blueprint: fx.blueprint,
     sourcePacket: fx.packet,
     outputPath: "/tmp/learning-pack.json",
+    context: { voiceCard: null, bookScars: null },
   });
   // P07: the contract is now a layered brief — the cross-chapter gate awareness is
   // preserved as DESIGN-AROUND rules (each names its check id), so these assert the new
@@ -246,6 +247,7 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
     blueprint: fx.blueprint,
     sourcePacket: fx.packet,
     outputPath: "/tmp/summary-pack.json",
+    context: { voiceCard: null, bookScars: null },
   });
   assert.match(summaryTask, /chapter-specific skeleton/);
   assert.match(summaryTask, /reusable five-word connective run/);
@@ -257,6 +259,7 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
     blueprint: fx.blueprint,
     sourcePacket: fx.packet,
     outputPath: "/tmp/example-pack.json",
+    context: { voiceCard: null, bookScars: null },
   });
   assert.match(exampleTask, /sceneFrame\/requiredBeat/);
   assert.match(exampleTask, /six DIFFERENT scene engines/);
@@ -267,6 +270,7 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
     blueprint: fx.blueprint,
     sourcePacket: fx.packet,
     outputPath: "/tmp/action-pack.json",
+    context: { voiceCard: null, bookScars: null },
   });
   assert.match(actionTask, /AS8 compares implementationPlan fields across chapters/);
   assert.match(actionTask, /action\.ifThenPlanShapes\[\]/);

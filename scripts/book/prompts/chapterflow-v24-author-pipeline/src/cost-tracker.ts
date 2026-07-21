@@ -7,11 +7,8 @@
  * responses, only counts, timing, model names, and ids.
  */
 
-import { mkdirSync } from "fs";
-import { resolve } from "path";
-import { writeFileAtomic } from "./lib/atomicWrite.js";
 import { CallOptions, CallResult } from "./providers/types.js";
-import { callModel as routerCallModel } from "./providers/router.js";
+import { legacyRouteDisabled } from "./runtime/legacyRouteInventory.js";
 
 export type CostBucket = {
   calls: number;
@@ -94,20 +91,16 @@ export function getCurrentStats(): CostStats | null {
   return _stats;
 }
 
-export async function callModel<T = string>(opts: CallOptions): Promise<CallResult<T>> {
-  const result = await routerCallModel<T>(opts);
-  if (_stats) recordCall(opts, result);
-  return result;
+export async function callModel<T = string>(_opts: CallOptions): Promise<CallResult<T>> {
+  throw legacyRouteDisabled("costTracker.callModel");
 }
 
-export function writeCostManifest(stats: CostStats | null, path: string): void {
-  if (!stats) return;
-  mkdirSync(resolve(path, ".."), { recursive: true });
-  writeFileAtomic(path, JSON.stringify(stats, null, 2));
+export function writeCostManifest(_stats: CostStats | null, _path: string): never {
+  throw legacyRouteDisabled("costTracker.writeCostManifest");
 }
 
-export function defaultCostManifestPath(bookId: string, runId: string, stateRoot = resolve(process.cwd(), "state")): string {
-  return resolve(stateRoot, "metrics", bookId, `${runId}.cost.json`);
+export function defaultCostManifestPath(_bookId: string, _runId: string, _stateRoot?: string): never {
+  throw legacyRouteDisabled("costTracker.defaultCostManifestPath");
 }
 
 export function formatStats(stats: CostStats): string {

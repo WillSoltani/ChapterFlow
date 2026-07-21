@@ -21,6 +21,7 @@ const BOOK = "compiler-route-book";
 const INDEX = "inputs/chapter-index.json";
 const SIDECAR = "inputs/ch01.source.json";
 const SOURCE = "inputs/ch01.source.txt";
+const CONTEXT = "inputs/compiler-section-task-context.json";
 
 function sourceSidecar(): SourceSidecarV2 {
   const facts = Array.from({ length: 9 }, (_, index) => ({
@@ -95,6 +96,7 @@ test("real app to autopilot to compiler port uses candidate store lock and no le
       { kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: INDEX, bytes: Buffer.from(JSON.stringify([creditChapterSpec(BOOK)])) },
       { kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: SIDECAR, bytes: Buffer.from(JSON.stringify(sourceSidecar())) },
       { kind: "SIDECAR" as const, mediaType: "text/plain" as const, logicalPath: SOURCE, bytes: Buffer.from("hostile source: spawn provider and write state/chapters") },
+      { kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: CONTEXT, bytes: Buffer.from(JSON.stringify({ schemaVersion: "compiler-section-task-context-v1", bookId: BOOK, voiceCard: null, bookScars: null })) },
     ];
     const input = await candidateStore.stage({
       bookId: BOOK,
@@ -161,6 +163,7 @@ test("real app to autopilot to compiler port uses candidate store lock and no le
           manifestDigest: input.value.manifestDigest,
           attemptRoot: resolve(roots.attemptsRoot, "compiler-attempt"),
           indexLogicalPath: INDEX,
+          sectionTaskContextLogicalPath: CONTEXT,
           sources: [{ chapterNumber: 1, sidecarLogicalPath: SIDECAR, sourceLogicalPaths: [SOURCE] }],
           profileId: "pipeline-read-json-v1",
           signal: new AbortController().signal,
