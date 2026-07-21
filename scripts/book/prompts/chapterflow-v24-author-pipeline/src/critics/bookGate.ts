@@ -12,7 +12,7 @@
 import { ChapterV21 } from "../types.js";
 import type { BookContentReader } from "../books/candidateTypes.js";
 import { extractNamesFromText } from "../librarian/libraryState.js";
-import { BookPatternAuditReport, runBookPatternAudit } from "./bookPatternAudit.js";
+import { BookPatternAuditReport } from "./bookPatternAudit.js";
 import {
   checkBookQuizCrossChapterDuplicates,
   checkBookQuizNgramTemplates,
@@ -430,13 +430,14 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
   // Per-chapter C8 catches templates inside one chapter. This catches the
   // Codex-session failure mode: hooks, counters, tryThisNow fields, quiz
   // explanations, and example shells repeated across many chapters.
-  const patternAudit = options.patternAudit ?? runBookPatternAudit({
-      bookId,
-      chapters,
-      stateDir: options.stateDir,
-      requirePlanArtifacts: options.requirePlanArtifacts,
-      checkSourceAlignment: options.checkSourceAlignment,
+  const patternAudit = options.patternAudit ?? emptyPatternAudit(bookId, chapters.length);
+  if (!options.patternAudit) {
+    findings.push({
+      catalogId: "BOOK_PATTERN_AUDIT_UNBOUND",
+      severity: "blocker",
+      message: "BOOK_PATTERN_AUDIT_UNBOUND: explicit candidate-bound patternAudit is required; ambient plan/source discovery is forbidden.",
     });
+  }
   for (const f of patternAudit.findings) {
     findings.push({
       catalogId: f.code,

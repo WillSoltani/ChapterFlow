@@ -9,6 +9,7 @@ import { createCurrentPointerStore } from "../../src/books/currentPointer.js";
 import type { CandidateInputFile, CandidateStore } from "../../src/books/candidateTypes.js";
 import type { PlannedArtifact } from "../../src/contracts/v4Core.js";
 import { runAllCriticsFromCandidate } from "../../src/critics/runAllCritics.js";
+import { runBookGate, runBookGateFromCandidate } from "../../src/critics/bookGate.js";
 import { runChapterGateComposite, runChapterGateCompositeFromCandidate } from "../../src/critics/chapterGateComposite.js";
 import { runShipGateFromCandidate } from "../../src/critics/finalGate.js";
 import { chapterContentHash, checkQcAttestationFromCandidate, type QcAttestation } from "../../src/critics/qcAttestation.js";
@@ -31,6 +32,7 @@ const SOURCE = "sidecars/source-sidecar.json";
 const SOURCE_USE = "sidecars/source-use-plan.json";
 const ATTESTATION = "qc/attestation.json";
 const QC_ROUND = "qc/round.json";
+const PATTERN_AUDIT = "critics/book-pattern-audit.json";
 
 type TreeEntry = { type: string; mode: string; mtimeNs: string; bytes?: string };
 
@@ -99,6 +101,25 @@ async function rig(context: TestContext, includeQc = false) {
     jsonFile(BRIEF, { rotationSchemaVersion: "v3", exampleCount: 4 }),
     jsonFile(SOURCE, {}),
     jsonFile(SOURCE_USE, { schemaVersion: "source-use-plan-v1", bookId: BOOK, chapterNumber: 1, units: {} }),
+    jsonFile(PATTERN_AUDIT, {
+      bookId: BOOK,
+      chapterCount: sourceChapters.length,
+      passed: true,
+      findings: [],
+      stats: {
+        repeatedQuizExplanationGroups: 0,
+        repeatedSurfaceFrameGroups: 0,
+        repeatedExampleFrameGroups: 0,
+        repeatedConcreteAnchors: 0,
+        templatedBreakdownShellGroups: 0,
+        shortParagraphDuplicateGroups: 0,
+        literalSubstringGroups: 0,
+        quizPositionTemplateDuplicates: 0,
+        missingPlanChapters: [],
+        missingBrief: false,
+        sourceAlignmentWarnings: 0,
+      },
+    }),
   ];
   if (includeQc) {
     const chapter = sourceChapters[0];
@@ -150,6 +171,24 @@ function fakeBookReview(docText: string, sampled: readonly ChapterV21[]): string
 requiredTest("critics use candidate bytes despite conflicting legacy files", async (context) => {
   const input = await rig(context);
   writeFileSync(join(context.roots.stateRoot, `${BOOK}.v21.json`), JSON.stringify({ book: { bookId: "ambient-poison" } }));
+  const unbound = runBookGate(BOOK, input.chapters, {
+    get stateDir(): string { throw new Error("ambient state discovery attempted"); },
+    get requirePlanArtifacts(): boolean { throw new Error("ambient plan discovery attempted"); },
+    get checkSourceAlignment(): boolean { throw new Error("ambient source discovery attempted"); },
+  });
+  const unboundFinding = unbound.findings.find((finding) => finding.catalogId === "BOOK_PATTERN_AUDIT_UNBOUND");
+  assert.equal(unbound.passed, false);
+  assert.equal(unboundFinding?.message, "BOOK_PATTERN_AUDIT_UNBOUND: explicit candidate-bound patternAudit is required; ambient plan/source discovery is forbidden.");
+  assert.equal(unbound.stats.patternAudit.passed, false);
+  const bound = await runBookGateFromCandidate(input.reader, {
+    bookId: BOOK,
+    candidateId: CANDIDATE,
+    manifestDigest: input.digest,
+    chapterLogicalPaths: input.chapters.map((chapter) => chapterPath(chapter.number)),
+    patternAuditLogicalPath: PATTERN_AUDIT,
+  });
+  assert.equal(bound.findings.some((finding) => finding.catalogId === "BOOK_PATTERN_AUDIT_UNBOUND"), false);
+  assert.equal(bound.stats.patternAudit.passed, true);
   const report = await runAllCriticsFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, packageLogicalPath: LEGACY_PACKAGE, generatedAt: CREATED });
   assert.equal(report.bookId, BOOK);
   assert.equal(report.bookFile, LEGACY_PACKAGE);
