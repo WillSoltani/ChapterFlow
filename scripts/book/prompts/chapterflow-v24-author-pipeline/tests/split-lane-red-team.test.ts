@@ -38,6 +38,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { test, xenv } from "./harness.js";
+import { LEGACY_ROUTE_DISABLED_CODE } from "../src/runtime/legacyRouteInventory.js";
 
 // ── split-lane contracts + runtimes under attack ─────────────────────────────
 import {
@@ -749,20 +750,13 @@ xenv(
 // ══════════════════════════════════════════════════════════════════════════════
 // 13 — API provider use throws at the router
 // ══════════════════════════════════════════════════════════════════════════════
-test("red-team 13: API provider use throws at the router (no-API choke)", async () => {
-  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-  process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
-  try {
-    for (const provider of ["anthropic-api", "openai-api"] as const) {
-      await assert.rejects(
-        () => callModel({ tier: "critic", system: "s", user: "u", provider }),
-        (err: unknown) => err instanceof Error && /no-API mode/.test(err.message) && err.message.includes(provider),
-        `a billed ${provider} call must be refused at the router choke`,
-      );
-    }
-  } finally {
-    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+test("red-team 13: API provider use hits stable legacy-route disable before provider execution", async () => {
+  for (const provider of ["anthropic-api", "openai-api"] as const) {
+    await assert.rejects(
+      () => callModel({ tier: "critic", system: "s", user: "u", provider }),
+      (err: unknown) => err instanceof Error && err.message === `${LEGACY_ROUTE_DISABLED_CODE}:providers.callModel`,
+      `a billed ${provider} call must be refused at the router choke`,
+    );
   }
 });
 
@@ -915,15 +909,10 @@ test("integration 16: no API provider or fallback is reachable (static import pr
     }
   }
 
-  // DYNAMIC: even if some path reached the router, the no-API choke throws for
-  // every billed provider before any adapter loads or any network call occurs.
-  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-  process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
-  try {
-    await assert.rejects(() => callModel({ tier: "writer", system: "s", user: "u", provider: "openai-api" }), /no-API mode/);
-    await assert.rejects(() => callModel({ tier: "writer", system: "s", user: "u", provider: "anthropic-api" }), /no-API mode/);
-  } finally {
-    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
-  }
+  // DYNAMIC: even if some path reached retired router, stable disable throws for
+  // every billed provider before any adapter loads or network call occurs.
+  const isStableDisabled = (error: unknown): boolean =>
+    error instanceof Error && error.message === `${LEGACY_ROUTE_DISABLED_CODE}:providers.callModel`;
+  await assert.rejects(() => callModel({ tier: "writer", system: "s", user: "u", provider: "openai-api" }), isStableDisabled);
+  await assert.rejects(() => callModel({ tier: "writer", system: "s", user: "u", provider: "anthropic-api" }), isStableDisabled);
 });

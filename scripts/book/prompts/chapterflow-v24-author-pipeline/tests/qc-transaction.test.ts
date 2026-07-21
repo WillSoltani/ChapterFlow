@@ -39,6 +39,21 @@ function readLock(round: string = ROUND): QcTransactionRecord {
   return JSON.parse(readFileSync(qcTransactionLockPath(BOOK, round), "utf8")) as QcTransactionRecord;
 }
 
+function snapshotTree(root: string): Record<string, string> {
+  const files: Record<string, string> = {};
+  const walk = (dir: string, prefix = ""): void => {
+    if (!existsSync(dir)) return;
+    for (const entry of readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+      const path = resolve(dir, entry.name);
+      const rel = prefix ? `${prefix}/${entry.name}` : entry.name;
+      if (entry.isDirectory()) walk(path, rel);
+      else files[rel] = readFileSync(path).toString("base64");
+    }
+  };
+  walk(root);
+  return files;
+}
+
 function withSession<T>(sessionId: string, fn: () => T): T {
   const prev = process.env.CHAPTERFLOW_SESSION_ID;
   try {
@@ -229,7 +244,7 @@ test("concurrent submit/finalize attempts serialize through the owned transactio
   }
 });
 
-test("concurrent status/finalize attempts serialize with no lost status event", () => {
+test("finalize dry-run bypasses a held mutation lock and performs zero mutation", () => {
   try {
     cleanup();
     const finalizeLease = acquireQcTransaction(BOOK, ROUND, "finalize");
@@ -239,12 +254,15 @@ test("concurrent status/finalize attempts serialize with no lost status event", 
     );
     commitQcTransaction(finalizeLease);
 
-    const statusLease = acquireQcTransaction(BOOK, ROUND, "status");
-    assert.throws(() => finalizeQcRound(BOOK, ROUND, { dryRun: true }), /QC transaction already active/);
-    commitQcTransaction(statusLease);
-
     const wrote = appendStatusEvents(BOOK, ROUND, [{ findingId: "qcf-a", status: "still_open", reason: "serialized after finalize" }]);
     assert.equal(wrote, 1);
+    const statusLease = acquireQcTransaction(BOOK, ROUND, "status");
+    const before = snapshotTree(orchestratorRoundDir(BOOK, ROUND));
+    const result = finalizeQcRound(BOOK, ROUND, { dryRun: true });
+    assert.ok(result, "dry-run computes a result without acquiring the mutation lock");
+    assert.deepEqual(snapshotTree(orchestratorRoundDir(BOOK, ROUND)), before, "dry-run must preserve all round bytes, including held lock and ledger");
+    commitQcTransaction(statusLease);
+
     const events = readLedgerEvents(BOOK, ROUND);
     assert.equal(events.length, 1);
     assert.equal(events[0].event, "status");

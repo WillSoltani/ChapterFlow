@@ -50,6 +50,7 @@ import type { MigrationSampleRecordV1 } from "../src/bakeoff/migration/experimen
 import { hashCanonical } from "../src/contracts/contractUtil.js";
 import { chapterContentHash } from "../src/critics/qcAttestation.js";
 import { sourcePacketHash } from "../src/compiler/sourcePacket.js";
+import { LEGACY_ROUTE_DISABLED_CODE } from "../src/runtime/legacyRouteInventory.js";
 
 // ── reader lane (§A) ──────────────────────────────────────────────────────────
 import {
@@ -966,22 +967,14 @@ test("integration 16: no split-lane / recovery module imports an API provider, a
     assert.ok(!src.includes("ANTHROPIC_API_KEY") && !src.includes("OPENAI_API_KEY"), `${rel} must not reference an API key`);
   }
 
-  // (b) RUNTIME: the router choke refuses a billed anthropic-api / openai-api call
-  //     under no-API mode — there is no API fallback branch to reach. Set the
-  //     invariant env locally so the proof holds regardless of the caller.
-  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-  process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
-  try {
-    for (const provider of ["anthropic-api", "openai-api"] as const) {
-      await assert.rejects(
-        callModel({ tier: "critic", provider, system: "s", user: "u" }),
-        /no-API mode/,
-        `a billed ${provider} call must be refused at the router choke`,
-      );
-    }
-  } finally {
-    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+  // (b) RUNTIME: the retired direct router is stably disabled before any provider
+  //     adapter or network surface can run, independent of ambient environment.
+  for (const provider of ["anthropic-api", "openai-api"] as const) {
+    await assert.rejects(
+      callModel({ tier: "critic", provider, system: "s", user: "u" }),
+      (error: unknown) => error instanceof Error && error.message === `${LEGACY_ROUTE_DISABLED_CODE}:providers.callModel`,
+      `a billed ${provider} call must be refused at the router choke`,
+    );
   }
 
   // (c) STATIC contract teeth: a route recording an API fallback is unrepresentable.

@@ -8,10 +8,8 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, rmSync } from "node:fs";
 
 import { test } from "./harness.js";
-import { STATE_CHAPTERS, runCli, writeFixtureBook } from "./helpers.js";
 import { V21_SCHEMA_VERSION, type ChapterV21 } from "../src/types.js";
 import { readerVisibleText } from "../src/metrics/chapterText.js";
 import {
@@ -21,8 +19,8 @@ import {
 import type { RubricThresholds } from "../src/metrics/rubricThresholds.js";
 import { loadRubricThresholds, validateRubricThresholds } from "../src/metrics/rubricThresholds.js";
 import { runRubricPreflight, rubricGateMode } from "../src/orchestrator/compilerRun.js";
+import { rubricMetricsWithCandidate } from "../src/orchestrator/chapterTransaction.js";
 import type { AutopilotDeps, AutopilotOutcome, VerbResult } from "../src/orchestrator/autopilot.js";
-import { rubricMetricsPath } from "../src/artifacts/artifactStore.js";
 
 const STRICT: RubricThresholds = {
   schemaVersion: "rubric-thresholds-v1",
@@ -255,30 +253,26 @@ test("computeBookRubricMetrics: aggregates chapter verdicts + records findings o
   assert.ok(empty.findings.some((f) => /no assembled chapters/.test(f)));
 });
 
-// ── 4. CLI --gate exit-code contract (end-to-end, real state dir) ─────────────
-test("cli rubric-metrics: --gate exits 1 on a fail chapter, report mode exits 0, artifact written", () => {
+// ── 4. Candidate adapter uses explicit chapters, never ambient canonical state ────
+test("candidate rubric adapter substitutes the explicit chapter into explicit siblings", async () => {
   const bookId = "zz-rubric-gate-fixture";
-  mkdirSync(STATE_CHAPTERS, { recursive: true });
-  const files = writeFixtureBook(STATE_CHAPTERS, [denseChapter(bookId, 1)]);
-  const artifact = rubricMetricsPath(bookId);
-  try {
-    const report = runCli(["rubric-metrics", bookId]);
-    assert.equal(report.status, 0, `report mode should exit 0\n${report.out.slice(-800)}`);
-    assert.match(report.out, /rubric-metrics: FAIL/);
-    // artifact is written even in report mode
-    const parsed = JSON.parse(readFileSync(artifact, "utf8"));
-    assert.equal(parsed.schemaVersion, "rubric-metrics-v1");
-    assert.equal(parsed.chapters[0].verdict, "fail");
+  const candidate = denseChapter(bookId, 1);
+  const staleSameNumber = { ...denseChapter(bookId, 1), breakdown: { fastRead: "Easy.", deepRead: "Easy.", fullRead: "Easy." } };
+  const sibling = denseChapter(bookId, 2);
+  let loads = 0;
 
-    const gate = runCli(["rubric-metrics", bookId, "--gate"]);
-    assert.equal(gate.status, 1, `--gate should exit 1 on a fail chapter\n${gate.out.slice(-800)}`);
+  const result = await rubricMetricsWithCandidate(bookId, 1, candidate, (requestedBookId) => {
+    loads += 1;
+    assert.equal(requestedBookId, bookId);
+    return [staleSameNumber, sibling];
+  }, STRICT);
 
-    const usage = runCli(["rubric-metrics"]);
-    assert.equal(usage.status, 2, "missing bookId is a usage error");
-  } finally {
-    for (const f of files) rmSync(f, { force: true });
-    rmSync(artifact, { force: true });
-  }
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(loads, 1);
+  assert.match(result.stdout, /rubric-metrics: FAIL/);
+  assert.match(result.stdout, /ch01: FAIL/);
+  assert.match(result.stdout, /ch02: FAIL/);
+  assert.doesNotMatch(result.stdout, /ch01:[\s\S]*ch01:/, "same-number ambient chapter must be replaced, not duplicated");
 });
 
 // ── 5. shadow-vs-enforce compilerRun wiring (stubbed runVerb) ────────────────

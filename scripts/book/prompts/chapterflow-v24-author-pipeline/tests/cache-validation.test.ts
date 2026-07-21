@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR, RUNS_DIR, STATE_CHAPTERS, TMP_DIR, cleanTmp, makeChapter, writeSourceEvidenceFixture } from "./helpers.js";
-import { buildChapterCacheInputs, generateChapter } from "../src/generateChapter.js";
-import { cacheAcceptancePath, loadAuthorProvenance, loadCacheAcceptances, provenancePath } from "../src/qc/sessionProvenance.js";
+import { buildChapterCacheInputs } from "../src/generateChapter.js";
+import { runShipGate } from "../src/critics/finalGate.js";
 import {
   currentProviderIdentity,
   stringDependency,
@@ -19,7 +19,6 @@ import type { ChapterV21 } from "../src/types.js";
 const BOOK = "zz-cache-validation";
 const CHAPTER_ID = `${BOOK}-ch01`;
 const CHAPTER_PATH = resolve(STATE_CHAPTERS, `${CHAPTER_ID}.v21-native.chapter.json`);
-const LEDGER_PATH = resolve(PIPELINE_DIR, "state", "library-state.json");
 const INDEX_PATH = resolve(PIPELINE_DIR, "state", "indexes", `${BOOK}.json`);
 const BOOK_META: BookMeta = { bookId: BOOK, title: "Cache Validation Fixture", author: "Test Author" };
 
@@ -27,41 +26,11 @@ function chapterSpec(title = "The harbor principle"): ChapterSpec {
   return { chapterId: CHAPTER_ID, chapterNumber: 1, chapterTitle: title };
 }
 
-function snapshot(path: string): string | null {
-  return existsSync(path) ? readFileSync(path, "utf8") : null;
-}
-
-function restore(path: string, value: string | null): void {
-  if (value === null) {
-    rmSync(path, { force: true });
-  } else {
-    writeFileSync(path, value, "utf8");
-  }
-}
-
 function cleanup(): void {
   rmSync(CHAPTER_PATH, { force: true });
   rmSync(`${CHAPTER_PATH}.cache-manifest.json`, { force: true });
   rmSync(INDEX_PATH, { force: true });
   rmSync(resolve(RUNS_DIR, BOOK), { recursive: true, force: true });
-  rmSync(provenancePath(CHAPTER_ID), { force: true });
-  rmSync(cacheAcceptancePath(CHAPTER_ID), { force: true });
-}
-
-async function withEnv<T>(updates: Record<string, string | undefined>, fn: () => T | Promise<T>): Promise<T> {
-  const prior = Object.fromEntries(Object.keys(updates).map((key) => [key, process.env[key]]));
-  try {
-    for (const [key, value] of Object.entries(updates)) {
-      if (value === undefined) delete process.env[key];
-      else process.env[key] = value;
-    }
-    return await fn();
-  } finally {
-    for (const [key, value] of Object.entries(prior)) {
-      if (value === undefined) delete process.env[key];
-      else process.env[key] = value;
-    }
-  }
 }
 
 function writeIndex(spec = chapterSpec()): void {
@@ -224,43 +193,33 @@ function writeCachedChapter(chapter: ChapterV21): void {
   });
 }
 
-test("valid unchanged cached chapter reuses without provider call while gates still run", async () => {
-  const ledger = snapshot(LEDGER_PATH);
-  const previousProvider = process.env.CHAPTERFLOW_PROVIDER;
-  const previousAllow = process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
+function validateCachedChapter(chapter = chapterSpec()) {
+  const sourceEvidence = loadPlanningSourceEvidence(BOOK, chapter.chapterNumber);
+  return validateStageCache({
+    artifactPath: CHAPTER_PATH,
+    artifactType: "chapter",
+    artifactId: CHAPTER_ID,
+    inputs: buildChapterCacheInputs(BOOK_META, chapter, currentProviderIdentity("writer"), undefined, { sourceEvidence }),
+    generatorName: "generateChapter",
+    provider: currentProviderIdentity("writer"),
+  });
+}
+
+test("valid unchanged cached chapter passes pure cache integrity validation", () => {
   try {
     cleanup();
     writeIndex();
-    await withEnv({ CHAPTERFLOW_PROVIDER: "openai-api", CHAPTERFLOW_ALLOW_MODEL_GEN: undefined }, () => {
-      writeCachedChapter(cacheCleanChapter());
-    });
+    const chapter = cacheCleanChapter();
+    writeCachedChapter(chapter);
 
-    const produced = await withEnv({ CHAPTERFLOW_PROVIDER: "openai-api", CHAPTERFLOW_ALLOW_MODEL_GEN: undefined, CHAPTERFLOW_SESSION_ID: "author-cache-session" }, () =>
-      generateChapter(BOOK_META, chapterSpec(), { logger: () => {} }),
-    );
-
-    assert.equal(produced.chapterId, CHAPTER_ID);
-    // A session that only ACCEPTS the cache is not the author: it must NOT stamp author
-    // provenance (this chapter was never authored here). It is recorded as a separate,
-    // append-only cache-acceptance audit event instead.
-    assert.equal(loadAuthorProvenance(CHAPTER_ID), null, "cache acceptance must not stamp author provenance");
-    const acceptances = loadCacheAcceptances(CHAPTER_ID);
-    assert.equal(acceptances.at(-1)?.cacheAcceptedBySessionId, "author-cache-session", "cache acceptance is recorded as a separate audit event");
-    assert.equal(acceptances.at(-1)?.schemaVersion, "cache-acceptance-v1");
-    const after = JSON.parse(readFileSync(LEDGER_PATH, "utf8"));
-    assert.deepEqual(after.books[BOOK].chaptersIngested, [1], "validated cache is ingested after gates pass");
+    const cache = validateCachedChapter();
+    assert.equal(cache.ok, true, cache.ok ? "" : cache.reasons.join("\n"));
   } finally {
     cleanup();
-    restore(LEDGER_PATH, ledger);
-    if (previousProvider === undefined) delete process.env.CHAPTERFLOW_PROVIDER;
-    else process.env.CHAPTERFLOW_PROVIDER = previousProvider;
-    if (previousAllow === undefined) delete process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
-    else process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = previousAllow;
   }
 });
 
-test("fresh manifest cannot bless ship-failing cached chapter", async () => {
-  const ledger = snapshot(LEDGER_PATH);
+test("fresh manifest cannot bless ship-failing cached chapter", () => {
   try {
     cleanup();
     writeIndex();
@@ -268,15 +227,13 @@ test("fresh manifest cannot bless ship-failing cached chapter", async () => {
     broken.quiz.questions[0].correctIndex = 9;
     writeCachedChapter(broken);
 
-    await assert.rejects(
-      () => generateChapter(BOOK_META, chapterSpec(), { logger: () => {} }),
-      /ship gate|A5|current-gates|stale cache/i,
-    );
-    const after = existsSync(LEDGER_PATH) ? JSON.parse(readFileSync(LEDGER_PATH, "utf8")) : { books: {} };
-    assert.equal(after.books?.[BOOK], undefined, "gate-failing cache must not mutate library state");
+    const cache = validateCachedChapter();
+    assert.equal(cache.ok, true, cache.ok ? "" : cache.reasons.join("\n"));
+    const gate = runShipGate(broken);
+    assert.equal(gate.passed, false, "fresh cache metadata must not convert invalid chapter content into a gate pass");
+    assert.ok(gate.blockers.length > 0);
   } finally {
     cleanup();
-    restore(LEDGER_PATH, ledger);
   }
 });
 
@@ -329,28 +286,23 @@ test("cache invalidation names each changed dependency", () => {
   cleanTmp();
 });
 
-test("valid manifest with corrupted output file fails integrity validation", async () => {
-  const ledger = snapshot(LEDGER_PATH);
+test("valid manifest with corrupted output file fails integrity validation", () => {
   try {
     cleanup();
     writeIndex();
     writeCachedChapter(cacheCleanChapter());
     writeFileSync(CHAPTER_PATH, "{ not valid json", "utf8");
 
-    await assert.rejects(
-      () => generateChapter(BOOK_META, chapterSpec(), { logger: () => {} }),
-      /output hash changed|stale cache/i,
-    );
-    const after = existsSync(LEDGER_PATH) ? JSON.parse(readFileSync(LEDGER_PATH, "utf8")) : { books: {} };
-    assert.equal(after.books?.[BOOK], undefined, "corrupted output must not mutate library state");
+    const cache = validateCachedChapter();
+    assert.equal(cache.ok, false);
+    assert.ok(!cache.ok && cache.changedDependencies.includes("output"));
+    assert.ok(!cache.ok && cache.reasons.some((reason) => /output hash changed/.test(reason)));
   } finally {
     cleanup();
-    restore(LEDGER_PATH, ledger);
   }
 });
 
-test("invalid cached chapter is rejected before library-state ingestion", async () => {
-  const ledger = snapshot(LEDGER_PATH);
+test("invalid cached chapter remains rejected by current deterministic gates", () => {
   try {
     cleanup();
     const broken = makeChapter(BOOK, 1, {
@@ -374,20 +326,12 @@ test("invalid cached chapter is rejected before library-state ingestion", async 
     writeIndex(chapterSpec(broken.title));
     writeCachedChapter(broken);
 
-    await assert.rejects(
-      () =>
-        generateChapter(
-          BOOK_META,
-          chapterSpec(broken.title),
-          { logger: () => {} },
-        ),
-      /stale cache|cache invalid|Ship gate|A5/i,
-    );
-
-    const after = existsSync(LEDGER_PATH) ? JSON.parse(readFileSync(LEDGER_PATH, "utf8")) : { books: {} };
-    assert.equal(after.books?.[BOOK], undefined, "invalid cache must not mutate library state");
+    const cache = validateCachedChapter(chapterSpec(broken.title));
+    assert.equal(cache.ok, true, cache.ok ? "" : cache.reasons.join("\n"));
+    const gate = runShipGate(broken);
+    assert.equal(gate.passed, false);
+    assert.ok(gate.blockers.some((finding) => /correctIndex|answer|choice/i.test(finding.message)));
   } finally {
     cleanup();
-    restore(LEDGER_PATH, ledger);
   }
 });
