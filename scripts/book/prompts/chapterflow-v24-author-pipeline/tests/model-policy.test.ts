@@ -197,6 +197,7 @@ test("an invalid explicit effort fails the spawn preflight BEFORE any process (p
 test("static scan: no production source hardcodes the baseline model outside the policy (pricing table excepted)", () => {
   const allow = new Set([
     "src/orchestrator/modelPolicy.ts",   // the owner
+    "src/runtime/codexRoute.ts",         // sole V4 process-route owner
     "src/providers/openai-api.ts",       // pricing table keyed by model id (data, not a route)
     // IMP-20 §16 migration/bakeoff DATA — the frozen candidate/judge identities
     // UNDER comparison (not a production route). recoveryExperiment names the

@@ -103,7 +103,7 @@ test("pre-aborted JSON caller invokes runner gateway and spawn zero times", asyn
 
 test("caller profile table is complete and gateway errors retain outcome code and message", async () => {
   assert.deepEqual(Object.keys(MODEL_CALLER_PROFILES).sort(), [
-    "categorizer", "curriculum-planner", "editor-in-chief", "line-editor",
+    "categorizer", "compiler-section", "curriculum-planner", "editor-in-chief", "line-editor",
     "memorable-lines", "researcher-bibliography", "researcher-chapter",
     "try-this-now", "voice-pass", "writer-breakdown", "writer-cards", "writer-example",
   ]);

@@ -464,32 +464,29 @@ test("lineage: an UNSTAMPED (v2) brief under the v3 binary reproduces the v2-era
 
 test("B15: A16's example floor honors the brief's dealt count; write contract enforces it exactly", async () => {
   const { dealtExampleFloor } = await import("../src/critics/finalGate.js");
-  const root = mkdtempSync(join(tmpdir(), "stier2-b15-"));
-  try {
-    const chapter = makeChapter(BOOK, 3);
-    // No brief on disk → the historical floor 6 (fail-closed for partial generation).
-    assert.equal(dealtExampleFloor(chapter, root), 6, "absent brief → floor 6");
-    // A v3-stamped brief dealing 4 → the floor is the dealt design, not the pad target.
-    writeJsonFile(chapterBriefPath(BOOK, 3, { stateRoot: root }), { rotationSchemaVersion: ROTATION_SCHEMA_VERSION, exampleCount: 4 });
-    assert.equal(dealtExampleFloor(chapter, root), 4, "dealt count wins for v3 briefs");
-    // An UNSTAMPED brief never lowers the floor (v2 briefs have no count deal).
-    writeJsonFile(chapterBriefPath(BOOK, 3, { stateRoot: root }), { exampleCount: 4 });
-    assert.equal(dealtExampleFloor(chapter, root), 6, "unstamped brief → floor 6");
+  const chapter = makeChapter(BOOK, 3);
+  // No dealt brief → the historical floor 6 (fail-closed for partial generation).
+  assert.equal(dealtExampleFloor(chapter), 6, "absent brief → floor 6");
+  // A v3-stamped brief dealing 4 → the floor is the dealt design, not the pad target.
+  assert.equal(
+    dealtExampleFloor(chapter, { rotationSchemaVersion: ROTATION_SCHEMA_VERSION, exampleCount: 4 }),
+    4,
+    "dealt count wins for v3 briefs",
+  );
+  // An UNSTAMPED brief never lowers the floor (v2 briefs have no count deal).
+  assert.equal(dealtExampleFloor(chapter, { exampleCount: 4 }), 6, "unstamped brief → floor 6");
 
-    // Write contract: EXACT count — padding past the deal is the density defect.
-    const brief = mkV3Brief(5);
-    brief.leadThread = undefined;
-    const packet = mkPacket(5, {});
-    const ch = makeChapter(BOOK, 5);
-    const dealt = brief.exampleCount!;
-    while ((ch.examples?.length ?? 0) > dealt) ch.examples!.pop();
-    assert.equal(authorWriteContractFindings(ch, brief, packet).filter((c) => c.startsWith("example count")).length, 0, "exact count is clean");
-    ch.examples = [...ch.examples!, { ...ch.examples![0], exampleId: "ex-extra" }];
-    const over = authorWriteContractFindings(ch, brief, packet).filter((c) => c.startsWith("example count"));
-    assert.ok(over.length === 1 && over[0].includes(`EXACTLY ${dealt}`), "padding past the deal complains with the cut instruction");
-  } finally {
-    rmSync(root, { recursive: true, force: true });
-  }
+  // Write contract: EXACT count — padding past the deal is the density defect.
+  const brief = mkV3Brief(5);
+  brief.leadThread = undefined;
+  const packet = mkPacket(5, {});
+  const ch = makeChapter(BOOK, 5);
+  const dealt = brief.exampleCount!;
+  while ((ch.examples?.length ?? 0) > dealt) ch.examples!.pop();
+  assert.equal(authorWriteContractFindings(ch, brief, packet).filter((c) => c.startsWith("example count")).length, 0, "exact count is clean");
+  ch.examples = [...ch.examples!, { ...ch.examples![0], exampleId: "ex-extra" }];
+  const over = authorWriteContractFindings(ch, brief, packet).filter((c) => c.startsWith("example count"));
+  assert.ok(over.length === 1 && over[0].includes(`EXACTLY ${dealt}`), "padding past the deal complains with the cut instruction");
 });
 
 // ── calibration contract: the inverted meters never gate ───────────────────────
