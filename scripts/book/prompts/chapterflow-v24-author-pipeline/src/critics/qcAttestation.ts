@@ -402,8 +402,20 @@ export async function checkQcAttestationFromCandidate(
     ...input,
     logicalPaths: [input.chapterLogicalPath, input.attestationLogicalPath, input.qcRoundLogicalPath],
   });
-  return checkQcAttestation(opened.values[0] as ChapterV21, input.enforce, {
-    attestation: opened.values[1] as QcAttestation,
+  const chapter = opened.values[0] as ChapterV21;
+  const attestation = opened.values[1] as QcAttestation;
+  if (attestation.bookId !== input.bookId ||
+      attestation.chapterNumber !== chapter.number ||
+      attestation.chapterId !== chapter.chapterId ||
+      attestation.roundId !== input.roundId) {
+    return [{
+      checkId: "QC0.stale_attestation_binding",
+      severity: input.enforce ? "blocker" : "advisory",
+      message: "QC attestation book ID, chapter number, chapter ID, and round ID must match opened chapter and request exactly.",
+    }];
+  }
+  return checkQcAttestation(chapter, input.enforce, {
+    attestation,
     expectedCandidate: { candidateId: input.candidateId, manifestDigest: input.manifestDigest },
     expectedRoundId: input.roundId,
     expectedReviewId: input.reviewId,

@@ -31,6 +31,8 @@ const BRIEF = "sidecars/chapter-brief.json";
 const SOURCE = "sidecars/source-sidecar.json";
 const SOURCE_USE = "sidecars/source-use-plan.json";
 const ATTESTATION = "qc/attestation.json";
+const WRONG_CHAPTER_ATTESTATION = "qc/attestation-wrong-chapter.json";
+const WRONG_ROUND_ATTESTATION = "qc/attestation-wrong-round.json";
 const QC_ROUND = "qc/round.json";
 const PATTERN_AUDIT = "critics/book-pattern-audit.json";
 
@@ -133,8 +135,15 @@ async function rig(context: TestContext, includeQc = false) {
       hashVersion: "v2",
       reviewer: "human:test",
       reviewedAt: CREATED,
+      roundId: "round-1",
     };
     files.push(jsonFile(ATTESTATION, attestation));
+    files.push(jsonFile(WRONG_CHAPTER_ATTESTATION, {
+      ...attestation,
+      chapterNumber: sourceChapters[1].number,
+      chapterId: sourceChapters[1].chapterId,
+    }));
+    files.push(jsonFile(WRONG_ROUND_ATTESTATION, { ...attestation, roundId: "round-poison" }));
     files.push(jsonFile(QC_ROUND, {
       schemaVersion: "1",
       roundId: "round-1",
@@ -209,6 +218,13 @@ requiredTest("stale QC digest blocks without mutation", async (context) => {
   const before = snapshotTree(context.roots.booksRoot);
   const findings = await checkQcAttestationFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPath: chapterPath(1), attestationLogicalPath: ATTESTATION, qcRoundLogicalPath: QC_ROUND, roundId: "round-1", reviewId: "review-1", enforce: true });
   assert.equal(findings[0]?.checkId, "QC0.stale_round_binding");
+  assert.equal(findings[0]?.message, "QC round candidate ID, manifest digest, round ID, review ID, and PASS outcome must match exactly.");
+  const wrongChapter = await checkQcAttestationFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPath: chapterPath(1), attestationLogicalPath: WRONG_CHAPTER_ATTESTATION, qcRoundLogicalPath: QC_ROUND, roundId: "round-1", reviewId: "review-1", enforce: true });
+  assert.equal(wrongChapter[0]?.checkId, "QC0.stale_attestation_binding");
+  assert.equal(wrongChapter[0]?.message, "QC attestation book ID, chapter number, chapter ID, and round ID must match opened chapter and request exactly.");
+  const wrongRound = await checkQcAttestationFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPath: chapterPath(1), attestationLogicalPath: WRONG_ROUND_ATTESTATION, qcRoundLogicalPath: QC_ROUND, roundId: "round-1", reviewId: "review-1", enforce: true });
+  assert.equal(wrongRound[0]?.checkId, "QC0.stale_attestation_binding");
+  assert.equal(wrongRound[0]?.message, "QC attestation book ID, chapter number, chapter ID, and round ID must match opened chapter and request exactly.");
   assert.deepEqual(snapshotTree(context.roots.booksRoot), before);
 });
 
