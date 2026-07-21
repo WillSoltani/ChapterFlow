@@ -20,6 +20,7 @@ export interface ModelCallerExecution {
 
 export const MODEL_CALLER_PROFILES = Object.freeze({
   categorizer: "pipeline-read-json-v1",
+  "compiler-section": "pipeline-read-json-v1",
   "curriculum-planner": "pipeline-read-json-v1",
   "editor-in-chief": "pipeline-read-json-v1",
   "line-editor": "pipeline-read-json-v1",

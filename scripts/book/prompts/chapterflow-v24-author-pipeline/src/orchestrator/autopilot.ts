@@ -66,7 +66,7 @@ import { barArtifactPath, confirmArtifactPath, evidenceMatrixPath, submissionsDi
 import type { FinalizeQcRoundResult } from "../qc/orchestrator/finalize.js";
 import { spawnCodexAgent, type CodexAgentResult, type CodexSandbox } from "./codexAgent.js";
 import { researchFreshnessViolation } from "./researchFreshness.js";
-import { doCompilerWrite } from "./compilerRun.js";
+import { doCompilerWrite, type CompilerPortBinding } from "./compilerRun.js";
 import { doAuthorWrite, type AuthorWriteOneInvoker } from "./authorRun.js";
 import { doAuthorReview, AUTHOR_BOOK_READERS, type AuthorReviewIo } from "./authorReview.js";
 import { deriveDurableAcceptance, loadNewestAcceptanceRecord } from "./authorAcceptanceState.js";
@@ -245,6 +245,8 @@ export type AutopilotOptions = {
   // without anyone choosing that. Forcing every caller to state it keeps the route a conscious
   // choice instead of an implicit one.
   architecture: "compiler" | "legacy" | "author"; // v23 compiler path writes typed section artifacts then assembles ChapterV21; legacy keeps whole-chapter writer fanout; author (v24) = one whole-chapter author per chapter + blinded reader review/regeneration (authorRun.ts / authorReview.ts).
+  /** Required authority for compiler architecture. No ambient candidate/root fallback. */
+  compiler?: CompilerPortBinding;
   /** v24 author arch only: injectable IO for doAuthorWrite/doAuthorReview so tests
    *  drive the author phases against fixtures/tmp roots. Ignored by compiler/legacy. */
   authorIo?: Partial<AuthorReviewIo>;
@@ -1026,7 +1028,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
   try {
     const terminal = terminalTag(outcome);
     const report = ledger.build(terminal);
-    writeCostReport(PIPELINE_DIR, opts.bookId, report);
+    if (opts.architecture !== "compiler") writeCostReport(PIPELINE_DIR, opts.bookId, report);
     base.log(formatCostReport(report));
     if (!report.invariantOk) {
       // A loud ERROR line into the durable log too (never a halt — telemetry must not brick
@@ -1038,7 +1040,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
     runManifest.terminal = terminal;
     finalizeManifestBeatShipped(opts.bookId, opts.architecture, runManifest);
     finalizeManifestPackage(opts.bookId, outcome, runManifest);
-    writeRunManifest(PIPELINE_DIR, runManifest);
+    if (opts.architecture !== "compiler") writeRunManifest(PIPELINE_DIR, runManifest);
   } catch { /* telemetry is best-effort: never let it change the outcome */ }
   return outcome;
 }
@@ -1233,7 +1235,7 @@ async function runAutopilotCore(opts: AutopilotOptions, deps: AutopilotDeps, led
               writeOneChapter: opts.authorWriteOneChapter,
             })
           : architecture === "compiler"
-            ? await doCompilerWrite(bookId, deps, { maxParallel, heartbeat })
+            ? await doCompilerWrite(bookId, deps, { maxParallel, heartbeat, compiler: opts.compiler })
             : await doWrite(bookId, status, maxParallel, deps, heartbeat);
         if (halt) return halt;
         continue;

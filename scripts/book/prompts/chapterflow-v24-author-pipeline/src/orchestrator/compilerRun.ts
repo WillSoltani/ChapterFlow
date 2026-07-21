@@ -6,9 +6,10 @@ import { convergePolish, compilerPolishMode } from "./polishPass.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { recordCompilerAssemblyProvenance } from "../qc/sessionProvenance.js";
-import { acquireCompilerWriteLock, assemblyInputPath, COMPILER_RUN_OWNER_ENV, sectionPath, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
+import { assemblyInputPath, sectionPath, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
 import { SECTION_KINDS, type SectionKind } from "../artifacts/artifactTypes.js";
 import { normSlug } from "../lib/chapterPaths.js";
+import type { CompilerApplicationPort } from "../app/compilerApplicationPort.js";
 
 const SOURCE_REPAIR_MAX_PASSES = 3;
 export const SECTION_REPAIR_MAX_PASSES = 2;
@@ -35,7 +36,13 @@ export function stampCompilerAssemblyProvenance(bookId: string, deps: Pick<Autop
 type CompilerWriteOptions = {
   maxParallel: number;
   heartbeat?: () => boolean;
+  compiler?: Readonly<{
+    port: CompilerApplicationPort;
+    request: Omit<Parameters<CompilerApplicationPort["run"]>[0], "bookId">;
+  }>;
 };
+
+export type CompilerPortBinding = NonNullable<CompilerWriteOptions["compiler"]>;
 
 function halt(bookId: string, reason: string, category: "infra" | "content" = "content"): AutopilotOutcome {
   return { status: "halt", bookId, phase: "write", category, reason };
@@ -401,67 +408,18 @@ export async function runRubricPreflight(
   return halt(bookId, `compiler rubric-metrics (enforce) failed (exit ${r.code}).\n${report.slice(0, 2000)}`, category);
 }
 
-/** The single compiler write entry point. Acquires the same-book write lock EXACTLY ONCE,
- *  here, before spawning any section work — never inside ensureCompilerRun()/artifactDir(),
- *  which every artifact path resolution (including the read-only validate-sections/
- *  assemble-sections children this function spawns, directly and via section-writer agent
- *  sessions) funnels through. Every subprocess/agent this function spawns gets
- *  COMPILER_RUN_OWNER_ENV set so it (and anything IT spawns) is recognized as part of this
- *  run rather than a competing independent one. */
+/** Selected compiler entry. CandidateStore owns complete-successor locking and commit. */
 export async function doCompilerWrite(bookId: string, deps: AutopilotDeps, opts: CompilerWriteOptions): Promise<AutopilotOutcome | null> {
-  const normalized = normSlug(bookId);
+  if (!opts.compiler) return halt(bookId, "compiler application port and explicit candidate inputs are required", "infra");
   try {
-    acquireCompilerWriteLock(normalized);
-  } catch (err) {
-    return halt(bookId, (err as Error).message, "infra");
+    const result = await opts.compiler.port.run({ ...opts.compiler.request, bookId });
+    deps.log(`[autopilot] compiler successor staged: candidate=${result.candidateId} manifest=${result.manifestDigest}`);
+    return {
+      status: "ready",
+      bookId,
+      message: `compiler successor candidate ${result.candidateId}/${result.manifestDigest} staged; downstream review/QC required`,
+    };
+  } catch (error) {
+    return halt(bookId, (error as Error).message, "infra");
   }
-  const ownerEnv: Record<string, string> = { [COMPILER_RUN_OWNER_ENV]: normalized };
-
-  const heartbeat = opts.heartbeat ?? (() => true);
-  const sourceHalt = await convergeSourceReadiness(bookId, deps, heartbeat, ownerEnv);
-  if (sourceHalt) return sourceHalt;
-
-  for (const [args, label] of [
-    [["compile-source-packets", bookId], "source-packets"],
-    [["source-packet-gate", bookId], "source-packet-gate"],
-    [["compile-book-design", bookId], "book-design"],
-    [["book-design-gate", bookId], "book-design-gate"],
-    [["compile-blueprints", bookId], "blueprints"],
-    [["blueprint-gate", bookId], "blueprint-gate"],
-    [["deal-section-tasks", bookId], "section-task-deal"],
-  ] as Array<[string[], string]>) {
-    const h = await runCompilerVerb(bookId, deps, args, label, ownerEnv);
-    if (h) return h;
-  }
-
-  const sectionHalt = await convergeSections(bookId, deps, opts.maxParallel, heartbeat, ownerEnv);
-  if (sectionHalt) return sectionHalt;
-
-  // Optional craft pass on section artifacts (pre-assembly). `never` = no-op.
-  const polishHalt = await runPolishStage(bookId, deps, opts.maxParallel, heartbeat, ownerEnv);
-  if (polishHalt) return polishHalt;
-
-  const assemblyHalt = await convergeAssembly(bookId, deps, opts.maxParallel, heartbeat, ownerEnv);
-  if (assemblyHalt) return assemblyHalt;
-  try { stampCompilerAssemblyProvenance(bookId, deps); }
-  catch (err) { deps.log(`[autopilot] compiler assembly provenance warning: ${(err as Error).message}`); }
-
-  for (const [args, label] of [
-    [["build-evidence-maps", bookId], "evidence-map"],
-    [["evidence-gate", bookId], "evidence-gate"],
-  ] as Array<[string[], string]>) {
-    const h = await runCompilerVerb(bookId, deps, args, label, ownerEnv);
-    if (h) return h;
-  }
-
-  // Pre-flight BEFORE risk-score: risk-score reads the rubric-metrics artifact (if present)
-  // and bumps `fail` chapters +3 toward the qc-shadow lane — same pass, not next run.
-  const rubricHalt = await runRubricPreflight(bookId, deps, ownerEnv);
-  if (rubricHalt) return rubricHalt;
-
-  const riskHalt = await runCompilerVerb(bookId, deps, ["risk-score", bookId], "risk-score", ownerEnv);
-  if (riskHalt) return riskHalt;
-
-  deps.log(`[autopilot] compiler write: section artifacts assembled into ChapterV21; advancing to deterministic gates`);
-  return null;
 }

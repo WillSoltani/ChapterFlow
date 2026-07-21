@@ -3,12 +3,17 @@ import {
   type ChapterFlowPipeline,
   type ChapterFlowPipelineDependencies,
 } from "./pipeline.js";
+import { CompilerApplicationPort } from "./compilerApplicationPort.js";
+import { createModelTaskRunner, type ModelTaskRunner } from "./modelTaskRunner.js";
 
 export interface ChapterFlowApp {
   readonly pipeline: ChapterFlowPipeline;
+  readonly compiler: CompilerApplicationPort | null;
 }
 
-export function createChapterFlowApp(dependencies: ChapterFlowPipelineDependencies): ChapterFlowApp {
+export function createChapterFlowApp(
+  dependencies: ChapterFlowPipelineDependencies & Readonly<{ pipelineRoot?: string; modelTaskRunner?: ModelTaskRunner }>,
+): ChapterFlowApp {
   const pipeline = createChapterFlowPipeline({
     runStore: dependencies.runStore,
     stageCoordinator: dependencies.stageCoordinator,
@@ -21,7 +26,17 @@ export function createChapterFlowApp(dependencies: ChapterFlowPipelineDependenci
     clock: dependencies.clock,
     ids: dependencies.ids,
   });
-  return Object.freeze({ pipeline });
+  const compiler = dependencies.pipelineRoot
+    ? new CompilerApplicationPort({
+        pipelineRoot: dependencies.pipelineRoot,
+        contentReader: dependencies.contentReader,
+        candidateStore: dependencies.candidateStore,
+        runner: dependencies.modelTaskRunner ?? createModelTaskRunner(dependencies.modelGateway),
+        ids: dependencies.ids,
+        clock: dependencies.clock,
+      })
+    : null;
+  return Object.freeze({ pipeline, compiler });
 }
 
 export type {

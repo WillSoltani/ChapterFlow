@@ -18,7 +18,7 @@
 
 import { existsSync as existsSyncFs, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, rmSync, renameSync } from "fs";
 import { execSync, execFileSync } from "child_process";
-import { resolve, dirname, basename } from "path";
+import { resolve, dirname, basename, isAbsolute } from "path";
 import { fileURLToPath } from "url";
 
 import { BookCriticReport, BookPackage, BookPackageV21, ChapterV21 } from "./types.js";
@@ -4087,7 +4087,11 @@ async function runQcConverge(args: string[], flags: Record<string, string | bool
  *  push the package to main — NOT a live deploy); pass --no-publish to halt at
  *  ready-to-publish for review. Runs entirely on the Codex subscription — no API
  *  metering. `--plan` previews the spawn plan. */
-async function runBookAutopilot(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+async function runBookAutopilot(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  app?: import("./app/createChapterFlowApp.js").ChapterFlowApp,
+): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
     console.error("Usage: book-autopilot <bookId> [--plan] [--no-publish] [--max-repair N] [--max-parallel N]");
@@ -4108,6 +4112,50 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
   const architecture = forwardControl.runtime.mode === "FORWARD_ACTIVE" && !explicitLegacy
     ? "author"
     : requestedArchitecture;
+  let compiler: import("./orchestrator/compilerRun.js").CompilerPortBinding | undefined;
+  if (architecture === "compiler") {
+    const candidateId = flags["candidate-id"];
+    const manifestDigest = flags["manifest-digest"];
+    const attemptRoot = flags["attempt-root"];
+    const indexLogicalPath = flags["index-path"];
+    const sourceMap = flags["source-map"];
+    if (
+      typeof candidateId !== "string" ||
+      typeof manifestDigest !== "string" ||
+      typeof attemptRoot !== "string" ||
+      !isAbsolute(attemptRoot) ||
+      typeof indexLogicalPath !== "string" ||
+      typeof sourceMap !== "string"
+    ) {
+      console.error("compiler requires --candidate-id, --manifest-digest, absolute --attempt-root, --index-path, and JSON --source-map");
+      return 2;
+    }
+    let sources: Parameters<NonNullable<NonNullable<typeof app>["compiler"]>["run"]>[0]["sources"];
+    try {
+      const parsed = JSON.parse(sourceMap) as unknown;
+      if (!Array.isArray(parsed)) throw new Error("source map must be an array");
+      sources = parsed as typeof sources;
+    } catch (error) {
+      console.error(`invalid --source-map: ${(error as Error).message}`);
+      return 2;
+    }
+    if (!app?.compiler) {
+      console.error("compiler application composition is required");
+      return 2;
+    }
+    compiler = {
+      port: app.compiler,
+      request: {
+        candidateId,
+        manifestDigest,
+        attemptRoot,
+        indexLogicalPath,
+        sources,
+        profileId: "pipeline-read-json-v1",
+        signal: new AbortController().signal,
+      },
+    };
+  }
   const outcome = await runAutopilot({
     bookId,
     plan: flags["plan"] === true,
@@ -4118,6 +4166,7 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
     regen: "regen" in flags,
     // --author = v24 author arch; --legacy keeps meaning legacy; default stays compiler.
     architecture,
+    ...(compiler ? { compiler } : {}),
     ...(architecture === "author" ? {
       authorWriteOneChapter: forwardControl.writeOneChapter,
       forwardAutopilotControl: forwardControl,
