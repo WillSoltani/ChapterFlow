@@ -33,7 +33,7 @@
  */
 
 import { createHash } from "node:crypto";
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 
@@ -296,10 +296,8 @@ export type CleanupPlan = {
   dryRun: boolean;
 };
 
-/** Plan (and optionally execute) a bounded cleanup. REFUSES to delete evidence
- *  for an active attempt, an attempt referenced in `protectedRefs` (cited by a
- *  decision/incident/bakeoff/gold/canary/integration report), or a class with a
- *  null window. Dry-run by default. */
+/** Report a bounded cleanup plan. Never deletes evidence; the retained
+ *  `execute` option is ignored for caller compatibility. */
 export function planEvidenceCleanup(evidenceRoot: string, opts: { now: number; protectedRefs?: Iterable<string>; execute?: boolean } ): CleanupPlan {
   const protectedRefs = new Set(opts.protectedRefs ?? []);
   const deletable: string[] = [];
@@ -317,12 +315,7 @@ export function planEvidenceCleanup(evidenceRoot: string, opts: { now: number; p
     if (ageMs >= window) deletable.push(attemptId);
     else kept.push({ attemptId, reason: `within the ${Math.round(window / 86400000)}d window` });
   }
-  if (opts.execute) {
-    for (const attemptId of deletable) {
-      try { rmSync(attemptDir(evidenceRoot, attemptId), { recursive: true, force: true }); } catch { /* contended */ }
-    }
-  }
-  return { deletable: deletable.sort(), protected: kept.sort((a, b) => (a.attemptId < b.attemptId ? -1 : 1)), dryRun: !opts.execute };
+  return { deletable: deletable.sort(), protected: kept.sort((a, b) => (a.attemptId < b.attemptId ? -1 : 1)), dryRun: true };
 }
 
 // ── stale-evidence classification (item 17) ───────────────────────────────────

@@ -21,8 +21,10 @@
 
 import { createHash } from "crypto";
 
+import type { ModelTaskRunner } from "../app/modelTaskRunner.js";
 import type { BookPackageV21, ChapterV21 } from "../types.js";
 import type { BookContentReader } from "../books/candidateTypes.js";
+import type { ModelTaskContext } from "../contracts/v4Core.js";
 import { REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
 import { ensureTrailingNewline } from "../lib/atomicWrite.js";
 import { REVIEW_WEIGHTS, DocIntegrityError } from "./readerReview.js";
@@ -593,13 +595,41 @@ async function mapWithConcurrency<T, R>(items: T[], limit: number, fn: (item: T,
   return results;
 }
 
+async function runProxyModel(
+  runner: ModelTaskRunner,
+  context: ModelTaskContext,
+  task: string,
+  docText: string,
+): Promise<string> {
+  const encoder = new TextEncoder();
+  const result = await runner.run({
+    profileId: "pipeline-read-text-v1",
+    prompt: {
+      templateId: "chapterflow-text-v1",
+      inputs: [
+        { name: "review_task", mediaType: "text/markdown", bytes: encoder.encode(task) },
+        { name: "candidate_document", mediaType: "text/plain", bytes: encoder.encode(docText) },
+      ],
+    },
+    context,
+  });
+  if (result.outcome !== "SUCCEEDED" || typeof result.output !== "string") {
+    const detail = result.error ? `${result.error.code}:${result.error.message}` : "invalid text output";
+    throw new Error(`EVAL_BOOK_MODEL_${result.outcome}:${detail}`);
+  }
+  return result.output;
+}
+
+type CandidateSelection = Readonly<{ candidateId: string; manifestDigest: string; packageLogicalPath: string }>;
+
 export async function runEvalBookProxy(
   args: string[],
   flags: Record<string, string | boolean>,
   dependencies?: Readonly<{
     contentReader: BookContentReader;
-    candidates: Readonly<Record<string, Readonly<{ candidateId: string; manifestDigest: string; packageLogicalPath: string }>>>;
-    evaluate: (input: Readonly<{ bookId: string; readerNumber: number; attempt: number; task: string; docText: string }>) => Promise<string>;
+    candidates: Readonly<Record<string, CandidateSelection>>;
+    runner: ModelTaskRunner;
+    taskContexts: Readonly<Record<string, ModelTaskContext>>;
   }>,
 ): Promise<number> {
   const bookIds = args.filter((a) => !a.startsWith("--"));
@@ -610,8 +640,8 @@ export async function runEvalBookProxy(
   const readerCount = typeof flags["readers"] === "string" ? Math.max(1, parseInt(flags["readers"], 10) || 3) : 3;
   const asJson = flags["json"] === true;
   const log = (line: string) => (asJson ? console.error(line) : console.log(line));
-  if (!dependencies) {
-    console.error("eval-book-proxy: explicit candidate reader and evaluator are required");
+  if (!dependencies?.contentReader || !dependencies.runner || !dependencies.candidates || !dependencies.taskContexts) {
+    console.error("eval-book-proxy: explicit candidate reader and model task runner are required");
     return 1;
   }
 
@@ -621,6 +651,13 @@ export async function runEvalBookProxy(
     const selected = dependencies.candidates[id];
     if (!selected) {
       log(`[eval-book] ${id}: explicit candidate selection missing`);
+      candidateLoadFailed = true;
+      books.push({ id, medianComposite: null, factors: null, gate: null, gateVotes: "0P/0F", churn: "?", validCount: 0, readerCount: 0, chapters: [], readers: [] });
+      continue;
+    }
+    const taskContext = dependencies.taskContexts[id];
+    if (!taskContext || taskContext.bookId !== id) {
+      log(`[eval-book] ${id}: matching task context missing`);
       candidateLoadFailed = true;
       books.push({ id, medianComposite: null, factors: null, gate: null, gateVotes: "0P/0F", churn: "?", validCount: 0, readerCount: 0, chapters: [], readers: [] });
       continue;
@@ -642,8 +679,6 @@ export async function runEvalBookProxy(
       continue;
     }
     const sampled = selectSeededChapters(id, pkg.chapters, 4);
-    // IMP-08: the eval proxy runs the SAME phase-1 instrument as acceptance
-    // (key-free doc, workspace-isolated readers) so its scores stay comparable.
     const docText = renderBookSampleDocPhase1(sampled);
     assertBookSamplePhase1Integrity(docText, sampled);
     const docFileName = "book-sample.txt";
@@ -657,7 +692,12 @@ export async function runEvalBookProxy(
         for (let attempt = 1; attempt <= 2; attempt++) {
           const sessionId = `eval-book-${id}-r${readerNo}-attempt${attempt}`;
           log(`[eval-book] ${id} r${readerNo}: attempt ${attempt} (session ${sessionId})`);
-          const response = await dependencies.evaluate({ bookId: id, readerNumber: readerNo, attempt, task, docText: ensureTrailingNewline(docText) });
+          const response = await runProxyModel(
+            dependencies.runner,
+            { ...taskContext, attemptId: sessionId, operationId: sessionId },
+            task,
+            ensureTrailingNewline(docText),
+          );
           const parsed = parseBookReview(response);
           if (!parsed) {
             log(`[eval-book] ${id} r${readerNo}: attempt ${attempt} unparseable`);

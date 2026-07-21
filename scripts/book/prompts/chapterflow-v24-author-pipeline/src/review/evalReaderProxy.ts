@@ -3,22 +3,23 @@
  *
  *   eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 80] [--json]
  *
- * For each book: load its production package (pipeline-local book-packages/
- * first, else the outer checkout's book-packages/), deterministically sample N
- * chapters (default 3), render each as a blinded reader document under
- * scratch/eval-proxy/, spawn ONE independent read-only codex reader per
- * sampled chapter (parallel, concurrency 4), then parse + adjudicate + persist
- * a ChapterReviewV1 per chapter and print a per-book table + median composite.
+ * For each book: load its explicitly selected candidate package,
+ * deterministically sample N chapters (default 3), render each as a blinded
+ * reader document, run ONE independent model task per sampled chapter
+ * (parallel, concurrency 4), then parse + adjudicate + optionally persist a
+ * ChapterReviewV1 per chapter and print a per-book table + median composite.
  *
  * This verb is a MEASUREMENT instrument only: it never touches autopilot /
- * conductor code, never mutates chapters, and its readers run sandbox
- * "read-only" with skipGitRepoCheck (they only read the rendered doc).
+ * conductor code and never mutates chapters. Model execution is injected
+ * through ModelTaskRunner; this module owns no provider or process fallback.
  */
 
 import { createHash } from "crypto";
 
-import type { BookPackageV21, ChapterV21 } from "../types.js";
+import type { ModelTaskRunner } from "../app/modelTaskRunner.js";
 import type { BookContentReader } from "../books/candidateTypes.js";
+import type { ModelTaskContext } from "../contracts/v4Core.js";
+import type { BookPackageV21, ChapterV21 } from "../types.js";
 import type { ChapterReviewV1 } from "../artifacts/artifactTypes.js";
 import { CHAPTER_REVIEW_SCHEMA_VERSION, REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
@@ -95,17 +96,42 @@ type BookResult = {
   validCount: number;
 };
 
+type CandidateSelection = Readonly<{ candidateId: string; manifestDigest: string; packageLogicalPath: string }>;
+
 /** Strip verbatim quote text for the --json payload (quotes stay byte-heavy
  *  and are already persisted in the review artifacts). */
 function reviewForJson(review: ChapterReviewV1): Record<string, unknown> {
   return { ...review, quotes: review.quotes.map((q) => ({ why: q.why, verified: q.verified })) };
 }
 
+async function runProxyModel(
+  runner: ModelTaskRunner,
+  context: ModelTaskContext,
+  task: string,
+  docText: string,
+): Promise<string> {
+  const encoder = new TextEncoder();
+  const result = await runner.run({
+    profileId: "pipeline-read-text-v1",
+    prompt: {
+      templateId: "chapterflow-text-v1",
+      inputs: [
+        { name: "review_task", mediaType: "text/markdown", bytes: encoder.encode(task) },
+        { name: "candidate_document", mediaType: "text/plain", bytes: encoder.encode(docText) },
+      ],
+    },
+    context,
+  });
+  if (result.outcome !== "SUCCEEDED" || typeof result.output !== "string") {
+    const detail = result.error ? `${result.error.code}:${result.error.message}` : "invalid text output";
+    throw new Error(`EVAL_READER_MODEL_${result.outcome}:${detail}`);
+  }
+  return result.output;
+}
+
 /** Run one blinded reader over one rendered chapter doc; retry ONCE on a
- *  parse/verification failure with a fresh session id. IMP-08: the reader
- *  scores the PHASE-1 doc from a role workspace outside the repo — the same
- *  instrument and envelope as the production review lane, so eval scores stay
- *  comparable. */
+ *  parse/verification failure. IMP-08: the reader scores the PHASE-1 doc using
+ *  the same parser and adjudicator as the frozen WP14 instrument. */
 async function reviewOneChapter(
   bookId: string,
   chapter: ChapterV21,
@@ -113,9 +139,10 @@ async function reviewOneChapter(
   docRelPath: string,
   bar: number,
   log: (line: string) => void,
-  evaluate: (input: Readonly<{ bookId: string; chapterNumber: number; attempt: number; task: string; docText: string }>) => Promise<string>,
+  runner: ModelTaskRunner,
+  baseContext: ModelTaskContext,
 ): Promise<ChapterReviewV1> {
-  void docRelPath; // forensic-copy path; the reader reads its workspace copy
+  void docRelPath; // forensic-copy path retained by the frozen report contract
   const nn = String(chapter.number).padStart(2, "0");
   const docFileName = `ch${nn}.txt`;
   const task = buildReaderReviewTask(docFileName, bar);
@@ -124,7 +151,12 @@ async function reviewOneChapter(
     const sessionId = `eval-proxy-${bookId}-ch${nn}-attempt${attempt}`;
     lastSessionId = sessionId;
     log(`[eval-proxy] ${bookId} ch${nn}: reader attempt ${attempt} (session ${sessionId})`);
-    const response = await evaluate({ bookId, chapterNumber: chapter.number, attempt, task, docText });
+    const response = await runProxyModel(
+      runner,
+      { ...baseContext, attemptId: sessionId, operationId: sessionId },
+      task,
+      docText,
+    );
     const parsed = parseReaderReview(response);
     if (!parsed) {
       log(`[eval-proxy] ${bookId} ch${nn}: attempt ${attempt} unparseable`);
@@ -132,7 +164,7 @@ async function reviewOneChapter(
     }
     const review = adjudicateReview(parsed, docText, chapter, { bar, reviewerSessionId: sessionId });
     if (review.valid) return review;
-    if (attempt === 2) return review; // second attempt: keep the adjudicated-but-invalid artifact
+    if (attempt === 2) return review;
     log(`[eval-proxy] ${bookId} ch${nn}: attempt ${attempt} failed quote verification — respawning once`);
   }
   return invalidStubReview(chapter, lastSessionId, "reader output could not be parsed after retry");
@@ -143,8 +175,9 @@ export async function runEvalReaderProxy(
   flags: Record<string, string | boolean>,
   dependencies?: Readonly<{
     contentReader: BookContentReader;
-    candidates: Readonly<Record<string, Readonly<{ candidateId: string; manifestDigest: string; packageLogicalPath: string }>>>;
-    evaluate: (input: Readonly<{ bookId: string; chapterNumber: number; attempt: number; task: string; docText: string }>) => Promise<string>;
+    candidates: Readonly<Record<string, CandidateSelection>>;
+    runner: ModelTaskRunner;
+    taskContexts: Readonly<Record<string, ModelTaskContext>>;
     persist?: (bookId: string, review: ChapterReviewV1) => void;
   }>,
 ): Promise<number> {
@@ -164,11 +197,10 @@ export async function runEvalReaderProxy(
     return 2;
   }
   const asJson = flags.json === true;
-  // With --json, stdout must stay clean for the final JSON payload.
   const log = (line: string): void => { if (asJson) console.error(line); else console.log(line); };
 
-  if (!dependencies) {
-    console.error("eval-reader-proxy: explicit candidate reader and evaluator are required");
+  if (!dependencies?.contentReader || !dependencies.runner || !dependencies.candidates || !dependencies.taskContexts) {
+    console.error("eval-reader-proxy: explicit candidate reader and model task runner are required");
     return 2;
   }
 
@@ -178,8 +210,14 @@ export async function runEvalReaderProxy(
 
   for (const bookId of bookIds) {
     const selected = dependencies.candidates[bookId];
+    const taskContext = dependencies.taskContexts[bookId];
     if (!selected) {
       console.error(`eval-reader-proxy: ${bookId}: explicit candidate selection missing`);
+      anyLoadError = true;
+      continue;
+    }
+    if (!taskContext || taskContext.bookId !== bookId) {
+      console.error(`eval-reader-proxy: ${bookId}: matching task context missing`);
       anyLoadError = true;
       continue;
     }
@@ -201,8 +239,6 @@ export async function runEvalReaderProxy(
     const sampled = sampleChapters(bookId, pkg.chapters, chaptersN);
     log(`[eval-proxy] ${bookId}: ${pkg.chapters.length} chapters in selected candidate; sampling ${sampled.length}: ${sampled.map((c) => c.number).join(", ")}`);
 
-    // IMP-08: render the PHASE-1 (key-free) doc, certify key isolation, and
-    // keep a forensic copy under scratch; readers score a workspace copy.
     const jobs = sampled.map((chapter) => {
       const nn = String(chapter.number).padStart(2, "0");
       const docRelPath = `scratch/eval-proxy/${bookId}/ch${nn}.phase1.txt`;
@@ -212,7 +248,7 @@ export async function runEvalReaderProxy(
     });
 
     const reviews = await mapWithConcurrency(jobs, READER_CONCURRENCY, (job) =>
-      reviewOneChapter(bookId, job.chapter, job.docText, job.docRelPath, bar, log, dependencies.evaluate),
+      reviewOneChapter(bookId, job.chapter, job.docText, job.docRelPath, bar, log, dependencies.runner, taskContext),
     );
 
     const rows: string[] = [];

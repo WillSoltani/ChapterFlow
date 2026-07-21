@@ -10,6 +10,8 @@
  */
 
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 import { test } from "./harness.js";
 import { mkTestRoots } from "./testRoots.js";
@@ -192,7 +194,7 @@ test("linkExecutionContext upgrades the exec-context pointer post-spawn without 
 
 // ── retention + protected-reference cleanup (items 11-12) ─────────────────────
 
-test("cleanup is dry-run by default, respects retention windows, and REFUSES active + cited + never-expire evidence", () => {
+test("cleanup is report-only, respects retention windows, and preserves evidence even when execute is requested", () => {
   const roots = mkTestRoots();
   try {
     const now = Date.parse(ISO) + 200 * 24 * 60 * 60 * 1000; // 200 days after base
@@ -217,9 +219,12 @@ test("cleanup is dry-run by default, respects retention windows, and REFUSES act
     // Nothing deleted in a dry run.
     assert.ok(loadAttemptManifest(roots.evidenceRoot, "old-exp"), "dry-run deletes nothing");
 
+    const oldEvidencePath = join(roots.evidenceRoot, "attempts", "old-exp", "manifest.json");
+    const oldEvidenceBytes = readFileSync(oldEvidencePath, "utf8");
     const executed = planEvidenceCleanup(roots.evidenceRoot, { now, protectedRefs: ["cited-exp"], execute: true });
-    assert.equal(executed.dryRun, false);
-    assert.equal(loadAttemptManifest(roots.evidenceRoot, "old-exp"), null, "execute removed the expired experiment");
+    assert.equal(executed.dryRun, true, "legacy execute request remains report-only");
+    assert.deepEqual(executed.deletable, ["old-exp"], "report still identifies expired evidence");
+    assert.equal(readFileSync(oldEvidencePath, "utf8"), oldEvidenceBytes, "execute request preserves expired evidence bytes");
     assert.ok(loadAttemptManifest(roots.evidenceRoot, "cited-exp"), "the cited experiment survived");
     // Every retention class has a bounded-or-explicit window (no accidental unlimited).
     for (const w of Object.values(RETENTION_WINDOWS_MS)) assert.ok(w === null || w > 0, "windows are null (owner decision) or positive");

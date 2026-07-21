@@ -17,6 +17,7 @@ import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { PIPELINE_DIR } from "../bakeoff/paths.js";
 import type { ChapterV21 } from "../types.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
+import type { ChapterGateCompositeOptions } from "../critics/chapterGateComposite.js";
 import type { SourcePacketV1, ChapterBriefV1 } from "../artifacts/artifactTypes.js";
 import { sourcePacketHash } from "../compiler/sourcePacket.js";
 import { semanticSourceHash } from "../source/sourceIntegrity.js";
@@ -1703,6 +1704,8 @@ export function createExplicitExperimentAuthorDestination(args: {
   const evidenceRootAbs = resolve(experimentRootAbs, "evidence");
   const diversityLedgerRootAbs = resolve(experimentRootAbs, "telemetry", "diversity");
   const gateAttemptStateAbsPath = resolve(experimentRootAbs, "telemetry", "gate-attempts.json");
+  type GateAttemptState = NonNullable<ChapterGateCompositeOptions["gateAttemptState"]>;
+  let gateAttemptState = readJsonOrNull<GateAttemptState>(gateAttemptStateAbsPath) ?? {};
   const executionManifestRootAbs = resolve(experimentRootAbs, "execution", "manifests");
   const qualificationCacheRootAbs = resolve(experimentRootAbs, "execution", "cli-qualification-cache");
   const sessionLogRootAbs = resolve(experimentRootAbs, "execution", "author-sessions");
@@ -1847,7 +1850,11 @@ export function createExplicitExperimentAuthorDestination(args: {
     gateCandidate: (candidate, _logicalCanonicalAbsPath, attemptKey) => {
       syncGateSiblingContext();
       return (args.gateCandidateImpl ?? gateCandidate)(candidate, chapterOutputAbsPath, attemptKey, {
-        gateAttemptStatePath: gateAttemptStateAbsPath,
+        gateAttemptState,
+        persistGateAttemptState: (state) => {
+          writeJson(gateAttemptStateAbsPath, state);
+          gateAttemptState = state;
+        },
         sourceSidecar: gateSourceSidecar,
         disableCanonicalKeyJudgeAdvisory: true,
         shipGate: {

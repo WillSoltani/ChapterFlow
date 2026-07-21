@@ -2,12 +2,13 @@ import assert from "node:assert/strict";
 import { lstatSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 
+import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
 import { createBookContentReader } from "../../src/books/bookContentReader.js";
 import { createBookWriteLock } from "../../src/books/bookLease.js";
 import { createCandidateStore } from "../../src/books/candidateStore.js";
 import { createCurrentPointerStore } from "../../src/books/currentPointer.js";
 import type { CandidateInputFile, CandidateStore } from "../../src/books/candidateTypes.js";
-import type { PlannedArtifact } from "../../src/contracts/v4Core.js";
+import type { ModelTaskContext, PlannedArtifact } from "../../src/contracts/v4Core.js";
 import { runAllCriticsFromCandidate } from "../../src/critics/runAllCritics.js";
 import { runBookGate, runBookGateFromCandidate } from "../../src/critics/bookGate.js";
 import { runChapterGateComposite, runChapterGateCompositeFromCandidate } from "../../src/critics/chapterGateComposite.js";
@@ -143,6 +144,39 @@ function fakeBookReview(docText: string, sampled: readonly ChapterV21[]): string
   return `\`\`\`json\n${JSON.stringify({ gate_verdict: "PASS", book3_churn: "LOW", quizDerivation, scores, quotes: [{ quote, why: "frozen fixture" }], oneParagraphVerdict: "frozen pass" })}\n\`\`\``;
 }
 
+function proxyTaskContext(workDir: string): ModelTaskContext {
+  return {
+    bookId: BOOK,
+    runId: "run-critic",
+    attemptId: "proxy-base",
+    stageId: "eval-proxy",
+    operationId: "eval-proxy",
+    workDir,
+    signal: new AbortController().signal,
+  };
+}
+
+function fakeModelRunner(
+  respond: (docText: string) => string,
+  onCall: () => void,
+): ModelTaskRunner {
+  return {
+    async run(request) {
+      onCall();
+      assert.equal(request.profileId, "pipeline-read-text-v1");
+      assert.equal(request.prompt.templateId, "chapterflow-text-v1");
+      assert.ok(request.prompt.inputs.some((input) => input.name === "review_task"));
+      const document = request.prompt.inputs.find((input) => input.name === "candidate_document");
+      assert.ok(document);
+      return {
+        attemptId: request.context.attemptId,
+        outcome: "SUCCEEDED",
+        output: respond(new TextDecoder().decode(document.bytes)),
+      };
+    },
+  };
+}
+
 requiredTest("critics use candidate bytes despite conflicting legacy files", async (context) => {
   const input = await rig(context);
   writeFileSync(join(context.roots.stateRoot, `${BOOK}.v21.json`), JSON.stringify({ book: { bookId: "ambient-poison" } }));
@@ -227,17 +261,19 @@ requiredTest("missing candidate entry errors with no fallback", async (context) 
   await assert.rejects(() => runAllCriticsFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, packageLogicalPath: "missing.json" }), /CANDIDATE_ENTRY_MISSING/);
 });
 
-requiredTest("fake evaluators preserve frozen sampling and judgments", async (context) => {
+requiredTest("fake model runners preserve frozen sampling and judgments", async (context) => {
   const input = await rig(context);
   assert.deepEqual(selectSeededChapters(BOOK, input.chapters, 4).map((chapter) => chapter.number), [1, 3, 4, 5]);
   assert.deepEqual(sampleChapters(BOOK, input.chapters, 3).map((chapter) => chapter.number), [4, 1, 3]);
-  let fakeEvaluations = 0;
+  let fakeModelRuns = 0;
   const persisted: ChapterReviewV1[] = [];
   const candidates = { [BOOK]: selection(input) };
+  const taskContexts = { [BOOK]: proxyTaskContext(context.roots.tempRoot) };
   const readerCode = await runEvalReaderProxy([BOOK], { chapters: "3", bar: "80" }, {
     contentReader: input.reader,
     candidates,
-    evaluate: async ({ docText }) => { fakeEvaluations++; return fakeChapterReview(docText); },
+    runner: fakeModelRunner(fakeChapterReview, () => { fakeModelRuns++; }),
+    taskContexts,
     persist: (_bookId, review) => persisted.push(review),
   });
   assert.deepEqual(persisted.map((review) => review.chapterNumber), [4, 1, 3]);
@@ -254,7 +290,12 @@ requiredTest("fake evaluators preserve frozen sampling and judgments", async (co
   console.log = (...args: unknown[]) => { bookStdout.push(args.map(String).join(" ")); };
   let bookCode: number;
   try {
-    bookCode = await runEvalBookProxy([BOOK], { readers: "1", json: true }, { contentReader: input.reader, candidates, evaluate: async ({ docText }) => { fakeEvaluations++; return fakeBookReview(docText, sampled); } });
+    bookCode = await runEvalBookProxy([BOOK], { readers: "1", json: true }, {
+      contentReader: input.reader,
+      candidates,
+      runner: fakeModelRunner((docText) => fakeBookReview(docText, sampled), () => { fakeModelRuns++; }),
+      taskContexts,
+    });
   } finally {
     console.log = originalLog;
   }
@@ -271,7 +312,7 @@ requiredTest("fake evaluators preserve frozen sampling and judgments", async (co
   assert.deepEqual(payload.books[0].chapters, [1, 3, 4, 5]);
   assert.equal(readerCode, 0);
   assert.equal(bookCode, 0);
-  assert.equal(fakeEvaluations, 4);
+  assert.equal(fakeModelRuns, 4);
 });
 
 requiredTest("all reader routes preserve bytes modes mtimes and entries with live counters zero", async (context) => {
@@ -340,28 +381,40 @@ requiredTest("all reader routes preserve bytes modes mtimes and entries with liv
 
   assert.equal(await runEvalBookProxy([BOOK], { readers: "1" }), 1, "book proxy must fail closed without injected evaluator");
   assert.equal(await runEvalReaderProxy([BOOK], { chapters: "1" }), 2, "reader proxy must fail closed without injected evaluator");
-  let blockedEvaluatorCalls = 0;
+  let blockedRunnerCalls = 0;
   let blockedPersistCalls = 0;
   const blockedDependencies = {
     contentReader: input.reader,
     candidates: {},
-    evaluate: async (): Promise<string> => { blockedEvaluatorCalls++; throw new Error("forbidden evaluator executed"); },
+    runner: fakeModelRunner(() => { throw new Error("forbidden runner executed"); }, () => { blockedRunnerCalls++; }),
+    taskContexts: { [BOOK]: proxyTaskContext(context.roots.tempRoot) },
   };
   assert.equal(await runEvalBookProxy([BOOK], { readers: "1" }, blockedDependencies), 1);
   assert.equal(await runEvalReaderProxy([BOOK], { chapters: "1" }, {
     ...blockedDependencies,
     persist: () => { blockedPersistCalls++; throw new Error("forbidden persistence executed"); },
   }), 2);
-  assert.equal(blockedEvaluatorCalls, 0);
+  assert.equal(blockedRunnerCalls, 0);
   assert.equal(blockedPersistCalls, 0);
   await runAllCriticsFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, packageLogicalPath: LEGACY_PACKAGE, generatedAt: CREATED });
   await computeBookRubricMetricsFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPaths: input.chapters.map((chapter) => chapterPath(chapter.number)) });
   const candidates = { [BOOK]: selection(input) };
+  const taskContexts = { [BOOK]: proxyTaskContext(context.roots.tempRoot) };
   const sampled = selectSeededChapters(BOOK, input.chapters, 4);
-  let fakeEvaluatorCalls = 0;
-  await runEvalBookProxy([BOOK], { readers: "1" }, { contentReader: input.reader, candidates, evaluate: async ({ docText }) => { fakeEvaluatorCalls++; return fakeBookReview(docText, sampled); } });
-  await runEvalReaderProxy([BOOK], { chapters: "1" }, { contentReader: input.reader, candidates, evaluate: async ({ docText }) => { fakeEvaluatorCalls++; return fakeChapterReview(docText); } });
-  assert.equal(fakeEvaluatorCalls, 2, "only injected fake evaluators may execute");
+  let fakeRunnerCalls = 0;
+  await runEvalBookProxy([BOOK], { readers: "1" }, {
+    contentReader: input.reader,
+    candidates,
+    runner: fakeModelRunner((docText) => fakeBookReview(docText, sampled), () => { fakeRunnerCalls++; }),
+    taskContexts,
+  });
+  await runEvalReaderProxy([BOOK], { chapters: "1" }, {
+    contentReader: input.reader,
+    candidates,
+    runner: fakeModelRunner(fakeChapterReview, () => { fakeRunnerCalls++; }),
+    taskContexts,
+  });
+  assert.equal(fakeRunnerCalls, 2, "only injected fake model runners may execute");
   assert.deepEqual(snapshotTree(context.roots.booksRoot), before);
 });
 

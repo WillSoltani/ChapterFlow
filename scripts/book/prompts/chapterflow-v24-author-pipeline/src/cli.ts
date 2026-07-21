@@ -18,6 +18,7 @@
 
 import { existsSync as existsSyncFs, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, rmSync, renameSync } from "fs";
 import { execSync, execFileSync } from "child_process";
+import { randomUUID } from "crypto";
 import { resolve, dirname, basename, isAbsolute } from "path";
 import { fileURLToPath } from "url";
 
@@ -33,6 +34,58 @@ import { writeFileAtomic } from "./lib/atomicWrite.js";
 import type { ProviderName } from "./providers/types.js";
 import type { AxisId, AxisScore, FailureTier } from "./critics/semantic/publishableBar.js";
 import { formatRuntimeFindings, validateAllConfigFiles } from "./runtimeSchemas.js";
+import { CommandRegistry } from "./commands/commandRegistry.js";
+import type { CommandContext, CommandSpec } from "./commands/commandSpec.js";
+
+const COMMAND_IDS = [
+  "critic", "ping", "ledger", "verify-library-state", "rebuild-library-state", "pipeline", "flow", "policy",
+  "generate-book", "next-task", "runbook", "diagnose", "check-source", "source-verify", "source-verify-check",
+  "source-verify-schema", "source-verify-workbench", "source-verify-import", "source-fit", "prune-book-state",
+  "derive-artifacts", "research", "generate", "publish", "publish-to-live", "publish-final", "qc-stamp-author",
+  "book-status", "doctor", "exec-qualify", "contract-validate", "evidence-reconstruct", "evidence-cleanup",
+  "diversity-report", "authoring-guardrails", "promote-book", "verify-production-package", "gate-chapter", "book-gate",
+  "publishable-rubric", "name-plan", "shape-plan", "exemplar-plan", "venue-plan", "answer-key-plan", "rhetoric-plan",
+  "pedagogy-plan", "qc-open-round", "qc-orchestrate", "qc-submit", "qc-schema", "roles", "qc-auto", "publish-after-qc",
+  "qc-ledger-status", "qc-ledger-repair", "qc-repair-brief", "qc-repair-prompt", "qc-diagnose", "qc-metrics",
+  "source-v2-gate", "qc-converge", "book-autopilot", "book-run", "migration-bakeoff", "diversify-book",
+  "content-repair-book", "compile-source-packets", "source-packet-gate", "compile-book-design", "book-design-gate",
+  "compile-chapter-briefs", "chapter-brief-gate", "compile-blueprints", "blueprint-gate", "deal-section-tasks",
+  "validate-sections", "assemble-sections", "build-evidence-maps", "evidence-gate", "risk-score", "rubric-metrics",
+  "reader-budget-check", "codex-agent-run", "key-pack", "key-derive", "key-resolve", "bar-pack", "bar-attest",
+  "sweep-pack", "sweep-attest", "sweep-status", "major-status", "major-disposition", "qc-attest", "qc-verdict",
+  "qc-status", "qc-stats", "qc-rehash", "qc-run", "quiz-judge", "quiz-blind", "evidence-audit", "catalog-audit",
+  "quiz-verify", "fanout", "categorize", "register-web", "batch", "author-check", "calibration-scan", "fix-chapter-ids",
+  "migrate-chapter-identity", "toc-migrate", "migrate-state", "state-status", "quarantine-book", "unquarantine-book",
+  "eval-reader-proxy", "eval-book-proxy", "help",
+] as const;
+
+const READ_COMMANDS = new Set<string>([
+  "help", "policy", "next-task", "runbook", "diagnose", "check-source", "source-verify-check", "source-verify-schema",
+  "source-fit", "book-status", "doctor", "contract-validate", "diversity-report", "verify-production-package",
+  "gate-chapter", "publishable-rubric", "qc-schema", "roles", "qc-ledger-status", "qc-diagnose", "qc-metrics",
+  "source-v2-gate", "source-packet-gate", "book-design-gate", "chapter-brief-gate", "blueprint-gate", "evidence-gate",
+  "risk-score", "rubric-metrics", "reader-budget-check", "sweep-status", "major-status", "qc-verdict", "qc-status",
+  "qc-stats", "evidence-audit", "catalog-audit", "state-status",
+]);
+
+const MODEL_COMMANDS = new Set<string>([
+  "ping", "pipeline", "flow", "generate-book", "research", "generate", "qc-auto", "book-autopilot", "book-run",
+  "migration-bakeoff", "diversify-book", "content-repair-book", "codex-agent-run", "quiz-judge", "fanout", "categorize",
+  "batch", "eval-reader-proxy", "eval-book-proxy",
+]);
+
+const commandRegistry = new CommandRegistry();
+const runRegisteredCommand: CommandSpec["run"] = async (context) => {
+  const parsed = parseArgs([...context.argv]);
+  return {
+    ok: true,
+    value: await runExistingCommand({ id: normalizeCommandId(parsed.cmd), args: parsed.args, flags: parsed.flags }),
+  };
+};
+for (const id of COMMAND_IDS) {
+  const mode: CommandSpec["mode"] = READ_COMMANDS.has(id) ? "READ" : MODEL_COMMANDS.has(id) ? "MODEL" : "WRITE";
+  commandRegistry.register({ id, mode, requiredConfig: mode === "READ" ? [] : ["runtime"], run: runRegisteredCommand });
+}
 
 /** Refuse to run if a repo-root shadow state/chapters dir holds chapters
  *  (the dual-directory divergence hazard). Returns an exit code on failure. */
@@ -63,6 +116,150 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "..");
 const BOOK_PACKAGES_DIR = resolve(REPO_ROOT, "book-packages");
 const DEFAULT_REPORTS_DIR = resolve(__dirname, "../reports");
+
+type CliV25Composition = Readonly<{
+  app: import("./app/createChapterFlowApp.js").ChapterFlowApp;
+  candidate: import("./books/candidateTypes.js").CandidateSnapshot;
+  contentReader: import("./books/candidateTypes.js").BookContentReader;
+  reviewService: import("./review/reviewTypes.js").ReviewService;
+  qcService: import("./qc/qcTypes.js").QcService;
+  writeLock: import("./books/leaseTypes.js").BookWriteLock;
+  runStore: import("./run-state/runStore.js").RunStore;
+  runner: import("./app/modelTaskRunner.js").ModelTaskRunner;
+  ids: import("./app/pipeline.js").ChapterFlowIdFactory;
+  sourceGitSha: string;
+}>;
+
+async function createCliV25Composition(
+  bookId: string,
+  flags: Record<string, string | boolean>,
+): Promise<{ ok: true; value: CliV25Composition } | { ok: false; error: string }> {
+  const v25Root = flags["v25-root"];
+  const attemptRoot = flags["attempt-root"];
+  const candidateId = flags["candidate-id"];
+  const manifestDigest = flags["manifest-digest"];
+  const sourceGitSha = flags["source-git-sha"];
+  if (
+    typeof v25Root !== "string" || !isAbsolute(v25Root) ||
+    typeof attemptRoot !== "string" || !isAbsolute(attemptRoot) ||
+    typeof candidateId !== "string" || typeof manifestDigest !== "string" ||
+    typeof sourceGitSha !== "string" || sourceGitSha.length === 0
+  ) {
+    return { ok: false, error: "V25_COMPOSITION_REQUIRED: --v25-root, --attempt-root, --candidate-id, --manifest-digest, and --source-git-sha are required" };
+  }
+
+  mkdirSync(v25Root, { recursive: true });
+  mkdirSync(attemptRoot, { recursive: true });
+  const booksRoot = resolve(v25Root, "books");
+  const runRoot = resolve(v25Root, "run-state");
+  const [{ createBookWriteLock }, { createCurrentPointerStore }, { createCandidateStore }, { createBookContentReader }] = await Promise.all([
+    import("./books/bookLease.js"),
+    import("./books/currentPointer.js"),
+    import("./books/candidateStore.js"),
+    import("./books/bookContentReader.js"),
+  ]);
+  const writeLock = createBookWriteLock({ booksRoot });
+  const currentPointerStore = createCurrentPointerStore({ booksRoot, writeLock });
+  const candidateStore = createCandidateStore({ booksRoot, writeLock, currentPointerStore });
+  const contentReader = createBookContentReader({ booksRoot, currentPointerStore });
+  const candidate = await contentReader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
+  if (!candidate.ok) return { ok: false, error: `${candidate.error.code}:${candidate.error.message}` };
+  if (candidate.value.manifest.manifestDigest !== manifestDigest) {
+    return { ok: false, error: "V25_CANDIDATE_MISMATCH:selected candidate manifest digest differs" };
+  }
+
+  const [{ createFileRunStore, createFileStageCoordinator }, { createProcessSupervisor }, { createExecutionPolicy }, { createModelGateway }] = await Promise.all([
+    import("./run-state/index.js"),
+    import("./runtime/processSupervisor.js"),
+    import("./runtime/executionPolicy.js"),
+    import("./runtime/modelGateway.js"),
+  ]);
+  const runStore = createFileRunStore(runRoot);
+  const stageCoordinator = createFileStageCoordinator(runRoot);
+  const clock = { now: () => new Date().toISOString() };
+  const modelGateway = createModelGateway({
+    runStore,
+    processSupervisor: createProcessSupervisor(),
+    executionPolicy: createExecutionPolicy({ pipelineRoot: REPO_ROOT, attemptRoot }),
+    now: clock.now,
+  });
+  const { createModelTaskRunner } = await import("./app/modelTaskRunner.js");
+  const runner = createModelTaskRunner(modelGateway);
+  const { ModelGatewayReviewEvaluator } = await import("./app/modelGatewayReviewEvaluator.js");
+  const { createReviewServiceFactory } = await import("./review/reviewService.js");
+  const reviewService = createReviewServiceFactory({ booksRoot, contentReader, now: clock.now })
+    .create(new ModelGatewayReviewEvaluator(runner));
+  const { createQcService } = await import("./qc/qcService.js");
+  const qcService = createQcService({ booksRoot, contentReader, reviewService, writeLock, now: clock.now });
+  const { createPromotionService } = await import("./release/promotionService.js");
+  const promotionService = createPromotionService({ candidateStore, contentReader, reviewService, qcService, currentPointerStore, clock: clock.now });
+  const ids: import("./app/pipeline.js").ChapterFlowIdFactory = {
+    nextRunId: () => `cli-${randomUUID()}`,
+    candidateId: (runId) => `${runId}-candidate`,
+    modelAttemptId: (runId) => `${runId}-model`,
+    reviewAttemptId: (runId) => `${runId}-review-attempt`,
+    reviewId: (runId) => `${runId}-review`,
+    qcRoundId: (runId) => `${runId}-qc`,
+  };
+  const { createChapterFlowApp } = await import("./app/createChapterFlowApp.js");
+  const app = createChapterFlowApp({
+    runStore, stageCoordinator, modelGateway, candidateStore, contentReader, reviewService, qcService,
+    promotionService, clock, ids, pipelineRoot: REPO_ROOT, modelTaskRunner: runner,
+  });
+  return { ok: true, value: { app, candidate: candidate.value, contentReader, reviewService, qcService, writeLock, runStore, runner, ids, sourceGitSha } };
+}
+
+async function reviewCliV25Candidate(
+  bookId: string,
+  roundId: string,
+  composition: CliV25Composition,
+): Promise<
+  | { ok: true; value: import("./review/reviewTypes.js").CanonicalReviewResult }
+  | { ok: false; error: string }
+> {
+  const runId = composition.ids.nextRunId();
+  const reviewId = `qc-${roundId}`;
+  const createdAt = new Date().toISOString();
+  const created = await composition.runStore.createRun({
+    schemaVersion: "1",
+    bookId,
+    runId,
+    commandId: "cli-canonical-review",
+    sourceGitSha: composition.sourceGitSha,
+    requiredStages: ["canonical-review"],
+    requiredInventory: composition.candidate.manifest.entries.map(({ byteLength: _byteLength, ...entry }) => entry),
+    inputCandidate: {
+      candidateId: composition.candidate.manifest.candidateId,
+      manifestDigest: composition.candidate.manifest.manifestDigest,
+    },
+    attemptLimits: { run: 1, byStage: { "canonical-review": 1 } },
+    createdAt,
+  });
+  if (!created.ok) return { ok: false, error: `${created.error.code}:${created.error.message}` };
+  const reviewed = await composition.reviewService.reviewCanonical({
+    reviewId,
+    candidate: composition.candidate,
+    taskContext: {
+      bookId,
+      runId,
+      attemptId: composition.ids.reviewAttemptId(runId),
+      stageId: "canonical-review",
+      operationId: "canonical-review",
+      workDir: REPO_ROOT,
+      signal: new AbortController().signal,
+    },
+  });
+  await composition.runStore.finishRun({
+    bookId,
+    runId,
+    status: reviewed.ok ? "COMPLETED" : "FAILED",
+    finishedAt: new Date().toISOString(),
+    ...(!reviewed.ok ? { reason: reviewed.error.code } : {}),
+  });
+  return reviewed.ok
+    ? { ok: true, value: reviewed.value }
+    : { ok: false, error: `${reviewed.error.code}:${reviewed.error.message}` };
+}
 
 function printHelp() {
   console.log(`ChapterFlow v21 CLI
@@ -3615,6 +3812,12 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   }
 
   const bookId = resolved.bookId;
+  const v25 = await createCliV25Composition(bookId, flags);
+  if (!v25.ok) {
+    console.error(v25.error);
+    return 2;
+  }
+  void v25.value;
   // Convergence guarantee: QC's book-level major scan (currentMajorFindings →
   // runBookGate → runBookPatternAudit) must run against the SAME derived brief +
   // per-chapter plans the final book-gate uses. Otherwise QC under-reports
@@ -3705,6 +3908,12 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     return flags["dry-run"] === true ? 0 : 3;
   }
 
+  const reviewed = await reviewCliV25Candidate(bookId, roundId, v25.value);
+  if (!reviewed.ok) {
+    console.error(reviewed.error);
+    return 3;
+  }
+
   // The shared QC round-driver runs the SAME sequence as the autopilot conductor;
   // qc-auto injects IN-PROCESS orchestrator calls (its long-standing behavior, so the
   // output + exit codes below stay byte-for-byte identical) and a NO-OP reviewer
@@ -3732,33 +3941,149 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
 
       collect: () => { const r = orch.collectQcRound(bookId, roundId); return { ok: r.ok, errors: r.errors }; },
       generateConfirmCandidates: () => { const r = orch.generateConfirmCandidates(bookId, roundId, { chapters }); return { ok: r.ok, errors: r.errors }; },
-      finalize: () => orch.finalizeQcRound(bookId, roundId, { chapters, attest }),
+      finalize: () => orch.finalizeQcRound(bookId, roundId, { chapters, attest, dryRun: true }),
       ledgerOpenCount: () => orch.ledgerStatus(bookId, roundId).summary.open ?? 0,
-      recordMetrics: (finalized) => {
-        // Best-effort telemetry — one append-only row per finalization (see `qc-metrics`).
-        // A failure here NEVER breaks the QC run.
-        try {
-          const failingBarAxes: string[] = [];
-          for (const d of finalized.chapters) {
-            if (d.finalVerdict === "PUBLISHABLE" || (d.checks.barRead !== "YELLOW" && d.checks.barRead !== "RED")) continue;
-            const bar = loadBarReadArtifact(bookId, roundId, d.chapterNumber);
-            for (const a of bar?.axes ?? []) if (a.tier !== "PUBLISHABLE") failingBarAxes.push(a.axis);
-          }
-          appendQcFinalizationMetric(buildQcFinalizationMetric({
-            bookId, roundId, timestamp: new Date().toISOString(),
-            mode: chapters?.length ? "subset" : "full",
-            incremental: flags["incremental"] === true,
-            tiebreak: flags["tiebreak"] === true,
-            decisions: finalized.chapters, failingBarAxes,
-          }));
-        } catch { /* telemetry is best-effort — never break QC */ }
-      },
+      recordMetrics: () => undefined,
       // Full-book qc-status verification on a clean pass — skipped on a subset (never a
       // book-level pass) and in stale-diagnostics mode (the stale override fires below).
-      verifyFullBook: (isSubset || staleDiagnosticsOnly) ? undefined : async () => (await runQcStatus([bookId])) === 0,
+      verifyFullBook: undefined,
     },
     { isSubset, narrowRetryOnIncomplete: false },
   );
+
+  if (!result.finalized) {
+    console.error(`V25_QC_EVALUATION_UNAVAILABLE:${result.reason ?? result.outcome}`);
+    return 3;
+  }
+
+  // Subset and stale-diagnostic rounds are legacy-only observations. They can
+  // finalize their legacy projection once, but can never store a canonical V4
+  // book PASS or enter full-book readiness/publish output.
+  if (isSubset || staleDiagnosticsOnly) {
+    const legacyCanFinalize = reviewed.value.outcome !== "ERROR" &&
+      (result.outcome === "PASS" || result.outcome === "PASS_SUBSET" || result.outcome === "REPAIR");
+    let finalized = result.finalized;
+    if (legacyCanFinalize) {
+      const committed = orch.finalizeQcRound(bookId, roundId, { chapters, attest });
+      if (!committed.ok) {
+        for (const error of committed.errors) console.error(error);
+        return 3;
+      }
+      finalized = committed;
+    }
+    if (result.collectErrors.length) for (const error of result.collectErrors) console.error(error);
+    if (finalized.errors.length) for (const error of finalized.errors) console.error(error);
+
+    if (staleDiagnosticsOnly) {
+      console.log(`QC AUTO INCOMPLETE — ${bookId}`);
+      console.log(`round: ${roundId}`);
+      console.log("status: STALE_ROUND");
+      console.log("This round is stale after repair. Do not resume this round for publishability.");
+      console.log("Start a fresh QC round:");
+      console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
+      return 3;
+    }
+    if (result.outcome === "PASS_SUBSET" && reviewed.value.outcome === "PASS") {
+      console.log(`QC AUTO PASS (SUBSET) — ${bookId}`);
+      console.log(`round: ${roundId}`);
+      console.log(`chapters selected: ${finalized.chapters.length} (subset)`);
+      console.log(`attestations written: ${finalized.attestationsWritten} PUBLISHABLE`);
+      console.log("repair findings: 0 open");
+      console.log("qc-status: selected chapters PASS (subset — book not fully verified)");
+      console.log("next:");
+      console.log("  # subset only — run a full-book pass before publishing:");
+      console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
+      return 0;
+    }
+    if (result.outcome === "REPAIR" && reviewed.value.outcome !== "ERROR") {
+      console.log(`QC AUTO REPAIR REQUIRED — ${bookId}`);
+      console.log(`round: ${roundId}`);
+      console.log(`PUBLISHABLE attested: ${result.counts.publishable}`);
+      console.log(`REVISE attested: ${result.counts.revise}`);
+      console.log(`CORRUPTION attested: ${result.counts.corruption}`);
+      console.log(`open repair findings: ${result.openRepairFindings}`);
+      console.log("repair prompt:");
+      console.log(`  ${finalized.repairPromptPath}`);
+      return 1;
+    }
+    console.error(`V25_QC_${reviewed.value.outcome}:subset QC did not produce a canonical full-book pass`);
+    return 3;
+  }
+
+  const evaluationOutcome = result.outcome === "PASS"
+    ? "PASS"
+    : result.outcome === "REPAIR" ? "FAIL" : "ERROR";
+  const deterministicIssues = result.finalized.chapters
+    .filter((chapter) => chapter.finalVerdict !== "PUBLISHABLE")
+    .map((chapter) => ({
+      code: `QC_CHAPTER_${chapter.chapterNumber}_${chapter.finalVerdict}`,
+      severity: "BLOCKER" as const,
+      message: chapter.reason || chapter.finalVerdict,
+      location: chapter.chapterId,
+    }));
+  if (evaluationOutcome !== "PASS" && deterministicIssues.length === 0) {
+    deterministicIssues.push({
+      code: `QC_ROUTE_${evaluationOutcome}`,
+      severity: "BLOCKER",
+      message: result.reason ?? `QC route ended ${evaluationOutcome}`,
+      location: bookId,
+    });
+  }
+  const { driveV4FreshQc } = await import("./qc/auto/driver.js");
+  const candidateIdentity = {
+    candidateId: v25.value.candidate.manifest.candidateId,
+    manifestDigest: v25.value.candidate.manifest.manifestDigest,
+  };
+  const fresh = await driveV4FreshQc({
+    qcService: v25.value.qcService,
+    writeLock: v25.value.writeLock,
+    cohort: { bookId, legacyWriterEnabled: false, v4WriterEnabled: true, cutoverComplete: true, v4WriteObserved: false },
+    roundId,
+    candidate: v25.value.candidate,
+    canonicalReview: reviewed.value,
+    finalization: {
+      bookId,
+      roundId,
+      candidate: candidateIdentity,
+      reviewId: reviewed.value.reviewId,
+      publishable: result.finalized.allPublishable,
+    },
+    evaluateCompletedChecks: () => ({
+      deterministic: { outcome: evaluationOutcome, issues: deterministicIssues },
+      model: {
+        outcome: reviewed.value.outcome,
+        issues: reviewed.value.issues
+          .filter((issue): issue is typeof issue & { severity: "WARN" | "BLOCKER" } => issue.severity !== "INFO")
+          .map((issue) => ({
+            code: issue.code,
+            severity: issue.severity,
+            message: issue.message,
+            ...(issue.location === undefined ? {} : { location: issue.location }),
+          })),
+      },
+    }),
+    commitFinalization: () => {
+      const committed = orch.finalizeQcRound(bookId, roundId, { chapters, attest });
+      return committed.ok ? { ok: true as const, value: null } : {
+        ok: false as const,
+        error: { code: "QC_FINALIZATION_FAILED", message: committed.errors.join("; ") || "finalization failed" },
+      };
+    },
+    verifyFullBook: async () => isSubset || staleDiagnosticsOnly || (await runQcStatus([bookId])) === 0,
+  });
+  if (fresh.outcome === "ERROR" || fresh.outcome === "BLOCKED" || fresh.outcome === "FINALIZATION_ERROR" || fresh.outcome === "QC_STATUS_FAIL") {
+    console.error(`V25_QC_${fresh.outcome}:${fresh.reason ?? "fresh QC failed"}`);
+    return 3;
+  }
+  if (fresh.outcome === "FAIL") {
+    const committed = orch.finalizeQcRound(bookId, roundId, { chapters, attest });
+    if (!committed.ok) {
+      for (const error of committed.errors) console.error(error);
+      return 3;
+    }
+    console.error("V25_QC_FAIL:fresh canonical QC did not pass");
+    return 3;
+  }
 
   if (result.outcome === "INCOMPLETE" && result.reason === "collect-failed") {
     for (const e of result.collectErrors) console.error(e);
@@ -4112,7 +4437,9 @@ async function runBookAutopilot(
   const architecture = forwardControl.runtime.mode === "FORWARD_ACTIVE" && !explicitLegacy
     ? "author"
     : requestedArchitecture;
+  let resolvedApp = app;
   let compiler: import("./orchestrator/compilerRun.js").CompilerPortBinding | undefined;
+  let compilerSuccessor: { candidateId: string; manifestDigest: string } | undefined;
   if (architecture === "compiler") {
     const candidateId = flags["candidate-id"];
     const manifestDigest = flags["manifest-digest"];
@@ -4139,12 +4466,31 @@ async function runBookAutopilot(
       console.error(`invalid --source-map: ${(error as Error).message}`);
       return 2;
     }
-    if (!app?.compiler) {
+    if (!resolvedApp) {
+      const v25 = await createCliV25Composition(bookId, flags);
+      if (!v25.ok) {
+        console.error(v25.error);
+        return 2;
+      }
+      resolvedApp = v25.value.app;
+    }
+    if (!resolvedApp.compiler) {
       console.error("compiler application composition is required");
       return 2;
     }
+    const compilerPort = resolvedApp.compiler;
+    const capturingPort = new Proxy(compilerPort, {
+      get(target, property) {
+        if (property !== "run") return Reflect.get(target, property, target);
+        return async (request: Parameters<typeof compilerPort.run>[0]) => {
+          const successor = await compilerPort.run(request);
+          compilerSuccessor = successor;
+          return successor;
+        };
+      },
+    });
     compiler = {
-      port: app.compiler,
+      port: capturingPort,
       request: {
         candidateId,
         manifestDigest,
@@ -4162,7 +4508,7 @@ async function runBookAutopilot(
     // Auto-publish ON by default; --no-publish (in any form) halts for review. Presence-
     // check, not `!== true`, so a parser that binds a following token as the flag's value
     // can't make the opt-out fail OPEN.
-    autoPublish: !("no-publish" in flags),
+    autoPublish: architecture === "compiler" ? false : !("no-publish" in flags),
     regen: "regen" in flags,
     // --author = v24 author arch; --legacy keeps meaning legacy; default stays compiler.
     architecture,
@@ -4174,6 +4520,19 @@ async function runBookAutopilot(
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
   });
+  if (architecture === "compiler" && flags["plan"] !== true && outcome.status === "ready") {
+    if (!compilerSuccessor) {
+      console.error("book-autopilot: compiler returned READY without a captured successor");
+      return 2;
+    }
+    return runQcAuto([bookId], {
+      ...flags,
+      pass: true,
+      "candidate-id": compilerSuccessor.candidateId,
+      "manifest-digest": compilerSuccessor.manifestDigest,
+      "no-publish": true,
+    });
+  }
   console.log(formatOutcome(outcome));
   return outcome.status === "halt" ? 1 : 0;
 }
@@ -5404,16 +5763,15 @@ async function runQcRun(args: string[], flags: Record<string, string | boolean>)
  *  a wrong-key flag. Writes a per-chapter result to
  *  state/qc/<bookId>-chNN.keyjudge.json that the promote gate ENFORCES
  *  (QC1.wrong_quiz_key), so the catch is independent of the writer's honesty.
- *  Exit 0 clean / 1 wrong key(s) / 2 infra (fail-OPEN: an infra error must never
- *  look like a clean semantic pass). */
+ *  Exit 0 clean / 1 wrong key(s) / 2 missing composition or model failure. */
 async function runQuizJudge(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  if (flags["provider"] !== undefined || flags["model"] !== undefined) {
+    console.error("quiz-judge: --provider and --model are unsupported; model execution is selected by application composition");
+    return 2;
+  }
   const g = shadowGuard();
   if (g) return g;
-  // #14: quiz-judge defaults to the BILLED openai-api provider and makes ~1 call per quiz
-  // question. In no-API mode the wrong-key catch is the MANUAL keyA/keyB judge (run via
-  // qc-orchestrate), not this billed verb — so refuse here rather than silently spend money the
-  // mode promises it won't. (The provider-router choke point would also block it; this is the
-  // clear early error.)
+  // In no-API mode wrong-key review stays on the manual keyA/keyB lane.
   const { isNoApiCodexQcMode } = await import("./qc/noApiMode.js");
   if (isNoApiCodexQcMode()) {
     console.error("quiz-judge makes BILLED model calls and is disabled in no-API mode (CHAPTERFLOW_NO_API_CODEX_QC=1). The no-API wrong-key catch is the manual keyA/keyB judge via qc-orchestrate (see QC-SESSION-PROMPT). Unset CHAPTERFLOW_NO_API_CODEX_QC to run the billed judge intentionally.");
@@ -5431,22 +5789,51 @@ async function runQuizJudge(args: string[], flags: Record<string, string | boole
     return 2;
   }
   const only = (parseCsvFlag(flags["chapters"]) ?? []).map((s) => Number(s)).filter((n) => Number.isFinite(n));
-  const providerFlag = typeof flags["provider"] === "string" ? (flags["provider"] as string) : process.env.CHAPTERFLOW_PROVIDER;
-  const provider = providerFlag as ProviderName | undefined;
-
   const { judgeQuizKeys, makeLiveAskModel, formatQuizKeyReport } = await import("./critics/semantic/quizKeyJudge.js");
   const { recordFromReport, writeKeyJudge } = await import("./critics/quizKeyGate.js");
   const { findRunArtifact } = await import("./lib/runDirs.js");
   const RUNS = resolve(__dirname, "../.chapterflow/runs");
 
-  const ask = makeLiveAskModel(provider ? { provider } : undefined);
-  const reviewer = `keyjudge:${provider ?? "openai-api"}`;
+  const reviewer = "keyjudge:model-task-runner";
   const chapters = files
     .map((f) => JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21)
     .filter((ch) => only.length === 0 || only.includes(ch.number))
     .sort((a, b) => a.number - b.number);
 
-  console.log(`Judging quiz answer keys for ${bookId} — ${chapters.length} chapter(s) via provider=${provider ?? "openai-api"}...\n`);
+  const v25 = await createCliV25Composition(bookId, flags);
+  if (!v25.ok) {
+    console.error(v25.error);
+    return 2;
+  }
+  const runId = v25.value.ids.nextRunId();
+  const stageIds = chapters.map((ch) => `quiz-judge-ch${String(ch.number).padStart(2, "0")}`);
+  const modelCallCount = chapters.reduce((total, chapter) => total + (chapter.quiz?.questions?.length ?? 0), 0);
+  if (stageIds.length > 0) {
+    const created = await v25.value.runStore.createRun({
+      schemaVersion: "1",
+      bookId,
+      runId,
+      commandId: "quiz-judge",
+      sourceGitSha: v25.value.sourceGitSha,
+      requiredStages: stageIds,
+      requiredInventory: v25.value.candidate.manifest.entries.map(({ byteLength: _byteLength, ...entry }) => entry),
+      inputCandidate: {
+        candidateId: v25.value.candidate.manifest.candidateId,
+        manifestDigest: v25.value.candidate.manifest.manifestDigest,
+      },
+      attemptLimits: {
+        run: modelCallCount,
+        byStage: Object.fromEntries(chapters.map((chapter, index) => [stageIds[index], chapter.quiz?.questions?.length ?? 0])),
+      },
+      createdAt: new Date().toISOString(),
+    });
+    if (!created.ok) {
+      console.error(`${created.error.code}:${created.error.message}`);
+      return 2;
+    }
+  }
+
+  console.log(`Judging quiz answer keys for ${bookId} — ${chapters.length} chapter(s) via application model runner...\n`);
 
   let totalFlagged = 0;
   let totalReview = 0;
@@ -5454,6 +5841,25 @@ async function runQuizJudge(args: string[], flags: Record<string, string | boole
   try {
     for (const ch of chapters) {
       const numStr = String(ch.number).padStart(2, "0");
+      const stageId = `quiz-judge-ch${numStr}`;
+      let modelCall = 0;
+      const ask = async (request: Parameters<ReturnType<typeof makeLiveAskModel>>[0]) => {
+        const callId = String(++modelCall).padStart(3, "0");
+        return makeLiveAskModel({
+          execution: {
+            runner: v25.value.runner,
+            context: {
+              bookId,
+              runId,
+              attemptId: `${runId}-${stageId}-q${callId}`,
+              stageId,
+              operationId: `${stageId}-q${callId}`,
+              workDir: REPO_ROOT,
+              signal: new AbortController().signal,
+            },
+          },
+        })(request);
+      };
       let sourceContext: string | undefined;
       const scPath = findRunArtifact(RUNS, bookId, `sidecars/source/ch${numStr}.source.json`);
       if (scPath) {
@@ -5468,14 +5874,34 @@ async function runQuizJudge(args: string[], flags: Record<string, string | boole
       judged++;
     }
   } catch (err) {
-    // Fail OPEN: a provider/infra error must never be recorded or read as a
-    // clean semantic pass. Loud, distinct marker; only chapters that actually
-    // completed were written, so a half-run can't masquerade as full coverage.
-    console.error("\n⚠️  SEMANTIC JUDGE DID NOT RUN — provider/infra error (NOT a clean pass):");
+    if (stageIds.length > 0) {
+      await v25.value.runStore.finishRun({
+        bookId,
+        runId,
+        status: "FAILED",
+        finishedAt: new Date().toISOString(),
+        reason: "QUIZ_JUDGE_FAILED",
+      });
+    }
+    // Missing composition/model failure never records a clean semantic pass.
+    console.error("\n⚠️  SEMANTIC JUDGE DID NOT RUN — application model error (NOT a clean pass):");
     console.error("   " + (err as Error).message);
-    console.error("   Set a funded OPENAI_API_KEY / ANTHROPIC_API_KEY (or CHAPTERFLOW_PROVIDER) and retry.");
+    console.error("   Configure application model composition and retry.");
     console.error(`   (${judged}/${chapters.length} chapter(s) judged before the error.)`);
     return 2;
+  }
+
+  if (stageIds.length > 0) {
+    const finished = await v25.value.runStore.finishRun({
+      bookId,
+      runId,
+      status: "COMPLETED",
+      finishedAt: new Date().toISOString(),
+    });
+    if (!finished.ok) {
+      console.error(`${finished.error.code}:${finished.error.message}`);
+      return 2;
+    }
   }
 
   console.log(`Quiz answer-key judge: ${totalFlagged === 0 ? "PASS" : "BLOCK"} for ${bookId}`);
@@ -5727,7 +6153,21 @@ async function runGateChapter(args: string[]): Promise<number> {
   // keyed by the RAW argument spelling (relative "state/chapters/…" for the
   // conductor's calls), preserving pre-refactor history rows.
   const { runChapterGateComposite } = await import("./critics/chapterGateComposite.js");
-  const result = await runChapterGateComposite(chapter, chapterFile, chapterFile);
+  type GateAttemptState = NonNullable<NonNullable<Parameters<typeof runChapterGateComposite>[3]>["gateAttemptState"]>;
+  const gateAttemptStatePath = resolve(__dirname, "../state/gate-attempts.json");
+  let gateAttemptState: GateAttemptState = {};
+  try {
+    if (existsSyncFs(gateAttemptStatePath)) {
+      gateAttemptState = JSON.parse(readFileSync(gateAttemptStatePath, "utf8")) as GateAttemptState;
+    }
+  } catch (err) {
+    console.error(`Could not read/parse ${gateAttemptStatePath}: ${(err as Error).message}`);
+    return 2;
+  }
+  const result = await runChapterGateComposite(chapter, chapterFile, chapterFile, {
+    gateAttemptState,
+    persistGateAttemptState: (state) => writeFileAtomic(gateAttemptStatePath, `${JSON.stringify(state, null, 2)}\n`),
+  });
   if (result.crashed) {
     console.error(result.report);
     return 1;
@@ -5743,8 +6183,7 @@ function escapeRegex(s: string): string {
 
 // (gate-attempt tracking moved to critics/chapterGateComposite.ts — IMP-01)
 
-async function main() {
-  const { cmd, args, flags } = parseArgs(process.argv.slice(2));
+function canonicalWorkspaceTripwire(flags: Record<string, string | boolean>): number {
   // CANONICAL-WORKSPACE TRIPWIRE (2026-06-12). The legacy checkout at
   // ~/ChapterFlow (app campaigns, other branches) carries stale pipeline
   // state; commands run there embed wrong paths into generated prompts/
@@ -5760,11 +6199,21 @@ async function main() {
     );
     return 3;
   }
-  const configFindings = validateAllConfigFiles();
-  if (configFindings.length > 0) {
-    console.error(`Config schema validation failed:\n${formatRuntimeFindings(configFindings)}`);
-    return 2;
-  }
+  return 0;
+}
+
+function normalizeCommandId(cmd: string | undefined): string {
+  return cmd === undefined || cmd === "--help" || cmd === "-h" ? "help" : cmd;
+}
+
+type ParsedCommandContext = Readonly<{
+  id: string;
+  args: string[];
+  flags: Record<string, string | boolean>;
+}>;
+
+async function runExistingCommand(context: ParsedCommandContext): Promise<number> {
+  const { id: cmd, args, flags } = context;
   switch (cmd) {
     case "critic":
       return runCritic(args, flags);
@@ -6012,9 +6461,6 @@ async function main() {
     case "eval-book-proxy":
       return (await import("./review/evalBookProxy.js")).runEvalBookProxy(args, flags);
     case "help":
-    case undefined:
-    case "--help":
-    case "-h":
       printHelp();
       return 0;
     default:
@@ -6022,6 +6468,42 @@ async function main() {
       printHelp();
       return 2;
   }
+}
+
+async function main() {
+  const { cmd, args, flags } = parseArgs(process.argv.slice(2));
+  const tripwire = canonicalWorkspaceTripwire(flags);
+  if (tripwire !== 0) return tripwire;
+  const id = normalizeCommandId(cmd);
+  const spec = commandRegistry.resolve(id);
+  if (!spec) {
+    console.error(`Unknown command: ${id}`);
+    printHelp();
+    return 2;
+  }
+  if (id === "quiz-judge" && (flags["provider"] !== undefined || flags["model"] !== undefined)) {
+    console.error("quiz-judge: --provider and --model are unsupported; model execution is selected by application composition");
+    return 2;
+  }
+  if (spec.requiredConfig.includes("runtime")) {
+    const configFindings = validateAllConfigFiles(
+      typeof flags["config-dir"] === "string" ? flags["config-dir"] : undefined,
+    );
+    if (configFindings.length > 0) {
+      console.error(`Config schema validation failed:\n${formatRuntimeFindings(configFindings)}`);
+      return 2;
+    }
+  }
+  const result = await spec.run({
+    argv: process.argv.slice(2),
+    sourceGitSha: process.env.CHAPTERFLOW_SOURCE_GIT_SHA ?? "",
+    abortSignal: new AbortController().signal,
+  });
+  if (!result.ok) {
+    console.error(`${result.error.code}: ${result.error.message}`);
+    return 2;
+  }
+  return typeof result.value === "number" ? result.value : 0;
 }
 
 main().then(

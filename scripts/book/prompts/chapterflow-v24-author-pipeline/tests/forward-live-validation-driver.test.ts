@@ -1239,9 +1239,21 @@ test("live destination keeps gate, evidence, diversity, logs, index, and broker 
     });
     const chapter = makeGateCleanChapter(target.bookId, target.chapterNumber);
 
-    const gate = await destination.io.gateCandidate(chapter, "/wrong/canonical/path.json", "live-containment-attempt");
+    const gateAttemptKey = "live-containment-attempt";
+    const gate = await destination.io.gateCandidate(chapter, "/wrong/canonical/path.json", gateAttemptKey);
     assert.ok(gate.code === 0 || gate.code === 1 || gate.code === 3);
     assert.equal(existsSync(destination.destinationProof.gateAttemptStateAbsPath), true);
+    const firstGateState = JSON.parse(readFileSync(destination.destinationProof.gateAttemptStateAbsPath, "utf8")) as Record<string, { total: number }>;
+    assert.equal(firstGateState[gateAttemptKey]?.total, 1, "first explicit gate advances experiment-local state");
+    const resumedDestination = createExplicitExperimentAuthorDestination({
+      phaseDir: roots.base,
+      target,
+      expectedInputFileInventory: inputFileInventory(roots.base, target.bookId),
+    });
+    await resumedDestination.io.gateCandidate(chapter, "/wrong/canonical/path.json", gateAttemptKey);
+    await resumedDestination.io.gateCandidate(chapter, "/wrong/canonical/path.json", gateAttemptKey);
+    const resumedGateState = JSON.parse(readFileSync(destination.destinationProof.gateAttemptStateAbsPath, "utf8")) as Record<string, { total: number }>;
+    assert.equal(resumedGateState[gateAttemptKey]?.total, 3, "recreated destination loads persisted state and repeated gates keep advancing it");
 
     const attempt = mintChapterAttempt({
       bookId: target.bookId,
