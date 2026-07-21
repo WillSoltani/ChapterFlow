@@ -23,6 +23,7 @@ import type { ChapterV21 } from "../src/types.js";
 import { resolveStructuralSamenessMode } from "../src/critics/structuralSamenessMode.js";
 import { structuralSamenessSnapshot } from "../src/critics/structuralSamenessSnapshot.js";
 import { runBookGate } from "../src/critics/bookGate.js";
+import { runBookPatternAudit } from "../src/critics/bookPatternAudit.js";
 
 const BOOK = "zz-structural-sameness";
 
@@ -127,6 +128,10 @@ function quiet<T>(fn: () => T): T {
 const saturatedBook = (): ChapterV21[] =>
   Array.from({ length: 14 }, (_, i) => ch(i + 1, { anchor: true, compound: true, shell: true, reversal: true }));
 const oneAxisBook = (): ChapterV21[] => Array.from({ length: 14 }, (_, i) => ch(i + 1, { anchor: true }));
+const gateOptions = (chapters: ChapterV21[]) => ({
+  ...GATE_OPTS,
+  patternAudit: runBookPatternAudit({ bookId: BOOK, chapters, ...GATE_OPTS }),
+});
 
 // ── the mode resolver ─────────────────────────────────────────────────────────
 
@@ -143,7 +148,8 @@ test("structural-sameness mode: resolves to advisory by default and only `enforc
 test("bookGate (F-06): a SEVERE-mold book PASSES under advisory (ARCH0/CM0 major) and FAILS under enforce (ARCH0 blocker); every other finding is byte-identical", () => {
   const book = saturatedBook();
 
-  const advisory = quiet(() => withEnv(undefined, () => runBookGate(BOOK, book, GATE_OPTS)));
+  const options = gateOptions(book);
+  const advisory = quiet(() => withEnv(undefined, () => runBookGate(BOOK, book, options)));
   assert.equal(advisory.passed, true, "advisory: a severe-mold book still PASSES the gate (semantic panel is the true gate)");
   const advArch = advisory.findings.find((f) => f.catalogId === "ARCH0.architecture_monoculture");
   const advCm = advisory.findings.find((f) => f.catalogId === "CM0.content_machinery_monoculture");
@@ -151,7 +157,7 @@ test("bookGate (F-06): a SEVERE-mold book PASSES under advisory (ARCH0/CM0 major
   assert.equal(advCm?.severity, "major", "advisory CM0 is a surfaced advisory (major)");
   assert.equal(advisory.findings.filter((f) => /^ARCH|^CM/.test(f.catalogId) && f.severity === "blocker").length, 0, "no sameness finding blocks under advisory");
 
-  const enforce = quiet(() => withEnv("enforce", () => runBookGate(BOOK, book, GATE_OPTS)));
+  const enforce = quiet(() => withEnv("enforce", () => runBookGate(BOOK, book, options)));
   assert.equal(enforce.passed, false, "enforce: the severe mold now FAILS the gate");
   assert.equal(
     enforce.findings.find((f) => f.catalogId === "ARCH0.architecture_monoculture")?.severity,
@@ -168,8 +174,9 @@ test("bookGate (F-06): a SEVERE-mold book PASSES under advisory (ARCH0/CM0 major
 
 test("bookGate (F-06): a below-threshold (1-axis) book passes in BOTH modes — enforcement never touches the warn tier", () => {
   const book = oneAxisBook();
-  const advisory = quiet(() => withEnv(undefined, () => runBookGate(BOOK, book, GATE_OPTS)));
-  const enforce = quiet(() => withEnv("enforce", () => runBookGate(BOOK, book, GATE_OPTS)));
+  const options = gateOptions(book);
+  const advisory = quiet(() => withEnv(undefined, () => runBookGate(BOOK, book, options)));
+  const enforce = quiet(() => withEnv("enforce", () => runBookGate(BOOK, book, options)));
   assert.equal(advisory.passed, true, "1-axis book passes under advisory");
   assert.equal(enforce.passed, true, "1-axis book still passes under enforce (no aggregate → nothing to promote)");
   assert.equal(advisory.findings.some((f) => f.catalogId === "ARCH0.architecture_monoculture"), false, "no ARCH0 aggregate on a 1-axis book");

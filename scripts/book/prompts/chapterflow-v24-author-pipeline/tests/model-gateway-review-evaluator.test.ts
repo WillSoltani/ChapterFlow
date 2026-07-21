@@ -1,21 +1,37 @@
 import assert from "node:assert/strict";
 
 import { ModelGatewayReviewEvaluator } from "../src/app/modelGatewayReviewEvaluator.js";
+import { candidateManifestDigest, type CandidateManifestMetadata } from "../src/books/candidateDigest.js";
 import type { CandidateSnapshot } from "../src/books/candidateTypes.js";
 import type { ModelTaskContext } from "../src/contracts/v4Core.js";
+import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../src/critics/bookPatternAudit.js";
 import { test } from "./harness.js";
+import { makeChapter } from "./helpers.js";
 
 const context: ModelTaskContext = {
   bookId: "review-book", runId: "run-1", attemptId: "attempt-1", stageId: "review",
   operationId: "canonical", workDir: "/tmp", signal: new AbortController().signal,
 };
+const chapter = makeChapter("review-book", 1);
+const chapterBytes = Buffer.from(`${JSON.stringify(chapter)}\n`);
+const auditBytes = Buffer.from(`${JSON.stringify(runBookPatternAudit({
+  bookId: "review-book",
+  chapters: [chapter],
+  requirePlanArtifacts: false,
+  checkSourceAlignment: false,
+}))}\n`);
+const files = [
+  { kind: "CHAPTER" as const, logicalPath: "chapters/review-book-ch01.v21-native.chapter.json", mediaType: "application/json" as const, byteLength: chapterBytes.byteLength, bytes: chapterBytes },
+  { kind: "SIDECAR" as const, logicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH, mediaType: "application/json" as const, byteLength: auditBytes.byteLength, bytes: auditBytes },
+];
+const manifestMetadata: CandidateManifestMetadata = {
+  schemaVersion: "1", bookId: "review-book", candidateId: "candidate-1", createdByRunId: "run-1",
+  entries: files.map(({ bytes: _bytes, ...entry }) => entry),
+  createdAt: "2026-07-21T00:00:00.000Z",
+};
 const candidate: CandidateSnapshot = {
-  manifest: {
-    schemaVersion: "1", bookId: "review-book", candidateId: "candidate-1", createdByRunId: "run-1",
-    entries: [{ kind: "CHAPTER", logicalPath: "chapters/ch01.md", mediaType: "text/markdown", byteLength: 10 }],
-    manifestDigest: "digest-1", createdAt: "2026-07-21T00:00:00.000Z",
-  },
-  files: [{ kind: "CHAPTER", logicalPath: "chapters/ch01.md", mediaType: "text/markdown", byteLength: 10, bytes: Buffer.from("# Chapter\n") }],
+  manifest: { ...manifestMetadata, manifestDigest: candidateManifestDigest(manifestMetadata, files) },
+  files,
 };
 
 test("gateway review evaluator preserves PASS FAIL and ERROR model outcomes", async () => {

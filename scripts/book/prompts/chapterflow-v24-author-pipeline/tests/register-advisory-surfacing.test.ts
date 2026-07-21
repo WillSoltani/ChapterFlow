@@ -15,12 +15,12 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from "fs";
+import { mkdtempSync, writeFileSync } from "fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "path";
+import { join } from "path";
 
-import { test, skip } from "./harness.js";
-import { STATE_CHAPTERS } from "./helpers.js";
+import { test } from "./harness.js";
+import { makeGateCleanChapter } from "./helpers.js";
 import { chapterFileName } from "../src/lib/chapterPaths.js";
 
 const ADV_TMP = mkdtempSync(join(tmpdir(), "register-advisory-"));
@@ -334,30 +334,20 @@ test("CF-I Fix A (b): a regen of an advisory-CLEAN reviewed draft adds no block 
 // (c) the non-regen fresh write is pinned above ("attempt-1 (first) card has no
 // advisory block") — no complaints ⇒ no block before any failure.
 
-// ── The no-new-blocking-path proof, asserted DIRECTLY on the real gold corpus:
-// every start-with-why chapter that trips a C31–C36 advisory still PASSES the ship
-// gate (`passed === true`) — the surfacing changed text, never a predicate.
-// (collectRegisterAdvisories now includes CF-J's C36, so this assertion set covers
-// it by construction; the C36-specific planted-vs-clean passed-parity proof lives
-// in tests/apparatus-leakage.test.ts.) ──
-{
-  const bookId = "start-with-why";
-  const files = existsSync(STATE_CHAPTERS)
-    ? readdirSync(STATE_CHAPTERS).filter((f) => f.startsWith(`${bookId}-ch`) && f.endsWith(".v21-native.chapter.json"))
-    : [];
-  if (files.length === 0) {
-    skip("CF-I Fix A: advisory-only gold chapters pass the ship gate", `no ${bookId} chapters in state/chapters/ on this machine`);
-  } else {
-    test("CF-I Fix A: every advisory-carrying gold chapter still passes the ship gate (passed === true)", () => {
-      let advisoryChapters = 0;
-      for (const f of files) {
-        const ch = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, f), "utf8")) as ChapterV21;
-        if (collectRegisterAdvisories(ch).length === 0) continue;
-        advisoryChapters++;
-        const report = runShipGate(ch);
-        assert.equal(report.passed, true, `${ch.chapterId} trips only advisories yet must PASS the ship gate; blockers: ${report.blockers.map((b) => b.catalogId).join(", ")}`);
-      }
-      assert.ok(advisoryChapters >= 1, "the gold corpus exercises the advisory-only-still-passes property (measured 7 chapters on 2026-07-09)");
-    });
-  }
-}
+// ── No-new-blocking-path proof on an immutable in-memory gate-clean chapter. ──
+test("CF-I Fix A: a planted C31 advisory remains minor and the chapter passes the ship gate", () => {
+  const chapter = makeGateCleanChapter("zz-adv-gate-clean", 1);
+  chapter.examples[0].whatToDo = "What changed? The lead owned the date.";
+  chapter.examples[1].whatToDo = "Why does it work? The owner closes the loop.";
+  chapter.examples[2].whatToDo = "What nearly failed? The handoff slipped.";
+
+  const dealtExampleCount = chapter.examples.length;
+  const chapterBrief = { rotationSchemaVersion: "chapter-brief-rotation-v3", exampleCount: dealtExampleCount };
+  const advisories = collectRegisterAdvisories(chapter).filter((finding) => String(finding.checkId) === "C31.example_evaluator_register");
+  assert.ok(advisories.length >= 1, "the in-memory fixture carries the planted C31 advisory");
+  assert.ok(advisories.every((finding) => finding.severity === "minor"), "C31 remains minor-only");
+
+  const report = runShipGate(chapter, { chapterBrief, exampleFloor: dealtExampleCount });
+  assert.equal(report.passed, true, `C31 advisory must not block; blockers: ${report.blockers.map((finding) => finding.catalogId).join(", ")}`);
+  assert.ok(report.minors.some((finding) => finding.catalogId === "C31.example_evaluator_register"), "ship gate surfaces C31 as minor");
+});

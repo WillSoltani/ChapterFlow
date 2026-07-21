@@ -14,6 +14,7 @@ import {
   checkBookVenueStamping,
 } from "../src/critics/bookRepetition.js";
 import { runBookGate } from "../src/critics/bookGate.js";
+import { runBookPatternAudit } from "../src/critics/bookPatternAudit.js";
 import type { ChapterV21 } from "../src/types.js";
 import { skip, test } from "./harness.js";
 import { cleanCorpusChapterFiles, goldChapterFiles, makeChapter, STATE_CHAPTERS } from "./helpers.js";
@@ -221,7 +222,14 @@ for (const { bookId, files, stateDir } of goldChapterFiles()) {
 
   test(`gold: ${bookId} — runBookGate emits ZERO blockers across ${files.length} chapters`, () => {
     const chapters = files.map((file) => JSON.parse(readFileSync(file, "utf8")) as ChapterV21);
-    const report = quietWarn(() => runBookGate(bookId, chapters, { stateDir }));
+    const patternAudit = runBookPatternAudit({
+      bookId,
+      chapters,
+      stateDir,
+      requirePlanArtifacts: false,
+      checkSourceAlignment: false,
+    });
+    const report = quietWarn(() => runBookGate(bookId, chapters, { stateDir, patternAudit }));
     const blockers = report.findings.filter((finding) => finding.severity === "blocker");
     assert.deepEqual(
       blockers.map((finding) => `${finding.catalogId}: ${finding.message.slice(0, 120)}`),
