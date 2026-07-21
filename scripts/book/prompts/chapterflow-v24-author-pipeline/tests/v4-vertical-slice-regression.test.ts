@@ -74,7 +74,7 @@ test("LC-08 repair re-entry retains immutable successor fresh review-QC and curr
 
 test("LC-09 migration and qualification retains cutover rollback no-live and zero-bypass observations", () => {
   assertRecordedEvidence(
-    { path: "tests/v25/v4-canonical-promotion-adapters-migration.test.ts", markers: ["actual disposable legacy promotion and V4 candidate package plus manifest match", "never re-enables legacy after V4 authority"] },
+    { path: "tests/v25/v4-canonical-promotion-adapters-migration.test.ts", markers: ["pure package and manifest parity survives real canonical adapter release", "never re-enables legacy after V4 authority"] },
     { path: "tests/v25/v4-publish-release-migration.test.ts", markers: ["no-live release and legacy shadow keep remote network credential and execution counts zero"] },
     { path: "tests/legacy-route-removal.test.ts", markers: ["legacy inventory deep-equals independent path, symbol, and disposition set", "STABLE_DISABLED"] },
   );
