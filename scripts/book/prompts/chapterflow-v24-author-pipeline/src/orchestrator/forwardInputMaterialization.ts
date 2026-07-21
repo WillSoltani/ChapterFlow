@@ -61,8 +61,9 @@ const PILOT_LOCATIONS: readonly SourceInputLocation[] = Object.freeze([
     sourceArchiveId: "20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03",
     packetDir: resolve(PIPELINE_DIR, "state/books/radical-candor/runs/v23-current/source-packets"),
     sidecarDir: resolve(
-      PIPELINE_DIR,
-      ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source",
+      DEFAULT_STATE_ROOT,
+      PILOT_EXPERIMENT_ID,
+      "inputs/radical-candor/source-archive/radical-candor",
     ),
   },
   {
@@ -70,8 +71,9 @@ const PILOT_LOCATIONS: readonly SourceInputLocation[] = Object.freeze([
     sourceArchiveId: "20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21",
     packetDir: resolve(PIPELINE_DIR, "state/books/start-with-why/runs/v23-current/source-packets"),
     sidecarDir: resolve(
-      PIPELINE_DIR,
-      ".chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source",
+      DEFAULT_STATE_ROOT,
+      PILOT_EXPERIMENT_ID,
+      "inputs/start-with-why/source-archive/start-with-why",
     ),
   },
 ]);
@@ -81,8 +83,9 @@ const GOLD_LOCATION: SourceInputLocation = Object.freeze({
   sourceArchiveId: "20260614-194740",
   packagePath: resolve(REPO_ROOT, "book-packages/the-gifts-of-imperfection.v21.json"),
   sidecarDir: resolve(
-    REPO_ROOT,
-    ".chapterflow/runs/the-gifts-of-imperfection/20260614-194740/sidecars/source",
+    DEFAULT_STATE_ROOT,
+    GOLD_EXPERIMENT_ID,
+    "inputs/the-gifts-of-imperfection/source-archive/the-gifts-of-imperfection",
   ),
 });
 
