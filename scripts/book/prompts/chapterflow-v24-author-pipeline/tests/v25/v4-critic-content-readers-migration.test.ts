@@ -3,14 +3,16 @@ import { lstatSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
+import { ModelGatewayReviewEvaluator } from "../../src/app/modelGatewayReviewEvaluator.js";
 import { createBookContentReader } from "../../src/books/bookContentReader.js";
 import { createBookWriteLock } from "../../src/books/bookLease.js";
 import { createCandidateStore } from "../../src/books/candidateStore.js";
 import { createCurrentPointerStore } from "../../src/books/currentPointer.js";
-import type { CandidateInputFile, CandidateStore } from "../../src/books/candidateTypes.js";
+import type { CandidateInputFile, CandidateSnapshot, CandidateStore } from "../../src/books/candidateTypes.js";
 import type { ModelTaskContext, PlannedArtifact } from "../../src/contracts/v4Core.js";
 import { runAllCriticsFromCandidate } from "../../src/critics/runAllCritics.js";
 import { runBookGate, runBookGateFromCandidate } from "../../src/critics/bookGate.js";
+import { BOOK_PATTERN_AUDIT_LOGICAL_PATH } from "../../src/critics/bookPatternAudit.js";
 import { runChapterGateComposite, runChapterGateCompositeFromCandidate } from "../../src/critics/chapterGateComposite.js";
 import { runShipGateFromCandidate } from "../../src/critics/finalGate.js";
 import { chapterContentHash, checkQcAttestationFromCandidate, type QcAttestation } from "../../src/critics/qcAttestation.js";
@@ -32,7 +34,7 @@ const NAME_PLAN = "sidecars/name-plan.json";
 const BRIEF = "sidecars/chapter-brief.json";
 const SOURCE = "sidecars/source-sidecar.json";
 const SOURCE_USE = "sidecars/source-use-plan.json";
-const PATTERN_AUDIT = "critics/book-pattern-audit.json";
+const PATTERN_AUDIT = BOOK_PATTERN_AUDIT_LOGICAL_PATH;
 
 type TreeEntry = { type: string; mode: string; mtimeNs: string; bytes?: string };
 
@@ -87,6 +89,28 @@ function chapterPath(n: number): string {
   return `chapters/ch${String(n).padStart(2, "0")}.json`;
 }
 
+function patternAudit(bookId = BOOK, chapterCount = 5) {
+  return {
+    bookId,
+    chapterCount,
+    passed: true,
+    findings: [],
+    stats: {
+      repeatedQuizExplanationGroups: 0,
+      repeatedSurfaceFrameGroups: 0,
+      repeatedExampleFrameGroups: 0,
+      repeatedConcreteAnchors: 0,
+      templatedBreakdownShellGroups: 0,
+      shortParagraphDuplicateGroups: 0,
+      literalSubstringGroups: 0,
+      quizPositionTemplateDuplicates: 0,
+      missingPlanChapters: [],
+      missingBrief: false,
+      sourceAlignmentWarnings: 0,
+    },
+  };
+}
+
 async function rig(context: TestContext) {
   const lock = createBookWriteLock({ booksRoot: context.roots.booksRoot, timeoutMs: 1_000, pollMs: 1 });
   const pointer = createCurrentPointerStore({ booksRoot: context.roots.booksRoot, writeLock: lock });
@@ -101,30 +125,30 @@ async function rig(context: TestContext) {
     jsonFile(BRIEF, { rotationSchemaVersion: "v3", exampleCount: 4 }),
     jsonFile(SOURCE, {}),
     jsonFile(SOURCE_USE, { schemaVersion: "source-use-plan-v1", bookId: BOOK, chapterNumber: 1, units: {} }),
-    jsonFile(PATTERN_AUDIT, {
-      bookId: BOOK,
-      chapterCount: sourceChapters.length,
-      passed: true,
-      findings: [],
-      stats: {
-        repeatedQuizExplanationGroups: 0,
-        repeatedSurfaceFrameGroups: 0,
-        repeatedExampleFrameGroups: 0,
-        repeatedConcreteAnchors: 0,
-        templatedBreakdownShellGroups: 0,
-        shortParagraphDuplicateGroups: 0,
-        literalSubstringGroups: 0,
-        quizPositionTemplateDuplicates: 0,
-        missingPlanChapters: [],
-        missingBrief: false,
-        sourceAlignmentWarnings: 0,
-      },
-    }),
+    jsonFile(PATTERN_AUDIT, patternAudit(BOOK, sourceChapters.length)),
   ];
   const inventory = files.map(({ bytes: _bytes, ...entry }) => entry);
   const staged = await store.stage({ bookId: BOOK, candidateId: CANDIDATE, createdByRunId: "run-critic", expectedInventory: inventory, files, createdAt: CREATED });
   assert.ok(staged.ok);
   return { store, reader, files, chapters: sourceChapters, digest: staged.value.manifestDigest };
+}
+
+async function stageVariant(
+  input: Awaited<ReturnType<typeof rig>>,
+  candidateId: string,
+  files: CandidateInputFile[],
+) {
+  const staged = await input.store.stage({
+    bookId: BOOK,
+    candidateId,
+    parentCandidateId: CANDIDATE,
+    createdByRunId: `run-${candidateId}`,
+    expectedInventory: files.map(({ bytes: _bytes, ...entry }) => entry),
+    files,
+    createdAt: CREATED,
+  });
+  assert.ok(staged.ok);
+  return staged.value.manifestDigest;
 }
 
 function selection(input: Awaited<ReturnType<typeof rig>>) {
@@ -203,6 +227,80 @@ requiredTest("critics use candidate bytes despite conflicting legacy files", asy
   assert.equal(report.bookFile, LEGACY_PACKAGE);
   assert.equal(report.generatedAt, CREATED);
   await runShipGateFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPath: chapterPath(1), namePlanLogicalPath: NAME_PLAN, chapterBriefLogicalPath: BRIEF, sourceSidecarLogicalPath: SOURCE, sourceUsePlanLogicalPath: SOURCE_USE });
+});
+
+requiredTest("book gate and model evaluator reject missing malformed or mismatched frozen audits before authority", async (context) => {
+  const input = await rig(context);
+  const chapterLogicalPaths = input.chapters.map((chapter) => chapterPath(chapter.number));
+  const gate = (candidateId: string, manifestDigest: string) => runBookGateFromCandidate(input.reader, {
+    bookId: BOOK,
+    candidateId,
+    manifestDigest,
+    chapterLogicalPaths,
+    patternAuditLogicalPath: PATTERN_AUDIT,
+  });
+  const withoutAudit = input.files.filter((file) => file.logicalPath !== PATTERN_AUDIT);
+  const missingDigest = await stageVariant(input, "candidate-audit-missing", withoutAudit);
+  await assert.rejects(gate("candidate-audit-missing", missingDigest), /CANDIDATE_ENTRY_MISSING/);
+
+  const replaceAudit = (bytes: Uint8Array): CandidateInputFile[] => input.files.map((file) => (
+    file.logicalPath === PATTERN_AUDIT ? { ...file, bytes } : file
+  ));
+  const malformedDigest = await stageVariant(input, "candidate-audit-malformed", replaceAudit(Buffer.from("{")));
+  await assert.rejects(gate("candidate-audit-malformed", malformedDigest), /CANDIDATE_ENTRY_INVALID/);
+  const wrongBookDigest = await stageVariant(input, "candidate-audit-wrong-book", replaceAudit(Buffer.from(JSON.stringify(patternAudit("other-book")))));
+  await assert.rejects(gate("candidate-audit-wrong-book", wrongBookDigest), /BOOK_PATTERN_AUDIT_MISMATCH: expected bookId/);
+  const wrongCountDigest = await stageVariant(input, "candidate-audit-wrong-count", replaceAudit(Buffer.from(JSON.stringify(patternAudit(BOOK, 4)))));
+  await assert.rejects(gate("candidate-audit-wrong-count", wrongCountDigest), /BOOK_PATTERN_AUDIT_MISMATCH: expected chapterCount 5/);
+  const malformedShape = { ...patternAudit(), stats: { missingBrief: false } };
+  const malformedShapeDigest = await stageVariant(input, "candidate-audit-wrong-shape", replaceAudit(Buffer.from(JSON.stringify(malformedShape))));
+  await assert.rejects(gate("candidate-audit-wrong-shape", malformedShapeDigest), /BOOK_PATTERN_AUDIT_INVALID: stats shape/);
+  const beforeReads = snapshotTree(context.roots.booksRoot);
+  await assert.rejects(gate("candidate-audit-missing", missingDigest), /CANDIDATE_ENTRY_MISSING/);
+  await assert.rejects(gate("candidate-audit-malformed", malformedDigest), /CANDIDATE_ENTRY_INVALID/);
+  await assert.rejects(gate("candidate-audit-wrong-book", wrongBookDigest), /BOOK_PATTERN_AUDIT_MISMATCH/);
+  await assert.rejects(gate("candidate-audit-wrong-count", wrongCountDigest), /BOOK_PATTERN_AUDIT_MISMATCH/);
+  await assert.rejects(gate("candidate-audit-wrong-shape", malformedShapeDigest), /BOOK_PATTERN_AUDIT_INVALID/);
+  await assert.rejects(() => runBookGateFromCandidate(input.reader, {
+    bookId: BOOK,
+    candidateId: CANDIDATE,
+    manifestDigest: input.digest,
+    chapterLogicalPaths,
+    patternAuditLogicalPath: "ambient/newest-audit.json",
+  }), /CANDIDATE_ENTRY_INVALID: expected critics\/book-pattern-audit\.json/);
+
+  let modelRuns = 0;
+  const evaluator = new ModelGatewayReviewEvaluator({
+    async run(request) {
+      modelRuns += 1;
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { outcome: "PASS", issues: [] } };
+    },
+  });
+  const opened = await input.reader.open({ bookId: BOOK, selector: { kind: "CANDIDATE", candidateId: CANDIDATE } });
+  assert.ok(opened.ok);
+  const evaluate = (candidate: CandidateSnapshot) => evaluator.evaluate({ candidate, taskContext: proxyTaskContext(context.roots.tempRoot) });
+  const missingEvaluation = await evaluate({ ...opened.value, files: opened.value.files.filter((file) => file.logicalPath !== PATTERN_AUDIT) });
+  assert.equal(missingEvaluation.ok, false);
+  assert.equal(modelRuns, 0);
+  const malformedEvaluation = await evaluate({
+    ...opened.value,
+    files: opened.value.files.map((file) => file.logicalPath === PATTERN_AUDIT ? { ...file, bytes: Buffer.from("{") } : file),
+  });
+  assert.equal(malformedEvaluation.ok, false);
+  assert.equal(modelRuns, 0);
+  const mismatchEvaluation = await evaluate({
+    ...opened.value,
+    files: opened.value.files.map((file) => file.logicalPath === PATTERN_AUDIT ? { ...file, bytes: Buffer.from(JSON.stringify(patternAudit("other-book"))) } : file),
+  });
+  assert.equal(mismatchEvaluation.ok, false);
+  assert.equal(modelRuns, 0);
+  const currentEvaluation = await evaluate({ ...opened.value, currentRevision: 1 });
+  assert.equal(currentEvaluation.ok, false);
+  assert.equal(modelRuns, 0);
+  const validEvaluation = await evaluate(opened.value);
+  assert.equal(validEvaluation.ok, true);
+  assert.equal(modelRuns, 1);
+  assert.deepEqual(snapshotTree(context.roots.booksRoot), beforeReads);
 });
 
 requiredTest("same immutable snapshot yields normalized metric parity", async (context) => {

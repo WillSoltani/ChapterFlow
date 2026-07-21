@@ -8,12 +8,17 @@ import type { CandidateInputFile, CandidateSnapshot, CandidateStore, BookContent
 import { COMPILER_SHADOW_PROFILE, LegacyCompilerAdapter } from "../books/legacyCompilerAdapter.js";
 import { deriveBookDesign } from "../compiler/bookDesign.js";
 import { compileSourcePacketFromSidecar } from "../compiler/sourcePacket.js";
+import {
+  BOOK_PATTERN_AUDIT_LOGICAL_PATH,
+  runBookPatternAudit,
+} from "../critics/bookPatternAudit.js";
 import type { ChapterSpec } from "../generateChapter.js";
 import { chapterFileName } from "../lib/chapterPaths.js";
 import type { BookScars } from "../lib/bookScars.js";
 import { buildSectionTaskMarkdown, type SectionTaskRenderContext } from "../sections/sectionTasks.js";
 import { assembleSections, type AuthorV4SectionChapterPaths } from "../sections/assembleSections.js";
 import type { SourceSidecarV2 } from "../source/sidecarSchema.js";
+import type { ChapterV21 } from "../types.js";
 import type { ChapterFlowClock, ChapterFlowIdFactory } from "./pipeline.js";
 import { MODEL_CALLER_PROFILES, type ModelTaskRunner } from "./modelTaskRunner.js";
 
@@ -319,7 +324,26 @@ export class CompilerApplicationPort {
     if (assembly.findings.length > 0 || !assembly.candidateFiles || assembly.candidateFiles.length !== chapters.length) {
       throw new Error(`COMPILER_ASSEMBLY_BLOCKED:${assembly.findings.join("; ") || "incomplete assembly"}`);
     }
-    const allGenerated = [...generated, ...assembly.candidateFiles];
+    const assembledChapters = assembly.candidateFiles.map((file) => {
+      try {
+        return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as ChapterV21;
+      } catch {
+        throw new Error(`COMPILER_ASSEMBLY_BLOCKED:${file.logicalPath} is malformed JSON`);
+      }
+    });
+    const patternAudit = runBookPatternAudit({
+      bookId: request.bookId,
+      chapters: assembledChapters,
+      requirePlanArtifacts: false,
+      checkSourceAlignment: false,
+    });
+    const patternAuditFile: CandidateInputFile = {
+      kind: "SIDECAR",
+      logicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH,
+      mediaType: "application/json",
+      bytes: jsonBytes(patternAudit),
+    };
+    const allGenerated = [...generated, ...assembly.candidateFiles, patternAuditFile];
     const replacementPaths = new Set(allGenerated.map((file) => file.logicalPath));
     const files: CandidateInputFile[] = [
       ...snapshot.files.filter((file) => !replacementPaths.has(file.logicalPath)).map(({ byteLength: _byteLength, ...file }) => file),

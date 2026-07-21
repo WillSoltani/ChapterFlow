@@ -12,7 +12,11 @@
 import { ChapterV21 } from "../types.js";
 import type { BookContentReader } from "../books/candidateTypes.js";
 import { extractNamesFromText } from "../librarian/libraryState.js";
-import { BookPatternAuditReport } from "./bookPatternAudit.js";
+import {
+  BOOK_PATTERN_AUDIT_LOGICAL_PATH,
+  BookPatternAuditReport,
+  parseBookPatternAuditReport,
+} from "./bookPatternAudit.js";
 import {
   checkBookQuizCrossChapterDuplicates,
   checkBookQuizNgramTemplates,
@@ -704,12 +708,23 @@ export async function runBookGateFromCandidate(
     patternAuditLogicalPath: string;
   }>,
 ): Promise<BookGateReport> {
+  if (input.patternAuditLogicalPath !== BOOK_PATTERN_AUDIT_LOGICAL_PATH) {
+    throw new Error(`CANDIDATE_ENTRY_INVALID: expected ${BOOK_PATTERN_AUDIT_LOGICAL_PATH}`);
+  }
   const opened = await openCriticCandidateEntries(reader, {
     ...input,
     logicalPaths: [...input.chapterLogicalPaths, input.patternAuditLogicalPath],
   });
+  const auditFile = opened.snapshot.files.find((file) => file.logicalPath === BOOK_PATTERN_AUDIT_LOGICAL_PATH);
+  if (!auditFile || auditFile.kind !== "SIDECAR" || auditFile.mediaType !== "application/json") {
+    throw new Error(`CANDIDATE_ENTRY_INVALID: ${BOOK_PATTERN_AUDIT_LOGICAL_PATH} must be an application/json SIDECAR`);
+  }
+  const patternAudit = parseBookPatternAuditReport(opened.values[opened.values.length - 1], {
+    bookId: input.bookId,
+    chapterCount: input.chapterLogicalPaths.length,
+  });
   return runBookGate(input.bookId, opened.values.slice(0, -1) as ChapterV21[], {
-    patternAudit: opened.values[opened.values.length - 1] as BookPatternAuditReport,
+    patternAudit,
   });
 }
 

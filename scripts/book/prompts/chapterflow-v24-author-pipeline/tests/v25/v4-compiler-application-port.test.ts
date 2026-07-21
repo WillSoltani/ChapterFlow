@@ -10,6 +10,11 @@ import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
 import { deriveBookDesign } from "../../src/compiler/bookDesign.js";
 import { compileChapterBlueprint } from "../../src/compiler/chapterBlueprint.js";
 import { compileSourcePacketFromSidecar } from "../../src/compiler/sourcePacket.js";
+import {
+  BOOK_PATTERN_AUDIT_LOGICAL_PATH,
+  parseBookPatternAuditReport,
+  runBookPatternAudit,
+} from "../../src/critics/bookPatternAudit.js";
 import type { SourceSidecarV2 } from "../../src/source/sidecarSchema.js";
 import { compileCreditFixture, creditChapterSpec } from "../fixtures/creditBookFixture.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
@@ -70,6 +75,7 @@ function snapshot(overrides: { indexBytes?: Uint8Array; sidecarBytes?: Uint8Arra
     { kind: "SIDECAR" as const, mediaType: "text/plain" as const, logicalPath: SOURCE, bytes: HOSTILE },
     ...(!overrides.omitContext ? [{ kind: "SIDECAR" as const, mediaType: overrides.contextMediaType ?? "application/json" as const, logicalPath: CONTEXT, bytes: overrides.contextBytes ?? contextBytes() }] : []),
     ...(overrides.duplicateContext ? [{ kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: CONTEXT, bytes: contextBytes() }] : []),
+    { kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH, bytes: Buffer.from('{"bookId":"predecessor-poison"}\n') },
   ].map((file) => ({ ...file, byteLength: file.bytes.byteLength }));
   return {
     manifest: {
@@ -168,7 +174,7 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
     profileId: PROFILE,
     signal: new AbortController().signal,
   } as const;
-  return { port, request, counts, prompts, attemptRoot, staged: () => stagedInput };
+  return { port, request, counts, prompts, attemptRoot, selected, staged: () => stagedInput };
 }
 
 requiredTest("1 selected candidate opens exactly once and returns successor identity", async (context) => {
@@ -232,6 +238,7 @@ requiredTest("3 fixed profile and ordered framing preserve hostile candidate byt
 
 requiredTest("4 complete successor inventory preserves input order then compiler order", async (context) => {
   const subject = rig(context, "inventory");
+  const selectedBefore = subject.selected.files.map((file) => Buffer.from(file.bytes).toString("base64"));
   await subject.port.run(subject.request);
   const staged = subject.staged();
   assert.ok(staged);
@@ -248,8 +255,29 @@ requiredTest("4 complete successor inventory preserves input order then compiler
     "compiler/ch01/learning-pack.json",
     "compiler/ch01/action-pack.json",
     `content/chapters/${BOOK}-ch01.v21-native.chapter.json`,
+    BOOK_PATTERN_AUDIT_LOGICAL_PATH,
   ]);
   assert.deepEqual(staged.expectedInventory, staged.files.map(({ bytes: _bytes, ...file }) => file));
+  assert.deepEqual(subject.selected.files.map((file) => Buffer.from(file.bytes).toString("base64")), selectedBefore);
+  const chapterFile = staged.files.find((file) => file.kind === "CHAPTER");
+  const auditFile = staged.files.find((file) => file.logicalPath === BOOK_PATTERN_AUDIT_LOGICAL_PATH);
+  assert.ok(chapterFile);
+  assert.ok(auditFile);
+  const assembled = JSON.parse(Buffer.from(chapterFile.bytes).toString("utf8"));
+  const audit = parseBookPatternAuditReport(JSON.parse(Buffer.from(auditFile.bytes).toString("utf8")), {
+    bookId: BOOK,
+    chapterCount: 1,
+  });
+  assert.deepEqual(audit, runBookPatternAudit({
+    bookId: BOOK,
+    chapters: [assembled],
+    requirePlanArtifacts: false,
+    checkSourceAlignment: false,
+  }));
+  assert.equal(audit.stats.missingBrief, false);
+  assert.deepEqual(audit.stats.missingPlanChapters, []);
+  assert.equal(audit.stats.sourceAlignmentWarnings, 0);
+  assert.doesNotMatch(Buffer.from(auditFile.bytes).toString("utf8"), /predecessor-poison/);
 
   const specs = [
     creditChapterSpec(BOOK),
@@ -266,6 +294,7 @@ requiredTest("4 complete successor inventory preserves input order then compiler
       { kind: "SIDECAR" as const, mediaType: "text/plain" as const, logicalPath: sourcePaths[index], bytes: sourceBytes[index] },
     ]),
     { kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: CONTEXT, bytes: contextBytes() },
+    { kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH, bytes: Buffer.from('{"bookId":"predecessor-poison"}\n') },
   ].map((file) => ({ ...file, byteLength: file.bytes.byteLength }));
   const selected: CandidateSnapshot = {
     manifest: {
