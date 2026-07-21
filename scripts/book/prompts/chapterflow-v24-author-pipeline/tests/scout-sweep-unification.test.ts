@@ -1,12 +1,13 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync, rmSync, readdirSync, existsSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { STATE_CHAPTERS, makeChapter, writeFixtureBook } from "./helpers.js";
 import { keyPackDir } from "../src/qc/manualKeyJudge.js";
 import { writeSweepPack } from "../src/qc/sweep.js";
+import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
 import { writeReviewPacket } from "../src/qc/orchestrator/reviewPacket.js";
 import { validateSubmission } from "../src/qc/orchestrator/schemas.js";
 import {
@@ -81,6 +82,8 @@ test("the formal QC sweep card (review packet) quotes the SAME sweepSpec family 
   const ROUND = "r-reviewpacket";
   const chapters = [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
   const tokens = { sweep: "t-sweep", keyA: "t-a", keyB: "t-b", bar: "t-bar", confirm: "t-c", major: "t-m", attest: "t-at" } as any;
+  const roundDir = orchestratorRoundDir(BOOK, ROUND);
+  const parentDirs = [dirname(roundDir), dirname(dirname(roundDir))].map((path) => ({ path, existed: existsSync(path) }));
   try {
     writeFixtureBook(STATE_CHAPTERS, chapters);
     const packet = readFileSync(writeReviewPacket(BOOK, ROUND, chapters, tokens), "utf8");
@@ -89,6 +92,10 @@ test("the formal QC sweep card (review packet) quotes the SAME sweepSpec family 
   } finally {
     rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`), { force: true });
     rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch02.v21-native.chapter.json`), { force: true });
+    rmSync(roundDir, { recursive: true, force: true });
+    for (const parent of parentDirs) {
+      if (!parent.existed && existsSync(parent.path) && readdirSync(parent.path).length === 0) rmSync(parent.path, { recursive: true, force: true });
+    }
   }
 });
 

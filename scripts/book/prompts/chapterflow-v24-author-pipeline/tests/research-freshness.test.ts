@@ -10,9 +10,10 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { test } from "./harness.js";
 import { researchFreshnessViolation } from "../src/orchestrator/researchFreshness.js";
@@ -20,6 +21,47 @@ import { runAutopilot, type AutopilotDeps } from "../src/orchestrator/autopilot.
 import type { BookStatus } from "../src/lifecycle/bookStatus.js";
 
 const BOOK = "zz-fresh-book";
+const PIPELINE_DIR = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+
+type TestFileSnapshot = {
+  path: string;
+  existed: boolean;
+  bytes: Buffer | null;
+  atime: Date | null;
+  mtime: Date | null;
+};
+
+function snapshotTestFile(path: string): TestFileSnapshot {
+  if (!existsSync(path)) return { path, existed: false, bytes: null, atime: null, mtime: null };
+  const stat = statSync(path);
+  return { path, existed: true, bytes: readFileSync(path), atime: stat.atime, mtime: stat.mtime };
+}
+
+function restoreTestFile(snapshot: TestFileSnapshot): void {
+  if (!snapshot.existed) {
+    rmSync(snapshot.path, { force: true });
+    return;
+  }
+  mkdirSync(dirname(snapshot.path), { recursive: true });
+  writeFileSync(snapshot.path, snapshot.bytes!);
+  utimesSync(snapshot.path, snapshot.atime!, snapshot.mtime!);
+}
+
+async function runLegacyAutopilotWithoutTelemetry(
+  options: Parameters<typeof runAutopilot>[0],
+): ReturnType<typeof runAutopilot> {
+  const telemetryDir = resolve(PIPELINE_DIR, "state", "autopilot-logs", BOOK);
+  const parentDirs = [telemetryDir, dirname(telemetryDir)].map((path) => ({ path, existed: existsSync(path) }));
+  const snapshots = ["cost-report.json", "run-manifest.json"].map((name) => snapshotTestFile(resolve(telemetryDir, name)));
+  try {
+    return await runAutopilot(options);
+  } finally {
+    for (const snapshot of snapshots) restoreTestFile(snapshot);
+    for (const parent of parentDirs) {
+      if (!parent.existed && existsSync(parent.path) && readdirSync(parent.path).length === 0) rmSync(parent.path, { recursive: true, force: true });
+    }
+  }
+}
 
 function mkRoots(): { runsRoot: string; backupsRoot: string } {
   const base = mkdtempSync(join(tmpdir(), "cf-research-fresh-"));
@@ -159,7 +201,7 @@ function wiringDeps(freshness: (bookId: string, taskStartedAtMs: number) => stri
 
 test("A2 wiring: a freshness violation fails the pass, feeds the retry prompt, and exhausted passes halt content with the restore diagnosis", async () => {
   const { deps, spawns, logs } = wiringDeps(() => "newest research run r1 is a byte-identical restore of the archived backup at /b — restoring an archived run is not research", [researchStatus()]);
-  const outcome = await runAutopilot({ architecture: "legacy", bookId: BOOK, deps });
+  const outcome = await runLegacyAutopilotWithoutTelemetry({ architecture: "legacy", bookId: BOOK, deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") {
     assert.equal(outcome.phase, "research");
@@ -178,7 +220,7 @@ test("A2 wiring: violation then a genuinely fresh retry proceeds past research (
   let calls = 0;
   const shipped: BookStatus = { ...researchStatus(), packaged: true };
   const { deps, spawns, freshnessCalls } = wiringDeps(() => (++calls === 1 ? "no source sidecar in run r1 was written during the research task" : null), [researchStatus(), shipped]);
-  const outcome = await runAutopilot({ architecture: "legacy", bookId: BOOK, deps });
+  const outcome = await runLegacyAutopilotWithoutTelemetry({ architecture: "legacy", bookId: BOOK, deps });
   assert.equal(outcome.status, "shipped", "after a fresh retry the conductor moves on (next phase here: already shipped)");
   assert.equal(spawns.filter((s) => s.sessionId.startsWith("research")).length, 2, "one retry after the violated pass, none after the fresh one");
   assert.equal(freshnessCalls.length, 2, "the freshness check runs after EVERY pass that satisfies the handoff contract");

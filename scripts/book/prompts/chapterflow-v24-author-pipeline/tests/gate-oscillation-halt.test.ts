@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, utimesSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { test } from "./harness.js";
 import {
@@ -8,6 +11,67 @@ import {
   type AutopilotDeps,
 } from "../src/orchestrator/autopilot.js";
 import type { BookStatus, ChapterStatus } from "../src/lifecycle/bookStatus.js";
+
+const PIPELINE_DIR = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+
+type TestFileSnapshot = {
+  path: string;
+  existed: boolean;
+  bytes: Buffer | null;
+  atime: Date | null;
+  mtime: Date | null;
+};
+
+function snapshotTestFile(path: string): TestFileSnapshot {
+  if (!existsSync(path)) return { path, existed: false, bytes: null, atime: null, mtime: null };
+  const stat = statSync(path);
+  return { path, existed: true, bytes: readFileSync(path), atime: stat.atime, mtime: stat.mtime };
+}
+
+function restoreTestFile(snapshot: TestFileSnapshot): void {
+  if (!snapshot.existed) {
+    rmSync(snapshot.path, { force: true });
+    return;
+  }
+  mkdirSync(dirname(snapshot.path), { recursive: true });
+  writeFileSync(snapshot.path, snapshot.bytes!);
+  utimesSync(snapshot.path, snapshot.atime!, snapshot.mtime!);
+}
+
+async function runLegacyAutopilotWithoutFixtureLeaks(
+  options: Parameters<typeof runAutopilot>[0],
+): ReturnType<typeof runAutopilot> {
+  const telemetryDir = resolve(PIPELINE_DIR, "state", "autopilot-logs", "zz");
+  const provenanceDir = resolve(PIPELINE_DIR, "state", "provenance");
+  const preflightDir = resolve(PIPELINE_DIR, "state", "qc-preflight", "zz");
+  const preflightExisted = existsSync(preflightDir);
+  const preflightEntries = new Set(preflightExisted ? readdirSync(preflightDir) : []);
+  const parentDirs = [
+    telemetryDir,
+    dirname(telemetryDir),
+    provenanceDir,
+    preflightDir,
+    dirname(preflightDir),
+  ].map((path) => ({ path, existed: existsSync(path) }));
+  const snapshots = [
+    resolve(telemetryDir, "cost-report.json"),
+    resolve(telemetryDir, "run-manifest.json"),
+    resolve(provenanceDir, "zz-ch01.json"),
+  ].map(snapshotTestFile);
+  try {
+    return await runAutopilot(options);
+  } finally {
+    for (const snapshot of snapshots) restoreTestFile(snapshot);
+    if (existsSync(preflightDir)) {
+      for (const entry of readdirSync(preflightDir)) {
+        if (!preflightEntries.has(entry) && entry.endsWith(".scout-read.json")) rmSync(join(preflightDir, entry), { force: true });
+      }
+    }
+    for (const parent of parentDirs) {
+      if (!parent.existed && existsSync(parent.path) && readdirSync(parent.path).length === 0) rmSync(parent.path, { recursive: true, force: true });
+    }
+  }
+}
 
 // ── fixtures (mirrors tests/autopilot.test.ts's happyDeps pattern) ──────────────
 function makeStatus(o: Partial<BookStatus>): BookStatus {
@@ -123,7 +187,7 @@ test("doGate HALTS with a specific oscillation message when the variety and alig
       return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
     }) as unknown as AutopilotDeps["spawn"],
   });
-  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
+  const outcome = await runLegacyAutopilotWithoutFixtureLeaks({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") {
     assert.equal(outcome.phase, "gate");

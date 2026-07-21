@@ -576,6 +576,7 @@ test("C3 integration: a tiebreak SPLIT (1 ship / 1 no-ship) upholds the FAIL —
   const persisted: ChapterReviewV1[] = [];
   const tmpDoc = mkdtempSync(join(tmpdir(), "c3-split-"));
   const io: Partial<AuthorReviewIo> = {
+    attemptsRoot: () => join(tmpDoc, "attempts"),
     loadChapters: () => chapters,
     authorSessionOf: () => "the-author",
     chapterExists: () => true,
@@ -725,6 +726,7 @@ test("Phase 3 integration: a KEY DEFECT surfaced by a tiebreak read STICKS — t
   const persisted: ChapterReviewV1[] = [];
   const tmpDoc = mkdtempSync(join(tmpdir(), "p3-keydefect-"));
   const io: Partial<AuthorReviewIo> = {
+    attemptsRoot: () => join(tmpDoc, "attempts"),
     loadChapters: () => chapters,
     authorSessionOf: () => "the-author",
     chapterExists: () => true,
@@ -807,6 +809,7 @@ test("Phase 3 + QC calibration (2026-07-05): near-bar conversion is blocked ONLY
     } as unknown as AutopilotDeps;
     const tmpDoc = mkdtempSync(join(tmpdir(), "p3-mf-"));
     const io: Partial<AuthorReviewIo> = {
+      attemptsRoot: () => join(tmpDoc, "attempts"),
       loadChapters: () => chapters, authorSessionOf: () => "the-author", chapterExists: () => true,
       readBriefMd: () => "# Chapter 1\nbrief body", readPacket: () => mkPacket(1, ["a cadence claim"]), readBrief: () => null,
       writeReviewDoc: (bookId, fileName, text) => { const abs = join(tmpDoc, `${bookId}-${fileName}`); writeFileSync(abs, text, "utf8"); return { absPath: abs, relPath: abs }; },
