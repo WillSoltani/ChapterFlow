@@ -173,7 +173,17 @@ async function main(): Promise<void> {
   const incomplete = assembleSections(BOOK, {}, { content: selection, chapters: [{ ...chapterPaths, action: "content/missing-action.json" }] });
   assert.equal(incomplete.candidateFiles?.length, 0);
   assert.match(incomplete.findings[0], /expected one content\/missing-action\.json, found 0/);
-  console.log("PASS 5/7 missing/partial section yields no complete candidate inventory");
+  const mismapped = assembleSections(BOOK, {}, {
+    content: selection,
+    chapters: [{
+      ...chapterPaths,
+      chapterNumber: 2,
+      output: `content/chapters/${BOOK}-ch02.v21-native.chapter.json`,
+    }],
+  });
+  assert.equal(mismapped.candidateFiles?.length, 0);
+  assert.match(mismapped.findings[0], /V4 mapping blocked: blueprint identity .* does not match caller ch2/);
+  console.log("PASS 5/7 missing/partial/mismapped section input yields no complete candidate inventory");
 
   const outputInventory = assembled.candidateFiles!.map(({ bytes: _bytes, ...entry }) => entry);
   const outputStage = await adapter.stageCompleteCandidate({

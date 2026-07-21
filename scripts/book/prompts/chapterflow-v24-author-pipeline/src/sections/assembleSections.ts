@@ -87,17 +87,41 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {},
         const blueprint = readAuthorV4SelectedJson<ChapterBlueprintV1>(selected.content, paths.blueprint);
         const packet = readAuthorV4SelectedJson<SourcePacketV1>(selected.content, paths.sourcePacket);
         const sidecar = readAuthorV4SelectedJson<unknown>(selected.content, paths.sourceSidecar);
+        const packs: Record<SectionKind, SectionPackV1> = {
+          "summary-pack": readAuthorV4SelectedJson<SummaryPackV1>(selected.content, paths.summary),
+          "example-pack": readAuthorV4SelectedJson<ExamplePackV1>(selected.content, paths.examples),
+          "learning-pack": readAuthorV4SelectedJson<LearningPackV1>(selected.content, paths.learning),
+          "action-pack": readAuthorV4SelectedJson<ActionPackV1>(selected.content, paths.action),
+        };
+        const nn = String(paths.chapterNumber).padStart(2, "0");
+        const expectedChapterId = `${normalized}-ch${nn}`;
+        const expectedOutput = `content/chapters/${chapterFileName(expectedChapterId)}`;
+        const mappingProblems: string[] = [];
+        if (blueprint.chapterNumber !== paths.chapterNumber || blueprint.chapterId !== expectedChapterId) {
+          mappingProblems.push(`blueprint identity ${blueprint.chapterId}/ch${blueprint.chapterNumber} does not match caller ch${paths.chapterNumber}`);
+        }
+        if (packet.bookId !== normalized || packet.chapterNumber !== paths.chapterNumber || packet.chapterId !== expectedChapterId) {
+          mappingProblems.push(`source packet identity ${packet.bookId}/${packet.chapterId}/ch${packet.chapterNumber} does not match ${normalized}/${expectedChapterId}/ch${paths.chapterNumber}`);
+        }
+        for (const kind of ["summary-pack", "example-pack", "learning-pack", "action-pack"] as const) {
+          const pack = packs[kind];
+          if (pack.artifactType !== kind || pack.chapterId !== expectedChapterId) {
+            mappingProblems.push(`${kind} identity ${pack.chapterId}/${pack.artifactType} does not match ${expectedChapterId}/${kind}`);
+          }
+        }
+        if (paths.output !== expectedOutput) {
+          mappingProblems.push(`output ${paths.output} does not match canonical ${expectedOutput}`);
+        }
+        if (mappingProblems.length > 0) {
+          findings.push(`ch${nn}: V4 mapping blocked: ${mappingProblems.join("; ")}`);
+          continue;
+        }
         parsed.push({
           paths,
           blueprint,
           packet,
           sidecar,
-          packs: {
-            "summary-pack": readAuthorV4SelectedJson<SummaryPackV1>(selected.content, paths.summary),
-            "example-pack": readAuthorV4SelectedJson<ExamplePackV1>(selected.content, paths.examples),
-            "learning-pack": readAuthorV4SelectedJson<LearningPackV1>(selected.content, paths.learning),
-            "action-pack": readAuthorV4SelectedJson<ActionPackV1>(selected.content, paths.action),
-          },
+          packs,
         });
       } catch (error) {
         findings.push(`ch${String(paths.chapterNumber).padStart(2, "0")}: ${(error as Error).message}`);
