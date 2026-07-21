@@ -8,8 +8,12 @@ import {
 export type LegacyPromotionAuthority = Readonly<{
   activeUseCount: () => number;
   isEnabled: () => boolean;
-  disable: () => void | Promise<void>;
-  restore: () => void | Promise<void>;
+  /** Atomically checks quiescence, disables legacy, and owns shared cutover. */
+  beginCutover: () => Promise<Result<LegacyPromotionCutoverLease>>;
+}>;
+
+export type LegacyPromotionCutoverLease = Readonly<{
+  finish: (resolution: "KEEP_DISABLED" | "RESTORE_LEGACY") => void | Promise<void>;
 }>;
 
 export type LegacyPromotionAdapterOptions = Readonly<{
@@ -25,7 +29,6 @@ function failed<T>(code: string, message: string, retryable = false): Result<T> 
 export class LegacyPromotionAdapter {
   readonly #canonicalRelease: CanonicalPackageAdapter;
   readonly #legacyAuthority: LegacyPromotionAuthority;
-  #inFlight = false;
 
   constructor(options: LegacyPromotionAdapterOptions) {
     this.#canonicalRelease = options.canonicalRelease;
@@ -44,41 +47,37 @@ export class LegacyPromotionAdapter {
     if (request.expectedBookRevision !== 0) {
       return failed("CUTOVER_REVISION_INVALID", "first V4 cutover requires expected revision 0");
     }
-    if (this.#inFlight) return failed("CUTOVER_IN_PROGRESS", "legacy cutover is already in progress", true);
-    if (this.#legacyAuthority.activeUseCount() !== 0) {
-      return failed("LEGACY_PROMOTER_ACTIVE", "legacy promoter has active uses");
-    }
-    if (!this.#legacyAuthority.isEnabled()) {
-      return failed("LEGACY_AUTHORITY_UNAVAILABLE", "legacy promoter is not authoritative");
-    }
-
-    this.#inFlight = true;
+    const acquired = await this.#legacyAuthority.beginCutover();
+    if (!acquired.ok) return acquired;
+    const lease = acquired.value;
     try {
-      await this.#legacyAuthority.disable();
       if (this.#legacyAuthority.isEnabled()) {
+        await lease.finish("RESTORE_LEGACY");
         return failed("MIXED_PROMOTER", "legacy promoter remained enabled after disable");
       }
       const released = await this.#canonicalRelease.release(request);
-      if (released.ok) return released;
+      if (released.ok) {
+        await lease.finish("KEEP_DISABLED");
+        return released;
+      }
 
-      // Reconciliation errors can mean pointer commit happened. Never restore
-      // legacy in that uncertain state: mixed authority would be worse.
-      if (released.error.code !== "RECONCILIATION_REQUIRED") {
-        await this.#legacyAuthority.restore();
-        if (!this.#legacyAuthority.isEnabled()) {
-          return failed("LEGACY_AUTHORITY_RESTORE_FAILED", "safe pre-commit failure did not restore legacy authority");
-        }
+      // Restore only after an actual CURRENT read proves no V4 pointer exists.
+      // Exact or mismatched V4 authority both keep legacy disabled.
+      const current = await this.#canonicalRelease.readCurrent(request.bookId);
+      const resolution = current.ok && current.value === null ? "RESTORE_LEGACY" : "KEEP_DISABLED";
+      await lease.finish(resolution);
+      if (resolution === "RESTORE_LEGACY" && !this.#legacyAuthority.isEnabled()) {
+        return failed("LEGACY_AUTHORITY_RESTORE_FAILED", "safe pre-commit failure did not restore legacy authority");
       }
       return released;
     } catch (cause) {
       try {
-        await this.#legacyAuthority.restore();
+        const current = await this.#canonicalRelease.readCurrent(request.bookId);
+        await lease.finish(current.ok && current.value === null ? "RESTORE_LEGACY" : "KEEP_DISABLED");
       } catch {
-        return failed("LEGACY_AUTHORITY_RESTORE_FAILED", "cutover threw and legacy authority could not be restored");
+        return failed("LEGACY_AUTHORITY_RESTORE_FAILED", "cutover threw and shared authority could not be reconciled");
       }
       return failed("CUTOVER_FAILED", cause instanceof Error ? cause.message : String(cause));
-    } finally {
-      this.#inFlight = false;
     }
   }
 }

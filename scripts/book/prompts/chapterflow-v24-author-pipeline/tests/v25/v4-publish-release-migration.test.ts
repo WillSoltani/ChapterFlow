@@ -9,12 +9,14 @@ import { createBookWriteLock } from "../../src/books/bookLease.js";
 import { createCandidateStore, type CandidateStore } from "../../src/books/candidateStore.js";
 import { createCurrentPointerStore, type CurrentPointerStore } from "../../src/books/currentPointer.js";
 import type { CandidateIdentity, Result } from "../../src/contracts/v4Core.js";
-import type { QcRoundResult, QcService } from "../../src/qc/qcTypes.js";
+import { createQcService } from "../../src/qc/qcService.js";
+import type { QcService } from "../../src/qc/qcTypes.js";
 import { applyCleanup } from "../../src/publish/cleanupBookDebris.js";
 import { CanonicalPackageAdapter, type CanonicalReleaseRequest } from "../../src/release/canonicalPackageAdapter.js";
 import { LegacyPublishAdapter } from "../../src/release/legacyPublishAdapter.js";
 import { createPromotionService } from "../../src/release/promotionService.js";
-import type { CanonicalReviewResult, ReviewService } from "../../src/review/reviewTypes.js";
+import { createReviewServiceFactory } from "../../src/review/reviewService.js";
+import type { ReviewService } from "../../src/review/reviewTypes.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
@@ -33,7 +35,7 @@ function storage(context: TestContext, atomicSeams?: AtomicBookFileSeams) {
     currentPointerStore: pointer,
   });
   const reader = createBookContentReader({ booksRoot: context.roots.booksRoot, currentPointerStore: pointer });
-  return { pointer, candidates, reader };
+  return { pointer, candidates, reader, writeLock, booksRoot: context.roots.booksRoot };
 }
 
 async function stage(store: CandidateStore, bookId: string, candidateId: string, marker = candidateId): Promise<CandidateIdentity> {
@@ -70,38 +72,80 @@ function releaseRequest(bookId: string, candidate: CandidateIdentity, expectedBo
   };
 }
 
-function authorities(request: CanonicalReleaseRequest, reviewCandidate = request.candidate) {
-  const counts = { reviewExecution: 0, qcExecution: 0, reviewRead: 0, qcRead: 0 };
-  const review: CanonicalReviewResult = {
-    schemaVersion: "1",
-    reviewId: request.reviewId,
-    candidate: { ...reviewCandidate },
-    outcome: "PASS",
-    issues: [],
-    completedAt: REVIEW_AT,
-  };
-  const qc: QcRoundResult = {
-    schemaVersion: "1",
-    roundId: request.qcRoundId,
-    candidate: { ...request.candidate },
-    reviewId: request.reviewId,
-    outcome: "PASS",
-    issues: [],
-    completedAt: QC_AT,
-  };
+async function authorities(
+  request: CanonicalReleaseRequest,
+  stores: ReturnType<typeof storage>,
+  authorityCandidate = request.candidate,
+) {
+  const counts = { reviewExecution: 0, reviewEvaluation: 0, qcExecution: 0, reviewRead: 0, qcRead: 0 };
+  const opened = await stores.reader.open({
+    bookId: request.bookId,
+    selector: { kind: "CANDIDATE", candidateId: authorityCandidate.candidateId },
+  });
+  assert.ok(opened.ok);
+  assert.equal(opened.value.manifest.manifestDigest, authorityCandidate.manifestDigest);
+  const reviewInner = createReviewServiceFactory({
+    booksRoot: stores.booksRoot,
+    contentReader: stores.reader,
+    now: () => REVIEW_AT,
+  }).create({
+    async evaluate() {
+      counts.reviewEvaluation += 1;
+      return { ok: true, value: { outcome: "PASS", issues: [] } };
+    },
+  });
   const reviewService: ReviewService = {
-    screen: async () => { throw new Error("screening cannot authorize release"); },
-    reviewCanonical: async () => { counts.reviewExecution += 1; throw new Error("release cannot execute review"); },
-    get: async () => { counts.reviewRead += 1; return { ok: true, value: review }; },
+    screen: (candidate) => reviewInner.screen(candidate),
+    reviewCanonical: (input) => { counts.reviewExecution += 1; return reviewInner.reviewCanonical(input); },
+    get: (bookId, reviewId) => { counts.reviewRead += 1; return reviewInner.get(bookId, reviewId); },
   };
+  const review = await reviewService.reviewCanonical({
+    reviewId: request.reviewId,
+    candidate: opened.value,
+    taskContext: {
+      bookId: request.bookId,
+      runId: `run-${authorityCandidate.candidateId}`,
+      attemptId: `attempt-${authorityCandidate.candidateId}`,
+      stageId: "canonical-review",
+      operationId: `review-${authorityCandidate.candidateId}`,
+      workDir: stores.booksRoot,
+      signal: new AbortController().signal,
+    },
+  });
+  assert.ok(review.ok);
+  const qcInner = createQcService({
+    booksRoot: stores.booksRoot,
+    contentReader: stores.reader,
+    reviewService,
+    writeLock: stores.writeLock,
+    now: () => QC_AT,
+  });
   const qcService: QcService = {
-    readStatus: async () => { throw new Error("status is outside release"); },
-    runFresh: async () => { counts.qcExecution += 1; throw new Error("release cannot execute QC"); },
-    getRound: async () => { counts.qcRead += 1; return { ok: true, value: qc }; },
-    diagnose: async () => { throw new Error("diagnose is outside release"); },
-    repairLedger: async () => { throw new Error("repair is outside release"); },
+    readStatus: (bookId) => qcInner.readStatus(bookId),
+    runFresh: (input) => { counts.qcExecution += 1; return qcInner.runFresh(input); },
+    getRound: (bookId, roundId) => { counts.qcRead += 1; return qcInner.getRound(bookId, roundId); },
+    diagnose: (bookId, roundId) => qcInner.diagnose(bookId, roundId),
+    repairLedger: (input) => qcInner.repairLedger(input),
   };
-  return { counts, reviewService, qcService };
+  const qc = await qcService.runFresh({
+    roundId: request.qcRoundId,
+    candidate: opened.value,
+    canonicalReview: review.value,
+    evaluation: {
+      roundId: request.qcRoundId,
+      candidate: { ...authorityCandidate },
+      reviewId: request.reviewId,
+      outcome: "PASS",
+      issues: [],
+    },
+  });
+  assert.ok(qc.ok);
+  return {
+    counts,
+    reviewService,
+    qcService,
+    executionBaseline: { review: counts.reviewExecution, evaluation: counts.reviewEvaluation, qc: counts.qcExecution },
+  };
 }
 
 function countedPointer(pointer: CurrentPointerStore) {
@@ -113,13 +157,13 @@ function countedPointer(pointer: CurrentPointerStore) {
   return { counts, store };
 }
 
-function adapter(
+async function adapter(
   request: CanonicalReleaseRequest,
   stores: ReturnType<typeof storage>,
   writer: ConstructorParameters<typeof CanonicalPackageAdapter>[0]["packageWriter"],
   reviewCandidate = request.candidate,
 ) {
-  const auth = authorities(request, reviewCandidate);
+  const auth = await authorities(request, stores, reviewCandidate);
   const pointer = countedPointer(stores.pointer);
   const promotionService = createPromotionService({
     candidateStore: stores.candidates,
@@ -144,10 +188,10 @@ function assertError(result: Result<unknown>, code: string): void {
 requiredTest("mismatched candidate review QC tuple blocks package and pointer mutation", async (context) => {
   const stores = storage(context);
   const identity = await stage(stores.candidates, "tuple-book", "candidate-1");
+  const mismatch = await stage(stores.candidates, "tuple-book", "candidate-2");
   const request = releaseRequest("tuple-book", identity);
   let packageWrites = 0;
-  const mismatch = { ...identity, manifestDigest: "f".repeat(64) };
-  const route = adapter(request, stores, () => { packageWrites += 1; }, mismatch);
+  const route = await adapter(request, stores, () => { packageWrites += 1; }, mismatch);
   const result = await route.adapter.release(request);
   assertError(result, "REVIEW_MISMATCH");
   assert.equal(route.pointer.counts.compareAndSet, 0);
@@ -155,15 +199,22 @@ requiredTest("mismatched candidate review QC tuple blocks package and pointer mu
   assert.equal(route.auth.counts.qcRead, 0);
 });
 
-requiredTest("valid stored authority changes one revision and writes package after verified readback", async (context) => {
+requiredTest("valid stored authority fixes package writer fault by exact same-request CURRENT reconciliation", async (context) => {
   const stores = storage(context);
   const identity = await stage(stores.candidates, "valid-release-book", "candidate-1");
   const request = releaseRequest("valid-release-book", identity);
   let packageWrites = 0;
-  const route = adapter(request, stores, ({ package: value }) => {
+  let failWriter = true;
+  const route = await adapter(request, stores, ({ package: value }) => {
+    if (failWriter) {
+      failWriter = false;
+      throw new Error("injected package writer fault");
+    }
     packageWrites += 1;
     writeFileSync(join(context.roots.tempRoot, "released-package.json"), JSON.stringify(value));
   });
+  const first = await route.adapter.release(request);
+  assertError(first, "RECONCILIATION_REQUIRED");
   const result = await route.adapter.release(request);
   assert.ok(result.ok);
   assert.equal(result.value.bookRevision, 1);
@@ -183,8 +234,8 @@ requiredTest("two releases racing same expected revision have exactly one winner
   let packageWrites = 0;
   const leftRequest = releaseRequest("race-release-book", left);
   const rightRequest = releaseRequest("race-release-book", right);
-  const leftRoute = adapter(leftRequest, stores, () => { packageWrites += 1; });
-  const rightRoute = adapter(rightRequest, stores, () => { packageWrites += 1; });
+  const leftRoute = await adapter(leftRequest, stores, () => { packageWrites += 1; });
+  const rightRoute = await adapter(rightRequest, stores, () => { packageWrites += 1; });
   const results = await Promise.all([
     leftRoute.adapter.release(leftRequest),
     rightRoute.adapter.release(rightRequest),
@@ -207,11 +258,13 @@ requiredTest("fault before pointer replacement preserves old complete pointer an
   const oldIdentity = await stage(stores.candidates, "fault-release-book", "candidate-old", "old");
   const oldRequest = releaseRequest("fault-release-book", oldIdentity);
   let packageWrites = 0;
-  assert.ok((await adapter(oldRequest, stores, () => { packageWrites += 1; }).adapter.release(oldRequest)).ok);
+  const oldRoute = await adapter(oldRequest, stores, () => { packageWrites += 1; });
+  assert.ok((await oldRoute.adapter.release(oldRequest)).ok);
   const newIdentity = await stage(stores.candidates, "fault-release-book", "candidate-new", "new");
   const newRequest = releaseRequest("fault-release-book", newIdentity, 1);
   armed = true;
-  const result = await adapter(newRequest, stores, () => { packageWrites += 1; }).adapter.release(newRequest);
+  const newRoute = await adapter(newRequest, stores, () => { packageWrites += 1; });
+  const result = await newRoute.adapter.release(newRequest);
   assertError(result, "RECONCILIATION_REQUIRED");
   assert.equal(packageWrites, 1);
   const current = await stores.pointer.read(newRequest.bookId);
@@ -273,7 +326,7 @@ requiredTest("no-live release and legacy shadow keep remote network credential a
   const identity = await stage(stores.candidates, "no-live-book", "candidate-1");
   const request = releaseRequest("no-live-book", identity);
   const calls = { git: 0, registry: 0, network: 0, credential: 0, packageWrite: 0 };
-  const route = adapter(request, stores, ({ package: value }) => {
+  const route = await adapter(request, stores, ({ package: value }) => {
     calls.packageWrite += 1;
     writeFileSync(join(context.roots.tempRoot, "no-live-package.json"), JSON.stringify(value));
   });
@@ -288,8 +341,10 @@ requiredTest("no-live release and legacy shadow keep remote network credential a
   assert.ok(legacy.shadow(released.value.package).ok);
   assert.deepEqual(calls, { git: 0, registry: 0, network: 0, credential: 0, packageWrite: 1 });
   assert.equal(route.pointer.counts.compareAndSet, 1);
-  assert.equal(route.auth.counts.reviewExecution, 0);
-  assert.equal(route.auth.counts.qcExecution, 0);
+  assert.deepEqual(
+    { review: route.auth.counts.reviewExecution, evaluation: route.auth.counts.reviewEvaluation, qc: route.auth.counts.qcExecution },
+    route.auth.executionBaseline,
+  );
 });
 
 finishV25Tests().catch((error: unknown) => {

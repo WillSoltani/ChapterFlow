@@ -52,6 +52,11 @@ export type CanonicalReleaseResult = Readonly<{
   readback: "VERIFIED";
 }>;
 
+export type CanonicalCurrentRelease = Readonly<{
+  candidate: CandidateIdentity;
+  bookRevision: number;
+}>;
+
 function failed<T>(code: string, message: string, retryable = false): Result<T> {
   return { ok: false, error: { code, message, retryable } };
 }
@@ -137,6 +142,33 @@ export class CanonicalPackageAdapter {
     this.#options = options;
   }
 
+  async readCurrent(bookId: string): Promise<Result<CanonicalCurrentRelease | null>> {
+    let opened;
+    try {
+      opened = await this.#options.contentReader.open({ bookId, selector: { kind: "CURRENT" } });
+    } catch (cause) {
+      return failed("CURRENT_UNAVAILABLE", `CURRENT read failed: ${errorMessage(cause)}`);
+    }
+    if (!opened.ok) {
+      return opened.error.code === "CURRENT_NOT_SET"
+        ? { ok: true, value: null }
+        : failed("CURRENT_UNAVAILABLE", opened.error.message, opened.error.retryable);
+    }
+    if (!Number.isSafeInteger(opened.value.currentRevision) || (opened.value.currentRevision ?? 0) < 1) {
+      return failed("CURRENT_UNAVAILABLE", "CURRENT read returned no valid revision");
+    }
+    return {
+      ok: true,
+      value: {
+        candidate: {
+          candidateId: opened.value.manifest.candidateId,
+          manifestDigest: opened.value.manifest.manifestDigest,
+        },
+        bookRevision: opened.value.currentRevision as number,
+      },
+    };
+  }
+
   async release(request: CanonicalReleaseRequest): Promise<Result<CanonicalReleaseResult>> {
     const assembled = await assembleCanonicalPackage({
       bookId: request.bookId,
@@ -154,7 +186,28 @@ export class CanonicalPackageAdapter {
       expectedBookRevision: request.expectedBookRevision,
       promotedAt: request.promotedAt,
     });
-    if (!promoted.ok) return promoted;
+    let bookRevision: number;
+    let readback: "VERIFIED";
+    if (promoted.ok) {
+      bookRevision = promoted.value.bookRevision;
+      readback = promoted.value.readback;
+    } else {
+      if (promoted.error.code !== "REVISION_CONFLICT") return promoted;
+      const current = await this.readCurrent(request.bookId);
+      if (
+        !current.ok ||
+        current.value === null ||
+        current.value.bookRevision !== request.expectedBookRevision + 1 ||
+        current.value.candidate.candidateId !== request.candidate.candidateId ||
+        current.value.candidate.manifestDigest !== request.candidate.manifestDigest
+      ) {
+        return promoted;
+      }
+      // Prior same-request attempt committed and verified CURRENT, then failed
+      // package materialization. Complete that exact candidate-keyed write.
+      bookRevision = current.value.bookRevision;
+      readback = "VERIFIED";
+    }
     try {
       await this.#options.packageWriter({
         bookId: request.bookId,
@@ -168,8 +221,8 @@ export class CanonicalPackageAdapter {
       ok: true,
       value: {
         package: assembled.value.package,
-        bookRevision: promoted.value.bookRevision,
-        readback: promoted.value.readback,
+        bookRevision,
+        readback,
       },
     };
   }
