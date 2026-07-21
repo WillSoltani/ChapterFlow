@@ -9,11 +9,11 @@
  * mention it only in passing.
  */
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { mkdirSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { findSourceSidecar } from "./sourceSidecars.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const EXEMPLAR_PLANS_DIR = resolve(__dirname, "../../state/exemplar-plans");
@@ -189,7 +189,12 @@ function sortChapterNumbers(a: string, b: string): number {
   return Number(a) - Number(b);
 }
 
-export function planExemplars(bookId: string, from: number, to: number): ExemplarPlan {
+export function planExemplars(bookId: string, from: number, to: number): ExemplarPlan;
+export function planExemplars(bookId: string, from: number, to: number, reader: BookContentReader, candidateId: string): Promise<ExemplarPlan>;
+export function planExemplars(bookId: string, from: number, to: number, reader?: BookContentReader, candidateId?: string): ExemplarPlan | Promise<ExemplarPlan> {
+  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
+  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+  if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
   if (to < from) throw new Error(`to (${to}) < from (${from})`);
   if (from < 1) throw new Error(`from (${from}) must be >= 1`);
 
@@ -198,21 +203,14 @@ export function planExemplars(bookId: string, from: number, to: number): Exempla
   const chaptersWithoutSidecar: number[] = [];
 
   for (let chapter = from; chapter <= to; chapter++) {
-    const sidecarPath = findSourceSidecar(bookId, chapter);
-    if (!sidecarPath || !existsSync(sidecarPath)) {
-      console.warn(`exemplar-plan: no source sidecar for "${bookId}" ch${String(chapter).padStart(2, "0")}; continuing with empty candidates.`);
-      chaptersWithoutSidecar.push(chapter);
-      chapterCandidates.set(chapter, new Map());
-      continue;
-    }
+    const logicalPath = `sidecars/ch${String(chapter).padStart(2, "0")}.json`;
+    const file = opened.value.files.find((entry) => entry.logicalPath === logicalPath);
+    if (!file) throw new Error(`CANDIDATE_ENTRY_MISSING: ${logicalPath}`);
     let sidecar: unknown;
     try {
-      sidecar = JSON.parse(readFileSync(sidecarPath, "utf8"));
+      sidecar = JSON.parse(Buffer.from(file.bytes).toString("utf8"));
     } catch (err) {
-      console.warn(`exemplar-plan: unreadable sidecar for "${bookId}" ch${String(chapter).padStart(2, "0")}: ${(err as Error).message}`);
-      chaptersWithoutSidecar.push(chapter);
-      chapterCandidates.set(chapter, new Map());
-      continue;
+      throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(err as Error).message}`);
     }
     const perChapter = new Map<string, { display: string; order: number }>();
     for (const occurrence of sidecarOccurrences(sidecar, chapter)) {
@@ -327,6 +325,7 @@ export function planExemplars(bookId: string, from: number, to: number): Exempla
       chaptersWithoutSidecar,
     },
   };
+  });
 }
 
 export function writeExemplarPlan(plan: ExemplarPlan): string {

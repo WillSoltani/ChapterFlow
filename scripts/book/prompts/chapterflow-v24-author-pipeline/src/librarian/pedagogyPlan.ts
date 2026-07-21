@@ -35,7 +35,7 @@
  *     filename casing drift do not hide authored siblings.
  */
 
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "fs";
+import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -43,6 +43,7 @@ import { CHAPTERS_DIR, chapterFileName, isSiblingFile } from "../lib/chapterPath
 import type { HookShape } from "../critics/catalogAudit.js";
 import { assertMaxShare } from "./saturationGuard.js";
 import { fnv1a } from "../lib/fnv1a.js";
+import type { BookContentReader, CandidateSnapshot } from "../books/candidateTypes.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const PEDAGOGY_PALETTES_PATH = resolve(__dirname, "../../config/pedagogy-palettes.json");
@@ -248,19 +249,11 @@ function pickIds<T extends { id: string }>(items: T[], rotation: number, count: 
   return picked;
 }
 
-function authoredChapterExists(bookId: string, chapterNumber: number): boolean {
-  const chapterId = `${bookId}-ch${String(chapterNumber).padStart(2, "0")}`;
-  const canonical = resolve(CHAPTERS_DIR, chapterFileName(chapterId));
-  if (existsSync(canonical)) return true;
-  let files: string[] = [];
-  try {
-    files = readdirSync(CHAPTERS_DIR);
-  } catch {
-    return false;
-  }
-  for (const file of files) {
-    if (!isSiblingFile(file, bookId)) continue;
-    const match = file.match(/-ch0*(\d{1,3})\.v21-native\.chapter\.json$/i);
+function authoredChapterExists(snapshot: CandidateSnapshot, bookId: string, chapterNumber: number): boolean {
+  for (const file of snapshot.files) {
+    const name = file.logicalPath.split("/").at(-1) ?? "";
+    if (!isSiblingFile(name, bookId)) continue;
+    const match = name.match(/-ch0*(\d{1,3})\.v21-native\.chapter\.json$/i);
     if (match && parseInt(match[1], 10) === chapterNumber) return true;
   }
   return false;
@@ -336,7 +329,13 @@ function assertTacticFamilyInvariants(plan: PedagogyPlan): void {
   }
 }
 
-export function planPedagogy(bookId: string, from: number, to: number, opts: PlanPedagogyOpts = {}): PedagogyPlan {
+export function planPedagogy(bookId: string, from: number, to: number, opts?: PlanPedagogyOpts): PedagogyPlan;
+export function planPedagogy(bookId: string, from: number, to: number, opts: PlanPedagogyOpts, reader: BookContentReader, candidateId: string): Promise<PedagogyPlan>;
+export function planPedagogy(bookId: string, from: number, to: number, opts: PlanPedagogyOpts = {}, reader?: BookContentReader, candidateId?: string): PedagogyPlan | Promise<PedagogyPlan> {
+  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
+  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+  if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+  const snapshot = opened.value;
   if (to < from) throw new Error(`to (${to}) < from (${from})`);
   // Chapters are 1-based; a non-positive `from` drives JS's negative modulo
   // through the chapter pattern and silently deals null/undefined slots
@@ -361,7 +360,7 @@ export function planPedagogy(bookId: string, from: number, to: number, opts: Pla
   const allocation: Record<number, PedagogyChapterAllocation> = {};
   const carriedChapters: number[] = [];
   for (let chapterNumber = from; chapterNumber <= to; chapterNumber++) {
-    if (!opts.forceFresh && authoredChapterExists(bookId, chapterNumber)) carriedChapters.push(chapterNumber);
+    if (!opts.forceFresh && authoredChapterExists(snapshot, bookId, chapterNumber)) carriedChapters.push(chapterNumber);
 
     const hookPatternIndex = HOOK_CHAPTER_PATTERN[(chapterNumber - 1 + hookPhase) % HOOK_CHAPTER_PATTERN.length];
     const quizStart = (chapterNumber - 1 + quizPhase) % 2;
@@ -392,6 +391,7 @@ export function planPedagogy(bookId: string, from: number, to: number, opts: Pla
   assertTacticFamilyInvariants(plan);
   if (to - from + 1 >= MIN_SATURATION_CHECK_CHAPTERS) assertHookSaturation(plan, palettes);
   return plan;
+  });
 }
 
 export function writePedagogyPlan(plan: PedagogyPlan): string {

@@ -30,7 +30,8 @@
 
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { mkdirSync, readFileSync, writeFileSync } from "fs";
+import type { BookContentReader } from "../books/candidateTypes.js";
 import { fnv1a } from "../lib/fnv1a.js";
 import { assertCoprimeSteps } from "../lib/coprime.js";
 import { assertMaxShare } from "./saturationGuard.js";
@@ -112,14 +113,18 @@ export function writeSceneMechanismPlan(plan: SceneMechanismPlan): string {
   return p;
 }
 
-export function loadSceneMechanismPlan(bookId: string): SceneMechanismPlan | null {
-  const p = sceneMechanismPlanPath(bookId);
-  if (!existsSync(p)) return null;
-  try {
-    return JSON.parse(readFileSync(p, "utf8")) as SceneMechanismPlan;
-  } catch {
-    return null;
-  }
+export function loadSceneMechanismPlan(bookId: string): SceneMechanismPlan | null;
+export function loadSceneMechanismPlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<SceneMechanismPlan>;
+export function loadSceneMechanismPlan(bookId: string, reader?: BookContentReader, candidateId?: string): SceneMechanismPlan | null | Promise<SceneMechanismPlan> {
+  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
+  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+    if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+    const logicalPath = `state/scene-mechanism-plans/${bookId}.scene-mechanism-plan.json`;
+    const file = opened.value.files.find((entry) => entry.logicalPath === logicalPath);
+    if (!file) throw new Error(`CANDIDATE_ENTRY_MISSING: ${logicalPath}`);
+    try { return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as SceneMechanismPlan; }
+    catch (cause) { throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(cause as Error).message}`); }
+  });
 }
 
 export function formatSceneMechanismPlan(plan: SceneMechanismPlan): string {

@@ -23,12 +23,13 @@
  *     carries real on-disk names.
  */
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { chapterFileName } from "../lib/chapterPaths.js";
 import type { ChapterV21 } from "../types.js";
+import type { BookContentReader, CandidateSnapshot } from "../books/candidateTypes.js";
 import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
@@ -66,15 +67,16 @@ export function loadSceneShapes(): SceneShape[] {
 }
 
 /** Formats actually used by an authored chapter on disk (slot order). */
-function onDiskFormats(bookId: string, chapterNumber: number): string[] | null {
-  const file = resolve(CHAPTERS_DIR, chapterFileName(`${bookId}-ch${String(chapterNumber).padStart(2, "0")}`));
-  if (!existsSync(file)) return null;
+function candidateFormats(snapshot: CandidateSnapshot, bookId: string, chapterNumber: number): string[] | null {
+  const fileName = chapterFileName(`${bookId}-ch${String(chapterNumber).padStart(2, "0")}`);
+  const file = snapshot.files.find((entry) => entry.logicalPath === `state/chapters/${fileName}`);
+  if (!file) return null;
   try {
-    const ch = JSON.parse(readFileSync(file, "utf8")) as ChapterV21;
+    const ch = JSON.parse(Buffer.from(file.bytes).toString("utf8")) as ChapterV21;
     const formats = (ch.examples ?? []).map((e) => e?.planSpec?.format ?? "vignette");
     return formats.length > 0 ? formats : null;
-  } catch {
-    return null;
+  } catch (cause) {
+    throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${file.logicalPath}: ${(cause as Error).message}`);
   }
 }
 
@@ -85,7 +87,13 @@ export type PlanShapesOpts = {
   forceFresh?: boolean;
 };
 
-export function planShapes(bookId: string, from: number, to: number, perChapter = 6, opts: PlanShapesOpts = {}): ShapePlan {
+export function planShapes(bookId: string, from: number, to: number, perChapter?: number, opts?: PlanShapesOpts): ShapePlan;
+export function planShapes(bookId: string, from: number, to: number, perChapter: number, opts: PlanShapesOpts, reader: BookContentReader, candidateId: string): Promise<ShapePlan>;
+export function planShapes(bookId: string, from: number, to: number, perChapter = 6, opts: PlanShapesOpts = {}, reader?: BookContentReader, candidateId?: string): ShapePlan | Promise<ShapePlan> {
+  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
+  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+  if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+  const snapshot = opened.value;
   const shapes = loadSceneShapes();
   const L = shapes.length;
   if (perChapter > L) throw new Error(`perChapter ${perChapter} exceeds the ${L}-shape palette.`);
@@ -93,7 +101,7 @@ export function planShapes(bookId: string, from: number, to: number, perChapter 
   const allocation: Record<number, string[]> = {};
   const carried: number[] = [];
   for (let n = from; n <= to; n++) {
-    const disk = opts.forceFresh ? null : onDiskFormats(bookId, n);
+    const disk = opts.forceFresh ? null : candidateFormats(snapshot, bookId, n);
     if (disk) {
       // Carry the authored chapter's REAL formats so planEnforcement (SP2 "obeyed
       // the allocation" / SP3 "no shape-slot reused") compares the chapter against
@@ -133,6 +141,7 @@ export function planShapes(bookId: string, from: number, to: number, perChapter 
     allocation,
     carriedChapters: carried,
   };
+  });
 }
 
 export function writeShapePlan(plan: ShapePlan): string {

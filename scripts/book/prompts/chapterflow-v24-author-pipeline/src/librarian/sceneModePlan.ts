@@ -26,7 +26,8 @@
 
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { mkdirSync, writeFileSync } from "fs";
+import type { BookContentReader } from "../books/candidateTypes.js";
 import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
@@ -161,14 +162,18 @@ export function writeSceneModePlan(plan: SceneModePlan): string {
   return p;
 }
 
-export function loadSceneModePlan(bookId: string): SceneModePlan | null {
-  const p = sceneModePlanPath(bookId);
-  if (!existsSync(p)) return null;
-  try {
-    return JSON.parse(readFileSync(p, "utf8")) as SceneModePlan;
-  } catch {
-    return null;
-  }
+export function loadSceneModePlan(bookId: string): SceneModePlan | null;
+export function loadSceneModePlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<SceneModePlan>;
+export function loadSceneModePlan(bookId: string, reader?: BookContentReader, candidateId?: string): SceneModePlan | null | Promise<SceneModePlan> {
+  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
+  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+    if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+    const logicalPath = `state/scene-mode-plans/${bookId}.scene-mode-plan.json`;
+    const file = opened.value.files.find((entry) => entry.logicalPath === logicalPath);
+    if (!file) throw new Error(`CANDIDATE_ENTRY_MISSING: ${logicalPath}`);
+    try { return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as SceneModePlan; }
+    catch (cause) { throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(cause as Error).message}`); }
+  });
 }
 
 export function formatSceneModePlan(plan: SceneModePlan): string {

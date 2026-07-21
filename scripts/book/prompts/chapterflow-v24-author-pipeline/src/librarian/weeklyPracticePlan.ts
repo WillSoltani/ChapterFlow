@@ -25,7 +25,8 @@
 
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { mkdirSync, writeFileSync } from "fs";
+import type { BookContentReader } from "../books/candidateTypes.js";
 import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
@@ -98,14 +99,18 @@ export function writeWeeklyPracticePlan(plan: WeeklyPracticePlan): string {
   return p;
 }
 
-export function loadWeeklyPracticePlan(bookId: string): WeeklyPracticePlan | null {
-  const p = weeklyPracticePlanPath(bookId);
-  if (!existsSync(p)) return null;
-  try {
-    return JSON.parse(readFileSync(p, "utf8")) as WeeklyPracticePlan;
-  } catch {
-    return null;
-  }
+export function loadWeeklyPracticePlan(bookId: string): WeeklyPracticePlan | null;
+export function loadWeeklyPracticePlan(bookId: string, reader: BookContentReader, candidateId: string): Promise<WeeklyPracticePlan>;
+export function loadWeeklyPracticePlan(bookId: string, reader?: BookContentReader, candidateId?: string): WeeklyPracticePlan | null | Promise<WeeklyPracticePlan> {
+  if (!reader || !candidateId) throw new Error("CANDIDATE_READER_REQUIRED: BookContentReader and candidateId are required");
+  return reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } }).then((opened) => {
+    if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+    const logicalPath = `state/weekly-practice-plans/${bookId}.weekly-practice-plan.json`;
+    const file = opened.value.files.find((entry) => entry.logicalPath === logicalPath);
+    if (!file) throw new Error(`CANDIDATE_ENTRY_MISSING: ${logicalPath}`);
+    try { return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as WeeklyPracticePlan; }
+    catch (cause) { throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(cause as Error).message}`); }
+  });
 }
 
 export function formatWeeklyPracticePlan(plan: WeeklyPracticePlan): string {
