@@ -18,12 +18,20 @@ import { finishV25Tests, requiredTest } from "./harness.js";
 
 const BOOK = "librarian-book";
 const CANDIDATE = "candidate-history-1";
-const VALUES = {
-  action: { schemaVersion: "action-mechanism-plan-v1", bookId: BOOK, createdAt: "candidate", allocation: {}, diagnostics: { mechanismCounts: {} } },
-  answer: { schemaVersion: "answer-key-plan-v1", bookId: BOOK, createdAt: "candidate", questionsPerChapter: 3, positions: 3, allocation: { 1: [0, 1, 2] }, aggregate: { counts: [1, 1, 1], maxFraction: 1 / 3 } },
-  cadence: { schemaVersion: "cadence-plan-v1", bookId: BOOK, createdAt: "candidate", allocation: {} },
-  skeleton: { schemaVersion: "fullread-skeleton-plan-v1", bookId: BOOK, createdAt: "candidate", allocation: {}, diagnostics: { beatCounts: {} } },
-  weekly: { schemaVersion: "weekly-practice-plan-v1", bookId: BOOK, createdAt: "candidate", allocation: {}, diagnostics: { formCounts: {} } },
+const CANDIDATE_JSON = {
+  action: '{"schemaVersion":"action-mechanism-plan-v1","bookId":"librarian-book","createdAt":"legacy-frozen","allocation":{"1":{"mechanismId":"write_a_line","directive":"WRITE"},"2":{"mechanismId":"say_aloud","directive":"SAY"}},"diagnostics":{"mechanismCounts":{"write_a_line":1,"say_aloud":1}}}',
+  answer: '{"schemaVersion":"answer-key-plan-v1","bookId":"librarian-book","createdAt":"legacy-frozen","questionsPerChapter":3,"positions":3,"allocation":{"1":[0,1,2],"2":[2,0,1]},"aggregate":{"counts":[2,2,2],"maxFraction":0.3333333333333333}}',
+  cadence: '{"schemaVersion":"cadence-plan-v1","bookId":"librarian-book","createdAt":"legacy-frozen","allocation":{"1":{"archetype":"mechanism-first","directive":"Lead mechanism"},"2":{"archetype":"case-first","directive":"Lead case"}}}',
+  skeleton: '{"schemaVersion":"fullread-skeleton-plan-v1","bookId":"librarian-book","createdAt":"legacy-frozen","allocation":{"1":{"beatId":"case_then_mechanism","directive":"Case then mechanism"},"2":{"beatId":"mechanism_then_case","directive":"Mechanism then case"}},"diagnostics":{"beatCounts":{"case_then_mechanism":1,"mechanism_then_case":1}}}',
+  weekly: '{"schemaVersion":"weekly-practice-plan-v1","bookId":"librarian-book","createdAt":"legacy-frozen","allocation":{"1":{"formId":"observation_log","directive":"Log observations"},"2":{"formId":"conversation","directive":"Have conversation"}},"diagnostics":{"formCounts":{"observation_log":1,"conversation":1}}}',
+} as const;
+
+const FROZEN_LEGACY_BASELINES = {
+  action: { schemaVersion: "action-mechanism-plan-v1", bookId: "librarian-book", createdAt: "legacy-frozen", allocation: { 1: { mechanismId: "write_a_line", directive: "WRITE" }, 2: { mechanismId: "say_aloud", directive: "SAY" } }, diagnostics: { mechanismCounts: { write_a_line: 1, say_aloud: 1 } } },
+  answer: { schemaVersion: "answer-key-plan-v1", bookId: "librarian-book", createdAt: "legacy-frozen", questionsPerChapter: 3, positions: 3, allocation: { 1: [0, 1, 2], 2: [2, 0, 1] }, aggregate: { counts: [2, 2, 2], maxFraction: 0.3333333333333333 } },
+  cadence: { schemaVersion: "cadence-plan-v1", bookId: "librarian-book", createdAt: "legacy-frozen", allocation: { 1: { archetype: "mechanism-first", directive: "Lead mechanism" }, 2: { archetype: "case-first", directive: "Lead case" } } },
+  skeleton: { schemaVersion: "fullread-skeleton-plan-v1", bookId: "librarian-book", createdAt: "legacy-frozen", allocation: { 1: { beatId: "case_then_mechanism", directive: "Case then mechanism" }, 2: { beatId: "mechanism_then_case", directive: "Mechanism then case" } }, diagnostics: { beatCounts: { case_then_mechanism: 1, mechanism_then_case: 1 } } },
+  weekly: { schemaVersion: "weekly-practice-plan-v1", bookId: "librarian-book", createdAt: "legacy-frozen", allocation: { 1: { formId: "observation_log", directive: "Log observations" }, 2: { formId: "conversation", directive: "Have conversation" } }, diagnostics: { formCounts: { observation_log: 1, conversation: 1 } } },
 } as const;
 
 const PATHS = {
@@ -34,9 +42,9 @@ const PATHS = {
   weekly: `state/weekly-practice-plans/${BOOK}.weekly-practice-plan.json`,
 } as const;
 
-function fixtureFiles(overrides: Partial<Record<keyof typeof VALUES, unknown>> = {}): CandidateInputFile[] {
+function fixtureFiles(overrides: Partial<Record<keyof typeof CANDIDATE_JSON, string>> = {}): CandidateInputFile[] {
   return Object.entries(PATHS).map(([key, logicalPath]) => {
-    const bytes = Buffer.from(JSON.stringify(overrides[key as keyof typeof VALUES] ?? VALUES[key as keyof typeof VALUES]));
+    const bytes = Buffer.from(overrides[key as keyof typeof CANDIDATE_JSON] ?? CANDIDATE_JSON[key as keyof typeof CANDIDATE_JSON]);
     return { kind: "SIDECAR" as const, logicalPath, mediaType: "application/json" as const, bytes };
   });
 }
@@ -76,21 +84,21 @@ requiredTest("instructional loaders select candidate bytes over differing legacy
   }
   const subject = setup(roots);
   await stage(subject.store, CANDIDATE, fixtureFiles());
-  assert.deepEqual(await loadActionMechanismPlan(BOOK, subject.reader, CANDIDATE), VALUES.action);
-  assert.deepEqual(await loadAnswerKeyPlan(BOOK, subject.reader, CANDIDATE), VALUES.answer);
-  assert.deepEqual(await loadCadencePlan(BOOK, subject.reader, CANDIDATE), VALUES.cadence);
-  assert.deepEqual(await loadFullReadSkeletonPlan(BOOK, subject.reader, CANDIDATE), VALUES.skeleton);
-  assert.deepEqual(await loadWeeklyPracticePlan(BOOK, subject.reader, CANDIDATE), VALUES.weekly);
+  assert.deepEqual(await loadActionMechanismPlan(BOOK, subject.reader, CANDIDATE), FROZEN_LEGACY_BASELINES.action);
+  assert.deepEqual(await loadAnswerKeyPlan(BOOK, subject.reader, CANDIDATE), FROZEN_LEGACY_BASELINES.answer);
+  assert.deepEqual(await loadCadencePlan(BOOK, subject.reader, CANDIDATE), FROZEN_LEGACY_BASELINES.cadence);
+  assert.deepEqual(await loadFullReadSkeletonPlan(BOOK, subject.reader, CANDIDATE), FROZEN_LEGACY_BASELINES.skeleton);
+  assert.deepEqual(await loadWeeklyPracticePlan(BOOK, subject.reader, CANDIDATE), FROZEN_LEGACY_BASELINES.weekly);
 });
 
 requiredTest("historical selector never consults CURRENT", async ({ roots }) => {
   const subject = setup(roots);
   await stage(subject.store, CANDIDATE, fixtureFiles());
-  assert.deepEqual(await loadAnswerKeyPlan(BOOK, subject.reader, CANDIDATE), VALUES.answer);
+  assert.deepEqual(await loadAnswerKeyPlan(BOOK, subject.reader, CANDIDATE), FROZEN_LEGACY_BASELINES.answer);
 });
 
 requiredTest("missing corrupt and digest reader failures block without fallback", async ({ roots }) => {
-  writeFileSync(join(roots.stateRoot, "fallback.json"), JSON.stringify(VALUES.action));
+  writeFileSync(join(roots.stateRoot, "fallback.json"), JSON.stringify(FROZEN_LEGACY_BASELINES.action));
   const subject = setup(roots);
   await assert.rejects(loadActionMechanismPlan(BOOK, subject.reader, "not-staged"), /CANDIDATE_NOT_FOUND/);
   await stage(subject.store, "missing-entry", fixtureFiles().slice(1));
@@ -106,16 +114,15 @@ requiredTest("missing corrupt and digest reader failures block without fallback"
 });
 
 requiredTest("independent instructional fixture stays semantically equal and read-only", async ({ roots }) => {
-  const expected = JSON.parse('{"schemaVersion":"answer-key-plan-v1","bookId":"librarian-book","createdAt":"candidate","questionsPerChapter":3,"positions":3,"allocation":{"1":[0,1,2]},"aggregate":{"counts":[1,1,1],"maxFraction":0.3333333333333333}}');
   writeFileSync(join(roots.stateRoot, "sentinel"), "unchanged", { mode: 0o640 });
   const subject = setup(roots);
   await stage(subject.store, CANDIDATE, fixtureFiles());
   const before = tree(roots.base);
-  await loadActionMechanismPlan(BOOK, subject.reader, CANDIDATE);
-  assert.deepEqual(await loadAnswerKeyPlan(BOOK, subject.reader, CANDIDATE), expected);
-  await loadCadencePlan(BOOK, subject.reader, CANDIDATE);
-  await loadFullReadSkeletonPlan(BOOK, subject.reader, CANDIDATE);
-  await loadWeeklyPracticePlan(BOOK, subject.reader, CANDIDATE);
+  assert.deepEqual(await loadActionMechanismPlan(BOOK, subject.reader, CANDIDATE), FROZEN_LEGACY_BASELINES.action);
+  assert.deepEqual(await loadAnswerKeyPlan(BOOK, subject.reader, CANDIDATE), FROZEN_LEGACY_BASELINES.answer);
+  assert.deepEqual(await loadCadencePlan(BOOK, subject.reader, CANDIDATE), FROZEN_LEGACY_BASELINES.cadence);
+  assert.deepEqual(await loadFullReadSkeletonPlan(BOOK, subject.reader, CANDIDATE), FROZEN_LEGACY_BASELINES.skeleton);
+  assert.deepEqual(await loadWeeklyPracticePlan(BOOK, subject.reader, CANDIDATE), FROZEN_LEGACY_BASELINES.weekly);
   assert.deepEqual(tree(roots.base), before);
 });
 
