@@ -199,28 +199,48 @@ requiredTest("mismatched candidate review QC tuple blocks package and pointer mu
   assert.equal(route.auth.counts.qcRead, 0);
 });
 
-requiredTest("valid stored authority fixes package writer fault by exact same-request CURRENT reconciliation", async (context) => {
+requiredTest("CURRENT diagnosis after package writer fault keeps original and changed retries fail closed", async (context) => {
   const stores = storage(context);
   const identity = await stage(stores.candidates, "valid-release-book", "candidate-1");
   const request = releaseRequest("valid-release-book", identity);
+  const packagePath = join(context.roots.tempRoot, "released-package.json");
+  let writerAttempts = 0;
   let packageWrites = 0;
   let failWriter = true;
-  const route = await adapter(request, stores, ({ package: value }) => {
+  const writer: ConstructorParameters<typeof CanonicalPackageAdapter>[0]["packageWriter"] = ({ package: value }) => {
+    writerAttempts += 1;
     if (failWriter) {
       failWriter = false;
       throw new Error("injected package writer fault");
     }
     packageWrites += 1;
-    writeFileSync(join(context.roots.tempRoot, "released-package.json"), JSON.stringify(value));
-  });
+    writeFileSync(packagePath, JSON.stringify(value));
+  };
+  const route = await adapter(request, stores, writer);
   const first = await route.adapter.release(request);
   assertError(first, "RECONCILIATION_REQUIRED");
-  const result = await route.adapter.release(request);
-  assert.ok(result.ok);
-  assert.equal(result.value.bookRevision, 1);
-  assert.equal(result.value.readback, "VERIFIED");
+  assertError(await route.adapter.release(request), "RECONCILIATION_REQUIRED");
+
+  const changedRequest: CanonicalReleaseRequest = {
+    ...request,
+    reviewId: "review-candidate-1-changed",
+    qcRoundId: "qc-candidate-1-changed",
+    promotedAt: "2026-07-20T12:00:03.500Z",
+    metadata: {
+      ...request.metadata,
+      title: "Changed retry title",
+      packageId: "valid-release-book-v21-changed",
+      createdAt: "2026-07-20T12:00:03.500Z",
+    },
+  };
+  const changedRoute = await adapter(changedRequest, stores, writer);
+  assertError(await changedRoute.adapter.release(changedRequest), "RECONCILIATION_REQUIRED");
+
   assert.equal(route.pointer.counts.compareAndSet, 1);
-  assert.equal(packageWrites, 1);
+  assert.equal(changedRoute.pointer.counts.compareAndSet, 0);
+  assert.equal(writerAttempts, 1);
+  assert.equal(packageWrites, 0);
+  assert.equal(existsSync(packagePath), false);
   const current = await stores.pointer.read(request.bookId);
   assert.ok(current.ok && current.value);
   assert.equal(current.value.candidateId, identity.candidateId);

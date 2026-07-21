@@ -186,27 +186,22 @@ export class CanonicalPackageAdapter {
       expectedBookRevision: request.expectedBookRevision,
       promotedAt: request.promotedAt,
     });
-    let bookRevision: number;
-    let readback: "VERIFIED";
-    if (promoted.ok) {
-      bookRevision = promoted.value.bookRevision;
-      readback = promoted.value.readback;
-    } else {
+    if (!promoted.ok) {
       if (promoted.error.code !== "REVISION_CONFLICT") return promoted;
       const current = await this.readCurrent(request.bookId);
       if (
-        !current.ok ||
-        current.value === null ||
-        current.value.bookRevision !== request.expectedBookRevision + 1 ||
-        current.value.candidate.candidateId !== request.candidate.candidateId ||
-        current.value.candidate.manifestDigest !== request.candidate.manifestDigest
+        current.ok &&
+        current.value !== null &&
+        current.value.bookRevision === request.expectedBookRevision + 1 &&
+        current.value.candidate.candidateId === request.candidate.candidateId &&
+        current.value.candidate.manifestDigest === request.candidate.manifestDigest
       ) {
-        return promoted;
+        return failed(
+          "RECONCILIATION_REQUIRED",
+          "CURRENT names this candidate, but prior release intent cannot be proven; package write suppressed",
+        );
       }
-      // Prior same-request attempt committed and verified CURRENT, then failed
-      // package materialization. Complete that exact candidate-keyed write.
-      bookRevision = current.value.bookRevision;
-      readback = "VERIFIED";
+      return promoted;
     }
     try {
       await this.#options.packageWriter({
@@ -221,8 +216,8 @@ export class CanonicalPackageAdapter {
       ok: true,
       value: {
         package: assembled.value.package,
-        bookRevision,
-        readback,
+        bookRevision: promoted.value.bookRevision,
+        readback: promoted.value.readback,
       },
     };
   }

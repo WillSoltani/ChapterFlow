@@ -52,7 +52,12 @@ export class LegacyPromotionAdapter {
     const lease = acquired.value;
     try {
       if (this.#legacyAuthority.isEnabled()) {
-        await lease.finish("RESTORE_LEGACY");
+        const current = await this.#canonicalRelease.readCurrent(request.bookId);
+        const resolution = current.ok && current.value === null ? "RESTORE_LEGACY" : "KEEP_DISABLED";
+        await lease.finish(resolution);
+        if (resolution === "RESTORE_LEGACY" && !this.#legacyAuthority.isEnabled()) {
+          return failed("LEGACY_AUTHORITY_RESTORE_FAILED", "mixed-promoter rollback did not restore legacy authority");
+        }
         return failed("MIXED_PROMOTER", "legacy promoter remained enabled after disable");
       }
       const released = await this.#canonicalRelease.release(request);

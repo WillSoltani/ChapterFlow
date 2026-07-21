@@ -443,7 +443,7 @@ requiredTest("actual disposable legacy promotion and V4 candidate package plus m
   assert.deepEqual(v4Manifest.manifest, legacy.manifest);
 });
 
-function sharedLegacyAuthority(initialActiveUses: number) {
+function sharedLegacyAuthority(initialActiveUses: number, remainEnabledAfterBegin = false) {
   let enabled = true;
   let activeUses = initialActiveUses;
   let held = false;
@@ -466,7 +466,7 @@ function sharedLegacyAuthority(initialActiveUses: number) {
         return { ok: false, error: { code: "LEGACY_AUTHORITY_UNAVAILABLE", message: "legacy authority already disabled" } };
       }
       held = true;
-      enabled = false;
+      enabled = remainEnabledAfterBegin;
       let finished = false;
       return {
         ok: true,
@@ -523,14 +523,24 @@ requiredTest("shared atomic first cutover has one revision-one winner and never 
   assert.equal(faultShared.calls.restore, 0);
   assert.equal(faultRelease.packageWrites(), 1);
 
-  const reconciled = await faultRelease.canonicalRelease.release(faultInput);
-  assert.ok(reconciled.ok);
-  assert.equal(reconciled.value.bookRevision, 1);
+  assertError(await faultRelease.canonicalRelease.release(faultInput), "RECONCILIATION_REQUIRED");
   assert.equal(faultRelease.pointer.counts.compareAndSet, 1);
-  assert.equal(faultRelease.packageWrites(), 2);
-  assert.equal(existsSync(join(context.roots.tempRoot, `${faultBookId}.package.json`)), true);
+  assert.equal(faultRelease.packageWrites(), 1);
+  assert.equal(existsSync(join(context.roots.tempRoot, `${faultBookId}.package.json`)), false);
   assert.equal(faultShared.enabled(), false);
   assert.equal(faultShared.calls.restore, 0);
+
+  const mixedShared = sharedLegacyAuthority(0, true);
+  const mixedCutover = new LegacyPromotionAdapter({
+    canonicalRelease: faultRelease.canonicalRelease,
+    legacyAuthority: mixedShared.authority,
+  });
+  assertError(await mixedCutover.cutoverFirstCandidate(faultInput), "MIXED_PROMOTER");
+  assert.equal(mixedShared.enabled(), false);
+  assert.equal(mixedShared.calls.keepDisabled, 1);
+  assert.equal(mixedShared.calls.restore, 0);
+  assert.equal(faultRelease.pointer.counts.compareAndSet, 1);
+  assert.equal(faultRelease.packageWrites(), 1);
 
   const bookId = "legacy-cutover-book";
   const stores = storage(context);
