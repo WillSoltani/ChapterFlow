@@ -391,19 +391,21 @@ export async function checkQcAttestationFromCandidate(
     candidateId: string;
     manifestDigest: string;
     chapterLogicalPath: string;
-    attestationLogicalPath: string;
-    qcRoundLogicalPath: string;
+    attestation: QcAttestation;
+    qcRound: QcRoundResult;
     roundId: string;
     reviewId: string;
     enforce: boolean;
   }>,
 ): Promise<QcFinding[]> {
   const opened = await openCriticCandidateEntries(reader, {
-    ...input,
-    logicalPaths: [input.chapterLogicalPath, input.attestationLogicalPath, input.qcRoundLogicalPath],
+    bookId: input.bookId,
+    candidateId: input.candidateId,
+    manifestDigest: input.manifestDigest,
+    logicalPaths: [input.chapterLogicalPath],
   });
   const chapter = opened.values[0] as ChapterV21;
-  const attestation = opened.values[1] as QcAttestation;
+  const attestation = input.attestation;
   if (attestation.bookId !== input.bookId ||
       attestation.chapterNumber !== chapter.number ||
       attestation.chapterId !== chapter.chapterId ||
@@ -416,9 +418,10 @@ export async function checkQcAttestationFromCandidate(
   }
   return checkQcAttestation(chapter, input.enforce, {
     attestation,
-    expectedCandidate: { candidateId: input.candidateId, manifestDigest: input.manifestDigest },
+    expectedCandidate: { candidateId: input.candidateId, manifestDigest: opened.snapshot.manifest.manifestDigest },
     expectedRoundId: input.roundId,
     expectedReviewId: input.reviewId,
-    qcRound: opened.values[2] as QcRoundResult,
+    qcRound: input.qcRound,
+    legacyRoundPresent: true,
   });
 }

@@ -18,6 +18,7 @@ import { runEvalBookProxy, selectSeededChapters } from "../../src/review/evalBoo
 import { runEvalReaderProxy, sampleChapters } from "../../src/review/evalReaderProxy.js";
 import type { BookPackage, BookPackageV21, ChapterV21 } from "../../src/types.js";
 import type { ChapterReviewV1 } from "../../src/artifacts/artifactTypes.js";
+import type { QcRoundResult } from "../../src/qc/qcTypes.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
@@ -30,10 +31,6 @@ const NAME_PLAN = "sidecars/name-plan.json";
 const BRIEF = "sidecars/chapter-brief.json";
 const SOURCE = "sidecars/source-sidecar.json";
 const SOURCE_USE = "sidecars/source-use-plan.json";
-const ATTESTATION = "qc/attestation.json";
-const WRONG_CHAPTER_ATTESTATION = "qc/attestation-wrong-chapter.json";
-const WRONG_ROUND_ATTESTATION = "qc/attestation-wrong-round.json";
-const QC_ROUND = "qc/round.json";
 const PATTERN_AUDIT = "critics/book-pattern-audit.json";
 
 type TreeEntry = { type: string; mode: string; mtimeNs: string; bytes?: string };
@@ -89,7 +86,7 @@ function chapterPath(n: number): string {
   return `chapters/ch${String(n).padStart(2, "0")}.json`;
 }
 
-async function rig(context: TestContext, includeQc = false) {
+async function rig(context: TestContext) {
   const lock = createBookWriteLock({ booksRoot: context.roots.booksRoot, timeoutMs: 1_000, pollMs: 1 });
   const pointer = createCurrentPointerStore({ booksRoot: context.roots.booksRoot, writeLock: lock });
   const store = createCandidateStore({ booksRoot: context.roots.booksRoot, writeLock: lock, currentPointerStore: pointer });
@@ -123,37 +120,6 @@ async function rig(context: TestContext, includeQc = false) {
       },
     }),
   ];
-  if (includeQc) {
-    const chapter = sourceChapters[0];
-    const attestation: QcAttestation = {
-      schemaVersion: "qc-attest-v1",
-      bookId: BOOK,
-      chapterNumber: 1,
-      chapterId: chapter.chapterId,
-      verdict: "PUBLISHABLE",
-      contentHash: chapterContentHash(chapter),
-      hashVersion: "v2",
-      reviewer: "human:test",
-      reviewedAt: CREATED,
-      roundId: "round-1",
-    };
-    files.push(jsonFile(ATTESTATION, attestation));
-    files.push(jsonFile(WRONG_CHAPTER_ATTESTATION, {
-      ...attestation,
-      chapterNumber: sourceChapters[1].number,
-      chapterId: sourceChapters[1].chapterId,
-    }));
-    files.push(jsonFile(WRONG_ROUND_ATTESTATION, { ...attestation, roundId: "round-poison" }));
-    files.push(jsonFile(QC_ROUND, {
-      schemaVersion: "1",
-      roundId: "round-1",
-      candidate: { candidateId: CANDIDATE, manifestDigest: "0".repeat(64) },
-      reviewId: "review-1",
-      outcome: "PASS",
-      issues: [],
-      completedAt: CREATED,
-    }));
-  }
   const inventory = files.map(({ bytes: _bytes, ...entry }) => entry);
   const staged = await store.stage({ bookId: BOOK, candidateId: CANDIDATE, createdByRunId: "run-critic", expectedInventory: inventory, files, createdAt: CREATED });
   assert.ok(staged.ok);
@@ -214,17 +180,44 @@ requiredTest("same immutable snapshot yields normalized metric parity", async (c
 });
 
 requiredTest("stale QC digest blocks without mutation", async (context) => {
-  const input = await rig(context, true);
+  const input = await rig(context);
+  assert.equal(input.files.some((file) => file.logicalPath.startsWith("qc/")), false);
   const before = snapshotTree(context.roots.booksRoot);
-  const findings = await checkQcAttestationFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPath: chapterPath(1), attestationLogicalPath: ATTESTATION, qcRoundLogicalPath: QC_ROUND, roundId: "round-1", reviewId: "review-1", enforce: true });
+  const chapter = input.chapters[0];
+  const attestation: QcAttestation = {
+    schemaVersion: "qc-attest-v1",
+    bookId: BOOK,
+    chapterNumber: chapter.number,
+    chapterId: chapter.chapterId,
+    verdict: "PUBLISHABLE",
+    contentHash: chapterContentHash(chapter),
+    hashVersion: "v2",
+    reviewer: "human:test",
+    reviewedAt: CREATED,
+    roundId: "round-1",
+    roundRole: "attest",
+    reviewerSessionId: "qc-review-session",
+  };
+  const exactRound: QcRoundResult = {
+    schemaVersion: "1",
+    roundId: "round-1",
+    candidate: { candidateId: CANDIDATE, manifestDigest: input.digest },
+    reviewId: "review-1",
+    outcome: "PASS",
+    issues: [],
+    completedAt: CREATED,
+  };
+  const findings = await checkQcAttestationFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPath: chapterPath(1), attestation, qcRound: { ...exactRound, candidate: { ...exactRound.candidate, manifestDigest: "0".repeat(64) } }, roundId: "round-1", reviewId: "review-1", enforce: true });
   assert.equal(findings[0]?.checkId, "QC0.stale_round_binding");
   assert.equal(findings[0]?.message, "QC round candidate ID, manifest digest, round ID, review ID, and PASS outcome must match exactly.");
-  const wrongChapter = await checkQcAttestationFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPath: chapterPath(1), attestationLogicalPath: WRONG_CHAPTER_ATTESTATION, qcRoundLogicalPath: QC_ROUND, roundId: "round-1", reviewId: "review-1", enforce: true });
+  const wrongChapter = await checkQcAttestationFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPath: chapterPath(1), attestation: { ...attestation, chapterNumber: input.chapters[1].number, chapterId: input.chapters[1].chapterId }, qcRound: exactRound, roundId: "round-1", reviewId: "review-1", enforce: true });
   assert.equal(wrongChapter[0]?.checkId, "QC0.stale_attestation_binding");
   assert.equal(wrongChapter[0]?.message, "QC attestation book ID, chapter number, chapter ID, and round ID must match opened chapter and request exactly.");
-  const wrongRound = await checkQcAttestationFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPath: chapterPath(1), attestationLogicalPath: WRONG_ROUND_ATTESTATION, qcRoundLogicalPath: QC_ROUND, roundId: "round-1", reviewId: "review-1", enforce: true });
+  const wrongRound = await checkQcAttestationFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPath: chapterPath(1), attestation: { ...attestation, roundId: "round-poison" }, qcRound: exactRound, roundId: "round-1", reviewId: "review-1", enforce: true });
   assert.equal(wrongRound[0]?.checkId, "QC0.stale_attestation_binding");
   assert.equal(wrongRound[0]?.message, "QC attestation book ID, chapter number, chapter ID, and round ID must match opened chapter and request exactly.");
+  const exact = await checkQcAttestationFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, chapterLogicalPath: chapterPath(1), attestation, qcRound: exactRound, roundId: "round-1", reviewId: "review-1", enforce: true });
+  assert.deepEqual(exact, []);
   assert.deepEqual(snapshotTree(context.roots.booksRoot), before);
 });
 
