@@ -33,6 +33,21 @@ const EXPECTED_INVENTORY_ATOMS = [
   "src/sections/sectionTasks.ts\tsectionTasks\tSTABLE_DISABLED",
   "src/sections/sectionTasks.ts\tmissingSectionTasks\tSTABLE_DISABLED",
   "src/sections/sectionTasks.ts\treadSectionTask\tSTABLE_DISABLED",
+  "src/orchestrator/repairRouting.ts\tbumpSlotSalt\tREMOVED",
+  "src/orchestrator/repairRouting.ts\tredealAndRegenerate\tREMOVED",
+  "src/orchestrator/repairRouting.ts\trouteAndExecuteRepairs\tREMOVED",
+  "src/orchestrator/repairRouting.ts\tsyncChapterEditsToArtifacts\tREMOVED",
+  "src/orchestrator/repairRouting.ts\tgatherRoutableFindings\tREMOVED",
+  "src/orchestrator/repairRouting.ts\trunRoutedRedeals\tREMOVED",
+  "src/orchestrator/repairRouting.ts\trunArtifactSync\tREMOVED",
+  "src/orchestrator/compilerRun.ts\tstampCompilerAssemblyProvenance\tREMOVED",
+  "src/orchestrator/compilerRun.ts\tregenerateSectionArtifact\tREMOVED",
+  "src/orchestrator/compilerRun.ts\tconvergeAssembly\tREMOVED",
+  "src/orchestrator/compilerRun.ts\trunPolishStage\tSTABLE_DISABLED",
+  "src/orchestrator/repairRouting.ts\trepairRoutingMode\tPURE_RETAINED",
+  "src/orchestrator/repairRouting.ts\tclassifyRepairFindings\tPURE_RETAINED",
+  "src/orchestrator/compilerRun.ts\trunRubricPreflight\tINJECTED_V4_RETAINED",
+  "src/orchestrator/compilerRun.ts\tdoCompilerWrite\tINJECTED_V4_RETAINED",
   "src/orchestrator/compilerTasks.ts\tsourcePrewriteRepairPrompt\tPURE_RETAINED",
   "src/orchestrator/compilerTasks.ts\tsourcePrewriteRepairPromptRequest\tPURE_RETAINED",
   "src/sections/sectionTasks.ts\tsectionDoNotLines\tPURE_RETAINED",
@@ -88,6 +103,8 @@ const EXPECTED_RUNTIME_EXPORTS: Readonly<Record<string, readonly string[]>> = {
   "src/orchestrator/compilerTasks.ts": ["COMPILER_SOURCE_REPAIR_PROFILE_ID", "sourcePrewriteRepairPrompt", "sourcePrewriteRepairPromptRequest"],
   "src/review/sourceIntegrityReview.ts": ["runSourceIntegrityReview"],
   "src/orchestrator/forwardChapterConductor.ts": ["runForwardChapterConductor"],
+  "src/orchestrator/repairRouting.ts": ["repairRoutingMode", "classifyRepairFindings"],
+  "src/orchestrator/compilerRun.ts": ["runPolishStage", "runRubricPreflight", "doCompilerWrite"],
 };
 
 function runtimeExportNames(source: string): string[] {
@@ -149,5 +166,23 @@ test("compiler and review V4 seams retain no legacy provider alias", () => {
   for (const path of ["src/app/compilerApplicationPort.ts", "src/review/sourceIntegrityReview.ts", "src/orchestrator/forwardChapterConductor.ts"]) {
     const source = readFileSync(resolve(process.cwd(), path), "utf8");
     assert.doesNotMatch(source, /\bcallClaude\b|\bcallModel\b|providers\/(?:router|cli|anthropic-api|openai-api)/);
+  }
+});
+
+test("removed repair closure symbols have no runtime export", () => {
+  for (const entry of LEGACY_ROUTE_INVENTORY.filter((item) => item.disposition === "REMOVED")) {
+    const source = readFileSync(resolve(process.cwd(), entry.path), "utf8");
+    const exports = new Set(runtimeExportNames(source));
+    for (const symbol of entry.symbols) assert.equal(exports.has(symbol), false, `${entry.path} still exports removed ${symbol}`);
+  }
+});
+
+test("autopilot cannot call legacy repair closure and retained compiler seams cannot reach section tasks", () => {
+  const autopilot = readFileSync(resolve(process.cwd(), "src/orchestrator/autopilot.ts"), "utf8");
+  assert.doesNotMatch(autopilot, /runRoutedRedeals|runArtifactSync|routeAndExecuteRepairs|syncChapterEditsToArtifacts/);
+
+  for (const path of ["src/orchestrator/compilerRun.ts", "src/orchestrator/repairRouting.ts"]) {
+    const source = readFileSync(resolve(process.cwd(), path), "utf8");
+    assert.doesNotMatch(source, /sections\/sectionTasks|deal-section-tasks|validate-sections|assemble-sections/, `${path} reaches disabled section task closure`);
   }
 });

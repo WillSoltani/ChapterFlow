@@ -2,6 +2,7 @@ export const LEGACY_ROUTE_DISABLED_CODE = "LEGACY_ROUTE_DISABLED:V4_APPLICATION_
 
 export type LegacyRouteDisposition =
   | "STABLE_DISABLED"
+  | "REMOVED"
   | "PURE_RETAINED"
   | "INJECTED_V4_RETAINED"
   | "CANONICAL_READ_RETAINED";
@@ -28,6 +29,11 @@ export const LEGACY_ROUTE_INVENTORY: readonly LegacyRouteInventoryEntry[] = Obje
   { path: "src/generateBook.ts", symbols: ["generateBook"], disposition: "STABLE_DISABLED" },
   { path: "src/orchestrator/optimizedPipeline.ts", symbols: ["runOptimizedPipeline"], disposition: "STABLE_DISABLED" },
   { path: "src/sections/sectionTasks.ts", symbols: ["dealSectionTasks", "sectionTasks", "missingSectionTasks", "readSectionTask"], disposition: "STABLE_DISABLED" },
+  { path: "src/orchestrator/repairRouting.ts", symbols: ["bumpSlotSalt", "redealAndRegenerate", "routeAndExecuteRepairs", "syncChapterEditsToArtifacts", "gatherRoutableFindings", "runRoutedRedeals", "runArtifactSync"], disposition: "REMOVED" },
+  { path: "src/orchestrator/compilerRun.ts", symbols: ["stampCompilerAssemblyProvenance", "regenerateSectionArtifact", "convergeAssembly"], disposition: "REMOVED" },
+  { path: "src/orchestrator/compilerRun.ts", symbols: ["runPolishStage"], disposition: "STABLE_DISABLED" },
+  { path: "src/orchestrator/repairRouting.ts", symbols: ["repairRoutingMode", "classifyRepairFindings"], disposition: "PURE_RETAINED" },
+  { path: "src/orchestrator/compilerRun.ts", symbols: ["runRubricPreflight", "doCompilerWrite"], disposition: "INJECTED_V4_RETAINED" },
   { path: "src/orchestrator/compilerTasks.ts", symbols: ["sourcePrewriteRepairPrompt", "sourcePrewriteRepairPromptRequest"], disposition: "PURE_RETAINED" },
   { path: "src/sections/sectionTasks.ts", symbols: ["sectionDoNotLines"], disposition: "PURE_RETAINED" },
   { path: "src/sections/sectionTasks.ts", symbols: ["buildSectionTaskMarkdown"], disposition: "PURE_RETAINED" },

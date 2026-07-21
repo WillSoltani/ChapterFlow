@@ -76,7 +76,6 @@ import { doAuthorWrite, type AuthorWriteOneInvoker } from "./authorRun.js";
 import { doAuthorReview, AUTHOR_BOOK_READERS, type AuthorReviewIo } from "./authorReview.js";
 import { deriveDurableAcceptance, loadNewestAcceptanceRecord } from "./authorAcceptanceState.js";
 import { SessionLedger, newRunManifest, writeCostReport, formatCostReport, writeRunManifest, type RunManifest } from "./sessionLedger.js";
-import { runRoutedRedeals, runArtifactSync } from "./repairRouting.js";
 import { bookRiskPath } from "../artifacts/artifactStore.js";
 import { RISK_SCORE_SCHEMA_VERSION, type BookRiskScoreV1, type ChapterRiskScoreV1 } from "../artifacts/artifactTypes.js";
 import { NOT_METERED_MESSAGE } from "../cost-tracker.js";
@@ -2538,15 +2537,6 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
       return mkHalt(bookId, "qc", "progress", `gate/QC flip on ${flip.slice(0, 300)}: this QC finding already surfaced in an earlier round this run, was sent back through the gate phase, and has now recurred identically — escalate. Round: ${round.roundId}`);
     }
 
-    // P10 — CLASS-ROUTED REPAIR (runs BEFORE the surgical fan-out): a templating finding whose
-    // cause is a dealt slot (scene frame / venue / name / quiz-card shape) is re-dealt at its
-    // blueprint source and its section artifact regenerated, so a re-assembly can't resurrect the
-    // defect; a templated-SOURCE finding escalates (halt → re-research). The remaining prose-local
-    // findings drop through to the existing surgical fan-out below. Env-gated + fail-safe (a book
-    // with no ledger/artifacts on disk is a no-op), so this never destabilizes the surgical path.
-    const routedHalt = await runRoutedRedeals(bookId, round.roundId, deps, { heartbeat });
-    if (routedHalt) return routedHalt;
-
     // Spawn ONE repair writer with the generated repair prompt, then converge
     // deterministically before the next (fresh) round — the treadmill-killer.
     const repairPromptPath = resolve(PIPELINE_DIR, "state", "qc-orchestrator", bookId, round.roundId, "repair-prompt.md");
@@ -2615,16 +2605,6 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
       if (cv.code >= 2) return mkHalt(bookId, "qc", "infra", `qc-converge errored (exit ${cv.code}) during repair convergence — not a content problem; inspect: ${(cv.stderr || cv.stdout).slice(0, 300)}`);
       const cr = await spawnAndLog(bookId, { task: `Fix the remaining deterministic findings for ${bookId}, then qc-converge until CLEAN.\n\n${cv.stdout}`, sessionId: deps.mkSessionId(`qc-converge-fix-${attempt + 1}-${c}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
       if (!cr.ok) break;
-    }
-    // P10 — ARTIFACT SYNC: a surgical edit changed the ChapterV21 on disk, but its section artifacts
-    // still hold the pre-edit text. Write the edited FIELDS back into their owning artifacts and
-    // prove the round trip (re-assembly reproduces the edited chapter's content hash); HALT on a
-    // genuine mismatch rather than ship drifted artifacts a later re-assembly would resurrect.
-    // Only the chapters this fan-out actually changed; enforce-only + no-op for a non-compiler book.
-    const editedChapters = Object.keys(postHashes).filter((n) => preHashes[n] !== undefined && preHashes[n] !== postHashes[n]).map(Number);
-    if (editedChapters.length) {
-      const syncHalt = runArtifactSync(bookId, editedChapters, deps);
-      if (syncHalt) return syncHalt;
     }
     // R3 — post-repair regression scan. qc-converge gates on BLOCKERS only, so a repair can be
     // DETERMINISTIC-CLEAN yet have introduced a MAJOR (A13 commas / C23 dup protagonist / BP28-31
