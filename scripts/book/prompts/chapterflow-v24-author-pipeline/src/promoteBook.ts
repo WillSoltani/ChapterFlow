@@ -246,6 +246,37 @@ export type PromotionInput = {
   tags?: string[];
 };
 
+/**
+ * Shared reader-package formatter. V4 candidate release uses this exact legacy
+ * formatter so migration changes authority and storage reads, not package shape.
+ */
+export function buildLegacyReaderPackage(input: Readonly<{
+  bookId: string;
+  title: string;
+  author: string;
+  packageId: string;
+  createdAt: string;
+  contentOwner?: string;
+  categories?: string[];
+  tags?: string[];
+  chapters: readonly ChapterV21[];
+}>): BookPackageV21 {
+  return {
+    schemaVersion: V21_SCHEMA_VERSION,
+    packageId: input.packageId,
+    createdAt: input.createdAt,
+    contentOwner: input.contentOwner ?? "chapterflow",
+    book: {
+      bookId: normSlug(input.bookId),
+      title: input.title,
+      author: input.author,
+      categories: input.categories,
+      tags: input.tags,
+    },
+    chapters: input.chapters.map((chapter) => stripInternalFields(chapter)),
+  };
+}
+
 type PromotionTransactionState = "started" | "staged" | "verified" | "published" | "complete";
 
 function safeTxId(value: string): string {
@@ -808,21 +839,18 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
         productionManifestFindings = manifestResult.findings;
       } else {
         manifestContentId = manifestResult.manifest.contentId;
-        candidatePackage = {
-          schemaVersion: V21_SCHEMA_VERSION,
+        candidatePackage = buildLegacyReaderPackage({
+          bookId,
+          title,
+          author,
           packageId,
           createdAt,
           contentOwner,
-          book: {
-            bookId,
-            title,
-            author,
-            categories: input.categories,
-            tags: input.tags,
-          },
+          categories: input.categories,
+          tags: input.tags,
           // Reader content ONLY — the manifest moves to the sidecar (K1).
           chapters: shippedChapters,
-        };
+        });
         candidateSidecar = {
           schemaVersion: PRODUCTION_MANIFEST_SIDECAR_SCHEMA,
           bookId,
