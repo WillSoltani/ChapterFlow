@@ -94,3 +94,23 @@ test("runbookJson exposes a harness-feedable model: phase, strictEnv booleans, b
   assert.match(j.next.command, /qc-auto "zz-book"/);
   assert.match(j.next.prompt, /QC-ORCHESTRATE-CODEX-SESSION\.md/);
 });
+
+test("failed lifecycle qualification renders safe diagnostic rollback boundary and manual owner without telemetry", () => {
+  const qualification = {
+    owner: "LC-08",
+    message: "required lifecycle case is FAIL",
+    safeDiagnostic: "qc-diagnose fixture-book --round round-failed",
+    rollbackBoundary: "retain predecessor and successor; disable successor promotion",
+    manualOwner: "release owner reviews local optional evidence",
+  };
+  const withFailure = status({ qualification });
+  const out = formatRunbook("fixture-book", runbookPlan("qc", "fixture-book"), withFailure);
+  assert.match(out, /\[LC-08\] BLOCKED — required lifecycle case is FAIL/);
+  assert.match(out, /safe diagnostic: qc-diagnose fixture-book --round round-failed/);
+  assert.match(out, /rollback boundary: retain predecessor and successor; disable successor promotion/);
+  assert.match(out, /manual owner: release owner reviews local optional evidence/);
+  assert.match(out, /telemetry exporter not required/);
+
+  const json = runbookJson("fixture-book", runbookPlan("qc", "fixture-book"), withFailure) as any;
+  assert.deepEqual(json.qualification, qualification);
+});
