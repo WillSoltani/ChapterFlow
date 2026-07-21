@@ -17,6 +17,7 @@ import { chapterContentHash } from "../src/critics/qcAttestation.js";
 import {
   REQUIRED_SWEEP_FAMILIES,
   appendSweepHistory,
+  chapterClearsPath,
   loadSweepHistory,
   priorSweepRecord,
   rebuildSweepHistory,
@@ -34,6 +35,7 @@ const HASHES = Object.fromEntries(CHAPTERS.map((ch) => [String(ch.number), chapt
 
 function reset(): void {
   rmSync(sweepHistoryPath(BOOK), { force: true });
+  rmSync(chapterClearsPath(BOOK), { force: true });
   rmSync(sweepRecordPath(BOOK), { force: true });
   rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
 }

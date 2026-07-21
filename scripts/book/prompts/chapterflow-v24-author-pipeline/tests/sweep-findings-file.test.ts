@@ -3,7 +3,7 @@ import { mkdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
-import { checkSweep, sweepRecordPath, sweepTextureAdvisories, writeSweepAttestation } from "../src/qc/sweep.js";
+import { chapterClearsPath, checkSweep, sweepHistoryPath, sweepRecordPath, sweepTextureAdvisories, writeSweepAttestation } from "../src/qc/sweep.js";
 import { QC_ORCHESTRATOR_DIR } from "../src/qc/orchestrator/artifacts.js";
 import { keyPackDir } from "../src/qc/manualKeyJudge.js";
 import { test } from "./harness.js";
@@ -15,6 +15,8 @@ const ROUND = "r-sweep-file";
 function cleanup(): void {
   for (const n of [1, 2]) rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch${String(n).padStart(2, "0")}.v21-native.chapter.json`), { force: true });
   rmSync(sweepRecordPath(BOOK), { force: true });
+  rmSync(sweepHistoryPath(BOOK), { force: true });
+  rmSync(chapterClearsPath(BOOK), { force: true });
   rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
   rmSync(qcRoundPath(BOOK, ROUND), { force: true });
   rmSync(keyPackDir(BOOK, ROUND), { recursive: true, force: true });

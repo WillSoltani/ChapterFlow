@@ -18,6 +18,7 @@ import { dirname, resolve } from "node:path";
 import { test } from "./harness.js";
 import {
   appendSweepHistory,
+  chapterClearsPath,
   loadSweepHistory,
   sweepChapterStatus,
   sweepDefectFingerprintV2,
@@ -194,6 +195,7 @@ const DISK_BOOK = "zz-fixture-sweep-fp-disk";
 
 function diskReset(): void {
   rmSync(sweepHistoryPath(DISK_BOOK), { force: true });
+  rmSync(chapterClearsPath(DISK_BOOK), { force: true });
   rmSync(sweepRecordPath(DISK_BOOK), { force: true });
   rmSync(resolve(QC_ORCHESTRATOR_DIR, DISK_BOOK), { recursive: true, force: true });
 }

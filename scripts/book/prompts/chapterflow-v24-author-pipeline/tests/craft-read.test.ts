@@ -39,7 +39,7 @@ import {
 import { finalizeQcRound } from "../src/qc/orchestrator/finalize.js";
 import { validateSubmission, type ValidatedCraftReadSubmission } from "../src/qc/orchestrator/schemas.js";
 import { sourceHashFor } from "../src/qc/sourceV2Gate.js";
-import { REQUIRED_SWEEP_FAMILIES, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
+import { chapterClearsPath, REQUIRED_SWEEP_FAMILIES, sweepHistoryPath, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const BOOK = "zz-fixture-craft-read";
@@ -80,8 +80,11 @@ function cleanup(): void {
   rmSync(resolve(REPO_ROOT, ".chapterflow/runs", BOOK), { recursive: true, force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "qc-orchestrator", BOOK), { recursive: true, force: true });
   rmSync(keyPackDir(BOOK, ROUND), { recursive: true, force: true });
+  rmSync(dirname(keyPackDir(BOOK, ROUND)), { recursive: true, force: true });
   rmSync(qcRoundPath(BOOK, ROUND), { force: true });
   rmSync(waiverPath(BOOK), { force: true });
+  rmSync(sweepHistoryPath(BOOK), { force: true });
+  rmSync(chapterClearsPath(BOOK), { force: true });
   rmSync(sweepRecordPath(BOOK), { force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${BOOK}.manual-brief.json`), { force: true });
   for (const n of [CH]) {

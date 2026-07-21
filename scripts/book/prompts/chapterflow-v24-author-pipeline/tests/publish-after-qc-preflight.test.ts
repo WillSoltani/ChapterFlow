@@ -12,7 +12,7 @@ import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { keyDerivationPath, keyPackDir, loadKeyPack, manualKeyJudgePath, writeKeyPacks, type KeyDerivation } from "../src/qc/manualKeyJudge.js";
 import { qcRoundPath, openQcRound } from "../src/qc/qcRound.js";
 import { repairLedgerPath, roundRecordPath, orchestratorRoundDir, writeBarReadArtifact, writeConfirmReadArtifact } from "../src/qc/orchestrator/artifacts.js";
-import { REQUIRED_SWEEP_FAMILIES, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
+import { chapterClearsPath, REQUIRED_SWEEP_FAMILIES, sweepHistoryPath, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 import { sourceHashFor } from "../src/qc/sourceV2Gate.js";
 import { publishAfterQc, formatPreflightChecklist, hermeticSelfTestEnv } from "../src/qc/publishAfterQc.js";
 import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
@@ -41,6 +41,10 @@ function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
     rmSync(keyPackDir(bookId, ROUND), { recursive: true, force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "qc-packs", bookId), { recursive: true, force: true });
     rmSync(qcRoundPath(bookId, ROUND), { force: true });
+    if (bookId === GREEN_BOOK || bookId === REVISE_BOOK) {
+      rmSync(sweepHistoryPath(bookId), { force: true });
+      rmSync(chapterClearsPath(bookId), { force: true });
+    }
     rmSync(sweepRecordPath(bookId), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "indexes", `${bookId}.json`), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${bookId}.manual-brief.json`), { force: true });

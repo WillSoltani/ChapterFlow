@@ -32,7 +32,7 @@ import { collectQcRound, generateConfirmCandidates } from "../src/qc/orchestrato
 import { evaluateDeterministic } from "../src/qc/orchestrator/deterministicGate.js";
 import { effectiveLedger, appendFindings } from "../src/qc/orchestrator/ledger.js";
 import { checkSourceV2Gate, sourceHashFor } from "../src/qc/sourceV2Gate.js";
-import { REQUIRED_SWEEP_FAMILIES, checkSweep, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
+import { chapterClearsPath, REQUIRED_SWEEP_FAMILIES, checkSweep, sweepHistoryPath, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const BOOK = "zz-fixture-finalize-evidence";
@@ -101,8 +101,13 @@ function cleanup(): void {
     rmSync(resolve(REPO_ROOT, ".chapterflow/runs", bookId), { recursive: true, force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "qc-orchestrator", bookId), { recursive: true, force: true });
     rmSync(keyPackDir(bookId, ROUND), { recursive: true, force: true });
+    rmSync(dirname(keyPackDir(bookId, ROUND)), { recursive: true, force: true });
     rmSync(qcRoundPath(bookId, ROUND), { force: true });
     rmSync(waiverPath(bookId), { force: true });
+    if (bookId === GREEN_BOOK || bookId === MAJOR_BOOK) {
+      rmSync(sweepHistoryPath(bookId), { force: true });
+      rmSync(chapterClearsPath(bookId), { force: true });
+    }
     rmSync(sweepRecordPath(bookId), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${bookId}.manual-brief.json`), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "shape-plans", `${bookId}.shape-plan.json`), { force: true });
