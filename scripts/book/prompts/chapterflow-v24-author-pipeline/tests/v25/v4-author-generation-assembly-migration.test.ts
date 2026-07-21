@@ -6,6 +6,7 @@ import { join, resolve } from "node:path";
 import {
   assembleChapterV21OrThrow,
   openAuthorV4ContentSelection,
+  readAuthorV4SelectedText,
   type AssembleInput,
 } from "../../src/assembler.js";
 import type { BookContentReader, CandidateInputFile } from "../../src/books/candidateTypes.js";
@@ -18,8 +19,8 @@ import {
   type AuthorV4SectionChapterPaths,
 } from "../../src/sections/assembleSections.js";
 import { checkSectionGate } from "../../src/sections/sectionGate.js";
-import { readSectionTask, type SectionTask } from "../../src/sections/sectionTasks.js";
 import { compileCreditFixture, writeCreditFixture } from "../fixtures/creditBookFixture.js";
+import { finishV25Tests, requiredTest } from "./harness.js";
 
 const BOOK = "v4-generation-fixture";
 const RUN = "generation-run";
@@ -83,7 +84,7 @@ function legacyInput(fixture: ReturnType<typeof compileCreditFixture>): Assemble
   };
 }
 
-async function main(): Promise<void> {
+requiredTest("selected generation and assembly migration retains complete legacy parity and fail-closed boundaries", async () => {
   const temp = mkdtempSync(join(tmpdir(), "cf-v4-author-generation-r2-"));
   const compilerRoot = resolve(temp, "compiler-state");
   const sidecarPath = resolve(temp, "legacy-source-sidecar.json");
@@ -128,8 +129,7 @@ async function main(): Promise<void> {
   const sourceBefore = selection.snapshot.files.map((file) => Buffer.from(file.bytes).toString("hex"));
   console.log("PASS 1/7 complete selected input opens once through real BookContentReader with ordered inventory");
 
-  const task: SectionTask = { bookId: BOOK, chapterNumber: 1, chapterId: `${BOOK}-ch01`, kind: "summary-pack", taskPath: "/forbidden/ambient-task", outputPath: "/forbidden/output", exists: true };
-  assert.equal(readSectionTask(task, { content: selection, logicalPath: taskPath }), taskText);
+  assert.equal(readAuthorV4SelectedText(selection, taskPath), taskText);
   await assert.rejects(() => openAuthorV4ContentSelection(reader, { bookId: BOOK, selector: { kind: "CURRENT" } }), /ambient fallback is forbidden/);
   console.log("PASS 2/7 selected section task/source authority uses explicit CANDIDATE; CURRENT fallback blocks");
 
@@ -214,9 +214,9 @@ async function main(): Promise<void> {
   const selectedAfter = expectOk(await adapter.openShadowCandidate({ bookId: BOOK, selector: { kind: "CANDIDATE", candidateId: INPUT } }));
   assert.deepEqual(selectedAfter.files.map((file) => Buffer.from(file.bytes).toString("hex")), sourceBefore);
   console.log("PASS 7/7 overwrite/corrupt selector block; validation and assembly preserve source candidate bytes");
-}
+});
 
-main().catch((error: unknown) => {
+finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
 });

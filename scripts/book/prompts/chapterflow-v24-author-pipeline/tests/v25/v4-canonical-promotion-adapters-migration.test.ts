@@ -221,8 +221,12 @@ async function actualLegacyPromotion(context: TestContext, bookId: string) {
       return rel === "" || !excluded.has(rel.split(/[\\/]/)[0]);
     },
   });
-  assert.equal(existsSync(join(PIPELINE_DIR, "node_modules")), true, "named gate requires installed pipeline dependencies");
-  symlinkSync(join(PIPELINE_DIR, "node_modules"), join(cloneRoot, "node_modules"), "dir");
+  const dependencyDir = [
+    join(PIPELINE_DIR, "node_modules"),
+    join(PIPELINE_DIR, "..", "..", "..", "..", "node_modules"),
+  ].find(existsSync);
+  assert.ok(dependencyDir, "named gate requires installed pipeline or repository dependencies");
+  symlinkSync(dependencyDir, join(cloneRoot, "node_modules"), "dir");
 
   const chapter = makeGateCleanChapter(bookId, 1);
   const sixthQuestion = chapter.quiz.questions[5];

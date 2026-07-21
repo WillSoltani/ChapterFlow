@@ -58,6 +58,7 @@ import {
 import { validateSubmission } from "../../src/qc/orchestrator/schemas.js";
 import type { SectionTask } from "../../src/sections/sectionTasks.js";
 import type { AttemptAdmission, RunDefinition } from "../../src/run-state/runTypes.js";
+import { finishV25Tests, requiredTest } from "./harness.js";
 
 function treeBytes(root: string): string[] {
   const out: string[] = [];
@@ -81,7 +82,7 @@ function parseObject(bytes: Uint8Array): Record<string, unknown> {
   return parsed as Record<string, unknown>;
 }
 
-async function main(): Promise<void> {
+requiredTest("author run-state migration retains category parity durable replay and root-bound isolation assertions", async () => {
   const temp = mkdtempSync(join(tmpdir(), "chapterflow-v4-author-state-repair-"));
   const legacyRoot = join(temp, "legacy");
   const shadowRoot = join(temp, "shadow");
@@ -495,9 +496,9 @@ async function main(): Promise<void> {
   assert.throws(() => new LegacyAuthorStateAdapter({ legacyRoot, shadowRoot: legacyRoot, disposable: true }), /must be distinct/);
   assert.deepEqual(treeBytes(CANONICAL_STATE), productionBefore, "production-root byte diff stays zero");
   console.log("PASS 6/6 ports root-bound; invalid roots rejected; production/model/process mutation zero");
-}
+});
 
-main().catch((error: unknown) => {
+finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
 });

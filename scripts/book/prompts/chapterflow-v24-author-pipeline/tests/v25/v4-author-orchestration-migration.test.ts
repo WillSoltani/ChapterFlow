@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, relative, resolve } from "node:path";
 
@@ -19,6 +19,7 @@ import {
 import { LEGACY_NO_PLAN_HASH, patchValueHash } from "../../src/orchestrator/repairPatch.js";
 import type { RunDefinition } from "../../src/run-state/runTypes.js";
 import type { ChapterV21 } from "../../src/types.js";
+import { finishV25Tests, requiredTest } from "./harness.js";
 
 const T0 = "2026-07-20T12:00:00.000Z";
 const T1 = "2026-07-20T12:00:01.000Z";
@@ -145,8 +146,11 @@ function bookReviewReply(chapter: ChapterV21): string {
   }) + "\n```";
 }
 
-async function main(): Promise<void> {
+requiredTest("author orchestration migration retains review repair resume cancellation and containment assertions", async () => {
   const temp = mkdtempSync(join(tmpdir(), "cf-v4-author-orchestration-r2-"));
+  const originalCwd = process.cwd();
+  const forensicReviewRoot = resolve(originalCwd, "state", "reviews");
+  const forensicReviewRootStat = statSync(forensicReviewRoot);
   const adapter = new LegacyAuthorStateAdapter({ legacyRoot: resolve(temp, "legacy"), shadowRoot: resolve(temp, "shadow"), disposable: true });
 
   let spawnCalls = 0;
@@ -171,7 +175,7 @@ async function main(): Promise<void> {
   assert.deepEqual(shadowed, baseline, "real doAuthorReview visible transition stays byte-for-byte authoritative");
   await reviewReported;
   assert.equal(spawnCalls, 0, "review halt and its shadow execute no spawn");
-  const shadowSource = readFileSync(resolve("src/orchestrator/chapterTransaction.ts"), "utf8");
+  const shadowSource = readFileSync(resolve(originalCwd, "src/orchestrator/chapterTransaction.ts"), "utf8");
   assert.doesNotMatch(shadowSource, /child_process|modelGateway|processSupervisor|\.spawn\s*\(/, "shadow projector has zero process/gateway/spawn route");
   console.log("PASS 1/7 real doAuthorReview normalized transition parity; source + injected spawn tripwire prove zero shadow executor route");
 
@@ -406,11 +410,15 @@ async function main(): Promise<void> {
 
   // Legacy internals still own two best-effort forensic paths without IO-root
   // seams. This unique fixture removes only bytes it created.
-  rmSync(resolve("state/books/shadow-book"), { recursive: true, force: true });
-  rmSync(resolve("state/reviews/shadow-book"), { recursive: true, force: true });
-}
+  rmSync(resolve(forensicReviewRoot, "shadow-book"), { recursive: true, force: true });
+  utimesSync(
+    forensicReviewRoot,
+    forensicReviewRootStat.atimeMs / 1_000,
+    forensicReviewRootStat.mtimeMs / 1_000,
+  );
+});
 
-main().catch((error: unknown) => {
+finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
 });
