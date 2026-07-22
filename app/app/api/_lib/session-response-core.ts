@@ -1,6 +1,15 @@
 import type { BookResolvedIdentity } from "../book/_lib/identity";
 
 /**
+ * The one canonical error code every identity handler (`/app/api/me`,
+ * `/app/api/auth/session`, and `withBookApiErrors` in
+ * `app/app/api/book/_lib/http.ts`) emits for a 503 verifier-unavailable
+ * response. Kept as a single exported constant so the three independent
+ * handlers are test-pinned to the identical string and cannot drift.
+ */
+export const VERIFIER_UNAVAILABLE_CODE = "verifier_unavailable" as const;
+
+/**
  * The four outcomes a session-status probe (`/app/api/me`,
  * `/app/api/auth/session`) can resolve to. Kept as a discriminated union so the
  * mapping to an HTTP status + body is a single pure function, shared by both
@@ -49,7 +58,7 @@ export function buildSessionResponse(
         body: {
           loggedIn: null,
           error: {
-            code: "verifier_unavailable",
+            code: VERIFIER_UNAVAILABLE_CODE,
             message: "Authentication is temporarily unavailable. Please retry.",
             requestId,
           },

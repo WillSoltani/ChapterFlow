@@ -326,3 +326,16 @@ test("an UNAUTHENTICATED (no credential) still maps to 401 unauthenticated", asy
   const json = (await res.json()) as { error?: { code?: string } };
   assert.equal(json.error?.code, "unauthenticated");
 });
+
+test("withBookApiErrors maps VERIFIER_UNAVAILABLE to 503 verifier_unavailable", async () => {
+  // WS4-002: the third identity handler (this wrapper — http.ts:214-222, NOT
+  // edited by WS4-002) must emit the SAME error.code as the session-status
+  // routes (see app/app/api/_lib/verifier-unavailable-routes.test.ts), which
+  // are pinned to the shared `VERIFIER_UNAVAILABLE_CODE` constant.
+  const res = await withBookApiErrors(sameOriginPost(), async () => {
+    throw new AuthError("VERIFIER_UNAVAILABLE");
+  });
+  assert.equal(res.status, 503);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "verifier_unavailable");
+});
